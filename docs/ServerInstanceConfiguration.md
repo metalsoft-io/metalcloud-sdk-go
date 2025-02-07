@@ -1,0 +1,603 @@
+# ServerInstanceConfiguration
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Revision** | **float32** | Revision number | 
+**Label** | Pointer to **string** | The server instance label. Will be automatically generated if not provided. | [optional] 
+**UpdatedTimestamp** | **string** | Timestamp of the latest update for the Server Instance. | 
+**GroupId** | **int32** |  | 
+**DriveIdBootable** | Pointer to **int32** |  | [optional] 
+**Subdomain** | Pointer to **string** | Subdomain of the Server Group. | [optional] 
+**ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
+**ServerId** | Pointer to **int32** | The ID of the server assigned to the instance. | [optional] 
+**TemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
+**InstanceWanMlagId** | Pointer to **int32** |  | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
+**RaidProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | RAID profile for the Instance Interface. | [optional] 
+**EnableAutoPortChannel** | Pointer to **bool** | If enabled will enable port channel to be automatically created. | [optional] [default to true]
+**IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
+**IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
+**IscsiInitiatorPasswordEncrypted** | Pointer to **string** | iSCSI Initiator Password for the Instance Interface. | [optional] 
+**ControlPanelUrl** | Pointer to **string** | Control panel url for the Instance Interface. | [optional] 
+**NetworkProfiles** | Pointer to [**[]ServerInstanceConfigurationNetworkProfilesInner**](ServerInstanceConfigurationNetworkProfilesInner.md) | Network profiles mapping for each network in this infrastructure. | [optional] 
+**EmptyEdit** | Pointer to **int32** | Number of empty edits | [optional] 
+**DeployType** | **string** | Server Instance deploy type | 
+**DeployStatus** | **string** | Server Instance deploy status | 
+**DnsSubdomainChangeId** | Pointer to **int32** | Id of the DNS subdomain for the Server Instance. | [optional] 
+**InfrastructureDeployId** | Pointer to **int32** | Id of the deployment for the Server Instance. | [optional] 
+
+## Methods
+
+### NewServerInstanceConfiguration
+
+`func NewServerInstanceConfiguration(revision float32, updatedTimestamp string, groupId int32, deployType string, deployStatus string, ) *ServerInstanceConfiguration`
+
+NewServerInstanceConfiguration instantiates a new ServerInstanceConfiguration object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewServerInstanceConfigurationWithDefaults
+
+`func NewServerInstanceConfigurationWithDefaults() *ServerInstanceConfiguration`
+
+NewServerInstanceConfigurationWithDefaults instantiates a new ServerInstanceConfiguration object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetRevision
+
+`func (o *ServerInstanceConfiguration) GetRevision() float32`
+
+GetRevision returns the Revision field if non-nil, zero value otherwise.
+
+### GetRevisionOk
+
+`func (o *ServerInstanceConfiguration) GetRevisionOk() (*float32, bool)`
+
+GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevision
+
+`func (o *ServerInstanceConfiguration) SetRevision(v float32)`
+
+SetRevision sets Revision field to given value.
+
+
+### GetLabel
+
+`func (o *ServerInstanceConfiguration) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *ServerInstanceConfiguration) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *ServerInstanceConfiguration) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+### HasLabel
+
+`func (o *ServerInstanceConfiguration) HasLabel() bool`
+
+HasLabel returns a boolean if a field has been set.
+
+### GetUpdatedTimestamp
+
+`func (o *ServerInstanceConfiguration) GetUpdatedTimestamp() string`
+
+GetUpdatedTimestamp returns the UpdatedTimestamp field if non-nil, zero value otherwise.
+
+### GetUpdatedTimestampOk
+
+`func (o *ServerInstanceConfiguration) GetUpdatedTimestampOk() (*string, bool)`
+
+GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedTimestamp
+
+`func (o *ServerInstanceConfiguration) SetUpdatedTimestamp(v string)`
+
+SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
+
+
+### GetGroupId
+
+`func (o *ServerInstanceConfiguration) GetGroupId() int32`
+
+GetGroupId returns the GroupId field if non-nil, zero value otherwise.
+
+### GetGroupIdOk
+
+`func (o *ServerInstanceConfiguration) GetGroupIdOk() (*int32, bool)`
+
+GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupId
+
+`func (o *ServerInstanceConfiguration) SetGroupId(v int32)`
+
+SetGroupId sets GroupId field to given value.
+
+
+### GetDriveIdBootable
+
+`func (o *ServerInstanceConfiguration) GetDriveIdBootable() int32`
+
+GetDriveIdBootable returns the DriveIdBootable field if non-nil, zero value otherwise.
+
+### GetDriveIdBootableOk
+
+`func (o *ServerInstanceConfiguration) GetDriveIdBootableOk() (*int32, bool)`
+
+GetDriveIdBootableOk returns a tuple with the DriveIdBootable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriveIdBootable
+
+`func (o *ServerInstanceConfiguration) SetDriveIdBootable(v int32)`
+
+SetDriveIdBootable sets DriveIdBootable field to given value.
+
+### HasDriveIdBootable
+
+`func (o *ServerInstanceConfiguration) HasDriveIdBootable() bool`
+
+HasDriveIdBootable returns a boolean if a field has been set.
+
+### GetSubdomain
+
+`func (o *ServerInstanceConfiguration) GetSubdomain() string`
+
+GetSubdomain returns the Subdomain field if non-nil, zero value otherwise.
+
+### GetSubdomainOk
+
+`func (o *ServerInstanceConfiguration) GetSubdomainOk() (*string, bool)`
+
+GetSubdomainOk returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubdomain
+
+`func (o *ServerInstanceConfiguration) SetSubdomain(v string)`
+
+SetSubdomain sets Subdomain field to given value.
+
+### HasSubdomain
+
+`func (o *ServerInstanceConfiguration) HasSubdomain() bool`
+
+HasSubdomain returns a boolean if a field has been set.
+
+### GetServerTypeId
+
+`func (o *ServerInstanceConfiguration) GetServerTypeId() int32`
+
+GetServerTypeId returns the ServerTypeId field if non-nil, zero value otherwise.
+
+### GetServerTypeIdOk
+
+`func (o *ServerInstanceConfiguration) GetServerTypeIdOk() (*int32, bool)`
+
+GetServerTypeIdOk returns a tuple with the ServerTypeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerTypeId
+
+`func (o *ServerInstanceConfiguration) SetServerTypeId(v int32)`
+
+SetServerTypeId sets ServerTypeId field to given value.
+
+### HasServerTypeId
+
+`func (o *ServerInstanceConfiguration) HasServerTypeId() bool`
+
+HasServerTypeId returns a boolean if a field has been set.
+
+### GetServerId
+
+`func (o *ServerInstanceConfiguration) GetServerId() int32`
+
+GetServerId returns the ServerId field if non-nil, zero value otherwise.
+
+### GetServerIdOk
+
+`func (o *ServerInstanceConfiguration) GetServerIdOk() (*int32, bool)`
+
+GetServerIdOk returns a tuple with the ServerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerId
+
+`func (o *ServerInstanceConfiguration) SetServerId(v int32)`
+
+SetServerId sets ServerId field to given value.
+
+### HasServerId
+
+`func (o *ServerInstanceConfiguration) HasServerId() bool`
+
+HasServerId returns a boolean if a field has been set.
+
+### GetTemplateId
+
+`func (o *ServerInstanceConfiguration) GetTemplateId() int32`
+
+GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+
+### GetTemplateIdOk
+
+`func (o *ServerInstanceConfiguration) GetTemplateIdOk() (*int32, bool)`
+
+GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplateId
+
+`func (o *ServerInstanceConfiguration) SetTemplateId(v int32)`
+
+SetTemplateId sets TemplateId field to given value.
+
+### HasTemplateId
+
+`func (o *ServerInstanceConfiguration) HasTemplateId() bool`
+
+HasTemplateId returns a boolean if a field has been set.
+
+### GetInstanceWanMlagId
+
+`func (o *ServerInstanceConfiguration) GetInstanceWanMlagId() int32`
+
+GetInstanceWanMlagId returns the InstanceWanMlagId field if non-nil, zero value otherwise.
+
+### GetInstanceWanMlagIdOk
+
+`func (o *ServerInstanceConfiguration) GetInstanceWanMlagIdOk() (*int32, bool)`
+
+GetInstanceWanMlagIdOk returns a tuple with the InstanceWanMlagId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceWanMlagId
+
+`func (o *ServerInstanceConfiguration) SetInstanceWanMlagId(v int32)`
+
+SetInstanceWanMlagId sets InstanceWanMlagId field to given value.
+
+### HasInstanceWanMlagId
+
+`func (o *ServerInstanceConfiguration) HasInstanceWanMlagId() bool`
+
+HasInstanceWanMlagId returns a boolean if a field has been set.
+
+### GetCustomVariables
+
+`func (o *ServerInstanceConfiguration) GetCustomVariables() map[string]interface{}`
+
+GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
+
+### GetCustomVariablesOk
+
+`func (o *ServerInstanceConfiguration) GetCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomVariables
+
+`func (o *ServerInstanceConfiguration) SetCustomVariables(v map[string]interface{})`
+
+SetCustomVariables sets CustomVariables field to given value.
+
+### HasCustomVariables
+
+`func (o *ServerInstanceConfiguration) HasCustomVariables() bool`
+
+HasCustomVariables returns a boolean if a field has been set.
+
+### GetRaidProfile
+
+`func (o *ServerInstanceConfiguration) GetRaidProfile() ServerInstanceStorageProfile`
+
+GetRaidProfile returns the RaidProfile field if non-nil, zero value otherwise.
+
+### GetRaidProfileOk
+
+`func (o *ServerInstanceConfiguration) GetRaidProfileOk() (*ServerInstanceStorageProfile, bool)`
+
+GetRaidProfileOk returns a tuple with the RaidProfile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRaidProfile
+
+`func (o *ServerInstanceConfiguration) SetRaidProfile(v ServerInstanceStorageProfile)`
+
+SetRaidProfile sets RaidProfile field to given value.
+
+### HasRaidProfile
+
+`func (o *ServerInstanceConfiguration) HasRaidProfile() bool`
+
+HasRaidProfile returns a boolean if a field has been set.
+
+### GetEnableAutoPortChannel
+
+`func (o *ServerInstanceConfiguration) GetEnableAutoPortChannel() bool`
+
+GetEnableAutoPortChannel returns the EnableAutoPortChannel field if non-nil, zero value otherwise.
+
+### GetEnableAutoPortChannelOk
+
+`func (o *ServerInstanceConfiguration) GetEnableAutoPortChannelOk() (*bool, bool)`
+
+GetEnableAutoPortChannelOk returns a tuple with the EnableAutoPortChannel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableAutoPortChannel
+
+`func (o *ServerInstanceConfiguration) SetEnableAutoPortChannel(v bool)`
+
+SetEnableAutoPortChannel sets EnableAutoPortChannel field to given value.
+
+### HasEnableAutoPortChannel
+
+`func (o *ServerInstanceConfiguration) HasEnableAutoPortChannel() bool`
+
+HasEnableAutoPortChannel returns a boolean if a field has been set.
+
+### GetIscsiInitiatorIqn
+
+`func (o *ServerInstanceConfiguration) GetIscsiInitiatorIqn() string`
+
+GetIscsiInitiatorIqn returns the IscsiInitiatorIqn field if non-nil, zero value otherwise.
+
+### GetIscsiInitiatorIqnOk
+
+`func (o *ServerInstanceConfiguration) GetIscsiInitiatorIqnOk() (*string, bool)`
+
+GetIscsiInitiatorIqnOk returns a tuple with the IscsiInitiatorIqn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIscsiInitiatorIqn
+
+`func (o *ServerInstanceConfiguration) SetIscsiInitiatorIqn(v string)`
+
+SetIscsiInitiatorIqn sets IscsiInitiatorIqn field to given value.
+
+### HasIscsiInitiatorIqn
+
+`func (o *ServerInstanceConfiguration) HasIscsiInitiatorIqn() bool`
+
+HasIscsiInitiatorIqn returns a boolean if a field has been set.
+
+### GetIscsiInitiatorUsername
+
+`func (o *ServerInstanceConfiguration) GetIscsiInitiatorUsername() string`
+
+GetIscsiInitiatorUsername returns the IscsiInitiatorUsername field if non-nil, zero value otherwise.
+
+### GetIscsiInitiatorUsernameOk
+
+`func (o *ServerInstanceConfiguration) GetIscsiInitiatorUsernameOk() (*string, bool)`
+
+GetIscsiInitiatorUsernameOk returns a tuple with the IscsiInitiatorUsername field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIscsiInitiatorUsername
+
+`func (o *ServerInstanceConfiguration) SetIscsiInitiatorUsername(v string)`
+
+SetIscsiInitiatorUsername sets IscsiInitiatorUsername field to given value.
+
+### HasIscsiInitiatorUsername
+
+`func (o *ServerInstanceConfiguration) HasIscsiInitiatorUsername() bool`
+
+HasIscsiInitiatorUsername returns a boolean if a field has been set.
+
+### GetIscsiInitiatorPasswordEncrypted
+
+`func (o *ServerInstanceConfiguration) GetIscsiInitiatorPasswordEncrypted() string`
+
+GetIscsiInitiatorPasswordEncrypted returns the IscsiInitiatorPasswordEncrypted field if non-nil, zero value otherwise.
+
+### GetIscsiInitiatorPasswordEncryptedOk
+
+`func (o *ServerInstanceConfiguration) GetIscsiInitiatorPasswordEncryptedOk() (*string, bool)`
+
+GetIscsiInitiatorPasswordEncryptedOk returns a tuple with the IscsiInitiatorPasswordEncrypted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIscsiInitiatorPasswordEncrypted
+
+`func (o *ServerInstanceConfiguration) SetIscsiInitiatorPasswordEncrypted(v string)`
+
+SetIscsiInitiatorPasswordEncrypted sets IscsiInitiatorPasswordEncrypted field to given value.
+
+### HasIscsiInitiatorPasswordEncrypted
+
+`func (o *ServerInstanceConfiguration) HasIscsiInitiatorPasswordEncrypted() bool`
+
+HasIscsiInitiatorPasswordEncrypted returns a boolean if a field has been set.
+
+### GetControlPanelUrl
+
+`func (o *ServerInstanceConfiguration) GetControlPanelUrl() string`
+
+GetControlPanelUrl returns the ControlPanelUrl field if non-nil, zero value otherwise.
+
+### GetControlPanelUrlOk
+
+`func (o *ServerInstanceConfiguration) GetControlPanelUrlOk() (*string, bool)`
+
+GetControlPanelUrlOk returns a tuple with the ControlPanelUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetControlPanelUrl
+
+`func (o *ServerInstanceConfiguration) SetControlPanelUrl(v string)`
+
+SetControlPanelUrl sets ControlPanelUrl field to given value.
+
+### HasControlPanelUrl
+
+`func (o *ServerInstanceConfiguration) HasControlPanelUrl() bool`
+
+HasControlPanelUrl returns a boolean if a field has been set.
+
+### GetNetworkProfiles
+
+`func (o *ServerInstanceConfiguration) GetNetworkProfiles() []ServerInstanceConfigurationNetworkProfilesInner`
+
+GetNetworkProfiles returns the NetworkProfiles field if non-nil, zero value otherwise.
+
+### GetNetworkProfilesOk
+
+`func (o *ServerInstanceConfiguration) GetNetworkProfilesOk() (*[]ServerInstanceConfigurationNetworkProfilesInner, bool)`
+
+GetNetworkProfilesOk returns a tuple with the NetworkProfiles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkProfiles
+
+`func (o *ServerInstanceConfiguration) SetNetworkProfiles(v []ServerInstanceConfigurationNetworkProfilesInner)`
+
+SetNetworkProfiles sets NetworkProfiles field to given value.
+
+### HasNetworkProfiles
+
+`func (o *ServerInstanceConfiguration) HasNetworkProfiles() bool`
+
+HasNetworkProfiles returns a boolean if a field has been set.
+
+### GetEmptyEdit
+
+`func (o *ServerInstanceConfiguration) GetEmptyEdit() int32`
+
+GetEmptyEdit returns the EmptyEdit field if non-nil, zero value otherwise.
+
+### GetEmptyEditOk
+
+`func (o *ServerInstanceConfiguration) GetEmptyEditOk() (*int32, bool)`
+
+GetEmptyEditOk returns a tuple with the EmptyEdit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmptyEdit
+
+`func (o *ServerInstanceConfiguration) SetEmptyEdit(v int32)`
+
+SetEmptyEdit sets EmptyEdit field to given value.
+
+### HasEmptyEdit
+
+`func (o *ServerInstanceConfiguration) HasEmptyEdit() bool`
+
+HasEmptyEdit returns a boolean if a field has been set.
+
+### GetDeployType
+
+`func (o *ServerInstanceConfiguration) GetDeployType() string`
+
+GetDeployType returns the DeployType field if non-nil, zero value otherwise.
+
+### GetDeployTypeOk
+
+`func (o *ServerInstanceConfiguration) GetDeployTypeOk() (*string, bool)`
+
+GetDeployTypeOk returns a tuple with the DeployType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeployType
+
+`func (o *ServerInstanceConfiguration) SetDeployType(v string)`
+
+SetDeployType sets DeployType field to given value.
+
+
+### GetDeployStatus
+
+`func (o *ServerInstanceConfiguration) GetDeployStatus() string`
+
+GetDeployStatus returns the DeployStatus field if non-nil, zero value otherwise.
+
+### GetDeployStatusOk
+
+`func (o *ServerInstanceConfiguration) GetDeployStatusOk() (*string, bool)`
+
+GetDeployStatusOk returns a tuple with the DeployStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeployStatus
+
+`func (o *ServerInstanceConfiguration) SetDeployStatus(v string)`
+
+SetDeployStatus sets DeployStatus field to given value.
+
+
+### GetDnsSubdomainChangeId
+
+`func (o *ServerInstanceConfiguration) GetDnsSubdomainChangeId() int32`
+
+GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field if non-nil, zero value otherwise.
+
+### GetDnsSubdomainChangeIdOk
+
+`func (o *ServerInstanceConfiguration) GetDnsSubdomainChangeIdOk() (*int32, bool)`
+
+GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsSubdomainChangeId
+
+`func (o *ServerInstanceConfiguration) SetDnsSubdomainChangeId(v int32)`
+
+SetDnsSubdomainChangeId sets DnsSubdomainChangeId field to given value.
+
+### HasDnsSubdomainChangeId
+
+`func (o *ServerInstanceConfiguration) HasDnsSubdomainChangeId() bool`
+
+HasDnsSubdomainChangeId returns a boolean if a field has been set.
+
+### GetInfrastructureDeployId
+
+`func (o *ServerInstanceConfiguration) GetInfrastructureDeployId() int32`
+
+GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
+
+### GetInfrastructureDeployIdOk
+
+`func (o *ServerInstanceConfiguration) GetInfrastructureDeployIdOk() (*int32, bool)`
+
+GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructureDeployId
+
+`func (o *ServerInstanceConfiguration) SetInfrastructureDeployId(v int32)`
+
+SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
+
+### HasInfrastructureDeployId
+
+`func (o *ServerInstanceConfiguration) HasInfrastructureDeployId() bool`
+
+HasInfrastructureDeployId returns a boolean if a field has been set.
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

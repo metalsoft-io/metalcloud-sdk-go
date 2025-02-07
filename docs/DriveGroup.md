@@ -1,0 +1,662 @@
+# DriveGroup
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Label** | **string** | Label of the Drive Group. | 
+**InfrastructureId** | **float32** | Infrastructure id of the Drive Group | 
+**TemplateId** | Pointer to **float32** | Template Id | [optional] 
+**DriveCount** | **float32** | Number of drives in the Drive Group | 
+**DriveSizeMbDefault** | **float32** | Default disk size in MB for new Drives in the Drive Group | 
+**InstanceArrayId** | Pointer to **float32** |  | [optional] 
+**ContainerArrayId** | Pointer to **float32** |  | [optional] 
+**ExpandWithInstanceArray** | **float32** | Flag to determine whether the Drive Group should be expanded with an Instance Array by adding one drive for each instance | 
+**IoLimitPolicy** | Pointer to **string** | The IO limit policy of the Drive Group. | [optional] 
+**StorageType** | **string** | Service status of the Drive Group | [default to "iscsi_ssd"]
+**FilesystemInfo** | Pointer to **map[string]interface{}** | Filesystem information of the Drive Group. | [optional] 
+**Subdomain** | Pointer to **string** | Subdomain of the Drive Group. | [optional] 
+**UpdatedTimestamp** | **string** | Timestamp of the Drive Group last update. | 
+**Id** | **float32** | Id of the Drive Group | 
+**Revision** | **float32** | Revision of the Drive Group State | 
+**ClusterId** | Pointer to **float32** |  | [optional] 
+**ContainerClusterId** | Pointer to **float32** |  | [optional] 
+**ClusterRoleGroup** | **string** | Cluster Role Group of the Drive Group, if part of a cluster | [default to "none"]
+**ServiceStatus** | **string** | Service status of the Drive Group | 
+**SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Drive Group. | [optional] 
+**DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the Drive Group. | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the Drive Group. | [optional] 
+**AllocationAffinity** | **string** | Allocation affinity of the Drive Group | 
+**Tags** | Pointer to **[]string** | Tags for the Drive Group. | [optional] 
+**GuiSettings** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
+**Config** | [**DriveGroupConfiguration**](DriveGroupConfiguration.md) | The current changes to be deployed for the Drive Group. | 
+**CreatedTimestamp** | **string** | Timestamp of the Drive Group creation. | 
+
+## Methods
+
+### NewDriveGroup
+
+`func NewDriveGroup(label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithInstanceArray float32, storageType string, updatedTimestamp string, id float32, revision float32, clusterRoleGroup string, serviceStatus string, allocationAffinity string, config DriveGroupConfiguration, createdTimestamp string, ) *DriveGroup`
+
+NewDriveGroup instantiates a new DriveGroup object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewDriveGroupWithDefaults
+
+`func NewDriveGroupWithDefaults() *DriveGroup`
+
+NewDriveGroupWithDefaults instantiates a new DriveGroup object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetLabel
+
+`func (o *DriveGroup) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *DriveGroup) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *DriveGroup) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+
+### GetInfrastructureId
+
+`func (o *DriveGroup) GetInfrastructureId() float32`
+
+GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
+
+### GetInfrastructureIdOk
+
+`func (o *DriveGroup) GetInfrastructureIdOk() (*float32, bool)`
+
+GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructureId
+
+`func (o *DriveGroup) SetInfrastructureId(v float32)`
+
+SetInfrastructureId sets InfrastructureId field to given value.
+
+
+### GetTemplateId
+
+`func (o *DriveGroup) GetTemplateId() float32`
+
+GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+
+### GetTemplateIdOk
+
+`func (o *DriveGroup) GetTemplateIdOk() (*float32, bool)`
+
+GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplateId
+
+`func (o *DriveGroup) SetTemplateId(v float32)`
+
+SetTemplateId sets TemplateId field to given value.
+
+### HasTemplateId
+
+`func (o *DriveGroup) HasTemplateId() bool`
+
+HasTemplateId returns a boolean if a field has been set.
+
+### GetDriveCount
+
+`func (o *DriveGroup) GetDriveCount() float32`
+
+GetDriveCount returns the DriveCount field if non-nil, zero value otherwise.
+
+### GetDriveCountOk
+
+`func (o *DriveGroup) GetDriveCountOk() (*float32, bool)`
+
+GetDriveCountOk returns a tuple with the DriveCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriveCount
+
+`func (o *DriveGroup) SetDriveCount(v float32)`
+
+SetDriveCount sets DriveCount field to given value.
+
+
+### GetDriveSizeMbDefault
+
+`func (o *DriveGroup) GetDriveSizeMbDefault() float32`
+
+GetDriveSizeMbDefault returns the DriveSizeMbDefault field if non-nil, zero value otherwise.
+
+### GetDriveSizeMbDefaultOk
+
+`func (o *DriveGroup) GetDriveSizeMbDefaultOk() (*float32, bool)`
+
+GetDriveSizeMbDefaultOk returns a tuple with the DriveSizeMbDefault field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriveSizeMbDefault
+
+`func (o *DriveGroup) SetDriveSizeMbDefault(v float32)`
+
+SetDriveSizeMbDefault sets DriveSizeMbDefault field to given value.
+
+
+### GetInstanceArrayId
+
+`func (o *DriveGroup) GetInstanceArrayId() float32`
+
+GetInstanceArrayId returns the InstanceArrayId field if non-nil, zero value otherwise.
+
+### GetInstanceArrayIdOk
+
+`func (o *DriveGroup) GetInstanceArrayIdOk() (*float32, bool)`
+
+GetInstanceArrayIdOk returns a tuple with the InstanceArrayId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceArrayId
+
+`func (o *DriveGroup) SetInstanceArrayId(v float32)`
+
+SetInstanceArrayId sets InstanceArrayId field to given value.
+
+### HasInstanceArrayId
+
+`func (o *DriveGroup) HasInstanceArrayId() bool`
+
+HasInstanceArrayId returns a boolean if a field has been set.
+
+### GetContainerArrayId
+
+`func (o *DriveGroup) GetContainerArrayId() float32`
+
+GetContainerArrayId returns the ContainerArrayId field if non-nil, zero value otherwise.
+
+### GetContainerArrayIdOk
+
+`func (o *DriveGroup) GetContainerArrayIdOk() (*float32, bool)`
+
+GetContainerArrayIdOk returns a tuple with the ContainerArrayId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContainerArrayId
+
+`func (o *DriveGroup) SetContainerArrayId(v float32)`
+
+SetContainerArrayId sets ContainerArrayId field to given value.
+
+### HasContainerArrayId
+
+`func (o *DriveGroup) HasContainerArrayId() bool`
+
+HasContainerArrayId returns a boolean if a field has been set.
+
+### GetExpandWithInstanceArray
+
+`func (o *DriveGroup) GetExpandWithInstanceArray() float32`
+
+GetExpandWithInstanceArray returns the ExpandWithInstanceArray field if non-nil, zero value otherwise.
+
+### GetExpandWithInstanceArrayOk
+
+`func (o *DriveGroup) GetExpandWithInstanceArrayOk() (*float32, bool)`
+
+GetExpandWithInstanceArrayOk returns a tuple with the ExpandWithInstanceArray field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpandWithInstanceArray
+
+`func (o *DriveGroup) SetExpandWithInstanceArray(v float32)`
+
+SetExpandWithInstanceArray sets ExpandWithInstanceArray field to given value.
+
+
+### GetIoLimitPolicy
+
+`func (o *DriveGroup) GetIoLimitPolicy() string`
+
+GetIoLimitPolicy returns the IoLimitPolicy field if non-nil, zero value otherwise.
+
+### GetIoLimitPolicyOk
+
+`func (o *DriveGroup) GetIoLimitPolicyOk() (*string, bool)`
+
+GetIoLimitPolicyOk returns a tuple with the IoLimitPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIoLimitPolicy
+
+`func (o *DriveGroup) SetIoLimitPolicy(v string)`
+
+SetIoLimitPolicy sets IoLimitPolicy field to given value.
+
+### HasIoLimitPolicy
+
+`func (o *DriveGroup) HasIoLimitPolicy() bool`
+
+HasIoLimitPolicy returns a boolean if a field has been set.
+
+### GetStorageType
+
+`func (o *DriveGroup) GetStorageType() string`
+
+GetStorageType returns the StorageType field if non-nil, zero value otherwise.
+
+### GetStorageTypeOk
+
+`func (o *DriveGroup) GetStorageTypeOk() (*string, bool)`
+
+GetStorageTypeOk returns a tuple with the StorageType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStorageType
+
+`func (o *DriveGroup) SetStorageType(v string)`
+
+SetStorageType sets StorageType field to given value.
+
+
+### GetFilesystemInfo
+
+`func (o *DriveGroup) GetFilesystemInfo() map[string]interface{}`
+
+GetFilesystemInfo returns the FilesystemInfo field if non-nil, zero value otherwise.
+
+### GetFilesystemInfoOk
+
+`func (o *DriveGroup) GetFilesystemInfoOk() (*map[string]interface{}, bool)`
+
+GetFilesystemInfoOk returns a tuple with the FilesystemInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilesystemInfo
+
+`func (o *DriveGroup) SetFilesystemInfo(v map[string]interface{})`
+
+SetFilesystemInfo sets FilesystemInfo field to given value.
+
+### HasFilesystemInfo
+
+`func (o *DriveGroup) HasFilesystemInfo() bool`
+
+HasFilesystemInfo returns a boolean if a field has been set.
+
+### GetSubdomain
+
+`func (o *DriveGroup) GetSubdomain() string`
+
+GetSubdomain returns the Subdomain field if non-nil, zero value otherwise.
+
+### GetSubdomainOk
+
+`func (o *DriveGroup) GetSubdomainOk() (*string, bool)`
+
+GetSubdomainOk returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubdomain
+
+`func (o *DriveGroup) SetSubdomain(v string)`
+
+SetSubdomain sets Subdomain field to given value.
+
+### HasSubdomain
+
+`func (o *DriveGroup) HasSubdomain() bool`
+
+HasSubdomain returns a boolean if a field has been set.
+
+### GetUpdatedTimestamp
+
+`func (o *DriveGroup) GetUpdatedTimestamp() string`
+
+GetUpdatedTimestamp returns the UpdatedTimestamp field if non-nil, zero value otherwise.
+
+### GetUpdatedTimestampOk
+
+`func (o *DriveGroup) GetUpdatedTimestampOk() (*string, bool)`
+
+GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedTimestamp
+
+`func (o *DriveGroup) SetUpdatedTimestamp(v string)`
+
+SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
+
+
+### GetId
+
+`func (o *DriveGroup) GetId() float32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *DriveGroup) GetIdOk() (*float32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *DriveGroup) SetId(v float32)`
+
+SetId sets Id field to given value.
+
+
+### GetRevision
+
+`func (o *DriveGroup) GetRevision() float32`
+
+GetRevision returns the Revision field if non-nil, zero value otherwise.
+
+### GetRevisionOk
+
+`func (o *DriveGroup) GetRevisionOk() (*float32, bool)`
+
+GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevision
+
+`func (o *DriveGroup) SetRevision(v float32)`
+
+SetRevision sets Revision field to given value.
+
+
+### GetClusterId
+
+`func (o *DriveGroup) GetClusterId() float32`
+
+GetClusterId returns the ClusterId field if non-nil, zero value otherwise.
+
+### GetClusterIdOk
+
+`func (o *DriveGroup) GetClusterIdOk() (*float32, bool)`
+
+GetClusterIdOk returns a tuple with the ClusterId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClusterId
+
+`func (o *DriveGroup) SetClusterId(v float32)`
+
+SetClusterId sets ClusterId field to given value.
+
+### HasClusterId
+
+`func (o *DriveGroup) HasClusterId() bool`
+
+HasClusterId returns a boolean if a field has been set.
+
+### GetContainerClusterId
+
+`func (o *DriveGroup) GetContainerClusterId() float32`
+
+GetContainerClusterId returns the ContainerClusterId field if non-nil, zero value otherwise.
+
+### GetContainerClusterIdOk
+
+`func (o *DriveGroup) GetContainerClusterIdOk() (*float32, bool)`
+
+GetContainerClusterIdOk returns a tuple with the ContainerClusterId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContainerClusterId
+
+`func (o *DriveGroup) SetContainerClusterId(v float32)`
+
+SetContainerClusterId sets ContainerClusterId field to given value.
+
+### HasContainerClusterId
+
+`func (o *DriveGroup) HasContainerClusterId() bool`
+
+HasContainerClusterId returns a boolean if a field has been set.
+
+### GetClusterRoleGroup
+
+`func (o *DriveGroup) GetClusterRoleGroup() string`
+
+GetClusterRoleGroup returns the ClusterRoleGroup field if non-nil, zero value otherwise.
+
+### GetClusterRoleGroupOk
+
+`func (o *DriveGroup) GetClusterRoleGroupOk() (*string, bool)`
+
+GetClusterRoleGroupOk returns a tuple with the ClusterRoleGroup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClusterRoleGroup
+
+`func (o *DriveGroup) SetClusterRoleGroup(v string)`
+
+SetClusterRoleGroup sets ClusterRoleGroup field to given value.
+
+
+### GetServiceStatus
+
+`func (o *DriveGroup) GetServiceStatus() string`
+
+GetServiceStatus returns the ServiceStatus field if non-nil, zero value otherwise.
+
+### GetServiceStatusOk
+
+`func (o *DriveGroup) GetServiceStatusOk() (*string, bool)`
+
+GetServiceStatusOk returns a tuple with the ServiceStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceStatus
+
+`func (o *DriveGroup) SetServiceStatus(v string)`
+
+SetServiceStatus sets ServiceStatus field to given value.
+
+
+### GetSubdomainPermanent
+
+`func (o *DriveGroup) GetSubdomainPermanent() string`
+
+GetSubdomainPermanent returns the SubdomainPermanent field if non-nil, zero value otherwise.
+
+### GetSubdomainPermanentOk
+
+`func (o *DriveGroup) GetSubdomainPermanentOk() (*string, bool)`
+
+GetSubdomainPermanentOk returns a tuple with the SubdomainPermanent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubdomainPermanent
+
+`func (o *DriveGroup) SetSubdomainPermanent(v string)`
+
+SetSubdomainPermanent sets SubdomainPermanent field to given value.
+
+### HasSubdomainPermanent
+
+`func (o *DriveGroup) HasSubdomainPermanent() bool`
+
+HasSubdomainPermanent returns a boolean if a field has been set.
+
+### GetDnsSubdomainId
+
+`func (o *DriveGroup) GetDnsSubdomainId() float32`
+
+GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
+
+### GetDnsSubdomainIdOk
+
+`func (o *DriveGroup) GetDnsSubdomainIdOk() (*float32, bool)`
+
+GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsSubdomainId
+
+`func (o *DriveGroup) SetDnsSubdomainId(v float32)`
+
+SetDnsSubdomainId sets DnsSubdomainId field to given value.
+
+### HasDnsSubdomainId
+
+`func (o *DriveGroup) HasDnsSubdomainId() bool`
+
+HasDnsSubdomainId returns a boolean if a field has been set.
+
+### GetDnsSubdomainPermanentId
+
+`func (o *DriveGroup) GetDnsSubdomainPermanentId() float32`
+
+GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field if non-nil, zero value otherwise.
+
+### GetDnsSubdomainPermanentIdOk
+
+`func (o *DriveGroup) GetDnsSubdomainPermanentIdOk() (*float32, bool)`
+
+GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsSubdomainPermanentId
+
+`func (o *DriveGroup) SetDnsSubdomainPermanentId(v float32)`
+
+SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
+
+### HasDnsSubdomainPermanentId
+
+`func (o *DriveGroup) HasDnsSubdomainPermanentId() bool`
+
+HasDnsSubdomainPermanentId returns a boolean if a field has been set.
+
+### GetAllocationAffinity
+
+`func (o *DriveGroup) GetAllocationAffinity() string`
+
+GetAllocationAffinity returns the AllocationAffinity field if non-nil, zero value otherwise.
+
+### GetAllocationAffinityOk
+
+`func (o *DriveGroup) GetAllocationAffinityOk() (*string, bool)`
+
+GetAllocationAffinityOk returns a tuple with the AllocationAffinity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllocationAffinity
+
+`func (o *DriveGroup) SetAllocationAffinity(v string)`
+
+SetAllocationAffinity sets AllocationAffinity field to given value.
+
+
+### GetTags
+
+`func (o *DriveGroup) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *DriveGroup) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *DriveGroup) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *DriveGroup) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
+### GetGuiSettings
+
+`func (o *DriveGroup) GetGuiSettings() GenericGUISettings`
+
+GetGuiSettings returns the GuiSettings field if non-nil, zero value otherwise.
+
+### GetGuiSettingsOk
+
+`func (o *DriveGroup) GetGuiSettingsOk() (*GenericGUISettings, bool)`
+
+GetGuiSettingsOk returns a tuple with the GuiSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGuiSettings
+
+`func (o *DriveGroup) SetGuiSettings(v GenericGUISettings)`
+
+SetGuiSettings sets GuiSettings field to given value.
+
+### HasGuiSettings
+
+`func (o *DriveGroup) HasGuiSettings() bool`
+
+HasGuiSettings returns a boolean if a field has been set.
+
+### GetConfig
+
+`func (o *DriveGroup) GetConfig() DriveGroupConfiguration`
+
+GetConfig returns the Config field if non-nil, zero value otherwise.
+
+### GetConfigOk
+
+`func (o *DriveGroup) GetConfigOk() (*DriveGroupConfiguration, bool)`
+
+GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfig
+
+`func (o *DriveGroup) SetConfig(v DriveGroupConfiguration)`
+
+SetConfig sets Config field to given value.
+
+
+### GetCreatedTimestamp
+
+`func (o *DriveGroup) GetCreatedTimestamp() string`
+
+GetCreatedTimestamp returns the CreatedTimestamp field if non-nil, zero value otherwise.
+
+### GetCreatedTimestampOk
+
+`func (o *DriveGroup) GetCreatedTimestampOk() (*string, bool)`
+
+GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedTimestamp
+
+`func (o *DriveGroup) SetCreatedTimestamp(v string)`
+
+SetCreatedTimestamp sets CreatedTimestamp field to given value.
+
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
