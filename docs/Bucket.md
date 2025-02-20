@@ -17,17 +17,17 @@ Name | Type | Description | Notes
 **SubdomainPermanent** | **string** | Subdomain permanent of the Bucket. | 
 **DnsSubdomainId** | **float32** | Id of the DNS subdomain for the Bucket. | 
 **NetworkVlanId** | Pointer to **float32** | Id of the VLAN for the Bucket. | [optional] 
-**GuiSettings** | [**GenericGUISettings**](GenericGUISettings.md) |  | 
 **Endpoint** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
 **AccessKeyId** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
 **SecretKeyEncrypted** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
 **Config** | [**BucketConfiguration**](BucketConfiguration.md) | The current changes to be deployed for the Bucket. | 
+**Meta** | [**BucketMeta**](BucketMeta.md) | Meta information of the Bucket. | 
 
 ## Methods
 
 ### NewBucket
 
-`func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, guiSettings GenericGUISettings, config BucketConfiguration, ) *Bucket`
+`func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, config BucketConfiguration, meta BucketMeta, ) *Bucket`
 
 NewBucket instantiates a new Bucket object
 This constructor will assign default values to properties that have it defined,
@@ -312,26 +312,6 @@ SetNetworkVlanId sets NetworkVlanId field to given value.
 
 HasNetworkVlanId returns a boolean if a field has been set.
 
-### GetGuiSettings
-
-`func (o *Bucket) GetGuiSettings() GenericGUISettings`
-
-GetGuiSettings returns the GuiSettings field if non-nil, zero value otherwise.
-
-### GetGuiSettingsOk
-
-`func (o *Bucket) GetGuiSettingsOk() (*GenericGUISettings, bool)`
-
-GetGuiSettingsOk returns a tuple with the GuiSettings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGuiSettings
-
-`func (o *Bucket) SetGuiSettings(v GenericGUISettings)`
-
-SetGuiSettings sets GuiSettings field to given value.
-
-
 ### GetEndpoint
 
 `func (o *Bucket) GetEndpoint() string`
@@ -425,6 +405,26 @@ and a boolean to check if the value has been set.
 `func (o *Bucket) SetConfig(v BucketConfiguration)`
 
 SetConfig sets Config field to given value.
+
+
+### GetMeta
+
+`func (o *Bucket) GetMeta() BucketMeta`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *Bucket) GetMetaOk() (*BucketMeta, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *Bucket) SetMeta(v BucketMeta)`
+
+SetMeta sets Meta field to given value.
 
 
 

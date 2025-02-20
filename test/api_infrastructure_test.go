@@ -34,6 +34,19 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test InfrastructureAPIService DeleteInfrastructure", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+
+		httpRes, err := apiClient.InfrastructureAPI.DeleteInfrastructure(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test InfrastructureAPIService DeployInfrastructure", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -83,6 +96,34 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 		httpRes, err := apiClient.InfrastructureAPI.RevertInfrastructure(context.Background(), infrastructureId).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test InfrastructureAPIService UpdateInfrastructureConfiguration", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+
+		resp, httpRes, err := apiClient.InfrastructureAPI.UpdateInfrastructureConfiguration(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test InfrastructureAPIService UpdateInfrastructureMetadata", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+
+		resp, httpRes, err := apiClient.InfrastructureAPI.UpdateInfrastructureMetadata(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

@@ -145,7 +145,7 @@ type DriveGroupAPIGetInfrastructureDriveGroupsRequest struct {
 	filterLabel *[]string
 	filterSubdomain *[]string
 	filterSubdomainPermanent *[]string
-	filterClusterId *[]string
+	filterExtensionInstanceId *[]string
 	filterTags *[]string
 	filterConfigDeployStatus *[]string
 	filterConfigDeployType *[]string
@@ -208,9 +208,9 @@ func (r DriveGroupAPIGetInfrastructureDriveGroupsRequest) FilterSubdomainPermane
 	return r
 }
 
-// Filter by clusterId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.clusterId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.clusterId&#x3D;$not:$like:John Doe&amp;filter.clusterId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r DriveGroupAPIGetInfrastructureDriveGroupsRequest) FilterClusterId(filterClusterId []string) DriveGroupAPIGetInfrastructureDriveGroupsRequest {
-	r.filterClusterId = &filterClusterId
+// Filter by extensionInstanceId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.extensionInstanceId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.extensionInstanceId&#x3D;$not:$like:John Doe&amp;filter.extensionInstanceId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r DriveGroupAPIGetInfrastructureDriveGroupsRequest) FilterExtensionInstanceId(filterExtensionInstanceId []string) DriveGroupAPIGetInfrastructureDriveGroupsRequest {
+	r.filterExtensionInstanceId = &filterExtensionInstanceId
 	return r
 }
 
@@ -244,7 +244,7 @@ func (r DriveGroupAPIGetInfrastructureDriveGroupsRequest) Search(search string) 
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,subdomain,subdomainPermanent,infrastructureId           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;subdomain&lt;/li&gt; &lt;li&gt;subdomainPermanent&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;instanceArrayId&lt;/li&gt; &lt;li&gt;clusterId&lt;/li&gt; &lt;li&gt;tags&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt; &lt;li&gt;config.templateId&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,subdomain,subdomainPermanent,infrastructureId           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;subdomain&lt;/li&gt; &lt;li&gt;subdomainPermanent&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;instanceArrayId&lt;/li&gt; &lt;li&gt;extensionInstanceId&lt;/li&gt; &lt;li&gt;tags&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt; &lt;li&gt;config.templateId&lt;/li&gt;&lt;/ul&gt;         
 func (r DriveGroupAPIGetInfrastructureDriveGroupsRequest) SearchBy(searchBy []string) DriveGroupAPIGetInfrastructureDriveGroupsRequest {
 	r.searchBy = &searchBy
 	return r
@@ -376,15 +376,15 @@ func (a *DriveGroupAPIService) GetInfrastructureDriveGroupsExecute(r DriveGroupA
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.subdomainPermanent", t, "form", "multi")
 		}
 	}
-	if r.filterClusterId != nil {
-		t := *r.filterClusterId
+	if r.filterExtensionInstanceId != nil {
+		t := *r.filterExtensionInstanceId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.clusterId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.extensionInstanceId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.clusterId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.extensionInstanceId", t, "form", "multi")
 		}
 	}
 	if r.filterTags != nil {

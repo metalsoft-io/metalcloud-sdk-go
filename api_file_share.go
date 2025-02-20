@@ -349,6 +349,111 @@ func (a *FileShareAPIService) GetFileShareExecute(r FileShareAPIGetFileShareRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type FileShareAPIGetFileShareConfigInfoRequest struct {
+	ctx context.Context
+	ApiService *FileShareAPIService
+	infrastructureId float32
+	fileShareId float32
+}
+
+func (r FileShareAPIGetFileShareConfigInfoRequest) Execute() (*FileShareConfiguration, *http.Response, error) {
+	return r.ApiService.GetFileShareConfigInfoExecute(r)
+}
+
+/*
+GetFileShareConfigInfo Get configuration information about the specified File Share
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param fileShareId
+ @return FileShareAPIGetFileShareConfigInfoRequest
+*/
+func (a *FileShareAPIService) GetFileShareConfigInfo(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIGetFileShareConfigInfoRequest {
+	return FileShareAPIGetFileShareConfigInfoRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		fileShareId: fileShareId,
+	}
+}
+
+// Execute executes the request
+//  @return FileShareConfiguration
+func (a *FileShareAPIService) GetFileShareConfigInfoExecute(r FileShareAPIGetFileShareConfigInfoRequest) (*FileShareConfiguration, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FileShareConfiguration
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FileShareAPIService.GetFileShareConfigInfo")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/config"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fileShareId"+"}", url.PathEscape(parameterValueToString(r.fileShareId, "fileShareId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type FileShareAPIGetFileShareHostsRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
@@ -876,43 +981,33 @@ func (a *FileShareAPIService) GetInfrastructureFileSharesExecute(r FileShareAPIG
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type FileShareAPIUpdateFileShareRequest struct {
+type FileShareAPIPatchFileShareMetaRequest struct {
 	ctx context.Context
 	ApiService *FileShareAPIService
 	infrastructureId float32
 	fileShareId float32
-	updateFileShare *UpdateFileShare
-	ifMatch *string
+	updateFileShareMeta *UpdateFileShareMeta
 }
 
-// The File Share update object
-func (r FileShareAPIUpdateFileShareRequest) UpdateFileShare(updateFileShare UpdateFileShare) FileShareAPIUpdateFileShareRequest {
-	r.updateFileShare = &updateFileShare
+func (r FileShareAPIPatchFileShareMetaRequest) UpdateFileShareMeta(updateFileShareMeta UpdateFileShareMeta) FileShareAPIPatchFileShareMetaRequest {
+	r.updateFileShareMeta = &updateFileShareMeta
 	return r
 }
 
-// Entity tag
-func (r FileShareAPIUpdateFileShareRequest) IfMatch(ifMatch string) FileShareAPIUpdateFileShareRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r FileShareAPIUpdateFileShareRequest) Execute() (*FileShare, *http.Response, error) {
-	return r.ApiService.UpdateFileShareExecute(r)
+func (r FileShareAPIPatchFileShareMetaRequest) Execute() (*FileShare, *http.Response, error) {
+	return r.ApiService.PatchFileShareMetaExecute(r)
 }
 
 /*
-UpdateFileShare Updates File Share information
-
-Updates File Share information
+PatchFileShareMeta Updates the meta of a File Share
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param infrastructureId
  @param fileShareId
- @return FileShareAPIUpdateFileShareRequest
+ @return FileShareAPIPatchFileShareMetaRequest
 */
-func (a *FileShareAPIService) UpdateFileShare(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIUpdateFileShareRequest {
-	return FileShareAPIUpdateFileShareRequest{
+func (a *FileShareAPIService) PatchFileShareMeta(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIPatchFileShareMetaRequest {
+	return FileShareAPIPatchFileShareMetaRequest{
 		ApiService: a,
 		ctx: ctx,
 		infrastructureId: infrastructureId,
@@ -922,7 +1017,7 @@ func (a *FileShareAPIService) UpdateFileShare(ctx context.Context, infrastructur
 
 // Execute executes the request
 //  @return FileShare
-func (a *FileShareAPIService) UpdateFileShareExecute(r FileShareAPIUpdateFileShareRequest) (*FileShare, *http.Response, error) {
+func (a *FileShareAPIService) PatchFileShareMetaExecute(r FileShareAPIPatchFileShareMetaRequest) (*FileShare, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -930,12 +1025,138 @@ func (a *FileShareAPIService) UpdateFileShareExecute(r FileShareAPIUpdateFileSha
 		localVarReturnValue  *FileShare
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FileShareAPIService.UpdateFileShare")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FileShareAPIService.PatchFileShareMeta")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}"
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/meta"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fileShareId"+"}", url.PathEscape(parameterValueToString(r.fileShareId, "fileShareId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateFileShareMeta == nil {
+		return localVarReturnValue, nil, reportError("updateFileShareMeta is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateFileShareMeta
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type FileShareAPIUpdateFileShareConfigRequest struct {
+	ctx context.Context
+	ApiService *FileShareAPIService
+	infrastructureId float32
+	fileShareId float32
+	updateFileShare *UpdateFileShare
+	ifMatch *string
+}
+
+// The File Share update object
+func (r FileShareAPIUpdateFileShareConfigRequest) UpdateFileShare(updateFileShare UpdateFileShare) FileShareAPIUpdateFileShareConfigRequest {
+	r.updateFileShare = &updateFileShare
+	return r
+}
+
+// Entity tag
+func (r FileShareAPIUpdateFileShareConfigRequest) IfMatch(ifMatch string) FileShareAPIUpdateFileShareConfigRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r FileShareAPIUpdateFileShareConfigRequest) Execute() (*FileShare, *http.Response, error) {
+	return r.ApiService.UpdateFileShareConfigExecute(r)
+}
+
+/*
+UpdateFileShareConfig Updates File Share config information
+
+Updates File Share config information
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param fileShareId
+ @return FileShareAPIUpdateFileShareConfigRequest
+*/
+func (a *FileShareAPIService) UpdateFileShareConfig(ctx context.Context, infrastructureId float32, fileShareId float32) FileShareAPIUpdateFileShareConfigRequest {
+	return FileShareAPIUpdateFileShareConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		fileShareId: fileShareId,
+	}
+}
+
+// Execute executes the request
+//  @return FileShare
+func (a *FileShareAPIService) UpdateFileShareConfigExecute(r FileShareAPIUpdateFileShareConfigRequest) (*FileShare, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FileShare
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FileShareAPIService.UpdateFileShareConfig")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/config"
 	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"fileShareId"+"}", url.PathEscape(parameterValueToString(r.fileShareId, "fileShareId")), -1)
 

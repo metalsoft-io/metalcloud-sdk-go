@@ -26,11 +26,11 @@ type FirmwareBaselineSearchAPIService service
 type FirmwareBaselineSearchAPISearchFirmwareBaselinesRequest struct {
 	ctx context.Context
 	ApiService *FirmwareBaselineSearchAPIService
-	searchFirmwareBinaryDto *SearchFirmwareBinaryDto
+	searchFirmwareBinary *SearchFirmwareBinary
 }
 
-func (r FirmwareBaselineSearchAPISearchFirmwareBaselinesRequest) SearchFirmwareBinaryDto(searchFirmwareBinaryDto SearchFirmwareBinaryDto) FirmwareBaselineSearchAPISearchFirmwareBaselinesRequest {
-	r.searchFirmwareBinaryDto = &searchFirmwareBinaryDto
+func (r FirmwareBaselineSearchAPISearchFirmwareBaselinesRequest) SearchFirmwareBinary(searchFirmwareBinary SearchFirmwareBinary) FirmwareBaselineSearchAPISearchFirmwareBaselinesRequest {
+	r.searchFirmwareBinary = &searchFirmwareBinary
 	return r
 }
 
@@ -73,8 +73,8 @@ func (a *FirmwareBaselineSearchAPIService) SearchFirmwareBaselinesExecute(r Firm
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.searchFirmwareBinaryDto == nil {
-		return localVarReturnValue, nil, reportError("searchFirmwareBinaryDto is required and must be specified")
+	if r.searchFirmwareBinary == nil {
+		return localVarReturnValue, nil, reportError("searchFirmwareBinary is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -95,7 +95,7 @@ func (a *FirmwareBaselineSearchAPIService) SearchFirmwareBaselinesExecute(r Firm
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.searchFirmwareBinaryDto
+	localVarPostBody = r.searchFirmwareBinary
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

@@ -47,7 +47,6 @@ type BucketExtendedInfo struct {
 	DnsSubdomainId float32 `json:"dnsSubdomainId"`
 	// Id of the VLAN for the Bucket.
 	NetworkVlanId *float32 `json:"networkVlanId,omitempty"`
-	GuiSettings GenericGUISettings `json:"guiSettings"`
 	// Endpoint of the Bucket.
 	Endpoint *string `json:"endpoint,omitempty"`
 	// Endpoint of the Bucket.
@@ -56,6 +55,8 @@ type BucketExtendedInfo struct {
 	SecretKeyEncrypted *string `json:"secretKeyEncrypted,omitempty"`
 	// The current changes to be deployed for the Bucket.
 	Config BucketConfiguration `json:"config"`
+	// Meta information of the Bucket.
+	Meta BucketMeta `json:"meta"`
 	// Infrastructure information
 	Infrastructure map[string]interface{} `json:"infrastructure"`
 	AdditionalProperties map[string]interface{}
@@ -67,7 +68,7 @@ type _BucketExtendedInfo BucketExtendedInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucketExtendedInfo(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, guiSettings GenericGUISettings, config BucketConfiguration, infrastructure map[string]interface{}) *BucketExtendedInfo {
+func NewBucketExtendedInfo(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, config BucketConfiguration, meta BucketMeta, infrastructure map[string]interface{}) *BucketExtendedInfo {
 	this := BucketExtendedInfo{}
 	this.SizeGB = sizeGB
 	this.UpdatedTimestamp = updatedTimestamp
@@ -80,8 +81,8 @@ func NewBucketExtendedInfo(sizeGB float32, updatedTimestamp string, label string
 	this.ServiceStatus = serviceStatus
 	this.SubdomainPermanent = subdomainPermanent
 	this.DnsSubdomainId = dnsSubdomainId
-	this.GuiSettings = guiSettings
 	this.Config = config
+	this.Meta = meta
 	this.Infrastructure = infrastructure
 	return &this
 }
@@ -422,30 +423,6 @@ func (o *BucketExtendedInfo) SetNetworkVlanId(v float32) {
 	o.NetworkVlanId = &v
 }
 
-// GetGuiSettings returns the GuiSettings field value
-func (o *BucketExtendedInfo) GetGuiSettings() GenericGUISettings {
-	if o == nil {
-		var ret GenericGUISettings
-		return ret
-	}
-
-	return o.GuiSettings
-}
-
-// GetGuiSettingsOk returns a tuple with the GuiSettings field value
-// and a boolean to check if the value has been set.
-func (o *BucketExtendedInfo) GetGuiSettingsOk() (*GenericGUISettings, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.GuiSettings, true
-}
-
-// SetGuiSettings sets field value
-func (o *BucketExtendedInfo) SetGuiSettings(v GenericGUISettings) {
-	o.GuiSettings = v
-}
-
 // GetEndpoint returns the Endpoint field value if set, zero value otherwise.
 func (o *BucketExtendedInfo) GetEndpoint() string {
 	if o == nil || IsNil(o.Endpoint) {
@@ -566,6 +543,30 @@ func (o *BucketExtendedInfo) SetConfig(v BucketConfiguration) {
 	o.Config = v
 }
 
+// GetMeta returns the Meta field value
+func (o *BucketExtendedInfo) GetMeta() BucketMeta {
+	if o == nil {
+		var ret BucketMeta
+		return ret
+	}
+
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value
+// and a boolean to check if the value has been set.
+func (o *BucketExtendedInfo) GetMetaOk() (*BucketMeta, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Meta, true
+}
+
+// SetMeta sets field value
+func (o *BucketExtendedInfo) SetMeta(v BucketMeta) {
+	o.Meta = v
+}
+
 // GetInfrastructure returns the Infrastructure field value
 func (o *BucketExtendedInfo) GetInfrastructure() map[string]interface{} {
 	if o == nil {
@@ -617,7 +618,6 @@ func (o BucketExtendedInfo) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NetworkVlanId) {
 		toSerialize["networkVlanId"] = o.NetworkVlanId
 	}
-	toSerialize["guiSettings"] = o.GuiSettings
 	if !IsNil(o.Endpoint) {
 		toSerialize["endpoint"] = o.Endpoint
 	}
@@ -628,6 +628,7 @@ func (o BucketExtendedInfo) ToMap() (map[string]interface{}, error) {
 		toSerialize["secretKeyEncrypted"] = o.SecretKeyEncrypted
 	}
 	toSerialize["config"] = o.Config
+	toSerialize["meta"] = o.Meta
 	toSerialize["infrastructure"] = o.Infrastructure
 
 	for key, value := range o.AdditionalProperties {
@@ -653,8 +654,8 @@ func (o *BucketExtendedInfo) UnmarshalJSON(data []byte) (err error) {
 		"serviceStatus",
 		"subdomainPermanent",
 		"dnsSubdomainId",
-		"guiSettings",
 		"config",
+		"meta",
 		"infrastructure",
 	}
 
@@ -698,11 +699,11 @@ func (o *BucketExtendedInfo) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "networkVlanId")
-		delete(additionalProperties, "guiSettings")
 		delete(additionalProperties, "endpoint")
 		delete(additionalProperties, "accessKeyId")
 		delete(additionalProperties, "secretKeyEncrypted")
 		delete(additionalProperties, "config")
+		delete(additionalProperties, "meta")
 		delete(additionalProperties, "infrastructure")
 		o.AdditionalProperties = additionalProperties
 	}

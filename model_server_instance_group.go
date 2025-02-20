@@ -29,9 +29,7 @@ type ServerInstanceGroup struct {
 	Label *string `json:"label,omitempty"`
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	InfrastructureId int32 `json:"infrastructureId"`
-	ClusterId int32 `json:"clusterId"`
-	// Cluster Role Group of the Drive Group, if part of a cluster
-	ClusterRoleGroup string `json:"clusterRoleGroup"`
+	ExtensionInstanceId int32 `json:"extensionInstanceId"`
 	// Timestamp of the Server Instance Group creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Timestamp of the latest update for the Server Instance Group.
@@ -94,13 +92,12 @@ type _ServerInstanceGroup ServerInstanceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroup(id int32, revision float32, infrastructureId int32, clusterId int32, clusterRoleGroup string, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto float32, ipv4SubnetCreateAuto float32, firewallManaged float32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCoreCount int32, processorCoreMhz float32, processorCount int32, ramGbytes float32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled float32, serviceStatus string, isVmGroup float32, defaultServerProfileID int32) *ServerInstanceGroup {
+func NewServerInstanceGroup(id int32, revision float32, infrastructureId int32, extensionInstanceId int32, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto float32, ipv4SubnetCreateAuto float32, firewallManaged float32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCoreCount int32, processorCoreMhz float32, processorCount int32, ramGbytes float32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled float32, serviceStatus string, isVmGroup float32, defaultServerProfileID int32) *ServerInstanceGroup {
 	this := ServerInstanceGroup{}
 	this.Id = id
 	this.Revision = revision
 	this.InfrastructureId = infrastructureId
-	this.ClusterId = clusterId
-	this.ClusterRoleGroup = clusterRoleGroup
+	this.ExtensionInstanceId = extensionInstanceId
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
 	this.InstanceCount = instanceCount
@@ -128,8 +125,6 @@ func NewServerInstanceGroup(id int32, revision float32, infrastructureId int32, 
 // but it doesn't guarantee that properties required by API are set
 func NewServerInstanceGroupWithDefaults() *ServerInstanceGroup {
 	this := ServerInstanceGroup{}
-	var clusterRoleGroup string = "none"
-	this.ClusterRoleGroup = clusterRoleGroup
 	var instanceCount int32 = 1
 	this.InstanceCount = instanceCount
 	return &this
@@ -271,52 +266,28 @@ func (o *ServerInstanceGroup) SetInfrastructureId(v int32) {
 	o.InfrastructureId = v
 }
 
-// GetClusterId returns the ClusterId field value
-func (o *ServerInstanceGroup) GetClusterId() int32 {
+// GetExtensionInstanceId returns the ExtensionInstanceId field value
+func (o *ServerInstanceGroup) GetExtensionInstanceId() int32 {
 	if o == nil {
 		var ret int32
 		return ret
 	}
 
-	return o.ClusterId
+	return o.ExtensionInstanceId
 }
 
-// GetClusterIdOk returns a tuple with the ClusterId field value
+// GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetClusterIdOk() (*int32, bool) {
+func (o *ServerInstanceGroup) GetExtensionInstanceIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ClusterId, true
+	return &o.ExtensionInstanceId, true
 }
 
-// SetClusterId sets field value
-func (o *ServerInstanceGroup) SetClusterId(v int32) {
-	o.ClusterId = v
-}
-
-// GetClusterRoleGroup returns the ClusterRoleGroup field value
-func (o *ServerInstanceGroup) GetClusterRoleGroup() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ClusterRoleGroup
-}
-
-// GetClusterRoleGroupOk returns a tuple with the ClusterRoleGroup field value
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetClusterRoleGroupOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ClusterRoleGroup, true
-}
-
-// SetClusterRoleGroup sets field value
-func (o *ServerInstanceGroup) SetClusterRoleGroup(v string) {
-	o.ClusterRoleGroup = v
+// SetExtensionInstanceId sets field value
+func (o *ServerInstanceGroup) SetExtensionInstanceId(v int32) {
+	o.ExtensionInstanceId = v
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
@@ -1434,8 +1405,7 @@ func (o ServerInstanceGroup) ToMap() (map[string]interface{}, error) {
 		toSerialize["serverGroupName"] = o.ServerGroupName
 	}
 	toSerialize["infrastructureId"] = o.InfrastructureId
-	toSerialize["clusterId"] = o.ClusterId
-	toSerialize["clusterRoleGroup"] = o.ClusterRoleGroup
+	toSerialize["extensionInstanceId"] = o.ExtensionInstanceId
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Meta) {
@@ -1531,8 +1501,7 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"revision",
 		"infrastructureId",
-		"clusterId",
-		"clusterRoleGroup",
+		"extensionInstanceId",
 		"createdTimestamp",
 		"updatedTimestamp",
 		"instanceCount",
@@ -1586,8 +1555,7 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "infrastructureId")
-		delete(additionalProperties, "clusterId")
-		delete(additionalProperties, "clusterRoleGroup")
+		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "meta")

@@ -51,6 +51,8 @@ type UserLimits struct {
 	InfrastructureLanMaxCount *float32 `json:"infrastructureLanMaxCount,omitempty"`
 	InfrastructureSanMaxCount *float32 `json:"infrastructureSanMaxCount,omitempty"`
 	InfrastructureSharedDriveMaxCount *float32 `json:"infrastructureSharedDriveMaxCount,omitempty"`
+	InfrastructureFileShareMaxCount *float32 `json:"infrastructureFileShareMaxCount,omitempty"`
+	InfrastructureBucketMaxCount *float32 `json:"infrastructureBucketMaxCount,omitempty"`
 	InfrastructureVolumeTemplateExperimentalAllowed *bool `json:"infrastructureVolumeTemplateExperimentalAllowed,omitempty"`
 	InfrastructureWanMaxCount *float32 `json:"infrastructureWanMaxCount,omitempty"`
 	InstanceArrayInstancesMaxCount *float32 `json:"instanceArrayInstancesMaxCount,omitempty"`
@@ -63,6 +65,10 @@ type UserLimits struct {
 	ServerTypeReservationMaxQuantity *float32 `json:"serverTypeReservationMaxQuantity,omitempty"`
 	SharedDriveMaxSizeMbytes *float32 `json:"sharedDriveMaxSizeMbytes,omitempty"`
 	SharedDriveMinSizeMbytes *float32 `json:"sharedDriveMinSizeMbytes,omitempty"`
+	FileShareMaxSizeGb *float32 `json:"fileShareMaxSizeGb,omitempty"`
+	FileShareMinSizeGb *float32 `json:"fileShareMinSizeGb,omitempty"`
+	BucketMaxSizeGb *float32 `json:"bucketMaxSizeGb,omitempty"`
+	BucketMinSizeGb *float32 `json:"bucketMinSizeGb,omitempty"`
 	AllowVlanOverrides *bool `json:"allowVlanOverrides,omitempty"`
 	AllowNetworkProfiles *bool `json:"allowNetworkProfiles,omitempty"`
 	ShowOperatingSystemImagesTab *bool `json:"showOperatingSystemImagesTab,omitempty"`
@@ -1114,6 +1120,70 @@ func (o *UserLimits) SetInfrastructureSharedDriveMaxCount(v float32) {
 	o.InfrastructureSharedDriveMaxCount = &v
 }
 
+// GetInfrastructureFileShareMaxCount returns the InfrastructureFileShareMaxCount field value if set, zero value otherwise.
+func (o *UserLimits) GetInfrastructureFileShareMaxCount() float32 {
+	if o == nil || IsNil(o.InfrastructureFileShareMaxCount) {
+		var ret float32
+		return ret
+	}
+	return *o.InfrastructureFileShareMaxCount
+}
+
+// GetInfrastructureFileShareMaxCountOk returns a tuple with the InfrastructureFileShareMaxCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserLimits) GetInfrastructureFileShareMaxCountOk() (*float32, bool) {
+	if o == nil || IsNil(o.InfrastructureFileShareMaxCount) {
+		return nil, false
+	}
+	return o.InfrastructureFileShareMaxCount, true
+}
+
+// HasInfrastructureFileShareMaxCount returns a boolean if a field has been set.
+func (o *UserLimits) HasInfrastructureFileShareMaxCount() bool {
+	if o != nil && !IsNil(o.InfrastructureFileShareMaxCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetInfrastructureFileShareMaxCount gets a reference to the given float32 and assigns it to the InfrastructureFileShareMaxCount field.
+func (o *UserLimits) SetInfrastructureFileShareMaxCount(v float32) {
+	o.InfrastructureFileShareMaxCount = &v
+}
+
+// GetInfrastructureBucketMaxCount returns the InfrastructureBucketMaxCount field value if set, zero value otherwise.
+func (o *UserLimits) GetInfrastructureBucketMaxCount() float32 {
+	if o == nil || IsNil(o.InfrastructureBucketMaxCount) {
+		var ret float32
+		return ret
+	}
+	return *o.InfrastructureBucketMaxCount
+}
+
+// GetInfrastructureBucketMaxCountOk returns a tuple with the InfrastructureBucketMaxCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserLimits) GetInfrastructureBucketMaxCountOk() (*float32, bool) {
+	if o == nil || IsNil(o.InfrastructureBucketMaxCount) {
+		return nil, false
+	}
+	return o.InfrastructureBucketMaxCount, true
+}
+
+// HasInfrastructureBucketMaxCount returns a boolean if a field has been set.
+func (o *UserLimits) HasInfrastructureBucketMaxCount() bool {
+	if o != nil && !IsNil(o.InfrastructureBucketMaxCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetInfrastructureBucketMaxCount gets a reference to the given float32 and assigns it to the InfrastructureBucketMaxCount field.
+func (o *UserLimits) SetInfrastructureBucketMaxCount(v float32) {
+	o.InfrastructureBucketMaxCount = &v
+}
+
 // GetInfrastructureVolumeTemplateExperimentalAllowed returns the InfrastructureVolumeTemplateExperimentalAllowed field value if set, zero value otherwise.
 func (o *UserLimits) GetInfrastructureVolumeTemplateExperimentalAllowed() bool {
 	if o == nil || IsNil(o.InfrastructureVolumeTemplateExperimentalAllowed) {
@@ -1496,6 +1566,134 @@ func (o *UserLimits) HasSharedDriveMinSizeMbytes() bool {
 // SetSharedDriveMinSizeMbytes gets a reference to the given float32 and assigns it to the SharedDriveMinSizeMbytes field.
 func (o *UserLimits) SetSharedDriveMinSizeMbytes(v float32) {
 	o.SharedDriveMinSizeMbytes = &v
+}
+
+// GetFileShareMaxSizeGb returns the FileShareMaxSizeGb field value if set, zero value otherwise.
+func (o *UserLimits) GetFileShareMaxSizeGb() float32 {
+	if o == nil || IsNil(o.FileShareMaxSizeGb) {
+		var ret float32
+		return ret
+	}
+	return *o.FileShareMaxSizeGb
+}
+
+// GetFileShareMaxSizeGbOk returns a tuple with the FileShareMaxSizeGb field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserLimits) GetFileShareMaxSizeGbOk() (*float32, bool) {
+	if o == nil || IsNil(o.FileShareMaxSizeGb) {
+		return nil, false
+	}
+	return o.FileShareMaxSizeGb, true
+}
+
+// HasFileShareMaxSizeGb returns a boolean if a field has been set.
+func (o *UserLimits) HasFileShareMaxSizeGb() bool {
+	if o != nil && !IsNil(o.FileShareMaxSizeGb) {
+		return true
+	}
+
+	return false
+}
+
+// SetFileShareMaxSizeGb gets a reference to the given float32 and assigns it to the FileShareMaxSizeGb field.
+func (o *UserLimits) SetFileShareMaxSizeGb(v float32) {
+	o.FileShareMaxSizeGb = &v
+}
+
+// GetFileShareMinSizeGb returns the FileShareMinSizeGb field value if set, zero value otherwise.
+func (o *UserLimits) GetFileShareMinSizeGb() float32 {
+	if o == nil || IsNil(o.FileShareMinSizeGb) {
+		var ret float32
+		return ret
+	}
+	return *o.FileShareMinSizeGb
+}
+
+// GetFileShareMinSizeGbOk returns a tuple with the FileShareMinSizeGb field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserLimits) GetFileShareMinSizeGbOk() (*float32, bool) {
+	if o == nil || IsNil(o.FileShareMinSizeGb) {
+		return nil, false
+	}
+	return o.FileShareMinSizeGb, true
+}
+
+// HasFileShareMinSizeGb returns a boolean if a field has been set.
+func (o *UserLimits) HasFileShareMinSizeGb() bool {
+	if o != nil && !IsNil(o.FileShareMinSizeGb) {
+		return true
+	}
+
+	return false
+}
+
+// SetFileShareMinSizeGb gets a reference to the given float32 and assigns it to the FileShareMinSizeGb field.
+func (o *UserLimits) SetFileShareMinSizeGb(v float32) {
+	o.FileShareMinSizeGb = &v
+}
+
+// GetBucketMaxSizeGb returns the BucketMaxSizeGb field value if set, zero value otherwise.
+func (o *UserLimits) GetBucketMaxSizeGb() float32 {
+	if o == nil || IsNil(o.BucketMaxSizeGb) {
+		var ret float32
+		return ret
+	}
+	return *o.BucketMaxSizeGb
+}
+
+// GetBucketMaxSizeGbOk returns a tuple with the BucketMaxSizeGb field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserLimits) GetBucketMaxSizeGbOk() (*float32, bool) {
+	if o == nil || IsNil(o.BucketMaxSizeGb) {
+		return nil, false
+	}
+	return o.BucketMaxSizeGb, true
+}
+
+// HasBucketMaxSizeGb returns a boolean if a field has been set.
+func (o *UserLimits) HasBucketMaxSizeGb() bool {
+	if o != nil && !IsNil(o.BucketMaxSizeGb) {
+		return true
+	}
+
+	return false
+}
+
+// SetBucketMaxSizeGb gets a reference to the given float32 and assigns it to the BucketMaxSizeGb field.
+func (o *UserLimits) SetBucketMaxSizeGb(v float32) {
+	o.BucketMaxSizeGb = &v
+}
+
+// GetBucketMinSizeGb returns the BucketMinSizeGb field value if set, zero value otherwise.
+func (o *UserLimits) GetBucketMinSizeGb() float32 {
+	if o == nil || IsNil(o.BucketMinSizeGb) {
+		var ret float32
+		return ret
+	}
+	return *o.BucketMinSizeGb
+}
+
+// GetBucketMinSizeGbOk returns a tuple with the BucketMinSizeGb field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserLimits) GetBucketMinSizeGbOk() (*float32, bool) {
+	if o == nil || IsNil(o.BucketMinSizeGb) {
+		return nil, false
+	}
+	return o.BucketMinSizeGb, true
+}
+
+// HasBucketMinSizeGb returns a boolean if a field has been set.
+func (o *UserLimits) HasBucketMinSizeGb() bool {
+	if o != nil && !IsNil(o.BucketMinSizeGb) {
+		return true
+	}
+
+	return false
+}
+
+// SetBucketMinSizeGb gets a reference to the given float32 and assigns it to the BucketMinSizeGb field.
+func (o *UserLimits) SetBucketMinSizeGb(v float32) {
+	o.BucketMinSizeGb = &v
 }
 
 // GetAllowVlanOverrides returns the AllowVlanOverrides field value if set, zero value otherwise.
@@ -2785,6 +2983,12 @@ func (o UserLimits) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InfrastructureSharedDriveMaxCount) {
 		toSerialize["infrastructureSharedDriveMaxCount"] = o.InfrastructureSharedDriveMaxCount
 	}
+	if !IsNil(o.InfrastructureFileShareMaxCount) {
+		toSerialize["infrastructureFileShareMaxCount"] = o.InfrastructureFileShareMaxCount
+	}
+	if !IsNil(o.InfrastructureBucketMaxCount) {
+		toSerialize["infrastructureBucketMaxCount"] = o.InfrastructureBucketMaxCount
+	}
 	if !IsNil(o.InfrastructureVolumeTemplateExperimentalAllowed) {
 		toSerialize["infrastructureVolumeTemplateExperimentalAllowed"] = o.InfrastructureVolumeTemplateExperimentalAllowed
 	}
@@ -2820,6 +3024,18 @@ func (o UserLimits) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SharedDriveMinSizeMbytes) {
 		toSerialize["sharedDriveMinSizeMbytes"] = o.SharedDriveMinSizeMbytes
+	}
+	if !IsNil(o.FileShareMaxSizeGb) {
+		toSerialize["fileShareMaxSizeGb"] = o.FileShareMaxSizeGb
+	}
+	if !IsNil(o.FileShareMinSizeGb) {
+		toSerialize["fileShareMinSizeGb"] = o.FileShareMinSizeGb
+	}
+	if !IsNil(o.BucketMaxSizeGb) {
+		toSerialize["bucketMaxSizeGb"] = o.BucketMaxSizeGb
+	}
+	if !IsNil(o.BucketMinSizeGb) {
+		toSerialize["bucketMinSizeGb"] = o.BucketMinSizeGb
 	}
 	if !IsNil(o.AllowVlanOverrides) {
 		toSerialize["allowVlanOverrides"] = o.AllowVlanOverrides
@@ -2985,6 +3201,8 @@ func (o *UserLimits) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "infrastructureLanMaxCount")
 		delete(additionalProperties, "infrastructureSanMaxCount")
 		delete(additionalProperties, "infrastructureSharedDriveMaxCount")
+		delete(additionalProperties, "infrastructureFileShareMaxCount")
+		delete(additionalProperties, "infrastructureBucketMaxCount")
 		delete(additionalProperties, "infrastructureVolumeTemplateExperimentalAllowed")
 		delete(additionalProperties, "infrastructureWanMaxCount")
 		delete(additionalProperties, "instanceArrayInstancesMaxCount")
@@ -2997,6 +3215,10 @@ func (o *UserLimits) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serverTypeReservationMaxQuantity")
 		delete(additionalProperties, "sharedDriveMaxSizeMbytes")
 		delete(additionalProperties, "sharedDriveMinSizeMbytes")
+		delete(additionalProperties, "fileShareMaxSizeGb")
+		delete(additionalProperties, "fileShareMinSizeGb")
+		delete(additionalProperties, "bucketMaxSizeGb")
+		delete(additionalProperties, "bucketMinSizeGb")
 		delete(additionalProperties, "allowVlanOverrides")
 		delete(additionalProperties, "allowNetworkProfiles")
 		delete(additionalProperties, "showOperatingSystemImagesTab")

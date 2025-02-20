@@ -244,7 +244,7 @@ type SiteAPIGetAgentsRequest struct {
 	siteId float32
 }
 
-func (r SiteAPIGetAgentsRequest) Execute() ([]AgentInfoDto, *http.Response, error) {
+func (r SiteAPIGetAgentsRequest) Execute() ([]AgentInfo, *http.Response, error) {
 	return r.ApiService.GetAgentsExecute(r)
 }
 
@@ -266,13 +266,13 @@ func (a *SiteAPIService) GetAgents(ctx context.Context, siteId float32) SiteAPIG
 }
 
 // Execute executes the request
-//  @return []AgentInfoDto
-func (a *SiteAPIService) GetAgentsExecute(r SiteAPIGetAgentsRequest) ([]AgentInfoDto, *http.Response, error) {
+//  @return []AgentInfo
+func (a *SiteAPIService) GetAgentsExecute(r SiteAPIGetAgentsRequest) ([]AgentInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []AgentInfoDto
+		localVarReturnValue  []AgentInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SiteAPIService.GetAgents")

@@ -21,7 +21,7 @@ var _ MappedNullable = &TemplateAssetFile{}
 
 // TemplateAssetFile struct for TemplateAssetFile
 type TemplateAssetFile struct {
-	// Filename of the template asset file
+	// File name of the template asset file
 	Name string `json:"name"`
 	// The template asset usage
 	MimeType string `json:"mimeType"`
@@ -29,11 +29,11 @@ type TemplateAssetFile struct {
 	Checksum *string `json:"checksum,omitempty"`
 	// The base64 encoded contents of the template asset file.                     Required if the URL is not provided
 	ContentBase64 *string `json:"contentBase64,omitempty"`
-	// The templating engine used to render the template asset file                     The 'none' value is used when the file should not be templated, or MIME type is not text.
-	TemplatingEngine string `json:"templatingEngine"`
+	// The templating engine used to render the template asset file
+	TemplatingEngine bool `json:"templatingEngine"`
 	// The URL from where to fetch the template asset file
 	Url *string `json:"url,omitempty"`
-	//          - If the template asset usage is 'build_source_image', the path is ignored and 'url' is required.         - If the template asset usage is 'build_component', the relative ISO location path where the template asset will be copied to.       
+	//          - If the template asset usage is 'build_source_image', the path is ignored and 'url' is required.         - If the template asset usage is 'build_component', the relative ISO location path where the template asset will be copied to.         
 	Path string `json:"path"`
 	AdditionalProperties map[string]interface{}
 }
@@ -44,7 +44,7 @@ type _TemplateAssetFile TemplateAssetFile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTemplateAssetFile(name string, mimeType string, templatingEngine string, path string) *TemplateAssetFile {
+func NewTemplateAssetFile(name string, mimeType string, templatingEngine bool, path string) *TemplateAssetFile {
 	this := TemplateAssetFile{}
 	this.Name = name
 	this.MimeType = mimeType
@@ -174,9 +174,9 @@ func (o *TemplateAssetFile) SetContentBase64(v string) {
 }
 
 // GetTemplatingEngine returns the TemplatingEngine field value
-func (o *TemplateAssetFile) GetTemplatingEngine() string {
+func (o *TemplateAssetFile) GetTemplatingEngine() bool {
 	if o == nil {
-		var ret string
+		var ret bool
 		return ret
 	}
 
@@ -185,7 +185,7 @@ func (o *TemplateAssetFile) GetTemplatingEngine() string {
 
 // GetTemplatingEngineOk returns a tuple with the TemplatingEngine field value
 // and a boolean to check if the value has been set.
-func (o *TemplateAssetFile) GetTemplatingEngineOk() (*string, bool) {
+func (o *TemplateAssetFile) GetTemplatingEngineOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -193,7 +193,7 @@ func (o *TemplateAssetFile) GetTemplatingEngineOk() (*string, bool) {
 }
 
 // SetTemplatingEngine sets field value
-func (o *TemplateAssetFile) SetTemplatingEngine(v string) {
+func (o *TemplateAssetFile) SetTemplatingEngine(v bool) {
 	o.TemplatingEngine = v
 }
 

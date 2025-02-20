@@ -25,6 +25,226 @@ import (
 // SharedDriveAPIService SharedDriveAPI service
 type SharedDriveAPIService service
 
+type SharedDriveAPICreateSharedDriveRequest struct {
+	ctx context.Context
+	ApiService *SharedDriveAPIService
+	infrastructureId float32
+	sharedDriveId float32
+	createSharedDrive *CreateSharedDrive
+}
+
+func (r SharedDriveAPICreateSharedDriveRequest) CreateSharedDrive(createSharedDrive CreateSharedDrive) SharedDriveAPICreateSharedDriveRequest {
+	r.createSharedDrive = &createSharedDrive
+	return r
+}
+
+func (r SharedDriveAPICreateSharedDriveRequest) Execute() (*SharedDrive, *http.Response, error) {
+	return r.ApiService.CreateSharedDriveExecute(r)
+}
+
+/*
+CreateSharedDrive Create a new Shared Drive
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param sharedDriveId
+ @return SharedDriveAPICreateSharedDriveRequest
+*/
+func (a *SharedDriveAPIService) CreateSharedDrive(ctx context.Context, infrastructureId float32, sharedDriveId float32) SharedDriveAPICreateSharedDriveRequest {
+	return SharedDriveAPICreateSharedDriveRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		sharedDriveId: sharedDriveId,
+	}
+}
+
+// Execute executes the request
+//  @return SharedDrive
+func (a *SharedDriveAPIService) CreateSharedDriveExecute(r SharedDriveAPICreateSharedDriveRequest) (*SharedDrive, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SharedDrive
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedDriveAPIService.CreateSharedDrive")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/shared-drives"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"sharedDriveId"+"}", url.PathEscape(parameterValueToString(r.sharedDriveId, "sharedDriveId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createSharedDrive == nil {
+		return localVarReturnValue, nil, reportError("createSharedDrive is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createSharedDrive
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SharedDriveAPIDeleteSharedDriveRequest struct {
+	ctx context.Context
+	ApiService *SharedDriveAPIService
+	infrastructureId float32
+	sharedDriveId float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r SharedDriveAPIDeleteSharedDriveRequest) IfMatch(ifMatch string) SharedDriveAPIDeleteSharedDriveRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r SharedDriveAPIDeleteSharedDriveRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteSharedDriveExecute(r)
+}
+
+/*
+DeleteSharedDrive Deletes a Shared Drive
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param sharedDriveId
+ @return SharedDriveAPIDeleteSharedDriveRequest
+*/
+func (a *SharedDriveAPIService) DeleteSharedDrive(ctx context.Context, infrastructureId float32, sharedDriveId float32) SharedDriveAPIDeleteSharedDriveRequest {
+	return SharedDriveAPIDeleteSharedDriveRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		sharedDriveId: sharedDriveId,
+	}
+}
+
+// Execute executes the request
+func (a *SharedDriveAPIService) DeleteSharedDriveExecute(r SharedDriveAPIDeleteSharedDriveRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedDriveAPIService.DeleteSharedDrive")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"sharedDriveId"+"}", url.PathEscape(parameterValueToString(r.sharedDriveId, "sharedDriveId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type SharedDriveAPIGetInfrastructureSharedDriveRequest struct {
 	ctx context.Context
 	ApiService *SharedDriveAPIService
@@ -638,6 +858,111 @@ func (a *SharedDriveAPIService) GetSharedDriveExecute(r SharedDriveAPIGetSharedD
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type SharedDriveAPIGetSharedDriveConfigInfoRequest struct {
+	ctx context.Context
+	ApiService *SharedDriveAPIService
+	infrastructureId float32
+	sharedDriveId float32
+}
+
+func (r SharedDriveAPIGetSharedDriveConfigInfoRequest) Execute() (*SharedDriveConfiguration, *http.Response, error) {
+	return r.ApiService.GetSharedDriveConfigInfoExecute(r)
+}
+
+/*
+GetSharedDriveConfigInfo Get configuration information about the specified Shared Drive
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param sharedDriveId
+ @return SharedDriveAPIGetSharedDriveConfigInfoRequest
+*/
+func (a *SharedDriveAPIService) GetSharedDriveConfigInfo(ctx context.Context, infrastructureId float32, sharedDriveId float32) SharedDriveAPIGetSharedDriveConfigInfoRequest {
+	return SharedDriveAPIGetSharedDriveConfigInfoRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		sharedDriveId: sharedDriveId,
+	}
+}
+
+// Execute executes the request
+//  @return SharedDriveConfiguration
+func (a *SharedDriveAPIService) GetSharedDriveConfigInfoExecute(r SharedDriveAPIGetSharedDriveConfigInfoRequest) (*SharedDriveConfiguration, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SharedDriveConfiguration
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedDriveAPIService.GetSharedDriveConfigInfo")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/config"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"sharedDriveId"+"}", url.PathEscape(parameterValueToString(r.sharedDriveId, "sharedDriveId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type SharedDriveAPIGetSharedDriveHostsRequest struct {
 	ctx context.Context
 	ApiService *SharedDriveAPIService
@@ -708,6 +1033,248 @@ func (a *SharedDriveAPIService) GetSharedDriveHostsExecute(r SharedDriveAPIGetSh
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SharedDriveAPIPatchSharedDriveConfigRequest struct {
+	ctx context.Context
+	ApiService *SharedDriveAPIService
+	infrastructureId float32
+	sharedDriveId float32
+	updateSharedDrive *UpdateSharedDrive
+	ifMatch *string
+}
+
+func (r SharedDriveAPIPatchSharedDriveConfigRequest) UpdateSharedDrive(updateSharedDrive UpdateSharedDrive) SharedDriveAPIPatchSharedDriveConfigRequest {
+	r.updateSharedDrive = &updateSharedDrive
+	return r
+}
+
+// Entity tag
+func (r SharedDriveAPIPatchSharedDriveConfigRequest) IfMatch(ifMatch string) SharedDriveAPIPatchSharedDriveConfigRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r SharedDriveAPIPatchSharedDriveConfigRequest) Execute() (*SharedDrive, *http.Response, error) {
+	return r.ApiService.PatchSharedDriveConfigExecute(r)
+}
+
+/*
+PatchSharedDriveConfig Updates the config of a Shared Drive
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param sharedDriveId
+ @return SharedDriveAPIPatchSharedDriveConfigRequest
+*/
+func (a *SharedDriveAPIService) PatchSharedDriveConfig(ctx context.Context, infrastructureId float32, sharedDriveId float32) SharedDriveAPIPatchSharedDriveConfigRequest {
+	return SharedDriveAPIPatchSharedDriveConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		sharedDriveId: sharedDriveId,
+	}
+}
+
+// Execute executes the request
+//  @return SharedDrive
+func (a *SharedDriveAPIService) PatchSharedDriveConfigExecute(r SharedDriveAPIPatchSharedDriveConfigRequest) (*SharedDrive, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SharedDrive
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedDriveAPIService.PatchSharedDriveConfig")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/config"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"sharedDriveId"+"}", url.PathEscape(parameterValueToString(r.sharedDriveId, "sharedDriveId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateSharedDrive == nil {
+		return localVarReturnValue, nil, reportError("updateSharedDrive is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.updateSharedDrive
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SharedDriveAPIPatchSharedDriveMetaRequest struct {
+	ctx context.Context
+	ApiService *SharedDriveAPIService
+	infrastructureId float32
+	sharedDriveId float32
+	updateSharedDriveMeta *UpdateSharedDriveMeta
+}
+
+func (r SharedDriveAPIPatchSharedDriveMetaRequest) UpdateSharedDriveMeta(updateSharedDriveMeta UpdateSharedDriveMeta) SharedDriveAPIPatchSharedDriveMetaRequest {
+	r.updateSharedDriveMeta = &updateSharedDriveMeta
+	return r
+}
+
+func (r SharedDriveAPIPatchSharedDriveMetaRequest) Execute() (*SharedDrive, *http.Response, error) {
+	return r.ApiService.PatchSharedDriveMetaExecute(r)
+}
+
+/*
+PatchSharedDriveMeta Updates the meta of a Shared Drive
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param sharedDriveId
+ @return SharedDriveAPIPatchSharedDriveMetaRequest
+*/
+func (a *SharedDriveAPIService) PatchSharedDriveMeta(ctx context.Context, infrastructureId float32, sharedDriveId float32) SharedDriveAPIPatchSharedDriveMetaRequest {
+	return SharedDriveAPIPatchSharedDriveMetaRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		sharedDriveId: sharedDriveId,
+	}
+}
+
+// Execute executes the request
+//  @return SharedDrive
+func (a *SharedDriveAPIService) PatchSharedDriveMetaExecute(r SharedDriveAPIPatchSharedDriveMetaRequest) (*SharedDrive, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SharedDrive
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SharedDriveAPIService.PatchSharedDriveMeta")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/meta"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"sharedDriveId"+"}", url.PathEscape(parameterValueToString(r.sharedDriveId, "sharedDriveId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateSharedDriveMeta == nil {
+		return localVarReturnValue, nil, reportError("updateSharedDriveMeta is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateSharedDriveMeta
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

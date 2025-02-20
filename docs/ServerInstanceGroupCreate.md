@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | The server instance group label. Will be automatically generated if not provided. | [optional] 
-**ClusterId** | Pointer to **int32** |  | [optional] 
+**ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
 **InstanceCount** | Pointer to **int32** |  | [optional] [default to 1]
 **VolumeTemplateId** | Pointer to **int32** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -58,30 +58,30 @@ SetLabel sets Label field to given value.
 
 HasLabel returns a boolean if a field has been set.
 
-### GetClusterId
+### GetExtensionInstanceId
 
-`func (o *ServerInstanceGroupCreate) GetClusterId() int32`
+`func (o *ServerInstanceGroupCreate) GetExtensionInstanceId() int32`
 
-GetClusterId returns the ClusterId field if non-nil, zero value otherwise.
+GetExtensionInstanceId returns the ExtensionInstanceId field if non-nil, zero value otherwise.
 
-### GetClusterIdOk
+### GetExtensionInstanceIdOk
 
-`func (o *ServerInstanceGroupCreate) GetClusterIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroupCreate) GetExtensionInstanceIdOk() (*int32, bool)`
 
-GetClusterIdOk returns a tuple with the ClusterId field if it's non-nil, zero value otherwise
+GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetClusterId
+### SetExtensionInstanceId
 
-`func (o *ServerInstanceGroupCreate) SetClusterId(v int32)`
+`func (o *ServerInstanceGroupCreate) SetExtensionInstanceId(v int32)`
 
-SetClusterId sets ClusterId field to given value.
+SetExtensionInstanceId sets ExtensionInstanceId field to given value.
 
-### HasClusterId
+### HasExtensionInstanceId
 
-`func (o *ServerInstanceGroupCreate) HasClusterId() bool`
+`func (o *ServerInstanceGroupCreate) HasExtensionInstanceId() bool`
 
-HasClusterId returns a boolean if a field has been set.
+HasExtensionInstanceId returns a boolean if a field has been set.
 
 ### GetInstanceCount
 

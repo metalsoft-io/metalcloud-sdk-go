@@ -9,8 +9,7 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | The server instance group label. Will be automatically generated if not provided. | [optional] 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **InfrastructureId** | **int32** |  | 
-**ClusterId** | **int32** |  | 
-**ClusterRoleGroup** | **string** | Cluster Role Group of the Drive Group, if part of a cluster | [default to "none"]
+**ExtensionInstanceId** | **int32** |  | 
 **CreatedTimestamp** | **string** | Timestamp of the Server Instance Group creation. | 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update for the Server Instance Group. | 
 **Meta** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) | GUI settings in JSON format. | [optional] 
@@ -55,7 +54,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceGroup
 
-`func NewServerInstanceGroup(id int32, revision float32, infrastructureId int32, clusterId int32, clusterRoleGroup string, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto float32, ipv4SubnetCreateAuto float32, firewallManaged float32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCoreCount int32, processorCoreMhz float32, processorCount int32, ramGbytes float32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled float32, serviceStatus string, isVmGroup float32, defaultServerProfileID int32, ) *ServerInstanceGroup`
+`func NewServerInstanceGroup(id int32, revision float32, infrastructureId int32, extensionInstanceId int32, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto float32, ipv4SubnetCreateAuto float32, firewallManaged float32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCoreCount int32, processorCoreMhz float32, processorCount int32, ramGbytes float32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled float32, serviceStatus string, isVmGroup float32, defaultServerProfileID int32, ) *ServerInstanceGroup`
 
 NewServerInstanceGroup instantiates a new ServerInstanceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -180,44 +179,24 @@ and a boolean to check if the value has been set.
 SetInfrastructureId sets InfrastructureId field to given value.
 
 
-### GetClusterId
+### GetExtensionInstanceId
 
-`func (o *ServerInstanceGroup) GetClusterId() int32`
+`func (o *ServerInstanceGroup) GetExtensionInstanceId() int32`
 
-GetClusterId returns the ClusterId field if non-nil, zero value otherwise.
+GetExtensionInstanceId returns the ExtensionInstanceId field if non-nil, zero value otherwise.
 
-### GetClusterIdOk
+### GetExtensionInstanceIdOk
 
-`func (o *ServerInstanceGroup) GetClusterIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetExtensionInstanceIdOk() (*int32, bool)`
 
-GetClusterIdOk returns a tuple with the ClusterId field if it's non-nil, zero value otherwise
+GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetClusterId
+### SetExtensionInstanceId
 
-`func (o *ServerInstanceGroup) SetClusterId(v int32)`
+`func (o *ServerInstanceGroup) SetExtensionInstanceId(v int32)`
 
-SetClusterId sets ClusterId field to given value.
-
-
-### GetClusterRoleGroup
-
-`func (o *ServerInstanceGroup) GetClusterRoleGroup() string`
-
-GetClusterRoleGroup returns the ClusterRoleGroup field if non-nil, zero value otherwise.
-
-### GetClusterRoleGroupOk
-
-`func (o *ServerInstanceGroup) GetClusterRoleGroupOk() (*string, bool)`
-
-GetClusterRoleGroupOk returns a tuple with the ClusterRoleGroup field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClusterRoleGroup
-
-`func (o *ServerInstanceGroup) SetClusterRoleGroup(v string)`
-
-SetClusterRoleGroup sets ClusterRoleGroup field to given value.
+SetExtensionInstanceId sets ExtensionInstanceId field to given value.
 
 
 ### GetCreatedTimestamp

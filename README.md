@@ -89,15 +89,20 @@ Class | Method | HTTP request | Description
 *AccountAPI* | [**UnarchiveAccount**](docs/AccountAPI.md#unarchiveaccount) | **Post** /api/v2/accounts/{accountId}/actions/unarchive | Unarchive account
 *AccountAPI* | [**UpdateAccount**](docs/AccountAPI.md#updateaccount) | **Patch** /api/v2/accounts/{accountId} | Update account
 *AccountAPI* | [**UpdateAccountLimits**](docs/AccountAPI.md#updateaccountlimits) | **Patch** /api/v2/accounts/{accountId}/limits | Update account limits
+*AuthenticationAPI* | [**GetAuthenticationProvider**](docs/AuthenticationAPI.md#getauthenticationprovider) | **Get** /api/v2/authentication-provider | Retrieve authentication provider for an email
+*AuthenticationAPI* | [**GetAuthenticationProviders**](docs/AuthenticationAPI.md#getauthenticationproviders) | **Get** /api/v2/authentication-providers | Retrieve all authentication providers
+*AuthenticationAPI* | [**GetCurrentUser**](docs/AuthenticationAPI.md#getcurrentuser) | **Get** /api/v2/user | Get current user
 *AuthenticationAPI* | [**Login**](docs/AuthenticationAPI.md#login) | **Post** /api/v2/login | User login
 *AuthenticationAPI* | [**Logout**](docs/AuthenticationAPI.md#logout) | **Post** /api/v2/logout | Logout user
 *BucketAPI* | [**CreateInfrastructureBucket**](docs/BucketAPI.md#createinfrastructurebucket) | **Post** /api/v2/infrastructures/{infrastructureId}/buckets | Creates a Bucket
 *BucketAPI* | [**DeleteBucket**](docs/BucketAPI.md#deletebucket) | **Delete** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId} | Deletes a Bucket
 *BucketAPI* | [**GetBucket**](docs/BucketAPI.md#getbucket) | **Get** /api/v2/buckets/{bucketId} | Get Bucket information
+*BucketAPI* | [**GetBucketConfigInfo**](docs/BucketAPI.md#getbucketconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId}/config | Get configuration information about the specified Bucket
 *BucketAPI* | [**GetBucketCredentials**](docs/BucketAPI.md#getbucketcredentials) | **Get** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId}/credentials | Get Bucket credentials
 *BucketAPI* | [**GetInfrastructureBucket**](docs/BucketAPI.md#getinfrastructurebucket) | **Get** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId} | Get Bucket information
 *BucketAPI* | [**GetInfrastructureBuckets**](docs/BucketAPI.md#getinfrastructurebuckets) | **Get** /api/v2/infrastructures/{infrastructureId}/buckets | Get all Buckets
 *BucketAPI* | [**UpdateBucket**](docs/BucketAPI.md#updatebucket) | **Patch** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId}/config | Updates Bucket information
+*BucketAPI* | [**UpdateBucketMeta**](docs/BucketAPI.md#updatebucketmeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId}/meta | Updates the meta of a Bucket
 *ConfigurationAPI* | [**GetConfiguration**](docs/ConfigurationAPI.md#getconfiguration) | **Get** /api/v2/config | Get configuration
 *ConfigurationAPI* | [**PatchConfiguration**](docs/ConfigurationAPI.md#patchconfiguration) | **Patch** /api/v2/config/{filter} | Partially update configuration
 *ConfigurationAPI* | [**PutConfiguration**](docs/ConfigurationAPI.md#putconfiguration) | **Put** /api/v2/config/{filter} | Update configuration
@@ -120,10 +125,12 @@ Class | Method | HTTP request | Description
 *FileShareAPI* | [**CreateInfrastructureFileShare**](docs/FileShareAPI.md#createinfrastructurefileshare) | **Post** /api/v2/infrastructures/{infrastructureId}/file-shares | Creates a File Share
 *FileShareAPI* | [**DeleteFileShare**](docs/FileShareAPI.md#deletefileshare) | **Delete** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId} | Deletes a File Share
 *FileShareAPI* | [**GetFileShare**](docs/FileShareAPI.md#getfileshare) | **Get** /api/v2/file-shares/{fileShareId} | Get File Share information
+*FileShareAPI* | [**GetFileShareConfigInfo**](docs/FileShareAPI.md#getfileshareconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/config | Get configuration information about the specified File Share
 *FileShareAPI* | [**GetFileShareHosts**](docs/FileShareAPI.md#getfilesharehosts) | **Get** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/hosts | Get the Hosts of File Share
 *FileShareAPI* | [**GetInfrastructureFileShare**](docs/FileShareAPI.md#getinfrastructurefileshare) | **Get** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId} | Get File Share information
 *FileShareAPI* | [**GetInfrastructureFileShares**](docs/FileShareAPI.md#getinfrastructurefileshares) | **Get** /api/v2/infrastructures/{infrastructureId}/file-shares | Get all File Shares
-*FileShareAPI* | [**UpdateFileShare**](docs/FileShareAPI.md#updatefileshare) | **Patch** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId} | Updates File Share information
+*FileShareAPI* | [**PatchFileShareMeta**](docs/FileShareAPI.md#patchfilesharemeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/meta | Updates the meta of a File Share
+*FileShareAPI* | [**UpdateFileShareConfig**](docs/FileShareAPI.md#updatefileshareconfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/config | Updates File Share config information
 *FileShareAPI* | [**UpdateFileShareInstanceArrayHostsBulk**](docs/FileShareAPI.md#updatefileshareinstancearrayhostsbulk) | **Post** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/actions/modify-instance-array-hosts-bulk | Updates Instance Array Hosts on the File Share
 *FirmwareBaselineAPI* | [**CreateFirmwareBaseline**](docs/FirmwareBaselineAPI.md#createfirmwarebaseline) | **Post** /api/v2/firmware/baseline | Create a new firmware baseline
 *FirmwareBaselineAPI* | [**DeleteFirmwareBaseline**](docs/FirmwareBaselineAPI.md#deletefirmwarebaseline) | **Delete** /api/v2/firmware/baseline/{firmwareBaselineId} | Delete Firmware Baseline
@@ -152,10 +159,13 @@ Class | Method | HTTP request | Description
 *FirmwarePolicyAPI* | [**UpdateFirmwarePolicy**](docs/FirmwarePolicyAPI.md#updatefirmwarepolicy) | **Patch** /api/v2/firmware/policies/{firmwarePolicyId} | Updates a Firmware Policy
 *FirmwarePolicyAPI* | [**UpdateGlobalFirmwareConfiguration**](docs/FirmwarePolicyAPI.md#updateglobalfirmwareconfiguration) | **Patch** /api/v2/firmware/configuration | Updates Global Firmware Policy Configuration
 *InfrastructureAPI* | [**CreateInfrastructure**](docs/InfrastructureAPI.md#createinfrastructure) | **Post** /api/v2/infrastructures | Creates a new infrastructure
+*InfrastructureAPI* | [**DeleteInfrastructure**](docs/InfrastructureAPI.md#deleteinfrastructure) | **Delete** /api/v2/infrastructures/{infrastructureId} | Deletes the specified infrastructure
 *InfrastructureAPI* | [**DeployInfrastructure**](docs/InfrastructureAPI.md#deployinfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/deploy | Deploys the specified infrastructure
 *InfrastructureAPI* | [**GetInfrastructure**](docs/InfrastructureAPI.md#getinfrastructure) | **Get** /api/v2/infrastructures/{infrastructureId} | Retrieves the specified infrastructure
 *InfrastructureAPI* | [**GetInfrastructures**](docs/InfrastructureAPI.md#getinfrastructures) | **Get** /api/v2/infrastructures | Get all infrastructures
 *InfrastructureAPI* | [**RevertInfrastructure**](docs/InfrastructureAPI.md#revertinfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/revert | Reverts the specified infrastructure
+*InfrastructureAPI* | [**UpdateInfrastructureConfiguration**](docs/InfrastructureAPI.md#updateinfrastructureconfiguration) | **Patch** /api/v2/infrastructures/{infrastructureId}/configuration | Updates the specified infrastructure configuration
+*InfrastructureAPI* | [**UpdateInfrastructureMetadata**](docs/InfrastructureAPI.md#updateinfrastructuremetadata) | **Patch** /api/v2/infrastructures/{infrastructureId}/metadata | Updates the specified infrastructure metadata
 *JobAPI* | [**GetJob**](docs/JobAPI.md#getjob) | **Get** /api/v2/jobs/{jobId} | Get Job information
 *JobAPI* | [**GetJobExceptions**](docs/JobAPI.md#getjobexceptions) | **Get** /api/v2/jobs/{jobId}/exceptions | Get a list of Job Exceptions
 *JobAPI* | [**GetJobFromArchive**](docs/JobAPI.md#getjobfromarchive) | **Get** /api/v2/jobs/archive/{jobId} | Get Job from archive information
@@ -296,10 +306,15 @@ Class | Method | HTTP request | Description
 *ServerTypeAPI* | [**GetServerTypesStatisticsBatch**](docs/ServerTypeAPI.md#getservertypesstatisticsbatch) | **Post** /api/v2/server-types/statistics | Get Server Type statistics batch
 *ServerTypeAPI* | [**RemoveUnusedServerTypes**](docs/ServerTypeAPI.md#removeunusedservertypes) | **Post** /api/v2/server-types/actions/clean-unused | Deletes unused server types
 *ServerTypeAPI* | [**UpdateServerType**](docs/ServerTypeAPI.md#updateservertype) | **Patch** /api/v2/server-types/{serverTypeId} | Updates a Server Type
+*SharedDriveAPI* | [**CreateSharedDrive**](docs/SharedDriveAPI.md#createshareddrive) | **Post** /api/v2/infrastructures/{infrastructureId}/shared-drives | Create a new Shared Drive
+*SharedDriveAPI* | [**DeleteSharedDrive**](docs/SharedDriveAPI.md#deleteshareddrive) | **Delete** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId} | Deletes a Shared Drive
 *SharedDriveAPI* | [**GetInfrastructureSharedDrive**](docs/SharedDriveAPI.md#getinfrastructureshareddrive) | **Get** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId} | Get Shared Drive information
 *SharedDriveAPI* | [**GetInfrastructureSharedDrives**](docs/SharedDriveAPI.md#getinfrastructureshareddrives) | **Get** /api/v2/infrastructures/{infrastructureId}/shared-drives | Get all Shared Drives on the infrastructure
 *SharedDriveAPI* | [**GetSharedDrive**](docs/SharedDriveAPI.md#getshareddrive) | **Get** /api/v2/shared-drives/{sharedDriveId} | Get Shared Drive information
+*SharedDriveAPI* | [**GetSharedDriveConfigInfo**](docs/SharedDriveAPI.md#getshareddriveconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/config | Get configuration information about the specified Shared Drive
 *SharedDriveAPI* | [**GetSharedDriveHosts**](docs/SharedDriveAPI.md#getshareddrivehosts) | **Get** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/hosts | Get the Hosts of Shared Drive
+*SharedDriveAPI* | [**PatchSharedDriveConfig**](docs/SharedDriveAPI.md#patchshareddriveconfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/config | Updates the config of a Shared Drive
+*SharedDriveAPI* | [**PatchSharedDriveMeta**](docs/SharedDriveAPI.md#patchshareddrivemeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/meta | Updates the meta of a Shared Drive
 *SharedDriveAPI* | [**UpdateSharedDriveInstanceArrayHostsBulk**](docs/SharedDriveAPI.md#updateshareddriveinstancearrayhostsbulk) | **Post** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/actions/modify-instance-array-hosts-bulk | Updates Instance Array Hosts on the Shared Drive
 *SiteAPI* | [**CreateSite**](docs/SiteAPI.md#createsite) | **Post** /api/v2/sites | Creates a Site
 *SiteAPI* | [**DecommissionSite**](docs/SiteAPI.md#decommissionsite) | **Post** /api/v2/sites/{siteId}/actions/decommission | Decommissions a Site
@@ -394,17 +409,19 @@ Class | Method | HTTP request | Description
  - [AccountAddress](docs/AccountAddress.md)
  - [AccountLimits](docs/AccountLimits.md)
  - [AccountPaginatedList](docs/AccountPaginatedList.md)
- - [AgentCapabilitiesDto](docs/AgentCapabilitiesDto.md)
- - [AgentConnectedInfoDto](docs/AgentConnectedInfoDto.md)
- - [AgentInfoDto](docs/AgentInfoDto.md)
- - [AgentIpInfoDto](docs/AgentIpInfoDto.md)
+ - [AgentCapabilities](docs/AgentCapabilities.md)
+ - [AgentConnectedInfo](docs/AgentConnectedInfo.md)
+ - [AgentInfo](docs/AgentInfo.md)
+ - [AgentIpInfo](docs/AgentIpInfo.md)
  - [AuthenticationProvider](docs/AuthenticationProvider.md)
  - [AuthenticationProviderUpdate](docs/AuthenticationProviderUpdate.md)
- - [AuthenticationRequestDto](docs/AuthenticationRequestDto.md)
- - [AuthenticationRequestDtoProperties](docs/AuthenticationRequestDtoProperties.md)
- - [AuthenticationRequestPropertiesLdapDto](docs/AuthenticationRequestPropertiesLdapDto.md)
- - [AuthenticationRequestPropertiesMySqlDto](docs/AuthenticationRequestPropertiesMySqlDto.md)
- - [AuthenticationRequestPropertiesSamlDto](docs/AuthenticationRequestPropertiesSamlDto.md)
+ - [AuthenticationProviders](docs/AuthenticationProviders.md)
+ - [AuthenticationRequest](docs/AuthenticationRequest.md)
+ - [AuthenticationRequestProperties](docs/AuthenticationRequestProperties.md)
+ - [AuthenticationRequestPropertiesLdap](docs/AuthenticationRequestPropertiesLdap.md)
+ - [AuthenticationRequestPropertiesMySql](docs/AuthenticationRequestPropertiesMySql.md)
+ - [AuthenticationRequestPropertiesSaml](docs/AuthenticationRequestPropertiesSaml.md)
+ - [AuthenticationUserProvider](docs/AuthenticationUserProvider.md)
  - [BaselineFilter](docs/BaselineFilter.md)
  - [BaselineLevelType](docs/BaselineLevelType.md)
  - [BatchServerFirmwareUpgrade](docs/BatchServerFirmwareUpgrade.md)
@@ -412,6 +429,7 @@ Class | Method | HTTP request | Description
  - [Bucket](docs/Bucket.md)
  - [BucketConfiguration](docs/BucketConfiguration.md)
  - [BucketExtendedInfo](docs/BucketExtendedInfo.md)
+ - [BucketMeta](docs/BucketMeta.md)
  - [BucketPaginatedList](docs/BucketPaginatedList.md)
  - [CatalogUpdateType](docs/CatalogUpdateType.md)
  - [ChangeUserAccount](docs/ChangeUserAccount.md)
@@ -421,18 +439,19 @@ Class | Method | HTTP request | Description
  - [CreateExtension](docs/CreateExtension.md)
  - [CreateExtensionInstance](docs/CreateExtensionInstance.md)
  - [CreateFileShare](docs/CreateFileShare.md)
- - [CreateFirmwareBaselineDto](docs/CreateFirmwareBaselineDto.md)
- - [CreateFirmwareBinaryDto](docs/CreateFirmwareBinaryDto.md)
- - [CreateFirmwareCatalogDto](docs/CreateFirmwareCatalogDto.md)
+ - [CreateFirmwareBaseline](docs/CreateFirmwareBaseline.md)
+ - [CreateFirmwareBinary](docs/CreateFirmwareBinary.md)
+ - [CreateFirmwareCatalog](docs/CreateFirmwareCatalog.md)
  - [CreateNetwork](docs/CreateNetwork.md)
  - [CreateNetworkDevice](docs/CreateNetworkDevice.md)
- - [CreateNetworkDeviceDefaultsDto](docs/CreateNetworkDeviceDefaultsDto.md)
+ - [CreateNetworkDeviceDefaults](docs/CreateNetworkDeviceDefaults.md)
  - [CreateNetworkFabric](docs/CreateNetworkFabric.md)
  - [CreateResourcePool](docs/CreateResourcePool.md)
  - [CreateServerCleanupPolicy](docs/CreateServerCleanupPolicy.md)
  - [CreateServerDefaultCredentials](docs/CreateServerDefaultCredentials.md)
  - [CreateServerFirmwareUpgradePolicy](docs/CreateServerFirmwareUpgradePolicy.md)
  - [CreateServerType](docs/CreateServerType.md)
+ - [CreateSharedDrive](docs/CreateSharedDrive.md)
  - [CreateStorage](docs/CreateStorage.md)
  - [CreateStorageNetworkDeviceConfiguration](docs/CreateStorageNetworkDeviceConfiguration.md)
  - [CreateUser](docs/CreateUser.md)
@@ -448,12 +467,12 @@ Class | Method | HTTP request | Description
  - [DriveGroupConfiguration](docs/DriveGroupConfiguration.md)
  - [DriveGroupPaginatedList](docs/DriveGroupPaginatedList.md)
  - [DrivePaginatedList](docs/DrivePaginatedList.md)
- - [EthernetEvpnVxlanL2FabricDto](docs/EthernetEvpnVxlanL2FabricDto.md)
- - [EthernetEvpnVxlanL3FabricDto](docs/EthernetEvpnVxlanL3FabricDto.md)
- - [EthernetFabricDto](docs/EthernetFabricDto.md)
- - [EthernetFlatL2FabricDto](docs/EthernetFlatL2FabricDto.md)
- - [EthernetFlatL3FabricDto](docs/EthernetFlatL3FabricDto.md)
- - [EthernetHybridL2L3FabricDto](docs/EthernetHybridL2L3FabricDto.md)
+ - [EthernetEvpnVxlanL2Fabric](docs/EthernetEvpnVxlanL2Fabric.md)
+ - [EthernetEvpnVxlanL3Fabric](docs/EthernetEvpnVxlanL3Fabric.md)
+ - [EthernetFabric](docs/EthernetFabric.md)
+ - [EthernetFlatL2Fabric](docs/EthernetFlatL2Fabric.md)
+ - [EthernetFlatL3Fabric](docs/EthernetFlatL3Fabric.md)
+ - [EthernetHybridL2L3Fabric](docs/EthernetHybridL2L3Fabric.md)
  - [Extension](docs/Extension.md)
  - [ExtensionActions](docs/ExtensionActions.md)
  - [ExtensionAsset](docs/ExtensionAsset.md)
@@ -478,17 +497,18 @@ Class | Method | HTTP request | Description
  - [ExtensionTaskOptions](docs/ExtensionTaskOptions.md)
  - [ExtensionTaskWebhook](docs/ExtensionTaskWebhook.md)
  - [ExtensionVariable](docs/ExtensionVariable.md)
- - [FibreChannelFabricDto](docs/FibreChannelFabricDto.md)
+ - [FibreChannelFabric](docs/FibreChannelFabric.md)
  - [FileShare](docs/FileShare.md)
  - [FileShareConfiguration](docs/FileShareConfiguration.md)
  - [FileShareExtendedInfo](docs/FileShareExtendedInfo.md)
  - [FileShareHostBulkOperation](docs/FileShareHostBulkOperation.md)
  - [FileShareHosts](docs/FileShareHosts.md)
  - [FileShareHostsModifyBulk](docs/FileShareHostsModifyBulk.md)
+ - [FileShareMeta](docs/FileShareMeta.md)
  - [FileSharePaginatedList](docs/FileSharePaginatedList.md)
- - [FirmwareBaselineDto](docs/FirmwareBaselineDto.md)
+ - [FirmwareBaseline](docs/FirmwareBaseline.md)
  - [FirmwareBaselinePaginatedList](docs/FirmwareBaselinePaginatedList.md)
- - [FirmwareBinaryDto](docs/FirmwareBinaryDto.md)
+ - [FirmwareBinary](docs/FirmwareBinary.md)
  - [FirmwareBinaryPaginatedList](docs/FirmwareBinaryPaginatedList.md)
  - [FirmwareBinaryUpdateSeverity](docs/FirmwareBinaryUpdateSeverity.md)
  - [FirmwareCatalog](docs/FirmwareCatalog.md)
@@ -498,10 +518,10 @@ Class | Method | HTTP request | Description
  - [GenerateFirmwareUpgradeAudit](docs/GenerateFirmwareUpgradeAudit.md)
  - [GenericGUISettings](docs/GenericGUISettings.md)
  - [GlobalFirmwareUpgradeConfiguration](docs/GlobalFirmwareUpgradeConfiguration.md)
- - [InfiniBandFabricDto](docs/InfiniBandFabricDto.md)
+ - [InfiniBandFabric](docs/InfiniBandFabric.md)
  - [Infrastructure](docs/Infrastructure.md)
  - [InfrastructureConfiguration](docs/InfrastructureConfiguration.md)
- - [InfrastructureCreateDto](docs/InfrastructureCreateDto.md)
+ - [InfrastructureCreate](docs/InfrastructureCreate.md)
  - [InfrastructureDeployOptions](docs/InfrastructureDeployOptions.md)
  - [InfrastructureDeployShutdownOptions](docs/InfrastructureDeployShutdownOptions.md)
  - [InfrastructurePaginatedList](docs/InfrastructurePaginatedList.md)
@@ -515,7 +535,7 @@ Class | Method | HTTP request | Description
  - [JobGroup](docs/JobGroup.md)
  - [JobGroupPaginatedList](docs/JobGroupPaginatedList.md)
  - [JobGroupStatistics](docs/JobGroupStatistics.md)
- - [JobGroupStatisticsWithoutIdDto](docs/JobGroupStatisticsWithoutIdDto.md)
+ - [JobGroupStatisticsWithoutId](docs/JobGroupStatisticsWithoutId.md)
  - [JobInfo](docs/JobInfo.md)
  - [JobPaginatedList](docs/JobPaginatedList.md)
  - [JobRetryInfo](docs/JobRetryInfo.md)
@@ -537,11 +557,11 @@ Class | Method | HTTP request | Description
  - [OSTemplateDevice](docs/OSTemplateDevice.md)
  - [OSTemplateImageBuild](docs/OSTemplateImageBuild.md)
  - [OSTemplateInstall](docs/OSTemplateInstall.md)
- - [OSTemplateList](docs/OSTemplateList.md)
  - [OSTemplateOs](docs/OSTemplateOs.md)
  - [OSTemplateOsCredential](docs/OSTemplateOsCredential.md)
+ - [OSTemplatePaginatedList](docs/OSTemplatePaginatedList.md)
  - [OSTemplateUpdate](docs/OSTemplateUpdate.md)
- - [OvnFabricDto](docs/OvnFabricDto.md)
+ - [OvnFabric](docs/OvnFabric.md)
  - [PaginatedResponseLinks](docs/PaginatedResponseLinks.md)
  - [PaginatedResponseMeta](docs/PaginatedResponseMeta.md)
  - [ReRegisterServerResponse](docs/ReRegisterServerResponse.md)
@@ -556,7 +576,7 @@ Class | Method | HTTP request | Description
  - [ResourcePoolWithStats](docs/ResourcePoolWithStats.md)
  - [SSHKey](docs/SSHKey.md)
  - [ScheduleFirmwareUpgrade](docs/ScheduleFirmwareUpgrade.md)
- - [SearchFirmwareBinaryDto](docs/SearchFirmwareBinaryDto.md)
+ - [SearchFirmwareBinary](docs/SearchFirmwareBinary.md)
  - [Server](docs/Server.md)
  - [ServerAllocationInfo](docs/ServerAllocationInfo.md)
  - [ServerCapabilities](docs/ServerCapabilities.md)
@@ -606,6 +626,7 @@ Class | Method | HTTP request | Description
  - [ServerInstanceStorageProfileControllerVolume](docs/ServerInstanceStorageProfileControllerVolume.md)
  - [ServerInstanceUpdate](docs/ServerInstanceUpdate.md)
  - [ServerInterface](docs/ServerInterface.md)
+ - [ServerMetricsInfo](docs/ServerMetricsInfo.md)
  - [ServerPaginatedList](docs/ServerPaginatedList.md)
  - [ServerPolicy](docs/ServerPolicy.md)
  - [ServerPowerSet](docs/ServerPowerSet.md)
@@ -624,6 +645,7 @@ Class | Method | HTTP request | Description
  - [SharedDriveHostBulkOperation](docs/SharedDriveHostBulkOperation.md)
  - [SharedDriveHosts](docs/SharedDriveHosts.md)
  - [SharedDriveHostsModifyBulk](docs/SharedDriveHostsModifyBulk.md)
+ - [SharedDriveMeta](docs/SharedDriveMeta.md)
  - [SharedDrivePaginatedList](docs/SharedDrivePaginatedList.md)
  - [Site](docs/Site.md)
  - [SiteConfig](docs/SiteConfig.md)
@@ -637,21 +659,25 @@ Class | Method | HTTP request | Description
  - [StorageNetworkDeviceConfiguration](docs/StorageNetworkDeviceConfiguration.md)
  - [StoragePaginatedList](docs/StoragePaginatedList.md)
  - [TemplateAsset](docs/TemplateAsset.md)
- - [TemplateAssetCreateDto](docs/TemplateAssetCreateDto.md)
+ - [TemplateAssetCreate](docs/TemplateAssetCreate.md)
  - [TemplateAssetFile](docs/TemplateAssetFile.md)
- - [TemplateAssetList](docs/TemplateAssetList.md)
- - [UnmanagedFabricDto](docs/UnmanagedFabricDto.md)
+ - [TemplateAssetPaginatedList](docs/TemplateAssetPaginatedList.md)
+ - [UnmanagedFabric](docs/UnmanagedFabric.md)
  - [UpdateAccount](docs/UpdateAccount.md)
  - [UpdateBucket](docs/UpdateBucket.md)
+ - [UpdateBucketMeta](docs/UpdateBucketMeta.md)
  - [UpdateExtension](docs/UpdateExtension.md)
  - [UpdateExtensionInstance](docs/UpdateExtensionInstance.md)
  - [UpdateFileShare](docs/UpdateFileShare.md)
- - [UpdateFirmwareBaselineDto](docs/UpdateFirmwareBaselineDto.md)
- - [UpdateFirmwareBinaryDto](docs/UpdateFirmwareBinaryDto.md)
- - [UpdateFirmwareCatalogDto](docs/UpdateFirmwareCatalogDto.md)
+ - [UpdateFileShareMeta](docs/UpdateFileShareMeta.md)
+ - [UpdateFirmwareBaseline](docs/UpdateFirmwareBaseline.md)
+ - [UpdateFirmwareBinary](docs/UpdateFirmwareBinary.md)
+ - [UpdateFirmwareCatalog](docs/UpdateFirmwareCatalog.md)
  - [UpdateGlobalFirmwareUpgradeConfiguration](docs/UpdateGlobalFirmwareUpgradeConfiguration.md)
+ - [UpdateInfrastructure](docs/UpdateInfrastructure.md)
+ - [UpdateInfrastructureMeta](docs/UpdateInfrastructureMeta.md)
  - [UpdateNetworkDevice](docs/UpdateNetworkDevice.md)
- - [UpdateNetworkFabricDto](docs/UpdateNetworkFabricDto.md)
+ - [UpdateNetworkFabric](docs/UpdateNetworkFabric.md)
  - [UpdateResourcePool](docs/UpdateResourcePool.md)
  - [UpdateServer](docs/UpdateServer.md)
  - [UpdateServerCleanupPolicy](docs/UpdateServerCleanupPolicy.md)
@@ -660,6 +686,8 @@ Class | Method | HTTP request | Description
  - [UpdateServerFirmwareUpgradePolicy](docs/UpdateServerFirmwareUpgradePolicy.md)
  - [UpdateServerIpmiCredentials](docs/UpdateServerIpmiCredentials.md)
  - [UpdateServerType](docs/UpdateServerType.md)
+ - [UpdateSharedDrive](docs/UpdateSharedDrive.md)
+ - [UpdateSharedDriveMeta](docs/UpdateSharedDriveMeta.md)
  - [UpdateStorage](docs/UpdateStorage.md)
  - [UpdateStorageNetworkDeviceConfiguration](docs/UpdateStorageNetworkDeviceConfiguration.md)
  - [UpdateUser](docs/UpdateUser.md)
@@ -697,7 +725,7 @@ Class | Method | HTTP request | Description
  - [VMType](docs/VMType.md)
  - [VMTypePaginatedList](docs/VMTypePaginatedList.md)
  - [Version](docs/Version.md)
- - [VirtualFabricDto](docs/VirtualFabricDto.md)
+ - [VirtualFabric](docs/VirtualFabric.md)
 
 
 ## Documentation For Authorization

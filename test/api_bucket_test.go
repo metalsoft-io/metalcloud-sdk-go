@@ -64,6 +64,21 @@ func Test_sdk_BucketAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test BucketAPIService GetBucketConfigInfo", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var bucketId float32
+
+		resp, httpRes, err := apiClient.BucketAPI.GetBucketConfigInfo(context.Background(), infrastructureId, bucketId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test BucketAPIService GetBucketCredentials", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -116,6 +131,21 @@ func Test_sdk_BucketAPIService(t *testing.T) {
 		var bucketId float32
 
 		resp, httpRes, err := apiClient.BucketAPI.UpdateBucket(context.Background(), infrastructureId, bucketId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test BucketAPIService UpdateBucketMeta", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var bucketId float32
+
+		resp, httpRes, err := apiClient.BucketAPI.UpdateBucketMeta(context.Background(), infrastructureId, bucketId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

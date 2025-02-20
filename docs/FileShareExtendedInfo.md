@@ -17,16 +17,16 @@ Name | Type | Description | Notes
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the File Share. | [optional] 
 **DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the File Share. | [optional] 
 **NetworkVlanId** | Pointer to **float32** | Id of the VLAN for the File Share. | [optional] 
-**GuiSettings** | [**GenericGUISettings**](GenericGUISettings.md) |  | 
 **Endpoint** | Pointer to **string** | Endpoint of the File Share. | [optional] 
 **Config** | [**FileShareConfiguration**](FileShareConfiguration.md) | The current changes to be deployed for the File Share. | 
+**Meta** | [**FileShareMeta**](FileShareMeta.md) | Meta information of the File Share. | 
 **Infrastructure** | **map[string]interface{}** | Infrastructure information | 
 
 ## Methods
 
 ### NewFileShareExtendedInfo
 
-`func NewFileShareExtendedInfo(sizeGB float32, updatedTimestamp string, label string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, guiSettings GenericGUISettings, config FileShareConfiguration, infrastructure map[string]interface{}, ) *FileShareExtendedInfo`
+`func NewFileShareExtendedInfo(sizeGB float32, updatedTimestamp string, label string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, config FileShareConfiguration, meta FileShareMeta, infrastructure map[string]interface{}, ) *FileShareExtendedInfo`
 
 NewFileShareExtendedInfo instantiates a new FileShareExtendedInfo object
 This constructor will assign default values to properties that have it defined,
@@ -326,26 +326,6 @@ SetNetworkVlanId sets NetworkVlanId field to given value.
 
 HasNetworkVlanId returns a boolean if a field has been set.
 
-### GetGuiSettings
-
-`func (o *FileShareExtendedInfo) GetGuiSettings() GenericGUISettings`
-
-GetGuiSettings returns the GuiSettings field if non-nil, zero value otherwise.
-
-### GetGuiSettingsOk
-
-`func (o *FileShareExtendedInfo) GetGuiSettingsOk() (*GenericGUISettings, bool)`
-
-GetGuiSettingsOk returns a tuple with the GuiSettings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGuiSettings
-
-`func (o *FileShareExtendedInfo) SetGuiSettings(v GenericGUISettings)`
-
-SetGuiSettings sets GuiSettings field to given value.
-
-
 ### GetEndpoint
 
 `func (o *FileShareExtendedInfo) GetEndpoint() string`
@@ -389,6 +369,26 @@ and a boolean to check if the value has been set.
 `func (o *FileShareExtendedInfo) SetConfig(v FileShareConfiguration)`
 
 SetConfig sets Config field to given value.
+
+
+### GetMeta
+
+`func (o *FileShareExtendedInfo) GetMeta() FileShareMeta`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *FileShareExtendedInfo) GetMetaOk() (*FileShareMeta, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *FileShareExtendedInfo) SetMeta(v FileShareMeta)`
+
+SetMeta sets Meta field to given value.
 
 
 ### GetInfrastructure

@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | Filename of the template asset file | 
+**Name** | **string** | File name of the template asset file | 
 **MimeType** | **string** | The template asset usage | 
 **Checksum** | Pointer to **string** | The checksums of the template asset file | [optional] 
 **ContentBase64** | Pointer to **string** | The base64 encoded contents of the template asset file.                     Required if the URL is not provided | [optional] 
-**TemplatingEngine** | **string** | The templating engine used to render the template asset file                     The &#39;none&#39; value is used when the file should not be templated, or MIME type is not text. | 
+**TemplatingEngine** | **bool** | The templating engine used to render the template asset file | 
 **Url** | Pointer to **string** | The URL from where to fetch the template asset file | [optional] 
-**Path** | **string** |          - If the template asset usage is &#39;build_source_image&#39;, the path is ignored and &#39;url&#39; is required.         - If the template asset usage is &#39;build_component&#39;, the relative ISO location path where the template asset will be copied to.        | 
+**Path** | **string** |          - If the template asset usage is &#39;build_source_image&#39;, the path is ignored and &#39;url&#39; is required.         - If the template asset usage is &#39;build_component&#39;, the relative ISO location path where the template asset will be copied to.          | 
 
 ## Methods
 
 ### NewTemplateAssetFile
 
-`func NewTemplateAssetFile(name string, mimeType string, templatingEngine string, path string, ) *TemplateAssetFile`
+`func NewTemplateAssetFile(name string, mimeType string, templatingEngine bool, path string, ) *TemplateAssetFile`
 
 NewTemplateAssetFile instantiates a new TemplateAssetFile object
 This constructor will assign default values to properties that have it defined,
@@ -123,20 +123,20 @@ HasContentBase64 returns a boolean if a field has been set.
 
 ### GetTemplatingEngine
 
-`func (o *TemplateAssetFile) GetTemplatingEngine() string`
+`func (o *TemplateAssetFile) GetTemplatingEngine() bool`
 
 GetTemplatingEngine returns the TemplatingEngine field if non-nil, zero value otherwise.
 
 ### GetTemplatingEngineOk
 
-`func (o *TemplateAssetFile) GetTemplatingEngineOk() (*string, bool)`
+`func (o *TemplateAssetFile) GetTemplatingEngineOk() (*bool, bool)`
 
 GetTemplatingEngineOk returns a tuple with the TemplatingEngine field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplatingEngine
 
-`func (o *TemplateAssetFile) SetTemplatingEngine(v string)`
+`func (o *TemplateAssetFile) SetTemplatingEngine(v bool)`
 
 SetTemplatingEngine sets TemplatingEngine field to given value.
 

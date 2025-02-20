@@ -39,8 +39,6 @@ type Infrastructure struct {
 	Ipv6SubnetsCountActive *float32 `json:"ipv6SubnetsCountActive,omitempty"`
 	// Number of unused IPv4 addresses.
 	Ipv4UnusedIpAddresses *float32 `json:"ipv4UnusedIpAddresses,omitempty"`
-	// Infrastructure tags.
-	Tags []string `json:"tags,omitempty"`
 	// Description of the infrastructure.
 	Description *string `json:"description,omitempty"`
 	// Settings in JSON format.
@@ -61,7 +59,6 @@ type Infrastructure struct {
 	IsAutomanaged *float32 `json:"isAutomanaged,omitempty"`
 	// Timestamp of the latest update for the Infrastructure.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
-	Meta *GenericGUISettings `json:"meta,omitempty"`
 	// Infrastructure Id
 	Id float32 `json:"id"`
 	// Revision of the Infrastructure
@@ -84,7 +81,9 @@ type Infrastructure struct {
 	DesignIsLocked float32 `json:"designIsLocked"`
 	// The current changes to be deployed for the Infrastructure.
 	Config InfrastructureConfiguration `json:"config"`
-	Statistics *JobGroupStatisticsWithoutIdDto `json:"statistics,omitempty"`
+	// Meta information for the GUI
+	Meta *GenericGUISettings `json:"meta,omitempty"`
+	Statistics *JobGroupStatisticsWithoutId `json:"statistics,omitempty"`
 	// Links to other resources
 	Links map[string]interface{} `json:"links"`
 	AdditionalProperties map[string]interface{}
@@ -400,38 +399,6 @@ func (o *Infrastructure) SetIpv4UnusedIpAddresses(v float32) {
 	o.Ipv4UnusedIpAddresses = &v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *Infrastructure) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Infrastructure) GetTagsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *Infrastructure) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *Infrastructure) SetTags(v []string) {
-	o.Tags = v
-}
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *Infrastructure) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
@@ -744,38 +711,6 @@ func (o *Infrastructure) SetUpdatedTimestamp(v string) {
 	o.UpdatedTimestamp = v
 }
 
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *Infrastructure) GetMeta() GenericGUISettings {
-	if o == nil || IsNil(o.Meta) {
-		var ret GenericGUISettings
-		return ret
-	}
-	return *o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Infrastructure) GetMetaOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.Meta) {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *Infrastructure) HasMeta() bool {
-	if o != nil && !IsNil(o.Meta) {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given GenericGUISettings and assigns it to the Meta field.
-func (o *Infrastructure) SetMeta(v GenericGUISettings) {
-	o.Meta = &v
-}
-
 // GetId returns the Id field value
 func (o *Infrastructure) GetId() float32 {
 	if o == nil {
@@ -1064,10 +999,42 @@ func (o *Infrastructure) SetConfig(v InfrastructureConfiguration) {
 	o.Config = v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *Infrastructure) GetMeta() GenericGUISettings {
+	if o == nil || IsNil(o.Meta) {
+		var ret GenericGUISettings
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Infrastructure) GetMetaOk() (*GenericGUISettings, bool) {
+	if o == nil || IsNil(o.Meta) {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *Infrastructure) HasMeta() bool {
+	if o != nil && !IsNil(o.Meta) {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given GenericGUISettings and assigns it to the Meta field.
+func (o *Infrastructure) SetMeta(v GenericGUISettings) {
+	o.Meta = &v
+}
+
 // GetStatistics returns the Statistics field value if set, zero value otherwise.
-func (o *Infrastructure) GetStatistics() JobGroupStatisticsWithoutIdDto {
+func (o *Infrastructure) GetStatistics() JobGroupStatisticsWithoutId {
 	if o == nil || IsNil(o.Statistics) {
-		var ret JobGroupStatisticsWithoutIdDto
+		var ret JobGroupStatisticsWithoutId
 		return ret
 	}
 	return *o.Statistics
@@ -1075,7 +1042,7 @@ func (o *Infrastructure) GetStatistics() JobGroupStatisticsWithoutIdDto {
 
 // GetStatisticsOk returns a tuple with the Statistics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetStatisticsOk() (*JobGroupStatisticsWithoutIdDto, bool) {
+func (o *Infrastructure) GetStatisticsOk() (*JobGroupStatisticsWithoutId, bool) {
 	if o == nil || IsNil(o.Statistics) {
 		return nil, false
 	}
@@ -1091,8 +1058,8 @@ func (o *Infrastructure) HasStatistics() bool {
 	return false
 }
 
-// SetStatistics gets a reference to the given JobGroupStatisticsWithoutIdDto and assigns it to the Statistics field.
-func (o *Infrastructure) SetStatistics(v JobGroupStatisticsWithoutIdDto) {
+// SetStatistics gets a reference to the given JobGroupStatisticsWithoutId and assigns it to the Statistics field.
+func (o *Infrastructure) SetStatistics(v JobGroupStatisticsWithoutId) {
 	o.Statistics = &v
 }
 
@@ -1155,9 +1122,6 @@ func (o Infrastructure) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Ipv4UnusedIpAddresses) {
 		toSerialize["ipv4UnusedIpAddresses"] = o.Ipv4UnusedIpAddresses
 	}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -1186,9 +1150,6 @@ func (o Infrastructure) ToMap() (map[string]interface{}, error) {
 		toSerialize["isAutomanaged"] = o.IsAutomanaged
 	}
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
-	if !IsNil(o.Meta) {
-		toSerialize["meta"] = o.Meta
-	}
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["serviceStatus"] = o.ServiceStatus
@@ -1206,6 +1167,9 @@ func (o Infrastructure) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["designIsLocked"] = o.DesignIsLocked
 	toSerialize["config"] = o.Config
+	if !IsNil(o.Meta) {
+		toSerialize["meta"] = o.Meta
+	}
 	if !IsNil(o.Statistics) {
 		toSerialize["statistics"] = o.Statistics
 	}
@@ -1272,7 +1236,6 @@ func (o *Infrastructure) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "ipv4SubnetsCountActive")
 		delete(additionalProperties, "ipv6SubnetsCountActive")
 		delete(additionalProperties, "ipv4UnusedIpAddresses")
-		delete(additionalProperties, "tags")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "settings")
 		delete(additionalProperties, "isApiPrivate")
@@ -1283,7 +1246,6 @@ func (o *Infrastructure) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "deferredDeployAttemptLastErrorJson")
 		delete(additionalProperties, "isAutomanaged")
 		delete(additionalProperties, "updatedTimestamp")
-		delete(additionalProperties, "meta")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "serviceStatus")
@@ -1295,6 +1257,7 @@ func (o *Infrastructure) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dnsSubdomainPermanentId")
 		delete(additionalProperties, "designIsLocked")
 		delete(additionalProperties, "config")
+		delete(additionalProperties, "meta")
 		delete(additionalProperties, "statistics")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

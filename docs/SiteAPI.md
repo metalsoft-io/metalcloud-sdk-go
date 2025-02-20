@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## GetAgents
 
-> []AgentInfoDto GetAgents(ctx, siteId).Execute()
+> []AgentInfo GetAgents(ctx, siteId).Execute()
 
 Get a list of agents for a site
 
@@ -182,7 +182,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SiteAPI.GetAgents``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetAgents`: []AgentInfoDto
+	// response from `GetAgents`: []AgentInfo
 	fmt.Fprintf(os.Stdout, "Response from `SiteAPI.GetAgents`: %v\n", resp)
 }
 ```
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]AgentInfoDto**](AgentInfoDto.md)
+[**[]AgentInfo**](AgentInfo.md)
 
 ### Authorization
 

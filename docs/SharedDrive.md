@@ -28,15 +28,15 @@ Name | Type | Description | Notes
 **DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the Shared Drive. | [optional] 
 **DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the Shared Drive. | [optional] 
 **NetworkVlanId** | Pointer to **float32** | Id of the VLAN for the Shared Drive. | [optional] 
-**GuiSettings** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
 **Config** | [**SharedDriveConfiguration**](SharedDriveConfiguration.md) | The current changes to be deployed for the Shared Drive. | 
 **CreatedTimestamp** | **string** | Timestamp of the Shared Drive creation. | 
+**Meta** | [**SharedDriveMeta**](SharedDriveMeta.md) | Meta information of the Shared Drive. | 
 
 ## Methods
 
 ### NewSharedDrive
 
-`func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string, ) *SharedDrive`
+`func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string, meta SharedDriveMeta, ) *SharedDrive`
 
 NewSharedDrive instantiates a new SharedDrive object
 This constructor will assign default values to properties that have it defined,
@@ -596,31 +596,6 @@ SetNetworkVlanId sets NetworkVlanId field to given value.
 
 HasNetworkVlanId returns a boolean if a field has been set.
 
-### GetGuiSettings
-
-`func (o *SharedDrive) GetGuiSettings() GenericGUISettings`
-
-GetGuiSettings returns the GuiSettings field if non-nil, zero value otherwise.
-
-### GetGuiSettingsOk
-
-`func (o *SharedDrive) GetGuiSettingsOk() (*GenericGUISettings, bool)`
-
-GetGuiSettingsOk returns a tuple with the GuiSettings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGuiSettings
-
-`func (o *SharedDrive) SetGuiSettings(v GenericGUISettings)`
-
-SetGuiSettings sets GuiSettings field to given value.
-
-### HasGuiSettings
-
-`func (o *SharedDrive) HasGuiSettings() bool`
-
-HasGuiSettings returns a boolean if a field has been set.
-
 ### GetConfig
 
 `func (o *SharedDrive) GetConfig() SharedDriveConfiguration`
@@ -659,6 +634,26 @@ and a boolean to check if the value has been set.
 `func (o *SharedDrive) SetCreatedTimestamp(v string)`
 
 SetCreatedTimestamp sets CreatedTimestamp field to given value.
+
+
+### GetMeta
+
+`func (o *SharedDrive) GetMeta() SharedDriveMeta`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *SharedDrive) GetMetaOk() (*SharedDriveMeta, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *SharedDrive) SetMeta(v SharedDriveMeta)`
+
+SetMeta sets Meta field to given value.
 
 
 

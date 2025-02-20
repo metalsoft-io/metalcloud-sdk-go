@@ -49,10 +49,8 @@ type DriveGroup struct {
 	Id float32 `json:"id"`
 	// Revision of the Drive Group State
 	Revision float32 `json:"revision"`
-	ClusterId *float32 `json:"clusterId,omitempty"`
+	ExtensionInstanceId *float32 `json:"extensionInstanceId,omitempty"`
 	ContainerClusterId *float32 `json:"containerClusterId,omitempty"`
-	// Cluster Role Group of the Drive Group, if part of a cluster
-	ClusterRoleGroup string `json:"clusterRoleGroup"`
 	// Service status of the Drive Group
 	ServiceStatus string `json:"serviceStatus"`
 	// Subdomain permanent of the Drive Group.
@@ -79,7 +77,7 @@ type _DriveGroup DriveGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDriveGroup(label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithInstanceArray float32, storageType string, updatedTimestamp string, id float32, revision float32, clusterRoleGroup string, serviceStatus string, allocationAffinity string, config DriveGroupConfiguration, createdTimestamp string) *DriveGroup {
+func NewDriveGroup(label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithInstanceArray float32, storageType string, updatedTimestamp string, id float32, revision float32, serviceStatus string, allocationAffinity string, config DriveGroupConfiguration, createdTimestamp string) *DriveGroup {
 	this := DriveGroup{}
 	this.Label = label
 	this.InfrastructureId = infrastructureId
@@ -90,7 +88,6 @@ func NewDriveGroup(label string, infrastructureId float32, driveCount float32, d
 	this.UpdatedTimestamp = updatedTimestamp
 	this.Id = id
 	this.Revision = revision
-	this.ClusterRoleGroup = clusterRoleGroup
 	this.ServiceStatus = serviceStatus
 	this.AllocationAffinity = allocationAffinity
 	this.Config = config
@@ -105,8 +102,6 @@ func NewDriveGroupWithDefaults() *DriveGroup {
 	this := DriveGroup{}
 	var storageType string = "iscsi_ssd"
 	this.StorageType = storageType
-	var clusterRoleGroup string = "none"
-	this.ClusterRoleGroup = clusterRoleGroup
 	return &this
 }
 
@@ -518,36 +513,36 @@ func (o *DriveGroup) SetRevision(v float32) {
 	o.Revision = v
 }
 
-// GetClusterId returns the ClusterId field value if set, zero value otherwise.
-func (o *DriveGroup) GetClusterId() float32 {
-	if o == nil || IsNil(o.ClusterId) {
+// GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise.
+func (o *DriveGroup) GetExtensionInstanceId() float32 {
+	if o == nil || IsNil(o.ExtensionInstanceId) {
 		var ret float32
 		return ret
 	}
-	return *o.ClusterId
+	return *o.ExtensionInstanceId
 }
 
-// GetClusterIdOk returns a tuple with the ClusterId field value if set, nil otherwise
+// GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DriveGroup) GetClusterIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.ClusterId) {
+func (o *DriveGroup) GetExtensionInstanceIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.ExtensionInstanceId) {
 		return nil, false
 	}
-	return o.ClusterId, true
+	return o.ExtensionInstanceId, true
 }
 
-// HasClusterId returns a boolean if a field has been set.
-func (o *DriveGroup) HasClusterId() bool {
-	if o != nil && !IsNil(o.ClusterId) {
+// HasExtensionInstanceId returns a boolean if a field has been set.
+func (o *DriveGroup) HasExtensionInstanceId() bool {
+	if o != nil && !IsNil(o.ExtensionInstanceId) {
 		return true
 	}
 
 	return false
 }
 
-// SetClusterId gets a reference to the given float32 and assigns it to the ClusterId field.
-func (o *DriveGroup) SetClusterId(v float32) {
-	o.ClusterId = &v
+// SetExtensionInstanceId gets a reference to the given float32 and assigns it to the ExtensionInstanceId field.
+func (o *DriveGroup) SetExtensionInstanceId(v float32) {
+	o.ExtensionInstanceId = &v
 }
 
 // GetContainerClusterId returns the ContainerClusterId field value if set, zero value otherwise.
@@ -580,30 +575,6 @@ func (o *DriveGroup) HasContainerClusterId() bool {
 // SetContainerClusterId gets a reference to the given float32 and assigns it to the ContainerClusterId field.
 func (o *DriveGroup) SetContainerClusterId(v float32) {
 	o.ContainerClusterId = &v
-}
-
-// GetClusterRoleGroup returns the ClusterRoleGroup field value
-func (o *DriveGroup) GetClusterRoleGroup() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ClusterRoleGroup
-}
-
-// GetClusterRoleGroupOk returns a tuple with the ClusterRoleGroup field value
-// and a boolean to check if the value has been set.
-func (o *DriveGroup) GetClusterRoleGroupOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ClusterRoleGroup, true
-}
-
-// SetClusterRoleGroup sets field value
-func (o *DriveGroup) SetClusterRoleGroup(v string) {
-	o.ClusterRoleGroup = v
 }
 
 // GetServiceStatus returns the ServiceStatus field value
@@ -899,13 +870,12 @@ func (o DriveGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
-	if !IsNil(o.ClusterId) {
-		toSerialize["clusterId"] = o.ClusterId
+	if !IsNil(o.ExtensionInstanceId) {
+		toSerialize["extensionInstanceId"] = o.ExtensionInstanceId
 	}
 	if !IsNil(o.ContainerClusterId) {
 		toSerialize["containerClusterId"] = o.ContainerClusterId
 	}
-	toSerialize["clusterRoleGroup"] = o.ClusterRoleGroup
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	if !IsNil(o.SubdomainPermanent) {
 		toSerialize["subdomainPermanent"] = o.SubdomainPermanent
@@ -947,7 +917,6 @@ func (o *DriveGroup) UnmarshalJSON(data []byte) (err error) {
 		"updatedTimestamp",
 		"id",
 		"revision",
-		"clusterRoleGroup",
 		"serviceStatus",
 		"allocationAffinity",
 		"config",
@@ -996,9 +965,8 @@ func (o *DriveGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
-		delete(additionalProperties, "clusterId")
+		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "containerClusterId")
-		delete(additionalProperties, "clusterRoleGroup")
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")

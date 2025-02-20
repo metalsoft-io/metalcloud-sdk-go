@@ -28,12 +28,12 @@ type InfrastructureAPIService service
 type InfrastructureAPICreateInfrastructureRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureCreateDto *InfrastructureCreateDto
+	infrastructureCreate *InfrastructureCreate
 }
 
 // The infrastructure to create
-func (r InfrastructureAPICreateInfrastructureRequest) InfrastructureCreateDto(infrastructureCreateDto InfrastructureCreateDto) InfrastructureAPICreateInfrastructureRequest {
-	r.infrastructureCreateDto = &infrastructureCreateDto
+func (r InfrastructureAPICreateInfrastructureRequest) InfrastructureCreate(infrastructureCreate InfrastructureCreate) InfrastructureAPICreateInfrastructureRequest {
+	r.infrastructureCreate = &infrastructureCreate
 	return r
 }
 
@@ -76,8 +76,8 @@ func (a *InfrastructureAPIService) CreateInfrastructureExecute(r InfrastructureA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.infrastructureCreateDto == nil {
-		return localVarReturnValue, nil, reportError("infrastructureCreateDto is required and must be specified")
+	if r.infrastructureCreate == nil {
+		return localVarReturnValue, nil, reportError("infrastructureCreate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -98,7 +98,7 @@ func (a *InfrastructureAPIService) CreateInfrastructureExecute(r InfrastructureA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.infrastructureCreateDto
+	localVarPostBody = r.infrastructureCreate
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -134,6 +134,108 @@ func (a *InfrastructureAPIService) CreateInfrastructureExecute(r InfrastructureA
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type InfrastructureAPIDeleteInfrastructureRequest struct {
+	ctx context.Context
+	ApiService *InfrastructureAPIService
+	infrastructureId float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r InfrastructureAPIDeleteInfrastructureRequest) IfMatch(ifMatch string) InfrastructureAPIDeleteInfrastructureRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r InfrastructureAPIDeleteInfrastructureRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteInfrastructureExecute(r)
+}
+
+/*
+DeleteInfrastructure Deletes the specified infrastructure
+
+Deletes the specified infrastructure
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @return InfrastructureAPIDeleteInfrastructureRequest
+*/
+func (a *InfrastructureAPIService) DeleteInfrastructure(ctx context.Context, infrastructureId float32) InfrastructureAPIDeleteInfrastructureRequest {
+	return InfrastructureAPIDeleteInfrastructureRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+	}
+}
+
+// Execute executes the request
+func (a *InfrastructureAPIService) DeleteInfrastructureExecute(r InfrastructureAPIDeleteInfrastructureRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InfrastructureAPIService.DeleteInfrastructure")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type InfrastructureAPIDeployInfrastructureRequest struct {
@@ -781,4 +883,244 @@ func (a *InfrastructureAPIService) RevertInfrastructureExecute(r InfrastructureA
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type InfrastructureAPIUpdateInfrastructureConfigurationRequest struct {
+	ctx context.Context
+	ApiService *InfrastructureAPIService
+	infrastructureId float32
+	updateInfrastructure *UpdateInfrastructure
+	ifMatch *string
+}
+
+// The infrastructure configuration to update
+func (r InfrastructureAPIUpdateInfrastructureConfigurationRequest) UpdateInfrastructure(updateInfrastructure UpdateInfrastructure) InfrastructureAPIUpdateInfrastructureConfigurationRequest {
+	r.updateInfrastructure = &updateInfrastructure
+	return r
+}
+
+// Entity tag
+func (r InfrastructureAPIUpdateInfrastructureConfigurationRequest) IfMatch(ifMatch string) InfrastructureAPIUpdateInfrastructureConfigurationRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r InfrastructureAPIUpdateInfrastructureConfigurationRequest) Execute() (*Infrastructure, *http.Response, error) {
+	return r.ApiService.UpdateInfrastructureConfigurationExecute(r)
+}
+
+/*
+UpdateInfrastructureConfiguration Updates the specified infrastructure configuration
+
+Updates the specified infrastructure configuration
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @return InfrastructureAPIUpdateInfrastructureConfigurationRequest
+*/
+func (a *InfrastructureAPIService) UpdateInfrastructureConfiguration(ctx context.Context, infrastructureId float32) InfrastructureAPIUpdateInfrastructureConfigurationRequest {
+	return InfrastructureAPIUpdateInfrastructureConfigurationRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+	}
+}
+
+// Execute executes the request
+//  @return Infrastructure
+func (a *InfrastructureAPIService) UpdateInfrastructureConfigurationExecute(r InfrastructureAPIUpdateInfrastructureConfigurationRequest) (*Infrastructure, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Infrastructure
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InfrastructureAPIService.UpdateInfrastructureConfiguration")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/configuration"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateInfrastructure == nil {
+		return localVarReturnValue, nil, reportError("updateInfrastructure is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.updateInfrastructure
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type InfrastructureAPIUpdateInfrastructureMetadataRequest struct {
+	ctx context.Context
+	ApiService *InfrastructureAPIService
+	infrastructureId float32
+	updateInfrastructureMeta *UpdateInfrastructureMeta
+}
+
+// The infrastructure metadata to update
+func (r InfrastructureAPIUpdateInfrastructureMetadataRequest) UpdateInfrastructureMeta(updateInfrastructureMeta UpdateInfrastructureMeta) InfrastructureAPIUpdateInfrastructureMetadataRequest {
+	r.updateInfrastructureMeta = &updateInfrastructureMeta
+	return r
+}
+
+func (r InfrastructureAPIUpdateInfrastructureMetadataRequest) Execute() (*Infrastructure, *http.Response, error) {
+	return r.ApiService.UpdateInfrastructureMetadataExecute(r)
+}
+
+/*
+UpdateInfrastructureMetadata Updates the specified infrastructure metadata
+
+Updates the specified infrastructure metadata
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @return InfrastructureAPIUpdateInfrastructureMetadataRequest
+*/
+func (a *InfrastructureAPIService) UpdateInfrastructureMetadata(ctx context.Context, infrastructureId float32) InfrastructureAPIUpdateInfrastructureMetadataRequest {
+	return InfrastructureAPIUpdateInfrastructureMetadataRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+	}
+}
+
+// Execute executes the request
+//  @return Infrastructure
+func (a *InfrastructureAPIService) UpdateInfrastructureMetadataExecute(r InfrastructureAPIUpdateInfrastructureMetadataRequest) (*Infrastructure, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Infrastructure
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InfrastructureAPIService.UpdateInfrastructureMetadata")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/metadata"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateInfrastructureMeta == nil {
+		return localVarReturnValue, nil, reportError("updateInfrastructureMeta is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateInfrastructureMeta
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

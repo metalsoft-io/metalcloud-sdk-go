@@ -21,16 +21,16 @@ var _ MappedNullable = &InfrastructureConfiguration{}
 
 // InfrastructureConfiguration struct for InfrastructureConfiguration
 type InfrastructureConfiguration struct {
-	// An object having as key the server type id and as value an array of preferred server ids
-	ServerTypeIdToPreferredServerIds map[string]interface{} `json:"serverTypeIdToPreferredServerIds,omitempty"`
 	// Revision of the Infrastructure
 	Revision float32 `json:"revision"`
-	// Id of the deployment for the Infrastructure
-	InfrastructureDeployId *float32 `json:"infrastructureDeployId,omitempty"`
 	// Deploy type of the Infrastructure
 	DeployType string `json:"deployType"`
 	// Deploy status of the Infrastructure
 	DeployStatus string `json:"deployStatus"`
+	// An object having as key the server type id and as value an array of preferred server ids
+	ServerTypeIdToPreferredServerIds map[string]interface{} `json:"serverTypeIdToPreferredServerIds,omitempty"`
+	// Id of the deployment for the Infrastructure
+	InfrastructureDeployId *float32 `json:"infrastructureDeployId,omitempty"`
 	// DNS Subdomain Change ID
 	DnsSubdomainChangeId *float32 `json:"dnsSubdomainChangeId,omitempty"`
 	// Label of the Infrastructure.
@@ -55,8 +55,6 @@ type InfrastructureConfiguration struct {
 	Ipv6SubnetsCountActive *float32 `json:"ipv6SubnetsCountActive,omitempty"`
 	// Number of unused IPv4 addresses.
 	Ipv4UnusedIpAddresses *float32 `json:"ipv4UnusedIpAddresses,omitempty"`
-	// Infrastructure tags.
-	Tags []string `json:"tags,omitempty"`
 	// Description of the infrastructure.
 	Description *string `json:"description,omitempty"`
 	// Settings in JSON format.
@@ -85,7 +83,6 @@ type InfrastructureConfiguration struct {
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// DNS Subdomain ID.
 	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
-	Meta *GenericGUISettings `json:"meta,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -119,38 +116,6 @@ func NewInfrastructureConfigurationWithDefaults() *InfrastructureConfiguration {
 	return &this
 }
 
-// GetServerTypeIdToPreferredServerIds returns the ServerTypeIdToPreferredServerIds field value if set, zero value otherwise.
-func (o *InfrastructureConfiguration) GetServerTypeIdToPreferredServerIds() map[string]interface{} {
-	if o == nil || IsNil(o.ServerTypeIdToPreferredServerIds) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.ServerTypeIdToPreferredServerIds
-}
-
-// GetServerTypeIdToPreferredServerIdsOk returns a tuple with the ServerTypeIdToPreferredServerIds field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InfrastructureConfiguration) GetServerTypeIdToPreferredServerIdsOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.ServerTypeIdToPreferredServerIds) {
-		return map[string]interface{}{}, false
-	}
-	return o.ServerTypeIdToPreferredServerIds, true
-}
-
-// HasServerTypeIdToPreferredServerIds returns a boolean if a field has been set.
-func (o *InfrastructureConfiguration) HasServerTypeIdToPreferredServerIds() bool {
-	if o != nil && !IsNil(o.ServerTypeIdToPreferredServerIds) {
-		return true
-	}
-
-	return false
-}
-
-// SetServerTypeIdToPreferredServerIds gets a reference to the given map[string]interface{} and assigns it to the ServerTypeIdToPreferredServerIds field.
-func (o *InfrastructureConfiguration) SetServerTypeIdToPreferredServerIds(v map[string]interface{}) {
-	o.ServerTypeIdToPreferredServerIds = v
-}
-
 // GetRevision returns the Revision field value
 func (o *InfrastructureConfiguration) GetRevision() float32 {
 	if o == nil {
@@ -173,38 +138,6 @@ func (o *InfrastructureConfiguration) GetRevisionOk() (*float32, bool) {
 // SetRevision sets field value
 func (o *InfrastructureConfiguration) SetRevision(v float32) {
 	o.Revision = v
-}
-
-// GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
-func (o *InfrastructureConfiguration) GetInfrastructureDeployId() float32 {
-	if o == nil || IsNil(o.InfrastructureDeployId) {
-		var ret float32
-		return ret
-	}
-	return *o.InfrastructureDeployId
-}
-
-// GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InfrastructureConfiguration) GetInfrastructureDeployIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.InfrastructureDeployId) {
-		return nil, false
-	}
-	return o.InfrastructureDeployId, true
-}
-
-// HasInfrastructureDeployId returns a boolean if a field has been set.
-func (o *InfrastructureConfiguration) HasInfrastructureDeployId() bool {
-	if o != nil && !IsNil(o.InfrastructureDeployId) {
-		return true
-	}
-
-	return false
-}
-
-// SetInfrastructureDeployId gets a reference to the given float32 and assigns it to the InfrastructureDeployId field.
-func (o *InfrastructureConfiguration) SetInfrastructureDeployId(v float32) {
-	o.InfrastructureDeployId = &v
 }
 
 // GetDeployType returns the DeployType field value
@@ -253,6 +186,70 @@ func (o *InfrastructureConfiguration) GetDeployStatusOk() (*string, bool) {
 // SetDeployStatus sets field value
 func (o *InfrastructureConfiguration) SetDeployStatus(v string) {
 	o.DeployStatus = v
+}
+
+// GetServerTypeIdToPreferredServerIds returns the ServerTypeIdToPreferredServerIds field value if set, zero value otherwise.
+func (o *InfrastructureConfiguration) GetServerTypeIdToPreferredServerIds() map[string]interface{} {
+	if o == nil || IsNil(o.ServerTypeIdToPreferredServerIds) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.ServerTypeIdToPreferredServerIds
+}
+
+// GetServerTypeIdToPreferredServerIdsOk returns a tuple with the ServerTypeIdToPreferredServerIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InfrastructureConfiguration) GetServerTypeIdToPreferredServerIdsOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.ServerTypeIdToPreferredServerIds) {
+		return map[string]interface{}{}, false
+	}
+	return o.ServerTypeIdToPreferredServerIds, true
+}
+
+// HasServerTypeIdToPreferredServerIds returns a boolean if a field has been set.
+func (o *InfrastructureConfiguration) HasServerTypeIdToPreferredServerIds() bool {
+	if o != nil && !IsNil(o.ServerTypeIdToPreferredServerIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerTypeIdToPreferredServerIds gets a reference to the given map[string]interface{} and assigns it to the ServerTypeIdToPreferredServerIds field.
+func (o *InfrastructureConfiguration) SetServerTypeIdToPreferredServerIds(v map[string]interface{}) {
+	o.ServerTypeIdToPreferredServerIds = v
+}
+
+// GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
+func (o *InfrastructureConfiguration) GetInfrastructureDeployId() float32 {
+	if o == nil || IsNil(o.InfrastructureDeployId) {
+		var ret float32
+		return ret
+	}
+	return *o.InfrastructureDeployId
+}
+
+// GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InfrastructureConfiguration) GetInfrastructureDeployIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.InfrastructureDeployId) {
+		return nil, false
+	}
+	return o.InfrastructureDeployId, true
+}
+
+// HasInfrastructureDeployId returns a boolean if a field has been set.
+func (o *InfrastructureConfiguration) HasInfrastructureDeployId() bool {
+	if o != nil && !IsNil(o.InfrastructureDeployId) {
+		return true
+	}
+
+	return false
+}
+
+// SetInfrastructureDeployId gets a reference to the given float32 and assigns it to the InfrastructureDeployId field.
+func (o *InfrastructureConfiguration) SetInfrastructureDeployId(v float32) {
+	o.InfrastructureDeployId = &v
 }
 
 // GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
@@ -613,38 +610,6 @@ func (o *InfrastructureConfiguration) HasIpv4UnusedIpAddresses() bool {
 // SetIpv4UnusedIpAddresses gets a reference to the given float32 and assigns it to the Ipv4UnusedIpAddresses field.
 func (o *InfrastructureConfiguration) SetIpv4UnusedIpAddresses(v float32) {
 	o.Ipv4UnusedIpAddresses = &v
-}
-
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *InfrastructureConfiguration) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InfrastructureConfiguration) GetTagsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *InfrastructureConfiguration) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *InfrastructureConfiguration) SetTags(v []string) {
-	o.Tags = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -1087,38 +1052,6 @@ func (o *InfrastructureConfiguration) SetDnsSubdomainId(v float32) {
 	o.DnsSubdomainId = &v
 }
 
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *InfrastructureConfiguration) GetMeta() GenericGUISettings {
-	if o == nil || IsNil(o.Meta) {
-		var ret GenericGUISettings
-		return ret
-	}
-	return *o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InfrastructureConfiguration) GetMetaOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.Meta) {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *InfrastructureConfiguration) HasMeta() bool {
-	if o != nil && !IsNil(o.Meta) {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given GenericGUISettings and assigns it to the Meta field.
-func (o *InfrastructureConfiguration) SetMeta(v GenericGUISettings) {
-	o.Meta = &v
-}
-
 func (o InfrastructureConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1129,15 +1062,15 @@ func (o InfrastructureConfiguration) MarshalJSON() ([]byte, error) {
 
 func (o InfrastructureConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["revision"] = o.Revision
+	toSerialize["deployType"] = o.DeployType
+	toSerialize["deployStatus"] = o.DeployStatus
 	if !IsNil(o.ServerTypeIdToPreferredServerIds) {
 		toSerialize["serverTypeIdToPreferredServerIds"] = o.ServerTypeIdToPreferredServerIds
 	}
-	toSerialize["revision"] = o.Revision
 	if !IsNil(o.InfrastructureDeployId) {
 		toSerialize["infrastructureDeployId"] = o.InfrastructureDeployId
 	}
-	toSerialize["deployType"] = o.DeployType
-	toSerialize["deployStatus"] = o.DeployStatus
 	if !IsNil(o.DnsSubdomainChangeId) {
 		toSerialize["dnsSubdomainChangeId"] = o.DnsSubdomainChangeId
 	}
@@ -1167,9 +1100,6 @@ func (o InfrastructureConfiguration) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Ipv4UnusedIpAddresses) {
 		toSerialize["ipv4UnusedIpAddresses"] = o.Ipv4UnusedIpAddresses
-	}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
 	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -1210,9 +1140,6 @@ func (o InfrastructureConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.DnsSubdomainId) {
 		toSerialize["dnsSubdomainId"] = o.DnsSubdomainId
-	}
-	if !IsNil(o.Meta) {
-		toSerialize["meta"] = o.Meta
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -1263,11 +1190,11 @@ func (o *InfrastructureConfiguration) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "serverTypeIdToPreferredServerIds")
 		delete(additionalProperties, "revision")
-		delete(additionalProperties, "infrastructureDeployId")
 		delete(additionalProperties, "deployType")
 		delete(additionalProperties, "deployStatus")
+		delete(additionalProperties, "serverTypeIdToPreferredServerIds")
+		delete(additionalProperties, "infrastructureDeployId")
 		delete(additionalProperties, "dnsSubdomainChangeId")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "datacenterName")
@@ -1280,7 +1207,6 @@ func (o *InfrastructureConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "ipv4SubnetsCountActive")
 		delete(additionalProperties, "ipv6SubnetsCountActive")
 		delete(additionalProperties, "ipv4UnusedIpAddresses")
-		delete(additionalProperties, "tags")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "settings")
 		delete(additionalProperties, "isApiPrivate")
@@ -1295,7 +1221,6 @@ func (o *InfrastructureConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "subnetPoolLan")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "dnsSubdomainId")
-		delete(additionalProperties, "meta")
 		o.AdditionalProperties = additionalProperties
 	}
 

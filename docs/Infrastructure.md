@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **Ipv4SubnetsCountActive** | Pointer to **float32** | Number of active IPv4 subnets. | [optional] 
 **Ipv6SubnetsCountActive** | Pointer to **float32** | Number of active IPv6 subnets. | [optional] 
 **Ipv4UnusedIpAddresses** | Pointer to **float32** | Number of unused IPv4 addresses. | [optional] 
-**Tags** | Pointer to **[]string** | Infrastructure tags. | [optional] 
 **Description** | Pointer to **string** | Description of the infrastructure. | [optional] 
 **Settings** | Pointer to **string** | Settings in JSON format. | [optional] 
 **IsApiPrivate** | Pointer to **float32** | Whether the infrastructure API is private. | [optional] 
@@ -24,7 +23,6 @@ Name | Type | Description | Notes
 **DeferredDeployAttemptLastErrorJson** | Pointer to **string** | Last error of deferred deploy attempt. | [optional] 
 **IsAutomanaged** | Pointer to **float32** | Whether the infrastructure is automanaged. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update for the Infrastructure. | 
-**Meta** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
 **Id** | **float32** | Infrastructure Id | 
 **Revision** | **float32** | Revision of the Infrastructure | 
 **ServiceStatus** | **string** | Service status of the Infrastructure | 
@@ -36,7 +34,8 @@ Name | Type | Description | Notes
 **DnsSubdomainPermanentId** | Pointer to **float32** | Permanent DNS Subdomain ID. | [optional] 
 **DesignIsLocked** | **float32** | Infrastructure design locked flag. | 
 **Config** | [**InfrastructureConfiguration**](InfrastructureConfiguration.md) | The current changes to be deployed for the Infrastructure. | 
-**Statistics** | Pointer to [**JobGroupStatisticsWithoutIdDto**](JobGroupStatisticsWithoutIdDto.md) |  | [optional] 
+**Meta** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) | Meta information for the GUI | [optional] 
+**Statistics** | Pointer to [**JobGroupStatisticsWithoutId**](JobGroupStatisticsWithoutId.md) |  | [optional] 
 **Links** | **map[string]interface{}** | Links to other resources | 
 
 ## Methods
@@ -277,31 +276,6 @@ SetIpv4UnusedIpAddresses sets Ipv4UnusedIpAddresses field to given value.
 `func (o *Infrastructure) HasIpv4UnusedIpAddresses() bool`
 
 HasIpv4UnusedIpAddresses returns a boolean if a field has been set.
-
-### GetTags
-
-`func (o *Infrastructure) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *Infrastructure) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *Infrastructure) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *Infrastructure) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -548,31 +522,6 @@ and a boolean to check if the value has been set.
 SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
 
-### GetMeta
-
-`func (o *Infrastructure) GetMeta() GenericGUISettings`
-
-GetMeta returns the Meta field if non-nil, zero value otherwise.
-
-### GetMetaOk
-
-`func (o *Infrastructure) GetMetaOk() (*GenericGUISettings, bool)`
-
-GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMeta
-
-`func (o *Infrastructure) SetMeta(v GenericGUISettings)`
-
-SetMeta sets Meta field to given value.
-
-### HasMeta
-
-`func (o *Infrastructure) HasMeta() bool`
-
-HasMeta returns a boolean if a field has been set.
-
 ### GetId
 
 `func (o *Infrastructure) GetId() float32`
@@ -808,22 +757,47 @@ and a boolean to check if the value has been set.
 SetConfig sets Config field to given value.
 
 
+### GetMeta
+
+`func (o *Infrastructure) GetMeta() GenericGUISettings`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *Infrastructure) GetMetaOk() (*GenericGUISettings, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *Infrastructure) SetMeta(v GenericGUISettings)`
+
+SetMeta sets Meta field to given value.
+
+### HasMeta
+
+`func (o *Infrastructure) HasMeta() bool`
+
+HasMeta returns a boolean if a field has been set.
+
 ### GetStatistics
 
-`func (o *Infrastructure) GetStatistics() JobGroupStatisticsWithoutIdDto`
+`func (o *Infrastructure) GetStatistics() JobGroupStatisticsWithoutId`
 
 GetStatistics returns the Statistics field if non-nil, zero value otherwise.
 
 ### GetStatisticsOk
 
-`func (o *Infrastructure) GetStatisticsOk() (*JobGroupStatisticsWithoutIdDto, bool)`
+`func (o *Infrastructure) GetStatisticsOk() (*JobGroupStatisticsWithoutId, bool)`
 
 GetStatisticsOk returns a tuple with the Statistics field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatistics
 
-`func (o *Infrastructure) SetStatistics(v JobGroupStatisticsWithoutIdDto)`
+`func (o *Infrastructure) SetStatistics(v JobGroupStatisticsWithoutId)`
 
 SetStatistics sets Statistics field to given value.
 

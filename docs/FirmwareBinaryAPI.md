@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateFirmwareBinary
 
-> FirmwareBinaryDto CreateFirmwareBinary(ctx).CreateFirmwareBinaryDto(createFirmwareBinaryDto).Execute()
+> FirmwareBinary CreateFirmwareBinary(ctx).CreateFirmwareBinary(createFirmwareBinary).Execute()
 
 Create a new firmware binary
 
@@ -33,16 +33,16 @@ import (
 )
 
 func main() {
-	createFirmwareBinaryDto := *openapiclient.NewCreateFirmwareBinaryDto(float32(46), "https://downloads.dell.com/xxxxx", "Test", true, openapiclient.FirmwareBinaryUpdateSeverity("critical"), "[{"id": "123121", "model": "R240"}, {"id": "123122", "model": "R740"}]", "[{"id": "PowerEdge"}, {"id": "ThinkSystem"}, {"id": "ProLiant"}]") // CreateFirmwareBinaryDto | 
+	createFirmwareBinary := *openapiclient.NewCreateFirmwareBinary(float32(46), "https://downloads.dell.com/xxxxx", "Test", true, openapiclient.FirmwareBinaryUpdateSeverity("critical"), "[{"id": "123121", "model": "R240"}, {"id": "123122", "model": "R740"}]", "[{"id": "PowerEdge"}, {"id": "ThinkSystem"}, {"id": "ProLiant"}]") // CreateFirmwareBinary | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirmwareBinaryAPI.CreateFirmwareBinary(context.Background()).CreateFirmwareBinaryDto(createFirmwareBinaryDto).Execute()
+	resp, r, err := apiClient.FirmwareBinaryAPI.CreateFirmwareBinary(context.Background()).CreateFirmwareBinary(createFirmwareBinary).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBinaryAPI.CreateFirmwareBinary``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateFirmwareBinary`: FirmwareBinaryDto
+	// response from `CreateFirmwareBinary`: FirmwareBinary
 	fmt.Fprintf(os.Stdout, "Response from `FirmwareBinaryAPI.CreateFirmwareBinary`: %v\n", resp)
 }
 ```
@@ -58,11 +58,11 @@ Other parameters are passed through a pointer to a apiCreateFirmwareBinaryReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createFirmwareBinaryDto** | [**CreateFirmwareBinaryDto**](CreateFirmwareBinaryDto.md) |  | 
+ **createFirmwareBinary** | [**CreateFirmwareBinary**](CreateFirmwareBinary.md) |  | 
 
 ### Return type
 
-[**FirmwareBinaryDto**](FirmwareBinaryDto.md)
+[**FirmwareBinary**](FirmwareBinary.md)
 
 ### Authorization
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 ## GetFirmwareBinary
 
-> FirmwareBinaryDto GetFirmwareBinary(ctx, firmwareBinaryId).Execute()
+> FirmwareBinary GetFirmwareBinary(ctx, firmwareBinaryId).Execute()
 
 Get Firmware Binary
 
@@ -270,7 +270,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBinaryAPI.GetFirmwareBinary``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetFirmwareBinary`: FirmwareBinaryDto
+	// response from `GetFirmwareBinary`: FirmwareBinary
 	fmt.Fprintf(os.Stdout, "Response from `FirmwareBinaryAPI.GetFirmwareBinary`: %v\n", resp)
 }
 ```
@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FirmwareBinaryDto**](FirmwareBinaryDto.md)
+[**FirmwareBinary**](FirmwareBinary.md)
 
 ### Authorization
 
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 
 ## UpdateFirmwareBinary
 
-> FirmwareBinaryDto UpdateFirmwareBinary(ctx, firmwareBinaryId).UpdateFirmwareBinaryDto(updateFirmwareBinaryDto).Execute()
+> FirmwareBinary UpdateFirmwareBinary(ctx, firmwareBinaryId).UpdateFirmwareBinary(updateFirmwareBinary).Execute()
 
 Update Firmware Binary
 
@@ -332,16 +332,16 @@ import (
 
 func main() {
 	firmwareBinaryId := float32(8.14) // float32 | The firmware binary id
-	updateFirmwareBinaryDto := *openapiclient.NewUpdateFirmwareBinaryDto(float32(46), "https://downloads.dell.com/xxxxx", "Test", true, openapiclient.FirmwareBinaryUpdateSeverity("critical"), "[{"id": "123121", "model": "R240"}, {"id": "123122", "model": "R740"}]", "[{"id": "PowerEdge"}, {"id": "ThinkSystem"}, {"id": "ProLiant"}]") // UpdateFirmwareBinaryDto | 
+	updateFirmwareBinary := *openapiclient.NewUpdateFirmwareBinary(float32(46), "https://downloads.dell.com/xxxxx", "Test", true, openapiclient.FirmwareBinaryUpdateSeverity("critical"), "[{"id": "123121", "model": "R240"}, {"id": "123122", "model": "R740"}]", "[{"id": "PowerEdge"}, {"id": "ThinkSystem"}, {"id": "ProLiant"}]") // UpdateFirmwareBinary | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirmwareBinaryAPI.UpdateFirmwareBinary(context.Background(), firmwareBinaryId).UpdateFirmwareBinaryDto(updateFirmwareBinaryDto).Execute()
+	resp, r, err := apiClient.FirmwareBinaryAPI.UpdateFirmwareBinary(context.Background(), firmwareBinaryId).UpdateFirmwareBinary(updateFirmwareBinary).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBinaryAPI.UpdateFirmwareBinary``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateFirmwareBinary`: FirmwareBinaryDto
+	// response from `UpdateFirmwareBinary`: FirmwareBinary
 	fmt.Fprintf(os.Stdout, "Response from `FirmwareBinaryAPI.UpdateFirmwareBinary`: %v\n", resp)
 }
 ```
@@ -362,11 +362,11 @@ Other parameters are passed through a pointer to a apiUpdateFirmwareBinaryReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateFirmwareBinaryDto** | [**UpdateFirmwareBinaryDto**](UpdateFirmwareBinaryDto.md) |  | 
+ **updateFirmwareBinary** | [**UpdateFirmwareBinary**](UpdateFirmwareBinary.md) |  | 
 
 ### Return type
 
-[**FirmwareBinaryDto**](FirmwareBinaryDto.md)
+[**FirmwareBinary**](FirmwareBinary.md)
 
 ### Authorization
 

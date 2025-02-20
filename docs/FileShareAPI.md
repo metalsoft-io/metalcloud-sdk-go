@@ -7,10 +7,12 @@ Method | HTTP request | Description
 [**CreateInfrastructureFileShare**](FileShareAPI.md#CreateInfrastructureFileShare) | **Post** /api/v2/infrastructures/{infrastructureId}/file-shares | Creates a File Share
 [**DeleteFileShare**](FileShareAPI.md#DeleteFileShare) | **Delete** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId} | Deletes a File Share
 [**GetFileShare**](FileShareAPI.md#GetFileShare) | **Get** /api/v2/file-shares/{fileShareId} | Get File Share information
+[**GetFileShareConfigInfo**](FileShareAPI.md#GetFileShareConfigInfo) | **Get** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/config | Get configuration information about the specified File Share
 [**GetFileShareHosts**](FileShareAPI.md#GetFileShareHosts) | **Get** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/hosts | Get the Hosts of File Share
 [**GetInfrastructureFileShare**](FileShareAPI.md#GetInfrastructureFileShare) | **Get** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId} | Get File Share information
 [**GetInfrastructureFileShares**](FileShareAPI.md#GetInfrastructureFileShares) | **Get** /api/v2/infrastructures/{infrastructureId}/file-shares | Get all File Shares
-[**UpdateFileShare**](FileShareAPI.md#UpdateFileShare) | **Patch** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId} | Updates File Share information
+[**PatchFileShareMeta**](FileShareAPI.md#PatchFileShareMeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/meta | Updates the meta of a File Share
+[**UpdateFileShareConfig**](FileShareAPI.md#UpdateFileShareConfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/config | Updates File Share config information
 [**UpdateFileShareInstanceArrayHostsBulk**](FileShareAPI.md#UpdateFileShareInstanceArrayHostsBulk) | **Post** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId}/actions/modify-instance-array-hosts-bulk | Updates Instance Array Hosts on the File Share
 
 
@@ -215,6 +217,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**FileShareExtendedInfo**](FileShareExtendedInfo.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetFileShareConfigInfo
+
+> FileShareConfiguration GetFileShareConfigInfo(ctx, infrastructureId, fileShareId).Execute()
+
+Get configuration information about the specified File Share
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	fileShareId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FileShareAPI.GetFileShareConfigInfo(context.Background(), infrastructureId, fileShareId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FileShareAPI.GetFileShareConfigInfo``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetFileShareConfigInfo`: FileShareConfiguration
+	fmt.Fprintf(os.Stdout, "Response from `FileShareAPI.GetFileShareConfigInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+**fileShareId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetFileShareConfigInfoRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**FileShareConfiguration**](FileShareConfiguration.md)
 
 ### Authorization
 
@@ -472,11 +545,84 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateFileShare
+## PatchFileShareMeta
 
-> FileShare UpdateFileShare(ctx, infrastructureId, fileShareId).UpdateFileShare(updateFileShare).IfMatch(ifMatch).Execute()
+> FileShare PatchFileShareMeta(ctx, infrastructureId, fileShareId).UpdateFileShareMeta(updateFileShareMeta).Execute()
 
-Updates File Share information
+Updates the meta of a File Share
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	fileShareId := float32(8.14) // float32 | 
+	updateFileShareMeta := *openapiclient.NewUpdateFileShareMeta() // UpdateFileShareMeta | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FileShareAPI.PatchFileShareMeta(context.Background(), infrastructureId, fileShareId).UpdateFileShareMeta(updateFileShareMeta).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FileShareAPI.PatchFileShareMeta``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PatchFileShareMeta`: FileShare
+	fmt.Fprintf(os.Stdout, "Response from `FileShareAPI.PatchFileShareMeta`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+**fileShareId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchFileShareMetaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateFileShareMeta** | [**UpdateFileShareMeta**](UpdateFileShareMeta.md) |  | 
+
+### Return type
+
+[**FileShare**](FileShare.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateFileShareConfig
+
+> FileShare UpdateFileShareConfig(ctx, infrastructureId, fileShareId).UpdateFileShare(updateFileShare).IfMatch(ifMatch).Execute()
+
+Updates File Share config information
 
 
 
@@ -500,13 +646,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FileShareAPI.UpdateFileShare(context.Background(), infrastructureId, fileShareId).UpdateFileShare(updateFileShare).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.FileShareAPI.UpdateFileShareConfig(context.Background(), infrastructureId, fileShareId).UpdateFileShare(updateFileShare).IfMatch(ifMatch).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FileShareAPI.UpdateFileShare``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `FileShareAPI.UpdateFileShareConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateFileShare`: FileShare
-	fmt.Fprintf(os.Stdout, "Response from `FileShareAPI.UpdateFileShare`: %v\n", resp)
+	// response from `UpdateFileShareConfig`: FileShare
+	fmt.Fprintf(os.Stdout, "Response from `FileShareAPI.UpdateFileShareConfig`: %v\n", resp)
 }
 ```
 
@@ -521,7 +667,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateFileShareRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateFileShareConfigRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

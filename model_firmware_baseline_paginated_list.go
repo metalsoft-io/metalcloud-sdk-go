@@ -21,7 +21,7 @@ var _ MappedNullable = &FirmwareBaselinePaginatedList{}
 
 // FirmwareBaselinePaginatedList struct for FirmwareBaselinePaginatedList
 type FirmwareBaselinePaginatedList struct {
-	Data []FirmwareBaselineDto `json:"data"`
+	Data []FirmwareBaseline `json:"data"`
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
@@ -35,7 +35,7 @@ type _FirmwareBaselinePaginatedList FirmwareBaselinePaginatedList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareBaselinePaginatedList(data []FirmwareBaselineDto, meta PaginatedResponseMeta, links PaginatedResponseLinks) *FirmwareBaselinePaginatedList {
+func NewFirmwareBaselinePaginatedList(data []FirmwareBaseline, meta PaginatedResponseMeta, links PaginatedResponseLinks) *FirmwareBaselinePaginatedList {
 	this := FirmwareBaselinePaginatedList{}
 	this.Data = data
 	this.Meta = meta
@@ -52,9 +52,9 @@ func NewFirmwareBaselinePaginatedListWithDefaults() *FirmwareBaselinePaginatedLi
 }
 
 // GetData returns the Data field value
-func (o *FirmwareBaselinePaginatedList) GetData() []FirmwareBaselineDto {
+func (o *FirmwareBaselinePaginatedList) GetData() []FirmwareBaseline {
 	if o == nil {
-		var ret []FirmwareBaselineDto
+		var ret []FirmwareBaseline
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *FirmwareBaselinePaginatedList) GetData() []FirmwareBaselineDto {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBaselinePaginatedList) GetDataOk() ([]FirmwareBaselineDto, bool) {
+func (o *FirmwareBaselinePaginatedList) GetDataOk() ([]FirmwareBaseline, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *FirmwareBaselinePaginatedList) GetDataOk() ([]FirmwareBaselineDto, bool
 }
 
 // SetData sets field value
-func (o *FirmwareBaselinePaginatedList) SetData(v []FirmwareBaselineDto) {
+func (o *FirmwareBaselinePaginatedList) SetData(v []FirmwareBaseline) {
 	o.Data = v
 }
 

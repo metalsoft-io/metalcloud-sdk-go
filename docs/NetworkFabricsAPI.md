@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	createNetworkFabric := *openapiclient.NewCreateNetworkFabric("My Network Fabric", "ethernet_flat_l2", openapiclient.NetworkFabric_fabricConfiguration{EthernetEvpnVxlanL2FabricDto: openapiclient.NewEthernetEvpnVxlanL2FabricDto(float32(101), float32(2))}) // CreateNetworkFabric | The Network Fabric create object
+	createNetworkFabric := *openapiclient.NewCreateNetworkFabric("My Network Fabric", "ethernet_flat_l2", openapiclient.NetworkFabric_fabricConfiguration{EthernetEvpnVxlanL2Fabric: openapiclient.NewEthernetEvpnVxlanL2Fabric(float32(101), float32(2))}) // CreateNetworkFabric | The Network Fabric create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkFabric
 
-> NetworkFabric UpdateNetworkFabric(ctx, networkFabricId).UpdateNetworkFabricDto(updateNetworkFabricDto).Execute()
+> NetworkFabric UpdateNetworkFabric(ctx, networkFabricId).UpdateNetworkFabric(updateNetworkFabric).Execute()
 
 Update a network fabric
 
@@ -320,11 +320,11 @@ import (
 
 func main() {
 	networkFabricId := float32(8.14) // float32 | 
-	updateNetworkFabricDto := *openapiclient.NewUpdateNetworkFabricDto("My Network Fabric", "ethernet_flat_l2", openapiclient.NetworkFabric_fabricConfiguration{EthernetEvpnVxlanL2FabricDto: openapiclient.NewEthernetEvpnVxlanL2FabricDto(float32(101), float32(2))}, float32(1), "1") // UpdateNetworkFabricDto | The Network Fabric update object
+	updateNetworkFabric := *openapiclient.NewUpdateNetworkFabric("My Network Fabric", "ethernet_flat_l2", openapiclient.NetworkFabric_fabricConfiguration{EthernetEvpnVxlanL2Fabric: openapiclient.NewEthernetEvpnVxlanL2Fabric(float32(101), float32(2))}, float32(1), "1") // UpdateNetworkFabric | The Network Fabric update object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkFabricsAPI.UpdateNetworkFabric(context.Background(), networkFabricId).UpdateNetworkFabricDto(updateNetworkFabricDto).Execute()
+	resp, r, err := apiClient.NetworkFabricsAPI.UpdateNetworkFabric(context.Background(), networkFabricId).UpdateNetworkFabric(updateNetworkFabric).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricsAPI.UpdateNetworkFabric``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -350,7 +350,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkFabricRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkFabricDto** | [**UpdateNetworkFabricDto**](UpdateNetworkFabricDto.md) | The Network Fabric update object | 
+ **updateNetworkFabric** | [**UpdateNetworkFabric**](UpdateNetworkFabric.md) | The Network Fabric update object | 
 
 ### Return type
 

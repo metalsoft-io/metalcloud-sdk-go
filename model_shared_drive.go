@@ -68,11 +68,12 @@ type SharedDrive struct {
 	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
 	// Id of the VLAN for the Shared Drive.
 	NetworkVlanId *float32 `json:"networkVlanId,omitempty"`
-	GuiSettings *GenericGUISettings `json:"guiSettings,omitempty"`
 	// The current changes to be deployed for the Shared Drive.
 	Config SharedDriveConfiguration `json:"config"`
 	// Timestamp of the Shared Drive creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
+	// Meta information of the Shared Drive.
+	Meta SharedDriveMeta `json:"meta"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -82,7 +83,7 @@ type _SharedDrive SharedDrive
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string) *SharedDrive {
+func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string, meta SharedDriveMeta) *SharedDrive {
 	this := SharedDrive{}
 	this.Label = label
 	this.SizeMb = sizeMb
@@ -97,6 +98,7 @@ func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTim
 	this.ProvisioningProtocol = provisioningProtocol
 	this.Config = config
 	this.CreatedTimestamp = createdTimestamp
+	this.Meta = meta
 	return &this
 }
 
@@ -790,38 +792,6 @@ func (o *SharedDrive) SetNetworkVlanId(v float32) {
 	o.NetworkVlanId = &v
 }
 
-// GetGuiSettings returns the GuiSettings field value if set, zero value otherwise.
-func (o *SharedDrive) GetGuiSettings() GenericGUISettings {
-	if o == nil || IsNil(o.GuiSettings) {
-		var ret GenericGUISettings
-		return ret
-	}
-	return *o.GuiSettings
-}
-
-// GetGuiSettingsOk returns a tuple with the GuiSettings field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SharedDrive) GetGuiSettingsOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.GuiSettings) {
-		return nil, false
-	}
-	return o.GuiSettings, true
-}
-
-// HasGuiSettings returns a boolean if a field has been set.
-func (o *SharedDrive) HasGuiSettings() bool {
-	if o != nil && !IsNil(o.GuiSettings) {
-		return true
-	}
-
-	return false
-}
-
-// SetGuiSettings gets a reference to the given GenericGUISettings and assigns it to the GuiSettings field.
-func (o *SharedDrive) SetGuiSettings(v GenericGUISettings) {
-	o.GuiSettings = &v
-}
-
 // GetConfig returns the Config field value
 func (o *SharedDrive) GetConfig() SharedDriveConfiguration {
 	if o == nil {
@@ -868,6 +838,30 @@ func (o *SharedDrive) GetCreatedTimestampOk() (*string, bool) {
 // SetCreatedTimestamp sets field value
 func (o *SharedDrive) SetCreatedTimestamp(v string) {
 	o.CreatedTimestamp = v
+}
+
+// GetMeta returns the Meta field value
+func (o *SharedDrive) GetMeta() SharedDriveMeta {
+	if o == nil {
+		var ret SharedDriveMeta
+		return ret
+	}
+
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value
+// and a boolean to check if the value has been set.
+func (o *SharedDrive) GetMetaOk() (*SharedDriveMeta, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Meta, true
+}
+
+// SetMeta sets field value
+func (o *SharedDrive) SetMeta(v SharedDriveMeta) {
+	o.Meta = v
 }
 
 func (o SharedDrive) MarshalJSON() ([]byte, error) {
@@ -930,11 +924,9 @@ func (o SharedDrive) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NetworkVlanId) {
 		toSerialize["networkVlanId"] = o.NetworkVlanId
 	}
-	if !IsNil(o.GuiSettings) {
-		toSerialize["guiSettings"] = o.GuiSettings
-	}
 	toSerialize["config"] = o.Config
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
+	toSerialize["meta"] = o.Meta
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -961,6 +953,7 @@ func (o *SharedDrive) UnmarshalJSON(data []byte) (err error) {
 		"provisioningProtocol",
 		"config",
 		"createdTimestamp",
+		"meta",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -1014,9 +1007,9 @@ func (o *SharedDrive) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "dnsSubdomainPermanentId")
 		delete(additionalProperties, "networkVlanId")
-		delete(additionalProperties, "guiSettings")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "createdTimestamp")
+		delete(additionalProperties, "meta")
 		o.AdditionalProperties = additionalProperties
 	}
 

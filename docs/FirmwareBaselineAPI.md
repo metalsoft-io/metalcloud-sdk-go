@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateFirmwareBaseline
 
-> FirmwareBaselineDto CreateFirmwareBaseline(ctx).CreateFirmwareBaselineDto(createFirmwareBaselineDto).Execute()
+> FirmwareBaseline CreateFirmwareBaseline(ctx).CreateFirmwareBaseline(createFirmwareBaseline).Execute()
 
 Create a new firmware baseline
 
@@ -33,16 +33,16 @@ import (
 )
 
 func main() {
-	createFirmwareBaselineDto := *openapiclient.NewCreateFirmwareBaselineDto("Data center baseline name", openapiclient.BaselineLevelType("datacenter"), "["datacenter1", "datacenter2"]") // CreateFirmwareBaselineDto | 
+	createFirmwareBaseline := *openapiclient.NewCreateFirmwareBaseline("Data center baseline name", openapiclient.BaselineLevelType("datacenter"), "["datacenter1", "datacenter2"]") // CreateFirmwareBaseline | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirmwareBaselineAPI.CreateFirmwareBaseline(context.Background()).CreateFirmwareBaselineDto(createFirmwareBaselineDto).Execute()
+	resp, r, err := apiClient.FirmwareBaselineAPI.CreateFirmwareBaseline(context.Background()).CreateFirmwareBaseline(createFirmwareBaseline).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBaselineAPI.CreateFirmwareBaseline``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateFirmwareBaseline`: FirmwareBaselineDto
+	// response from `CreateFirmwareBaseline`: FirmwareBaseline
 	fmt.Fprintf(os.Stdout, "Response from `FirmwareBaselineAPI.CreateFirmwareBaseline`: %v\n", resp)
 }
 ```
@@ -58,11 +58,11 @@ Other parameters are passed through a pointer to a apiCreateFirmwareBaselineRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createFirmwareBaselineDto** | [**CreateFirmwareBaselineDto**](CreateFirmwareBaselineDto.md) |  | 
+ **createFirmwareBaseline** | [**CreateFirmwareBaseline**](CreateFirmwareBaseline.md) |  | 
 
 ### Return type
 
-[**FirmwareBaselineDto**](FirmwareBaselineDto.md)
+[**FirmwareBaseline**](FirmwareBaseline.md)
 
 ### Authorization
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## GetFirmwareBaseline
 
-> FirmwareBaselineDto GetFirmwareBaseline(ctx, firmwareBaselineId).Execute()
+> FirmwareBaseline GetFirmwareBaseline(ctx, firmwareBaselineId).Execute()
 
 Get Firmware Baseline
 
@@ -176,7 +176,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBaselineAPI.GetFirmwareBaseline``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetFirmwareBaseline`: FirmwareBaselineDto
+	// response from `GetFirmwareBaseline`: FirmwareBaseline
 	fmt.Fprintf(os.Stdout, "Response from `FirmwareBaselineAPI.GetFirmwareBaseline`: %v\n", resp)
 }
 ```
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FirmwareBaselineDto**](FirmwareBaselineDto.md)
+[**FirmwareBaseline**](FirmwareBaseline.md)
 
 ### Authorization
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ## UpdateFirmwareBaseline
 
-> FirmwareBaselineDto UpdateFirmwareBaseline(ctx, firmwareBaselineId).UpdateFirmwareBaselineDto(updateFirmwareBaselineDto).Execute()
+> FirmwareBaseline UpdateFirmwareBaseline(ctx, firmwareBaselineId).UpdateFirmwareBaseline(updateFirmwareBaseline).Execute()
 
 Update Firmware Baseline
 
@@ -318,16 +318,16 @@ import (
 
 func main() {
 	firmwareBaselineId := float32(8.14) // float32 | The firmware baseline id
-	updateFirmwareBaselineDto := *openapiclient.NewUpdateFirmwareBaselineDto("Data center baseline name", openapiclient.BaselineLevelType("datacenter"), "["datacenter1", "datacenter2"]") // UpdateFirmwareBaselineDto | 
+	updateFirmwareBaseline := *openapiclient.NewUpdateFirmwareBaseline("Data center baseline name", openapiclient.BaselineLevelType("datacenter"), "["datacenter1", "datacenter2"]") // UpdateFirmwareBaseline | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirmwareBaselineAPI.UpdateFirmwareBaseline(context.Background(), firmwareBaselineId).UpdateFirmwareBaselineDto(updateFirmwareBaselineDto).Execute()
+	resp, r, err := apiClient.FirmwareBaselineAPI.UpdateFirmwareBaseline(context.Background(), firmwareBaselineId).UpdateFirmwareBaseline(updateFirmwareBaseline).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBaselineAPI.UpdateFirmwareBaseline``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateFirmwareBaseline`: FirmwareBaselineDto
+	// response from `UpdateFirmwareBaseline`: FirmwareBaseline
 	fmt.Fprintf(os.Stdout, "Response from `FirmwareBaselineAPI.UpdateFirmwareBaseline`: %v\n", resp)
 }
 ```
@@ -348,11 +348,11 @@ Other parameters are passed through a pointer to a apiUpdateFirmwareBaselineRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateFirmwareBaselineDto** | [**UpdateFirmwareBaselineDto**](UpdateFirmwareBaselineDto.md) |  | 
+ **updateFirmwareBaseline** | [**UpdateFirmwareBaseline**](UpdateFirmwareBaseline.md) |  | 
 
 ### Return type
 
-[**FirmwareBaselineDto**](FirmwareBaselineDto.md)
+[**FirmwareBaseline**](FirmwareBaseline.md)
 
 ### Authorization
 

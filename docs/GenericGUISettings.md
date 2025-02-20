@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **ShowWidgetChildren** | **bool** | Whether to show the object children in the GUI. | 
 **RandomInstanceID** | **string** | Random instance ID. | 
 **UserAgent** | **string** | User agent. | 
+**Tags** | Pointer to **[]string** | tags. | [optional] 
 
 ## Methods
 
@@ -128,6 +129,31 @@ and a boolean to check if the value has been set.
 
 SetUserAgent sets UserAgent field to given value.
 
+
+### GetTags
+
+`func (o *GenericGUISettings) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *GenericGUISettings) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *GenericGUISettings) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *GenericGUISettings) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

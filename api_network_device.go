@@ -28,12 +28,12 @@ type NetworkDeviceAPIService service
 type NetworkDeviceAPIAddNetworkDeviceDefaultsRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
-	createNetworkDeviceDefaultsDto *CreateNetworkDeviceDefaultsDto
+	createNetworkDeviceDefaults *CreateNetworkDeviceDefaults
 }
 
 // Network device defaults
-func (r NetworkDeviceAPIAddNetworkDeviceDefaultsRequest) CreateNetworkDeviceDefaultsDto(createNetworkDeviceDefaultsDto CreateNetworkDeviceDefaultsDto) NetworkDeviceAPIAddNetworkDeviceDefaultsRequest {
-	r.createNetworkDeviceDefaultsDto = &createNetworkDeviceDefaultsDto
+func (r NetworkDeviceAPIAddNetworkDeviceDefaultsRequest) CreateNetworkDeviceDefaults(createNetworkDeviceDefaults CreateNetworkDeviceDefaults) NetworkDeviceAPIAddNetworkDeviceDefaultsRequest {
+	r.createNetworkDeviceDefaults = &createNetworkDeviceDefaults
 	return r
 }
 
@@ -72,8 +72,8 @@ func (a *NetworkDeviceAPIService) AddNetworkDeviceDefaultsExecute(r NetworkDevic
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkDeviceDefaultsDto == nil {
-		return nil, reportError("createNetworkDeviceDefaultsDto is required and must be specified")
+	if r.createNetworkDeviceDefaults == nil {
+		return nil, reportError("createNetworkDeviceDefaults is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -94,7 +94,7 @@ func (a *NetworkDeviceAPIService) AddNetworkDeviceDefaultsExecute(r NetworkDevic
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkDeviceDefaultsDto
+	localVarPostBody = r.createNetworkDeviceDefaults
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

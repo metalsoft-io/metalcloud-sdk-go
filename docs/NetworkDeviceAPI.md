@@ -32,7 +32,7 @@ Method | HTTP request | Description
 
 ## AddNetworkDeviceDefaults
 
-> AddNetworkDeviceDefaults(ctx).CreateNetworkDeviceDefaultsDto(createNetworkDeviceDefaultsDto).Execute()
+> AddNetworkDeviceDefaults(ctx).CreateNetworkDeviceDefaults(createNetworkDeviceDefaults).Execute()
 
 Add network device defaults
 
@@ -49,11 +49,11 @@ import (
 )
 
 func main() {
-	createNetworkDeviceDefaultsDto := *openapiclient.NewCreateNetworkDeviceDefaultsDto("DatacenterName_example", "00:1A:2B:3C:4D:5E") // CreateNetworkDeviceDefaultsDto | Network device defaults
+	createNetworkDeviceDefaults := *openapiclient.NewCreateNetworkDeviceDefaults("DatacenterName_example", "00:1A:2B:3C:4D:5E") // CreateNetworkDeviceDefaults | Network device defaults
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.AddNetworkDeviceDefaults(context.Background()).CreateNetworkDeviceDefaultsDto(createNetworkDeviceDefaultsDto).Execute()
+	r, err := apiClient.NetworkDeviceAPI.AddNetworkDeviceDefaults(context.Background()).CreateNetworkDeviceDefaults(createNetworkDeviceDefaults).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.AddNetworkDeviceDefaults``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -72,7 +72,7 @@ Other parameters are passed through a pointer to a apiAddNetworkDeviceDefaultsRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createNetworkDeviceDefaultsDto** | [**CreateNetworkDeviceDefaultsDto**](CreateNetworkDeviceDefaultsDto.md) | Network device defaults | 
+ **createNetworkDeviceDefaults** | [**CreateNetworkDeviceDefaults**](CreateNetworkDeviceDefaults.md) | Network device defaults | 
 
 ### Return type
 

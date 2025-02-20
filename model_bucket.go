@@ -47,7 +47,6 @@ type Bucket struct {
 	DnsSubdomainId float32 `json:"dnsSubdomainId"`
 	// Id of the VLAN for the Bucket.
 	NetworkVlanId *float32 `json:"networkVlanId,omitempty"`
-	GuiSettings GenericGUISettings `json:"guiSettings"`
 	// Endpoint of the Bucket.
 	Endpoint *string `json:"endpoint,omitempty"`
 	// Endpoint of the Bucket.
@@ -56,6 +55,8 @@ type Bucket struct {
 	SecretKeyEncrypted *string `json:"secretKeyEncrypted,omitempty"`
 	// The current changes to be deployed for the Bucket.
 	Config BucketConfiguration `json:"config"`
+	// Meta information of the Bucket.
+	Meta BucketMeta `json:"meta"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -65,7 +66,7 @@ type _Bucket Bucket
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, guiSettings GenericGUISettings, config BucketConfiguration) *Bucket {
+func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, config BucketConfiguration, meta BucketMeta) *Bucket {
 	this := Bucket{}
 	this.SizeGB = sizeGB
 	this.UpdatedTimestamp = updatedTimestamp
@@ -78,8 +79,8 @@ func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain 
 	this.ServiceStatus = serviceStatus
 	this.SubdomainPermanent = subdomainPermanent
 	this.DnsSubdomainId = dnsSubdomainId
-	this.GuiSettings = guiSettings
 	this.Config = config
+	this.Meta = meta
 	return &this
 }
 
@@ -419,30 +420,6 @@ func (o *Bucket) SetNetworkVlanId(v float32) {
 	o.NetworkVlanId = &v
 }
 
-// GetGuiSettings returns the GuiSettings field value
-func (o *Bucket) GetGuiSettings() GenericGUISettings {
-	if o == nil {
-		var ret GenericGUISettings
-		return ret
-	}
-
-	return o.GuiSettings
-}
-
-// GetGuiSettingsOk returns a tuple with the GuiSettings field value
-// and a boolean to check if the value has been set.
-func (o *Bucket) GetGuiSettingsOk() (*GenericGUISettings, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.GuiSettings, true
-}
-
-// SetGuiSettings sets field value
-func (o *Bucket) SetGuiSettings(v GenericGUISettings) {
-	o.GuiSettings = v
-}
-
 // GetEndpoint returns the Endpoint field value if set, zero value otherwise.
 func (o *Bucket) GetEndpoint() string {
 	if o == nil || IsNil(o.Endpoint) {
@@ -563,6 +540,30 @@ func (o *Bucket) SetConfig(v BucketConfiguration) {
 	o.Config = v
 }
 
+// GetMeta returns the Meta field value
+func (o *Bucket) GetMeta() BucketMeta {
+	if o == nil {
+		var ret BucketMeta
+		return ret
+	}
+
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value
+// and a boolean to check if the value has been set.
+func (o *Bucket) GetMetaOk() (*BucketMeta, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Meta, true
+}
+
+// SetMeta sets field value
+func (o *Bucket) SetMeta(v BucketMeta) {
+	o.Meta = v
+}
+
 func (o Bucket) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -590,7 +591,6 @@ func (o Bucket) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NetworkVlanId) {
 		toSerialize["networkVlanId"] = o.NetworkVlanId
 	}
-	toSerialize["guiSettings"] = o.GuiSettings
 	if !IsNil(o.Endpoint) {
 		toSerialize["endpoint"] = o.Endpoint
 	}
@@ -601,6 +601,7 @@ func (o Bucket) ToMap() (map[string]interface{}, error) {
 		toSerialize["secretKeyEncrypted"] = o.SecretKeyEncrypted
 	}
 	toSerialize["config"] = o.Config
+	toSerialize["meta"] = o.Meta
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -625,8 +626,8 @@ func (o *Bucket) UnmarshalJSON(data []byte) (err error) {
 		"serviceStatus",
 		"subdomainPermanent",
 		"dnsSubdomainId",
-		"guiSettings",
 		"config",
+		"meta",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -669,11 +670,11 @@ func (o *Bucket) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "networkVlanId")
-		delete(additionalProperties, "guiSettings")
 		delete(additionalProperties, "endpoint")
 		delete(additionalProperties, "accessKeyId")
 		delete(additionalProperties, "secretKeyEncrypted")
 		delete(additionalProperties, "config")
+		delete(additionalProperties, "meta")
 		o.AdditionalProperties = additionalProperties
 	}
 

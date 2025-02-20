@@ -17,15 +17,15 @@ Name | Type | Description | Notes
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the File Share. | [optional] 
 **DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the File Share. | [optional] 
 **NetworkVlanId** | Pointer to **float32** | Id of the VLAN for the File Share. | [optional] 
-**GuiSettings** | [**GenericGUISettings**](GenericGUISettings.md) |  | 
 **Endpoint** | Pointer to **string** | Endpoint of the File Share. | [optional] 
 **Config** | [**FileShareConfiguration**](FileShareConfiguration.md) | The current changes to be deployed for the File Share. | 
+**Meta** | [**FileShareMeta**](FileShareMeta.md) | Meta information of the File Share. | 
 
 ## Methods
 
 ### NewFileShare
 
-`func NewFileShare(sizeGB float32, updatedTimestamp string, label string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, guiSettings GenericGUISettings, config FileShareConfiguration, ) *FileShare`
+`func NewFileShare(sizeGB float32, updatedTimestamp string, label string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, config FileShareConfiguration, meta FileShareMeta, ) *FileShare`
 
 NewFileShare instantiates a new FileShare object
 This constructor will assign default values to properties that have it defined,
@@ -325,26 +325,6 @@ SetNetworkVlanId sets NetworkVlanId field to given value.
 
 HasNetworkVlanId returns a boolean if a field has been set.
 
-### GetGuiSettings
-
-`func (o *FileShare) GetGuiSettings() GenericGUISettings`
-
-GetGuiSettings returns the GuiSettings field if non-nil, zero value otherwise.
-
-### GetGuiSettingsOk
-
-`func (o *FileShare) GetGuiSettingsOk() (*GenericGUISettings, bool)`
-
-GetGuiSettingsOk returns a tuple with the GuiSettings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGuiSettings
-
-`func (o *FileShare) SetGuiSettings(v GenericGUISettings)`
-
-SetGuiSettings sets GuiSettings field to given value.
-
-
 ### GetEndpoint
 
 `func (o *FileShare) GetEndpoint() string`
@@ -388,6 +368,26 @@ and a boolean to check if the value has been set.
 `func (o *FileShare) SetConfig(v FileShareConfiguration)`
 
 SetConfig sets Config field to given value.
+
+
+### GetMeta
+
+`func (o *FileShare) GetMeta() FileShareMeta`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *FileShare) GetMetaOk() (*FileShareMeta, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *FileShare) SetMeta(v FileShareMeta)`
+
+SetMeta sets Meta field to given value.
 
 
 

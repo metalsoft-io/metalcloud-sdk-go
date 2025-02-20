@@ -21,7 +21,7 @@ var _ MappedNullable = &FirmwareBinaryPaginatedList{}
 
 // FirmwareBinaryPaginatedList struct for FirmwareBinaryPaginatedList
 type FirmwareBinaryPaginatedList struct {
-	Data []FirmwareBinaryDto `json:"data"`
+	Data []FirmwareBinary `json:"data"`
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
@@ -35,7 +35,7 @@ type _FirmwareBinaryPaginatedList FirmwareBinaryPaginatedList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareBinaryPaginatedList(data []FirmwareBinaryDto, meta PaginatedResponseMeta, links PaginatedResponseLinks) *FirmwareBinaryPaginatedList {
+func NewFirmwareBinaryPaginatedList(data []FirmwareBinary, meta PaginatedResponseMeta, links PaginatedResponseLinks) *FirmwareBinaryPaginatedList {
 	this := FirmwareBinaryPaginatedList{}
 	this.Data = data
 	this.Meta = meta
@@ -52,9 +52,9 @@ func NewFirmwareBinaryPaginatedListWithDefaults() *FirmwareBinaryPaginatedList {
 }
 
 // GetData returns the Data field value
-func (o *FirmwareBinaryPaginatedList) GetData() []FirmwareBinaryDto {
+func (o *FirmwareBinaryPaginatedList) GetData() []FirmwareBinary {
 	if o == nil {
-		var ret []FirmwareBinaryDto
+		var ret []FirmwareBinary
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *FirmwareBinaryPaginatedList) GetData() []FirmwareBinaryDto {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBinaryPaginatedList) GetDataOk() ([]FirmwareBinaryDto, bool) {
+func (o *FirmwareBinaryPaginatedList) GetDataOk() ([]FirmwareBinary, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *FirmwareBinaryPaginatedList) GetDataOk() ([]FirmwareBinaryDto, bool) {
 }
 
 // SetData sets field value
-func (o *FirmwareBinaryPaginatedList) SetData(v []FirmwareBinaryDto) {
+func (o *FirmwareBinaryPaginatedList) SetData(v []FirmwareBinary) {
 	o.Data = v
 }
 

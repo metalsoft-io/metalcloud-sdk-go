@@ -24,7 +24,6 @@ type UpdateFileShare struct {
 	SizeGB *float32 `json:"sizeGB,omitempty"`
 	// Label of the File Share.
 	Label *string `json:"label,omitempty"`
-	GuiSettings *GenericGUISettings `json:"guiSettings,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -111,38 +110,6 @@ func (o *UpdateFileShare) SetLabel(v string) {
 	o.Label = &v
 }
 
-// GetGuiSettings returns the GuiSettings field value if set, zero value otherwise.
-func (o *UpdateFileShare) GetGuiSettings() GenericGUISettings {
-	if o == nil || IsNil(o.GuiSettings) {
-		var ret GenericGUISettings
-		return ret
-	}
-	return *o.GuiSettings
-}
-
-// GetGuiSettingsOk returns a tuple with the GuiSettings field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateFileShare) GetGuiSettingsOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.GuiSettings) {
-		return nil, false
-	}
-	return o.GuiSettings, true
-}
-
-// HasGuiSettings returns a boolean if a field has been set.
-func (o *UpdateFileShare) HasGuiSettings() bool {
-	if o != nil && !IsNil(o.GuiSettings) {
-		return true
-	}
-
-	return false
-}
-
-// SetGuiSettings gets a reference to the given GenericGUISettings and assigns it to the GuiSettings field.
-func (o *UpdateFileShare) SetGuiSettings(v GenericGUISettings) {
-	o.GuiSettings = &v
-}
-
 func (o UpdateFileShare) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -158,9 +125,6 @@ func (o UpdateFileShare) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
-	}
-	if !IsNil(o.GuiSettings) {
-		toSerialize["guiSettings"] = o.GuiSettings
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -186,7 +150,6 @@ func (o *UpdateFileShare) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "sizeGB")
 		delete(additionalProperties, "label")
-		delete(additionalProperties, "guiSettings")
 		o.AdditionalProperties = additionalProperties
 	}
 

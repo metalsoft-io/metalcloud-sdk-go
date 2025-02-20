@@ -19,93 +19,93 @@ import (
 
 // NetworkFabricFabricConfiguration - The fabric configuration
 type NetworkFabricFabricConfiguration struct {
-	EthernetEvpnVxlanL2FabricDto *EthernetEvpnVxlanL2FabricDto
-	EthernetEvpnVxlanL3FabricDto *EthernetEvpnVxlanL3FabricDto
-	EthernetFabricDto *EthernetFabricDto
-	EthernetFlatL2FabricDto *EthernetFlatL2FabricDto
-	EthernetFlatL3FabricDto *EthernetFlatL3FabricDto
-	EthernetHybridL2L3FabricDto *EthernetHybridL2L3FabricDto
-	FibreChannelFabricDto *FibreChannelFabricDto
-	InfiniBandFabricDto *InfiniBandFabricDto
-	OvnFabricDto *OvnFabricDto
-	UnmanagedFabricDto *UnmanagedFabricDto
-	VirtualFabricDto *VirtualFabricDto
+	EthernetEvpnVxlanL2Fabric *EthernetEvpnVxlanL2Fabric
+	EthernetEvpnVxlanL3Fabric *EthernetEvpnVxlanL3Fabric
+	EthernetFabric *EthernetFabric
+	EthernetFlatL2Fabric *EthernetFlatL2Fabric
+	EthernetFlatL3Fabric *EthernetFlatL3Fabric
+	EthernetHybridL2L3Fabric *EthernetHybridL2L3Fabric
+	FibreChannelFabric *FibreChannelFabric
+	InfiniBandFabric *InfiniBandFabric
+	OvnFabric *OvnFabric
+	UnmanagedFabric *UnmanagedFabric
+	VirtualFabric *VirtualFabric
 }
 
-// EthernetEvpnVxlanL2FabricDtoAsNetworkFabricFabricConfiguration is a convenience function that returns EthernetEvpnVxlanL2FabricDto wrapped in NetworkFabricFabricConfiguration
-func EthernetEvpnVxlanL2FabricDtoAsNetworkFabricFabricConfiguration(v *EthernetEvpnVxlanL2FabricDto) NetworkFabricFabricConfiguration {
+// EthernetEvpnVxlanL2FabricAsNetworkFabricFabricConfiguration is a convenience function that returns EthernetEvpnVxlanL2Fabric wrapped in NetworkFabricFabricConfiguration
+func EthernetEvpnVxlanL2FabricAsNetworkFabricFabricConfiguration(v *EthernetEvpnVxlanL2Fabric) NetworkFabricFabricConfiguration {
 	return NetworkFabricFabricConfiguration{
-		EthernetEvpnVxlanL2FabricDto: v,
+		EthernetEvpnVxlanL2Fabric: v,
 	}
 }
 
-// EthernetEvpnVxlanL3FabricDtoAsNetworkFabricFabricConfiguration is a convenience function that returns EthernetEvpnVxlanL3FabricDto wrapped in NetworkFabricFabricConfiguration
-func EthernetEvpnVxlanL3FabricDtoAsNetworkFabricFabricConfiguration(v *EthernetEvpnVxlanL3FabricDto) NetworkFabricFabricConfiguration {
+// EthernetEvpnVxlanL3FabricAsNetworkFabricFabricConfiguration is a convenience function that returns EthernetEvpnVxlanL3Fabric wrapped in NetworkFabricFabricConfiguration
+func EthernetEvpnVxlanL3FabricAsNetworkFabricFabricConfiguration(v *EthernetEvpnVxlanL3Fabric) NetworkFabricFabricConfiguration {
 	return NetworkFabricFabricConfiguration{
-		EthernetEvpnVxlanL3FabricDto: v,
+		EthernetEvpnVxlanL3Fabric: v,
 	}
 }
 
-// EthernetFabricDtoAsNetworkFabricFabricConfiguration is a convenience function that returns EthernetFabricDto wrapped in NetworkFabricFabricConfiguration
-func EthernetFabricDtoAsNetworkFabricFabricConfiguration(v *EthernetFabricDto) NetworkFabricFabricConfiguration {
+// EthernetFabricAsNetworkFabricFabricConfiguration is a convenience function that returns EthernetFabric wrapped in NetworkFabricFabricConfiguration
+func EthernetFabricAsNetworkFabricFabricConfiguration(v *EthernetFabric) NetworkFabricFabricConfiguration {
 	return NetworkFabricFabricConfiguration{
-		EthernetFabricDto: v,
+		EthernetFabric: v,
 	}
 }
 
-// EthernetFlatL2FabricDtoAsNetworkFabricFabricConfiguration is a convenience function that returns EthernetFlatL2FabricDto wrapped in NetworkFabricFabricConfiguration
-func EthernetFlatL2FabricDtoAsNetworkFabricFabricConfiguration(v *EthernetFlatL2FabricDto) NetworkFabricFabricConfiguration {
+// EthernetFlatL2FabricAsNetworkFabricFabricConfiguration is a convenience function that returns EthernetFlatL2Fabric wrapped in NetworkFabricFabricConfiguration
+func EthernetFlatL2FabricAsNetworkFabricFabricConfiguration(v *EthernetFlatL2Fabric) NetworkFabricFabricConfiguration {
 	return NetworkFabricFabricConfiguration{
-		EthernetFlatL2FabricDto: v,
+		EthernetFlatL2Fabric: v,
 	}
 }
 
-// EthernetFlatL3FabricDtoAsNetworkFabricFabricConfiguration is a convenience function that returns EthernetFlatL3FabricDto wrapped in NetworkFabricFabricConfiguration
-func EthernetFlatL3FabricDtoAsNetworkFabricFabricConfiguration(v *EthernetFlatL3FabricDto) NetworkFabricFabricConfiguration {
+// EthernetFlatL3FabricAsNetworkFabricFabricConfiguration is a convenience function that returns EthernetFlatL3Fabric wrapped in NetworkFabricFabricConfiguration
+func EthernetFlatL3FabricAsNetworkFabricFabricConfiguration(v *EthernetFlatL3Fabric) NetworkFabricFabricConfiguration {
 	return NetworkFabricFabricConfiguration{
-		EthernetFlatL3FabricDto: v,
+		EthernetFlatL3Fabric: v,
 	}
 }
 
-// EthernetHybridL2L3FabricDtoAsNetworkFabricFabricConfiguration is a convenience function that returns EthernetHybridL2L3FabricDto wrapped in NetworkFabricFabricConfiguration
-func EthernetHybridL2L3FabricDtoAsNetworkFabricFabricConfiguration(v *EthernetHybridL2L3FabricDto) NetworkFabricFabricConfiguration {
+// EthernetHybridL2L3FabricAsNetworkFabricFabricConfiguration is a convenience function that returns EthernetHybridL2L3Fabric wrapped in NetworkFabricFabricConfiguration
+func EthernetHybridL2L3FabricAsNetworkFabricFabricConfiguration(v *EthernetHybridL2L3Fabric) NetworkFabricFabricConfiguration {
 	return NetworkFabricFabricConfiguration{
-		EthernetHybridL2L3FabricDto: v,
+		EthernetHybridL2L3Fabric: v,
 	}
 }
 
-// FibreChannelFabricDtoAsNetworkFabricFabricConfiguration is a convenience function that returns FibreChannelFabricDto wrapped in NetworkFabricFabricConfiguration
-func FibreChannelFabricDtoAsNetworkFabricFabricConfiguration(v *FibreChannelFabricDto) NetworkFabricFabricConfiguration {
+// FibreChannelFabricAsNetworkFabricFabricConfiguration is a convenience function that returns FibreChannelFabric wrapped in NetworkFabricFabricConfiguration
+func FibreChannelFabricAsNetworkFabricFabricConfiguration(v *FibreChannelFabric) NetworkFabricFabricConfiguration {
 	return NetworkFabricFabricConfiguration{
-		FibreChannelFabricDto: v,
+		FibreChannelFabric: v,
 	}
 }
 
-// InfiniBandFabricDtoAsNetworkFabricFabricConfiguration is a convenience function that returns InfiniBandFabricDto wrapped in NetworkFabricFabricConfiguration
-func InfiniBandFabricDtoAsNetworkFabricFabricConfiguration(v *InfiniBandFabricDto) NetworkFabricFabricConfiguration {
+// InfiniBandFabricAsNetworkFabricFabricConfiguration is a convenience function that returns InfiniBandFabric wrapped in NetworkFabricFabricConfiguration
+func InfiniBandFabricAsNetworkFabricFabricConfiguration(v *InfiniBandFabric) NetworkFabricFabricConfiguration {
 	return NetworkFabricFabricConfiguration{
-		InfiniBandFabricDto: v,
+		InfiniBandFabric: v,
 	}
 }
 
-// OvnFabricDtoAsNetworkFabricFabricConfiguration is a convenience function that returns OvnFabricDto wrapped in NetworkFabricFabricConfiguration
-func OvnFabricDtoAsNetworkFabricFabricConfiguration(v *OvnFabricDto) NetworkFabricFabricConfiguration {
+// OvnFabricAsNetworkFabricFabricConfiguration is a convenience function that returns OvnFabric wrapped in NetworkFabricFabricConfiguration
+func OvnFabricAsNetworkFabricFabricConfiguration(v *OvnFabric) NetworkFabricFabricConfiguration {
 	return NetworkFabricFabricConfiguration{
-		OvnFabricDto: v,
+		OvnFabric: v,
 	}
 }
 
-// UnmanagedFabricDtoAsNetworkFabricFabricConfiguration is a convenience function that returns UnmanagedFabricDto wrapped in NetworkFabricFabricConfiguration
-func UnmanagedFabricDtoAsNetworkFabricFabricConfiguration(v *UnmanagedFabricDto) NetworkFabricFabricConfiguration {
+// UnmanagedFabricAsNetworkFabricFabricConfiguration is a convenience function that returns UnmanagedFabric wrapped in NetworkFabricFabricConfiguration
+func UnmanagedFabricAsNetworkFabricFabricConfiguration(v *UnmanagedFabric) NetworkFabricFabricConfiguration {
 	return NetworkFabricFabricConfiguration{
-		UnmanagedFabricDto: v,
+		UnmanagedFabric: v,
 	}
 }
 
-// VirtualFabricDtoAsNetworkFabricFabricConfiguration is a convenience function that returns VirtualFabricDto wrapped in NetworkFabricFabricConfiguration
-func VirtualFabricDtoAsNetworkFabricFabricConfiguration(v *VirtualFabricDto) NetworkFabricFabricConfiguration {
+// VirtualFabricAsNetworkFabricFabricConfiguration is a convenience function that returns VirtualFabric wrapped in NetworkFabricFabricConfiguration
+func VirtualFabricAsNetworkFabricFabricConfiguration(v *VirtualFabric) NetworkFabricFabricConfiguration {
 	return NetworkFabricFabricConfiguration{
-		VirtualFabricDto: v,
+		VirtualFabric: v,
 	}
 }
 
@@ -114,206 +114,206 @@ func VirtualFabricDtoAsNetworkFabricFabricConfiguration(v *VirtualFabricDto) Net
 func (dst *NetworkFabricFabricConfiguration) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into EthernetEvpnVxlanL2FabricDto
-	err = newStrictDecoder(data).Decode(&dst.EthernetEvpnVxlanL2FabricDto)
+	// try to unmarshal data into EthernetEvpnVxlanL2Fabric
+	err = newStrictDecoder(data).Decode(&dst.EthernetEvpnVxlanL2Fabric)
 	if err == nil {
-		jsonEthernetEvpnVxlanL2FabricDto, _ := json.Marshal(dst.EthernetEvpnVxlanL2FabricDto)
-		if string(jsonEthernetEvpnVxlanL2FabricDto) == "{}" { // empty struct
-			dst.EthernetEvpnVxlanL2FabricDto = nil
+		jsonEthernetEvpnVxlanL2Fabric, _ := json.Marshal(dst.EthernetEvpnVxlanL2Fabric)
+		if string(jsonEthernetEvpnVxlanL2Fabric) == "{}" { // empty struct
+			dst.EthernetEvpnVxlanL2Fabric = nil
 		} else {
-			if err = validator.Validate(dst.EthernetEvpnVxlanL2FabricDto); err != nil {
-				dst.EthernetEvpnVxlanL2FabricDto = nil
+			if err = validator.Validate(dst.EthernetEvpnVxlanL2Fabric); err != nil {
+				dst.EthernetEvpnVxlanL2Fabric = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.EthernetEvpnVxlanL2FabricDto = nil
+		dst.EthernetEvpnVxlanL2Fabric = nil
 	}
 
-	// try to unmarshal data into EthernetEvpnVxlanL3FabricDto
-	err = newStrictDecoder(data).Decode(&dst.EthernetEvpnVxlanL3FabricDto)
+	// try to unmarshal data into EthernetEvpnVxlanL3Fabric
+	err = newStrictDecoder(data).Decode(&dst.EthernetEvpnVxlanL3Fabric)
 	if err == nil {
-		jsonEthernetEvpnVxlanL3FabricDto, _ := json.Marshal(dst.EthernetEvpnVxlanL3FabricDto)
-		if string(jsonEthernetEvpnVxlanL3FabricDto) == "{}" { // empty struct
-			dst.EthernetEvpnVxlanL3FabricDto = nil
+		jsonEthernetEvpnVxlanL3Fabric, _ := json.Marshal(dst.EthernetEvpnVxlanL3Fabric)
+		if string(jsonEthernetEvpnVxlanL3Fabric) == "{}" { // empty struct
+			dst.EthernetEvpnVxlanL3Fabric = nil
 		} else {
-			if err = validator.Validate(dst.EthernetEvpnVxlanL3FabricDto); err != nil {
-				dst.EthernetEvpnVxlanL3FabricDto = nil
+			if err = validator.Validate(dst.EthernetEvpnVxlanL3Fabric); err != nil {
+				dst.EthernetEvpnVxlanL3Fabric = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.EthernetEvpnVxlanL3FabricDto = nil
+		dst.EthernetEvpnVxlanL3Fabric = nil
 	}
 
-	// try to unmarshal data into EthernetFabricDto
-	err = newStrictDecoder(data).Decode(&dst.EthernetFabricDto)
+	// try to unmarshal data into EthernetFabric
+	err = newStrictDecoder(data).Decode(&dst.EthernetFabric)
 	if err == nil {
-		jsonEthernetFabricDto, _ := json.Marshal(dst.EthernetFabricDto)
-		if string(jsonEthernetFabricDto) == "{}" { // empty struct
-			dst.EthernetFabricDto = nil
+		jsonEthernetFabric, _ := json.Marshal(dst.EthernetFabric)
+		if string(jsonEthernetFabric) == "{}" { // empty struct
+			dst.EthernetFabric = nil
 		} else {
-			if err = validator.Validate(dst.EthernetFabricDto); err != nil {
-				dst.EthernetFabricDto = nil
+			if err = validator.Validate(dst.EthernetFabric); err != nil {
+				dst.EthernetFabric = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.EthernetFabricDto = nil
+		dst.EthernetFabric = nil
 	}
 
-	// try to unmarshal data into EthernetFlatL2FabricDto
-	err = newStrictDecoder(data).Decode(&dst.EthernetFlatL2FabricDto)
+	// try to unmarshal data into EthernetFlatL2Fabric
+	err = newStrictDecoder(data).Decode(&dst.EthernetFlatL2Fabric)
 	if err == nil {
-		jsonEthernetFlatL2FabricDto, _ := json.Marshal(dst.EthernetFlatL2FabricDto)
-		if string(jsonEthernetFlatL2FabricDto) == "{}" { // empty struct
-			dst.EthernetFlatL2FabricDto = nil
+		jsonEthernetFlatL2Fabric, _ := json.Marshal(dst.EthernetFlatL2Fabric)
+		if string(jsonEthernetFlatL2Fabric) == "{}" { // empty struct
+			dst.EthernetFlatL2Fabric = nil
 		} else {
-			if err = validator.Validate(dst.EthernetFlatL2FabricDto); err != nil {
-				dst.EthernetFlatL2FabricDto = nil
+			if err = validator.Validate(dst.EthernetFlatL2Fabric); err != nil {
+				dst.EthernetFlatL2Fabric = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.EthernetFlatL2FabricDto = nil
+		dst.EthernetFlatL2Fabric = nil
 	}
 
-	// try to unmarshal data into EthernetFlatL3FabricDto
-	err = newStrictDecoder(data).Decode(&dst.EthernetFlatL3FabricDto)
+	// try to unmarshal data into EthernetFlatL3Fabric
+	err = newStrictDecoder(data).Decode(&dst.EthernetFlatL3Fabric)
 	if err == nil {
-		jsonEthernetFlatL3FabricDto, _ := json.Marshal(dst.EthernetFlatL3FabricDto)
-		if string(jsonEthernetFlatL3FabricDto) == "{}" { // empty struct
-			dst.EthernetFlatL3FabricDto = nil
+		jsonEthernetFlatL3Fabric, _ := json.Marshal(dst.EthernetFlatL3Fabric)
+		if string(jsonEthernetFlatL3Fabric) == "{}" { // empty struct
+			dst.EthernetFlatL3Fabric = nil
 		} else {
-			if err = validator.Validate(dst.EthernetFlatL3FabricDto); err != nil {
-				dst.EthernetFlatL3FabricDto = nil
+			if err = validator.Validate(dst.EthernetFlatL3Fabric); err != nil {
+				dst.EthernetFlatL3Fabric = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.EthernetFlatL3FabricDto = nil
+		dst.EthernetFlatL3Fabric = nil
 	}
 
-	// try to unmarshal data into EthernetHybridL2L3FabricDto
-	err = newStrictDecoder(data).Decode(&dst.EthernetHybridL2L3FabricDto)
+	// try to unmarshal data into EthernetHybridL2L3Fabric
+	err = newStrictDecoder(data).Decode(&dst.EthernetHybridL2L3Fabric)
 	if err == nil {
-		jsonEthernetHybridL2L3FabricDto, _ := json.Marshal(dst.EthernetHybridL2L3FabricDto)
-		if string(jsonEthernetHybridL2L3FabricDto) == "{}" { // empty struct
-			dst.EthernetHybridL2L3FabricDto = nil
+		jsonEthernetHybridL2L3Fabric, _ := json.Marshal(dst.EthernetHybridL2L3Fabric)
+		if string(jsonEthernetHybridL2L3Fabric) == "{}" { // empty struct
+			dst.EthernetHybridL2L3Fabric = nil
 		} else {
-			if err = validator.Validate(dst.EthernetHybridL2L3FabricDto); err != nil {
-				dst.EthernetHybridL2L3FabricDto = nil
+			if err = validator.Validate(dst.EthernetHybridL2L3Fabric); err != nil {
+				dst.EthernetHybridL2L3Fabric = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.EthernetHybridL2L3FabricDto = nil
+		dst.EthernetHybridL2L3Fabric = nil
 	}
 
-	// try to unmarshal data into FibreChannelFabricDto
-	err = newStrictDecoder(data).Decode(&dst.FibreChannelFabricDto)
+	// try to unmarshal data into FibreChannelFabric
+	err = newStrictDecoder(data).Decode(&dst.FibreChannelFabric)
 	if err == nil {
-		jsonFibreChannelFabricDto, _ := json.Marshal(dst.FibreChannelFabricDto)
-		if string(jsonFibreChannelFabricDto) == "{}" { // empty struct
-			dst.FibreChannelFabricDto = nil
+		jsonFibreChannelFabric, _ := json.Marshal(dst.FibreChannelFabric)
+		if string(jsonFibreChannelFabric) == "{}" { // empty struct
+			dst.FibreChannelFabric = nil
 		} else {
-			if err = validator.Validate(dst.FibreChannelFabricDto); err != nil {
-				dst.FibreChannelFabricDto = nil
+			if err = validator.Validate(dst.FibreChannelFabric); err != nil {
+				dst.FibreChannelFabric = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.FibreChannelFabricDto = nil
+		dst.FibreChannelFabric = nil
 	}
 
-	// try to unmarshal data into InfiniBandFabricDto
-	err = newStrictDecoder(data).Decode(&dst.InfiniBandFabricDto)
+	// try to unmarshal data into InfiniBandFabric
+	err = newStrictDecoder(data).Decode(&dst.InfiniBandFabric)
 	if err == nil {
-		jsonInfiniBandFabricDto, _ := json.Marshal(dst.InfiniBandFabricDto)
-		if string(jsonInfiniBandFabricDto) == "{}" { // empty struct
-			dst.InfiniBandFabricDto = nil
+		jsonInfiniBandFabric, _ := json.Marshal(dst.InfiniBandFabric)
+		if string(jsonInfiniBandFabric) == "{}" { // empty struct
+			dst.InfiniBandFabric = nil
 		} else {
-			if err = validator.Validate(dst.InfiniBandFabricDto); err != nil {
-				dst.InfiniBandFabricDto = nil
+			if err = validator.Validate(dst.InfiniBandFabric); err != nil {
+				dst.InfiniBandFabric = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.InfiniBandFabricDto = nil
+		dst.InfiniBandFabric = nil
 	}
 
-	// try to unmarshal data into OvnFabricDto
-	err = newStrictDecoder(data).Decode(&dst.OvnFabricDto)
+	// try to unmarshal data into OvnFabric
+	err = newStrictDecoder(data).Decode(&dst.OvnFabric)
 	if err == nil {
-		jsonOvnFabricDto, _ := json.Marshal(dst.OvnFabricDto)
-		if string(jsonOvnFabricDto) == "{}" { // empty struct
-			dst.OvnFabricDto = nil
+		jsonOvnFabric, _ := json.Marshal(dst.OvnFabric)
+		if string(jsonOvnFabric) == "{}" { // empty struct
+			dst.OvnFabric = nil
 		} else {
-			if err = validator.Validate(dst.OvnFabricDto); err != nil {
-				dst.OvnFabricDto = nil
+			if err = validator.Validate(dst.OvnFabric); err != nil {
+				dst.OvnFabric = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.OvnFabricDto = nil
+		dst.OvnFabric = nil
 	}
 
-	// try to unmarshal data into UnmanagedFabricDto
-	err = newStrictDecoder(data).Decode(&dst.UnmanagedFabricDto)
+	// try to unmarshal data into UnmanagedFabric
+	err = newStrictDecoder(data).Decode(&dst.UnmanagedFabric)
 	if err == nil {
-		jsonUnmanagedFabricDto, _ := json.Marshal(dst.UnmanagedFabricDto)
-		if string(jsonUnmanagedFabricDto) == "{}" { // empty struct
-			dst.UnmanagedFabricDto = nil
+		jsonUnmanagedFabric, _ := json.Marshal(dst.UnmanagedFabric)
+		if string(jsonUnmanagedFabric) == "{}" { // empty struct
+			dst.UnmanagedFabric = nil
 		} else {
-			if err = validator.Validate(dst.UnmanagedFabricDto); err != nil {
-				dst.UnmanagedFabricDto = nil
+			if err = validator.Validate(dst.UnmanagedFabric); err != nil {
+				dst.UnmanagedFabric = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.UnmanagedFabricDto = nil
+		dst.UnmanagedFabric = nil
 	}
 
-	// try to unmarshal data into VirtualFabricDto
-	err = newStrictDecoder(data).Decode(&dst.VirtualFabricDto)
+	// try to unmarshal data into VirtualFabric
+	err = newStrictDecoder(data).Decode(&dst.VirtualFabric)
 	if err == nil {
-		jsonVirtualFabricDto, _ := json.Marshal(dst.VirtualFabricDto)
-		if string(jsonVirtualFabricDto) == "{}" { // empty struct
-			dst.VirtualFabricDto = nil
+		jsonVirtualFabric, _ := json.Marshal(dst.VirtualFabric)
+		if string(jsonVirtualFabric) == "{}" { // empty struct
+			dst.VirtualFabric = nil
 		} else {
-			if err = validator.Validate(dst.VirtualFabricDto); err != nil {
-				dst.VirtualFabricDto = nil
+			if err = validator.Validate(dst.VirtualFabric); err != nil {
+				dst.VirtualFabric = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.VirtualFabricDto = nil
+		dst.VirtualFabric = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.EthernetEvpnVxlanL2FabricDto = nil
-		dst.EthernetEvpnVxlanL3FabricDto = nil
-		dst.EthernetFabricDto = nil
-		dst.EthernetFlatL2FabricDto = nil
-		dst.EthernetFlatL3FabricDto = nil
-		dst.EthernetHybridL2L3FabricDto = nil
-		dst.FibreChannelFabricDto = nil
-		dst.InfiniBandFabricDto = nil
-		dst.OvnFabricDto = nil
-		dst.UnmanagedFabricDto = nil
-		dst.VirtualFabricDto = nil
+		dst.EthernetEvpnVxlanL2Fabric = nil
+		dst.EthernetEvpnVxlanL3Fabric = nil
+		dst.EthernetFabric = nil
+		dst.EthernetFlatL2Fabric = nil
+		dst.EthernetFlatL3Fabric = nil
+		dst.EthernetHybridL2L3Fabric = nil
+		dst.FibreChannelFabric = nil
+		dst.InfiniBandFabric = nil
+		dst.OvnFabric = nil
+		dst.UnmanagedFabric = nil
+		dst.VirtualFabric = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(NetworkFabricFabricConfiguration)")
 	} else if match == 1 {
@@ -325,48 +325,48 @@ func (dst *NetworkFabricFabricConfiguration) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src NetworkFabricFabricConfiguration) MarshalJSON() ([]byte, error) {
-	if src.EthernetEvpnVxlanL2FabricDto != nil {
-		return json.Marshal(&src.EthernetEvpnVxlanL2FabricDto)
+	if src.EthernetEvpnVxlanL2Fabric != nil {
+		return json.Marshal(&src.EthernetEvpnVxlanL2Fabric)
 	}
 
-	if src.EthernetEvpnVxlanL3FabricDto != nil {
-		return json.Marshal(&src.EthernetEvpnVxlanL3FabricDto)
+	if src.EthernetEvpnVxlanL3Fabric != nil {
+		return json.Marshal(&src.EthernetEvpnVxlanL3Fabric)
 	}
 
-	if src.EthernetFabricDto != nil {
-		return json.Marshal(&src.EthernetFabricDto)
+	if src.EthernetFabric != nil {
+		return json.Marshal(&src.EthernetFabric)
 	}
 
-	if src.EthernetFlatL2FabricDto != nil {
-		return json.Marshal(&src.EthernetFlatL2FabricDto)
+	if src.EthernetFlatL2Fabric != nil {
+		return json.Marshal(&src.EthernetFlatL2Fabric)
 	}
 
-	if src.EthernetFlatL3FabricDto != nil {
-		return json.Marshal(&src.EthernetFlatL3FabricDto)
+	if src.EthernetFlatL3Fabric != nil {
+		return json.Marshal(&src.EthernetFlatL3Fabric)
 	}
 
-	if src.EthernetHybridL2L3FabricDto != nil {
-		return json.Marshal(&src.EthernetHybridL2L3FabricDto)
+	if src.EthernetHybridL2L3Fabric != nil {
+		return json.Marshal(&src.EthernetHybridL2L3Fabric)
 	}
 
-	if src.FibreChannelFabricDto != nil {
-		return json.Marshal(&src.FibreChannelFabricDto)
+	if src.FibreChannelFabric != nil {
+		return json.Marshal(&src.FibreChannelFabric)
 	}
 
-	if src.InfiniBandFabricDto != nil {
-		return json.Marshal(&src.InfiniBandFabricDto)
+	if src.InfiniBandFabric != nil {
+		return json.Marshal(&src.InfiniBandFabric)
 	}
 
-	if src.OvnFabricDto != nil {
-		return json.Marshal(&src.OvnFabricDto)
+	if src.OvnFabric != nil {
+		return json.Marshal(&src.OvnFabric)
 	}
 
-	if src.UnmanagedFabricDto != nil {
-		return json.Marshal(&src.UnmanagedFabricDto)
+	if src.UnmanagedFabric != nil {
+		return json.Marshal(&src.UnmanagedFabric)
 	}
 
-	if src.VirtualFabricDto != nil {
-		return json.Marshal(&src.VirtualFabricDto)
+	if src.VirtualFabric != nil {
+		return json.Marshal(&src.VirtualFabric)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -377,48 +377,48 @@ func (obj *NetworkFabricFabricConfiguration) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.EthernetEvpnVxlanL2FabricDto != nil {
-		return obj.EthernetEvpnVxlanL2FabricDto
+	if obj.EthernetEvpnVxlanL2Fabric != nil {
+		return obj.EthernetEvpnVxlanL2Fabric
 	}
 
-	if obj.EthernetEvpnVxlanL3FabricDto != nil {
-		return obj.EthernetEvpnVxlanL3FabricDto
+	if obj.EthernetEvpnVxlanL3Fabric != nil {
+		return obj.EthernetEvpnVxlanL3Fabric
 	}
 
-	if obj.EthernetFabricDto != nil {
-		return obj.EthernetFabricDto
+	if obj.EthernetFabric != nil {
+		return obj.EthernetFabric
 	}
 
-	if obj.EthernetFlatL2FabricDto != nil {
-		return obj.EthernetFlatL2FabricDto
+	if obj.EthernetFlatL2Fabric != nil {
+		return obj.EthernetFlatL2Fabric
 	}
 
-	if obj.EthernetFlatL3FabricDto != nil {
-		return obj.EthernetFlatL3FabricDto
+	if obj.EthernetFlatL3Fabric != nil {
+		return obj.EthernetFlatL3Fabric
 	}
 
-	if obj.EthernetHybridL2L3FabricDto != nil {
-		return obj.EthernetHybridL2L3FabricDto
+	if obj.EthernetHybridL2L3Fabric != nil {
+		return obj.EthernetHybridL2L3Fabric
 	}
 
-	if obj.FibreChannelFabricDto != nil {
-		return obj.FibreChannelFabricDto
+	if obj.FibreChannelFabric != nil {
+		return obj.FibreChannelFabric
 	}
 
-	if obj.InfiniBandFabricDto != nil {
-		return obj.InfiniBandFabricDto
+	if obj.InfiniBandFabric != nil {
+		return obj.InfiniBandFabric
 	}
 
-	if obj.OvnFabricDto != nil {
-		return obj.OvnFabricDto
+	if obj.OvnFabric != nil {
+		return obj.OvnFabric
 	}
 
-	if obj.UnmanagedFabricDto != nil {
-		return obj.UnmanagedFabricDto
+	if obj.UnmanagedFabric != nil {
+		return obj.UnmanagedFabric
 	}
 
-	if obj.VirtualFabricDto != nil {
-		return obj.VirtualFabricDto
+	if obj.VirtualFabric != nil {
+		return obj.VirtualFabric
 	}
 
 	// all schemas are nil

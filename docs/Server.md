@@ -23,13 +23,12 @@ Name | Type | Description | Notes
 **ProcessorCpuMark** | Pointer to **float32** | The processor cpu mark of the server. | [optional] 
 **ProcessorThreads** | Pointer to **float32** | The processor threads of the server. | [optional] 
 **DiskCount** | Pointer to **float32** | The disk count of the server. | [optional] 
-**ServerDiskType** | **string** | The disk type of the server. | 
 **MgmtSnmpPort** | Pointer to **float32** | The management snmp port of the server. | [optional] 
 **MgmtSnmpPasswordEncrypted** | Pointer to **string** | The management snmp password encrypted of the server. | [optional] 
 **BmcMacAddress** | Pointer to **string** | The MAC address of the server. | [optional] 
 **BdkDebug** | **float32** | The BDK debug flag. | 
-**ServerMetricsMetadata** | Pointer to **string** | The metrics metadata of the server. | [optional] 
-**InstanceCustomInfo** | Pointer to **string** | The instance custom info of the server. | [optional] 
+**ServerMetricsMetadata** | Pointer to [**map[string][]ServerMetricsInfo**](array.md) | The metrics metadata of the server. | [optional] 
+**InstanceCustomInfo** | Pointer to **map[string]interface{}** | The instance custom info of the server. | [optional] 
 **CustomInfo** | Pointer to **map[string]interface{}** | The custom info of the server. | [optional] 
 **Vendor** | Pointer to **string** | The vendor of the server. | [optional] 
 **VendorSkuId** | Pointer to **string** | The vendor sku id of the server. | [optional] 
@@ -43,8 +42,8 @@ Name | Type | Description | Notes
 **ServerSupportsVirtualMedia** | Pointer to **float32** | Flag to indicate if the supports Virtual Media. | [optional] 
 **ServerSupportsOobProvisioning** | Pointer to **float32** | Flag to indicate if the supports OOB provisioning. | [optional] 
 **BootingCustomIsoInProgress** | Pointer to **float32** | Flag to indicate if the server is booting a custom iso. | [optional] 
-**BiosInfo** | Pointer to **map[string]interface{}** | The bios info of the server. | [optional] 
-**VendorInfo** | Pointer to **map[string]interface{}** | The vendor info of the server. | [optional] 
+**BiosInfo** | Pointer to **map[string]string** | The bios info of the server. | [optional] 
+**VendorInfo** | Pointer to **map[string]string** | The vendor info of the server. | [optional] 
 **ServerClass** | **string** | The class of the server. | 
 **ServerStatus** | **string** | The status of the server. | 
 **ServerComments** | Pointer to **string** | The comments of the server. | [optional] 
@@ -83,7 +82,7 @@ Name | Type | Description | Notes
 
 ### NewServer
 
-`func NewServer(serverId float32, revision float32, siteId float32, datacenterName string, passwordEncrypted string, serverDiskType string, bdkDebug float32, requiresReRegister float32, serverClass string, serverStatus string, administrationState string, serverDhcpStatus string, supportsFcProvisioning float32, serverCreatedTimestamp string, powerStatus string, powerStatusLastUpdateTimestamp string, ) *Server`
+`func NewServer(serverId float32, revision float32, siteId float32, datacenterName string, passwordEncrypted string, bdkDebug float32, requiresReRegister float32, serverClass string, serverStatus string, administrationState string, serverDhcpStatus string, supportsFcProvisioning float32, serverCreatedTimestamp string, powerStatus string, powerStatusLastUpdateTimestamp string, ) *Server`
 
 NewServer instantiates a new Server object
 This constructor will assign default values to properties that have it defined,
@@ -548,26 +547,6 @@ SetDiskCount sets DiskCount field to given value.
 
 HasDiskCount returns a boolean if a field has been set.
 
-### GetServerDiskType
-
-`func (o *Server) GetServerDiskType() string`
-
-GetServerDiskType returns the ServerDiskType field if non-nil, zero value otherwise.
-
-### GetServerDiskTypeOk
-
-`func (o *Server) GetServerDiskTypeOk() (*string, bool)`
-
-GetServerDiskTypeOk returns a tuple with the ServerDiskType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetServerDiskType
-
-`func (o *Server) SetServerDiskType(v string)`
-
-SetServerDiskType sets ServerDiskType field to given value.
-
-
 ### GetMgmtSnmpPort
 
 `func (o *Server) GetMgmtSnmpPort() float32`
@@ -665,20 +644,20 @@ SetBdkDebug sets BdkDebug field to given value.
 
 ### GetServerMetricsMetadata
 
-`func (o *Server) GetServerMetricsMetadata() string`
+`func (o *Server) GetServerMetricsMetadata() map[string][]ServerMetricsInfo`
 
 GetServerMetricsMetadata returns the ServerMetricsMetadata field if non-nil, zero value otherwise.
 
 ### GetServerMetricsMetadataOk
 
-`func (o *Server) GetServerMetricsMetadataOk() (*string, bool)`
+`func (o *Server) GetServerMetricsMetadataOk() (*map[string][]ServerMetricsInfo, bool)`
 
 GetServerMetricsMetadataOk returns a tuple with the ServerMetricsMetadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerMetricsMetadata
 
-`func (o *Server) SetServerMetricsMetadata(v string)`
+`func (o *Server) SetServerMetricsMetadata(v map[string][]ServerMetricsInfo)`
 
 SetServerMetricsMetadata sets ServerMetricsMetadata field to given value.
 
@@ -690,20 +669,20 @@ HasServerMetricsMetadata returns a boolean if a field has been set.
 
 ### GetInstanceCustomInfo
 
-`func (o *Server) GetInstanceCustomInfo() string`
+`func (o *Server) GetInstanceCustomInfo() map[string]interface{}`
 
 GetInstanceCustomInfo returns the InstanceCustomInfo field if non-nil, zero value otherwise.
 
 ### GetInstanceCustomInfoOk
 
-`func (o *Server) GetInstanceCustomInfoOk() (*string, bool)`
+`func (o *Server) GetInstanceCustomInfoOk() (*map[string]interface{}, bool)`
 
 GetInstanceCustomInfoOk returns a tuple with the InstanceCustomInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInstanceCustomInfo
 
-`func (o *Server) SetInstanceCustomInfo(v string)`
+`func (o *Server) SetInstanceCustomInfo(v map[string]interface{})`
 
 SetInstanceCustomInfo sets InstanceCustomInfo field to given value.
 
@@ -1035,20 +1014,20 @@ HasBootingCustomIsoInProgress returns a boolean if a field has been set.
 
 ### GetBiosInfo
 
-`func (o *Server) GetBiosInfo() map[string]interface{}`
+`func (o *Server) GetBiosInfo() map[string]string`
 
 GetBiosInfo returns the BiosInfo field if non-nil, zero value otherwise.
 
 ### GetBiosInfoOk
 
-`func (o *Server) GetBiosInfoOk() (*map[string]interface{}, bool)`
+`func (o *Server) GetBiosInfoOk() (*map[string]string, bool)`
 
 GetBiosInfoOk returns a tuple with the BiosInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBiosInfo
 
-`func (o *Server) SetBiosInfo(v map[string]interface{})`
+`func (o *Server) SetBiosInfo(v map[string]string)`
 
 SetBiosInfo sets BiosInfo field to given value.
 
@@ -1060,20 +1039,20 @@ HasBiosInfo returns a boolean if a field has been set.
 
 ### GetVendorInfo
 
-`func (o *Server) GetVendorInfo() map[string]interface{}`
+`func (o *Server) GetVendorInfo() map[string]string`
 
 GetVendorInfo returns the VendorInfo field if non-nil, zero value otherwise.
 
 ### GetVendorInfoOk
 
-`func (o *Server) GetVendorInfoOk() (*map[string]interface{}, bool)`
+`func (o *Server) GetVendorInfoOk() (*map[string]string, bool)`
 
 GetVendorInfoOk returns a tuple with the VendorInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVendorInfo
 
-`func (o *Server) SetVendorInfo(v map[string]interface{})`
+`func (o *Server) SetVendorInfo(v map[string]string)`
 
 SetVendorInfo sets VendorInfo field to given value.
 

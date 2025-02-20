@@ -22,6 +22,35 @@ func Test_sdk_SharedDriveAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test SharedDriveAPIService CreateSharedDrive", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var sharedDriveId float32
+
+		resp, httpRes, err := apiClient.SharedDriveAPI.CreateSharedDrive(context.Background(), infrastructureId, sharedDriveId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SharedDriveAPIService DeleteSharedDrive", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var sharedDriveId float32
+
+		httpRes, err := apiClient.SharedDriveAPI.DeleteSharedDrive(context.Background(), infrastructureId, sharedDriveId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SharedDriveAPIService GetInfrastructureSharedDrive", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -65,6 +94,21 @@ func Test_sdk_SharedDriveAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test SharedDriveAPIService GetSharedDriveConfigInfo", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var sharedDriveId float32
+
+		resp, httpRes, err := apiClient.SharedDriveAPI.GetSharedDriveConfigInfo(context.Background(), infrastructureId, sharedDriveId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SharedDriveAPIService GetSharedDriveHosts", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -73,6 +117,36 @@ func Test_sdk_SharedDriveAPIService(t *testing.T) {
 		var sharedDriveId float32
 
 		resp, httpRes, err := apiClient.SharedDriveAPI.GetSharedDriveHosts(context.Background(), infrastructureId, sharedDriveId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SharedDriveAPIService PatchSharedDriveConfig", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var sharedDriveId float32
+
+		resp, httpRes, err := apiClient.SharedDriveAPI.PatchSharedDriveConfig(context.Background(), infrastructureId, sharedDriveId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SharedDriveAPIService PatchSharedDriveMeta", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var sharedDriveId float32
+
+		resp, httpRes, err := apiClient.SharedDriveAPI.PatchSharedDriveMeta(context.Background(), infrastructureId, sharedDriveId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

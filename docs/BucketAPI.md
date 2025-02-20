@@ -7,10 +7,12 @@ Method | HTTP request | Description
 [**CreateInfrastructureBucket**](BucketAPI.md#CreateInfrastructureBucket) | **Post** /api/v2/infrastructures/{infrastructureId}/buckets | Creates a Bucket
 [**DeleteBucket**](BucketAPI.md#DeleteBucket) | **Delete** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId} | Deletes a Bucket
 [**GetBucket**](BucketAPI.md#GetBucket) | **Get** /api/v2/buckets/{bucketId} | Get Bucket information
+[**GetBucketConfigInfo**](BucketAPI.md#GetBucketConfigInfo) | **Get** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId}/config | Get configuration information about the specified Bucket
 [**GetBucketCredentials**](BucketAPI.md#GetBucketCredentials) | **Get** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId}/credentials | Get Bucket credentials
 [**GetInfrastructureBucket**](BucketAPI.md#GetInfrastructureBucket) | **Get** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId} | Get Bucket information
 [**GetInfrastructureBuckets**](BucketAPI.md#GetInfrastructureBuckets) | **Get** /api/v2/infrastructures/{infrastructureId}/buckets | Get all Buckets
 [**UpdateBucket**](BucketAPI.md#UpdateBucket) | **Patch** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId}/config | Updates Bucket information
+[**UpdateBucketMeta**](BucketAPI.md#UpdateBucketMeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId}/meta | Updates the meta of a Bucket
 
 
 
@@ -214,6 +216,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BucketExtendedInfo**](BucketExtendedInfo.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetBucketConfigInfo
+
+> BucketConfiguration GetBucketConfigInfo(ctx, infrastructureId, bucketId).Execute()
+
+Get configuration information about the specified Bucket
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	bucketId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BucketAPI.GetBucketConfigInfo(context.Background(), infrastructureId, bucketId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BucketAPI.GetBucketConfigInfo``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetBucketConfigInfo`: BucketConfiguration
+	fmt.Fprintf(os.Stdout, "Response from `BucketAPI.GetBucketConfigInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+**bucketId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBucketConfigInfoRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**BucketConfiguration**](BucketConfiguration.md)
 
 ### Authorization
 
@@ -529,6 +602,79 @@ Name | Type | Description  | Notes
 
  **updateBucket** | [**UpdateBucket**](UpdateBucket.md) | The Bucket update object | 
  **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**Bucket**](Bucket.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateBucketMeta
+
+> Bucket UpdateBucketMeta(ctx, infrastructureId, bucketId).UpdateBucketMeta(updateBucketMeta).Execute()
+
+Updates the meta of a Bucket
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	bucketId := float32(8.14) // float32 | 
+	updateBucketMeta := *openapiclient.NewUpdateBucketMeta() // UpdateBucketMeta | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BucketAPI.UpdateBucketMeta(context.Background(), infrastructureId, bucketId).UpdateBucketMeta(updateBucketMeta).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BucketAPI.UpdateBucketMeta``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateBucketMeta`: Bucket
+	fmt.Fprintf(os.Stdout, "Response from `BucketAPI.UpdateBucketMeta`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+**bucketId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBucketMetaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateBucketMeta** | [**UpdateBucketMeta**](UpdateBucketMeta.md) |  | 
 
 ### Return type
 

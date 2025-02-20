@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateFirmwareCatalogs
 
-> FirmwareCatalog CreateFirmwareCatalogs(ctx).CreateFirmwareCatalogDto(createFirmwareCatalogDto).Execute()
+> FirmwareCatalog CreateFirmwareCatalogs(ctx).CreateFirmwareCatalog(createFirmwareCatalog).Execute()
 
 Create Firmware Catalog
 
@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-	createFirmwareCatalogDto := *openapiclient.NewCreateFirmwareCatalogDto("Dell PowerEdge R740", openapiclient.FirmwareVendorType("dell"), openapiclient.CatalogUpdateType("online")) // CreateFirmwareCatalogDto | 
+	createFirmwareCatalog := *openapiclient.NewCreateFirmwareCatalog("Dell PowerEdge R740", openapiclient.FirmwareVendorType("dell"), openapiclient.CatalogUpdateType("online")) // CreateFirmwareCatalog | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirmwareCatalogAPI.CreateFirmwareCatalogs(context.Background()).CreateFirmwareCatalogDto(createFirmwareCatalogDto).Execute()
+	resp, r, err := apiClient.FirmwareCatalogAPI.CreateFirmwareCatalogs(context.Background()).CreateFirmwareCatalog(createFirmwareCatalog).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareCatalogAPI.CreateFirmwareCatalogs``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,7 +58,7 @@ Other parameters are passed through a pointer to a apiCreateFirmwareCatalogsRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createFirmwareCatalogDto** | [**CreateFirmwareCatalogDto**](CreateFirmwareCatalogDto.md) |  | 
+ **createFirmwareCatalog** | [**CreateFirmwareCatalog**](CreateFirmwareCatalog.md) |  | 
 
 ### Return type
 
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 
 ## UpdateFirmwareCatalog
 
-> FirmwareCatalog UpdateFirmwareCatalog(ctx, firmwareCatalogId).UpdateFirmwareCatalogDto(updateFirmwareCatalogDto).Execute()
+> FirmwareCatalog UpdateFirmwareCatalog(ctx, firmwareCatalogId).UpdateFirmwareCatalog(updateFirmwareCatalog).Execute()
 
 Update Firmware Catalog
 
@@ -332,11 +332,11 @@ import (
 
 func main() {
 	firmwareCatalogId := float32(8.14) // float32 | The firmware catalog id
-	updateFirmwareCatalogDto := *openapiclient.NewUpdateFirmwareCatalogDto("Dell PowerEdge R740", openapiclient.FirmwareVendorType("dell"), openapiclient.CatalogUpdateType("online")) // UpdateFirmwareCatalogDto | 
+	updateFirmwareCatalog := *openapiclient.NewUpdateFirmwareCatalog("Dell PowerEdge R740", openapiclient.FirmwareVendorType("dell"), openapiclient.CatalogUpdateType("online")) // UpdateFirmwareCatalog | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirmwareCatalogAPI.UpdateFirmwareCatalog(context.Background(), firmwareCatalogId).UpdateFirmwareCatalogDto(updateFirmwareCatalogDto).Execute()
+	resp, r, err := apiClient.FirmwareCatalogAPI.UpdateFirmwareCatalog(context.Background(), firmwareCatalogId).UpdateFirmwareCatalog(updateFirmwareCatalog).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareCatalogAPI.UpdateFirmwareCatalog``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -362,7 +362,7 @@ Other parameters are passed through a pointer to a apiUpdateFirmwareCatalogReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateFirmwareCatalogDto** | [**UpdateFirmwareCatalogDto**](UpdateFirmwareCatalogDto.md) |  | 
+ **updateFirmwareCatalog** | [**UpdateFirmwareCatalog**](UpdateFirmwareCatalog.md) |  | 
 
 ### Return type
 

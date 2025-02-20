@@ -4,12 +4,161 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateSharedDrive**](SharedDriveAPI.md#CreateSharedDrive) | **Post** /api/v2/infrastructures/{infrastructureId}/shared-drives | Create a new Shared Drive
+[**DeleteSharedDrive**](SharedDriveAPI.md#DeleteSharedDrive) | **Delete** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId} | Deletes a Shared Drive
 [**GetInfrastructureSharedDrive**](SharedDriveAPI.md#GetInfrastructureSharedDrive) | **Get** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId} | Get Shared Drive information
 [**GetInfrastructureSharedDrives**](SharedDriveAPI.md#GetInfrastructureSharedDrives) | **Get** /api/v2/infrastructures/{infrastructureId}/shared-drives | Get all Shared Drives on the infrastructure
 [**GetSharedDrive**](SharedDriveAPI.md#GetSharedDrive) | **Get** /api/v2/shared-drives/{sharedDriveId} | Get Shared Drive information
+[**GetSharedDriveConfigInfo**](SharedDriveAPI.md#GetSharedDriveConfigInfo) | **Get** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/config | Get configuration information about the specified Shared Drive
 [**GetSharedDriveHosts**](SharedDriveAPI.md#GetSharedDriveHosts) | **Get** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/hosts | Get the Hosts of Shared Drive
+[**PatchSharedDriveConfig**](SharedDriveAPI.md#PatchSharedDriveConfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/config | Updates the config of a Shared Drive
+[**PatchSharedDriveMeta**](SharedDriveAPI.md#PatchSharedDriveMeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/meta | Updates the meta of a Shared Drive
 [**UpdateSharedDriveInstanceArrayHostsBulk**](SharedDriveAPI.md#UpdateSharedDriveInstanceArrayHostsBulk) | **Post** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/actions/modify-instance-array-hosts-bulk | Updates Instance Array Hosts on the Shared Drive
 
+
+
+## CreateSharedDrive
+
+> SharedDrive CreateSharedDrive(ctx, infrastructureId, sharedDriveId).CreateSharedDrive(createSharedDrive).Execute()
+
+Create a new Shared Drive
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	sharedDriveId := float32(8.14) // float32 | 
+	createSharedDrive := *openapiclient.NewCreateSharedDrive(float32(123)) // CreateSharedDrive | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SharedDriveAPI.CreateSharedDrive(context.Background(), infrastructureId, sharedDriveId).CreateSharedDrive(createSharedDrive).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SharedDriveAPI.CreateSharedDrive``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateSharedDrive`: SharedDrive
+	fmt.Fprintf(os.Stdout, "Response from `SharedDriveAPI.CreateSharedDrive`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+**sharedDriveId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateSharedDriveRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **createSharedDrive** | [**CreateSharedDrive**](CreateSharedDrive.md) |  | 
+
+### Return type
+
+[**SharedDrive**](SharedDrive.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteSharedDrive
+
+> DeleteSharedDrive(ctx, infrastructureId, sharedDriveId).IfMatch(ifMatch).Execute()
+
+Deletes a Shared Drive
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	sharedDriveId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SharedDriveAPI.DeleteSharedDrive(context.Background(), infrastructureId, sharedDriveId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SharedDriveAPI.DeleteSharedDrive``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+**sharedDriveId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteSharedDriveRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetInfrastructureSharedDrive
@@ -261,6 +410,77 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetSharedDriveConfigInfo
+
+> SharedDriveConfiguration GetSharedDriveConfigInfo(ctx, infrastructureId, sharedDriveId).Execute()
+
+Get configuration information about the specified Shared Drive
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	sharedDriveId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SharedDriveAPI.GetSharedDriveConfigInfo(context.Background(), infrastructureId, sharedDriveId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SharedDriveAPI.GetSharedDriveConfigInfo``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSharedDriveConfigInfo`: SharedDriveConfiguration
+	fmt.Fprintf(os.Stdout, "Response from `SharedDriveAPI.GetSharedDriveConfigInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+**sharedDriveId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSharedDriveConfigInfoRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**SharedDriveConfiguration**](SharedDriveConfiguration.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetSharedDriveHosts
 
 > SharedDriveHosts GetSharedDriveHosts(ctx, infrastructureId, sharedDriveId).Execute()
@@ -327,6 +547,154 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PatchSharedDriveConfig
+
+> SharedDrive PatchSharedDriveConfig(ctx, infrastructureId, sharedDriveId).UpdateSharedDrive(updateSharedDrive).IfMatch(ifMatch).Execute()
+
+Updates the config of a Shared Drive
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	sharedDriveId := float32(8.14) // float32 | 
+	updateSharedDrive := *openapiclient.NewUpdateSharedDrive() // UpdateSharedDrive | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SharedDriveAPI.PatchSharedDriveConfig(context.Background(), infrastructureId, sharedDriveId).UpdateSharedDrive(updateSharedDrive).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SharedDriveAPI.PatchSharedDriveConfig``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PatchSharedDriveConfig`: SharedDrive
+	fmt.Fprintf(os.Stdout, "Response from `SharedDriveAPI.PatchSharedDriveConfig`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+**sharedDriveId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchSharedDriveConfigRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateSharedDrive** | [**UpdateSharedDrive**](UpdateSharedDrive.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**SharedDrive**](SharedDrive.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PatchSharedDriveMeta
+
+> SharedDrive PatchSharedDriveMeta(ctx, infrastructureId, sharedDriveId).UpdateSharedDriveMeta(updateSharedDriveMeta).Execute()
+
+Updates the meta of a Shared Drive
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	sharedDriveId := float32(8.14) // float32 | 
+	updateSharedDriveMeta := *openapiclient.NewUpdateSharedDriveMeta() // UpdateSharedDriveMeta | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SharedDriveAPI.PatchSharedDriveMeta(context.Background(), infrastructureId, sharedDriveId).UpdateSharedDriveMeta(updateSharedDriveMeta).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SharedDriveAPI.PatchSharedDriveMeta``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PatchSharedDriveMeta`: SharedDrive
+	fmt.Fprintf(os.Stdout, "Response from `SharedDriveAPI.PatchSharedDriveMeta`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+**sharedDriveId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchSharedDriveMetaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateSharedDriveMeta** | [**UpdateSharedDriveMeta**](UpdateSharedDriveMeta.md) |  | 
+
+### Return type
+
+[**SharedDrive**](SharedDrive.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

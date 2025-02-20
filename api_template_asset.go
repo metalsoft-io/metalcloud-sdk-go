@@ -28,12 +28,12 @@ type TemplateAssetAPIService service
 type TemplateAssetAPICreateTemplateAssetRequest struct {
 	ctx context.Context
 	ApiService *TemplateAssetAPIService
-	templateAssetCreateDto *TemplateAssetCreateDto
+	templateAssetCreate *TemplateAssetCreate
 }
 
 // The template asset details
-func (r TemplateAssetAPICreateTemplateAssetRequest) TemplateAssetCreateDto(templateAssetCreateDto TemplateAssetCreateDto) TemplateAssetAPICreateTemplateAssetRequest {
-	r.templateAssetCreateDto = &templateAssetCreateDto
+func (r TemplateAssetAPICreateTemplateAssetRequest) TemplateAssetCreate(templateAssetCreate TemplateAssetCreate) TemplateAssetAPICreateTemplateAssetRequest {
+	r.templateAssetCreate = &templateAssetCreate
 	return r
 }
 
@@ -76,8 +76,8 @@ func (a *TemplateAssetAPIService) CreateTemplateAssetExecute(r TemplateAssetAPIC
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.templateAssetCreateDto == nil {
-		return localVarReturnValue, nil, reportError("templateAssetCreateDto is required and must be specified")
+	if r.templateAssetCreate == nil {
+		return localVarReturnValue, nil, reportError("templateAssetCreate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -98,7 +98,7 @@ func (a *TemplateAssetAPIService) CreateTemplateAssetExecute(r TemplateAssetAPIC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.templateAssetCreateDto
+	localVarPostBody = r.templateAssetCreate
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -336,12 +336,13 @@ type TemplateAssetAPIGetTemplateAssetsRequest struct {
 	ApiService *TemplateAssetAPIService
 	page *float32
 	limit *float32
-	filterStatus *[]string
-	filterName *[]string
-	filterLabel *[]string
+	filterTemplateId *[]string
+	filterUsage *[]string
+	filterFileMimeType *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
+	select_ *string
 }
 
 // Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
@@ -350,31 +351,31 @@ func (r TemplateAssetAPIGetTemplateAssetsRequest) Page(page float32) TemplateAss
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; -1           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; -1           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
 func (r TemplateAssetAPIGetTemplateAssetsRequest) Limit(limit float32) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by status query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.status&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.status&#x3D;$not:$like:John Doe&amp;filter.status&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r TemplateAssetAPIGetTemplateAssetsRequest) FilterStatus(filterStatus []string) TemplateAssetAPIGetTemplateAssetsRequest {
-	r.filterStatus = &filterStatus
+// Filter by templateId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.templateId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.templateId&#x3D;$not:$like:John Doe&amp;filter.templateId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r TemplateAssetAPIGetTemplateAssetsRequest) FilterTemplateId(filterTemplateId []string) TemplateAssetAPIGetTemplateAssetsRequest {
+	r.filterTemplateId = &filterTemplateId
 	return r
 }
 
-// Filter by name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.name&#x3D;$not:$like:John Doe&amp;filter.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r TemplateAssetAPIGetTemplateAssetsRequest) FilterName(filterName []string) TemplateAssetAPIGetTemplateAssetsRequest {
-	r.filterName = &filterName
+// Filter by usage query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.usage&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.usage&#x3D;$not:$like:John Doe&amp;filter.usage&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r TemplateAssetAPIGetTemplateAssetsRequest) FilterUsage(filterUsage []string) TemplateAssetAPIGetTemplateAssetsRequest {
+	r.filterUsage = &filterUsage
 	return r
 }
 
-// Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt;&lt;/ul&gt;
-func (r TemplateAssetAPIGetTemplateAssetsRequest) FilterLabel(filterLabel []string) TemplateAssetAPIGetTemplateAssetsRequest {
-	r.filterLabel = &filterLabel
+// Filter by file.mimeType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.file.mimeType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.file.mimeType&#x3D;$not:$like:John Doe&amp;filter.file.mimeType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r TemplateAssetAPIGetTemplateAssetsRequest) FilterFileMimeType(filterFileMimeType []string) TemplateAssetAPIGetTemplateAssetsRequest {
+	r.filterFileMimeType = &filterFileMimeType
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; templateId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;id&lt;/li&gt; &lt;li&gt;usage&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; templateId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;usage&lt;/li&gt; &lt;li&gt;file.mimeType&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;modifiedAt&lt;/li&gt;&lt;/ul&gt;       
 func (r TemplateAssetAPIGetTemplateAssetsRequest) SortBy(sortBy []string) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -386,13 +387,19 @@ func (r TemplateAssetAPIGetTemplateAssetsRequest) Search(search string) Template
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; templateId,id,usage           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;id&lt;/li&gt; &lt;li&gt;usage&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,templateId,usage,file.name,file.mimeType           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;usage&lt;/li&gt; &lt;li&gt;file.name&lt;/li&gt; &lt;li&gt;file.mimeType&lt;/li&gt; &lt;li&gt;createdBy&lt;/li&gt; &lt;li&gt;modifiedBy&lt;/li&gt;&lt;/ul&gt;         
 func (r TemplateAssetAPIGetTemplateAssetsRequest) SearchBy(searchBy []string) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-func (r TemplateAssetAPIGetTemplateAssetsRequest) Execute() (*TemplateAssetList, *http.Response, error) {
+// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,templateId,usage,file.name,file.mimeType           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
+func (r TemplateAssetAPIGetTemplateAssetsRequest) Select_(select_ string) TemplateAssetAPIGetTemplateAssetsRequest {
+	r.select_ = &select_
+	return r
+}
+
+func (r TemplateAssetAPIGetTemplateAssetsRequest) Execute() (*TemplateAssetPaginatedList, *http.Response, error) {
 	return r.ApiService.GetTemplateAssetsExecute(r)
 }
 
@@ -412,13 +419,13 @@ func (a *TemplateAssetAPIService) GetTemplateAssets(ctx context.Context) Templat
 }
 
 // Execute executes the request
-//  @return TemplateAssetList
-func (a *TemplateAssetAPIService) GetTemplateAssetsExecute(r TemplateAssetAPIGetTemplateAssetsRequest) (*TemplateAssetList, *http.Response, error) {
+//  @return TemplateAssetPaginatedList
+func (a *TemplateAssetAPIService) GetTemplateAssetsExecute(r TemplateAssetAPIGetTemplateAssetsRequest) (*TemplateAssetPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TemplateAssetList
+		localVarReturnValue  *TemplateAssetPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplateAssetAPIService.GetTemplateAssets")
@@ -438,37 +445,37 @@ func (a *TemplateAssetAPIService) GetTemplateAssetsExecute(r TemplateAssetAPIGet
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
-	if r.filterStatus != nil {
-		t := *r.filterStatus
+	if r.filterTemplateId != nil {
+		t := *r.filterTemplateId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.templateId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.templateId", t, "form", "multi")
 		}
 	}
-	if r.filterName != nil {
-		t := *r.filterName
+	if r.filterUsage != nil {
+		t := *r.filterUsage
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.usage", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.usage", t, "form", "multi")
 		}
 	}
-	if r.filterLabel != nil {
-		t := *r.filterLabel
+	if r.filterFileMimeType != nil {
+		t := *r.filterFileMimeType
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.file.mimeType", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.file.mimeType", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -495,6 +502,9 @@ func (a *TemplateAssetAPIService) GetTemplateAssetsExecute(r TemplateAssetAPIGet
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
 		}
+	}
+	if r.select_ != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "select", r.select_, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -554,13 +564,13 @@ type TemplateAssetAPIUpdateTemplateAssetRequest struct {
 	ctx context.Context
 	ApiService *TemplateAssetAPIService
 	templateAssetId float32
-	templateAssetCreateDto *TemplateAssetCreateDto
+	templateAssetCreate *TemplateAssetCreate
 	ifMatch *string
 }
 
 // The template asset details
-func (r TemplateAssetAPIUpdateTemplateAssetRequest) TemplateAssetCreateDto(templateAssetCreateDto TemplateAssetCreateDto) TemplateAssetAPIUpdateTemplateAssetRequest {
-	r.templateAssetCreateDto = &templateAssetCreateDto
+func (r TemplateAssetAPIUpdateTemplateAssetRequest) TemplateAssetCreate(templateAssetCreate TemplateAssetCreate) TemplateAssetAPIUpdateTemplateAssetRequest {
+	r.templateAssetCreate = &templateAssetCreate
 	return r
 }
 
@@ -612,8 +622,8 @@ func (a *TemplateAssetAPIService) UpdateTemplateAssetExecute(r TemplateAssetAPIU
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.templateAssetCreateDto == nil {
-		return localVarReturnValue, nil, reportError("templateAssetCreateDto is required and must be specified")
+	if r.templateAssetCreate == nil {
+		return localVarReturnValue, nil, reportError("templateAssetCreate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -637,7 +647,7 @@ func (a *TemplateAssetAPIService) UpdateTemplateAssetExecute(r TemplateAssetAPIU
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.templateAssetCreateDto
+	localVarPostBody = r.templateAssetCreate
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

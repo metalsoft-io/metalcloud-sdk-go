@@ -28,11 +28,11 @@ type FirmwareCatalogAPIService service
 type FirmwareCatalogAPICreateFirmwareCatalogsRequest struct {
 	ctx context.Context
 	ApiService *FirmwareCatalogAPIService
-	createFirmwareCatalogDto *CreateFirmwareCatalogDto
+	createFirmwareCatalog *CreateFirmwareCatalog
 }
 
-func (r FirmwareCatalogAPICreateFirmwareCatalogsRequest) CreateFirmwareCatalogDto(createFirmwareCatalogDto CreateFirmwareCatalogDto) FirmwareCatalogAPICreateFirmwareCatalogsRequest {
-	r.createFirmwareCatalogDto = &createFirmwareCatalogDto
+func (r FirmwareCatalogAPICreateFirmwareCatalogsRequest) CreateFirmwareCatalog(createFirmwareCatalog CreateFirmwareCatalog) FirmwareCatalogAPICreateFirmwareCatalogsRequest {
+	r.createFirmwareCatalog = &createFirmwareCatalog
 	return r
 }
 
@@ -75,8 +75,8 @@ func (a *FirmwareCatalogAPIService) CreateFirmwareCatalogsExecute(r FirmwareCata
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createFirmwareCatalogDto == nil {
-		return localVarReturnValue, nil, reportError("createFirmwareCatalogDto is required and must be specified")
+	if r.createFirmwareCatalog == nil {
+		return localVarReturnValue, nil, reportError("createFirmwareCatalog is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -97,7 +97,7 @@ func (a *FirmwareCatalogAPIService) CreateFirmwareCatalogsExecute(r FirmwareCata
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createFirmwareCatalogDto
+	localVarPostBody = r.createFirmwareCatalog
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -671,11 +671,11 @@ type FirmwareCatalogAPIUpdateFirmwareCatalogRequest struct {
 	ctx context.Context
 	ApiService *FirmwareCatalogAPIService
 	firmwareCatalogId float32
-	updateFirmwareCatalogDto *UpdateFirmwareCatalogDto
+	updateFirmwareCatalog *UpdateFirmwareCatalog
 }
 
-func (r FirmwareCatalogAPIUpdateFirmwareCatalogRequest) UpdateFirmwareCatalogDto(updateFirmwareCatalogDto UpdateFirmwareCatalogDto) FirmwareCatalogAPIUpdateFirmwareCatalogRequest {
-	r.updateFirmwareCatalogDto = &updateFirmwareCatalogDto
+func (r FirmwareCatalogAPIUpdateFirmwareCatalogRequest) UpdateFirmwareCatalog(updateFirmwareCatalog UpdateFirmwareCatalog) FirmwareCatalogAPIUpdateFirmwareCatalogRequest {
+	r.updateFirmwareCatalog = &updateFirmwareCatalog
 	return r
 }
 
@@ -721,8 +721,8 @@ func (a *FirmwareCatalogAPIService) UpdateFirmwareCatalogExecute(r FirmwareCatal
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateFirmwareCatalogDto == nil {
-		return localVarReturnValue, nil, reportError("updateFirmwareCatalogDto is required and must be specified")
+	if r.updateFirmwareCatalog == nil {
+		return localVarReturnValue, nil, reportError("updateFirmwareCatalog is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -743,7 +743,7 @@ func (a *FirmwareCatalogAPIService) UpdateFirmwareCatalogExecute(r FirmwareCatal
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateFirmwareCatalogDto
+	localVarPostBody = r.updateFirmwareCatalog
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

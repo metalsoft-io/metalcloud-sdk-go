@@ -35,6 +35,8 @@ Name | Type | Description | Notes
 **InfrastructureLanMaxCount** | Pointer to **float32** |  | [optional] 
 **InfrastructureSanMaxCount** | Pointer to **float32** |  | [optional] 
 **InfrastructureSharedDriveMaxCount** | Pointer to **float32** |  | [optional] 
+**InfrastructureFileShareMaxCount** | Pointer to **float32** |  | [optional] 
+**InfrastructureBucketMaxCount** | Pointer to **float32** |  | [optional] 
 **InfrastructureVolumeTemplateExperimentalAllowed** | Pointer to **bool** |  | [optional] 
 **InfrastructureWanMaxCount** | Pointer to **float32** |  | [optional] 
 **InstanceArrayInstancesMaxCount** | Pointer to **float32** |  | [optional] 
@@ -47,6 +49,10 @@ Name | Type | Description | Notes
 **ServerTypeReservationMaxQuantity** | Pointer to **float32** |  | [optional] 
 **SharedDriveMaxSizeMbytes** | Pointer to **float32** |  | [optional] 
 **SharedDriveMinSizeMbytes** | Pointer to **float32** |  | [optional] 
+**FileShareMaxSizeGb** | Pointer to **float32** |  | [optional] 
+**FileShareMinSizeGb** | Pointer to **float32** |  | [optional] 
+**BucketMaxSizeGb** | Pointer to **float32** |  | [optional] 
+**BucketMinSizeGb** | Pointer to **float32** |  | [optional] 
 **AllowVlanOverrides** | Pointer to **bool** |  | [optional] 
 **AllowNetworkProfiles** | Pointer to **bool** |  | [optional] 
 **ShowOperatingSystemImagesTab** | Pointer to **bool** |  | [optional] 
@@ -879,6 +885,56 @@ SetInfrastructureSharedDriveMaxCount sets InfrastructureSharedDriveMaxCount fiel
 
 HasInfrastructureSharedDriveMaxCount returns a boolean if a field has been set.
 
+### GetInfrastructureFileShareMaxCount
+
+`func (o *UserLimits) GetInfrastructureFileShareMaxCount() float32`
+
+GetInfrastructureFileShareMaxCount returns the InfrastructureFileShareMaxCount field if non-nil, zero value otherwise.
+
+### GetInfrastructureFileShareMaxCountOk
+
+`func (o *UserLimits) GetInfrastructureFileShareMaxCountOk() (*float32, bool)`
+
+GetInfrastructureFileShareMaxCountOk returns a tuple with the InfrastructureFileShareMaxCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructureFileShareMaxCount
+
+`func (o *UserLimits) SetInfrastructureFileShareMaxCount(v float32)`
+
+SetInfrastructureFileShareMaxCount sets InfrastructureFileShareMaxCount field to given value.
+
+### HasInfrastructureFileShareMaxCount
+
+`func (o *UserLimits) HasInfrastructureFileShareMaxCount() bool`
+
+HasInfrastructureFileShareMaxCount returns a boolean if a field has been set.
+
+### GetInfrastructureBucketMaxCount
+
+`func (o *UserLimits) GetInfrastructureBucketMaxCount() float32`
+
+GetInfrastructureBucketMaxCount returns the InfrastructureBucketMaxCount field if non-nil, zero value otherwise.
+
+### GetInfrastructureBucketMaxCountOk
+
+`func (o *UserLimits) GetInfrastructureBucketMaxCountOk() (*float32, bool)`
+
+GetInfrastructureBucketMaxCountOk returns a tuple with the InfrastructureBucketMaxCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructureBucketMaxCount
+
+`func (o *UserLimits) SetInfrastructureBucketMaxCount(v float32)`
+
+SetInfrastructureBucketMaxCount sets InfrastructureBucketMaxCount field to given value.
+
+### HasInfrastructureBucketMaxCount
+
+`func (o *UserLimits) HasInfrastructureBucketMaxCount() bool`
+
+HasInfrastructureBucketMaxCount returns a boolean if a field has been set.
+
 ### GetInfrastructureVolumeTemplateExperimentalAllowed
 
 `func (o *UserLimits) GetInfrastructureVolumeTemplateExperimentalAllowed() bool`
@@ -1178,6 +1234,106 @@ SetSharedDriveMinSizeMbytes sets SharedDriveMinSizeMbytes field to given value.
 `func (o *UserLimits) HasSharedDriveMinSizeMbytes() bool`
 
 HasSharedDriveMinSizeMbytes returns a boolean if a field has been set.
+
+### GetFileShareMaxSizeGb
+
+`func (o *UserLimits) GetFileShareMaxSizeGb() float32`
+
+GetFileShareMaxSizeGb returns the FileShareMaxSizeGb field if non-nil, zero value otherwise.
+
+### GetFileShareMaxSizeGbOk
+
+`func (o *UserLimits) GetFileShareMaxSizeGbOk() (*float32, bool)`
+
+GetFileShareMaxSizeGbOk returns a tuple with the FileShareMaxSizeGb field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFileShareMaxSizeGb
+
+`func (o *UserLimits) SetFileShareMaxSizeGb(v float32)`
+
+SetFileShareMaxSizeGb sets FileShareMaxSizeGb field to given value.
+
+### HasFileShareMaxSizeGb
+
+`func (o *UserLimits) HasFileShareMaxSizeGb() bool`
+
+HasFileShareMaxSizeGb returns a boolean if a field has been set.
+
+### GetFileShareMinSizeGb
+
+`func (o *UserLimits) GetFileShareMinSizeGb() float32`
+
+GetFileShareMinSizeGb returns the FileShareMinSizeGb field if non-nil, zero value otherwise.
+
+### GetFileShareMinSizeGbOk
+
+`func (o *UserLimits) GetFileShareMinSizeGbOk() (*float32, bool)`
+
+GetFileShareMinSizeGbOk returns a tuple with the FileShareMinSizeGb field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFileShareMinSizeGb
+
+`func (o *UserLimits) SetFileShareMinSizeGb(v float32)`
+
+SetFileShareMinSizeGb sets FileShareMinSizeGb field to given value.
+
+### HasFileShareMinSizeGb
+
+`func (o *UserLimits) HasFileShareMinSizeGb() bool`
+
+HasFileShareMinSizeGb returns a boolean if a field has been set.
+
+### GetBucketMaxSizeGb
+
+`func (o *UserLimits) GetBucketMaxSizeGb() float32`
+
+GetBucketMaxSizeGb returns the BucketMaxSizeGb field if non-nil, zero value otherwise.
+
+### GetBucketMaxSizeGbOk
+
+`func (o *UserLimits) GetBucketMaxSizeGbOk() (*float32, bool)`
+
+GetBucketMaxSizeGbOk returns a tuple with the BucketMaxSizeGb field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBucketMaxSizeGb
+
+`func (o *UserLimits) SetBucketMaxSizeGb(v float32)`
+
+SetBucketMaxSizeGb sets BucketMaxSizeGb field to given value.
+
+### HasBucketMaxSizeGb
+
+`func (o *UserLimits) HasBucketMaxSizeGb() bool`
+
+HasBucketMaxSizeGb returns a boolean if a field has been set.
+
+### GetBucketMinSizeGb
+
+`func (o *UserLimits) GetBucketMinSizeGb() float32`
+
+GetBucketMinSizeGb returns the BucketMinSizeGb field if non-nil, zero value otherwise.
+
+### GetBucketMinSizeGbOk
+
+`func (o *UserLimits) GetBucketMinSizeGbOk() (*float32, bool)`
+
+GetBucketMinSizeGbOk returns a tuple with the BucketMinSizeGb field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBucketMinSizeGb
+
+`func (o *UserLimits) SetBucketMinSizeGb(v float32)`
+
+SetBucketMinSizeGb sets BucketMinSizeGb field to given value.
+
+### HasBucketMinSizeGb
+
+`func (o *UserLimits) HasBucketMinSizeGb() bool`
+
+HasBucketMinSizeGb returns a boolean if a field has been set.
 
 ### GetAllowVlanOverrides
 

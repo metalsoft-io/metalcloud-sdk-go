@@ -5,16 +5,19 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateInfrastructure**](InfrastructureAPI.md#CreateInfrastructure) | **Post** /api/v2/infrastructures | Creates a new infrastructure
+[**DeleteInfrastructure**](InfrastructureAPI.md#DeleteInfrastructure) | **Delete** /api/v2/infrastructures/{infrastructureId} | Deletes the specified infrastructure
 [**DeployInfrastructure**](InfrastructureAPI.md#DeployInfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/deploy | Deploys the specified infrastructure
 [**GetInfrastructure**](InfrastructureAPI.md#GetInfrastructure) | **Get** /api/v2/infrastructures/{infrastructureId} | Retrieves the specified infrastructure
 [**GetInfrastructures**](InfrastructureAPI.md#GetInfrastructures) | **Get** /api/v2/infrastructures | Get all infrastructures
 [**RevertInfrastructure**](InfrastructureAPI.md#RevertInfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/revert | Reverts the specified infrastructure
+[**UpdateInfrastructureConfiguration**](InfrastructureAPI.md#UpdateInfrastructureConfiguration) | **Patch** /api/v2/infrastructures/{infrastructureId}/configuration | Updates the specified infrastructure configuration
+[**UpdateInfrastructureMetadata**](InfrastructureAPI.md#UpdateInfrastructureMetadata) | **Patch** /api/v2/infrastructures/{infrastructureId}/metadata | Updates the specified infrastructure metadata
 
 
 
 ## CreateInfrastructure
 
-> Infrastructure CreateInfrastructure(ctx).InfrastructureCreateDto(infrastructureCreateDto).Execute()
+> Infrastructure CreateInfrastructure(ctx).InfrastructureCreate(infrastructureCreate).Execute()
 
 Creates a new infrastructure
 
@@ -33,11 +36,11 @@ import (
 )
 
 func main() {
-	infrastructureCreateDto := *openapiclient.NewInfrastructureCreateDto("Label_example", float32(123), []string{"Tags_example"}) // InfrastructureCreateDto | The infrastructure to create
+	infrastructureCreate := *openapiclient.NewInfrastructureCreate("Label_example", float32(123)) // InfrastructureCreate | The infrastructure to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.InfrastructureAPI.CreateInfrastructure(context.Background()).InfrastructureCreateDto(infrastructureCreateDto).Execute()
+	resp, r, err := apiClient.InfrastructureAPI.CreateInfrastructure(context.Background()).InfrastructureCreate(infrastructureCreate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.CreateInfrastructure``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,7 +61,7 @@ Other parameters are passed through a pointer to a apiCreateInfrastructureReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **infrastructureCreateDto** | [**InfrastructureCreateDto**](InfrastructureCreateDto.md) | The infrastructure to create | 
+ **infrastructureCreate** | [**InfrastructureCreate**](InfrastructureCreate.md) | The infrastructure to create | 
 
 ### Return type
 
@@ -72,6 +75,76 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteInfrastructure
+
+> DeleteInfrastructure(ctx, infrastructureId).IfMatch(ifMatch).Execute()
+
+Deletes the specified infrastructure
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.InfrastructureAPI.DeleteInfrastructure(context.Background(), infrastructureId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.DeleteInfrastructure``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteInfrastructureRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -376,6 +449,152 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateInfrastructureConfiguration
+
+> Infrastructure UpdateInfrastructureConfiguration(ctx, infrastructureId).UpdateInfrastructure(updateInfrastructure).IfMatch(ifMatch).Execute()
+
+Updates the specified infrastructure configuration
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	updateInfrastructure := *openapiclient.NewUpdateInfrastructure() // UpdateInfrastructure | The infrastructure configuration to update
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfrastructureAPI.UpdateInfrastructureConfiguration(context.Background(), infrastructureId).UpdateInfrastructure(updateInfrastructure).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.UpdateInfrastructureConfiguration``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateInfrastructureConfiguration`: Infrastructure
+	fmt.Fprintf(os.Stdout, "Response from `InfrastructureAPI.UpdateInfrastructureConfiguration`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateInfrastructureConfigurationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **updateInfrastructure** | [**UpdateInfrastructure**](UpdateInfrastructure.md) | The infrastructure configuration to update | 
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**Infrastructure**](Infrastructure.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateInfrastructureMetadata
+
+> Infrastructure UpdateInfrastructureMetadata(ctx, infrastructureId).UpdateInfrastructureMeta(updateInfrastructureMeta).Execute()
+
+Updates the specified infrastructure metadata
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+	updateInfrastructureMeta := *openapiclient.NewUpdateInfrastructureMeta() // UpdateInfrastructureMeta | The infrastructure metadata to update
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfrastructureAPI.UpdateInfrastructureMetadata(context.Background(), infrastructureId).UpdateInfrastructureMeta(updateInfrastructureMeta).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.UpdateInfrastructureMetadata``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateInfrastructureMetadata`: Infrastructure
+	fmt.Fprintf(os.Stdout, "Response from `InfrastructureAPI.UpdateInfrastructureMetadata`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateInfrastructureMetadataRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **updateInfrastructureMeta** | [**UpdateInfrastructureMeta**](UpdateInfrastructureMeta.md) | The infrastructure metadata to update | 
+
+### Return type
+
+[**Infrastructure**](Infrastructure.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -47,11 +47,12 @@ type FileShareExtendedInfo struct {
 	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
 	// Id of the VLAN for the File Share.
 	NetworkVlanId *float32 `json:"networkVlanId,omitempty"`
-	GuiSettings GenericGUISettings `json:"guiSettings"`
 	// Endpoint of the File Share.
 	Endpoint *string `json:"endpoint,omitempty"`
 	// The current changes to be deployed for the File Share.
 	Config FileShareConfiguration `json:"config"`
+	// Meta information of the File Share.
+	Meta FileShareMeta `json:"meta"`
 	// Infrastructure information
 	Infrastructure map[string]interface{} `json:"infrastructure"`
 	AdditionalProperties map[string]interface{}
@@ -63,7 +64,7 @@ type _FileShareExtendedInfo FileShareExtendedInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFileShareExtendedInfo(sizeGB float32, updatedTimestamp string, label string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, guiSettings GenericGUISettings, config FileShareConfiguration, infrastructure map[string]interface{}) *FileShareExtendedInfo {
+func NewFileShareExtendedInfo(sizeGB float32, updatedTimestamp string, label string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, config FileShareConfiguration, meta FileShareMeta, infrastructure map[string]interface{}) *FileShareExtendedInfo {
 	this := FileShareExtendedInfo{}
 	this.SizeGB = sizeGB
 	this.UpdatedTimestamp = updatedTimestamp
@@ -73,8 +74,8 @@ func NewFileShareExtendedInfo(sizeGB float32, updatedTimestamp string, label str
 	this.InfrastructureId = infrastructureId
 	this.CreatedTimestamp = createdTimestamp
 	this.ServiceStatus = serviceStatus
-	this.GuiSettings = guiSettings
 	this.Config = config
+	this.Meta = meta
 	this.Infrastructure = infrastructure
 	return &this
 }
@@ -439,30 +440,6 @@ func (o *FileShareExtendedInfo) SetNetworkVlanId(v float32) {
 	o.NetworkVlanId = &v
 }
 
-// GetGuiSettings returns the GuiSettings field value
-func (o *FileShareExtendedInfo) GetGuiSettings() GenericGUISettings {
-	if o == nil {
-		var ret GenericGUISettings
-		return ret
-	}
-
-	return o.GuiSettings
-}
-
-// GetGuiSettingsOk returns a tuple with the GuiSettings field value
-// and a boolean to check if the value has been set.
-func (o *FileShareExtendedInfo) GetGuiSettingsOk() (*GenericGUISettings, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.GuiSettings, true
-}
-
-// SetGuiSettings sets field value
-func (o *FileShareExtendedInfo) SetGuiSettings(v GenericGUISettings) {
-	o.GuiSettings = v
-}
-
 // GetEndpoint returns the Endpoint field value if set, zero value otherwise.
 func (o *FileShareExtendedInfo) GetEndpoint() string {
 	if o == nil || IsNil(o.Endpoint) {
@@ -517,6 +494,30 @@ func (o *FileShareExtendedInfo) GetConfigOk() (*FileShareConfiguration, bool) {
 // SetConfig sets field value
 func (o *FileShareExtendedInfo) SetConfig(v FileShareConfiguration) {
 	o.Config = v
+}
+
+// GetMeta returns the Meta field value
+func (o *FileShareExtendedInfo) GetMeta() FileShareMeta {
+	if o == nil {
+		var ret FileShareMeta
+		return ret
+	}
+
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value
+// and a boolean to check if the value has been set.
+func (o *FileShareExtendedInfo) GetMetaOk() (*FileShareMeta, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Meta, true
+}
+
+// SetMeta sets field value
+func (o *FileShareExtendedInfo) SetMeta(v FileShareMeta) {
+	o.Meta = v
 }
 
 // GetInfrastructure returns the Infrastructure field value
@@ -576,11 +577,11 @@ func (o FileShareExtendedInfo) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NetworkVlanId) {
 		toSerialize["networkVlanId"] = o.NetworkVlanId
 	}
-	toSerialize["guiSettings"] = o.GuiSettings
 	if !IsNil(o.Endpoint) {
 		toSerialize["endpoint"] = o.Endpoint
 	}
 	toSerialize["config"] = o.Config
+	toSerialize["meta"] = o.Meta
 	toSerialize["infrastructure"] = o.Infrastructure
 
 	for key, value := range o.AdditionalProperties {
@@ -603,8 +604,8 @@ func (o *FileShareExtendedInfo) UnmarshalJSON(data []byte) (err error) {
 		"infrastructureId",
 		"createdTimestamp",
 		"serviceStatus",
-		"guiSettings",
 		"config",
+		"meta",
 		"infrastructure",
 	}
 
@@ -648,9 +649,9 @@ func (o *FileShareExtendedInfo) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "networkVlanId")
-		delete(additionalProperties, "guiSettings")
 		delete(additionalProperties, "endpoint")
 		delete(additionalProperties, "config")
+		delete(additionalProperties, "meta")
 		delete(additionalProperties, "infrastructure")
 		o.AdditionalProperties = additionalProperties
 	}

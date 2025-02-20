@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateTemplateAsset
 
-> TemplateAsset CreateTemplateAsset(ctx).TemplateAssetCreateDto(templateAssetCreateDto).Execute()
+> TemplateAsset CreateTemplateAsset(ctx).TemplateAssetCreate(templateAssetCreate).Execute()
 
 Create template asset
 
@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-	templateAssetCreateDto := *openapiclient.NewTemplateAssetCreateDto(float32(4), "build_source_image", *openapiclient.NewTemplateAssetFile("user-data", "text/plain", "advanced", "/boot/grub/grub.cfg")) // TemplateAssetCreateDto | The template asset details
+	templateAssetCreate := *openapiclient.NewTemplateAssetCreate(float32(4), "build_source_image", *openapiclient.NewTemplateAssetFile("user-data", "text/plain", false, "/boot/grub/grub.cfg")) // TemplateAssetCreate | The template asset details
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TemplateAssetAPI.CreateTemplateAsset(context.Background()).TemplateAssetCreateDto(templateAssetCreateDto).Execute()
+	resp, r, err := apiClient.TemplateAssetAPI.CreateTemplateAsset(context.Background()).TemplateAssetCreate(templateAssetCreate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TemplateAssetAPI.CreateTemplateAsset``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,7 +58,7 @@ Other parameters are passed through a pointer to a apiCreateTemplateAssetRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **templateAssetCreateDto** | [**TemplateAssetCreateDto**](TemplateAssetCreateDto.md) | The template asset details | 
+ **templateAssetCreate** | [**TemplateAssetCreate**](TemplateAssetCreate.md) | The template asset details | 
 
 ### Return type
 
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ## GetTemplateAssets
 
-> TemplateAssetList GetTemplateAssets(ctx).Page(page).Limit(limit).FilterStatus(filterStatus).FilterName(filterName).FilterLabel(filterLabel).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> TemplateAssetPaginatedList GetTemplateAssets(ctx).Page(page).Limit(limit).FilterTemplateId(filterTemplateId).FilterUsage(filterUsage).FilterFileMimeType(filterFileMimeType).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
 
 Get a list of available template assets
 
@@ -238,22 +238,23 @@ import (
 
 func main() {
 	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
-	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> -1           </p>       <p>              <b>Max Value: </b> -1           </p>        If provided value is greater than max value, max value will be applied.        (optional)
-	filterStatus := []string{"Inner_example"} // []string | Filter by status query param.           <p>              <b>Format: </b> filter.status={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.status=$not:$like:John Doe&filter.status=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
-	filterName := []string{"Inner_example"} // []string | Filter by name query param.           <p>              <b>Format: </b> filter.name={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.name=$not:$like:John Doe&filter.name=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
-	filterLabel := []string{"Inner_example"} // []string | Filter by label query param.           <p>              <b>Format: </b> filter.label={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.label=$not:$like:John Doe&filter.label=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li> <li>$null</li> <li>$ilike</li></ul> (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> templateId:DESC           </p>       <h4>Available Fields</h4><ul><li>templateId</li> <li>id</li> <li>usage</li></ul>        (optional)
+	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 20           </p>       <p>              <b>Max Value: </b> 100           </p>        If provided value is greater than max value, max value will be applied.        (optional)
+	filterTemplateId := []string{"Inner_example"} // []string | Filter by templateId query param.           <p>              <b>Format: </b> filter.templateId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.templateId=$not:$like:John Doe&filter.templateId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	filterUsage := []string{"Inner_example"} // []string | Filter by usage query param.           <p>              <b>Format: </b> filter.usage={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.usage=$not:$like:John Doe&filter.usage=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	filterFileMimeType := []string{"Inner_example"} // []string | Filter by file.mimeType query param.           <p>              <b>Format: </b> filter.file.mimeType={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.file.mimeType=$not:$like:John Doe&filter.file.mimeType=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> templateId:DESC           </p>       <h4>Available Fields</h4><ul><li>id</li> <li>templateId</li> <li>usage</li> <li>file.mimeType</li> <li>createdAt</li> <li>modifiedAt</li></ul>        (optional)
 	search := "search_example" // string | Search term to filter result values         <p>              <b>Example: </b> John           </p>         <p>              <b>Default Value: </b> No default value           </p>          (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values         <p>              <b>Example: </b> templateId,id,usage           </p>         <p>              <b>Default Value: </b> By default all fields mentioned below will be used to search by term           </p>         <h4>Available Fields</h4><ul><li>templateId</li> <li>id</li> <li>usage</li></ul>          (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values         <p>              <b>Example: </b> id,templateId,usage,file.name,file.mimeType           </p>         <p>              <b>Default Value: </b> By default all fields mentioned below will be used to search by term           </p>         <h4>Available Fields</h4><ul><li>id</li> <li>templateId</li> <li>usage</li> <li>file.name</li> <li>file.mimeType</li> <li>createdBy</li> <li>modifiedBy</li></ul>          (optional)
+	select_ := "select__example" // string | List of fields to select.       <p>              <b>Example: </b> id,templateId,usage,file.name,file.mimeType           </p>       <p>              <b>Default Value: </b> By default all fields returns. If you want to select only some fields, provide them in query param           </p>        (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TemplateAssetAPI.GetTemplateAssets(context.Background()).Page(page).Limit(limit).FilterStatus(filterStatus).FilterName(filterName).FilterLabel(filterLabel).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.TemplateAssetAPI.GetTemplateAssets(context.Background()).Page(page).Limit(limit).FilterTemplateId(filterTemplateId).FilterUsage(filterUsage).FilterFileMimeType(filterFileMimeType).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TemplateAssetAPI.GetTemplateAssets``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetTemplateAssets`: TemplateAssetList
+	// response from `GetTemplateAssets`: TemplateAssetPaginatedList
 	fmt.Fprintf(os.Stdout, "Response from `TemplateAssetAPI.GetTemplateAssets`: %v\n", resp)
 }
 ```
@@ -270,17 +271,18 @@ Other parameters are passed through a pointer to a apiGetTemplateAssetsRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
- **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; -1           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; -1           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
- **filterStatus** | **[]string** | Filter by status query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.status&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.status&#x3D;$not:$like:John Doe&amp;filter.status&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
- **filterName** | **[]string** | Filter by name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.name&#x3D;$not:$like:John Doe&amp;filter.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
- **filterLabel** | **[]string** | Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt;&lt;/ul&gt; | 
- **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; templateId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;id&lt;/li&gt; &lt;li&gt;usage&lt;/li&gt;&lt;/ul&gt;        | 
+ **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
+ **filterTemplateId** | **[]string** | Filter by templateId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.templateId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.templateId&#x3D;$not:$like:John Doe&amp;filter.templateId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **filterUsage** | **[]string** | Filter by usage query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.usage&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.usage&#x3D;$not:$like:John Doe&amp;filter.usage&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **filterFileMimeType** | **[]string** | Filter by file.mimeType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.file.mimeType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.file.mimeType&#x3D;$not:$like:John Doe&amp;filter.file.mimeType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; templateId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;usage&lt;/li&gt; &lt;li&gt;file.mimeType&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;modifiedAt&lt;/li&gt;&lt;/ul&gt;        | 
  **search** | **string** | Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;          | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; templateId,id,usage           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;id&lt;/li&gt; &lt;li&gt;usage&lt;/li&gt;&lt;/ul&gt;          | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,templateId,usage,file.name,file.mimeType           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;usage&lt;/li&gt; &lt;li&gt;file.name&lt;/li&gt; &lt;li&gt;file.mimeType&lt;/li&gt; &lt;li&gt;createdBy&lt;/li&gt; &lt;li&gt;modifiedBy&lt;/li&gt;&lt;/ul&gt;          | 
+ **select_** | **string** | List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,templateId,usage,file.name,file.mimeType           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;        | 
 
 ### Return type
 
-[**TemplateAssetList**](TemplateAssetList.md)
+[**TemplateAssetPaginatedList**](TemplateAssetPaginatedList.md)
 
 ### Authorization
 
@@ -298,7 +300,7 @@ Name | Type | Description  | Notes
 
 ## UpdateTemplateAsset
 
-> TemplateAsset UpdateTemplateAsset(ctx, templateAssetId).TemplateAssetCreateDto(templateAssetCreateDto).IfMatch(ifMatch).Execute()
+> TemplateAsset UpdateTemplateAsset(ctx, templateAssetId).TemplateAssetCreate(templateAssetCreate).IfMatch(ifMatch).Execute()
 
 Update template asset
 
@@ -318,12 +320,12 @@ import (
 
 func main() {
 	templateAssetId := float32(8.14) // float32 | 
-	templateAssetCreateDto := *openapiclient.NewTemplateAssetCreateDto(float32(4), "build_source_image", *openapiclient.NewTemplateAssetFile("user-data", "text/plain", "advanced", "/boot/grub/grub.cfg")) // TemplateAssetCreateDto | The template asset details
+	templateAssetCreate := *openapiclient.NewTemplateAssetCreate(float32(4), "build_source_image", *openapiclient.NewTemplateAssetFile("user-data", "text/plain", false, "/boot/grub/grub.cfg")) // TemplateAssetCreate | The template asset details
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TemplateAssetAPI.UpdateTemplateAsset(context.Background(), templateAssetId).TemplateAssetCreateDto(templateAssetCreateDto).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.TemplateAssetAPI.UpdateTemplateAsset(context.Background(), templateAssetId).TemplateAssetCreate(templateAssetCreate).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TemplateAssetAPI.UpdateTemplateAsset``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -349,7 +351,7 @@ Other parameters are passed through a pointer to a apiUpdateTemplateAssetRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **templateAssetCreateDto** | [**TemplateAssetCreateDto**](TemplateAssetCreateDto.md) | The template asset details | 
+ **templateAssetCreate** | [**TemplateAssetCreate**](TemplateAssetCreate.md) | The template asset details | 
  **ifMatch** | **string** | Entity tag | 
 
 ### Return type

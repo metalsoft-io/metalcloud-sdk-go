@@ -572,12 +572,12 @@ type NetworkFabricsAPIUpdateNetworkFabricRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricsAPIService
 	networkFabricId float32
-	updateNetworkFabricDto *UpdateNetworkFabricDto
+	updateNetworkFabric *UpdateNetworkFabric
 }
 
 // The Network Fabric update object
-func (r NetworkFabricsAPIUpdateNetworkFabricRequest) UpdateNetworkFabricDto(updateNetworkFabricDto UpdateNetworkFabricDto) NetworkFabricsAPIUpdateNetworkFabricRequest {
-	r.updateNetworkFabricDto = &updateNetworkFabricDto
+func (r NetworkFabricsAPIUpdateNetworkFabricRequest) UpdateNetworkFabric(updateNetworkFabric UpdateNetworkFabric) NetworkFabricsAPIUpdateNetworkFabricRequest {
+	r.updateNetworkFabric = &updateNetworkFabric
 	return r
 }
 
@@ -623,8 +623,8 @@ func (a *NetworkFabricsAPIService) UpdateNetworkFabricExecute(r NetworkFabricsAP
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkFabricDto == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkFabricDto is required and must be specified")
+	if r.updateNetworkFabric == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkFabric is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -645,7 +645,7 @@ func (a *NetworkFabricsAPIService) UpdateNetworkFabricExecute(r NetworkFabricsAP
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkFabricDto
+	localVarPostBody = r.updateNetworkFabric
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

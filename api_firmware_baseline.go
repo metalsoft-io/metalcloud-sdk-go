@@ -28,15 +28,15 @@ type FirmwareBaselineAPIService service
 type FirmwareBaselineAPICreateFirmwareBaselineRequest struct {
 	ctx context.Context
 	ApiService *FirmwareBaselineAPIService
-	createFirmwareBaselineDto *CreateFirmwareBaselineDto
+	createFirmwareBaseline *CreateFirmwareBaseline
 }
 
-func (r FirmwareBaselineAPICreateFirmwareBaselineRequest) CreateFirmwareBaselineDto(createFirmwareBaselineDto CreateFirmwareBaselineDto) FirmwareBaselineAPICreateFirmwareBaselineRequest {
-	r.createFirmwareBaselineDto = &createFirmwareBaselineDto
+func (r FirmwareBaselineAPICreateFirmwareBaselineRequest) CreateFirmwareBaseline(createFirmwareBaseline CreateFirmwareBaseline) FirmwareBaselineAPICreateFirmwareBaselineRequest {
+	r.createFirmwareBaseline = &createFirmwareBaseline
 	return r
 }
 
-func (r FirmwareBaselineAPICreateFirmwareBaselineRequest) Execute() (*FirmwareBaselineDto, *http.Response, error) {
+func (r FirmwareBaselineAPICreateFirmwareBaselineRequest) Execute() (*FirmwareBaseline, *http.Response, error) {
 	return r.ApiService.CreateFirmwareBaselineExecute(r)
 }
 
@@ -56,13 +56,13 @@ func (a *FirmwareBaselineAPIService) CreateFirmwareBaseline(ctx context.Context)
 }
 
 // Execute executes the request
-//  @return FirmwareBaselineDto
-func (a *FirmwareBaselineAPIService) CreateFirmwareBaselineExecute(r FirmwareBaselineAPICreateFirmwareBaselineRequest) (*FirmwareBaselineDto, *http.Response, error) {
+//  @return FirmwareBaseline
+func (a *FirmwareBaselineAPIService) CreateFirmwareBaselineExecute(r FirmwareBaselineAPICreateFirmwareBaselineRequest) (*FirmwareBaseline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FirmwareBaselineDto
+		localVarReturnValue  *FirmwareBaseline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareBaselineAPIService.CreateFirmwareBaseline")
@@ -75,8 +75,8 @@ func (a *FirmwareBaselineAPIService) CreateFirmwareBaselineExecute(r FirmwareBas
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createFirmwareBaselineDto == nil {
-		return localVarReturnValue, nil, reportError("createFirmwareBaselineDto is required and must be specified")
+	if r.createFirmwareBaseline == nil {
+		return localVarReturnValue, nil, reportError("createFirmwareBaseline is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -97,7 +97,7 @@ func (a *FirmwareBaselineAPIService) CreateFirmwareBaselineExecute(r FirmwareBas
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createFirmwareBaselineDto
+	localVarPostBody = r.createFirmwareBaseline
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -233,7 +233,7 @@ type FirmwareBaselineAPIGetFirmwareBaselineRequest struct {
 	firmwareBaselineId float32
 }
 
-func (r FirmwareBaselineAPIGetFirmwareBaselineRequest) Execute() (*FirmwareBaselineDto, *http.Response, error) {
+func (r FirmwareBaselineAPIGetFirmwareBaselineRequest) Execute() (*FirmwareBaseline, *http.Response, error) {
 	return r.ApiService.GetFirmwareBaselineExecute(r)
 }
 
@@ -255,13 +255,13 @@ func (a *FirmwareBaselineAPIService) GetFirmwareBaseline(ctx context.Context, fi
 }
 
 // Execute executes the request
-//  @return FirmwareBaselineDto
-func (a *FirmwareBaselineAPIService) GetFirmwareBaselineExecute(r FirmwareBaselineAPIGetFirmwareBaselineRequest) (*FirmwareBaselineDto, *http.Response, error) {
+//  @return FirmwareBaseline
+func (a *FirmwareBaselineAPIService) GetFirmwareBaselineExecute(r FirmwareBaselineAPIGetFirmwareBaselineRequest) (*FirmwareBaseline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FirmwareBaselineDto
+		localVarReturnValue  *FirmwareBaseline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareBaselineAPIService.GetFirmwareBaseline")
@@ -545,15 +545,15 @@ type FirmwareBaselineAPIUpdateFirmwareBaselineRequest struct {
 	ctx context.Context
 	ApiService *FirmwareBaselineAPIService
 	firmwareBaselineId float32
-	updateFirmwareBaselineDto *UpdateFirmwareBaselineDto
+	updateFirmwareBaseline *UpdateFirmwareBaseline
 }
 
-func (r FirmwareBaselineAPIUpdateFirmwareBaselineRequest) UpdateFirmwareBaselineDto(updateFirmwareBaselineDto UpdateFirmwareBaselineDto) FirmwareBaselineAPIUpdateFirmwareBaselineRequest {
-	r.updateFirmwareBaselineDto = &updateFirmwareBaselineDto
+func (r FirmwareBaselineAPIUpdateFirmwareBaselineRequest) UpdateFirmwareBaseline(updateFirmwareBaseline UpdateFirmwareBaseline) FirmwareBaselineAPIUpdateFirmwareBaselineRequest {
+	r.updateFirmwareBaseline = &updateFirmwareBaseline
 	return r
 }
 
-func (r FirmwareBaselineAPIUpdateFirmwareBaselineRequest) Execute() (*FirmwareBaselineDto, *http.Response, error) {
+func (r FirmwareBaselineAPIUpdateFirmwareBaselineRequest) Execute() (*FirmwareBaseline, *http.Response, error) {
 	return r.ApiService.UpdateFirmwareBaselineExecute(r)
 }
 
@@ -575,13 +575,13 @@ func (a *FirmwareBaselineAPIService) UpdateFirmwareBaseline(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return FirmwareBaselineDto
-func (a *FirmwareBaselineAPIService) UpdateFirmwareBaselineExecute(r FirmwareBaselineAPIUpdateFirmwareBaselineRequest) (*FirmwareBaselineDto, *http.Response, error) {
+//  @return FirmwareBaseline
+func (a *FirmwareBaselineAPIService) UpdateFirmwareBaselineExecute(r FirmwareBaselineAPIUpdateFirmwareBaselineRequest) (*FirmwareBaseline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FirmwareBaselineDto
+		localVarReturnValue  *FirmwareBaseline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareBaselineAPIService.UpdateFirmwareBaseline")
@@ -595,8 +595,8 @@ func (a *FirmwareBaselineAPIService) UpdateFirmwareBaselineExecute(r FirmwareBas
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateFirmwareBaselineDto == nil {
-		return localVarReturnValue, nil, reportError("updateFirmwareBaselineDto is required and must be specified")
+	if r.updateFirmwareBaseline == nil {
+		return localVarReturnValue, nil, reportError("updateFirmwareBaseline is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -617,7 +617,7 @@ func (a *FirmwareBaselineAPIService) UpdateFirmwareBaselineExecute(r FirmwareBas
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateFirmwareBaselineDto
+	localVarPostBody = r.updateFirmwareBaseline
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

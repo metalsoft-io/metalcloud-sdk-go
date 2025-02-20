@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]FirmwareBinaryDto**](FirmwareBinaryDto.md) |  | 
+**Data** | [**[]FirmwareBinary**](FirmwareBinary.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
 **Links** | [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewFirmwareBinaryPaginatedList
 
-`func NewFirmwareBinaryPaginatedList(data []FirmwareBinaryDto, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *FirmwareBinaryPaginatedList`
+`func NewFirmwareBinaryPaginatedList(data []FirmwareBinary, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *FirmwareBinaryPaginatedList`
 
 NewFirmwareBinaryPaginatedList instantiates a new FirmwareBinaryPaginatedList object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *FirmwareBinaryPaginatedList) GetData() []FirmwareBinaryDto`
+`func (o *FirmwareBinaryPaginatedList) GetData() []FirmwareBinary`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *FirmwareBinaryPaginatedList) GetDataOk() (*[]FirmwareBinaryDto, bool)`
+`func (o *FirmwareBinaryPaginatedList) GetDataOk() (*[]FirmwareBinary, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *FirmwareBinaryPaginatedList) SetData(v []FirmwareBinaryDto)`
+`func (o *FirmwareBinaryPaginatedList) SetData(v []FirmwareBinary)`
 
 SetData sets Data field to given value.
 

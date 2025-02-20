@@ -19,9 +19,8 @@ Name | Type | Description | Notes
 **UpdatedTimestamp** | **string** | Timestamp of the Drive Group last update. | 
 **Id** | **float32** | Id of the Drive Group | 
 **Revision** | **float32** | Revision of the Drive Group State | 
-**ClusterId** | Pointer to **float32** |  | [optional] 
+**ExtensionInstanceId** | Pointer to **float32** |  | [optional] 
 **ContainerClusterId** | Pointer to **float32** |  | [optional] 
-**ClusterRoleGroup** | **string** | Cluster Role Group of the Drive Group, if part of a cluster | [default to "none"]
 **ServiceStatus** | **string** | Service status of the Drive Group | 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Drive Group. | [optional] 
 **DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the Drive Group. | [optional] 
@@ -36,7 +35,7 @@ Name | Type | Description | Notes
 
 ### NewDriveGroup
 
-`func NewDriveGroup(label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithInstanceArray float32, storageType string, updatedTimestamp string, id float32, revision float32, clusterRoleGroup string, serviceStatus string, allocationAffinity string, config DriveGroupConfiguration, createdTimestamp string, ) *DriveGroup`
+`func NewDriveGroup(label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithInstanceArray float32, storageType string, updatedTimestamp string, id float32, revision float32, serviceStatus string, allocationAffinity string, config DriveGroupConfiguration, createdTimestamp string, ) *DriveGroup`
 
 NewDriveGroup instantiates a new DriveGroup object
 This constructor will assign default values to properties that have it defined,
@@ -381,30 +380,30 @@ and a boolean to check if the value has been set.
 SetRevision sets Revision field to given value.
 
 
-### GetClusterId
+### GetExtensionInstanceId
 
-`func (o *DriveGroup) GetClusterId() float32`
+`func (o *DriveGroup) GetExtensionInstanceId() float32`
 
-GetClusterId returns the ClusterId field if non-nil, zero value otherwise.
+GetExtensionInstanceId returns the ExtensionInstanceId field if non-nil, zero value otherwise.
 
-### GetClusterIdOk
+### GetExtensionInstanceIdOk
 
-`func (o *DriveGroup) GetClusterIdOk() (*float32, bool)`
+`func (o *DriveGroup) GetExtensionInstanceIdOk() (*float32, bool)`
 
-GetClusterIdOk returns a tuple with the ClusterId field if it's non-nil, zero value otherwise
+GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetClusterId
+### SetExtensionInstanceId
 
-`func (o *DriveGroup) SetClusterId(v float32)`
+`func (o *DriveGroup) SetExtensionInstanceId(v float32)`
 
-SetClusterId sets ClusterId field to given value.
+SetExtensionInstanceId sets ExtensionInstanceId field to given value.
 
-### HasClusterId
+### HasExtensionInstanceId
 
-`func (o *DriveGroup) HasClusterId() bool`
+`func (o *DriveGroup) HasExtensionInstanceId() bool`
 
-HasClusterId returns a boolean if a field has been set.
+HasExtensionInstanceId returns a boolean if a field has been set.
 
 ### GetContainerClusterId
 
@@ -430,26 +429,6 @@ SetContainerClusterId sets ContainerClusterId field to given value.
 `func (o *DriveGroup) HasContainerClusterId() bool`
 
 HasContainerClusterId returns a boolean if a field has been set.
-
-### GetClusterRoleGroup
-
-`func (o *DriveGroup) GetClusterRoleGroup() string`
-
-GetClusterRoleGroup returns the ClusterRoleGroup field if non-nil, zero value otherwise.
-
-### GetClusterRoleGroupOk
-
-`func (o *DriveGroup) GetClusterRoleGroupOk() (*string, bool)`
-
-GetClusterRoleGroupOk returns a tuple with the ClusterRoleGroup field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClusterRoleGroup
-
-`func (o *DriveGroup) SetClusterRoleGroup(v string)`
-
-SetClusterRoleGroup sets ClusterRoleGroup field to given value.
-
 
 ### GetServiceStatus
 

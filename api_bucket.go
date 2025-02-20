@@ -349,6 +349,111 @@ func (a *BucketAPIService) GetBucketExecute(r BucketAPIGetBucketRequest) (*Bucke
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type BucketAPIGetBucketConfigInfoRequest struct {
+	ctx context.Context
+	ApiService *BucketAPIService
+	infrastructureId float32
+	bucketId float32
+}
+
+func (r BucketAPIGetBucketConfigInfoRequest) Execute() (*BucketConfiguration, *http.Response, error) {
+	return r.ApiService.GetBucketConfigInfoExecute(r)
+}
+
+/*
+GetBucketConfigInfo Get configuration information about the specified Bucket
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param bucketId
+ @return BucketAPIGetBucketConfigInfoRequest
+*/
+func (a *BucketAPIService) GetBucketConfigInfo(ctx context.Context, infrastructureId float32, bucketId float32) BucketAPIGetBucketConfigInfoRequest {
+	return BucketAPIGetBucketConfigInfoRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		bucketId: bucketId,
+	}
+}
+
+// Execute executes the request
+//  @return BucketConfiguration
+func (a *BucketAPIService) GetBucketConfigInfoExecute(r BucketAPIGetBucketConfigInfoRequest) (*BucketConfiguration, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *BucketConfiguration
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BucketAPIService.GetBucketConfigInfo")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/buckets/{bucketId}/config"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"bucketId"+"}", url.PathEscape(parameterValueToString(r.bucketId, "bucketId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type BucketAPIGetBucketCredentialsRequest struct {
 	ctx context.Context
 	ApiService *BucketAPIService
@@ -968,6 +1073,122 @@ func (a *BucketAPIService) UpdateBucketExecute(r BucketAPIUpdateBucketRequest) (
 	}
 	// body params
 	localVarPostBody = r.updateBucket
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type BucketAPIUpdateBucketMetaRequest struct {
+	ctx context.Context
+	ApiService *BucketAPIService
+	infrastructureId float32
+	bucketId float32
+	updateBucketMeta *UpdateBucketMeta
+}
+
+func (r BucketAPIUpdateBucketMetaRequest) UpdateBucketMeta(updateBucketMeta UpdateBucketMeta) BucketAPIUpdateBucketMetaRequest {
+	r.updateBucketMeta = &updateBucketMeta
+	return r
+}
+
+func (r BucketAPIUpdateBucketMetaRequest) Execute() (*Bucket, *http.Response, error) {
+	return r.ApiService.UpdateBucketMetaExecute(r)
+}
+
+/*
+UpdateBucketMeta Updates the meta of a Bucket
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param bucketId
+ @return BucketAPIUpdateBucketMetaRequest
+*/
+func (a *BucketAPIService) UpdateBucketMeta(ctx context.Context, infrastructureId float32, bucketId float32) BucketAPIUpdateBucketMetaRequest {
+	return BucketAPIUpdateBucketMetaRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		bucketId: bucketId,
+	}
+}
+
+// Execute executes the request
+//  @return Bucket
+func (a *BucketAPIService) UpdateBucketMetaExecute(r BucketAPIUpdateBucketMetaRequest) (*Bucket, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Bucket
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BucketAPIService.UpdateBucketMeta")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/buckets/{bucketId}/meta"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"bucketId"+"}", url.PathEscape(parameterValueToString(r.bucketId, "bucketId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateBucketMeta == nil {
+		return localVarReturnValue, nil, reportError("updateBucketMeta is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateBucketMeta
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

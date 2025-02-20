@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## SearchFirmwareBaselines
 
-> FirmwareCatalogPaginatedList SearchFirmwareBaselines(ctx).SearchFirmwareBinaryDto(searchFirmwareBinaryDto).Execute()
+> FirmwareCatalogPaginatedList SearchFirmwareBaselines(ctx).SearchFirmwareBinary(searchFirmwareBinary).Execute()
 
 Search Firmware Baselines
 
@@ -29,11 +29,11 @@ import (
 )
 
 func main() {
-	searchFirmwareBinaryDto := *openapiclient.NewSearchFirmwareBinaryDto(openapiclient.FirmwareVendorType("dell"), *openapiclient.NewBaselineFilter()) // SearchFirmwareBinaryDto | 
+	searchFirmwareBinary := *openapiclient.NewSearchFirmwareBinary(openapiclient.FirmwareVendorType("dell"), *openapiclient.NewBaselineFilter()) // SearchFirmwareBinary | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirmwareBaselineSearchAPI.SearchFirmwareBaselines(context.Background()).SearchFirmwareBinaryDto(searchFirmwareBinaryDto).Execute()
+	resp, r, err := apiClient.FirmwareBaselineSearchAPI.SearchFirmwareBaselines(context.Background()).SearchFirmwareBinary(searchFirmwareBinary).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBaselineSearchAPI.SearchFirmwareBaselines``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -54,7 +54,7 @@ Other parameters are passed through a pointer to a apiSearchFirmwareBaselinesReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **searchFirmwareBinaryDto** | [**SearchFirmwareBinaryDto**](SearchFirmwareBinaryDto.md) |  | 
+ **searchFirmwareBinary** | [**SearchFirmwareBinary**](SearchFirmwareBinary.md) |  | 
 
 ### Return type
 

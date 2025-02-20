@@ -23,18 +23,335 @@ import (
 // AuthenticationAPIService AuthenticationAPI service
 type AuthenticationAPIService service
 
-type AuthenticationAPILoginRequest struct {
+type AuthenticationAPIGetAuthenticationProviderRequest struct {
 	ctx context.Context
 	ApiService *AuthenticationAPIService
-	authenticationRequestDto *AuthenticationRequestDto
+	email *string
 }
 
-func (r AuthenticationAPILoginRequest) AuthenticationRequestDto(authenticationRequestDto AuthenticationRequestDto) AuthenticationAPILoginRequest {
-	r.authenticationRequestDto = &authenticationRequestDto
+func (r AuthenticationAPIGetAuthenticationProviderRequest) Email(email string) AuthenticationAPIGetAuthenticationProviderRequest {
+	r.email = &email
 	return r
 }
 
-func (r AuthenticationAPILoginRequest) Execute() (*http.Response, error) {
+func (r AuthenticationAPIGetAuthenticationProviderRequest) Execute() (*AuthenticationUserProvider, *http.Response, error) {
+	return r.ApiService.GetAuthenticationProviderExecute(r)
+}
+
+/*
+GetAuthenticationProvider Retrieve authentication provider for an email
+
+Returns the authentication provider for the email address.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return AuthenticationAPIGetAuthenticationProviderRequest
+*/
+func (a *AuthenticationAPIService) GetAuthenticationProvider(ctx context.Context) AuthenticationAPIGetAuthenticationProviderRequest {
+	return AuthenticationAPIGetAuthenticationProviderRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return AuthenticationUserProvider
+func (a *AuthenticationAPIService) GetAuthenticationProviderExecute(r AuthenticationAPIGetAuthenticationProviderRequest) (*AuthenticationUserProvider, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AuthenticationUserProvider
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.GetAuthenticationProvider")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/authentication-provider"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.email == nil {
+		return localVarReturnValue, nil, reportError("email is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "form", "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type AuthenticationAPIGetAuthenticationProvidersRequest struct {
+	ctx context.Context
+	ApiService *AuthenticationAPIService
+}
+
+func (r AuthenticationAPIGetAuthenticationProvidersRequest) Execute() (*AuthenticationProviders, *http.Response, error) {
+	return r.ApiService.GetAuthenticationProvidersExecute(r)
+}
+
+/*
+GetAuthenticationProviders Retrieve all authentication providers
+
+Returns all available authentication providers.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return AuthenticationAPIGetAuthenticationProvidersRequest
+*/
+func (a *AuthenticationAPIService) GetAuthenticationProviders(ctx context.Context) AuthenticationAPIGetAuthenticationProvidersRequest {
+	return AuthenticationAPIGetAuthenticationProvidersRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return AuthenticationProviders
+func (a *AuthenticationAPIService) GetAuthenticationProvidersExecute(r AuthenticationAPIGetAuthenticationProvidersRequest) (*AuthenticationProviders, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AuthenticationProviders
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.GetAuthenticationProviders")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/authentication-providers"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type AuthenticationAPIGetCurrentUserRequest struct {
+	ctx context.Context
+	ApiService *AuthenticationAPIService
+	recursion *float32
+}
+
+// The recursion level of the displayed details. Default is 0.
+func (r AuthenticationAPIGetCurrentUserRequest) Recursion(recursion float32) AuthenticationAPIGetCurrentUserRequest {
+	r.recursion = &recursion
+	return r
+}
+
+func (r AuthenticationAPIGetCurrentUserRequest) Execute() (*User, *http.Response, error) {
+	return r.ApiService.GetCurrentUserExecute(r)
+}
+
+/*
+GetCurrentUser Get current user
+
+Return the current user.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return AuthenticationAPIGetCurrentUserRequest
+*/
+func (a *AuthenticationAPIService) GetCurrentUser(ctx context.Context) AuthenticationAPIGetCurrentUserRequest {
+	return AuthenticationAPIGetCurrentUserRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return User
+func (a *AuthenticationAPIService) GetCurrentUserExecute(r AuthenticationAPIGetCurrentUserRequest) (*User, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *User
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.GetCurrentUser")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/user"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.recursion != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "recursion", r.recursion, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type AuthenticationAPILoginRequest struct {
+	ctx context.Context
+	ApiService *AuthenticationAPIService
+	authenticationRequest *AuthenticationRequest
+}
+
+func (r AuthenticationAPILoginRequest) AuthenticationRequest(authenticationRequest AuthenticationRequest) AuthenticationAPILoginRequest {
+	r.authenticationRequest = &authenticationRequest
+	return r
+}
+
+func (r AuthenticationAPILoginRequest) Execute() (*User, *http.Response, error) {
 	return r.ApiService.LoginExecute(r)
 }
 
@@ -54,16 +371,18 @@ func (a *AuthenticationAPIService) Login(ctx context.Context) AuthenticationAPIL
 }
 
 // Execute executes the request
-func (a *AuthenticationAPIService) LoginExecute(r AuthenticationAPILoginRequest) (*http.Response, error) {
+//  @return User
+func (a *AuthenticationAPIService) LoginExecute(r AuthenticationAPILoginRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.Login")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/login"
@@ -71,8 +390,8 @@ func (a *AuthenticationAPIService) LoginExecute(r AuthenticationAPILoginRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authenticationRequestDto == nil {
-		return nil, reportError("authenticationRequestDto is required and must be specified")
+	if r.authenticationRequest == nil {
+		return localVarReturnValue, nil, reportError("authenticationRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -85,7 +404,7 @@ func (a *AuthenticationAPIService) LoginExecute(r AuthenticationAPILoginRequest)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -93,22 +412,22 @@ func (a *AuthenticationAPIService) LoginExecute(r AuthenticationAPILoginRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.authenticationRequestDto
+	localVarPostBody = r.authenticationRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -116,10 +435,19 @@ func (a *AuthenticationAPIService) LoginExecute(r AuthenticationAPILoginRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type AuthenticationAPILogoutRequest struct {

@@ -336,12 +336,15 @@ type OSTemplateAPIGetOSTemplatesRequest struct {
 	ApiService *OSTemplateAPIService
 	page *float32
 	limit *float32
-	filterStatus *[]string
-	filterName *[]string
+	filterDeviceType *[]string
 	filterLabel *[]string
+	filterOsName *[]string
+	filterStatus *[]string
+	filterVisibility *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
+	select_ *string
 }
 
 // Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
@@ -350,21 +353,15 @@ func (r OSTemplateAPIGetOSTemplatesRequest) Page(page float32) OSTemplateAPIGetO
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; -1           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; -1           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
 func (r OSTemplateAPIGetOSTemplatesRequest) Limit(limit float32) OSTemplateAPIGetOSTemplatesRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by status query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.status&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.status&#x3D;$not:$like:John Doe&amp;filter.status&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r OSTemplateAPIGetOSTemplatesRequest) FilterStatus(filterStatus []string) OSTemplateAPIGetOSTemplatesRequest {
-	r.filterStatus = &filterStatus
-	return r
-}
-
-// Filter by name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.name&#x3D;$not:$like:John Doe&amp;filter.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r OSTemplateAPIGetOSTemplatesRequest) FilterName(filterName []string) OSTemplateAPIGetOSTemplatesRequest {
-	r.filterName = &filterName
+// Filter by device.type query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.device.type&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.device.type&#x3D;$not:$like:John Doe&amp;filter.device.type&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r OSTemplateAPIGetOSTemplatesRequest) FilterDeviceType(filterDeviceType []string) OSTemplateAPIGetOSTemplatesRequest {
+	r.filterDeviceType = &filterDeviceType
 	return r
 }
 
@@ -374,7 +371,25 @@ func (r OSTemplateAPIGetOSTemplatesRequest) FilterLabel(filterLabel []string) OS
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;device.type&lt;/li&gt; &lt;li&gt;os.name&lt;/li&gt; &lt;li&gt;visibility&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;createdBy&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;modifiedAt&lt;/li&gt;&lt;/ul&gt;       
+// Filter by os.name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.os.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.os.name&#x3D;$not:$like:John Doe&amp;filter.os.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r OSTemplateAPIGetOSTemplatesRequest) FilterOsName(filterOsName []string) OSTemplateAPIGetOSTemplatesRequest {
+	r.filterOsName = &filterOsName
+	return r
+}
+
+// Filter by status query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.status&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.status&#x3D;$not:$like:John Doe&amp;filter.status&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r OSTemplateAPIGetOSTemplatesRequest) FilterStatus(filterStatus []string) OSTemplateAPIGetOSTemplatesRequest {
+	r.filterStatus = &filterStatus
+	return r
+}
+
+// Filter by visibility query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.visibility&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.visibility&#x3D;$not:$like:John Doe&amp;filter.visibility&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r OSTemplateAPIGetOSTemplatesRequest) FilterVisibility(filterVisibility []string) OSTemplateAPIGetOSTemplatesRequest {
+	r.filterVisibility = &filterVisibility
+	return r
+}
+
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;device.type&lt;/li&gt; &lt;li&gt;visibility&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;createdBy&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;modifiedAt&lt;/li&gt;&lt;/ul&gt;       
 func (r OSTemplateAPIGetOSTemplatesRequest) SortBy(sortBy []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -386,13 +401,19 @@ func (r OSTemplateAPIGetOSTemplatesRequest) Search(search string) OSTemplateAPIG
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,device.type           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;device.type&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,name,label,device.type,os.name           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;device.type&lt;/li&gt; &lt;li&gt;os.name&lt;/li&gt; &lt;li&gt;os.version&lt;/li&gt; &lt;li&gt;visibility&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;createdBy&lt;/li&gt; &lt;li&gt;modifiedBy&lt;/li&gt;&lt;/ul&gt;         
 func (r OSTemplateAPIGetOSTemplatesRequest) SearchBy(searchBy []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-func (r OSTemplateAPIGetOSTemplatesRequest) Execute() (*OSTemplateList, *http.Response, error) {
+// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,name,description,label,device.type           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
+func (r OSTemplateAPIGetOSTemplatesRequest) Select_(select_ string) OSTemplateAPIGetOSTemplatesRequest {
+	r.select_ = &select_
+	return r
+}
+
+func (r OSTemplateAPIGetOSTemplatesRequest) Execute() (*OSTemplatePaginatedList, *http.Response, error) {
 	return r.ApiService.GetOSTemplatesExecute(r)
 }
 
@@ -412,13 +433,13 @@ func (a *OSTemplateAPIService) GetOSTemplates(ctx context.Context) OSTemplateAPI
 }
 
 // Execute executes the request
-//  @return OSTemplateList
-func (a *OSTemplateAPIService) GetOSTemplatesExecute(r OSTemplateAPIGetOSTemplatesRequest) (*OSTemplateList, *http.Response, error) {
+//  @return OSTemplatePaginatedList
+func (a *OSTemplateAPIService) GetOSTemplatesExecute(r OSTemplateAPIGetOSTemplatesRequest) (*OSTemplatePaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *OSTemplateList
+		localVarReturnValue  *OSTemplatePaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OSTemplateAPIService.GetOSTemplates")
@@ -438,26 +459,15 @@ func (a *OSTemplateAPIService) GetOSTemplatesExecute(r OSTemplateAPIGetOSTemplat
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
-	if r.filterStatus != nil {
-		t := *r.filterStatus
+	if r.filterDeviceType != nil {
+		t := *r.filterDeviceType
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.device.type", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", t, "form", "multi")
-		}
-	}
-	if r.filterName != nil {
-		t := *r.filterName
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.device.type", t, "form", "multi")
 		}
 	}
 	if r.filterLabel != nil {
@@ -469,6 +479,39 @@ func (a *OSTemplateAPIService) GetOSTemplatesExecute(r OSTemplateAPIGetOSTemplat
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
+		}
+	}
+	if r.filterOsName != nil {
+		t := *r.filterOsName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.os.name", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.os.name", t, "form", "multi")
+		}
+	}
+	if r.filterStatus != nil {
+		t := *r.filterStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.status", t, "form", "multi")
+		}
+	}
+	if r.filterVisibility != nil {
+		t := *r.filterVisibility
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.visibility", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.visibility", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -495,6 +538,9 @@ func (a *OSTemplateAPIService) GetOSTemplatesExecute(r OSTemplateAPIGetOSTemplat
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
 		}
+	}
+	if r.select_ != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "select", r.select_, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

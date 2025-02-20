@@ -64,6 +64,21 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test FileShareAPIService GetFileShareConfigInfo", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var fileShareId float32
+
+		resp, httpRes, err := apiClient.FileShareAPI.GetFileShareConfigInfo(context.Background(), infrastructureId, fileShareId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test FileShareAPIService GetFileShareHosts", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -108,14 +123,29 @@ func Test_sdk_FileShareAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test FileShareAPIService UpdateFileShare", func(t *testing.T) {
+	t.Run("Test FileShareAPIService PatchFileShareMeta", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var infrastructureId float32
 		var fileShareId float32
 
-		resp, httpRes, err := apiClient.FileShareAPI.UpdateFileShare(context.Background(), infrastructureId, fileShareId).Execute()
+		resp, httpRes, err := apiClient.FileShareAPI.PatchFileShareMeta(context.Background(), infrastructureId, fileShareId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test FileShareAPIService UpdateFileShareConfig", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var fileShareId float32
+
+		resp, httpRes, err := apiClient.FileShareAPI.UpdateFileShareConfig(context.Background(), infrastructureId, fileShareId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

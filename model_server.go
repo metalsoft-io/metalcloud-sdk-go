@@ -59,8 +59,6 @@ type Server struct {
 	ProcessorThreads *float32 `json:"processorThreads,omitempty"`
 	// The disk count of the server.
 	DiskCount *float32 `json:"diskCount,omitempty"`
-	// The disk type of the server.
-	ServerDiskType string `json:"serverDiskType"`
 	// The management snmp port of the server.
 	MgmtSnmpPort *float32 `json:"mgmtSnmpPort,omitempty"`
 	// The management snmp password encrypted of the server.
@@ -70,9 +68,9 @@ type Server struct {
 	// The BDK debug flag.
 	BdkDebug float32 `json:"bdkDebug"`
 	// The metrics metadata of the server.
-	ServerMetricsMetadata *string `json:"serverMetricsMetadata,omitempty"`
+	ServerMetricsMetadata *map[string][]ServerMetricsInfo `json:"serverMetricsMetadata,omitempty"`
 	// The instance custom info of the server.
-	InstanceCustomInfo *string `json:"instanceCustomInfo,omitempty"`
+	InstanceCustomInfo map[string]interface{} `json:"instanceCustomInfo,omitempty"`
 	// The custom info of the server.
 	CustomInfo map[string]interface{} `json:"customInfo,omitempty"`
 	// The vendor of the server.
@@ -100,9 +98,9 @@ type Server struct {
 	// Flag to indicate if the server is booting a custom iso.
 	BootingCustomIsoInProgress *float32 `json:"bootingCustomIsoInProgress,omitempty"`
 	// The bios info of the server.
-	BiosInfo map[string]interface{} `json:"biosInfo,omitempty"`
+	BiosInfo *map[string]string `json:"biosInfo,omitempty"`
 	// The vendor info of the server.
-	VendorInfo map[string]interface{} `json:"vendorInfo,omitempty"`
+	VendorInfo *map[string]string `json:"vendorInfo,omitempty"`
 	// The class of the server.
 	ServerClass string `json:"serverClass"`
 	// The status of the server.
@@ -177,14 +175,13 @@ type _Server Server
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServer(serverId float32, revision float32, siteId float32, datacenterName string, passwordEncrypted string, serverDiskType string, bdkDebug float32, requiresReRegister float32, serverClass string, serverStatus string, administrationState string, serverDhcpStatus string, supportsFcProvisioning float32, serverCreatedTimestamp string, powerStatus string, powerStatusLastUpdateTimestamp string) *Server {
+func NewServer(serverId float32, revision float32, siteId float32, datacenterName string, passwordEncrypted string, bdkDebug float32, requiresReRegister float32, serverClass string, serverStatus string, administrationState string, serverDhcpStatus string, supportsFcProvisioning float32, serverCreatedTimestamp string, powerStatus string, powerStatusLastUpdateTimestamp string) *Server {
 	this := Server{}
 	this.ServerId = serverId
 	this.Revision = revision
 	this.SiteId = siteId
 	this.DatacenterName = datacenterName
 	this.PasswordEncrypted = passwordEncrypted
-	this.ServerDiskType = serverDiskType
 	this.BdkDebug = bdkDebug
 	this.RequiresReRegister = requiresReRegister
 	this.ServerClass = serverClass
@@ -774,30 +771,6 @@ func (o *Server) SetDiskCount(v float32) {
 	o.DiskCount = &v
 }
 
-// GetServerDiskType returns the ServerDiskType field value
-func (o *Server) GetServerDiskType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ServerDiskType
-}
-
-// GetServerDiskTypeOk returns a tuple with the ServerDiskType field value
-// and a boolean to check if the value has been set.
-func (o *Server) GetServerDiskTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ServerDiskType, true
-}
-
-// SetServerDiskType sets field value
-func (o *Server) SetServerDiskType(v string) {
-	o.ServerDiskType = v
-}
-
 // GetMgmtSnmpPort returns the MgmtSnmpPort field value if set, zero value otherwise.
 func (o *Server) GetMgmtSnmpPort() float32 {
 	if o == nil || IsNil(o.MgmtSnmpPort) {
@@ -919,9 +892,9 @@ func (o *Server) SetBdkDebug(v float32) {
 }
 
 // GetServerMetricsMetadata returns the ServerMetricsMetadata field value if set, zero value otherwise.
-func (o *Server) GetServerMetricsMetadata() string {
+func (o *Server) GetServerMetricsMetadata() map[string][]ServerMetricsInfo {
 	if o == nil || IsNil(o.ServerMetricsMetadata) {
-		var ret string
+		var ret map[string][]ServerMetricsInfo
 		return ret
 	}
 	return *o.ServerMetricsMetadata
@@ -929,7 +902,7 @@ func (o *Server) GetServerMetricsMetadata() string {
 
 // GetServerMetricsMetadataOk returns a tuple with the ServerMetricsMetadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetServerMetricsMetadataOk() (*string, bool) {
+func (o *Server) GetServerMetricsMetadataOk() (*map[string][]ServerMetricsInfo, bool) {
 	if o == nil || IsNil(o.ServerMetricsMetadata) {
 		return nil, false
 	}
@@ -945,25 +918,25 @@ func (o *Server) HasServerMetricsMetadata() bool {
 	return false
 }
 
-// SetServerMetricsMetadata gets a reference to the given string and assigns it to the ServerMetricsMetadata field.
-func (o *Server) SetServerMetricsMetadata(v string) {
+// SetServerMetricsMetadata gets a reference to the given map[string][]ServerMetricsInfo and assigns it to the ServerMetricsMetadata field.
+func (o *Server) SetServerMetricsMetadata(v map[string][]ServerMetricsInfo) {
 	o.ServerMetricsMetadata = &v
 }
 
 // GetInstanceCustomInfo returns the InstanceCustomInfo field value if set, zero value otherwise.
-func (o *Server) GetInstanceCustomInfo() string {
+func (o *Server) GetInstanceCustomInfo() map[string]interface{} {
 	if o == nil || IsNil(o.InstanceCustomInfo) {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.InstanceCustomInfo
+	return o.InstanceCustomInfo
 }
 
 // GetInstanceCustomInfoOk returns a tuple with the InstanceCustomInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetInstanceCustomInfoOk() (*string, bool) {
+func (o *Server) GetInstanceCustomInfoOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.InstanceCustomInfo) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.InstanceCustomInfo, true
 }
@@ -977,9 +950,9 @@ func (o *Server) HasInstanceCustomInfo() bool {
 	return false
 }
 
-// SetInstanceCustomInfo gets a reference to the given string and assigns it to the InstanceCustomInfo field.
-func (o *Server) SetInstanceCustomInfo(v string) {
-	o.InstanceCustomInfo = &v
+// SetInstanceCustomInfo gets a reference to the given map[string]interface{} and assigns it to the InstanceCustomInfo field.
+func (o *Server) SetInstanceCustomInfo(v map[string]interface{}) {
+	o.InstanceCustomInfo = v
 }
 
 // GetCustomInfo returns the CustomInfo field value if set, zero value otherwise.
@@ -1391,19 +1364,19 @@ func (o *Server) SetBootingCustomIsoInProgress(v float32) {
 }
 
 // GetBiosInfo returns the BiosInfo field value if set, zero value otherwise.
-func (o *Server) GetBiosInfo() map[string]interface{} {
+func (o *Server) GetBiosInfo() map[string]string {
 	if o == nil || IsNil(o.BiosInfo) {
-		var ret map[string]interface{}
+		var ret map[string]string
 		return ret
 	}
-	return o.BiosInfo
+	return *o.BiosInfo
 }
 
 // GetBiosInfoOk returns a tuple with the BiosInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetBiosInfoOk() (map[string]interface{}, bool) {
+func (o *Server) GetBiosInfoOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.BiosInfo) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.BiosInfo, true
 }
@@ -1417,25 +1390,25 @@ func (o *Server) HasBiosInfo() bool {
 	return false
 }
 
-// SetBiosInfo gets a reference to the given map[string]interface{} and assigns it to the BiosInfo field.
-func (o *Server) SetBiosInfo(v map[string]interface{}) {
-	o.BiosInfo = v
+// SetBiosInfo gets a reference to the given map[string]string and assigns it to the BiosInfo field.
+func (o *Server) SetBiosInfo(v map[string]string) {
+	o.BiosInfo = &v
 }
 
 // GetVendorInfo returns the VendorInfo field value if set, zero value otherwise.
-func (o *Server) GetVendorInfo() map[string]interface{} {
+func (o *Server) GetVendorInfo() map[string]string {
 	if o == nil || IsNil(o.VendorInfo) {
-		var ret map[string]interface{}
+		var ret map[string]string
 		return ret
 	}
-	return o.VendorInfo
+	return *o.VendorInfo
 }
 
 // GetVendorInfoOk returns a tuple with the VendorInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetVendorInfoOk() (map[string]interface{}, bool) {
+func (o *Server) GetVendorInfoOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.VendorInfo) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.VendorInfo, true
 }
@@ -1449,9 +1422,9 @@ func (o *Server) HasVendorInfo() bool {
 	return false
 }
 
-// SetVendorInfo gets a reference to the given map[string]interface{} and assigns it to the VendorInfo field.
-func (o *Server) SetVendorInfo(v map[string]interface{}) {
-	o.VendorInfo = v
+// SetVendorInfo gets a reference to the given map[string]string and assigns it to the VendorInfo field.
+func (o *Server) SetVendorInfo(v map[string]string) {
+	o.VendorInfo = &v
 }
 
 // GetServerClass returns the ServerClass field value
@@ -2503,7 +2476,6 @@ func (o Server) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DiskCount) {
 		toSerialize["diskCount"] = o.DiskCount
 	}
-	toSerialize["serverDiskType"] = o.ServerDiskType
 	if !IsNil(o.MgmtSnmpPort) {
 		toSerialize["mgmtSnmpPort"] = o.MgmtSnmpPort
 	}
@@ -2664,7 +2636,6 @@ func (o *Server) UnmarshalJSON(data []byte) (err error) {
 		"siteId",
 		"datacenterName",
 		"passwordEncrypted",
-		"serverDiskType",
 		"bdkDebug",
 		"requiresReRegister",
 		"serverClass",
@@ -2723,7 +2694,6 @@ func (o *Server) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "processorCpuMark")
 		delete(additionalProperties, "processorThreads")
 		delete(additionalProperties, "diskCount")
-		delete(additionalProperties, "serverDiskType")
 		delete(additionalProperties, "mgmtSnmpPort")
 		delete(additionalProperties, "mgmtSnmpPasswordEncrypted")
 		delete(additionalProperties, "bmcMacAddress")

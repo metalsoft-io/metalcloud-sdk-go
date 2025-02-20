@@ -28,15 +28,15 @@ type FirmwareBinaryAPIService service
 type FirmwareBinaryAPICreateFirmwareBinaryRequest struct {
 	ctx context.Context
 	ApiService *FirmwareBinaryAPIService
-	createFirmwareBinaryDto *CreateFirmwareBinaryDto
+	createFirmwareBinary *CreateFirmwareBinary
 }
 
-func (r FirmwareBinaryAPICreateFirmwareBinaryRequest) CreateFirmwareBinaryDto(createFirmwareBinaryDto CreateFirmwareBinaryDto) FirmwareBinaryAPICreateFirmwareBinaryRequest {
-	r.createFirmwareBinaryDto = &createFirmwareBinaryDto
+func (r FirmwareBinaryAPICreateFirmwareBinaryRequest) CreateFirmwareBinary(createFirmwareBinary CreateFirmwareBinary) FirmwareBinaryAPICreateFirmwareBinaryRequest {
+	r.createFirmwareBinary = &createFirmwareBinary
 	return r
 }
 
-func (r FirmwareBinaryAPICreateFirmwareBinaryRequest) Execute() (*FirmwareBinaryDto, *http.Response, error) {
+func (r FirmwareBinaryAPICreateFirmwareBinaryRequest) Execute() (*FirmwareBinary, *http.Response, error) {
 	return r.ApiService.CreateFirmwareBinaryExecute(r)
 }
 
@@ -56,13 +56,13 @@ func (a *FirmwareBinaryAPIService) CreateFirmwareBinary(ctx context.Context) Fir
 }
 
 // Execute executes the request
-//  @return FirmwareBinaryDto
-func (a *FirmwareBinaryAPIService) CreateFirmwareBinaryExecute(r FirmwareBinaryAPICreateFirmwareBinaryRequest) (*FirmwareBinaryDto, *http.Response, error) {
+//  @return FirmwareBinary
+func (a *FirmwareBinaryAPIService) CreateFirmwareBinaryExecute(r FirmwareBinaryAPICreateFirmwareBinaryRequest) (*FirmwareBinary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FirmwareBinaryDto
+		localVarReturnValue  *FirmwareBinary
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareBinaryAPIService.CreateFirmwareBinary")
@@ -75,8 +75,8 @@ func (a *FirmwareBinaryAPIService) CreateFirmwareBinaryExecute(r FirmwareBinaryA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createFirmwareBinaryDto == nil {
-		return localVarReturnValue, nil, reportError("createFirmwareBinaryDto is required and must be specified")
+	if r.createFirmwareBinary == nil {
+		return localVarReturnValue, nil, reportError("createFirmwareBinary is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -97,7 +97,7 @@ func (a *FirmwareBinaryAPIService) CreateFirmwareBinaryExecute(r FirmwareBinaryA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createFirmwareBinaryDto
+	localVarPostBody = r.createFirmwareBinary
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -570,7 +570,7 @@ type FirmwareBinaryAPIGetFirmwareBinaryRequest struct {
 	firmwareBinaryId float32
 }
 
-func (r FirmwareBinaryAPIGetFirmwareBinaryRequest) Execute() (*FirmwareBinaryDto, *http.Response, error) {
+func (r FirmwareBinaryAPIGetFirmwareBinaryRequest) Execute() (*FirmwareBinary, *http.Response, error) {
 	return r.ApiService.GetFirmwareBinaryExecute(r)
 }
 
@@ -592,13 +592,13 @@ func (a *FirmwareBinaryAPIService) GetFirmwareBinary(ctx context.Context, firmwa
 }
 
 // Execute executes the request
-//  @return FirmwareBinaryDto
-func (a *FirmwareBinaryAPIService) GetFirmwareBinaryExecute(r FirmwareBinaryAPIGetFirmwareBinaryRequest) (*FirmwareBinaryDto, *http.Response, error) {
+//  @return FirmwareBinary
+func (a *FirmwareBinaryAPIService) GetFirmwareBinaryExecute(r FirmwareBinaryAPIGetFirmwareBinaryRequest) (*FirmwareBinary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FirmwareBinaryDto
+		localVarReturnValue  *FirmwareBinary
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareBinaryAPIService.GetFirmwareBinary")
@@ -671,15 +671,15 @@ type FirmwareBinaryAPIUpdateFirmwareBinaryRequest struct {
 	ctx context.Context
 	ApiService *FirmwareBinaryAPIService
 	firmwareBinaryId float32
-	updateFirmwareBinaryDto *UpdateFirmwareBinaryDto
+	updateFirmwareBinary *UpdateFirmwareBinary
 }
 
-func (r FirmwareBinaryAPIUpdateFirmwareBinaryRequest) UpdateFirmwareBinaryDto(updateFirmwareBinaryDto UpdateFirmwareBinaryDto) FirmwareBinaryAPIUpdateFirmwareBinaryRequest {
-	r.updateFirmwareBinaryDto = &updateFirmwareBinaryDto
+func (r FirmwareBinaryAPIUpdateFirmwareBinaryRequest) UpdateFirmwareBinary(updateFirmwareBinary UpdateFirmwareBinary) FirmwareBinaryAPIUpdateFirmwareBinaryRequest {
+	r.updateFirmwareBinary = &updateFirmwareBinary
 	return r
 }
 
-func (r FirmwareBinaryAPIUpdateFirmwareBinaryRequest) Execute() (*FirmwareBinaryDto, *http.Response, error) {
+func (r FirmwareBinaryAPIUpdateFirmwareBinaryRequest) Execute() (*FirmwareBinary, *http.Response, error) {
 	return r.ApiService.UpdateFirmwareBinaryExecute(r)
 }
 
@@ -701,13 +701,13 @@ func (a *FirmwareBinaryAPIService) UpdateFirmwareBinary(ctx context.Context, fir
 }
 
 // Execute executes the request
-//  @return FirmwareBinaryDto
-func (a *FirmwareBinaryAPIService) UpdateFirmwareBinaryExecute(r FirmwareBinaryAPIUpdateFirmwareBinaryRequest) (*FirmwareBinaryDto, *http.Response, error) {
+//  @return FirmwareBinary
+func (a *FirmwareBinaryAPIService) UpdateFirmwareBinaryExecute(r FirmwareBinaryAPIUpdateFirmwareBinaryRequest) (*FirmwareBinary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FirmwareBinaryDto
+		localVarReturnValue  *FirmwareBinary
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareBinaryAPIService.UpdateFirmwareBinary")
@@ -721,8 +721,8 @@ func (a *FirmwareBinaryAPIService) UpdateFirmwareBinaryExecute(r FirmwareBinaryA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateFirmwareBinaryDto == nil {
-		return localVarReturnValue, nil, reportError("updateFirmwareBinaryDto is required and must be specified")
+	if r.updateFirmwareBinary == nil {
+		return localVarReturnValue, nil, reportError("updateFirmwareBinary is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -743,7 +743,7 @@ func (a *FirmwareBinaryAPIService) UpdateFirmwareBinaryExecute(r FirmwareBinaryA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateFirmwareBinaryDto
+	localVarPostBody = r.updateFirmwareBinary
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

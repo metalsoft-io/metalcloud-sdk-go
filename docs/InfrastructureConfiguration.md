@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerTypeIdToPreferredServerIds** | Pointer to **map[string]interface{}** | An object having as key the server type id and as value an array of preferred server ids | [optional] 
 **Revision** | **float32** | Revision of the Infrastructure | 
-**InfrastructureDeployId** | Pointer to **float32** | Id of the deployment for the Infrastructure | [optional] 
 **DeployType** | **string** | Deploy type of the Infrastructure | [default to "create"]
 **DeployStatus** | **string** | Deploy status of the Infrastructure | [default to "not_started"]
+**ServerTypeIdToPreferredServerIds** | Pointer to **map[string]interface{}** | An object having as key the server type id and as value an array of preferred server ids | [optional] 
+**InfrastructureDeployId** | Pointer to **float32** | Id of the deployment for the Infrastructure | [optional] 
 **DnsSubdomainChangeId** | Pointer to **float32** | DNS Subdomain Change ID | [optional] 
 **Label** | **string** | Label of the Infrastructure. | 
 **DatacenterName** | **string** | Datacenter name where the Infrastructure is located. | 
@@ -21,7 +21,6 @@ Name | Type | Description | Notes
 **Ipv4SubnetsCountActive** | Pointer to **float32** | Number of active IPv4 subnets. | [optional] 
 **Ipv6SubnetsCountActive** | Pointer to **float32** | Number of active IPv6 subnets. | [optional] 
 **Ipv4UnusedIpAddresses** | Pointer to **float32** | Number of unused IPv4 addresses. | [optional] 
-**Tags** | Pointer to **[]string** | Infrastructure tags. | [optional] 
 **Description** | Pointer to **string** | Description of the infrastructure. | [optional] 
 **Settings** | Pointer to **string** | Settings in JSON format. | [optional] 
 **IsApiPrivate** | Pointer to **float32** | Whether the infrastructure API is private. | [optional] 
@@ -36,7 +35,6 @@ Name | Type | Description | Notes
 **SubnetPoolLan** | Pointer to **string** | Subnet pool for LAN in JSON format. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update for the Infrastructure. | 
 **DnsSubdomainId** | Pointer to **float32** | DNS Subdomain ID. | [optional] 
-**Meta** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
 
 ## Methods
 
@@ -57,31 +55,6 @@ NewInfrastructureConfigurationWithDefaults instantiates a new InfrastructureConf
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetServerTypeIdToPreferredServerIds
-
-`func (o *InfrastructureConfiguration) GetServerTypeIdToPreferredServerIds() map[string]interface{}`
-
-GetServerTypeIdToPreferredServerIds returns the ServerTypeIdToPreferredServerIds field if non-nil, zero value otherwise.
-
-### GetServerTypeIdToPreferredServerIdsOk
-
-`func (o *InfrastructureConfiguration) GetServerTypeIdToPreferredServerIdsOk() (*map[string]interface{}, bool)`
-
-GetServerTypeIdToPreferredServerIdsOk returns a tuple with the ServerTypeIdToPreferredServerIds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetServerTypeIdToPreferredServerIds
-
-`func (o *InfrastructureConfiguration) SetServerTypeIdToPreferredServerIds(v map[string]interface{})`
-
-SetServerTypeIdToPreferredServerIds sets ServerTypeIdToPreferredServerIds field to given value.
-
-### HasServerTypeIdToPreferredServerIds
-
-`func (o *InfrastructureConfiguration) HasServerTypeIdToPreferredServerIds() bool`
-
-HasServerTypeIdToPreferredServerIds returns a boolean if a field has been set.
-
 ### GetRevision
 
 `func (o *InfrastructureConfiguration) GetRevision() float32`
@@ -101,31 +74,6 @@ and a boolean to check if the value has been set.
 
 SetRevision sets Revision field to given value.
 
-
-### GetInfrastructureDeployId
-
-`func (o *InfrastructureConfiguration) GetInfrastructureDeployId() float32`
-
-GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
-
-### GetInfrastructureDeployIdOk
-
-`func (o *InfrastructureConfiguration) GetInfrastructureDeployIdOk() (*float32, bool)`
-
-GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInfrastructureDeployId
-
-`func (o *InfrastructureConfiguration) SetInfrastructureDeployId(v float32)`
-
-SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
-
-### HasInfrastructureDeployId
-
-`func (o *InfrastructureConfiguration) HasInfrastructureDeployId() bool`
-
-HasInfrastructureDeployId returns a boolean if a field has been set.
 
 ### GetDeployType
 
@@ -166,6 +114,56 @@ and a boolean to check if the value has been set.
 
 SetDeployStatus sets DeployStatus field to given value.
 
+
+### GetServerTypeIdToPreferredServerIds
+
+`func (o *InfrastructureConfiguration) GetServerTypeIdToPreferredServerIds() map[string]interface{}`
+
+GetServerTypeIdToPreferredServerIds returns the ServerTypeIdToPreferredServerIds field if non-nil, zero value otherwise.
+
+### GetServerTypeIdToPreferredServerIdsOk
+
+`func (o *InfrastructureConfiguration) GetServerTypeIdToPreferredServerIdsOk() (*map[string]interface{}, bool)`
+
+GetServerTypeIdToPreferredServerIdsOk returns a tuple with the ServerTypeIdToPreferredServerIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerTypeIdToPreferredServerIds
+
+`func (o *InfrastructureConfiguration) SetServerTypeIdToPreferredServerIds(v map[string]interface{})`
+
+SetServerTypeIdToPreferredServerIds sets ServerTypeIdToPreferredServerIds field to given value.
+
+### HasServerTypeIdToPreferredServerIds
+
+`func (o *InfrastructureConfiguration) HasServerTypeIdToPreferredServerIds() bool`
+
+HasServerTypeIdToPreferredServerIds returns a boolean if a field has been set.
+
+### GetInfrastructureDeployId
+
+`func (o *InfrastructureConfiguration) GetInfrastructureDeployId() float32`
+
+GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
+
+### GetInfrastructureDeployIdOk
+
+`func (o *InfrastructureConfiguration) GetInfrastructureDeployIdOk() (*float32, bool)`
+
+GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructureDeployId
+
+`func (o *InfrastructureConfiguration) SetInfrastructureDeployId(v float32)`
+
+SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
+
+### HasInfrastructureDeployId
+
+`func (o *InfrastructureConfiguration) HasInfrastructureDeployId() bool`
+
+HasInfrastructureDeployId returns a boolean if a field has been set.
 
 ### GetDnsSubdomainChangeId
 
@@ -451,31 +449,6 @@ SetIpv4UnusedIpAddresses sets Ipv4UnusedIpAddresses field to given value.
 `func (o *InfrastructureConfiguration) HasIpv4UnusedIpAddresses() bool`
 
 HasIpv4UnusedIpAddresses returns a boolean if a field has been set.
-
-### GetTags
-
-`func (o *InfrastructureConfiguration) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *InfrastructureConfiguration) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *InfrastructureConfiguration) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *InfrastructureConfiguration) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -821,31 +794,6 @@ SetDnsSubdomainId sets DnsSubdomainId field to given value.
 `func (o *InfrastructureConfiguration) HasDnsSubdomainId() bool`
 
 HasDnsSubdomainId returns a boolean if a field has been set.
-
-### GetMeta
-
-`func (o *InfrastructureConfiguration) GetMeta() GenericGUISettings`
-
-GetMeta returns the Meta field if non-nil, zero value otherwise.
-
-### GetMetaOk
-
-`func (o *InfrastructureConfiguration) GetMetaOk() (*GenericGUISettings, bool)`
-
-GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMeta
-
-`func (o *InfrastructureConfiguration) SetMeta(v GenericGUISettings)`
-
-SetMeta sets Meta field to given value.
-
-### HasMeta
-
-`func (o *InfrastructureConfiguration) HasMeta() bool`
-
-HasMeta returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

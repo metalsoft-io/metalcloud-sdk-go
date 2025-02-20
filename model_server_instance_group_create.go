@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerInstanceGroupCreate{}
 type ServerInstanceGroupCreate struct {
 	// The server instance group label. Will be automatically generated if not provided.
 	Label *string `json:"label,omitempty"`
-	ClusterId *int32 `json:"clusterId,omitempty"`
+	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`
 	InstanceCount *int32 `json:"instanceCount,omitempty"`
 	VolumeTemplateId *int32 `json:"volumeTemplateId,omitempty"`
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
@@ -89,36 +89,36 @@ func (o *ServerInstanceGroupCreate) SetLabel(v string) {
 	o.Label = &v
 }
 
-// GetClusterId returns the ClusterId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupCreate) GetClusterId() int32 {
-	if o == nil || IsNil(o.ClusterId) {
+// GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise.
+func (o *ServerInstanceGroupCreate) GetExtensionInstanceId() int32 {
+	if o == nil || IsNil(o.ExtensionInstanceId) {
 		var ret int32
 		return ret
 	}
-	return *o.ClusterId
+	return *o.ExtensionInstanceId
 }
 
-// GetClusterIdOk returns a tuple with the ClusterId field value if set, nil otherwise
+// GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupCreate) GetClusterIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.ClusterId) {
+func (o *ServerInstanceGroupCreate) GetExtensionInstanceIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.ExtensionInstanceId) {
 		return nil, false
 	}
-	return o.ClusterId, true
+	return o.ExtensionInstanceId, true
 }
 
-// HasClusterId returns a boolean if a field has been set.
-func (o *ServerInstanceGroupCreate) HasClusterId() bool {
-	if o != nil && !IsNil(o.ClusterId) {
+// HasExtensionInstanceId returns a boolean if a field has been set.
+func (o *ServerInstanceGroupCreate) HasExtensionInstanceId() bool {
+	if o != nil && !IsNil(o.ExtensionInstanceId) {
 		return true
 	}
 
 	return false
 }
 
-// SetClusterId gets a reference to the given int32 and assigns it to the ClusterId field.
-func (o *ServerInstanceGroupCreate) SetClusterId(v int32) {
-	o.ClusterId = &v
+// SetExtensionInstanceId gets a reference to the given int32 and assigns it to the ExtensionInstanceId field.
+func (o *ServerInstanceGroupCreate) SetExtensionInstanceId(v int32) {
+	o.ExtensionInstanceId = &v
 }
 
 // GetInstanceCount returns the InstanceCount field value if set, zero value otherwise.
@@ -358,8 +358,8 @@ func (o ServerInstanceGroupCreate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
-	if !IsNil(o.ClusterId) {
-		toSerialize["clusterId"] = o.ClusterId
+	if !IsNil(o.ExtensionInstanceId) {
+		toSerialize["extensionInstanceId"] = o.ExtensionInstanceId
 	}
 	if !IsNil(o.InstanceCount) {
 		toSerialize["instanceCount"] = o.InstanceCount
@@ -405,7 +405,7 @@ func (o *ServerInstanceGroupCreate) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
-		delete(additionalProperties, "clusterId")
+		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "instanceCount")
 		delete(additionalProperties, "volumeTemplateId")
 		delete(additionalProperties, "customVariables")
