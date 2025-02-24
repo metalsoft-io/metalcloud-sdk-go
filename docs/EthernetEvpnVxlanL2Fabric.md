@@ -4,29 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DefaultNetworkProfileId** | **float32** |  | 
-**GnmiMonitoringEnabled** | Pointer to **bool** |  | [optional] 
-**SyslogMonitoringEnabled** | Pointer to **bool** |  | [optional] 
-**ZeroTouchEnabled** | Pointer to **bool** |  | [optional] 
-**AllocateDefaultVlan** | Pointer to **bool** |  | [optional] 
-**AsnRanges** | Pointer to **[]string** |  | [optional] 
-**DefaultVlan** | Pointer to **float32** |  | [optional] 
-**ExtraInternalIPsPerSubnet** | Pointer to **float32** |  | [optional] 
-**LagRanges** | Pointer to **[]string** |  | [optional] 
-**LeafSwitchesHaveMlagPairs** | Pointer to **bool** |  | [optional] 
-**MlagRanges** | Pointer to **[]string** | MLAG ID ranges. Values must be between 1 and 4096. | [optional] 
-**NumberOfSpinesNextToLeafSwitches** | **float32** | Number of spines next to leaf switches | 
-**PreventVlanCleanup** | Pointer to **[]string** |  | [optional] 
-**PreventCleanupFromUplinks** | Pointer to **bool** |  | [optional] 
-**ReservedVlans** | Pointer to **[]string** |  | [optional] 
-**VlanRanges** | Pointer to **[]string** | Array of VLAN range strings in format \&quot;start-end\&quot; | [optional] 
-**VniPrefix** | Pointer to **float32** |  | [optional] 
+**DefaultNetworkProfileId** | **int32** | Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile. | 
+**GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
+**SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
+**ZeroTouchEnabled** | Pointer to **bool** | Enables zero-touch provisioning for automatic device configuration. | [optional] 
+**AllocateDefaultVlan** | Pointer to **bool** | Indicates whether to automatically allocate a default VLAN. | [optional] 
+**AsnRanges** | Pointer to **[]string** | ASN ranges in the format \&quot;start-end\&quot;, where each range is an ordered pair with values between 1 and 4294967295. | [optional] 
+**DefaultVlan** | Pointer to **int32** | Default VLAN ID. Must be a number between 1 and 4096. | [optional] 
+**ExtraInternalIPsPerSubnet** | Pointer to **int32** | Extra internal IPs allocated per subnet; valid range is between 1 and 1000. | [optional] 
+**LagRanges** | Pointer to **[]string** | Link Aggregation (LAG) ranges in the format \&quot;start-end\&quot;; each range must be within the bounds of 1 to 4096. | [optional] 
+**LeafSwitchesHaveMlagPairs** | Pointer to **bool** | Indicates if leaf switches have MLAG pairs. | [optional] 
+**MlagRanges** | Pointer to **[]string** | MLAG ID ranges. Each range must be provided in \&quot;start-end\&quot; format with values between 1 and 4096. | [optional] 
+**NumberOfSpinesNextToLeafSwitches** | **int32** | Number of spines adjacent to leaf switches. Must be a positive number. | 
+**PreventVlanCleanup** | Pointer to **[]string** | VLAN ranges that should be prevented from automatic cleanup. Format must be \&quot;start-end\&quot;. | [optional] 
+**PreventCleanupFromUplinks** | Pointer to **bool** | Flag indicating whether cleanup from uplink interfaces should be prevented. | [optional] 
+**ReservedVlans** | Pointer to **[]string** | Reserved VLAN ranges that are excluded from general allocation. Must follow the \&quot;start-end\&quot; format. | [optional] 
+**VlanRanges** | Pointer to **[]string** | Array of VLAN range strings in \&quot;start-end\&quot; format to be used in configuration. | [optional] 
+**VniPrefix** | Pointer to **int32** | The VNI prefix for the EVPN VXLAN fabric. | [optional] 
 
 ## Methods
 
 ### NewEthernetEvpnVxlanL2Fabric
 
-`func NewEthernetEvpnVxlanL2Fabric(defaultNetworkProfileId float32, numberOfSpinesNextToLeafSwitches float32, ) *EthernetEvpnVxlanL2Fabric`
+`func NewEthernetEvpnVxlanL2Fabric(defaultNetworkProfileId int32, numberOfSpinesNextToLeafSwitches int32, ) *EthernetEvpnVxlanL2Fabric`
 
 NewEthernetEvpnVxlanL2Fabric instantiates a new EthernetEvpnVxlanL2Fabric object
 This constructor will assign default values to properties that have it defined,
@@ -43,20 +43,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDefaultNetworkProfileId
 
-`func (o *EthernetEvpnVxlanL2Fabric) GetDefaultNetworkProfileId() float32`
+`func (o *EthernetEvpnVxlanL2Fabric) GetDefaultNetworkProfileId() int32`
 
 GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field if non-nil, zero value otherwise.
 
 ### GetDefaultNetworkProfileIdOk
 
-`func (o *EthernetEvpnVxlanL2Fabric) GetDefaultNetworkProfileIdOk() (*float32, bool)`
+`func (o *EthernetEvpnVxlanL2Fabric) GetDefaultNetworkProfileIdOk() (*int32, bool)`
 
 GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultNetworkProfileId
 
-`func (o *EthernetEvpnVxlanL2Fabric) SetDefaultNetworkProfileId(v float32)`
+`func (o *EthernetEvpnVxlanL2Fabric) SetDefaultNetworkProfileId(v int32)`
 
 SetDefaultNetworkProfileId sets DefaultNetworkProfileId field to given value.
 
@@ -188,20 +188,20 @@ HasAsnRanges returns a boolean if a field has been set.
 
 ### GetDefaultVlan
 
-`func (o *EthernetEvpnVxlanL2Fabric) GetDefaultVlan() float32`
+`func (o *EthernetEvpnVxlanL2Fabric) GetDefaultVlan() int32`
 
 GetDefaultVlan returns the DefaultVlan field if non-nil, zero value otherwise.
 
 ### GetDefaultVlanOk
 
-`func (o *EthernetEvpnVxlanL2Fabric) GetDefaultVlanOk() (*float32, bool)`
+`func (o *EthernetEvpnVxlanL2Fabric) GetDefaultVlanOk() (*int32, bool)`
 
 GetDefaultVlanOk returns a tuple with the DefaultVlan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultVlan
 
-`func (o *EthernetEvpnVxlanL2Fabric) SetDefaultVlan(v float32)`
+`func (o *EthernetEvpnVxlanL2Fabric) SetDefaultVlan(v int32)`
 
 SetDefaultVlan sets DefaultVlan field to given value.
 
@@ -213,20 +213,20 @@ HasDefaultVlan returns a boolean if a field has been set.
 
 ### GetExtraInternalIPsPerSubnet
 
-`func (o *EthernetEvpnVxlanL2Fabric) GetExtraInternalIPsPerSubnet() float32`
+`func (o *EthernetEvpnVxlanL2Fabric) GetExtraInternalIPsPerSubnet() int32`
 
 GetExtraInternalIPsPerSubnet returns the ExtraInternalIPsPerSubnet field if non-nil, zero value otherwise.
 
 ### GetExtraInternalIPsPerSubnetOk
 
-`func (o *EthernetEvpnVxlanL2Fabric) GetExtraInternalIPsPerSubnetOk() (*float32, bool)`
+`func (o *EthernetEvpnVxlanL2Fabric) GetExtraInternalIPsPerSubnetOk() (*int32, bool)`
 
 GetExtraInternalIPsPerSubnetOk returns a tuple with the ExtraInternalIPsPerSubnet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExtraInternalIPsPerSubnet
 
-`func (o *EthernetEvpnVxlanL2Fabric) SetExtraInternalIPsPerSubnet(v float32)`
+`func (o *EthernetEvpnVxlanL2Fabric) SetExtraInternalIPsPerSubnet(v int32)`
 
 SetExtraInternalIPsPerSubnet sets ExtraInternalIPsPerSubnet field to given value.
 
@@ -313,20 +313,20 @@ HasMlagRanges returns a boolean if a field has been set.
 
 ### GetNumberOfSpinesNextToLeafSwitches
 
-`func (o *EthernetEvpnVxlanL2Fabric) GetNumberOfSpinesNextToLeafSwitches() float32`
+`func (o *EthernetEvpnVxlanL2Fabric) GetNumberOfSpinesNextToLeafSwitches() int32`
 
 GetNumberOfSpinesNextToLeafSwitches returns the NumberOfSpinesNextToLeafSwitches field if non-nil, zero value otherwise.
 
 ### GetNumberOfSpinesNextToLeafSwitchesOk
 
-`func (o *EthernetEvpnVxlanL2Fabric) GetNumberOfSpinesNextToLeafSwitchesOk() (*float32, bool)`
+`func (o *EthernetEvpnVxlanL2Fabric) GetNumberOfSpinesNextToLeafSwitchesOk() (*int32, bool)`
 
 GetNumberOfSpinesNextToLeafSwitchesOk returns a tuple with the NumberOfSpinesNextToLeafSwitches field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNumberOfSpinesNextToLeafSwitches
 
-`func (o *EthernetEvpnVxlanL2Fabric) SetNumberOfSpinesNextToLeafSwitches(v float32)`
+`func (o *EthernetEvpnVxlanL2Fabric) SetNumberOfSpinesNextToLeafSwitches(v int32)`
 
 SetNumberOfSpinesNextToLeafSwitches sets NumberOfSpinesNextToLeafSwitches field to given value.
 
@@ -433,20 +433,20 @@ HasVlanRanges returns a boolean if a field has been set.
 
 ### GetVniPrefix
 
-`func (o *EthernetEvpnVxlanL2Fabric) GetVniPrefix() float32`
+`func (o *EthernetEvpnVxlanL2Fabric) GetVniPrefix() int32`
 
 GetVniPrefix returns the VniPrefix field if non-nil, zero value otherwise.
 
 ### GetVniPrefixOk
 
-`func (o *EthernetEvpnVxlanL2Fabric) GetVniPrefixOk() (*float32, bool)`
+`func (o *EthernetEvpnVxlanL2Fabric) GetVniPrefixOk() (*int32, bool)`
 
 GetVniPrefixOk returns a tuple with the VniPrefix field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVniPrefix
 
-`func (o *EthernetEvpnVxlanL2Fabric) SetVniPrefix(v float32)`
+`func (o *EthernetEvpnVxlanL2Fabric) SetVniPrefix(v int32)`
 
 SetVniPrefix sets VniPrefix field to given value.
 

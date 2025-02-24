@@ -17,7 +17,7 @@ import (
 	"fmt"
 )
 
-// NetworkFabricFabricConfiguration - The fabric configuration
+// NetworkFabricFabricConfiguration - Fabric configuration
 type NetworkFabricFabricConfiguration struct {
 	EthernetEvpnVxlanL2Fabric *EthernetEvpnVxlanL2Fabric
 	EthernetEvpnVxlanL3Fabric *EthernetEvpnVxlanL3Fabric

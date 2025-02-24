@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UpdateNetworkFabric type satisfies the MappedNullable interface at compile time
@@ -22,16 +21,12 @@ var _ MappedNullable = &UpdateNetworkFabric{}
 // UpdateNetworkFabric struct for UpdateNetworkFabric
 type UpdateNetworkFabric struct {
 	// The network fabric name
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// Network fabric description
 	Description *string `json:"description,omitempty"`
 	// The type of network fabric
-	FabricType string `json:"fabricType"`
-	FabricConfiguration NetworkFabricFabricConfiguration `json:"fabricConfiguration"`
-	// Revision number of the entity
-	Revision float32 `json:"revision"`
-	// The network fabric ID.
-	Id string `json:"id"`
+	FabricType *string `json:"fabricType,omitempty"`
+	FabricConfiguration *NetworkFabricFabricConfiguration `json:"fabricConfiguration,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,13 +36,8 @@ type _UpdateNetworkFabric UpdateNetworkFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateNetworkFabric(name string, fabricType string, fabricConfiguration NetworkFabricFabricConfiguration, revision float32, id string) *UpdateNetworkFabric {
+func NewUpdateNetworkFabric() *UpdateNetworkFabric {
 	this := UpdateNetworkFabric{}
-	this.Name = name
-	this.FabricType = fabricType
-	this.FabricConfiguration = fabricConfiguration
-	this.Revision = revision
-	this.Id = id
 	return &this
 }
 
@@ -59,28 +49,36 @@ func NewUpdateNetworkFabricWithDefaults() *UpdateNetworkFabric {
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkFabric) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFabric) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *UpdateNetworkFabric) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *UpdateNetworkFabric) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -115,100 +113,68 @@ func (o *UpdateNetworkFabric) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetFabricType returns the FabricType field value
+// GetFabricType returns the FabricType field value if set, zero value otherwise.
 func (o *UpdateNetworkFabric) GetFabricType() string {
-	if o == nil {
+	if o == nil || IsNil(o.FabricType) {
 		var ret string
 		return ret
 	}
-
-	return o.FabricType
+	return *o.FabricType
 }
 
-// GetFabricTypeOk returns a tuple with the FabricType field value
+// GetFabricTypeOk returns a tuple with the FabricType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFabric) GetFabricTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FabricType) {
 		return nil, false
 	}
-	return &o.FabricType, true
+	return o.FabricType, true
 }
 
-// SetFabricType sets field value
+// HasFabricType returns a boolean if a field has been set.
+func (o *UpdateNetworkFabric) HasFabricType() bool {
+	if o != nil && !IsNil(o.FabricType) {
+		return true
+	}
+
+	return false
+}
+
+// SetFabricType gets a reference to the given string and assigns it to the FabricType field.
 func (o *UpdateNetworkFabric) SetFabricType(v string) {
-	o.FabricType = v
+	o.FabricType = &v
 }
 
-// GetFabricConfiguration returns the FabricConfiguration field value
+// GetFabricConfiguration returns the FabricConfiguration field value if set, zero value otherwise.
 func (o *UpdateNetworkFabric) GetFabricConfiguration() NetworkFabricFabricConfiguration {
-	if o == nil {
+	if o == nil || IsNil(o.FabricConfiguration) {
 		var ret NetworkFabricFabricConfiguration
 		return ret
 	}
-
-	return o.FabricConfiguration
+	return *o.FabricConfiguration
 }
 
-// GetFabricConfigurationOk returns a tuple with the FabricConfiguration field value
+// GetFabricConfigurationOk returns a tuple with the FabricConfiguration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFabric) GetFabricConfigurationOk() (*NetworkFabricFabricConfiguration, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FabricConfiguration) {
 		return nil, false
 	}
-	return &o.FabricConfiguration, true
+	return o.FabricConfiguration, true
 }
 
-// SetFabricConfiguration sets field value
+// HasFabricConfiguration returns a boolean if a field has been set.
+func (o *UpdateNetworkFabric) HasFabricConfiguration() bool {
+	if o != nil && !IsNil(o.FabricConfiguration) {
+		return true
+	}
+
+	return false
+}
+
+// SetFabricConfiguration gets a reference to the given NetworkFabricFabricConfiguration and assigns it to the FabricConfiguration field.
 func (o *UpdateNetworkFabric) SetFabricConfiguration(v NetworkFabricFabricConfiguration) {
-	o.FabricConfiguration = v
-}
-
-// GetRevision returns the Revision field value
-func (o *UpdateNetworkFabric) GetRevision() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Revision
-}
-
-// GetRevisionOk returns a tuple with the Revision field value
-// and a boolean to check if the value has been set.
-func (o *UpdateNetworkFabric) GetRevisionOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Revision, true
-}
-
-// SetRevision sets field value
-func (o *UpdateNetworkFabric) SetRevision(v float32) {
-	o.Revision = v
-}
-
-// GetId returns the Id field value
-func (o *UpdateNetworkFabric) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *UpdateNetworkFabric) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *UpdateNetworkFabric) SetId(v string) {
-	o.Id = v
+	o.FabricConfiguration = &v
 }
 
 func (o UpdateNetworkFabric) MarshalJSON() ([]byte, error) {
@@ -221,14 +187,18 @@ func (o UpdateNetworkFabric) MarshalJSON() ([]byte, error) {
 
 func (o UpdateNetworkFabric) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["fabricType"] = o.FabricType
-	toSerialize["fabricConfiguration"] = o.FabricConfiguration
-	toSerialize["revision"] = o.Revision
-	toSerialize["id"] = o.Id
+	if !IsNil(o.FabricType) {
+		toSerialize["fabricType"] = o.FabricType
+	}
+	if !IsNil(o.FabricConfiguration) {
+		toSerialize["fabricConfiguration"] = o.FabricConfiguration
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -238,31 +208,6 @@ func (o UpdateNetworkFabric) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *UpdateNetworkFabric) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"name",
-		"fabricType",
-		"fabricConfiguration",
-		"revision",
-		"id",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varUpdateNetworkFabric := _UpdateNetworkFabric{}
 
 	err = json.Unmarshal(data, &varUpdateNetworkFabric)
@@ -280,8 +225,6 @@ func (o *UpdateNetworkFabric) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "fabricType")
 		delete(additionalProperties, "fabricConfiguration")
-		delete(additionalProperties, "revision")
-		delete(additionalProperties, "id")
 		o.AdditionalProperties = additionalProperties
 	}
 

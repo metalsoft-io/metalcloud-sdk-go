@@ -6,8 +6,10 @@ api_ai.go
 api_authentication.go
 api_bucket.go
 api_configuration.go
+api_custom_iso.go
 api_drive.go
 api_drive_group.go
+api_event.go
 api_extension.go
 api_extension_instance.go
 api_file_share.go
@@ -18,9 +20,10 @@ api_firmware_catalog.go
 api_firmware_policy.go
 api_infrastructure.go
 api_job.go
+api_logical_networks.go
 api_network.go
 api_network_device.go
-api_network_fabrics.go
+api_network_fabric.go
 api_os_template.go
 api_resource_pool.go
 api_security.go
@@ -53,6 +56,7 @@ docs/AccountAPI.md
 docs/AccountAddress.md
 docs/AccountLimits.md
 docs/AccountPaginatedList.md
+docs/AddUserToInfrastructure.md
 docs/AgentCapabilities.md
 docs/AgentConnectedInfo.md
 docs/AgentInfo.md
@@ -67,6 +71,7 @@ docs/AuthenticationRequestPropertiesLdap.md
 docs/AuthenticationRequestPropertiesMySql.md
 docs/AuthenticationRequestPropertiesSaml.md
 docs/AuthenticationUserProvider.md
+docs/BaseFabricDto.md
 docs/BaselineFilter.md
 docs/BaselineLevelType.md
 docs/BatchServerFirmwareUpgrade.md
@@ -83,6 +88,7 @@ docs/ConfigurationAPI.md
 docs/ControllerPolicy.md
 docs/CreateAccount.md
 docs/CreateBucket.md
+docs/CreateCustomIso.md
 docs/CreateExtension.md
 docs/CreateExtensionInstance.md
 docs/CreateFileShare.md
@@ -107,6 +113,9 @@ docs/CreateVMInstanceGroup.md
 docs/CreateVMInstanceGroupInterface.md
 docs/CreateVMPool.md
 docs/CreateVMType.md
+docs/CustomIso.md
+docs/CustomIsoAPI.md
+docs/CustomIsoPaginatedList.md
 docs/CustomVariable.md
 docs/Drive.md
 docs/DriveAPI.md
@@ -114,7 +123,9 @@ docs/DriveConfiguration.md
 docs/DriveGroup.md
 docs/DriveGroupAPI.md
 docs/DriveGroupConfiguration.md
+docs/DriveGroupList.md
 docs/DriveGroupPaginatedList.md
+docs/DriveList.md
 docs/DrivePaginatedList.md
 docs/EthernetEvpnVxlanL2Fabric.md
 docs/EthernetEvpnVxlanL3Fabric.md
@@ -122,6 +133,9 @@ docs/EthernetFabric.md
 docs/EthernetFlatL2Fabric.md
 docs/EthernetFlatL3Fabric.md
 docs/EthernetHybridL2L3Fabric.md
+docs/Event.md
+docs/EventAPI.md
+docs/EventPaginatedList.md
 docs/Extension.md
 docs/ExtensionAPI.md
 docs/ExtensionActions.md
@@ -201,6 +215,7 @@ docs/JobRetryInfo.md
 docs/JobStatistics.md
 docs/Link.md
 docs/Location.md
+docs/LogicalNetworksAPI.md
 docs/Network.md
 docs/NetworkAPI.md
 docs/NetworkDevice.md
@@ -211,9 +226,9 @@ docs/NetworkDevicePolicy.md
 docs/NetworkDevicePortStatus.md
 docs/NetworkDeviceStatus.md
 docs/NetworkFabric.md
+docs/NetworkFabricAPI.md
 docs/NetworkFabricFabricConfiguration.md
 docs/NetworkFabricPaginatedList.md
-docs/NetworkFabricsAPI.md
 docs/OSTemplate.md
 docs/OSTemplateAPI.md
 docs/OSTemplateCreate.md
@@ -285,6 +300,7 @@ docs/ServerInstanceInterfaceConfiguration.md
 docs/ServerInstanceInterfacePaginatedList.md
 docs/ServerInstanceInterfaceUpdate.md
 docs/ServerInstancePaginatedList.md
+docs/ServerInstancePowerSetDto.md
 docs/ServerInstanceProfile.md
 docs/ServerInstanceProfileAPI.md
 docs/ServerInstanceProfileCreate.md
@@ -344,6 +360,7 @@ docs/UnmanagedFabric.md
 docs/UpdateAccount.md
 docs/UpdateBucket.md
 docs/UpdateBucketMeta.md
+docs/UpdateCustomIso.md
 docs/UpdateExtension.md
 docs/UpdateExtensionInstance.md
 docs/UpdateFileShare.md
@@ -415,6 +432,7 @@ model_account.go
 model_account_address.go
 model_account_limits.go
 model_account_paginated_list.go
+model_add_user_to_infrastructure.go
 model_agent_capabilities.go
 model_agent_connected_info.go
 model_agent_info.go
@@ -430,6 +448,7 @@ model_authentication_request_properties_ldap.go
 model_authentication_request_properties_my_sql.go
 model_authentication_request_properties_saml.go
 model_authentication_user_provider.go
+model_base_fabric_dto.go
 model_baseline_filter.go
 model_baseline_level_type.go
 model_batch_server_firmware_upgrade.go
@@ -444,6 +463,7 @@ model_change_user_account.go
 model_controller_policy.go
 model_create_account.go
 model_create_bucket.go
+model_create_custom_iso.go
 model_create_extension.go
 model_create_extension_instance.go
 model_create_file_share.go
@@ -468,12 +488,16 @@ model_create_vm_instance_group.go
 model_create_vm_instance_group_interface.go
 model_create_vm_pool.go
 model_create_vm_type.go
+model_custom_iso.go
+model_custom_iso_paginated_list.go
 model_custom_variable.go
 model_drive.go
 model_drive_configuration.go
 model_drive_group.go
 model_drive_group_configuration.go
+model_drive_group_list.go
 model_drive_group_paginated_list.go
+model_drive_list.go
 model_drive_paginated_list.go
 model_ethernet_evpn_vxlan_l2_fabric.go
 model_ethernet_evpn_vxlan_l3_fabric.go
@@ -481,6 +505,8 @@ model_ethernet_fabric.go
 model_ethernet_flat_l2_fabric.go
 model_ethernet_flat_l3_fabric.go
 model_ethernet_hybrid_l2_l3_fabric.go
+model_event.go
+model_event_paginated_list.go
 model_extension.go
 model_extension_actions.go
 model_extension_asset.go
@@ -621,6 +647,7 @@ model_server_instance_interface_configuration.go
 model_server_instance_interface_paginated_list.go
 model_server_instance_interface_update.go
 model_server_instance_paginated_list.go
+model_server_instance_power_set_dto.go
 model_server_instance_profile.go
 model_server_instance_profile_create.go
 model_server_instance_profile_network_interfaces.go
@@ -674,6 +701,7 @@ model_unmanaged_fabric.go
 model_update_account.go
 model_update_bucket.go
 model_update_bucket_meta.go
+model_update_custom_iso.go
 model_update_extension.go
 model_update_extension_instance.go
 model_update_file_share.go
@@ -740,8 +768,10 @@ test/api_ai_test.go
 test/api_authentication_test.go
 test/api_bucket_test.go
 test/api_configuration_test.go
+test/api_custom_iso_test.go
 test/api_drive_group_test.go
 test/api_drive_test.go
+test/api_event_test.go
 test/api_extension_instance_test.go
 test/api_extension_test.go
 test/api_file_share_test.go
@@ -752,8 +782,9 @@ test/api_firmware_catalog_test.go
 test/api_firmware_policy_test.go
 test/api_infrastructure_test.go
 test/api_job_test.go
+test/api_logical_networks_test.go
 test/api_network_device_test.go
-test/api_network_fabrics_test.go
+test/api_network_fabric_test.go
 test/api_network_test.go
 test/api_os_template_test.go
 test/api_resource_pool_test.go

@@ -21,28 +21,45 @@ var _ MappedNullable = &EthernetEvpnVxlanL3Fabric{}
 
 // EthernetEvpnVxlanL3Fabric struct for EthernetEvpnVxlanL3Fabric
 type EthernetEvpnVxlanL3Fabric struct {
-	DefaultNetworkProfileId float32 `json:"defaultNetworkProfileId"`
+	// Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile.
+	DefaultNetworkProfileId int32 `json:"defaultNetworkProfileId"`
+	// Enables gNMI monitoring for telemetry data collection using the gNMI protocol.
 	GnmiMonitoringEnabled *bool `json:"gnmiMonitoringEnabled,omitempty"`
+	// Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting.
 	SyslogMonitoringEnabled *bool `json:"syslogMonitoringEnabled,omitempty"`
+	// Enables zero-touch provisioning for automatic device configuration.
 	ZeroTouchEnabled *bool `json:"zeroTouchEnabled,omitempty"`
+	// Indicates whether to automatically allocate a default VLAN.
 	AllocateDefaultVlan *bool `json:"allocateDefaultVlan,omitempty"`
+	// ASN ranges in the format \"start-end\", where each range is an ordered pair with values between 1 and 4294967295.
 	AsnRanges []string `json:"asnRanges,omitempty"`
-	DefaultVlan *float32 `json:"defaultVlan,omitempty"`
-	ExtraInternalIPsPerSubnet *float32 `json:"extraInternalIPsPerSubnet,omitempty"`
+	// Default VLAN ID. Must be a number between 1 and 4096.
+	DefaultVlan *int32 `json:"defaultVlan,omitempty"`
+	// Extra internal IPs allocated per subnet; valid range is between 1 and 1000.
+	ExtraInternalIPsPerSubnet *int32 `json:"extraInternalIPsPerSubnet,omitempty"`
+	// Link Aggregation (LAG) ranges in the format \"start-end\"; each range must be within the bounds of 1 to 4096.
 	LagRanges []string `json:"lagRanges,omitempty"`
+	// Indicates if leaf switches have MLAG pairs.
 	LeafSwitchesHaveMlagPairs *bool `json:"leafSwitchesHaveMlagPairs,omitempty"`
-	// MLAG ID ranges. Values must be between 1 and 4096.
+	// MLAG ID ranges. Each range must be provided in \"start-end\" format with values between 1 and 4096.
 	MlagRanges []string `json:"mlagRanges,omitempty"`
-	// Number of spines next to leaf switches
-	NumberOfSpinesNextToLeafSwitches float32 `json:"numberOfSpinesNextToLeafSwitches"`
+	// Number of spines adjacent to leaf switches. Must be a positive number.
+	NumberOfSpinesNextToLeafSwitches int32 `json:"numberOfSpinesNextToLeafSwitches"`
+	// VLAN ranges that should be prevented from automatic cleanup. Format must be \"start-end\".
 	PreventVlanCleanup []string `json:"preventVlanCleanup,omitempty"`
+	// Flag indicating whether cleanup from uplink interfaces should be prevented.
 	PreventCleanupFromUplinks *bool `json:"preventCleanupFromUplinks,omitempty"`
+	// Reserved VLAN ranges that are excluded from general allocation. Must follow the \"start-end\" format.
 	ReservedVlans []string `json:"reservedVlans,omitempty"`
-	// Array of VLAN range strings in format \"start-end\"
+	// Array of VLAN range strings in \"start-end\" format to be used in configuration.
 	VlanRanges []string `json:"vlanRanges,omitempty"`
-	VniPrefix *float32 `json:"vniPrefix,omitempty"`
+	// The VNI prefix for the EVPN VXLAN fabric.
+	VniPrefix *int32 `json:"vniPrefix,omitempty"`
+	// VRF ID ranges to be preserved from automatic cleanup. Each range must follow the \"start-end\" format.
 	PreventVrfCleanup []string `json:"preventVrfCleanup,omitempty"`
+	// Reserved VRF ID ranges that are set aside exclusively for specific network functions. Each range must be provided in the \"start-end\" format.
 	ReservedVrfs []string `json:"reservedVrfs,omitempty"`
+	// VLAN ranges to be associated with VRF instances. Each value must be an ordered pair specified in the \"start-end\" format.
 	VrfVlanRanges []string `json:"vrfVlanRanges,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -53,7 +70,7 @@ type _EthernetEvpnVxlanL3Fabric EthernetEvpnVxlanL3Fabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEthernetEvpnVxlanL3Fabric(defaultNetworkProfileId float32, numberOfSpinesNextToLeafSwitches float32) *EthernetEvpnVxlanL3Fabric {
+func NewEthernetEvpnVxlanL3Fabric(defaultNetworkProfileId int32, numberOfSpinesNextToLeafSwitches int32) *EthernetEvpnVxlanL3Fabric {
 	this := EthernetEvpnVxlanL3Fabric{}
 	this.DefaultNetworkProfileId = defaultNetworkProfileId
 	this.NumberOfSpinesNextToLeafSwitches = numberOfSpinesNextToLeafSwitches
@@ -69,9 +86,9 @@ func NewEthernetEvpnVxlanL3FabricWithDefaults() *EthernetEvpnVxlanL3Fabric {
 }
 
 // GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field value
-func (o *EthernetEvpnVxlanL3Fabric) GetDefaultNetworkProfileId() float32 {
+func (o *EthernetEvpnVxlanL3Fabric) GetDefaultNetworkProfileId() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -80,7 +97,7 @@ func (o *EthernetEvpnVxlanL3Fabric) GetDefaultNetworkProfileId() float32 {
 
 // GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field value
 // and a boolean to check if the value has been set.
-func (o *EthernetEvpnVxlanL3Fabric) GetDefaultNetworkProfileIdOk() (*float32, bool) {
+func (o *EthernetEvpnVxlanL3Fabric) GetDefaultNetworkProfileIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -88,7 +105,7 @@ func (o *EthernetEvpnVxlanL3Fabric) GetDefaultNetworkProfileIdOk() (*float32, bo
 }
 
 // SetDefaultNetworkProfileId sets field value
-func (o *EthernetEvpnVxlanL3Fabric) SetDefaultNetworkProfileId(v float32) {
+func (o *EthernetEvpnVxlanL3Fabric) SetDefaultNetworkProfileId(v int32) {
 	o.DefaultNetworkProfileId = v
 }
 
@@ -253,9 +270,9 @@ func (o *EthernetEvpnVxlanL3Fabric) SetAsnRanges(v []string) {
 }
 
 // GetDefaultVlan returns the DefaultVlan field value if set, zero value otherwise.
-func (o *EthernetEvpnVxlanL3Fabric) GetDefaultVlan() float32 {
+func (o *EthernetEvpnVxlanL3Fabric) GetDefaultVlan() int32 {
 	if o == nil || IsNil(o.DefaultVlan) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.DefaultVlan
@@ -263,7 +280,7 @@ func (o *EthernetEvpnVxlanL3Fabric) GetDefaultVlan() float32 {
 
 // GetDefaultVlanOk returns a tuple with the DefaultVlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EthernetEvpnVxlanL3Fabric) GetDefaultVlanOk() (*float32, bool) {
+func (o *EthernetEvpnVxlanL3Fabric) GetDefaultVlanOk() (*int32, bool) {
 	if o == nil || IsNil(o.DefaultVlan) {
 		return nil, false
 	}
@@ -279,15 +296,15 @@ func (o *EthernetEvpnVxlanL3Fabric) HasDefaultVlan() bool {
 	return false
 }
 
-// SetDefaultVlan gets a reference to the given float32 and assigns it to the DefaultVlan field.
-func (o *EthernetEvpnVxlanL3Fabric) SetDefaultVlan(v float32) {
+// SetDefaultVlan gets a reference to the given int32 and assigns it to the DefaultVlan field.
+func (o *EthernetEvpnVxlanL3Fabric) SetDefaultVlan(v int32) {
 	o.DefaultVlan = &v
 }
 
 // GetExtraInternalIPsPerSubnet returns the ExtraInternalIPsPerSubnet field value if set, zero value otherwise.
-func (o *EthernetEvpnVxlanL3Fabric) GetExtraInternalIPsPerSubnet() float32 {
+func (o *EthernetEvpnVxlanL3Fabric) GetExtraInternalIPsPerSubnet() int32 {
 	if o == nil || IsNil(o.ExtraInternalIPsPerSubnet) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.ExtraInternalIPsPerSubnet
@@ -295,7 +312,7 @@ func (o *EthernetEvpnVxlanL3Fabric) GetExtraInternalIPsPerSubnet() float32 {
 
 // GetExtraInternalIPsPerSubnetOk returns a tuple with the ExtraInternalIPsPerSubnet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EthernetEvpnVxlanL3Fabric) GetExtraInternalIPsPerSubnetOk() (*float32, bool) {
+func (o *EthernetEvpnVxlanL3Fabric) GetExtraInternalIPsPerSubnetOk() (*int32, bool) {
 	if o == nil || IsNil(o.ExtraInternalIPsPerSubnet) {
 		return nil, false
 	}
@@ -311,8 +328,8 @@ func (o *EthernetEvpnVxlanL3Fabric) HasExtraInternalIPsPerSubnet() bool {
 	return false
 }
 
-// SetExtraInternalIPsPerSubnet gets a reference to the given float32 and assigns it to the ExtraInternalIPsPerSubnet field.
-func (o *EthernetEvpnVxlanL3Fabric) SetExtraInternalIPsPerSubnet(v float32) {
+// SetExtraInternalIPsPerSubnet gets a reference to the given int32 and assigns it to the ExtraInternalIPsPerSubnet field.
+func (o *EthernetEvpnVxlanL3Fabric) SetExtraInternalIPsPerSubnet(v int32) {
 	o.ExtraInternalIPsPerSubnet = &v
 }
 
@@ -413,9 +430,9 @@ func (o *EthernetEvpnVxlanL3Fabric) SetMlagRanges(v []string) {
 }
 
 // GetNumberOfSpinesNextToLeafSwitches returns the NumberOfSpinesNextToLeafSwitches field value
-func (o *EthernetEvpnVxlanL3Fabric) GetNumberOfSpinesNextToLeafSwitches() float32 {
+func (o *EthernetEvpnVxlanL3Fabric) GetNumberOfSpinesNextToLeafSwitches() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -424,7 +441,7 @@ func (o *EthernetEvpnVxlanL3Fabric) GetNumberOfSpinesNextToLeafSwitches() float3
 
 // GetNumberOfSpinesNextToLeafSwitchesOk returns a tuple with the NumberOfSpinesNextToLeafSwitches field value
 // and a boolean to check if the value has been set.
-func (o *EthernetEvpnVxlanL3Fabric) GetNumberOfSpinesNextToLeafSwitchesOk() (*float32, bool) {
+func (o *EthernetEvpnVxlanL3Fabric) GetNumberOfSpinesNextToLeafSwitchesOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -432,7 +449,7 @@ func (o *EthernetEvpnVxlanL3Fabric) GetNumberOfSpinesNextToLeafSwitchesOk() (*fl
 }
 
 // SetNumberOfSpinesNextToLeafSwitches sets field value
-func (o *EthernetEvpnVxlanL3Fabric) SetNumberOfSpinesNextToLeafSwitches(v float32) {
+func (o *EthernetEvpnVxlanL3Fabric) SetNumberOfSpinesNextToLeafSwitches(v int32) {
 	o.NumberOfSpinesNextToLeafSwitches = v
 }
 
@@ -565,9 +582,9 @@ func (o *EthernetEvpnVxlanL3Fabric) SetVlanRanges(v []string) {
 }
 
 // GetVniPrefix returns the VniPrefix field value if set, zero value otherwise.
-func (o *EthernetEvpnVxlanL3Fabric) GetVniPrefix() float32 {
+func (o *EthernetEvpnVxlanL3Fabric) GetVniPrefix() int32 {
 	if o == nil || IsNil(o.VniPrefix) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.VniPrefix
@@ -575,7 +592,7 @@ func (o *EthernetEvpnVxlanL3Fabric) GetVniPrefix() float32 {
 
 // GetVniPrefixOk returns a tuple with the VniPrefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EthernetEvpnVxlanL3Fabric) GetVniPrefixOk() (*float32, bool) {
+func (o *EthernetEvpnVxlanL3Fabric) GetVniPrefixOk() (*int32, bool) {
 	if o == nil || IsNil(o.VniPrefix) {
 		return nil, false
 	}
@@ -591,8 +608,8 @@ func (o *EthernetEvpnVxlanL3Fabric) HasVniPrefix() bool {
 	return false
 }
 
-// SetVniPrefix gets a reference to the given float32 and assigns it to the VniPrefix field.
-func (o *EthernetEvpnVxlanL3Fabric) SetVniPrefix(v float32) {
+// SetVniPrefix gets a reference to the given int32 and assigns it to the VniPrefix field.
+func (o *EthernetEvpnVxlanL3Fabric) SetVniPrefix(v int32) {
 	o.VniPrefix = &v
 }
 

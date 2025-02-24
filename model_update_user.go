@@ -50,6 +50,8 @@ type UpdateUser struct {
 	IsTestAccount *bool `json:"isTestAccount,omitempty"`
 	// Whether the user account is billable.
 	IsBillable *bool `json:"isBillable,omitempty"`
+	// The default infrastructure ID of the user
+	InfrastructureIdDefault *float32 `json:"infrastructureIdDefault,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -584,6 +586,38 @@ func (o *UpdateUser) SetIsBillable(v bool) {
 	o.IsBillable = &v
 }
 
+// GetInfrastructureIdDefault returns the InfrastructureIdDefault field value if set, zero value otherwise.
+func (o *UpdateUser) GetInfrastructureIdDefault() float32 {
+	if o == nil || IsNil(o.InfrastructureIdDefault) {
+		var ret float32
+		return ret
+	}
+	return *o.InfrastructureIdDefault
+}
+
+// GetInfrastructureIdDefaultOk returns a tuple with the InfrastructureIdDefault field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateUser) GetInfrastructureIdDefaultOk() (*float32, bool) {
+	if o == nil || IsNil(o.InfrastructureIdDefault) {
+		return nil, false
+	}
+	return o.InfrastructureIdDefault, true
+}
+
+// HasInfrastructureIdDefault returns a boolean if a field has been set.
+func (o *UpdateUser) HasInfrastructureIdDefault() bool {
+	if o != nil && !IsNil(o.InfrastructureIdDefault) {
+		return true
+	}
+
+	return false
+}
+
+// SetInfrastructureIdDefault gets a reference to the given float32 and assigns it to the InfrastructureIdDefault field.
+func (o *UpdateUser) SetInfrastructureIdDefault(v float32) {
+	o.InfrastructureIdDefault = &v
+}
+
 func (o UpdateUser) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -642,6 +676,9 @@ func (o UpdateUser) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsBillable) {
 		toSerialize["isBillable"] = o.IsBillable
 	}
+	if !IsNil(o.InfrastructureIdDefault) {
+		toSerialize["infrastructureIdDefault"] = o.InfrastructureIdDefault
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -680,6 +717,7 @@ func (o *UpdateUser) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "permissions")
 		delete(additionalProperties, "isTestAccount")
 		delete(additionalProperties, "isBillable")
+		delete(additionalProperties, "infrastructureIdDefault")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -106,11 +106,20 @@ Class | Method | HTTP request | Description
 *ConfigurationAPI* | [**GetConfiguration**](docs/ConfigurationAPI.md#getconfiguration) | **Get** /api/v2/config | Get configuration
 *ConfigurationAPI* | [**PatchConfiguration**](docs/ConfigurationAPI.md#patchconfiguration) | **Patch** /api/v2/config/{filter} | Partially update configuration
 *ConfigurationAPI* | [**PutConfiguration**](docs/ConfigurationAPI.md#putconfiguration) | **Put** /api/v2/config/{filter} | Update configuration
+*CustomIsoAPI* | [**BootCustomIsoIntoServer**](docs/CustomIsoAPI.md#bootcustomisointoserver) | **Post** /api/v2/custom-isos/{customIsoId}/actions/boot-into-server/{serverId} | Boot Custom Iso into Server
+*CustomIsoAPI* | [**CreateCustomIso**](docs/CustomIsoAPI.md#createcustomiso) | **Post** /api/v2/custom-isos | Creates a Custom Iso.
+*CustomIsoAPI* | [**DeleteCustomIso**](docs/CustomIsoAPI.md#deletecustomiso) | **Delete** /api/v2/custom-isos/{customIsoId} | Delete Custom Iso
+*CustomIsoAPI* | [**GetCustomIso**](docs/CustomIsoAPI.md#getcustomiso) | **Get** /api/v2/custom-isos/{customIsoId} | Get Custom Iso information
+*CustomIsoAPI* | [**GetCustomIsos**](docs/CustomIsoAPI.md#getcustomisos) | **Get** /api/v2/custom-isos | Get all Custom Isos
+*CustomIsoAPI* | [**MakeCustomIsoPublic**](docs/CustomIsoAPI.md#makecustomisopublic) | **Post** /api/v2/custom-isos/{customIsoId}/actions/make-public | Make Custom Iso public
+*CustomIsoAPI* | [**UpdateCustomIso**](docs/CustomIsoAPI.md#updatecustomiso) | **Patch** /api/v2/custom-isos/{customIsoId} | Updates Custom Iso information
 *DriveAPI* | [**GetDrive**](docs/DriveAPI.md#getdrive) | **Get** /api/v2/drives/{driveId} | Get Drive information
 *DriveAPI* | [**GetInfrastructureDrive**](docs/DriveAPI.md#getinfrastructuredrive) | **Get** /api/v2/infrastructures/{infrastructureId}/drives/{driveId} | Get Drive information
 *DriveAPI* | [**GetInfrastructureDrives**](docs/DriveAPI.md#getinfrastructuredrives) | **Get** /api/v2/infrastructures/{infrastructureId}/drives | Get all Drives on the infrastructure
 *DriveGroupAPI* | [**GetInfrastructureDriveGroup**](docs/DriveGroupAPI.md#getinfrastructuredrivegroup) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId} | Get DriveGroup information
 *DriveGroupAPI* | [**GetInfrastructureDriveGroups**](docs/DriveGroupAPI.md#getinfrastructuredrivegroups) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups | Get all Drive Groups on the infrastructure
+*EventAPI* | [**GetEvent**](docs/EventAPI.md#getevent) | **Get** /api/v2/events/{customIsoId} | Get Custom Iso information
+*EventAPI* | [**GetEvents**](docs/EventAPI.md#getevents) | **Get** /api/v2/events | Get all Events
 *ExtensionAPI* | [**ArchiveExtension**](docs/ExtensionAPI.md#archiveextension) | **Post** /api/v2/extensions/{extensionId}/actions/archive | Archive published extension
 *ExtensionAPI* | [**CreateExtension**](docs/ExtensionAPI.md#createextension) | **Post** /api/v2/extensions | Create extension
 *ExtensionAPI* | [**GetExtension**](docs/ExtensionAPI.md#getextension) | **Get** /api/v2/extensions/{extensionId} | Get details for an extension
@@ -158,11 +167,15 @@ Class | Method | HTTP request | Description
 *FirmwarePolicyAPI* | [**GetGlobalFirmwareConfiguration**](docs/FirmwarePolicyAPI.md#getglobalfirmwareconfiguration) | **Get** /api/v2/firmware/configuration | Get Global Firmware Configuration
 *FirmwarePolicyAPI* | [**UpdateFirmwarePolicy**](docs/FirmwarePolicyAPI.md#updatefirmwarepolicy) | **Patch** /api/v2/firmware/policies/{firmwarePolicyId} | Updates a Firmware Policy
 *FirmwarePolicyAPI* | [**UpdateGlobalFirmwareConfiguration**](docs/FirmwarePolicyAPI.md#updateglobalfirmwareconfiguration) | **Patch** /api/v2/firmware/configuration | Updates Global Firmware Policy Configuration
+*InfrastructureAPI* | [**AddInfrastructureUser**](docs/InfrastructureAPI.md#addinfrastructureuser) | **Post** /api/v2/infrastructures/{infrastructureId}/users | Adds a user to the specified infrastructure
 *InfrastructureAPI* | [**CreateInfrastructure**](docs/InfrastructureAPI.md#createinfrastructure) | **Post** /api/v2/infrastructures | Creates a new infrastructure
 *InfrastructureAPI* | [**DeleteInfrastructure**](docs/InfrastructureAPI.md#deleteinfrastructure) | **Delete** /api/v2/infrastructures/{infrastructureId} | Deletes the specified infrastructure
 *InfrastructureAPI* | [**DeployInfrastructure**](docs/InfrastructureAPI.md#deployinfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/deploy | Deploys the specified infrastructure
 *InfrastructureAPI* | [**GetInfrastructure**](docs/InfrastructureAPI.md#getinfrastructure) | **Get** /api/v2/infrastructures/{infrastructureId} | Retrieves the specified infrastructure
+*InfrastructureAPI* | [**GetInfrastructureUserLimits**](docs/InfrastructureAPI.md#getinfrastructureuserlimits) | **Get** /api/v2/infrastructures/{infrastructureId}/user-limits | Retrieves the specified infrastructure user limits
+*InfrastructureAPI* | [**GetInfrastructureUsers**](docs/InfrastructureAPI.md#getinfrastructureusers) | **Get** /api/v2/infrastructures/{infrastructureId}/users | Retrieves the specified infrastructure users
 *InfrastructureAPI* | [**GetInfrastructures**](docs/InfrastructureAPI.md#getinfrastructures) | **Get** /api/v2/infrastructures | Get all infrastructures
+*InfrastructureAPI* | [**RemoveInfrastructureUser**](docs/InfrastructureAPI.md#removeinfrastructureuser) | **Delete** /api/v2/infrastructures/{infrastructureId}/users/{userId} | Removes a user from the specified infrastructure
 *InfrastructureAPI* | [**RevertInfrastructure**](docs/InfrastructureAPI.md#revertinfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/revert | Reverts the specified infrastructure
 *InfrastructureAPI* | [**UpdateInfrastructureConfiguration**](docs/InfrastructureAPI.md#updateinfrastructureconfiguration) | **Patch** /api/v2/infrastructures/{infrastructureId}/configuration | Updates the specified infrastructure configuration
 *InfrastructureAPI* | [**UpdateInfrastructureMetadata**](docs/InfrastructureAPI.md#updateinfrastructuremetadata) | **Patch** /api/v2/infrastructures/{infrastructureId}/metadata | Updates the specified infrastructure metadata
@@ -178,6 +191,11 @@ Class | Method | HTTP request | Description
 *JobAPI* | [**IssueCommandForJob**](docs/JobAPI.md#issuecommandforjob) | **Post** /api/v2/jobs/{jobId}/actions/issue-command | Issues a command for a job that changes the operational state of the job
 *JobAPI* | [**RetryJob**](docs/JobAPI.md#retryjob) | **Post** /api/v2/jobs/{jobId}/actions/retry | Retries a job
 *JobAPI* | [**SkipJob**](docs/JobAPI.md#skipjob) | **Post** /api/v2/jobs/{jobId}/actions/skip | Skips a job
+*LogicalNetworksAPI* | [**CreateLogicalNetwork**](docs/LogicalNetworksAPI.md#createlogicalnetwork) | **Post** /api/v2/logical-networks | Create a new logical network
+*LogicalNetworksAPI* | [**DeleteLogicalNetwork**](docs/LogicalNetworksAPI.md#deletelogicalnetwork) | **Delete** /api/v2/logical-networks/{logicalNetworkId} | Delete a logical network
+*LogicalNetworksAPI* | [**GetLogicalNetworkById**](docs/LogicalNetworksAPI.md#getlogicalnetworkbyid) | **Get** /api/v2/logical-networks/{logicalNetworkId} | Get a logical network by ID
+*LogicalNetworksAPI* | [**GetLogicalNetworks**](docs/LogicalNetworksAPI.md#getlogicalnetworks) | **Get** /api/v2/logical-networks | Get all logical networks
+*LogicalNetworksAPI* | [**UpdateLogicalNetwork**](docs/LogicalNetworksAPI.md#updatelogicalnetwork) | **Put** /api/v2/logical-networks/{logicalNetworkId} | Update a logical network
 *NetworkAPI* | [**CreateInfrastructureNetwork**](docs/NetworkAPI.md#createinfrastructurenetwork) | **Post** /api/v2/infrastructures/{infrastructureId}/networks | Creates a new LAN network on the infrastructure
 *NetworkAPI* | [**DeleteInfrastructureNetwork**](docs/NetworkAPI.md#deleteinfrastructurenetwork) | **Delete** /api/v2/infrastructures/{infrastructureId}/networks/{networkId} | Deletes a network from the infrastructure
 *NetworkAPI* | [**GetInfrastructureNetwork**](docs/NetworkAPI.md#getinfrastructurenetwork) | **Get** /api/v2/infrastructures/{infrastructureId}/networks/{networkId} | Gets the specified network from the infrastructure
@@ -205,11 +223,11 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**RemoveNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#removenetworkdevicedefaults) | **Delete** /api/v2/network-devices/defaults | Remove network device defaults
 *NetworkDeviceAPI* | [**ResetNetworkDevice**](docs/NetworkDeviceAPI.md#resetnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
 *NetworkDeviceAPI* | [**SetNetworkDevicePortStatus**](docs/NetworkDeviceAPI.md#setnetworkdeviceportstatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
-*NetworkFabricsAPI* | [**CreateNetworkFabric**](docs/NetworkFabricsAPI.md#createnetworkfabric) | **Post** /api/v2/network-fabrics | Create a new network fabric
-*NetworkFabricsAPI* | [**DeleteNetworkFabric**](docs/NetworkFabricsAPI.md#deletenetworkfabric) | **Delete** /api/v2/network-fabrics/{networkFabricId} | Delete a network fabric
-*NetworkFabricsAPI* | [**GetNetworkFabricById**](docs/NetworkFabricsAPI.md#getnetworkfabricbyid) | **Get** /api/v2/network-fabrics/{networkFabricId} | Get a network fabric by ID
-*NetworkFabricsAPI* | [**GetNetworkFabrics**](docs/NetworkFabricsAPI.md#getnetworkfabrics) | **Get** /api/v2/network-fabrics | Get all network fabrics
-*NetworkFabricsAPI* | [**UpdateNetworkFabric**](docs/NetworkFabricsAPI.md#updatenetworkfabric) | **Put** /api/v2/network-fabrics/{networkFabricId} | Update a network fabric
+*NetworkFabricAPI* | [**CreateNetworkFabric**](docs/NetworkFabricAPI.md#createnetworkfabric) | **Post** /api/v2/network-fabrics | Create a new network fabric
+*NetworkFabricAPI* | [**DeleteNetworkFabric**](docs/NetworkFabricAPI.md#deletenetworkfabric) | **Delete** /api/v2/network-fabrics/{networkFabricId} | Delete a network fabric
+*NetworkFabricAPI* | [**GetNetworkFabricById**](docs/NetworkFabricAPI.md#getnetworkfabricbyid) | **Get** /api/v2/network-fabrics/{networkFabricId} | Get a network fabric by ID
+*NetworkFabricAPI* | [**GetNetworkFabrics**](docs/NetworkFabricAPI.md#getnetworkfabrics) | **Get** /api/v2/network-fabrics | List all network fabrics
+*NetworkFabricAPI* | [**UpdateNetworkFabric**](docs/NetworkFabricAPI.md#updatenetworkfabric) | **Patch** /api/v2/network-fabrics/{networkFabricId} | Update a network fabric
 *OSTemplateAPI* | [**CreateOSTemplate**](docs/OSTemplateAPI.md#createostemplate) | **Post** /api/v2/os-templates | Create OS template
 *OSTemplateAPI* | [**DeleteOSTemplate**](docs/OSTemplateAPI.md#deleteostemplate) | **Delete** /api/v2/os-templates/{osTemplateId} | Delete OS template
 *OSTemplateAPI* | [**GetOSTemplate**](docs/OSTemplateAPI.md#getostemplate) | **Get** /api/v2/os-templates/{osTemplateId} | Get details for an OS template
@@ -276,24 +294,29 @@ Class | Method | HTTP request | Description
 *ServerInstanceAPI* | [**CreateServerInstance**](docs/ServerInstanceAPI.md#createserverinstance) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instances | Add Server Instance to an infrastructure
 *ServerInstanceAPI* | [**DeleteServerInstance**](docs/ServerInstanceAPI.md#deleteserverinstance) | **Delete** /api/v2/server-instances/{serverInstanceId} | Delete Server Instance
 *ServerInstanceAPI* | [**GetInfrastructureServerInstances**](docs/ServerInstanceAPI.md#getinfrastructureserverinstances) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instances | List Server Instances for an infrastructure
+*ServerInstanceAPI* | [**GetPowerFromServerInstance**](docs/ServerInstanceAPI.md#getpowerfromserverinstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power_get | Get the power status of the Server Instance
 *ServerInstanceAPI* | [**GetServerInstance**](docs/ServerInstanceAPI.md#getserverinstance) | **Get** /api/v2/server-instances/{serverInstanceId} | Get Server Instance details
 *ServerInstanceAPI* | [**GetServerInstanceConfig**](docs/ServerInstanceAPI.md#getserverinstanceconfig) | **Get** /api/v2/server-instances/{serverInstanceId}/config | Get Server Instance config details
+*ServerInstanceAPI* | [**GetServerInstanceCredentials**](docs/ServerInstanceAPI.md#getserverinstancecredentials) | **Get** /api/v2/server-instances/{serverInstanceId}/credentials | Get Server Instance credentials
+*ServerInstanceAPI* | [**GetServerInstanceDrives**](docs/ServerInstanceAPI.md#getserverinstancedrives) | **Get** /api/v2/server-instances/{serverInstanceId}/drives | Get Server Instance Drives
 *ServerInstanceAPI* | [**GetServerInstanceInterface**](docs/ServerInstanceAPI.md#getserverinstanceinterface) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId} | Get Server Instance Interface details
 *ServerInstanceAPI* | [**GetServerInstanceInterfaces**](docs/ServerInstanceAPI.md#getserverinstanceinterfaces) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces | Get Server Instance Interfaces
 *ServerInstanceAPI* | [**GetServerInstances**](docs/ServerInstanceAPI.md#getserverinstances) | **Get** /api/v2/server-instances | List Server Instances
-*ServerInstanceAPI* | [**GetServerInstancesCredentials**](docs/ServerInstanceAPI.md#getserverinstancescredentials) | **Get** /api/v2/server-instances/{serverInstanceId}/credentials | Get Server Instance credentials
 *ServerInstanceAPI* | [**ResetServerInstance**](docs/ServerInstanceAPI.md#resetserverinstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/reset | Reset a deployed server
-*ServerInstanceAPI* | [**UpdateServerInstance**](docs/ServerInstanceAPI.md#updateserverinstance) | **Patch** /api/v2/server-instances/{serverInstanceId}/config | Update Server Instance configuration
-*ServerInstanceAPI* | [**UpdateServerInstancesInterface**](docs/ServerInstanceAPI.md#updateserverinstancesinterface) | **Patch** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId}/config | Update Server Instance Interfaces
+*ServerInstanceAPI* | [**SetPowerToServerInstance**](docs/ServerInstanceAPI.md#setpowertoserverinstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power_set | Set power to the Server Instance
+*ServerInstanceAPI* | [**UpdateServerInstanceConfig**](docs/ServerInstanceAPI.md#updateserverinstanceconfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/config | Update Server Instance configuration
+*ServerInstanceAPI* | [**UpdateServerInstanceInterfaceConfig**](docs/ServerInstanceAPI.md#updateserverinstanceinterfaceconfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId}/config | Update Server Instance Interface configuration
 *ServerInstanceGroupAPI* | [**ApplyProfileToServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#applyprofiletoserverinstancegroup) | **Post** /api/v2/server-instance-groups/{serverInstanceGroupId}/actions/apply-profile/{serverInstanceProfileId} | Apply the Server profile configuration to all the Server Instances in the group
 *ServerInstanceGroupAPI* | [**CreateServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#createserverinstancegroup) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | Add a Server Instance Group to an infrastructure. By default it will not have any instance.
 *ServerInstanceGroupAPI* | [**DeleteServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#deleteserverinstancegroup) | **Delete** /api/v2/server-instance-groups/{serverInstanceGroupId} | Delete Server Instance Group. Will not take effect if there are instances in this group.
 *ServerInstanceGroupAPI* | [**GetInfrastructureServerInstanceGroups**](docs/ServerInstanceGroupAPI.md#getinfrastructureserverinstancegroups) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | List Server Instance Groups for an infrastructure
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#getserverinstancegroup) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId} | Get Server Instance Groups details
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupConfig**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupconfig) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Get Server Instance Group config details
+*ServerInstanceGroupAPI* | [**GetServerInstanceGroupDriveGroups**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupdrivegroups) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/drive-groups | Get Server Instance Group Drive Groups
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupInterface**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupinterface) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces/{interfaceId} | Get Server Instance Group Interface details
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupInterfaces**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupinterfaces) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces | Get Server Instance Group Interfaces
-*ServerInstanceGroupAPI* | [**UpdateServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroup) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Update an Server Instance Group configuration
+*ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupConfig**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupconfig) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Updates Server Instance Group configuration
+*ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupMeta**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupmeta) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/meta | Update an Server Instance Group meta information
 *ServerInstanceProfileAPI* | [**CreateServerInstanceProfile**](docs/ServerInstanceProfileAPI.md#createserverinstanceprofile) | **Post** /api/v2/server-instance-profiles | Create Server Instance Profile
 *ServerInstanceProfileAPI* | [**DeleteServerInstanceProfile**](docs/ServerInstanceProfileAPI.md#deleteserverinstanceprofile) | **Delete** /api/v2/server-instance-profiles/{serverInstanceProfileId} | Delete Server Instance Profile
 *ServerInstanceProfileAPI* | [**GetServerInstanceProfile**](docs/ServerInstanceProfileAPI.md#getserverinstanceprofile) | **Get** /api/v2/server-instance-profiles/{serverInstanceProfileId} | Get Server Instance Profile details
@@ -409,6 +432,7 @@ Class | Method | HTTP request | Description
  - [AccountAddress](docs/AccountAddress.md)
  - [AccountLimits](docs/AccountLimits.md)
  - [AccountPaginatedList](docs/AccountPaginatedList.md)
+ - [AddUserToInfrastructure](docs/AddUserToInfrastructure.md)
  - [AgentCapabilities](docs/AgentCapabilities.md)
  - [AgentConnectedInfo](docs/AgentConnectedInfo.md)
  - [AgentInfo](docs/AgentInfo.md)
@@ -422,6 +446,7 @@ Class | Method | HTTP request | Description
  - [AuthenticationRequestPropertiesMySql](docs/AuthenticationRequestPropertiesMySql.md)
  - [AuthenticationRequestPropertiesSaml](docs/AuthenticationRequestPropertiesSaml.md)
  - [AuthenticationUserProvider](docs/AuthenticationUserProvider.md)
+ - [BaseFabricDto](docs/BaseFabricDto.md)
  - [BaselineFilter](docs/BaselineFilter.md)
  - [BaselineLevelType](docs/BaselineLevelType.md)
  - [BatchServerFirmwareUpgrade](docs/BatchServerFirmwareUpgrade.md)
@@ -436,6 +461,7 @@ Class | Method | HTTP request | Description
  - [ControllerPolicy](docs/ControllerPolicy.md)
  - [CreateAccount](docs/CreateAccount.md)
  - [CreateBucket](docs/CreateBucket.md)
+ - [CreateCustomIso](docs/CreateCustomIso.md)
  - [CreateExtension](docs/CreateExtension.md)
  - [CreateExtensionInstance](docs/CreateExtensionInstance.md)
  - [CreateFileShare](docs/CreateFileShare.md)
@@ -460,12 +486,16 @@ Class | Method | HTTP request | Description
  - [CreateVMInstanceGroupInterface](docs/CreateVMInstanceGroupInterface.md)
  - [CreateVMPool](docs/CreateVMPool.md)
  - [CreateVMType](docs/CreateVMType.md)
+ - [CustomIso](docs/CustomIso.md)
+ - [CustomIsoPaginatedList](docs/CustomIsoPaginatedList.md)
  - [CustomVariable](docs/CustomVariable.md)
  - [Drive](docs/Drive.md)
  - [DriveConfiguration](docs/DriveConfiguration.md)
  - [DriveGroup](docs/DriveGroup.md)
  - [DriveGroupConfiguration](docs/DriveGroupConfiguration.md)
+ - [DriveGroupList](docs/DriveGroupList.md)
  - [DriveGroupPaginatedList](docs/DriveGroupPaginatedList.md)
+ - [DriveList](docs/DriveList.md)
  - [DrivePaginatedList](docs/DrivePaginatedList.md)
  - [EthernetEvpnVxlanL2Fabric](docs/EthernetEvpnVxlanL2Fabric.md)
  - [EthernetEvpnVxlanL3Fabric](docs/EthernetEvpnVxlanL3Fabric.md)
@@ -473,6 +503,8 @@ Class | Method | HTTP request | Description
  - [EthernetFlatL2Fabric](docs/EthernetFlatL2Fabric.md)
  - [EthernetFlatL3Fabric](docs/EthernetFlatL3Fabric.md)
  - [EthernetHybridL2L3Fabric](docs/EthernetHybridL2L3Fabric.md)
+ - [Event](docs/Event.md)
+ - [EventPaginatedList](docs/EventPaginatedList.md)
  - [Extension](docs/Extension.md)
  - [ExtensionActions](docs/ExtensionActions.md)
  - [ExtensionAsset](docs/ExtensionAsset.md)
@@ -614,6 +646,7 @@ Class | Method | HTTP request | Description
  - [ServerInstanceInterfacePaginatedList](docs/ServerInstanceInterfacePaginatedList.md)
  - [ServerInstanceInterfaceUpdate](docs/ServerInstanceInterfaceUpdate.md)
  - [ServerInstancePaginatedList](docs/ServerInstancePaginatedList.md)
+ - [ServerInstancePowerSetDto](docs/ServerInstancePowerSetDto.md)
  - [ServerInstanceProfile](docs/ServerInstanceProfile.md)
  - [ServerInstanceProfileCreate](docs/ServerInstanceProfileCreate.md)
  - [ServerInstanceProfileNetworkInterfaces](docs/ServerInstanceProfileNetworkInterfaces.md)
@@ -666,6 +699,7 @@ Class | Method | HTTP request | Description
  - [UpdateAccount](docs/UpdateAccount.md)
  - [UpdateBucket](docs/UpdateBucket.md)
  - [UpdateBucketMeta](docs/UpdateBucketMeta.md)
+ - [UpdateCustomIso](docs/UpdateCustomIso.md)
  - [UpdateExtension](docs/UpdateExtension.md)
  - [UpdateExtensionInstance](docs/UpdateExtensionInstance.md)
  - [UpdateFileShare](docs/UpdateFileShare.md)

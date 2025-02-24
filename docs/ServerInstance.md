@@ -39,6 +39,7 @@ Name | Type | Description | Notes
 **OsInstallImageUrl** | Pointer to **string** | URL where the OS image is available. | [optional] 
 **OsInstallImageBuildError** | Pointer to **string** | Last error message during OS image build. | [optional] 
 **OsInstallImageBuildInfo** | Pointer to **string** | Build info regarding the OS image. | [optional] 
+**OsReinstallRequired** | Pointer to **string** | OS reinstall is required. | [optional] 
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
 **IscsiInitiatorPasswordEncrypted** | Pointer to **string** | iSCSI Initiator Password for the Instance Interface. | [optional] 
@@ -900,6 +901,31 @@ SetOsInstallImageBuildInfo sets OsInstallImageBuildInfo field to given value.
 `func (o *ServerInstance) HasOsInstallImageBuildInfo() bool`
 
 HasOsInstallImageBuildInfo returns a boolean if a field has been set.
+
+### GetOsReinstallRequired
+
+`func (o *ServerInstance) GetOsReinstallRequired() string`
+
+GetOsReinstallRequired returns the OsReinstallRequired field if non-nil, zero value otherwise.
+
+### GetOsReinstallRequiredOk
+
+`func (o *ServerInstance) GetOsReinstallRequiredOk() (*string, bool)`
+
+GetOsReinstallRequiredOk returns a tuple with the OsReinstallRequired field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOsReinstallRequired
+
+`func (o *ServerInstance) SetOsReinstallRequired(v string)`
+
+SetOsReinstallRequired sets OsReinstallRequired field to given value.
+
+### HasOsReinstallRequired
+
+`func (o *ServerInstance) HasOsReinstallRequired() bool`
+
+HasOsReinstallRequired returns a boolean if a field has been set.
 
 ### GetIscsiInitiatorIqn
 

@@ -1710,6 +1710,394 @@ paths:
       summary: Update configuration
       tags:
       - Configuration
+  /api/v2/custom-isos:
+    get:
+      description: Returns list of all Custom Isos
+      operationId: getCustomIsos
+      parameters:
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by id query param.
+                    <p>
+                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.id
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by name query param.
+                    <p>
+                       <b>Format: </b> filter.name={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.name=$not:$like:John Doe&filter.name=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.name
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by displayName query param.
+                    <p>
+                       <b>Format: </b> filter.displayName={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.displayName=$not:$like:John Doe&filter.displayName=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.displayName
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by accessUrl query param.
+                    <p>
+                       <b>Format: </b> filter.accessUrl={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.accessUrl=$not:$like:John Doe&filter.accessUrl=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.accessUrl
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li></ul>\n \
+          \     "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> id,name,displayName,accessUrl\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
+          \ all fields mentioned below will be used to search by term\n          </p>\n\
+          \        <h4>Available Fields</h4><ul><li>id</li>\n<li>name</li>\n<li>displayName</li>\n\
+          <li>accessUrl</li></ul>\n        "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomIsoPaginatedList'
+          description: Retrieves a list of Custom Isos.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Infrastructure not found.
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all Custom Isos
+      tags:
+      - Custom Iso
+    post:
+      operationId: createCustomIso
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomIso'
+        description: Custom Iso create object
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomIso'
+          description: Custom Iso created.
+          headers:
+            Location:
+              description: New Bucket link
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "409":
+          description: Conflict
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Creates a Custom Iso.
+      tags:
+      - Custom Iso
+  /api/v2/custom-isos/{customIsoId}:
+    delete:
+      operationId: deleteCustomIso
+      parameters:
+      - explode: false
+        in: path
+        name: customIsoId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: bucketId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: Successfully deleted Custom Iso.
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "409":
+          description: Conflict
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete Custom Iso
+      tags:
+      - Custom Iso
+    get:
+      description: Returns Custom Iso information
+      operationId: getCustomIso
+      parameters:
+      - explode: false
+        in: path
+        name: customIsoId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomIso'
+          description: Returns Custom Iso information
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get Custom Iso information
+      tags:
+      - Custom Iso
+    patch:
+      operationId: updateCustomIso
+      parameters:
+      - explode: false
+        in: path
+        name: customIsoId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCustomIso'
+        description: The updated Custom Iso object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomIso'
+          description: Updated Custom Iso information
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Custom Iso not found
+        "409":
+          description: Conflict
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Updates Custom Iso information
+      tags:
+      - Custom Iso
+  /api/v2/custom-isos/{customIsoId}/actions/make-public:
+    post:
+      operationId: makeCustomIsoPublic
+      parameters:
+      - explode: false
+        in: path
+        name: customIsoId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomIso'
+          description: Custom Iso information.
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Make Custom Iso public
+      tags:
+      - Custom Iso
+  /api/v2/custom-isos/{customIsoId}/actions/boot-into-server/{serverId}:
+    post:
+      operationId: bootCustomIsoIntoServer
+      parameters:
+      - explode: false
+        in: path
+        name: customIsoId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: serverId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobInfo'
+          description: Job information.
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Boot Custom Iso into Server
+      tags:
+      - Custom Iso
   /api/v2/drives/{driveId}:
     get:
       description: Returns Drive information
@@ -6230,6 +6618,145 @@ paths:
       summary: Updates the specified infrastructure metadata
       tags:
       - Infrastructure
+  /api/v2/infrastructures/{infrastructureId}/users:
+    get:
+      description: Retrieves the specified infrastructure users
+      operationId: getInfrastructureUsers
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/UserInfo'
+                type: array
+          description: Retrieved the specified infrastructure users
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Retrieves the specified infrastructure users
+      tags:
+      - Infrastructure
+    post:
+      description: Adds a user to the specified infrastructure
+      operationId: addInfrastructureUser
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddUserToInfrastructure'
+        description: Additional information for the user to add
+        required: true
+      responses:
+        "202":
+          description: Added a user to the specified infrastructure
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Adds a user to the specified infrastructure
+      tags:
+      - Infrastructure
+  /api/v2/infrastructures/{infrastructureId}/users/{userId}:
+    delete:
+      description: Removes a user from the specified infrastructure
+      operationId: removeInfrastructureUser
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          description: Removed a user from the specified infrastructure
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Removes a user from the specified infrastructure
+      tags:
+      - Infrastructure
+  /api/v2/infrastructures/{infrastructureId}/user-limits:
+    get:
+      description: Retrieves the specified infrastructure user limits
+      operationId: getInfrastructureUserLimits
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserLimits'
+          description: Retrieved the specified infrastructure user limits
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Retrieves the specified infrastructure user limits
+      tags:
+      - Infrastructure
   /api/v2/infrastructures/{infrastructureId}/actions/deploy:
     post:
       description: Deploys the specified infrastructure
@@ -8510,6 +9037,444 @@ paths:
       summary: Get Job Group statistics
       tags:
       - Job
+  /api/v2/logical-networks:
+    get:
+      description: Returns a list of all Logical Networks
+      operationId: getLogicalNetworks
+      parameters:
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by id query param.
+                    <p>
+                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.id
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by label query param.
+                    <p>
+                       <b>Format: </b> filter.label={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.label=$not:$like:John Doe&filter.label=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.label
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by name query param.
+                    <p>
+                       <b>Format: </b> filter.name={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.name=$not:$like:John Doe&filter.name=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.name
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by description query param.
+                    <p>
+                       <b>Format: </b> filter.description={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.description=$not:$like:John Doe&filter.description=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.description
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by fabricId query param.
+                    <p>
+                       <b>Format: </b> filter.fabricId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.fabricId=$not:$like:John Doe&filter.fabricId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.fabricId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by infrastructureId query param.
+                    <p>
+                       <b>Format: </b> filter.infrastructureId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.infrastructureId=$not:$like:John Doe&filter.infrastructureId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.infrastructureId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by logicalNetworkType query param.
+                    <p>
+                       <b>Format: </b> filter.logicalNetworkType={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.logicalNetworkType=$not:$like:John Doe&filter.logicalNetworkType=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.logicalNetworkType
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> id:ASC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n\
+          <li>name</li>\n<li>fabricId</li>\n<li>infrastructureId</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - label:ASC
+            - label:DESC
+            - name:ASC
+            - name:DESC
+            - fabricId:ASC
+            - fabricId:DESC
+            - infrastructureId:ASC
+            - infrastructureId:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> label,name,description\n    \
+          \      </p>\n        <p>\n             <b>Default Value: </b> By default\
+          \ all fields mentioned below will be used to search by term\n          </p>\n\
+          \        <h4>Available Fields</h4><ul><li>label</li>\n<li>name</li>\n<li>description</li></ul>\n\
+          \        "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginated'
+          description: Returns list of all Logical Networks
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all logical networks
+      tags:
+      - Logical Networks
+    post:
+      description: Create a new logical network
+      operationId: createLogicalNetwork
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLogicalNetworkDto'
+        description: The Logical Network create object
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogicalNetworkDto'
+          description: The Logical Network successfully created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "409":
+          description: Duplicate logical network
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a new logical network
+      tags:
+      - Logical Networks
+  /api/v2/logical-networks/{logicalNetworkId}:
+    delete:
+      description: Delete a logical network
+      operationId: deleteLogicalNetwork
+      parameters:
+      - explode: false
+        in: path
+        name: logicalNetworkId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: The Logical Network was successfully deleted
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete a logical network
+      tags:
+      - Logical Networks
+    get:
+      description: Returns a logical network by ID
+      operationId: getLogicalNetworkById
+      parameters:
+      - explode: false
+        in: path
+        name: logicalNetworkId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogicalNetworkDto'
+          description: Returns a logical network by ID
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get a logical network by ID
+      tags:
+      - Logical Networks
+    put:
+      description: Update a logical network
+      operationId: updateLogicalNetwork
+      parameters:
+      - explode: false
+        in: path
+        name: logicalNetworkId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchLogicalNetworkDto'
+        description: The Logical Network update object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogicalNetworkDto'
+          description: The Logical Network was successfully updated
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update a logical network
+      tags:
+      - Logical Networks
   /api/v2/infrastructures/{infrastructureId}/networks:
     get:
       description: Retrieves all networks on the infrastructure
@@ -9732,7 +10697,6 @@ paths:
       - Network Device
   /api/v2/network-fabrics:
     get:
-      description: Returns list of all Network Fabrics
       operationId: getNetworkFabrics
       parameters:
       - description: "Page number to retrieve.If you provide invalid value the default\
@@ -9814,6 +10778,37 @@ paths:
         explode: true
         in: query
         name: filter.name
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by description query param.
+                    <p>
+                       <b>Format: </b> filter.description={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.description=$not:$like:John Doe&filter.description=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.description
         required: false
         schema:
           items:
@@ -9916,10 +10911,11 @@ paths:
           type: string
         style: form
       - description: "List of fields to search by term to filter result values\n \
-          \       <p>\n             <b>Example: </b> name\n          </p>\n      \
-          \  <p>\n             <b>Default Value: </b> By default all fields mentioned\
-          \ below will be used to search by term\n          </p>\n        <h4>Available\
-          \ Fields</h4><ul><li>name</li></ul>\n        "
+          \       <p>\n             <b>Example: </b> name,description\n          </p>\n\
+          \        <p>\n             <b>Default Value: </b> By default all fields\
+          \ mentioned below will be used to search by term\n          </p>\n     \
+          \   <h4>Available Fields</h4><ul><li>name</li>\n<li>description</li></ul>\n\
+          \        "
         explode: true
         in: query
         name: searchBy
@@ -9935,7 +10931,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NetworkFabricPaginatedList'
-          description: Returns list of all Network Fabrics
+          description: List of all network fabrics
         "401":
           description: Unauthorized
         "403":
@@ -9943,11 +10939,10 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Get all network fabrics
+      summary: List all network fabrics
       tags:
-      - Network Fabrics
+      - Network Fabric
     post:
-      description: Create a new network fabric
       operationId: createNetworkFabric
       parameters: []
       requestBody:
@@ -9955,7 +10950,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateNetworkFabric'
-        description: The Network Fabric create object
+        description: The network fabric create object
         required: true
       responses:
         "201":
@@ -9963,29 +10958,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NetworkFabric'
-          description: The Network Fabric successfully created
+          description: The network fabric successfully created
           headers:
             Location:
-              description: New Network Fabric link
+              description: New network fabric link
               explode: false
               schema:
                 type: string
               style: simple
+        "400":
+          description: Invalid request sent
         "401":
           description: Unauthorized
         "403":
           description: Forbidden
-        "409":
-          description: Duplicate network fabric
       security:
       - JWT: []
       - apiKey: []
       summary: Create a new network fabric
       tags:
-      - Network Fabrics
+      - Network Fabric
   /api/v2/network-fabrics/{networkFabricId}:
     delete:
-      description: Delete a network fabric
       operationId: deleteNetworkFabric
       parameters:
       - explode: false
@@ -9997,21 +10991,20 @@ paths:
         style: simple
       responses:
         "204":
-          description: The Network Fabric was successfully deleted
+          description: Network fabric was successfully deleted
         "401":
           description: Unauthorized
         "403":
           description: Forbidden
         "404":
-          description: Not found
+          description: Network fabric not found
       security:
       - JWT: []
       - apiKey: []
       summary: Delete a network fabric
       tags:
-      - Network Fabrics
+      - Network Fabric
     get:
-      description: Returns a network fabric by ID
       operationId: getNetworkFabricById
       parameters:
       - explode: false
@@ -10033,30 +11026,39 @@ paths:
         "403":
           description: Forbidden
         "404":
-          description: Not found
+          description: Network fabric not found
       security:
       - JWT: []
       - apiKey: []
       summary: Get a network fabric by ID
       tags:
-      - Network Fabrics
-    put:
-      description: Update a network fabric
+      - Network Fabric
+    patch:
       operationId: updateNetworkFabric
       parameters:
-      - explode: false
+      - description: The ID of the network fabric to update
+        explode: false
         in: path
         name: networkFabricId
         required: true
         schema:
+          format: int32
           type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
         style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateNetworkFabric'
-        description: The Network Fabric update object
+        description: Network fabric updates
         required: true
       responses:
         "200":
@@ -10064,19 +11066,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NetworkFabric'
-          description: The Network Fabric was successfully updated
+          description: Network fabric that was successfully updated
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Bad request
         "401":
           description: Unauthorized
         "403":
           description: Forbidden
         "404":
-          description: Not found
+          description: Network Fabric not found
+        "409":
+          description: Conflict
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
       security:
       - JWT: []
       - apiKey: []
       summary: Update a network fabric
       tags:
-      - Network Fabrics
+      - Network Fabric
   /api/v2/os-templates:
     get:
       description: Returns list of the available OS templates
@@ -12749,8 +13766,8 @@ paths:
       tags:
       - Server Instance Group
     patch:
-      description: Updates the specified Server Instance Group
-      operationId: updateServerInstanceGroup
+      description: Updates the specified Server Instance Group configuration
+      operationId: updateServerInstanceGroupConfig
       parameters:
       - explode: false
         in: path
@@ -12772,15 +13789,16 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ServerInstanceGroupUpdate'
-        description: The Server  instance group changes
+        description: The Server Instance Group configuration changes
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServerInstanceGroup'
-          description: The specified Server Instance Group was successfully updated
+                $ref: '#/components/schemas/ServerInstanceGroupConfiguration'
+          description: The specified Server Instance Group configuration was successfully
+            updated
           headers:
             ETag:
               description: Entity tag
@@ -12805,7 +13823,75 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Update an Server Instance Group configuration
+      summary: Updates Server Instance Group configuration
+      tags:
+      - Server Instance Group
+  /api/v2/server-instance-groups/{serverInstanceGroupId}/meta:
+    patch:
+      description: Updates the specified Server Instance Group meta information
+      operationId: updateServerInstanceGroupMeta
+      parameters:
+      - explode: false
+        in: path
+        name: serverInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+        description: The Server Instance Group meta information
+        required: true
+      responses:
+        "204":
+          description: The specified Server Instance Group meta information was successfully
+            updated
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Server Instance Group not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update an Server Instance Group meta information
+      tags:
+      - Server Instance Group
+  /api/v2/server-instance-groups/{serverInstanceGroupId}/drive-groups:
+    get:
+      description: Returns the drive groups
+      operationId: getServerInstanceGroupDriveGroups
+      parameters:
+      - explode: false
+        in: path
+        name: serverInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriveGroupList'
+          description: The drive groups of the specified Server Instance Group
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Server Instance Group not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get Server Instance Group Drive Groups
       tags:
       - Server Instance Group
   /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces:
@@ -13065,6 +14151,8 @@ paths:
           type: string
         style: simple
       responses:
+        "204":
+          description: ""
         "400":
           description: Bad request
         "401":
@@ -13628,8 +14716,8 @@ paths:
       tags:
       - Server Instance
     patch:
-      description: Updates the specified Server Instance
-      operationId: updateServerInstance
+      description: Updates the specified Server Instance configuration
+      operationId: updateServerInstanceConfig
       parameters:
       - explode: false
         in: path
@@ -13651,15 +14739,16 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ServerInstanceUpdate'
-        description: The Server Instance changes
+        description: The Server Instance configuration changes
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServerInstance'
-          description: The specified Server Instance was successfully updated
+                $ref: '#/components/schemas/ServerInstanceConfiguration'
+          description: The specified Server Instance configuration was successfully
+            updated
           headers:
             ETag:
               description: Entity tag
@@ -13691,7 +14780,7 @@ paths:
     get:
       description: Returns the credentials for various protocols including the IPs
         allocated
-      operationId: getServerInstancesCredentials
+      operationId: getServerInstanceCredentials
       parameters:
       - explode: false
         in: path
@@ -13717,6 +14806,37 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Get Server Instance credentials
+      tags:
+      - Server Instance
+  /api/v2/server-instances/{serverInstanceId}/drives:
+    get:
+      description: Returns the drives
+      operationId: getServerInstanceDrives
+      parameters:
+      - explode: false
+        in: path
+        name: serverInstanceId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriveList'
+          description: The drives of the specified Server Instance
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Server Instance not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get Server Instance Drives
       tags:
       - Server Instance
   /api/v2/server-instances/{serverInstanceId}/interfaces:
@@ -13950,7 +15070,7 @@ paths:
     patch:
       description: Updates a Server Instance Interface (such as by attaching it to
         a network)
-      operationId: updateServerInstancesInterface
+      operationId: updateServerInstanceInterfaceConfig
       parameters:
       - explode: false
         in: path
@@ -13979,15 +15099,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ServerInstanceInterfaceUpdate'
-        description: The Server Instance Interface changes
+        description: The Server Instance Interface configuration changes
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServerInstanceInterface'
-          description: The updated Server Instance Interface
+                $ref: '#/components/schemas/ServerInstanceInterfaceConfiguration'
+          description: The updated Server Instance Interface configuration
           headers:
             ETag:
               description: Entity tag
@@ -14012,7 +15132,7 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Update Server Instance Interfaces
+      summary: Update Server Instance Interface configuration
       tags:
       - Server Instance
   /api/v2/server-instances/{serverInstanceId}/actions/reset:
@@ -14085,6 +15205,8 @@ paths:
         description: The Server Instance Profile reference
         required: true
       responses:
+        "204":
+          description: ""
         "400":
           description: Bad request
         "401":
@@ -14103,6 +15225,92 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Apply the Server Instance Profile configuration to the Server Instance
+      tags:
+      - Server Instance
+  /api/v2/server-instances/{serverInstanceId}/actions/power_set:
+    post:
+      description: Set power to this Server Instance.
+      operationId: setPowerToServerInstance
+      parameters:
+      - explode: false
+        in: path
+        name: serverInstanceId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerInstancePowerSetDto'
+        required: true
+      responses:
+        "200":
+          description: The Server Instance power was set successfully
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Server Instance not found
+        "409":
+          description: The Server Instance state does not allow this operation.
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Set power to the Server Instance
+      tags:
+      - Server Instance
+  /api/v2/server-instances/{serverInstanceId}/actions/power_get:
+    post:
+      description: Get the power status of the Server Instance.
+      operationId: getPowerFromServerInstance
+      parameters:
+      - explode: false
+        in: path
+        name: serverInstanceId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: The Server Instance power retrieved
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Server Instance not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get the power status of the Server Instance
       tags:
       - Server Instance
   /api/v2/servers:
@@ -19118,6 +20326,340 @@ paths:
       summary: Update template asset
       tags:
       - Template Asset
+  /api/v2/events:
+    get:
+      description: Returns list of all Events
+      operationId: getEvents
+      parameters:
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by id query param.
+                    <p>
+                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.id
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by userIdAuthenticated query param.
+                    <p>
+                       <b>Format: </b> filter.userIdAuthenticated={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.userIdAuthenticated=$not:$like:John Doe&filter.userIdAuthenticated=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.userIdAuthenticated
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by type query param.
+                    <p>
+                       <b>Format: </b> filter.type={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.type=$not:$like:John Doe&filter.type=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.type
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by severity query param.
+                    <p>
+                       <b>Format: </b> filter.severity={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.severity=$not:$like:John Doe&filter.severity=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.severity
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by visibility query param.
+                    <p>
+                       <b>Format: </b> filter.visibility={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.visibility=$not:$like:John Doe&filter.visibility=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.visibility
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by infrastructureId query param.
+                    <p>
+                       <b>Format: </b> filter.infrastructureId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.infrastructureId=$not:$like:John Doe&filter.infrastructureId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.infrastructureId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by userId query param.
+                    <p>
+                       <b>Format: </b> filter.userId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.userId=$not:$like:John Doe&filter.userId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.userId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by storagePoolId query param.
+                    <p>
+                       <b>Format: </b> filter.storagePoolId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.storagePoolId=$not:$like:John Doe&filter.storagePoolId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.storagePoolId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by serverId query param.
+                    <p>
+                       <b>Format: </b> filter.serverId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.serverId=$not:$like:John Doe&filter.serverId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.serverId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by jobId query param.
+                    <p>
+                       <b>Format: </b> filter.jobId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.jobId=$not:$like:John Doe&filter.jobId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.jobId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by siteId query param.
+                    <p>
+                       <b>Format: </b> filter.siteId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.siteId=$not:$like:John Doe&filter.siteId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.siteId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li></ul>\n \
+          \     "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> id,type,severity,visibility,infrastructureId\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
+          \ all fields mentioned below will be used to search by term\n          </p>\n\
+          \        <h4>Available Fields</h4><ul><li>id</li>\n<li>type</li>\n<li>severity</li>\n\
+          <li>visibility</li>\n<li>infrastructureId</li>\n<li>userId</li>\n<li>serverId</li>\n\
+          <li>jobId</li>\n<li>siteId</li>\n<li>title</li>\n<li>message</li></ul>\n\
+          \        "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPaginatedList'
+          description: Retrieves a list of Events.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Infrastructure not found.
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all Events
+      tags:
+      - Event
+  /api/v2/events/{customIsoId}:
+    get:
+      description: Returns Custom Iso information
+      operationId: getEvent
+      parameters:
+      - explode: false
+        in: path
+        name: customIsoId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: Returns Custom Iso information
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get Custom Iso information
+      tags:
+      - Event
   /api/v2/users:
     get:
       description: Returns a list of users
@@ -22607,11 +24149,12 @@ components:
         href: /api/v2/path/to/resource
       properties:
         rel:
-          description: The relation
+          description: "Indicates the relation type of the hyperlink (e.g., \"self\"\
+            \ refers to the current resource)."
           example: self
           type: string
         href:
-          description: The link URI
+          description: The URI for accessing the linked resource.
           example: /api/v2/path/to/resource
           type: string
       required:
@@ -24076,6 +25619,173 @@ components:
       type: object
     Object:
       properties: {}
+      type: object
+    CustomIso:
+      example:
+        accessUrl: accessUrl
+        displayName: displayName
+        createdTimestamp: createdTimestamp
+        userIdOwner: 6.027456183070403
+        passwordEncrypted: passwordEncrypted
+        type: http
+        updatedTimestamp: updatedTimestamp
+        imageUrl: imageUrl
+        name: name
+        isPublic: 5.962133916683182
+        modifiedBy: 1.4658129805029452
+        id: 0.8008281904610115
+        username: username
+      properties:
+        id:
+          description: The ID of the custom ISO
+          type: number
+        userIdOwner:
+          description: The ID of the user who owns the custom ISO. If public then
+            null
+          type: number
+        modifiedBy:
+          description: The ID of the user who last edited the custom ISO
+          type: number
+        name:
+          description: The name of the custom ISO
+          type: string
+        displayName:
+          description: The display name of the custom ISO
+          type: string
+        type:
+          description: The type of the custom ISO
+          enum:
+          - http
+          type: string
+        isPublic:
+          description: Flag to indicate if the custom ISO is public
+          type: number
+        accessUrl:
+          description: The access URL of the custom ISO
+          type: string
+        username:
+          description: The username used to access the custom ISO
+          type: string
+        passwordEncrypted:
+          description: The password used to access the custom ISO
+          type: string
+        createdTimestamp:
+          description: The timestamp when the custom ISO was created
+          type: string
+        updatedTimestamp:
+          description: The timestamp when the custom ISO was last updated
+          type: string
+        imageUrl:
+          description: The URL to the image of the custom ISO for mounting on the
+            server
+          type: string
+      required:
+      - accessUrl
+      - createdTimestamp
+      - displayName
+      - id
+      - isPublic
+      - name
+      - type
+      - updatedTimestamp
+      type: object
+    CustomIsoPaginatedList:
+      example:
+        data:
+        - accessUrl: accessUrl
+          displayName: displayName
+          createdTimestamp: createdTimestamp
+          userIdOwner: 6.027456183070403
+          passwordEncrypted: passwordEncrypted
+          type: http
+          updatedTimestamp: updatedTimestamp
+          imageUrl: imageUrl
+          name: name
+          isPublic: 5.962133916683182
+          modifiedBy: 1.4658129805029452
+          id: 0.8008281904610115
+          username: username
+        - accessUrl: accessUrl
+          displayName: displayName
+          createdTimestamp: createdTimestamp
+          userIdOwner: 6.027456183070403
+          passwordEncrypted: passwordEncrypted
+          type: http
+          updatedTimestamp: updatedTimestamp
+          imageUrl: imageUrl
+          name: name
+          isPublic: 5.962133916683182
+          modifiedBy: 1.4658129805029452
+          id: 0.8008281904610115
+          username: username
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CustomIso'
+          title: List of custom iso's
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
+    CreateCustomIso:
+      example:
+        accessUrl: accessUrl
+        displayName: displayName
+        name: name
+      properties:
+        name:
+          description: The name of the custom ISO
+          type: string
+        accessUrl:
+          description: The access URL of the custom ISO
+          type: string
+        displayName:
+          description: The display name of the custom ISO
+          type: string
+      required:
+      - accessUrl
+      - name
+      type: object
+    UpdateCustomIso:
+      example:
+        accessUrl: accessUrl
+        displayName: displayName
+      properties:
+        accessUrl:
+          description: The access URL of the custom ISO
+          type: string
+        displayName:
+          description: The display name of the custom ISO
+          type: string
+      type: object
+    JobInfo:
+      example:
+        jobId: 0.8008281904610115
+        jobGroupId: 6.027456183070403
+      properties:
+        jobId:
+          description: The id of the job.
+          type: number
+        jobGroupId:
+          description: The id of the job group.
+          type: number
+      required:
+      - jobGroupId
+      - jobId
       type: object
     DriveConfiguration:
       properties:
@@ -30136,6 +31846,22 @@ components:
             type: string
           type: array
       type: object
+    AddUserToInfrastructure:
+      example:
+        userEmail: userEmail
+        createIfNotExists: false
+      properties:
+        userEmail:
+          description: The email of the user
+          type: string
+        createIfNotExists:
+          default: false
+          description: Create a new user if the user does not exist
+          type: boolean
+      required:
+      - createIfNotExists
+      - userEmail
+      type: object
     InfrastructureDeployShutdownOptions:
       example:
         attemptSoftShutdown: true
@@ -30808,6 +32534,7 @@ components:
       example:
         diskSizeMbytes: 5
         defaultServerProfileID: 1
+        serverGroupName: server-instance-123
         volumeTemplateId: 1
         instanceCount: 6
         extensionInstanceId: 0
@@ -30821,6 +32548,9 @@ components:
         label:
           description: The server instance group label. Will be automatically generated
             if not provided.
+          example: server-instance-123
+          type: string
+        serverGroupName:
           example: server-instance-123
           type: string
         extensionInstanceId:
@@ -31089,6 +32819,7 @@ components:
         - tags
         clusterCustomInfo: "{}"
         vmInstanceId: 3.616076749251911
+        osReinstallRequired: osReinstallRequired
         iscsiInitiatorUsername: iscsiInitiatorUsername
         infrastructureId: 0
         meta: ""
@@ -31246,6 +32977,9 @@ components:
         osInstallImageBuildInfo:
           description: Build info regarding the OS image.
           type: string
+        osReinstallRequired:
+          description: OS reinstall is required.
+          type: string
         iscsiInitiatorIqn:
           description: iSCSI Initiator IQN for the Instance Interface.
           type: string
@@ -31328,6 +33062,7 @@ components:
           - tags
           clusterCustomInfo: "{}"
           vmInstanceId: 3.616076749251911
+          osReinstallRequired: osReinstallRequired
           iscsiInitiatorUsername: iscsiInitiatorUsername
           infrastructureId: 0
           meta: ""
@@ -31409,6 +33144,7 @@ components:
           - tags
           clusterCustomInfo: "{}"
           vmInstanceId: 3.616076749251911
+          osReinstallRequired: osReinstallRequired
           iscsiInitiatorUsername: iscsiInitiatorUsername
           infrastructureId: 0
           meta: ""
@@ -32256,6 +33992,18 @@ components:
       - jobsCompleted
       - jobsThrownError
       - jobsTotal
+      type: object
+    LogicalNetworkDto:
+      properties: {}
+      type: object
+    Paginated:
+      properties: {}
+      type: object
+    CreateLogicalNetworkDto:
+      properties: {}
+      type: object
+    PatchLogicalNetworkDto:
+      properties: {}
       type: object
     Network:
       example:
@@ -33191,21 +34939,6 @@ components:
     NetworkEquipmentReprovision:
       properties: {}
       type: object
-    JobInfo:
-      example:
-        jobId: 0.8008281904610115
-        jobGroupId: 6.027456183070403
-      properties:
-        jobId:
-          description: The id of the job.
-          type: number
-        jobGroupId:
-          description: The id of the job group.
-          type: number
-      required:
-      - jobGroupId
-      - jobId
-      type: object
     NetworkDeviceDefaultsResponse:
       example: {}
       properties: {}
@@ -33373,6 +35106,31 @@ components:
     DiscoveryQuery:
       properties: {}
       type: object
+    BaseFabricDto:
+      properties:
+        defaultNetworkProfileId:
+          description: "Unique identifier for the default network profile. Must be\
+            \ a positive integer (minimum: 1) corresponding to an existing profile."
+          example: 101
+          minimum: 1
+          type: integer
+        gnmiMonitoringEnabled:
+          description: Enables gNMI monitoring for telemetry data collection using
+            the gNMI protocol.
+          example: false
+          type: boolean
+        syslogMonitoringEnabled:
+          description: Enables syslog monitoring for capturing system logs for diagnostics
+            and troubleshooting.
+          example: true
+          type: boolean
+        zeroTouchEnabled:
+          description: Enables zero-touch provisioning for automatic device configuration.
+          example: false
+          type: boolean
+      required:
+      - defaultNetworkProfileId
+      type: object
     UnmanagedFabric:
       example:
         gnmiMonitoringEnabled: false
@@ -33381,15 +35139,23 @@ components:
         defaultNetworkProfileId: 101
       properties:
         defaultNetworkProfileId:
+          description: "Unique identifier for the default network profile. Must be\
+            \ a positive integer (minimum: 1) corresponding to an existing profile."
           example: 101
-          type: number
+          minimum: 1
+          type: integer
         gnmiMonitoringEnabled:
+          description: Enables gNMI monitoring for telemetry data collection using
+            the gNMI protocol.
           example: false
           type: boolean
         syslogMonitoringEnabled:
+          description: Enables syslog monitoring for capturing system logs for diagnostics
+            and troubleshooting.
           example: true
           type: boolean
         zeroTouchEnabled:
+          description: Enables zero-touch provisioning for automatic device configuration.
           example: false
           type: boolean
       required:
@@ -33398,34 +35164,53 @@ components:
     EthernetFabric:
       properties:
         defaultNetworkProfileId:
+          description: "Unique identifier for the default network profile. Must be\
+            \ a positive integer (minimum: 1) corresponding to an existing profile."
           example: 101
-          type: number
+          minimum: 1
+          type: integer
         gnmiMonitoringEnabled:
+          description: Enables gNMI monitoring for telemetry data collection using
+            the gNMI protocol.
           example: false
           type: boolean
         syslogMonitoringEnabled:
+          description: Enables syslog monitoring for capturing system logs for diagnostics
+            and troubleshooting.
           example: true
           type: boolean
         zeroTouchEnabled:
+          description: Enables zero-touch provisioning for automatic device configuration.
           example: false
           type: boolean
         allocateDefaultVlan:
-          example: false
+          description: Indicates whether to automatically allocate a default VLAN.
+          example: true
           type: boolean
         asnRanges:
+          description: "ASN ranges in the format \"start-end\", where each range is\
+            \ an ordered pair with values between 1 and 4294967295."
           example:
-          - 64512-64513
-          - 64514-64515
+          - 65000-65010
           items:
             type: string
           type: array
         defaultVlan:
+          description: Default VLAN ID. Must be a number between 1 and 4096.
           example: 10
-          type: number
+          maximum: 4096
+          minimum: 1
+          type: integer
         extraInternalIPsPerSubnet:
+          description: Extra internal IPs allocated per subnet; valid range is between
+            1 and 1000.
           example: 2
-          type: number
+          maximum: 1000
+          minimum: 1
+          type: integer
         lagRanges:
+          description: Link Aggregation (LAG) ranges in the format "start-end"; each
+            range must be within the bounds of 1 to 4096.
           example:
           - 100-200
           - 300-400
@@ -33433,10 +35218,12 @@ components:
             type: string
           type: array
         leafSwitchesHaveMlagPairs:
+          description: Indicates if leaf switches have MLAG pairs.
           example: false
           type: boolean
         mlagRanges:
-          description: MLAG ID ranges. Values must be between 1 and 4096.
+          description: MLAG ID ranges. Each range must be provided in "start-end"
+            format with values between 1 and 4096.
           example:
           - 30-40
           - 50-60
@@ -33444,19 +35231,28 @@ components:
             type: string
           type: array
         numberOfSpinesNextToLeafSwitches:
-          description: Number of spines next to leaf switches
+          description: Number of spines adjacent to leaf switches. Must be a positive
+            number.
           example: 2
-          type: number
+          maximum: 1000
+          minimum: 1
+          type: integer
         preventVlanCleanup:
+          description: VLAN ranges that should be prevented from automatic cleanup.
+            Format must be "start-end".
           example:
           - 1000-1100
           items:
             type: string
           type: array
         preventCleanupFromUplinks:
+          description: Flag indicating whether cleanup from uplink interfaces should
+            be prevented.
           example: true
           type: boolean
         reservedVlans:
+          description: Reserved VLAN ranges that are excluded from general allocation.
+            Must follow the "start-end" format.
           example:
           - 2000-2100
           - 2200-2300
@@ -33464,7 +35260,8 @@ components:
             type: string
           type: array
         vlanRanges:
-          description: Array of VLAN range strings in format "start-end"
+          description: Array of VLAN range strings in "start-end" format to be used
+            in configuration.
           example:
           - 3000-3100
           - 2000-2100
@@ -33478,34 +35275,53 @@ components:
     EthernetFlatL2Fabric:
       properties:
         defaultNetworkProfileId:
+          description: "Unique identifier for the default network profile. Must be\
+            \ a positive integer (minimum: 1) corresponding to an existing profile."
           example: 101
-          type: number
+          minimum: 1
+          type: integer
         gnmiMonitoringEnabled:
+          description: Enables gNMI monitoring for telemetry data collection using
+            the gNMI protocol.
           example: false
           type: boolean
         syslogMonitoringEnabled:
+          description: Enables syslog monitoring for capturing system logs for diagnostics
+            and troubleshooting.
           example: true
           type: boolean
         zeroTouchEnabled:
+          description: Enables zero-touch provisioning for automatic device configuration.
           example: false
           type: boolean
         allocateDefaultVlan:
-          example: false
+          description: Indicates whether to automatically allocate a default VLAN.
+          example: true
           type: boolean
         asnRanges:
+          description: "ASN ranges in the format \"start-end\", where each range is\
+            \ an ordered pair with values between 1 and 4294967295."
           example:
-          - 64512-64513
-          - 64514-64515
+          - 65000-65010
           items:
             type: string
           type: array
         defaultVlan:
+          description: Default VLAN ID. Must be a number between 1 and 4096.
           example: 10
-          type: number
+          maximum: 4096
+          minimum: 1
+          type: integer
         extraInternalIPsPerSubnet:
+          description: Extra internal IPs allocated per subnet; valid range is between
+            1 and 1000.
           example: 2
-          type: number
+          maximum: 1000
+          minimum: 1
+          type: integer
         lagRanges:
+          description: Link Aggregation (LAG) ranges in the format "start-end"; each
+            range must be within the bounds of 1 to 4096.
           example:
           - 100-200
           - 300-400
@@ -33513,10 +35329,12 @@ components:
             type: string
           type: array
         leafSwitchesHaveMlagPairs:
+          description: Indicates if leaf switches have MLAG pairs.
           example: false
           type: boolean
         mlagRanges:
-          description: MLAG ID ranges. Values must be between 1 and 4096.
+          description: MLAG ID ranges. Each range must be provided in "start-end"
+            format with values between 1 and 4096.
           example:
           - 30-40
           - 50-60
@@ -33524,19 +35342,28 @@ components:
             type: string
           type: array
         numberOfSpinesNextToLeafSwitches:
-          description: Number of spines next to leaf switches
+          description: Number of spines adjacent to leaf switches. Must be a positive
+            number.
           example: 2
-          type: number
+          maximum: 1000
+          minimum: 1
+          type: integer
         preventVlanCleanup:
+          description: VLAN ranges that should be prevented from automatic cleanup.
+            Format must be "start-end".
           example:
           - 1000-1100
           items:
             type: string
           type: array
         preventCleanupFromUplinks:
+          description: Flag indicating whether cleanup from uplink interfaces should
+            be prevented.
           example: true
           type: boolean
         reservedVlans:
+          description: Reserved VLAN ranges that are excluded from general allocation.
+            Must follow the "start-end" format.
           example:
           - 2000-2100
           - 2200-2300
@@ -33544,7 +35371,8 @@ components:
             type: string
           type: array
         vlanRanges:
-          description: Array of VLAN range strings in format "start-end"
+          description: Array of VLAN range strings in "start-end" format to be used
+            in configuration.
           example:
           - 3000-3100
           - 2000-2100
@@ -33558,34 +35386,53 @@ components:
     EthernetHybridL2L3Fabric:
       properties:
         defaultNetworkProfileId:
+          description: "Unique identifier for the default network profile. Must be\
+            \ a positive integer (minimum: 1) corresponding to an existing profile."
           example: 101
-          type: number
+          minimum: 1
+          type: integer
         gnmiMonitoringEnabled:
+          description: Enables gNMI monitoring for telemetry data collection using
+            the gNMI protocol.
           example: false
           type: boolean
         syslogMonitoringEnabled:
+          description: Enables syslog monitoring for capturing system logs for diagnostics
+            and troubleshooting.
           example: true
           type: boolean
         zeroTouchEnabled:
+          description: Enables zero-touch provisioning for automatic device configuration.
           example: false
           type: boolean
         allocateDefaultVlan:
-          example: false
+          description: Indicates whether to automatically allocate a default VLAN.
+          example: true
           type: boolean
         asnRanges:
+          description: "ASN ranges in the format \"start-end\", where each range is\
+            \ an ordered pair with values between 1 and 4294967295."
           example:
-          - 64512-64513
-          - 64514-64515
+          - 65000-65010
           items:
             type: string
           type: array
         defaultVlan:
+          description: Default VLAN ID. Must be a number between 1 and 4096.
           example: 10
-          type: number
+          maximum: 4096
+          minimum: 1
+          type: integer
         extraInternalIPsPerSubnet:
+          description: Extra internal IPs allocated per subnet; valid range is between
+            1 and 1000.
           example: 2
-          type: number
+          maximum: 1000
+          minimum: 1
+          type: integer
         lagRanges:
+          description: Link Aggregation (LAG) ranges in the format "start-end"; each
+            range must be within the bounds of 1 to 4096.
           example:
           - 100-200
           - 300-400
@@ -33593,10 +35440,12 @@ components:
             type: string
           type: array
         leafSwitchesHaveMlagPairs:
+          description: Indicates if leaf switches have MLAG pairs.
           example: false
           type: boolean
         mlagRanges:
-          description: MLAG ID ranges. Values must be between 1 and 4096.
+          description: MLAG ID ranges. Each range must be provided in "start-end"
+            format with values between 1 and 4096.
           example:
           - 30-40
           - 50-60
@@ -33604,19 +35453,28 @@ components:
             type: string
           type: array
         numberOfSpinesNextToLeafSwitches:
-          description: Number of spines next to leaf switches
+          description: Number of spines adjacent to leaf switches. Must be a positive
+            number.
           example: 2
-          type: number
+          maximum: 1000
+          minimum: 1
+          type: integer
         preventVlanCleanup:
+          description: VLAN ranges that should be prevented from automatic cleanup.
+            Format must be "start-end".
           example:
           - 1000-1100
           items:
             type: string
           type: array
         preventCleanupFromUplinks:
+          description: Flag indicating whether cleanup from uplink interfaces should
+            be prevented.
           example: true
           type: boolean
         reservedVlans:
+          description: Reserved VLAN ranges that are excluded from general allocation.
+            Must follow the "start-end" format.
           example:
           - 2000-2100
           - 2200-2300
@@ -33624,7 +35482,8 @@ components:
             type: string
           type: array
         vlanRanges:
-          description: Array of VLAN range strings in format "start-end"
+          description: Array of VLAN range strings in "start-end" format to be used
+            in configuration.
           example:
           - 3000-3100
           - 2000-2100
@@ -33638,34 +35497,53 @@ components:
     EthernetFlatL3Fabric:
       properties:
         defaultNetworkProfileId:
+          description: "Unique identifier for the default network profile. Must be\
+            \ a positive integer (minimum: 1) corresponding to an existing profile."
           example: 101
-          type: number
+          minimum: 1
+          type: integer
         gnmiMonitoringEnabled:
+          description: Enables gNMI monitoring for telemetry data collection using
+            the gNMI protocol.
           example: false
           type: boolean
         syslogMonitoringEnabled:
+          description: Enables syslog monitoring for capturing system logs for diagnostics
+            and troubleshooting.
           example: true
           type: boolean
         zeroTouchEnabled:
+          description: Enables zero-touch provisioning for automatic device configuration.
           example: false
           type: boolean
         allocateDefaultVlan:
-          example: false
+          description: Indicates whether to automatically allocate a default VLAN.
+          example: true
           type: boolean
         asnRanges:
+          description: "ASN ranges in the format \"start-end\", where each range is\
+            \ an ordered pair with values between 1 and 4294967295."
           example:
-          - 64512-64513
-          - 64514-64515
+          - 65000-65010
           items:
             type: string
           type: array
         defaultVlan:
+          description: Default VLAN ID. Must be a number between 1 and 4096.
           example: 10
-          type: number
+          maximum: 4096
+          minimum: 1
+          type: integer
         extraInternalIPsPerSubnet:
+          description: Extra internal IPs allocated per subnet; valid range is between
+            1 and 1000.
           example: 2
-          type: number
+          maximum: 1000
+          minimum: 1
+          type: integer
         lagRanges:
+          description: Link Aggregation (LAG) ranges in the format "start-end"; each
+            range must be within the bounds of 1 to 4096.
           example:
           - 100-200
           - 300-400
@@ -33673,10 +35551,12 @@ components:
             type: string
           type: array
         leafSwitchesHaveMlagPairs:
+          description: Indicates if leaf switches have MLAG pairs.
           example: false
           type: boolean
         mlagRanges:
-          description: MLAG ID ranges. Values must be between 1 and 4096.
+          description: MLAG ID ranges. Each range must be provided in "start-end"
+            format with values between 1 and 4096.
           example:
           - 30-40
           - 50-60
@@ -33684,19 +35564,28 @@ components:
             type: string
           type: array
         numberOfSpinesNextToLeafSwitches:
-          description: Number of spines next to leaf switches
+          description: Number of spines adjacent to leaf switches. Must be a positive
+            number.
           example: 2
-          type: number
+          maximum: 1000
+          minimum: 1
+          type: integer
         preventVlanCleanup:
+          description: VLAN ranges that should be prevented from automatic cleanup.
+            Format must be "start-end".
           example:
           - 1000-1100
           items:
             type: string
           type: array
         preventCleanupFromUplinks:
+          description: Flag indicating whether cleanup from uplink interfaces should
+            be prevented.
           example: true
           type: boolean
         reservedVlans:
+          description: Reserved VLAN ranges that are excluded from general allocation.
+            Must follow the "start-end" format.
           example:
           - 2000-2100
           - 2200-2300
@@ -33704,7 +35593,8 @@ components:
             type: string
           type: array
         vlanRanges:
-          description: Array of VLAN range strings in format "start-end"
+          description: Array of VLAN range strings in "start-end" format to be used
+            in configuration.
           example:
           - 3000-3100
           - 2000-2100
@@ -33718,34 +35608,53 @@ components:
     EthernetEvpnVxlanL2Fabric:
       properties:
         defaultNetworkProfileId:
+          description: "Unique identifier for the default network profile. Must be\
+            \ a positive integer (minimum: 1) corresponding to an existing profile."
           example: 101
-          type: number
+          minimum: 1
+          type: integer
         gnmiMonitoringEnabled:
+          description: Enables gNMI monitoring for telemetry data collection using
+            the gNMI protocol.
           example: false
           type: boolean
         syslogMonitoringEnabled:
+          description: Enables syslog monitoring for capturing system logs for diagnostics
+            and troubleshooting.
           example: true
           type: boolean
         zeroTouchEnabled:
+          description: Enables zero-touch provisioning for automatic device configuration.
           example: false
           type: boolean
         allocateDefaultVlan:
-          example: false
+          description: Indicates whether to automatically allocate a default VLAN.
+          example: true
           type: boolean
         asnRanges:
+          description: "ASN ranges in the format \"start-end\", where each range is\
+            \ an ordered pair with values between 1 and 4294967295."
           example:
-          - 64512-64513
-          - 64514-64515
+          - 65000-65010
           items:
             type: string
           type: array
         defaultVlan:
+          description: Default VLAN ID. Must be a number between 1 and 4096.
           example: 10
-          type: number
+          maximum: 4096
+          minimum: 1
+          type: integer
         extraInternalIPsPerSubnet:
+          description: Extra internal IPs allocated per subnet; valid range is between
+            1 and 1000.
           example: 2
-          type: number
+          maximum: 1000
+          minimum: 1
+          type: integer
         lagRanges:
+          description: Link Aggregation (LAG) ranges in the format "start-end"; each
+            range must be within the bounds of 1 to 4096.
           example:
           - 100-200
           - 300-400
@@ -33753,10 +35662,12 @@ components:
             type: string
           type: array
         leafSwitchesHaveMlagPairs:
+          description: Indicates if leaf switches have MLAG pairs.
           example: false
           type: boolean
         mlagRanges:
-          description: MLAG ID ranges. Values must be between 1 and 4096.
+          description: MLAG ID ranges. Each range must be provided in "start-end"
+            format with values between 1 and 4096.
           example:
           - 30-40
           - 50-60
@@ -33764,19 +35675,28 @@ components:
             type: string
           type: array
         numberOfSpinesNextToLeafSwitches:
-          description: Number of spines next to leaf switches
+          description: Number of spines adjacent to leaf switches. Must be a positive
+            number.
           example: 2
-          type: number
+          maximum: 1000
+          minimum: 1
+          type: integer
         preventVlanCleanup:
+          description: VLAN ranges that should be prevented from automatic cleanup.
+            Format must be "start-end".
           example:
           - 1000-1100
           items:
             type: string
           type: array
         preventCleanupFromUplinks:
+          description: Flag indicating whether cleanup from uplink interfaces should
+            be prevented.
           example: true
           type: boolean
         reservedVlans:
+          description: Reserved VLAN ranges that are excluded from general allocation.
+            Must follow the "start-end" format.
           example:
           - 2000-2100
           - 2200-2300
@@ -33784,7 +35704,8 @@ components:
             type: string
           type: array
         vlanRanges:
-          description: Array of VLAN range strings in format "start-end"
+          description: Array of VLAN range strings in "start-end" format to be used
+            in configuration.
           example:
           - 3000-3100
           - 2000-2100
@@ -33792,8 +35713,9 @@ components:
             type: string
           type: array
         vniPrefix:
+          description: The VNI prefix for the EVPN VXLAN fabric.
           example: 5000
-          type: number
+          type: integer
       required:
       - defaultNetworkProfileId
       - numberOfSpinesNextToLeafSwitches
@@ -33801,34 +35723,53 @@ components:
     EthernetEvpnVxlanL3Fabric:
       properties:
         defaultNetworkProfileId:
+          description: "Unique identifier for the default network profile. Must be\
+            \ a positive integer (minimum: 1) corresponding to an existing profile."
           example: 101
-          type: number
+          minimum: 1
+          type: integer
         gnmiMonitoringEnabled:
+          description: Enables gNMI monitoring for telemetry data collection using
+            the gNMI protocol.
           example: false
           type: boolean
         syslogMonitoringEnabled:
+          description: Enables syslog monitoring for capturing system logs for diagnostics
+            and troubleshooting.
           example: true
           type: boolean
         zeroTouchEnabled:
+          description: Enables zero-touch provisioning for automatic device configuration.
           example: false
           type: boolean
         allocateDefaultVlan:
-          example: false
+          description: Indicates whether to automatically allocate a default VLAN.
+          example: true
           type: boolean
         asnRanges:
+          description: "ASN ranges in the format \"start-end\", where each range is\
+            \ an ordered pair with values between 1 and 4294967295."
           example:
-          - 64512-64513
-          - 64514-64515
+          - 65000-65010
           items:
             type: string
           type: array
         defaultVlan:
+          description: Default VLAN ID. Must be a number between 1 and 4096.
           example: 10
-          type: number
+          maximum: 4096
+          minimum: 1
+          type: integer
         extraInternalIPsPerSubnet:
+          description: Extra internal IPs allocated per subnet; valid range is between
+            1 and 1000.
           example: 2
-          type: number
+          maximum: 1000
+          minimum: 1
+          type: integer
         lagRanges:
+          description: Link Aggregation (LAG) ranges in the format "start-end"; each
+            range must be within the bounds of 1 to 4096.
           example:
           - 100-200
           - 300-400
@@ -33836,10 +35777,12 @@ components:
             type: string
           type: array
         leafSwitchesHaveMlagPairs:
+          description: Indicates if leaf switches have MLAG pairs.
           example: false
           type: boolean
         mlagRanges:
-          description: MLAG ID ranges. Values must be between 1 and 4096.
+          description: MLAG ID ranges. Each range must be provided in "start-end"
+            format with values between 1 and 4096.
           example:
           - 30-40
           - 50-60
@@ -33847,19 +35790,28 @@ components:
             type: string
           type: array
         numberOfSpinesNextToLeafSwitches:
-          description: Number of spines next to leaf switches
+          description: Number of spines adjacent to leaf switches. Must be a positive
+            number.
           example: 2
-          type: number
+          maximum: 1000
+          minimum: 1
+          type: integer
         preventVlanCleanup:
+          description: VLAN ranges that should be prevented from automatic cleanup.
+            Format must be "start-end".
           example:
           - 1000-1100
           items:
             type: string
           type: array
         preventCleanupFromUplinks:
+          description: Flag indicating whether cleanup from uplink interfaces should
+            be prevented.
           example: true
           type: boolean
         reservedVlans:
+          description: Reserved VLAN ranges that are excluded from general allocation.
+            Must follow the "start-end" format.
           example:
           - 2000-2100
           - 2200-2300
@@ -33867,7 +35819,8 @@ components:
             type: string
           type: array
         vlanRanges:
-          description: Array of VLAN range strings in format "start-end"
+          description: Array of VLAN range strings in "start-end" format to be used
+            in configuration.
           example:
           - 3000-3100
           - 2000-2100
@@ -33875,9 +35828,12 @@ components:
             type: string
           type: array
         vniPrefix:
+          description: The VNI prefix for the EVPN VXLAN fabric.
           example: 5000
-          type: number
+          type: integer
         preventVrfCleanup:
+          description: VRF ID ranges to be preserved from automatic cleanup. Each
+            range must follow the "start-end" format.
           example:
           - 3000-3100
           - 2000-2100
@@ -33885,6 +35841,8 @@ components:
             type: string
           type: array
         reservedVrfs:
+          description: Reserved VRF ID ranges that are set aside exclusively for specific
+            network functions. Each range must be provided in the "start-end" format.
           example:
           - 4000-4100
           - 4200-4300
@@ -33892,9 +35850,11 @@ components:
             type: string
           type: array
         vrfVlanRanges:
+          description: VLAN ranges to be associated with VRF instances. Each value
+            must be an ordered pair specified in the "start-end" format.
           example:
-          - 4400-4500
-          - 4600-4700
+          - 400-450
+          - 460-470
           items:
             type: string
           type: array
@@ -33905,15 +35865,23 @@ components:
     FibreChannelFabric:
       properties:
         defaultNetworkProfileId:
+          description: "Unique identifier for the default network profile. Must be\
+            \ a positive integer (minimum: 1) corresponding to an existing profile."
           example: 101
-          type: number
+          minimum: 1
+          type: integer
         gnmiMonitoringEnabled:
+          description: Enables gNMI monitoring for telemetry data collection using
+            the gNMI protocol.
           example: false
           type: boolean
         syslogMonitoringEnabled:
+          description: Enables syslog monitoring for capturing system logs for diagnostics
+            and troubleshooting.
           example: true
           type: boolean
         zeroTouchEnabled:
+          description: Enables zero-touch provisioning for automatic device configuration.
           example: false
           type: boolean
       required:
@@ -33922,15 +35890,23 @@ components:
     InfiniBandFabric:
       properties:
         defaultNetworkProfileId:
+          description: "Unique identifier for the default network profile. Must be\
+            \ a positive integer (minimum: 1) corresponding to an existing profile."
           example: 101
-          type: number
+          minimum: 1
+          type: integer
         gnmiMonitoringEnabled:
+          description: Enables gNMI monitoring for telemetry data collection using
+            the gNMI protocol.
           example: false
           type: boolean
         syslogMonitoringEnabled:
+          description: Enables syslog monitoring for capturing system logs for diagnostics
+            and troubleshooting.
           example: true
           type: boolean
         zeroTouchEnabled:
+          description: Enables zero-touch provisioning for automatic device configuration.
           example: false
           type: boolean
       required:
@@ -33939,15 +35915,23 @@ components:
     VirtualFabric:
       properties:
         defaultNetworkProfileId:
+          description: "Unique identifier for the default network profile. Must be\
+            \ a positive integer (minimum: 1) corresponding to an existing profile."
           example: 101
-          type: number
+          minimum: 1
+          type: integer
         gnmiMonitoringEnabled:
+          description: Enables gNMI monitoring for telemetry data collection using
+            the gNMI protocol.
           example: false
           type: boolean
         syslogMonitoringEnabled:
+          description: Enables syslog monitoring for capturing system logs for diagnostics
+            and troubleshooting.
           example: true
           type: boolean
         zeroTouchEnabled:
+          description: Enables zero-touch provisioning for automatic device configuration.
           example: false
           type: boolean
       required:
@@ -33956,15 +35940,23 @@ components:
     OvnFabric:
       properties:
         defaultNetworkProfileId:
+          description: "Unique identifier for the default network profile. Must be\
+            \ a positive integer (minimum: 1) corresponding to an existing profile."
           example: 101
-          type: number
+          minimum: 1
+          type: integer
         gnmiMonitoringEnabled:
+          description: Enables gNMI monitoring for telemetry data collection using
+            the gNMI protocol.
           example: false
           type: boolean
         syslogMonitoringEnabled:
+          description: Enables syslog monitoring for capturing system logs for diagnostics
+            and troubleshooting.
           example: true
           type: boolean
         zeroTouchEnabled:
+          description: Enables zero-touch provisioning for automatic device configuration.
           example: false
           type: boolean
       required:
@@ -33972,7 +35964,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-02-20T10:06:08.539Z
+        createdTimestamp: 2025-02-24T08:54:41.393Z
         name: My Network Fabric
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
@@ -33980,10 +35972,15 @@ components:
           syslogMonitoringEnabled: true
           zeroTouchEnabled: false
           defaultNetworkProfileId: 101
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
         id: "1"
-        fabricType: ethernet_flat_l2
-        updatedTimestamp: 2025-02-20T10:06:08.54Z
-        revision: 1
+        fabricType: unmanaged
+        updatedTimestamp: 2025-02-24T08:54:41.393Z
+        revision: "1"
       properties:
         name:
           description: The network fabric name
@@ -34009,28 +36006,33 @@ components:
           - infiniband
           - virtual
           - ovn
-          example: ethernet_flat_l2
+          example: unmanaged
           type: string
         fabricConfiguration:
           $ref: '#/components/schemas/NetworkFabric_fabricConfiguration'
         revision:
           description: Revision number of the entity
-          example: 1
-          minimum: 1
-          type: number
-        id:
-          description: The network fabric ID.
           example: "1"
+          format: integer
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-02-20T10:06:08.539Z
+          example: 2025-02-24T08:54:41.393Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-02-20T10:06:08.54Z
+          example: 2025-02-24T08:54:41.393Z
           format: date-time
+          type: string
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+        id:
+          description: The network fabric ID.
+          example: "1"
           type: string
       required:
       - createdTimestamp
@@ -34044,7 +36046,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-02-20T10:06:08.539Z
+        - createdTimestamp: 2025-02-24T08:54:41.393Z
           name: My Network Fabric
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -34052,11 +36054,16 @@ components:
             syslogMonitoringEnabled: true
             zeroTouchEnabled: false
             defaultNetworkProfileId: 101
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
           id: "1"
-          fabricType: ethernet_flat_l2
-          updatedTimestamp: 2025-02-20T10:06:08.54Z
-          revision: 1
-        - createdTimestamp: 2025-02-20T10:06:08.539Z
+          fabricType: unmanaged
+          updatedTimestamp: 2025-02-24T08:54:41.393Z
+          revision: "1"
+        - createdTimestamp: 2025-02-24T08:54:41.393Z
           name: My Network Fabric
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
@@ -34064,10 +36071,15 @@ components:
             syslogMonitoringEnabled: true
             zeroTouchEnabled: false
             defaultNetworkProfileId: 101
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
           id: "1"
-          fabricType: ethernet_flat_l2
-          updatedTimestamp: 2025-02-20T10:06:08.54Z
-          revision: 1
+          fabricType: unmanaged
+          updatedTimestamp: 2025-02-24T08:54:41.393Z
+          revision: "1"
         meta: ""
         links: ""
       properties:
@@ -34100,7 +36112,7 @@ components:
           syslogMonitoringEnabled: true
           zeroTouchEnabled: false
           defaultNetworkProfileId: 101
-        fabricType: ethernet_flat_l2
+        fabricType: unmanaged
       properties:
         name:
           description: The network fabric name
@@ -34126,7 +36138,7 @@ components:
           - infiniband
           - virtual
           - ovn
-          example: ethernet_flat_l2
+          example: unmanaged
           type: string
         fabricConfiguration:
           $ref: '#/components/schemas/NetworkFabric_fabricConfiguration'
@@ -34144,9 +36156,7 @@ components:
           syslogMonitoringEnabled: true
           zeroTouchEnabled: false
           defaultNetworkProfileId: 101
-        id: "1"
-        fabricType: ethernet_flat_l2
-        revision: 1
+        fabricType: unmanaged
       properties:
         name:
           description: The network fabric name
@@ -34172,25 +36182,10 @@ components:
           - infiniband
           - virtual
           - ovn
-          example: ethernet_flat_l2
+          example: unmanaged
           type: string
         fabricConfiguration:
           $ref: '#/components/schemas/NetworkFabric_fabricConfiguration'
-        revision:
-          description: Revision number of the entity
-          example: 1
-          minimum: 1
-          type: number
-        id:
-          description: The network fabric ID.
-          example: "1"
-          type: string
-      required:
-      - fabricConfiguration
-      - fabricType
-      - id
-      - name
-      - revision
       type: object
     OSTemplateDevice:
       example:
@@ -35856,20 +37851,141 @@ components:
       type: object
     ServerInstanceGroupUpdate:
       example:
+        diskSizeMbytes: 5
         defaultServerProfileID: 1
+        serverGroupName: server-instance-123
+        volumeTemplateId: 6
+        instanceCount: 0
         label: server-instance-123
+        diskCount: 1
+        customVariables: "{}"
+        diskTypes:
+        - diskTypes
+        - diskTypes
       properties:
         label:
           description: The server instance group label. Will be automatically generated
             if not provided.
           example: server-instance-123
           type: string
+        serverGroupName:
+          example: server-instance-123
+          type: string
+        instanceCount:
+          default: 1
+          type: integer
+        volumeTemplateId:
+          type: integer
+        customVariables:
+          type: object
+        diskCount:
+          type: integer
+        diskSizeMbytes:
+          type: integer
+        diskTypes:
+          items:
+            type: string
+          type: array
         defaultServerProfileID:
           description: "The group's default server profile. Useful when creating a\
             \ server instance with a group id set, the profile will be automatically\
             \ applied."
           example: 1
           type: integer
+      type: object
+    DriveGroupList:
+      example:
+        data:
+        - driveCount: 1
+          extensionInstanceId: 1
+          containerArrayId: 1
+          templateId: 1
+          updatedTimestamp: updatedTimestamp
+          containerClusterId: 1
+          dnsSubdomainPermanentId: 2.3021358869347655
+          serviceStatus: ordered
+          id: 1.4658129805029452
+          dnsSubdomainId: 5.637376656633329
+          instanceArrayId: 1
+          createdTimestamp: createdTimestamp
+          label: label
+          ioLimitPolicy: ioLimitPolicy
+          subdomainPermanent: subdomainPermanent
+          allocationAffinity: same_storage
+          filesystemInfo: "{}"
+          revision: 5.962133916683182
+          tags:
+          - tags
+          - tags
+          expandWithInstanceArray: 1
+          infrastructureId: 0.8008281904610115
+          storageType: iscsi_ssd
+          subdomain: subdomain
+          driveSizeMbDefault: 6.027456183070403
+          guiSettings:
+            rowIndex: 6.027456183070403
+            columnIndex: 1.4658129805029452
+            userAgent: userAgent
+            randomInstanceID: randomInstanceID
+            showWidgetChildren: true
+            tags:
+            - tags
+            - tags
+          config: ""
+        - driveCount: 1
+          extensionInstanceId: 1
+          containerArrayId: 1
+          templateId: 1
+          updatedTimestamp: updatedTimestamp
+          containerClusterId: 1
+          dnsSubdomainPermanentId: 2.3021358869347655
+          serviceStatus: ordered
+          id: 1.4658129805029452
+          dnsSubdomainId: 5.637376656633329
+          instanceArrayId: 1
+          createdTimestamp: createdTimestamp
+          label: label
+          ioLimitPolicy: ioLimitPolicy
+          subdomainPermanent: subdomainPermanent
+          allocationAffinity: same_storage
+          filesystemInfo: "{}"
+          revision: 5.962133916683182
+          tags:
+          - tags
+          - tags
+          expandWithInstanceArray: 1
+          infrastructureId: 0.8008281904610115
+          storageType: iscsi_ssd
+          subdomain: subdomain
+          driveSizeMbDefault: 6.027456183070403
+          guiSettings:
+            rowIndex: 6.027456183070403
+            columnIndex: 1.4658129805029452
+            userAgent: userAgent
+            randomInstanceID: randomInstanceID
+            showWidgetChildren: true
+            tags:
+            - tags
+            - tags
+          config: ""
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/DriveGroup'
+          title: List of drive groups
+          type: array
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - data
       type: object
     ServerInstanceGroupInterfaceConfiguration:
       example:
@@ -36490,6 +38606,118 @@ components:
             $ref: '#/components/schemas/SSHKey'
           type: array
       type: object
+    DriveList:
+      example:
+        data:
+        - iscsiIndexHex: iscsiIndexHex
+          groupId: 1
+          sizeMb: 6.027456183070403
+          templateIdOrigin: 1
+          updatedTimestamp: updatedTimestamp
+          targets: "{}"
+          sshKeyPairInternalEncrypted: "{}"
+          storageVirtualSizeCachedMb: 3.616076749251911
+          wwn: wwn
+          storageImageName: storageImageName
+          storageUpdatedTimestamp: storageUpdatedTimestamp
+          instanceId: 1
+          dnsSubdomainPermanentId: 4.145608029883936
+          osAdminPasswordEncrypted: osAdminPasswordEncrypted
+          serviceStatus: ordered
+          osAdminUsername: osAdminUsername
+          networkVlanId: 7.386281948385884
+          operatingSystemInfo: "{}"
+          storagePoolId: 0.8008281904610115
+          id: 5.962133916683182
+          containerId: 1
+          storageRealSizeCachedMb: 7.061401241503109
+          sshPort: 1.4658129805029452
+          provisioningProtocol: iSCSI
+          storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
+          dnsSubdomainId: 2.027123023002322
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          filesystemInfo: "{}"
+          revision: 5.637376656633329
+          clusterCustomInfo: "{}"
+          infrastructureId: 2.3021358869347655
+          storageType: iscsi_ssd
+          subdomain: subdomain
+          config: ""
+          guiSettings:
+            rowIndex: 6.027456183070403
+            columnIndex: 1.4658129805029452
+            userAgent: userAgent
+            randomInstanceID: randomInstanceID
+            showWidgetChildren: true
+            tags:
+            - tags
+            - tags
+        - iscsiIndexHex: iscsiIndexHex
+          groupId: 1
+          sizeMb: 6.027456183070403
+          templateIdOrigin: 1
+          updatedTimestamp: updatedTimestamp
+          targets: "{}"
+          sshKeyPairInternalEncrypted: "{}"
+          storageVirtualSizeCachedMb: 3.616076749251911
+          wwn: wwn
+          storageImageName: storageImageName
+          storageUpdatedTimestamp: storageUpdatedTimestamp
+          instanceId: 1
+          dnsSubdomainPermanentId: 4.145608029883936
+          osAdminPasswordEncrypted: osAdminPasswordEncrypted
+          serviceStatus: ordered
+          osAdminUsername: osAdminUsername
+          networkVlanId: 7.386281948385884
+          operatingSystemInfo: "{}"
+          storagePoolId: 0.8008281904610115
+          id: 5.962133916683182
+          containerId: 1
+          storageRealSizeCachedMb: 7.061401241503109
+          sshPort: 1.4658129805029452
+          provisioningProtocol: iSCSI
+          storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
+          dnsSubdomainId: 2.027123023002322
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          filesystemInfo: "{}"
+          revision: 5.637376656633329
+          clusterCustomInfo: "{}"
+          infrastructureId: 2.3021358869347655
+          storageType: iscsi_ssd
+          subdomain: subdomain
+          config: ""
+          guiSettings:
+            rowIndex: 6.027456183070403
+            columnIndex: 1.4658129805029452
+            userAgent: userAgent
+            randomInstanceID: randomInstanceID
+            showWidgetChildren: true
+            tags:
+            - tags
+            - tags
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Drive'
+          title: List of drives
+          type: array
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - data
+      type: object
     ServerInstanceInterfaceConfiguration:
       example:
         serverInterfaceId: 5
@@ -36846,6 +39074,21 @@ components:
           type: integer
       required:
       - id
+      type: object
+    ServerInstancePowerSetDto:
+      example:
+        powerCommand: "on"
+      properties:
+        powerCommand:
+          description: Power command.
+          enum:
+          - "on"
+          - reset
+          - soft
+          - "off"
+          type: string
+      required:
+      - powerCommand
       type: object
     ServerGpuInfo:
       example:
@@ -40919,6 +43162,627 @@ components:
       - templateId
       - usage
       type: object
+    Event:
+      example:
+        severity: success
+        visibility: private
+        userIdAuthenticated: 6.027456183070403
+        userEmailAuthenticated: userEmailAuthenticated
+        type: 1.4658129805029452
+        title: title
+        message: message
+        httpUserAgent: httpUserAgent
+        userId: 5.637376656633329
+        serverId: 2.3021358869347655
+        occurredTimestamp: occurredTimestamp
+        jobId: jobId
+        infrastructureId: 5.962133916683182
+        context: "{}"
+        siteId: 7.061401241503109
+        id: 0.8008281904610115
+        remoteIpAddress: remoteIpAddress
+      properties:
+        id:
+          description: The id of the event
+          type: number
+        userIdAuthenticated:
+          description: The id of the user who triggered the event
+          type: number
+        type:
+          description: The type of the event
+          enum:
+          - 370
+          - 374
+          - 400
+          - 371
+          - 457
+          - 481
+          - 372
+          - 375
+          - 373
+          - 251
+          - 252
+          - 384
+          - 396
+          - 397
+          - 398
+          - 399
+          - 276
+          - 395
+          - 294
+          - 528
+          - 529
+          - 530
+          - 531
+          - 532
+          - 533
+          - 534
+          - 535
+          - 536
+          - 537
+          - 538
+          - 197
+          - 196
+          - 264
+          - 153
+          - 156
+          - 158
+          - 157
+          - 154
+          - 263
+          - 249
+          - 171
+          - 155
+          - 206
+          - 239
+          - 240
+          - 195
+          - 194
+          - 215
+          - 220
+          - 221
+          - 222
+          - 223
+          - 216
+          - 227
+          - 231
+          - 232
+          - 217
+          - 228
+          - 229
+          - 230
+          - 250
+          - 224
+          - 225
+          - 226
+          - 265
+          - 254
+          - 255
+          - 256
+          - 257
+          - 258
+          - 266
+          - 259
+          - 260
+          - 261
+          - 277
+          - 278
+          - 279
+          - 280
+          - 281
+          - 282
+          - 283
+          - 284
+          - 285
+          - 286
+          - 287
+          - 288
+          - 289
+          - 207
+          - 208
+          - 209
+          - 210
+          - 211
+          - 212
+          - 213
+          - 214
+          - 290
+          - 291
+          - 292
+          - 293
+          - 463
+          - 465
+          - 466
+          - 464
+          - 186
+          - 187
+          - 188
+          - 189
+          - 190
+          - 299
+          - 191
+          - 192
+          - 376
+          - 298
+          - 382
+          - 418
+          - 429
+          - 438
+          - 434
+          - 437
+          - 431
+          - 430
+          - 440
+          - 433
+          - 435
+          - 445
+          - 442
+          - 439
+          - 441
+          - 432
+          - 436
+          - 493
+          - 495
+          - 496
+          - 383
+          - 494
+          - 385
+          - 386
+          - 387
+          - 389
+          - 390
+          - 388
+          - 56
+          - 54
+          - 121
+          - 123
+          - 129
+          - 124
+          - 150
+          - 118
+          - 119
+          - 120
+          - 328
+          - 90
+          - 73
+          - 75
+          - 130
+          - 32
+          - 329
+          - 94
+          - 97
+          - 147
+          - 316
+          - 317
+          - 185
+          - 115
+          - 114
+          - 270
+          - 271
+          - 272
+          - 541
+          - 542
+          - 539
+          - 540
+          - 446
+          - 447
+          - 448
+          - 519
+          - 520
+          - 521
+          - 514
+          - 515
+          - 522
+          - 516
+          - 517
+          - 518
+          - 523
+          - 524
+          - 422
+          - 424
+          - 426
+          - 425
+          - 423
+          - 428
+          - 427
+          - 238
+          - 503
+          - 76
+          - 152
+          - 323
+          - 253
+          - 127
+          - 39
+          - 262
+          - 273
+          - 159
+          - 296
+          - 297
+          - 369
+          - 295
+          - 234
+          - 233
+          - 77
+          - 80
+          - 79
+          - 61
+          - 64
+          - 125
+          - 12
+          - 65
+          - 49
+          - 68
+          - 103
+          - 126
+          - 16
+          - 88
+          - 173
+          - 160
+          - 205
+          - 57
+          - 99
+          - 98
+          - 198
+          - 201
+          - 63
+          - 66
+          - 132
+          - 8
+          - 67
+          - 70
+          - 116
+          - 133
+          - 20
+          - 71
+          - 175
+          - 102
+          - 204
+          - 243
+          - 244
+          - 241
+          - 242
+          - 248
+          - 245
+          - 246
+          - 247
+          - 236
+          - 47
+          - 268
+          - 267
+          - 325
+          - 269
+          - 172
+          - 101
+          - 199
+          - 202
+          - 237
+          - 168
+          - 169
+          - 176
+          - 177
+          - 193
+          - 235
+          - 170
+          - 81
+          - 83
+          - 131
+          - 24
+          - 82
+          - 473
+          - 500
+          - 104
+          - 453
+          - 451
+          - 455
+          - 454
+          - 452
+          - 95
+          - 135
+          - 134
+          - 107
+          - 106
+          - 200
+          - 203
+          - 391
+          - 78
+          - 274
+          - 326
+          - 331
+          - 330
+          - 332
+          - 364
+          - 117
+          - 327
+          - 321
+          - 309
+          - 508
+          - 458
+          - 310
+          - 275
+          - 420
+          - 300
+          - 513
+          - 312
+          - 320
+          - 304
+          - 394
+          - 406
+          - 302
+          - 311
+          - 303
+          - 408
+          - 411
+          - 409
+          - 410
+          - 417
+          - 416
+          - 412
+          - 413
+          - 414
+          - 415
+          - 407
+          - 477
+          - 470
+          - 322
+          - 443
+          - 392
+          - 393
+          - 136
+          - 507
+          - 381
+          - 307
+          - 525
+          - 497
+          - 306
+          - 444
+          - 151
+          - 480
+          - 461
+          - 365
+          - 367
+          - 366
+          - 313
+          - 314
+          - 460
+          - 509
+          - 361
+          - 179
+          - 161
+          - 162
+          - 166
+          - 163
+          - 362
+          - 181
+          - 164
+          - 165
+          - 167
+          - 359
+          - 178
+          - 360
+          - 180
+          - 183
+          - 184
+          - 527
+          - 333
+          - 334
+          - 335
+          - 336
+          - 337
+          - 456
+          - 96
+          - 105
+          - 85
+          - 86
+          - 128
+          - 28
+          - 84
+          - 149
+          - 379
+          - 380
+          - 462
+          - 377
+          - 378
+          - 174
+          - 100
+          - 419
+          - 471
+          - 472
+          - 341
+          - 501
+          - 511
+          - 512
+          - 510
+          - 421
+          - 340
+          - 339
+          - 354
+          - 338
+          - 343
+          - 355
+          - 502
+          - 344
+          - 349
+          - 347
+          - 345
+          - 348
+          - 346
+          - 506
+          - 498
+          - 504
+          - 505
+          - 401
+          - 405
+          - 402
+          - 404
+          - 403
+          - 368
+          - 110
+          - 478
+          - 109
+          - 459
+          - 93
+          - 499
+          - 91
+          - 92
+          - 475
+          - 474
+          - 182
+          - 108
+          - 111
+          - 318
+          - 319
+          - 59
+          - 89
+          - 218
+          - 479
+          - 219
+          - 490
+          - 492
+          - 485
+          - 482
+          - 526
+          - 486
+          - 484
+          - 483
+          - 487
+          - 489
+          - 488
+          - 491
+          - 350
+          - 363
+          - 351
+          - 358
+          - 352
+          - 353
+          - 356
+          - 357
+          - 467
+          - 469
+          - 468
+          - 543
+          type: number
+        severity:
+          description: The severity of the event
+          enum:
+          - success
+          - info
+          - warning
+          - important
+          - debug
+          - trigger
+          - security
+          type: string
+        visibility:
+          description: The visibility of the event
+          enum:
+          - private
+          - public
+          type: string
+        infrastructureId:
+          description: The id of the infrastructure linked to the event
+          type: number
+        userId:
+          description: The id of the user linked to the event
+          type: number
+        serverId:
+          description: The id of the server linked to the event
+          type: number
+        jobId:
+          description: The id of the job linked to the event
+          type: string
+        siteId:
+          description: The id of the site linked to the event
+          type: number
+        title:
+          description: The title of the event
+          type: string
+        message:
+          description: The message of the event
+          type: string
+        userEmailAuthenticated:
+          description: The email of the user who triggered the event
+          type: string
+        context:
+          description: The context of the event
+          type: object
+        occurredTimestamp:
+          description: The timestamp the event occurred
+          type: string
+        httpUserAgent:
+          description: The http user agent linked to the event
+          type: string
+        remoteIpAddress:
+          description: The remote ip address of the user who triggered the event
+          type: string
+      required:
+      - id
+      - message
+      - occurredTimestamp
+      - severity
+      - title
+      - type
+      - visibility
+      type: object
+    EventPaginatedList:
+      example:
+        data:
+        - severity: success
+          visibility: private
+          userIdAuthenticated: 6.027456183070403
+          userEmailAuthenticated: userEmailAuthenticated
+          type: 1.4658129805029452
+          title: title
+          message: message
+          httpUserAgent: httpUserAgent
+          userId: 5.637376656633329
+          serverId: 2.3021358869347655
+          occurredTimestamp: occurredTimestamp
+          jobId: jobId
+          infrastructureId: 5.962133916683182
+          context: "{}"
+          siteId: 7.061401241503109
+          id: 0.8008281904610115
+          remoteIpAddress: remoteIpAddress
+        - severity: success
+          visibility: private
+          userIdAuthenticated: 6.027456183070403
+          userEmailAuthenticated: userEmailAuthenticated
+          type: 1.4658129805029452
+          title: title
+          message: message
+          httpUserAgent: httpUserAgent
+          userId: 5.637376656633329
+          serverId: 2.3021358869347655
+          occurredTimestamp: occurredTimestamp
+          jobId: jobId
+          infrastructureId: 5.962133916683182
+          context: "{}"
+          siteId: 7.061401241503109
+          id: 0.8008281904610115
+          remoteIpAddress: remoteIpAddress
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Event'
+          title: List of event's
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
     CreateUser:
       example:
         emailVerified: false
@@ -41113,6 +43977,7 @@ components:
         displayName: displayName
         isBlocked: true
         language: en
+        infrastructureIdDefault: 0.8008281904610115
         delegates:
         - removeDelegate: false
           email: email
@@ -41206,6 +44071,9 @@ components:
         isBillable:
           description: Whether the user account is billable.
           type: boolean
+        infrastructureIdDefault:
+          description: The default infrastructure ID of the user
+          type: number
       type: object
     ChangeUserAccount:
       example:
@@ -42841,14 +45709,14 @@ components:
           type: integer
       type: object
     NetworkFabric_fabricConfiguration:
-      description: The fabric configuration
+      description: Fabric configuration
       discriminator:
         mapping:
           unmanaged: '#/components/schemas/UnmanagedFabric'
           ethernet: '#/components/schemas/EthernetFabric'
           ethernet_flat_l2: '#/components/schemas/EthernetFlatL2Fabric'
-          ethernet_hybrid_l2_l3: '#/components/schemas/EthernetHybridL2L3Fabric'
           ethernet_flat_l3: '#/components/schemas/EthernetFlatL3Fabric'
+          ethernet_hybrid_l2_l3: '#/components/schemas/EthernetHybridL2L3Fabric'
           ethernet_evpn_vxlan_l2: '#/components/schemas/EthernetEvpnVxlanL2Fabric'
           ethernet_evpn_vxlan_l3: '#/components/schemas/EthernetEvpnVxlanL3Fabric'
           fibre_channel: '#/components/schemas/FibreChannelFabric'
@@ -42860,8 +45728,8 @@ components:
       - $ref: '#/components/schemas/UnmanagedFabric'
       - $ref: '#/components/schemas/EthernetFabric'
       - $ref: '#/components/schemas/EthernetFlatL2Fabric'
-      - $ref: '#/components/schemas/EthernetHybridL2L3Fabric'
       - $ref: '#/components/schemas/EthernetFlatL3Fabric'
+      - $ref: '#/components/schemas/EthernetHybridL2L3Fabric'
       - $ref: '#/components/schemas/EthernetEvpnVxlanL2Fabric'
       - $ref: '#/components/schemas/EthernetEvpnVxlanL3Fabric'
       - $ref: '#/components/schemas/FibreChannelFabric'

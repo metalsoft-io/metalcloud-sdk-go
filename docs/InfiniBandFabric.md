@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DefaultNetworkProfileId** | **float32** |  | 
-**GnmiMonitoringEnabled** | Pointer to **bool** |  | [optional] 
-**SyslogMonitoringEnabled** | Pointer to **bool** |  | [optional] 
-**ZeroTouchEnabled** | Pointer to **bool** |  | [optional] 
+**DefaultNetworkProfileId** | **int32** | Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile. | 
+**GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
+**SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
+**ZeroTouchEnabled** | Pointer to **bool** | Enables zero-touch provisioning for automatic device configuration. | [optional] 
 
 ## Methods
 
 ### NewInfiniBandFabric
 
-`func NewInfiniBandFabric(defaultNetworkProfileId float32, ) *InfiniBandFabric`
+`func NewInfiniBandFabric(defaultNetworkProfileId int32, ) *InfiniBandFabric`
 
 NewInfiniBandFabric instantiates a new InfiniBandFabric object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDefaultNetworkProfileId
 
-`func (o *InfiniBandFabric) GetDefaultNetworkProfileId() float32`
+`func (o *InfiniBandFabric) GetDefaultNetworkProfileId() int32`
 
 GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field if non-nil, zero value otherwise.
 
 ### GetDefaultNetworkProfileIdOk
 
-`func (o *InfiniBandFabric) GetDefaultNetworkProfileIdOk() (*float32, bool)`
+`func (o *InfiniBandFabric) GetDefaultNetworkProfileIdOk() (*int32, bool)`
 
 GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultNetworkProfileId
 
-`func (o *InfiniBandFabric) SetDefaultNetworkProfileId(v float32)`
+`func (o *InfiniBandFabric) SetDefaultNetworkProfileId(v int32)`
 
 SetDefaultNetworkProfileId sets DefaultNetworkProfileId field to given value.
 

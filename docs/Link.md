@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Rel** | **string** | The relation | 
-**Href** | **string** | The link URI | 
+**Rel** | **string** | Indicates the relation type of the hyperlink (e.g., \&quot;self\&quot; refers to the current resource). | 
+**Href** | **string** | The URI for accessing the linked resource. | 
 
 ## Methods
 

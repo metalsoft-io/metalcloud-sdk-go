@@ -76,6 +76,19 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ServerInstanceAPIService GetPowerFromServerInstance", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceId int32
+
+		httpRes, err := apiClient.ServerInstanceAPI.GetPowerFromServerInstance(context.Background(), serverInstanceId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ServerInstanceAPIService GetServerInstance", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -97,6 +110,34 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 		var serverInstanceId int32
 
 		resp, httpRes, err := apiClient.ServerInstanceAPI.GetServerInstanceConfig(context.Background(), serverInstanceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ServerInstanceAPIService GetServerInstanceCredentials", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceId int32
+
+		resp, httpRes, err := apiClient.ServerInstanceAPI.GetServerInstanceCredentials(context.Background(), serverInstanceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ServerInstanceAPIService GetServerInstanceDrives", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceId int32
+
+		resp, httpRes, err := apiClient.ServerInstanceAPI.GetServerInstanceDrives(context.Background(), serverInstanceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -145,20 +186,6 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ServerInstanceAPIService GetServerInstancesCredentials", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var serverInstanceId int32
-
-		resp, httpRes, err := apiClient.ServerInstanceAPI.GetServerInstancesCredentials(context.Background(), serverInstanceId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test ServerInstanceAPIService ResetServerInstance", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -172,13 +199,26 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ServerInstanceAPIService UpdateServerInstance", func(t *testing.T) {
+	t.Run("Test ServerInstanceAPIService SetPowerToServerInstance", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var serverInstanceId int32
 
-		resp, httpRes, err := apiClient.ServerInstanceAPI.UpdateServerInstance(context.Background(), serverInstanceId).Execute()
+		httpRes, err := apiClient.ServerInstanceAPI.SetPowerToServerInstance(context.Background(), serverInstanceId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ServerInstanceAPIService UpdateServerInstanceConfig", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceId int32
+
+		resp, httpRes, err := apiClient.ServerInstanceAPI.UpdateServerInstanceConfig(context.Background(), serverInstanceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -186,14 +226,14 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ServerInstanceAPIService UpdateServerInstancesInterface", func(t *testing.T) {
+	t.Run("Test ServerInstanceAPIService UpdateServerInstanceInterfaceConfig", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var serverInstanceId int32
 		var interfaceId int32
 
-		resp, httpRes, err := apiClient.ServerInstanceAPI.UpdateServerInstancesInterface(context.Background(), serverInstanceId, interfaceId).Execute()
+		resp, httpRes, err := apiClient.ServerInstanceAPI.UpdateServerInstanceInterfaceConfig(context.Background(), serverInstanceId, interfaceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

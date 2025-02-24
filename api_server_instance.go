@@ -543,6 +543,108 @@ func (a *ServerInstanceAPIService) GetInfrastructureServerInstancesExecute(r Ser
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ServerInstanceAPIGetPowerFromServerInstanceRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceAPIService
+	serverInstanceId int32
+	ifMatch *string
+}
+
+// Entity tag
+func (r ServerInstanceAPIGetPowerFromServerInstanceRequest) IfMatch(ifMatch string) ServerInstanceAPIGetPowerFromServerInstanceRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ServerInstanceAPIGetPowerFromServerInstanceRequest) Execute() (*http.Response, error) {
+	return r.ApiService.GetPowerFromServerInstanceExecute(r)
+}
+
+/*
+GetPowerFromServerInstance Get the power status of the Server Instance
+
+Get the power status of the Server Instance.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceId
+ @return ServerInstanceAPIGetPowerFromServerInstanceRequest
+*/
+func (a *ServerInstanceAPIService) GetPowerFromServerInstance(ctx context.Context, serverInstanceId int32) ServerInstanceAPIGetPowerFromServerInstanceRequest {
+	return ServerInstanceAPIGetPowerFromServerInstanceRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceId: serverInstanceId,
+	}
+}
+
+// Execute executes the request
+func (a *ServerInstanceAPIService) GetPowerFromServerInstanceExecute(r ServerInstanceAPIGetPowerFromServerInstanceRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.GetPowerFromServerInstance")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instances/{serverInstanceId}/actions/power_get"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceId, "serverInstanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ServerInstanceAPIGetServerInstanceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
@@ -689,6 +791,212 @@ func (a *ServerInstanceAPIService) GetServerInstanceConfigExecute(r ServerInstan
 	}
 
 	localVarPath := localBasePath + "/api/v2/server-instances/{serverInstanceId}/config"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceId, "serverInstanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ServerInstanceAPIGetServerInstanceCredentialsRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceAPIService
+	serverInstanceId int32
+}
+
+func (r ServerInstanceAPIGetServerInstanceCredentialsRequest) Execute() (*ServerInstanceCredentials, *http.Response, error) {
+	return r.ApiService.GetServerInstanceCredentialsExecute(r)
+}
+
+/*
+GetServerInstanceCredentials Get Server Instance credentials
+
+Returns the credentials for various protocols including the IPs allocated
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceId
+ @return ServerInstanceAPIGetServerInstanceCredentialsRequest
+*/
+func (a *ServerInstanceAPIService) GetServerInstanceCredentials(ctx context.Context, serverInstanceId int32) ServerInstanceAPIGetServerInstanceCredentialsRequest {
+	return ServerInstanceAPIGetServerInstanceCredentialsRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceId: serverInstanceId,
+	}
+}
+
+// Execute executes the request
+//  @return ServerInstanceCredentials
+func (a *ServerInstanceAPIService) GetServerInstanceCredentialsExecute(r ServerInstanceAPIGetServerInstanceCredentialsRequest) (*ServerInstanceCredentials, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServerInstanceCredentials
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.GetServerInstanceCredentials")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instances/{serverInstanceId}/credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceId, "serverInstanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ServerInstanceAPIGetServerInstanceDrivesRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceAPIService
+	serverInstanceId int32
+}
+
+func (r ServerInstanceAPIGetServerInstanceDrivesRequest) Execute() (*DriveList, *http.Response, error) {
+	return r.ApiService.GetServerInstanceDrivesExecute(r)
+}
+
+/*
+GetServerInstanceDrives Get Server Instance Drives
+
+Returns the drives
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceId
+ @return ServerInstanceAPIGetServerInstanceDrivesRequest
+*/
+func (a *ServerInstanceAPIService) GetServerInstanceDrives(ctx context.Context, serverInstanceId int32) ServerInstanceAPIGetServerInstanceDrivesRequest {
+	return ServerInstanceAPIGetServerInstanceDrivesRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceId: serverInstanceId,
+	}
+}
+
+// Execute executes the request
+//  @return DriveList
+func (a *ServerInstanceAPIService) GetServerInstanceDrivesExecute(r ServerInstanceAPIGetServerInstanceDrivesRequest) (*DriveList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DriveList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.GetServerInstanceDrives")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instances/{serverInstanceId}/drives"
 	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceId, "serverInstanceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1280,109 +1588,6 @@ func (a *ServerInstanceAPIService) GetServerInstancesExecute(r ServerInstanceAPI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ServerInstanceAPIGetServerInstancesCredentialsRequest struct {
-	ctx context.Context
-	ApiService *ServerInstanceAPIService
-	serverInstanceId int32
-}
-
-func (r ServerInstanceAPIGetServerInstancesCredentialsRequest) Execute() (*ServerInstanceCredentials, *http.Response, error) {
-	return r.ApiService.GetServerInstancesCredentialsExecute(r)
-}
-
-/*
-GetServerInstancesCredentials Get Server Instance credentials
-
-Returns the credentials for various protocols including the IPs allocated
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serverInstanceId
- @return ServerInstanceAPIGetServerInstancesCredentialsRequest
-*/
-func (a *ServerInstanceAPIService) GetServerInstancesCredentials(ctx context.Context, serverInstanceId int32) ServerInstanceAPIGetServerInstancesCredentialsRequest {
-	return ServerInstanceAPIGetServerInstancesCredentialsRequest{
-		ApiService: a,
-		ctx: ctx,
-		serverInstanceId: serverInstanceId,
-	}
-}
-
-// Execute executes the request
-//  @return ServerInstanceCredentials
-func (a *ServerInstanceAPIService) GetServerInstancesCredentialsExecute(r ServerInstanceAPIGetServerInstancesCredentialsRequest) (*ServerInstanceCredentials, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ServerInstanceCredentials
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.GetServerInstancesCredentials")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/server-instances/{serverInstanceId}/credentials"
-	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceId, "serverInstanceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ServerInstanceAPIResetServerInstanceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
@@ -1485,41 +1690,40 @@ func (a *ServerInstanceAPIService) ResetServerInstanceExecute(r ServerInstanceAP
 	return localVarHTTPResponse, nil
 }
 
-type ServerInstanceAPIUpdateServerInstanceRequest struct {
+type ServerInstanceAPISetPowerToServerInstanceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
 	serverInstanceId int32
-	serverInstanceUpdate *ServerInstanceUpdate
+	serverInstancePowerSetDto *ServerInstancePowerSetDto
 	ifMatch *string
 }
 
-// The Server Instance changes
-func (r ServerInstanceAPIUpdateServerInstanceRequest) ServerInstanceUpdate(serverInstanceUpdate ServerInstanceUpdate) ServerInstanceAPIUpdateServerInstanceRequest {
-	r.serverInstanceUpdate = &serverInstanceUpdate
+func (r ServerInstanceAPISetPowerToServerInstanceRequest) ServerInstancePowerSetDto(serverInstancePowerSetDto ServerInstancePowerSetDto) ServerInstanceAPISetPowerToServerInstanceRequest {
+	r.serverInstancePowerSetDto = &serverInstancePowerSetDto
 	return r
 }
 
 // Entity tag
-func (r ServerInstanceAPIUpdateServerInstanceRequest) IfMatch(ifMatch string) ServerInstanceAPIUpdateServerInstanceRequest {
+func (r ServerInstanceAPISetPowerToServerInstanceRequest) IfMatch(ifMatch string) ServerInstanceAPISetPowerToServerInstanceRequest {
 	r.ifMatch = &ifMatch
 	return r
 }
 
-func (r ServerInstanceAPIUpdateServerInstanceRequest) Execute() (*ServerInstance, *http.Response, error) {
-	return r.ApiService.UpdateServerInstanceExecute(r)
+func (r ServerInstanceAPISetPowerToServerInstanceRequest) Execute() (*http.Response, error) {
+	return r.ApiService.SetPowerToServerInstanceExecute(r)
 }
 
 /*
-UpdateServerInstance Update Server Instance configuration
+SetPowerToServerInstance Set power to the Server Instance
 
-Updates the specified Server Instance
+Set power to this Server Instance.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serverInstanceId
- @return ServerInstanceAPIUpdateServerInstanceRequest
+ @return ServerInstanceAPISetPowerToServerInstanceRequest
 */
-func (a *ServerInstanceAPIService) UpdateServerInstance(ctx context.Context, serverInstanceId int32) ServerInstanceAPIUpdateServerInstanceRequest {
-	return ServerInstanceAPIUpdateServerInstanceRequest{
+func (a *ServerInstanceAPIService) SetPowerToServerInstance(ctx context.Context, serverInstanceId int32) ServerInstanceAPISetPowerToServerInstanceRequest {
+	return ServerInstanceAPISetPowerToServerInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
 		serverInstanceId: serverInstanceId,
@@ -1527,16 +1731,130 @@ func (a *ServerInstanceAPIService) UpdateServerInstance(ctx context.Context, ser
 }
 
 // Execute executes the request
-//  @return ServerInstance
-func (a *ServerInstanceAPIService) UpdateServerInstanceExecute(r ServerInstanceAPIUpdateServerInstanceRequest) (*ServerInstance, *http.Response, error) {
+func (a *ServerInstanceAPIService) SetPowerToServerInstanceExecute(r ServerInstanceAPISetPowerToServerInstanceRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.SetPowerToServerInstance")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instances/{serverInstanceId}/actions/power_set"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceId, "serverInstanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.serverInstancePowerSetDto == nil {
+		return nil, reportError("serverInstancePowerSetDto is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.serverInstancePowerSetDto
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ServerInstanceAPIUpdateServerInstanceConfigRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceAPIService
+	serverInstanceId int32
+	serverInstanceUpdate *ServerInstanceUpdate
+	ifMatch *string
+}
+
+// The Server Instance configuration changes
+func (r ServerInstanceAPIUpdateServerInstanceConfigRequest) ServerInstanceUpdate(serverInstanceUpdate ServerInstanceUpdate) ServerInstanceAPIUpdateServerInstanceConfigRequest {
+	r.serverInstanceUpdate = &serverInstanceUpdate
+	return r
+}
+
+// Entity tag
+func (r ServerInstanceAPIUpdateServerInstanceConfigRequest) IfMatch(ifMatch string) ServerInstanceAPIUpdateServerInstanceConfigRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ServerInstanceAPIUpdateServerInstanceConfigRequest) Execute() (*ServerInstanceConfiguration, *http.Response, error) {
+	return r.ApiService.UpdateServerInstanceConfigExecute(r)
+}
+
+/*
+UpdateServerInstanceConfig Update Server Instance configuration
+
+Updates the specified Server Instance configuration
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceId
+ @return ServerInstanceAPIUpdateServerInstanceConfigRequest
+*/
+func (a *ServerInstanceAPIService) UpdateServerInstanceConfig(ctx context.Context, serverInstanceId int32) ServerInstanceAPIUpdateServerInstanceConfigRequest {
+	return ServerInstanceAPIUpdateServerInstanceConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceId: serverInstanceId,
+	}
+}
+
+// Execute executes the request
+//  @return ServerInstanceConfiguration
+func (a *ServerInstanceAPIService) UpdateServerInstanceConfigExecute(r ServerInstanceAPIUpdateServerInstanceConfigRequest) (*ServerInstanceConfiguration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ServerInstance
+		localVarReturnValue  *ServerInstanceConfiguration
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.UpdateServerInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.UpdateServerInstanceConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1610,7 +1928,7 @@ func (a *ServerInstanceAPIService) UpdateServerInstanceExecute(r ServerInstanceA
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ServerInstanceAPIUpdateServerInstancesInterfaceRequest struct {
+type ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
 	serverInstanceId int32
@@ -1619,34 +1937,34 @@ type ServerInstanceAPIUpdateServerInstancesInterfaceRequest struct {
 	ifMatch *string
 }
 
-// The Server Instance Interface changes
-func (r ServerInstanceAPIUpdateServerInstancesInterfaceRequest) ServerInstanceInterfaceUpdate(serverInstanceInterfaceUpdate ServerInstanceInterfaceUpdate) ServerInstanceAPIUpdateServerInstancesInterfaceRequest {
+// The Server Instance Interface configuration changes
+func (r ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest) ServerInstanceInterfaceUpdate(serverInstanceInterfaceUpdate ServerInstanceInterfaceUpdate) ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest {
 	r.serverInstanceInterfaceUpdate = &serverInstanceInterfaceUpdate
 	return r
 }
 
 // Entity tag
-func (r ServerInstanceAPIUpdateServerInstancesInterfaceRequest) IfMatch(ifMatch string) ServerInstanceAPIUpdateServerInstancesInterfaceRequest {
+func (r ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest) IfMatch(ifMatch string) ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest {
 	r.ifMatch = &ifMatch
 	return r
 }
 
-func (r ServerInstanceAPIUpdateServerInstancesInterfaceRequest) Execute() (*ServerInstanceInterface, *http.Response, error) {
-	return r.ApiService.UpdateServerInstancesInterfaceExecute(r)
+func (r ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest) Execute() (*ServerInstanceInterfaceConfiguration, *http.Response, error) {
+	return r.ApiService.UpdateServerInstanceInterfaceConfigExecute(r)
 }
 
 /*
-UpdateServerInstancesInterface Update Server Instance Interfaces
+UpdateServerInstanceInterfaceConfig Update Server Instance Interface configuration
 
 Updates a Server Instance Interface (such as by attaching it to a network)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serverInstanceId
  @param interfaceId
- @return ServerInstanceAPIUpdateServerInstancesInterfaceRequest
+ @return ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest
 */
-func (a *ServerInstanceAPIService) UpdateServerInstancesInterface(ctx context.Context, serverInstanceId int32, interfaceId int32) ServerInstanceAPIUpdateServerInstancesInterfaceRequest {
-	return ServerInstanceAPIUpdateServerInstancesInterfaceRequest{
+func (a *ServerInstanceAPIService) UpdateServerInstanceInterfaceConfig(ctx context.Context, serverInstanceId int32, interfaceId int32) ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest {
+	return ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest{
 		ApiService: a,
 		ctx: ctx,
 		serverInstanceId: serverInstanceId,
@@ -1655,16 +1973,16 @@ func (a *ServerInstanceAPIService) UpdateServerInstancesInterface(ctx context.Co
 }
 
 // Execute executes the request
-//  @return ServerInstanceInterface
-func (a *ServerInstanceAPIService) UpdateServerInstancesInterfaceExecute(r ServerInstanceAPIUpdateServerInstancesInterfaceRequest) (*ServerInstanceInterface, *http.Response, error) {
+//  @return ServerInstanceInterfaceConfiguration
+func (a *ServerInstanceAPIService) UpdateServerInstanceInterfaceConfigExecute(r ServerInstanceAPIUpdateServerInstanceInterfaceConfigRequest) (*ServerInstanceInterfaceConfiguration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ServerInstanceInterface
+		localVarReturnValue  *ServerInstanceInterfaceConfiguration
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.UpdateServerInstancesInterface")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.UpdateServerInstanceInterfaceConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

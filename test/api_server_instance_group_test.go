@@ -105,6 +105,20 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ServerInstanceGroupAPIService GetServerInstanceGroupDriveGroups", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceGroupId int32
+
+		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupDriveGroups(context.Background(), serverInstanceGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ServerInstanceGroupAPIService GetServerInstanceGroupInterface", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -134,16 +148,29 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ServerInstanceGroupAPIService UpdateServerInstanceGroup", func(t *testing.T) {
+	t.Run("Test ServerInstanceGroupAPIService UpdateServerInstanceGroupConfig", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var serverInstanceGroupId int32
 
-		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroup(context.Background(), serverInstanceGroupId).Execute()
+		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupConfig(context.Background(), serverInstanceGroupId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ServerInstanceGroupAPIService UpdateServerInstanceGroupMeta", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceGroupId int32
+
+		httpRes, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupMeta(context.Background(), serverInstanceGroupId).Execute()
+
+		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

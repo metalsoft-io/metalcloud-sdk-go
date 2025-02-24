@@ -60,9 +60,13 @@ type APIClient struct {
 
 	ConfigurationAPI *ConfigurationAPIService
 
+	CustomIsoAPI *CustomIsoAPIService
+
 	DriveAPI *DriveAPIService
 
 	DriveGroupAPI *DriveGroupAPIService
+
+	EventAPI *EventAPIService
 
 	ExtensionAPI *ExtensionAPIService
 
@@ -84,11 +88,13 @@ type APIClient struct {
 
 	JobAPI *JobAPIService
 
+	LogicalNetworksAPI *LogicalNetworksAPIService
+
 	NetworkAPI *NetworkAPIService
 
 	NetworkDeviceAPI *NetworkDeviceAPIService
 
-	NetworkFabricsAPI *NetworkFabricsAPIService
+	NetworkFabricAPI *NetworkFabricAPIService
 
 	OSTemplateAPI *OSTemplateAPIService
 
@@ -156,8 +162,10 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AuthenticationAPI = (*AuthenticationAPIService)(&c.common)
 	c.BucketAPI = (*BucketAPIService)(&c.common)
 	c.ConfigurationAPI = (*ConfigurationAPIService)(&c.common)
+	c.CustomIsoAPI = (*CustomIsoAPIService)(&c.common)
 	c.DriveAPI = (*DriveAPIService)(&c.common)
 	c.DriveGroupAPI = (*DriveGroupAPIService)(&c.common)
+	c.EventAPI = (*EventAPIService)(&c.common)
 	c.ExtensionAPI = (*ExtensionAPIService)(&c.common)
 	c.ExtensionInstanceAPI = (*ExtensionInstanceAPIService)(&c.common)
 	c.FileShareAPI = (*FileShareAPIService)(&c.common)
@@ -168,9 +176,10 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.FirmwarePolicyAPI = (*FirmwarePolicyAPIService)(&c.common)
 	c.InfrastructureAPI = (*InfrastructureAPIService)(&c.common)
 	c.JobAPI = (*JobAPIService)(&c.common)
+	c.LogicalNetworksAPI = (*LogicalNetworksAPIService)(&c.common)
 	c.NetworkAPI = (*NetworkAPIService)(&c.common)
 	c.NetworkDeviceAPI = (*NetworkDeviceAPIService)(&c.common)
-	c.NetworkFabricsAPI = (*NetworkFabricsAPIService)(&c.common)
+	c.NetworkFabricAPI = (*NetworkFabricAPIService)(&c.common)
 	c.OSTemplateAPI = (*OSTemplateAPIService)(&c.common)
 	c.ResourcePoolAPI = (*ResourcePoolAPIService)(&c.common)
 	c.SecurityAPI = (*SecurityAPIService)(&c.common)

@@ -8,15 +8,18 @@ Method | HTTP request | Description
 [**CreateServerInstance**](ServerInstanceAPI.md#CreateServerInstance) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instances | Add Server Instance to an infrastructure
 [**DeleteServerInstance**](ServerInstanceAPI.md#DeleteServerInstance) | **Delete** /api/v2/server-instances/{serverInstanceId} | Delete Server Instance
 [**GetInfrastructureServerInstances**](ServerInstanceAPI.md#GetInfrastructureServerInstances) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instances | List Server Instances for an infrastructure
+[**GetPowerFromServerInstance**](ServerInstanceAPI.md#GetPowerFromServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power_get | Get the power status of the Server Instance
 [**GetServerInstance**](ServerInstanceAPI.md#GetServerInstance) | **Get** /api/v2/server-instances/{serverInstanceId} | Get Server Instance details
 [**GetServerInstanceConfig**](ServerInstanceAPI.md#GetServerInstanceConfig) | **Get** /api/v2/server-instances/{serverInstanceId}/config | Get Server Instance config details
+[**GetServerInstanceCredentials**](ServerInstanceAPI.md#GetServerInstanceCredentials) | **Get** /api/v2/server-instances/{serverInstanceId}/credentials | Get Server Instance credentials
+[**GetServerInstanceDrives**](ServerInstanceAPI.md#GetServerInstanceDrives) | **Get** /api/v2/server-instances/{serverInstanceId}/drives | Get Server Instance Drives
 [**GetServerInstanceInterface**](ServerInstanceAPI.md#GetServerInstanceInterface) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId} | Get Server Instance Interface details
 [**GetServerInstanceInterfaces**](ServerInstanceAPI.md#GetServerInstanceInterfaces) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces | Get Server Instance Interfaces
 [**GetServerInstances**](ServerInstanceAPI.md#GetServerInstances) | **Get** /api/v2/server-instances | List Server Instances
-[**GetServerInstancesCredentials**](ServerInstanceAPI.md#GetServerInstancesCredentials) | **Get** /api/v2/server-instances/{serverInstanceId}/credentials | Get Server Instance credentials
 [**ResetServerInstance**](ServerInstanceAPI.md#ResetServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/reset | Reset a deployed server
-[**UpdateServerInstance**](ServerInstanceAPI.md#UpdateServerInstance) | **Patch** /api/v2/server-instances/{serverInstanceId}/config | Update Server Instance configuration
-[**UpdateServerInstancesInterface**](ServerInstanceAPI.md#UpdateServerInstancesInterface) | **Patch** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId}/config | Update Server Instance Interfaces
+[**SetPowerToServerInstance**](ServerInstanceAPI.md#SetPowerToServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power_set | Set power to the Server Instance
+[**UpdateServerInstanceConfig**](ServerInstanceAPI.md#UpdateServerInstanceConfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/config | Update Server Instance configuration
+[**UpdateServerInstanceInterfaceConfig**](ServerInstanceAPI.md#UpdateServerInstanceInterfaceConfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId}/config | Update Server Instance Interface configuration
 
 
 
@@ -316,6 +319,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetPowerFromServerInstance
+
+> GetPowerFromServerInstance(ctx, serverInstanceId).IfMatch(ifMatch).Execute()
+
+Get the power status of the Server Instance
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceId := int32(56) // int32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ServerInstanceAPI.GetPowerFromServerInstance(context.Background(), serverInstanceId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetPowerFromServerInstance``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPowerFromServerInstanceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetServerInstance
 
 > ServerInstance GetServerInstance(ctx, serverInstanceId).Execute()
@@ -441,6 +514,146 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ServerInstanceConfiguration**](ServerInstanceConfiguration.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServerInstanceCredentials
+
+> ServerInstanceCredentials GetServerInstanceCredentials(ctx, serverInstanceId).Execute()
+
+Get Server Instance credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceAPI.GetServerInstanceCredentials(context.Background(), serverInstanceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetServerInstanceCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerInstanceCredentials`: ServerInstanceCredentials
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.GetServerInstanceCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerInstanceCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**ServerInstanceCredentials**](ServerInstanceCredentials.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServerInstanceDrives
+
+> DriveList GetServerInstanceDrives(ctx, serverInstanceId).Execute()
+
+Get Server Instance Drives
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceAPI.GetServerInstanceDrives(context.Background(), serverInstanceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetServerInstanceDrives``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerInstanceDrives`: DriveList
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.GetServerInstanceDrives`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerInstanceDrivesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DriveList**](DriveList.md)
 
 ### Authorization
 
@@ -693,76 +906,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetServerInstancesCredentials
-
-> ServerInstanceCredentials GetServerInstancesCredentials(ctx, serverInstanceId).Execute()
-
-Get Server Instance credentials
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	serverInstanceId := int32(56) // int32 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceAPI.GetServerInstancesCredentials(context.Background(), serverInstanceId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetServerInstancesCredentials``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetServerInstancesCredentials`: ServerInstanceCredentials
-	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.GetServerInstancesCredentials`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetServerInstancesCredentialsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**ServerInstanceCredentials**](ServerInstanceCredentials.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## ResetServerInstance
 
 > ResetServerInstance(ctx, serverInstanceId).IfMatch(ifMatch).Execute()
@@ -833,9 +976,81 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateServerInstance
+## SetPowerToServerInstance
 
-> ServerInstance UpdateServerInstance(ctx, serverInstanceId).ServerInstanceUpdate(serverInstanceUpdate).IfMatch(ifMatch).Execute()
+> SetPowerToServerInstance(ctx, serverInstanceId).ServerInstancePowerSetDto(serverInstancePowerSetDto).IfMatch(ifMatch).Execute()
+
+Set power to the Server Instance
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceId := int32(56) // int32 | 
+	serverInstancePowerSetDto := *openapiclient.NewServerInstancePowerSetDto("PowerCommand_example") // ServerInstancePowerSetDto | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ServerInstanceAPI.SetPowerToServerInstance(context.Background(), serverInstanceId).ServerInstancePowerSetDto(serverInstancePowerSetDto).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.SetPowerToServerInstance``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetPowerToServerInstanceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **serverInstancePowerSetDto** | [**ServerInstancePowerSetDto**](ServerInstancePowerSetDto.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateServerInstanceConfig
+
+> ServerInstanceConfiguration UpdateServerInstanceConfig(ctx, serverInstanceId).ServerInstanceUpdate(serverInstanceUpdate).IfMatch(ifMatch).Execute()
 
 Update Server Instance configuration
 
@@ -855,18 +1070,18 @@ import (
 
 func main() {
 	serverInstanceId := int32(56) // int32 | 
-	serverInstanceUpdate := *openapiclient.NewServerInstanceUpdate() // ServerInstanceUpdate | The Server Instance changes
+	serverInstanceUpdate := *openapiclient.NewServerInstanceUpdate() // ServerInstanceUpdate | The Server Instance configuration changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceAPI.UpdateServerInstance(context.Background(), serverInstanceId).ServerInstanceUpdate(serverInstanceUpdate).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.ServerInstanceAPI.UpdateServerInstanceConfig(context.Background(), serverInstanceId).ServerInstanceUpdate(serverInstanceUpdate).IfMatch(ifMatch).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.UpdateServerInstance``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.UpdateServerInstanceConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateServerInstance`: ServerInstance
-	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.UpdateServerInstance`: %v\n", resp)
+	// response from `UpdateServerInstanceConfig`: ServerInstanceConfiguration
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.UpdateServerInstanceConfig`: %v\n", resp)
 }
 ```
 
@@ -880,18 +1095,18 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateServerInstanceRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateServerInstanceConfigRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **serverInstanceUpdate** | [**ServerInstanceUpdate**](ServerInstanceUpdate.md) | The Server Instance changes | 
+ **serverInstanceUpdate** | [**ServerInstanceUpdate**](ServerInstanceUpdate.md) | The Server Instance configuration changes | 
  **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
-[**ServerInstance**](ServerInstance.md)
+[**ServerInstanceConfiguration**](ServerInstanceConfiguration.md)
 
 ### Authorization
 
@@ -907,11 +1122,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateServerInstancesInterface
+## UpdateServerInstanceInterfaceConfig
 
-> ServerInstanceInterface UpdateServerInstancesInterface(ctx, serverInstanceId, interfaceId).ServerInstanceInterfaceUpdate(serverInstanceInterfaceUpdate).IfMatch(ifMatch).Execute()
+> ServerInstanceInterfaceConfiguration UpdateServerInstanceInterfaceConfig(ctx, serverInstanceId, interfaceId).ServerInstanceInterfaceUpdate(serverInstanceInterfaceUpdate).IfMatch(ifMatch).Execute()
 
-Update Server Instance Interfaces
+Update Server Instance Interface configuration
 
 
 
@@ -930,18 +1145,18 @@ import (
 func main() {
 	serverInstanceId := int32(56) // int32 | 
 	interfaceId := int32(56) // int32 | 
-	serverInstanceInterfaceUpdate := *openapiclient.NewServerInstanceInterfaceUpdate() // ServerInstanceInterfaceUpdate | The Server Instance Interface changes
+	serverInstanceInterfaceUpdate := *openapiclient.NewServerInstanceInterfaceUpdate() // ServerInstanceInterfaceUpdate | The Server Instance Interface configuration changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceAPI.UpdateServerInstancesInterface(context.Background(), serverInstanceId, interfaceId).ServerInstanceInterfaceUpdate(serverInstanceInterfaceUpdate).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.ServerInstanceAPI.UpdateServerInstanceInterfaceConfig(context.Background(), serverInstanceId, interfaceId).ServerInstanceInterfaceUpdate(serverInstanceInterfaceUpdate).IfMatch(ifMatch).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.UpdateServerInstancesInterface``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.UpdateServerInstanceInterfaceConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateServerInstancesInterface`: ServerInstanceInterface
-	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.UpdateServerInstancesInterface`: %v\n", resp)
+	// response from `UpdateServerInstanceInterfaceConfig`: ServerInstanceInterfaceConfiguration
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.UpdateServerInstanceInterfaceConfig`: %v\n", resp)
 }
 ```
 
@@ -956,19 +1171,19 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateServerInstancesInterfaceRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateServerInstanceInterfaceConfigRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **serverInstanceInterfaceUpdate** | [**ServerInstanceInterfaceUpdate**](ServerInstanceInterfaceUpdate.md) | The Server Instance Interface changes | 
+ **serverInstanceInterfaceUpdate** | [**ServerInstanceInterfaceUpdate**](ServerInstanceInterfaceUpdate.md) | The Server Instance Interface configuration changes | 
  **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
-[**ServerInstanceInterface**](ServerInstanceInterface.md)
+[**ServerInstanceInterfaceConfiguration**](ServerInstanceInterfaceConfiguration.md)
 
 ### Authorization
 

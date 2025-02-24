@@ -10,9 +10,11 @@ Method | HTTP request | Description
 [**GetInfrastructureServerInstanceGroups**](ServerInstanceGroupAPI.md#GetInfrastructureServerInstanceGroups) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | List Server Instance Groups for an infrastructure
 [**GetServerInstanceGroup**](ServerInstanceGroupAPI.md#GetServerInstanceGroup) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId} | Get Server Instance Groups details
 [**GetServerInstanceGroupConfig**](ServerInstanceGroupAPI.md#GetServerInstanceGroupConfig) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Get Server Instance Group config details
+[**GetServerInstanceGroupDriveGroups**](ServerInstanceGroupAPI.md#GetServerInstanceGroupDriveGroups) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/drive-groups | Get Server Instance Group Drive Groups
 [**GetServerInstanceGroupInterface**](ServerInstanceGroupAPI.md#GetServerInstanceGroupInterface) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces/{interfaceId} | Get Server Instance Group Interface details
 [**GetServerInstanceGroupInterfaces**](ServerInstanceGroupAPI.md#GetServerInstanceGroupInterfaces) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces | Get Server Instance Group Interfaces
-[**UpdateServerInstanceGroup**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroup) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Update an Server Instance Group configuration
+[**UpdateServerInstanceGroupConfig**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupConfig) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Updates Server Instance Group configuration
+[**UpdateServerInstanceGroupMeta**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupMeta) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/meta | Update an Server Instance Group meta information
 
 
 
@@ -451,6 +453,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetServerInstanceGroupDriveGroups
+
+> DriveGroupList GetServerInstanceGroupDriveGroups(ctx, serverInstanceGroupId).Execute()
+
+Get Server Instance Group Drive Groups
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceGroupId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupDriveGroups(context.Background(), serverInstanceGroupId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupDriveGroups``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerInstanceGroupDriveGroups`: DriveGroupList
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupDriveGroups`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceGroupId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerInstanceGroupDriveGroupsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DriveGroupList**](DriveGroupList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetServerInstanceGroupInterface
 
 > ServerInstanceGroupInterface GetServerInstanceGroupInterface(ctx, serverInstanceGroupId, interfaceId).Execute()
@@ -612,11 +684,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateServerInstanceGroup
+## UpdateServerInstanceGroupConfig
 
-> ServerInstanceGroup UpdateServerInstanceGroup(ctx, serverInstanceGroupId).ServerInstanceGroupUpdate(serverInstanceGroupUpdate).IfMatch(ifMatch).Execute()
+> ServerInstanceGroupConfiguration UpdateServerInstanceGroupConfig(ctx, serverInstanceGroupId).ServerInstanceGroupUpdate(serverInstanceGroupUpdate).IfMatch(ifMatch).Execute()
 
-Update an Server Instance Group configuration
+Updates Server Instance Group configuration
 
 
 
@@ -634,18 +706,18 @@ import (
 
 func main() {
 	serverInstanceGroupId := int32(56) // int32 | 
-	serverInstanceGroupUpdate := *openapiclient.NewServerInstanceGroupUpdate() // ServerInstanceGroupUpdate | The Server  instance group changes
+	serverInstanceGroupUpdate := *openapiclient.NewServerInstanceGroupUpdate() // ServerInstanceGroupUpdate | The Server Instance Group configuration changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroup(context.Background(), serverInstanceGroupId).ServerInstanceGroupUpdate(serverInstanceGroupUpdate).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupConfig(context.Background(), serverInstanceGroupId).ServerInstanceGroupUpdate(serverInstanceGroupUpdate).IfMatch(ifMatch).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.UpdateServerInstanceGroup``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.UpdateServerInstanceGroupConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateServerInstanceGroup`: ServerInstanceGroup
-	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.UpdateServerInstanceGroup`: %v\n", resp)
+	// response from `UpdateServerInstanceGroupConfig`: ServerInstanceGroupConfiguration
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.UpdateServerInstanceGroupConfig`: %v\n", resp)
 }
 ```
 
@@ -659,18 +731,18 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateServerInstanceGroupRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateServerInstanceGroupConfigRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **serverInstanceGroupUpdate** | [**ServerInstanceGroupUpdate**](ServerInstanceGroupUpdate.md) | The Server  instance group changes | 
+ **serverInstanceGroupUpdate** | [**ServerInstanceGroupUpdate**](ServerInstanceGroupUpdate.md) | The Server Instance Group configuration changes | 
  **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
-[**ServerInstanceGroup**](ServerInstanceGroup.md)
+[**ServerInstanceGroupConfiguration**](ServerInstanceGroupConfiguration.md)
 
 ### Authorization
 
@@ -680,6 +752,76 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateServerInstanceGroupMeta
+
+> UpdateServerInstanceGroupMeta(ctx, serverInstanceGroupId).Body(body).Execute()
+
+Update an Server Instance Group meta information
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceGroupId := int32(56) // int32 | 
+	body := map[string]interface{}{ ... } // map[string]interface{} | The Server Instance Group meta information
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupMeta(context.Background(), serverInstanceGroupId).Body(body).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.UpdateServerInstanceGroupMeta``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceGroupId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateServerInstanceGroupMetaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | **map[string]interface{}** | The Server Instance Group meta information | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

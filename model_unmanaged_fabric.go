@@ -21,9 +21,13 @@ var _ MappedNullable = &UnmanagedFabric{}
 
 // UnmanagedFabric struct for UnmanagedFabric
 type UnmanagedFabric struct {
-	DefaultNetworkProfileId float32 `json:"defaultNetworkProfileId"`
+	// Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile.
+	DefaultNetworkProfileId int32 `json:"defaultNetworkProfileId"`
+	// Enables gNMI monitoring for telemetry data collection using the gNMI protocol.
 	GnmiMonitoringEnabled *bool `json:"gnmiMonitoringEnabled,omitempty"`
+	// Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting.
 	SyslogMonitoringEnabled *bool `json:"syslogMonitoringEnabled,omitempty"`
+	// Enables zero-touch provisioning for automatic device configuration.
 	ZeroTouchEnabled *bool `json:"zeroTouchEnabled,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -34,7 +38,7 @@ type _UnmanagedFabric UnmanagedFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUnmanagedFabric(defaultNetworkProfileId float32) *UnmanagedFabric {
+func NewUnmanagedFabric(defaultNetworkProfileId int32) *UnmanagedFabric {
 	this := UnmanagedFabric{}
 	this.DefaultNetworkProfileId = defaultNetworkProfileId
 	return &this
@@ -49,9 +53,9 @@ func NewUnmanagedFabricWithDefaults() *UnmanagedFabric {
 }
 
 // GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field value
-func (o *UnmanagedFabric) GetDefaultNetworkProfileId() float32 {
+func (o *UnmanagedFabric) GetDefaultNetworkProfileId() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -60,7 +64,7 @@ func (o *UnmanagedFabric) GetDefaultNetworkProfileId() float32 {
 
 // GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field value
 // and a boolean to check if the value has been set.
-func (o *UnmanagedFabric) GetDefaultNetworkProfileIdOk() (*float32, bool) {
+func (o *UnmanagedFabric) GetDefaultNetworkProfileIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +72,7 @@ func (o *UnmanagedFabric) GetDefaultNetworkProfileIdOk() (*float32, bool) {
 }
 
 // SetDefaultNetworkProfileId sets field value
-func (o *UnmanagedFabric) SetDefaultNetworkProfileId(v float32) {
+func (o *UnmanagedFabric) SetDefaultNetworkProfileId(v int32) {
 	o.DefaultNetworkProfileId = v
 }
 

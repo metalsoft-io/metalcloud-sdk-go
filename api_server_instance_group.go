@@ -739,6 +739,109 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupConfigExecute(r Se
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ServerInstanceGroupAPIGetServerInstanceGroupDriveGroupsRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceGroupAPIService
+	serverInstanceGroupId int32
+}
+
+func (r ServerInstanceGroupAPIGetServerInstanceGroupDriveGroupsRequest) Execute() (*DriveGroupList, *http.Response, error) {
+	return r.ApiService.GetServerInstanceGroupDriveGroupsExecute(r)
+}
+
+/*
+GetServerInstanceGroupDriveGroups Get Server Instance Group Drive Groups
+
+Returns the drive groups
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceGroupId
+ @return ServerInstanceGroupAPIGetServerInstanceGroupDriveGroupsRequest
+*/
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupDriveGroups(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIGetServerInstanceGroupDriveGroupsRequest {
+	return ServerInstanceGroupAPIGetServerInstanceGroupDriveGroupsRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceGroupId: serverInstanceGroupId,
+	}
+}
+
+// Execute executes the request
+//  @return DriveGroupList
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupDriveGroupsExecute(r ServerInstanceGroupAPIGetServerInstanceGroupDriveGroupsRequest) (*DriveGroupList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DriveGroupList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupDriveGroups")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/drive-groups"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceGroupId, "serverInstanceGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ServerInstanceGroupAPIGetServerInstanceGroupInterfaceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
@@ -1087,7 +1190,7 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupInterfacesExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ServerInstanceGroupAPIUpdateServerInstanceGroupRequest struct {
+type ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
 	serverInstanceGroupId int32
@@ -1095,33 +1198,33 @@ type ServerInstanceGroupAPIUpdateServerInstanceGroupRequest struct {
 	ifMatch *string
 }
 
-// The Server  instance group changes
-func (r ServerInstanceGroupAPIUpdateServerInstanceGroupRequest) ServerInstanceGroupUpdate(serverInstanceGroupUpdate ServerInstanceGroupUpdate) ServerInstanceGroupAPIUpdateServerInstanceGroupRequest {
+// The Server Instance Group configuration changes
+func (r ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest) ServerInstanceGroupUpdate(serverInstanceGroupUpdate ServerInstanceGroupUpdate) ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest {
 	r.serverInstanceGroupUpdate = &serverInstanceGroupUpdate
 	return r
 }
 
 // Entity tag
-func (r ServerInstanceGroupAPIUpdateServerInstanceGroupRequest) IfMatch(ifMatch string) ServerInstanceGroupAPIUpdateServerInstanceGroupRequest {
+func (r ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest) IfMatch(ifMatch string) ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest {
 	r.ifMatch = &ifMatch
 	return r
 }
 
-func (r ServerInstanceGroupAPIUpdateServerInstanceGroupRequest) Execute() (*ServerInstanceGroup, *http.Response, error) {
-	return r.ApiService.UpdateServerInstanceGroupExecute(r)
+func (r ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest) Execute() (*ServerInstanceGroupConfiguration, *http.Response, error) {
+	return r.ApiService.UpdateServerInstanceGroupConfigExecute(r)
 }
 
 /*
-UpdateServerInstanceGroup Update an Server Instance Group configuration
+UpdateServerInstanceGroupConfig Updates Server Instance Group configuration
 
-Updates the specified Server Instance Group
+Updates the specified Server Instance Group configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serverInstanceGroupId
- @return ServerInstanceGroupAPIUpdateServerInstanceGroupRequest
+ @return ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest
 */
-func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroup(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIUpdateServerInstanceGroupRequest {
-	return ServerInstanceGroupAPIUpdateServerInstanceGroupRequest{
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupConfig(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest {
+	return ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest{
 		ApiService: a,
 		ctx: ctx,
 		serverInstanceGroupId: serverInstanceGroupId,
@@ -1129,16 +1232,16 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroup(ctx context.Co
 }
 
 // Execute executes the request
-//  @return ServerInstanceGroup
-func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupExecute(r ServerInstanceGroupAPIUpdateServerInstanceGroupRequest) (*ServerInstanceGroup, *http.Response, error) {
+//  @return ServerInstanceGroupConfiguration
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupConfigExecute(r ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest) (*ServerInstanceGroupConfiguration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ServerInstanceGroup
+		localVarReturnValue  *ServerInstanceGroupConfiguration
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.UpdateServerInstanceGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.UpdateServerInstanceGroupConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1210,4 +1313,108 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupExecute(r Serve
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceGroupAPIService
+	serverInstanceGroupId int32
+	body *map[string]interface{}
+}
+
+// The Server Instance Group meta information
+func (r ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest) Body(body map[string]interface{}) ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest {
+	r.body = &body
+	return r
+}
+
+func (r ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UpdateServerInstanceGroupMetaExecute(r)
+}
+
+/*
+UpdateServerInstanceGroupMeta Update an Server Instance Group meta information
+
+Updates the specified Server Instance Group meta information
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceGroupId
+ @return ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest
+*/
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupMeta(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest {
+	return ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceGroupId: serverInstanceGroupId,
+	}
+}
+
+// Execute executes the request
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupMetaExecute(r ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.UpdateServerInstanceGroupMeta")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/meta"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceGroupId, "serverInstanceGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }

@@ -8,16 +8,17 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | Network fabric description | [optional] 
 **FabricType** | **string** | The type of network fabric | 
 **FabricConfiguration** | [**NetworkFabricFabricConfiguration**](NetworkFabricFabricConfiguration.md) |  | 
-**Revision** | **float32** | Revision number of the entity | 
-**Id** | **string** | The network fabric ID. | 
+**Revision** | **int32** | Revision number of the entity | 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
+**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
+**Id** | **string** | The network fabric ID. | 
 
 ## Methods
 
 ### NewNetworkFabric
 
-`func NewNetworkFabric(name string, fabricType string, fabricConfiguration NetworkFabricFabricConfiguration, revision float32, id string, createdTimestamp time.Time, updatedTimestamp time.Time, ) *NetworkFabric`
+`func NewNetworkFabric(name string, fabricType string, fabricConfiguration NetworkFabricFabricConfiguration, revision int32, createdTimestamp time.Time, updatedTimestamp time.Time, id string, ) *NetworkFabric`
 
 NewNetworkFabric instantiates a new NetworkFabric object
 This constructor will assign default values to properties that have it defined,
@@ -119,42 +120,22 @@ SetFabricConfiguration sets FabricConfiguration field to given value.
 
 ### GetRevision
 
-`func (o *NetworkFabric) GetRevision() float32`
+`func (o *NetworkFabric) GetRevision() int32`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *NetworkFabric) GetRevisionOk() (*float32, bool)`
+`func (o *NetworkFabric) GetRevisionOk() (*int32, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *NetworkFabric) SetRevision(v float32)`
+`func (o *NetworkFabric) SetRevision(v int32)`
 
 SetRevision sets Revision field to given value.
-
-
-### GetId
-
-`func (o *NetworkFabric) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *NetworkFabric) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *NetworkFabric) SetId(v string)`
-
-SetId sets Id field to given value.
 
 
 ### GetCreatedTimestamp
@@ -195,6 +176,51 @@ and a boolean to check if the value has been set.
 `func (o *NetworkFabric) SetUpdatedTimestamp(v time.Time)`
 
 SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
+
+
+### GetLinks
+
+`func (o *NetworkFabric) GetLinks() []Link`
+
+GetLinks returns the Links field if non-nil, zero value otherwise.
+
+### GetLinksOk
+
+`func (o *NetworkFabric) GetLinksOk() (*[]Link, bool)`
+
+GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinks
+
+`func (o *NetworkFabric) SetLinks(v []Link)`
+
+SetLinks sets Links field to given value.
+
+### HasLinks
+
+`func (o *NetworkFabric) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *NetworkFabric) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *NetworkFabric) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *NetworkFabric) SetId(v string)`
+
+SetId sets Id field to given value.
 
 
 

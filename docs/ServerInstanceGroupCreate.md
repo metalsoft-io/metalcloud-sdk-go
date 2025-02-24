@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | The server instance group label. Will be automatically generated if not provided. | [optional] 
+**ServerGroupName** | Pointer to **string** |  | [optional] 
 **ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
 **InstanceCount** | Pointer to **int32** |  | [optional] [default to 1]
 **VolumeTemplateId** | Pointer to **int32** |  | [optional] 
@@ -57,6 +58,31 @@ SetLabel sets Label field to given value.
 `func (o *ServerInstanceGroupCreate) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
+
+### GetServerGroupName
+
+`func (o *ServerInstanceGroupCreate) GetServerGroupName() string`
+
+GetServerGroupName returns the ServerGroupName field if non-nil, zero value otherwise.
+
+### GetServerGroupNameOk
+
+`func (o *ServerInstanceGroupCreate) GetServerGroupNameOk() (*string, bool)`
+
+GetServerGroupNameOk returns a tuple with the ServerGroupName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerGroupName
+
+`func (o *ServerInstanceGroupCreate) SetServerGroupName(v string)`
+
+SetServerGroupName sets ServerGroupName field to given value.
+
+### HasServerGroupName
+
+`func (o *ServerInstanceGroupCreate) HasServerGroupName() bool`
+
+HasServerGroupName returns a boolean if a field has been set.
 
 ### GetExtensionInstanceId
 

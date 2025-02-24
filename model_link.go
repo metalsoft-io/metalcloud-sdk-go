@@ -21,9 +21,9 @@ var _ MappedNullable = &Link{}
 
 // Link struct for Link
 type Link struct {
-	// The relation
+	// Indicates the relation type of the hyperlink (e.g., \"self\" refers to the current resource).
 	Rel string `json:"rel"`
-	// The link URI
+	// The URI for accessing the linked resource.
 	Href string `json:"href"`
 	AdditionalProperties map[string]interface{}
 }

@@ -22,35 +22,33 @@ import (
 )
 
 
-// NetworkFabricsAPIService NetworkFabricsAPI service
-type NetworkFabricsAPIService service
+// NetworkFabricAPIService NetworkFabricAPI service
+type NetworkFabricAPIService service
 
-type NetworkFabricsAPICreateNetworkFabricRequest struct {
+type NetworkFabricAPICreateNetworkFabricRequest struct {
 	ctx context.Context
-	ApiService *NetworkFabricsAPIService
+	ApiService *NetworkFabricAPIService
 	createNetworkFabric *CreateNetworkFabric
 }
 
-// The Network Fabric create object
-func (r NetworkFabricsAPICreateNetworkFabricRequest) CreateNetworkFabric(createNetworkFabric CreateNetworkFabric) NetworkFabricsAPICreateNetworkFabricRequest {
+// The network fabric create object
+func (r NetworkFabricAPICreateNetworkFabricRequest) CreateNetworkFabric(createNetworkFabric CreateNetworkFabric) NetworkFabricAPICreateNetworkFabricRequest {
 	r.createNetworkFabric = &createNetworkFabric
 	return r
 }
 
-func (r NetworkFabricsAPICreateNetworkFabricRequest) Execute() (*NetworkFabric, *http.Response, error) {
+func (r NetworkFabricAPICreateNetworkFabricRequest) Execute() (*NetworkFabric, *http.Response, error) {
 	return r.ApiService.CreateNetworkFabricExecute(r)
 }
 
 /*
 CreateNetworkFabric Create a new network fabric
 
-Create a new network fabric
-
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return NetworkFabricsAPICreateNetworkFabricRequest
+ @return NetworkFabricAPICreateNetworkFabricRequest
 */
-func (a *NetworkFabricsAPIService) CreateNetworkFabric(ctx context.Context) NetworkFabricsAPICreateNetworkFabricRequest {
-	return NetworkFabricsAPICreateNetworkFabricRequest{
+func (a *NetworkFabricAPIService) CreateNetworkFabric(ctx context.Context) NetworkFabricAPICreateNetworkFabricRequest {
+	return NetworkFabricAPICreateNetworkFabricRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -58,7 +56,7 @@ func (a *NetworkFabricsAPIService) CreateNetworkFabric(ctx context.Context) Netw
 
 // Execute executes the request
 //  @return NetworkFabric
-func (a *NetworkFabricsAPIService) CreateNetworkFabricExecute(r NetworkFabricsAPICreateNetworkFabricRequest) (*NetworkFabric, *http.Response, error) {
+func (a *NetworkFabricAPIService) CreateNetworkFabricExecute(r NetworkFabricAPICreateNetworkFabricRequest) (*NetworkFabric, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -66,7 +64,7 @@ func (a *NetworkFabricsAPIService) CreateNetworkFabricExecute(r NetworkFabricsAP
 		localVarReturnValue  *NetworkFabric
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricsAPIService.CreateNetworkFabric")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.CreateNetworkFabric")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -136,27 +134,25 @@ func (a *NetworkFabricsAPIService) CreateNetworkFabricExecute(r NetworkFabricsAP
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type NetworkFabricsAPIDeleteNetworkFabricRequest struct {
+type NetworkFabricAPIDeleteNetworkFabricRequest struct {
 	ctx context.Context
-	ApiService *NetworkFabricsAPIService
+	ApiService *NetworkFabricAPIService
 	networkFabricId float32
 }
 
-func (r NetworkFabricsAPIDeleteNetworkFabricRequest) Execute() (*http.Response, error) {
+func (r NetworkFabricAPIDeleteNetworkFabricRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteNetworkFabricExecute(r)
 }
 
 /*
 DeleteNetworkFabric Delete a network fabric
 
-Delete a network fabric
-
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param networkFabricId
- @return NetworkFabricsAPIDeleteNetworkFabricRequest
+ @return NetworkFabricAPIDeleteNetworkFabricRequest
 */
-func (a *NetworkFabricsAPIService) DeleteNetworkFabric(ctx context.Context, networkFabricId float32) NetworkFabricsAPIDeleteNetworkFabricRequest {
-	return NetworkFabricsAPIDeleteNetworkFabricRequest{
+func (a *NetworkFabricAPIService) DeleteNetworkFabric(ctx context.Context, networkFabricId float32) NetworkFabricAPIDeleteNetworkFabricRequest {
+	return NetworkFabricAPIDeleteNetworkFabricRequest{
 		ApiService: a,
 		ctx: ctx,
 		networkFabricId: networkFabricId,
@@ -164,14 +160,14 @@ func (a *NetworkFabricsAPIService) DeleteNetworkFabric(ctx context.Context, netw
 }
 
 // Execute executes the request
-func (a *NetworkFabricsAPIService) DeleteNetworkFabricExecute(r NetworkFabricsAPIDeleteNetworkFabricRequest) (*http.Response, error) {
+func (a *NetworkFabricAPIService) DeleteNetworkFabricExecute(r NetworkFabricAPIDeleteNetworkFabricRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricsAPIService.DeleteNetworkFabric")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.DeleteNetworkFabric")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -228,27 +224,25 @@ func (a *NetworkFabricsAPIService) DeleteNetworkFabricExecute(r NetworkFabricsAP
 	return localVarHTTPResponse, nil
 }
 
-type NetworkFabricsAPIGetNetworkFabricByIdRequest struct {
+type NetworkFabricAPIGetNetworkFabricByIdRequest struct {
 	ctx context.Context
-	ApiService *NetworkFabricsAPIService
+	ApiService *NetworkFabricAPIService
 	networkFabricId float32
 }
 
-func (r NetworkFabricsAPIGetNetworkFabricByIdRequest) Execute() (*NetworkFabric, *http.Response, error) {
+func (r NetworkFabricAPIGetNetworkFabricByIdRequest) Execute() (*NetworkFabric, *http.Response, error) {
 	return r.ApiService.GetNetworkFabricByIdExecute(r)
 }
 
 /*
 GetNetworkFabricById Get a network fabric by ID
 
-Returns a network fabric by ID
-
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param networkFabricId
- @return NetworkFabricsAPIGetNetworkFabricByIdRequest
+ @return NetworkFabricAPIGetNetworkFabricByIdRequest
 */
-func (a *NetworkFabricsAPIService) GetNetworkFabricById(ctx context.Context, networkFabricId float32) NetworkFabricsAPIGetNetworkFabricByIdRequest {
-	return NetworkFabricsAPIGetNetworkFabricByIdRequest{
+func (a *NetworkFabricAPIService) GetNetworkFabricById(ctx context.Context, networkFabricId float32) NetworkFabricAPIGetNetworkFabricByIdRequest {
+	return NetworkFabricAPIGetNetworkFabricByIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		networkFabricId: networkFabricId,
@@ -257,7 +251,7 @@ func (a *NetworkFabricsAPIService) GetNetworkFabricById(ctx context.Context, net
 
 // Execute executes the request
 //  @return NetworkFabric
-func (a *NetworkFabricsAPIService) GetNetworkFabricByIdExecute(r NetworkFabricsAPIGetNetworkFabricByIdRequest) (*NetworkFabric, *http.Response, error) {
+func (a *NetworkFabricAPIService) GetNetworkFabricByIdExecute(r NetworkFabricAPIGetNetworkFabricByIdRequest) (*NetworkFabric, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -265,7 +259,7 @@ func (a *NetworkFabricsAPIService) GetNetworkFabricByIdExecute(r NetworkFabricsA
 		localVarReturnValue  *NetworkFabric
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricsAPIService.GetNetworkFabricById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.GetNetworkFabricById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -331,13 +325,14 @@ func (a *NetworkFabricsAPIService) GetNetworkFabricByIdExecute(r NetworkFabricsA
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type NetworkFabricsAPIGetNetworkFabricsRequest struct {
+type NetworkFabricAPIGetNetworkFabricsRequest struct {
 	ctx context.Context
-	ApiService *NetworkFabricsAPIService
+	ApiService *NetworkFabricAPIService
 	page *float32
 	limit *float32
 	filterId *[]string
 	filterName *[]string
+	filterDescription *[]string
 	filterSiteId *[]string
 	filterFabricType *[]string
 	sortBy *[]string
@@ -346,73 +341,77 @@ type NetworkFabricsAPIGetNetworkFabricsRequest struct {
 }
 
 // Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
-func (r NetworkFabricsAPIGetNetworkFabricsRequest) Page(page float32) NetworkFabricsAPIGetNetworkFabricsRequest {
+func (r NetworkFabricAPIGetNetworkFabricsRequest) Page(page float32) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.page = &page
 	return r
 }
 
 // Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
-func (r NetworkFabricsAPIGetNetworkFabricsRequest) Limit(limit float32) NetworkFabricsAPIGetNetworkFabricsRequest {
+func (r NetworkFabricAPIGetNetworkFabricsRequest) Limit(limit float32) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.limit = &limit
 	return r
 }
 
 // Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r NetworkFabricsAPIGetNetworkFabricsRequest) FilterId(filterId []string) NetworkFabricsAPIGetNetworkFabricsRequest {
+func (r NetworkFabricAPIGetNetworkFabricsRequest) FilterId(filterId []string) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.filterId = &filterId
 	return r
 }
 
 // Filter by name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.name&#x3D;$not:$like:John Doe&amp;filter.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r NetworkFabricsAPIGetNetworkFabricsRequest) FilterName(filterName []string) NetworkFabricsAPIGetNetworkFabricsRequest {
+func (r NetworkFabricAPIGetNetworkFabricsRequest) FilterName(filterName []string) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.filterName = &filterName
 	return r
 }
 
+// Filter by description query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.description&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.description&#x3D;$not:$like:John Doe&amp;filter.description&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r NetworkFabricAPIGetNetworkFabricsRequest) FilterDescription(filterDescription []string) NetworkFabricAPIGetNetworkFabricsRequest {
+	r.filterDescription = &filterDescription
+	return r
+}
+
 // Filter by siteId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.siteId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.siteId&#x3D;$not:$like:John Doe&amp;filter.siteId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r NetworkFabricsAPIGetNetworkFabricsRequest) FilterSiteId(filterSiteId []string) NetworkFabricsAPIGetNetworkFabricsRequest {
+func (r NetworkFabricAPIGetNetworkFabricsRequest) FilterSiteId(filterSiteId []string) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.filterSiteId = &filterSiteId
 	return r
 }
 
 // Filter by fabricType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.fabricType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.fabricType&#x3D;$not:$like:John Doe&amp;filter.fabricType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r NetworkFabricsAPIGetNetworkFabricsRequest) FilterFabricType(filterFabricType []string) NetworkFabricsAPIGetNetworkFabricsRequest {
+func (r NetworkFabricAPIGetNetworkFabricsRequest) FilterFabricType(filterFabricType []string) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.filterFabricType = &filterFabricType
 	return r
 }
 
 // Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;fabricType&lt;/li&gt;&lt;/ul&gt;       
-func (r NetworkFabricsAPIGetNetworkFabricsRequest) SortBy(sortBy []string) NetworkFabricsAPIGetNetworkFabricsRequest {
+func (r NetworkFabricAPIGetNetworkFabricsRequest) SortBy(sortBy []string) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
 // Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
-func (r NetworkFabricsAPIGetNetworkFabricsRequest) Search(search string) NetworkFabricsAPIGetNetworkFabricsRequest {
+func (r NetworkFabricAPIGetNetworkFabricsRequest) Search(search string) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.search = &search
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; name           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;name&lt;/li&gt;&lt;/ul&gt;         
-func (r NetworkFabricsAPIGetNetworkFabricsRequest) SearchBy(searchBy []string) NetworkFabricsAPIGetNetworkFabricsRequest {
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; name,description           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;name&lt;/li&gt; &lt;li&gt;description&lt;/li&gt;&lt;/ul&gt;         
+func (r NetworkFabricAPIGetNetworkFabricsRequest) SearchBy(searchBy []string) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-func (r NetworkFabricsAPIGetNetworkFabricsRequest) Execute() (*NetworkFabricPaginatedList, *http.Response, error) {
+func (r NetworkFabricAPIGetNetworkFabricsRequest) Execute() (*NetworkFabricPaginatedList, *http.Response, error) {
 	return r.ApiService.GetNetworkFabricsExecute(r)
 }
 
 /*
-GetNetworkFabrics Get all network fabrics
-
-Returns list of all Network Fabrics
+GetNetworkFabrics List all network fabrics
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return NetworkFabricsAPIGetNetworkFabricsRequest
+ @return NetworkFabricAPIGetNetworkFabricsRequest
 */
-func (a *NetworkFabricsAPIService) GetNetworkFabrics(ctx context.Context) NetworkFabricsAPIGetNetworkFabricsRequest {
-	return NetworkFabricsAPIGetNetworkFabricsRequest{
+func (a *NetworkFabricAPIService) GetNetworkFabrics(ctx context.Context) NetworkFabricAPIGetNetworkFabricsRequest {
+	return NetworkFabricAPIGetNetworkFabricsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -420,7 +419,7 @@ func (a *NetworkFabricsAPIService) GetNetworkFabrics(ctx context.Context) Networ
 
 // Execute executes the request
 //  @return NetworkFabricPaginatedList
-func (a *NetworkFabricsAPIService) GetNetworkFabricsExecute(r NetworkFabricsAPIGetNetworkFabricsRequest) (*NetworkFabricPaginatedList, *http.Response, error) {
+func (a *NetworkFabricAPIService) GetNetworkFabricsExecute(r NetworkFabricAPIGetNetworkFabricsRequest) (*NetworkFabricPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -428,7 +427,7 @@ func (a *NetworkFabricsAPIService) GetNetworkFabricsExecute(r NetworkFabricsAPIG
 		localVarReturnValue  *NetworkFabricPaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricsAPIService.GetNetworkFabrics")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.GetNetworkFabrics")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -465,6 +464,17 @@ func (a *NetworkFabricsAPIService) GetNetworkFabricsExecute(r NetworkFabricsAPIG
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
+		}
+	}
+	if r.filterDescription != nil {
+		t := *r.filterDescription
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", t, "form", "multi")
 		}
 	}
 	if r.filterSiteId != nil {
@@ -568,34 +578,39 @@ func (a *NetworkFabricsAPIService) GetNetworkFabricsExecute(r NetworkFabricsAPIG
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type NetworkFabricsAPIUpdateNetworkFabricRequest struct {
+type NetworkFabricAPIUpdateNetworkFabricRequest struct {
 	ctx context.Context
-	ApiService *NetworkFabricsAPIService
+	ApiService *NetworkFabricAPIService
 	networkFabricId float32
 	updateNetworkFabric *UpdateNetworkFabric
+	ifMatch *string
 }
 
-// The Network Fabric update object
-func (r NetworkFabricsAPIUpdateNetworkFabricRequest) UpdateNetworkFabric(updateNetworkFabric UpdateNetworkFabric) NetworkFabricsAPIUpdateNetworkFabricRequest {
+// Network fabric updates
+func (r NetworkFabricAPIUpdateNetworkFabricRequest) UpdateNetworkFabric(updateNetworkFabric UpdateNetworkFabric) NetworkFabricAPIUpdateNetworkFabricRequest {
 	r.updateNetworkFabric = &updateNetworkFabric
 	return r
 }
 
-func (r NetworkFabricsAPIUpdateNetworkFabricRequest) Execute() (*NetworkFabric, *http.Response, error) {
+// Entity tag
+func (r NetworkFabricAPIUpdateNetworkFabricRequest) IfMatch(ifMatch string) NetworkFabricAPIUpdateNetworkFabricRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r NetworkFabricAPIUpdateNetworkFabricRequest) Execute() (*NetworkFabric, *http.Response, error) {
 	return r.ApiService.UpdateNetworkFabricExecute(r)
 }
 
 /*
 UpdateNetworkFabric Update a network fabric
 
-Update a network fabric
-
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkFabricId
- @return NetworkFabricsAPIUpdateNetworkFabricRequest
+ @param networkFabricId The ID of the network fabric to update
+ @return NetworkFabricAPIUpdateNetworkFabricRequest
 */
-func (a *NetworkFabricsAPIService) UpdateNetworkFabric(ctx context.Context, networkFabricId float32) NetworkFabricsAPIUpdateNetworkFabricRequest {
-	return NetworkFabricsAPIUpdateNetworkFabricRequest{
+func (a *NetworkFabricAPIService) UpdateNetworkFabric(ctx context.Context, networkFabricId float32) NetworkFabricAPIUpdateNetworkFabricRequest {
+	return NetworkFabricAPIUpdateNetworkFabricRequest{
 		ApiService: a,
 		ctx: ctx,
 		networkFabricId: networkFabricId,
@@ -604,15 +619,15 @@ func (a *NetworkFabricsAPIService) UpdateNetworkFabric(ctx context.Context, netw
 
 // Execute executes the request
 //  @return NetworkFabric
-func (a *NetworkFabricsAPIService) UpdateNetworkFabricExecute(r NetworkFabricsAPIUpdateNetworkFabricRequest) (*NetworkFabric, *http.Response, error) {
+func (a *NetworkFabricAPIService) UpdateNetworkFabricExecute(r NetworkFabricAPIUpdateNetworkFabricRequest) (*NetworkFabric, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
+		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *NetworkFabric
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricsAPIService.UpdateNetworkFabric")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.UpdateNetworkFabric")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -643,6 +658,9 @@ func (a *NetworkFabricsAPIService) UpdateNetworkFabricExecute(r NetworkFabricsAP
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.updateNetworkFabric

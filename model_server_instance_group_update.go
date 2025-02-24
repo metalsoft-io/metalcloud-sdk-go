@@ -22,6 +22,13 @@ var _ MappedNullable = &ServerInstanceGroupUpdate{}
 type ServerInstanceGroupUpdate struct {
 	// The server instance group label. Will be automatically generated if not provided.
 	Label *string `json:"label,omitempty"`
+	ServerGroupName *string `json:"serverGroupName,omitempty"`
+	InstanceCount *int32 `json:"instanceCount,omitempty"`
+	VolumeTemplateId *int32 `json:"volumeTemplateId,omitempty"`
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
+	DiskCount *int32 `json:"diskCount,omitempty"`
+	DiskSizeMbytes *int32 `json:"diskSizeMbytes,omitempty"`
+	DiskTypes []string `json:"diskTypes,omitempty"`
 	// The group's default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied.
 	DefaultServerProfileID *int32 `json:"defaultServerProfileID,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -35,6 +42,8 @@ type _ServerInstanceGroupUpdate ServerInstanceGroupUpdate
 // will change when the set of required properties is changed
 func NewServerInstanceGroupUpdate() *ServerInstanceGroupUpdate {
 	this := ServerInstanceGroupUpdate{}
+	var instanceCount int32 = 1
+	this.InstanceCount = &instanceCount
 	return &this
 }
 
@@ -43,6 +52,8 @@ func NewServerInstanceGroupUpdate() *ServerInstanceGroupUpdate {
 // but it doesn't guarantee that properties required by API are set
 func NewServerInstanceGroupUpdateWithDefaults() *ServerInstanceGroupUpdate {
 	this := ServerInstanceGroupUpdate{}
+	var instanceCount int32 = 1
+	this.InstanceCount = &instanceCount
 	return &this
 }
 
@@ -76,6 +87,230 @@ func (o *ServerInstanceGroupUpdate) HasLabel() bool {
 // SetLabel gets a reference to the given string and assigns it to the Label field.
 func (o *ServerInstanceGroupUpdate) SetLabel(v string) {
 	o.Label = &v
+}
+
+// GetServerGroupName returns the ServerGroupName field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetServerGroupName() string {
+	if o == nil || IsNil(o.ServerGroupName) {
+		var ret string
+		return ret
+	}
+	return *o.ServerGroupName
+}
+
+// GetServerGroupNameOk returns a tuple with the ServerGroupName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupUpdate) GetServerGroupNameOk() (*string, bool) {
+	if o == nil || IsNil(o.ServerGroupName) {
+		return nil, false
+	}
+	return o.ServerGroupName, true
+}
+
+// HasServerGroupName returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasServerGroupName() bool {
+	if o != nil && !IsNil(o.ServerGroupName) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerGroupName gets a reference to the given string and assigns it to the ServerGroupName field.
+func (o *ServerInstanceGroupUpdate) SetServerGroupName(v string) {
+	o.ServerGroupName = &v
+}
+
+// GetInstanceCount returns the InstanceCount field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetInstanceCount() int32 {
+	if o == nil || IsNil(o.InstanceCount) {
+		var ret int32
+		return ret
+	}
+	return *o.InstanceCount
+}
+
+// GetInstanceCountOk returns a tuple with the InstanceCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupUpdate) GetInstanceCountOk() (*int32, bool) {
+	if o == nil || IsNil(o.InstanceCount) {
+		return nil, false
+	}
+	return o.InstanceCount, true
+}
+
+// HasInstanceCount returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasInstanceCount() bool {
+	if o != nil && !IsNil(o.InstanceCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceCount gets a reference to the given int32 and assigns it to the InstanceCount field.
+func (o *ServerInstanceGroupUpdate) SetInstanceCount(v int32) {
+	o.InstanceCount = &v
+}
+
+// GetVolumeTemplateId returns the VolumeTemplateId field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetVolumeTemplateId() int32 {
+	if o == nil || IsNil(o.VolumeTemplateId) {
+		var ret int32
+		return ret
+	}
+	return *o.VolumeTemplateId
+}
+
+// GetVolumeTemplateIdOk returns a tuple with the VolumeTemplateId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupUpdate) GetVolumeTemplateIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.VolumeTemplateId) {
+		return nil, false
+	}
+	return o.VolumeTemplateId, true
+}
+
+// HasVolumeTemplateId returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasVolumeTemplateId() bool {
+	if o != nil && !IsNil(o.VolumeTemplateId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVolumeTemplateId gets a reference to the given int32 and assigns it to the VolumeTemplateId field.
+func (o *ServerInstanceGroupUpdate) SetVolumeTemplateId(v int32) {
+	o.VolumeTemplateId = &v
+}
+
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupUpdate) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *ServerInstanceGroupUpdate) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
+}
+
+// GetDiskCount returns the DiskCount field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetDiskCount() int32 {
+	if o == nil || IsNil(o.DiskCount) {
+		var ret int32
+		return ret
+	}
+	return *o.DiskCount
+}
+
+// GetDiskCountOk returns a tuple with the DiskCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupUpdate) GetDiskCountOk() (*int32, bool) {
+	if o == nil || IsNil(o.DiskCount) {
+		return nil, false
+	}
+	return o.DiskCount, true
+}
+
+// HasDiskCount returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasDiskCount() bool {
+	if o != nil && !IsNil(o.DiskCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiskCount gets a reference to the given int32 and assigns it to the DiskCount field.
+func (o *ServerInstanceGroupUpdate) SetDiskCount(v int32) {
+	o.DiskCount = &v
+}
+
+// GetDiskSizeMbytes returns the DiskSizeMbytes field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetDiskSizeMbytes() int32 {
+	if o == nil || IsNil(o.DiskSizeMbytes) {
+		var ret int32
+		return ret
+	}
+	return *o.DiskSizeMbytes
+}
+
+// GetDiskSizeMbytesOk returns a tuple with the DiskSizeMbytes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupUpdate) GetDiskSizeMbytesOk() (*int32, bool) {
+	if o == nil || IsNil(o.DiskSizeMbytes) {
+		return nil, false
+	}
+	return o.DiskSizeMbytes, true
+}
+
+// HasDiskSizeMbytes returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasDiskSizeMbytes() bool {
+	if o != nil && !IsNil(o.DiskSizeMbytes) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiskSizeMbytes gets a reference to the given int32 and assigns it to the DiskSizeMbytes field.
+func (o *ServerInstanceGroupUpdate) SetDiskSizeMbytes(v int32) {
+	o.DiskSizeMbytes = &v
+}
+
+// GetDiskTypes returns the DiskTypes field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetDiskTypes() []string {
+	if o == nil || IsNil(o.DiskTypes) {
+		var ret []string
+		return ret
+	}
+	return o.DiskTypes
+}
+
+// GetDiskTypesOk returns a tuple with the DiskTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupUpdate) GetDiskTypesOk() ([]string, bool) {
+	if o == nil || IsNil(o.DiskTypes) {
+		return nil, false
+	}
+	return o.DiskTypes, true
+}
+
+// HasDiskTypes returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasDiskTypes() bool {
+	if o != nil && !IsNil(o.DiskTypes) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiskTypes gets a reference to the given []string and assigns it to the DiskTypes field.
+func (o *ServerInstanceGroupUpdate) SetDiskTypes(v []string) {
+	o.DiskTypes = v
 }
 
 // GetDefaultServerProfileID returns the DefaultServerProfileID field value if set, zero value otherwise.
@@ -123,6 +358,27 @@ func (o ServerInstanceGroupUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
+	if !IsNil(o.ServerGroupName) {
+		toSerialize["serverGroupName"] = o.ServerGroupName
+	}
+	if !IsNil(o.InstanceCount) {
+		toSerialize["instanceCount"] = o.InstanceCount
+	}
+	if !IsNil(o.VolumeTemplateId) {
+		toSerialize["volumeTemplateId"] = o.VolumeTemplateId
+	}
+	if !IsNil(o.CustomVariables) {
+		toSerialize["customVariables"] = o.CustomVariables
+	}
+	if !IsNil(o.DiskCount) {
+		toSerialize["diskCount"] = o.DiskCount
+	}
+	if !IsNil(o.DiskSizeMbytes) {
+		toSerialize["diskSizeMbytes"] = o.DiskSizeMbytes
+	}
+	if !IsNil(o.DiskTypes) {
+		toSerialize["diskTypes"] = o.DiskTypes
+	}
 	if !IsNil(o.DefaultServerProfileID) {
 		toSerialize["defaultServerProfileID"] = o.DefaultServerProfileID
 	}
@@ -149,6 +405,13 @@ func (o *ServerInstanceGroupUpdate) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "serverGroupName")
+		delete(additionalProperties, "instanceCount")
+		delete(additionalProperties, "volumeTemplateId")
+		delete(additionalProperties, "customVariables")
+		delete(additionalProperties, "diskCount")
+		delete(additionalProperties, "diskSizeMbytes")
+		delete(additionalProperties, "diskTypes")
 		delete(additionalProperties, "defaultServerProfileID")
 		o.AdditionalProperties = additionalProperties
 	}

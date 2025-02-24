@@ -30,13 +30,15 @@ type NetworkFabric struct {
 	FabricType string `json:"fabricType"`
 	FabricConfiguration NetworkFabricFabricConfiguration `json:"fabricConfiguration"`
 	// Revision number of the entity
-	Revision float32 `json:"revision"`
-	// The network fabric ID.
-	Id string `json:"id"`
+	Revision int32 `json:"revision"`
 	// Entity creation timestamp
 	CreatedTimestamp time.Time `json:"createdTimestamp"`
 	// Entity last update timestamp
 	UpdatedTimestamp time.Time `json:"updatedTimestamp"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
+	// The network fabric ID.
+	Id string `json:"id"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,15 +48,15 @@ type _NetworkFabric NetworkFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkFabric(name string, fabricType string, fabricConfiguration NetworkFabricFabricConfiguration, revision float32, id string, createdTimestamp time.Time, updatedTimestamp time.Time) *NetworkFabric {
+func NewNetworkFabric(name string, fabricType string, fabricConfiguration NetworkFabricFabricConfiguration, revision int32, createdTimestamp time.Time, updatedTimestamp time.Time, id string) *NetworkFabric {
 	this := NetworkFabric{}
 	this.Name = name
 	this.FabricType = fabricType
 	this.FabricConfiguration = fabricConfiguration
 	this.Revision = revision
-	this.Id = id
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
+	this.Id = id
 	return &this
 }
 
@@ -171,9 +173,9 @@ func (o *NetworkFabric) SetFabricConfiguration(v NetworkFabricFabricConfiguratio
 }
 
 // GetRevision returns the Revision field value
-func (o *NetworkFabric) GetRevision() float32 {
+func (o *NetworkFabric) GetRevision() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -182,7 +184,7 @@ func (o *NetworkFabric) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabric) GetRevisionOk() (*float32, bool) {
+func (o *NetworkFabric) GetRevisionOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -190,32 +192,8 @@ func (o *NetworkFabric) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *NetworkFabric) SetRevision(v float32) {
+func (o *NetworkFabric) SetRevision(v int32) {
 	o.Revision = v
-}
-
-// GetId returns the Id field value
-func (o *NetworkFabric) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *NetworkFabric) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *NetworkFabric) SetId(v string) {
-	o.Id = v
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
@@ -266,6 +244,62 @@ func (o *NetworkFabric) SetUpdatedTimestamp(v time.Time) {
 	o.UpdatedTimestamp = v
 }
 
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *NetworkFabric) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabric) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
+	}
+	return o.Links, true
+}
+
+// HasLinks returns a boolean if a field has been set.
+func (o *NetworkFabric) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *NetworkFabric) SetLinks(v []Link) {
+	o.Links = v
+}
+
+// GetId returns the Id field value
+func (o *NetworkFabric) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *NetworkFabric) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *NetworkFabric) SetId(v string) {
+	o.Id = v
+}
+
 func (o NetworkFabric) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -283,9 +317,12 @@ func (o NetworkFabric) ToMap() (map[string]interface{}, error) {
 	toSerialize["fabricType"] = o.FabricType
 	toSerialize["fabricConfiguration"] = o.FabricConfiguration
 	toSerialize["revision"] = o.Revision
-	toSerialize["id"] = o.Id
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
+	toSerialize["id"] = o.Id
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -303,9 +340,9 @@ func (o *NetworkFabric) UnmarshalJSON(data []byte) (err error) {
 		"fabricType",
 		"fabricConfiguration",
 		"revision",
-		"id",
 		"createdTimestamp",
 		"updatedTimestamp",
+		"id",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -340,9 +377,10 @@ func (o *NetworkFabric) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "fabricType")
 		delete(additionalProperties, "fabricConfiguration")
 		delete(additionalProperties, "revision")
-		delete(additionalProperties, "id")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
+		delete(additionalProperties, "links")
+		delete(additionalProperties, "id")
 		o.AdditionalProperties = additionalProperties
 	}
 

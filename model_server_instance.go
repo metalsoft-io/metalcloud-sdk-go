@@ -83,6 +83,8 @@ type ServerInstance struct {
 	OsInstallImageBuildError *string `json:"osInstallImageBuildError,omitempty"`
 	// Build info regarding the OS image.
 	OsInstallImageBuildInfo *string `json:"osInstallImageBuildInfo,omitempty"`
+	// OS reinstall is required.
+	OsReinstallRequired *string `json:"osReinstallRequired,omitempty"`
 	// iSCSI Initiator IQN for the Instance Interface.
 	IscsiInitiatorIqn *string `json:"iscsiInitiatorIqn,omitempty"`
 	// iSCSI Initiator Username for the Instance Interface.
@@ -1186,6 +1188,38 @@ func (o *ServerInstance) SetOsInstallImageBuildInfo(v string) {
 	o.OsInstallImageBuildInfo = &v
 }
 
+// GetOsReinstallRequired returns the OsReinstallRequired field value if set, zero value otherwise.
+func (o *ServerInstance) GetOsReinstallRequired() string {
+	if o == nil || IsNil(o.OsReinstallRequired) {
+		var ret string
+		return ret
+	}
+	return *o.OsReinstallRequired
+}
+
+// GetOsReinstallRequiredOk returns a tuple with the OsReinstallRequired field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstance) GetOsReinstallRequiredOk() (*string, bool) {
+	if o == nil || IsNil(o.OsReinstallRequired) {
+		return nil, false
+	}
+	return o.OsReinstallRequired, true
+}
+
+// HasOsReinstallRequired returns a boolean if a field has been set.
+func (o *ServerInstance) HasOsReinstallRequired() bool {
+	if o != nil && !IsNil(o.OsReinstallRequired) {
+		return true
+	}
+
+	return false
+}
+
+// SetOsReinstallRequired gets a reference to the given string and assigns it to the OsReinstallRequired field.
+func (o *ServerInstance) SetOsReinstallRequired(v string) {
+	o.OsReinstallRequired = &v
+}
+
 // GetIscsiInitiatorIqn returns the IscsiInitiatorIqn field value if set, zero value otherwise.
 func (o *ServerInstance) GetIscsiInitiatorIqn() string {
 	if o == nil || IsNil(o.IscsiInitiatorIqn) {
@@ -1509,6 +1543,9 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OsInstallImageBuildInfo) {
 		toSerialize["osInstallImageBuildInfo"] = o.OsInstallImageBuildInfo
 	}
+	if !IsNil(o.OsReinstallRequired) {
+		toSerialize["osReinstallRequired"] = o.OsReinstallRequired
+	}
 	if !IsNil(o.IscsiInitiatorIqn) {
 		toSerialize["iscsiInitiatorIqn"] = o.IscsiInitiatorIqn
 	}
@@ -1615,6 +1652,7 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "osInstallImageUrl")
 		delete(additionalProperties, "osInstallImageBuildError")
 		delete(additionalProperties, "osInstallImageBuildInfo")
+		delete(additionalProperties, "osReinstallRequired")
 		delete(additionalProperties, "iscsiInitiatorIqn")
 		delete(additionalProperties, "iscsiInitiatorUsername")
 		delete(additionalProperties, "iscsiInitiatorPasswordEncrypted")

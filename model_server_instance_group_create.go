@@ -22,6 +22,7 @@ var _ MappedNullable = &ServerInstanceGroupCreate{}
 type ServerInstanceGroupCreate struct {
 	// The server instance group label. Will be automatically generated if not provided.
 	Label *string `json:"label,omitempty"`
+	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`
 	InstanceCount *int32 `json:"instanceCount,omitempty"`
 	VolumeTemplateId *int32 `json:"volumeTemplateId,omitempty"`
@@ -87,6 +88,38 @@ func (o *ServerInstanceGroupCreate) HasLabel() bool {
 // SetLabel gets a reference to the given string and assigns it to the Label field.
 func (o *ServerInstanceGroupCreate) SetLabel(v string) {
 	o.Label = &v
+}
+
+// GetServerGroupName returns the ServerGroupName field value if set, zero value otherwise.
+func (o *ServerInstanceGroupCreate) GetServerGroupName() string {
+	if o == nil || IsNil(o.ServerGroupName) {
+		var ret string
+		return ret
+	}
+	return *o.ServerGroupName
+}
+
+// GetServerGroupNameOk returns a tuple with the ServerGroupName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupCreate) GetServerGroupNameOk() (*string, bool) {
+	if o == nil || IsNil(o.ServerGroupName) {
+		return nil, false
+	}
+	return o.ServerGroupName, true
+}
+
+// HasServerGroupName returns a boolean if a field has been set.
+func (o *ServerInstanceGroupCreate) HasServerGroupName() bool {
+	if o != nil && !IsNil(o.ServerGroupName) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerGroupName gets a reference to the given string and assigns it to the ServerGroupName field.
+func (o *ServerInstanceGroupCreate) SetServerGroupName(v string) {
+	o.ServerGroupName = &v
 }
 
 // GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise.
@@ -358,6 +391,9 @@ func (o ServerInstanceGroupCreate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
+	if !IsNil(o.ServerGroupName) {
+		toSerialize["serverGroupName"] = o.ServerGroupName
+	}
 	if !IsNil(o.ExtensionInstanceId) {
 		toSerialize["extensionInstanceId"] = o.ExtensionInstanceId
 	}
@@ -405,6 +441,7 @@ func (o *ServerInstanceGroupCreate) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "instanceCount")
 		delete(additionalProperties, "volumeTemplateId")

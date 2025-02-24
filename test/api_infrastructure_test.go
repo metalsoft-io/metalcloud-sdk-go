@@ -22,6 +22,19 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test InfrastructureAPIService AddInfrastructureUser", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+
+		httpRes, err := apiClient.InfrastructureAPI.AddInfrastructureUser(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test InfrastructureAPIService CreateInfrastructure", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -75,6 +88,34 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test InfrastructureAPIService GetInfrastructureUserLimits", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+
+		resp, httpRes, err := apiClient.InfrastructureAPI.GetInfrastructureUserLimits(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test InfrastructureAPIService GetInfrastructureUsers", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+
+		resp, httpRes, err := apiClient.InfrastructureAPI.GetInfrastructureUsers(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test InfrastructureAPIService GetInfrastructures", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -83,6 +124,20 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test InfrastructureAPIService RemoveInfrastructureUser", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var userId float32
+
+		httpRes, err := apiClient.InfrastructureAPI.RemoveInfrastructureUser(context.Background(), infrastructureId, userId).Execute()
+
+		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

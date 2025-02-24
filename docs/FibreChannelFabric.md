@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DefaultNetworkProfileId** | **float32** |  | 
-**GnmiMonitoringEnabled** | Pointer to **bool** |  | [optional] 
-**SyslogMonitoringEnabled** | Pointer to **bool** |  | [optional] 
-**ZeroTouchEnabled** | Pointer to **bool** |  | [optional] 
+**DefaultNetworkProfileId** | **int32** | Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile. | 
+**GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
+**SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
+**ZeroTouchEnabled** | Pointer to **bool** | Enables zero-touch provisioning for automatic device configuration. | [optional] 
 
 ## Methods
 
 ### NewFibreChannelFabric
 
-`func NewFibreChannelFabric(defaultNetworkProfileId float32, ) *FibreChannelFabric`
+`func NewFibreChannelFabric(defaultNetworkProfileId int32, ) *FibreChannelFabric`
 
 NewFibreChannelFabric instantiates a new FibreChannelFabric object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDefaultNetworkProfileId
 
-`func (o *FibreChannelFabric) GetDefaultNetworkProfileId() float32`
+`func (o *FibreChannelFabric) GetDefaultNetworkProfileId() int32`
 
 GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field if non-nil, zero value otherwise.
 
 ### GetDefaultNetworkProfileIdOk
 
-`func (o *FibreChannelFabric) GetDefaultNetworkProfileIdOk() (*float32, bool)`
+`func (o *FibreChannelFabric) GetDefaultNetworkProfileIdOk() (*int32, bool)`
 
 GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultNetworkProfileId
 
-`func (o *FibreChannelFabric) SetDefaultNetworkProfileId(v float32)`
+`func (o *FibreChannelFabric) SetDefaultNetworkProfileId(v int32)`
 
 SetDefaultNetworkProfileId sets DefaultNetworkProfileId field to given value.
 
