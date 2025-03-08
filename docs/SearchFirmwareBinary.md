@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vendor** | [**FirmwareVendorType**](FirmwareVendorType.md) |  | 
 **BaselineFilter** | [**BaselineFilter**](BaselineFilter.md) |  | 
-**ServerComponentFilter** | Pointer to [**[]ServerComponentFilterInner**](ServerComponentFilterInner.md) | Array of vendor component filters, structure is specific per vendor | [optional] 
+**ServerComponentFilter** | Pointer to **[]string** | Array of vendor component filters, structure is specific per vendor | [optional] 
 
 ## Methods
 
@@ -69,20 +69,20 @@ SetBaselineFilter sets BaselineFilter field to given value.
 
 ### GetServerComponentFilter
 
-`func (o *SearchFirmwareBinary) GetServerComponentFilter() []ServerComponentFilterInner`
+`func (o *SearchFirmwareBinary) GetServerComponentFilter() []string`
 
 GetServerComponentFilter returns the ServerComponentFilter field if non-nil, zero value otherwise.
 
 ### GetServerComponentFilterOk
 
-`func (o *SearchFirmwareBinary) GetServerComponentFilterOk() (*[]ServerComponentFilterInner, bool)`
+`func (o *SearchFirmwareBinary) GetServerComponentFilterOk() (*[]string, bool)`
 
 GetServerComponentFilterOk returns a tuple with the ServerComponentFilter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerComponentFilter
 
-`func (o *SearchFirmwareBinary) SetServerComponentFilter(v []ServerComponentFilterInner)`
+`func (o *SearchFirmwareBinary) SetServerComponentFilter(v []string)`
 
 SetServerComponentFilter sets ServerComponentFilter field to given value.
 

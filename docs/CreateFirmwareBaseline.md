@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerFirmwareBaselineName** | **string** |  | 
-**ServerFirmwareBaselineDescription** | Pointer to **string** |  | [optional] 
-**ServerFirmwareBaselineCatalogJson** | Pointer to **string** |  | [optional] 
-**ServerFirmwareBaselineLevel** | [**BaselineLevelType**](BaselineLevelType.md) |  | 
-**ServerFirmwareBaselineLevelFilterJson** | **string** |  | 
+**Name** | **string** |  | 
+**Description** | Pointer to **string** |  | [optional] 
+**Catalog** | Pointer to **[]string** |  | [optional] 
+**Level** | [**BaselineLevelType**](BaselineLevelType.md) |  | 
+**LevelFilter** | **[]string** |  | 
 
 ## Methods
 
 ### NewCreateFirmwareBaseline
 
-`func NewCreateFirmwareBaseline(serverFirmwareBaselineName string, serverFirmwareBaselineLevel BaselineLevelType, serverFirmwareBaselineLevelFilterJson string, ) *CreateFirmwareBaseline`
+`func NewCreateFirmwareBaseline(name string, level BaselineLevelType, levelFilter []string, ) *CreateFirmwareBaseline`
 
 NewCreateFirmwareBaseline instantiates a new CreateFirmwareBaseline object
 This constructor will assign default values to properties that have it defined,
@@ -29,114 +29,114 @@ NewCreateFirmwareBaselineWithDefaults instantiates a new CreateFirmwareBaseline 
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetServerFirmwareBaselineName
+### GetName
 
-`func (o *CreateFirmwareBaseline) GetServerFirmwareBaselineName() string`
+`func (o *CreateFirmwareBaseline) GetName() string`
 
-GetServerFirmwareBaselineName returns the ServerFirmwareBaselineName field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBaselineNameOk
+### GetNameOk
 
-`func (o *CreateFirmwareBaseline) GetServerFirmwareBaselineNameOk() (*string, bool)`
+`func (o *CreateFirmwareBaseline) GetNameOk() (*string, bool)`
 
-GetServerFirmwareBaselineNameOk returns a tuple with the ServerFirmwareBaselineName field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBaselineName
+### SetName
 
-`func (o *CreateFirmwareBaseline) SetServerFirmwareBaselineName(v string)`
+`func (o *CreateFirmwareBaseline) SetName(v string)`
 
-SetServerFirmwareBaselineName sets ServerFirmwareBaselineName field to given value.
+SetName sets Name field to given value.
 
 
-### GetServerFirmwareBaselineDescription
+### GetDescription
 
-`func (o *CreateFirmwareBaseline) GetServerFirmwareBaselineDescription() string`
+`func (o *CreateFirmwareBaseline) GetDescription() string`
 
-GetServerFirmwareBaselineDescription returns the ServerFirmwareBaselineDescription field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBaselineDescriptionOk
+### GetDescriptionOk
 
-`func (o *CreateFirmwareBaseline) GetServerFirmwareBaselineDescriptionOk() (*string, bool)`
+`func (o *CreateFirmwareBaseline) GetDescriptionOk() (*string, bool)`
 
-GetServerFirmwareBaselineDescriptionOk returns a tuple with the ServerFirmwareBaselineDescription field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBaselineDescription
+### SetDescription
 
-`func (o *CreateFirmwareBaseline) SetServerFirmwareBaselineDescription(v string)`
+`func (o *CreateFirmwareBaseline) SetDescription(v string)`
 
-SetServerFirmwareBaselineDescription sets ServerFirmwareBaselineDescription field to given value.
+SetDescription sets Description field to given value.
 
-### HasServerFirmwareBaselineDescription
+### HasDescription
 
-`func (o *CreateFirmwareBaseline) HasServerFirmwareBaselineDescription() bool`
+`func (o *CreateFirmwareBaseline) HasDescription() bool`
 
-HasServerFirmwareBaselineDescription returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
 
-### GetServerFirmwareBaselineCatalogJson
+### GetCatalog
 
-`func (o *CreateFirmwareBaseline) GetServerFirmwareBaselineCatalogJson() string`
+`func (o *CreateFirmwareBaseline) GetCatalog() []string`
 
-GetServerFirmwareBaselineCatalogJson returns the ServerFirmwareBaselineCatalogJson field if non-nil, zero value otherwise.
+GetCatalog returns the Catalog field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBaselineCatalogJsonOk
+### GetCatalogOk
 
-`func (o *CreateFirmwareBaseline) GetServerFirmwareBaselineCatalogJsonOk() (*string, bool)`
+`func (o *CreateFirmwareBaseline) GetCatalogOk() (*[]string, bool)`
 
-GetServerFirmwareBaselineCatalogJsonOk returns a tuple with the ServerFirmwareBaselineCatalogJson field if it's non-nil, zero value otherwise
+GetCatalogOk returns a tuple with the Catalog field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBaselineCatalogJson
+### SetCatalog
 
-`func (o *CreateFirmwareBaseline) SetServerFirmwareBaselineCatalogJson(v string)`
+`func (o *CreateFirmwareBaseline) SetCatalog(v []string)`
 
-SetServerFirmwareBaselineCatalogJson sets ServerFirmwareBaselineCatalogJson field to given value.
+SetCatalog sets Catalog field to given value.
 
-### HasServerFirmwareBaselineCatalogJson
+### HasCatalog
 
-`func (o *CreateFirmwareBaseline) HasServerFirmwareBaselineCatalogJson() bool`
+`func (o *CreateFirmwareBaseline) HasCatalog() bool`
 
-HasServerFirmwareBaselineCatalogJson returns a boolean if a field has been set.
+HasCatalog returns a boolean if a field has been set.
 
-### GetServerFirmwareBaselineLevel
+### GetLevel
 
-`func (o *CreateFirmwareBaseline) GetServerFirmwareBaselineLevel() BaselineLevelType`
+`func (o *CreateFirmwareBaseline) GetLevel() BaselineLevelType`
 
-GetServerFirmwareBaselineLevel returns the ServerFirmwareBaselineLevel field if non-nil, zero value otherwise.
+GetLevel returns the Level field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBaselineLevelOk
+### GetLevelOk
 
-`func (o *CreateFirmwareBaseline) GetServerFirmwareBaselineLevelOk() (*BaselineLevelType, bool)`
+`func (o *CreateFirmwareBaseline) GetLevelOk() (*BaselineLevelType, bool)`
 
-GetServerFirmwareBaselineLevelOk returns a tuple with the ServerFirmwareBaselineLevel field if it's non-nil, zero value otherwise
+GetLevelOk returns a tuple with the Level field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBaselineLevel
+### SetLevel
 
-`func (o *CreateFirmwareBaseline) SetServerFirmwareBaselineLevel(v BaselineLevelType)`
+`func (o *CreateFirmwareBaseline) SetLevel(v BaselineLevelType)`
 
-SetServerFirmwareBaselineLevel sets ServerFirmwareBaselineLevel field to given value.
+SetLevel sets Level field to given value.
 
 
-### GetServerFirmwareBaselineLevelFilterJson
+### GetLevelFilter
 
-`func (o *CreateFirmwareBaseline) GetServerFirmwareBaselineLevelFilterJson() string`
+`func (o *CreateFirmwareBaseline) GetLevelFilter() []string`
 
-GetServerFirmwareBaselineLevelFilterJson returns the ServerFirmwareBaselineLevelFilterJson field if non-nil, zero value otherwise.
+GetLevelFilter returns the LevelFilter field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBaselineLevelFilterJsonOk
+### GetLevelFilterOk
 
-`func (o *CreateFirmwareBaseline) GetServerFirmwareBaselineLevelFilterJsonOk() (*string, bool)`
+`func (o *CreateFirmwareBaseline) GetLevelFilterOk() (*[]string, bool)`
 
-GetServerFirmwareBaselineLevelFilterJsonOk returns a tuple with the ServerFirmwareBaselineLevelFilterJson field if it's non-nil, zero value otherwise
+GetLevelFilterOk returns a tuple with the LevelFilter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBaselineLevelFilterJson
+### SetLevelFilter
 
-`func (o *CreateFirmwareBaseline) SetServerFirmwareBaselineLevelFilterJson(v string)`
+`func (o *CreateFirmwareBaseline) SetLevelFilter(v []string)`
 
-SetServerFirmwareBaselineLevelFilterJson sets ServerFirmwareBaselineLevelFilterJson field to given value.
+SetLevelFilter sets LevelFilter field to given value.
 
 
 

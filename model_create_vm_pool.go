@@ -40,7 +40,7 @@ type CreateVMPool struct {
 	// Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0.
 	IsExperimental *float32 `json:"isExperimental,omitempty"`
 	// Tags for the VM Pool.
-	Tags []string `json:"tags"`
+	Tags []string `json:"tags,omitempty"`
 	// Private key of the VM Pool
 	PrivateKey string `json:"privateKey"`
 	AdditionalProperties map[string]interface{}
@@ -52,7 +52,7 @@ type _CreateVMPool CreateVMPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateVMPool(siteId float32, managementHost string, managementPort float32, name string, type_ string, certificate string, tags []string, privateKey string) *CreateVMPool {
+func NewCreateVMPool(siteId float32, managementHost string, managementPort float32, name string, type_ string, certificate string, privateKey string) *CreateVMPool {
 	this := CreateVMPool{}
 	this.SiteId = siteId
 	this.ManagementHost = managementHost
@@ -60,7 +60,6 @@ func NewCreateVMPool(siteId float32, managementHost string, managementPort float
 	this.Name = name
 	this.Type = type_
 	this.Certificate = certificate
-	this.Tags = tags
 	this.PrivateKey = privateKey
 	return &this
 }
@@ -313,26 +312,34 @@ func (o *CreateVMPool) SetIsExperimental(v float32) {
 	o.IsExperimental = &v
 }
 
-// GetTags returns the Tags field value
+// GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CreateVMPool) GetTags() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
-
 	return o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateVMPool) GetTagsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
 }
 
-// SetTags sets field value
+// HasTags returns a boolean if a field has been set.
+func (o *CreateVMPool) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *CreateVMPool) SetTags(v []string) {
 	o.Tags = v
 }
@@ -386,7 +393,9 @@ func (o CreateVMPool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsExperimental) {
 		toSerialize["isExperimental"] = o.IsExperimental
 	}
-	toSerialize["tags"] = o.Tags
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
 	toSerialize["privateKey"] = o.PrivateKey
 
 	for key, value := range o.AdditionalProperties {
@@ -407,7 +416,6 @@ func (o *CreateVMPool) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"type",
 		"certificate",
-		"tags",
 		"privateKey",
 	}
 

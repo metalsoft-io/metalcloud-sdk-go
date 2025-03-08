@@ -66,7 +66,7 @@ type VMPool struct {
 	// Timestamp when the VM Pool was updated
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Tags for the VM Pool.
-	Tags []string `json:"tags"`
+	Tags []string `json:"tags,omitempty"`
 	// Links to other resources
 	Links map[string]interface{} `json:"links"`
 	AdditionalProperties map[string]interface{}
@@ -78,7 +78,7 @@ type _VMPool VMPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, certificate string, privateKeyEncrypted string, status string, totalRamGB float32, usedRamGB float32, freeRamGB float32, totalSpaceGB float32, usedSpaceGB float32, freeSpaceGB float32, createdTimestamp string, updatedTimestamp string, tags []string, links map[string]interface{}) *VMPool {
+func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, certificate string, privateKeyEncrypted string, status string, totalRamGB float32, usedRamGB float32, freeRamGB float32, totalSpaceGB float32, usedSpaceGB float32, freeSpaceGB float32, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *VMPool {
 	this := VMPool{}
 	this.Id = id
 	this.SiteId = siteId
@@ -98,7 +98,6 @@ func NewVMPool(id float32, siteId float32, datacenterName string, managementHost
 	this.FreeSpaceGB = freeSpaceGB
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
-	this.Tags = tags
 	this.Links = links
 	return &this
 }
@@ -671,26 +670,34 @@ func (o *VMPool) SetUpdatedTimestamp(v string) {
 	o.UpdatedTimestamp = v
 }
 
-// GetTags returns the Tags field value
+// GetTags returns the Tags field value if set, zero value otherwise.
 func (o *VMPool) GetTags() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
-
 	return o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VMPool) GetTagsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
 }
 
-// SetTags sets field value
+// HasTags returns a boolean if a field has been set.
+func (o *VMPool) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *VMPool) SetTags(v []string) {
 	o.Tags = v
 }
@@ -759,7 +766,9 @@ func (o VMPool) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
-	toSerialize["tags"] = o.Tags
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
 	toSerialize["links"] = o.Links
 
 	for key, value := range o.AdditionalProperties {
@@ -792,7 +801,6 @@ func (o *VMPool) UnmarshalJSON(data []byte) (err error) {
 		"freeSpaceGB",
 		"createdTimestamp",
 		"updatedTimestamp",
-		"tags",
 		"links",
 	}
 

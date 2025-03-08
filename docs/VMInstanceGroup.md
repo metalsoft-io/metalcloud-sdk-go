@@ -4,30 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Label** | **string** | Name of the VM Instance Group. | 
+**Subdomain** | Pointer to **string** | Subdomain of the VM Instance Group. | [optional] 
+**InstanceCount** | Pointer to **float32** |  | [optional] [default to 1]
+**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the VM Instance Group. | [optional] 
+**UpdatedTimestamp** | **string** | Timestamp of the VM Instance Group last update. | 
 **Id** | **float32** | Id of the VM Instance Group. | 
+**Revision** | **float32** | Revision of the VM Instance Group State | 
 **InfrastructureId** | **float32** | Id of the Infrastructure. | 
 **ServiceStatus** | **string** | Status of the VM Instance Group. | 
-**ChangeId** | **float32** | Id of the VM Instance Group change object. | 
-**Label** | **string** | Name of the VM Instance Group. | 
-**InstanceCount** | **float32** | Number of VM instances in the VM Instance Group. | 
-**CreatedTimestamp** | **string** | Timestamp of the VM Instance Group creation. | 
-**UpdatedTimestamp** | **string** | Timestamp of the VM Instance Group update. | 
-**Operation** | **map[string]interface{}** | Operation object for the VM Instance Group. | 
-**VmInstance** | [**[]VMInstance**](VMInstance.md) | Array of VM instances in the VM Instance Group. | 
-**Tags** | Pointer to **[]string** | Tags for the VM Instance Group. | [optional] 
 **DiskSizeGB** | **float32** | Disk size in GB for each VM Instance in the VM Instance Group. | 
-**VolumeTemplateId** | Pointer to **float32** | Id of the template used by the VM Instance Group. | [optional] 
-**VmInstanceGroupInterfaces** | Pointer to [**[]VMInstanceGroupInterface**](VMInstanceGroupInterface.md) | Interfaces for the VM Instance Group | [optional] 
-**NetworkIdToNetworkProfileId** | Pointer to **map[string]interface{}** | Network Id to Network Profile Id for the VM Instance Group. This is a JSON object. | [optional] 
-**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the VM Instance. | [optional] 
-**GuiSettings** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
+**SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the VM Instance Group. | [optional] 
+**DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the VM Instance Group. | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the VM Instance Group. | [optional] 
+**CreatedTimestamp** | **string** | Timestamp of the VM Instance Group creation. | 
+**Config** | [**VMInstanceGroupConfiguration**](VMInstanceGroupConfiguration.md) | The current changes to be deployed for the VM Instance Group. | 
+**Meta** | [**VMInstanceGroupMeta**](VMInstanceGroupMeta.md) | Meta information of the VM Instance Group. | 
 **Links** | **map[string]interface{}** | Links to other resources | 
 
 ## Methods
 
 ### NewVMInstanceGroup
 
-`func NewVMInstanceGroup(id float32, infrastructureId float32, serviceStatus string, changeId float32, label string, instanceCount float32, createdTimestamp string, updatedTimestamp string, operation map[string]interface{}, vmInstance []VMInstance, diskSizeGB float32, links map[string]interface{}, ) *VMInstanceGroup`
+`func NewVMInstanceGroup(label string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, diskSizeGB float32, createdTimestamp string, config VMInstanceGroupConfiguration, meta VMInstanceGroupMeta, links map[string]interface{}, ) *VMInstanceGroup`
 
 NewVMInstanceGroup instantiates a new VMInstanceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -41,6 +40,121 @@ will change when the set of required properties is changed
 NewVMInstanceGroupWithDefaults instantiates a new VMInstanceGroup object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetLabel
+
+`func (o *VMInstanceGroup) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *VMInstanceGroup) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *VMInstanceGroup) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+
+### GetSubdomain
+
+`func (o *VMInstanceGroup) GetSubdomain() string`
+
+GetSubdomain returns the Subdomain field if non-nil, zero value otherwise.
+
+### GetSubdomainOk
+
+`func (o *VMInstanceGroup) GetSubdomainOk() (*string, bool)`
+
+GetSubdomainOk returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubdomain
+
+`func (o *VMInstanceGroup) SetSubdomain(v string)`
+
+SetSubdomain sets Subdomain field to given value.
+
+### HasSubdomain
+
+`func (o *VMInstanceGroup) HasSubdomain() bool`
+
+HasSubdomain returns a boolean if a field has been set.
+
+### GetInstanceCount
+
+`func (o *VMInstanceGroup) GetInstanceCount() float32`
+
+GetInstanceCount returns the InstanceCount field if non-nil, zero value otherwise.
+
+### GetInstanceCountOk
+
+`func (o *VMInstanceGroup) GetInstanceCountOk() (*float32, bool)`
+
+GetInstanceCountOk returns a tuple with the InstanceCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceCount
+
+`func (o *VMInstanceGroup) SetInstanceCount(v float32)`
+
+SetInstanceCount sets InstanceCount field to given value.
+
+### HasInstanceCount
+
+`func (o *VMInstanceGroup) HasInstanceCount() bool`
+
+HasInstanceCount returns a boolean if a field has been set.
+
+### GetCustomVariables
+
+`func (o *VMInstanceGroup) GetCustomVariables() map[string]interface{}`
+
+GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
+
+### GetCustomVariablesOk
+
+`func (o *VMInstanceGroup) GetCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomVariables
+
+`func (o *VMInstanceGroup) SetCustomVariables(v map[string]interface{})`
+
+SetCustomVariables sets CustomVariables field to given value.
+
+### HasCustomVariables
+
+`func (o *VMInstanceGroup) HasCustomVariables() bool`
+
+HasCustomVariables returns a boolean if a field has been set.
+
+### GetUpdatedTimestamp
+
+`func (o *VMInstanceGroup) GetUpdatedTimestamp() string`
+
+GetUpdatedTimestamp returns the UpdatedTimestamp field if non-nil, zero value otherwise.
+
+### GetUpdatedTimestampOk
+
+`func (o *VMInstanceGroup) GetUpdatedTimestampOk() (*string, bool)`
+
+GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedTimestamp
+
+`func (o *VMInstanceGroup) SetUpdatedTimestamp(v string)`
+
+SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
+
 
 ### GetId
 
@@ -60,6 +174,26 @@ and a boolean to check if the value has been set.
 `func (o *VMInstanceGroup) SetId(v float32)`
 
 SetId sets Id field to given value.
+
+
+### GetRevision
+
+`func (o *VMInstanceGroup) GetRevision() float32`
+
+GetRevision returns the Revision field if non-nil, zero value otherwise.
+
+### GetRevisionOk
+
+`func (o *VMInstanceGroup) GetRevisionOk() (*float32, bool)`
+
+GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevision
+
+`func (o *VMInstanceGroup) SetRevision(v float32)`
+
+SetRevision sets Revision field to given value.
 
 
 ### GetInfrastructureId
@@ -102,65 +236,100 @@ and a boolean to check if the value has been set.
 SetServiceStatus sets ServiceStatus field to given value.
 
 
-### GetChangeId
+### GetDiskSizeGB
 
-`func (o *VMInstanceGroup) GetChangeId() float32`
+`func (o *VMInstanceGroup) GetDiskSizeGB() float32`
 
-GetChangeId returns the ChangeId field if non-nil, zero value otherwise.
+GetDiskSizeGB returns the DiskSizeGB field if non-nil, zero value otherwise.
 
-### GetChangeIdOk
+### GetDiskSizeGBOk
 
-`func (o *VMInstanceGroup) GetChangeIdOk() (*float32, bool)`
+`func (o *VMInstanceGroup) GetDiskSizeGBOk() (*float32, bool)`
 
-GetChangeIdOk returns a tuple with the ChangeId field if it's non-nil, zero value otherwise
+GetDiskSizeGBOk returns a tuple with the DiskSizeGB field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetChangeId
+### SetDiskSizeGB
 
-`func (o *VMInstanceGroup) SetChangeId(v float32)`
+`func (o *VMInstanceGroup) SetDiskSizeGB(v float32)`
 
-SetChangeId sets ChangeId field to given value.
+SetDiskSizeGB sets DiskSizeGB field to given value.
 
 
-### GetLabel
+### GetSubdomainPermanent
 
-`func (o *VMInstanceGroup) GetLabel() string`
+`func (o *VMInstanceGroup) GetSubdomainPermanent() string`
 
-GetLabel returns the Label field if non-nil, zero value otherwise.
+GetSubdomainPermanent returns the SubdomainPermanent field if non-nil, zero value otherwise.
 
-### GetLabelOk
+### GetSubdomainPermanentOk
 
-`func (o *VMInstanceGroup) GetLabelOk() (*string, bool)`
+`func (o *VMInstanceGroup) GetSubdomainPermanentOk() (*string, bool)`
 
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+GetSubdomainPermanentOk returns a tuple with the SubdomainPermanent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLabel
+### SetSubdomainPermanent
 
-`func (o *VMInstanceGroup) SetLabel(v string)`
+`func (o *VMInstanceGroup) SetSubdomainPermanent(v string)`
 
-SetLabel sets Label field to given value.
+SetSubdomainPermanent sets SubdomainPermanent field to given value.
 
+### HasSubdomainPermanent
 
-### GetInstanceCount
+`func (o *VMInstanceGroup) HasSubdomainPermanent() bool`
 
-`func (o *VMInstanceGroup) GetInstanceCount() float32`
+HasSubdomainPermanent returns a boolean if a field has been set.
 
-GetInstanceCount returns the InstanceCount field if non-nil, zero value otherwise.
+### GetDnsSubdomainId
 
-### GetInstanceCountOk
+`func (o *VMInstanceGroup) GetDnsSubdomainId() float32`
 
-`func (o *VMInstanceGroup) GetInstanceCountOk() (*float32, bool)`
+GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
-GetInstanceCountOk returns a tuple with the InstanceCount field if it's non-nil, zero value otherwise
+### GetDnsSubdomainIdOk
+
+`func (o *VMInstanceGroup) GetDnsSubdomainIdOk() (*float32, bool)`
+
+GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInstanceCount
+### SetDnsSubdomainId
 
-`func (o *VMInstanceGroup) SetInstanceCount(v float32)`
+`func (o *VMInstanceGroup) SetDnsSubdomainId(v float32)`
 
-SetInstanceCount sets InstanceCount field to given value.
+SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
+### HasDnsSubdomainId
+
+`func (o *VMInstanceGroup) HasDnsSubdomainId() bool`
+
+HasDnsSubdomainId returns a boolean if a field has been set.
+
+### GetDnsSubdomainPermanentId
+
+`func (o *VMInstanceGroup) GetDnsSubdomainPermanentId() float32`
+
+GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field if non-nil, zero value otherwise.
+
+### GetDnsSubdomainPermanentIdOk
+
+`func (o *VMInstanceGroup) GetDnsSubdomainPermanentIdOk() (*float32, bool)`
+
+GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsSubdomainPermanentId
+
+`func (o *VMInstanceGroup) SetDnsSubdomainPermanentId(v float32)`
+
+SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
+
+### HasDnsSubdomainPermanentId
+
+`func (o *VMInstanceGroup) HasDnsSubdomainPermanentId() bool`
+
+HasDnsSubdomainPermanentId returns a boolean if a field has been set.
 
 ### GetCreatedTimestamp
 
@@ -182,235 +351,45 @@ and a boolean to check if the value has been set.
 SetCreatedTimestamp sets CreatedTimestamp field to given value.
 
 
-### GetUpdatedTimestamp
+### GetConfig
 
-`func (o *VMInstanceGroup) GetUpdatedTimestamp() string`
+`func (o *VMInstanceGroup) GetConfig() VMInstanceGroupConfiguration`
 
-GetUpdatedTimestamp returns the UpdatedTimestamp field if non-nil, zero value otherwise.
+GetConfig returns the Config field if non-nil, zero value otherwise.
 
-### GetUpdatedTimestampOk
+### GetConfigOk
 
-`func (o *VMInstanceGroup) GetUpdatedTimestampOk() (*string, bool)`
+`func (o *VMInstanceGroup) GetConfigOk() (*VMInstanceGroupConfiguration, bool)`
 
-GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field if it's non-nil, zero value otherwise
+GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpdatedTimestamp
+### SetConfig
 
-`func (o *VMInstanceGroup) SetUpdatedTimestamp(v string)`
+`func (o *VMInstanceGroup) SetConfig(v VMInstanceGroupConfiguration)`
 
-SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
+SetConfig sets Config field to given value.
 
 
-### GetOperation
+### GetMeta
 
-`func (o *VMInstanceGroup) GetOperation() map[string]interface{}`
+`func (o *VMInstanceGroup) GetMeta() VMInstanceGroupMeta`
 
-GetOperation returns the Operation field if non-nil, zero value otherwise.
+GetMeta returns the Meta field if non-nil, zero value otherwise.
 
-### GetOperationOk
+### GetMetaOk
 
-`func (o *VMInstanceGroup) GetOperationOk() (*map[string]interface{}, bool)`
+`func (o *VMInstanceGroup) GetMetaOk() (*VMInstanceGroupMeta, bool)`
 
-GetOperationOk returns a tuple with the Operation field if it's non-nil, zero value otherwise
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOperation
+### SetMeta
 
-`func (o *VMInstanceGroup) SetOperation(v map[string]interface{})`
+`func (o *VMInstanceGroup) SetMeta(v VMInstanceGroupMeta)`
 
-SetOperation sets Operation field to given value.
+SetMeta sets Meta field to given value.
 
-
-### GetVmInstance
-
-`func (o *VMInstanceGroup) GetVmInstance() []VMInstance`
-
-GetVmInstance returns the VmInstance field if non-nil, zero value otherwise.
-
-### GetVmInstanceOk
-
-`func (o *VMInstanceGroup) GetVmInstanceOk() (*[]VMInstance, bool)`
-
-GetVmInstanceOk returns a tuple with the VmInstance field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVmInstance
-
-`func (o *VMInstanceGroup) SetVmInstance(v []VMInstance)`
-
-SetVmInstance sets VmInstance field to given value.
-
-
-### GetTags
-
-`func (o *VMInstanceGroup) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *VMInstanceGroup) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *VMInstanceGroup) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *VMInstanceGroup) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
-
-### GetDiskSizeGB
-
-`func (o *VMInstanceGroup) GetDiskSizeGB() float32`
-
-GetDiskSizeGB returns the DiskSizeGB field if non-nil, zero value otherwise.
-
-### GetDiskSizeGBOk
-
-`func (o *VMInstanceGroup) GetDiskSizeGBOk() (*float32, bool)`
-
-GetDiskSizeGBOk returns a tuple with the DiskSizeGB field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDiskSizeGB
-
-`func (o *VMInstanceGroup) SetDiskSizeGB(v float32)`
-
-SetDiskSizeGB sets DiskSizeGB field to given value.
-
-
-### GetVolumeTemplateId
-
-`func (o *VMInstanceGroup) GetVolumeTemplateId() float32`
-
-GetVolumeTemplateId returns the VolumeTemplateId field if non-nil, zero value otherwise.
-
-### GetVolumeTemplateIdOk
-
-`func (o *VMInstanceGroup) GetVolumeTemplateIdOk() (*float32, bool)`
-
-GetVolumeTemplateIdOk returns a tuple with the VolumeTemplateId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVolumeTemplateId
-
-`func (o *VMInstanceGroup) SetVolumeTemplateId(v float32)`
-
-SetVolumeTemplateId sets VolumeTemplateId field to given value.
-
-### HasVolumeTemplateId
-
-`func (o *VMInstanceGroup) HasVolumeTemplateId() bool`
-
-HasVolumeTemplateId returns a boolean if a field has been set.
-
-### GetVmInstanceGroupInterfaces
-
-`func (o *VMInstanceGroup) GetVmInstanceGroupInterfaces() []VMInstanceGroupInterface`
-
-GetVmInstanceGroupInterfaces returns the VmInstanceGroupInterfaces field if non-nil, zero value otherwise.
-
-### GetVmInstanceGroupInterfacesOk
-
-`func (o *VMInstanceGroup) GetVmInstanceGroupInterfacesOk() (*[]VMInstanceGroupInterface, bool)`
-
-GetVmInstanceGroupInterfacesOk returns a tuple with the VmInstanceGroupInterfaces field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVmInstanceGroupInterfaces
-
-`func (o *VMInstanceGroup) SetVmInstanceGroupInterfaces(v []VMInstanceGroupInterface)`
-
-SetVmInstanceGroupInterfaces sets VmInstanceGroupInterfaces field to given value.
-
-### HasVmInstanceGroupInterfaces
-
-`func (o *VMInstanceGroup) HasVmInstanceGroupInterfaces() bool`
-
-HasVmInstanceGroupInterfaces returns a boolean if a field has been set.
-
-### GetNetworkIdToNetworkProfileId
-
-`func (o *VMInstanceGroup) GetNetworkIdToNetworkProfileId() map[string]interface{}`
-
-GetNetworkIdToNetworkProfileId returns the NetworkIdToNetworkProfileId field if non-nil, zero value otherwise.
-
-### GetNetworkIdToNetworkProfileIdOk
-
-`func (o *VMInstanceGroup) GetNetworkIdToNetworkProfileIdOk() (*map[string]interface{}, bool)`
-
-GetNetworkIdToNetworkProfileIdOk returns a tuple with the NetworkIdToNetworkProfileId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetworkIdToNetworkProfileId
-
-`func (o *VMInstanceGroup) SetNetworkIdToNetworkProfileId(v map[string]interface{})`
-
-SetNetworkIdToNetworkProfileId sets NetworkIdToNetworkProfileId field to given value.
-
-### HasNetworkIdToNetworkProfileId
-
-`func (o *VMInstanceGroup) HasNetworkIdToNetworkProfileId() bool`
-
-HasNetworkIdToNetworkProfileId returns a boolean if a field has been set.
-
-### GetCustomVariables
-
-`func (o *VMInstanceGroup) GetCustomVariables() map[string]interface{}`
-
-GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
-
-### GetCustomVariablesOk
-
-`func (o *VMInstanceGroup) GetCustomVariablesOk() (*map[string]interface{}, bool)`
-
-GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCustomVariables
-
-`func (o *VMInstanceGroup) SetCustomVariables(v map[string]interface{})`
-
-SetCustomVariables sets CustomVariables field to given value.
-
-### HasCustomVariables
-
-`func (o *VMInstanceGroup) HasCustomVariables() bool`
-
-HasCustomVariables returns a boolean if a field has been set.
-
-### GetGuiSettings
-
-`func (o *VMInstanceGroup) GetGuiSettings() GenericGUISettings`
-
-GetGuiSettings returns the GuiSettings field if non-nil, zero value otherwise.
-
-### GetGuiSettingsOk
-
-`func (o *VMInstanceGroup) GetGuiSettingsOk() (*GenericGUISettings, bool)`
-
-GetGuiSettingsOk returns a tuple with the GuiSettings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGuiSettings
-
-`func (o *VMInstanceGroup) SetGuiSettings(v GenericGUISettings)`
-
-SetGuiSettings sets GuiSettings field to given value.
-
-### HasGuiSettings
-
-`func (o *VMInstanceGroup) HasGuiSettings() bool`
-
-HasGuiSettings returns a boolean if a field has been set.
 
 ### GetLinks
 

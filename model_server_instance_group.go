@@ -29,13 +29,13 @@ type ServerInstanceGroup struct {
 	Label *string `json:"label,omitempty"`
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	InfrastructureId int32 `json:"infrastructureId"`
-	ExtensionInstanceId int32 `json:"extensionInstanceId"`
+	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`
 	// Timestamp of the Server Instance Group creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Timestamp of the latest update for the Server Instance Group.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
-	// GUI settings in JSON format.
-	Meta *GenericGUISettings `json:"meta,omitempty"`
+	// Meta information
+	Meta *GenericMeta `json:"meta,omitempty"`
 	// Subdomain of the Server Group.
 	Subdomain *string `json:"subdomain,omitempty"`
 	// Subdomain permanent of the Server Group.
@@ -44,40 +44,57 @@ type ServerInstanceGroup struct {
 	DnsSubdomainId *int32 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the Server Group.
 	DnsSubdomainPermanentId *int32 `json:"dnsSubdomainPermanentId,omitempty"`
+	// The number of instances to be created on the InstanceArray.
 	InstanceCount int32 `json:"instanceCount"`
-	IpAllocateAuto float32 `json:"ipAllocateAuto"`
-	Ipv4SubnetCreateAuto float32 `json:"ipv4SubnetCreateAuto"`
+	// Automatically allocate IP addresses to child Instance`s InstanceInterface elements.
+	IpAllocateAuto int32 `json:"ipAllocateAuto"`
+	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
+	Ipv4SubnetCreateAuto int32 `json:"ipv4SubnetCreateAuto"`
 	FirewallProfileId *int32 `json:"firewallProfileId,omitempty"`
 	FirewallRulesSetId *int32 `json:"firewallRulesSetId,omitempty"`
-	FirewallManaged float32 `json:"firewallManaged"`
+	FirewallManaged int32 `json:"firewallManaged"`
+	// Object containing associated firmware policies.
 	FirmwarePoliciesJson map[string]interface{} `json:"firmwarePoliciesJson"`
+	// The volume template ID (or name) to use if the servers in the InstanceArray have local disks.
 	VolumeTemplateId *int32 `json:"volumeTemplateId,omitempty"`
 	// Id of the bootable drive for the Server Instance Group.
 	DriveArrayIdBoot *int32 `json:"driveArrayIdBoot,omitempty"`
 	// Instance Array Boot Method
 	InstanceArrayBootMethod string `json:"instanceArrayBootMethod"`
+	// Object containing custom variables and variable overrides.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
-	ProcessorCoreCount int32 `json:"processorCoreCount"`
-	ProcessorCoreMhz float32 `json:"processorCoreMhz"`
+	// The CPU count on each instance.
 	ProcessorCount int32 `json:"processorCount"`
-	RamGbytes float32 `json:"ramGbytes"`
+	// The minimum cores of a CPU.
+	ProcessorCoreCount int32 `json:"processorCoreCount"`
+	// The minimum clock speed of a CPU.
+	ProcessorCoreMhz int32 `json:"processorCoreMhz"`
+	// The minimum RAM capacity of each instance.
+	RamGbytes *int32 `json:"ramGbytes,omitempty"`
+	// The minimum number of physical disks.
 	DiskCount int32 `json:"diskCount"`
+	// The minimum size of a single disk.
 	DiskSizeMbytes int32 `json:"diskSizeMbytes"`
+	// The types of physical disks.
 	DiskTypes []string `json:"diskTypes"`
-	VirtualInterfacesEnabled float32 `json:"virtualInterfacesEnabled"`
+	// Enable virtual interfaces
+	VirtualInterfacesEnabled int32 `json:"virtualInterfacesEnabled"`
+	// Contains info about additional ips to be assigned to the WAN interfaces.
 	AdditionalWanIpv4Json map[string]interface{} `json:"additionalWanIpv4Json,omitempty"`
 	NetworkProfileGroupId *int32 `json:"networkProfileGroupId,omitempty"`
 	NetworkProfileSnapshotId *int32 `json:"networkProfileSnapshotId,omitempty"`
+	// The ipv4 vlan that should override the default from the WAN Network for the primary ip.
 	OverrideIpv4WanVlanId *int32 `json:"overrideIpv4WanVlanId,omitempty"`
+	// ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the InstanceInterfaces associated with this InstanceArray.
 	NetworkEquipmentForceSubnetPoolIpv4WanId *int32 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
 	// Current status of the Server Instance Group.
 	ServiceStatus string `json:"serviceStatus"`
+	// The resource pool assigned to this instance array
 	ResourcePoolId *int32 `json:"resourcePoolId,omitempty"`
 	// Flag to indicate if the Server Instance Group is belongs to a VM.
-	IsVmGroup float32 `json:"isVmGroup"`
+	IsVmGroup int32 `json:"isVmGroup"`
 	// Id of the VM Instance Group this Server Instance Group belongs to.
 	VmInstanceGroupId *int32 `json:"vmInstanceGroupId,omitempty"`
-	Tags []string `json:"tags,omitempty"`
 	// The group's default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied.
 	DefaultServerProfileID int32 `json:"defaultServerProfileID"`
 	Config *ServerInstanceGroupConfiguration `json:"config,omitempty"`
@@ -92,12 +109,11 @@ type _ServerInstanceGroup ServerInstanceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroup(id int32, revision float32, infrastructureId int32, extensionInstanceId int32, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto float32, ipv4SubnetCreateAuto float32, firewallManaged float32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCoreCount int32, processorCoreMhz float32, processorCount int32, ramGbytes float32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled float32, serviceStatus string, isVmGroup float32, defaultServerProfileID int32) *ServerInstanceGroup {
+func NewServerInstanceGroup(id int32, revision float32, infrastructureId int32, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, defaultServerProfileID int32) *ServerInstanceGroup {
 	this := ServerInstanceGroup{}
 	this.Id = id
 	this.Revision = revision
 	this.InfrastructureId = infrastructureId
-	this.ExtensionInstanceId = extensionInstanceId
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
 	this.InstanceCount = instanceCount
@@ -106,10 +122,11 @@ func NewServerInstanceGroup(id int32, revision float32, infrastructureId int32, 
 	this.FirewallManaged = firewallManaged
 	this.FirmwarePoliciesJson = firmwarePoliciesJson
 	this.InstanceArrayBootMethod = instanceArrayBootMethod
+	this.ProcessorCount = processorCount
 	this.ProcessorCoreCount = processorCoreCount
 	this.ProcessorCoreMhz = processorCoreMhz
-	this.ProcessorCount = processorCount
-	this.RamGbytes = ramGbytes
+	var ramGbytes int32 = 1
+	this.RamGbytes = &ramGbytes
 	this.DiskCount = diskCount
 	this.DiskSizeMbytes = diskSizeMbytes
 	this.DiskTypes = diskTypes
@@ -127,6 +144,24 @@ func NewServerInstanceGroupWithDefaults() *ServerInstanceGroup {
 	this := ServerInstanceGroup{}
 	var instanceCount int32 = 1
 	this.InstanceCount = instanceCount
+	var ipAllocateAuto int32 = 1
+	this.IpAllocateAuto = ipAllocateAuto
+	var ipv4SubnetCreateAuto int32 = 1
+	this.Ipv4SubnetCreateAuto = ipv4SubnetCreateAuto
+	var processorCount int32 = 1
+	this.ProcessorCount = processorCount
+	var processorCoreCount int32 = 1
+	this.ProcessorCoreCount = processorCoreCount
+	var processorCoreMhz int32 = 1000
+	this.ProcessorCoreMhz = processorCoreMhz
+	var ramGbytes int32 = 1
+	this.RamGbytes = &ramGbytes
+	var diskCount int32 = 0
+	this.DiskCount = diskCount
+	var diskSizeMbytes int32 = 0
+	this.DiskSizeMbytes = diskSizeMbytes
+	var virtualInterfacesEnabled int32 = 0
+	this.VirtualInterfacesEnabled = virtualInterfacesEnabled
 	return &this
 }
 
@@ -266,28 +301,36 @@ func (o *ServerInstanceGroup) SetInfrastructureId(v int32) {
 	o.InfrastructureId = v
 }
 
-// GetExtensionInstanceId returns the ExtensionInstanceId field value
+// GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise.
 func (o *ServerInstanceGroup) GetExtensionInstanceId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExtensionInstanceId) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExtensionInstanceId
+	return *o.ExtensionInstanceId
 }
 
-// GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value
+// GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerInstanceGroup) GetExtensionInstanceIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExtensionInstanceId) {
 		return nil, false
 	}
-	return &o.ExtensionInstanceId, true
+	return o.ExtensionInstanceId, true
 }
 
-// SetExtensionInstanceId sets field value
+// HasExtensionInstanceId returns a boolean if a field has been set.
+func (o *ServerInstanceGroup) HasExtensionInstanceId() bool {
+	if o != nil && !IsNil(o.ExtensionInstanceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensionInstanceId gets a reference to the given int32 and assigns it to the ExtensionInstanceId field.
 func (o *ServerInstanceGroup) SetExtensionInstanceId(v int32) {
-	o.ExtensionInstanceId = v
+	o.ExtensionInstanceId = &v
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
@@ -339,9 +382,9 @@ func (o *ServerInstanceGroup) SetUpdatedTimestamp(v string) {
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ServerInstanceGroup) GetMeta() GenericGUISettings {
+func (o *ServerInstanceGroup) GetMeta() GenericMeta {
 	if o == nil || IsNil(o.Meta) {
-		var ret GenericGUISettings
+		var ret GenericMeta
 		return ret
 	}
 	return *o.Meta
@@ -349,7 +392,7 @@ func (o *ServerInstanceGroup) GetMeta() GenericGUISettings {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetMetaOk() (*GenericGUISettings, bool) {
+func (o *ServerInstanceGroup) GetMetaOk() (*GenericMeta, bool) {
 	if o == nil || IsNil(o.Meta) {
 		return nil, false
 	}
@@ -365,8 +408,8 @@ func (o *ServerInstanceGroup) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given GenericGUISettings and assigns it to the Meta field.
-func (o *ServerInstanceGroup) SetMeta(v GenericGUISettings) {
+// SetMeta gets a reference to the given GenericMeta and assigns it to the Meta field.
+func (o *ServerInstanceGroup) SetMeta(v GenericMeta) {
 	o.Meta = &v
 }
 
@@ -523,9 +566,9 @@ func (o *ServerInstanceGroup) SetInstanceCount(v int32) {
 }
 
 // GetIpAllocateAuto returns the IpAllocateAuto field value
-func (o *ServerInstanceGroup) GetIpAllocateAuto() float32 {
+func (o *ServerInstanceGroup) GetIpAllocateAuto() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -534,7 +577,7 @@ func (o *ServerInstanceGroup) GetIpAllocateAuto() float32 {
 
 // GetIpAllocateAutoOk returns a tuple with the IpAllocateAuto field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetIpAllocateAutoOk() (*float32, bool) {
+func (o *ServerInstanceGroup) GetIpAllocateAutoOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -542,14 +585,14 @@ func (o *ServerInstanceGroup) GetIpAllocateAutoOk() (*float32, bool) {
 }
 
 // SetIpAllocateAuto sets field value
-func (o *ServerInstanceGroup) SetIpAllocateAuto(v float32) {
+func (o *ServerInstanceGroup) SetIpAllocateAuto(v int32) {
 	o.IpAllocateAuto = v
 }
 
 // GetIpv4SubnetCreateAuto returns the Ipv4SubnetCreateAuto field value
-func (o *ServerInstanceGroup) GetIpv4SubnetCreateAuto() float32 {
+func (o *ServerInstanceGroup) GetIpv4SubnetCreateAuto() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -558,7 +601,7 @@ func (o *ServerInstanceGroup) GetIpv4SubnetCreateAuto() float32 {
 
 // GetIpv4SubnetCreateAutoOk returns a tuple with the Ipv4SubnetCreateAuto field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetIpv4SubnetCreateAutoOk() (*float32, bool) {
+func (o *ServerInstanceGroup) GetIpv4SubnetCreateAutoOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -566,7 +609,7 @@ func (o *ServerInstanceGroup) GetIpv4SubnetCreateAutoOk() (*float32, bool) {
 }
 
 // SetIpv4SubnetCreateAuto sets field value
-func (o *ServerInstanceGroup) SetIpv4SubnetCreateAuto(v float32) {
+func (o *ServerInstanceGroup) SetIpv4SubnetCreateAuto(v int32) {
 	o.Ipv4SubnetCreateAuto = v
 }
 
@@ -635,9 +678,9 @@ func (o *ServerInstanceGroup) SetFirewallRulesSetId(v int32) {
 }
 
 // GetFirewallManaged returns the FirewallManaged field value
-func (o *ServerInstanceGroup) GetFirewallManaged() float32 {
+func (o *ServerInstanceGroup) GetFirewallManaged() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -646,7 +689,7 @@ func (o *ServerInstanceGroup) GetFirewallManaged() float32 {
 
 // GetFirewallManagedOk returns a tuple with the FirewallManaged field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetFirewallManagedOk() (*float32, bool) {
+func (o *ServerInstanceGroup) GetFirewallManagedOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -654,7 +697,7 @@ func (o *ServerInstanceGroup) GetFirewallManagedOk() (*float32, bool) {
 }
 
 // SetFirewallManaged sets field value
-func (o *ServerInstanceGroup) SetFirewallManaged(v float32) {
+func (o *ServerInstanceGroup) SetFirewallManaged(v int32) {
 	o.FirewallManaged = v
 }
 
@@ -802,6 +845,30 @@ func (o *ServerInstanceGroup) SetCustomVariables(v map[string]interface{}) {
 	o.CustomVariables = v
 }
 
+// GetProcessorCount returns the ProcessorCount field value
+func (o *ServerInstanceGroup) GetProcessorCount() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.ProcessorCount
+}
+
+// GetProcessorCountOk returns a tuple with the ProcessorCount field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroup) GetProcessorCountOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProcessorCount, true
+}
+
+// SetProcessorCount sets field value
+func (o *ServerInstanceGroup) SetProcessorCount(v int32) {
+	o.ProcessorCount = v
+}
+
 // GetProcessorCoreCount returns the ProcessorCoreCount field value
 func (o *ServerInstanceGroup) GetProcessorCoreCount() int32 {
 	if o == nil {
@@ -827,9 +894,9 @@ func (o *ServerInstanceGroup) SetProcessorCoreCount(v int32) {
 }
 
 // GetProcessorCoreMhz returns the ProcessorCoreMhz field value
-func (o *ServerInstanceGroup) GetProcessorCoreMhz() float32 {
+func (o *ServerInstanceGroup) GetProcessorCoreMhz() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -838,7 +905,7 @@ func (o *ServerInstanceGroup) GetProcessorCoreMhz() float32 {
 
 // GetProcessorCoreMhzOk returns a tuple with the ProcessorCoreMhz field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetProcessorCoreMhzOk() (*float32, bool) {
+func (o *ServerInstanceGroup) GetProcessorCoreMhzOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -846,56 +913,40 @@ func (o *ServerInstanceGroup) GetProcessorCoreMhzOk() (*float32, bool) {
 }
 
 // SetProcessorCoreMhz sets field value
-func (o *ServerInstanceGroup) SetProcessorCoreMhz(v float32) {
+func (o *ServerInstanceGroup) SetProcessorCoreMhz(v int32) {
 	o.ProcessorCoreMhz = v
 }
 
-// GetProcessorCount returns the ProcessorCount field value
-func (o *ServerInstanceGroup) GetProcessorCount() int32 {
-	if o == nil {
+// GetRamGbytes returns the RamGbytes field value if set, zero value otherwise.
+func (o *ServerInstanceGroup) GetRamGbytes() int32 {
+	if o == nil || IsNil(o.RamGbytes) {
 		var ret int32
 		return ret
 	}
-
-	return o.ProcessorCount
+	return *o.RamGbytes
 }
 
-// GetProcessorCountOk returns a tuple with the ProcessorCount field value
+// GetRamGbytesOk returns a tuple with the RamGbytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetProcessorCountOk() (*int32, bool) {
-	if o == nil {
+func (o *ServerInstanceGroup) GetRamGbytesOk() (*int32, bool) {
+	if o == nil || IsNil(o.RamGbytes) {
 		return nil, false
 	}
-	return &o.ProcessorCount, true
+	return o.RamGbytes, true
 }
 
-// SetProcessorCount sets field value
-func (o *ServerInstanceGroup) SetProcessorCount(v int32) {
-	o.ProcessorCount = v
-}
-
-// GetRamGbytes returns the RamGbytes field value
-func (o *ServerInstanceGroup) GetRamGbytes() float32 {
-	if o == nil {
-		var ret float32
-		return ret
+// HasRamGbytes returns a boolean if a field has been set.
+func (o *ServerInstanceGroup) HasRamGbytes() bool {
+	if o != nil && !IsNil(o.RamGbytes) {
+		return true
 	}
 
-	return o.RamGbytes
+	return false
 }
 
-// GetRamGbytesOk returns a tuple with the RamGbytes field value
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetRamGbytesOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RamGbytes, true
-}
-
-// SetRamGbytes sets field value
-func (o *ServerInstanceGroup) SetRamGbytes(v float32) {
-	o.RamGbytes = v
+// SetRamGbytes gets a reference to the given int32 and assigns it to the RamGbytes field.
+func (o *ServerInstanceGroup) SetRamGbytes(v int32) {
+	o.RamGbytes = &v
 }
 
 // GetDiskCount returns the DiskCount field value
@@ -971,9 +1022,9 @@ func (o *ServerInstanceGroup) SetDiskTypes(v []string) {
 }
 
 // GetVirtualInterfacesEnabled returns the VirtualInterfacesEnabled field value
-func (o *ServerInstanceGroup) GetVirtualInterfacesEnabled() float32 {
+func (o *ServerInstanceGroup) GetVirtualInterfacesEnabled() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -982,7 +1033,7 @@ func (o *ServerInstanceGroup) GetVirtualInterfacesEnabled() float32 {
 
 // GetVirtualInterfacesEnabledOk returns a tuple with the VirtualInterfacesEnabled field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetVirtualInterfacesEnabledOk() (*float32, bool) {
+func (o *ServerInstanceGroup) GetVirtualInterfacesEnabledOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -990,7 +1041,7 @@ func (o *ServerInstanceGroup) GetVirtualInterfacesEnabledOk() (*float32, bool) {
 }
 
 // SetVirtualInterfacesEnabled sets field value
-func (o *ServerInstanceGroup) SetVirtualInterfacesEnabled(v float32) {
+func (o *ServerInstanceGroup) SetVirtualInterfacesEnabled(v int32) {
 	o.VirtualInterfacesEnabled = v
 }
 
@@ -1211,9 +1262,9 @@ func (o *ServerInstanceGroup) SetResourcePoolId(v int32) {
 }
 
 // GetIsVmGroup returns the IsVmGroup field value
-func (o *ServerInstanceGroup) GetIsVmGroup() float32 {
+func (o *ServerInstanceGroup) GetIsVmGroup() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -1222,7 +1273,7 @@ func (o *ServerInstanceGroup) GetIsVmGroup() float32 {
 
 // GetIsVmGroupOk returns a tuple with the IsVmGroup field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetIsVmGroupOk() (*float32, bool) {
+func (o *ServerInstanceGroup) GetIsVmGroupOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -1230,7 +1281,7 @@ func (o *ServerInstanceGroup) GetIsVmGroupOk() (*float32, bool) {
 }
 
 // SetIsVmGroup sets field value
-func (o *ServerInstanceGroup) SetIsVmGroup(v float32) {
+func (o *ServerInstanceGroup) SetIsVmGroup(v int32) {
 	o.IsVmGroup = v
 }
 
@@ -1264,38 +1315,6 @@ func (o *ServerInstanceGroup) HasVmInstanceGroupId() bool {
 // SetVmInstanceGroupId gets a reference to the given int32 and assigns it to the VmInstanceGroupId field.
 func (o *ServerInstanceGroup) SetVmInstanceGroupId(v int32) {
 	o.VmInstanceGroupId = &v
-}
-
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *ServerInstanceGroup) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetTagsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *ServerInstanceGroup) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *ServerInstanceGroup) SetTags(v []string) {
-	o.Tags = v
 }
 
 // GetDefaultServerProfileID returns the DefaultServerProfileID field value
@@ -1405,7 +1424,9 @@ func (o ServerInstanceGroup) ToMap() (map[string]interface{}, error) {
 		toSerialize["serverGroupName"] = o.ServerGroupName
 	}
 	toSerialize["infrastructureId"] = o.InfrastructureId
-	toSerialize["extensionInstanceId"] = o.ExtensionInstanceId
+	if !IsNil(o.ExtensionInstanceId) {
+		toSerialize["extensionInstanceId"] = o.ExtensionInstanceId
+	}
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Meta) {
@@ -1444,10 +1465,12 @@ func (o ServerInstanceGroup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
 	}
+	toSerialize["processorCount"] = o.ProcessorCount
 	toSerialize["processorCoreCount"] = o.ProcessorCoreCount
 	toSerialize["processorCoreMhz"] = o.ProcessorCoreMhz
-	toSerialize["processorCount"] = o.ProcessorCount
-	toSerialize["ramGbytes"] = o.RamGbytes
+	if !IsNil(o.RamGbytes) {
+		toSerialize["ramGbytes"] = o.RamGbytes
+	}
 	toSerialize["diskCount"] = o.DiskCount
 	toSerialize["diskSizeMbytes"] = o.DiskSizeMbytes
 	toSerialize["diskTypes"] = o.DiskTypes
@@ -1475,9 +1498,6 @@ func (o ServerInstanceGroup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VmInstanceGroupId) {
 		toSerialize["vmInstanceGroupId"] = o.VmInstanceGroupId
 	}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
 	toSerialize["defaultServerProfileID"] = o.DefaultServerProfileID
 	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
@@ -1501,7 +1521,6 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"revision",
 		"infrastructureId",
-		"extensionInstanceId",
 		"createdTimestamp",
 		"updatedTimestamp",
 		"instanceCount",
@@ -1510,10 +1529,9 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		"firewallManaged",
 		"firmwarePoliciesJson",
 		"instanceArrayBootMethod",
+		"processorCount",
 		"processorCoreCount",
 		"processorCoreMhz",
-		"processorCount",
-		"ramGbytes",
 		"diskCount",
 		"diskSizeMbytes",
 		"diskTypes",
@@ -1574,9 +1592,9 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "driveArrayIdBoot")
 		delete(additionalProperties, "instanceArrayBootMethod")
 		delete(additionalProperties, "customVariables")
+		delete(additionalProperties, "processorCount")
 		delete(additionalProperties, "processorCoreCount")
 		delete(additionalProperties, "processorCoreMhz")
-		delete(additionalProperties, "processorCount")
 		delete(additionalProperties, "ramGbytes")
 		delete(additionalProperties, "diskCount")
 		delete(additionalProperties, "diskSizeMbytes")
@@ -1591,7 +1609,6 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "resourcePoolId")
 		delete(additionalProperties, "isVmGroup")
 		delete(additionalProperties, "vmInstanceGroupId")
-		delete(additionalProperties, "tags")
 		delete(additionalProperties, "defaultServerProfileID")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "links")

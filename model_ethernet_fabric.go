@@ -21,6 +21,8 @@ var _ MappedNullable = &EthernetFabric{}
 
 // EthernetFabric struct for EthernetFabric
 type EthernetFabric struct {
+	// The type of network fabric
+	FabricType string `json:"fabricType"`
 	// Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile.
 	DefaultNetworkProfileId int32 `json:"defaultNetworkProfileId"`
 	// Enables gNMI monitoring for telemetry data collection using the gNMI protocol.
@@ -53,6 +55,14 @@ type EthernetFabric struct {
 	ReservedVlans []string `json:"reservedVlans,omitempty"`
 	// Array of VLAN range strings in \"start-end\" format to be used in configuration.
 	VlanRanges []string `json:"vlanRanges,omitempty"`
+	// The VNI prefix for the EVPN VXLAN fabric.
+	VniPrefix *int32 `json:"vniPrefix,omitempty"`
+	// VRF ID ranges to be preserved from automatic cleanup. Each range must follow the \"start-end\" format.
+	PreventVrfCleanup []string `json:"preventVrfCleanup,omitempty"`
+	// Reserved VRF ID ranges that are set aside exclusively for specific network functions. Each range must be provided in the \"start-end\" format.
+	ReservedVrfs []string `json:"reservedVrfs,omitempty"`
+	// VLAN ranges to be associated with VRF instances. Each value must be an ordered pair specified in the \"start-end\" format.
+	VrfVlanRanges []string `json:"vrfVlanRanges,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -62,8 +72,9 @@ type _EthernetFabric EthernetFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEthernetFabric(defaultNetworkProfileId int32, numberOfSpinesNextToLeafSwitches int32) *EthernetFabric {
+func NewEthernetFabric(fabricType string, defaultNetworkProfileId int32, numberOfSpinesNextToLeafSwitches int32) *EthernetFabric {
 	this := EthernetFabric{}
+	this.FabricType = fabricType
 	this.DefaultNetworkProfileId = defaultNetworkProfileId
 	this.NumberOfSpinesNextToLeafSwitches = numberOfSpinesNextToLeafSwitches
 	return &this
@@ -75,6 +86,30 @@ func NewEthernetFabric(defaultNetworkProfileId int32, numberOfSpinesNextToLeafSw
 func NewEthernetFabricWithDefaults() *EthernetFabric {
 	this := EthernetFabric{}
 	return &this
+}
+
+// GetFabricType returns the FabricType field value
+func (o *EthernetFabric) GetFabricType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.FabricType
+}
+
+// GetFabricTypeOk returns a tuple with the FabricType field value
+// and a boolean to check if the value has been set.
+func (o *EthernetFabric) GetFabricTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.FabricType, true
+}
+
+// SetFabricType sets field value
+func (o *EthernetFabric) SetFabricType(v string) {
+	o.FabricType = v
 }
 
 // GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field value
@@ -573,6 +608,134 @@ func (o *EthernetFabric) SetVlanRanges(v []string) {
 	o.VlanRanges = v
 }
 
+// GetVniPrefix returns the VniPrefix field value if set, zero value otherwise.
+func (o *EthernetFabric) GetVniPrefix() int32 {
+	if o == nil || IsNil(o.VniPrefix) {
+		var ret int32
+		return ret
+	}
+	return *o.VniPrefix
+}
+
+// GetVniPrefixOk returns a tuple with the VniPrefix field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EthernetFabric) GetVniPrefixOk() (*int32, bool) {
+	if o == nil || IsNil(o.VniPrefix) {
+		return nil, false
+	}
+	return o.VniPrefix, true
+}
+
+// HasVniPrefix returns a boolean if a field has been set.
+func (o *EthernetFabric) HasVniPrefix() bool {
+	if o != nil && !IsNil(o.VniPrefix) {
+		return true
+	}
+
+	return false
+}
+
+// SetVniPrefix gets a reference to the given int32 and assigns it to the VniPrefix field.
+func (o *EthernetFabric) SetVniPrefix(v int32) {
+	o.VniPrefix = &v
+}
+
+// GetPreventVrfCleanup returns the PreventVrfCleanup field value if set, zero value otherwise.
+func (o *EthernetFabric) GetPreventVrfCleanup() []string {
+	if o == nil || IsNil(o.PreventVrfCleanup) {
+		var ret []string
+		return ret
+	}
+	return o.PreventVrfCleanup
+}
+
+// GetPreventVrfCleanupOk returns a tuple with the PreventVrfCleanup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EthernetFabric) GetPreventVrfCleanupOk() ([]string, bool) {
+	if o == nil || IsNil(o.PreventVrfCleanup) {
+		return nil, false
+	}
+	return o.PreventVrfCleanup, true
+}
+
+// HasPreventVrfCleanup returns a boolean if a field has been set.
+func (o *EthernetFabric) HasPreventVrfCleanup() bool {
+	if o != nil && !IsNil(o.PreventVrfCleanup) {
+		return true
+	}
+
+	return false
+}
+
+// SetPreventVrfCleanup gets a reference to the given []string and assigns it to the PreventVrfCleanup field.
+func (o *EthernetFabric) SetPreventVrfCleanup(v []string) {
+	o.PreventVrfCleanup = v
+}
+
+// GetReservedVrfs returns the ReservedVrfs field value if set, zero value otherwise.
+func (o *EthernetFabric) GetReservedVrfs() []string {
+	if o == nil || IsNil(o.ReservedVrfs) {
+		var ret []string
+		return ret
+	}
+	return o.ReservedVrfs
+}
+
+// GetReservedVrfsOk returns a tuple with the ReservedVrfs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EthernetFabric) GetReservedVrfsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ReservedVrfs) {
+		return nil, false
+	}
+	return o.ReservedVrfs, true
+}
+
+// HasReservedVrfs returns a boolean if a field has been set.
+func (o *EthernetFabric) HasReservedVrfs() bool {
+	if o != nil && !IsNil(o.ReservedVrfs) {
+		return true
+	}
+
+	return false
+}
+
+// SetReservedVrfs gets a reference to the given []string and assigns it to the ReservedVrfs field.
+func (o *EthernetFabric) SetReservedVrfs(v []string) {
+	o.ReservedVrfs = v
+}
+
+// GetVrfVlanRanges returns the VrfVlanRanges field value if set, zero value otherwise.
+func (o *EthernetFabric) GetVrfVlanRanges() []string {
+	if o == nil || IsNil(o.VrfVlanRanges) {
+		var ret []string
+		return ret
+	}
+	return o.VrfVlanRanges
+}
+
+// GetVrfVlanRangesOk returns a tuple with the VrfVlanRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EthernetFabric) GetVrfVlanRangesOk() ([]string, bool) {
+	if o == nil || IsNil(o.VrfVlanRanges) {
+		return nil, false
+	}
+	return o.VrfVlanRanges, true
+}
+
+// HasVrfVlanRanges returns a boolean if a field has been set.
+func (o *EthernetFabric) HasVrfVlanRanges() bool {
+	if o != nil && !IsNil(o.VrfVlanRanges) {
+		return true
+	}
+
+	return false
+}
+
+// SetVrfVlanRanges gets a reference to the given []string and assigns it to the VrfVlanRanges field.
+func (o *EthernetFabric) SetVrfVlanRanges(v []string) {
+	o.VrfVlanRanges = v
+}
+
 func (o EthernetFabric) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -583,6 +746,7 @@ func (o EthernetFabric) MarshalJSON() ([]byte, error) {
 
 func (o EthernetFabric) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["fabricType"] = o.FabricType
 	toSerialize["defaultNetworkProfileId"] = o.DefaultNetworkProfileId
 	if !IsNil(o.GnmiMonitoringEnabled) {
 		toSerialize["gnmiMonitoringEnabled"] = o.GnmiMonitoringEnabled
@@ -627,6 +791,18 @@ func (o EthernetFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VlanRanges) {
 		toSerialize["vlanRanges"] = o.VlanRanges
 	}
+	if !IsNil(o.VniPrefix) {
+		toSerialize["vniPrefix"] = o.VniPrefix
+	}
+	if !IsNil(o.PreventVrfCleanup) {
+		toSerialize["preventVrfCleanup"] = o.PreventVrfCleanup
+	}
+	if !IsNil(o.ReservedVrfs) {
+		toSerialize["reservedVrfs"] = o.ReservedVrfs
+	}
+	if !IsNil(o.VrfVlanRanges) {
+		toSerialize["vrfVlanRanges"] = o.VrfVlanRanges
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -640,6 +816,7 @@ func (o *EthernetFabric) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"fabricType",
 		"defaultNetworkProfileId",
 		"numberOfSpinesNextToLeafSwitches",
 	}
@@ -671,6 +848,7 @@ func (o *EthernetFabric) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fabricType")
 		delete(additionalProperties, "defaultNetworkProfileId")
 		delete(additionalProperties, "gnmiMonitoringEnabled")
 		delete(additionalProperties, "syslogMonitoringEnabled")
@@ -687,6 +865,10 @@ func (o *EthernetFabric) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "preventCleanupFromUplinks")
 		delete(additionalProperties, "reservedVlans")
 		delete(additionalProperties, "vlanRanges")
+		delete(additionalProperties, "vniPrefix")
+		delete(additionalProperties, "preventVrfCleanup")
+		delete(additionalProperties, "reservedVrfs")
+		delete(additionalProperties, "vrfVlanRanges")
 		o.AdditionalProperties = additionalProperties
 	}
 

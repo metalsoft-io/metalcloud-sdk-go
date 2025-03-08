@@ -24,8 +24,6 @@ type UpdateNetworkFabric struct {
 	Name *string `json:"name,omitempty"`
 	// Network fabric description
 	Description *string `json:"description,omitempty"`
-	// The type of network fabric
-	FabricType *string `json:"fabricType,omitempty"`
 	FabricConfiguration *NetworkFabricFabricConfiguration `json:"fabricConfiguration,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -113,38 +111,6 @@ func (o *UpdateNetworkFabric) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetFabricType returns the FabricType field value if set, zero value otherwise.
-func (o *UpdateNetworkFabric) GetFabricType() string {
-	if o == nil || IsNil(o.FabricType) {
-		var ret string
-		return ret
-	}
-	return *o.FabricType
-}
-
-// GetFabricTypeOk returns a tuple with the FabricType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateNetworkFabric) GetFabricTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.FabricType) {
-		return nil, false
-	}
-	return o.FabricType, true
-}
-
-// HasFabricType returns a boolean if a field has been set.
-func (o *UpdateNetworkFabric) HasFabricType() bool {
-	if o != nil && !IsNil(o.FabricType) {
-		return true
-	}
-
-	return false
-}
-
-// SetFabricType gets a reference to the given string and assigns it to the FabricType field.
-func (o *UpdateNetworkFabric) SetFabricType(v string) {
-	o.FabricType = &v
-}
-
 // GetFabricConfiguration returns the FabricConfiguration field value if set, zero value otherwise.
 func (o *UpdateNetworkFabric) GetFabricConfiguration() NetworkFabricFabricConfiguration {
 	if o == nil || IsNil(o.FabricConfiguration) {
@@ -193,9 +159,6 @@ func (o UpdateNetworkFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !IsNil(o.FabricType) {
-		toSerialize["fabricType"] = o.FabricType
-	}
 	if !IsNil(o.FabricConfiguration) {
 		toSerialize["fabricConfiguration"] = o.FabricConfiguration
 	}
@@ -223,7 +186,6 @@ func (o *UpdateNetworkFabric) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
-		delete(additionalProperties, "fabricType")
 		delete(additionalProperties, "fabricConfiguration")
 		o.AdditionalProperties = additionalProperties
 	}

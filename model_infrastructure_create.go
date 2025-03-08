@@ -26,12 +26,12 @@ type InfrastructureCreate struct {
 	// The ID of the site where the Infrastructure is located.
 	SiteId float32 `json:"siteId"`
 	// Custom variables in JSON format.
-	CustomVariables *string `json:"customVariables,omitempty"`
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// User ID of the owner of the Infrastructure.
 	UserIdOwner *float32 `json:"userIdOwner,omitempty"`
 	// Description of the infrastructure.
 	Description *string `json:"description,omitempty"`
-	Meta *GenericGUISettings `json:"meta,omitempty"`
+	Meta *InfrastructureMeta `json:"meta,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -105,19 +105,19 @@ func (o *InfrastructureCreate) SetSiteId(v float32) {
 }
 
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
-func (o *InfrastructureCreate) GetCustomVariables() string {
+func (o *InfrastructureCreate) GetCustomVariables() map[string]interface{} {
 	if o == nil || IsNil(o.CustomVariables) {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.CustomVariables
+	return o.CustomVariables
 }
 
 // GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InfrastructureCreate) GetCustomVariablesOk() (*string, bool) {
+func (o *InfrastructureCreate) GetCustomVariablesOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.CustomVariables) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.CustomVariables, true
 }
@@ -131,9 +131,9 @@ func (o *InfrastructureCreate) HasCustomVariables() bool {
 	return false
 }
 
-// SetCustomVariables gets a reference to the given string and assigns it to the CustomVariables field.
-func (o *InfrastructureCreate) SetCustomVariables(v string) {
-	o.CustomVariables = &v
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *InfrastructureCreate) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
 }
 
 // GetUserIdOwner returns the UserIdOwner field value if set, zero value otherwise.
@@ -201,9 +201,9 @@ func (o *InfrastructureCreate) SetDescription(v string) {
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *InfrastructureCreate) GetMeta() GenericGUISettings {
+func (o *InfrastructureCreate) GetMeta() InfrastructureMeta {
 	if o == nil || IsNil(o.Meta) {
-		var ret GenericGUISettings
+		var ret InfrastructureMeta
 		return ret
 	}
 	return *o.Meta
@@ -211,7 +211,7 @@ func (o *InfrastructureCreate) GetMeta() GenericGUISettings {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InfrastructureCreate) GetMetaOk() (*GenericGUISettings, bool) {
+func (o *InfrastructureCreate) GetMetaOk() (*InfrastructureMeta, bool) {
 	if o == nil || IsNil(o.Meta) {
 		return nil, false
 	}
@@ -227,8 +227,8 @@ func (o *InfrastructureCreate) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given GenericGUISettings and assigns it to the Meta field.
-func (o *InfrastructureCreate) SetMeta(v GenericGUISettings) {
+// SetMeta gets a reference to the given InfrastructureMeta and assigns it to the Meta field.
+func (o *InfrastructureCreate) SetMeta(v InfrastructureMeta) {
 	o.Meta = &v
 }
 

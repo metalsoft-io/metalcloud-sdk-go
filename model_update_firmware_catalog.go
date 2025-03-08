@@ -22,18 +22,18 @@ var _ MappedNullable = &UpdateFirmwareCatalog{}
 
 // UpdateFirmwareCatalog struct for UpdateFirmwareCatalog
 type UpdateFirmwareCatalog struct {
-	ServerFirmwareCatalogName string `json:"serverFirmwareCatalogName"`
-	ServerFirmwareCatalogDescription *string `json:"serverFirmwareCatalogDescription,omitempty"`
-	ServerFirmwareCatalogVendor FirmwareVendorType `json:"serverFirmwareCatalogVendor"`
-	ServerFirmwareCatalogUpdateType CatalogUpdateType `json:"serverFirmwareCatalogUpdateType"`
-	ServerFirmwareCatalogVendorId *string `json:"serverFirmwareCatalogVendorId,omitempty"`
-	ServerFirmwareCatalogVendorUrl *string `json:"serverFirmwareCatalogVendorUrl,omitempty"`
-	ServerFirmwareCatalogVendorReleaseTimestamp *time.Time `json:"serverFirmwareCatalogVendorReleaseTimestamp,omitempty"`
-	ServerFirmwareCatalogMetalsoftServerTypesSupportedJson *string `json:"serverFirmwareCatalogMetalsoftServerTypesSupportedJson,omitempty"`
-	// Serialized JSON object of the server types supported by the vendor for this catalog
-	ServerFirmwareCatalogVendorServerTypesSupportedJson *string `json:"serverFirmwareCatalogVendorServerTypesSupportedJson,omitempty"`
-	// Serialized JSON object of the vendor configuration for this catalog
-	ServerFirmwareCatalogVendorConfigurationJson *string `json:"serverFirmwareCatalogVendorConfigurationJson,omitempty"`
+	Name string `json:"name"`
+	Description *string `json:"description,omitempty"`
+	Vendor FirmwareVendorType `json:"vendor"`
+	UpdateType CatalogUpdateType `json:"updateType"`
+	VendorId *string `json:"vendorId,omitempty"`
+	VendorUrl *string `json:"vendorUrl,omitempty"`
+	VendorReleaseTimestamp *time.Time `json:"vendorReleaseTimestamp,omitempty"`
+	MetalsoftServerTypesSupported []string `json:"metalsoftServerTypesSupported,omitempty"`
+	// Array of the server types supported by the vendor for this catalog
+	VendorServerTypesSupported []string `json:"vendorServerTypesSupported,omitempty"`
+	// Record of the vendor configuration for this catalog
+	VendorConfiguration map[string]interface{} `json:"vendorConfiguration,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,11 +43,11 @@ type _UpdateFirmwareCatalog UpdateFirmwareCatalog
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateFirmwareCatalog(serverFirmwareCatalogName string, serverFirmwareCatalogVendor FirmwareVendorType, serverFirmwareCatalogUpdateType CatalogUpdateType) *UpdateFirmwareCatalog {
+func NewUpdateFirmwareCatalog(name string, vendor FirmwareVendorType, updateType CatalogUpdateType) *UpdateFirmwareCatalog {
 	this := UpdateFirmwareCatalog{}
-	this.ServerFirmwareCatalogName = serverFirmwareCatalogName
-	this.ServerFirmwareCatalogVendor = serverFirmwareCatalogVendor
-	this.ServerFirmwareCatalogUpdateType = serverFirmwareCatalogUpdateType
+	this.Name = name
+	this.Vendor = vendor
+	this.UpdateType = updateType
 	return &this
 }
 
@@ -59,300 +59,300 @@ func NewUpdateFirmwareCatalogWithDefaults() *UpdateFirmwareCatalog {
 	return &this
 }
 
-// GetServerFirmwareCatalogName returns the ServerFirmwareCatalogName field value
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogName() string {
+// GetName returns the Name field value
+func (o *UpdateFirmwareCatalog) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ServerFirmwareCatalogName
+	return o.Name
 }
 
-// GetServerFirmwareCatalogNameOk returns a tuple with the ServerFirmwareCatalogName field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogNameOk() (*string, bool) {
+func (o *UpdateFirmwareCatalog) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ServerFirmwareCatalogName, true
+	return &o.Name, true
 }
 
-// SetServerFirmwareCatalogName sets field value
-func (o *UpdateFirmwareCatalog) SetServerFirmwareCatalogName(v string) {
-	o.ServerFirmwareCatalogName = v
+// SetName sets field value
+func (o *UpdateFirmwareCatalog) SetName(v string) {
+	o.Name = v
 }
 
-// GetServerFirmwareCatalogDescription returns the ServerFirmwareCatalogDescription field value if set, zero value otherwise.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogDescription() string {
-	if o == nil || IsNil(o.ServerFirmwareCatalogDescription) {
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *UpdateFirmwareCatalog) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
-	return *o.ServerFirmwareCatalogDescription
+	return *o.Description
 }
 
-// GetServerFirmwareCatalogDescriptionOk returns a tuple with the ServerFirmwareCatalogDescription field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerFirmwareCatalogDescription) {
+func (o *UpdateFirmwareCatalog) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return o.ServerFirmwareCatalogDescription, true
+	return o.Description, true
 }
 
-// HasServerFirmwareCatalogDescription returns a boolean if a field has been set.
-func (o *UpdateFirmwareCatalog) HasServerFirmwareCatalogDescription() bool {
-	if o != nil && !IsNil(o.ServerFirmwareCatalogDescription) {
+// HasDescription returns a boolean if a field has been set.
+func (o *UpdateFirmwareCatalog) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetServerFirmwareCatalogDescription gets a reference to the given string and assigns it to the ServerFirmwareCatalogDescription field.
-func (o *UpdateFirmwareCatalog) SetServerFirmwareCatalogDescription(v string) {
-	o.ServerFirmwareCatalogDescription = &v
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *UpdateFirmwareCatalog) SetDescription(v string) {
+	o.Description = &v
 }
 
-// GetServerFirmwareCatalogVendor returns the ServerFirmwareCatalogVendor field value
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogVendor() FirmwareVendorType {
+// GetVendor returns the Vendor field value
+func (o *UpdateFirmwareCatalog) GetVendor() FirmwareVendorType {
 	if o == nil {
 		var ret FirmwareVendorType
 		return ret
 	}
 
-	return o.ServerFirmwareCatalogVendor
+	return o.Vendor
 }
 
-// GetServerFirmwareCatalogVendorOk returns a tuple with the ServerFirmwareCatalogVendor field value
+// GetVendorOk returns a tuple with the Vendor field value
 // and a boolean to check if the value has been set.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogVendorOk() (*FirmwareVendorType, bool) {
+func (o *UpdateFirmwareCatalog) GetVendorOk() (*FirmwareVendorType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ServerFirmwareCatalogVendor, true
+	return &o.Vendor, true
 }
 
-// SetServerFirmwareCatalogVendor sets field value
-func (o *UpdateFirmwareCatalog) SetServerFirmwareCatalogVendor(v FirmwareVendorType) {
-	o.ServerFirmwareCatalogVendor = v
+// SetVendor sets field value
+func (o *UpdateFirmwareCatalog) SetVendor(v FirmwareVendorType) {
+	o.Vendor = v
 }
 
-// GetServerFirmwareCatalogUpdateType returns the ServerFirmwareCatalogUpdateType field value
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogUpdateType() CatalogUpdateType {
+// GetUpdateType returns the UpdateType field value
+func (o *UpdateFirmwareCatalog) GetUpdateType() CatalogUpdateType {
 	if o == nil {
 		var ret CatalogUpdateType
 		return ret
 	}
 
-	return o.ServerFirmwareCatalogUpdateType
+	return o.UpdateType
 }
 
-// GetServerFirmwareCatalogUpdateTypeOk returns a tuple with the ServerFirmwareCatalogUpdateType field value
+// GetUpdateTypeOk returns a tuple with the UpdateType field value
 // and a boolean to check if the value has been set.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogUpdateTypeOk() (*CatalogUpdateType, bool) {
+func (o *UpdateFirmwareCatalog) GetUpdateTypeOk() (*CatalogUpdateType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ServerFirmwareCatalogUpdateType, true
+	return &o.UpdateType, true
 }
 
-// SetServerFirmwareCatalogUpdateType sets field value
-func (o *UpdateFirmwareCatalog) SetServerFirmwareCatalogUpdateType(v CatalogUpdateType) {
-	o.ServerFirmwareCatalogUpdateType = v
+// SetUpdateType sets field value
+func (o *UpdateFirmwareCatalog) SetUpdateType(v CatalogUpdateType) {
+	o.UpdateType = v
 }
 
-// GetServerFirmwareCatalogVendorId returns the ServerFirmwareCatalogVendorId field value if set, zero value otherwise.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogVendorId() string {
-	if o == nil || IsNil(o.ServerFirmwareCatalogVendorId) {
+// GetVendorId returns the VendorId field value if set, zero value otherwise.
+func (o *UpdateFirmwareCatalog) GetVendorId() string {
+	if o == nil || IsNil(o.VendorId) {
 		var ret string
 		return ret
 	}
-	return *o.ServerFirmwareCatalogVendorId
+	return *o.VendorId
 }
 
-// GetServerFirmwareCatalogVendorIdOk returns a tuple with the ServerFirmwareCatalogVendorId field value if set, nil otherwise
+// GetVendorIdOk returns a tuple with the VendorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogVendorIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerFirmwareCatalogVendorId) {
+func (o *UpdateFirmwareCatalog) GetVendorIdOk() (*string, bool) {
+	if o == nil || IsNil(o.VendorId) {
 		return nil, false
 	}
-	return o.ServerFirmwareCatalogVendorId, true
+	return o.VendorId, true
 }
 
-// HasServerFirmwareCatalogVendorId returns a boolean if a field has been set.
-func (o *UpdateFirmwareCatalog) HasServerFirmwareCatalogVendorId() bool {
-	if o != nil && !IsNil(o.ServerFirmwareCatalogVendorId) {
+// HasVendorId returns a boolean if a field has been set.
+func (o *UpdateFirmwareCatalog) HasVendorId() bool {
+	if o != nil && !IsNil(o.VendorId) {
 		return true
 	}
 
 	return false
 }
 
-// SetServerFirmwareCatalogVendorId gets a reference to the given string and assigns it to the ServerFirmwareCatalogVendorId field.
-func (o *UpdateFirmwareCatalog) SetServerFirmwareCatalogVendorId(v string) {
-	o.ServerFirmwareCatalogVendorId = &v
+// SetVendorId gets a reference to the given string and assigns it to the VendorId field.
+func (o *UpdateFirmwareCatalog) SetVendorId(v string) {
+	o.VendorId = &v
 }
 
-// GetServerFirmwareCatalogVendorUrl returns the ServerFirmwareCatalogVendorUrl field value if set, zero value otherwise.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogVendorUrl() string {
-	if o == nil || IsNil(o.ServerFirmwareCatalogVendorUrl) {
+// GetVendorUrl returns the VendorUrl field value if set, zero value otherwise.
+func (o *UpdateFirmwareCatalog) GetVendorUrl() string {
+	if o == nil || IsNil(o.VendorUrl) {
 		var ret string
 		return ret
 	}
-	return *o.ServerFirmwareCatalogVendorUrl
+	return *o.VendorUrl
 }
 
-// GetServerFirmwareCatalogVendorUrlOk returns a tuple with the ServerFirmwareCatalogVendorUrl field value if set, nil otherwise
+// GetVendorUrlOk returns a tuple with the VendorUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogVendorUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerFirmwareCatalogVendorUrl) {
+func (o *UpdateFirmwareCatalog) GetVendorUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.VendorUrl) {
 		return nil, false
 	}
-	return o.ServerFirmwareCatalogVendorUrl, true
+	return o.VendorUrl, true
 }
 
-// HasServerFirmwareCatalogVendorUrl returns a boolean if a field has been set.
-func (o *UpdateFirmwareCatalog) HasServerFirmwareCatalogVendorUrl() bool {
-	if o != nil && !IsNil(o.ServerFirmwareCatalogVendorUrl) {
+// HasVendorUrl returns a boolean if a field has been set.
+func (o *UpdateFirmwareCatalog) HasVendorUrl() bool {
+	if o != nil && !IsNil(o.VendorUrl) {
 		return true
 	}
 
 	return false
 }
 
-// SetServerFirmwareCatalogVendorUrl gets a reference to the given string and assigns it to the ServerFirmwareCatalogVendorUrl field.
-func (o *UpdateFirmwareCatalog) SetServerFirmwareCatalogVendorUrl(v string) {
-	o.ServerFirmwareCatalogVendorUrl = &v
+// SetVendorUrl gets a reference to the given string and assigns it to the VendorUrl field.
+func (o *UpdateFirmwareCatalog) SetVendorUrl(v string) {
+	o.VendorUrl = &v
 }
 
-// GetServerFirmwareCatalogVendorReleaseTimestamp returns the ServerFirmwareCatalogVendorReleaseTimestamp field value if set, zero value otherwise.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogVendorReleaseTimestamp() time.Time {
-	if o == nil || IsNil(o.ServerFirmwareCatalogVendorReleaseTimestamp) {
+// GetVendorReleaseTimestamp returns the VendorReleaseTimestamp field value if set, zero value otherwise.
+func (o *UpdateFirmwareCatalog) GetVendorReleaseTimestamp() time.Time {
+	if o == nil || IsNil(o.VendorReleaseTimestamp) {
 		var ret time.Time
 		return ret
 	}
-	return *o.ServerFirmwareCatalogVendorReleaseTimestamp
+	return *o.VendorReleaseTimestamp
 }
 
-// GetServerFirmwareCatalogVendorReleaseTimestampOk returns a tuple with the ServerFirmwareCatalogVendorReleaseTimestamp field value if set, nil otherwise
+// GetVendorReleaseTimestampOk returns a tuple with the VendorReleaseTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogVendorReleaseTimestampOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.ServerFirmwareCatalogVendorReleaseTimestamp) {
+func (o *UpdateFirmwareCatalog) GetVendorReleaseTimestampOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.VendorReleaseTimestamp) {
 		return nil, false
 	}
-	return o.ServerFirmwareCatalogVendorReleaseTimestamp, true
+	return o.VendorReleaseTimestamp, true
 }
 
-// HasServerFirmwareCatalogVendorReleaseTimestamp returns a boolean if a field has been set.
-func (o *UpdateFirmwareCatalog) HasServerFirmwareCatalogVendorReleaseTimestamp() bool {
-	if o != nil && !IsNil(o.ServerFirmwareCatalogVendorReleaseTimestamp) {
+// HasVendorReleaseTimestamp returns a boolean if a field has been set.
+func (o *UpdateFirmwareCatalog) HasVendorReleaseTimestamp() bool {
+	if o != nil && !IsNil(o.VendorReleaseTimestamp) {
 		return true
 	}
 
 	return false
 }
 
-// SetServerFirmwareCatalogVendorReleaseTimestamp gets a reference to the given time.Time and assigns it to the ServerFirmwareCatalogVendorReleaseTimestamp field.
-func (o *UpdateFirmwareCatalog) SetServerFirmwareCatalogVendorReleaseTimestamp(v time.Time) {
-	o.ServerFirmwareCatalogVendorReleaseTimestamp = &v
+// SetVendorReleaseTimestamp gets a reference to the given time.Time and assigns it to the VendorReleaseTimestamp field.
+func (o *UpdateFirmwareCatalog) SetVendorReleaseTimestamp(v time.Time) {
+	o.VendorReleaseTimestamp = &v
 }
 
-// GetServerFirmwareCatalogMetalsoftServerTypesSupportedJson returns the ServerFirmwareCatalogMetalsoftServerTypesSupportedJson field value if set, zero value otherwise.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogMetalsoftServerTypesSupportedJson() string {
-	if o == nil || IsNil(o.ServerFirmwareCatalogMetalsoftServerTypesSupportedJson) {
-		var ret string
+// GetMetalsoftServerTypesSupported returns the MetalsoftServerTypesSupported field value if set, zero value otherwise.
+func (o *UpdateFirmwareCatalog) GetMetalsoftServerTypesSupported() []string {
+	if o == nil || IsNil(o.MetalsoftServerTypesSupported) {
+		var ret []string
 		return ret
 	}
-	return *o.ServerFirmwareCatalogMetalsoftServerTypesSupportedJson
+	return o.MetalsoftServerTypesSupported
 }
 
-// GetServerFirmwareCatalogMetalsoftServerTypesSupportedJsonOk returns a tuple with the ServerFirmwareCatalogMetalsoftServerTypesSupportedJson field value if set, nil otherwise
+// GetMetalsoftServerTypesSupportedOk returns a tuple with the MetalsoftServerTypesSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogMetalsoftServerTypesSupportedJsonOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerFirmwareCatalogMetalsoftServerTypesSupportedJson) {
+func (o *UpdateFirmwareCatalog) GetMetalsoftServerTypesSupportedOk() ([]string, bool) {
+	if o == nil || IsNil(o.MetalsoftServerTypesSupported) {
 		return nil, false
 	}
-	return o.ServerFirmwareCatalogMetalsoftServerTypesSupportedJson, true
+	return o.MetalsoftServerTypesSupported, true
 }
 
-// HasServerFirmwareCatalogMetalsoftServerTypesSupportedJson returns a boolean if a field has been set.
-func (o *UpdateFirmwareCatalog) HasServerFirmwareCatalogMetalsoftServerTypesSupportedJson() bool {
-	if o != nil && !IsNil(o.ServerFirmwareCatalogMetalsoftServerTypesSupportedJson) {
+// HasMetalsoftServerTypesSupported returns a boolean if a field has been set.
+func (o *UpdateFirmwareCatalog) HasMetalsoftServerTypesSupported() bool {
+	if o != nil && !IsNil(o.MetalsoftServerTypesSupported) {
 		return true
 	}
 
 	return false
 }
 
-// SetServerFirmwareCatalogMetalsoftServerTypesSupportedJson gets a reference to the given string and assigns it to the ServerFirmwareCatalogMetalsoftServerTypesSupportedJson field.
-func (o *UpdateFirmwareCatalog) SetServerFirmwareCatalogMetalsoftServerTypesSupportedJson(v string) {
-	o.ServerFirmwareCatalogMetalsoftServerTypesSupportedJson = &v
+// SetMetalsoftServerTypesSupported gets a reference to the given []string and assigns it to the MetalsoftServerTypesSupported field.
+func (o *UpdateFirmwareCatalog) SetMetalsoftServerTypesSupported(v []string) {
+	o.MetalsoftServerTypesSupported = v
 }
 
-// GetServerFirmwareCatalogVendorServerTypesSupportedJson returns the ServerFirmwareCatalogVendorServerTypesSupportedJson field value if set, zero value otherwise.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogVendorServerTypesSupportedJson() string {
-	if o == nil || IsNil(o.ServerFirmwareCatalogVendorServerTypesSupportedJson) {
-		var ret string
+// GetVendorServerTypesSupported returns the VendorServerTypesSupported field value if set, zero value otherwise.
+func (o *UpdateFirmwareCatalog) GetVendorServerTypesSupported() []string {
+	if o == nil || IsNil(o.VendorServerTypesSupported) {
+		var ret []string
 		return ret
 	}
-	return *o.ServerFirmwareCatalogVendorServerTypesSupportedJson
+	return o.VendorServerTypesSupported
 }
 
-// GetServerFirmwareCatalogVendorServerTypesSupportedJsonOk returns a tuple with the ServerFirmwareCatalogVendorServerTypesSupportedJson field value if set, nil otherwise
+// GetVendorServerTypesSupportedOk returns a tuple with the VendorServerTypesSupported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogVendorServerTypesSupportedJsonOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerFirmwareCatalogVendorServerTypesSupportedJson) {
+func (o *UpdateFirmwareCatalog) GetVendorServerTypesSupportedOk() ([]string, bool) {
+	if o == nil || IsNil(o.VendorServerTypesSupported) {
 		return nil, false
 	}
-	return o.ServerFirmwareCatalogVendorServerTypesSupportedJson, true
+	return o.VendorServerTypesSupported, true
 }
 
-// HasServerFirmwareCatalogVendorServerTypesSupportedJson returns a boolean if a field has been set.
-func (o *UpdateFirmwareCatalog) HasServerFirmwareCatalogVendorServerTypesSupportedJson() bool {
-	if o != nil && !IsNil(o.ServerFirmwareCatalogVendorServerTypesSupportedJson) {
+// HasVendorServerTypesSupported returns a boolean if a field has been set.
+func (o *UpdateFirmwareCatalog) HasVendorServerTypesSupported() bool {
+	if o != nil && !IsNil(o.VendorServerTypesSupported) {
 		return true
 	}
 
 	return false
 }
 
-// SetServerFirmwareCatalogVendorServerTypesSupportedJson gets a reference to the given string and assigns it to the ServerFirmwareCatalogVendorServerTypesSupportedJson field.
-func (o *UpdateFirmwareCatalog) SetServerFirmwareCatalogVendorServerTypesSupportedJson(v string) {
-	o.ServerFirmwareCatalogVendorServerTypesSupportedJson = &v
+// SetVendorServerTypesSupported gets a reference to the given []string and assigns it to the VendorServerTypesSupported field.
+func (o *UpdateFirmwareCatalog) SetVendorServerTypesSupported(v []string) {
+	o.VendorServerTypesSupported = v
 }
 
-// GetServerFirmwareCatalogVendorConfigurationJson returns the ServerFirmwareCatalogVendorConfigurationJson field value if set, zero value otherwise.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogVendorConfigurationJson() string {
-	if o == nil || IsNil(o.ServerFirmwareCatalogVendorConfigurationJson) {
-		var ret string
+// GetVendorConfiguration returns the VendorConfiguration field value if set, zero value otherwise.
+func (o *UpdateFirmwareCatalog) GetVendorConfiguration() map[string]interface{} {
+	if o == nil || IsNil(o.VendorConfiguration) {
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.ServerFirmwareCatalogVendorConfigurationJson
+	return o.VendorConfiguration
 }
 
-// GetServerFirmwareCatalogVendorConfigurationJsonOk returns a tuple with the ServerFirmwareCatalogVendorConfigurationJson field value if set, nil otherwise
+// GetVendorConfigurationOk returns a tuple with the VendorConfiguration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateFirmwareCatalog) GetServerFirmwareCatalogVendorConfigurationJsonOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerFirmwareCatalogVendorConfigurationJson) {
-		return nil, false
+func (o *UpdateFirmwareCatalog) GetVendorConfigurationOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.VendorConfiguration) {
+		return map[string]interface{}{}, false
 	}
-	return o.ServerFirmwareCatalogVendorConfigurationJson, true
+	return o.VendorConfiguration, true
 }
 
-// HasServerFirmwareCatalogVendorConfigurationJson returns a boolean if a field has been set.
-func (o *UpdateFirmwareCatalog) HasServerFirmwareCatalogVendorConfigurationJson() bool {
-	if o != nil && !IsNil(o.ServerFirmwareCatalogVendorConfigurationJson) {
+// HasVendorConfiguration returns a boolean if a field has been set.
+func (o *UpdateFirmwareCatalog) HasVendorConfiguration() bool {
+	if o != nil && !IsNil(o.VendorConfiguration) {
 		return true
 	}
 
 	return false
 }
 
-// SetServerFirmwareCatalogVendorConfigurationJson gets a reference to the given string and assigns it to the ServerFirmwareCatalogVendorConfigurationJson field.
-func (o *UpdateFirmwareCatalog) SetServerFirmwareCatalogVendorConfigurationJson(v string) {
-	o.ServerFirmwareCatalogVendorConfigurationJson = &v
+// SetVendorConfiguration gets a reference to the given map[string]interface{} and assigns it to the VendorConfiguration field.
+func (o *UpdateFirmwareCatalog) SetVendorConfiguration(v map[string]interface{}) {
+	o.VendorConfiguration = v
 }
 
 func (o UpdateFirmwareCatalog) MarshalJSON() ([]byte, error) {
@@ -365,29 +365,29 @@ func (o UpdateFirmwareCatalog) MarshalJSON() ([]byte, error) {
 
 func (o UpdateFirmwareCatalog) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["serverFirmwareCatalogName"] = o.ServerFirmwareCatalogName
-	if !IsNil(o.ServerFirmwareCatalogDescription) {
-		toSerialize["serverFirmwareCatalogDescription"] = o.ServerFirmwareCatalogDescription
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
-	toSerialize["serverFirmwareCatalogVendor"] = o.ServerFirmwareCatalogVendor
-	toSerialize["serverFirmwareCatalogUpdateType"] = o.ServerFirmwareCatalogUpdateType
-	if !IsNil(o.ServerFirmwareCatalogVendorId) {
-		toSerialize["serverFirmwareCatalogVendorId"] = o.ServerFirmwareCatalogVendorId
+	toSerialize["vendor"] = o.Vendor
+	toSerialize["updateType"] = o.UpdateType
+	if !IsNil(o.VendorId) {
+		toSerialize["vendorId"] = o.VendorId
 	}
-	if !IsNil(o.ServerFirmwareCatalogVendorUrl) {
-		toSerialize["serverFirmwareCatalogVendorUrl"] = o.ServerFirmwareCatalogVendorUrl
+	if !IsNil(o.VendorUrl) {
+		toSerialize["vendorUrl"] = o.VendorUrl
 	}
-	if !IsNil(o.ServerFirmwareCatalogVendorReleaseTimestamp) {
-		toSerialize["serverFirmwareCatalogVendorReleaseTimestamp"] = o.ServerFirmwareCatalogVendorReleaseTimestamp
+	if !IsNil(o.VendorReleaseTimestamp) {
+		toSerialize["vendorReleaseTimestamp"] = o.VendorReleaseTimestamp
 	}
-	if !IsNil(o.ServerFirmwareCatalogMetalsoftServerTypesSupportedJson) {
-		toSerialize["serverFirmwareCatalogMetalsoftServerTypesSupportedJson"] = o.ServerFirmwareCatalogMetalsoftServerTypesSupportedJson
+	if !IsNil(o.MetalsoftServerTypesSupported) {
+		toSerialize["metalsoftServerTypesSupported"] = o.MetalsoftServerTypesSupported
 	}
-	if !IsNil(o.ServerFirmwareCatalogVendorServerTypesSupportedJson) {
-		toSerialize["serverFirmwareCatalogVendorServerTypesSupportedJson"] = o.ServerFirmwareCatalogVendorServerTypesSupportedJson
+	if !IsNil(o.VendorServerTypesSupported) {
+		toSerialize["vendorServerTypesSupported"] = o.VendorServerTypesSupported
 	}
-	if !IsNil(o.ServerFirmwareCatalogVendorConfigurationJson) {
-		toSerialize["serverFirmwareCatalogVendorConfigurationJson"] = o.ServerFirmwareCatalogVendorConfigurationJson
+	if !IsNil(o.VendorConfiguration) {
+		toSerialize["vendorConfiguration"] = o.VendorConfiguration
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -402,9 +402,9 @@ func (o *UpdateFirmwareCatalog) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"serverFirmwareCatalogName",
-		"serverFirmwareCatalogVendor",
-		"serverFirmwareCatalogUpdateType",
+		"name",
+		"vendor",
+		"updateType",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -434,16 +434,16 @@ func (o *UpdateFirmwareCatalog) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "serverFirmwareCatalogName")
-		delete(additionalProperties, "serverFirmwareCatalogDescription")
-		delete(additionalProperties, "serverFirmwareCatalogVendor")
-		delete(additionalProperties, "serverFirmwareCatalogUpdateType")
-		delete(additionalProperties, "serverFirmwareCatalogVendorId")
-		delete(additionalProperties, "serverFirmwareCatalogVendorUrl")
-		delete(additionalProperties, "serverFirmwareCatalogVendorReleaseTimestamp")
-		delete(additionalProperties, "serverFirmwareCatalogMetalsoftServerTypesSupportedJson")
-		delete(additionalProperties, "serverFirmwareCatalogVendorServerTypesSupportedJson")
-		delete(additionalProperties, "serverFirmwareCatalogVendorConfigurationJson")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "vendor")
+		delete(additionalProperties, "updateType")
+		delete(additionalProperties, "vendorId")
+		delete(additionalProperties, "vendorUrl")
+		delete(additionalProperties, "vendorReleaseTimestamp")
+		delete(additionalProperties, "metalsoftServerTypesSupported")
+		delete(additionalProperties, "vendorServerTypesSupported")
+		delete(additionalProperties, "vendorConfiguration")
 		o.AdditionalProperties = additionalProperties
 	}
 

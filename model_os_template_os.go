@@ -26,6 +26,8 @@ type OSTemplateOs struct {
 	// The version of the operating system that this template will install
 	Version string `json:"version"`
 	Credential OSTemplateOsCredential `json:"credential"`
+	// The initial operating system SSH port.
+	SshPort *float32 `json:"sshPort,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -123,6 +125,38 @@ func (o *OSTemplateOs) SetCredential(v OSTemplateOsCredential) {
 	o.Credential = v
 }
 
+// GetSshPort returns the SshPort field value if set, zero value otherwise.
+func (o *OSTemplateOs) GetSshPort() float32 {
+	if o == nil || IsNil(o.SshPort) {
+		var ret float32
+		return ret
+	}
+	return *o.SshPort
+}
+
+// GetSshPortOk returns a tuple with the SshPort field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OSTemplateOs) GetSshPortOk() (*float32, bool) {
+	if o == nil || IsNil(o.SshPort) {
+		return nil, false
+	}
+	return o.SshPort, true
+}
+
+// HasSshPort returns a boolean if a field has been set.
+func (o *OSTemplateOs) HasSshPort() bool {
+	if o != nil && !IsNil(o.SshPort) {
+		return true
+	}
+
+	return false
+}
+
+// SetSshPort gets a reference to the given float32 and assigns it to the SshPort field.
+func (o *OSTemplateOs) SetSshPort(v float32) {
+	o.SshPort = &v
+}
+
 func (o OSTemplateOs) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -136,6 +170,9 @@ func (o OSTemplateOs) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["version"] = o.Version
 	toSerialize["credential"] = o.Credential
+	if !IsNil(o.SshPort) {
+		toSerialize["sshPort"] = o.SshPort
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -184,6 +221,7 @@ func (o *OSTemplateOs) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "version")
 		delete(additionalProperties, "credential")
+		delete(additionalProperties, "sshPort")
 		o.AdditionalProperties = additionalProperties
 	}
 

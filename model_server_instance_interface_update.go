@@ -20,7 +20,11 @@ var _ MappedNullable = &ServerInstanceInterfaceUpdate{}
 
 // ServerInstanceInterfaceUpdate struct for ServerInstanceInterfaceUpdate
 type ServerInstanceInterfaceUpdate struct {
-	Config *ServerInstanceInterfaceConfiguration `json:"config,omitempty"`
+	// The server instance interface label.
+	Label *string `json:"label,omitempty"`
+	CapacityMbps *int32 `json:"capacityMbps,omitempty"`
+	// The ID of the network to which this interface is to be attached to.
+	NetworkId *int32 `json:"networkId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,36 +47,100 @@ func NewServerInstanceInterfaceUpdateWithDefaults() *ServerInstanceInterfaceUpda
 	return &this
 }
 
-// GetConfig returns the Config field value if set, zero value otherwise.
-func (o *ServerInstanceInterfaceUpdate) GetConfig() ServerInstanceInterfaceConfiguration {
-	if o == nil || IsNil(o.Config) {
-		var ret ServerInstanceInterfaceConfiguration
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *ServerInstanceInterfaceUpdate) GetLabel() string {
+	if o == nil || IsNil(o.Label) {
+		var ret string
 		return ret
 	}
-	return *o.Config
+	return *o.Label
 }
 
-// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterfaceUpdate) GetConfigOk() (*ServerInstanceInterfaceConfiguration, bool) {
-	if o == nil || IsNil(o.Config) {
+func (o *ServerInstanceInterfaceUpdate) GetLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.Label) {
 		return nil, false
 	}
-	return o.Config, true
+	return o.Label, true
 }
 
-// HasConfig returns a boolean if a field has been set.
-func (o *ServerInstanceInterfaceUpdate) HasConfig() bool {
-	if o != nil && !IsNil(o.Config) {
+// HasLabel returns a boolean if a field has been set.
+func (o *ServerInstanceInterfaceUpdate) HasLabel() bool {
+	if o != nil && !IsNil(o.Label) {
 		return true
 	}
 
 	return false
 }
 
-// SetConfig gets a reference to the given ServerInstanceInterfaceConfiguration and assigns it to the Config field.
-func (o *ServerInstanceInterfaceUpdate) SetConfig(v ServerInstanceInterfaceConfiguration) {
-	o.Config = &v
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *ServerInstanceInterfaceUpdate) SetLabel(v string) {
+	o.Label = &v
+}
+
+// GetCapacityMbps returns the CapacityMbps field value if set, zero value otherwise.
+func (o *ServerInstanceInterfaceUpdate) GetCapacityMbps() int32 {
+	if o == nil || IsNil(o.CapacityMbps) {
+		var ret int32
+		return ret
+	}
+	return *o.CapacityMbps
+}
+
+// GetCapacityMbpsOk returns a tuple with the CapacityMbps field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceInterfaceUpdate) GetCapacityMbpsOk() (*int32, bool) {
+	if o == nil || IsNil(o.CapacityMbps) {
+		return nil, false
+	}
+	return o.CapacityMbps, true
+}
+
+// HasCapacityMbps returns a boolean if a field has been set.
+func (o *ServerInstanceInterfaceUpdate) HasCapacityMbps() bool {
+	if o != nil && !IsNil(o.CapacityMbps) {
+		return true
+	}
+
+	return false
+}
+
+// SetCapacityMbps gets a reference to the given int32 and assigns it to the CapacityMbps field.
+func (o *ServerInstanceInterfaceUpdate) SetCapacityMbps(v int32) {
+	o.CapacityMbps = &v
+}
+
+// GetNetworkId returns the NetworkId field value if set, zero value otherwise.
+func (o *ServerInstanceInterfaceUpdate) GetNetworkId() int32 {
+	if o == nil || IsNil(o.NetworkId) {
+		var ret int32
+		return ret
+	}
+	return *o.NetworkId
+}
+
+// GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceInterfaceUpdate) GetNetworkIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.NetworkId) {
+		return nil, false
+	}
+	return o.NetworkId, true
+}
+
+// HasNetworkId returns a boolean if a field has been set.
+func (o *ServerInstanceInterfaceUpdate) HasNetworkId() bool {
+	if o != nil && !IsNil(o.NetworkId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkId gets a reference to the given int32 and assigns it to the NetworkId field.
+func (o *ServerInstanceInterfaceUpdate) SetNetworkId(v int32) {
+	o.NetworkId = &v
 }
 
 func (o ServerInstanceInterfaceUpdate) MarshalJSON() ([]byte, error) {
@@ -85,8 +153,14 @@ func (o ServerInstanceInterfaceUpdate) MarshalJSON() ([]byte, error) {
 
 func (o ServerInstanceInterfaceUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Config) {
-		toSerialize["config"] = o.Config
+	if !IsNil(o.Label) {
+		toSerialize["label"] = o.Label
+	}
+	if !IsNil(o.CapacityMbps) {
+		toSerialize["capacityMbps"] = o.CapacityMbps
+	}
+	if !IsNil(o.NetworkId) {
+		toSerialize["networkId"] = o.NetworkId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -110,7 +184,9 @@ func (o *ServerInstanceInterfaceUpdate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "config")
+		delete(additionalProperties, "label")
+		delete(additionalProperties, "capacityMbps")
+		delete(additionalProperties, "networkId")
 		o.AdditionalProperties = additionalProperties
 	}
 

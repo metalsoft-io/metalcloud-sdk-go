@@ -68,7 +68,6 @@ Name | Type | Description | Notes
 **RackPositionUpperUnit** | Pointer to **string** | The chassis rack upper unit position of the server. | [optional] 
 **RackPositionLowerUnit** | Pointer to **string** | The chassis rack lower unit position of the server. | [optional] 
 **InventoryId** | Pointer to **string** | The inventory id of the server. | [optional] 
-**Capabilities** | Pointer to **map[string]interface{}** | The capabilities of the server. | [optional] 
 **IpmiCredentialsNeedUpdate** | Pointer to **float32** | Flag to indicate if the server needs an update of the IPMI credentials. | [optional] 
 **Interfaces** | Pointer to [**[]ServerInterface**](ServerInterface.md) | The interfaces of the server. | [optional] 
 **Disks** | Pointer to [**[]ServerDisk**](ServerDisk.md) | The disks of the server. | [optional] 
@@ -1621,31 +1620,6 @@ SetInventoryId sets InventoryId field to given value.
 `func (o *Server) HasInventoryId() bool`
 
 HasInventoryId returns a boolean if a field has been set.
-
-### GetCapabilities
-
-`func (o *Server) GetCapabilities() map[string]interface{}`
-
-GetCapabilities returns the Capabilities field if non-nil, zero value otherwise.
-
-### GetCapabilitiesOk
-
-`func (o *Server) GetCapabilitiesOk() (*map[string]interface{}, bool)`
-
-GetCapabilitiesOk returns a tuple with the Capabilities field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCapabilities
-
-`func (o *Server) SetCapabilities(v map[string]interface{})`
-
-SetCapabilities sets Capabilities field to given value.
-
-### HasCapabilities
-
-`func (o *Server) HasCapabilities() bool`
-
-HasCapabilities returns a boolean if a field has been set.
 
 ### GetIpmiCredentialsNeedUpdate
 

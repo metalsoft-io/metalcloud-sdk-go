@@ -4,14 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdminPasswordReveal** | **map[string]interface{}** | Admin password reveal permissions | 
-**SpecialPermissions** | **map[string]interface{}** | Special permissions | 
+**AdminPasswordRevealPermissions** | Pointer to [**AdminPasswordRevealPermissions**](AdminPasswordRevealPermissions.md) | Admin password reveal permissions | [optional] 
+**SpecialPermissions** | [**SpecialPermissions**](SpecialPermissions.md) | Special permissions | 
+**RolePermissions** | **[]string** | Role permissions | 
 
 ## Methods
 
 ### NewUserPermissions
 
-`func NewUserPermissions(adminPasswordReveal map[string]interface{}, specialPermissions map[string]interface{}, ) *UserPermissions`
+`func NewUserPermissions(specialPermissions SpecialPermissions, rolePermissions []string, ) *UserPermissions`
 
 NewUserPermissions instantiates a new UserPermissions object
 This constructor will assign default values to properties that have it defined,
@@ -26,44 +27,69 @@ NewUserPermissionsWithDefaults instantiates a new UserPermissions object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAdminPasswordReveal
+### GetAdminPasswordRevealPermissions
 
-`func (o *UserPermissions) GetAdminPasswordReveal() map[string]interface{}`
+`func (o *UserPermissions) GetAdminPasswordRevealPermissions() AdminPasswordRevealPermissions`
 
-GetAdminPasswordReveal returns the AdminPasswordReveal field if non-nil, zero value otherwise.
+GetAdminPasswordRevealPermissions returns the AdminPasswordRevealPermissions field if non-nil, zero value otherwise.
 
-### GetAdminPasswordRevealOk
+### GetAdminPasswordRevealPermissionsOk
 
-`func (o *UserPermissions) GetAdminPasswordRevealOk() (*map[string]interface{}, bool)`
+`func (o *UserPermissions) GetAdminPasswordRevealPermissionsOk() (*AdminPasswordRevealPermissions, bool)`
 
-GetAdminPasswordRevealOk returns a tuple with the AdminPasswordReveal field if it's non-nil, zero value otherwise
+GetAdminPasswordRevealPermissionsOk returns a tuple with the AdminPasswordRevealPermissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAdminPasswordReveal
+### SetAdminPasswordRevealPermissions
 
-`func (o *UserPermissions) SetAdminPasswordReveal(v map[string]interface{})`
+`func (o *UserPermissions) SetAdminPasswordRevealPermissions(v AdminPasswordRevealPermissions)`
 
-SetAdminPasswordReveal sets AdminPasswordReveal field to given value.
+SetAdminPasswordRevealPermissions sets AdminPasswordRevealPermissions field to given value.
 
+### HasAdminPasswordRevealPermissions
+
+`func (o *UserPermissions) HasAdminPasswordRevealPermissions() bool`
+
+HasAdminPasswordRevealPermissions returns a boolean if a field has been set.
 
 ### GetSpecialPermissions
 
-`func (o *UserPermissions) GetSpecialPermissions() map[string]interface{}`
+`func (o *UserPermissions) GetSpecialPermissions() SpecialPermissions`
 
 GetSpecialPermissions returns the SpecialPermissions field if non-nil, zero value otherwise.
 
 ### GetSpecialPermissionsOk
 
-`func (o *UserPermissions) GetSpecialPermissionsOk() (*map[string]interface{}, bool)`
+`func (o *UserPermissions) GetSpecialPermissionsOk() (*SpecialPermissions, bool)`
 
 GetSpecialPermissionsOk returns a tuple with the SpecialPermissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpecialPermissions
 
-`func (o *UserPermissions) SetSpecialPermissions(v map[string]interface{})`
+`func (o *UserPermissions) SetSpecialPermissions(v SpecialPermissions)`
 
 SetSpecialPermissions sets SpecialPermissions field to given value.
+
+
+### GetRolePermissions
+
+`func (o *UserPermissions) GetRolePermissions() []string`
+
+GetRolePermissions returns the RolePermissions field if non-nil, zero value otherwise.
+
+### GetRolePermissionsOk
+
+`func (o *UserPermissions) GetRolePermissionsOk() (*[]string, bool)`
+
+GetRolePermissionsOk returns a tuple with the RolePermissions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRolePermissions
+
+`func (o *UserPermissions) SetRolePermissions(v []string)`
+
+SetRolePermissions sets RolePermissions field to given value.
 
 
 

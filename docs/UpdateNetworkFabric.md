@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The network fabric name | [optional] 
 **Description** | Pointer to **string** | Network fabric description | [optional] 
-**FabricType** | Pointer to **string** | The type of network fabric | [optional] 
 **FabricConfiguration** | Pointer to [**NetworkFabricFabricConfiguration**](NetworkFabricFabricConfiguration.md) |  | [optional] 
 
 ## Methods
@@ -77,31 +76,6 @@ SetDescription sets Description field to given value.
 `func (o *UpdateNetworkFabric) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
-
-### GetFabricType
-
-`func (o *UpdateNetworkFabric) GetFabricType() string`
-
-GetFabricType returns the FabricType field if non-nil, zero value otherwise.
-
-### GetFabricTypeOk
-
-`func (o *UpdateNetworkFabric) GetFabricTypeOk() (*string, bool)`
-
-GetFabricTypeOk returns a tuple with the FabricType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFabricType
-
-`func (o *UpdateNetworkFabric) SetFabricType(v string)`
-
-SetFabricType sets FabricType field to given value.
-
-### HasFabricType
-
-`func (o *UpdateNetworkFabric) HasFabricType() bool`
-
-HasFabricType returns a boolean if a field has been set.
 
 ### GetFabricConfiguration
 

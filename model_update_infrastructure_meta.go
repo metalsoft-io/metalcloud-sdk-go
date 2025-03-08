@@ -20,17 +20,8 @@ var _ MappedNullable = &UpdateInfrastructureMeta{}
 
 // UpdateInfrastructureMeta struct for UpdateInfrastructureMeta
 type UpdateInfrastructureMeta struct {
-	// Row index of the object.
-	RowIndex *float32 `json:"rowIndex,omitempty"`
-	// Column index of the object.
-	ColumnIndex *float32 `json:"columnIndex,omitempty"`
-	// Whether to show the object children in the GUI.
-	ShowWidgetChildren *bool `json:"showWidgetChildren,omitempty"`
-	// Random instance ID.
-	RandomInstanceID *string `json:"randomInstanceID,omitempty"`
-	// User agent.
-	UserAgent *string `json:"userAgent,omitempty"`
-	// tags.
+	GuiSettings *GenericGUISettings `json:"guiSettings,omitempty"`
+	// Tags for the Infrastructure.
 	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -54,164 +45,36 @@ func NewUpdateInfrastructureMetaWithDefaults() *UpdateInfrastructureMeta {
 	return &this
 }
 
-// GetRowIndex returns the RowIndex field value if set, zero value otherwise.
-func (o *UpdateInfrastructureMeta) GetRowIndex() float32 {
-	if o == nil || IsNil(o.RowIndex) {
-		var ret float32
+// GetGuiSettings returns the GuiSettings field value if set, zero value otherwise.
+func (o *UpdateInfrastructureMeta) GetGuiSettings() GenericGUISettings {
+	if o == nil || IsNil(o.GuiSettings) {
+		var ret GenericGUISettings
 		return ret
 	}
-	return *o.RowIndex
+	return *o.GuiSettings
 }
 
-// GetRowIndexOk returns a tuple with the RowIndex field value if set, nil otherwise
+// GetGuiSettingsOk returns a tuple with the GuiSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInfrastructureMeta) GetRowIndexOk() (*float32, bool) {
-	if o == nil || IsNil(o.RowIndex) {
+func (o *UpdateInfrastructureMeta) GetGuiSettingsOk() (*GenericGUISettings, bool) {
+	if o == nil || IsNil(o.GuiSettings) {
 		return nil, false
 	}
-	return o.RowIndex, true
+	return o.GuiSettings, true
 }
 
-// HasRowIndex returns a boolean if a field has been set.
-func (o *UpdateInfrastructureMeta) HasRowIndex() bool {
-	if o != nil && !IsNil(o.RowIndex) {
+// HasGuiSettings returns a boolean if a field has been set.
+func (o *UpdateInfrastructureMeta) HasGuiSettings() bool {
+	if o != nil && !IsNil(o.GuiSettings) {
 		return true
 	}
 
 	return false
 }
 
-// SetRowIndex gets a reference to the given float32 and assigns it to the RowIndex field.
-func (o *UpdateInfrastructureMeta) SetRowIndex(v float32) {
-	o.RowIndex = &v
-}
-
-// GetColumnIndex returns the ColumnIndex field value if set, zero value otherwise.
-func (o *UpdateInfrastructureMeta) GetColumnIndex() float32 {
-	if o == nil || IsNil(o.ColumnIndex) {
-		var ret float32
-		return ret
-	}
-	return *o.ColumnIndex
-}
-
-// GetColumnIndexOk returns a tuple with the ColumnIndex field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateInfrastructureMeta) GetColumnIndexOk() (*float32, bool) {
-	if o == nil || IsNil(o.ColumnIndex) {
-		return nil, false
-	}
-	return o.ColumnIndex, true
-}
-
-// HasColumnIndex returns a boolean if a field has been set.
-func (o *UpdateInfrastructureMeta) HasColumnIndex() bool {
-	if o != nil && !IsNil(o.ColumnIndex) {
-		return true
-	}
-
-	return false
-}
-
-// SetColumnIndex gets a reference to the given float32 and assigns it to the ColumnIndex field.
-func (o *UpdateInfrastructureMeta) SetColumnIndex(v float32) {
-	o.ColumnIndex = &v
-}
-
-// GetShowWidgetChildren returns the ShowWidgetChildren field value if set, zero value otherwise.
-func (o *UpdateInfrastructureMeta) GetShowWidgetChildren() bool {
-	if o == nil || IsNil(o.ShowWidgetChildren) {
-		var ret bool
-		return ret
-	}
-	return *o.ShowWidgetChildren
-}
-
-// GetShowWidgetChildrenOk returns a tuple with the ShowWidgetChildren field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateInfrastructureMeta) GetShowWidgetChildrenOk() (*bool, bool) {
-	if o == nil || IsNil(o.ShowWidgetChildren) {
-		return nil, false
-	}
-	return o.ShowWidgetChildren, true
-}
-
-// HasShowWidgetChildren returns a boolean if a field has been set.
-func (o *UpdateInfrastructureMeta) HasShowWidgetChildren() bool {
-	if o != nil && !IsNil(o.ShowWidgetChildren) {
-		return true
-	}
-
-	return false
-}
-
-// SetShowWidgetChildren gets a reference to the given bool and assigns it to the ShowWidgetChildren field.
-func (o *UpdateInfrastructureMeta) SetShowWidgetChildren(v bool) {
-	o.ShowWidgetChildren = &v
-}
-
-// GetRandomInstanceID returns the RandomInstanceID field value if set, zero value otherwise.
-func (o *UpdateInfrastructureMeta) GetRandomInstanceID() string {
-	if o == nil || IsNil(o.RandomInstanceID) {
-		var ret string
-		return ret
-	}
-	return *o.RandomInstanceID
-}
-
-// GetRandomInstanceIDOk returns a tuple with the RandomInstanceID field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateInfrastructureMeta) GetRandomInstanceIDOk() (*string, bool) {
-	if o == nil || IsNil(o.RandomInstanceID) {
-		return nil, false
-	}
-	return o.RandomInstanceID, true
-}
-
-// HasRandomInstanceID returns a boolean if a field has been set.
-func (o *UpdateInfrastructureMeta) HasRandomInstanceID() bool {
-	if o != nil && !IsNil(o.RandomInstanceID) {
-		return true
-	}
-
-	return false
-}
-
-// SetRandomInstanceID gets a reference to the given string and assigns it to the RandomInstanceID field.
-func (o *UpdateInfrastructureMeta) SetRandomInstanceID(v string) {
-	o.RandomInstanceID = &v
-}
-
-// GetUserAgent returns the UserAgent field value if set, zero value otherwise.
-func (o *UpdateInfrastructureMeta) GetUserAgent() string {
-	if o == nil || IsNil(o.UserAgent) {
-		var ret string
-		return ret
-	}
-	return *o.UserAgent
-}
-
-// GetUserAgentOk returns a tuple with the UserAgent field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateInfrastructureMeta) GetUserAgentOk() (*string, bool) {
-	if o == nil || IsNil(o.UserAgent) {
-		return nil, false
-	}
-	return o.UserAgent, true
-}
-
-// HasUserAgent returns a boolean if a field has been set.
-func (o *UpdateInfrastructureMeta) HasUserAgent() bool {
-	if o != nil && !IsNil(o.UserAgent) {
-		return true
-	}
-
-	return false
-}
-
-// SetUserAgent gets a reference to the given string and assigns it to the UserAgent field.
-func (o *UpdateInfrastructureMeta) SetUserAgent(v string) {
-	o.UserAgent = &v
+// SetGuiSettings gets a reference to the given GenericGUISettings and assigns it to the GuiSettings field.
+func (o *UpdateInfrastructureMeta) SetGuiSettings(v GenericGUISettings) {
+	o.GuiSettings = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -256,20 +119,8 @@ func (o UpdateInfrastructureMeta) MarshalJSON() ([]byte, error) {
 
 func (o UpdateInfrastructureMeta) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.RowIndex) {
-		toSerialize["rowIndex"] = o.RowIndex
-	}
-	if !IsNil(o.ColumnIndex) {
-		toSerialize["columnIndex"] = o.ColumnIndex
-	}
-	if !IsNil(o.ShowWidgetChildren) {
-		toSerialize["showWidgetChildren"] = o.ShowWidgetChildren
-	}
-	if !IsNil(o.RandomInstanceID) {
-		toSerialize["randomInstanceID"] = o.RandomInstanceID
-	}
-	if !IsNil(o.UserAgent) {
-		toSerialize["userAgent"] = o.UserAgent
+	if !IsNil(o.GuiSettings) {
+		toSerialize["guiSettings"] = o.GuiSettings
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
@@ -296,11 +147,7 @@ func (o *UpdateInfrastructureMeta) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "rowIndex")
-		delete(additionalProperties, "columnIndex")
-		delete(additionalProperties, "showWidgetChildren")
-		delete(additionalProperties, "randomInstanceID")
-		delete(additionalProperties, "userAgent")
+		delete(additionalProperties, "guiSettings")
 		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}

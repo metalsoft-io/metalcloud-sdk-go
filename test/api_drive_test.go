@@ -22,6 +22,34 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test DriveAPIService CreateDrive", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+
+		resp, httpRes, err := apiClient.DriveAPI.CreateDrive(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DriveAPIService DeleteDrive", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveId float32
+
+		httpRes, err := apiClient.DriveAPI.DeleteDrive(context.Background(), infrastructureId, driveId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DriveAPIService GetDrive", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -29,6 +57,21 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 		var driveId float32
 
 		resp, httpRes, err := apiClient.DriveAPI.GetDrive(context.Background(), driveId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DriveAPIService GetDriveConfigInfo", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveId float32
+
+		resp, httpRes, err := apiClient.DriveAPI.GetDriveConfigInfo(context.Background(), infrastructureId, driveId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -58,6 +101,36 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 		var infrastructureId float32
 
 		resp, httpRes, err := apiClient.DriveAPI.GetInfrastructureDrives(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DriveAPIService PatchDriveConfig", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveId float32
+
+		resp, httpRes, err := apiClient.DriveAPI.PatchDriveConfig(context.Background(), infrastructureId, driveId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DriveAPIService PatchDriveMeta", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveId float32
+
+		resp, httpRes, err := apiClient.DriveAPI.PatchDriveMeta(context.Background(), infrastructureId, driveId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

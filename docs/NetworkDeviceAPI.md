@@ -6,11 +6,12 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AddNetworkDeviceDefaults**](NetworkDeviceAPI.md#AddNetworkDeviceDefaults) | **Post** /api/v2/network-devices/defaults | Add network device defaults
 [**ChangeNetworkDeviceStatus**](NetworkDeviceAPI.md#ChangeNetworkDeviceStatus) | **Patch** /api/v2/network-devices/{networkDeviceId}/actions/change-status | Change status of a network device
-[**DiscoverNetworkDevice**](NetworkDeviceAPI.md#DiscoverNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/discover | Discover network device interfaces, hardware and software configuration
+[**DiscoverNetworkDevice**](NetworkDeviceAPI.md#DiscoverNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/discover | Discover network device interfaces, hardware and software configuration
 [**EnableNetworkDeviceSyslog**](NetworkDeviceAPI.md#EnableNetworkDeviceSyslog) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/syslog-subscribe | Enables remote syslog for a network device
 [**GetNetworkDevice**](NetworkDeviceAPI.md#GetNetworkDevice) | **Get** /api/v2/network-devices/{networkDeviceId} | Get Network Device
 [**GetNetworkDeviceDefaults**](NetworkDeviceAPI.md#GetNetworkDeviceDefaults) | **Get** /api/v2/network-devices/defaults/{datacenterName} | Get network device defaults for a datacenter
-[**GetNetworkDevicePorts**](NetworkDeviceAPI.md#GetNetworkDevicePorts) | **Get** /api/v2/network-devices/{networkDeviceId}/ports | Get all ports for network device
+[**GetNetworkDeviceInventoryPorts**](NetworkDeviceAPI.md#GetNetworkDeviceInventoryPorts) | **Get** /api/v2/network-devices/{networkDeviceId}/ports | Get all ports for network device from the inventory (cached)
+[**GetNetworkDevicePorts**](NetworkDeviceAPI.md#GetNetworkDevicePorts) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Get port statistics for network device directly from the device
 [**GetNetworkDevices**](NetworkDeviceAPI.md#GetNetworkDevices) | **Get** /api/v2/network-devices | Get paginated Network Devices
 [**NetworkDeviceControllerAddTagsToNetworkDevice**](NetworkDeviceAPI.md#NetworkDeviceControllerAddTagsToNetworkDevice) | **Post** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Add tags to Network Device
 [**NetworkDeviceControllerCreateNetworkDevice**](NetworkDeviceAPI.md#NetworkDeviceControllerCreateNetworkDevice) | **Post** /api/v2/network-devices | Create Network Device
@@ -436,11 +437,77 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetNetworkDeviceInventoryPorts
+
+> GetNetworkDeviceInventoryPorts(ctx, networkDeviceId).Execute()
+
+Get all ports for network device from the inventory (cached)
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceInventoryPorts(context.Background(), networkDeviceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDeviceInventoryPorts``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetNetworkDeviceInventoryPortsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetNetworkDevicePorts
 
 > GetNetworkDevicePorts(ctx, networkDeviceId).Execute()
 
-Get all ports for network device
+Get port statistics for network device directly from the device
 
 ### Example
 
@@ -681,7 +748,7 @@ import (
 )
 
 func main() {
-	createNetworkDevice := *openapiclient.NewCreateNetworkDevice("DatacenterName_example", "ProvisionerType_example", "Driver_example", "Position_example") // CreateNetworkDevice | The Network Device create object
+	createNetworkDevice := *openapiclient.NewCreateNetworkDevice(openapiclient.NetworkDeviceDriver("cisco_aci51"), "leaf") // CreateNetworkDevice | The Network Device create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

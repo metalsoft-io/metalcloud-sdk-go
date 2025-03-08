@@ -228,110 +228,7 @@ func (a *LogicalNetworksAPIService) DeleteLogicalNetworkExecute(r LogicalNetwork
 	return localVarHTTPResponse, nil
 }
 
-type LogicalNetworksAPIGetLogicalNetworkByIdRequest struct {
-	ctx context.Context
-	ApiService *LogicalNetworksAPIService
-	logicalNetworkId float32
-}
-
-func (r LogicalNetworksAPIGetLogicalNetworkByIdRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.GetLogicalNetworkByIdExecute(r)
-}
-
-/*
-GetLogicalNetworkById Get a logical network by ID
-
-Returns a logical network by ID
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param logicalNetworkId
- @return LogicalNetworksAPIGetLogicalNetworkByIdRequest
-*/
-func (a *LogicalNetworksAPIService) GetLogicalNetworkById(ctx context.Context, logicalNetworkId float32) LogicalNetworksAPIGetLogicalNetworkByIdRequest {
-	return LogicalNetworksAPIGetLogicalNetworkByIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		logicalNetworkId: logicalNetworkId,
-	}
-}
-
-// Execute executes the request
-//  @return map[string]interface{}
-func (a *LogicalNetworksAPIService) GetLogicalNetworkByIdExecute(r LogicalNetworksAPIGetLogicalNetworkByIdRequest) (map[string]interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworksAPIService.GetLogicalNetworkById")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/logical-networks/{logicalNetworkId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"logicalNetworkId"+"}", url.PathEscape(parameterValueToString(r.logicalNetworkId, "logicalNetworkId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type LogicalNetworksAPIGetLogicalNetworksRequest struct {
+type LogicalNetworksAPIGetAllLogicalNetworksRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworksAPIService
 	page *float32
@@ -349,91 +246,91 @@ type LogicalNetworksAPIGetLogicalNetworksRequest struct {
 }
 
 // Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
-func (r LogicalNetworksAPIGetLogicalNetworksRequest) Page(page float32) LogicalNetworksAPIGetLogicalNetworksRequest {
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) Page(page float32) LogicalNetworksAPIGetAllLogicalNetworksRequest {
 	r.page = &page
 	return r
 }
 
 // Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
-func (r LogicalNetworksAPIGetLogicalNetworksRequest) Limit(limit float32) LogicalNetworksAPIGetLogicalNetworksRequest {
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) Limit(limit float32) LogicalNetworksAPIGetAllLogicalNetworksRequest {
 	r.limit = &limit
 	return r
 }
 
 // Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r LogicalNetworksAPIGetLogicalNetworksRequest) FilterId(filterId []string) LogicalNetworksAPIGetLogicalNetworksRequest {
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) FilterId(filterId []string) LogicalNetworksAPIGetAllLogicalNetworksRequest {
 	r.filterId = &filterId
 	return r
 }
 
 // Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r LogicalNetworksAPIGetLogicalNetworksRequest) FilterLabel(filterLabel []string) LogicalNetworksAPIGetLogicalNetworksRequest {
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) FilterLabel(filterLabel []string) LogicalNetworksAPIGetAllLogicalNetworksRequest {
 	r.filterLabel = &filterLabel
 	return r
 }
 
 // Filter by name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.name&#x3D;$not:$like:John Doe&amp;filter.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r LogicalNetworksAPIGetLogicalNetworksRequest) FilterName(filterName []string) LogicalNetworksAPIGetLogicalNetworksRequest {
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) FilterName(filterName []string) LogicalNetworksAPIGetAllLogicalNetworksRequest {
 	r.filterName = &filterName
 	return r
 }
 
 // Filter by description query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.description&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.description&#x3D;$not:$like:John Doe&amp;filter.description&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r LogicalNetworksAPIGetLogicalNetworksRequest) FilterDescription(filterDescription []string) LogicalNetworksAPIGetLogicalNetworksRequest {
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) FilterDescription(filterDescription []string) LogicalNetworksAPIGetAllLogicalNetworksRequest {
 	r.filterDescription = &filterDescription
 	return r
 }
 
 // Filter by fabricId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.fabricId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.fabricId&#x3D;$not:$like:John Doe&amp;filter.fabricId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r LogicalNetworksAPIGetLogicalNetworksRequest) FilterFabricId(filterFabricId []string) LogicalNetworksAPIGetLogicalNetworksRequest {
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) FilterFabricId(filterFabricId []string) LogicalNetworksAPIGetAllLogicalNetworksRequest {
 	r.filterFabricId = &filterFabricId
 	return r
 }
 
 // Filter by infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r LogicalNetworksAPIGetLogicalNetworksRequest) FilterInfrastructureId(filterInfrastructureId []string) LogicalNetworksAPIGetLogicalNetworksRequest {
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) FilterInfrastructureId(filterInfrastructureId []string) LogicalNetworksAPIGetAllLogicalNetworksRequest {
 	r.filterInfrastructureId = &filterInfrastructureId
 	return r
 }
 
 // Filter by logicalNetworkType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.logicalNetworkType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.logicalNetworkType&#x3D;$not:$like:John Doe&amp;filter.logicalNetworkType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r LogicalNetworksAPIGetLogicalNetworksRequest) FilterLogicalNetworkType(filterLogicalNetworkType []string) LogicalNetworksAPIGetLogicalNetworksRequest {
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) FilterLogicalNetworkType(filterLogicalNetworkType []string) LogicalNetworksAPIGetAllLogicalNetworksRequest {
 	r.filterLogicalNetworkType = &filterLogicalNetworkType
 	return r
 }
 
 // Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;fabricId&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt;&lt;/ul&gt;       
-func (r LogicalNetworksAPIGetLogicalNetworksRequest) SortBy(sortBy []string) LogicalNetworksAPIGetLogicalNetworksRequest {
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) SortBy(sortBy []string) LogicalNetworksAPIGetAllLogicalNetworksRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
 // Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
-func (r LogicalNetworksAPIGetLogicalNetworksRequest) Search(search string) LogicalNetworksAPIGetLogicalNetworksRequest {
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) Search(search string) LogicalNetworksAPIGetAllLogicalNetworksRequest {
 	r.search = &search
 	return r
 }
 
 // List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; label,name,description           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;label&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;description&lt;/li&gt;&lt;/ul&gt;         
-func (r LogicalNetworksAPIGetLogicalNetworksRequest) SearchBy(searchBy []string) LogicalNetworksAPIGetLogicalNetworksRequest {
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) SearchBy(searchBy []string) LogicalNetworksAPIGetAllLogicalNetworksRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-func (r LogicalNetworksAPIGetLogicalNetworksRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.GetLogicalNetworksExecute(r)
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.GetAllLogicalNetworksExecute(r)
 }
 
 /*
-GetLogicalNetworks Get all logical networks
+GetAllLogicalNetworks Get all logical networks
 
 Returns a list of all Logical Networks
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return LogicalNetworksAPIGetLogicalNetworksRequest
+ @return LogicalNetworksAPIGetAllLogicalNetworksRequest
 */
-func (a *LogicalNetworksAPIService) GetLogicalNetworks(ctx context.Context) LogicalNetworksAPIGetLogicalNetworksRequest {
-	return LogicalNetworksAPIGetLogicalNetworksRequest{
+func (a *LogicalNetworksAPIService) GetAllLogicalNetworks(ctx context.Context) LogicalNetworksAPIGetAllLogicalNetworksRequest {
+	return LogicalNetworksAPIGetAllLogicalNetworksRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -441,7 +338,7 @@ func (a *LogicalNetworksAPIService) GetLogicalNetworks(ctx context.Context) Logi
 
 // Execute executes the request
 //  @return map[string]interface{}
-func (a *LogicalNetworksAPIService) GetLogicalNetworksExecute(r LogicalNetworksAPIGetLogicalNetworksRequest) (map[string]interface{}, *http.Response, error) {
+func (a *LogicalNetworksAPIService) GetAllLogicalNetworksExecute(r LogicalNetworksAPIGetAllLogicalNetworksRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -449,7 +346,7 @@ func (a *LogicalNetworksAPIService) GetLogicalNetworksExecute(r LogicalNetworksA
 		localVarReturnValue  map[string]interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworksAPIService.GetLogicalNetworks")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworksAPIService.GetAllLogicalNetworks")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -568,6 +465,109 @@ func (a *LogicalNetworksAPIService) GetLogicalNetworksExecute(r LogicalNetworksA
 			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
 		}
 	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type LogicalNetworksAPIGetLogicalNetworkByIdRequest struct {
+	ctx context.Context
+	ApiService *LogicalNetworksAPIService
+	logicalNetworkId float32
+}
+
+func (r LogicalNetworksAPIGetLogicalNetworkByIdRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.GetLogicalNetworkByIdExecute(r)
+}
+
+/*
+GetLogicalNetworkById Get a logical network by ID
+
+Returns a logical network by ID
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param logicalNetworkId
+ @return LogicalNetworksAPIGetLogicalNetworkByIdRequest
+*/
+func (a *LogicalNetworksAPIService) GetLogicalNetworkById(ctx context.Context, logicalNetworkId float32) LogicalNetworksAPIGetLogicalNetworkByIdRequest {
+	return LogicalNetworksAPIGetLogicalNetworkByIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		logicalNetworkId: logicalNetworkId,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]interface{}
+func (a *LogicalNetworksAPIService) GetLogicalNetworkByIdExecute(r LogicalNetworksAPIGetLogicalNetworkByIdRequest) (map[string]interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworksAPIService.GetLogicalNetworkById")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/logical-networks/{logicalNetworkId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"logicalNetworkId"+"}", url.PathEscape(parameterValueToString(r.logicalNetworkId, "logicalNetworkId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

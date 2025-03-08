@@ -77,7 +77,7 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var networkFabricId float32
+		var networkFabricId int32
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.UpdateNetworkFabric(context.Background(), networkFabricId).Execute()
 

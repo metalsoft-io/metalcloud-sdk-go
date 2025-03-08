@@ -23,6 +23,8 @@ var _ MappedNullable = &ServerAllocationInfo{}
 type ServerAllocationInfo struct {
 	// The id of the instance.
 	InstanceId float32 `json:"instanceId"`
+	// The id of the extension instance.
+	ExtensionInstanceId *float32 `json:"extensionInstanceId,omitempty"`
 	// The infrastructure of the instance.
 	Infrastructure map[string]interface{} `json:"infrastructure"`
 	// The volume template of the instance.
@@ -73,6 +75,38 @@ func (o *ServerAllocationInfo) GetInstanceIdOk() (*float32, bool) {
 // SetInstanceId sets field value
 func (o *ServerAllocationInfo) SetInstanceId(v float32) {
 	o.InstanceId = v
+}
+
+// GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise.
+func (o *ServerAllocationInfo) GetExtensionInstanceId() float32 {
+	if o == nil || IsNil(o.ExtensionInstanceId) {
+		var ret float32
+		return ret
+	}
+	return *o.ExtensionInstanceId
+}
+
+// GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerAllocationInfo) GetExtensionInstanceIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.ExtensionInstanceId) {
+		return nil, false
+	}
+	return o.ExtensionInstanceId, true
+}
+
+// HasExtensionInstanceId returns a boolean if a field has been set.
+func (o *ServerAllocationInfo) HasExtensionInstanceId() bool {
+	if o != nil && !IsNil(o.ExtensionInstanceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensionInstanceId gets a reference to the given float32 and assigns it to the ExtensionInstanceId field.
+func (o *ServerAllocationInfo) SetExtensionInstanceId(v float32) {
+	o.ExtensionInstanceId = &v
 }
 
 // GetInfrastructure returns the Infrastructure field value
@@ -142,6 +176,9 @@ func (o ServerAllocationInfo) MarshalJSON() ([]byte, error) {
 func (o ServerAllocationInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["instanceId"] = o.InstanceId
+	if !IsNil(o.ExtensionInstanceId) {
+		toSerialize["extensionInstanceId"] = o.ExtensionInstanceId
+	}
 	toSerialize["infrastructure"] = o.Infrastructure
 	if !IsNil(o.VolumeTemplate) {
 		toSerialize["volumeTemplate"] = o.VolumeTemplate
@@ -191,6 +228,7 @@ func (o *ServerAllocationInfo) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "instanceId")
+		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "infrastructure")
 		delete(additionalProperties, "volumeTemplate")
 		o.AdditionalProperties = additionalProperties

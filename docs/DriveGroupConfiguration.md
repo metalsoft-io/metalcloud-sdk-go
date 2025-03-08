@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **TemplateId** | Pointer to **float32** | Template Id | [optional] 
 **DriveCount** | **float32** | Number of drives in the Drive Group | 
 **DriveSizeMbDefault** | **float32** | Default disk size in MB for new Drives in the Drive Group | 
-**InstanceArrayId** | Pointer to **float32** |  | [optional] 
+**ServerInstanceGroupId** | Pointer to **float32** |  | [optional] 
 **ContainerArrayId** | Pointer to **float32** |  | [optional] 
-**ExpandWithInstanceArray** | **float32** | Flag to determine whether the Drive Group should be expanded with an Instance Array by adding one drive for each instance | 
+**ExpandWithServerInstanceGroup** | **float32** | Flag to determine whether the Drive Group should be expanded with a Server Instance Group by adding one drive for each instance | 
 **IoLimitPolicy** | Pointer to **string** | The IO limit policy of the Drive Group. | [optional] 
 **StorageType** | **string** | Service status of the Drive Group | [default to "iscsi_ssd"]
 **FilesystemInfo** | Pointer to **map[string]interface{}** | Filesystem information of the Drive Group. | [optional] 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewDriveGroupConfiguration
 
-`func NewDriveGroupConfiguration(revision float32, label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithInstanceArray float32, storageType string, updatedTimestamp string, deployType string, deployStatus string, ) *DriveGroupConfiguration`
+`func NewDriveGroupConfiguration(revision float32, label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithServerInstanceGroup float32, storageType string, updatedTimestamp string, deployType string, deployStatus string, ) *DriveGroupConfiguration`
 
 NewDriveGroupConfiguration instantiates a new DriveGroupConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -167,30 +167,30 @@ and a boolean to check if the value has been set.
 SetDriveSizeMbDefault sets DriveSizeMbDefault field to given value.
 
 
-### GetInstanceArrayId
+### GetServerInstanceGroupId
 
-`func (o *DriveGroupConfiguration) GetInstanceArrayId() float32`
+`func (o *DriveGroupConfiguration) GetServerInstanceGroupId() float32`
 
-GetInstanceArrayId returns the InstanceArrayId field if non-nil, zero value otherwise.
+GetServerInstanceGroupId returns the ServerInstanceGroupId field if non-nil, zero value otherwise.
 
-### GetInstanceArrayIdOk
+### GetServerInstanceGroupIdOk
 
-`func (o *DriveGroupConfiguration) GetInstanceArrayIdOk() (*float32, bool)`
+`func (o *DriveGroupConfiguration) GetServerInstanceGroupIdOk() (*float32, bool)`
 
-GetInstanceArrayIdOk returns a tuple with the InstanceArrayId field if it's non-nil, zero value otherwise
+GetServerInstanceGroupIdOk returns a tuple with the ServerInstanceGroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInstanceArrayId
+### SetServerInstanceGroupId
 
-`func (o *DriveGroupConfiguration) SetInstanceArrayId(v float32)`
+`func (o *DriveGroupConfiguration) SetServerInstanceGroupId(v float32)`
 
-SetInstanceArrayId sets InstanceArrayId field to given value.
+SetServerInstanceGroupId sets ServerInstanceGroupId field to given value.
 
-### HasInstanceArrayId
+### HasServerInstanceGroupId
 
-`func (o *DriveGroupConfiguration) HasInstanceArrayId() bool`
+`func (o *DriveGroupConfiguration) HasServerInstanceGroupId() bool`
 
-HasInstanceArrayId returns a boolean if a field has been set.
+HasServerInstanceGroupId returns a boolean if a field has been set.
 
 ### GetContainerArrayId
 
@@ -217,24 +217,24 @@ SetContainerArrayId sets ContainerArrayId field to given value.
 
 HasContainerArrayId returns a boolean if a field has been set.
 
-### GetExpandWithInstanceArray
+### GetExpandWithServerInstanceGroup
 
-`func (o *DriveGroupConfiguration) GetExpandWithInstanceArray() float32`
+`func (o *DriveGroupConfiguration) GetExpandWithServerInstanceGroup() float32`
 
-GetExpandWithInstanceArray returns the ExpandWithInstanceArray field if non-nil, zero value otherwise.
+GetExpandWithServerInstanceGroup returns the ExpandWithServerInstanceGroup field if non-nil, zero value otherwise.
 
-### GetExpandWithInstanceArrayOk
+### GetExpandWithServerInstanceGroupOk
 
-`func (o *DriveGroupConfiguration) GetExpandWithInstanceArrayOk() (*float32, bool)`
+`func (o *DriveGroupConfiguration) GetExpandWithServerInstanceGroupOk() (*float32, bool)`
 
-GetExpandWithInstanceArrayOk returns a tuple with the ExpandWithInstanceArray field if it's non-nil, zero value otherwise
+GetExpandWithServerInstanceGroupOk returns a tuple with the ExpandWithServerInstanceGroup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetExpandWithInstanceArray
+### SetExpandWithServerInstanceGroup
 
-`func (o *DriveGroupConfiguration) SetExpandWithInstanceArray(v float32)`
+`func (o *DriveGroupConfiguration) SetExpandWithServerInstanceGroup(v float32)`
 
-SetExpandWithInstanceArray sets ExpandWithInstanceArray field to given value.
+SetExpandWithServerInstanceGroup sets ExpandWithServerInstanceGroup field to given value.
 
 
 ### GetIoLimitPolicy

@@ -21,39 +21,37 @@ var _ MappedNullable = &VMInstanceGroup{}
 
 // VMInstanceGroup struct for VMInstanceGroup
 type VMInstanceGroup struct {
+	// Name of the VM Instance Group.
+	Label string `json:"label"`
+	// Subdomain of the VM Instance Group.
+	Subdomain *string `json:"subdomain,omitempty"`
+	InstanceCount *float32 `json:"instanceCount,omitempty"`
+	// Custom variables for the VM Instance Group.
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
+	// Timestamp of the VM Instance Group last update.
+	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Id of the VM Instance Group.
 	Id float32 `json:"id"`
+	// Revision of the VM Instance Group State
+	Revision float32 `json:"revision"`
 	// Id of the Infrastructure.
 	InfrastructureId float32 `json:"infrastructureId"`
 	// Status of the VM Instance Group.
 	ServiceStatus string `json:"serviceStatus"`
-	// Id of the VM Instance Group change object.
-	ChangeId float32 `json:"changeId"`
-	// Name of the VM Instance Group.
-	Label string `json:"label"`
-	// Number of VM instances in the VM Instance Group.
-	InstanceCount float32 `json:"instanceCount"`
-	// Timestamp of the VM Instance Group creation.
-	CreatedTimestamp string `json:"createdTimestamp"`
-	// Timestamp of the VM Instance Group update.
-	UpdatedTimestamp string `json:"updatedTimestamp"`
-	// Operation object for the VM Instance Group.
-	Operation map[string]interface{} `json:"operation"`
-	// Array of VM instances in the VM Instance Group.
-	VmInstance []VMInstance `json:"vmInstance"`
-	// Tags for the VM Instance Group.
-	Tags []string `json:"tags,omitempty"`
 	// Disk size in GB for each VM Instance in the VM Instance Group.
 	DiskSizeGB float32 `json:"diskSizeGB"`
-	// Id of the template used by the VM Instance Group.
-	VolumeTemplateId *float32 `json:"volumeTemplateId,omitempty"`
-	// Interfaces for the VM Instance Group
-	VmInstanceGroupInterfaces []VMInstanceGroupInterface `json:"vmInstanceGroupInterfaces,omitempty"`
-	// Network Id to Network Profile Id for the VM Instance Group. This is a JSON object.
-	NetworkIdToNetworkProfileId map[string]interface{} `json:"networkIdToNetworkProfileId,omitempty"`
-	// Custom variables for the VM Instance.
-	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
-	GuiSettings *GenericGUISettings `json:"guiSettings,omitempty"`
+	// Subdomain permanent of the VM Instance Group.
+	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
+	// Id of the DNS subdomain for the VM Instance Group.
+	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
+	// Id of the permanent DNS subdomain for the VM Instance Group.
+	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
+	// Timestamp of the VM Instance Group creation.
+	CreatedTimestamp string `json:"createdTimestamp"`
+	// The current changes to be deployed for the VM Instance Group.
+	Config VMInstanceGroupConfiguration `json:"config"`
+	// Meta information of the VM Instance Group.
+	Meta VMInstanceGroupMeta `json:"meta"`
 	// Links to other resources
 	Links map[string]interface{} `json:"links"`
 	AdditionalProperties map[string]interface{}
@@ -65,19 +63,20 @@ type _VMInstanceGroup VMInstanceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstanceGroup(id float32, infrastructureId float32, serviceStatus string, changeId float32, label string, instanceCount float32, createdTimestamp string, updatedTimestamp string, operation map[string]interface{}, vmInstance []VMInstance, diskSizeGB float32, links map[string]interface{}) *VMInstanceGroup {
+func NewVMInstanceGroup(label string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, diskSizeGB float32, createdTimestamp string, config VMInstanceGroupConfiguration, meta VMInstanceGroupMeta, links map[string]interface{}) *VMInstanceGroup {
 	this := VMInstanceGroup{}
+	this.Label = label
+	var instanceCount float32 = 1
+	this.InstanceCount = &instanceCount
+	this.UpdatedTimestamp = updatedTimestamp
 	this.Id = id
+	this.Revision = revision
 	this.InfrastructureId = infrastructureId
 	this.ServiceStatus = serviceStatus
-	this.ChangeId = changeId
-	this.Label = label
-	this.InstanceCount = instanceCount
-	this.CreatedTimestamp = createdTimestamp
-	this.UpdatedTimestamp = updatedTimestamp
-	this.Operation = operation
-	this.VmInstance = vmInstance
 	this.DiskSizeGB = diskSizeGB
+	this.CreatedTimestamp = createdTimestamp
+	this.Config = config
+	this.Meta = meta
 	this.Links = links
 	return &this
 }
@@ -87,7 +86,153 @@ func NewVMInstanceGroup(id float32, infrastructureId float32, serviceStatus stri
 // but it doesn't guarantee that properties required by API are set
 func NewVMInstanceGroupWithDefaults() *VMInstanceGroup {
 	this := VMInstanceGroup{}
+	var instanceCount float32 = 1
+	this.InstanceCount = &instanceCount
 	return &this
+}
+
+// GetLabel returns the Label field value
+func (o *VMInstanceGroup) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *VMInstanceGroup) GetLabelOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *VMInstanceGroup) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetSubdomain returns the Subdomain field value if set, zero value otherwise.
+func (o *VMInstanceGroup) GetSubdomain() string {
+	if o == nil || IsNil(o.Subdomain) {
+		var ret string
+		return ret
+	}
+	return *o.Subdomain
+}
+
+// GetSubdomainOk returns a tuple with the Subdomain field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMInstanceGroup) GetSubdomainOk() (*string, bool) {
+	if o == nil || IsNil(o.Subdomain) {
+		return nil, false
+	}
+	return o.Subdomain, true
+}
+
+// HasSubdomain returns a boolean if a field has been set.
+func (o *VMInstanceGroup) HasSubdomain() bool {
+	if o != nil && !IsNil(o.Subdomain) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubdomain gets a reference to the given string and assigns it to the Subdomain field.
+func (o *VMInstanceGroup) SetSubdomain(v string) {
+	o.Subdomain = &v
+}
+
+// GetInstanceCount returns the InstanceCount field value if set, zero value otherwise.
+func (o *VMInstanceGroup) GetInstanceCount() float32 {
+	if o == nil || IsNil(o.InstanceCount) {
+		var ret float32
+		return ret
+	}
+	return *o.InstanceCount
+}
+
+// GetInstanceCountOk returns a tuple with the InstanceCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMInstanceGroup) GetInstanceCountOk() (*float32, bool) {
+	if o == nil || IsNil(o.InstanceCount) {
+		return nil, false
+	}
+	return o.InstanceCount, true
+}
+
+// HasInstanceCount returns a boolean if a field has been set.
+func (o *VMInstanceGroup) HasInstanceCount() bool {
+	if o != nil && !IsNil(o.InstanceCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceCount gets a reference to the given float32 and assigns it to the InstanceCount field.
+func (o *VMInstanceGroup) SetInstanceCount(v float32) {
+	o.InstanceCount = &v
+}
+
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *VMInstanceGroup) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMInstanceGroup) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *VMInstanceGroup) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *VMInstanceGroup) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
+}
+
+// GetUpdatedTimestamp returns the UpdatedTimestamp field value
+func (o *VMInstanceGroup) GetUpdatedTimestamp() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UpdatedTimestamp
+}
+
+// GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field value
+// and a boolean to check if the value has been set.
+func (o *VMInstanceGroup) GetUpdatedTimestampOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdatedTimestamp, true
+}
+
+// SetUpdatedTimestamp sets field value
+func (o *VMInstanceGroup) SetUpdatedTimestamp(v string) {
+	o.UpdatedTimestamp = v
 }
 
 // GetId returns the Id field value
@@ -112,6 +257,30 @@ func (o *VMInstanceGroup) GetIdOk() (*float32, bool) {
 // SetId sets field value
 func (o *VMInstanceGroup) SetId(v float32) {
 	o.Id = v
+}
+
+// GetRevision returns the Revision field value
+func (o *VMInstanceGroup) GetRevision() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Revision
+}
+
+// GetRevisionOk returns a tuple with the Revision field value
+// and a boolean to check if the value has been set.
+func (o *VMInstanceGroup) GetRevisionOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Revision, true
+}
+
+// SetRevision sets field value
+func (o *VMInstanceGroup) SetRevision(v float32) {
+	o.Revision = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
@@ -162,76 +331,124 @@ func (o *VMInstanceGroup) SetServiceStatus(v string) {
 	o.ServiceStatus = v
 }
 
-// GetChangeId returns the ChangeId field value
-func (o *VMInstanceGroup) GetChangeId() float32 {
+// GetDiskSizeGB returns the DiskSizeGB field value
+func (o *VMInstanceGroup) GetDiskSizeGB() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.ChangeId
+	return o.DiskSizeGB
 }
 
-// GetChangeIdOk returns a tuple with the ChangeId field value
+// GetDiskSizeGBOk returns a tuple with the DiskSizeGB field value
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetChangeIdOk() (*float32, bool) {
+func (o *VMInstanceGroup) GetDiskSizeGBOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ChangeId, true
+	return &o.DiskSizeGB, true
 }
 
-// SetChangeId sets field value
-func (o *VMInstanceGroup) SetChangeId(v float32) {
-	o.ChangeId = v
+// SetDiskSizeGB sets field value
+func (o *VMInstanceGroup) SetDiskSizeGB(v float32) {
+	o.DiskSizeGB = v
 }
 
-// GetLabel returns the Label field value
-func (o *VMInstanceGroup) GetLabel() string {
-	if o == nil {
+// GetSubdomainPermanent returns the SubdomainPermanent field value if set, zero value otherwise.
+func (o *VMInstanceGroup) GetSubdomainPermanent() string {
+	if o == nil || IsNil(o.SubdomainPermanent) {
 		var ret string
 		return ret
 	}
-
-	return o.Label
+	return *o.SubdomainPermanent
 }
 
-// GetLabelOk returns a tuple with the Label field value
+// GetSubdomainPermanentOk returns a tuple with the SubdomainPermanent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetLabelOk() (*string, bool) {
-	if o == nil {
+func (o *VMInstanceGroup) GetSubdomainPermanentOk() (*string, bool) {
+	if o == nil || IsNil(o.SubdomainPermanent) {
 		return nil, false
 	}
-	return &o.Label, true
+	return o.SubdomainPermanent, true
 }
 
-// SetLabel sets field value
-func (o *VMInstanceGroup) SetLabel(v string) {
-	o.Label = v
+// HasSubdomainPermanent returns a boolean if a field has been set.
+func (o *VMInstanceGroup) HasSubdomainPermanent() bool {
+	if o != nil && !IsNil(o.SubdomainPermanent) {
+		return true
+	}
+
+	return false
 }
 
-// GetInstanceCount returns the InstanceCount field value
-func (o *VMInstanceGroup) GetInstanceCount() float32 {
-	if o == nil {
+// SetSubdomainPermanent gets a reference to the given string and assigns it to the SubdomainPermanent field.
+func (o *VMInstanceGroup) SetSubdomainPermanent(v string) {
+	o.SubdomainPermanent = &v
+}
+
+// GetDnsSubdomainId returns the DnsSubdomainId field value if set, zero value otherwise.
+func (o *VMInstanceGroup) GetDnsSubdomainId() float32 {
+	if o == nil || IsNil(o.DnsSubdomainId) {
 		var ret float32
 		return ret
 	}
-
-	return o.InstanceCount
+	return *o.DnsSubdomainId
 }
 
-// GetInstanceCountOk returns a tuple with the InstanceCount field value
+// GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetInstanceCountOk() (*float32, bool) {
-	if o == nil {
+func (o *VMInstanceGroup) GetDnsSubdomainIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.DnsSubdomainId) {
 		return nil, false
 	}
-	return &o.InstanceCount, true
+	return o.DnsSubdomainId, true
 }
 
-// SetInstanceCount sets field value
-func (o *VMInstanceGroup) SetInstanceCount(v float32) {
-	o.InstanceCount = v
+// HasDnsSubdomainId returns a boolean if a field has been set.
+func (o *VMInstanceGroup) HasDnsSubdomainId() bool {
+	if o != nil && !IsNil(o.DnsSubdomainId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDnsSubdomainId gets a reference to the given float32 and assigns it to the DnsSubdomainId field.
+func (o *VMInstanceGroup) SetDnsSubdomainId(v float32) {
+	o.DnsSubdomainId = &v
+}
+
+// GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field value if set, zero value otherwise.
+func (o *VMInstanceGroup) GetDnsSubdomainPermanentId() float32 {
+	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
+		var ret float32
+		return ret
+	}
+	return *o.DnsSubdomainPermanentId
+}
+
+// GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMInstanceGroup) GetDnsSubdomainPermanentIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
+		return nil, false
+	}
+	return o.DnsSubdomainPermanentId, true
+}
+
+// HasDnsSubdomainPermanentId returns a boolean if a field has been set.
+func (o *VMInstanceGroup) HasDnsSubdomainPermanentId() bool {
+	if o != nil && !IsNil(o.DnsSubdomainPermanentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDnsSubdomainPermanentId gets a reference to the given float32 and assigns it to the DnsSubdomainPermanentId field.
+func (o *VMInstanceGroup) SetDnsSubdomainPermanentId(v float32) {
+	o.DnsSubdomainPermanentId = &v
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
@@ -258,292 +475,52 @@ func (o *VMInstanceGroup) SetCreatedTimestamp(v string) {
 	o.CreatedTimestamp = v
 }
 
-// GetUpdatedTimestamp returns the UpdatedTimestamp field value
-func (o *VMInstanceGroup) GetUpdatedTimestamp() string {
+// GetConfig returns the Config field value
+func (o *VMInstanceGroup) GetConfig() VMInstanceGroupConfiguration {
 	if o == nil {
-		var ret string
+		var ret VMInstanceGroupConfiguration
 		return ret
 	}
 
-	return o.UpdatedTimestamp
+	return o.Config
 }
 
-// GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field value
+// GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetUpdatedTimestampOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UpdatedTimestamp, true
-}
-
-// SetUpdatedTimestamp sets field value
-func (o *VMInstanceGroup) SetUpdatedTimestamp(v string) {
-	o.UpdatedTimestamp = v
-}
-
-// GetOperation returns the Operation field value
-func (o *VMInstanceGroup) GetOperation() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-
-	return o.Operation
-}
-
-// GetOperationOk returns a tuple with the Operation field value
-// and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetOperationOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
-	}
-	return o.Operation, true
-}
-
-// SetOperation sets field value
-func (o *VMInstanceGroup) SetOperation(v map[string]interface{}) {
-	o.Operation = v
-}
-
-// GetVmInstance returns the VmInstance field value
-func (o *VMInstanceGroup) GetVmInstance() []VMInstance {
-	if o == nil {
-		var ret []VMInstance
-		return ret
-	}
-
-	return o.VmInstance
-}
-
-// GetVmInstanceOk returns a tuple with the VmInstance field value
-// and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetVmInstanceOk() ([]VMInstance, bool) {
+func (o *VMInstanceGroup) GetConfigOk() (*VMInstanceGroupConfiguration, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.VmInstance, true
+	return &o.Config, true
 }
 
-// SetVmInstance sets field value
-func (o *VMInstanceGroup) SetVmInstance(v []VMInstance) {
-	o.VmInstance = v
+// SetConfig sets field value
+func (o *VMInstanceGroup) SetConfig(v VMInstanceGroupConfiguration) {
+	o.Config = v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *VMInstanceGroup) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetTagsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *VMInstanceGroup) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *VMInstanceGroup) SetTags(v []string) {
-	o.Tags = v
-}
-
-// GetDiskSizeGB returns the DiskSizeGB field value
-func (o *VMInstanceGroup) GetDiskSizeGB() float32 {
+// GetMeta returns the Meta field value
+func (o *VMInstanceGroup) GetMeta() VMInstanceGroupMeta {
 	if o == nil {
-		var ret float32
+		var ret VMInstanceGroupMeta
 		return ret
 	}
 
-	return o.DiskSizeGB
+	return o.Meta
 }
 
-// GetDiskSizeGBOk returns a tuple with the DiskSizeGB field value
+// GetMetaOk returns a tuple with the Meta field value
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetDiskSizeGBOk() (*float32, bool) {
+func (o *VMInstanceGroup) GetMetaOk() (*VMInstanceGroupMeta, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DiskSizeGB, true
+	return &o.Meta, true
 }
 
-// SetDiskSizeGB sets field value
-func (o *VMInstanceGroup) SetDiskSizeGB(v float32) {
-	o.DiskSizeGB = v
-}
-
-// GetVolumeTemplateId returns the VolumeTemplateId field value if set, zero value otherwise.
-func (o *VMInstanceGroup) GetVolumeTemplateId() float32 {
-	if o == nil || IsNil(o.VolumeTemplateId) {
-		var ret float32
-		return ret
-	}
-	return *o.VolumeTemplateId
-}
-
-// GetVolumeTemplateIdOk returns a tuple with the VolumeTemplateId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetVolumeTemplateIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.VolumeTemplateId) {
-		return nil, false
-	}
-	return o.VolumeTemplateId, true
-}
-
-// HasVolumeTemplateId returns a boolean if a field has been set.
-func (o *VMInstanceGroup) HasVolumeTemplateId() bool {
-	if o != nil && !IsNil(o.VolumeTemplateId) {
-		return true
-	}
-
-	return false
-}
-
-// SetVolumeTemplateId gets a reference to the given float32 and assigns it to the VolumeTemplateId field.
-func (o *VMInstanceGroup) SetVolumeTemplateId(v float32) {
-	o.VolumeTemplateId = &v
-}
-
-// GetVmInstanceGroupInterfaces returns the VmInstanceGroupInterfaces field value if set, zero value otherwise.
-func (o *VMInstanceGroup) GetVmInstanceGroupInterfaces() []VMInstanceGroupInterface {
-	if o == nil || IsNil(o.VmInstanceGroupInterfaces) {
-		var ret []VMInstanceGroupInterface
-		return ret
-	}
-	return o.VmInstanceGroupInterfaces
-}
-
-// GetVmInstanceGroupInterfacesOk returns a tuple with the VmInstanceGroupInterfaces field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetVmInstanceGroupInterfacesOk() ([]VMInstanceGroupInterface, bool) {
-	if o == nil || IsNil(o.VmInstanceGroupInterfaces) {
-		return nil, false
-	}
-	return o.VmInstanceGroupInterfaces, true
-}
-
-// HasVmInstanceGroupInterfaces returns a boolean if a field has been set.
-func (o *VMInstanceGroup) HasVmInstanceGroupInterfaces() bool {
-	if o != nil && !IsNil(o.VmInstanceGroupInterfaces) {
-		return true
-	}
-
-	return false
-}
-
-// SetVmInstanceGroupInterfaces gets a reference to the given []VMInstanceGroupInterface and assigns it to the VmInstanceGroupInterfaces field.
-func (o *VMInstanceGroup) SetVmInstanceGroupInterfaces(v []VMInstanceGroupInterface) {
-	o.VmInstanceGroupInterfaces = v
-}
-
-// GetNetworkIdToNetworkProfileId returns the NetworkIdToNetworkProfileId field value if set, zero value otherwise.
-func (o *VMInstanceGroup) GetNetworkIdToNetworkProfileId() map[string]interface{} {
-	if o == nil || IsNil(o.NetworkIdToNetworkProfileId) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.NetworkIdToNetworkProfileId
-}
-
-// GetNetworkIdToNetworkProfileIdOk returns a tuple with the NetworkIdToNetworkProfileId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetNetworkIdToNetworkProfileIdOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.NetworkIdToNetworkProfileId) {
-		return map[string]interface{}{}, false
-	}
-	return o.NetworkIdToNetworkProfileId, true
-}
-
-// HasNetworkIdToNetworkProfileId returns a boolean if a field has been set.
-func (o *VMInstanceGroup) HasNetworkIdToNetworkProfileId() bool {
-	if o != nil && !IsNil(o.NetworkIdToNetworkProfileId) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworkIdToNetworkProfileId gets a reference to the given map[string]interface{} and assigns it to the NetworkIdToNetworkProfileId field.
-func (o *VMInstanceGroup) SetNetworkIdToNetworkProfileId(v map[string]interface{}) {
-	o.NetworkIdToNetworkProfileId = v
-}
-
-// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
-func (o *VMInstanceGroup) GetCustomVariables() map[string]interface{} {
-	if o == nil || IsNil(o.CustomVariables) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.CustomVariables
-}
-
-// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetCustomVariablesOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.CustomVariables) {
-		return map[string]interface{}{}, false
-	}
-	return o.CustomVariables, true
-}
-
-// HasCustomVariables returns a boolean if a field has been set.
-func (o *VMInstanceGroup) HasCustomVariables() bool {
-	if o != nil && !IsNil(o.CustomVariables) {
-		return true
-	}
-
-	return false
-}
-
-// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
-func (o *VMInstanceGroup) SetCustomVariables(v map[string]interface{}) {
-	o.CustomVariables = v
-}
-
-// GetGuiSettings returns the GuiSettings field value if set, zero value otherwise.
-func (o *VMInstanceGroup) GetGuiSettings() GenericGUISettings {
-	if o == nil || IsNil(o.GuiSettings) {
-		var ret GenericGUISettings
-		return ret
-	}
-	return *o.GuiSettings
-}
-
-// GetGuiSettingsOk returns a tuple with the GuiSettings field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetGuiSettingsOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.GuiSettings) {
-		return nil, false
-	}
-	return o.GuiSettings, true
-}
-
-// HasGuiSettings returns a boolean if a field has been set.
-func (o *VMInstanceGroup) HasGuiSettings() bool {
-	if o != nil && !IsNil(o.GuiSettings) {
-		return true
-	}
-
-	return false
-}
-
-// SetGuiSettings gets a reference to the given GenericGUISettings and assigns it to the GuiSettings field.
-func (o *VMInstanceGroup) SetGuiSettings(v GenericGUISettings) {
-	o.GuiSettings = &v
+// SetMeta sets field value
+func (o *VMInstanceGroup) SetMeta(v VMInstanceGroupMeta) {
+	o.Meta = v
 }
 
 // GetLinks returns the Links field value
@@ -580,35 +557,34 @@ func (o VMInstanceGroup) MarshalJSON() ([]byte, error) {
 
 func (o VMInstanceGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["infrastructureId"] = o.InfrastructureId
-	toSerialize["serviceStatus"] = o.ServiceStatus
-	toSerialize["changeId"] = o.ChangeId
 	toSerialize["label"] = o.Label
-	toSerialize["instanceCount"] = o.InstanceCount
-	toSerialize["createdTimestamp"] = o.CreatedTimestamp
-	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
-	toSerialize["operation"] = o.Operation
-	toSerialize["vmInstance"] = o.VmInstance
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
+	if !IsNil(o.Subdomain) {
+		toSerialize["subdomain"] = o.Subdomain
 	}
-	toSerialize["diskSizeGB"] = o.DiskSizeGB
-	if !IsNil(o.VolumeTemplateId) {
-		toSerialize["volumeTemplateId"] = o.VolumeTemplateId
-	}
-	if !IsNil(o.VmInstanceGroupInterfaces) {
-		toSerialize["vmInstanceGroupInterfaces"] = o.VmInstanceGroupInterfaces
-	}
-	if !IsNil(o.NetworkIdToNetworkProfileId) {
-		toSerialize["networkIdToNetworkProfileId"] = o.NetworkIdToNetworkProfileId
+	if !IsNil(o.InstanceCount) {
+		toSerialize["instanceCount"] = o.InstanceCount
 	}
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
 	}
-	if !IsNil(o.GuiSettings) {
-		toSerialize["guiSettings"] = o.GuiSettings
+	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
+	toSerialize["id"] = o.Id
+	toSerialize["revision"] = o.Revision
+	toSerialize["infrastructureId"] = o.InfrastructureId
+	toSerialize["serviceStatus"] = o.ServiceStatus
+	toSerialize["diskSizeGB"] = o.DiskSizeGB
+	if !IsNil(o.SubdomainPermanent) {
+		toSerialize["subdomainPermanent"] = o.SubdomainPermanent
 	}
+	if !IsNil(o.DnsSubdomainId) {
+		toSerialize["dnsSubdomainId"] = o.DnsSubdomainId
+	}
+	if !IsNil(o.DnsSubdomainPermanentId) {
+		toSerialize["dnsSubdomainPermanentId"] = o.DnsSubdomainPermanentId
+	}
+	toSerialize["createdTimestamp"] = o.CreatedTimestamp
+	toSerialize["config"] = o.Config
+	toSerialize["meta"] = o.Meta
 	toSerialize["links"] = o.Links
 
 	for key, value := range o.AdditionalProperties {
@@ -623,17 +599,16 @@ func (o *VMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"label",
+		"updatedTimestamp",
 		"id",
+		"revision",
 		"infrastructureId",
 		"serviceStatus",
-		"changeId",
-		"label",
-		"instanceCount",
-		"createdTimestamp",
-		"updatedTimestamp",
-		"operation",
-		"vmInstance",
 		"diskSizeGB",
+		"createdTimestamp",
+		"config",
+		"meta",
 		"links",
 	}
 
@@ -664,23 +639,22 @@ func (o *VMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "label")
+		delete(additionalProperties, "subdomain")
+		delete(additionalProperties, "instanceCount")
+		delete(additionalProperties, "customVariables")
+		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "revision")
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "serviceStatus")
-		delete(additionalProperties, "changeId")
-		delete(additionalProperties, "label")
-		delete(additionalProperties, "instanceCount")
-		delete(additionalProperties, "createdTimestamp")
-		delete(additionalProperties, "updatedTimestamp")
-		delete(additionalProperties, "operation")
-		delete(additionalProperties, "vmInstance")
-		delete(additionalProperties, "tags")
 		delete(additionalProperties, "diskSizeGB")
-		delete(additionalProperties, "volumeTemplateId")
-		delete(additionalProperties, "vmInstanceGroupInterfaces")
-		delete(additionalProperties, "networkIdToNetworkProfileId")
-		delete(additionalProperties, "customVariables")
-		delete(additionalProperties, "guiSettings")
+		delete(additionalProperties, "subdomainPermanent")
+		delete(additionalProperties, "dnsSubdomainId")
+		delete(additionalProperties, "dnsSubdomainPermanentId")
+		delete(additionalProperties, "createdTimestamp")
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "meta")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

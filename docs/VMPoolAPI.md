@@ -40,7 +40,7 @@ import (
 )
 
 func main() {
-	createVMPool := *openapiclient.NewCreateVMPool(float32(123), "ManagementHost_example", float32(123), "Name_example", "Type_example", "Certificate_example", []string{"Tags_example"}, "PrivateKey_example") // CreateVMPool | The VM Pool create object
+	createVMPool := *openapiclient.NewCreateVMPool(float32(123), "ManagementHost_example", float32(123), "Name_example", "Type_example", "Certificate_example", "PrivateKey_example") // CreateVMPool | The VM Pool create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -814,7 +814,7 @@ import (
 
 func main() {
 	vmPoolId := float32(8.14) // float32 | 
-	updateVMPool := *openapiclient.NewUpdateVMPool([]string{"Tags_example"}) // UpdateVMPool | The VM Pool update object
+	updateVMPool := *openapiclient.NewUpdateVMPool() // UpdateVMPool | The VM Pool update object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

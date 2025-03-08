@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tags** | Pointer to **[]string** | Tags for the VM Instance. | [optional] 
+**Label** | Pointer to **string** | Label for the VM Instance Group. | [optional] 
 **DiskSizeGB** | Pointer to **float32** | Disk size in GB for the VM Instance. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the VM Instance. | [optional] 
 
@@ -27,30 +27,30 @@ NewUpdateVMInstanceWithDefaults instantiates a new UpdateVMInstance object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTags
+### GetLabel
 
-`func (o *UpdateVMInstance) GetTags() []string`
+`func (o *UpdateVMInstance) GetLabel() string`
 
-GetTags returns the Tags field if non-nil, zero value otherwise.
+GetLabel returns the Label field if non-nil, zero value otherwise.
 
-### GetTagsOk
+### GetLabelOk
 
-`func (o *UpdateVMInstance) GetTagsOk() (*[]string, bool)`
+`func (o *UpdateVMInstance) GetLabelOk() (*string, bool)`
 
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTags
+### SetLabel
 
-`func (o *UpdateVMInstance) SetTags(v []string)`
+`func (o *UpdateVMInstance) SetLabel(v string)`
 
-SetTags sets Tags field to given value.
+SetLabel sets Label field to given value.
 
-### HasTags
+### HasLabel
 
-`func (o *UpdateVMInstance) HasTags() bool`
+`func (o *UpdateVMInstance) HasLabel() bool`
 
-HasTags returns a boolean if a field has been set.
+HasLabel returns a boolean if a field has been set.
 
 ### GetDiskSizeGB
 

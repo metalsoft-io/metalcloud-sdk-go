@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**FabricType** | **string** | The type of network fabric | 
 **DefaultNetworkProfileId** | **int32** | Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile. | 
 **GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
@@ -20,12 +21,16 @@ Name | Type | Description | Notes
 **PreventCleanupFromUplinks** | Pointer to **bool** | Flag indicating whether cleanup from uplink interfaces should be prevented. | [optional] 
 **ReservedVlans** | Pointer to **[]string** | Reserved VLAN ranges that are excluded from general allocation. Must follow the \&quot;start-end\&quot; format. | [optional] 
 **VlanRanges** | Pointer to **[]string** | Array of VLAN range strings in \&quot;start-end\&quot; format to be used in configuration. | [optional] 
+**VniPrefix** | Pointer to **int32** | The VNI prefix for the EVPN VXLAN fabric. | [optional] 
+**PreventVrfCleanup** | Pointer to **[]string** | VRF ID ranges to be preserved from automatic cleanup. Each range must follow the \&quot;start-end\&quot; format. | [optional] 
+**ReservedVrfs** | Pointer to **[]string** | Reserved VRF ID ranges that are set aside exclusively for specific network functions. Each range must be provided in the \&quot;start-end\&quot; format. | [optional] 
+**VrfVlanRanges** | Pointer to **[]string** | VLAN ranges to be associated with VRF instances. Each value must be an ordered pair specified in the \&quot;start-end\&quot; format. | [optional] 
 
 ## Methods
 
 ### NewEthernetFabric
 
-`func NewEthernetFabric(defaultNetworkProfileId int32, numberOfSpinesNextToLeafSwitches int32, ) *EthernetFabric`
+`func NewEthernetFabric(fabricType string, defaultNetworkProfileId int32, numberOfSpinesNextToLeafSwitches int32, ) *EthernetFabric`
 
 NewEthernetFabric instantiates a new EthernetFabric object
 This constructor will assign default values to properties that have it defined,
@@ -39,6 +44,26 @@ will change when the set of required properties is changed
 NewEthernetFabricWithDefaults instantiates a new EthernetFabric object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetFabricType
+
+`func (o *EthernetFabric) GetFabricType() string`
+
+GetFabricType returns the FabricType field if non-nil, zero value otherwise.
+
+### GetFabricTypeOk
+
+`func (o *EthernetFabric) GetFabricTypeOk() (*string, bool)`
+
+GetFabricTypeOk returns a tuple with the FabricType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFabricType
+
+`func (o *EthernetFabric) SetFabricType(v string)`
+
+SetFabricType sets FabricType field to given value.
+
 
 ### GetDefaultNetworkProfileId
 
@@ -429,6 +454,106 @@ SetVlanRanges sets VlanRanges field to given value.
 `func (o *EthernetFabric) HasVlanRanges() bool`
 
 HasVlanRanges returns a boolean if a field has been set.
+
+### GetVniPrefix
+
+`func (o *EthernetFabric) GetVniPrefix() int32`
+
+GetVniPrefix returns the VniPrefix field if non-nil, zero value otherwise.
+
+### GetVniPrefixOk
+
+`func (o *EthernetFabric) GetVniPrefixOk() (*int32, bool)`
+
+GetVniPrefixOk returns a tuple with the VniPrefix field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVniPrefix
+
+`func (o *EthernetFabric) SetVniPrefix(v int32)`
+
+SetVniPrefix sets VniPrefix field to given value.
+
+### HasVniPrefix
+
+`func (o *EthernetFabric) HasVniPrefix() bool`
+
+HasVniPrefix returns a boolean if a field has been set.
+
+### GetPreventVrfCleanup
+
+`func (o *EthernetFabric) GetPreventVrfCleanup() []string`
+
+GetPreventVrfCleanup returns the PreventVrfCleanup field if non-nil, zero value otherwise.
+
+### GetPreventVrfCleanupOk
+
+`func (o *EthernetFabric) GetPreventVrfCleanupOk() (*[]string, bool)`
+
+GetPreventVrfCleanupOk returns a tuple with the PreventVrfCleanup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPreventVrfCleanup
+
+`func (o *EthernetFabric) SetPreventVrfCleanup(v []string)`
+
+SetPreventVrfCleanup sets PreventVrfCleanup field to given value.
+
+### HasPreventVrfCleanup
+
+`func (o *EthernetFabric) HasPreventVrfCleanup() bool`
+
+HasPreventVrfCleanup returns a boolean if a field has been set.
+
+### GetReservedVrfs
+
+`func (o *EthernetFabric) GetReservedVrfs() []string`
+
+GetReservedVrfs returns the ReservedVrfs field if non-nil, zero value otherwise.
+
+### GetReservedVrfsOk
+
+`func (o *EthernetFabric) GetReservedVrfsOk() (*[]string, bool)`
+
+GetReservedVrfsOk returns a tuple with the ReservedVrfs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReservedVrfs
+
+`func (o *EthernetFabric) SetReservedVrfs(v []string)`
+
+SetReservedVrfs sets ReservedVrfs field to given value.
+
+### HasReservedVrfs
+
+`func (o *EthernetFabric) HasReservedVrfs() bool`
+
+HasReservedVrfs returns a boolean if a field has been set.
+
+### GetVrfVlanRanges
+
+`func (o *EthernetFabric) GetVrfVlanRanges() []string`
+
+GetVrfVlanRanges returns the VrfVlanRanges field if non-nil, zero value otherwise.
+
+### GetVrfVlanRangesOk
+
+`func (o *EthernetFabric) GetVrfVlanRangesOk() (*[]string, bool)`
+
+GetVrfVlanRangesOk returns a tuple with the VrfVlanRanges field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVrfVlanRanges
+
+`func (o *EthernetFabric) SetVrfVlanRanges(v []string)`
+
+SetVrfVlanRanges sets VrfVlanRanges field to given value.
+
+### HasVrfVlanRanges
+
+`func (o *EthernetFabric) HasVrfVlanRanges() bool`
+
+HasVrfVlanRanges returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -28,6 +28,12 @@ type ExtensionInput struct {
 	// Type of the input.
 	InputType string `json:"inputType"`
 	Options ExtensionInputOptions `json:"options"`
+	// Flag to indicate if the input is required.
+	SetOnly *bool `json:"setOnly,omitempty"`
+	// Flag to indicate if the input is hidden in the UI.
+	Hidden *bool `json:"hidden,omitempty"`
+	// Default value.
+	DefaultValue *string `json:"defaultValue,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,6 +49,10 @@ func NewExtensionInput(label string, name string, inputType string, options Exte
 	this.Name = name
 	this.InputType = inputType
 	this.Options = options
+	var setOnly bool = false
+	this.SetOnly = &setOnly
+	var hidden bool = false
+	this.Hidden = &hidden
 	return &this
 }
 
@@ -51,6 +61,10 @@ func NewExtensionInput(label string, name string, inputType string, options Exte
 // but it doesn't guarantee that properties required by API are set
 func NewExtensionInputWithDefaults() *ExtensionInput {
 	this := ExtensionInput{}
+	var setOnly bool = false
+	this.SetOnly = &setOnly
+	var hidden bool = false
+	this.Hidden = &hidden
 	return &this
 }
 
@@ -150,6 +164,102 @@ func (o *ExtensionInput) SetOptions(v ExtensionInputOptions) {
 	o.Options = v
 }
 
+// GetSetOnly returns the SetOnly field value if set, zero value otherwise.
+func (o *ExtensionInput) GetSetOnly() bool {
+	if o == nil || IsNil(o.SetOnly) {
+		var ret bool
+		return ret
+	}
+	return *o.SetOnly
+}
+
+// GetSetOnlyOk returns a tuple with the SetOnly field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInput) GetSetOnlyOk() (*bool, bool) {
+	if o == nil || IsNil(o.SetOnly) {
+		return nil, false
+	}
+	return o.SetOnly, true
+}
+
+// HasSetOnly returns a boolean if a field has been set.
+func (o *ExtensionInput) HasSetOnly() bool {
+	if o != nil && !IsNil(o.SetOnly) {
+		return true
+	}
+
+	return false
+}
+
+// SetSetOnly gets a reference to the given bool and assigns it to the SetOnly field.
+func (o *ExtensionInput) SetSetOnly(v bool) {
+	o.SetOnly = &v
+}
+
+// GetHidden returns the Hidden field value if set, zero value otherwise.
+func (o *ExtensionInput) GetHidden() bool {
+	if o == nil || IsNil(o.Hidden) {
+		var ret bool
+		return ret
+	}
+	return *o.Hidden
+}
+
+// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInput) GetHiddenOk() (*bool, bool) {
+	if o == nil || IsNil(o.Hidden) {
+		return nil, false
+	}
+	return o.Hidden, true
+}
+
+// HasHidden returns a boolean if a field has been set.
+func (o *ExtensionInput) HasHidden() bool {
+	if o != nil && !IsNil(o.Hidden) {
+		return true
+	}
+
+	return false
+}
+
+// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
+func (o *ExtensionInput) SetHidden(v bool) {
+	o.Hidden = &v
+}
+
+// GetDefaultValue returns the DefaultValue field value if set, zero value otherwise.
+func (o *ExtensionInput) GetDefaultValue() string {
+	if o == nil || IsNil(o.DefaultValue) {
+		var ret string
+		return ret
+	}
+	return *o.DefaultValue
+}
+
+// GetDefaultValueOk returns a tuple with the DefaultValue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInput) GetDefaultValueOk() (*string, bool) {
+	if o == nil || IsNil(o.DefaultValue) {
+		return nil, false
+	}
+	return o.DefaultValue, true
+}
+
+// HasDefaultValue returns a boolean if a field has been set.
+func (o *ExtensionInput) HasDefaultValue() bool {
+	if o != nil && !IsNil(o.DefaultValue) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultValue gets a reference to the given string and assigns it to the DefaultValue field.
+func (o *ExtensionInput) SetDefaultValue(v string) {
+	o.DefaultValue = &v
+}
+
 func (o ExtensionInput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -164,6 +274,15 @@ func (o ExtensionInput) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["inputType"] = o.InputType
 	toSerialize["options"] = o.Options
+	if !IsNil(o.SetOnly) {
+		toSerialize["setOnly"] = o.SetOnly
+	}
+	if !IsNil(o.Hidden) {
+		toSerialize["hidden"] = o.Hidden
+	}
+	if !IsNil(o.DefaultValue) {
+		toSerialize["defaultValue"] = o.DefaultValue
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -214,6 +333,9 @@ func (o *ExtensionInput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "inputType")
 		delete(additionalProperties, "options")
+		delete(additionalProperties, "setOnly")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "defaultValue")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -19,7 +19,7 @@ import (
 // checks if the PaginatedResponseMeta type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PaginatedResponseMeta{}
 
-// PaginatedResponseMeta struct for PaginatedResponseMeta
+// PaginatedResponseMeta Metadata about the pagination of the response
 type PaginatedResponseMeta struct {
 	// The number of items per page to return in the response
 	ItemsPerPage int32 `json:"itemsPerPage"`
@@ -31,7 +31,6 @@ type PaginatedResponseMeta struct {
 	TotalPages int32 `json:"totalPages"`
 	// Array of [field, direction] pairs for sorting. Each pair must contain exactly 2 strings.
 	SortBy [][]string `json:"sortBy,omitempty"`
-	// Columns that can be searched by
 	SearchBy []string `json:"searchBy,omitempty"`
 	// Text to search for in searchable fields
 	Search *string `json:"search,omitempty"`

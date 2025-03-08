@@ -22,10 +22,12 @@ var _ MappedNullable = &ServerInstanceCreate{}
 type ServerInstanceCreate struct {
 	// The server instance label. Will be automatically generated if not provided.
 	Label *string `json:"label,omitempty"`
+	GroupId *int32 `json:"groupId,omitempty"`
 	// The server type ID.
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
 	// The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal. 
 	TemplateId *int32 `json:"templateId,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// If enabled will enable port channel to be automatically created.
 	EnableAutoPortChannel *bool `json:"enableAutoPortChannel,omitempty"`
 	// Network profiles mapping for each network in this infrastructure.
@@ -86,6 +88,38 @@ func (o *ServerInstanceCreate) HasLabel() bool {
 // SetLabel gets a reference to the given string and assigns it to the Label field.
 func (o *ServerInstanceCreate) SetLabel(v string) {
 	o.Label = &v
+}
+
+// GetGroupId returns the GroupId field value if set, zero value otherwise.
+func (o *ServerInstanceCreate) GetGroupId() int32 {
+	if o == nil || IsNil(o.GroupId) {
+		var ret int32
+		return ret
+	}
+	return *o.GroupId
+}
+
+// GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceCreate) GetGroupIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.GroupId) {
+		return nil, false
+	}
+	return o.GroupId, true
+}
+
+// HasGroupId returns a boolean if a field has been set.
+func (o *ServerInstanceCreate) HasGroupId() bool {
+	if o != nil && !IsNil(o.GroupId) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupId gets a reference to the given int32 and assigns it to the GroupId field.
+func (o *ServerInstanceCreate) SetGroupId(v int32) {
+	o.GroupId = &v
 }
 
 // GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
@@ -150,6 +184,38 @@ func (o *ServerInstanceCreate) HasTemplateId() bool {
 // SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
 func (o *ServerInstanceCreate) SetTemplateId(v int32) {
 	o.TemplateId = &v
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *ServerInstanceCreate) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceCreate) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *ServerInstanceCreate) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *ServerInstanceCreate) SetTags(v []string) {
+	o.Tags = v
 }
 
 // GetEnableAutoPortChannel returns the EnableAutoPortChannel field value if set, zero value otherwise.
@@ -229,11 +295,17 @@ func (o ServerInstanceCreate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
+	if !IsNil(o.GroupId) {
+		toSerialize["groupId"] = o.GroupId
+	}
 	if !IsNil(o.ServerTypeId) {
 		toSerialize["serverTypeId"] = o.ServerTypeId
 	}
 	if !IsNil(o.TemplateId) {
 		toSerialize["templateId"] = o.TemplateId
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 	if !IsNil(o.EnableAutoPortChannel) {
 		toSerialize["enableAutoPortChannel"] = o.EnableAutoPortChannel
@@ -264,8 +336,10 @@ func (o *ServerInstanceCreate) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "groupId")
 		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "templateId")
+		delete(additionalProperties, "tags")
 		delete(additionalProperties, "enableAutoPortChannel")
 		delete(additionalProperties, "networkProfiles")
 		o.AdditionalProperties = additionalProperties

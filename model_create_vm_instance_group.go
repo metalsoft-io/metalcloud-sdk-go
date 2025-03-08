@@ -21,16 +21,15 @@ var _ MappedNullable = &CreateVMInstanceGroup{}
 
 // CreateVMInstanceGroup struct for CreateVMInstanceGroup
 type CreateVMInstanceGroup struct {
-	// Number of VM instances in the VM Instance Group.
-	InstanceCount float32 `json:"instanceCount"`
-	// Tags for the VM Instance Group.
-	Tags []string `json:"tags,omitempty"`
+	InstanceCount *float32 `json:"instanceCount,omitempty"`
 	// Disk size in GB for each VM Instance in the VM Instance Group.
 	DiskSizeGB float32 `json:"diskSizeGB"`
-	// Id of the template used by the VM Instance Group.
-	VolumeTemplateId *float32 `json:"volumeTemplateId,omitempty"`
 	// Id of the VM Type.
 	TypeId float32 `json:"typeId"`
+	// Id of the template used by the VM Instance Group.
+	VolumeTemplateId *float32 `json:"volumeTemplateId,omitempty"`
+	// Tags for the VM Instance Group.
+	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,9 +39,10 @@ type _CreateVMInstanceGroup CreateVMInstanceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateVMInstanceGroup(instanceCount float32, diskSizeGB float32, typeId float32) *CreateVMInstanceGroup {
+func NewCreateVMInstanceGroup(diskSizeGB float32, typeId float32) *CreateVMInstanceGroup {
 	this := CreateVMInstanceGroup{}
-	this.InstanceCount = instanceCount
+	var instanceCount float32 = 1
+	this.InstanceCount = &instanceCount
 	this.DiskSizeGB = diskSizeGB
 	this.TypeId = typeId
 	return &this
@@ -53,63 +53,41 @@ func NewCreateVMInstanceGroup(instanceCount float32, diskSizeGB float32, typeId 
 // but it doesn't guarantee that properties required by API are set
 func NewCreateVMInstanceGroupWithDefaults() *CreateVMInstanceGroup {
 	this := CreateVMInstanceGroup{}
+	var instanceCount float32 = 1
+	this.InstanceCount = &instanceCount
 	return &this
 }
 
-// GetInstanceCount returns the InstanceCount field value
+// GetInstanceCount returns the InstanceCount field value if set, zero value otherwise.
 func (o *CreateVMInstanceGroup) GetInstanceCount() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.InstanceCount) {
 		var ret float32
 		return ret
 	}
-
-	return o.InstanceCount
+	return *o.InstanceCount
 }
 
-// GetInstanceCountOk returns a tuple with the InstanceCount field value
+// GetInstanceCountOk returns a tuple with the InstanceCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateVMInstanceGroup) GetInstanceCountOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InstanceCount) {
 		return nil, false
 	}
-	return &o.InstanceCount, true
+	return o.InstanceCount, true
 }
 
-// SetInstanceCount sets field value
-func (o *CreateVMInstanceGroup) SetInstanceCount(v float32) {
-	o.InstanceCount = v
-}
-
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *CreateVMInstanceGroup) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateVMInstanceGroup) GetTagsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *CreateVMInstanceGroup) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
+// HasInstanceCount returns a boolean if a field has been set.
+func (o *CreateVMInstanceGroup) HasInstanceCount() bool {
+	if o != nil && !IsNil(o.InstanceCount) {
 		return true
 	}
 
 	return false
 }
 
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *CreateVMInstanceGroup) SetTags(v []string) {
-	o.Tags = v
+// SetInstanceCount gets a reference to the given float32 and assigns it to the InstanceCount field.
+func (o *CreateVMInstanceGroup) SetInstanceCount(v float32) {
+	o.InstanceCount = &v
 }
 
 // GetDiskSizeGB returns the DiskSizeGB field value
@@ -134,6 +112,30 @@ func (o *CreateVMInstanceGroup) GetDiskSizeGBOk() (*float32, bool) {
 // SetDiskSizeGB sets field value
 func (o *CreateVMInstanceGroup) SetDiskSizeGB(v float32) {
 	o.DiskSizeGB = v
+}
+
+// GetTypeId returns the TypeId field value
+func (o *CreateVMInstanceGroup) GetTypeId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TypeId
+}
+
+// GetTypeIdOk returns a tuple with the TypeId field value
+// and a boolean to check if the value has been set.
+func (o *CreateVMInstanceGroup) GetTypeIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TypeId, true
+}
+
+// SetTypeId sets field value
+func (o *CreateVMInstanceGroup) SetTypeId(v float32) {
+	o.TypeId = v
 }
 
 // GetVolumeTemplateId returns the VolumeTemplateId field value if set, zero value otherwise.
@@ -168,28 +170,36 @@ func (o *CreateVMInstanceGroup) SetVolumeTemplateId(v float32) {
 	o.VolumeTemplateId = &v
 }
 
-// GetTypeId returns the TypeId field value
-func (o *CreateVMInstanceGroup) GetTypeId() float32 {
-	if o == nil {
-		var ret float32
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *CreateVMInstanceGroup) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
 		return ret
 	}
-
-	return o.TypeId
+	return o.Tags
 }
 
-// GetTypeIdOk returns a tuple with the TypeId field value
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMInstanceGroup) GetTypeIdOk() (*float32, bool) {
-	if o == nil {
+func (o *CreateVMInstanceGroup) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
-	return &o.TypeId, true
+	return o.Tags, true
 }
 
-// SetTypeId sets field value
-func (o *CreateVMInstanceGroup) SetTypeId(v float32) {
-	o.TypeId = v
+// HasTags returns a boolean if a field has been set.
+func (o *CreateVMInstanceGroup) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *CreateVMInstanceGroup) SetTags(v []string) {
+	o.Tags = v
 }
 
 func (o CreateVMInstanceGroup) MarshalJSON() ([]byte, error) {
@@ -202,15 +212,17 @@ func (o CreateVMInstanceGroup) MarshalJSON() ([]byte, error) {
 
 func (o CreateVMInstanceGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["instanceCount"] = o.InstanceCount
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
+	if !IsNil(o.InstanceCount) {
+		toSerialize["instanceCount"] = o.InstanceCount
 	}
 	toSerialize["diskSizeGB"] = o.DiskSizeGB
+	toSerialize["typeId"] = o.TypeId
 	if !IsNil(o.VolumeTemplateId) {
 		toSerialize["volumeTemplateId"] = o.VolumeTemplateId
 	}
-	toSerialize["typeId"] = o.TypeId
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -224,7 +236,6 @@ func (o *CreateVMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"instanceCount",
 		"diskSizeGB",
 		"typeId",
 	}
@@ -257,10 +268,10 @@ func (o *CreateVMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "instanceCount")
-		delete(additionalProperties, "tags")
 		delete(additionalProperties, "diskSizeGB")
-		delete(additionalProperties, "volumeTemplateId")
 		delete(additionalProperties, "typeId")
+		delete(additionalProperties, "volumeTemplateId")
+		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 

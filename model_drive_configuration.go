@@ -38,12 +38,12 @@ type DriveConfiguration struct {
 	// The iSCSI Index in hex format of the Drive.
 	IscsiIndexHex *string `json:"iscsiIndexHex,omitempty"`
 	// Template Id
-	TemplateIdOrigin *float32 `json:"templateIdOrigin,omitempty"`
+	TemplateId *float32 `json:"templateId,omitempty"`
 	// The OS Admin Username the Drive will use.
 	OsAdminUsername *string `json:"osAdminUsername,omitempty"`
 	// The OS Admin Password the Drive will use.
 	OsAdminPasswordEncrypted *string `json:"osAdminPasswordEncrypted,omitempty"`
-	// Service status of the Drive
+	// Storage type of the Drive
 	StorageType string `json:"storageType"`
 	// Subdomain of the Drive.
 	Subdomain *string `json:"subdomain,omitempty"`
@@ -355,36 +355,36 @@ func (o *DriveConfiguration) SetIscsiIndexHex(v string) {
 	o.IscsiIndexHex = &v
 }
 
-// GetTemplateIdOrigin returns the TemplateIdOrigin field value if set, zero value otherwise.
-func (o *DriveConfiguration) GetTemplateIdOrigin() float32 {
-	if o == nil || IsNil(o.TemplateIdOrigin) {
+// GetTemplateId returns the TemplateId field value if set, zero value otherwise.
+func (o *DriveConfiguration) GetTemplateId() float32 {
+	if o == nil || IsNil(o.TemplateId) {
 		var ret float32
 		return ret
 	}
-	return *o.TemplateIdOrigin
+	return *o.TemplateId
 }
 
-// GetTemplateIdOriginOk returns a tuple with the TemplateIdOrigin field value if set, nil otherwise
+// GetTemplateIdOk returns a tuple with the TemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DriveConfiguration) GetTemplateIdOriginOk() (*float32, bool) {
-	if o == nil || IsNil(o.TemplateIdOrigin) {
+func (o *DriveConfiguration) GetTemplateIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.TemplateId) {
 		return nil, false
 	}
-	return o.TemplateIdOrigin, true
+	return o.TemplateId, true
 }
 
-// HasTemplateIdOrigin returns a boolean if a field has been set.
-func (o *DriveConfiguration) HasTemplateIdOrigin() bool {
-	if o != nil && !IsNil(o.TemplateIdOrigin) {
+// HasTemplateId returns a boolean if a field has been set.
+func (o *DriveConfiguration) HasTemplateId() bool {
+	if o != nil && !IsNil(o.TemplateId) {
 		return true
 	}
 
 	return false
 }
 
-// SetTemplateIdOrigin gets a reference to the given float32 and assigns it to the TemplateIdOrigin field.
-func (o *DriveConfiguration) SetTemplateIdOrigin(v float32) {
-	o.TemplateIdOrigin = &v
+// SetTemplateId gets a reference to the given float32 and assigns it to the TemplateId field.
+func (o *DriveConfiguration) SetTemplateId(v float32) {
+	o.TemplateId = &v
 }
 
 // GetOsAdminUsername returns the OsAdminUsername field value if set, zero value otherwise.
@@ -768,8 +768,8 @@ func (o DriveConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IscsiIndexHex) {
 		toSerialize["iscsiIndexHex"] = o.IscsiIndexHex
 	}
-	if !IsNil(o.TemplateIdOrigin) {
-		toSerialize["templateIdOrigin"] = o.TemplateIdOrigin
+	if !IsNil(o.TemplateId) {
+		toSerialize["templateId"] = o.TemplateId
 	}
 	if !IsNil(o.OsAdminUsername) {
 		toSerialize["osAdminUsername"] = o.OsAdminUsername
@@ -858,7 +858,7 @@ func (o *DriveConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "sizeMb")
 		delete(additionalProperties, "storageImageName")
 		delete(additionalProperties, "iscsiIndexHex")
-		delete(additionalProperties, "templateIdOrigin")
+		delete(additionalProperties, "templateId")
 		delete(additionalProperties, "osAdminUsername")
 		delete(additionalProperties, "osAdminPasswordEncrypted")
 		delete(additionalProperties, "storageType")

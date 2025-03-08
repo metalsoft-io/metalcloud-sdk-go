@@ -9,14 +9,18 @@ Method | HTTP request | Description
 [**DeleteServerInstance**](ServerInstanceAPI.md#DeleteServerInstance) | **Delete** /api/v2/server-instances/{serverInstanceId} | Delete Server Instance
 [**GetInfrastructureServerInstances**](ServerInstanceAPI.md#GetInfrastructureServerInstances) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instances | List Server Instances for an infrastructure
 [**GetPowerFromServerInstance**](ServerInstanceAPI.md#GetPowerFromServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power_get | Get the power status of the Server Instance
+[**GetPowerStatusBatch**](ServerInstanceAPI.md#GetPowerStatusBatch) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/power-get | Gets power status of multiple servers
 [**GetServerInstance**](ServerInstanceAPI.md#GetServerInstance) | **Get** /api/v2/server-instances/{serverInstanceId} | Get Server Instance details
 [**GetServerInstanceConfig**](ServerInstanceAPI.md#GetServerInstanceConfig) | **Get** /api/v2/server-instances/{serverInstanceId}/config | Get Server Instance config details
 [**GetServerInstanceCredentials**](ServerInstanceAPI.md#GetServerInstanceCredentials) | **Get** /api/v2/server-instances/{serverInstanceId}/credentials | Get Server Instance credentials
 [**GetServerInstanceDrives**](ServerInstanceAPI.md#GetServerInstanceDrives) | **Get** /api/v2/server-instances/{serverInstanceId}/drives | Get Server Instance Drives
 [**GetServerInstanceInterface**](ServerInstanceAPI.md#GetServerInstanceInterface) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId} | Get Server Instance Interface details
 [**GetServerInstanceInterfaces**](ServerInstanceAPI.md#GetServerInstanceInterfaces) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces | Get Server Instance Interfaces
+[**GetServerInstanceStatistics**](ServerInstanceAPI.md#GetServerInstanceStatistics) | **Get** /api/v2/server-instances/statistics | Get Server Instance counters
 [**GetServerInstances**](ServerInstanceAPI.md#GetServerInstances) | **Get** /api/v2/server-instances | List Server Instances
+[**ReinstallServerInstanceOS**](ServerInstanceAPI.md#ReinstallServerInstanceOS) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/reinstall-os | Manage the flag to reinstall the operating system on the server
 [**ResetServerInstance**](ServerInstanceAPI.md#ResetServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/reset | Reset a deployed server
+[**SetPowerStatusBatch**](ServerInstanceAPI.md#SetPowerStatusBatch) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/power-set | sets power status of multiple servers
 [**SetPowerToServerInstance**](ServerInstanceAPI.md#SetPowerToServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power_set | Set power to the Server Instance
 [**UpdateServerInstanceConfig**](ServerInstanceAPI.md#UpdateServerInstanceConfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/config | Update Server Instance configuration
 [**UpdateServerInstanceInterfaceConfig**](ServerInstanceAPI.md#UpdateServerInstanceInterfaceConfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId}/config | Update Server Instance Interface configuration
@@ -239,7 +243,7 @@ Name | Type | Description  | Notes
 
 ## GetInfrastructureServerInstances
 
-> ServerInstancePaginatedList GetInfrastructureServerInstances(ctx, infrastructureId).Page(page).Limit(limit).FilterId(filterId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> ServerInstancePaginatedList GetInfrastructureServerInstances(ctx, infrastructureId).Page(page).Limit(limit).FilterInfrastructureId(filterInfrastructureId).FilterGroupId(filterGroupId).FilterServerId(filterServerId).FilterServiceStatus(filterServiceStatus).FilterConfigServerId(filterConfigServerId).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 List Server Instances for an infrastructure
 
@@ -261,14 +265,20 @@ func main() {
 	infrastructureId := int32(56) // int32 | 
 	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
 	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 20           </p>       <p>              <b>Max Value: </b> 100           </p>        If provided value is greater than max value, max value will be applied.        (optional)
-	filterId := []string{"Inner_example"} // []string | Filter by id query param.           <p>              <b>Format: </b> filter.id={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> label:DESC           </p>       <h4>Available Fields</h4><ul><li>id</li> <li>label</li></ul>        (optional)
+	filterInfrastructureId := []string{"Inner_example"} // []string | Filter by infrastructureId query param.           <p>              <b>Format: </b> filter.infrastructureId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.infrastructureId=$not:$like:John Doe&filter.infrastructureId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	filterGroupId := []string{"Inner_example"} // []string | Filter by groupId query param.           <p>              <b>Format: </b> filter.groupId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.groupId=$not:$like:John Doe&filter.groupId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	filterServerId := []string{"Inner_example"} // []string | Filter by serverId query param.           <p>              <b>Format: </b> filter.serverId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.serverId=$not:$like:John Doe&filter.serverId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	filterServiceStatus := []string{"Inner_example"} // []string | Filter by serviceStatus query param.           <p>              <b>Format: </b> filter.serviceStatus={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.serviceStatus=$not:$like:John Doe&filter.serviceStatus=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	filterConfigServerId := []string{"Inner_example"} // []string | Filter by config.serverId query param.           <p>              <b>Format: </b> filter.config.serverId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.config.serverId=$not:$like:John Doe&filter.config.serverId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	filterConfigDeployStatus := []string{"Inner_example"} // []string | Filter by config.deployStatus query param.           <p>              <b>Format: </b> filter.config.deployStatus={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.config.deployStatus=$not:$like:John Doe&filter.config.deployStatus=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li> <li>$in</li></ul> (optional)
+	filterConfigDeployType := []string{"Inner_example"} // []string | Filter by config.deployType query param.           <p>              <b>Format: </b> filter.config.deployType={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.config.deployType=$not:$like:John Doe&filter.config.deployType=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li> <li>$in</li></ul> (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> id:DESC           </p>       <h4>Available Fields</h4><ul><li>id</li> <li>label</li></ul>        (optional)
 	search := "search_example" // string | Search term to filter result values         <p>              <b>Example: </b> John           </p>         <p>              <b>Default Value: </b> No default value           </p>          (optional)
 	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values         <p>              <b>Example: </b> label           </p>         <p>              <b>Default Value: </b> By default all fields mentioned below will be used to search by term           </p>         <h4>Available Fields</h4><ul><li>label</li></ul>          (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceAPI.GetInfrastructureServerInstances(context.Background(), infrastructureId).Page(page).Limit(limit).FilterId(filterId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.ServerInstanceAPI.GetInfrastructureServerInstances(context.Background(), infrastructureId).Page(page).Limit(limit).FilterInfrastructureId(filterInfrastructureId).FilterGroupId(filterGroupId).FilterServerId(filterServerId).FilterServiceStatus(filterServiceStatus).FilterConfigServerId(filterConfigServerId).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetInfrastructureServerInstances``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -296,8 +306,14 @@ Name | Type | Description  | Notes
 
  **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
  **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
- **filterId** | **[]string** | Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
- **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; label:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;        | 
+ **filterInfrastructureId** | **[]string** | Filter by infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **filterGroupId** | **[]string** | Filter by groupId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.groupId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.groupId&#x3D;$not:$like:John Doe&amp;filter.groupId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **filterServerId** | **[]string** | Filter by serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverId&#x3D;$not:$like:John Doe&amp;filter.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **filterServiceStatus** | **[]string** | Filter by serviceStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serviceStatus&#x3D;$not:$like:John Doe&amp;filter.serviceStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **filterConfigServerId** | **[]string** | Filter by config.serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.serverId&#x3D;$not:$like:John Doe&amp;filter.config.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **filterConfigDeployStatus** | **[]string** | Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt; | 
+ **filterConfigDeployType** | **[]string** | Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt; | 
+ **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;        | 
  **search** | **string** | Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;          | 
  **searchBy** | **[]string** | List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; label           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;          | 
 
@@ -321,7 +337,7 @@ Name | Type | Description  | Notes
 
 ## GetPowerFromServerInstance
 
-> GetPowerFromServerInstance(ctx, serverInstanceId).IfMatch(ifMatch).Execute()
+> GetPowerFromServerInstance(ctx, serverInstanceId).Execute()
 
 Get the power status of the Server Instance
 
@@ -341,11 +357,10 @@ import (
 
 func main() {
 	serverInstanceId := int32(56) // int32 | 
-	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ServerInstanceAPI.GetPowerFromServerInstance(context.Background(), serverInstanceId).IfMatch(ifMatch).Execute()
+	r, err := apiClient.ServerInstanceAPI.GetPowerFromServerInstance(context.Background(), serverInstanceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetPowerFromServerInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -369,7 +384,6 @@ Other parameters are passed through a pointer to a apiGetPowerFromServerInstance
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
@@ -383,6 +397,78 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPowerStatusBatch
+
+> map[string]interface{} GetPowerStatusBatch(ctx, infrastructureId).RequestBody(requestBody).Execute()
+
+Gets power status of multiple servers
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := int32(56) // int32 | 
+	requestBody := []string{"Property_example"} // []string | The list of server instance ids
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceAPI.GetPowerStatusBatch(context.Background(), infrastructureId).RequestBody(requestBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetPowerStatusBatch``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPowerStatusBatch`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.GetPowerStatusBatch`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPowerStatusBatchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **requestBody** | **[]string** | The list of server instance ids | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -531,7 +617,7 @@ Name | Type | Description  | Notes
 
 ## GetServerInstanceCredentials
 
-> ServerInstanceCredentials GetServerInstanceCredentials(ctx, serverInstanceId).Execute()
+> string GetServerInstanceCredentials(ctx, serverInstanceId).Execute()
 
 Get Server Instance credentials
 
@@ -559,7 +645,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetServerInstanceCredentials``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetServerInstanceCredentials`: ServerInstanceCredentials
+	// response from `GetServerInstanceCredentials`: string
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.GetServerInstanceCredentials`: %v\n", resp)
 }
 ```
@@ -583,7 +669,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ServerInstanceCredentials**](ServerInstanceCredentials.md)
+**string**
 
 ### Authorization
 
@@ -830,9 +916,70 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetServerInstanceStatistics
+
+> ServerInstanceStatistics GetServerInstanceStatistics(ctx).Execute()
+
+Get Server Instance counters
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceAPI.GetServerInstanceStatistics(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetServerInstanceStatistics``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerInstanceStatistics`: ServerInstanceStatistics
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.GetServerInstanceStatistics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerInstanceStatisticsRequest struct via the builder pattern
+
+
+### Return type
+
+[**ServerInstanceStatistics**](ServerInstanceStatistics.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetServerInstances
 
-> ServerInstancePaginatedList GetServerInstances(ctx).Page(page).Limit(limit).FilterId(filterId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> ServerInstancePaginatedList GetServerInstances(ctx).Page(page).Limit(limit).FilterInfrastructureId(filterInfrastructureId).FilterGroupId(filterGroupId).FilterServerId(filterServerId).FilterServiceStatus(filterServiceStatus).FilterConfigServerId(filterConfigServerId).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 List Server Instances
 
@@ -853,14 +1000,20 @@ import (
 func main() {
 	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
 	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 20           </p>       <p>              <b>Max Value: </b> 100           </p>        If provided value is greater than max value, max value will be applied.        (optional)
-	filterId := []string{"Inner_example"} // []string | Filter by id query param.           <p>              <b>Format: </b> filter.id={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> label:DESC           </p>       <h4>Available Fields</h4><ul><li>id</li> <li>label</li></ul>        (optional)
+	filterInfrastructureId := []string{"Inner_example"} // []string | Filter by infrastructureId query param.           <p>              <b>Format: </b> filter.infrastructureId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.infrastructureId=$not:$like:John Doe&filter.infrastructureId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	filterGroupId := []string{"Inner_example"} // []string | Filter by groupId query param.           <p>              <b>Format: </b> filter.groupId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.groupId=$not:$like:John Doe&filter.groupId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	filterServerId := []string{"Inner_example"} // []string | Filter by serverId query param.           <p>              <b>Format: </b> filter.serverId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.serverId=$not:$like:John Doe&filter.serverId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	filterServiceStatus := []string{"Inner_example"} // []string | Filter by serviceStatus query param.           <p>              <b>Format: </b> filter.serviceStatus={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.serviceStatus=$not:$like:John Doe&filter.serviceStatus=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	filterConfigServerId := []string{"Inner_example"} // []string | Filter by config.serverId query param.           <p>              <b>Format: </b> filter.config.serverId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.config.serverId=$not:$like:John Doe&filter.config.serverId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	filterConfigDeployStatus := []string{"Inner_example"} // []string | Filter by config.deployStatus query param.           <p>              <b>Format: </b> filter.config.deployStatus={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.config.deployStatus=$not:$like:John Doe&filter.config.deployStatus=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li> <li>$in</li></ul> (optional)
+	filterConfigDeployType := []string{"Inner_example"} // []string | Filter by config.deployType query param.           <p>              <b>Format: </b> filter.config.deployType={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.config.deployType=$not:$like:John Doe&filter.config.deployType=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li> <li>$in</li></ul> (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> id:DESC           </p>       <h4>Available Fields</h4><ul><li>id</li> <li>label</li></ul>        (optional)
 	search := "search_example" // string | Search term to filter result values         <p>              <b>Example: </b> John           </p>         <p>              <b>Default Value: </b> No default value           </p>          (optional)
 	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values         <p>              <b>Example: </b> label           </p>         <p>              <b>Default Value: </b> By default all fields mentioned below will be used to search by term           </p>         <h4>Available Fields</h4><ul><li>label</li></ul>          (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceAPI.GetServerInstances(context.Background()).Page(page).Limit(limit).FilterId(filterId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.ServerInstanceAPI.GetServerInstances(context.Background()).Page(page).Limit(limit).FilterInfrastructureId(filterInfrastructureId).FilterGroupId(filterGroupId).FilterServerId(filterServerId).FilterServiceStatus(filterServiceStatus).FilterConfigServerId(filterConfigServerId).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetServerInstances``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -883,8 +1036,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
  **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
- **filterId** | **[]string** | Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
- **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; label:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;        | 
+ **filterInfrastructureId** | **[]string** | Filter by infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **filterGroupId** | **[]string** | Filter by groupId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.groupId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.groupId&#x3D;$not:$like:John Doe&amp;filter.groupId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **filterServerId** | **[]string** | Filter by serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverId&#x3D;$not:$like:John Doe&amp;filter.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **filterServiceStatus** | **[]string** | Filter by serviceStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serviceStatus&#x3D;$not:$like:John Doe&amp;filter.serviceStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **filterConfigServerId** | **[]string** | Filter by config.serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.serverId&#x3D;$not:$like:John Doe&amp;filter.config.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **filterConfigDeployStatus** | **[]string** | Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt; | 
+ **filterConfigDeployType** | **[]string** | Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt; | 
+ **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;        | 
  **search** | **string** | Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;          | 
  **searchBy** | **[]string** | List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; label           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;          | 
 
@@ -900,6 +1059,78 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReinstallServerInstanceOS
+
+> ReinstallServerInstanceOS(ctx, serverInstanceId).ServerInstanceReinstallOS(serverInstanceReinstallOS).IfMatch(ifMatch).Execute()
+
+Manage the flag to reinstall the operating system on the server
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceId := int32(56) // int32 | 
+	serverInstanceReinstallOS := *openapiclient.NewServerInstanceReinstallOS(false, false) // ServerInstanceReinstallOS | reinstall OS options
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ServerInstanceAPI.ReinstallServerInstanceOS(context.Background(), serverInstanceId).ServerInstanceReinstallOS(serverInstanceReinstallOS).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.ReinstallServerInstanceOS``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReinstallServerInstanceOSRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **serverInstanceReinstallOS** | [**ServerInstanceReinstallOS**](ServerInstanceReinstallOS.md) | reinstall OS options | 
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -976,9 +1207,79 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## SetPowerStatusBatch
+
+> SetPowerStatusBatch(ctx, infrastructureId).InstancesSetPowerState(instancesSetPowerState).Execute()
+
+sets power status of multiple servers
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := int32(56) // int32 | 
+	instancesSetPowerState := *openapiclient.NewInstancesSetPowerState([]string{"Instances_example"}, "PowerCommand_example") // InstancesSetPowerState | The list of server instance ids
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ServerInstanceAPI.SetPowerStatusBatch(context.Background(), infrastructureId).InstancesSetPowerState(instancesSetPowerState).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.SetPowerStatusBatch``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetPowerStatusBatchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **instancesSetPowerState** | [**InstancesSetPowerState**](InstancesSetPowerState.md) | The list of server instance ids | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## SetPowerToServerInstance
 
-> SetPowerToServerInstance(ctx, serverInstanceId).ServerInstancePowerSetDto(serverInstancePowerSetDto).IfMatch(ifMatch).Execute()
+> SetPowerToServerInstance(ctx, serverInstanceId).ServerInstancePowerSet(serverInstancePowerSet).IfMatch(ifMatch).Execute()
 
 Set power to the Server Instance
 
@@ -998,12 +1299,12 @@ import (
 
 func main() {
 	serverInstanceId := int32(56) // int32 | 
-	serverInstancePowerSetDto := *openapiclient.NewServerInstancePowerSetDto("PowerCommand_example") // ServerInstancePowerSetDto | 
+	serverInstancePowerSet := *openapiclient.NewServerInstancePowerSet("PowerCommand_example") // ServerInstancePowerSet | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ServerInstanceAPI.SetPowerToServerInstance(context.Background(), serverInstanceId).ServerInstancePowerSetDto(serverInstancePowerSetDto).IfMatch(ifMatch).Execute()
+	r, err := apiClient.ServerInstanceAPI.SetPowerToServerInstance(context.Background(), serverInstanceId).ServerInstancePowerSet(serverInstancePowerSet).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.SetPowerToServerInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1027,7 +1328,7 @@ Other parameters are passed through a pointer to a apiSetPowerToServerInstanceRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **serverInstancePowerSetDto** | [**ServerInstancePowerSetDto**](ServerInstancePowerSetDto.md) |  | 
+ **serverInstancePowerSet** | [**ServerInstancePowerSet**](ServerInstancePowerSet.md) |  | 
  **ifMatch** | **string** | Entity tag | 
 
 ### Return type

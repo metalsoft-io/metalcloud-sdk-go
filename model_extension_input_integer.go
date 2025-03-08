@@ -26,8 +26,6 @@ type ExtensionInputInteger struct {
 	MaxValue *int32 `json:"maxValue,omitempty"`
 	// Denied values.
 	DeniedValues []int32 `json:"deniedValues,omitempty"`
-	// Default value.
-	DefaultValue *int32 `json:"defaultValue,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -146,38 +144,6 @@ func (o *ExtensionInputInteger) SetDeniedValues(v []int32) {
 	o.DeniedValues = v
 }
 
-// GetDefaultValue returns the DefaultValue field value if set, zero value otherwise.
-func (o *ExtensionInputInteger) GetDefaultValue() int32 {
-	if o == nil || IsNil(o.DefaultValue) {
-		var ret int32
-		return ret
-	}
-	return *o.DefaultValue
-}
-
-// GetDefaultValueOk returns a tuple with the DefaultValue field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExtensionInputInteger) GetDefaultValueOk() (*int32, bool) {
-	if o == nil || IsNil(o.DefaultValue) {
-		return nil, false
-	}
-	return o.DefaultValue, true
-}
-
-// HasDefaultValue returns a boolean if a field has been set.
-func (o *ExtensionInputInteger) HasDefaultValue() bool {
-	if o != nil && !IsNil(o.DefaultValue) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultValue gets a reference to the given int32 and assigns it to the DefaultValue field.
-func (o *ExtensionInputInteger) SetDefaultValue(v int32) {
-	o.DefaultValue = &v
-}
-
 func (o ExtensionInputInteger) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -196,9 +162,6 @@ func (o ExtensionInputInteger) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DeniedValues) {
 		toSerialize["deniedValues"] = o.DeniedValues
-	}
-	if !IsNil(o.DefaultValue) {
-		toSerialize["defaultValue"] = o.DefaultValue
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -225,7 +188,6 @@ func (o *ExtensionInputInteger) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "minValue")
 		delete(additionalProperties, "maxValue")
 		delete(additionalProperties, "deniedValues")
-		delete(additionalProperties, "defaultValue")
 		o.AdditionalProperties = additionalProperties
 	}
 

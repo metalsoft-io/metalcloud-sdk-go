@@ -61,6 +61,20 @@ func Test_sdk_OSTemplateAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test OSTemplateAPIService GetOSTemplateCredentials", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var osTemplateId float32
+
+		resp, httpRes, err := apiClient.OSTemplateAPI.GetOSTemplateCredentials(context.Background(), osTemplateId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test OSTemplateAPIService GetOSTemplates", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

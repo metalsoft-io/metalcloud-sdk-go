@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the Infrastructure. | 
 **SiteId** | **float32** | The ID of the site where the Infrastructure is located. | 
-**CustomVariables** | Pointer to **string** | Custom variables in JSON format. | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables in JSON format. | [optional] 
 **UserIdOwner** | Pointer to **float32** | User ID of the owner of the Infrastructure. | [optional] 
 **Description** | Pointer to **string** | Description of the infrastructure. | [optional] 
-**Meta** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
+**Meta** | Pointer to [**InfrastructureMeta**](InfrastructureMeta.md) |  | [optional] 
 
 ## Methods
 
@@ -72,20 +72,20 @@ SetSiteId sets SiteId field to given value.
 
 ### GetCustomVariables
 
-`func (o *InfrastructureCreate) GetCustomVariables() string`
+`func (o *InfrastructureCreate) GetCustomVariables() map[string]interface{}`
 
 GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
 
 ### GetCustomVariablesOk
 
-`func (o *InfrastructureCreate) GetCustomVariablesOk() (*string, bool)`
+`func (o *InfrastructureCreate) GetCustomVariablesOk() (*map[string]interface{}, bool)`
 
 GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomVariables
 
-`func (o *InfrastructureCreate) SetCustomVariables(v string)`
+`func (o *InfrastructureCreate) SetCustomVariables(v map[string]interface{})`
 
 SetCustomVariables sets CustomVariables field to given value.
 
@@ -147,20 +147,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetMeta
 
-`func (o *InfrastructureCreate) GetMeta() GenericGUISettings`
+`func (o *InfrastructureCreate) GetMeta() InfrastructureMeta`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *InfrastructureCreate) GetMetaOk() (*GenericGUISettings, bool)`
+`func (o *InfrastructureCreate) GetMetaOk() (*InfrastructureMeta, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *InfrastructureCreate) SetMeta(v GenericGUISettings)`
+`func (o *InfrastructureCreate) SetMeta(v InfrastructureMeta)`
 
 SetMeta sets Meta field to given value.
 

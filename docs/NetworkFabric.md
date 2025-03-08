@@ -6,9 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The network fabric name | 
 **Description** | Pointer to **string** | Network fabric description | [optional] 
-**FabricType** | **string** | The type of network fabric | 
 **FabricConfiguration** | [**NetworkFabricFabricConfiguration**](NetworkFabricFabricConfiguration.md) |  | 
-**Revision** | **int32** | Revision number of the entity | 
+**Revision** | **string** | Revision number of the entity | 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -18,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabric
 
-`func NewNetworkFabric(name string, fabricType string, fabricConfiguration NetworkFabricFabricConfiguration, revision int32, createdTimestamp time.Time, updatedTimestamp time.Time, id string, ) *NetworkFabric`
+`func NewNetworkFabric(name string, fabricConfiguration NetworkFabricFabricConfiguration, revision string, createdTimestamp time.Time, updatedTimestamp time.Time, id string, ) *NetworkFabric`
 
 NewNetworkFabric instantiates a new NetworkFabric object
 This constructor will assign default values to properties that have it defined,
@@ -78,26 +77,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetFabricType
-
-`func (o *NetworkFabric) GetFabricType() string`
-
-GetFabricType returns the FabricType field if non-nil, zero value otherwise.
-
-### GetFabricTypeOk
-
-`func (o *NetworkFabric) GetFabricTypeOk() (*string, bool)`
-
-GetFabricTypeOk returns a tuple with the FabricType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFabricType
-
-`func (o *NetworkFabric) SetFabricType(v string)`
-
-SetFabricType sets FabricType field to given value.
-
-
 ### GetFabricConfiguration
 
 `func (o *NetworkFabric) GetFabricConfiguration() NetworkFabricFabricConfiguration`
@@ -120,20 +99,20 @@ SetFabricConfiguration sets FabricConfiguration field to given value.
 
 ### GetRevision
 
-`func (o *NetworkFabric) GetRevision() int32`
+`func (o *NetworkFabric) GetRevision() string`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *NetworkFabric) GetRevisionOk() (*int32, bool)`
+`func (o *NetworkFabric) GetRevisionOk() (*string, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *NetworkFabric) SetRevision(v int32)`
+`func (o *NetworkFabric) SetRevision(v string)`
 
 SetRevision sets Revision field to given value.
 

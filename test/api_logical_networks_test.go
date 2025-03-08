@@ -47,13 +47,11 @@ func Test_sdk_LogicalNetworksAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test LogicalNetworksAPIService GetLogicalNetworkById", func(t *testing.T) {
+	t.Run("Test LogicalNetworksAPIService GetAllLogicalNetworks", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var logicalNetworkId float32
-
-		resp, httpRes, err := apiClient.LogicalNetworksAPI.GetLogicalNetworkById(context.Background(), logicalNetworkId).Execute()
+		resp, httpRes, err := apiClient.LogicalNetworksAPI.GetAllLogicalNetworks(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -61,11 +59,13 @@ func Test_sdk_LogicalNetworksAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test LogicalNetworksAPIService GetLogicalNetworks", func(t *testing.T) {
+	t.Run("Test LogicalNetworksAPIService GetLogicalNetworkById", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.LogicalNetworksAPI.GetLogicalNetworks(context.Background()).Execute()
+		var logicalNetworkId float32
+
+		resp, httpRes, err := apiClient.LogicalNetworksAPI.GetLogicalNetworkById(context.Background(), logicalNetworkId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

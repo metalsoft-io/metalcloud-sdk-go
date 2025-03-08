@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetEvent**](EventAPI.md#GetEvent) | **Get** /api/v2/events/{customIsoId} | Get Custom Iso information
+[**GetEvent**](EventAPI.md#GetEvent) | **Get** /api/v2/events/{eventId} | Get Event information
 [**GetEvents**](EventAPI.md#GetEvents) | **Get** /api/v2/events | Get all Events
 
 
 
 ## GetEvent
 
-> Event GetEvent(ctx, customIsoId).Execute()
+> Event GetEvent(ctx, eventId).Execute()
 
-Get Custom Iso information
+Get Event information
 
 
 
@@ -30,11 +30,11 @@ import (
 )
 
 func main() {
-	customIsoId := float32(8.14) // float32 | 
+	eventId := float32(8.14) // float32 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventAPI.GetEvent(context.Background(), customIsoId).Execute()
+	resp, r, err := apiClient.EventAPI.GetEvent(context.Background(), eventId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EventAPI.GetEvent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customIsoId** | **float32** |  | 
+**eventId** | **float32** |  | 
 
 ### Other Parameters
 

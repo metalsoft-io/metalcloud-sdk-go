@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Slug** | Pointer to **string** | The site unique slug | [optional] 
 **Name** | **string** | The site name | 
+**Location** | Pointer to [**Location**](Location.md) | Location details | [optional] 
 **IsHidden** | Pointer to **bool** | True if the site is hidden | [optional] 
 **IsInMaintenance** | Pointer to **bool** | True if the site is in maintenance mode | [optional] 
 
@@ -72,6 +73,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetLocation
+
+`func (o *SiteCreate) GetLocation() Location`
+
+GetLocation returns the Location field if non-nil, zero value otherwise.
+
+### GetLocationOk
+
+`func (o *SiteCreate) GetLocationOk() (*Location, bool)`
+
+GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocation
+
+`func (o *SiteCreate) SetLocation(v Location)`
+
+SetLocation sets Location field to given value.
+
+### HasLocation
+
+`func (o *SiteCreate) HasLocation() bool`
+
+HasLocation returns a boolean if a field has been set.
 
 ### GetIsHidden
 

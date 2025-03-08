@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**FabricType** | **string** | The type of network fabric | 
 **DefaultNetworkProfileId** | **int32** | Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile. | 
 **GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
@@ -24,12 +25,20 @@ Name | Type | Description | Notes
 **PreventVrfCleanup** | Pointer to **[]string** | VRF ID ranges to be preserved from automatic cleanup. Each range must follow the \&quot;start-end\&quot; format. | [optional] 
 **ReservedVrfs** | Pointer to **[]string** | Reserved VRF ID ranges that are set aside exclusively for specific network functions. Each range must be provided in the \&quot;start-end\&quot; format. | [optional] 
 **VrfVlanRanges** | Pointer to **[]string** | VLAN ranges to be associated with VRF instances. Each value must be an ordered pair specified in the \&quot;start-end\&quot; format. | [optional] 
+**VsanId** | **int32** | VSAN ID for the Fibre Channel fabric | 
+**TopologyType** | **string** | Fabric topology type | 
+**Mtu** | Pointer to **float32** | Maximum transmission unit (MTU) size in bytes | [optional] 
+**ZoningConfiguration** | Pointer to **map[string]interface{}** | Zoning configuration for the fabric | [optional] 
+**InteropMode** | Pointer to **string** | Interoperability mode for multi-vendor environments | [optional] 
+**QosConfiguration** | Pointer to **map[string]interface{}** | Quality of Service (QoS) configuration | [optional] 
+**TrunkingConfiguration** | Pointer to **map[string]interface{}** | Trunking configuration for ISLs (Inter-Switch Links) | [optional] 
+**PortChannelConfiguration** | Pointer to **map[string]interface{}** | Port channel configuration for ISLs | [optional] 
 
 ## Methods
 
 ### NewNetworkFabricFabricConfiguration
 
-`func NewNetworkFabricFabricConfiguration(defaultNetworkProfileId int32, numberOfSpinesNextToLeafSwitches int32, ) *NetworkFabricFabricConfiguration`
+`func NewNetworkFabricFabricConfiguration(fabricType string, defaultNetworkProfileId int32, numberOfSpinesNextToLeafSwitches int32, vsanId int32, topologyType string, ) *NetworkFabricFabricConfiguration`
 
 NewNetworkFabricFabricConfiguration instantiates a new NetworkFabricFabricConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -43,6 +52,26 @@ will change when the set of required properties is changed
 NewNetworkFabricFabricConfigurationWithDefaults instantiates a new NetworkFabricFabricConfiguration object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetFabricType
+
+`func (o *NetworkFabricFabricConfiguration) GetFabricType() string`
+
+GetFabricType returns the FabricType field if non-nil, zero value otherwise.
+
+### GetFabricTypeOk
+
+`func (o *NetworkFabricFabricConfiguration) GetFabricTypeOk() (*string, bool)`
+
+GetFabricTypeOk returns a tuple with the FabricType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFabricType
+
+`func (o *NetworkFabricFabricConfiguration) SetFabricType(v string)`
+
+SetFabricType sets FabricType field to given value.
+
 
 ### GetDefaultNetworkProfileId
 
@@ -533,6 +562,196 @@ SetVrfVlanRanges sets VrfVlanRanges field to given value.
 `func (o *NetworkFabricFabricConfiguration) HasVrfVlanRanges() bool`
 
 HasVrfVlanRanges returns a boolean if a field has been set.
+
+### GetVsanId
+
+`func (o *NetworkFabricFabricConfiguration) GetVsanId() int32`
+
+GetVsanId returns the VsanId field if non-nil, zero value otherwise.
+
+### GetVsanIdOk
+
+`func (o *NetworkFabricFabricConfiguration) GetVsanIdOk() (*int32, bool)`
+
+GetVsanIdOk returns a tuple with the VsanId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVsanId
+
+`func (o *NetworkFabricFabricConfiguration) SetVsanId(v int32)`
+
+SetVsanId sets VsanId field to given value.
+
+
+### GetTopologyType
+
+`func (o *NetworkFabricFabricConfiguration) GetTopologyType() string`
+
+GetTopologyType returns the TopologyType field if non-nil, zero value otherwise.
+
+### GetTopologyTypeOk
+
+`func (o *NetworkFabricFabricConfiguration) GetTopologyTypeOk() (*string, bool)`
+
+GetTopologyTypeOk returns a tuple with the TopologyType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTopologyType
+
+`func (o *NetworkFabricFabricConfiguration) SetTopologyType(v string)`
+
+SetTopologyType sets TopologyType field to given value.
+
+
+### GetMtu
+
+`func (o *NetworkFabricFabricConfiguration) GetMtu() float32`
+
+GetMtu returns the Mtu field if non-nil, zero value otherwise.
+
+### GetMtuOk
+
+`func (o *NetworkFabricFabricConfiguration) GetMtuOk() (*float32, bool)`
+
+GetMtuOk returns a tuple with the Mtu field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMtu
+
+`func (o *NetworkFabricFabricConfiguration) SetMtu(v float32)`
+
+SetMtu sets Mtu field to given value.
+
+### HasMtu
+
+`func (o *NetworkFabricFabricConfiguration) HasMtu() bool`
+
+HasMtu returns a boolean if a field has been set.
+
+### GetZoningConfiguration
+
+`func (o *NetworkFabricFabricConfiguration) GetZoningConfiguration() map[string]interface{}`
+
+GetZoningConfiguration returns the ZoningConfiguration field if non-nil, zero value otherwise.
+
+### GetZoningConfigurationOk
+
+`func (o *NetworkFabricFabricConfiguration) GetZoningConfigurationOk() (*map[string]interface{}, bool)`
+
+GetZoningConfigurationOk returns a tuple with the ZoningConfiguration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetZoningConfiguration
+
+`func (o *NetworkFabricFabricConfiguration) SetZoningConfiguration(v map[string]interface{})`
+
+SetZoningConfiguration sets ZoningConfiguration field to given value.
+
+### HasZoningConfiguration
+
+`func (o *NetworkFabricFabricConfiguration) HasZoningConfiguration() bool`
+
+HasZoningConfiguration returns a boolean if a field has been set.
+
+### GetInteropMode
+
+`func (o *NetworkFabricFabricConfiguration) GetInteropMode() string`
+
+GetInteropMode returns the InteropMode field if non-nil, zero value otherwise.
+
+### GetInteropModeOk
+
+`func (o *NetworkFabricFabricConfiguration) GetInteropModeOk() (*string, bool)`
+
+GetInteropModeOk returns a tuple with the InteropMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInteropMode
+
+`func (o *NetworkFabricFabricConfiguration) SetInteropMode(v string)`
+
+SetInteropMode sets InteropMode field to given value.
+
+### HasInteropMode
+
+`func (o *NetworkFabricFabricConfiguration) HasInteropMode() bool`
+
+HasInteropMode returns a boolean if a field has been set.
+
+### GetQosConfiguration
+
+`func (o *NetworkFabricFabricConfiguration) GetQosConfiguration() map[string]interface{}`
+
+GetQosConfiguration returns the QosConfiguration field if non-nil, zero value otherwise.
+
+### GetQosConfigurationOk
+
+`func (o *NetworkFabricFabricConfiguration) GetQosConfigurationOk() (*map[string]interface{}, bool)`
+
+GetQosConfigurationOk returns a tuple with the QosConfiguration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQosConfiguration
+
+`func (o *NetworkFabricFabricConfiguration) SetQosConfiguration(v map[string]interface{})`
+
+SetQosConfiguration sets QosConfiguration field to given value.
+
+### HasQosConfiguration
+
+`func (o *NetworkFabricFabricConfiguration) HasQosConfiguration() bool`
+
+HasQosConfiguration returns a boolean if a field has been set.
+
+### GetTrunkingConfiguration
+
+`func (o *NetworkFabricFabricConfiguration) GetTrunkingConfiguration() map[string]interface{}`
+
+GetTrunkingConfiguration returns the TrunkingConfiguration field if non-nil, zero value otherwise.
+
+### GetTrunkingConfigurationOk
+
+`func (o *NetworkFabricFabricConfiguration) GetTrunkingConfigurationOk() (*map[string]interface{}, bool)`
+
+GetTrunkingConfigurationOk returns a tuple with the TrunkingConfiguration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrunkingConfiguration
+
+`func (o *NetworkFabricFabricConfiguration) SetTrunkingConfiguration(v map[string]interface{})`
+
+SetTrunkingConfiguration sets TrunkingConfiguration field to given value.
+
+### HasTrunkingConfiguration
+
+`func (o *NetworkFabricFabricConfiguration) HasTrunkingConfiguration() bool`
+
+HasTrunkingConfiguration returns a boolean if a field has been set.
+
+### GetPortChannelConfiguration
+
+`func (o *NetworkFabricFabricConfiguration) GetPortChannelConfiguration() map[string]interface{}`
+
+GetPortChannelConfiguration returns the PortChannelConfiguration field if non-nil, zero value otherwise.
+
+### GetPortChannelConfigurationOk
+
+`func (o *NetworkFabricFabricConfiguration) GetPortChannelConfigurationOk() (*map[string]interface{}, bool)`
+
+GetPortChannelConfigurationOk returns a tuple with the PortChannelConfiguration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPortChannelConfiguration
+
+`func (o *NetworkFabricFabricConfiguration) SetPortChannelConfiguration(v map[string]interface{})`
+
+SetPortChannelConfiguration sets PortChannelConfiguration field to given value.
+
+### HasPortChannelConfiguration
+
+`func (o *NetworkFabricFabricConfiguration) HasPortChannelConfiguration() bool`
+
+HasPortChannelConfiguration returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

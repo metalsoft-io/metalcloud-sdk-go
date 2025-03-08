@@ -20,8 +20,8 @@ var _ MappedNullable = &UpdateVMInstance{}
 
 // UpdateVMInstance struct for UpdateVMInstance
 type UpdateVMInstance struct {
-	// Tags for the VM Instance.
-	Tags []string `json:"tags,omitempty"`
+	// Label for the VM Instance Group.
+	Label *string `json:"label,omitempty"`
 	// Disk size in GB for the VM Instance.
 	DiskSizeGB *float32 `json:"diskSizeGB,omitempty"`
 	// Custom variables for the VM Instance.
@@ -48,36 +48,36 @@ func NewUpdateVMInstanceWithDefaults() *UpdateVMInstance {
 	return &this
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *UpdateVMInstance) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
-		var ret []string
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *UpdateVMInstance) GetLabel() string {
+	if o == nil || IsNil(o.Label) {
+		var ret string
 		return ret
 	}
-	return o.Tags
+	return *o.Label
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMInstance) GetTagsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tags) {
+func (o *UpdateVMInstance) GetLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.Label) {
 		return nil, false
 	}
-	return o.Tags, true
+	return o.Label, true
 }
 
-// HasTags returns a boolean if a field has been set.
-func (o *UpdateVMInstance) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
+// HasLabel returns a boolean if a field has been set.
+func (o *UpdateVMInstance) HasLabel() bool {
+	if o != nil && !IsNil(o.Label) {
 		return true
 	}
 
 	return false
 }
 
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *UpdateVMInstance) SetTags(v []string) {
-	o.Tags = v
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *UpdateVMInstance) SetLabel(v string) {
+	o.Label = &v
 }
 
 // GetDiskSizeGB returns the DiskSizeGB field value if set, zero value otherwise.
@@ -154,8 +154,8 @@ func (o UpdateVMInstance) MarshalJSON() ([]byte, error) {
 
 func (o UpdateVMInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
+	if !IsNil(o.Label) {
+		toSerialize["label"] = o.Label
 	}
 	if !IsNil(o.DiskSizeGB) {
 		toSerialize["diskSizeGB"] = o.DiskSizeGB
@@ -185,7 +185,7 @@ func (o *UpdateVMInstance) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "tags")
+		delete(additionalProperties, "label")
 		delete(additionalProperties, "diskSizeGB")
 		delete(additionalProperties, "customVariables")
 		o.AdditionalProperties = additionalProperties

@@ -148,8 +148,6 @@ type Server struct {
 	RackPositionLowerUnit *string `json:"rackPositionLowerUnit,omitempty"`
 	// The inventory id of the server.
 	InventoryId *string `json:"inventoryId,omitempty"`
-	// The capabilities of the server.
-	Capabilities map[string]interface{} `json:"capabilities,omitempty"`
 	// Flag to indicate if the server needs an update of the IPMI credentials.
 	IpmiCredentialsNeedUpdate *float32 `json:"ipmiCredentialsNeedUpdate,omitempty"`
 	// The interfaces of the server.
@@ -2131,38 +2129,6 @@ func (o *Server) SetInventoryId(v string) {
 	o.InventoryId = &v
 }
 
-// GetCapabilities returns the Capabilities field value if set, zero value otherwise.
-func (o *Server) GetCapabilities() map[string]interface{} {
-	if o == nil || IsNil(o.Capabilities) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Capabilities
-}
-
-// GetCapabilitiesOk returns a tuple with the Capabilities field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Server) GetCapabilitiesOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Capabilities) {
-		return map[string]interface{}{}, false
-	}
-	return o.Capabilities, true
-}
-
-// HasCapabilities returns a boolean if a field has been set.
-func (o *Server) HasCapabilities() bool {
-	if o != nil && !IsNil(o.Capabilities) {
-		return true
-	}
-
-	return false
-}
-
-// SetCapabilities gets a reference to the given map[string]interface{} and assigns it to the Capabilities field.
-func (o *Server) SetCapabilities(v map[string]interface{}) {
-	o.Capabilities = v
-}
-
 // GetIpmiCredentialsNeedUpdate returns the IpmiCredentialsNeedUpdate field value if set, zero value otherwise.
 func (o *Server) GetIpmiCredentialsNeedUpdate() float32 {
 	if o == nil || IsNil(o.IpmiCredentialsNeedUpdate) {
@@ -2591,9 +2557,6 @@ func (o Server) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InventoryId) {
 		toSerialize["inventoryId"] = o.InventoryId
 	}
-	if !IsNil(o.Capabilities) {
-		toSerialize["capabilities"] = o.Capabilities
-	}
 	if !IsNil(o.IpmiCredentialsNeedUpdate) {
 		toSerialize["ipmiCredentialsNeedUpdate"] = o.IpmiCredentialsNeedUpdate
 	}
@@ -2739,7 +2702,6 @@ func (o *Server) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "rackPositionUpperUnit")
 		delete(additionalProperties, "rackPositionLowerUnit")
 		delete(additionalProperties, "inventoryId")
-		delete(additionalProperties, "capabilities")
 		delete(additionalProperties, "ipmiCredentialsNeedUpdate")
 		delete(additionalProperties, "interfaces")
 		delete(additionalProperties, "disks")

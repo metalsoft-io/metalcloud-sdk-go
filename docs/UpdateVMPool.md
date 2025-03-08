@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | Description of the VM Pool | [optional] 
 **InMaintenance** | Pointer to **float32** | Flag to indicate if the VM Pool is in maintenance mode. 1 for true, 0 for false. Default is 0. | [optional] 
 **IsExperimental** | Pointer to **float32** | Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0. | [optional] 
-**Tags** | **[]string** | Tags for the VM Pool. | 
+**Tags** | Pointer to **[]string** | Tags for the VM Pool. | [optional] 
 **ManagementHost** | Pointer to **string** | Host of the VM Pool | [optional] 
 **ManagementPort** | Pointer to **float32** | Port of the VM Pool | [optional] 
 **Certificate** | Pointer to **string** | Certificate of the VM Pool | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewUpdateVMPool
 
-`func NewUpdateVMPool(tags []string, ) *UpdateVMPool`
+`func NewUpdateVMPool() *UpdateVMPool`
 
 NewUpdateVMPool instantiates a new UpdateVMPool object
 This constructor will assign default values to properties that have it defined,
@@ -126,6 +126,11 @@ and a boolean to check if the value has been set.
 
 SetTags sets Tags field to given value.
 
+### HasTags
+
+`func (o *UpdateVMPool) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetManagementHost
 

@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## CreateSharedDrive
 
-> SharedDrive CreateSharedDrive(ctx, infrastructureId, sharedDriveId).CreateSharedDrive(createSharedDrive).Execute()
+> SharedDrive CreateSharedDrive(ctx, infrastructureId).CreateSharedDrive(createSharedDrive).Execute()
 
 Create a new Shared Drive
 
@@ -37,12 +37,11 @@ import (
 
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
-	sharedDriveId := float32(8.14) // float32 | 
 	createSharedDrive := *openapiclient.NewCreateSharedDrive(float32(123)) // CreateSharedDrive | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SharedDriveAPI.CreateSharedDrive(context.Background(), infrastructureId, sharedDriveId).CreateSharedDrive(createSharedDrive).Execute()
+	resp, r, err := apiClient.SharedDriveAPI.CreateSharedDrive(context.Background(), infrastructureId).CreateSharedDrive(createSharedDrive).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SharedDriveAPI.CreateSharedDrive``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,7 +58,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **infrastructureId** | **float32** |  | 
-**sharedDriveId** | **float32** |  | 
 
 ### Other Parameters
 
@@ -68,7 +66,6 @@ Other parameters are passed through a pointer to a apiCreateSharedDriveRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
  **createSharedDrive** | [**CreateSharedDrive**](CreateSharedDrive.md) |  | 
 

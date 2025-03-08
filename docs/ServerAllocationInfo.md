@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InstanceId** | **float32** | The id of the instance. | 
+**ExtensionInstanceId** | Pointer to **float32** | The id of the extension instance. | [optional] 
 **Infrastructure** | **map[string]interface{}** | The infrastructure of the instance. | 
 **VolumeTemplate** | Pointer to **map[string]interface{}** | The volume template of the instance. | [optional] 
 
@@ -46,6 +47,31 @@ and a boolean to check if the value has been set.
 
 SetInstanceId sets InstanceId field to given value.
 
+
+### GetExtensionInstanceId
+
+`func (o *ServerAllocationInfo) GetExtensionInstanceId() float32`
+
+GetExtensionInstanceId returns the ExtensionInstanceId field if non-nil, zero value otherwise.
+
+### GetExtensionInstanceIdOk
+
+`func (o *ServerAllocationInfo) GetExtensionInstanceIdOk() (*float32, bool)`
+
+GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtensionInstanceId
+
+`func (o *ServerAllocationInfo) SetExtensionInstanceId(v float32)`
+
+SetExtensionInstanceId sets ExtensionInstanceId field to given value.
+
+### HasExtensionInstanceId
+
+`func (o *ServerAllocationInfo) HasExtensionInstanceId() bool`
+
+HasExtensionInstanceId returns a boolean if a field has been set.
 
 ### GetInfrastructure
 

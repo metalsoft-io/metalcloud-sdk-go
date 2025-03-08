@@ -18,7 +18,7 @@ import (
 // checks if the PaginatedResponseLinks type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PaginatedResponseLinks{}
 
-// PaginatedResponseLinks struct for PaginatedResponseLinks
+// PaginatedResponseLinks Links to navigate through the paginated results
 type PaginatedResponseLinks struct {
 	First *string `json:"first,omitempty"`
 	Previous *string `json:"previous,omitempty"`

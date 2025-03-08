@@ -24,7 +24,7 @@ type Infrastructure struct {
 	// Label of the Infrastructure.
 	Label string `json:"label"`
 	// Custom variables in JSON format.
-	CustomVariables *string `json:"customVariables,omitempty"`
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// User ID of the owner of the Infrastructure.
 	UserIdOwner *float32 `json:"userIdOwner,omitempty"`
 	// Subdomain associated with the Infrastructure.
@@ -42,7 +42,7 @@ type Infrastructure struct {
 	// Description of the infrastructure.
 	Description *string `json:"description,omitempty"`
 	// Settings in JSON format.
-	Settings *string `json:"settings,omitempty"`
+	Settings map[string]interface{} `json:"settings,omitempty"`
 	// Whether the infrastructure API is private.
 	IsApiPrivate *float32 `json:"isApiPrivate,omitempty"`
 	// Experimental priority.
@@ -50,11 +50,11 @@ type Infrastructure struct {
 	// Whether the infrastructure is a member of public designs.
 	IsPublicDesignsMember *float32 `json:"isPublicDesignsMember,omitempty"`
 	// Certificates in JSON format.
-	CertificatesJson *string `json:"certificatesJson,omitempty"`
+	CertificatesJson map[string]interface{} `json:"certificatesJson,omitempty"`
 	// Deploy cookie jar JSON.
-	DeployCookieJarJson *string `json:"deployCookieJarJson,omitempty"`
+	DeployCookieJarJson map[string]interface{} `json:"deployCookieJarJson,omitempty"`
 	// Last error of deferred deploy attempt.
-	DeferredDeployAttemptLastErrorJson *string `json:"deferredDeployAttemptLastErrorJson,omitempty"`
+	DeferredDeployAttemptLastErrorJson map[string]interface{} `json:"deferredDeployAttemptLastErrorJson,omitempty"`
 	// Whether the infrastructure is automanaged.
 	IsAutomanaged *float32 `json:"isAutomanaged,omitempty"`
 	// Timestamp of the latest update for the Infrastructure.
@@ -80,12 +80,12 @@ type Infrastructure struct {
 	// Infrastructure design locked flag.
 	DesignIsLocked float32 `json:"designIsLocked"`
 	// The current changes to be deployed for the Infrastructure.
-	Config InfrastructureConfiguration `json:"config"`
-	// Meta information for the GUI
-	Meta *GenericGUISettings `json:"meta,omitempty"`
+	Config InfrastructureConfig `json:"config"`
+	// Meta information for the Infrastructure
+	Meta *InfrastructureMeta `json:"meta,omitempty"`
 	Statistics *JobGroupStatisticsWithoutId `json:"statistics,omitempty"`
 	// Links to other resources
-	Links map[string]interface{} `json:"links"`
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -95,7 +95,7 @@ type _Infrastructure Infrastructure
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfrastructure(label string, updatedTimestamp string, id float32, revision float32, serviceStatus string, datacenterName string, siteId float32, createdTimestamp string, designIsLocked float32, config InfrastructureConfiguration, links map[string]interface{}) *Infrastructure {
+func NewInfrastructure(label string, updatedTimestamp string, id float32, revision float32, serviceStatus string, datacenterName string, siteId float32, createdTimestamp string, designIsLocked float32, config InfrastructureConfig) *Infrastructure {
 	this := Infrastructure{}
 	this.Label = label
 	this.UpdatedTimestamp = updatedTimestamp
@@ -107,7 +107,6 @@ func NewInfrastructure(label string, updatedTimestamp string, id float32, revisi
 	this.CreatedTimestamp = createdTimestamp
 	this.DesignIsLocked = designIsLocked
 	this.Config = config
-	this.Links = links
 	return &this
 }
 
@@ -144,19 +143,19 @@ func (o *Infrastructure) SetLabel(v string) {
 }
 
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
-func (o *Infrastructure) GetCustomVariables() string {
+func (o *Infrastructure) GetCustomVariables() map[string]interface{} {
 	if o == nil || IsNil(o.CustomVariables) {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.CustomVariables
+	return o.CustomVariables
 }
 
 // GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetCustomVariablesOk() (*string, bool) {
+func (o *Infrastructure) GetCustomVariablesOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.CustomVariables) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.CustomVariables, true
 }
@@ -170,9 +169,9 @@ func (o *Infrastructure) HasCustomVariables() bool {
 	return false
 }
 
-// SetCustomVariables gets a reference to the given string and assigns it to the CustomVariables field.
-func (o *Infrastructure) SetCustomVariables(v string) {
-	o.CustomVariables = &v
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *Infrastructure) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
 }
 
 // GetUserIdOwner returns the UserIdOwner field value if set, zero value otherwise.
@@ -432,19 +431,19 @@ func (o *Infrastructure) SetDescription(v string) {
 }
 
 // GetSettings returns the Settings field value if set, zero value otherwise.
-func (o *Infrastructure) GetSettings() string {
+func (o *Infrastructure) GetSettings() map[string]interface{} {
 	if o == nil || IsNil(o.Settings) {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Settings
+	return o.Settings
 }
 
 // GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetSettingsOk() (*string, bool) {
+func (o *Infrastructure) GetSettingsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Settings) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Settings, true
 }
@@ -458,9 +457,9 @@ func (o *Infrastructure) HasSettings() bool {
 	return false
 }
 
-// SetSettings gets a reference to the given string and assigns it to the Settings field.
-func (o *Infrastructure) SetSettings(v string) {
-	o.Settings = &v
+// SetSettings gets a reference to the given map[string]interface{} and assigns it to the Settings field.
+func (o *Infrastructure) SetSettings(v map[string]interface{}) {
+	o.Settings = v
 }
 
 // GetIsApiPrivate returns the IsApiPrivate field value if set, zero value otherwise.
@@ -560,19 +559,19 @@ func (o *Infrastructure) SetIsPublicDesignsMember(v float32) {
 }
 
 // GetCertificatesJson returns the CertificatesJson field value if set, zero value otherwise.
-func (o *Infrastructure) GetCertificatesJson() string {
+func (o *Infrastructure) GetCertificatesJson() map[string]interface{} {
 	if o == nil || IsNil(o.CertificatesJson) {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.CertificatesJson
+	return o.CertificatesJson
 }
 
 // GetCertificatesJsonOk returns a tuple with the CertificatesJson field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetCertificatesJsonOk() (*string, bool) {
+func (o *Infrastructure) GetCertificatesJsonOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.CertificatesJson) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.CertificatesJson, true
 }
@@ -586,25 +585,25 @@ func (o *Infrastructure) HasCertificatesJson() bool {
 	return false
 }
 
-// SetCertificatesJson gets a reference to the given string and assigns it to the CertificatesJson field.
-func (o *Infrastructure) SetCertificatesJson(v string) {
-	o.CertificatesJson = &v
+// SetCertificatesJson gets a reference to the given map[string]interface{} and assigns it to the CertificatesJson field.
+func (o *Infrastructure) SetCertificatesJson(v map[string]interface{}) {
+	o.CertificatesJson = v
 }
 
 // GetDeployCookieJarJson returns the DeployCookieJarJson field value if set, zero value otherwise.
-func (o *Infrastructure) GetDeployCookieJarJson() string {
+func (o *Infrastructure) GetDeployCookieJarJson() map[string]interface{} {
 	if o == nil || IsNil(o.DeployCookieJarJson) {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.DeployCookieJarJson
+	return o.DeployCookieJarJson
 }
 
 // GetDeployCookieJarJsonOk returns a tuple with the DeployCookieJarJson field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetDeployCookieJarJsonOk() (*string, bool) {
+func (o *Infrastructure) GetDeployCookieJarJsonOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.DeployCookieJarJson) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.DeployCookieJarJson, true
 }
@@ -618,25 +617,25 @@ func (o *Infrastructure) HasDeployCookieJarJson() bool {
 	return false
 }
 
-// SetDeployCookieJarJson gets a reference to the given string and assigns it to the DeployCookieJarJson field.
-func (o *Infrastructure) SetDeployCookieJarJson(v string) {
-	o.DeployCookieJarJson = &v
+// SetDeployCookieJarJson gets a reference to the given map[string]interface{} and assigns it to the DeployCookieJarJson field.
+func (o *Infrastructure) SetDeployCookieJarJson(v map[string]interface{}) {
+	o.DeployCookieJarJson = v
 }
 
 // GetDeferredDeployAttemptLastErrorJson returns the DeferredDeployAttemptLastErrorJson field value if set, zero value otherwise.
-func (o *Infrastructure) GetDeferredDeployAttemptLastErrorJson() string {
+func (o *Infrastructure) GetDeferredDeployAttemptLastErrorJson() map[string]interface{} {
 	if o == nil || IsNil(o.DeferredDeployAttemptLastErrorJson) {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.DeferredDeployAttemptLastErrorJson
+	return o.DeferredDeployAttemptLastErrorJson
 }
 
 // GetDeferredDeployAttemptLastErrorJsonOk returns a tuple with the DeferredDeployAttemptLastErrorJson field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetDeferredDeployAttemptLastErrorJsonOk() (*string, bool) {
+func (o *Infrastructure) GetDeferredDeployAttemptLastErrorJsonOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.DeferredDeployAttemptLastErrorJson) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.DeferredDeployAttemptLastErrorJson, true
 }
@@ -650,9 +649,9 @@ func (o *Infrastructure) HasDeferredDeployAttemptLastErrorJson() bool {
 	return false
 }
 
-// SetDeferredDeployAttemptLastErrorJson gets a reference to the given string and assigns it to the DeferredDeployAttemptLastErrorJson field.
-func (o *Infrastructure) SetDeferredDeployAttemptLastErrorJson(v string) {
-	o.DeferredDeployAttemptLastErrorJson = &v
+// SetDeferredDeployAttemptLastErrorJson gets a reference to the given map[string]interface{} and assigns it to the DeferredDeployAttemptLastErrorJson field.
+func (o *Infrastructure) SetDeferredDeployAttemptLastErrorJson(v map[string]interface{}) {
+	o.DeferredDeployAttemptLastErrorJson = v
 }
 
 // GetIsAutomanaged returns the IsAutomanaged field value if set, zero value otherwise.
@@ -976,9 +975,9 @@ func (o *Infrastructure) SetDesignIsLocked(v float32) {
 }
 
 // GetConfig returns the Config field value
-func (o *Infrastructure) GetConfig() InfrastructureConfiguration {
+func (o *Infrastructure) GetConfig() InfrastructureConfig {
 	if o == nil {
-		var ret InfrastructureConfiguration
+		var ret InfrastructureConfig
 		return ret
 	}
 
@@ -987,7 +986,7 @@ func (o *Infrastructure) GetConfig() InfrastructureConfiguration {
 
 // GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetConfigOk() (*InfrastructureConfiguration, bool) {
+func (o *Infrastructure) GetConfigOk() (*InfrastructureConfig, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -995,14 +994,14 @@ func (o *Infrastructure) GetConfigOk() (*InfrastructureConfiguration, bool) {
 }
 
 // SetConfig sets field value
-func (o *Infrastructure) SetConfig(v InfrastructureConfiguration) {
+func (o *Infrastructure) SetConfig(v InfrastructureConfig) {
 	o.Config = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *Infrastructure) GetMeta() GenericGUISettings {
+func (o *Infrastructure) GetMeta() InfrastructureMeta {
 	if o == nil || IsNil(o.Meta) {
-		var ret GenericGUISettings
+		var ret InfrastructureMeta
 		return ret
 	}
 	return *o.Meta
@@ -1010,7 +1009,7 @@ func (o *Infrastructure) GetMeta() GenericGUISettings {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetMetaOk() (*GenericGUISettings, bool) {
+func (o *Infrastructure) GetMetaOk() (*InfrastructureMeta, bool) {
 	if o == nil || IsNil(o.Meta) {
 		return nil, false
 	}
@@ -1026,8 +1025,8 @@ func (o *Infrastructure) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given GenericGUISettings and assigns it to the Meta field.
-func (o *Infrastructure) SetMeta(v GenericGUISettings) {
+// SetMeta gets a reference to the given InfrastructureMeta and assigns it to the Meta field.
+func (o *Infrastructure) SetMeta(v InfrastructureMeta) {
 	o.Meta = &v
 }
 
@@ -1063,27 +1062,35 @@ func (o *Infrastructure) SetStatistics(v JobGroupStatisticsWithoutId) {
 	o.Statistics = &v
 }
 
-// GetLinks returns the Links field value
-func (o *Infrastructure) GetLinks() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *Infrastructure) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetLinksOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+func (o *Infrastructure) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
-func (o *Infrastructure) SetLinks(v map[string]interface{}) {
+// HasLinks returns a boolean if a field has been set.
+func (o *Infrastructure) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *Infrastructure) SetLinks(v []Link) {
 	o.Links = v
 }
 
@@ -1173,7 +1180,9 @@ func (o Infrastructure) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Statistics) {
 		toSerialize["statistics"] = o.Statistics
 	}
-	toSerialize["links"] = o.Links
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1197,7 +1206,6 @@ func (o *Infrastructure) UnmarshalJSON(data []byte) (err error) {
 		"createdTimestamp",
 		"designIsLocked",
 		"config",
-		"links",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -88,6 +88,8 @@ type APIClient struct {
 
 	JobAPI *JobAPIService
 
+	LogicalNetworkProfilesAPI *LogicalNetworkProfilesAPIService
+
 	LogicalNetworksAPI *LogicalNetworksAPIService
 
 	NetworkAPI *NetworkAPIService
@@ -176,6 +178,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.FirmwarePolicyAPI = (*FirmwarePolicyAPIService)(&c.common)
 	c.InfrastructureAPI = (*InfrastructureAPIService)(&c.common)
 	c.JobAPI = (*JobAPIService)(&c.common)
+	c.LogicalNetworkProfilesAPI = (*LogicalNetworkProfilesAPIService)(&c.common)
 	c.LogicalNetworksAPI = (*LogicalNetworksAPIService)(&c.common)
 	c.NetworkAPI = (*NetworkAPIService)(&c.common)
 	c.NetworkDeviceAPI = (*NetworkDeviceAPIService)(&c.common)

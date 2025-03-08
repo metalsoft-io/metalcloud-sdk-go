@@ -5,8 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | The server instance label. Will be automatically generated if not provided. | [optional] 
+**GroupId** | Pointer to **int32** |  | [optional] 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
 **TemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 **EnableAutoPortChannel** | Pointer to **bool** | If enabled will enable port channel to be automatically created. | [optional] [default to true]
 **NetworkProfiles** | Pointer to [**[]ServerInstanceConfigurationNetworkProfilesInner**](ServerInstanceConfigurationNetworkProfilesInner.md) | Network profiles mapping for each network in this infrastructure. | [optional] 
 
@@ -53,6 +55,31 @@ SetLabel sets Label field to given value.
 `func (o *ServerInstanceCreate) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
+
+### GetGroupId
+
+`func (o *ServerInstanceCreate) GetGroupId() int32`
+
+GetGroupId returns the GroupId field if non-nil, zero value otherwise.
+
+### GetGroupIdOk
+
+`func (o *ServerInstanceCreate) GetGroupIdOk() (*int32, bool)`
+
+GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupId
+
+`func (o *ServerInstanceCreate) SetGroupId(v int32)`
+
+SetGroupId sets GroupId field to given value.
+
+### HasGroupId
+
+`func (o *ServerInstanceCreate) HasGroupId() bool`
+
+HasGroupId returns a boolean if a field has been set.
 
 ### GetServerTypeId
 
@@ -103,6 +130,31 @@ SetTemplateId sets TemplateId field to given value.
 `func (o *ServerInstanceCreate) HasTemplateId() bool`
 
 HasTemplateId returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *ServerInstanceCreate) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *ServerInstanceCreate) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *ServerInstanceCreate) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *ServerInstanceCreate) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetEnableAutoPortChannel
 

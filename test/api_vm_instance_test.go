@@ -66,14 +66,43 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test VMInstanceAPIService GetVMInstance", func(t *testing.T) {
+	t.Run("Test VMInstanceAPIService GetInfrastructureVMInstance", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var infrastructureId float32
 		var vmInstanceId float32
 
-		resp, httpRes, err := apiClient.VMInstanceAPI.GetVMInstance(context.Background(), infrastructureId, vmInstanceId).Execute()
+		resp, httpRes, err := apiClient.VMInstanceAPI.GetInfrastructureVMInstance(context.Background(), infrastructureId, vmInstanceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMInstanceAPIService GetInfrastructureVMInstances", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+
+		resp, httpRes, err := apiClient.VMInstanceAPI.GetInfrastructureVMInstances(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMInstanceAPIService GetVMInstanceConfigInfo", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var vmInstanceId float32
+
+		resp, httpRes, err := apiClient.VMInstanceAPI.GetVMInstanceConfigInfo(context.Background(), infrastructureId, vmInstanceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -89,6 +118,21 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 		var vmInstanceId float32
 
 		resp, httpRes, err := apiClient.VMInstanceAPI.GetVMInstancePowerStatus(context.Background(), infrastructureId, vmInstanceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMInstanceAPIService PatchVMInstanceMeta", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var vmInstanceId float32
+
+		resp, httpRes, err := apiClient.VMInstanceAPI.PatchVMInstanceMeta(context.Background(), infrastructureId, vmInstanceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -138,14 +182,14 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test VMInstanceAPIService UpdateVMInstance", func(t *testing.T) {
+	t.Run("Test VMInstanceAPIService UpdateVMInstanceConfig", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var infrastructureId float32
 		var vmInstanceId float32
 
-		resp, httpRes, err := apiClient.VMInstanceAPI.UpdateVMInstance(context.Background(), infrastructureId, vmInstanceId).Execute()
+		resp, httpRes, err := apiClient.VMInstanceAPI.UpdateVMInstanceConfig(context.Background(), infrastructureId, vmInstanceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UpdateVMPool type satisfies the MappedNullable interface at compile time
@@ -28,7 +27,7 @@ type UpdateVMPool struct {
 	// Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0.
 	IsExperimental *float32 `json:"isExperimental,omitempty"`
 	// Tags for the VM Pool.
-	Tags []string `json:"tags"`
+	Tags []string `json:"tags,omitempty"`
 	// Host of the VM Pool
 	ManagementHost *string `json:"managementHost,omitempty"`
 	// Port of the VM Pool
@@ -46,9 +45,8 @@ type _UpdateVMPool UpdateVMPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateVMPool(tags []string) *UpdateVMPool {
+func NewUpdateVMPool() *UpdateVMPool {
 	this := UpdateVMPool{}
-	this.Tags = tags
 	return &this
 }
 
@@ -156,26 +154,34 @@ func (o *UpdateVMPool) SetIsExperimental(v float32) {
 	o.IsExperimental = &v
 }
 
-// GetTags returns the Tags field value
+// GetTags returns the Tags field value if set, zero value otherwise.
 func (o *UpdateVMPool) GetTags() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
-
 	return o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateVMPool) GetTagsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
 }
 
-// SetTags sets field value
+// HasTags returns a boolean if a field has been set.
+func (o *UpdateVMPool) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *UpdateVMPool) SetTags(v []string) {
 	o.Tags = v
 }
@@ -327,7 +333,9 @@ func (o UpdateVMPool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsExperimental) {
 		toSerialize["isExperimental"] = o.IsExperimental
 	}
-	toSerialize["tags"] = o.Tags
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
 	if !IsNil(o.ManagementHost) {
 		toSerialize["managementHost"] = o.ManagementHost
 	}
@@ -349,27 +357,6 @@ func (o UpdateVMPool) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *UpdateVMPool) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"tags",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varUpdateVMPool := _UpdateVMPool{}
 
 	err = json.Unmarshal(data, &varUpdateVMPool)

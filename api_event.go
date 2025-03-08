@@ -28,7 +28,7 @@ type EventAPIService service
 type EventAPIGetEventRequest struct {
 	ctx context.Context
 	ApiService *EventAPIService
-	customIsoId float32
+	eventId float32
 }
 
 func (r EventAPIGetEventRequest) Execute() (*Event, *http.Response, error) {
@@ -36,19 +36,19 @@ func (r EventAPIGetEventRequest) Execute() (*Event, *http.Response, error) {
 }
 
 /*
-GetEvent Get Custom Iso information
+GetEvent Get Event information
 
-Returns Custom Iso information
+Returns Event information
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customIsoId
+ @param eventId
  @return EventAPIGetEventRequest
 */
-func (a *EventAPIService) GetEvent(ctx context.Context, customIsoId float32) EventAPIGetEventRequest {
+func (a *EventAPIService) GetEvent(ctx context.Context, eventId float32) EventAPIGetEventRequest {
 	return EventAPIGetEventRequest{
 		ApiService: a,
 		ctx: ctx,
-		customIsoId: customIsoId,
+		eventId: eventId,
 	}
 }
 
@@ -67,8 +67,8 @@ func (a *EventAPIService) GetEventExecute(r EventAPIGetEventRequest) (*Event, *h
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/events/{customIsoId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"customIsoId"+"}", url.PathEscape(parameterValueToString(r.customIsoId, "customIsoId")), -1)
+	localVarPath := localBasePath + "/api/v2/events/{eventId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"eventId"+"}", url.PathEscape(parameterValueToString(r.eventId, "eventId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -335,15 +335,15 @@ type FirmwareCatalogAPIGetFirmwareCatalogsRequest struct {
 	ApiService *FirmwareCatalogAPIService
 	page *float32
 	limit *float32
-	filterServerFirmwareCatalogId *[]string
-	filterServerFirmwareCatalogName *[]string
-	filterServerFirmwareCatalogDescription *[]string
-	filterServerFirmwareCatalogVendor *[]string
-	filterServerFirmwareCatalogVendorId *[]string
-	filterServerFirmwareCatalogVendorUrl *[]string
-	filterServerFirmwareCatalogVendorReleaseTimestamp *[]string
-	filterServerFirmwareCatalogUpdateType *[]string
-	filterServerFirmwareCatalogCreatedTimestamp *[]string
+	filterId *[]string
+	filterName *[]string
+	filterDescription *[]string
+	filterVendor *[]string
+	filterVendorId *[]string
+	filterVendorUrl *[]string
+	filterVendorReleaseTimestamp *[]string
+	filterUpdateType *[]string
+	filterCreatedTimestamp *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -362,61 +362,61 @@ func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) Limit(limit float32) Firmw
 	return r
 }
 
-// Filter by serverFirmwareCatalogId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareCatalogId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareCatalogId&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareCatalogId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterServerFirmwareCatalogId(filterServerFirmwareCatalogId []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
-	r.filterServerFirmwareCatalogId = &filterServerFirmwareCatalogId
+// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterId(filterId []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
+	r.filterId = &filterId
 	return r
 }
 
-// Filter by serverFirmwareCatalogName query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareCatalogName&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareCatalogName&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareCatalogName&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterServerFirmwareCatalogName(filterServerFirmwareCatalogName []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
-	r.filterServerFirmwareCatalogName = &filterServerFirmwareCatalogName
+// Filter by name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.name&#x3D;$not:$like:John Doe&amp;filter.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterName(filterName []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
+	r.filterName = &filterName
 	return r
 }
 
-// Filter by serverFirmwareCatalogDescription query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareCatalogDescription&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareCatalogDescription&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareCatalogDescription&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterServerFirmwareCatalogDescription(filterServerFirmwareCatalogDescription []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
-	r.filterServerFirmwareCatalogDescription = &filterServerFirmwareCatalogDescription
+// Filter by description query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.description&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.description&#x3D;$not:$like:John Doe&amp;filter.description&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterDescription(filterDescription []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
+	r.filterDescription = &filterDescription
 	return r
 }
 
-// Filter by serverFirmwareCatalogVendor query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareCatalogVendor&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareCatalogVendor&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareCatalogVendor&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterServerFirmwareCatalogVendor(filterServerFirmwareCatalogVendor []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
-	r.filterServerFirmwareCatalogVendor = &filterServerFirmwareCatalogVendor
+// Filter by vendor query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.vendor&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.vendor&#x3D;$not:$like:John Doe&amp;filter.vendor&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterVendor(filterVendor []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
+	r.filterVendor = &filterVendor
 	return r
 }
 
-// Filter by serverFirmwareCatalogVendorId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareCatalogVendorId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareCatalogVendorId&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareCatalogVendorId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterServerFirmwareCatalogVendorId(filterServerFirmwareCatalogVendorId []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
-	r.filterServerFirmwareCatalogVendorId = &filterServerFirmwareCatalogVendorId
+// Filter by vendorId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.vendorId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.vendorId&#x3D;$not:$like:John Doe&amp;filter.vendorId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterVendorId(filterVendorId []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
+	r.filterVendorId = &filterVendorId
 	return r
 }
 
-// Filter by serverFirmwareCatalogVendorUrl query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareCatalogVendorUrl&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareCatalogVendorUrl&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareCatalogVendorUrl&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterServerFirmwareCatalogVendorUrl(filterServerFirmwareCatalogVendorUrl []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
-	r.filterServerFirmwareCatalogVendorUrl = &filterServerFirmwareCatalogVendorUrl
+// Filter by vendorUrl query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.vendorUrl&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.vendorUrl&#x3D;$not:$like:John Doe&amp;filter.vendorUrl&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterVendorUrl(filterVendorUrl []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
+	r.filterVendorUrl = &filterVendorUrl
 	return r
 }
 
-// Filter by serverFirmwareCatalogVendorReleaseTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareCatalogVendorReleaseTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareCatalogVendorReleaseTimestamp&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareCatalogVendorReleaseTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterServerFirmwareCatalogVendorReleaseTimestamp(filterServerFirmwareCatalogVendorReleaseTimestamp []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
-	r.filterServerFirmwareCatalogVendorReleaseTimestamp = &filterServerFirmwareCatalogVendorReleaseTimestamp
+// Filter by vendorReleaseTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.vendorReleaseTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.vendorReleaseTimestamp&#x3D;$not:$like:John Doe&amp;filter.vendorReleaseTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterVendorReleaseTimestamp(filterVendorReleaseTimestamp []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
+	r.filterVendorReleaseTimestamp = &filterVendorReleaseTimestamp
 	return r
 }
 
-// Filter by serverFirmwareCatalogUpdateType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareCatalogUpdateType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareCatalogUpdateType&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareCatalogUpdateType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterServerFirmwareCatalogUpdateType(filterServerFirmwareCatalogUpdateType []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
-	r.filterServerFirmwareCatalogUpdateType = &filterServerFirmwareCatalogUpdateType
+// Filter by updateType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.updateType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.updateType&#x3D;$not:$like:John Doe&amp;filter.updateType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterUpdateType(filterUpdateType []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
+	r.filterUpdateType = &filterUpdateType
 	return r
 }
 
-// Filter by serverFirmwareCatalogCreatedTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareCatalogCreatedTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareCatalogCreatedTimestamp&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareCatalogCreatedTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterServerFirmwareCatalogCreatedTimestamp(filterServerFirmwareCatalogCreatedTimestamp []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
-	r.filterServerFirmwareCatalogCreatedTimestamp = &filterServerFirmwareCatalogCreatedTimestamp
+// Filter by createdTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.createdTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.createdTimestamp&#x3D;$not:$like:John Doe&amp;filter.createdTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) FilterCreatedTimestamp(filterCreatedTimestamp []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
+	r.filterCreatedTimestamp = &filterCreatedTimestamp
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; serverFirmwareCatalogId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;serverFirmwareCatalogId&lt;/li&gt; &lt;li&gt;serverFirmwareCatalogName&lt;/li&gt; &lt;li&gt;serverFirmwareCatalogVendor&lt;/li&gt; &lt;li&gt;serverFirmwareCatalogVendorReleaseTimestamp&lt;/li&gt; &lt;li&gt;serverFirmwareCatalogUpdateType&lt;/li&gt; &lt;li&gt;serverFirmwareCatalogCreatedTimestamp&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;vendor&lt;/li&gt; &lt;li&gt;vendorReleaseTimestamp&lt;/li&gt; &lt;li&gt;updateType&lt;/li&gt; &lt;li&gt;createdTimestamp&lt;/li&gt;&lt;/ul&gt;       
 func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) SortBy(sortBy []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -428,13 +428,13 @@ func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) Search(search string) Firm
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; serverFirmwareCatalogName,serverFirmwareCatalogDescription           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;serverFirmwareCatalogName&lt;/li&gt; &lt;li&gt;serverFirmwareCatalogDescription&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; name,description           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;name&lt;/li&gt; &lt;li&gt;description&lt;/li&gt;&lt;/ul&gt;         
 func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) SearchBy(searchBy []string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; serverFirmwareCatalogId,serverFirmwareCatalogName,serverFirmwareCatalogDescription,serverFirmwareCatalogVendor,serverFirmwareCatalogVendorId           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
+// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,name,description,vendor,vendorId           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
 func (r FirmwareCatalogAPIGetFirmwareCatalogsRequest) Select_(select_ string) FirmwareCatalogAPIGetFirmwareCatalogsRequest {
 	r.select_ = &select_
 	return r
@@ -486,103 +486,103 @@ func (a *FirmwareCatalogAPIService) GetFirmwareCatalogsExecute(r FirmwareCatalog
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
-	if r.filterServerFirmwareCatalogId != nil {
-		t := *r.filterServerFirmwareCatalogId
+	if r.filterId != nil {
+		t := *r.filterId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareCatalogName != nil {
-		t := *r.filterServerFirmwareCatalogName
+	if r.filterName != nil {
+		t := *r.filterName
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogName", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogName", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareCatalogDescription != nil {
-		t := *r.filterServerFirmwareCatalogDescription
+	if r.filterDescription != nil {
+		t := *r.filterDescription
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogDescription", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogDescription", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.description", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareCatalogVendor != nil {
-		t := *r.filterServerFirmwareCatalogVendor
+	if r.filterVendor != nil {
+		t := *r.filterVendor
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogVendor", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vendor", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogVendor", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vendor", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareCatalogVendorId != nil {
-		t := *r.filterServerFirmwareCatalogVendorId
+	if r.filterVendorId != nil {
+		t := *r.filterVendorId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogVendorId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vendorId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogVendorId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vendorId", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareCatalogVendorUrl != nil {
-		t := *r.filterServerFirmwareCatalogVendorUrl
+	if r.filterVendorUrl != nil {
+		t := *r.filterVendorUrl
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogVendorUrl", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vendorUrl", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogVendorUrl", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vendorUrl", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareCatalogVendorReleaseTimestamp != nil {
-		t := *r.filterServerFirmwareCatalogVendorReleaseTimestamp
+	if r.filterVendorReleaseTimestamp != nil {
+		t := *r.filterVendorReleaseTimestamp
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogVendorReleaseTimestamp", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vendorReleaseTimestamp", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogVendorReleaseTimestamp", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vendorReleaseTimestamp", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareCatalogUpdateType != nil {
-		t := *r.filterServerFirmwareCatalogUpdateType
+	if r.filterUpdateType != nil {
+		t := *r.filterUpdateType
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogUpdateType", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.updateType", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogUpdateType", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.updateType", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareCatalogCreatedTimestamp != nil {
-		t := *r.filterServerFirmwareCatalogCreatedTimestamp
+	if r.filterCreatedTimestamp != nil {
+		t := *r.filterCreatedTimestamp
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogCreatedTimestamp", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.createdTimestamp", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareCatalogCreatedTimestamp", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.createdTimestamp", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

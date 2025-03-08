@@ -25,6 +25,434 @@ import (
 // DriveGroupAPIService DriveGroupAPI service
 type DriveGroupAPIService service
 
+type DriveGroupAPICreateDriveGroupRequest struct {
+	ctx context.Context
+	ApiService *DriveGroupAPIService
+	infrastructureId float32
+	createGroupDrive *CreateGroupDrive
+}
+
+func (r DriveGroupAPICreateDriveGroupRequest) CreateGroupDrive(createGroupDrive CreateGroupDrive) DriveGroupAPICreateDriveGroupRequest {
+	r.createGroupDrive = &createGroupDrive
+	return r
+}
+
+func (r DriveGroupAPICreateDriveGroupRequest) Execute() (*DriveGroup, *http.Response, error) {
+	return r.ApiService.CreateDriveGroupExecute(r)
+}
+
+/*
+CreateDriveGroup Create a new Drive Group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @return DriveGroupAPICreateDriveGroupRequest
+*/
+func (a *DriveGroupAPIService) CreateDriveGroup(ctx context.Context, infrastructureId float32) DriveGroupAPICreateDriveGroupRequest {
+	return DriveGroupAPICreateDriveGroupRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+	}
+}
+
+// Execute executes the request
+//  @return DriveGroup
+func (a *DriveGroupAPIService) CreateDriveGroupExecute(r DriveGroupAPICreateDriveGroupRequest) (*DriveGroup, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DriveGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveGroupAPIService.CreateDriveGroup")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/drive-groups"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createGroupDrive == nil {
+		return localVarReturnValue, nil, reportError("createGroupDrive is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createGroupDrive
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DriveGroupAPIDeleteDriveGroupRequest struct {
+	ctx context.Context
+	ApiService *DriveGroupAPIService
+	infrastructureId float32
+	driveGroupId float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r DriveGroupAPIDeleteDriveGroupRequest) IfMatch(ifMatch string) DriveGroupAPIDeleteDriveGroupRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r DriveGroupAPIDeleteDriveGroupRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteDriveGroupExecute(r)
+}
+
+/*
+DeleteDriveGroup Deletes a Drive Group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param driveGroupId
+ @return DriveGroupAPIDeleteDriveGroupRequest
+*/
+func (a *DriveGroupAPIService) DeleteDriveGroup(ctx context.Context, infrastructureId float32, driveGroupId float32) DriveGroupAPIDeleteDriveGroupRequest {
+	return DriveGroupAPIDeleteDriveGroupRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		driveGroupId: driveGroupId,
+	}
+}
+
+// Execute executes the request
+func (a *DriveGroupAPIService) DeleteDriveGroupExecute(r DriveGroupAPIDeleteDriveGroupRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveGroupAPIService.DeleteDriveGroup")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"driveGroupId"+"}", url.PathEscape(parameterValueToString(r.driveGroupId, "driveGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type DriveGroupAPIGetDriveGroupConfigInfoRequest struct {
+	ctx context.Context
+	ApiService *DriveGroupAPIService
+	infrastructureId float32
+	driveGroupId float32
+}
+
+func (r DriveGroupAPIGetDriveGroupConfigInfoRequest) Execute() (*DriveGroupConfiguration, *http.Response, error) {
+	return r.ApiService.GetDriveGroupConfigInfoExecute(r)
+}
+
+/*
+GetDriveGroupConfigInfo Get configuration information about the specified Drive Group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param driveGroupId
+ @return DriveGroupAPIGetDriveGroupConfigInfoRequest
+*/
+func (a *DriveGroupAPIService) GetDriveGroupConfigInfo(ctx context.Context, infrastructureId float32, driveGroupId float32) DriveGroupAPIGetDriveGroupConfigInfoRequest {
+	return DriveGroupAPIGetDriveGroupConfigInfoRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		driveGroupId: driveGroupId,
+	}
+}
+
+// Execute executes the request
+//  @return DriveGroupConfiguration
+func (a *DriveGroupAPIService) GetDriveGroupConfigInfoExecute(r DriveGroupAPIGetDriveGroupConfigInfoRequest) (*DriveGroupConfiguration, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DriveGroupConfiguration
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveGroupAPIService.GetDriveGroupConfigInfo")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/config"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"driveGroupId"+"}", url.PathEscape(parameterValueToString(r.driveGroupId, "driveGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DriveGroupAPIGetDriveGroupDrivesRequest struct {
+	ctx context.Context
+	ApiService *DriveGroupAPIService
+	infrastructureId float32
+	driveGroupId float32
+}
+
+func (r DriveGroupAPIGetDriveGroupDrivesRequest) Execute() (*DrivePaginatedList, *http.Response, error) {
+	return r.ApiService.GetDriveGroupDrivesExecute(r)
+}
+
+/*
+GetDriveGroupDrives Get the Drives of the Drive Group
+
+Returns the Drives of the Drive Group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param driveGroupId
+ @return DriveGroupAPIGetDriveGroupDrivesRequest
+*/
+func (a *DriveGroupAPIService) GetDriveGroupDrives(ctx context.Context, infrastructureId float32, driveGroupId float32) DriveGroupAPIGetDriveGroupDrivesRequest {
+	return DriveGroupAPIGetDriveGroupDrivesRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		driveGroupId: driveGroupId,
+	}
+}
+
+// Execute executes the request
+//  @return DrivePaginatedList
+func (a *DriveGroupAPIService) GetDriveGroupDrivesExecute(r DriveGroupAPIGetDriveGroupDrivesRequest) (*DrivePaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DrivePaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveGroupAPIService.GetDriveGroupDrives")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/{infrastructureId}/drive-groups/{driveGroupId}/drives"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"driveGroupId"+"}", url.PathEscape(parameterValueToString(r.driveGroupId, "driveGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type DriveGroupAPIGetInfrastructureDriveGroupRequest struct {
 	ctx context.Context
 	ApiService *DriveGroupAPIService
@@ -139,7 +567,7 @@ type DriveGroupAPIGetInfrastructureDriveGroupsRequest struct {
 	page *float32
 	limit *float32
 	filterId *[]string
-	filterInstanceArrayId *[]string
+	filterServerInstanceGroupId *[]string
 	filterTemplateId *[]string
 	filterServiceStatus *[]string
 	filterLabel *[]string
@@ -172,9 +600,9 @@ func (r DriveGroupAPIGetInfrastructureDriveGroupsRequest) FilterId(filterId []st
 	return r
 }
 
-// Filter by instanceArrayId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.instanceArrayId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.instanceArrayId&#x3D;$not:$like:John Doe&amp;filter.instanceArrayId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r DriveGroupAPIGetInfrastructureDriveGroupsRequest) FilterInstanceArrayId(filterInstanceArrayId []string) DriveGroupAPIGetInfrastructureDriveGroupsRequest {
-	r.filterInstanceArrayId = &filterInstanceArrayId
+// Filter by serverInstanceGroupId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverInstanceGroupId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverInstanceGroupId&#x3D;$not:$like:John Doe&amp;filter.serverInstanceGroupId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r DriveGroupAPIGetInfrastructureDriveGroupsRequest) FilterServerInstanceGroupId(filterServerInstanceGroupId []string) DriveGroupAPIGetInfrastructureDriveGroupsRequest {
+	r.filterServerInstanceGroupId = &filterServerInstanceGroupId
 	return r
 }
 
@@ -214,7 +642,7 @@ func (r DriveGroupAPIGetInfrastructureDriveGroupsRequest) FilterExtensionInstanc
 	return r
 }
 
-// Filter by tags query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.tags&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.tags&#x3D;$not:$like:John Doe&amp;filter.tags&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+// Filter by tags query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.tags&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.tags&#x3D;$not:$like:John Doe&amp;filter.tags&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
 func (r DriveGroupAPIGetInfrastructureDriveGroupsRequest) FilterTags(filterTags []string) DriveGroupAPIGetInfrastructureDriveGroupsRequest {
 	r.filterTags = &filterTags
 	return r
@@ -244,7 +672,7 @@ func (r DriveGroupAPIGetInfrastructureDriveGroupsRequest) Search(search string) 
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,subdomain,subdomainPermanent,infrastructureId           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;subdomain&lt;/li&gt; &lt;li&gt;subdomainPermanent&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;instanceArrayId&lt;/li&gt; &lt;li&gt;extensionInstanceId&lt;/li&gt; &lt;li&gt;tags&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt; &lt;li&gt;config.templateId&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,subdomain,subdomainPermanent,infrastructureId           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;subdomain&lt;/li&gt; &lt;li&gt;subdomainPermanent&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;serverInstanceGroupId&lt;/li&gt; &lt;li&gt;extensionInstanceId&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt; &lt;li&gt;config.templateId&lt;/li&gt;&lt;/ul&gt;         
 func (r DriveGroupAPIGetInfrastructureDriveGroupsRequest) SearchBy(searchBy []string) DriveGroupAPIGetInfrastructureDriveGroupsRequest {
 	r.searchBy = &searchBy
 	return r
@@ -310,15 +738,15 @@ func (a *DriveGroupAPIService) GetInfrastructureDriveGroupsExecute(r DriveGroupA
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
-	if r.filterInstanceArrayId != nil {
-		t := *r.filterInstanceArrayId
+	if r.filterServerInstanceGroupId != nil {
+		t := *r.filterServerInstanceGroupId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.instanceArrayId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverInstanceGroupId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.instanceArrayId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverInstanceGroupId", t, "form", "multi")
 		}
 	}
 	if r.filterTemplateId != nil {
@@ -462,6 +890,248 @@ func (a *DriveGroupAPIService) GetInfrastructureDriveGroupsExecute(r DriveGroupA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DriveGroupAPIPatchDriveGroupConfigRequest struct {
+	ctx context.Context
+	ApiService *DriveGroupAPIService
+	infrastructureId float32
+	driveGroupId float32
+	updateGroupDrive *UpdateGroupDrive
+	ifMatch *string
+}
+
+func (r DriveGroupAPIPatchDriveGroupConfigRequest) UpdateGroupDrive(updateGroupDrive UpdateGroupDrive) DriveGroupAPIPatchDriveGroupConfigRequest {
+	r.updateGroupDrive = &updateGroupDrive
+	return r
+}
+
+// Entity tag
+func (r DriveGroupAPIPatchDriveGroupConfigRequest) IfMatch(ifMatch string) DriveGroupAPIPatchDriveGroupConfigRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r DriveGroupAPIPatchDriveGroupConfigRequest) Execute() (*DriveGroup, *http.Response, error) {
+	return r.ApiService.PatchDriveGroupConfigExecute(r)
+}
+
+/*
+PatchDriveGroupConfig Updates the config of a Drive Group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param driveGroupId
+ @return DriveGroupAPIPatchDriveGroupConfigRequest
+*/
+func (a *DriveGroupAPIService) PatchDriveGroupConfig(ctx context.Context, infrastructureId float32, driveGroupId float32) DriveGroupAPIPatchDriveGroupConfigRequest {
+	return DriveGroupAPIPatchDriveGroupConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		driveGroupId: driveGroupId,
+	}
+}
+
+// Execute executes the request
+//  @return DriveGroup
+func (a *DriveGroupAPIService) PatchDriveGroupConfigExecute(r DriveGroupAPIPatchDriveGroupConfigRequest) (*DriveGroup, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DriveGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveGroupAPIService.PatchDriveGroupConfig")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/config"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"driveGroupId"+"}", url.PathEscape(parameterValueToString(r.driveGroupId, "driveGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateGroupDrive == nil {
+		return localVarReturnValue, nil, reportError("updateGroupDrive is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.updateGroupDrive
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DriveGroupAPIPatchDriveGroupMetaRequest struct {
+	ctx context.Context
+	ApiService *DriveGroupAPIService
+	infrastructureId float32
+	driveGroupId float32
+	updateDriveGroupMeta *UpdateDriveGroupMeta
+}
+
+func (r DriveGroupAPIPatchDriveGroupMetaRequest) UpdateDriveGroupMeta(updateDriveGroupMeta UpdateDriveGroupMeta) DriveGroupAPIPatchDriveGroupMetaRequest {
+	r.updateDriveGroupMeta = &updateDriveGroupMeta
+	return r
+}
+
+func (r DriveGroupAPIPatchDriveGroupMetaRequest) Execute() (*DriveGroup, *http.Response, error) {
+	return r.ApiService.PatchDriveGroupMetaExecute(r)
+}
+
+/*
+PatchDriveGroupMeta Updates the meta of a Drive Group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param driveGroupId
+ @return DriveGroupAPIPatchDriveGroupMetaRequest
+*/
+func (a *DriveGroupAPIService) PatchDriveGroupMeta(ctx context.Context, infrastructureId float32, driveGroupId float32) DriveGroupAPIPatchDriveGroupMetaRequest {
+	return DriveGroupAPIPatchDriveGroupMetaRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		driveGroupId: driveGroupId,
+	}
+}
+
+// Execute executes the request
+//  @return DriveGroup
+func (a *DriveGroupAPIService) PatchDriveGroupMetaExecute(r DriveGroupAPIPatchDriveGroupMetaRequest) (*DriveGroup, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DriveGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveGroupAPIService.PatchDriveGroupMeta")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/meta"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"driveGroupId"+"}", url.PathEscape(parameterValueToString(r.driveGroupId, "driveGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateDriveGroupMeta == nil {
+		return localVarReturnValue, nil, reportError("updateDriveGroupMeta is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateDriveGroupMeta
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

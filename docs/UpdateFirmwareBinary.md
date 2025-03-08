@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerFirmwareBinaryCatalogId** | **float32** |  | 
-**ServerFirmwareBinaryExternalId** | Pointer to **string** |  | [optional] 
-**ServerFirmwareBinaryVendorInfoUrl** | Pointer to **string** |  | [optional] 
-**ServerFirmwareBinaryVendorDownloadUrl** | **string** |  | 
-**ServerFirmwareBinaryCacheDownloadUrl** | Pointer to **string** |  | [optional] 
-**ServerFirmwareBinaryName** | **string** |  | 
-**ServerFirmwareBinaryPackageId** | Pointer to **string** |  | [optional] 
-**ServerFirmwareBinaryPackageVersion** | Pointer to **string** |  | [optional] 
-**ServerFirmwareBinaryRebootRequired** | **bool** |  | 
-**ServerFirmwareBinaryUpdateSeverity** | [**FirmwareBinaryUpdateSeverity**](FirmwareBinaryUpdateSeverity.md) |  | 
-**ServerFirmwareBinaryVendorSupportedDevicesJson** | **string** |  | 
-**ServerFirmwareBinaryVendorSupportedSystemsJson** | **string** |  | 
-**ServerFirmwareBinaryVendorReleaseTimestamp** | Pointer to **string** |  | [optional] 
-**ServerFirmwareBinaryVendorJson** | Pointer to **string** |  | [optional] 
+**CatalogId** | **float32** |  | 
+**ExternalId** | Pointer to **string** |  | [optional] 
+**VendorInfoUrl** | Pointer to **string** |  | [optional] 
+**VendorDownloadUrl** | **string** |  | 
+**CacheDownloadUrl** | Pointer to **string** |  | [optional] 
+**Name** | **string** |  | 
+**PackageId** | Pointer to **string** |  | [optional] 
+**PackageVersion** | Pointer to **string** |  | [optional] 
+**RebootRequired** | **bool** |  | 
+**UpdateSeverity** | [**FirmwareBinaryUpdateSeverity**](FirmwareBinaryUpdateSeverity.md) |  | 
+**VendorSupportedDevices** | **[]map[string]interface{}** |  | 
+**VendorSupportedSystems** | **[]map[string]interface{}** |  | 
+**VendorReleaseTimestamp** | Pointer to **string** |  | [optional] 
+**Vendor** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
 ### NewUpdateFirmwareBinary
 
-`func NewUpdateFirmwareBinary(serverFirmwareBinaryCatalogId float32, serverFirmwareBinaryVendorDownloadUrl string, serverFirmwareBinaryName string, serverFirmwareBinaryRebootRequired bool, serverFirmwareBinaryUpdateSeverity FirmwareBinaryUpdateSeverity, serverFirmwareBinaryVendorSupportedDevicesJson string, serverFirmwareBinaryVendorSupportedSystemsJson string, ) *UpdateFirmwareBinary`
+`func NewUpdateFirmwareBinary(catalogId float32, vendorDownloadUrl string, name string, rebootRequired bool, updateSeverity FirmwareBinaryUpdateSeverity, vendorSupportedDevices []map[string]interface{}, vendorSupportedSystems []map[string]interface{}, ) *UpdateFirmwareBinary`
 
 NewUpdateFirmwareBinary instantiates a new UpdateFirmwareBinary object
 This constructor will assign default values to properties that have it defined,
@@ -38,320 +38,320 @@ NewUpdateFirmwareBinaryWithDefaults instantiates a new UpdateFirmwareBinary obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetServerFirmwareBinaryCatalogId
+### GetCatalogId
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryCatalogId() float32`
+`func (o *UpdateFirmwareBinary) GetCatalogId() float32`
 
-GetServerFirmwareBinaryCatalogId returns the ServerFirmwareBinaryCatalogId field if non-nil, zero value otherwise.
+GetCatalogId returns the CatalogId field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryCatalogIdOk
+### GetCatalogIdOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryCatalogIdOk() (*float32, bool)`
+`func (o *UpdateFirmwareBinary) GetCatalogIdOk() (*float32, bool)`
 
-GetServerFirmwareBinaryCatalogIdOk returns a tuple with the ServerFirmwareBinaryCatalogId field if it's non-nil, zero value otherwise
+GetCatalogIdOk returns a tuple with the CatalogId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryCatalogId
+### SetCatalogId
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryCatalogId(v float32)`
+`func (o *UpdateFirmwareBinary) SetCatalogId(v float32)`
 
-SetServerFirmwareBinaryCatalogId sets ServerFirmwareBinaryCatalogId field to given value.
+SetCatalogId sets CatalogId field to given value.
 
 
-### GetServerFirmwareBinaryExternalId
+### GetExternalId
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryExternalId() string`
+`func (o *UpdateFirmwareBinary) GetExternalId() string`
 
-GetServerFirmwareBinaryExternalId returns the ServerFirmwareBinaryExternalId field if non-nil, zero value otherwise.
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryExternalIdOk
+### GetExternalIdOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryExternalIdOk() (*string, bool)`
+`func (o *UpdateFirmwareBinary) GetExternalIdOk() (*string, bool)`
 
-GetServerFirmwareBinaryExternalIdOk returns a tuple with the ServerFirmwareBinaryExternalId field if it's non-nil, zero value otherwise
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryExternalId
+### SetExternalId
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryExternalId(v string)`
+`func (o *UpdateFirmwareBinary) SetExternalId(v string)`
 
-SetServerFirmwareBinaryExternalId sets ServerFirmwareBinaryExternalId field to given value.
+SetExternalId sets ExternalId field to given value.
 
-### HasServerFirmwareBinaryExternalId
+### HasExternalId
 
-`func (o *UpdateFirmwareBinary) HasServerFirmwareBinaryExternalId() bool`
+`func (o *UpdateFirmwareBinary) HasExternalId() bool`
 
-HasServerFirmwareBinaryExternalId returns a boolean if a field has been set.
+HasExternalId returns a boolean if a field has been set.
 
-### GetServerFirmwareBinaryVendorInfoUrl
+### GetVendorInfoUrl
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryVendorInfoUrl() string`
+`func (o *UpdateFirmwareBinary) GetVendorInfoUrl() string`
 
-GetServerFirmwareBinaryVendorInfoUrl returns the ServerFirmwareBinaryVendorInfoUrl field if non-nil, zero value otherwise.
+GetVendorInfoUrl returns the VendorInfoUrl field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryVendorInfoUrlOk
+### GetVendorInfoUrlOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryVendorInfoUrlOk() (*string, bool)`
+`func (o *UpdateFirmwareBinary) GetVendorInfoUrlOk() (*string, bool)`
 
-GetServerFirmwareBinaryVendorInfoUrlOk returns a tuple with the ServerFirmwareBinaryVendorInfoUrl field if it's non-nil, zero value otherwise
+GetVendorInfoUrlOk returns a tuple with the VendorInfoUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryVendorInfoUrl
+### SetVendorInfoUrl
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryVendorInfoUrl(v string)`
+`func (o *UpdateFirmwareBinary) SetVendorInfoUrl(v string)`
 
-SetServerFirmwareBinaryVendorInfoUrl sets ServerFirmwareBinaryVendorInfoUrl field to given value.
+SetVendorInfoUrl sets VendorInfoUrl field to given value.
 
-### HasServerFirmwareBinaryVendorInfoUrl
+### HasVendorInfoUrl
 
-`func (o *UpdateFirmwareBinary) HasServerFirmwareBinaryVendorInfoUrl() bool`
+`func (o *UpdateFirmwareBinary) HasVendorInfoUrl() bool`
 
-HasServerFirmwareBinaryVendorInfoUrl returns a boolean if a field has been set.
+HasVendorInfoUrl returns a boolean if a field has been set.
 
-### GetServerFirmwareBinaryVendorDownloadUrl
+### GetVendorDownloadUrl
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryVendorDownloadUrl() string`
+`func (o *UpdateFirmwareBinary) GetVendorDownloadUrl() string`
 
-GetServerFirmwareBinaryVendorDownloadUrl returns the ServerFirmwareBinaryVendorDownloadUrl field if non-nil, zero value otherwise.
+GetVendorDownloadUrl returns the VendorDownloadUrl field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryVendorDownloadUrlOk
+### GetVendorDownloadUrlOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryVendorDownloadUrlOk() (*string, bool)`
+`func (o *UpdateFirmwareBinary) GetVendorDownloadUrlOk() (*string, bool)`
 
-GetServerFirmwareBinaryVendorDownloadUrlOk returns a tuple with the ServerFirmwareBinaryVendorDownloadUrl field if it's non-nil, zero value otherwise
+GetVendorDownloadUrlOk returns a tuple with the VendorDownloadUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryVendorDownloadUrl
+### SetVendorDownloadUrl
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryVendorDownloadUrl(v string)`
+`func (o *UpdateFirmwareBinary) SetVendorDownloadUrl(v string)`
 
-SetServerFirmwareBinaryVendorDownloadUrl sets ServerFirmwareBinaryVendorDownloadUrl field to given value.
+SetVendorDownloadUrl sets VendorDownloadUrl field to given value.
 
 
-### GetServerFirmwareBinaryCacheDownloadUrl
+### GetCacheDownloadUrl
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryCacheDownloadUrl() string`
+`func (o *UpdateFirmwareBinary) GetCacheDownloadUrl() string`
 
-GetServerFirmwareBinaryCacheDownloadUrl returns the ServerFirmwareBinaryCacheDownloadUrl field if non-nil, zero value otherwise.
+GetCacheDownloadUrl returns the CacheDownloadUrl field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryCacheDownloadUrlOk
+### GetCacheDownloadUrlOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryCacheDownloadUrlOk() (*string, bool)`
+`func (o *UpdateFirmwareBinary) GetCacheDownloadUrlOk() (*string, bool)`
 
-GetServerFirmwareBinaryCacheDownloadUrlOk returns a tuple with the ServerFirmwareBinaryCacheDownloadUrl field if it's non-nil, zero value otherwise
+GetCacheDownloadUrlOk returns a tuple with the CacheDownloadUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryCacheDownloadUrl
+### SetCacheDownloadUrl
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryCacheDownloadUrl(v string)`
+`func (o *UpdateFirmwareBinary) SetCacheDownloadUrl(v string)`
 
-SetServerFirmwareBinaryCacheDownloadUrl sets ServerFirmwareBinaryCacheDownloadUrl field to given value.
+SetCacheDownloadUrl sets CacheDownloadUrl field to given value.
 
-### HasServerFirmwareBinaryCacheDownloadUrl
+### HasCacheDownloadUrl
 
-`func (o *UpdateFirmwareBinary) HasServerFirmwareBinaryCacheDownloadUrl() bool`
+`func (o *UpdateFirmwareBinary) HasCacheDownloadUrl() bool`
 
-HasServerFirmwareBinaryCacheDownloadUrl returns a boolean if a field has been set.
+HasCacheDownloadUrl returns a boolean if a field has been set.
 
-### GetServerFirmwareBinaryName
+### GetName
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryName() string`
+`func (o *UpdateFirmwareBinary) GetName() string`
 
-GetServerFirmwareBinaryName returns the ServerFirmwareBinaryName field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryNameOk
+### GetNameOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryNameOk() (*string, bool)`
+`func (o *UpdateFirmwareBinary) GetNameOk() (*string, bool)`
 
-GetServerFirmwareBinaryNameOk returns a tuple with the ServerFirmwareBinaryName field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryName
+### SetName
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryName(v string)`
+`func (o *UpdateFirmwareBinary) SetName(v string)`
 
-SetServerFirmwareBinaryName sets ServerFirmwareBinaryName field to given value.
+SetName sets Name field to given value.
 
 
-### GetServerFirmwareBinaryPackageId
+### GetPackageId
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryPackageId() string`
+`func (o *UpdateFirmwareBinary) GetPackageId() string`
 
-GetServerFirmwareBinaryPackageId returns the ServerFirmwareBinaryPackageId field if non-nil, zero value otherwise.
+GetPackageId returns the PackageId field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryPackageIdOk
+### GetPackageIdOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryPackageIdOk() (*string, bool)`
+`func (o *UpdateFirmwareBinary) GetPackageIdOk() (*string, bool)`
 
-GetServerFirmwareBinaryPackageIdOk returns a tuple with the ServerFirmwareBinaryPackageId field if it's non-nil, zero value otherwise
+GetPackageIdOk returns a tuple with the PackageId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryPackageId
+### SetPackageId
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryPackageId(v string)`
+`func (o *UpdateFirmwareBinary) SetPackageId(v string)`
 
-SetServerFirmwareBinaryPackageId sets ServerFirmwareBinaryPackageId field to given value.
+SetPackageId sets PackageId field to given value.
 
-### HasServerFirmwareBinaryPackageId
+### HasPackageId
 
-`func (o *UpdateFirmwareBinary) HasServerFirmwareBinaryPackageId() bool`
+`func (o *UpdateFirmwareBinary) HasPackageId() bool`
 
-HasServerFirmwareBinaryPackageId returns a boolean if a field has been set.
+HasPackageId returns a boolean if a field has been set.
 
-### GetServerFirmwareBinaryPackageVersion
+### GetPackageVersion
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryPackageVersion() string`
+`func (o *UpdateFirmwareBinary) GetPackageVersion() string`
 
-GetServerFirmwareBinaryPackageVersion returns the ServerFirmwareBinaryPackageVersion field if non-nil, zero value otherwise.
+GetPackageVersion returns the PackageVersion field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryPackageVersionOk
+### GetPackageVersionOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryPackageVersionOk() (*string, bool)`
+`func (o *UpdateFirmwareBinary) GetPackageVersionOk() (*string, bool)`
 
-GetServerFirmwareBinaryPackageVersionOk returns a tuple with the ServerFirmwareBinaryPackageVersion field if it's non-nil, zero value otherwise
+GetPackageVersionOk returns a tuple with the PackageVersion field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryPackageVersion
+### SetPackageVersion
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryPackageVersion(v string)`
+`func (o *UpdateFirmwareBinary) SetPackageVersion(v string)`
 
-SetServerFirmwareBinaryPackageVersion sets ServerFirmwareBinaryPackageVersion field to given value.
+SetPackageVersion sets PackageVersion field to given value.
 
-### HasServerFirmwareBinaryPackageVersion
+### HasPackageVersion
 
-`func (o *UpdateFirmwareBinary) HasServerFirmwareBinaryPackageVersion() bool`
+`func (o *UpdateFirmwareBinary) HasPackageVersion() bool`
 
-HasServerFirmwareBinaryPackageVersion returns a boolean if a field has been set.
+HasPackageVersion returns a boolean if a field has been set.
 
-### GetServerFirmwareBinaryRebootRequired
+### GetRebootRequired
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryRebootRequired() bool`
+`func (o *UpdateFirmwareBinary) GetRebootRequired() bool`
 
-GetServerFirmwareBinaryRebootRequired returns the ServerFirmwareBinaryRebootRequired field if non-nil, zero value otherwise.
+GetRebootRequired returns the RebootRequired field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryRebootRequiredOk
+### GetRebootRequiredOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryRebootRequiredOk() (*bool, bool)`
+`func (o *UpdateFirmwareBinary) GetRebootRequiredOk() (*bool, bool)`
 
-GetServerFirmwareBinaryRebootRequiredOk returns a tuple with the ServerFirmwareBinaryRebootRequired field if it's non-nil, zero value otherwise
+GetRebootRequiredOk returns a tuple with the RebootRequired field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryRebootRequired
+### SetRebootRequired
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryRebootRequired(v bool)`
+`func (o *UpdateFirmwareBinary) SetRebootRequired(v bool)`
 
-SetServerFirmwareBinaryRebootRequired sets ServerFirmwareBinaryRebootRequired field to given value.
+SetRebootRequired sets RebootRequired field to given value.
 
 
-### GetServerFirmwareBinaryUpdateSeverity
+### GetUpdateSeverity
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryUpdateSeverity() FirmwareBinaryUpdateSeverity`
+`func (o *UpdateFirmwareBinary) GetUpdateSeverity() FirmwareBinaryUpdateSeverity`
 
-GetServerFirmwareBinaryUpdateSeverity returns the ServerFirmwareBinaryUpdateSeverity field if non-nil, zero value otherwise.
+GetUpdateSeverity returns the UpdateSeverity field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryUpdateSeverityOk
+### GetUpdateSeverityOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryUpdateSeverityOk() (*FirmwareBinaryUpdateSeverity, bool)`
+`func (o *UpdateFirmwareBinary) GetUpdateSeverityOk() (*FirmwareBinaryUpdateSeverity, bool)`
 
-GetServerFirmwareBinaryUpdateSeverityOk returns a tuple with the ServerFirmwareBinaryUpdateSeverity field if it's non-nil, zero value otherwise
+GetUpdateSeverityOk returns a tuple with the UpdateSeverity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryUpdateSeverity
+### SetUpdateSeverity
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryUpdateSeverity(v FirmwareBinaryUpdateSeverity)`
+`func (o *UpdateFirmwareBinary) SetUpdateSeverity(v FirmwareBinaryUpdateSeverity)`
 
-SetServerFirmwareBinaryUpdateSeverity sets ServerFirmwareBinaryUpdateSeverity field to given value.
+SetUpdateSeverity sets UpdateSeverity field to given value.
 
 
-### GetServerFirmwareBinaryVendorSupportedDevicesJson
+### GetVendorSupportedDevices
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryVendorSupportedDevicesJson() string`
+`func (o *UpdateFirmwareBinary) GetVendorSupportedDevices() []map[string]interface{}`
 
-GetServerFirmwareBinaryVendorSupportedDevicesJson returns the ServerFirmwareBinaryVendorSupportedDevicesJson field if non-nil, zero value otherwise.
+GetVendorSupportedDevices returns the VendorSupportedDevices field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryVendorSupportedDevicesJsonOk
+### GetVendorSupportedDevicesOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryVendorSupportedDevicesJsonOk() (*string, bool)`
+`func (o *UpdateFirmwareBinary) GetVendorSupportedDevicesOk() (*[]map[string]interface{}, bool)`
 
-GetServerFirmwareBinaryVendorSupportedDevicesJsonOk returns a tuple with the ServerFirmwareBinaryVendorSupportedDevicesJson field if it's non-nil, zero value otherwise
+GetVendorSupportedDevicesOk returns a tuple with the VendorSupportedDevices field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryVendorSupportedDevicesJson
+### SetVendorSupportedDevices
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryVendorSupportedDevicesJson(v string)`
+`func (o *UpdateFirmwareBinary) SetVendorSupportedDevices(v []map[string]interface{})`
 
-SetServerFirmwareBinaryVendorSupportedDevicesJson sets ServerFirmwareBinaryVendorSupportedDevicesJson field to given value.
+SetVendorSupportedDevices sets VendorSupportedDevices field to given value.
 
 
-### GetServerFirmwareBinaryVendorSupportedSystemsJson
+### GetVendorSupportedSystems
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryVendorSupportedSystemsJson() string`
+`func (o *UpdateFirmwareBinary) GetVendorSupportedSystems() []map[string]interface{}`
 
-GetServerFirmwareBinaryVendorSupportedSystemsJson returns the ServerFirmwareBinaryVendorSupportedSystemsJson field if non-nil, zero value otherwise.
+GetVendorSupportedSystems returns the VendorSupportedSystems field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryVendorSupportedSystemsJsonOk
+### GetVendorSupportedSystemsOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryVendorSupportedSystemsJsonOk() (*string, bool)`
+`func (o *UpdateFirmwareBinary) GetVendorSupportedSystemsOk() (*[]map[string]interface{}, bool)`
 
-GetServerFirmwareBinaryVendorSupportedSystemsJsonOk returns a tuple with the ServerFirmwareBinaryVendorSupportedSystemsJson field if it's non-nil, zero value otherwise
+GetVendorSupportedSystemsOk returns a tuple with the VendorSupportedSystems field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryVendorSupportedSystemsJson
+### SetVendorSupportedSystems
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryVendorSupportedSystemsJson(v string)`
+`func (o *UpdateFirmwareBinary) SetVendorSupportedSystems(v []map[string]interface{})`
 
-SetServerFirmwareBinaryVendorSupportedSystemsJson sets ServerFirmwareBinaryVendorSupportedSystemsJson field to given value.
+SetVendorSupportedSystems sets VendorSupportedSystems field to given value.
 
 
-### GetServerFirmwareBinaryVendorReleaseTimestamp
+### GetVendorReleaseTimestamp
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryVendorReleaseTimestamp() string`
+`func (o *UpdateFirmwareBinary) GetVendorReleaseTimestamp() string`
 
-GetServerFirmwareBinaryVendorReleaseTimestamp returns the ServerFirmwareBinaryVendorReleaseTimestamp field if non-nil, zero value otherwise.
+GetVendorReleaseTimestamp returns the VendorReleaseTimestamp field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryVendorReleaseTimestampOk
+### GetVendorReleaseTimestampOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryVendorReleaseTimestampOk() (*string, bool)`
+`func (o *UpdateFirmwareBinary) GetVendorReleaseTimestampOk() (*string, bool)`
 
-GetServerFirmwareBinaryVendorReleaseTimestampOk returns a tuple with the ServerFirmwareBinaryVendorReleaseTimestamp field if it's non-nil, zero value otherwise
+GetVendorReleaseTimestampOk returns a tuple with the VendorReleaseTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryVendorReleaseTimestamp
+### SetVendorReleaseTimestamp
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryVendorReleaseTimestamp(v string)`
+`func (o *UpdateFirmwareBinary) SetVendorReleaseTimestamp(v string)`
 
-SetServerFirmwareBinaryVendorReleaseTimestamp sets ServerFirmwareBinaryVendorReleaseTimestamp field to given value.
+SetVendorReleaseTimestamp sets VendorReleaseTimestamp field to given value.
 
-### HasServerFirmwareBinaryVendorReleaseTimestamp
+### HasVendorReleaseTimestamp
 
-`func (o *UpdateFirmwareBinary) HasServerFirmwareBinaryVendorReleaseTimestamp() bool`
+`func (o *UpdateFirmwareBinary) HasVendorReleaseTimestamp() bool`
 
-HasServerFirmwareBinaryVendorReleaseTimestamp returns a boolean if a field has been set.
+HasVendorReleaseTimestamp returns a boolean if a field has been set.
 
-### GetServerFirmwareBinaryVendorJson
+### GetVendor
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryVendorJson() string`
+`func (o *UpdateFirmwareBinary) GetVendor() map[string]interface{}`
 
-GetServerFirmwareBinaryVendorJson returns the ServerFirmwareBinaryVendorJson field if non-nil, zero value otherwise.
+GetVendor returns the Vendor field if non-nil, zero value otherwise.
 
-### GetServerFirmwareBinaryVendorJsonOk
+### GetVendorOk
 
-`func (o *UpdateFirmwareBinary) GetServerFirmwareBinaryVendorJsonOk() (*string, bool)`
+`func (o *UpdateFirmwareBinary) GetVendorOk() (*map[string]interface{}, bool)`
 
-GetServerFirmwareBinaryVendorJsonOk returns a tuple with the ServerFirmwareBinaryVendorJson field if it's non-nil, zero value otherwise
+GetVendorOk returns a tuple with the Vendor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerFirmwareBinaryVendorJson
+### SetVendor
 
-`func (o *UpdateFirmwareBinary) SetServerFirmwareBinaryVendorJson(v string)`
+`func (o *UpdateFirmwareBinary) SetVendor(v map[string]interface{})`
 
-SetServerFirmwareBinaryVendorJson sets ServerFirmwareBinaryVendorJson field to given value.
+SetVendor sets Vendor field to given value.
 
-### HasServerFirmwareBinaryVendorJson
+### HasVendor
 
-`func (o *UpdateFirmwareBinary) HasServerFirmwareBinaryVendorJson() bool`
+`func (o *UpdateFirmwareBinary) HasVendor() bool`
 
-HasServerFirmwareBinaryVendorJson returns a boolean if a field has been set.
+HasVendor returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

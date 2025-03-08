@@ -69,8 +69,10 @@ type NetworkDevice struct {
 	ManagementMacAddress *string `json:"managementMacAddress,omitempty"`
 	// Serial number of the network device
 	SerialNumber *string `json:"serialNumber,omitempty"`
-	// Position of the network device
-	Position *string `json:"position,omitempty"`
+	// Driver software used to communicate with the network device
+	Driver NetworkDeviceDriver `json:"driver"`
+	// The physical or logical position of the network device in the network topology.
+	Position SwitchPosition `json:"position"`
 	// Provisioner type of the network device
 	ProvisionerType *string `json:"provisionerType,omitempty"`
 	// Allowed network types for the network device
@@ -88,7 +90,7 @@ type NetworkDevice struct {
 	// Subnet OOB index
 	SubnetOobIndex *float32 `json:"subnetOobIndex,omitempty"`
 	// Whether the device requires OS installation
-	RequiresOsInstall *float32 `json:"requiresOsInstall,omitempty"`
+	RequiresOsInstall *bool `json:"requiresOsInstall,omitempty"`
 	// Whether to skip initial configuration during bootstrap
 	BootstrapSkipInitialConfiguration *float32 `json:"bootstrapSkipInitialConfiguration,omitempty"`
 	// Expected partner hostname during bootstrap
@@ -117,8 +119,6 @@ type NetworkDevice struct {
 	QuarantineSubnetGateway *string `json:"quarantineSubnetGateway,omitempty"`
 	// Quarantine VLAN ID
 	QuarantineVlan *float32 `json:"quarantineVlan,omitempty"`
-	// Primary WAN IPv6 subnet pool ID
-	PrimaryWanIpv6SubnetPoolId *float32 `json:"primaryWanIpv6SubnetPoolId,omitempty"`
 	// Default MTU
 	DefaultMtu *float32 `json:"defaultMtu,omitempty"`
 	// Variables materialized for OS assets
@@ -129,14 +129,6 @@ type NetworkDevice struct {
 	BootstrapReadinessCheckResult map[string]interface{} `json:"bootstrapReadinessCheckResult,omitempty"`
 	// Whether the network device is a gateway
 	IsGateway *float32 `json:"isGateway,omitempty"`
-	// Primary WAN IPv4 subnet pool
-	PrimaryWanIpv4SubnetPool *string `json:"primaryWanIpv4SubnetPool,omitempty"`
-	// Primary WAN IPv4 subnet prefix size
-	PrimaryWanIpv4SubnetPrefixSize *float32 `json:"primaryWanIpv4SubnetPrefixSize,omitempty"`
-	// Primary SAN subnet pool
-	PrimarySanSubnetPool *string `json:"primarySanSubnetPool,omitempty"`
-	// Primary SAN subnet prefix size
-	PrimarySanSubnetPrefixSize *float32 `json:"primarySanSubnetPrefixSize,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -148,9 +140,11 @@ type _NetworkDevice NetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevice(switchId float32) *NetworkDevice {
+func NewNetworkDevice(switchId float32, driver NetworkDeviceDriver, position SwitchPosition) *NetworkDevice {
 	this := NetworkDevice{}
 	this.SwitchId = switchId
+	this.Driver = driver
+	this.Position = position
 	return &this
 }
 
@@ -922,36 +916,52 @@ func (o *NetworkDevice) SetSerialNumber(v string) {
 	o.SerialNumber = &v
 }
 
-// GetPosition returns the Position field value if set, zero value otherwise.
-func (o *NetworkDevice) GetPosition() string {
-	if o == nil || IsNil(o.Position) {
-		var ret string
+// GetDriver returns the Driver field value
+func (o *NetworkDevice) GetDriver() NetworkDeviceDriver {
+	if o == nil {
+		var ret NetworkDeviceDriver
 		return ret
 	}
-	return *o.Position
+
+	return o.Driver
 }
 
-// GetPositionOk returns a tuple with the Position field value if set, nil otherwise
+// GetDriverOk returns a tuple with the Driver field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetPositionOk() (*string, bool) {
-	if o == nil || IsNil(o.Position) {
+func (o *NetworkDevice) GetDriverOk() (*NetworkDeviceDriver, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Position, true
+	return &o.Driver, true
 }
 
-// HasPosition returns a boolean if a field has been set.
-func (o *NetworkDevice) HasPosition() bool {
-	if o != nil && !IsNil(o.Position) {
-		return true
+// SetDriver sets field value
+func (o *NetworkDevice) SetDriver(v NetworkDeviceDriver) {
+	o.Driver = v
+}
+
+// GetPosition returns the Position field value
+func (o *NetworkDevice) GetPosition() SwitchPosition {
+	if o == nil {
+		var ret SwitchPosition
+		return ret
 	}
 
-	return false
+	return o.Position
 }
 
-// SetPosition gets a reference to the given string and assigns it to the Position field.
-func (o *NetworkDevice) SetPosition(v string) {
-	o.Position = &v
+// GetPositionOk returns a tuple with the Position field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetPositionOk() (*SwitchPosition, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Position, true
+}
+
+// SetPosition sets field value
+func (o *NetworkDevice) SetPosition(v SwitchPosition) {
+	o.Position = v
 }
 
 // GetProvisionerType returns the ProvisionerType field value if set, zero value otherwise.
@@ -1211,9 +1221,9 @@ func (o *NetworkDevice) SetSubnetOobIndex(v float32) {
 }
 
 // GetRequiresOsInstall returns the RequiresOsInstall field value if set, zero value otherwise.
-func (o *NetworkDevice) GetRequiresOsInstall() float32 {
+func (o *NetworkDevice) GetRequiresOsInstall() bool {
 	if o == nil || IsNil(o.RequiresOsInstall) {
-		var ret float32
+		var ret bool
 		return ret
 	}
 	return *o.RequiresOsInstall
@@ -1221,7 +1231,7 @@ func (o *NetworkDevice) GetRequiresOsInstall() float32 {
 
 // GetRequiresOsInstallOk returns a tuple with the RequiresOsInstall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetRequiresOsInstallOk() (*float32, bool) {
+func (o *NetworkDevice) GetRequiresOsInstallOk() (*bool, bool) {
 	if o == nil || IsNil(o.RequiresOsInstall) {
 		return nil, false
 	}
@@ -1237,8 +1247,8 @@ func (o *NetworkDevice) HasRequiresOsInstall() bool {
 	return false
 }
 
-// SetRequiresOsInstall gets a reference to the given float32 and assigns it to the RequiresOsInstall field.
-func (o *NetworkDevice) SetRequiresOsInstall(v float32) {
+// SetRequiresOsInstall gets a reference to the given bool and assigns it to the RequiresOsInstall field.
+func (o *NetworkDevice) SetRequiresOsInstall(v bool) {
 	o.RequiresOsInstall = &v
 }
 
@@ -1690,38 +1700,6 @@ func (o *NetworkDevice) SetQuarantineVlan(v float32) {
 	o.QuarantineVlan = &v
 }
 
-// GetPrimaryWanIpv6SubnetPoolId returns the PrimaryWanIpv6SubnetPoolId field value if set, zero value otherwise.
-func (o *NetworkDevice) GetPrimaryWanIpv6SubnetPoolId() float32 {
-	if o == nil || IsNil(o.PrimaryWanIpv6SubnetPoolId) {
-		var ret float32
-		return ret
-	}
-	return *o.PrimaryWanIpv6SubnetPoolId
-}
-
-// GetPrimaryWanIpv6SubnetPoolIdOk returns a tuple with the PrimaryWanIpv6SubnetPoolId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetPrimaryWanIpv6SubnetPoolIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.PrimaryWanIpv6SubnetPoolId) {
-		return nil, false
-	}
-	return o.PrimaryWanIpv6SubnetPoolId, true
-}
-
-// HasPrimaryWanIpv6SubnetPoolId returns a boolean if a field has been set.
-func (o *NetworkDevice) HasPrimaryWanIpv6SubnetPoolId() bool {
-	if o != nil && !IsNil(o.PrimaryWanIpv6SubnetPoolId) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimaryWanIpv6SubnetPoolId gets a reference to the given float32 and assigns it to the PrimaryWanIpv6SubnetPoolId field.
-func (o *NetworkDevice) SetPrimaryWanIpv6SubnetPoolId(v float32) {
-	o.PrimaryWanIpv6SubnetPoolId = &v
-}
-
 // GetDefaultMtu returns the DefaultMtu field value if set, zero value otherwise.
 func (o *NetworkDevice) GetDefaultMtu() float32 {
 	if o == nil || IsNil(o.DefaultMtu) {
@@ -1882,134 +1860,6 @@ func (o *NetworkDevice) SetIsGateway(v float32) {
 	o.IsGateway = &v
 }
 
-// GetPrimaryWanIpv4SubnetPool returns the PrimaryWanIpv4SubnetPool field value if set, zero value otherwise.
-func (o *NetworkDevice) GetPrimaryWanIpv4SubnetPool() string {
-	if o == nil || IsNil(o.PrimaryWanIpv4SubnetPool) {
-		var ret string
-		return ret
-	}
-	return *o.PrimaryWanIpv4SubnetPool
-}
-
-// GetPrimaryWanIpv4SubnetPoolOk returns a tuple with the PrimaryWanIpv4SubnetPool field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetPrimaryWanIpv4SubnetPoolOk() (*string, bool) {
-	if o == nil || IsNil(o.PrimaryWanIpv4SubnetPool) {
-		return nil, false
-	}
-	return o.PrimaryWanIpv4SubnetPool, true
-}
-
-// HasPrimaryWanIpv4SubnetPool returns a boolean if a field has been set.
-func (o *NetworkDevice) HasPrimaryWanIpv4SubnetPool() bool {
-	if o != nil && !IsNil(o.PrimaryWanIpv4SubnetPool) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimaryWanIpv4SubnetPool gets a reference to the given string and assigns it to the PrimaryWanIpv4SubnetPool field.
-func (o *NetworkDevice) SetPrimaryWanIpv4SubnetPool(v string) {
-	o.PrimaryWanIpv4SubnetPool = &v
-}
-
-// GetPrimaryWanIpv4SubnetPrefixSize returns the PrimaryWanIpv4SubnetPrefixSize field value if set, zero value otherwise.
-func (o *NetworkDevice) GetPrimaryWanIpv4SubnetPrefixSize() float32 {
-	if o == nil || IsNil(o.PrimaryWanIpv4SubnetPrefixSize) {
-		var ret float32
-		return ret
-	}
-	return *o.PrimaryWanIpv4SubnetPrefixSize
-}
-
-// GetPrimaryWanIpv4SubnetPrefixSizeOk returns a tuple with the PrimaryWanIpv4SubnetPrefixSize field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetPrimaryWanIpv4SubnetPrefixSizeOk() (*float32, bool) {
-	if o == nil || IsNil(o.PrimaryWanIpv4SubnetPrefixSize) {
-		return nil, false
-	}
-	return o.PrimaryWanIpv4SubnetPrefixSize, true
-}
-
-// HasPrimaryWanIpv4SubnetPrefixSize returns a boolean if a field has been set.
-func (o *NetworkDevice) HasPrimaryWanIpv4SubnetPrefixSize() bool {
-	if o != nil && !IsNil(o.PrimaryWanIpv4SubnetPrefixSize) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimaryWanIpv4SubnetPrefixSize gets a reference to the given float32 and assigns it to the PrimaryWanIpv4SubnetPrefixSize field.
-func (o *NetworkDevice) SetPrimaryWanIpv4SubnetPrefixSize(v float32) {
-	o.PrimaryWanIpv4SubnetPrefixSize = &v
-}
-
-// GetPrimarySanSubnetPool returns the PrimarySanSubnetPool field value if set, zero value otherwise.
-func (o *NetworkDevice) GetPrimarySanSubnetPool() string {
-	if o == nil || IsNil(o.PrimarySanSubnetPool) {
-		var ret string
-		return ret
-	}
-	return *o.PrimarySanSubnetPool
-}
-
-// GetPrimarySanSubnetPoolOk returns a tuple with the PrimarySanSubnetPool field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetPrimarySanSubnetPoolOk() (*string, bool) {
-	if o == nil || IsNil(o.PrimarySanSubnetPool) {
-		return nil, false
-	}
-	return o.PrimarySanSubnetPool, true
-}
-
-// HasPrimarySanSubnetPool returns a boolean if a field has been set.
-func (o *NetworkDevice) HasPrimarySanSubnetPool() bool {
-	if o != nil && !IsNil(o.PrimarySanSubnetPool) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimarySanSubnetPool gets a reference to the given string and assigns it to the PrimarySanSubnetPool field.
-func (o *NetworkDevice) SetPrimarySanSubnetPool(v string) {
-	o.PrimarySanSubnetPool = &v
-}
-
-// GetPrimarySanSubnetPrefixSize returns the PrimarySanSubnetPrefixSize field value if set, zero value otherwise.
-func (o *NetworkDevice) GetPrimarySanSubnetPrefixSize() float32 {
-	if o == nil || IsNil(o.PrimarySanSubnetPrefixSize) {
-		var ret float32
-		return ret
-	}
-	return *o.PrimarySanSubnetPrefixSize
-}
-
-// GetPrimarySanSubnetPrefixSizeOk returns a tuple with the PrimarySanSubnetPrefixSize field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetPrimarySanSubnetPrefixSizeOk() (*float32, bool) {
-	if o == nil || IsNil(o.PrimarySanSubnetPrefixSize) {
-		return nil, false
-	}
-	return o.PrimarySanSubnetPrefixSize, true
-}
-
-// HasPrimarySanSubnetPrefixSize returns a boolean if a field has been set.
-func (o *NetworkDevice) HasPrimarySanSubnetPrefixSize() bool {
-	if o != nil && !IsNil(o.PrimarySanSubnetPrefixSize) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimarySanSubnetPrefixSize gets a reference to the given float32 and assigns it to the PrimarySanSubnetPrefixSize field.
-func (o *NetworkDevice) SetPrimarySanSubnetPrefixSize(v float32) {
-	o.PrimarySanSubnetPrefixSize = &v
-}
-
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NetworkDevice) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -2122,9 +1972,8 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SerialNumber) {
 		toSerialize["serialNumber"] = o.SerialNumber
 	}
-	if !IsNil(o.Position) {
-		toSerialize["position"] = o.Position
-	}
+	toSerialize["driver"] = o.Driver
+	toSerialize["position"] = o.Position
 	if !IsNil(o.ProvisionerType) {
 		toSerialize["provisionerType"] = o.ProvisionerType
 	}
@@ -2194,9 +2043,6 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.QuarantineVlan) {
 		toSerialize["quarantineVlan"] = o.QuarantineVlan
 	}
-	if !IsNil(o.PrimaryWanIpv6SubnetPoolId) {
-		toSerialize["primaryWanIpv6SubnetPoolId"] = o.PrimaryWanIpv6SubnetPoolId
-	}
 	if !IsNil(o.DefaultMtu) {
 		toSerialize["defaultMtu"] = o.DefaultMtu
 	}
@@ -2211,18 +2057,6 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IsGateway) {
 		toSerialize["isGateway"] = o.IsGateway
-	}
-	if !IsNil(o.PrimaryWanIpv4SubnetPool) {
-		toSerialize["primaryWanIpv4SubnetPool"] = o.PrimaryWanIpv4SubnetPool
-	}
-	if !IsNil(o.PrimaryWanIpv4SubnetPrefixSize) {
-		toSerialize["primaryWanIpv4SubnetPrefixSize"] = o.PrimaryWanIpv4SubnetPrefixSize
-	}
-	if !IsNil(o.PrimarySanSubnetPool) {
-		toSerialize["primarySanSubnetPool"] = o.PrimarySanSubnetPool
-	}
-	if !IsNil(o.PrimarySanSubnetPrefixSize) {
-		toSerialize["primarySanSubnetPrefixSize"] = o.PrimarySanSubnetPrefixSize
 	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -2241,6 +2075,8 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"switchId",
+		"driver",
+		"position",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -2294,6 +2130,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "managementProtocol")
 		delete(additionalProperties, "managementMacAddress")
 		delete(additionalProperties, "serialNumber")
+		delete(additionalProperties, "driver")
 		delete(additionalProperties, "position")
 		delete(additionalProperties, "provisionerType")
 		delete(additionalProperties, "networkTypesAllowed")
@@ -2318,16 +2155,11 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "quarantineSubnetPrefixSize")
 		delete(additionalProperties, "quarantineSubnetGateway")
 		delete(additionalProperties, "quarantineVlan")
-		delete(additionalProperties, "primaryWanIpv6SubnetPoolId")
 		delete(additionalProperties, "defaultMtu")
 		delete(additionalProperties, "variablesMaterializedForOSAssets")
 		delete(additionalProperties, "secretsMaterializedForOSAssets")
 		delete(additionalProperties, "bootstrapReadinessCheckResult")
 		delete(additionalProperties, "isGateway")
-		delete(additionalProperties, "primaryWanIpv4SubnetPool")
-		delete(additionalProperties, "primaryWanIpv4SubnetPrefixSize")
-		delete(additionalProperties, "primarySanSubnetPool")
-		delete(additionalProperties, "primarySanSubnetPrefixSize")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

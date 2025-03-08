@@ -28,7 +28,8 @@ Name | Type | Description | Notes
 **ManagementProtocol** | Pointer to **string** | Management protocol used by the network device | [optional] 
 **ManagementMacAddress** | Pointer to **string** | MAC address of the management interface | [optional] 
 **SerialNumber** | Pointer to **string** | Serial number of the network device | [optional] 
-**Position** | Pointer to **string** | Position of the network device | [optional] 
+**Driver** | [**NetworkDeviceDriver**](NetworkDeviceDriver.md) | Driver software used to communicate with the network device | 
+**Position** | [**SwitchPosition**](SwitchPosition.md) | The physical or logical position of the network device in the network topology. | 
 **ProvisionerType** | Pointer to **string** | Provisioner type of the network device | [optional] 
 **NetworkTypesAllowed** | Pointer to **[]string** | Allowed network types for the network device | [optional] 
 **OrderIndex** | Pointer to **float32** | Order index of the network device | [optional] 
@@ -37,7 +38,7 @@ Name | Type | Description | Notes
 **BootstrapReadinessCheckInProgress** | Pointer to **float32** | Whether bootstrap readiness check is in progress | [optional] 
 **SubnetOobId** | Pointer to **float32** | Subnet ID for OOB management | [optional] 
 **SubnetOobIndex** | Pointer to **float32** | Subnet OOB index | [optional] 
-**RequiresOsInstall** | Pointer to **float32** | Whether the device requires OS installation | [optional] 
+**RequiresOsInstall** | Pointer to **bool** | Whether the device requires OS installation | [optional] 
 **BootstrapSkipInitialConfiguration** | Pointer to **float32** | Whether to skip initial configuration during bootstrap | [optional] 
 **BootstrapExpectedPartnerHostname** | Pointer to **string** | Expected partner hostname during bootstrap | [optional] 
 **LoopbackAddress** | Pointer to **string** | Loopback IPv4 address | [optional] 
@@ -52,23 +53,18 @@ Name | Type | Description | Notes
 **QuarantineSubnetPrefixSize** | Pointer to **float32** | Quarantine subnet prefix size | [optional] 
 **QuarantineSubnetGateway** | Pointer to **string** | Quarantine subnet gateway address | [optional] 
 **QuarantineVlan** | Pointer to **float32** | Quarantine VLAN ID | [optional] 
-**PrimaryWanIpv6SubnetPoolId** | Pointer to **float32** | Primary WAN IPv6 subnet pool ID | [optional] 
 **DefaultMtu** | Pointer to **float32** | Default MTU | [optional] 
 **VariablesMaterializedForOSAssets** | Pointer to **map[string]interface{}** | Variables materialized for OS assets | [optional] 
 **SecretsMaterializedForOSAssets** | Pointer to **map[string]interface{}** | Secrets materialized for OS assets | [optional] 
 **BootstrapReadinessCheckResult** | Pointer to **map[string]interface{}** | Bootstrap readiness check result | [optional] 
 **IsGateway** | Pointer to **float32** | Whether the network device is a gateway | [optional] 
-**PrimaryWanIpv4SubnetPool** | Pointer to **string** | Primary WAN IPv4 subnet pool | [optional] 
-**PrimaryWanIpv4SubnetPrefixSize** | Pointer to **float32** | Primary WAN IPv4 subnet prefix size | [optional] 
-**PrimarySanSubnetPool** | Pointer to **string** | Primary SAN subnet pool | [optional] 
-**PrimarySanSubnetPrefixSize** | Pointer to **float32** | Primary SAN subnet prefix size | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewNetworkDevice
 
-`func NewNetworkDevice(switchId float32, ) *NetworkDevice`
+`func NewNetworkDevice(switchId float32, driver NetworkDeviceDriver, position SwitchPosition, ) *NetworkDevice`
 
 NewNetworkDevice instantiates a new NetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -678,30 +674,45 @@ SetSerialNumber sets SerialNumber field to given value.
 
 HasSerialNumber returns a boolean if a field has been set.
 
+### GetDriver
+
+`func (o *NetworkDevice) GetDriver() NetworkDeviceDriver`
+
+GetDriver returns the Driver field if non-nil, zero value otherwise.
+
+### GetDriverOk
+
+`func (o *NetworkDevice) GetDriverOk() (*NetworkDeviceDriver, bool)`
+
+GetDriverOk returns a tuple with the Driver field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriver
+
+`func (o *NetworkDevice) SetDriver(v NetworkDeviceDriver)`
+
+SetDriver sets Driver field to given value.
+
+
 ### GetPosition
 
-`func (o *NetworkDevice) GetPosition() string`
+`func (o *NetworkDevice) GetPosition() SwitchPosition`
 
 GetPosition returns the Position field if non-nil, zero value otherwise.
 
 ### GetPositionOk
 
-`func (o *NetworkDevice) GetPositionOk() (*string, bool)`
+`func (o *NetworkDevice) GetPositionOk() (*SwitchPosition, bool)`
 
 GetPositionOk returns a tuple with the Position field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPosition
 
-`func (o *NetworkDevice) SetPosition(v string)`
+`func (o *NetworkDevice) SetPosition(v SwitchPosition)`
 
 SetPosition sets Position field to given value.
 
-### HasPosition
-
-`func (o *NetworkDevice) HasPosition() bool`
-
-HasPosition returns a boolean if a field has been set.
 
 ### GetProvisionerType
 
@@ -905,20 +916,20 @@ HasSubnetOobIndex returns a boolean if a field has been set.
 
 ### GetRequiresOsInstall
 
-`func (o *NetworkDevice) GetRequiresOsInstall() float32`
+`func (o *NetworkDevice) GetRequiresOsInstall() bool`
 
 GetRequiresOsInstall returns the RequiresOsInstall field if non-nil, zero value otherwise.
 
 ### GetRequiresOsInstallOk
 
-`func (o *NetworkDevice) GetRequiresOsInstallOk() (*float32, bool)`
+`func (o *NetworkDevice) GetRequiresOsInstallOk() (*bool, bool)`
 
 GetRequiresOsInstallOk returns a tuple with the RequiresOsInstall field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRequiresOsInstall
 
-`func (o *NetworkDevice) SetRequiresOsInstall(v float32)`
+`func (o *NetworkDevice) SetRequiresOsInstall(v bool)`
 
 SetRequiresOsInstall sets RequiresOsInstall field to given value.
 
@@ -1278,31 +1289,6 @@ SetQuarantineVlan sets QuarantineVlan field to given value.
 
 HasQuarantineVlan returns a boolean if a field has been set.
 
-### GetPrimaryWanIpv6SubnetPoolId
-
-`func (o *NetworkDevice) GetPrimaryWanIpv6SubnetPoolId() float32`
-
-GetPrimaryWanIpv6SubnetPoolId returns the PrimaryWanIpv6SubnetPoolId field if non-nil, zero value otherwise.
-
-### GetPrimaryWanIpv6SubnetPoolIdOk
-
-`func (o *NetworkDevice) GetPrimaryWanIpv6SubnetPoolIdOk() (*float32, bool)`
-
-GetPrimaryWanIpv6SubnetPoolIdOk returns a tuple with the PrimaryWanIpv6SubnetPoolId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrimaryWanIpv6SubnetPoolId
-
-`func (o *NetworkDevice) SetPrimaryWanIpv6SubnetPoolId(v float32)`
-
-SetPrimaryWanIpv6SubnetPoolId sets PrimaryWanIpv6SubnetPoolId field to given value.
-
-### HasPrimaryWanIpv6SubnetPoolId
-
-`func (o *NetworkDevice) HasPrimaryWanIpv6SubnetPoolId() bool`
-
-HasPrimaryWanIpv6SubnetPoolId returns a boolean if a field has been set.
-
 ### GetDefaultMtu
 
 `func (o *NetworkDevice) GetDefaultMtu() float32`
@@ -1427,106 +1413,6 @@ SetIsGateway sets IsGateway field to given value.
 `func (o *NetworkDevice) HasIsGateway() bool`
 
 HasIsGateway returns a boolean if a field has been set.
-
-### GetPrimaryWanIpv4SubnetPool
-
-`func (o *NetworkDevice) GetPrimaryWanIpv4SubnetPool() string`
-
-GetPrimaryWanIpv4SubnetPool returns the PrimaryWanIpv4SubnetPool field if non-nil, zero value otherwise.
-
-### GetPrimaryWanIpv4SubnetPoolOk
-
-`func (o *NetworkDevice) GetPrimaryWanIpv4SubnetPoolOk() (*string, bool)`
-
-GetPrimaryWanIpv4SubnetPoolOk returns a tuple with the PrimaryWanIpv4SubnetPool field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrimaryWanIpv4SubnetPool
-
-`func (o *NetworkDevice) SetPrimaryWanIpv4SubnetPool(v string)`
-
-SetPrimaryWanIpv4SubnetPool sets PrimaryWanIpv4SubnetPool field to given value.
-
-### HasPrimaryWanIpv4SubnetPool
-
-`func (o *NetworkDevice) HasPrimaryWanIpv4SubnetPool() bool`
-
-HasPrimaryWanIpv4SubnetPool returns a boolean if a field has been set.
-
-### GetPrimaryWanIpv4SubnetPrefixSize
-
-`func (o *NetworkDevice) GetPrimaryWanIpv4SubnetPrefixSize() float32`
-
-GetPrimaryWanIpv4SubnetPrefixSize returns the PrimaryWanIpv4SubnetPrefixSize field if non-nil, zero value otherwise.
-
-### GetPrimaryWanIpv4SubnetPrefixSizeOk
-
-`func (o *NetworkDevice) GetPrimaryWanIpv4SubnetPrefixSizeOk() (*float32, bool)`
-
-GetPrimaryWanIpv4SubnetPrefixSizeOk returns a tuple with the PrimaryWanIpv4SubnetPrefixSize field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrimaryWanIpv4SubnetPrefixSize
-
-`func (o *NetworkDevice) SetPrimaryWanIpv4SubnetPrefixSize(v float32)`
-
-SetPrimaryWanIpv4SubnetPrefixSize sets PrimaryWanIpv4SubnetPrefixSize field to given value.
-
-### HasPrimaryWanIpv4SubnetPrefixSize
-
-`func (o *NetworkDevice) HasPrimaryWanIpv4SubnetPrefixSize() bool`
-
-HasPrimaryWanIpv4SubnetPrefixSize returns a boolean if a field has been set.
-
-### GetPrimarySanSubnetPool
-
-`func (o *NetworkDevice) GetPrimarySanSubnetPool() string`
-
-GetPrimarySanSubnetPool returns the PrimarySanSubnetPool field if non-nil, zero value otherwise.
-
-### GetPrimarySanSubnetPoolOk
-
-`func (o *NetworkDevice) GetPrimarySanSubnetPoolOk() (*string, bool)`
-
-GetPrimarySanSubnetPoolOk returns a tuple with the PrimarySanSubnetPool field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrimarySanSubnetPool
-
-`func (o *NetworkDevice) SetPrimarySanSubnetPool(v string)`
-
-SetPrimarySanSubnetPool sets PrimarySanSubnetPool field to given value.
-
-### HasPrimarySanSubnetPool
-
-`func (o *NetworkDevice) HasPrimarySanSubnetPool() bool`
-
-HasPrimarySanSubnetPool returns a boolean if a field has been set.
-
-### GetPrimarySanSubnetPrefixSize
-
-`func (o *NetworkDevice) GetPrimarySanSubnetPrefixSize() float32`
-
-GetPrimarySanSubnetPrefixSize returns the PrimarySanSubnetPrefixSize field if non-nil, zero value otherwise.
-
-### GetPrimarySanSubnetPrefixSizeOk
-
-`func (o *NetworkDevice) GetPrimarySanSubnetPrefixSizeOk() (*float32, bool)`
-
-GetPrimarySanSubnetPrefixSizeOk returns a tuple with the PrimarySanSubnetPrefixSize field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrimarySanSubnetPrefixSize
-
-`func (o *NetworkDevice) SetPrimarySanSubnetPrefixSize(v float32)`
-
-SetPrimarySanSubnetPrefixSize sets PrimarySanSubnetPrefixSize field to given value.
-
-### HasPrimarySanSubnetPrefixSize
-
-`func (o *NetworkDevice) HasPrimarySanSubnetPrefixSize() bool`
-
-HasPrimarySanSubnetPrefixSize returns a boolean if a field has been set.
 
 ### GetLinks
 

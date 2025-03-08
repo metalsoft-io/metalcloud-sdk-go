@@ -24,6 +24,8 @@ type SiteUpdate struct {
 	Slug *string `json:"slug,omitempty"`
 	// The site name
 	Name *string `json:"name,omitempty"`
+	// Location details
+	Location *Location `json:"location,omitempty"`
 	// True if the site is hidden
 	IsHidden *bool `json:"isHidden,omitempty"`
 	// True if the site is in maintenance mode
@@ -114,6 +116,38 @@ func (o *SiteUpdate) SetName(v string) {
 	o.Name = &v
 }
 
+// GetLocation returns the Location field value if set, zero value otherwise.
+func (o *SiteUpdate) GetLocation() Location {
+	if o == nil || IsNil(o.Location) {
+		var ret Location
+		return ret
+	}
+	return *o.Location
+}
+
+// GetLocationOk returns a tuple with the Location field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SiteUpdate) GetLocationOk() (*Location, bool) {
+	if o == nil || IsNil(o.Location) {
+		return nil, false
+	}
+	return o.Location, true
+}
+
+// HasLocation returns a boolean if a field has been set.
+func (o *SiteUpdate) HasLocation() bool {
+	if o != nil && !IsNil(o.Location) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocation gets a reference to the given Location and assigns it to the Location field.
+func (o *SiteUpdate) SetLocation(v Location) {
+	o.Location = &v
+}
+
 // GetIsHidden returns the IsHidden field value if set, zero value otherwise.
 func (o *SiteUpdate) GetIsHidden() bool {
 	if o == nil || IsNil(o.IsHidden) {
@@ -194,6 +228,9 @@ func (o SiteUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	if !IsNil(o.Location) {
+		toSerialize["location"] = o.Location
+	}
 	if !IsNil(o.IsHidden) {
 		toSerialize["isHidden"] = o.IsHidden
 	}
@@ -224,6 +261,7 @@ func (o *SiteUpdate) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "slug")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "location")
 		delete(additionalProperties, "isHidden")
 		delete(additionalProperties, "isInMaintenance")
 		o.AdditionalProperties = additionalProperties

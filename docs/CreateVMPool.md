@@ -13,14 +13,14 @@ Name | Type | Description | Notes
 **Certificate** | **string** | Certificate of the VM Pool | 
 **InMaintenance** | Pointer to **float32** | Flag to indicate if the VM Pool is in maintenance mode. 1 for true, 0 for false. Default is 0. | [optional] 
 **IsExperimental** | Pointer to **float32** | Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0. | [optional] 
-**Tags** | **[]string** | Tags for the VM Pool. | 
+**Tags** | Pointer to **[]string** | Tags for the VM Pool. | [optional] 
 **PrivateKey** | **string** | Private key of the VM Pool | 
 
 ## Methods
 
 ### NewCreateVMPool
 
-`func NewCreateVMPool(siteId float32, managementHost string, managementPort float32, name string, type_ string, certificate string, tags []string, privateKey string, ) *CreateVMPool`
+`func NewCreateVMPool(siteId float32, managementHost string, managementPort float32, name string, type_ string, certificate string, privateKey string, ) *CreateVMPool`
 
 NewCreateVMPool instantiates a new CreateVMPool object
 This constructor will assign default values to properties that have it defined,
@@ -249,6 +249,11 @@ and a boolean to check if the value has been set.
 
 SetTags sets Tags field to given value.
 
+### HasTags
+
+`func (o *CreateVMPool) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetPrivateKey
 

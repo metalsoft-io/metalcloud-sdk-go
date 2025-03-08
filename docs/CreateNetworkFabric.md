@@ -6,14 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The network fabric name | 
 **Description** | Pointer to **string** | Network fabric description | [optional] 
-**FabricType** | **string** | The type of network fabric | 
 **FabricConfiguration** | [**NetworkFabricFabricConfiguration**](NetworkFabricFabricConfiguration.md) |  | 
 
 ## Methods
 
 ### NewCreateNetworkFabric
 
-`func NewCreateNetworkFabric(name string, fabricType string, fabricConfiguration NetworkFabricFabricConfiguration, ) *CreateNetworkFabric`
+`func NewCreateNetworkFabric(name string, fabricConfiguration NetworkFabricFabricConfiguration, ) *CreateNetworkFabric`
 
 NewCreateNetworkFabric instantiates a new CreateNetworkFabric object
 This constructor will assign default values to properties that have it defined,
@@ -72,26 +71,6 @@ SetDescription sets Description field to given value.
 `func (o *CreateNetworkFabric) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
-
-### GetFabricType
-
-`func (o *CreateNetworkFabric) GetFabricType() string`
-
-GetFabricType returns the FabricType field if non-nil, zero value otherwise.
-
-### GetFabricTypeOk
-
-`func (o *CreateNetworkFabric) GetFabricTypeOk() (*string, bool)`
-
-GetFabricTypeOk returns a tuple with the FabricType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFabricType
-
-`func (o *CreateNetworkFabric) SetFabricType(v string)`
-
-SetFabricType sets FabricType field to given value.
-
 
 ### GetFabricConfiguration
 

@@ -232,15 +232,15 @@ type FirmwareBinaryAPIGetFirmwareBinariesRequest struct {
 	ApiService *FirmwareBinaryAPIService
 	page *float32
 	limit *float32
-	filterServerFirmwareBinaryId *[]string
-	filterServerFirmwareBinaryCatalogId *[]string
-	filterServerFirmwareBinaryExternalId *[]string
-	filterServerFirmwareBinaryPackageId *[]string
-	filterServerFirmwareBinaryCreatedTimestamp *[]string
-	filterServerFirmwareBinaryUpdateSeverity *[]string
-	filterServerFirmwareBinaryRebootRequired *[]string
-	filterServerFirmwareBinaryVendorReleaseTimestamp *[]string
-	filterServerFirmwareBinaryPackageVersion *[]string
+	filterId *[]string
+	filterCatalogId *[]string
+	filterExternalId *[]string
+	filterPackageId *[]string
+	filterCreatedTimestamp *[]string
+	filterUpdateSeverity *[]string
+	filterRebootRequired *[]string
+	filterVendorReleaseTimestamp *[]string
+	filterPackageVersion *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -259,61 +259,61 @@ func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) Limit(limit float32) Firmwa
 	return r
 }
 
-// Filter by serverFirmwareBinaryId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareBinaryId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareBinaryId&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareBinaryId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterServerFirmwareBinaryId(filterServerFirmwareBinaryId []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
-	r.filterServerFirmwareBinaryId = &filterServerFirmwareBinaryId
+// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterId(filterId []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
+	r.filterId = &filterId
 	return r
 }
 
-// Filter by serverFirmwareBinaryCatalogId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareBinaryCatalogId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareBinaryCatalogId&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareBinaryCatalogId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterServerFirmwareBinaryCatalogId(filterServerFirmwareBinaryCatalogId []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
-	r.filterServerFirmwareBinaryCatalogId = &filterServerFirmwareBinaryCatalogId
+// Filter by catalogId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.catalogId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.catalogId&#x3D;$not:$like:John Doe&amp;filter.catalogId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterCatalogId(filterCatalogId []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
+	r.filterCatalogId = &filterCatalogId
 	return r
 }
 
-// Filter by serverFirmwareBinaryExternalId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareBinaryExternalId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareBinaryExternalId&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareBinaryExternalId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterServerFirmwareBinaryExternalId(filterServerFirmwareBinaryExternalId []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
-	r.filterServerFirmwareBinaryExternalId = &filterServerFirmwareBinaryExternalId
+// Filter by externalId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.externalId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.externalId&#x3D;$not:$like:John Doe&amp;filter.externalId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterExternalId(filterExternalId []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
+	r.filterExternalId = &filterExternalId
 	return r
 }
 
-// Filter by serverFirmwareBinaryPackageId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareBinaryPackageId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareBinaryPackageId&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareBinaryPackageId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterServerFirmwareBinaryPackageId(filterServerFirmwareBinaryPackageId []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
-	r.filterServerFirmwareBinaryPackageId = &filterServerFirmwareBinaryPackageId
+// Filter by packageId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.packageId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.packageId&#x3D;$not:$like:John Doe&amp;filter.packageId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterPackageId(filterPackageId []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
+	r.filterPackageId = &filterPackageId
 	return r
 }
 
-// Filter by serverFirmwareBinaryCreatedTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareBinaryCreatedTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareBinaryCreatedTimestamp&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareBinaryCreatedTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterServerFirmwareBinaryCreatedTimestamp(filterServerFirmwareBinaryCreatedTimestamp []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
-	r.filterServerFirmwareBinaryCreatedTimestamp = &filterServerFirmwareBinaryCreatedTimestamp
+// Filter by createdTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.createdTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.createdTimestamp&#x3D;$not:$like:John Doe&amp;filter.createdTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterCreatedTimestamp(filterCreatedTimestamp []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
+	r.filterCreatedTimestamp = &filterCreatedTimestamp
 	return r
 }
 
-// Filter by serverFirmwareBinaryUpdateSeverity query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareBinaryUpdateSeverity&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareBinaryUpdateSeverity&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareBinaryUpdateSeverity&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterServerFirmwareBinaryUpdateSeverity(filterServerFirmwareBinaryUpdateSeverity []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
-	r.filterServerFirmwareBinaryUpdateSeverity = &filterServerFirmwareBinaryUpdateSeverity
+// Filter by updateSeverity query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.updateSeverity&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.updateSeverity&#x3D;$not:$like:John Doe&amp;filter.updateSeverity&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterUpdateSeverity(filterUpdateSeverity []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
+	r.filterUpdateSeverity = &filterUpdateSeverity
 	return r
 }
 
-// Filter by serverFirmwareBinaryRebootRequired query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareBinaryRebootRequired&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareBinaryRebootRequired&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareBinaryRebootRequired&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterServerFirmwareBinaryRebootRequired(filterServerFirmwareBinaryRebootRequired []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
-	r.filterServerFirmwareBinaryRebootRequired = &filterServerFirmwareBinaryRebootRequired
+// Filter by rebootRequired query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.rebootRequired&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.rebootRequired&#x3D;$not:$like:John Doe&amp;filter.rebootRequired&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterRebootRequired(filterRebootRequired []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
+	r.filterRebootRequired = &filterRebootRequired
 	return r
 }
 
-// Filter by serverFirmwareBinaryVendorReleaseTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareBinaryVendorReleaseTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareBinaryVendorReleaseTimestamp&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareBinaryVendorReleaseTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterServerFirmwareBinaryVendorReleaseTimestamp(filterServerFirmwareBinaryVendorReleaseTimestamp []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
-	r.filterServerFirmwareBinaryVendorReleaseTimestamp = &filterServerFirmwareBinaryVendorReleaseTimestamp
+// Filter by vendorReleaseTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.vendorReleaseTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.vendorReleaseTimestamp&#x3D;$not:$like:John Doe&amp;filter.vendorReleaseTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterVendorReleaseTimestamp(filterVendorReleaseTimestamp []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
+	r.filterVendorReleaseTimestamp = &filterVendorReleaseTimestamp
 	return r
 }
 
-// Filter by serverFirmwareBinaryPackageVersion query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareBinaryPackageVersion&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareBinaryPackageVersion&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareBinaryPackageVersion&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterServerFirmwareBinaryPackageVersion(filterServerFirmwareBinaryPackageVersion []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
-	r.filterServerFirmwareBinaryPackageVersion = &filterServerFirmwareBinaryPackageVersion
+// Filter by packageVersion query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.packageVersion&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.packageVersion&#x3D;$not:$like:John Doe&amp;filter.packageVersion&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) FilterPackageVersion(filterPackageVersion []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
+	r.filterPackageVersion = &filterPackageVersion
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; serverFirmwareBinaryId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;serverFirmwareBinaryId&lt;/li&gt; &lt;li&gt;serverFirmwareBinaryName&lt;/li&gt; &lt;li&gt;serverFirmwareBinaryUpdateSeverity&lt;/li&gt; &lt;li&gt;serverFirmwareBinaryCatalogId&lt;/li&gt; &lt;li&gt;serverFirmwareBinaryRebootRequired&lt;/li&gt; &lt;li&gt;serverFirmwareBinaryVendorReleaseTimestamp&lt;/li&gt; &lt;li&gt;serverFirmwareBinaryPackageVersion&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;updateSeverity&lt;/li&gt; &lt;li&gt;catalogId&lt;/li&gt; &lt;li&gt;rebootRequired&lt;/li&gt; &lt;li&gt;vendorReleaseTimestamp&lt;/li&gt; &lt;li&gt;packageVersion&lt;/li&gt;&lt;/ul&gt;       
 func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) SortBy(sortBy []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -325,13 +325,13 @@ func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) Search(search string) Firmw
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; serverFirmwareBinaryName           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;serverFirmwareBinaryName&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; name           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;name&lt;/li&gt;&lt;/ul&gt;         
 func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) SearchBy(searchBy []string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; serverFirmwareBinaryId,serverFirmwareBinaryCatalogId,serverFirmwareBinaryExternalId,serverFirmwareBinaryPackageId,serverFirmwareBinaryPackageVersion           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
+// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,catalogId,externalId,packageId,packageVersion           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
 func (r FirmwareBinaryAPIGetFirmwareBinariesRequest) Select_(select_ string) FirmwareBinaryAPIGetFirmwareBinariesRequest {
 	r.select_ = &select_
 	return r
@@ -383,103 +383,103 @@ func (a *FirmwareBinaryAPIService) GetFirmwareBinariesExecute(r FirmwareBinaryAP
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
-	if r.filterServerFirmwareBinaryId != nil {
-		t := *r.filterServerFirmwareBinaryId
+	if r.filterId != nil {
+		t := *r.filterId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareBinaryCatalogId != nil {
-		t := *r.filterServerFirmwareBinaryCatalogId
+	if r.filterCatalogId != nil {
+		t := *r.filterCatalogId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryCatalogId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.catalogId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryCatalogId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.catalogId", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareBinaryExternalId != nil {
-		t := *r.filterServerFirmwareBinaryExternalId
+	if r.filterExternalId != nil {
+		t := *r.filterExternalId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryExternalId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.externalId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryExternalId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.externalId", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareBinaryPackageId != nil {
-		t := *r.filterServerFirmwareBinaryPackageId
+	if r.filterPackageId != nil {
+		t := *r.filterPackageId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryPackageId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.packageId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryPackageId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.packageId", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareBinaryCreatedTimestamp != nil {
-		t := *r.filterServerFirmwareBinaryCreatedTimestamp
+	if r.filterCreatedTimestamp != nil {
+		t := *r.filterCreatedTimestamp
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryCreatedTimestamp", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.createdTimestamp", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryCreatedTimestamp", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.createdTimestamp", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareBinaryUpdateSeverity != nil {
-		t := *r.filterServerFirmwareBinaryUpdateSeverity
+	if r.filterUpdateSeverity != nil {
+		t := *r.filterUpdateSeverity
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryUpdateSeverity", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.updateSeverity", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryUpdateSeverity", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.updateSeverity", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareBinaryRebootRequired != nil {
-		t := *r.filterServerFirmwareBinaryRebootRequired
+	if r.filterRebootRequired != nil {
+		t := *r.filterRebootRequired
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryRebootRequired", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.rebootRequired", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryRebootRequired", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.rebootRequired", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareBinaryVendorReleaseTimestamp != nil {
-		t := *r.filterServerFirmwareBinaryVendorReleaseTimestamp
+	if r.filterVendorReleaseTimestamp != nil {
+		t := *r.filterVendorReleaseTimestamp
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryVendorReleaseTimestamp", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vendorReleaseTimestamp", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryVendorReleaseTimestamp", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.vendorReleaseTimestamp", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareBinaryPackageVersion != nil {
-		t := *r.filterServerFirmwareBinaryPackageVersion
+	if r.filterPackageVersion != nil {
+		t := *r.filterPackageVersion
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryPackageVersion", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.packageVersion", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBinaryPackageVersion", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.packageVersion", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

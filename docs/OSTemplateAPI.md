@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CreateOSTemplate**](OSTemplateAPI.md#CreateOSTemplate) | **Post** /api/v2/os-templates | Create OS template
 [**DeleteOSTemplate**](OSTemplateAPI.md#DeleteOSTemplate) | **Delete** /api/v2/os-templates/{osTemplateId} | Delete OS template
 [**GetOSTemplate**](OSTemplateAPI.md#GetOSTemplate) | **Get** /api/v2/os-templates/{osTemplateId} | Get details for an OS template
+[**GetOSTemplateCredentials**](OSTemplateAPI.md#GetOSTemplateCredentials) | **Get** /api/v2/os-templates/{osTemplateId}/credentials | Get OS template credentials
 [**GetOSTemplates**](OSTemplateAPI.md#GetOSTemplates) | **Get** /api/v2/os-templates | Get a list of available OS templates
 [**UpdateOSTemplate**](OSTemplateAPI.md#UpdateOSTemplate) | **Put** /api/v2/os-templates/{osTemplateId} | Update OS template
 
@@ -201,6 +202,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**OSTemplate**](OSTemplate.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOSTemplateCredentials
+
+> OSTemplateOsCredential GetOSTemplateCredentials(ctx, osTemplateId).Execute()
+
+Get OS template credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	osTemplateId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OSTemplateAPI.GetOSTemplateCredentials(context.Background(), osTemplateId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OSTemplateAPI.GetOSTemplateCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetOSTemplateCredentials`: OSTemplateOsCredential
+	fmt.Fprintf(os.Stdout, "Response from `OSTemplateAPI.GetOSTemplateCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**osTemplateId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOSTemplateCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**OSTemplateOsCredential**](OSTemplateOsCredential.md)
 
 ### Authorization
 

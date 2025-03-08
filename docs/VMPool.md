@@ -26,14 +26,14 @@ Name | Type | Description | Notes
 **IsExperimental** | Pointer to **float32** | Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0. | [optional] 
 **CreatedTimestamp** | **string** | Timestamp when the VM Pool was created | 
 **UpdatedTimestamp** | **string** | Timestamp when the VM Pool was updated | 
-**Tags** | **[]string** | Tags for the VM Pool. | 
+**Tags** | Pointer to **[]string** | Tags for the VM Pool. | [optional] 
 **Links** | **map[string]interface{}** | Links to other resources | 
 
 ## Methods
 
 ### NewVMPool
 
-`func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, certificate string, privateKeyEncrypted string, status string, totalRamGB float32, usedRamGB float32, freeRamGB float32, totalSpaceGB float32, usedSpaceGB float32, freeSpaceGB float32, createdTimestamp string, updatedTimestamp string, tags []string, links map[string]interface{}, ) *VMPool`
+`func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, certificate string, privateKeyEncrypted string, status string, totalRamGB float32, usedRamGB float32, freeRamGB float32, totalSpaceGB float32, usedSpaceGB float32, freeSpaceGB float32, createdTimestamp string, updatedTimestamp string, links map[string]interface{}, ) *VMPool`
 
 NewVMPool instantiates a new VMPool object
 This constructor will assign default values to properties that have it defined,
@@ -527,6 +527,11 @@ and a boolean to check if the value has been set.
 
 SetTags sets Tags field to given value.
 
+### HasTags
+
+`func (o *VMPool) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetLinks
 

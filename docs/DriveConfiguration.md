@@ -13,10 +13,10 @@ Name | Type | Description | Notes
 **SizeMb** | **float32** | Disk size in MB for Drive | 
 **StorageImageName** | Pointer to **string** | The name of the storage image used by the Drive. | [optional] 
 **IscsiIndexHex** | Pointer to **string** | The iSCSI Index in hex format of the Drive. | [optional] 
-**TemplateIdOrigin** | Pointer to **float32** | Template Id | [optional] 
+**TemplateId** | Pointer to **float32** | Template Id | [optional] 
 **OsAdminUsername** | Pointer to **string** | The OS Admin Username the Drive will use. | [optional] 
 **OsAdminPasswordEncrypted** | Pointer to **string** | The OS Admin Password the Drive will use. | [optional] 
-**StorageType** | **string** | Service status of the Drive | [default to "iscsi_ssd"]
+**StorageType** | **string** | Storage type of the Drive | [default to "iscsi_ssd"]
 **Subdomain** | Pointer to **string** | Subdomain of the Drive. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the Drive last update. | 
 **SshPort** | Pointer to **float32** | SSH port used by the Drive. | [optional] 
@@ -251,30 +251,30 @@ SetIscsiIndexHex sets IscsiIndexHex field to given value.
 
 HasIscsiIndexHex returns a boolean if a field has been set.
 
-### GetTemplateIdOrigin
+### GetTemplateId
 
-`func (o *DriveConfiguration) GetTemplateIdOrigin() float32`
+`func (o *DriveConfiguration) GetTemplateId() float32`
 
-GetTemplateIdOrigin returns the TemplateIdOrigin field if non-nil, zero value otherwise.
+GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
 
-### GetTemplateIdOriginOk
+### GetTemplateIdOk
 
-`func (o *DriveConfiguration) GetTemplateIdOriginOk() (*float32, bool)`
+`func (o *DriveConfiguration) GetTemplateIdOk() (*float32, bool)`
 
-GetTemplateIdOriginOk returns a tuple with the TemplateIdOrigin field if it's non-nil, zero value otherwise
+GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTemplateIdOrigin
+### SetTemplateId
 
-`func (o *DriveConfiguration) SetTemplateIdOrigin(v float32)`
+`func (o *DriveConfiguration) SetTemplateId(v float32)`
 
-SetTemplateIdOrigin sets TemplateIdOrigin field to given value.
+SetTemplateId sets TemplateId field to given value.
 
-### HasTemplateIdOrigin
+### HasTemplateId
 
-`func (o *DriveConfiguration) HasTemplateIdOrigin() bool`
+`func (o *DriveConfiguration) HasTemplateId() bool`
 
-HasTemplateIdOrigin returns a boolean if a field has been set.
+HasTemplateId returns a boolean if a field has been set.
 
 ### GetOsAdminUsername
 

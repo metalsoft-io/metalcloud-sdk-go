@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the Infrastructure. | 
-**CustomVariables** | Pointer to **string** | Custom variables in JSON format. | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables in JSON format. | [optional] 
 **UserIdOwner** | Pointer to **float32** | User ID of the owner of the Infrastructure. | [optional] 
 **Subdomain** | Pointer to **string** | Subdomain associated with the Infrastructure. | [optional] 
 **InstancesCountActive** | Pointer to **float32** | Number of active instances. | [optional] 
@@ -14,13 +14,13 @@ Name | Type | Description | Notes
 **Ipv6SubnetsCountActive** | Pointer to **float32** | Number of active IPv6 subnets. | [optional] 
 **Ipv4UnusedIpAddresses** | Pointer to **float32** | Number of unused IPv4 addresses. | [optional] 
 **Description** | Pointer to **string** | Description of the infrastructure. | [optional] 
-**Settings** | Pointer to **string** | Settings in JSON format. | [optional] 
+**Settings** | Pointer to **map[string]interface{}** | Settings in JSON format. | [optional] 
 **IsApiPrivate** | Pointer to **float32** | Whether the infrastructure API is private. | [optional] 
 **ExperimentalPriority** | Pointer to **string** | Experimental priority. | [optional] 
 **IsPublicDesignsMember** | Pointer to **float32** | Whether the infrastructure is a member of public designs. | [optional] 
-**CertificatesJson** | Pointer to **string** | Certificates in JSON format. | [optional] 
-**DeployCookieJarJson** | Pointer to **string** | Deploy cookie jar JSON. | [optional] 
-**DeferredDeployAttemptLastErrorJson** | Pointer to **string** | Last error of deferred deploy attempt. | [optional] 
+**CertificatesJson** | Pointer to **map[string]interface{}** | Certificates in JSON format. | [optional] 
+**DeployCookieJarJson** | Pointer to **map[string]interface{}** | Deploy cookie jar JSON. | [optional] 
+**DeferredDeployAttemptLastErrorJson** | Pointer to **map[string]interface{}** | Last error of deferred deploy attempt. | [optional] 
 **IsAutomanaged** | Pointer to **float32** | Whether the infrastructure is automanaged. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update for the Infrastructure. | 
 **Id** | **float32** | Infrastructure Id | 
@@ -33,16 +33,16 @@ Name | Type | Description | Notes
 **DnsSubdomainId** | Pointer to **float32** | DNS Subdomain ID. | [optional] 
 **DnsSubdomainPermanentId** | Pointer to **float32** | Permanent DNS Subdomain ID. | [optional] 
 **DesignIsLocked** | **float32** | Infrastructure design locked flag. | 
-**Config** | [**InfrastructureConfiguration**](InfrastructureConfiguration.md) | The current changes to be deployed for the Infrastructure. | 
-**Meta** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) | Meta information for the GUI | [optional] 
+**Config** | [**InfrastructureConfig**](InfrastructureConfig.md) | The current changes to be deployed for the Infrastructure. | 
+**Meta** | Pointer to [**InfrastructureMeta**](InfrastructureMeta.md) | Meta information for the Infrastructure | [optional] 
 **Statistics** | Pointer to [**JobGroupStatisticsWithoutId**](JobGroupStatisticsWithoutId.md) |  | [optional] 
-**Links** | **map[string]interface{}** | Links to other resources | 
+**Links** | Pointer to [**[]Link**](Link.md) | Links to other resources | [optional] 
 
 ## Methods
 
 ### NewInfrastructure
 
-`func NewInfrastructure(label string, updatedTimestamp string, id float32, revision float32, serviceStatus string, datacenterName string, siteId float32, createdTimestamp string, designIsLocked float32, config InfrastructureConfiguration, links map[string]interface{}, ) *Infrastructure`
+`func NewInfrastructure(label string, updatedTimestamp string, id float32, revision float32, serviceStatus string, datacenterName string, siteId float32, createdTimestamp string, designIsLocked float32, config InfrastructureConfig, ) *Infrastructure`
 
 NewInfrastructure instantiates a new Infrastructure object
 This constructor will assign default values to properties that have it defined,
@@ -79,20 +79,20 @@ SetLabel sets Label field to given value.
 
 ### GetCustomVariables
 
-`func (o *Infrastructure) GetCustomVariables() string`
+`func (o *Infrastructure) GetCustomVariables() map[string]interface{}`
 
 GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
 
 ### GetCustomVariablesOk
 
-`func (o *Infrastructure) GetCustomVariablesOk() (*string, bool)`
+`func (o *Infrastructure) GetCustomVariablesOk() (*map[string]interface{}, bool)`
 
 GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomVariables
 
-`func (o *Infrastructure) SetCustomVariables(v string)`
+`func (o *Infrastructure) SetCustomVariables(v map[string]interface{})`
 
 SetCustomVariables sets CustomVariables field to given value.
 
@@ -304,20 +304,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetSettings
 
-`func (o *Infrastructure) GetSettings() string`
+`func (o *Infrastructure) GetSettings() map[string]interface{}`
 
 GetSettings returns the Settings field if non-nil, zero value otherwise.
 
 ### GetSettingsOk
 
-`func (o *Infrastructure) GetSettingsOk() (*string, bool)`
+`func (o *Infrastructure) GetSettingsOk() (*map[string]interface{}, bool)`
 
 GetSettingsOk returns a tuple with the Settings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSettings
 
-`func (o *Infrastructure) SetSettings(v string)`
+`func (o *Infrastructure) SetSettings(v map[string]interface{})`
 
 SetSettings sets Settings field to given value.
 
@@ -404,20 +404,20 @@ HasIsPublicDesignsMember returns a boolean if a field has been set.
 
 ### GetCertificatesJson
 
-`func (o *Infrastructure) GetCertificatesJson() string`
+`func (o *Infrastructure) GetCertificatesJson() map[string]interface{}`
 
 GetCertificatesJson returns the CertificatesJson field if non-nil, zero value otherwise.
 
 ### GetCertificatesJsonOk
 
-`func (o *Infrastructure) GetCertificatesJsonOk() (*string, bool)`
+`func (o *Infrastructure) GetCertificatesJsonOk() (*map[string]interface{}, bool)`
 
 GetCertificatesJsonOk returns a tuple with the CertificatesJson field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCertificatesJson
 
-`func (o *Infrastructure) SetCertificatesJson(v string)`
+`func (o *Infrastructure) SetCertificatesJson(v map[string]interface{})`
 
 SetCertificatesJson sets CertificatesJson field to given value.
 
@@ -429,20 +429,20 @@ HasCertificatesJson returns a boolean if a field has been set.
 
 ### GetDeployCookieJarJson
 
-`func (o *Infrastructure) GetDeployCookieJarJson() string`
+`func (o *Infrastructure) GetDeployCookieJarJson() map[string]interface{}`
 
 GetDeployCookieJarJson returns the DeployCookieJarJson field if non-nil, zero value otherwise.
 
 ### GetDeployCookieJarJsonOk
 
-`func (o *Infrastructure) GetDeployCookieJarJsonOk() (*string, bool)`
+`func (o *Infrastructure) GetDeployCookieJarJsonOk() (*map[string]interface{}, bool)`
 
 GetDeployCookieJarJsonOk returns a tuple with the DeployCookieJarJson field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeployCookieJarJson
 
-`func (o *Infrastructure) SetDeployCookieJarJson(v string)`
+`func (o *Infrastructure) SetDeployCookieJarJson(v map[string]interface{})`
 
 SetDeployCookieJarJson sets DeployCookieJarJson field to given value.
 
@@ -454,20 +454,20 @@ HasDeployCookieJarJson returns a boolean if a field has been set.
 
 ### GetDeferredDeployAttemptLastErrorJson
 
-`func (o *Infrastructure) GetDeferredDeployAttemptLastErrorJson() string`
+`func (o *Infrastructure) GetDeferredDeployAttemptLastErrorJson() map[string]interface{}`
 
 GetDeferredDeployAttemptLastErrorJson returns the DeferredDeployAttemptLastErrorJson field if non-nil, zero value otherwise.
 
 ### GetDeferredDeployAttemptLastErrorJsonOk
 
-`func (o *Infrastructure) GetDeferredDeployAttemptLastErrorJsonOk() (*string, bool)`
+`func (o *Infrastructure) GetDeferredDeployAttemptLastErrorJsonOk() (*map[string]interface{}, bool)`
 
 GetDeferredDeployAttemptLastErrorJsonOk returns a tuple with the DeferredDeployAttemptLastErrorJson field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeferredDeployAttemptLastErrorJson
 
-`func (o *Infrastructure) SetDeferredDeployAttemptLastErrorJson(v string)`
+`func (o *Infrastructure) SetDeferredDeployAttemptLastErrorJson(v map[string]interface{})`
 
 SetDeferredDeployAttemptLastErrorJson sets DeferredDeployAttemptLastErrorJson field to given value.
 
@@ -739,40 +739,40 @@ SetDesignIsLocked sets DesignIsLocked field to given value.
 
 ### GetConfig
 
-`func (o *Infrastructure) GetConfig() InfrastructureConfiguration`
+`func (o *Infrastructure) GetConfig() InfrastructureConfig`
 
 GetConfig returns the Config field if non-nil, zero value otherwise.
 
 ### GetConfigOk
 
-`func (o *Infrastructure) GetConfigOk() (*InfrastructureConfiguration, bool)`
+`func (o *Infrastructure) GetConfigOk() (*InfrastructureConfig, bool)`
 
 GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfig
 
-`func (o *Infrastructure) SetConfig(v InfrastructureConfiguration)`
+`func (o *Infrastructure) SetConfig(v InfrastructureConfig)`
 
 SetConfig sets Config field to given value.
 
 
 ### GetMeta
 
-`func (o *Infrastructure) GetMeta() GenericGUISettings`
+`func (o *Infrastructure) GetMeta() InfrastructureMeta`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *Infrastructure) GetMetaOk() (*GenericGUISettings, bool)`
+`func (o *Infrastructure) GetMetaOk() (*InfrastructureMeta, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *Infrastructure) SetMeta(v GenericGUISettings)`
+`func (o *Infrastructure) SetMeta(v InfrastructureMeta)`
 
 SetMeta sets Meta field to given value.
 
@@ -809,23 +809,28 @@ HasStatistics returns a boolean if a field has been set.
 
 ### GetLinks
 
-`func (o *Infrastructure) GetLinks() map[string]interface{}`
+`func (o *Infrastructure) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *Infrastructure) GetLinksOk() (*map[string]interface{}, bool)`
+`func (o *Infrastructure) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *Infrastructure) SetLinks(v map[string]interface{})`
+`func (o *Infrastructure) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 
+### HasLinks
+
+`func (o *Infrastructure) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

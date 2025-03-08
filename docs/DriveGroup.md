@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **TemplateId** | Pointer to **float32** | Template Id | [optional] 
 **DriveCount** | **float32** | Number of drives in the Drive Group | 
 **DriveSizeMbDefault** | **float32** | Default disk size in MB for new Drives in the Drive Group | 
-**InstanceArrayId** | Pointer to **float32** |  | [optional] 
+**ServerInstanceGroupId** | Pointer to **float32** |  | [optional] 
 **ContainerArrayId** | Pointer to **float32** |  | [optional] 
-**ExpandWithInstanceArray** | **float32** | Flag to determine whether the Drive Group should be expanded with an Instance Array by adding one drive for each instance | 
+**ExpandWithServerInstanceGroup** | **float32** | Flag to determine whether the Drive Group should be expanded with a Server Instance Group by adding one drive for each instance | 
 **IoLimitPolicy** | Pointer to **string** | The IO limit policy of the Drive Group. | [optional] 
 **StorageType** | **string** | Service status of the Drive Group | [default to "iscsi_ssd"]
 **FilesystemInfo** | Pointer to **map[string]interface{}** | Filesystem information of the Drive Group. | [optional] 
@@ -26,16 +26,15 @@ Name | Type | Description | Notes
 **DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the Drive Group. | [optional] 
 **DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the Drive Group. | [optional] 
 **AllocationAffinity** | **string** | Allocation affinity of the Drive Group | 
-**Tags** | Pointer to **[]string** | Tags for the Drive Group. | [optional] 
-**GuiSettings** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
 **Config** | [**DriveGroupConfiguration**](DriveGroupConfiguration.md) | The current changes to be deployed for the Drive Group. | 
 **CreatedTimestamp** | **string** | Timestamp of the Drive Group creation. | 
+**Meta** | [**DriveGroupMeta**](DriveGroupMeta.md) | Meta information of the Drive Group. | 
 
 ## Methods
 
 ### NewDriveGroup
 
-`func NewDriveGroup(label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithInstanceArray float32, storageType string, updatedTimestamp string, id float32, revision float32, serviceStatus string, allocationAffinity string, config DriveGroupConfiguration, createdTimestamp string, ) *DriveGroup`
+`func NewDriveGroup(label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithServerInstanceGroup float32, storageType string, updatedTimestamp string, id float32, revision float32, serviceStatus string, allocationAffinity string, config DriveGroupConfiguration, createdTimestamp string, meta DriveGroupMeta, ) *DriveGroup`
 
 NewDriveGroup instantiates a new DriveGroup object
 This constructor will assign default values to properties that have it defined,
@@ -155,30 +154,30 @@ and a boolean to check if the value has been set.
 SetDriveSizeMbDefault sets DriveSizeMbDefault field to given value.
 
 
-### GetInstanceArrayId
+### GetServerInstanceGroupId
 
-`func (o *DriveGroup) GetInstanceArrayId() float32`
+`func (o *DriveGroup) GetServerInstanceGroupId() float32`
 
-GetInstanceArrayId returns the InstanceArrayId field if non-nil, zero value otherwise.
+GetServerInstanceGroupId returns the ServerInstanceGroupId field if non-nil, zero value otherwise.
 
-### GetInstanceArrayIdOk
+### GetServerInstanceGroupIdOk
 
-`func (o *DriveGroup) GetInstanceArrayIdOk() (*float32, bool)`
+`func (o *DriveGroup) GetServerInstanceGroupIdOk() (*float32, bool)`
 
-GetInstanceArrayIdOk returns a tuple with the InstanceArrayId field if it's non-nil, zero value otherwise
+GetServerInstanceGroupIdOk returns a tuple with the ServerInstanceGroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInstanceArrayId
+### SetServerInstanceGroupId
 
-`func (o *DriveGroup) SetInstanceArrayId(v float32)`
+`func (o *DriveGroup) SetServerInstanceGroupId(v float32)`
 
-SetInstanceArrayId sets InstanceArrayId field to given value.
+SetServerInstanceGroupId sets ServerInstanceGroupId field to given value.
 
-### HasInstanceArrayId
+### HasServerInstanceGroupId
 
-`func (o *DriveGroup) HasInstanceArrayId() bool`
+`func (o *DriveGroup) HasServerInstanceGroupId() bool`
 
-HasInstanceArrayId returns a boolean if a field has been set.
+HasServerInstanceGroupId returns a boolean if a field has been set.
 
 ### GetContainerArrayId
 
@@ -205,24 +204,24 @@ SetContainerArrayId sets ContainerArrayId field to given value.
 
 HasContainerArrayId returns a boolean if a field has been set.
 
-### GetExpandWithInstanceArray
+### GetExpandWithServerInstanceGroup
 
-`func (o *DriveGroup) GetExpandWithInstanceArray() float32`
+`func (o *DriveGroup) GetExpandWithServerInstanceGroup() float32`
 
-GetExpandWithInstanceArray returns the ExpandWithInstanceArray field if non-nil, zero value otherwise.
+GetExpandWithServerInstanceGroup returns the ExpandWithServerInstanceGroup field if non-nil, zero value otherwise.
 
-### GetExpandWithInstanceArrayOk
+### GetExpandWithServerInstanceGroupOk
 
-`func (o *DriveGroup) GetExpandWithInstanceArrayOk() (*float32, bool)`
+`func (o *DriveGroup) GetExpandWithServerInstanceGroupOk() (*float32, bool)`
 
-GetExpandWithInstanceArrayOk returns a tuple with the ExpandWithInstanceArray field if it's non-nil, zero value otherwise
+GetExpandWithServerInstanceGroupOk returns a tuple with the ExpandWithServerInstanceGroup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetExpandWithInstanceArray
+### SetExpandWithServerInstanceGroup
 
-`func (o *DriveGroup) SetExpandWithInstanceArray(v float32)`
+`func (o *DriveGroup) SetExpandWithServerInstanceGroup(v float32)`
 
-SetExpandWithInstanceArray sets ExpandWithInstanceArray field to given value.
+SetExpandWithServerInstanceGroup sets ExpandWithServerInstanceGroup field to given value.
 
 
 ### GetIoLimitPolicy
@@ -545,56 +544,6 @@ and a boolean to check if the value has been set.
 SetAllocationAffinity sets AllocationAffinity field to given value.
 
 
-### GetTags
-
-`func (o *DriveGroup) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *DriveGroup) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *DriveGroup) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *DriveGroup) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
-
-### GetGuiSettings
-
-`func (o *DriveGroup) GetGuiSettings() GenericGUISettings`
-
-GetGuiSettings returns the GuiSettings field if non-nil, zero value otherwise.
-
-### GetGuiSettingsOk
-
-`func (o *DriveGroup) GetGuiSettingsOk() (*GenericGUISettings, bool)`
-
-GetGuiSettingsOk returns a tuple with the GuiSettings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGuiSettings
-
-`func (o *DriveGroup) SetGuiSettings(v GenericGUISettings)`
-
-SetGuiSettings sets GuiSettings field to given value.
-
-### HasGuiSettings
-
-`func (o *DriveGroup) HasGuiSettings() bool`
-
-HasGuiSettings returns a boolean if a field has been set.
-
 ### GetConfig
 
 `func (o *DriveGroup) GetConfig() DriveGroupConfiguration`
@@ -633,6 +582,26 @@ and a boolean to check if the value has been set.
 `func (o *DriveGroup) SetCreatedTimestamp(v string)`
 
 SetCreatedTimestamp sets CreatedTimestamp field to given value.
+
+
+### GetMeta
+
+`func (o *DriveGroup) GetMeta() DriveGroupMeta`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *DriveGroup) GetMetaOk() (*DriveGroupMeta, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *DriveGroup) SetMeta(v DriveGroupMeta)`
+
+SetMeta sets Meta field to given value.
 
 
 

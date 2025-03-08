@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | Label of the Infrastructure. | [optional] 
-**CustomVariables** | Pointer to **string** | Custom variables in JSON format. | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** | Custom variables in JSON format. | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasLabel returns a boolean if a field has been set.
 
 ### GetCustomVariables
 
-`func (o *UpdateInfrastructure) GetCustomVariables() string`
+`func (o *UpdateInfrastructure) GetCustomVariables() map[string]interface{}`
 
 GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
 
 ### GetCustomVariablesOk
 
-`func (o *UpdateInfrastructure) GetCustomVariablesOk() (*string, bool)`
+`func (o *UpdateInfrastructure) GetCustomVariablesOk() (*map[string]interface{}, bool)`
 
 GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomVariables
 
-`func (o *UpdateInfrastructure) SetCustomVariables(v string)`
+`func (o *UpdateInfrastructure) SetCustomVariables(v map[string]interface{})`
 
 SetCustomVariables sets CustomVariables field to given value.
 

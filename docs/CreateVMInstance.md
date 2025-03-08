@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GroupId** | **float32** | Id of the VM Instance Group. | 
 **TypeId** | **float32** | Id of the VM Type. | 
-**Tags** | Pointer to **[]string** | Tags for the VM Instance. | [optional] 
+**GroupId** | **float32** | Id of the VM Instance Group. | 
 **DiskSizeGB** | Pointer to **float32** | Disk size in GB of the VM Instance. If not passed, the default disk size from the group will be used | [optional] 
+**Tags** | Pointer to **[]string** | Tags for the VM Instance. | [optional] 
 
 ## Methods
 
 ### NewCreateVMInstance
 
-`func NewCreateVMInstance(groupId float32, typeId float32, ) *CreateVMInstance`
+`func NewCreateVMInstance(typeId float32, groupId float32, ) *CreateVMInstance`
 
 NewCreateVMInstance instantiates a new CreateVMInstance object
 This constructor will assign default values to properties that have it defined,
@@ -27,26 +27,6 @@ will change when the set of required properties is changed
 NewCreateVMInstanceWithDefaults instantiates a new CreateVMInstance object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetGroupId
-
-`func (o *CreateVMInstance) GetGroupId() float32`
-
-GetGroupId returns the GroupId field if non-nil, zero value otherwise.
-
-### GetGroupIdOk
-
-`func (o *CreateVMInstance) GetGroupIdOk() (*float32, bool)`
-
-GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGroupId
-
-`func (o *CreateVMInstance) SetGroupId(v float32)`
-
-SetGroupId sets GroupId field to given value.
-
 
 ### GetTypeId
 
@@ -68,30 +48,25 @@ and a boolean to check if the value has been set.
 SetTypeId sets TypeId field to given value.
 
 
-### GetTags
+### GetGroupId
 
-`func (o *CreateVMInstance) GetTags() []string`
+`func (o *CreateVMInstance) GetGroupId() float32`
 
-GetTags returns the Tags field if non-nil, zero value otherwise.
+GetGroupId returns the GroupId field if non-nil, zero value otherwise.
 
-### GetTagsOk
+### GetGroupIdOk
 
-`func (o *CreateVMInstance) GetTagsOk() (*[]string, bool)`
+`func (o *CreateVMInstance) GetGroupIdOk() (*float32, bool)`
 
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTags
+### SetGroupId
 
-`func (o *CreateVMInstance) SetTags(v []string)`
+`func (o *CreateVMInstance) SetGroupId(v float32)`
 
-SetTags sets Tags field to given value.
+SetGroupId sets GroupId field to given value.
 
-### HasTags
-
-`func (o *CreateVMInstance) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetDiskSizeGB
 
@@ -117,6 +92,31 @@ SetDiskSizeGB sets DiskSizeGB field to given value.
 `func (o *CreateVMInstance) HasDiskSizeGB() bool`
 
 HasDiskSizeGB returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *CreateVMInstance) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *CreateVMInstance) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *CreateVMInstance) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *CreateVMInstance) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

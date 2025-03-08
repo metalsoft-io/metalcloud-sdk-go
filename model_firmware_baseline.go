@@ -22,14 +22,14 @@ var _ MappedNullable = &FirmwareBaseline{}
 // FirmwareBaseline struct for FirmwareBaseline
 type FirmwareBaseline struct {
 	// Unique identifier for the firmware baseline
-	ServerFirmwareBaselineId float32 `json:"serverFirmwareBaselineId"`
-	ServerFirmwareBaselineName string `json:"serverFirmwareBaselineName"`
-	ServerFirmwareBaselineDescription *string `json:"serverFirmwareBaselineDescription,omitempty"`
-	ServerFirmwareBaselineCatalogJson *string `json:"serverFirmwareBaselineCatalogJson,omitempty"`
-	ServerFirmwareBaselineLevel BaselineLevelType `json:"serverFirmwareBaselineLevel"`
-	ServerFirmwareBaselineLevelFilterJson string `json:"serverFirmwareBaselineLevelFilterJson"`
+	Id float32 `json:"id"`
+	Name string `json:"name"`
+	Description *string `json:"description,omitempty"`
+	Catalog []string `json:"catalog,omitempty"`
+	Level BaselineLevelType `json:"level"`
+	LevelFilter []string `json:"levelFilter"`
 	// Timestamp when the baseline was created
-	ServerFirmwareCatalogCreatedTimestamp string `json:"serverFirmwareCatalogCreatedTimestamp"`
+	CreatedTimestamp string `json:"createdTimestamp"`
 	// Links to other resources
 	Links map[string]interface{} `json:"links"`
 	AdditionalProperties map[string]interface{}
@@ -41,13 +41,13 @@ type _FirmwareBaseline FirmwareBaseline
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareBaseline(serverFirmwareBaselineId float32, serverFirmwareBaselineName string, serverFirmwareBaselineLevel BaselineLevelType, serverFirmwareBaselineLevelFilterJson string, serverFirmwareCatalogCreatedTimestamp string, links map[string]interface{}) *FirmwareBaseline {
+func NewFirmwareBaseline(id float32, name string, level BaselineLevelType, levelFilter []string, createdTimestamp string, links map[string]interface{}) *FirmwareBaseline {
 	this := FirmwareBaseline{}
-	this.ServerFirmwareBaselineId = serverFirmwareBaselineId
-	this.ServerFirmwareBaselineName = serverFirmwareBaselineName
-	this.ServerFirmwareBaselineLevel = serverFirmwareBaselineLevel
-	this.ServerFirmwareBaselineLevelFilterJson = serverFirmwareBaselineLevelFilterJson
-	this.ServerFirmwareCatalogCreatedTimestamp = serverFirmwareCatalogCreatedTimestamp
+	this.Id = id
+	this.Name = name
+	this.Level = level
+	this.LevelFilter = levelFilter
+	this.CreatedTimestamp = createdTimestamp
 	this.Links = links
 	return &this
 }
@@ -60,188 +60,188 @@ func NewFirmwareBaselineWithDefaults() *FirmwareBaseline {
 	return &this
 }
 
-// GetServerFirmwareBaselineId returns the ServerFirmwareBaselineId field value
-func (o *FirmwareBaseline) GetServerFirmwareBaselineId() float32 {
+// GetId returns the Id field value
+func (o *FirmwareBaseline) GetId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.ServerFirmwareBaselineId
+	return o.Id
 }
 
-// GetServerFirmwareBaselineIdOk returns a tuple with the ServerFirmwareBaselineId field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBaseline) GetServerFirmwareBaselineIdOk() (*float32, bool) {
+func (o *FirmwareBaseline) GetIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ServerFirmwareBaselineId, true
+	return &o.Id, true
 }
 
-// SetServerFirmwareBaselineId sets field value
-func (o *FirmwareBaseline) SetServerFirmwareBaselineId(v float32) {
-	o.ServerFirmwareBaselineId = v
+// SetId sets field value
+func (o *FirmwareBaseline) SetId(v float32) {
+	o.Id = v
 }
 
-// GetServerFirmwareBaselineName returns the ServerFirmwareBaselineName field value
-func (o *FirmwareBaseline) GetServerFirmwareBaselineName() string {
+// GetName returns the Name field value
+func (o *FirmwareBaseline) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ServerFirmwareBaselineName
+	return o.Name
 }
 
-// GetServerFirmwareBaselineNameOk returns a tuple with the ServerFirmwareBaselineName field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBaseline) GetServerFirmwareBaselineNameOk() (*string, bool) {
+func (o *FirmwareBaseline) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ServerFirmwareBaselineName, true
+	return &o.Name, true
 }
 
-// SetServerFirmwareBaselineName sets field value
-func (o *FirmwareBaseline) SetServerFirmwareBaselineName(v string) {
-	o.ServerFirmwareBaselineName = v
+// SetName sets field value
+func (o *FirmwareBaseline) SetName(v string) {
+	o.Name = v
 }
 
-// GetServerFirmwareBaselineDescription returns the ServerFirmwareBaselineDescription field value if set, zero value otherwise.
-func (o *FirmwareBaseline) GetServerFirmwareBaselineDescription() string {
-	if o == nil || IsNil(o.ServerFirmwareBaselineDescription) {
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *FirmwareBaseline) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
-	return *o.ServerFirmwareBaselineDescription
+	return *o.Description
 }
 
-// GetServerFirmwareBaselineDescriptionOk returns a tuple with the ServerFirmwareBaselineDescription field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FirmwareBaseline) GetServerFirmwareBaselineDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerFirmwareBaselineDescription) {
+func (o *FirmwareBaseline) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return o.ServerFirmwareBaselineDescription, true
+	return o.Description, true
 }
 
-// HasServerFirmwareBaselineDescription returns a boolean if a field has been set.
-func (o *FirmwareBaseline) HasServerFirmwareBaselineDescription() bool {
-	if o != nil && !IsNil(o.ServerFirmwareBaselineDescription) {
+// HasDescription returns a boolean if a field has been set.
+func (o *FirmwareBaseline) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetServerFirmwareBaselineDescription gets a reference to the given string and assigns it to the ServerFirmwareBaselineDescription field.
-func (o *FirmwareBaseline) SetServerFirmwareBaselineDescription(v string) {
-	o.ServerFirmwareBaselineDescription = &v
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *FirmwareBaseline) SetDescription(v string) {
+	o.Description = &v
 }
 
-// GetServerFirmwareBaselineCatalogJson returns the ServerFirmwareBaselineCatalogJson field value if set, zero value otherwise.
-func (o *FirmwareBaseline) GetServerFirmwareBaselineCatalogJson() string {
-	if o == nil || IsNil(o.ServerFirmwareBaselineCatalogJson) {
-		var ret string
+// GetCatalog returns the Catalog field value if set, zero value otherwise.
+func (o *FirmwareBaseline) GetCatalog() []string {
+	if o == nil || IsNil(o.Catalog) {
+		var ret []string
 		return ret
 	}
-	return *o.ServerFirmwareBaselineCatalogJson
+	return o.Catalog
 }
 
-// GetServerFirmwareBaselineCatalogJsonOk returns a tuple with the ServerFirmwareBaselineCatalogJson field value if set, nil otherwise
+// GetCatalogOk returns a tuple with the Catalog field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FirmwareBaseline) GetServerFirmwareBaselineCatalogJsonOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerFirmwareBaselineCatalogJson) {
+func (o *FirmwareBaseline) GetCatalogOk() ([]string, bool) {
+	if o == nil || IsNil(o.Catalog) {
 		return nil, false
 	}
-	return o.ServerFirmwareBaselineCatalogJson, true
+	return o.Catalog, true
 }
 
-// HasServerFirmwareBaselineCatalogJson returns a boolean if a field has been set.
-func (o *FirmwareBaseline) HasServerFirmwareBaselineCatalogJson() bool {
-	if o != nil && !IsNil(o.ServerFirmwareBaselineCatalogJson) {
+// HasCatalog returns a boolean if a field has been set.
+func (o *FirmwareBaseline) HasCatalog() bool {
+	if o != nil && !IsNil(o.Catalog) {
 		return true
 	}
 
 	return false
 }
 
-// SetServerFirmwareBaselineCatalogJson gets a reference to the given string and assigns it to the ServerFirmwareBaselineCatalogJson field.
-func (o *FirmwareBaseline) SetServerFirmwareBaselineCatalogJson(v string) {
-	o.ServerFirmwareBaselineCatalogJson = &v
+// SetCatalog gets a reference to the given []string and assigns it to the Catalog field.
+func (o *FirmwareBaseline) SetCatalog(v []string) {
+	o.Catalog = v
 }
 
-// GetServerFirmwareBaselineLevel returns the ServerFirmwareBaselineLevel field value
-func (o *FirmwareBaseline) GetServerFirmwareBaselineLevel() BaselineLevelType {
+// GetLevel returns the Level field value
+func (o *FirmwareBaseline) GetLevel() BaselineLevelType {
 	if o == nil {
 		var ret BaselineLevelType
 		return ret
 	}
 
-	return o.ServerFirmwareBaselineLevel
+	return o.Level
 }
 
-// GetServerFirmwareBaselineLevelOk returns a tuple with the ServerFirmwareBaselineLevel field value
+// GetLevelOk returns a tuple with the Level field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBaseline) GetServerFirmwareBaselineLevelOk() (*BaselineLevelType, bool) {
+func (o *FirmwareBaseline) GetLevelOk() (*BaselineLevelType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ServerFirmwareBaselineLevel, true
+	return &o.Level, true
 }
 
-// SetServerFirmwareBaselineLevel sets field value
-func (o *FirmwareBaseline) SetServerFirmwareBaselineLevel(v BaselineLevelType) {
-	o.ServerFirmwareBaselineLevel = v
+// SetLevel sets field value
+func (o *FirmwareBaseline) SetLevel(v BaselineLevelType) {
+	o.Level = v
 }
 
-// GetServerFirmwareBaselineLevelFilterJson returns the ServerFirmwareBaselineLevelFilterJson field value
-func (o *FirmwareBaseline) GetServerFirmwareBaselineLevelFilterJson() string {
+// GetLevelFilter returns the LevelFilter field value
+func (o *FirmwareBaseline) GetLevelFilter() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.LevelFilter
+}
+
+// GetLevelFilterOk returns a tuple with the LevelFilter field value
+// and a boolean to check if the value has been set.
+func (o *FirmwareBaseline) GetLevelFilterOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LevelFilter, true
+}
+
+// SetLevelFilter sets field value
+func (o *FirmwareBaseline) SetLevelFilter(v []string) {
+	o.LevelFilter = v
+}
+
+// GetCreatedTimestamp returns the CreatedTimestamp field value
+func (o *FirmwareBaseline) GetCreatedTimestamp() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ServerFirmwareBaselineLevelFilterJson
+	return o.CreatedTimestamp
 }
 
-// GetServerFirmwareBaselineLevelFilterJsonOk returns a tuple with the ServerFirmwareBaselineLevelFilterJson field value
+// GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBaseline) GetServerFirmwareBaselineLevelFilterJsonOk() (*string, bool) {
+func (o *FirmwareBaseline) GetCreatedTimestampOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ServerFirmwareBaselineLevelFilterJson, true
+	return &o.CreatedTimestamp, true
 }
 
-// SetServerFirmwareBaselineLevelFilterJson sets field value
-func (o *FirmwareBaseline) SetServerFirmwareBaselineLevelFilterJson(v string) {
-	o.ServerFirmwareBaselineLevelFilterJson = v
-}
-
-// GetServerFirmwareCatalogCreatedTimestamp returns the ServerFirmwareCatalogCreatedTimestamp field value
-func (o *FirmwareBaseline) GetServerFirmwareCatalogCreatedTimestamp() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ServerFirmwareCatalogCreatedTimestamp
-}
-
-// GetServerFirmwareCatalogCreatedTimestampOk returns a tuple with the ServerFirmwareCatalogCreatedTimestamp field value
-// and a boolean to check if the value has been set.
-func (o *FirmwareBaseline) GetServerFirmwareCatalogCreatedTimestampOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ServerFirmwareCatalogCreatedTimestamp, true
-}
-
-// SetServerFirmwareCatalogCreatedTimestamp sets field value
-func (o *FirmwareBaseline) SetServerFirmwareCatalogCreatedTimestamp(v string) {
-	o.ServerFirmwareCatalogCreatedTimestamp = v
+// SetCreatedTimestamp sets field value
+func (o *FirmwareBaseline) SetCreatedTimestamp(v string) {
+	o.CreatedTimestamp = v
 }
 
 // GetLinks returns the Links field value
@@ -278,17 +278,17 @@ func (o FirmwareBaseline) MarshalJSON() ([]byte, error) {
 
 func (o FirmwareBaseline) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["serverFirmwareBaselineId"] = o.ServerFirmwareBaselineId
-	toSerialize["serverFirmwareBaselineName"] = o.ServerFirmwareBaselineName
-	if !IsNil(o.ServerFirmwareBaselineDescription) {
-		toSerialize["serverFirmwareBaselineDescription"] = o.ServerFirmwareBaselineDescription
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
-	if !IsNil(o.ServerFirmwareBaselineCatalogJson) {
-		toSerialize["serverFirmwareBaselineCatalogJson"] = o.ServerFirmwareBaselineCatalogJson
+	if !IsNil(o.Catalog) {
+		toSerialize["catalog"] = o.Catalog
 	}
-	toSerialize["serverFirmwareBaselineLevel"] = o.ServerFirmwareBaselineLevel
-	toSerialize["serverFirmwareBaselineLevelFilterJson"] = o.ServerFirmwareBaselineLevelFilterJson
-	toSerialize["serverFirmwareCatalogCreatedTimestamp"] = o.ServerFirmwareCatalogCreatedTimestamp
+	toSerialize["level"] = o.Level
+	toSerialize["levelFilter"] = o.LevelFilter
+	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["links"] = o.Links
 
 	for key, value := range o.AdditionalProperties {
@@ -303,11 +303,11 @@ func (o *FirmwareBaseline) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"serverFirmwareBaselineId",
-		"serverFirmwareBaselineName",
-		"serverFirmwareBaselineLevel",
-		"serverFirmwareBaselineLevelFilterJson",
-		"serverFirmwareCatalogCreatedTimestamp",
+		"id",
+		"name",
+		"level",
+		"levelFilter",
+		"createdTimestamp",
 		"links",
 	}
 
@@ -338,13 +338,13 @@ func (o *FirmwareBaseline) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "serverFirmwareBaselineId")
-		delete(additionalProperties, "serverFirmwareBaselineName")
-		delete(additionalProperties, "serverFirmwareBaselineDescription")
-		delete(additionalProperties, "serverFirmwareBaselineCatalogJson")
-		delete(additionalProperties, "serverFirmwareBaselineLevel")
-		delete(additionalProperties, "serverFirmwareBaselineLevelFilterJson")
-		delete(additionalProperties, "serverFirmwareCatalogCreatedTimestamp")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "catalog")
+		delete(additionalProperties, "level")
+		delete(additionalProperties, "levelFilter")
+		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

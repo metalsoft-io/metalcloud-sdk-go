@@ -29,7 +29,6 @@ type SharedDriveAPICreateSharedDriveRequest struct {
 	ctx context.Context
 	ApiService *SharedDriveAPIService
 	infrastructureId float32
-	sharedDriveId float32
 	createSharedDrive *CreateSharedDrive
 }
 
@@ -47,15 +46,13 @@ CreateSharedDrive Create a new Shared Drive
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param infrastructureId
- @param sharedDriveId
  @return SharedDriveAPICreateSharedDriveRequest
 */
-func (a *SharedDriveAPIService) CreateSharedDrive(ctx context.Context, infrastructureId float32, sharedDriveId float32) SharedDriveAPICreateSharedDriveRequest {
+func (a *SharedDriveAPIService) CreateSharedDrive(ctx context.Context, infrastructureId float32) SharedDriveAPICreateSharedDriveRequest {
 	return SharedDriveAPICreateSharedDriveRequest{
 		ApiService: a,
 		ctx: ctx,
 		infrastructureId: infrastructureId,
-		sharedDriveId: sharedDriveId,
 	}
 }
 
@@ -76,7 +73,6 @@ func (a *SharedDriveAPIService) CreateSharedDriveExecute(r SharedDriveAPICreateS
 
 	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/shared-drives"
 	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"sharedDriveId"+"}", url.PathEscape(parameterValueToString(r.sharedDriveId, "sharedDriveId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

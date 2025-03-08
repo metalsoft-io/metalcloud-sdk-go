@@ -25,8 +25,6 @@ type CreateNetworkFabric struct {
 	Name string `json:"name"`
 	// Network fabric description
 	Description *string `json:"description,omitempty"`
-	// The type of network fabric
-	FabricType string `json:"fabricType"`
 	FabricConfiguration NetworkFabricFabricConfiguration `json:"fabricConfiguration"`
 	AdditionalProperties map[string]interface{}
 }
@@ -37,10 +35,9 @@ type _CreateNetworkFabric CreateNetworkFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateNetworkFabric(name string, fabricType string, fabricConfiguration NetworkFabricFabricConfiguration) *CreateNetworkFabric {
+func NewCreateNetworkFabric(name string, fabricConfiguration NetworkFabricFabricConfiguration) *CreateNetworkFabric {
 	this := CreateNetworkFabric{}
 	this.Name = name
-	this.FabricType = fabricType
 	this.FabricConfiguration = fabricConfiguration
 	return &this
 }
@@ -109,30 +106,6 @@ func (o *CreateNetworkFabric) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetFabricType returns the FabricType field value
-func (o *CreateNetworkFabric) GetFabricType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.FabricType
-}
-
-// GetFabricTypeOk returns a tuple with the FabricType field value
-// and a boolean to check if the value has been set.
-func (o *CreateNetworkFabric) GetFabricTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FabricType, true
-}
-
-// SetFabricType sets field value
-func (o *CreateNetworkFabric) SetFabricType(v string) {
-	o.FabricType = v
-}
-
 // GetFabricConfiguration returns the FabricConfiguration field value
 func (o *CreateNetworkFabric) GetFabricConfiguration() NetworkFabricFabricConfiguration {
 	if o == nil {
@@ -171,7 +144,6 @@ func (o CreateNetworkFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["fabricType"] = o.FabricType
 	toSerialize["fabricConfiguration"] = o.FabricConfiguration
 
 	for key, value := range o.AdditionalProperties {
@@ -187,7 +159,6 @@ func (o *CreateNetworkFabric) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
-		"fabricType",
 		"fabricConfiguration",
 	}
 
@@ -220,7 +191,6 @@ func (o *CreateNetworkFabric) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
-		delete(additionalProperties, "fabricType")
 		delete(additionalProperties, "fabricConfiguration")
 		o.AdditionalProperties = additionalProperties
 	}

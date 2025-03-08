@@ -9,29 +9,29 @@ Name | Type | Description | Notes
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update for the Server Instance Group. | 
 **Subdomain** | Pointer to **string** | Subdomain of the Server Group. | [optional] 
-**InstanceCount** | **int32** |  | [default to 1]
-**IpAllocateAuto** | **float32** |  | 
-**Ipv4SubnetCreateAuto** | **float32** |  | 
+**InstanceCount** | **int32** | The number of instances to be created on the InstanceArray. | [default to 1]
+**IpAllocateAuto** | **int32** | Automatically allocate IP addresses to child Instance&#x60;s InstanceInterface elements. | [default to 1]
+**Ipv4SubnetCreateAuto** | **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [default to 1]
 **FirewallProfileId** | Pointer to **int32** |  | [optional] 
 **FirewallRulesSetId** | Pointer to **int32** |  | [optional] 
-**FirewallManaged** | **float32** |  | 
-**FirmwarePoliciesJson** | **map[string]interface{}** |  | 
-**VolumeTemplateId** | Pointer to **int32** |  | [optional] 
+**FirewallManaged** | **int32** |  | 
+**FirmwarePoliciesJson** | **map[string]interface{}** | Object containing associated firmware policies. | 
+**VolumeTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the InstanceArray have local disks. | [optional] 
 **DriveArrayIdBoot** | Pointer to **int32** | Id of the bootable drive for the Server Instance Group. | [optional] 
 **InstanceArrayBootMethod** | **string** | Instance Array Boot Method | 
-**CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
-**ProcessorCoreCount** | **int32** |  | 
-**ProcessorCoreMhz** | **float32** |  | 
-**ProcessorCount** | **int32** |  | 
-**RamGbytes** | **float32** |  | 
-**DiskCount** | **int32** |  | 
-**DiskSizeMbytes** | **int32** |  | 
-**DiskTypes** | **[]string** |  | 
-**VirtualInterfacesEnabled** | **float32** |  | 
-**AdditionalWanIpv4Json** | Pointer to **map[string]interface{}** |  | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** | Object containing custom variables and variable overrides. | [optional] 
+**ProcessorCount** | **int32** | The CPU count on each instance. | [default to 1]
+**ProcessorCoreCount** | **int32** | The minimum cores of a CPU. | [default to 1]
+**ProcessorCoreMhz** | **int32** | The minimum clock speed of a CPU. | [default to 1000]
+**RamGbytes** | Pointer to **int32** | The minimum RAM capacity of each instance. | [optional] [default to 1]
+**DiskCount** | **int32** | The minimum number of physical disks. | [default to 0]
+**DiskSizeMbytes** | **int32** | The minimum size of a single disk. | [default to 0]
+**DiskTypes** | **[]string** | The types of physical disks. | [default to []]
+**VirtualInterfacesEnabled** | **int32** | Enable virtual interfaces | [default to 0]
+**AdditionalWanIpv4Json** | Pointer to **map[string]interface{}** | Contains info about additional ips to be assigned to the WAN interfaces. | [optional] 
 **NetworkProfileGroupId** | Pointer to **int32** |  | [optional] 
-**OverrideIpv4WanVlanId** | Pointer to **int32** |  | [optional] 
-**NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** |  | [optional] 
+**OverrideIpv4WanVlanId** | Pointer to **int32** | The ipv4 vlan that should override the default from the WAN Network for the primary ip. | [optional] 
+**NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the InstanceInterfaces associated with this InstanceArray. | [optional] 
 **DefaultServerProfileID** | **int32** | The group&#39;s default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied. | 
 **EmptyEdit** | Pointer to **int32** | Number of empty edits | [optional] 
 **DeployType** | **string** | Server Instance Group deploy type | 
@@ -43,7 +43,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceGroupConfiguration
 
-`func NewServerInstanceGroupConfiguration(revision float32, updatedTimestamp string, instanceCount int32, ipAllocateAuto float32, ipv4SubnetCreateAuto float32, firewallManaged float32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCoreCount int32, processorCoreMhz float32, processorCount int32, ramGbytes float32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled float32, defaultServerProfileID int32, deployType string, deployStatus string, ) *ServerInstanceGroupConfiguration`
+`func NewServerInstanceGroupConfiguration(revision float32, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, defaultServerProfileID int32, deployType string, deployStatus string, ) *ServerInstanceGroupConfiguration`
 
 NewServerInstanceGroupConfiguration instantiates a new ServerInstanceGroupConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -195,40 +195,40 @@ SetInstanceCount sets InstanceCount field to given value.
 
 ### GetIpAllocateAuto
 
-`func (o *ServerInstanceGroupConfiguration) GetIpAllocateAuto() float32`
+`func (o *ServerInstanceGroupConfiguration) GetIpAllocateAuto() int32`
 
 GetIpAllocateAuto returns the IpAllocateAuto field if non-nil, zero value otherwise.
 
 ### GetIpAllocateAutoOk
 
-`func (o *ServerInstanceGroupConfiguration) GetIpAllocateAutoOk() (*float32, bool)`
+`func (o *ServerInstanceGroupConfiguration) GetIpAllocateAutoOk() (*int32, bool)`
 
 GetIpAllocateAutoOk returns a tuple with the IpAllocateAuto field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpAllocateAuto
 
-`func (o *ServerInstanceGroupConfiguration) SetIpAllocateAuto(v float32)`
+`func (o *ServerInstanceGroupConfiguration) SetIpAllocateAuto(v int32)`
 
 SetIpAllocateAuto sets IpAllocateAuto field to given value.
 
 
 ### GetIpv4SubnetCreateAuto
 
-`func (o *ServerInstanceGroupConfiguration) GetIpv4SubnetCreateAuto() float32`
+`func (o *ServerInstanceGroupConfiguration) GetIpv4SubnetCreateAuto() int32`
 
 GetIpv4SubnetCreateAuto returns the Ipv4SubnetCreateAuto field if non-nil, zero value otherwise.
 
 ### GetIpv4SubnetCreateAutoOk
 
-`func (o *ServerInstanceGroupConfiguration) GetIpv4SubnetCreateAutoOk() (*float32, bool)`
+`func (o *ServerInstanceGroupConfiguration) GetIpv4SubnetCreateAutoOk() (*int32, bool)`
 
 GetIpv4SubnetCreateAutoOk returns a tuple with the Ipv4SubnetCreateAuto field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpv4SubnetCreateAuto
 
-`func (o *ServerInstanceGroupConfiguration) SetIpv4SubnetCreateAuto(v float32)`
+`func (o *ServerInstanceGroupConfiguration) SetIpv4SubnetCreateAuto(v int32)`
 
 SetIpv4SubnetCreateAuto sets Ipv4SubnetCreateAuto field to given value.
 
@@ -285,20 +285,20 @@ HasFirewallRulesSetId returns a boolean if a field has been set.
 
 ### GetFirewallManaged
 
-`func (o *ServerInstanceGroupConfiguration) GetFirewallManaged() float32`
+`func (o *ServerInstanceGroupConfiguration) GetFirewallManaged() int32`
 
 GetFirewallManaged returns the FirewallManaged field if non-nil, zero value otherwise.
 
 ### GetFirewallManagedOk
 
-`func (o *ServerInstanceGroupConfiguration) GetFirewallManagedOk() (*float32, bool)`
+`func (o *ServerInstanceGroupConfiguration) GetFirewallManagedOk() (*int32, bool)`
 
 GetFirewallManagedOk returns a tuple with the FirewallManaged field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFirewallManaged
 
-`func (o *ServerInstanceGroupConfiguration) SetFirewallManaged(v float32)`
+`func (o *ServerInstanceGroupConfiguration) SetFirewallManaged(v int32)`
 
 SetFirewallManaged sets FirewallManaged field to given value.
 
@@ -418,6 +418,26 @@ SetCustomVariables sets CustomVariables field to given value.
 
 HasCustomVariables returns a boolean if a field has been set.
 
+### GetProcessorCount
+
+`func (o *ServerInstanceGroupConfiguration) GetProcessorCount() int32`
+
+GetProcessorCount returns the ProcessorCount field if non-nil, zero value otherwise.
+
+### GetProcessorCountOk
+
+`func (o *ServerInstanceGroupConfiguration) GetProcessorCountOk() (*int32, bool)`
+
+GetProcessorCountOk returns a tuple with the ProcessorCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProcessorCount
+
+`func (o *ServerInstanceGroupConfiguration) SetProcessorCount(v int32)`
+
+SetProcessorCount sets ProcessorCount field to given value.
+
+
 ### GetProcessorCoreCount
 
 `func (o *ServerInstanceGroupConfiguration) GetProcessorCoreCount() int32`
@@ -440,63 +460,48 @@ SetProcessorCoreCount sets ProcessorCoreCount field to given value.
 
 ### GetProcessorCoreMhz
 
-`func (o *ServerInstanceGroupConfiguration) GetProcessorCoreMhz() float32`
+`func (o *ServerInstanceGroupConfiguration) GetProcessorCoreMhz() int32`
 
 GetProcessorCoreMhz returns the ProcessorCoreMhz field if non-nil, zero value otherwise.
 
 ### GetProcessorCoreMhzOk
 
-`func (o *ServerInstanceGroupConfiguration) GetProcessorCoreMhzOk() (*float32, bool)`
+`func (o *ServerInstanceGroupConfiguration) GetProcessorCoreMhzOk() (*int32, bool)`
 
 GetProcessorCoreMhzOk returns a tuple with the ProcessorCoreMhz field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProcessorCoreMhz
 
-`func (o *ServerInstanceGroupConfiguration) SetProcessorCoreMhz(v float32)`
+`func (o *ServerInstanceGroupConfiguration) SetProcessorCoreMhz(v int32)`
 
 SetProcessorCoreMhz sets ProcessorCoreMhz field to given value.
 
 
-### GetProcessorCount
-
-`func (o *ServerInstanceGroupConfiguration) GetProcessorCount() int32`
-
-GetProcessorCount returns the ProcessorCount field if non-nil, zero value otherwise.
-
-### GetProcessorCountOk
-
-`func (o *ServerInstanceGroupConfiguration) GetProcessorCountOk() (*int32, bool)`
-
-GetProcessorCountOk returns a tuple with the ProcessorCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProcessorCount
-
-`func (o *ServerInstanceGroupConfiguration) SetProcessorCount(v int32)`
-
-SetProcessorCount sets ProcessorCount field to given value.
-
-
 ### GetRamGbytes
 
-`func (o *ServerInstanceGroupConfiguration) GetRamGbytes() float32`
+`func (o *ServerInstanceGroupConfiguration) GetRamGbytes() int32`
 
 GetRamGbytes returns the RamGbytes field if non-nil, zero value otherwise.
 
 ### GetRamGbytesOk
 
-`func (o *ServerInstanceGroupConfiguration) GetRamGbytesOk() (*float32, bool)`
+`func (o *ServerInstanceGroupConfiguration) GetRamGbytesOk() (*int32, bool)`
 
 GetRamGbytesOk returns a tuple with the RamGbytes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRamGbytes
 
-`func (o *ServerInstanceGroupConfiguration) SetRamGbytes(v float32)`
+`func (o *ServerInstanceGroupConfiguration) SetRamGbytes(v int32)`
 
 SetRamGbytes sets RamGbytes field to given value.
 
+### HasRamGbytes
+
+`func (o *ServerInstanceGroupConfiguration) HasRamGbytes() bool`
+
+HasRamGbytes returns a boolean if a field has been set.
 
 ### GetDiskCount
 
@@ -560,20 +565,20 @@ SetDiskTypes sets DiskTypes field to given value.
 
 ### GetVirtualInterfacesEnabled
 
-`func (o *ServerInstanceGroupConfiguration) GetVirtualInterfacesEnabled() float32`
+`func (o *ServerInstanceGroupConfiguration) GetVirtualInterfacesEnabled() int32`
 
 GetVirtualInterfacesEnabled returns the VirtualInterfacesEnabled field if non-nil, zero value otherwise.
 
 ### GetVirtualInterfacesEnabledOk
 
-`func (o *ServerInstanceGroupConfiguration) GetVirtualInterfacesEnabledOk() (*float32, bool)`
+`func (o *ServerInstanceGroupConfiguration) GetVirtualInterfacesEnabledOk() (*int32, bool)`
 
 GetVirtualInterfacesEnabledOk returns a tuple with the VirtualInterfacesEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVirtualInterfacesEnabled
 
-`func (o *ServerInstanceGroupConfiguration) SetVirtualInterfacesEnabled(v float32)`
+`func (o *ServerInstanceGroupConfiguration) SetVirtualInterfacesEnabled(v int32)`
 
 SetVirtualInterfacesEnabled sets VirtualInterfacesEnabled field to given value.
 

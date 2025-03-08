@@ -22,6 +22,64 @@ func Test_sdk_DriveGroupAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test DriveGroupAPIService CreateDriveGroup", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+
+		resp, httpRes, err := apiClient.DriveGroupAPI.CreateDriveGroup(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DriveGroupAPIService DeleteDriveGroup", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveGroupId float32
+
+		httpRes, err := apiClient.DriveGroupAPI.DeleteDriveGroup(context.Background(), infrastructureId, driveGroupId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DriveGroupAPIService GetDriveGroupConfigInfo", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveGroupId float32
+
+		resp, httpRes, err := apiClient.DriveGroupAPI.GetDriveGroupConfigInfo(context.Background(), infrastructureId, driveGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DriveGroupAPIService GetDriveGroupDrives", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveGroupId float32
+
+		resp, httpRes, err := apiClient.DriveGroupAPI.GetDriveGroupDrives(context.Background(), infrastructureId, driveGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DriveGroupAPIService GetInfrastructureDriveGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -44,6 +102,36 @@ func Test_sdk_DriveGroupAPIService(t *testing.T) {
 		var infrastructureId float32
 
 		resp, httpRes, err := apiClient.DriveGroupAPI.GetInfrastructureDriveGroups(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DriveGroupAPIService PatchDriveGroupConfig", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveGroupId float32
+
+		resp, httpRes, err := apiClient.DriveGroupAPI.PatchDriveGroupConfig(context.Background(), infrastructureId, driveGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DriveGroupAPIService PatchDriveGroupMeta", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveGroupId float32
+
+		resp, httpRes, err := apiClient.DriveGroupAPI.PatchDriveGroupMeta(context.Background(), infrastructureId, driveGroupId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

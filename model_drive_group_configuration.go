@@ -33,10 +33,10 @@ type DriveGroupConfiguration struct {
 	DriveCount float32 `json:"driveCount"`
 	// Default disk size in MB for new Drives in the Drive Group
 	DriveSizeMbDefault float32 `json:"driveSizeMbDefault"`
-	InstanceArrayId *float32 `json:"instanceArrayId,omitempty"`
+	ServerInstanceGroupId *float32 `json:"serverInstanceGroupId,omitempty"`
 	ContainerArrayId *float32 `json:"containerArrayId,omitempty"`
-	// Flag to determine whether the Drive Group should be expanded with an Instance Array by adding one drive for each instance
-	ExpandWithInstanceArray float32 `json:"expandWithInstanceArray"`
+	// Flag to determine whether the Drive Group should be expanded with a Server Instance Group by adding one drive for each instance
+	ExpandWithServerInstanceGroup float32 `json:"expandWithServerInstanceGroup"`
 	// The IO limit policy of the Drive Group.
 	IoLimitPolicy *string `json:"ioLimitPolicy,omitempty"`
 	// Service status of the Drive Group
@@ -64,14 +64,14 @@ type _DriveGroupConfiguration DriveGroupConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDriveGroupConfiguration(revision float32, label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithInstanceArray float32, storageType string, updatedTimestamp string, deployType string, deployStatus string) *DriveGroupConfiguration {
+func NewDriveGroupConfiguration(revision float32, label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithServerInstanceGroup float32, storageType string, updatedTimestamp string, deployType string, deployStatus string) *DriveGroupConfiguration {
 	this := DriveGroupConfiguration{}
 	this.Revision = revision
 	this.Label = label
 	this.InfrastructureId = infrastructureId
 	this.DriveCount = driveCount
 	this.DriveSizeMbDefault = driveSizeMbDefault
-	this.ExpandWithInstanceArray = expandWithInstanceArray
+	this.ExpandWithServerInstanceGroup = expandWithServerInstanceGroup
 	this.StorageType = storageType
 	this.UpdatedTimestamp = updatedTimestamp
 	this.DeployType = deployType
@@ -245,36 +245,36 @@ func (o *DriveGroupConfiguration) SetDriveSizeMbDefault(v float32) {
 	o.DriveSizeMbDefault = v
 }
 
-// GetInstanceArrayId returns the InstanceArrayId field value if set, zero value otherwise.
-func (o *DriveGroupConfiguration) GetInstanceArrayId() float32 {
-	if o == nil || IsNil(o.InstanceArrayId) {
+// GetServerInstanceGroupId returns the ServerInstanceGroupId field value if set, zero value otherwise.
+func (o *DriveGroupConfiguration) GetServerInstanceGroupId() float32 {
+	if o == nil || IsNil(o.ServerInstanceGroupId) {
 		var ret float32
 		return ret
 	}
-	return *o.InstanceArrayId
+	return *o.ServerInstanceGroupId
 }
 
-// GetInstanceArrayIdOk returns a tuple with the InstanceArrayId field value if set, nil otherwise
+// GetServerInstanceGroupIdOk returns a tuple with the ServerInstanceGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DriveGroupConfiguration) GetInstanceArrayIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.InstanceArrayId) {
+func (o *DriveGroupConfiguration) GetServerInstanceGroupIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.ServerInstanceGroupId) {
 		return nil, false
 	}
-	return o.InstanceArrayId, true
+	return o.ServerInstanceGroupId, true
 }
 
-// HasInstanceArrayId returns a boolean if a field has been set.
-func (o *DriveGroupConfiguration) HasInstanceArrayId() bool {
-	if o != nil && !IsNil(o.InstanceArrayId) {
+// HasServerInstanceGroupId returns a boolean if a field has been set.
+func (o *DriveGroupConfiguration) HasServerInstanceGroupId() bool {
+	if o != nil && !IsNil(o.ServerInstanceGroupId) {
 		return true
 	}
 
 	return false
 }
 
-// SetInstanceArrayId gets a reference to the given float32 and assigns it to the InstanceArrayId field.
-func (o *DriveGroupConfiguration) SetInstanceArrayId(v float32) {
-	o.InstanceArrayId = &v
+// SetServerInstanceGroupId gets a reference to the given float32 and assigns it to the ServerInstanceGroupId field.
+func (o *DriveGroupConfiguration) SetServerInstanceGroupId(v float32) {
+	o.ServerInstanceGroupId = &v
 }
 
 // GetContainerArrayId returns the ContainerArrayId field value if set, zero value otherwise.
@@ -309,28 +309,28 @@ func (o *DriveGroupConfiguration) SetContainerArrayId(v float32) {
 	o.ContainerArrayId = &v
 }
 
-// GetExpandWithInstanceArray returns the ExpandWithInstanceArray field value
-func (o *DriveGroupConfiguration) GetExpandWithInstanceArray() float32 {
+// GetExpandWithServerInstanceGroup returns the ExpandWithServerInstanceGroup field value
+func (o *DriveGroupConfiguration) GetExpandWithServerInstanceGroup() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.ExpandWithInstanceArray
+	return o.ExpandWithServerInstanceGroup
 }
 
-// GetExpandWithInstanceArrayOk returns a tuple with the ExpandWithInstanceArray field value
+// GetExpandWithServerInstanceGroupOk returns a tuple with the ExpandWithServerInstanceGroup field value
 // and a boolean to check if the value has been set.
-func (o *DriveGroupConfiguration) GetExpandWithInstanceArrayOk() (*float32, bool) {
+func (o *DriveGroupConfiguration) GetExpandWithServerInstanceGroupOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ExpandWithInstanceArray, true
+	return &o.ExpandWithServerInstanceGroup, true
 }
 
-// SetExpandWithInstanceArray sets field value
-func (o *DriveGroupConfiguration) SetExpandWithInstanceArray(v float32) {
-	o.ExpandWithInstanceArray = v
+// SetExpandWithServerInstanceGroup sets field value
+func (o *DriveGroupConfiguration) SetExpandWithServerInstanceGroup(v float32) {
+	o.ExpandWithServerInstanceGroup = v
 }
 
 // GetIoLimitPolicy returns the IoLimitPolicy field value if set, zero value otherwise.
@@ -607,13 +607,13 @@ func (o DriveGroupConfiguration) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["driveCount"] = o.DriveCount
 	toSerialize["driveSizeMbDefault"] = o.DriveSizeMbDefault
-	if !IsNil(o.InstanceArrayId) {
-		toSerialize["instanceArrayId"] = o.InstanceArrayId
+	if !IsNil(o.ServerInstanceGroupId) {
+		toSerialize["serverInstanceGroupId"] = o.ServerInstanceGroupId
 	}
 	if !IsNil(o.ContainerArrayId) {
 		toSerialize["containerArrayId"] = o.ContainerArrayId
 	}
-	toSerialize["expandWithInstanceArray"] = o.ExpandWithInstanceArray
+	toSerialize["expandWithServerInstanceGroup"] = o.ExpandWithServerInstanceGroup
 	if !IsNil(o.IoLimitPolicy) {
 		toSerialize["ioLimitPolicy"] = o.IoLimitPolicy
 	}
@@ -651,7 +651,7 @@ func (o *DriveGroupConfiguration) UnmarshalJSON(data []byte) (err error) {
 		"infrastructureId",
 		"driveCount",
 		"driveSizeMbDefault",
-		"expandWithInstanceArray",
+		"expandWithServerInstanceGroup",
 		"storageType",
 		"updatedTimestamp",
 		"deployType",
@@ -691,9 +691,9 @@ func (o *DriveGroupConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "templateId")
 		delete(additionalProperties, "driveCount")
 		delete(additionalProperties, "driveSizeMbDefault")
-		delete(additionalProperties, "instanceArrayId")
+		delete(additionalProperties, "serverInstanceGroupId")
 		delete(additionalProperties, "containerArrayId")
-		delete(additionalProperties, "expandWithInstanceArray")
+		delete(additionalProperties, "expandWithServerInstanceGroup")
 		delete(additionalProperties, "ioLimitPolicy")
 		delete(additionalProperties, "storageType")
 		delete(additionalProperties, "filesystemInfo")

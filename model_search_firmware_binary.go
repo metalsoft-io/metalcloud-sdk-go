@@ -24,7 +24,7 @@ type SearchFirmwareBinary struct {
 	Vendor FirmwareVendorType `json:"vendor"`
 	BaselineFilter BaselineFilter `json:"baselineFilter"`
 	// Array of vendor component filters, structure is specific per vendor
-	ServerComponentFilter []ServerComponentFilterInner `json:"serverComponentFilter,omitempty"`
+	ServerComponentFilter []string `json:"serverComponentFilter,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -98,9 +98,9 @@ func (o *SearchFirmwareBinary) SetBaselineFilter(v BaselineFilter) {
 }
 
 // GetServerComponentFilter returns the ServerComponentFilter field value if set, zero value otherwise.
-func (o *SearchFirmwareBinary) GetServerComponentFilter() []ServerComponentFilterInner {
+func (o *SearchFirmwareBinary) GetServerComponentFilter() []string {
 	if o == nil || IsNil(o.ServerComponentFilter) {
-		var ret []ServerComponentFilterInner
+		var ret []string
 		return ret
 	}
 	return o.ServerComponentFilter
@@ -108,7 +108,7 @@ func (o *SearchFirmwareBinary) GetServerComponentFilter() []ServerComponentFilte
 
 // GetServerComponentFilterOk returns a tuple with the ServerComponentFilter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchFirmwareBinary) GetServerComponentFilterOk() ([]ServerComponentFilterInner, bool) {
+func (o *SearchFirmwareBinary) GetServerComponentFilterOk() ([]string, bool) {
 	if o == nil || IsNil(o.ServerComponentFilter) {
 		return nil, false
 	}
@@ -124,8 +124,8 @@ func (o *SearchFirmwareBinary) HasServerComponentFilter() bool {
 	return false
 }
 
-// SetServerComponentFilter gets a reference to the given []ServerComponentFilterInner and assigns it to the ServerComponentFilter field.
-func (o *SearchFirmwareBinary) SetServerComponentFilter(v []ServerComponentFilterInner) {
+// SetServerComponentFilter gets a reference to the given []string and assigns it to the ServerComponentFilter field.
+func (o *SearchFirmwareBinary) SetServerComponentFilter(v []string) {
 	o.ServerComponentFilter = v
 }
 

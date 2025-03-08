@@ -20,15 +20,8 @@ var _ MappedNullable = &UpdateVMInstanceGroup{}
 
 // UpdateVMInstanceGroup struct for UpdateVMInstanceGroup
 type UpdateVMInstanceGroup struct {
-	// Tags for the VM Instance Group.
-	Tags []string `json:"tags,omitempty"`
-	// Id of the template used by the VM Instance Group.
-	VolumeTemplateId *float32 `json:"volumeTemplateId,omitempty"`
 	// Label for the VM Instance Group.
 	Label *string `json:"label,omitempty"`
-	GuiSettings *GenericGUISettings `json:"guiSettings,omitempty"`
-	// Interfaces for the VM Instance Group
-	VmInstanceGroupInterfaces []UpdateVMInstanceGroupInterface `json:"vmInstanceGroupInterfaces,omitempty"`
 	// Custom variables for the VM Instance.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -51,70 +44,6 @@ func NewUpdateVMInstanceGroup() *UpdateVMInstanceGroup {
 func NewUpdateVMInstanceGroupWithDefaults() *UpdateVMInstanceGroup {
 	this := UpdateVMInstanceGroup{}
 	return &this
-}
-
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *UpdateVMInstanceGroup) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVMInstanceGroup) GetTagsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *UpdateVMInstanceGroup) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *UpdateVMInstanceGroup) SetTags(v []string) {
-	o.Tags = v
-}
-
-// GetVolumeTemplateId returns the VolumeTemplateId field value if set, zero value otherwise.
-func (o *UpdateVMInstanceGroup) GetVolumeTemplateId() float32 {
-	if o == nil || IsNil(o.VolumeTemplateId) {
-		var ret float32
-		return ret
-	}
-	return *o.VolumeTemplateId
-}
-
-// GetVolumeTemplateIdOk returns a tuple with the VolumeTemplateId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVMInstanceGroup) GetVolumeTemplateIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.VolumeTemplateId) {
-		return nil, false
-	}
-	return o.VolumeTemplateId, true
-}
-
-// HasVolumeTemplateId returns a boolean if a field has been set.
-func (o *UpdateVMInstanceGroup) HasVolumeTemplateId() bool {
-	if o != nil && !IsNil(o.VolumeTemplateId) {
-		return true
-	}
-
-	return false
-}
-
-// SetVolumeTemplateId gets a reference to the given float32 and assigns it to the VolumeTemplateId field.
-func (o *UpdateVMInstanceGroup) SetVolumeTemplateId(v float32) {
-	o.VolumeTemplateId = &v
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
@@ -147,70 +76,6 @@ func (o *UpdateVMInstanceGroup) HasLabel() bool {
 // SetLabel gets a reference to the given string and assigns it to the Label field.
 func (o *UpdateVMInstanceGroup) SetLabel(v string) {
 	o.Label = &v
-}
-
-// GetGuiSettings returns the GuiSettings field value if set, zero value otherwise.
-func (o *UpdateVMInstanceGroup) GetGuiSettings() GenericGUISettings {
-	if o == nil || IsNil(o.GuiSettings) {
-		var ret GenericGUISettings
-		return ret
-	}
-	return *o.GuiSettings
-}
-
-// GetGuiSettingsOk returns a tuple with the GuiSettings field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVMInstanceGroup) GetGuiSettingsOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.GuiSettings) {
-		return nil, false
-	}
-	return o.GuiSettings, true
-}
-
-// HasGuiSettings returns a boolean if a field has been set.
-func (o *UpdateVMInstanceGroup) HasGuiSettings() bool {
-	if o != nil && !IsNil(o.GuiSettings) {
-		return true
-	}
-
-	return false
-}
-
-// SetGuiSettings gets a reference to the given GenericGUISettings and assigns it to the GuiSettings field.
-func (o *UpdateVMInstanceGroup) SetGuiSettings(v GenericGUISettings) {
-	o.GuiSettings = &v
-}
-
-// GetVmInstanceGroupInterfaces returns the VmInstanceGroupInterfaces field value if set, zero value otherwise.
-func (o *UpdateVMInstanceGroup) GetVmInstanceGroupInterfaces() []UpdateVMInstanceGroupInterface {
-	if o == nil || IsNil(o.VmInstanceGroupInterfaces) {
-		var ret []UpdateVMInstanceGroupInterface
-		return ret
-	}
-	return o.VmInstanceGroupInterfaces
-}
-
-// GetVmInstanceGroupInterfacesOk returns a tuple with the VmInstanceGroupInterfaces field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVMInstanceGroup) GetVmInstanceGroupInterfacesOk() ([]UpdateVMInstanceGroupInterface, bool) {
-	if o == nil || IsNil(o.VmInstanceGroupInterfaces) {
-		return nil, false
-	}
-	return o.VmInstanceGroupInterfaces, true
-}
-
-// HasVmInstanceGroupInterfaces returns a boolean if a field has been set.
-func (o *UpdateVMInstanceGroup) HasVmInstanceGroupInterfaces() bool {
-	if o != nil && !IsNil(o.VmInstanceGroupInterfaces) {
-		return true
-	}
-
-	return false
-}
-
-// SetVmInstanceGroupInterfaces gets a reference to the given []UpdateVMInstanceGroupInterface and assigns it to the VmInstanceGroupInterfaces field.
-func (o *UpdateVMInstanceGroup) SetVmInstanceGroupInterfaces(v []UpdateVMInstanceGroupInterface) {
-	o.VmInstanceGroupInterfaces = v
 }
 
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
@@ -255,20 +120,8 @@ func (o UpdateVMInstanceGroup) MarshalJSON() ([]byte, error) {
 
 func (o UpdateVMInstanceGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !IsNil(o.VolumeTemplateId) {
-		toSerialize["volumeTemplateId"] = o.VolumeTemplateId
-	}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
-	}
-	if !IsNil(o.GuiSettings) {
-		toSerialize["guiSettings"] = o.GuiSettings
-	}
-	if !IsNil(o.VmInstanceGroupInterfaces) {
-		toSerialize["vmInstanceGroupInterfaces"] = o.VmInstanceGroupInterfaces
 	}
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
@@ -295,11 +148,7 @@ func (o *UpdateVMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "tags")
-		delete(additionalProperties, "volumeTemplateId")
 		delete(additionalProperties, "label")
-		delete(additionalProperties, "guiSettings")
-		delete(additionalProperties, "vmInstanceGroupInterfaces")
 		delete(additionalProperties, "customVariables")
 		o.AdditionalProperties = additionalProperties
 	}

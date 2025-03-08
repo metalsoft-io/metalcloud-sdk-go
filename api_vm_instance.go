@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -30,6 +31,13 @@ type VMInstanceAPIApplyVMTypeOnVMInstanceRequest struct {
 	infrastructureId float32
 	vmInstanceId float32
 	vmTypeId float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r VMInstanceAPIApplyVMTypeOnVMInstanceRequest) IfMatch(ifMatch string) VMInstanceAPIApplyVMTypeOnVMInstanceRequest {
+	r.ifMatch = &ifMatch
+	return r
 }
 
 func (r VMInstanceAPIApplyVMTypeOnVMInstanceRequest) Execute() (*VMInstance, *http.Response, error) {
@@ -97,6 +105,9 @@ func (a *VMInstanceAPIService) ApplyVMTypeOnVMInstanceExecute(r VMInstanceAPIApp
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -255,6 +266,13 @@ type VMInstanceAPIDeleteVMInstanceRequest struct {
 	ApiService *VMInstanceAPIService
 	infrastructureId float32
 	vmInstanceId float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r VMInstanceAPIDeleteVMInstanceRequest) IfMatch(ifMatch string) VMInstanceAPIDeleteVMInstanceRequest {
+	r.ifMatch = &ifMatch
+	return r
 }
 
 func (r VMInstanceAPIDeleteVMInstanceRequest) Execute() (*http.Response, error) {
@@ -318,6 +336,9 @@ func (a *VMInstanceAPIService) DeleteVMInstanceExecute(r VMInstanceAPIDeleteVMIn
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -346,29 +367,29 @@ func (a *VMInstanceAPIService) DeleteVMInstanceExecute(r VMInstanceAPIDeleteVMIn
 	return localVarHTTPResponse, nil
 }
 
-type VMInstanceAPIGetVMInstanceRequest struct {
+type VMInstanceAPIGetInfrastructureVMInstanceRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
 	infrastructureId float32
 	vmInstanceId float32
 }
 
-func (r VMInstanceAPIGetVMInstanceRequest) Execute() (*VMInstance, *http.Response, error) {
-	return r.ApiService.GetVMInstanceExecute(r)
+func (r VMInstanceAPIGetInfrastructureVMInstanceRequest) Execute() (*VMInstance, *http.Response, error) {
+	return r.ApiService.GetInfrastructureVMInstanceExecute(r)
 }
 
 /*
-GetVMInstance Get VM Instance information
+GetInfrastructureVMInstance Get VM Instance information
 
 Returns VM Instance information
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param infrastructureId
  @param vmInstanceId
- @return VMInstanceAPIGetVMInstanceRequest
+ @return VMInstanceAPIGetInfrastructureVMInstanceRequest
 */
-func (a *VMInstanceAPIService) GetVMInstance(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIGetVMInstanceRequest {
-	return VMInstanceAPIGetVMInstanceRequest{
+func (a *VMInstanceAPIService) GetInfrastructureVMInstance(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIGetInfrastructureVMInstanceRequest {
+	return VMInstanceAPIGetInfrastructureVMInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
 		infrastructureId: infrastructureId,
@@ -378,7 +399,7 @@ func (a *VMInstanceAPIService) GetVMInstance(ctx context.Context, infrastructure
 
 // Execute executes the request
 //  @return VMInstance
-func (a *VMInstanceAPIService) GetVMInstanceExecute(r VMInstanceAPIGetVMInstanceRequest) (*VMInstance, *http.Response, error) {
+func (a *VMInstanceAPIService) GetInfrastructureVMInstanceExecute(r VMInstanceAPIGetInfrastructureVMInstanceRequest) (*VMInstance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -386,12 +407,394 @@ func (a *VMInstanceAPIService) GetVMInstanceExecute(r VMInstanceAPIGetVMInstance
 		localVarReturnValue  *VMInstance
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceAPIService.GetVMInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceAPIService.GetInfrastructureVMInstance")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceId, "vmInstanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type VMInstanceAPIGetInfrastructureVMInstancesRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceAPIService
+	infrastructureId float32
+	page *float32
+	limit *float32
+	filterLabel *[]string
+	filterSubdomain *[]string
+	filterSubdomainPermanent *[]string
+	filterServiceStatus *[]string
+	filterConfigDeployStatus *[]string
+	filterConfigDeployType *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) Page(page float32) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) Limit(limit float32) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) FilterLabel(filterLabel []string) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	r.filterLabel = &filterLabel
+	return r
+}
+
+// Filter by subdomain query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.subdomain&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.subdomain&#x3D;$not:$like:John Doe&amp;filter.subdomain&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) FilterSubdomain(filterSubdomain []string) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	r.filterSubdomain = &filterSubdomain
+	return r
+}
+
+// Filter by subdomainPermanent query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.subdomainPermanent&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.subdomainPermanent&#x3D;$not:$like:John Doe&amp;filter.subdomainPermanent&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) FilterSubdomainPermanent(filterSubdomainPermanent []string) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	r.filterSubdomainPermanent = &filterSubdomainPermanent
+	return r
+}
+
+// Filter by serviceStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serviceStatus&#x3D;$not:$like:John Doe&amp;filter.serviceStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) FilterServiceStatus(filterServiceStatus []string) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	r.filterServiceStatus = &filterServiceStatus
+	return r
+}
+
+// Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) FilterConfigDeployStatus(filterConfigDeployStatus []string) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	r.filterConfigDeployStatus = &filterConfigDeployStatus
+	return r
+}
+
+// Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) FilterConfigDeployType(filterConfigDeployType []string) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	r.filterConfigDeployType = &filterConfigDeployType
+	return r
+}
+
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt;&lt;/ul&gt;       
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) SortBy(sortBy []string) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) Search(search string) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,subdomain,subdomainPermanent,serviceStatus           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;subdomain&lt;/li&gt; &lt;li&gt;subdomainPermanent&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt;&lt;/ul&gt;         
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) SearchBy(searchBy []string) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r VMInstanceAPIGetInfrastructureVMInstancesRequest) Execute() (*VMInstancePaginatedList, *http.Response, error) {
+	return r.ApiService.GetInfrastructureVMInstancesExecute(r)
+}
+
+/*
+GetInfrastructureVMInstances Get all VM Instances on the infrastructure
+
+Returns list of all VM Instances on the infrastructure
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @return VMInstanceAPIGetInfrastructureVMInstancesRequest
+*/
+func (a *VMInstanceAPIService) GetInfrastructureVMInstances(ctx context.Context, infrastructureId float32) VMInstanceAPIGetInfrastructureVMInstancesRequest {
+	return VMInstanceAPIGetInfrastructureVMInstancesRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+	}
+}
+
+// Execute executes the request
+//  @return VMInstancePaginatedList
+func (a *VMInstanceAPIService) GetInfrastructureVMInstancesExecute(r VMInstanceAPIGetInfrastructureVMInstancesRequest) (*VMInstancePaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMInstancePaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceAPIService.GetInfrastructureVMInstances")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instances"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterLabel != nil {
+		t := *r.filterLabel
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
+		}
+	}
+	if r.filterSubdomain != nil {
+		t := *r.filterSubdomain
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.subdomain", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.subdomain", t, "form", "multi")
+		}
+	}
+	if r.filterSubdomainPermanent != nil {
+		t := *r.filterSubdomainPermanent
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.subdomainPermanent", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.subdomainPermanent", t, "form", "multi")
+		}
+	}
+	if r.filterServiceStatus != nil {
+		t := *r.filterServiceStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployStatus != nil {
+		t := *r.filterConfigDeployStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployType != nil {
+		t := *r.filterConfigDeployType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type VMInstanceAPIGetVMInstanceConfigInfoRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceAPIService
+	infrastructureId float32
+	vmInstanceId float32
+}
+
+func (r VMInstanceAPIGetVMInstanceConfigInfoRequest) Execute() (*VMInstanceConfiguration, *http.Response, error) {
+	return r.ApiService.GetVMInstanceConfigInfoExecute(r)
+}
+
+/*
+GetVMInstanceConfigInfo Get configuration information about the specified VM Instance
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param vmInstanceId
+ @return VMInstanceAPIGetVMInstanceConfigInfoRequest
+*/
+func (a *VMInstanceAPIService) GetVMInstanceConfigInfo(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIGetVMInstanceConfigInfoRequest {
+	return VMInstanceAPIGetVMInstanceConfigInfoRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		vmInstanceId: vmInstanceId,
+	}
+}
+
+// Execute executes the request
+//  @return VMInstanceConfiguration
+func (a *VMInstanceAPIService) GetVMInstanceConfigInfoExecute(r VMInstanceAPIGetVMInstanceConfigInfoRequest) (*VMInstanceConfiguration, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMInstanceConfiguration
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceAPIService.GetVMInstanceConfigInfo")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/config"
 	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceId, "vmInstanceId")), -1)
 
@@ -523,6 +926,122 @@ func (a *VMInstanceAPIService) GetVMInstancePowerStatusExecute(r VMInstanceAPIGe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type VMInstanceAPIPatchVMInstanceMetaRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceAPIService
+	infrastructureId float32
+	vmInstanceId float32
+	updateVMInstanceMeta *UpdateVMInstanceMeta
+}
+
+func (r VMInstanceAPIPatchVMInstanceMetaRequest) UpdateVMInstanceMeta(updateVMInstanceMeta UpdateVMInstanceMeta) VMInstanceAPIPatchVMInstanceMetaRequest {
+	r.updateVMInstanceMeta = &updateVMInstanceMeta
+	return r
+}
+
+func (r VMInstanceAPIPatchVMInstanceMetaRequest) Execute() (*VMInstance, *http.Response, error) {
+	return r.ApiService.PatchVMInstanceMetaExecute(r)
+}
+
+/*
+PatchVMInstanceMeta Updates the meta of a VM Instance
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param vmInstanceId
+ @return VMInstanceAPIPatchVMInstanceMetaRequest
+*/
+func (a *VMInstanceAPIService) PatchVMInstanceMeta(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIPatchVMInstanceMetaRequest {
+	return VMInstanceAPIPatchVMInstanceMetaRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		vmInstanceId: vmInstanceId,
+	}
+}
+
+// Execute executes the request
+//  @return VMInstance
+func (a *VMInstanceAPIService) PatchVMInstanceMetaExecute(r VMInstanceAPIPatchVMInstanceMetaRequest) (*VMInstance, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMInstance
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceAPIService.PatchVMInstanceMeta")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/meta"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceId, "vmInstanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateVMInstanceMeta == nil {
+		return localVarReturnValue, nil, reportError("updateVMInstanceMeta is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateVMInstanceMeta
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -848,36 +1367,43 @@ func (a *VMInstanceAPIService) StartVMInstanceExecute(r VMInstanceAPIStartVMInst
 	return localVarHTTPResponse, nil
 }
 
-type VMInstanceAPIUpdateVMInstanceRequest struct {
+type VMInstanceAPIUpdateVMInstanceConfigRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceAPIService
 	infrastructureId float32
 	vmInstanceId float32
 	updateVMInstance *UpdateVMInstance
+	ifMatch *string
 }
 
 // The VM Instance update object
-func (r VMInstanceAPIUpdateVMInstanceRequest) UpdateVMInstance(updateVMInstance UpdateVMInstance) VMInstanceAPIUpdateVMInstanceRequest {
+func (r VMInstanceAPIUpdateVMInstanceConfigRequest) UpdateVMInstance(updateVMInstance UpdateVMInstance) VMInstanceAPIUpdateVMInstanceConfigRequest {
 	r.updateVMInstance = &updateVMInstance
 	return r
 }
 
-func (r VMInstanceAPIUpdateVMInstanceRequest) Execute() (*VMInstance, *http.Response, error) {
-	return r.ApiService.UpdateVMInstanceExecute(r)
+// Entity tag
+func (r VMInstanceAPIUpdateVMInstanceConfigRequest) IfMatch(ifMatch string) VMInstanceAPIUpdateVMInstanceConfigRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r VMInstanceAPIUpdateVMInstanceConfigRequest) Execute() (*VMInstance, *http.Response, error) {
+	return r.ApiService.UpdateVMInstanceConfigExecute(r)
 }
 
 /*
-UpdateVMInstance Updates VM Instance information
+UpdateVMInstanceConfig Updates VM Instance config information
 
-Updates VM Instance information
+Updates VM Instance config information
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param infrastructureId
  @param vmInstanceId
- @return VMInstanceAPIUpdateVMInstanceRequest
+ @return VMInstanceAPIUpdateVMInstanceConfigRequest
 */
-func (a *VMInstanceAPIService) UpdateVMInstance(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIUpdateVMInstanceRequest {
-	return VMInstanceAPIUpdateVMInstanceRequest{
+func (a *VMInstanceAPIService) UpdateVMInstanceConfig(ctx context.Context, infrastructureId float32, vmInstanceId float32) VMInstanceAPIUpdateVMInstanceConfigRequest {
+	return VMInstanceAPIUpdateVMInstanceConfigRequest{
 		ApiService: a,
 		ctx: ctx,
 		infrastructureId: infrastructureId,
@@ -887,7 +1413,7 @@ func (a *VMInstanceAPIService) UpdateVMInstance(ctx context.Context, infrastruct
 
 // Execute executes the request
 //  @return VMInstance
-func (a *VMInstanceAPIService) UpdateVMInstanceExecute(r VMInstanceAPIUpdateVMInstanceRequest) (*VMInstance, *http.Response, error) {
+func (a *VMInstanceAPIService) UpdateVMInstanceConfigExecute(r VMInstanceAPIUpdateVMInstanceConfigRequest) (*VMInstance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -895,12 +1421,12 @@ func (a *VMInstanceAPIService) UpdateVMInstanceExecute(r VMInstanceAPIUpdateVMIn
 		localVarReturnValue  *VMInstance
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceAPIService.UpdateVMInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceAPIService.UpdateVMInstanceConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}"
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/config"
 	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceId, "vmInstanceId")), -1)
 
@@ -927,6 +1453,9 @@ func (a *VMInstanceAPIService) UpdateVMInstanceExecute(r VMInstanceAPIUpdateVMIn
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.updateVMInstance

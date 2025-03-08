@@ -352,7 +352,11 @@ type ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest struct {
 	infrastructureId int32
 	page *float32
 	limit *float32
-	filterId *[]string
+	filterInfrastructureId *[]string
+	filterExtensionInstanceId *[]string
+	filterServiceStatus *[]string
+	filterConfigDeployStatus *[]string
+	filterConfigDeployType *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -370,13 +374,37 @@ func (r ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest) Limi
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest) FilterId(filterId []string) ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest {
-	r.filterId = &filterId
+// Filter by infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest) FilterInfrastructureId(filterInfrastructureId []string) ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest {
+	r.filterInfrastructureId = &filterInfrastructureId
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; label:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;       
+// Filter by extensionInstanceId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.extensionInstanceId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.extensionInstanceId&#x3D;$not:$like:John Doe&amp;filter.extensionInstanceId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest) FilterExtensionInstanceId(filterExtensionInstanceId []string) ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest {
+	r.filterExtensionInstanceId = &filterExtensionInstanceId
+	return r
+}
+
+// Filter by serviceStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serviceStatus&#x3D;$not:$like:John Doe&amp;filter.serviceStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest) FilterServiceStatus(filterServiceStatus []string) ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest {
+	r.filterServiceStatus = &filterServiceStatus
+	return r
+}
+
+// Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest) FilterConfigDeployStatus(filterConfigDeployStatus []string) ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest {
+	r.filterConfigDeployStatus = &filterConfigDeployStatus
+	return r
+}
+
+// Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest) FilterConfigDeployType(filterConfigDeployType []string) ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest {
+	r.filterConfigDeployType = &filterConfigDeployType
+	return r
+}
+
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;       
 func (r ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest) SortBy(sortBy []string) ServerInstanceGroupAPIGetInfrastructureServerInstanceGroupsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -443,15 +471,59 @@ func (a *ServerInstanceGroupAPIService) GetInfrastructureServerInstanceGroupsExe
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
-	if r.filterId != nil {
-		t := *r.filterId
+	if r.filterInfrastructureId != nil {
+		t := *r.filterInfrastructureId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", t, "form", "multi")
+		}
+	}
+	if r.filterExtensionInstanceId != nil {
+		t := *r.filterExtensionInstanceId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.extensionInstanceId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.extensionInstanceId", t, "form", "multi")
+		}
+	}
+	if r.filterServiceStatus != nil {
+		t := *r.filterServiceStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployStatus != nil {
+		t := *r.filterConfigDeployStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployType != nil {
+		t := *r.filterConfigDeployType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -1190,6 +1262,301 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupInterfacesExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceGroupAPIService
+	serverInstanceGroupId int32
+	page *float32
+	limit *float32
+	filterInfrastructureId *[]string
+	filterGroupId *[]string
+	filterServerId *[]string
+	filterServiceStatus *[]string
+	filterConfigServerId *[]string
+	filterConfigDeployStatus *[]string
+	filterConfigDeployType *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+func (r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) Page(page float32) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+func (r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) Limit(limit float32) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) FilterInfrastructureId(filterInfrastructureId []string) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+	r.filterInfrastructureId = &filterInfrastructureId
+	return r
+}
+
+// Filter by groupId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.groupId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.groupId&#x3D;$not:$like:John Doe&amp;filter.groupId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) FilterGroupId(filterGroupId []string) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+	r.filterGroupId = &filterGroupId
+	return r
+}
+
+// Filter by serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverId&#x3D;$not:$like:John Doe&amp;filter.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) FilterServerId(filterServerId []string) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+	r.filterServerId = &filterServerId
+	return r
+}
+
+// Filter by serviceStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serviceStatus&#x3D;$not:$like:John Doe&amp;filter.serviceStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) FilterServiceStatus(filterServiceStatus []string) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+	r.filterServiceStatus = &filterServiceStatus
+	return r
+}
+
+// Filter by config.serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.serverId&#x3D;$not:$like:John Doe&amp;filter.config.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) FilterConfigServerId(filterConfigServerId []string) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+	r.filterConfigServerId = &filterConfigServerId
+	return r
+}
+
+// Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) FilterConfigDeployStatus(filterConfigDeployStatus []string) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+	r.filterConfigDeployStatus = &filterConfigDeployStatus
+	return r
+}
+
+// Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) FilterConfigDeployType(filterConfigDeployType []string) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+	r.filterConfigDeployType = &filterConfigDeployType
+	return r
+}
+
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;       
+func (r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) SortBy(sortBy []string) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+func (r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) Search(search string) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; label           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;         
+func (r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) SearchBy(searchBy []string) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) Execute() (*ServerInstancePaginatedList, *http.Response, error) {
+	return r.ApiService.GetServerInstanceGroupServerInstancesExecute(r)
+}
+
+/*
+GetServerInstanceGroupServerInstances List Server Instances for a Server Instance Group
+
+Returns list of Server Instances in the specified group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceGroupId
+ @return ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest
+*/
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupServerInstances(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest {
+	return ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceGroupId: serverInstanceGroupId,
+	}
+}
+
+// Execute executes the request
+//  @return ServerInstancePaginatedList
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupServerInstancesExecute(r ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest) (*ServerInstancePaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServerInstancePaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupServerInstances")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/server-instances"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceGroupId, "serverInstanceGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterInfrastructureId != nil {
+		t := *r.filterInfrastructureId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", t, "form", "multi")
+		}
+	}
+	if r.filterGroupId != nil {
+		t := *r.filterGroupId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.groupId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.groupId", t, "form", "multi")
+		}
+	}
+	if r.filterServerId != nil {
+		t := *r.filterServerId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverId", t, "form", "multi")
+		}
+	}
+	if r.filterServiceStatus != nil {
+		t := *r.filterServiceStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigServerId != nil {
+		t := *r.filterConfigServerId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.serverId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.serverId", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployStatus != nil {
+		t := *r.filterConfigDeployStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployType != nil {
+		t := *r.filterConfigDeployType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ServerInstanceGroupAPIUpdateServerInstanceGroupConfigRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
@@ -1319,12 +1686,12 @@ type ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
 	serverInstanceGroupId int32
-	body *map[string]interface{}
+	genericMeta *GenericMeta
 }
 
 // The Server Instance Group meta information
-func (r ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest) Body(body map[string]interface{}) ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest {
-	r.body = &body
+func (r ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest) GenericMeta(genericMeta GenericMeta) ServerInstanceGroupAPIUpdateServerInstanceGroupMetaRequest {
+	r.genericMeta = &genericMeta
 	return r
 }
 
@@ -1368,8 +1735,8 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupMetaExecute(r S
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
+	if r.genericMeta == nil {
+		return nil, reportError("genericMeta is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1390,7 +1757,7 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupMetaExecute(r S
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.genericMeta
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

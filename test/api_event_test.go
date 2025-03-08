@@ -26,9 +26,9 @@ func Test_sdk_EventAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customIsoId float32
+		var eventId float32
 
-		resp, httpRes, err := apiClient.EventAPI.GetEvent(context.Background(), customIsoId).Execute()
+		resp, httpRes, err := apiClient.EventAPI.GetEvent(context.Background(), eventId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -36,7 +36,7 @@ func (r FirmwareBaselineAPICreateFirmwareBaselineRequest) CreateFirmwareBaseline
 	return r
 }
 
-func (r FirmwareBaselineAPICreateFirmwareBaselineRequest) Execute() (*FirmwareBaseline, *http.Response, error) {
+func (r FirmwareBaselineAPICreateFirmwareBaselineRequest) Execute() (*CreateFirmwareBaseline, *http.Response, error) {
 	return r.ApiService.CreateFirmwareBaselineExecute(r)
 }
 
@@ -56,13 +56,13 @@ func (a *FirmwareBaselineAPIService) CreateFirmwareBaseline(ctx context.Context)
 }
 
 // Execute executes the request
-//  @return FirmwareBaseline
-func (a *FirmwareBaselineAPIService) CreateFirmwareBaselineExecute(r FirmwareBaselineAPICreateFirmwareBaselineRequest) (*FirmwareBaseline, *http.Response, error) {
+//  @return CreateFirmwareBaseline
+func (a *FirmwareBaselineAPIService) CreateFirmwareBaselineExecute(r FirmwareBaselineAPICreateFirmwareBaselineRequest) (*CreateFirmwareBaseline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FirmwareBaseline
+		localVarReturnValue  *CreateFirmwareBaseline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareBaselineAPIService.CreateFirmwareBaseline")
@@ -335,8 +335,8 @@ type FirmwareBaselineAPIGetFirmwareBaselinesRequest struct {
 	ApiService *FirmwareBaselineAPIService
 	page *float32
 	limit *float32
-	filterServerFirmwareBaselineLevel *[]string
-	filterServerFirmwareBaselineLevelFilterJson *[]string
+	filterLevel *[]string
+	filterLevelFilter *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -355,19 +355,19 @@ func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) Limit(limit float32) Fir
 	return r
 }
 
-// Filter by serverFirmwareBaselineLevel query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareBaselineLevel&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareBaselineLevel&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareBaselineLevel&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) FilterServerFirmwareBaselineLevel(filterServerFirmwareBaselineLevel []string) FirmwareBaselineAPIGetFirmwareBaselinesRequest {
-	r.filterServerFirmwareBaselineLevel = &filterServerFirmwareBaselineLevel
+// Filter by level query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.level&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.level&#x3D;$not:$like:John Doe&amp;filter.level&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) FilterLevel(filterLevel []string) FirmwareBaselineAPIGetFirmwareBaselinesRequest {
+	r.filterLevel = &filterLevel
 	return r
 }
 
-// Filter by serverFirmwareBaselineLevelFilterJson query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareBaselineLevelFilterJson&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareBaselineLevelFilterJson&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareBaselineLevelFilterJson&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) FilterServerFirmwareBaselineLevelFilterJson(filterServerFirmwareBaselineLevelFilterJson []string) FirmwareBaselineAPIGetFirmwareBaselinesRequest {
-	r.filterServerFirmwareBaselineLevelFilterJson = &filterServerFirmwareBaselineLevelFilterJson
+// Filter by levelFilter query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.levelFilter&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.levelFilter&#x3D;$not:$like:John Doe&amp;filter.levelFilter&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) FilterLevelFilter(filterLevelFilter []string) FirmwareBaselineAPIGetFirmwareBaselinesRequest {
+	r.filterLevelFilter = &filterLevelFilter
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; serverFirmwareBaselineId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;serverFirmwareBaselineId&lt;/li&gt; &lt;li&gt;serverFirmwareBaselineName&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt;&lt;/ul&gt;       
 func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) SortBy(sortBy []string) FirmwareBaselineAPIGetFirmwareBaselinesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -379,13 +379,13 @@ func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) Search(search string) Fi
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; serverFirmwareBaselineName,serverFirmwareBaselineLevelFilterJson           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;serverFirmwareBaselineName&lt;/li&gt; &lt;li&gt;serverFirmwareBaselineLevelFilterJson&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; name,levelFilter           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;name&lt;/li&gt; &lt;li&gt;levelFilter&lt;/li&gt;&lt;/ul&gt;         
 func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) SearchBy(searchBy []string) FirmwareBaselineAPIGetFirmwareBaselinesRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; serverFirmwareBaselineId,serverFirmwareBaselineName,serverFirmwareBaselineDescription,serverFirmwareBaselineCatalogJson,serverFirmwareBaselineLevel           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
+// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,name,description,catalog,level           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
 func (r FirmwareBaselineAPIGetFirmwareBaselinesRequest) Select_(select_ string) FirmwareBaselineAPIGetFirmwareBaselinesRequest {
 	r.select_ = &select_
 	return r
@@ -437,26 +437,26 @@ func (a *FirmwareBaselineAPIService) GetFirmwareBaselinesExecute(r FirmwareBasel
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
-	if r.filterServerFirmwareBaselineLevel != nil {
-		t := *r.filterServerFirmwareBaselineLevel
+	if r.filterLevel != nil {
+		t := *r.filterLevel
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBaselineLevel", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.level", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBaselineLevel", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.level", t, "form", "multi")
 		}
 	}
-	if r.filterServerFirmwareBaselineLevelFilterJson != nil {
-		t := *r.filterServerFirmwareBaselineLevelFilterJson
+	if r.filterLevelFilter != nil {
+		t := *r.filterLevelFilter
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBaselineLevelFilterJson", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.levelFilter", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverFirmwareBaselineLevelFilterJson", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.levelFilter", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

@@ -26,11 +26,9 @@ type NetworkFabric struct {
 	Name string `json:"name"`
 	// Network fabric description
 	Description *string `json:"description,omitempty"`
-	// The type of network fabric
-	FabricType string `json:"fabricType"`
 	FabricConfiguration NetworkFabricFabricConfiguration `json:"fabricConfiguration"`
 	// Revision number of the entity
-	Revision int32 `json:"revision"`
+	Revision string `json:"revision"`
 	// Entity creation timestamp
 	CreatedTimestamp time.Time `json:"createdTimestamp"`
 	// Entity last update timestamp
@@ -48,10 +46,9 @@ type _NetworkFabric NetworkFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkFabric(name string, fabricType string, fabricConfiguration NetworkFabricFabricConfiguration, revision int32, createdTimestamp time.Time, updatedTimestamp time.Time, id string) *NetworkFabric {
+func NewNetworkFabric(name string, fabricConfiguration NetworkFabricFabricConfiguration, revision string, createdTimestamp time.Time, updatedTimestamp time.Time, id string) *NetworkFabric {
 	this := NetworkFabric{}
 	this.Name = name
-	this.FabricType = fabricType
 	this.FabricConfiguration = fabricConfiguration
 	this.Revision = revision
 	this.CreatedTimestamp = createdTimestamp
@@ -124,30 +121,6 @@ func (o *NetworkFabric) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetFabricType returns the FabricType field value
-func (o *NetworkFabric) GetFabricType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.FabricType
-}
-
-// GetFabricTypeOk returns a tuple with the FabricType field value
-// and a boolean to check if the value has been set.
-func (o *NetworkFabric) GetFabricTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FabricType, true
-}
-
-// SetFabricType sets field value
-func (o *NetworkFabric) SetFabricType(v string) {
-	o.FabricType = v
-}
-
 // GetFabricConfiguration returns the FabricConfiguration field value
 func (o *NetworkFabric) GetFabricConfiguration() NetworkFabricFabricConfiguration {
 	if o == nil {
@@ -173,9 +146,9 @@ func (o *NetworkFabric) SetFabricConfiguration(v NetworkFabricFabricConfiguratio
 }
 
 // GetRevision returns the Revision field value
-func (o *NetworkFabric) GetRevision() int32 {
+func (o *NetworkFabric) GetRevision() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -184,7 +157,7 @@ func (o *NetworkFabric) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *NetworkFabric) GetRevisionOk() (*int32, bool) {
+func (o *NetworkFabric) GetRevisionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -192,7 +165,7 @@ func (o *NetworkFabric) GetRevisionOk() (*int32, bool) {
 }
 
 // SetRevision sets field value
-func (o *NetworkFabric) SetRevision(v int32) {
+func (o *NetworkFabric) SetRevision(v string) {
 	o.Revision = v
 }
 
@@ -314,7 +287,6 @@ func (o NetworkFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["fabricType"] = o.FabricType
 	toSerialize["fabricConfiguration"] = o.FabricConfiguration
 	toSerialize["revision"] = o.Revision
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
@@ -337,7 +309,6 @@ func (o *NetworkFabric) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
-		"fabricType",
 		"fabricConfiguration",
 		"revision",
 		"createdTimestamp",
@@ -374,7 +345,6 @@ func (o *NetworkFabric) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
-		delete(additionalProperties, "fabricType")
 		delete(additionalProperties, "fabricConfiguration")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "createdTimestamp")

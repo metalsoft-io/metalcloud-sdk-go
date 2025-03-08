@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -30,6 +31,13 @@ type VMInstanceGroupAPIApplyVMTypeOnVMInstanceGroupRequest struct {
 	infrastructureId float32
 	vmInstanceGroupId float32
 	vmTypeId float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r VMInstanceGroupAPIApplyVMTypeOnVMInstanceGroupRequest) IfMatch(ifMatch string) VMInstanceGroupAPIApplyVMTypeOnVMInstanceGroupRequest {
+	r.ifMatch = &ifMatch
+	return r
 }
 
 func (r VMInstanceGroupAPIApplyVMTypeOnVMInstanceGroupRequest) Execute() (*VMInstanceGroup, *http.Response, error) {
@@ -97,6 +105,9 @@ func (a *VMInstanceGroupAPIService) ApplyVMTypeOnVMInstanceGroupExecute(r VMInst
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -373,6 +384,13 @@ type VMInstanceGroupAPIDeleteVMInstanceGroupRequest struct {
 	ApiService *VMInstanceGroupAPIService
 	infrastructureId float32
 	vmInstanceGroupId float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r VMInstanceGroupAPIDeleteVMInstanceGroupRequest) IfMatch(ifMatch string) VMInstanceGroupAPIDeleteVMInstanceGroupRequest {
+	r.ifMatch = &ifMatch
+	return r
 }
 
 func (r VMInstanceGroupAPIDeleteVMInstanceGroupRequest) Execute() (*http.Response, error) {
@@ -436,6 +454,9 @@ func (a *VMInstanceGroupAPIService) DeleteVMInstanceGroupExecute(r VMInstanceGro
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -464,29 +485,29 @@ func (a *VMInstanceGroupAPIService) DeleteVMInstanceGroupExecute(r VMInstanceGro
 	return localVarHTTPResponse, nil
 }
 
-type VMInstanceGroupAPIGetVMInstanceGroupRequest struct {
+type VMInstanceGroupAPIGetInfrastructureVMInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
 	infrastructureId float32
 	vmInstanceGroupId float32
 }
 
-func (r VMInstanceGroupAPIGetVMInstanceGroupRequest) Execute() (*VMInstanceGroup, *http.Response, error) {
-	return r.ApiService.GetVMInstanceGroupExecute(r)
+func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupRequest) Execute() (*VMInstanceGroup, *http.Response, error) {
+	return r.ApiService.GetInfrastructureVMInstanceGroupExecute(r)
 }
 
 /*
-GetVMInstanceGroup Get VM Instance Group information
+GetInfrastructureVMInstanceGroup Get VM Instance Group information
 
 Returns VM Instance Group information
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param infrastructureId
  @param vmInstanceGroupId
- @return VMInstanceGroupAPIGetVMInstanceGroupRequest
+ @return VMInstanceGroupAPIGetInfrastructureVMInstanceGroupRequest
 */
-func (a *VMInstanceGroupAPIService) GetVMInstanceGroup(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIGetVMInstanceGroupRequest {
-	return VMInstanceGroupAPIGetVMInstanceGroupRequest{
+func (a *VMInstanceGroupAPIService) GetInfrastructureVMInstanceGroup(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupRequest {
+	return VMInstanceGroupAPIGetInfrastructureVMInstanceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
 		infrastructureId: infrastructureId,
@@ -496,7 +517,7 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroup(ctx context.Context, infr
 
 // Execute executes the request
 //  @return VMInstanceGroup
-func (a *VMInstanceGroupAPIService) GetVMInstanceGroupExecute(r VMInstanceGroupAPIGetVMInstanceGroupRequest) (*VMInstanceGroup, *http.Response, error) {
+func (a *VMInstanceGroupAPIService) GetInfrastructureVMInstanceGroupExecute(r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupRequest) (*VMInstanceGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -504,7 +525,7 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroupExecute(r VMInstanceGroupA
 		localVarReturnValue  *VMInstanceGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.GetVMInstanceGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.GetInfrastructureVMInstanceGroup")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -571,6 +592,762 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroupExecute(r VMInstanceGroupA
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceGroupAPIService
+	infrastructureId float32
+	page *float32
+	limit *float32
+	filterLabel *[]string
+	filterSubdomain *[]string
+	filterSubdomainPermanent *[]string
+	filterServiceStatus *[]string
+	filterConfigDeployStatus *[]string
+	filterConfigDeployType *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest) Page(page float32) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest) Limit(limit float32) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest) FilterLabel(filterLabel []string) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
+	r.filterLabel = &filterLabel
+	return r
+}
+
+// Filter by subdomain query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.subdomain&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.subdomain&#x3D;$not:$like:John Doe&amp;filter.subdomain&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest) FilterSubdomain(filterSubdomain []string) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
+	r.filterSubdomain = &filterSubdomain
+	return r
+}
+
+// Filter by subdomainPermanent query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.subdomainPermanent&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.subdomainPermanent&#x3D;$not:$like:John Doe&amp;filter.subdomainPermanent&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest) FilterSubdomainPermanent(filterSubdomainPermanent []string) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
+	r.filterSubdomainPermanent = &filterSubdomainPermanent
+	return r
+}
+
+// Filter by serviceStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serviceStatus&#x3D;$not:$like:John Doe&amp;filter.serviceStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest) FilterServiceStatus(filterServiceStatus []string) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
+	r.filterServiceStatus = &filterServiceStatus
+	return r
+}
+
+// Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest) FilterConfigDeployStatus(filterConfigDeployStatus []string) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
+	r.filterConfigDeployStatus = &filterConfigDeployStatus
+	return r
+}
+
+// Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest) FilterConfigDeployType(filterConfigDeployType []string) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
+	r.filterConfigDeployType = &filterConfigDeployType
+	return r
+}
+
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt;&lt;/ul&gt;       
+func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest) SortBy(sortBy []string) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest) Search(search string) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,subdomain,subdomainPermanent,serviceStatus           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;subdomain&lt;/li&gt; &lt;li&gt;subdomainPermanent&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt;&lt;/ul&gt;         
+func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest) SearchBy(searchBy []string) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest) Execute() (*VMInstanceGroupPaginatedList, *http.Response, error) {
+	return r.ApiService.GetInfrastructureVMInstanceGroupsExecute(r)
+}
+
+/*
+GetInfrastructureVMInstanceGroups Get all VM Instance Groups on the infrastructure
+
+Returns list of all VM Instance Groups on the infrastructure
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @return VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest
+*/
+func (a *VMInstanceGroupAPIService) GetInfrastructureVMInstanceGroups(ctx context.Context, infrastructureId float32) VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest {
+	return VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+	}
+}
+
+// Execute executes the request
+//  @return VMInstanceGroupPaginatedList
+func (a *VMInstanceGroupAPIService) GetInfrastructureVMInstanceGroupsExecute(r VMInstanceGroupAPIGetInfrastructureVMInstanceGroupsRequest) (*VMInstanceGroupPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMInstanceGroupPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.GetInfrastructureVMInstanceGroups")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterLabel != nil {
+		t := *r.filterLabel
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
+		}
+	}
+	if r.filterSubdomain != nil {
+		t := *r.filterSubdomain
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.subdomain", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.subdomain", t, "form", "multi")
+		}
+	}
+	if r.filterSubdomainPermanent != nil {
+		t := *r.filterSubdomainPermanent
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.subdomainPermanent", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.subdomainPermanent", t, "form", "multi")
+		}
+	}
+	if r.filterServiceStatus != nil {
+		t := *r.filterServiceStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployStatus != nil {
+		t := *r.filterConfigDeployStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployType != nil {
+		t := *r.filterConfigDeployType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type VMInstanceGroupAPIGetVMInstanceGroupConfigInfoRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceGroupAPIService
+	infrastructureId float32
+	vmInstanceGroupId float32
+}
+
+func (r VMInstanceGroupAPIGetVMInstanceGroupConfigInfoRequest) Execute() (*VMInstanceGroupConfiguration, *http.Response, error) {
+	return r.ApiService.GetVMInstanceGroupConfigInfoExecute(r)
+}
+
+/*
+GetVMInstanceGroupConfigInfo Get configuration information about the specified VM Instance Group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param vmInstanceGroupId
+ @return VMInstanceGroupAPIGetVMInstanceGroupConfigInfoRequest
+*/
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupConfigInfo(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIGetVMInstanceGroupConfigInfoRequest {
+	return VMInstanceGroupAPIGetVMInstanceGroupConfigInfoRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		vmInstanceGroupId: vmInstanceGroupId,
+	}
+}
+
+// Execute executes the request
+//  @return VMInstanceGroupConfiguration
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupConfigInfoExecute(r VMInstanceGroupAPIGetVMInstanceGroupConfigInfoRequest) (*VMInstanceGroupConfiguration, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMInstanceGroupConfiguration
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.GetVMInstanceGroupConfigInfo")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceGroupId, "vmInstanceGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type VMInstanceGroupAPIGetVMInstanceGroupInterfaceInfoRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceGroupAPIService
+	infrastructureId float32
+	vmInstanceGroupId float32
+	vmInstanceGroupInterfaceId float32
+}
+
+func (r VMInstanceGroupAPIGetVMInstanceGroupInterfaceInfoRequest) Execute() (*VMInstanceGroupInterface, *http.Response, error) {
+	return r.ApiService.GetVMInstanceGroupInterfaceInfoExecute(r)
+}
+
+/*
+GetVMInstanceGroupInterfaceInfo Get VM Instance Group Interface information
+
+Returns VM Instance Group Interface information
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param vmInstanceGroupId
+ @param vmInstanceGroupInterfaceId
+ @return VMInstanceGroupAPIGetVMInstanceGroupInterfaceInfoRequest
+*/
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfaceInfo(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32, vmInstanceGroupInterfaceId float32) VMInstanceGroupAPIGetVMInstanceGroupInterfaceInfoRequest {
+	return VMInstanceGroupAPIGetVMInstanceGroupInterfaceInfoRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		vmInstanceGroupId: vmInstanceGroupId,
+		vmInstanceGroupInterfaceId: vmInstanceGroupInterfaceId,
+	}
+}
+
+// Execute executes the request
+//  @return VMInstanceGroupInterface
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfaceInfoExecute(r VMInstanceGroupAPIGetVMInstanceGroupInterfaceInfoRequest) (*VMInstanceGroupInterface, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMInstanceGroupInterface
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.GetVMInstanceGroupInterfaceInfo")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/interfaces/{vmInstanceGroupInterfaceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceGroupId, "vmInstanceGroupId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceGroupInterfaceId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceGroupInterfaceId, "vmInstanceGroupInterfaceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceGroupAPIService
+	infrastructureId float32
+	vmInstanceGroupId float32
+	page *float32
+	limit *float32
+	filterLabel *[]string
+	filterNetworkId *[]string
+	filterServiceStatus *[]string
+	filterConfigDeployStatus *[]string
+	filterConfigDeployType *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
+}
+
+// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) Page(page float32) VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) Limit(limit float32) VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) FilterLabel(filterLabel []string) VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest {
+	r.filterLabel = &filterLabel
+	return r
+}
+
+// Filter by networkId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.networkId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.networkId&#x3D;$not:$like:John Doe&amp;filter.networkId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) FilterNetworkId(filterNetworkId []string) VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest {
+	r.filterNetworkId = &filterNetworkId
+	return r
+}
+
+// Filter by serviceStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serviceStatus&#x3D;$not:$like:John Doe&amp;filter.serviceStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) FilterServiceStatus(filterServiceStatus []string) VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest {
+	r.filterServiceStatus = &filterServiceStatus
+	return r
+}
+
+// Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) FilterConfigDeployStatus(filterConfigDeployStatus []string) VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest {
+	r.filterConfigDeployStatus = &filterConfigDeployStatus
+	return r
+}
+
+// Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) FilterConfigDeployType(filterConfigDeployType []string) VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest {
+	r.filterConfigDeployType = &filterConfigDeployType
+	return r
+}
+
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;networkId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt;&lt;/ul&gt;       
+func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) SortBy(sortBy []string) VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) Search(search string) VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,networkId,serviceStatus,config.deployStatus           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;networkId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt;&lt;/ul&gt;         
+func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) SearchBy(searchBy []string) VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) Execute() (*VMInstanceGroupPaginatedList, *http.Response, error) {
+	return r.ApiService.GetVMInstanceGroupInterfacesExecute(r)
+}
+
+/*
+GetVMInstanceGroupInterfaces Get all VM Instance Group Interfaces on the VM Instance Group
+
+Returns list of all VM Instance Group Interfaces on the VM Instance Group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param vmInstanceGroupId
+ @return VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest
+*/
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfaces(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest {
+	return VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		vmInstanceGroupId: vmInstanceGroupId,
+	}
+}
+
+// Execute executes the request
+//  @return VMInstanceGroupPaginatedList
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfacesExecute(r VMInstanceGroupAPIGetVMInstanceGroupInterfacesRequest) (*VMInstanceGroupPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMInstanceGroupPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.GetVMInstanceGroupInterfaces")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/interfaces"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceGroupId, "vmInstanceGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterLabel != nil {
+		t := *r.filterLabel
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
+		}
+	}
+	if r.filterNetworkId != nil {
+		t := *r.filterNetworkId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkId", t, "form", "multi")
+		}
+	}
+	if r.filterServiceStatus != nil {
+		t := *r.filterServiceStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployStatus != nil {
+		t := *r.filterConfigDeployStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployType != nil {
+		t := *r.filterConfigDeployType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
@@ -578,7 +1355,7 @@ type VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest struct {
 	vmInstanceGroupId float32
 }
 
-func (r VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest) Execute() ([]VMInstance, *http.Response, error) {
+func (r VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest) Execute() (*VMInstancePaginatedList, *http.Response, error) {
 	return r.ApiService.GetVMInstanceGroupVMInstancesExecute(r)
 }
 
@@ -602,13 +1379,13 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroupVMInstances(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []VMInstance
-func (a *VMInstanceGroupAPIService) GetVMInstanceGroupVMInstancesExecute(r VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest) ([]VMInstance, *http.Response, error) {
+//  @return VMInstancePaginatedList
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupVMInstancesExecute(r VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest) (*VMInstancePaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []VMInstance
+		localVarReturnValue  *VMInstancePaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.GetVMInstanceGroupVMInstances")
@@ -678,152 +1455,43 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroupVMInstancesExecute(r VMIns
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type VMInstanceGroupAPIGetVMInstanceGroupsRequest struct {
-	ctx context.Context
-	ApiService *VMInstanceGroupAPIService
-	infrastructureId float32
-}
-
-func (r VMInstanceGroupAPIGetVMInstanceGroupsRequest) Execute() ([]VMInstanceGroup, *http.Response, error) {
-	return r.ApiService.GetVMInstanceGroupsExecute(r)
-}
-
-/*
-GetVMInstanceGroups Get all VM Instance Groups
-
-Returns list of all VM Instance Groups
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param infrastructureId
- @return VMInstanceGroupAPIGetVMInstanceGroupsRequest
-*/
-func (a *VMInstanceGroupAPIService) GetVMInstanceGroups(ctx context.Context, infrastructureId float32) VMInstanceGroupAPIGetVMInstanceGroupsRequest {
-	return VMInstanceGroupAPIGetVMInstanceGroupsRequest{
-		ApiService: a,
-		ctx: ctx,
-		infrastructureId: infrastructureId,
-	}
-}
-
-// Execute executes the request
-//  @return []VMInstanceGroup
-func (a *VMInstanceGroupAPIService) GetVMInstanceGroupsExecute(r VMInstanceGroupAPIGetVMInstanceGroupsRequest) ([]VMInstanceGroup, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []VMInstanceGroup
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.GetVMInstanceGroups")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type VMInstanceGroupAPIUpdateNetworkProfileOnVMInstanceGroupNetworkRequest struct {
+type VMInstanceGroupAPIPatchVMInstanceGroupMetaRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
 	infrastructureId float32
 	vmInstanceGroupId float32
-	networkId float32
-	updateVMInstanceGroupNetwork *UpdateVMInstanceGroupNetwork
+	updateVMInstanceGroupMeta *UpdateVMInstanceGroupMeta
 }
 
-// The VM Instance Group Network update object
-func (r VMInstanceGroupAPIUpdateNetworkProfileOnVMInstanceGroupNetworkRequest) UpdateVMInstanceGroupNetwork(updateVMInstanceGroupNetwork UpdateVMInstanceGroupNetwork) VMInstanceGroupAPIUpdateNetworkProfileOnVMInstanceGroupNetworkRequest {
-	r.updateVMInstanceGroupNetwork = &updateVMInstanceGroupNetwork
+func (r VMInstanceGroupAPIPatchVMInstanceGroupMetaRequest) UpdateVMInstanceGroupMeta(updateVMInstanceGroupMeta UpdateVMInstanceGroupMeta) VMInstanceGroupAPIPatchVMInstanceGroupMetaRequest {
+	r.updateVMInstanceGroupMeta = &updateVMInstanceGroupMeta
 	return r
 }
 
-func (r VMInstanceGroupAPIUpdateNetworkProfileOnVMInstanceGroupNetworkRequest) Execute() (*VMInstanceGroup, *http.Response, error) {
-	return r.ApiService.UpdateNetworkProfileOnVMInstanceGroupNetworkExecute(r)
+func (r VMInstanceGroupAPIPatchVMInstanceGroupMetaRequest) Execute() (*VMInstanceGroup, *http.Response, error) {
+	return r.ApiService.PatchVMInstanceGroupMetaExecute(r)
 }
 
 /*
-UpdateNetworkProfileOnVMInstanceGroupNetwork Applies the given Network Profile to the specified VM Instance Group Network
-
-Applies the given Network Profile to the specified VM Instance Group Network
+PatchVMInstanceGroupMeta Updates the meta of a VM Instance Group
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param infrastructureId
  @param vmInstanceGroupId
- @param networkId
- @return VMInstanceGroupAPIUpdateNetworkProfileOnVMInstanceGroupNetworkRequest
+ @return VMInstanceGroupAPIPatchVMInstanceGroupMetaRequest
 */
-func (a *VMInstanceGroupAPIService) UpdateNetworkProfileOnVMInstanceGroupNetwork(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32, networkId float32) VMInstanceGroupAPIUpdateNetworkProfileOnVMInstanceGroupNetworkRequest {
-	return VMInstanceGroupAPIUpdateNetworkProfileOnVMInstanceGroupNetworkRequest{
+func (a *VMInstanceGroupAPIService) PatchVMInstanceGroupMeta(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIPatchVMInstanceGroupMetaRequest {
+	return VMInstanceGroupAPIPatchVMInstanceGroupMetaRequest{
 		ApiService: a,
 		ctx: ctx,
 		infrastructureId: infrastructureId,
 		vmInstanceGroupId: vmInstanceGroupId,
-		networkId: networkId,
 	}
 }
 
 // Execute executes the request
 //  @return VMInstanceGroup
-func (a *VMInstanceGroupAPIService) UpdateNetworkProfileOnVMInstanceGroupNetworkExecute(r VMInstanceGroupAPIUpdateNetworkProfileOnVMInstanceGroupNetworkRequest) (*VMInstanceGroup, *http.Response, error) {
+func (a *VMInstanceGroupAPIService) PatchVMInstanceGroupMetaExecute(r VMInstanceGroupAPIPatchVMInstanceGroupMetaRequest) (*VMInstanceGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -831,21 +1499,20 @@ func (a *VMInstanceGroupAPIService) UpdateNetworkProfileOnVMInstanceGroupNetwork
 		localVarReturnValue  *VMInstanceGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.UpdateNetworkProfileOnVMInstanceGroupNetwork")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.PatchVMInstanceGroupMeta")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/network/{networkId}"
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/meta"
 	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceGroupId, "vmInstanceGroupId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateVMInstanceGroupNetwork == nil {
-		return localVarReturnValue, nil, reportError("updateVMInstanceGroupNetwork is required and must be specified")
+	if r.updateVMInstanceGroupMeta == nil {
+		return localVarReturnValue, nil, reportError("updateVMInstanceGroupMeta is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -866,7 +1533,7 @@ func (a *VMInstanceGroupAPIService) UpdateNetworkProfileOnVMInstanceGroupNetwork
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateVMInstanceGroupNetwork
+	localVarPostBody = r.updateVMInstanceGroupMeta
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -904,36 +1571,43 @@ func (a *VMInstanceGroupAPIService) UpdateNetworkProfileOnVMInstanceGroupNetwork
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type VMInstanceGroupAPIUpdateVMInstanceGroupRequest struct {
+type VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
 	infrastructureId float32
 	vmInstanceGroupId float32
 	updateVMInstanceGroup *UpdateVMInstanceGroup
+	ifMatch *string
 }
 
 // The VM Instance Group update object
-func (r VMInstanceGroupAPIUpdateVMInstanceGroupRequest) UpdateVMInstanceGroup(updateVMInstanceGroup UpdateVMInstanceGroup) VMInstanceGroupAPIUpdateVMInstanceGroupRequest {
+func (r VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest) UpdateVMInstanceGroup(updateVMInstanceGroup UpdateVMInstanceGroup) VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest {
 	r.updateVMInstanceGroup = &updateVMInstanceGroup
 	return r
 }
 
-func (r VMInstanceGroupAPIUpdateVMInstanceGroupRequest) Execute() (*VMInstanceGroup, *http.Response, error) {
-	return r.ApiService.UpdateVMInstanceGroupExecute(r)
+// Entity tag
+func (r VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest) IfMatch(ifMatch string) VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest) Execute() (*VMInstanceGroup, *http.Response, error) {
+	return r.ApiService.UpdateVMInstanceGroupConfigExecute(r)
 }
 
 /*
-UpdateVMInstanceGroup Updates VM Instance Group information
+UpdateVMInstanceGroupConfig Updates VM Instance Group information
 
 Updates VM Instance Group information
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param infrastructureId
  @param vmInstanceGroupId
- @return VMInstanceGroupAPIUpdateVMInstanceGroupRequest
+ @return VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest
 */
-func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroup(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIUpdateVMInstanceGroupRequest {
-	return VMInstanceGroupAPIUpdateVMInstanceGroupRequest{
+func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupConfig(ctx context.Context, infrastructureId float32, vmInstanceGroupId float32) VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest {
+	return VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest{
 		ApiService: a,
 		ctx: ctx,
 		infrastructureId: infrastructureId,
@@ -943,7 +1617,7 @@ func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroup(ctx context.Context, i
 
 // Execute executes the request
 //  @return VMInstanceGroup
-func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupExecute(r VMInstanceGroupAPIUpdateVMInstanceGroupRequest) (*VMInstanceGroup, *http.Response, error) {
+func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupConfigExecute(r VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest) (*VMInstanceGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -951,12 +1625,12 @@ func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupExecute(r VMInstanceGro
 		localVarReturnValue  *VMInstanceGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.UpdateVMInstanceGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.UpdateVMInstanceGroupConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}"
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config"
 	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceGroupId, "vmInstanceGroupId")), -1)
 
@@ -983,6 +1657,9 @@ func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupExecute(r VMInstanceGro
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.updateVMInstanceGroup

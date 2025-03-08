@@ -334,7 +334,6 @@ type NetworkFabricAPIGetNetworkFabricsRequest struct {
 	filterName *[]string
 	filterDescription *[]string
 	filterSiteId *[]string
-	filterFabricType *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -376,13 +375,7 @@ func (r NetworkFabricAPIGetNetworkFabricsRequest) FilterSiteId(filterSiteId []st
 	return r
 }
 
-// Filter by fabricType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.fabricType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.fabricType&#x3D;$not:$like:John Doe&amp;filter.fabricType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r NetworkFabricAPIGetNetworkFabricsRequest) FilterFabricType(filterFabricType []string) NetworkFabricAPIGetNetworkFabricsRequest {
-	r.filterFabricType = &filterFabricType
-	return r
-}
-
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;fabricType&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;createdTimestamp&lt;/li&gt; &lt;li&gt;updatedTimestamp&lt;/li&gt;&lt;/ul&gt;       
 func (r NetworkFabricAPIGetNetworkFabricsRequest) SortBy(sortBy []string) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -488,17 +481,6 @@ func (a *NetworkFabricAPIService) GetNetworkFabricsExecute(r NetworkFabricAPIGet
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
 		}
 	}
-	if r.filterFabricType != nil {
-		t := *r.filterFabricType
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricType", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricType", t, "form", "multi")
-		}
-	}
 	if r.sortBy != nil {
 		t := *r.sortBy
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -581,7 +563,7 @@ func (a *NetworkFabricAPIService) GetNetworkFabricsExecute(r NetworkFabricAPIGet
 type NetworkFabricAPIUpdateNetworkFabricRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
-	networkFabricId float32
+	networkFabricId int32
 	updateNetworkFabric *UpdateNetworkFabric
 	ifMatch *string
 }
@@ -609,7 +591,7 @@ UpdateNetworkFabric Update a network fabric
  @param networkFabricId The ID of the network fabric to update
  @return NetworkFabricAPIUpdateNetworkFabricRequest
 */
-func (a *NetworkFabricAPIService) UpdateNetworkFabric(ctx context.Context, networkFabricId float32) NetworkFabricAPIUpdateNetworkFabricRequest {
+func (a *NetworkFabricAPIService) UpdateNetworkFabric(ctx context.Context, networkFabricId int32) NetworkFabricAPIUpdateNetworkFabricRequest {
 	return NetworkFabricAPIUpdateNetworkFabricRequest{
 		ApiService: a,
 		ctx: ctx,

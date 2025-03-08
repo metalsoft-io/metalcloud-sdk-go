@@ -21,6 +21,8 @@ var _ MappedNullable = &FibreChannelFabric{}
 
 // FibreChannelFabric struct for FibreChannelFabric
 type FibreChannelFabric struct {
+	// The type of network fabric
+	FabricType string `json:"fabricType"`
 	// Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile.
 	DefaultNetworkProfileId int32 `json:"defaultNetworkProfileId"`
 	// Enables gNMI monitoring for telemetry data collection using the gNMI protocol.
@@ -29,6 +31,22 @@ type FibreChannelFabric struct {
 	SyslogMonitoringEnabled *bool `json:"syslogMonitoringEnabled,omitempty"`
 	// Enables zero-touch provisioning for automatic device configuration.
 	ZeroTouchEnabled *bool `json:"zeroTouchEnabled,omitempty"`
+	// VSAN ID for the Fibre Channel fabric
+	VsanId int32 `json:"vsanId"`
+	// Fabric topology type
+	TopologyType string `json:"topologyType"`
+	// Maximum transmission unit (MTU) size in bytes
+	Mtu *float32 `json:"mtu,omitempty"`
+	// Zoning configuration for the fabric
+	ZoningConfiguration map[string]interface{} `json:"zoningConfiguration,omitempty"`
+	// Interoperability mode for multi-vendor environments
+	InteropMode *string `json:"interopMode,omitempty"`
+	// Quality of Service (QoS) configuration
+	QosConfiguration map[string]interface{} `json:"qosConfiguration,omitempty"`
+	// Trunking configuration for ISLs (Inter-Switch Links)
+	TrunkingConfiguration map[string]interface{} `json:"trunkingConfiguration,omitempty"`
+	// Port channel configuration for ISLs
+	PortChannelConfiguration map[string]interface{} `json:"portChannelConfiguration,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,9 +56,12 @@ type _FibreChannelFabric FibreChannelFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFibreChannelFabric(defaultNetworkProfileId int32) *FibreChannelFabric {
+func NewFibreChannelFabric(fabricType string, defaultNetworkProfileId int32, vsanId int32, topologyType string) *FibreChannelFabric {
 	this := FibreChannelFabric{}
+	this.FabricType = fabricType
 	this.DefaultNetworkProfileId = defaultNetworkProfileId
+	this.VsanId = vsanId
+	this.TopologyType = topologyType
 	return &this
 }
 
@@ -50,6 +71,30 @@ func NewFibreChannelFabric(defaultNetworkProfileId int32) *FibreChannelFabric {
 func NewFibreChannelFabricWithDefaults() *FibreChannelFabric {
 	this := FibreChannelFabric{}
 	return &this
+}
+
+// GetFabricType returns the FabricType field value
+func (o *FibreChannelFabric) GetFabricType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.FabricType
+}
+
+// GetFabricTypeOk returns a tuple with the FabricType field value
+// and a boolean to check if the value has been set.
+func (o *FibreChannelFabric) GetFabricTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.FabricType, true
+}
+
+// SetFabricType sets field value
+func (o *FibreChannelFabric) SetFabricType(v string) {
+	o.FabricType = v
 }
 
 // GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field value
@@ -172,6 +217,246 @@ func (o *FibreChannelFabric) SetZeroTouchEnabled(v bool) {
 	o.ZeroTouchEnabled = &v
 }
 
+// GetVsanId returns the VsanId field value
+func (o *FibreChannelFabric) GetVsanId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.VsanId
+}
+
+// GetVsanIdOk returns a tuple with the VsanId field value
+// and a boolean to check if the value has been set.
+func (o *FibreChannelFabric) GetVsanIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VsanId, true
+}
+
+// SetVsanId sets field value
+func (o *FibreChannelFabric) SetVsanId(v int32) {
+	o.VsanId = v
+}
+
+// GetTopologyType returns the TopologyType field value
+func (o *FibreChannelFabric) GetTopologyType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TopologyType
+}
+
+// GetTopologyTypeOk returns a tuple with the TopologyType field value
+// and a boolean to check if the value has been set.
+func (o *FibreChannelFabric) GetTopologyTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TopologyType, true
+}
+
+// SetTopologyType sets field value
+func (o *FibreChannelFabric) SetTopologyType(v string) {
+	o.TopologyType = v
+}
+
+// GetMtu returns the Mtu field value if set, zero value otherwise.
+func (o *FibreChannelFabric) GetMtu() float32 {
+	if o == nil || IsNil(o.Mtu) {
+		var ret float32
+		return ret
+	}
+	return *o.Mtu
+}
+
+// GetMtuOk returns a tuple with the Mtu field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FibreChannelFabric) GetMtuOk() (*float32, bool) {
+	if o == nil || IsNil(o.Mtu) {
+		return nil, false
+	}
+	return o.Mtu, true
+}
+
+// HasMtu returns a boolean if a field has been set.
+func (o *FibreChannelFabric) HasMtu() bool {
+	if o != nil && !IsNil(o.Mtu) {
+		return true
+	}
+
+	return false
+}
+
+// SetMtu gets a reference to the given float32 and assigns it to the Mtu field.
+func (o *FibreChannelFabric) SetMtu(v float32) {
+	o.Mtu = &v
+}
+
+// GetZoningConfiguration returns the ZoningConfiguration field value if set, zero value otherwise.
+func (o *FibreChannelFabric) GetZoningConfiguration() map[string]interface{} {
+	if o == nil || IsNil(o.ZoningConfiguration) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.ZoningConfiguration
+}
+
+// GetZoningConfigurationOk returns a tuple with the ZoningConfiguration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FibreChannelFabric) GetZoningConfigurationOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.ZoningConfiguration) {
+		return map[string]interface{}{}, false
+	}
+	return o.ZoningConfiguration, true
+}
+
+// HasZoningConfiguration returns a boolean if a field has been set.
+func (o *FibreChannelFabric) HasZoningConfiguration() bool {
+	if o != nil && !IsNil(o.ZoningConfiguration) {
+		return true
+	}
+
+	return false
+}
+
+// SetZoningConfiguration gets a reference to the given map[string]interface{} and assigns it to the ZoningConfiguration field.
+func (o *FibreChannelFabric) SetZoningConfiguration(v map[string]interface{}) {
+	o.ZoningConfiguration = v
+}
+
+// GetInteropMode returns the InteropMode field value if set, zero value otherwise.
+func (o *FibreChannelFabric) GetInteropMode() string {
+	if o == nil || IsNil(o.InteropMode) {
+		var ret string
+		return ret
+	}
+	return *o.InteropMode
+}
+
+// GetInteropModeOk returns a tuple with the InteropMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FibreChannelFabric) GetInteropModeOk() (*string, bool) {
+	if o == nil || IsNil(o.InteropMode) {
+		return nil, false
+	}
+	return o.InteropMode, true
+}
+
+// HasInteropMode returns a boolean if a field has been set.
+func (o *FibreChannelFabric) HasInteropMode() bool {
+	if o != nil && !IsNil(o.InteropMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetInteropMode gets a reference to the given string and assigns it to the InteropMode field.
+func (o *FibreChannelFabric) SetInteropMode(v string) {
+	o.InteropMode = &v
+}
+
+// GetQosConfiguration returns the QosConfiguration field value if set, zero value otherwise.
+func (o *FibreChannelFabric) GetQosConfiguration() map[string]interface{} {
+	if o == nil || IsNil(o.QosConfiguration) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.QosConfiguration
+}
+
+// GetQosConfigurationOk returns a tuple with the QosConfiguration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FibreChannelFabric) GetQosConfigurationOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.QosConfiguration) {
+		return map[string]interface{}{}, false
+	}
+	return o.QosConfiguration, true
+}
+
+// HasQosConfiguration returns a boolean if a field has been set.
+func (o *FibreChannelFabric) HasQosConfiguration() bool {
+	if o != nil && !IsNil(o.QosConfiguration) {
+		return true
+	}
+
+	return false
+}
+
+// SetQosConfiguration gets a reference to the given map[string]interface{} and assigns it to the QosConfiguration field.
+func (o *FibreChannelFabric) SetQosConfiguration(v map[string]interface{}) {
+	o.QosConfiguration = v
+}
+
+// GetTrunkingConfiguration returns the TrunkingConfiguration field value if set, zero value otherwise.
+func (o *FibreChannelFabric) GetTrunkingConfiguration() map[string]interface{} {
+	if o == nil || IsNil(o.TrunkingConfiguration) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.TrunkingConfiguration
+}
+
+// GetTrunkingConfigurationOk returns a tuple with the TrunkingConfiguration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FibreChannelFabric) GetTrunkingConfigurationOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.TrunkingConfiguration) {
+		return map[string]interface{}{}, false
+	}
+	return o.TrunkingConfiguration, true
+}
+
+// HasTrunkingConfiguration returns a boolean if a field has been set.
+func (o *FibreChannelFabric) HasTrunkingConfiguration() bool {
+	if o != nil && !IsNil(o.TrunkingConfiguration) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrunkingConfiguration gets a reference to the given map[string]interface{} and assigns it to the TrunkingConfiguration field.
+func (o *FibreChannelFabric) SetTrunkingConfiguration(v map[string]interface{}) {
+	o.TrunkingConfiguration = v
+}
+
+// GetPortChannelConfiguration returns the PortChannelConfiguration field value if set, zero value otherwise.
+func (o *FibreChannelFabric) GetPortChannelConfiguration() map[string]interface{} {
+	if o == nil || IsNil(o.PortChannelConfiguration) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.PortChannelConfiguration
+}
+
+// GetPortChannelConfigurationOk returns a tuple with the PortChannelConfiguration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FibreChannelFabric) GetPortChannelConfigurationOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.PortChannelConfiguration) {
+		return map[string]interface{}{}, false
+	}
+	return o.PortChannelConfiguration, true
+}
+
+// HasPortChannelConfiguration returns a boolean if a field has been set.
+func (o *FibreChannelFabric) HasPortChannelConfiguration() bool {
+	if o != nil && !IsNil(o.PortChannelConfiguration) {
+		return true
+	}
+
+	return false
+}
+
+// SetPortChannelConfiguration gets a reference to the given map[string]interface{} and assigns it to the PortChannelConfiguration field.
+func (o *FibreChannelFabric) SetPortChannelConfiguration(v map[string]interface{}) {
+	o.PortChannelConfiguration = v
+}
+
 func (o FibreChannelFabric) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -182,6 +467,7 @@ func (o FibreChannelFabric) MarshalJSON() ([]byte, error) {
 
 func (o FibreChannelFabric) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["fabricType"] = o.FabricType
 	toSerialize["defaultNetworkProfileId"] = o.DefaultNetworkProfileId
 	if !IsNil(o.GnmiMonitoringEnabled) {
 		toSerialize["gnmiMonitoringEnabled"] = o.GnmiMonitoringEnabled
@@ -191,6 +477,26 @@ func (o FibreChannelFabric) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ZeroTouchEnabled) {
 		toSerialize["zeroTouchEnabled"] = o.ZeroTouchEnabled
+	}
+	toSerialize["vsanId"] = o.VsanId
+	toSerialize["topologyType"] = o.TopologyType
+	if !IsNil(o.Mtu) {
+		toSerialize["mtu"] = o.Mtu
+	}
+	if !IsNil(o.ZoningConfiguration) {
+		toSerialize["zoningConfiguration"] = o.ZoningConfiguration
+	}
+	if !IsNil(o.InteropMode) {
+		toSerialize["interopMode"] = o.InteropMode
+	}
+	if !IsNil(o.QosConfiguration) {
+		toSerialize["qosConfiguration"] = o.QosConfiguration
+	}
+	if !IsNil(o.TrunkingConfiguration) {
+		toSerialize["trunkingConfiguration"] = o.TrunkingConfiguration
+	}
+	if !IsNil(o.PortChannelConfiguration) {
+		toSerialize["portChannelConfiguration"] = o.PortChannelConfiguration
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -205,7 +511,10 @@ func (o *FibreChannelFabric) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"fabricType",
 		"defaultNetworkProfileId",
+		"vsanId",
+		"topologyType",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -235,10 +544,19 @@ func (o *FibreChannelFabric) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "fabricType")
 		delete(additionalProperties, "defaultNetworkProfileId")
 		delete(additionalProperties, "gnmiMonitoringEnabled")
 		delete(additionalProperties, "syslogMonitoringEnabled")
 		delete(additionalProperties, "zeroTouchEnabled")
+		delete(additionalProperties, "vsanId")
+		delete(additionalProperties, "topologyType")
+		delete(additionalProperties, "mtu")
+		delete(additionalProperties, "zoningConfiguration")
+		delete(additionalProperties, "interopMode")
+		delete(additionalProperties, "qosConfiguration")
+		delete(additionalProperties, "trunkingConfiguration")
+		delete(additionalProperties, "portChannelConfiguration")
 		o.AdditionalProperties = additionalProperties
 	}
 

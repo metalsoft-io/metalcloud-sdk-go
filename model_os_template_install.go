@@ -27,6 +27,8 @@ type OSTemplateInstall struct {
 	DriveType string `json:"driveType"`
 	// The OS template installation ready method,                     The \"ready method\" is used to determine when the OS installation is complete.
 	ReadyMethod string `json:"readyMethod"`
+	// Used for selecting the OS template during network device ZTP
+	OnieStrings []string `json:"onieStrings,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -124,6 +126,38 @@ func (o *OSTemplateInstall) SetReadyMethod(v string) {
 	o.ReadyMethod = v
 }
 
+// GetOnieStrings returns the OnieStrings field value if set, zero value otherwise.
+func (o *OSTemplateInstall) GetOnieStrings() []string {
+	if o == nil || IsNil(o.OnieStrings) {
+		var ret []string
+		return ret
+	}
+	return o.OnieStrings
+}
+
+// GetOnieStringsOk returns a tuple with the OnieStrings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OSTemplateInstall) GetOnieStringsOk() ([]string, bool) {
+	if o == nil || IsNil(o.OnieStrings) {
+		return nil, false
+	}
+	return o.OnieStrings, true
+}
+
+// HasOnieStrings returns a boolean if a field has been set.
+func (o *OSTemplateInstall) HasOnieStrings() bool {
+	if o != nil && !IsNil(o.OnieStrings) {
+		return true
+	}
+
+	return false
+}
+
+// SetOnieStrings gets a reference to the given []string and assigns it to the OnieStrings field.
+func (o *OSTemplateInstall) SetOnieStrings(v []string) {
+	o.OnieStrings = v
+}
+
 func (o OSTemplateInstall) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -137,6 +171,9 @@ func (o OSTemplateInstall) ToMap() (map[string]interface{}, error) {
 	toSerialize["method"] = o.Method
 	toSerialize["driveType"] = o.DriveType
 	toSerialize["readyMethod"] = o.ReadyMethod
+	if !IsNil(o.OnieStrings) {
+		toSerialize["onieStrings"] = o.OnieStrings
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -185,6 +222,7 @@ func (o *OSTemplateInstall) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "method")
 		delete(additionalProperties, "driveType")
 		delete(additionalProperties, "readyMethod")
+		delete(additionalProperties, "onieStrings")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -31,10 +31,10 @@ type DriveGroup struct {
 	DriveCount float32 `json:"driveCount"`
 	// Default disk size in MB for new Drives in the Drive Group
 	DriveSizeMbDefault float32 `json:"driveSizeMbDefault"`
-	InstanceArrayId *float32 `json:"instanceArrayId,omitempty"`
+	ServerInstanceGroupId *float32 `json:"serverInstanceGroupId,omitempty"`
 	ContainerArrayId *float32 `json:"containerArrayId,omitempty"`
-	// Flag to determine whether the Drive Group should be expanded with an Instance Array by adding one drive for each instance
-	ExpandWithInstanceArray float32 `json:"expandWithInstanceArray"`
+	// Flag to determine whether the Drive Group should be expanded with a Server Instance Group by adding one drive for each instance
+	ExpandWithServerInstanceGroup float32 `json:"expandWithServerInstanceGroup"`
 	// The IO limit policy of the Drive Group.
 	IoLimitPolicy *string `json:"ioLimitPolicy,omitempty"`
 	// Service status of the Drive Group
@@ -61,13 +61,12 @@ type DriveGroup struct {
 	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
 	// Allocation affinity of the Drive Group
 	AllocationAffinity string `json:"allocationAffinity"`
-	// Tags for the Drive Group.
-	Tags []string `json:"tags,omitempty"`
-	GuiSettings *GenericGUISettings `json:"guiSettings,omitempty"`
 	// The current changes to be deployed for the Drive Group.
 	Config DriveGroupConfiguration `json:"config"`
 	// Timestamp of the Drive Group creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
+	// Meta information of the Drive Group.
+	Meta DriveGroupMeta `json:"meta"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -77,13 +76,13 @@ type _DriveGroup DriveGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDriveGroup(label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithInstanceArray float32, storageType string, updatedTimestamp string, id float32, revision float32, serviceStatus string, allocationAffinity string, config DriveGroupConfiguration, createdTimestamp string) *DriveGroup {
+func NewDriveGroup(label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithServerInstanceGroup float32, storageType string, updatedTimestamp string, id float32, revision float32, serviceStatus string, allocationAffinity string, config DriveGroupConfiguration, createdTimestamp string, meta DriveGroupMeta) *DriveGroup {
 	this := DriveGroup{}
 	this.Label = label
 	this.InfrastructureId = infrastructureId
 	this.DriveCount = driveCount
 	this.DriveSizeMbDefault = driveSizeMbDefault
-	this.ExpandWithInstanceArray = expandWithInstanceArray
+	this.ExpandWithServerInstanceGroup = expandWithServerInstanceGroup
 	this.StorageType = storageType
 	this.UpdatedTimestamp = updatedTimestamp
 	this.Id = id
@@ -92,6 +91,7 @@ func NewDriveGroup(label string, infrastructureId float32, driveCount float32, d
 	this.AllocationAffinity = allocationAffinity
 	this.Config = config
 	this.CreatedTimestamp = createdTimestamp
+	this.Meta = meta
 	return &this
 }
 
@@ -233,36 +233,36 @@ func (o *DriveGroup) SetDriveSizeMbDefault(v float32) {
 	o.DriveSizeMbDefault = v
 }
 
-// GetInstanceArrayId returns the InstanceArrayId field value if set, zero value otherwise.
-func (o *DriveGroup) GetInstanceArrayId() float32 {
-	if o == nil || IsNil(o.InstanceArrayId) {
+// GetServerInstanceGroupId returns the ServerInstanceGroupId field value if set, zero value otherwise.
+func (o *DriveGroup) GetServerInstanceGroupId() float32 {
+	if o == nil || IsNil(o.ServerInstanceGroupId) {
 		var ret float32
 		return ret
 	}
-	return *o.InstanceArrayId
+	return *o.ServerInstanceGroupId
 }
 
-// GetInstanceArrayIdOk returns a tuple with the InstanceArrayId field value if set, nil otherwise
+// GetServerInstanceGroupIdOk returns a tuple with the ServerInstanceGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DriveGroup) GetInstanceArrayIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.InstanceArrayId) {
+func (o *DriveGroup) GetServerInstanceGroupIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.ServerInstanceGroupId) {
 		return nil, false
 	}
-	return o.InstanceArrayId, true
+	return o.ServerInstanceGroupId, true
 }
 
-// HasInstanceArrayId returns a boolean if a field has been set.
-func (o *DriveGroup) HasInstanceArrayId() bool {
-	if o != nil && !IsNil(o.InstanceArrayId) {
+// HasServerInstanceGroupId returns a boolean if a field has been set.
+func (o *DriveGroup) HasServerInstanceGroupId() bool {
+	if o != nil && !IsNil(o.ServerInstanceGroupId) {
 		return true
 	}
 
 	return false
 }
 
-// SetInstanceArrayId gets a reference to the given float32 and assigns it to the InstanceArrayId field.
-func (o *DriveGroup) SetInstanceArrayId(v float32) {
-	o.InstanceArrayId = &v
+// SetServerInstanceGroupId gets a reference to the given float32 and assigns it to the ServerInstanceGroupId field.
+func (o *DriveGroup) SetServerInstanceGroupId(v float32) {
+	o.ServerInstanceGroupId = &v
 }
 
 // GetContainerArrayId returns the ContainerArrayId field value if set, zero value otherwise.
@@ -297,28 +297,28 @@ func (o *DriveGroup) SetContainerArrayId(v float32) {
 	o.ContainerArrayId = &v
 }
 
-// GetExpandWithInstanceArray returns the ExpandWithInstanceArray field value
-func (o *DriveGroup) GetExpandWithInstanceArray() float32 {
+// GetExpandWithServerInstanceGroup returns the ExpandWithServerInstanceGroup field value
+func (o *DriveGroup) GetExpandWithServerInstanceGroup() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.ExpandWithInstanceArray
+	return o.ExpandWithServerInstanceGroup
 }
 
-// GetExpandWithInstanceArrayOk returns a tuple with the ExpandWithInstanceArray field value
+// GetExpandWithServerInstanceGroupOk returns a tuple with the ExpandWithServerInstanceGroup field value
 // and a boolean to check if the value has been set.
-func (o *DriveGroup) GetExpandWithInstanceArrayOk() (*float32, bool) {
+func (o *DriveGroup) GetExpandWithServerInstanceGroupOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ExpandWithInstanceArray, true
+	return &o.ExpandWithServerInstanceGroup, true
 }
 
-// SetExpandWithInstanceArray sets field value
-func (o *DriveGroup) SetExpandWithInstanceArray(v float32) {
-	o.ExpandWithInstanceArray = v
+// SetExpandWithServerInstanceGroup sets field value
+func (o *DriveGroup) SetExpandWithServerInstanceGroup(v float32) {
+	o.ExpandWithServerInstanceGroup = v
 }
 
 // GetIoLimitPolicy returns the IoLimitPolicy field value if set, zero value otherwise.
@@ -721,70 +721,6 @@ func (o *DriveGroup) SetAllocationAffinity(v string) {
 	o.AllocationAffinity = v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *DriveGroup) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DriveGroup) GetTagsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *DriveGroup) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *DriveGroup) SetTags(v []string) {
-	o.Tags = v
-}
-
-// GetGuiSettings returns the GuiSettings field value if set, zero value otherwise.
-func (o *DriveGroup) GetGuiSettings() GenericGUISettings {
-	if o == nil || IsNil(o.GuiSettings) {
-		var ret GenericGUISettings
-		return ret
-	}
-	return *o.GuiSettings
-}
-
-// GetGuiSettingsOk returns a tuple with the GuiSettings field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DriveGroup) GetGuiSettingsOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.GuiSettings) {
-		return nil, false
-	}
-	return o.GuiSettings, true
-}
-
-// HasGuiSettings returns a boolean if a field has been set.
-func (o *DriveGroup) HasGuiSettings() bool {
-	if o != nil && !IsNil(o.GuiSettings) {
-		return true
-	}
-
-	return false
-}
-
-// SetGuiSettings gets a reference to the given GenericGUISettings and assigns it to the GuiSettings field.
-func (o *DriveGroup) SetGuiSettings(v GenericGUISettings) {
-	o.GuiSettings = &v
-}
-
 // GetConfig returns the Config field value
 func (o *DriveGroup) GetConfig() DriveGroupConfiguration {
 	if o == nil {
@@ -833,6 +769,30 @@ func (o *DriveGroup) SetCreatedTimestamp(v string) {
 	o.CreatedTimestamp = v
 }
 
+// GetMeta returns the Meta field value
+func (o *DriveGroup) GetMeta() DriveGroupMeta {
+	if o == nil {
+		var ret DriveGroupMeta
+		return ret
+	}
+
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value
+// and a boolean to check if the value has been set.
+func (o *DriveGroup) GetMetaOk() (*DriveGroupMeta, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Meta, true
+}
+
+// SetMeta sets field value
+func (o *DriveGroup) SetMeta(v DriveGroupMeta) {
+	o.Meta = v
+}
+
 func (o DriveGroup) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -850,13 +810,13 @@ func (o DriveGroup) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["driveCount"] = o.DriveCount
 	toSerialize["driveSizeMbDefault"] = o.DriveSizeMbDefault
-	if !IsNil(o.InstanceArrayId) {
-		toSerialize["instanceArrayId"] = o.InstanceArrayId
+	if !IsNil(o.ServerInstanceGroupId) {
+		toSerialize["serverInstanceGroupId"] = o.ServerInstanceGroupId
 	}
 	if !IsNil(o.ContainerArrayId) {
 		toSerialize["containerArrayId"] = o.ContainerArrayId
 	}
-	toSerialize["expandWithInstanceArray"] = o.ExpandWithInstanceArray
+	toSerialize["expandWithServerInstanceGroup"] = o.ExpandWithServerInstanceGroup
 	if !IsNil(o.IoLimitPolicy) {
 		toSerialize["ioLimitPolicy"] = o.IoLimitPolicy
 	}
@@ -887,14 +847,9 @@ func (o DriveGroup) ToMap() (map[string]interface{}, error) {
 		toSerialize["dnsSubdomainPermanentId"] = o.DnsSubdomainPermanentId
 	}
 	toSerialize["allocationAffinity"] = o.AllocationAffinity
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !IsNil(o.GuiSettings) {
-		toSerialize["guiSettings"] = o.GuiSettings
-	}
 	toSerialize["config"] = o.Config
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
+	toSerialize["meta"] = o.Meta
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -912,7 +867,7 @@ func (o *DriveGroup) UnmarshalJSON(data []byte) (err error) {
 		"infrastructureId",
 		"driveCount",
 		"driveSizeMbDefault",
-		"expandWithInstanceArray",
+		"expandWithServerInstanceGroup",
 		"storageType",
 		"updatedTimestamp",
 		"id",
@@ -921,6 +876,7 @@ func (o *DriveGroup) UnmarshalJSON(data []byte) (err error) {
 		"allocationAffinity",
 		"config",
 		"createdTimestamp",
+		"meta",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -955,9 +911,9 @@ func (o *DriveGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "templateId")
 		delete(additionalProperties, "driveCount")
 		delete(additionalProperties, "driveSizeMbDefault")
-		delete(additionalProperties, "instanceArrayId")
+		delete(additionalProperties, "serverInstanceGroupId")
 		delete(additionalProperties, "containerArrayId")
-		delete(additionalProperties, "expandWithInstanceArray")
+		delete(additionalProperties, "expandWithServerInstanceGroup")
 		delete(additionalProperties, "ioLimitPolicy")
 		delete(additionalProperties, "storageType")
 		delete(additionalProperties, "filesystemInfo")
@@ -972,10 +928,9 @@ func (o *DriveGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "dnsSubdomainPermanentId")
 		delete(additionalProperties, "allocationAffinity")
-		delete(additionalProperties, "tags")
-		delete(additionalProperties, "guiSettings")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "createdTimestamp")
+		delete(additionalProperties, "meta")
 		o.AdditionalProperties = additionalProperties
 	}
 

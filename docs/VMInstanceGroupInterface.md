@@ -4,23 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Label** | **string** | Name of the VM Instance Group Interface. | 
+**Index** | **float32** | Interface index | 
+**NetworkId** | Pointer to **float32** | Network ID | [optional] 
+**Subdomain** | Pointer to **string** | Subdomain of the VM Instance Group Interface. | [optional] 
+**UpdatedTimestamp** | **string** | Timestamp of the VM Instance Group Interface update. | 
 **Id** | **float32** | Interface ID | 
-**NetworkId** | **float32** | Network ID | 
-**InterfaceIndex** | **float32** | Interface index | 
+**Revision** | **float32** | Revision of the VM Instance Group Interface Configuration | 
 **ServiceStatus** | **string** | Service status of the VM Instance Group Interface. | 
 **GroupId** | **float32** | VM Instance Group ID | 
 **InfrastructureId** | **float32** | Infrastructure ID | 
-**ChangeId** | **float32** | Operation ID | 
-**Label** | **string** | Interface label | 
+**SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the VM Instance Group Interface. | [optional] 
+**DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the VM Instance Group Interface. | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the VM Instance Group Interface. | [optional] 
+**Config** | [**VMInstanceGroupInterfaceConfiguration**](VMInstanceGroupInterfaceConfiguration.md) | The current changes to be deployed for the VM Instance Group Interface. | 
+**Meta** | [**VMInstanceGroupInterfaceMeta**](VMInstanceGroupInterfaceMeta.md) | Meta information of the VM Instance Group Interface. | 
 **CreatedTimestamp** | **string** | Timestamp of the VM Instance Group Interface creation. | 
-**UpdatedTimestamp** | **string** | Timestamp of the VM Instance Group Interface update. | 
-**Operation** | **map[string]interface{}** | Operation object for the VM Instance Group. | 
+**Links** | **map[string]interface{}** | Links to other resources | 
 
 ## Methods
 
 ### NewVMInstanceGroupInterface
 
-`func NewVMInstanceGroupInterface(id float32, networkId float32, interfaceIndex float32, serviceStatus string, groupId float32, infrastructureId float32, changeId float32, label string, createdTimestamp string, updatedTimestamp string, operation map[string]interface{}, ) *VMInstanceGroupInterface`
+`func NewVMInstanceGroupInterface(label string, index float32, updatedTimestamp string, id float32, revision float32, serviceStatus string, groupId float32, infrastructureId float32, config VMInstanceGroupInterfaceConfiguration, meta VMInstanceGroupInterfaceMeta, createdTimestamp string, links map[string]interface{}, ) *VMInstanceGroupInterface`
 
 NewVMInstanceGroupInterface instantiates a new VMInstanceGroupInterface object
 This constructor will assign default values to properties that have it defined,
@@ -35,24 +41,44 @@ NewVMInstanceGroupInterfaceWithDefaults instantiates a new VMInstanceGroupInterf
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetLabel
 
-`func (o *VMInstanceGroupInterface) GetId() float32`
+`func (o *VMInstanceGroupInterface) GetLabel() string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetLabel returns the Label field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetLabelOk
 
-`func (o *VMInstanceGroupInterface) GetIdOk() (*float32, bool)`
+`func (o *VMInstanceGroupInterface) GetLabelOk() (*string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetLabel
 
-`func (o *VMInstanceGroupInterface) SetId(v float32)`
+`func (o *VMInstanceGroupInterface) SetLabel(v string)`
 
-SetId sets Id field to given value.
+SetLabel sets Label field to given value.
+
+
+### GetIndex
+
+`func (o *VMInstanceGroupInterface) GetIndex() float32`
+
+GetIndex returns the Index field if non-nil, zero value otherwise.
+
+### GetIndexOk
+
+`func (o *VMInstanceGroupInterface) GetIndexOk() (*float32, bool)`
+
+GetIndexOk returns a tuple with the Index field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIndex
+
+`func (o *VMInstanceGroupInterface) SetIndex(v float32)`
+
+SetIndex sets Index field to given value.
 
 
 ### GetNetworkId
@@ -74,25 +100,95 @@ and a boolean to check if the value has been set.
 
 SetNetworkId sets NetworkId field to given value.
 
+### HasNetworkId
 
-### GetInterfaceIndex
+`func (o *VMInstanceGroupInterface) HasNetworkId() bool`
 
-`func (o *VMInstanceGroupInterface) GetInterfaceIndex() float32`
+HasNetworkId returns a boolean if a field has been set.
 
-GetInterfaceIndex returns the InterfaceIndex field if non-nil, zero value otherwise.
+### GetSubdomain
 
-### GetInterfaceIndexOk
+`func (o *VMInstanceGroupInterface) GetSubdomain() string`
 
-`func (o *VMInstanceGroupInterface) GetInterfaceIndexOk() (*float32, bool)`
+GetSubdomain returns the Subdomain field if non-nil, zero value otherwise.
 
-GetInterfaceIndexOk returns a tuple with the InterfaceIndex field if it's non-nil, zero value otherwise
+### GetSubdomainOk
+
+`func (o *VMInstanceGroupInterface) GetSubdomainOk() (*string, bool)`
+
+GetSubdomainOk returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInterfaceIndex
+### SetSubdomain
 
-`func (o *VMInstanceGroupInterface) SetInterfaceIndex(v float32)`
+`func (o *VMInstanceGroupInterface) SetSubdomain(v string)`
 
-SetInterfaceIndex sets InterfaceIndex field to given value.
+SetSubdomain sets Subdomain field to given value.
+
+### HasSubdomain
+
+`func (o *VMInstanceGroupInterface) HasSubdomain() bool`
+
+HasSubdomain returns a boolean if a field has been set.
+
+### GetUpdatedTimestamp
+
+`func (o *VMInstanceGroupInterface) GetUpdatedTimestamp() string`
+
+GetUpdatedTimestamp returns the UpdatedTimestamp field if non-nil, zero value otherwise.
+
+### GetUpdatedTimestampOk
+
+`func (o *VMInstanceGroupInterface) GetUpdatedTimestampOk() (*string, bool)`
+
+GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedTimestamp
+
+`func (o *VMInstanceGroupInterface) SetUpdatedTimestamp(v string)`
+
+SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
+
+
+### GetId
+
+`func (o *VMInstanceGroupInterface) GetId() float32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *VMInstanceGroupInterface) GetIdOk() (*float32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *VMInstanceGroupInterface) SetId(v float32)`
+
+SetId sets Id field to given value.
+
+
+### GetRevision
+
+`func (o *VMInstanceGroupInterface) GetRevision() float32`
+
+GetRevision returns the Revision field if non-nil, zero value otherwise.
+
+### GetRevisionOk
+
+`func (o *VMInstanceGroupInterface) GetRevisionOk() (*float32, bool)`
+
+GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevision
+
+`func (o *VMInstanceGroupInterface) SetRevision(v float32)`
+
+SetRevision sets Revision field to given value.
 
 
 ### GetServiceStatus
@@ -155,44 +251,119 @@ and a boolean to check if the value has been set.
 SetInfrastructureId sets InfrastructureId field to given value.
 
 
-### GetChangeId
+### GetSubdomainPermanent
 
-`func (o *VMInstanceGroupInterface) GetChangeId() float32`
+`func (o *VMInstanceGroupInterface) GetSubdomainPermanent() string`
 
-GetChangeId returns the ChangeId field if non-nil, zero value otherwise.
+GetSubdomainPermanent returns the SubdomainPermanent field if non-nil, zero value otherwise.
 
-### GetChangeIdOk
+### GetSubdomainPermanentOk
 
-`func (o *VMInstanceGroupInterface) GetChangeIdOk() (*float32, bool)`
+`func (o *VMInstanceGroupInterface) GetSubdomainPermanentOk() (*string, bool)`
 
-GetChangeIdOk returns a tuple with the ChangeId field if it's non-nil, zero value otherwise
+GetSubdomainPermanentOk returns a tuple with the SubdomainPermanent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetChangeId
+### SetSubdomainPermanent
 
-`func (o *VMInstanceGroupInterface) SetChangeId(v float32)`
+`func (o *VMInstanceGroupInterface) SetSubdomainPermanent(v string)`
 
-SetChangeId sets ChangeId field to given value.
+SetSubdomainPermanent sets SubdomainPermanent field to given value.
 
+### HasSubdomainPermanent
 
-### GetLabel
+`func (o *VMInstanceGroupInterface) HasSubdomainPermanent() bool`
 
-`func (o *VMInstanceGroupInterface) GetLabel() string`
+HasSubdomainPermanent returns a boolean if a field has been set.
 
-GetLabel returns the Label field if non-nil, zero value otherwise.
+### GetDnsSubdomainId
 
-### GetLabelOk
+`func (o *VMInstanceGroupInterface) GetDnsSubdomainId() float32`
 
-`func (o *VMInstanceGroupInterface) GetLabelOk() (*string, bool)`
+GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+### GetDnsSubdomainIdOk
+
+`func (o *VMInstanceGroupInterface) GetDnsSubdomainIdOk() (*float32, bool)`
+
+GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLabel
+### SetDnsSubdomainId
 
-`func (o *VMInstanceGroupInterface) SetLabel(v string)`
+`func (o *VMInstanceGroupInterface) SetDnsSubdomainId(v float32)`
 
-SetLabel sets Label field to given value.
+SetDnsSubdomainId sets DnsSubdomainId field to given value.
+
+### HasDnsSubdomainId
+
+`func (o *VMInstanceGroupInterface) HasDnsSubdomainId() bool`
+
+HasDnsSubdomainId returns a boolean if a field has been set.
+
+### GetDnsSubdomainPermanentId
+
+`func (o *VMInstanceGroupInterface) GetDnsSubdomainPermanentId() float32`
+
+GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field if non-nil, zero value otherwise.
+
+### GetDnsSubdomainPermanentIdOk
+
+`func (o *VMInstanceGroupInterface) GetDnsSubdomainPermanentIdOk() (*float32, bool)`
+
+GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsSubdomainPermanentId
+
+`func (o *VMInstanceGroupInterface) SetDnsSubdomainPermanentId(v float32)`
+
+SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
+
+### HasDnsSubdomainPermanentId
+
+`func (o *VMInstanceGroupInterface) HasDnsSubdomainPermanentId() bool`
+
+HasDnsSubdomainPermanentId returns a boolean if a field has been set.
+
+### GetConfig
+
+`func (o *VMInstanceGroupInterface) GetConfig() VMInstanceGroupInterfaceConfiguration`
+
+GetConfig returns the Config field if non-nil, zero value otherwise.
+
+### GetConfigOk
+
+`func (o *VMInstanceGroupInterface) GetConfigOk() (*VMInstanceGroupInterfaceConfiguration, bool)`
+
+GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfig
+
+`func (o *VMInstanceGroupInterface) SetConfig(v VMInstanceGroupInterfaceConfiguration)`
+
+SetConfig sets Config field to given value.
+
+
+### GetMeta
+
+`func (o *VMInstanceGroupInterface) GetMeta() VMInstanceGroupInterfaceMeta`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *VMInstanceGroupInterface) GetMetaOk() (*VMInstanceGroupInterfaceMeta, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *VMInstanceGroupInterface) SetMeta(v VMInstanceGroupInterfaceMeta)`
+
+SetMeta sets Meta field to given value.
 
 
 ### GetCreatedTimestamp
@@ -215,44 +386,24 @@ and a boolean to check if the value has been set.
 SetCreatedTimestamp sets CreatedTimestamp field to given value.
 
 
-### GetUpdatedTimestamp
+### GetLinks
 
-`func (o *VMInstanceGroupInterface) GetUpdatedTimestamp() string`
+`func (o *VMInstanceGroupInterface) GetLinks() map[string]interface{}`
 
-GetUpdatedTimestamp returns the UpdatedTimestamp field if non-nil, zero value otherwise.
+GetLinks returns the Links field if non-nil, zero value otherwise.
 
-### GetUpdatedTimestampOk
+### GetLinksOk
 
-`func (o *VMInstanceGroupInterface) GetUpdatedTimestampOk() (*string, bool)`
+`func (o *VMInstanceGroupInterface) GetLinksOk() (*map[string]interface{}, bool)`
 
-GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field if it's non-nil, zero value otherwise
+GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpdatedTimestamp
+### SetLinks
 
-`func (o *VMInstanceGroupInterface) SetUpdatedTimestamp(v string)`
+`func (o *VMInstanceGroupInterface) SetLinks(v map[string]interface{})`
 
-SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
-
-
-### GetOperation
-
-`func (o *VMInstanceGroupInterface) GetOperation() map[string]interface{}`
-
-GetOperation returns the Operation field if non-nil, zero value otherwise.
-
-### GetOperationOk
-
-`func (o *VMInstanceGroupInterface) GetOperationOk() (*map[string]interface{}, bool)`
-
-GetOperationOk returns a tuple with the Operation field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOperation
-
-`func (o *VMInstanceGroupInterface) SetOperation(v map[string]interface{})`
-
-SetOperation sets Operation field to given value.
+SetLinks sets Links field to given value.
 
 
 

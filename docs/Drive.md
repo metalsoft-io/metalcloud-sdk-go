@@ -12,10 +12,10 @@ Name | Type | Description | Notes
 **SizeMb** | **float32** | Disk size in MB for Drive | 
 **StorageImageName** | Pointer to **string** | The name of the storage image used by the Drive. | [optional] 
 **IscsiIndexHex** | Pointer to **string** | The iSCSI Index in hex format of the Drive. | [optional] 
-**TemplateIdOrigin** | Pointer to **float32** | Template Id | [optional] 
+**TemplateId** | Pointer to **float32** | Template Id | [optional] 
 **OsAdminUsername** | Pointer to **string** | The OS Admin Username the Drive will use. | [optional] 
 **OsAdminPasswordEncrypted** | Pointer to **string** | The OS Admin Password the Drive will use. | [optional] 
-**StorageType** | **string** | Service status of the Drive | [default to "iscsi_ssd"]
+**StorageType** | **string** | Storage type of the Drive | [default to "iscsi_ssd"]
 **Subdomain** | Pointer to **string** | Subdomain of the Drive. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the Drive last update. | 
 **SshPort** | Pointer to **float32** | SSH port used by the Drive. | [optional] 
@@ -40,13 +40,13 @@ Name | Type | Description | Notes
 **NetworkVlanId** | Pointer to **float32** | Id of the VLAN for the Drive. | [optional] 
 **Config** | [**DriveConfiguration**](DriveConfiguration.md) | The current changes to be deployed for the Drive. | 
 **CreatedTimestamp** | **string** | Timestamp of the Drive creation. | 
-**GuiSettings** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
+**Meta** | [**DriveMeta**](DriveMeta.md) | Meta information of the Drive. | 
 
 ## Methods
 
 ### NewDrive
 
-`func NewDrive(label string, groupId float32, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, ) *Drive`
+`func NewDrive(label string, groupId float32, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, meta DriveMeta, ) *Drive`
 
 NewDrive instantiates a new Drive object
 This constructor will assign default values to properties that have it defined,
@@ -246,30 +246,30 @@ SetIscsiIndexHex sets IscsiIndexHex field to given value.
 
 HasIscsiIndexHex returns a boolean if a field has been set.
 
-### GetTemplateIdOrigin
+### GetTemplateId
 
-`func (o *Drive) GetTemplateIdOrigin() float32`
+`func (o *Drive) GetTemplateId() float32`
 
-GetTemplateIdOrigin returns the TemplateIdOrigin field if non-nil, zero value otherwise.
+GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
 
-### GetTemplateIdOriginOk
+### GetTemplateIdOk
 
-`func (o *Drive) GetTemplateIdOriginOk() (*float32, bool)`
+`func (o *Drive) GetTemplateIdOk() (*float32, bool)`
 
-GetTemplateIdOriginOk returns a tuple with the TemplateIdOrigin field if it's non-nil, zero value otherwise
+GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTemplateIdOrigin
+### SetTemplateId
 
-`func (o *Drive) SetTemplateIdOrigin(v float32)`
+`func (o *Drive) SetTemplateId(v float32)`
 
-SetTemplateIdOrigin sets TemplateIdOrigin field to given value.
+SetTemplateId sets TemplateId field to given value.
 
-### HasTemplateIdOrigin
+### HasTemplateId
 
-`func (o *Drive) HasTemplateIdOrigin() bool`
+`func (o *Drive) HasTemplateId() bool`
 
-HasTemplateIdOrigin returns a boolean if a field has been set.
+HasTemplateId returns a boolean if a field has been set.
 
 ### GetOsAdminUsername
 
@@ -896,30 +896,25 @@ and a boolean to check if the value has been set.
 SetCreatedTimestamp sets CreatedTimestamp field to given value.
 
 
-### GetGuiSettings
+### GetMeta
 
-`func (o *Drive) GetGuiSettings() GenericGUISettings`
+`func (o *Drive) GetMeta() DriveMeta`
 
-GetGuiSettings returns the GuiSettings field if non-nil, zero value otherwise.
+GetMeta returns the Meta field if non-nil, zero value otherwise.
 
-### GetGuiSettingsOk
+### GetMetaOk
 
-`func (o *Drive) GetGuiSettingsOk() (*GenericGUISettings, bool)`
+`func (o *Drive) GetMetaOk() (*DriveMeta, bool)`
 
-GetGuiSettingsOk returns a tuple with the GuiSettings field if it's non-nil, zero value otherwise
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGuiSettings
+### SetMeta
 
-`func (o *Drive) SetGuiSettings(v GenericGUISettings)`
+`func (o *Drive) SetMeta(v DriveMeta)`
 
-SetGuiSettings sets GuiSettings field to given value.
+SetMeta sets Meta field to given value.
 
-### HasGuiSettings
-
-`func (o *Drive) HasGuiSettings() bool`
-
-HasGuiSettings returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

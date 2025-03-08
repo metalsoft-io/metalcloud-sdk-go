@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InstanceCount** | **float32** | Number of VM instances in the VM Instance Group. | 
-**Tags** | Pointer to **[]string** | Tags for the VM Instance Group. | [optional] 
+**InstanceCount** | Pointer to **float32** |  | [optional] [default to 1]
 **DiskSizeGB** | **float32** | Disk size in GB for each VM Instance in the VM Instance Group. | 
-**VolumeTemplateId** | Pointer to **float32** | Id of the template used by the VM Instance Group. | [optional] 
 **TypeId** | **float32** | Id of the VM Type. | 
+**VolumeTemplateId** | Pointer to **float32** | Id of the template used by the VM Instance Group. | [optional] 
+**Tags** | Pointer to **[]string** | Tags for the VM Instance Group. | [optional] 
 
 ## Methods
 
 ### NewCreateVMInstanceGroup
 
-`func NewCreateVMInstanceGroup(instanceCount float32, diskSizeGB float32, typeId float32, ) *CreateVMInstanceGroup`
+`func NewCreateVMInstanceGroup(diskSizeGB float32, typeId float32, ) *CreateVMInstanceGroup`
 
 NewCreateVMInstanceGroup instantiates a new CreateVMInstanceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -48,31 +48,11 @@ and a boolean to check if the value has been set.
 
 SetInstanceCount sets InstanceCount field to given value.
 
+### HasInstanceCount
 
-### GetTags
+`func (o *CreateVMInstanceGroup) HasInstanceCount() bool`
 
-`func (o *CreateVMInstanceGroup) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *CreateVMInstanceGroup) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *CreateVMInstanceGroup) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *CreateVMInstanceGroup) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
+HasInstanceCount returns a boolean if a field has been set.
 
 ### GetDiskSizeGB
 
@@ -92,6 +72,26 @@ and a boolean to check if the value has been set.
 `func (o *CreateVMInstanceGroup) SetDiskSizeGB(v float32)`
 
 SetDiskSizeGB sets DiskSizeGB field to given value.
+
+
+### GetTypeId
+
+`func (o *CreateVMInstanceGroup) GetTypeId() float32`
+
+GetTypeId returns the TypeId field if non-nil, zero value otherwise.
+
+### GetTypeIdOk
+
+`func (o *CreateVMInstanceGroup) GetTypeIdOk() (*float32, bool)`
+
+GetTypeIdOk returns a tuple with the TypeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTypeId
+
+`func (o *CreateVMInstanceGroup) SetTypeId(v float32)`
+
+SetTypeId sets TypeId field to given value.
 
 
 ### GetVolumeTemplateId
@@ -119,25 +119,30 @@ SetVolumeTemplateId sets VolumeTemplateId field to given value.
 
 HasVolumeTemplateId returns a boolean if a field has been set.
 
-### GetTypeId
+### GetTags
 
-`func (o *CreateVMInstanceGroup) GetTypeId() float32`
+`func (o *CreateVMInstanceGroup) GetTags() []string`
 
-GetTypeId returns the TypeId field if non-nil, zero value otherwise.
+GetTags returns the Tags field if non-nil, zero value otherwise.
 
-### GetTypeIdOk
+### GetTagsOk
 
-`func (o *CreateVMInstanceGroup) GetTypeIdOk() (*float32, bool)`
+`func (o *CreateVMInstanceGroup) GetTagsOk() (*[]string, bool)`
 
-GetTypeIdOk returns a tuple with the TypeId field if it's non-nil, zero value otherwise
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTypeId
+### SetTags
 
-`func (o *CreateVMInstanceGroup) SetTypeId(v float32)`
+`func (o *CreateVMInstanceGroup) SetTags(v []string)`
 
-SetTypeId sets TypeId field to given value.
+SetTags sets Tags field to given value.
 
+### HasTags
+
+`func (o *CreateVMInstanceGroup) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -23,7 +23,7 @@ type UpdateInfrastructure struct {
 	// Label of the Infrastructure.
 	Label *string `json:"label,omitempty"`
 	// Custom variables in JSON format.
-	CustomVariables *string `json:"customVariables,omitempty"`
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -79,19 +79,19 @@ func (o *UpdateInfrastructure) SetLabel(v string) {
 }
 
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
-func (o *UpdateInfrastructure) GetCustomVariables() string {
+func (o *UpdateInfrastructure) GetCustomVariables() map[string]interface{} {
 	if o == nil || IsNil(o.CustomVariables) {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.CustomVariables
+	return o.CustomVariables
 }
 
 // GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInfrastructure) GetCustomVariablesOk() (*string, bool) {
+func (o *UpdateInfrastructure) GetCustomVariablesOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.CustomVariables) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.CustomVariables, true
 }
@@ -105,9 +105,9 @@ func (o *UpdateInfrastructure) HasCustomVariables() bool {
 	return false
 }
 
-// SetCustomVariables gets a reference to the given string and assigns it to the CustomVariables field.
-func (o *UpdateInfrastructure) SetCustomVariables(v string) {
-	o.CustomVariables = &v
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *UpdateInfrastructure) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
 }
 
 func (o UpdateInfrastructure) MarshalJSON() ([]byte, error) {

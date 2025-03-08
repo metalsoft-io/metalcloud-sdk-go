@@ -20,108 +20,94 @@ var _ MappedNullable = &UpdateNetworkDevice{}
 
 // UpdateNetworkDevice struct for UpdateNetworkDevice
 type UpdateNetworkDevice struct {
+	// Site identifier
+	SiteId *int32 `json:"siteId,omitempty"`
 	// Name of the datacenter
 	DatacenterName *string `json:"datacenterName,omitempty"`
-	// Identifier string
+	// Unique identifier string for the network device
 	IdentifierString *string `json:"identifierString,omitempty"`
-	// Chassis rack ID
-	ChassisRackId *float32 `json:"chassisRackId,omitempty"`
-	// Chassis identifier
-	ChassisIdentifier *string `json:"chassisIdentifier,omitempty"`
-	// Provisioner type
-	ProvisionerType *string `json:"provisionerType,omitempty"`
-	// Driver
-	Driver *string `json:"driver,omitempty"`
-	// Position
+	// ID of the rack where the network device chassis is installed
+	ChassisRackId *int32 `json:"chassisRackId,omitempty"`
+	// Unique identifier for the network device chassis
+	ChassisIdentifier NullableString `json:"chassisIdentifier,omitempty"`
+	// Type of provisioner used for this network device
+	ProvisionerType *ProvisionerType `json:"provisionerType,omitempty"`
+	// Driver software used to communicate with the network device
+	Driver *NetworkDeviceDriver `json:"driver,omitempty"`
+	// The physical or logical position of the network device in the network topology.
 	Position *string `json:"position,omitempty"`
-	// TOR Linked ID
-	TorLinkedId *float32 `json:"torLinkedId,omitempty"`
-	// Is Gateway
+	// ID of the Top-of-Rack (TOR) switch that this network device is linked to. Used for establishing hierarchical relationships between network devices.
+	TorLinkedId NullableFloat32 `json:"torLinkedId,omitempty"`
+	// Indicates if this network device acts as a gateway for external network traffic
 	IsGateway *bool `json:"isGateway,omitempty"`
-	// Is Syslog Enabled
-	SyslogEnabled *bool `json:"syslogEnabled,omitempty"`
+	// Indicates if syslog logging is enabled for this network device
+	SyslogEnabled NullableBool `json:"syslogEnabled,omitempty"`
 	// Is storage network device
 	IsStorageSwitch *bool `json:"isStorageSwitch,omitempty"`
 	// Is border device
 	IsBorderDevice *bool `json:"isBorderDevice,omitempty"`
-	// Primary WAN IPV4 Subnet Pool
-	PrimaryWanIpv4SubnetPool *string `json:"primaryWanIpv4SubnetPool,omitempty"`
-	// Primary WAN IPV4 Subnet Prefix Size
-	PrimaryWanIpv4SubnetPrefixSize *float32 `json:"primaryWanIpv4SubnetPrefixSize,omitempty"`
-	// Primary WAN IPV6 Subnet Pool
-	PrimaryWanIpv6SubnetPool *string `json:"primaryWanIpv6SubnetPool,omitempty"`
-	// Primary WAN IPV6 Subnet Prefix Size
-	PrimaryWanIpv6SubnetPrefixSize *float32 `json:"primaryWanIpv6SubnetPrefixSize,omitempty"`
-	// Primary SAN Subnet Pool
-	PrimarySanSubnetPool *string `json:"primarySanSubnetPool,omitempty"`
-	// Primary SAN Subnet Prefix Size
-	PrimarySanSubnetPrefixSize *float32 `json:"primarySanSubnetPrefixSize,omitempty"`
-	// Quarantine Subnet Start
-	QuarantineSubnetStart *string `json:"quarantineSubnetStart,omitempty"`
-	// Quarantine Subnet End
-	QuarantineSubnetEnd *string `json:"quarantineSubnetEnd,omitempty"`
-	// Quarantine Subnet Prefix Size
-	QuarantineSubnetPrefixSize *float32 `json:"quarantineSubnetPrefixSize,omitempty"`
-	// Quarantine Subnet Gateway
-	QuarantineSubnetGateway *string `json:"quarantineSubnetGateway,omitempty"`
-	// Quarantine VLAN
-	QuarantineVlan *float32 `json:"quarantineVlan,omitempty"`
-	// Management Protocol
-	ManagementProtocol *string `json:"managementProtocol,omitempty"`
+	// The starting IP address of the quarantine subnet range
+	QuarantineSubnetStart NullableString `json:"quarantineSubnetStart,omitempty"`
+	// The ending IP address of the quarantine subnet range
+	QuarantineSubnetEnd NullableString `json:"quarantineSubnetEnd,omitempty"`
+	// The prefix size for the quarantine subnet
+	QuarantineSubnetPrefixSize NullableInt32 `json:"quarantineSubnetPrefixSize,omitempty"`
+	// The gateway IP address for the quarantine subnet
+	QuarantineSubnetGateway NullableString `json:"quarantineSubnetGateway,omitempty"`
+	// The VLAN ID for the quarantine network
+	QuarantineVlan *int32 `json:"quarantineVlan,omitempty"`
+	// The protocol used to manage the network device (e.g., SSH, HTTPS)
+	ManagementProtocol NullableString `json:"managementProtocol,omitempty"`
 	// Management Address
-	ManagementAddress *string `json:"managementAddress,omitempty"`
+	ManagementAddress NullableString `json:"managementAddress,omitempty"`
 	// Management Port
-	ManagementPort *float32 `json:"managementPort,omitempty"`
-	// Management Username
-	Username *string `json:"username,omitempty"`
-	// Management Password
-	ManagementPassword *string `json:"managementPassword,omitempty"`
-	// Management Address Gateway
-	ManagementAddressGateway *string `json:"managementAddressGateway,omitempty"`
-	// Management Address Mask
-	ManagementAddressMask *string `json:"managementAddressMask,omitempty"`
-	// Management MAC Address
-	ManagementMAC *string `json:"managementMAC,omitempty"`
+	ManagementPort NullableInt32 `json:"managementPort,omitempty"`
+	// The username used for management authentication
+	Username NullableString `json:"username,omitempty"`
+	// The password used for management authentication
+	ManagementPassword NullableString `json:"managementPassword,omitempty"`
+	// The gateway IP address for the management network
+	ManagementAddressGateway NullableString `json:"managementAddressGateway,omitempty"`
+	// The subnet mask for the management network
+	ManagementAddressMask NullableString `json:"managementAddressMask,omitempty"`
+	// The MAC address of the management interface
+	ManagementMAC NullableString `json:"managementMAC,omitempty"`
 	// Loopback Address
-	LoopbackAddress *string `json:"loopbackAddress,omitempty"`
+	LoopbackAddress NullableString `json:"loopbackAddress,omitempty"`
 	// VTEP Address
-	VtepAddress *string `json:"vtepAddress,omitempty"`
-	// ASN
-	Asn *float32 `json:"asn,omitempty"`
+	VtepAddress NullableString `json:"vtepAddress,omitempty"`
+	// The Autonomous System Number for BGP routing
+	Asn NullableFloat32 `json:"asn,omitempty"`
 	// Network types allowed
 	NetworkTypesAllowed []string `json:"networkTypesAllowed,omitempty"`
-	// Description
-	Description *string `json:"description,omitempty"`
-	// Country
-	Country *string `json:"country,omitempty"`
-	// City
-	City *string `json:"city,omitempty"`
-	// Datacenter metadata
-	DatacenterMeta *string `json:"datacenterMeta,omitempty"`
-	// Datacenter room
-	DatacenterRoom *string `json:"datacenterRoom,omitempty"`
-	// Datacenter rack
-	DatacenterRack *string `json:"datacenterRack,omitempty"`
-	// Upper rack position
-	RackPositionUpperUnit *float32 `json:"rackPositionUpperUnit,omitempty"`
-	// Lower rack position
-	RackPositionLowerUnit *float32 `json:"rackPositionLowerUnit,omitempty"`
-	// Serial number
+	// Additional description or notes about the network device
+	Description NullableString `json:"description,omitempty"`
+	// The country where the network device is located
+	Country NullableString `json:"country,omitempty"`
+	// The city where the network device is located
+	City NullableString `json:"city,omitempty"`
+	// Metadata about the datacenter where the device is located
+	DatacenterMeta NullableString `json:"datacenterMeta,omitempty"`
+	// The room within the datacenter where the device is located
+	DatacenterRoom NullableString `json:"datacenterRoom,omitempty"`
+	// The rack identifier within the datacenter where the device is mounted
+	DatacenterRack NullableString `json:"datacenterRack,omitempty"`
+	// The upper rack unit position where the device is mounted
+	RackPositionUpperUnit NullableInt32 `json:"rackPositionUpperUnit,omitempty"`
+	// The lower rack unit position where the device is mounted
+	RackPositionLowerUnit NullableInt32 `json:"rackPositionLowerUnit,omitempty"`
+	// The serial number of the network device
 	SerialNumber *string `json:"serialNumber,omitempty"`
 	// Order index
 	OrderIndex *float32 `json:"orderIndex,omitempty"`
 	// Default MTU
-	DefaultMtu *float32 `json:"defaultMtu,omitempty"`
-	// Tags
+	DefaultMtu NullableFloat32 `json:"defaultMtu,omitempty"`
+	// Tags for categorizing and filtering network devices
 	Tags []string `json:"tags,omitempty"`
-	// Requires OS install
+	// Indicates if the device requires OS installation before provisioning
 	RequiresOsInstall *bool `json:"requiresOsInstall,omitempty"`
-	// Site Id
-	SiteId *float32 `json:"siteId,omitempty"`
-	// Primary WAN IPV6 Subnet Pool Id
-	PrimaryWanIpv6SubnetPoolId *float32 `json:"primaryWanIpv6SubnetPoolId,omitempty"`
-	// Overwrite With Hostname From Fetched Network Device
-	OverwriteWithHostnameFromFetchedSwitch *bool `json:"overwriteWithHostnameFromFetchedSwitch,omitempty"`
+	// Whether to overwrite the hostname with the one fetched from the device
+	OverwriteWithHostnameFromFetchedSwitch NullableBool `json:"overwriteWithHostnameFromFetchedSwitch,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -142,6 +128,38 @@ func NewUpdateNetworkDevice() *UpdateNetworkDevice {
 func NewUpdateNetworkDeviceWithDefaults() *UpdateNetworkDevice {
 	this := UpdateNetworkDevice{}
 	return &this
+}
+
+// GetSiteId returns the SiteId field value if set, zero value otherwise.
+func (o *UpdateNetworkDevice) GetSiteId() int32 {
+	if o == nil || IsNil(o.SiteId) {
+		var ret int32
+		return ret
+	}
+	return *o.SiteId
+}
+
+// GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkDevice) GetSiteIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.SiteId) {
+		return nil, false
+	}
+	return o.SiteId, true
+}
+
+// HasSiteId returns a boolean if a field has been set.
+func (o *UpdateNetworkDevice) HasSiteId() bool {
+	if o != nil && !IsNil(o.SiteId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSiteId gets a reference to the given int32 and assigns it to the SiteId field.
+func (o *UpdateNetworkDevice) SetSiteId(v int32) {
+	o.SiteId = &v
 }
 
 // GetDatacenterName returns the DatacenterName field value if set, zero value otherwise.
@@ -209,9 +227,9 @@ func (o *UpdateNetworkDevice) SetIdentifierString(v string) {
 }
 
 // GetChassisRackId returns the ChassisRackId field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetChassisRackId() float32 {
+func (o *UpdateNetworkDevice) GetChassisRackId() int32 {
 	if o == nil || IsNil(o.ChassisRackId) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.ChassisRackId
@@ -219,7 +237,7 @@ func (o *UpdateNetworkDevice) GetChassisRackId() float32 {
 
 // GetChassisRackIdOk returns a tuple with the ChassisRackId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetChassisRackIdOk() (*float32, bool) {
+func (o *UpdateNetworkDevice) GetChassisRackIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.ChassisRackId) {
 		return nil, false
 	}
@@ -235,47 +253,57 @@ func (o *UpdateNetworkDevice) HasChassisRackId() bool {
 	return false
 }
 
-// SetChassisRackId gets a reference to the given float32 and assigns it to the ChassisRackId field.
-func (o *UpdateNetworkDevice) SetChassisRackId(v float32) {
+// SetChassisRackId gets a reference to the given int32 and assigns it to the ChassisRackId field.
+func (o *UpdateNetworkDevice) SetChassisRackId(v int32) {
 	o.ChassisRackId = &v
 }
 
-// GetChassisIdentifier returns the ChassisIdentifier field value if set, zero value otherwise.
+// GetChassisIdentifier returns the ChassisIdentifier field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetChassisIdentifier() string {
-	if o == nil || IsNil(o.ChassisIdentifier) {
+	if o == nil || IsNil(o.ChassisIdentifier.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ChassisIdentifier
+	return *o.ChassisIdentifier.Get()
 }
 
 // GetChassisIdentifierOk returns a tuple with the ChassisIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetChassisIdentifierOk() (*string, bool) {
-	if o == nil || IsNil(o.ChassisIdentifier) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ChassisIdentifier, true
+	return o.ChassisIdentifier.Get(), o.ChassisIdentifier.IsSet()
 }
 
 // HasChassisIdentifier returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasChassisIdentifier() bool {
-	if o != nil && !IsNil(o.ChassisIdentifier) {
+	if o != nil && o.ChassisIdentifier.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetChassisIdentifier gets a reference to the given string and assigns it to the ChassisIdentifier field.
+// SetChassisIdentifier gets a reference to the given NullableString and assigns it to the ChassisIdentifier field.
 func (o *UpdateNetworkDevice) SetChassisIdentifier(v string) {
-	o.ChassisIdentifier = &v
+	o.ChassisIdentifier.Set(&v)
+}
+// SetChassisIdentifierNil sets the value for ChassisIdentifier to be an explicit nil
+func (o *UpdateNetworkDevice) SetChassisIdentifierNil() {
+	o.ChassisIdentifier.Set(nil)
+}
+
+// UnsetChassisIdentifier ensures that no value is present for ChassisIdentifier, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetChassisIdentifier() {
+	o.ChassisIdentifier.Unset()
 }
 
 // GetProvisionerType returns the ProvisionerType field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetProvisionerType() string {
+func (o *UpdateNetworkDevice) GetProvisionerType() ProvisionerType {
 	if o == nil || IsNil(o.ProvisionerType) {
-		var ret string
+		var ret ProvisionerType
 		return ret
 	}
 	return *o.ProvisionerType
@@ -283,7 +311,7 @@ func (o *UpdateNetworkDevice) GetProvisionerType() string {
 
 // GetProvisionerTypeOk returns a tuple with the ProvisionerType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetProvisionerTypeOk() (*string, bool) {
+func (o *UpdateNetworkDevice) GetProvisionerTypeOk() (*ProvisionerType, bool) {
 	if o == nil || IsNil(o.ProvisionerType) {
 		return nil, false
 	}
@@ -299,15 +327,15 @@ func (o *UpdateNetworkDevice) HasProvisionerType() bool {
 	return false
 }
 
-// SetProvisionerType gets a reference to the given string and assigns it to the ProvisionerType field.
-func (o *UpdateNetworkDevice) SetProvisionerType(v string) {
+// SetProvisionerType gets a reference to the given ProvisionerType and assigns it to the ProvisionerType field.
+func (o *UpdateNetworkDevice) SetProvisionerType(v ProvisionerType) {
 	o.ProvisionerType = &v
 }
 
 // GetDriver returns the Driver field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetDriver() string {
+func (o *UpdateNetworkDevice) GetDriver() NetworkDeviceDriver {
 	if o == nil || IsNil(o.Driver) {
-		var ret string
+		var ret NetworkDeviceDriver
 		return ret
 	}
 	return *o.Driver
@@ -315,7 +343,7 @@ func (o *UpdateNetworkDevice) GetDriver() string {
 
 // GetDriverOk returns a tuple with the Driver field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetDriverOk() (*string, bool) {
+func (o *UpdateNetworkDevice) GetDriverOk() (*NetworkDeviceDriver, bool) {
 	if o == nil || IsNil(o.Driver) {
 		return nil, false
 	}
@@ -331,8 +359,8 @@ func (o *UpdateNetworkDevice) HasDriver() bool {
 	return false
 }
 
-// SetDriver gets a reference to the given string and assigns it to the Driver field.
-func (o *UpdateNetworkDevice) SetDriver(v string) {
+// SetDriver gets a reference to the given NetworkDeviceDriver and assigns it to the Driver field.
+func (o *UpdateNetworkDevice) SetDriver(v NetworkDeviceDriver) {
 	o.Driver = &v
 }
 
@@ -368,36 +396,46 @@ func (o *UpdateNetworkDevice) SetPosition(v string) {
 	o.Position = &v
 }
 
-// GetTorLinkedId returns the TorLinkedId field value if set, zero value otherwise.
+// GetTorLinkedId returns the TorLinkedId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetTorLinkedId() float32 {
-	if o == nil || IsNil(o.TorLinkedId) {
+	if o == nil || IsNil(o.TorLinkedId.Get()) {
 		var ret float32
 		return ret
 	}
-	return *o.TorLinkedId
+	return *o.TorLinkedId.Get()
 }
 
 // GetTorLinkedIdOk returns a tuple with the TorLinkedId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetTorLinkedIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.TorLinkedId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.TorLinkedId, true
+	return o.TorLinkedId.Get(), o.TorLinkedId.IsSet()
 }
 
 // HasTorLinkedId returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasTorLinkedId() bool {
-	if o != nil && !IsNil(o.TorLinkedId) {
+	if o != nil && o.TorLinkedId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTorLinkedId gets a reference to the given float32 and assigns it to the TorLinkedId field.
+// SetTorLinkedId gets a reference to the given NullableFloat32 and assigns it to the TorLinkedId field.
 func (o *UpdateNetworkDevice) SetTorLinkedId(v float32) {
-	o.TorLinkedId = &v
+	o.TorLinkedId.Set(&v)
+}
+// SetTorLinkedIdNil sets the value for TorLinkedId to be an explicit nil
+func (o *UpdateNetworkDevice) SetTorLinkedIdNil() {
+	o.TorLinkedId.Set(nil)
+}
+
+// UnsetTorLinkedId ensures that no value is present for TorLinkedId, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetTorLinkedId() {
+	o.TorLinkedId.Unset()
 }
 
 // GetIsGateway returns the IsGateway field value if set, zero value otherwise.
@@ -432,36 +470,46 @@ func (o *UpdateNetworkDevice) SetIsGateway(v bool) {
 	o.IsGateway = &v
 }
 
-// GetSyslogEnabled returns the SyslogEnabled field value if set, zero value otherwise.
+// GetSyslogEnabled returns the SyslogEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetSyslogEnabled() bool {
-	if o == nil || IsNil(o.SyslogEnabled) {
+	if o == nil || IsNil(o.SyslogEnabled.Get()) {
 		var ret bool
 		return ret
 	}
-	return *o.SyslogEnabled
+	return *o.SyslogEnabled.Get()
 }
 
 // GetSyslogEnabledOk returns a tuple with the SyslogEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetSyslogEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.SyslogEnabled) {
+	if o == nil {
 		return nil, false
 	}
-	return o.SyslogEnabled, true
+	return o.SyslogEnabled.Get(), o.SyslogEnabled.IsSet()
 }
 
 // HasSyslogEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasSyslogEnabled() bool {
-	if o != nil && !IsNil(o.SyslogEnabled) {
+	if o != nil && o.SyslogEnabled.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSyslogEnabled gets a reference to the given bool and assigns it to the SyslogEnabled field.
+// SetSyslogEnabled gets a reference to the given NullableBool and assigns it to the SyslogEnabled field.
 func (o *UpdateNetworkDevice) SetSyslogEnabled(v bool) {
-	o.SyslogEnabled = &v
+	o.SyslogEnabled.Set(&v)
+}
+// SetSyslogEnabledNil sets the value for SyslogEnabled to be an explicit nil
+func (o *UpdateNetworkDevice) SetSyslogEnabledNil() {
+	o.SyslogEnabled.Set(nil)
+}
+
+// UnsetSyslogEnabled ensures that no value is present for SyslogEnabled, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetSyslogEnabled() {
+	o.SyslogEnabled.Unset()
 }
 
 // GetIsStorageSwitch returns the IsStorageSwitch field value if set, zero value otherwise.
@@ -528,330 +576,178 @@ func (o *UpdateNetworkDevice) SetIsBorderDevice(v bool) {
 	o.IsBorderDevice = &v
 }
 
-// GetPrimaryWanIpv4SubnetPool returns the PrimaryWanIpv4SubnetPool field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetPrimaryWanIpv4SubnetPool() string {
-	if o == nil || IsNil(o.PrimaryWanIpv4SubnetPool) {
-		var ret string
-		return ret
-	}
-	return *o.PrimaryWanIpv4SubnetPool
-}
-
-// GetPrimaryWanIpv4SubnetPoolOk returns a tuple with the PrimaryWanIpv4SubnetPool field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetPrimaryWanIpv4SubnetPoolOk() (*string, bool) {
-	if o == nil || IsNil(o.PrimaryWanIpv4SubnetPool) {
-		return nil, false
-	}
-	return o.PrimaryWanIpv4SubnetPool, true
-}
-
-// HasPrimaryWanIpv4SubnetPool returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasPrimaryWanIpv4SubnetPool() bool {
-	if o != nil && !IsNil(o.PrimaryWanIpv4SubnetPool) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimaryWanIpv4SubnetPool gets a reference to the given string and assigns it to the PrimaryWanIpv4SubnetPool field.
-func (o *UpdateNetworkDevice) SetPrimaryWanIpv4SubnetPool(v string) {
-	o.PrimaryWanIpv4SubnetPool = &v
-}
-
-// GetPrimaryWanIpv4SubnetPrefixSize returns the PrimaryWanIpv4SubnetPrefixSize field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetPrimaryWanIpv4SubnetPrefixSize() float32 {
-	if o == nil || IsNil(o.PrimaryWanIpv4SubnetPrefixSize) {
-		var ret float32
-		return ret
-	}
-	return *o.PrimaryWanIpv4SubnetPrefixSize
-}
-
-// GetPrimaryWanIpv4SubnetPrefixSizeOk returns a tuple with the PrimaryWanIpv4SubnetPrefixSize field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetPrimaryWanIpv4SubnetPrefixSizeOk() (*float32, bool) {
-	if o == nil || IsNil(o.PrimaryWanIpv4SubnetPrefixSize) {
-		return nil, false
-	}
-	return o.PrimaryWanIpv4SubnetPrefixSize, true
-}
-
-// HasPrimaryWanIpv4SubnetPrefixSize returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasPrimaryWanIpv4SubnetPrefixSize() bool {
-	if o != nil && !IsNil(o.PrimaryWanIpv4SubnetPrefixSize) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimaryWanIpv4SubnetPrefixSize gets a reference to the given float32 and assigns it to the PrimaryWanIpv4SubnetPrefixSize field.
-func (o *UpdateNetworkDevice) SetPrimaryWanIpv4SubnetPrefixSize(v float32) {
-	o.PrimaryWanIpv4SubnetPrefixSize = &v
-}
-
-// GetPrimaryWanIpv6SubnetPool returns the PrimaryWanIpv6SubnetPool field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetPrimaryWanIpv6SubnetPool() string {
-	if o == nil || IsNil(o.PrimaryWanIpv6SubnetPool) {
-		var ret string
-		return ret
-	}
-	return *o.PrimaryWanIpv6SubnetPool
-}
-
-// GetPrimaryWanIpv6SubnetPoolOk returns a tuple with the PrimaryWanIpv6SubnetPool field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetPrimaryWanIpv6SubnetPoolOk() (*string, bool) {
-	if o == nil || IsNil(o.PrimaryWanIpv6SubnetPool) {
-		return nil, false
-	}
-	return o.PrimaryWanIpv6SubnetPool, true
-}
-
-// HasPrimaryWanIpv6SubnetPool returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasPrimaryWanIpv6SubnetPool() bool {
-	if o != nil && !IsNil(o.PrimaryWanIpv6SubnetPool) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimaryWanIpv6SubnetPool gets a reference to the given string and assigns it to the PrimaryWanIpv6SubnetPool field.
-func (o *UpdateNetworkDevice) SetPrimaryWanIpv6SubnetPool(v string) {
-	o.PrimaryWanIpv6SubnetPool = &v
-}
-
-// GetPrimaryWanIpv6SubnetPrefixSize returns the PrimaryWanIpv6SubnetPrefixSize field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetPrimaryWanIpv6SubnetPrefixSize() float32 {
-	if o == nil || IsNil(o.PrimaryWanIpv6SubnetPrefixSize) {
-		var ret float32
-		return ret
-	}
-	return *o.PrimaryWanIpv6SubnetPrefixSize
-}
-
-// GetPrimaryWanIpv6SubnetPrefixSizeOk returns a tuple with the PrimaryWanIpv6SubnetPrefixSize field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetPrimaryWanIpv6SubnetPrefixSizeOk() (*float32, bool) {
-	if o == nil || IsNil(o.PrimaryWanIpv6SubnetPrefixSize) {
-		return nil, false
-	}
-	return o.PrimaryWanIpv6SubnetPrefixSize, true
-}
-
-// HasPrimaryWanIpv6SubnetPrefixSize returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasPrimaryWanIpv6SubnetPrefixSize() bool {
-	if o != nil && !IsNil(o.PrimaryWanIpv6SubnetPrefixSize) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimaryWanIpv6SubnetPrefixSize gets a reference to the given float32 and assigns it to the PrimaryWanIpv6SubnetPrefixSize field.
-func (o *UpdateNetworkDevice) SetPrimaryWanIpv6SubnetPrefixSize(v float32) {
-	o.PrimaryWanIpv6SubnetPrefixSize = &v
-}
-
-// GetPrimarySanSubnetPool returns the PrimarySanSubnetPool field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetPrimarySanSubnetPool() string {
-	if o == nil || IsNil(o.PrimarySanSubnetPool) {
-		var ret string
-		return ret
-	}
-	return *o.PrimarySanSubnetPool
-}
-
-// GetPrimarySanSubnetPoolOk returns a tuple with the PrimarySanSubnetPool field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetPrimarySanSubnetPoolOk() (*string, bool) {
-	if o == nil || IsNil(o.PrimarySanSubnetPool) {
-		return nil, false
-	}
-	return o.PrimarySanSubnetPool, true
-}
-
-// HasPrimarySanSubnetPool returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasPrimarySanSubnetPool() bool {
-	if o != nil && !IsNil(o.PrimarySanSubnetPool) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimarySanSubnetPool gets a reference to the given string and assigns it to the PrimarySanSubnetPool field.
-func (o *UpdateNetworkDevice) SetPrimarySanSubnetPool(v string) {
-	o.PrimarySanSubnetPool = &v
-}
-
-// GetPrimarySanSubnetPrefixSize returns the PrimarySanSubnetPrefixSize field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetPrimarySanSubnetPrefixSize() float32 {
-	if o == nil || IsNil(o.PrimarySanSubnetPrefixSize) {
-		var ret float32
-		return ret
-	}
-	return *o.PrimarySanSubnetPrefixSize
-}
-
-// GetPrimarySanSubnetPrefixSizeOk returns a tuple with the PrimarySanSubnetPrefixSize field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetPrimarySanSubnetPrefixSizeOk() (*float32, bool) {
-	if o == nil || IsNil(o.PrimarySanSubnetPrefixSize) {
-		return nil, false
-	}
-	return o.PrimarySanSubnetPrefixSize, true
-}
-
-// HasPrimarySanSubnetPrefixSize returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasPrimarySanSubnetPrefixSize() bool {
-	if o != nil && !IsNil(o.PrimarySanSubnetPrefixSize) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimarySanSubnetPrefixSize gets a reference to the given float32 and assigns it to the PrimarySanSubnetPrefixSize field.
-func (o *UpdateNetworkDevice) SetPrimarySanSubnetPrefixSize(v float32) {
-	o.PrimarySanSubnetPrefixSize = &v
-}
-
-// GetQuarantineSubnetStart returns the QuarantineSubnetStart field value if set, zero value otherwise.
+// GetQuarantineSubnetStart returns the QuarantineSubnetStart field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetQuarantineSubnetStart() string {
-	if o == nil || IsNil(o.QuarantineSubnetStart) {
+	if o == nil || IsNil(o.QuarantineSubnetStart.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.QuarantineSubnetStart
+	return *o.QuarantineSubnetStart.Get()
 }
 
 // GetQuarantineSubnetStartOk returns a tuple with the QuarantineSubnetStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetQuarantineSubnetStartOk() (*string, bool) {
-	if o == nil || IsNil(o.QuarantineSubnetStart) {
+	if o == nil {
 		return nil, false
 	}
-	return o.QuarantineSubnetStart, true
+	return o.QuarantineSubnetStart.Get(), o.QuarantineSubnetStart.IsSet()
 }
 
 // HasQuarantineSubnetStart returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasQuarantineSubnetStart() bool {
-	if o != nil && !IsNil(o.QuarantineSubnetStart) {
+	if o != nil && o.QuarantineSubnetStart.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetQuarantineSubnetStart gets a reference to the given string and assigns it to the QuarantineSubnetStart field.
+// SetQuarantineSubnetStart gets a reference to the given NullableString and assigns it to the QuarantineSubnetStart field.
 func (o *UpdateNetworkDevice) SetQuarantineSubnetStart(v string) {
-	o.QuarantineSubnetStart = &v
+	o.QuarantineSubnetStart.Set(&v)
+}
+// SetQuarantineSubnetStartNil sets the value for QuarantineSubnetStart to be an explicit nil
+func (o *UpdateNetworkDevice) SetQuarantineSubnetStartNil() {
+	o.QuarantineSubnetStart.Set(nil)
 }
 
-// GetQuarantineSubnetEnd returns the QuarantineSubnetEnd field value if set, zero value otherwise.
+// UnsetQuarantineSubnetStart ensures that no value is present for QuarantineSubnetStart, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetQuarantineSubnetStart() {
+	o.QuarantineSubnetStart.Unset()
+}
+
+// GetQuarantineSubnetEnd returns the QuarantineSubnetEnd field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetQuarantineSubnetEnd() string {
-	if o == nil || IsNil(o.QuarantineSubnetEnd) {
+	if o == nil || IsNil(o.QuarantineSubnetEnd.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.QuarantineSubnetEnd
+	return *o.QuarantineSubnetEnd.Get()
 }
 
 // GetQuarantineSubnetEndOk returns a tuple with the QuarantineSubnetEnd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetQuarantineSubnetEndOk() (*string, bool) {
-	if o == nil || IsNil(o.QuarantineSubnetEnd) {
+	if o == nil {
 		return nil, false
 	}
-	return o.QuarantineSubnetEnd, true
+	return o.QuarantineSubnetEnd.Get(), o.QuarantineSubnetEnd.IsSet()
 }
 
 // HasQuarantineSubnetEnd returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasQuarantineSubnetEnd() bool {
-	if o != nil && !IsNil(o.QuarantineSubnetEnd) {
+	if o != nil && o.QuarantineSubnetEnd.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetQuarantineSubnetEnd gets a reference to the given string and assigns it to the QuarantineSubnetEnd field.
+// SetQuarantineSubnetEnd gets a reference to the given NullableString and assigns it to the QuarantineSubnetEnd field.
 func (o *UpdateNetworkDevice) SetQuarantineSubnetEnd(v string) {
-	o.QuarantineSubnetEnd = &v
+	o.QuarantineSubnetEnd.Set(&v)
+}
+// SetQuarantineSubnetEndNil sets the value for QuarantineSubnetEnd to be an explicit nil
+func (o *UpdateNetworkDevice) SetQuarantineSubnetEndNil() {
+	o.QuarantineSubnetEnd.Set(nil)
 }
 
-// GetQuarantineSubnetPrefixSize returns the QuarantineSubnetPrefixSize field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetQuarantineSubnetPrefixSize() float32 {
-	if o == nil || IsNil(o.QuarantineSubnetPrefixSize) {
-		var ret float32
+// UnsetQuarantineSubnetEnd ensures that no value is present for QuarantineSubnetEnd, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetQuarantineSubnetEnd() {
+	o.QuarantineSubnetEnd.Unset()
+}
+
+// GetQuarantineSubnetPrefixSize returns the QuarantineSubnetPrefixSize field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateNetworkDevice) GetQuarantineSubnetPrefixSize() int32 {
+	if o == nil || IsNil(o.QuarantineSubnetPrefixSize.Get()) {
+		var ret int32
 		return ret
 	}
-	return *o.QuarantineSubnetPrefixSize
+	return *o.QuarantineSubnetPrefixSize.Get()
 }
 
 // GetQuarantineSubnetPrefixSizeOk returns a tuple with the QuarantineSubnetPrefixSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetQuarantineSubnetPrefixSizeOk() (*float32, bool) {
-	if o == nil || IsNil(o.QuarantineSubnetPrefixSize) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateNetworkDevice) GetQuarantineSubnetPrefixSizeOk() (*int32, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.QuarantineSubnetPrefixSize, true
+	return o.QuarantineSubnetPrefixSize.Get(), o.QuarantineSubnetPrefixSize.IsSet()
 }
 
 // HasQuarantineSubnetPrefixSize returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasQuarantineSubnetPrefixSize() bool {
-	if o != nil && !IsNil(o.QuarantineSubnetPrefixSize) {
+	if o != nil && o.QuarantineSubnetPrefixSize.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetQuarantineSubnetPrefixSize gets a reference to the given float32 and assigns it to the QuarantineSubnetPrefixSize field.
-func (o *UpdateNetworkDevice) SetQuarantineSubnetPrefixSize(v float32) {
-	o.QuarantineSubnetPrefixSize = &v
+// SetQuarantineSubnetPrefixSize gets a reference to the given NullableInt32 and assigns it to the QuarantineSubnetPrefixSize field.
+func (o *UpdateNetworkDevice) SetQuarantineSubnetPrefixSize(v int32) {
+	o.QuarantineSubnetPrefixSize.Set(&v)
+}
+// SetQuarantineSubnetPrefixSizeNil sets the value for QuarantineSubnetPrefixSize to be an explicit nil
+func (o *UpdateNetworkDevice) SetQuarantineSubnetPrefixSizeNil() {
+	o.QuarantineSubnetPrefixSize.Set(nil)
 }
 
-// GetQuarantineSubnetGateway returns the QuarantineSubnetGateway field value if set, zero value otherwise.
+// UnsetQuarantineSubnetPrefixSize ensures that no value is present for QuarantineSubnetPrefixSize, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetQuarantineSubnetPrefixSize() {
+	o.QuarantineSubnetPrefixSize.Unset()
+}
+
+// GetQuarantineSubnetGateway returns the QuarantineSubnetGateway field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetQuarantineSubnetGateway() string {
-	if o == nil || IsNil(o.QuarantineSubnetGateway) {
+	if o == nil || IsNil(o.QuarantineSubnetGateway.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.QuarantineSubnetGateway
+	return *o.QuarantineSubnetGateway.Get()
 }
 
 // GetQuarantineSubnetGatewayOk returns a tuple with the QuarantineSubnetGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetQuarantineSubnetGatewayOk() (*string, bool) {
-	if o == nil || IsNil(o.QuarantineSubnetGateway) {
+	if o == nil {
 		return nil, false
 	}
-	return o.QuarantineSubnetGateway, true
+	return o.QuarantineSubnetGateway.Get(), o.QuarantineSubnetGateway.IsSet()
 }
 
 // HasQuarantineSubnetGateway returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasQuarantineSubnetGateway() bool {
-	if o != nil && !IsNil(o.QuarantineSubnetGateway) {
+	if o != nil && o.QuarantineSubnetGateway.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetQuarantineSubnetGateway gets a reference to the given string and assigns it to the QuarantineSubnetGateway field.
+// SetQuarantineSubnetGateway gets a reference to the given NullableString and assigns it to the QuarantineSubnetGateway field.
 func (o *UpdateNetworkDevice) SetQuarantineSubnetGateway(v string) {
-	o.QuarantineSubnetGateway = &v
+	o.QuarantineSubnetGateway.Set(&v)
+}
+// SetQuarantineSubnetGatewayNil sets the value for QuarantineSubnetGateway to be an explicit nil
+func (o *UpdateNetworkDevice) SetQuarantineSubnetGatewayNil() {
+	o.QuarantineSubnetGateway.Set(nil)
+}
+
+// UnsetQuarantineSubnetGateway ensures that no value is present for QuarantineSubnetGateway, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetQuarantineSubnetGateway() {
+	o.QuarantineSubnetGateway.Unset()
 }
 
 // GetQuarantineVlan returns the QuarantineVlan field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetQuarantineVlan() float32 {
+func (o *UpdateNetworkDevice) GetQuarantineVlan() int32 {
 	if o == nil || IsNil(o.QuarantineVlan) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.QuarantineVlan
@@ -859,7 +755,7 @@ func (o *UpdateNetworkDevice) GetQuarantineVlan() float32 {
 
 // GetQuarantineVlanOk returns a tuple with the QuarantineVlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetQuarantineVlanOk() (*float32, bool) {
+func (o *UpdateNetworkDevice) GetQuarantineVlanOk() (*int32, bool) {
 	if o == nil || IsNil(o.QuarantineVlan) {
 		return nil, false
 	}
@@ -875,361 +771,471 @@ func (o *UpdateNetworkDevice) HasQuarantineVlan() bool {
 	return false
 }
 
-// SetQuarantineVlan gets a reference to the given float32 and assigns it to the QuarantineVlan field.
-func (o *UpdateNetworkDevice) SetQuarantineVlan(v float32) {
+// SetQuarantineVlan gets a reference to the given int32 and assigns it to the QuarantineVlan field.
+func (o *UpdateNetworkDevice) SetQuarantineVlan(v int32) {
 	o.QuarantineVlan = &v
 }
 
-// GetManagementProtocol returns the ManagementProtocol field value if set, zero value otherwise.
+// GetManagementProtocol returns the ManagementProtocol field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetManagementProtocol() string {
-	if o == nil || IsNil(o.ManagementProtocol) {
+	if o == nil || IsNil(o.ManagementProtocol.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ManagementProtocol
+	return *o.ManagementProtocol.Get()
 }
 
 // GetManagementProtocolOk returns a tuple with the ManagementProtocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetManagementProtocolOk() (*string, bool) {
-	if o == nil || IsNil(o.ManagementProtocol) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ManagementProtocol, true
+	return o.ManagementProtocol.Get(), o.ManagementProtocol.IsSet()
 }
 
 // HasManagementProtocol returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasManagementProtocol() bool {
-	if o != nil && !IsNil(o.ManagementProtocol) {
+	if o != nil && o.ManagementProtocol.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetManagementProtocol gets a reference to the given string and assigns it to the ManagementProtocol field.
+// SetManagementProtocol gets a reference to the given NullableString and assigns it to the ManagementProtocol field.
 func (o *UpdateNetworkDevice) SetManagementProtocol(v string) {
-	o.ManagementProtocol = &v
+	o.ManagementProtocol.Set(&v)
+}
+// SetManagementProtocolNil sets the value for ManagementProtocol to be an explicit nil
+func (o *UpdateNetworkDevice) SetManagementProtocolNil() {
+	o.ManagementProtocol.Set(nil)
 }
 
-// GetManagementAddress returns the ManagementAddress field value if set, zero value otherwise.
+// UnsetManagementProtocol ensures that no value is present for ManagementProtocol, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetManagementProtocol() {
+	o.ManagementProtocol.Unset()
+}
+
+// GetManagementAddress returns the ManagementAddress field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetManagementAddress() string {
-	if o == nil || IsNil(o.ManagementAddress) {
+	if o == nil || IsNil(o.ManagementAddress.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ManagementAddress
+	return *o.ManagementAddress.Get()
 }
 
 // GetManagementAddressOk returns a tuple with the ManagementAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetManagementAddressOk() (*string, bool) {
-	if o == nil || IsNil(o.ManagementAddress) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ManagementAddress, true
+	return o.ManagementAddress.Get(), o.ManagementAddress.IsSet()
 }
 
 // HasManagementAddress returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasManagementAddress() bool {
-	if o != nil && !IsNil(o.ManagementAddress) {
+	if o != nil && o.ManagementAddress.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetManagementAddress gets a reference to the given string and assigns it to the ManagementAddress field.
+// SetManagementAddress gets a reference to the given NullableString and assigns it to the ManagementAddress field.
 func (o *UpdateNetworkDevice) SetManagementAddress(v string) {
-	o.ManagementAddress = &v
+	o.ManagementAddress.Set(&v)
+}
+// SetManagementAddressNil sets the value for ManagementAddress to be an explicit nil
+func (o *UpdateNetworkDevice) SetManagementAddressNil() {
+	o.ManagementAddress.Set(nil)
 }
 
-// GetManagementPort returns the ManagementPort field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetManagementPort() float32 {
-	if o == nil || IsNil(o.ManagementPort) {
-		var ret float32
+// UnsetManagementAddress ensures that no value is present for ManagementAddress, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetManagementAddress() {
+	o.ManagementAddress.Unset()
+}
+
+// GetManagementPort returns the ManagementPort field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateNetworkDevice) GetManagementPort() int32 {
+	if o == nil || IsNil(o.ManagementPort.Get()) {
+		var ret int32
 		return ret
 	}
-	return *o.ManagementPort
+	return *o.ManagementPort.Get()
 }
 
 // GetManagementPortOk returns a tuple with the ManagementPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetManagementPortOk() (*float32, bool) {
-	if o == nil || IsNil(o.ManagementPort) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateNetworkDevice) GetManagementPortOk() (*int32, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ManagementPort, true
+	return o.ManagementPort.Get(), o.ManagementPort.IsSet()
 }
 
 // HasManagementPort returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasManagementPort() bool {
-	if o != nil && !IsNil(o.ManagementPort) {
+	if o != nil && o.ManagementPort.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetManagementPort gets a reference to the given float32 and assigns it to the ManagementPort field.
-func (o *UpdateNetworkDevice) SetManagementPort(v float32) {
-	o.ManagementPort = &v
+// SetManagementPort gets a reference to the given NullableInt32 and assigns it to the ManagementPort field.
+func (o *UpdateNetworkDevice) SetManagementPort(v int32) {
+	o.ManagementPort.Set(&v)
+}
+// SetManagementPortNil sets the value for ManagementPort to be an explicit nil
+func (o *UpdateNetworkDevice) SetManagementPortNil() {
+	o.ManagementPort.Set(nil)
 }
 
-// GetUsername returns the Username field value if set, zero value otherwise.
+// UnsetManagementPort ensures that no value is present for ManagementPort, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetManagementPort() {
+	o.ManagementPort.Unset()
+}
+
+// GetUsername returns the Username field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetUsername() string {
-	if o == nil || IsNil(o.Username) {
+	if o == nil || IsNil(o.Username.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Username
+	return *o.Username.Get()
 }
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Username) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Username, true
+	return o.Username.Get(), o.Username.IsSet()
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
+	if o != nil && o.Username.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetUsername gets a reference to the given string and assigns it to the Username field.
+// SetUsername gets a reference to the given NullableString and assigns it to the Username field.
 func (o *UpdateNetworkDevice) SetUsername(v string) {
-	o.Username = &v
+	o.Username.Set(&v)
+}
+// SetUsernameNil sets the value for Username to be an explicit nil
+func (o *UpdateNetworkDevice) SetUsernameNil() {
+	o.Username.Set(nil)
 }
 
-// GetManagementPassword returns the ManagementPassword field value if set, zero value otherwise.
+// UnsetUsername ensures that no value is present for Username, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetUsername() {
+	o.Username.Unset()
+}
+
+// GetManagementPassword returns the ManagementPassword field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetManagementPassword() string {
-	if o == nil || IsNil(o.ManagementPassword) {
+	if o == nil || IsNil(o.ManagementPassword.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ManagementPassword
+	return *o.ManagementPassword.Get()
 }
 
 // GetManagementPasswordOk returns a tuple with the ManagementPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetManagementPasswordOk() (*string, bool) {
-	if o == nil || IsNil(o.ManagementPassword) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ManagementPassword, true
+	return o.ManagementPassword.Get(), o.ManagementPassword.IsSet()
 }
 
 // HasManagementPassword returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasManagementPassword() bool {
-	if o != nil && !IsNil(o.ManagementPassword) {
+	if o != nil && o.ManagementPassword.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetManagementPassword gets a reference to the given string and assigns it to the ManagementPassword field.
+// SetManagementPassword gets a reference to the given NullableString and assigns it to the ManagementPassword field.
 func (o *UpdateNetworkDevice) SetManagementPassword(v string) {
-	o.ManagementPassword = &v
+	o.ManagementPassword.Set(&v)
+}
+// SetManagementPasswordNil sets the value for ManagementPassword to be an explicit nil
+func (o *UpdateNetworkDevice) SetManagementPasswordNil() {
+	o.ManagementPassword.Set(nil)
 }
 
-// GetManagementAddressGateway returns the ManagementAddressGateway field value if set, zero value otherwise.
+// UnsetManagementPassword ensures that no value is present for ManagementPassword, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetManagementPassword() {
+	o.ManagementPassword.Unset()
+}
+
+// GetManagementAddressGateway returns the ManagementAddressGateway field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetManagementAddressGateway() string {
-	if o == nil || IsNil(o.ManagementAddressGateway) {
+	if o == nil || IsNil(o.ManagementAddressGateway.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ManagementAddressGateway
+	return *o.ManagementAddressGateway.Get()
 }
 
 // GetManagementAddressGatewayOk returns a tuple with the ManagementAddressGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetManagementAddressGatewayOk() (*string, bool) {
-	if o == nil || IsNil(o.ManagementAddressGateway) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ManagementAddressGateway, true
+	return o.ManagementAddressGateway.Get(), o.ManagementAddressGateway.IsSet()
 }
 
 // HasManagementAddressGateway returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasManagementAddressGateway() bool {
-	if o != nil && !IsNil(o.ManagementAddressGateway) {
+	if o != nil && o.ManagementAddressGateway.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetManagementAddressGateway gets a reference to the given string and assigns it to the ManagementAddressGateway field.
+// SetManagementAddressGateway gets a reference to the given NullableString and assigns it to the ManagementAddressGateway field.
 func (o *UpdateNetworkDevice) SetManagementAddressGateway(v string) {
-	o.ManagementAddressGateway = &v
+	o.ManagementAddressGateway.Set(&v)
+}
+// SetManagementAddressGatewayNil sets the value for ManagementAddressGateway to be an explicit nil
+func (o *UpdateNetworkDevice) SetManagementAddressGatewayNil() {
+	o.ManagementAddressGateway.Set(nil)
 }
 
-// GetManagementAddressMask returns the ManagementAddressMask field value if set, zero value otherwise.
+// UnsetManagementAddressGateway ensures that no value is present for ManagementAddressGateway, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetManagementAddressGateway() {
+	o.ManagementAddressGateway.Unset()
+}
+
+// GetManagementAddressMask returns the ManagementAddressMask field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetManagementAddressMask() string {
-	if o == nil || IsNil(o.ManagementAddressMask) {
+	if o == nil || IsNil(o.ManagementAddressMask.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ManagementAddressMask
+	return *o.ManagementAddressMask.Get()
 }
 
 // GetManagementAddressMaskOk returns a tuple with the ManagementAddressMask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetManagementAddressMaskOk() (*string, bool) {
-	if o == nil || IsNil(o.ManagementAddressMask) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ManagementAddressMask, true
+	return o.ManagementAddressMask.Get(), o.ManagementAddressMask.IsSet()
 }
 
 // HasManagementAddressMask returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasManagementAddressMask() bool {
-	if o != nil && !IsNil(o.ManagementAddressMask) {
+	if o != nil && o.ManagementAddressMask.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetManagementAddressMask gets a reference to the given string and assigns it to the ManagementAddressMask field.
+// SetManagementAddressMask gets a reference to the given NullableString and assigns it to the ManagementAddressMask field.
 func (o *UpdateNetworkDevice) SetManagementAddressMask(v string) {
-	o.ManagementAddressMask = &v
+	o.ManagementAddressMask.Set(&v)
+}
+// SetManagementAddressMaskNil sets the value for ManagementAddressMask to be an explicit nil
+func (o *UpdateNetworkDevice) SetManagementAddressMaskNil() {
+	o.ManagementAddressMask.Set(nil)
 }
 
-// GetManagementMAC returns the ManagementMAC field value if set, zero value otherwise.
+// UnsetManagementAddressMask ensures that no value is present for ManagementAddressMask, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetManagementAddressMask() {
+	o.ManagementAddressMask.Unset()
+}
+
+// GetManagementMAC returns the ManagementMAC field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetManagementMAC() string {
-	if o == nil || IsNil(o.ManagementMAC) {
+	if o == nil || IsNil(o.ManagementMAC.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ManagementMAC
+	return *o.ManagementMAC.Get()
 }
 
 // GetManagementMACOk returns a tuple with the ManagementMAC field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetManagementMACOk() (*string, bool) {
-	if o == nil || IsNil(o.ManagementMAC) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ManagementMAC, true
+	return o.ManagementMAC.Get(), o.ManagementMAC.IsSet()
 }
 
 // HasManagementMAC returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasManagementMAC() bool {
-	if o != nil && !IsNil(o.ManagementMAC) {
+	if o != nil && o.ManagementMAC.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetManagementMAC gets a reference to the given string and assigns it to the ManagementMAC field.
+// SetManagementMAC gets a reference to the given NullableString and assigns it to the ManagementMAC field.
 func (o *UpdateNetworkDevice) SetManagementMAC(v string) {
-	o.ManagementMAC = &v
+	o.ManagementMAC.Set(&v)
+}
+// SetManagementMACNil sets the value for ManagementMAC to be an explicit nil
+func (o *UpdateNetworkDevice) SetManagementMACNil() {
+	o.ManagementMAC.Set(nil)
 }
 
-// GetLoopbackAddress returns the LoopbackAddress field value if set, zero value otherwise.
+// UnsetManagementMAC ensures that no value is present for ManagementMAC, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetManagementMAC() {
+	o.ManagementMAC.Unset()
+}
+
+// GetLoopbackAddress returns the LoopbackAddress field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetLoopbackAddress() string {
-	if o == nil || IsNil(o.LoopbackAddress) {
+	if o == nil || IsNil(o.LoopbackAddress.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.LoopbackAddress
+	return *o.LoopbackAddress.Get()
 }
 
 // GetLoopbackAddressOk returns a tuple with the LoopbackAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetLoopbackAddressOk() (*string, bool) {
-	if o == nil || IsNil(o.LoopbackAddress) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LoopbackAddress, true
+	return o.LoopbackAddress.Get(), o.LoopbackAddress.IsSet()
 }
 
 // HasLoopbackAddress returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasLoopbackAddress() bool {
-	if o != nil && !IsNil(o.LoopbackAddress) {
+	if o != nil && o.LoopbackAddress.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetLoopbackAddress gets a reference to the given string and assigns it to the LoopbackAddress field.
+// SetLoopbackAddress gets a reference to the given NullableString and assigns it to the LoopbackAddress field.
 func (o *UpdateNetworkDevice) SetLoopbackAddress(v string) {
-	o.LoopbackAddress = &v
+	o.LoopbackAddress.Set(&v)
+}
+// SetLoopbackAddressNil sets the value for LoopbackAddress to be an explicit nil
+func (o *UpdateNetworkDevice) SetLoopbackAddressNil() {
+	o.LoopbackAddress.Set(nil)
 }
 
-// GetVtepAddress returns the VtepAddress field value if set, zero value otherwise.
+// UnsetLoopbackAddress ensures that no value is present for LoopbackAddress, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetLoopbackAddress() {
+	o.LoopbackAddress.Unset()
+}
+
+// GetVtepAddress returns the VtepAddress field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetVtepAddress() string {
-	if o == nil || IsNil(o.VtepAddress) {
+	if o == nil || IsNil(o.VtepAddress.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.VtepAddress
+	return *o.VtepAddress.Get()
 }
 
 // GetVtepAddressOk returns a tuple with the VtepAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetVtepAddressOk() (*string, bool) {
-	if o == nil || IsNil(o.VtepAddress) {
+	if o == nil {
 		return nil, false
 	}
-	return o.VtepAddress, true
+	return o.VtepAddress.Get(), o.VtepAddress.IsSet()
 }
 
 // HasVtepAddress returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasVtepAddress() bool {
-	if o != nil && !IsNil(o.VtepAddress) {
+	if o != nil && o.VtepAddress.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetVtepAddress gets a reference to the given string and assigns it to the VtepAddress field.
+// SetVtepAddress gets a reference to the given NullableString and assigns it to the VtepAddress field.
 func (o *UpdateNetworkDevice) SetVtepAddress(v string) {
-	o.VtepAddress = &v
+	o.VtepAddress.Set(&v)
+}
+// SetVtepAddressNil sets the value for VtepAddress to be an explicit nil
+func (o *UpdateNetworkDevice) SetVtepAddressNil() {
+	o.VtepAddress.Set(nil)
 }
 
-// GetAsn returns the Asn field value if set, zero value otherwise.
+// UnsetVtepAddress ensures that no value is present for VtepAddress, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetVtepAddress() {
+	o.VtepAddress.Unset()
+}
+
+// GetAsn returns the Asn field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetAsn() float32 {
-	if o == nil || IsNil(o.Asn) {
+	if o == nil || IsNil(o.Asn.Get()) {
 		var ret float32
 		return ret
 	}
-	return *o.Asn
+	return *o.Asn.Get()
 }
 
 // GetAsnOk returns a tuple with the Asn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetAsnOk() (*float32, bool) {
-	if o == nil || IsNil(o.Asn) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Asn, true
+	return o.Asn.Get(), o.Asn.IsSet()
 }
 
 // HasAsn returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasAsn() bool {
-	if o != nil && !IsNil(o.Asn) {
+	if o != nil && o.Asn.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAsn gets a reference to the given float32 and assigns it to the Asn field.
+// SetAsn gets a reference to the given NullableFloat32 and assigns it to the Asn field.
 func (o *UpdateNetworkDevice) SetAsn(v float32) {
-	o.Asn = &v
+	o.Asn.Set(&v)
+}
+// SetAsnNil sets the value for Asn to be an explicit nil
+func (o *UpdateNetworkDevice) SetAsnNil() {
+	o.Asn.Set(nil)
+}
+
+// UnsetAsn ensures that no value is present for Asn, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetAsn() {
+	o.Asn.Unset()
 }
 
 // GetNetworkTypesAllowed returns the NetworkTypesAllowed field value if set, zero value otherwise.
@@ -1264,260 +1270,340 @@ func (o *UpdateNetworkDevice) SetNetworkTypesAllowed(v []string) {
 	o.NetworkTypesAllowed = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Description
+	return *o.Description.Get()
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return o.Description.Get(), o.Description.IsSet()
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && o.Description.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
 func (o *UpdateNetworkDevice) SetDescription(v string) {
-	o.Description = &v
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *UpdateNetworkDevice) SetDescriptionNil() {
+	o.Description.Set(nil)
 }
 
-// GetCountry returns the Country field value if set, zero value otherwise.
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetDescription() {
+	o.Description.Unset()
+}
+
+// GetCountry returns the Country field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetCountry() string {
-	if o == nil || IsNil(o.Country) {
+	if o == nil || IsNil(o.Country.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Country
+	return *o.Country.Get()
 }
 
 // GetCountryOk returns a tuple with the Country field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetCountryOk() (*string, bool) {
-	if o == nil || IsNil(o.Country) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Country, true
+	return o.Country.Get(), o.Country.IsSet()
 }
 
 // HasCountry returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasCountry() bool {
-	if o != nil && !IsNil(o.Country) {
+	if o != nil && o.Country.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCountry gets a reference to the given string and assigns it to the Country field.
+// SetCountry gets a reference to the given NullableString and assigns it to the Country field.
 func (o *UpdateNetworkDevice) SetCountry(v string) {
-	o.Country = &v
+	o.Country.Set(&v)
+}
+// SetCountryNil sets the value for Country to be an explicit nil
+func (o *UpdateNetworkDevice) SetCountryNil() {
+	o.Country.Set(nil)
 }
 
-// GetCity returns the City field value if set, zero value otherwise.
+// UnsetCountry ensures that no value is present for Country, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetCountry() {
+	o.Country.Unset()
+}
+
+// GetCity returns the City field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetCity() string {
-	if o == nil || IsNil(o.City) {
+	if o == nil || IsNil(o.City.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.City
+	return *o.City.Get()
 }
 
 // GetCityOk returns a tuple with the City field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetCityOk() (*string, bool) {
-	if o == nil || IsNil(o.City) {
+	if o == nil {
 		return nil, false
 	}
-	return o.City, true
+	return o.City.Get(), o.City.IsSet()
 }
 
 // HasCity returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasCity() bool {
-	if o != nil && !IsNil(o.City) {
+	if o != nil && o.City.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCity gets a reference to the given string and assigns it to the City field.
+// SetCity gets a reference to the given NullableString and assigns it to the City field.
 func (o *UpdateNetworkDevice) SetCity(v string) {
-	o.City = &v
+	o.City.Set(&v)
+}
+// SetCityNil sets the value for City to be an explicit nil
+func (o *UpdateNetworkDevice) SetCityNil() {
+	o.City.Set(nil)
 }
 
-// GetDatacenterMeta returns the DatacenterMeta field value if set, zero value otherwise.
+// UnsetCity ensures that no value is present for City, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetCity() {
+	o.City.Unset()
+}
+
+// GetDatacenterMeta returns the DatacenterMeta field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetDatacenterMeta() string {
-	if o == nil || IsNil(o.DatacenterMeta) {
+	if o == nil || IsNil(o.DatacenterMeta.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.DatacenterMeta
+	return *o.DatacenterMeta.Get()
 }
 
 // GetDatacenterMetaOk returns a tuple with the DatacenterMeta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetDatacenterMetaOk() (*string, bool) {
-	if o == nil || IsNil(o.DatacenterMeta) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DatacenterMeta, true
+	return o.DatacenterMeta.Get(), o.DatacenterMeta.IsSet()
 }
 
 // HasDatacenterMeta returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasDatacenterMeta() bool {
-	if o != nil && !IsNil(o.DatacenterMeta) {
+	if o != nil && o.DatacenterMeta.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDatacenterMeta gets a reference to the given string and assigns it to the DatacenterMeta field.
+// SetDatacenterMeta gets a reference to the given NullableString and assigns it to the DatacenterMeta field.
 func (o *UpdateNetworkDevice) SetDatacenterMeta(v string) {
-	o.DatacenterMeta = &v
+	o.DatacenterMeta.Set(&v)
+}
+// SetDatacenterMetaNil sets the value for DatacenterMeta to be an explicit nil
+func (o *UpdateNetworkDevice) SetDatacenterMetaNil() {
+	o.DatacenterMeta.Set(nil)
 }
 
-// GetDatacenterRoom returns the DatacenterRoom field value if set, zero value otherwise.
+// UnsetDatacenterMeta ensures that no value is present for DatacenterMeta, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetDatacenterMeta() {
+	o.DatacenterMeta.Unset()
+}
+
+// GetDatacenterRoom returns the DatacenterRoom field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetDatacenterRoom() string {
-	if o == nil || IsNil(o.DatacenterRoom) {
+	if o == nil || IsNil(o.DatacenterRoom.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.DatacenterRoom
+	return *o.DatacenterRoom.Get()
 }
 
 // GetDatacenterRoomOk returns a tuple with the DatacenterRoom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetDatacenterRoomOk() (*string, bool) {
-	if o == nil || IsNil(o.DatacenterRoom) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DatacenterRoom, true
+	return o.DatacenterRoom.Get(), o.DatacenterRoom.IsSet()
 }
 
 // HasDatacenterRoom returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasDatacenterRoom() bool {
-	if o != nil && !IsNil(o.DatacenterRoom) {
+	if o != nil && o.DatacenterRoom.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDatacenterRoom gets a reference to the given string and assigns it to the DatacenterRoom field.
+// SetDatacenterRoom gets a reference to the given NullableString and assigns it to the DatacenterRoom field.
 func (o *UpdateNetworkDevice) SetDatacenterRoom(v string) {
-	o.DatacenterRoom = &v
+	o.DatacenterRoom.Set(&v)
+}
+// SetDatacenterRoomNil sets the value for DatacenterRoom to be an explicit nil
+func (o *UpdateNetworkDevice) SetDatacenterRoomNil() {
+	o.DatacenterRoom.Set(nil)
 }
 
-// GetDatacenterRack returns the DatacenterRack field value if set, zero value otherwise.
+// UnsetDatacenterRoom ensures that no value is present for DatacenterRoom, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetDatacenterRoom() {
+	o.DatacenterRoom.Unset()
+}
+
+// GetDatacenterRack returns the DatacenterRack field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetDatacenterRack() string {
-	if o == nil || IsNil(o.DatacenterRack) {
+	if o == nil || IsNil(o.DatacenterRack.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.DatacenterRack
+	return *o.DatacenterRack.Get()
 }
 
 // GetDatacenterRackOk returns a tuple with the DatacenterRack field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetDatacenterRackOk() (*string, bool) {
-	if o == nil || IsNil(o.DatacenterRack) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DatacenterRack, true
+	return o.DatacenterRack.Get(), o.DatacenterRack.IsSet()
 }
 
 // HasDatacenterRack returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasDatacenterRack() bool {
-	if o != nil && !IsNil(o.DatacenterRack) {
+	if o != nil && o.DatacenterRack.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDatacenterRack gets a reference to the given string and assigns it to the DatacenterRack field.
+// SetDatacenterRack gets a reference to the given NullableString and assigns it to the DatacenterRack field.
 func (o *UpdateNetworkDevice) SetDatacenterRack(v string) {
-	o.DatacenterRack = &v
+	o.DatacenterRack.Set(&v)
+}
+// SetDatacenterRackNil sets the value for DatacenterRack to be an explicit nil
+func (o *UpdateNetworkDevice) SetDatacenterRackNil() {
+	o.DatacenterRack.Set(nil)
 }
 
-// GetRackPositionUpperUnit returns the RackPositionUpperUnit field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetRackPositionUpperUnit() float32 {
-	if o == nil || IsNil(o.RackPositionUpperUnit) {
-		var ret float32
+// UnsetDatacenterRack ensures that no value is present for DatacenterRack, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetDatacenterRack() {
+	o.DatacenterRack.Unset()
+}
+
+// GetRackPositionUpperUnit returns the RackPositionUpperUnit field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateNetworkDevice) GetRackPositionUpperUnit() int32 {
+	if o == nil || IsNil(o.RackPositionUpperUnit.Get()) {
+		var ret int32
 		return ret
 	}
-	return *o.RackPositionUpperUnit
+	return *o.RackPositionUpperUnit.Get()
 }
 
 // GetRackPositionUpperUnitOk returns a tuple with the RackPositionUpperUnit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetRackPositionUpperUnitOk() (*float32, bool) {
-	if o == nil || IsNil(o.RackPositionUpperUnit) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateNetworkDevice) GetRackPositionUpperUnitOk() (*int32, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.RackPositionUpperUnit, true
+	return o.RackPositionUpperUnit.Get(), o.RackPositionUpperUnit.IsSet()
 }
 
 // HasRackPositionUpperUnit returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasRackPositionUpperUnit() bool {
-	if o != nil && !IsNil(o.RackPositionUpperUnit) {
+	if o != nil && o.RackPositionUpperUnit.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRackPositionUpperUnit gets a reference to the given float32 and assigns it to the RackPositionUpperUnit field.
-func (o *UpdateNetworkDevice) SetRackPositionUpperUnit(v float32) {
-	o.RackPositionUpperUnit = &v
+// SetRackPositionUpperUnit gets a reference to the given NullableInt32 and assigns it to the RackPositionUpperUnit field.
+func (o *UpdateNetworkDevice) SetRackPositionUpperUnit(v int32) {
+	o.RackPositionUpperUnit.Set(&v)
+}
+// SetRackPositionUpperUnitNil sets the value for RackPositionUpperUnit to be an explicit nil
+func (o *UpdateNetworkDevice) SetRackPositionUpperUnitNil() {
+	o.RackPositionUpperUnit.Set(nil)
 }
 
-// GetRackPositionLowerUnit returns the RackPositionLowerUnit field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetRackPositionLowerUnit() float32 {
-	if o == nil || IsNil(o.RackPositionLowerUnit) {
-		var ret float32
+// UnsetRackPositionUpperUnit ensures that no value is present for RackPositionUpperUnit, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetRackPositionUpperUnit() {
+	o.RackPositionUpperUnit.Unset()
+}
+
+// GetRackPositionLowerUnit returns the RackPositionLowerUnit field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateNetworkDevice) GetRackPositionLowerUnit() int32 {
+	if o == nil || IsNil(o.RackPositionLowerUnit.Get()) {
+		var ret int32
 		return ret
 	}
-	return *o.RackPositionLowerUnit
+	return *o.RackPositionLowerUnit.Get()
 }
 
 // GetRackPositionLowerUnitOk returns a tuple with the RackPositionLowerUnit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetRackPositionLowerUnitOk() (*float32, bool) {
-	if o == nil || IsNil(o.RackPositionLowerUnit) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateNetworkDevice) GetRackPositionLowerUnitOk() (*int32, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.RackPositionLowerUnit, true
+	return o.RackPositionLowerUnit.Get(), o.RackPositionLowerUnit.IsSet()
 }
 
 // HasRackPositionLowerUnit returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasRackPositionLowerUnit() bool {
-	if o != nil && !IsNil(o.RackPositionLowerUnit) {
+	if o != nil && o.RackPositionLowerUnit.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRackPositionLowerUnit gets a reference to the given float32 and assigns it to the RackPositionLowerUnit field.
-func (o *UpdateNetworkDevice) SetRackPositionLowerUnit(v float32) {
-	o.RackPositionLowerUnit = &v
+// SetRackPositionLowerUnit gets a reference to the given NullableInt32 and assigns it to the RackPositionLowerUnit field.
+func (o *UpdateNetworkDevice) SetRackPositionLowerUnit(v int32) {
+	o.RackPositionLowerUnit.Set(&v)
+}
+// SetRackPositionLowerUnitNil sets the value for RackPositionLowerUnit to be an explicit nil
+func (o *UpdateNetworkDevice) SetRackPositionLowerUnitNil() {
+	o.RackPositionLowerUnit.Set(nil)
+}
+
+// UnsetRackPositionLowerUnit ensures that no value is present for RackPositionLowerUnit, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetRackPositionLowerUnit() {
+	o.RackPositionLowerUnit.Unset()
 }
 
 // GetSerialNumber returns the SerialNumber field value if set, zero value otherwise.
@@ -1584,41 +1670,51 @@ func (o *UpdateNetworkDevice) SetOrderIndex(v float32) {
 	o.OrderIndex = &v
 }
 
-// GetDefaultMtu returns the DefaultMtu field value if set, zero value otherwise.
+// GetDefaultMtu returns the DefaultMtu field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetDefaultMtu() float32 {
-	if o == nil || IsNil(o.DefaultMtu) {
+	if o == nil || IsNil(o.DefaultMtu.Get()) {
 		var ret float32
 		return ret
 	}
-	return *o.DefaultMtu
+	return *o.DefaultMtu.Get()
 }
 
 // GetDefaultMtuOk returns a tuple with the DefaultMtu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetDefaultMtuOk() (*float32, bool) {
-	if o == nil || IsNil(o.DefaultMtu) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DefaultMtu, true
+	return o.DefaultMtu.Get(), o.DefaultMtu.IsSet()
 }
 
 // HasDefaultMtu returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasDefaultMtu() bool {
-	if o != nil && !IsNil(o.DefaultMtu) {
+	if o != nil && o.DefaultMtu.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDefaultMtu gets a reference to the given float32 and assigns it to the DefaultMtu field.
+// SetDefaultMtu gets a reference to the given NullableFloat32 and assigns it to the DefaultMtu field.
 func (o *UpdateNetworkDevice) SetDefaultMtu(v float32) {
-	o.DefaultMtu = &v
+	o.DefaultMtu.Set(&v)
+}
+// SetDefaultMtuNil sets the value for DefaultMtu to be an explicit nil
+func (o *UpdateNetworkDevice) SetDefaultMtuNil() {
+	o.DefaultMtu.Set(nil)
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
+// UnsetDefaultMtu ensures that no value is present for DefaultMtu, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetDefaultMtu() {
+	o.DefaultMtu.Unset()
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
+	if o == nil {
 		var ret []string
 		return ret
 	}
@@ -1627,6 +1723,7 @@ func (o *UpdateNetworkDevice) GetTags() []string {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetTagsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
@@ -1680,100 +1777,46 @@ func (o *UpdateNetworkDevice) SetRequiresOsInstall(v bool) {
 	o.RequiresOsInstall = &v
 }
 
-// GetSiteId returns the SiteId field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetSiteId() float32 {
-	if o == nil || IsNil(o.SiteId) {
-		var ret float32
-		return ret
-	}
-	return *o.SiteId
-}
-
-// GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetSiteIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.SiteId) {
-		return nil, false
-	}
-	return o.SiteId, true
-}
-
-// HasSiteId returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasSiteId() bool {
-	if o != nil && !IsNil(o.SiteId) {
-		return true
-	}
-
-	return false
-}
-
-// SetSiteId gets a reference to the given float32 and assigns it to the SiteId field.
-func (o *UpdateNetworkDevice) SetSiteId(v float32) {
-	o.SiteId = &v
-}
-
-// GetPrimaryWanIpv6SubnetPoolId returns the PrimaryWanIpv6SubnetPoolId field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetPrimaryWanIpv6SubnetPoolId() float32 {
-	if o == nil || IsNil(o.PrimaryWanIpv6SubnetPoolId) {
-		var ret float32
-		return ret
-	}
-	return *o.PrimaryWanIpv6SubnetPoolId
-}
-
-// GetPrimaryWanIpv6SubnetPoolIdOk returns a tuple with the PrimaryWanIpv6SubnetPoolId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetPrimaryWanIpv6SubnetPoolIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.PrimaryWanIpv6SubnetPoolId) {
-		return nil, false
-	}
-	return o.PrimaryWanIpv6SubnetPoolId, true
-}
-
-// HasPrimaryWanIpv6SubnetPoolId returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasPrimaryWanIpv6SubnetPoolId() bool {
-	if o != nil && !IsNil(o.PrimaryWanIpv6SubnetPoolId) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimaryWanIpv6SubnetPoolId gets a reference to the given float32 and assigns it to the PrimaryWanIpv6SubnetPoolId field.
-func (o *UpdateNetworkDevice) SetPrimaryWanIpv6SubnetPoolId(v float32) {
-	o.PrimaryWanIpv6SubnetPoolId = &v
-}
-
-// GetOverwriteWithHostnameFromFetchedSwitch returns the OverwriteWithHostnameFromFetchedSwitch field value if set, zero value otherwise.
+// GetOverwriteWithHostnameFromFetchedSwitch returns the OverwriteWithHostnameFromFetchedSwitch field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateNetworkDevice) GetOverwriteWithHostnameFromFetchedSwitch() bool {
-	if o == nil || IsNil(o.OverwriteWithHostnameFromFetchedSwitch) {
+	if o == nil || IsNil(o.OverwriteWithHostnameFromFetchedSwitch.Get()) {
 		var ret bool
 		return ret
 	}
-	return *o.OverwriteWithHostnameFromFetchedSwitch
+	return *o.OverwriteWithHostnameFromFetchedSwitch.Get()
 }
 
 // GetOverwriteWithHostnameFromFetchedSwitchOk returns a tuple with the OverwriteWithHostnameFromFetchedSwitch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetOverwriteWithHostnameFromFetchedSwitchOk() (*bool, bool) {
-	if o == nil || IsNil(o.OverwriteWithHostnameFromFetchedSwitch) {
+	if o == nil {
 		return nil, false
 	}
-	return o.OverwriteWithHostnameFromFetchedSwitch, true
+	return o.OverwriteWithHostnameFromFetchedSwitch.Get(), o.OverwriteWithHostnameFromFetchedSwitch.IsSet()
 }
 
 // HasOverwriteWithHostnameFromFetchedSwitch returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasOverwriteWithHostnameFromFetchedSwitch() bool {
-	if o != nil && !IsNil(o.OverwriteWithHostnameFromFetchedSwitch) {
+	if o != nil && o.OverwriteWithHostnameFromFetchedSwitch.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetOverwriteWithHostnameFromFetchedSwitch gets a reference to the given bool and assigns it to the OverwriteWithHostnameFromFetchedSwitch field.
+// SetOverwriteWithHostnameFromFetchedSwitch gets a reference to the given NullableBool and assigns it to the OverwriteWithHostnameFromFetchedSwitch field.
 func (o *UpdateNetworkDevice) SetOverwriteWithHostnameFromFetchedSwitch(v bool) {
-	o.OverwriteWithHostnameFromFetchedSwitch = &v
+	o.OverwriteWithHostnameFromFetchedSwitch.Set(&v)
+}
+// SetOverwriteWithHostnameFromFetchedSwitchNil sets the value for OverwriteWithHostnameFromFetchedSwitch to be an explicit nil
+func (o *UpdateNetworkDevice) SetOverwriteWithHostnameFromFetchedSwitchNil() {
+	o.OverwriteWithHostnameFromFetchedSwitch.Set(nil)
+}
+
+// UnsetOverwriteWithHostnameFromFetchedSwitch ensures that no value is present for OverwriteWithHostnameFromFetchedSwitch, not even an explicit nil
+func (o *UpdateNetworkDevice) UnsetOverwriteWithHostnameFromFetchedSwitch() {
+	o.OverwriteWithHostnameFromFetchedSwitch.Unset()
 }
 
 func (o UpdateNetworkDevice) MarshalJSON() ([]byte, error) {
@@ -1786,6 +1829,9 @@ func (o UpdateNetworkDevice) MarshalJSON() ([]byte, error) {
 
 func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SiteId) {
+		toSerialize["siteId"] = o.SiteId
+	}
 	if !IsNil(o.DatacenterName) {
 		toSerialize["datacenterName"] = o.DatacenterName
 	}
@@ -1795,8 +1841,8 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ChassisRackId) {
 		toSerialize["chassisRackId"] = o.ChassisRackId
 	}
-	if !IsNil(o.ChassisIdentifier) {
-		toSerialize["chassisIdentifier"] = o.ChassisIdentifier
+	if o.ChassisIdentifier.IsSet() {
+		toSerialize["chassisIdentifier"] = o.ChassisIdentifier.Get()
 	}
 	if !IsNil(o.ProvisionerType) {
 		toSerialize["provisionerType"] = o.ProvisionerType
@@ -1807,14 +1853,14 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Position) {
 		toSerialize["position"] = o.Position
 	}
-	if !IsNil(o.TorLinkedId) {
-		toSerialize["torLinkedId"] = o.TorLinkedId
+	if o.TorLinkedId.IsSet() {
+		toSerialize["torLinkedId"] = o.TorLinkedId.Get()
 	}
 	if !IsNil(o.IsGateway) {
 		toSerialize["isGateway"] = o.IsGateway
 	}
-	if !IsNil(o.SyslogEnabled) {
-		toSerialize["syslogEnabled"] = o.SyslogEnabled
+	if o.SyslogEnabled.IsSet() {
+		toSerialize["syslogEnabled"] = o.SyslogEnabled.Get()
 	}
 	if !IsNil(o.IsStorageSwitch) {
 		toSerialize["isStorageSwitch"] = o.IsStorageSwitch
@@ -1822,98 +1868,80 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsBorderDevice) {
 		toSerialize["isBorderDevice"] = o.IsBorderDevice
 	}
-	if !IsNil(o.PrimaryWanIpv4SubnetPool) {
-		toSerialize["primaryWanIpv4SubnetPool"] = o.PrimaryWanIpv4SubnetPool
+	if o.QuarantineSubnetStart.IsSet() {
+		toSerialize["quarantineSubnetStart"] = o.QuarantineSubnetStart.Get()
 	}
-	if !IsNil(o.PrimaryWanIpv4SubnetPrefixSize) {
-		toSerialize["primaryWanIpv4SubnetPrefixSize"] = o.PrimaryWanIpv4SubnetPrefixSize
+	if o.QuarantineSubnetEnd.IsSet() {
+		toSerialize["quarantineSubnetEnd"] = o.QuarantineSubnetEnd.Get()
 	}
-	if !IsNil(o.PrimaryWanIpv6SubnetPool) {
-		toSerialize["primaryWanIpv6SubnetPool"] = o.PrimaryWanIpv6SubnetPool
+	if o.QuarantineSubnetPrefixSize.IsSet() {
+		toSerialize["quarantineSubnetPrefixSize"] = o.QuarantineSubnetPrefixSize.Get()
 	}
-	if !IsNil(o.PrimaryWanIpv6SubnetPrefixSize) {
-		toSerialize["primaryWanIpv6SubnetPrefixSize"] = o.PrimaryWanIpv6SubnetPrefixSize
-	}
-	if !IsNil(o.PrimarySanSubnetPool) {
-		toSerialize["primarySanSubnetPool"] = o.PrimarySanSubnetPool
-	}
-	if !IsNil(o.PrimarySanSubnetPrefixSize) {
-		toSerialize["primarySanSubnetPrefixSize"] = o.PrimarySanSubnetPrefixSize
-	}
-	if !IsNil(o.QuarantineSubnetStart) {
-		toSerialize["quarantineSubnetStart"] = o.QuarantineSubnetStart
-	}
-	if !IsNil(o.QuarantineSubnetEnd) {
-		toSerialize["quarantineSubnetEnd"] = o.QuarantineSubnetEnd
-	}
-	if !IsNil(o.QuarantineSubnetPrefixSize) {
-		toSerialize["quarantineSubnetPrefixSize"] = o.QuarantineSubnetPrefixSize
-	}
-	if !IsNil(o.QuarantineSubnetGateway) {
-		toSerialize["quarantineSubnetGateway"] = o.QuarantineSubnetGateway
+	if o.QuarantineSubnetGateway.IsSet() {
+		toSerialize["quarantineSubnetGateway"] = o.QuarantineSubnetGateway.Get()
 	}
 	if !IsNil(o.QuarantineVlan) {
 		toSerialize["quarantineVlan"] = o.QuarantineVlan
 	}
-	if !IsNil(o.ManagementProtocol) {
-		toSerialize["managementProtocol"] = o.ManagementProtocol
+	if o.ManagementProtocol.IsSet() {
+		toSerialize["managementProtocol"] = o.ManagementProtocol.Get()
 	}
-	if !IsNil(o.ManagementAddress) {
-		toSerialize["managementAddress"] = o.ManagementAddress
+	if o.ManagementAddress.IsSet() {
+		toSerialize["managementAddress"] = o.ManagementAddress.Get()
 	}
-	if !IsNil(o.ManagementPort) {
-		toSerialize["managementPort"] = o.ManagementPort
+	if o.ManagementPort.IsSet() {
+		toSerialize["managementPort"] = o.ManagementPort.Get()
 	}
-	if !IsNil(o.Username) {
-		toSerialize["username"] = o.Username
+	if o.Username.IsSet() {
+		toSerialize["username"] = o.Username.Get()
 	}
-	if !IsNil(o.ManagementPassword) {
-		toSerialize["managementPassword"] = o.ManagementPassword
+	if o.ManagementPassword.IsSet() {
+		toSerialize["managementPassword"] = o.ManagementPassword.Get()
 	}
-	if !IsNil(o.ManagementAddressGateway) {
-		toSerialize["managementAddressGateway"] = o.ManagementAddressGateway
+	if o.ManagementAddressGateway.IsSet() {
+		toSerialize["managementAddressGateway"] = o.ManagementAddressGateway.Get()
 	}
-	if !IsNil(o.ManagementAddressMask) {
-		toSerialize["managementAddressMask"] = o.ManagementAddressMask
+	if o.ManagementAddressMask.IsSet() {
+		toSerialize["managementAddressMask"] = o.ManagementAddressMask.Get()
 	}
-	if !IsNil(o.ManagementMAC) {
-		toSerialize["managementMAC"] = o.ManagementMAC
+	if o.ManagementMAC.IsSet() {
+		toSerialize["managementMAC"] = o.ManagementMAC.Get()
 	}
-	if !IsNil(o.LoopbackAddress) {
-		toSerialize["loopbackAddress"] = o.LoopbackAddress
+	if o.LoopbackAddress.IsSet() {
+		toSerialize["loopbackAddress"] = o.LoopbackAddress.Get()
 	}
-	if !IsNil(o.VtepAddress) {
-		toSerialize["vtepAddress"] = o.VtepAddress
+	if o.VtepAddress.IsSet() {
+		toSerialize["vtepAddress"] = o.VtepAddress.Get()
 	}
-	if !IsNil(o.Asn) {
-		toSerialize["asn"] = o.Asn
+	if o.Asn.IsSet() {
+		toSerialize["asn"] = o.Asn.Get()
 	}
 	if !IsNil(o.NetworkTypesAllowed) {
 		toSerialize["networkTypesAllowed"] = o.NetworkTypesAllowed
 	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
 	}
-	if !IsNil(o.Country) {
-		toSerialize["country"] = o.Country
+	if o.Country.IsSet() {
+		toSerialize["country"] = o.Country.Get()
 	}
-	if !IsNil(o.City) {
-		toSerialize["city"] = o.City
+	if o.City.IsSet() {
+		toSerialize["city"] = o.City.Get()
 	}
-	if !IsNil(o.DatacenterMeta) {
-		toSerialize["datacenterMeta"] = o.DatacenterMeta
+	if o.DatacenterMeta.IsSet() {
+		toSerialize["datacenterMeta"] = o.DatacenterMeta.Get()
 	}
-	if !IsNil(o.DatacenterRoom) {
-		toSerialize["datacenterRoom"] = o.DatacenterRoom
+	if o.DatacenterRoom.IsSet() {
+		toSerialize["datacenterRoom"] = o.DatacenterRoom.Get()
 	}
-	if !IsNil(o.DatacenterRack) {
-		toSerialize["datacenterRack"] = o.DatacenterRack
+	if o.DatacenterRack.IsSet() {
+		toSerialize["datacenterRack"] = o.DatacenterRack.Get()
 	}
-	if !IsNil(o.RackPositionUpperUnit) {
-		toSerialize["rackPositionUpperUnit"] = o.RackPositionUpperUnit
+	if o.RackPositionUpperUnit.IsSet() {
+		toSerialize["rackPositionUpperUnit"] = o.RackPositionUpperUnit.Get()
 	}
-	if !IsNil(o.RackPositionLowerUnit) {
-		toSerialize["rackPositionLowerUnit"] = o.RackPositionLowerUnit
+	if o.RackPositionLowerUnit.IsSet() {
+		toSerialize["rackPositionLowerUnit"] = o.RackPositionLowerUnit.Get()
 	}
 	if !IsNil(o.SerialNumber) {
 		toSerialize["serialNumber"] = o.SerialNumber
@@ -1921,23 +1949,17 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OrderIndex) {
 		toSerialize["orderIndex"] = o.OrderIndex
 	}
-	if !IsNil(o.DefaultMtu) {
-		toSerialize["defaultMtu"] = o.DefaultMtu
+	if o.DefaultMtu.IsSet() {
+		toSerialize["defaultMtu"] = o.DefaultMtu.Get()
 	}
-	if !IsNil(o.Tags) {
+	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
 	if !IsNil(o.RequiresOsInstall) {
 		toSerialize["requiresOsInstall"] = o.RequiresOsInstall
 	}
-	if !IsNil(o.SiteId) {
-		toSerialize["siteId"] = o.SiteId
-	}
-	if !IsNil(o.PrimaryWanIpv6SubnetPoolId) {
-		toSerialize["primaryWanIpv6SubnetPoolId"] = o.PrimaryWanIpv6SubnetPoolId
-	}
-	if !IsNil(o.OverwriteWithHostnameFromFetchedSwitch) {
-		toSerialize["overwriteWithHostnameFromFetchedSwitch"] = o.OverwriteWithHostnameFromFetchedSwitch
+	if o.OverwriteWithHostnameFromFetchedSwitch.IsSet() {
+		toSerialize["overwriteWithHostnameFromFetchedSwitch"] = o.OverwriteWithHostnameFromFetchedSwitch.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -1961,6 +1983,7 @@ func (o *UpdateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "datacenterName")
 		delete(additionalProperties, "identifierString")
 		delete(additionalProperties, "chassisRackId")
@@ -1973,12 +1996,6 @@ func (o *UpdateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "syslogEnabled")
 		delete(additionalProperties, "isStorageSwitch")
 		delete(additionalProperties, "isBorderDevice")
-		delete(additionalProperties, "primaryWanIpv4SubnetPool")
-		delete(additionalProperties, "primaryWanIpv4SubnetPrefixSize")
-		delete(additionalProperties, "primaryWanIpv6SubnetPool")
-		delete(additionalProperties, "primaryWanIpv6SubnetPrefixSize")
-		delete(additionalProperties, "primarySanSubnetPool")
-		delete(additionalProperties, "primarySanSubnetPrefixSize")
 		delete(additionalProperties, "quarantineSubnetStart")
 		delete(additionalProperties, "quarantineSubnetEnd")
 		delete(additionalProperties, "quarantineSubnetPrefixSize")
@@ -2009,8 +2026,6 @@ func (o *UpdateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "defaultMtu")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "requiresOsInstall")
-		delete(additionalProperties, "siteId")
-		delete(additionalProperties, "primaryWanIpv6SubnetPoolId")
 		delete(additionalProperties, "overwriteWithHostnameFromFetchedSwitch")
 		o.AdditionalProperties = additionalProperties
 	}

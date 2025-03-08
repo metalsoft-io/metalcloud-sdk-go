@@ -22,13 +22,13 @@ var _ MappedNullable = &ServerTypeUtilizationReport{}
 // ServerTypeUtilizationReport struct for ServerTypeUtilizationReport
 type ServerTypeUtilizationReport struct {
 	// The utilization report for the server types grouped by server ram gb.
-	GroupByServerRamGb ServerTypeUtilizationReportGrouped `json:"groupByServerRamGb"`
+	GroupByServerRamGb map[string]ServerTypeUtilizationReportGrouped `json:"groupByServerRamGb"`
 	// The utilization report for the server types grouped by server type name.
-	GroupByServerTypeName ServerTypeUtilizationReportGrouped `json:"groupByServerTypeName"`
+	GroupByServerTypeName map[string]ServerTypeUtilizationReportGrouped `json:"groupByServerTypeName"`
 	// The utilization report for the server types grouped by server product name.
-	GroupByServerProductName ServerTypeUtilizationReportGrouped `json:"groupByServerProductName"`
+	GroupByServerProductName map[string]ServerTypeUtilizationReportGrouped `json:"groupByServerProductName"`
 	// The utilization report for the server types grouped by user id.
-	GroupByUserId ServerTypeUtilizationReportGrouped `json:"groupByUserId"`
+	GroupByUserId map[string]ServerTypeUtilizationReportGrouped `json:"groupByUserId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,7 +38,7 @@ type _ServerTypeUtilizationReport ServerTypeUtilizationReport
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerTypeUtilizationReport(groupByServerRamGb ServerTypeUtilizationReportGrouped, groupByServerTypeName ServerTypeUtilizationReportGrouped, groupByServerProductName ServerTypeUtilizationReportGrouped, groupByUserId ServerTypeUtilizationReportGrouped) *ServerTypeUtilizationReport {
+func NewServerTypeUtilizationReport(groupByServerRamGb map[string]ServerTypeUtilizationReportGrouped, groupByServerTypeName map[string]ServerTypeUtilizationReportGrouped, groupByServerProductName map[string]ServerTypeUtilizationReportGrouped, groupByUserId map[string]ServerTypeUtilizationReportGrouped) *ServerTypeUtilizationReport {
 	this := ServerTypeUtilizationReport{}
 	this.GroupByServerRamGb = groupByServerRamGb
 	this.GroupByServerTypeName = groupByServerTypeName
@@ -56,9 +56,9 @@ func NewServerTypeUtilizationReportWithDefaults() *ServerTypeUtilizationReport {
 }
 
 // GetGroupByServerRamGb returns the GroupByServerRamGb field value
-func (o *ServerTypeUtilizationReport) GetGroupByServerRamGb() ServerTypeUtilizationReportGrouped {
+func (o *ServerTypeUtilizationReport) GetGroupByServerRamGb() map[string]ServerTypeUtilizationReportGrouped {
 	if o == nil {
-		var ret ServerTypeUtilizationReportGrouped
+		var ret map[string]ServerTypeUtilizationReportGrouped
 		return ret
 	}
 
@@ -67,7 +67,7 @@ func (o *ServerTypeUtilizationReport) GetGroupByServerRamGb() ServerTypeUtilizat
 
 // GetGroupByServerRamGbOk returns a tuple with the GroupByServerRamGb field value
 // and a boolean to check if the value has been set.
-func (o *ServerTypeUtilizationReport) GetGroupByServerRamGbOk() (*ServerTypeUtilizationReportGrouped, bool) {
+func (o *ServerTypeUtilizationReport) GetGroupByServerRamGbOk() (*map[string]ServerTypeUtilizationReportGrouped, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,14 +75,14 @@ func (o *ServerTypeUtilizationReport) GetGroupByServerRamGbOk() (*ServerTypeUtil
 }
 
 // SetGroupByServerRamGb sets field value
-func (o *ServerTypeUtilizationReport) SetGroupByServerRamGb(v ServerTypeUtilizationReportGrouped) {
+func (o *ServerTypeUtilizationReport) SetGroupByServerRamGb(v map[string]ServerTypeUtilizationReportGrouped) {
 	o.GroupByServerRamGb = v
 }
 
 // GetGroupByServerTypeName returns the GroupByServerTypeName field value
-func (o *ServerTypeUtilizationReport) GetGroupByServerTypeName() ServerTypeUtilizationReportGrouped {
+func (o *ServerTypeUtilizationReport) GetGroupByServerTypeName() map[string]ServerTypeUtilizationReportGrouped {
 	if o == nil {
-		var ret ServerTypeUtilizationReportGrouped
+		var ret map[string]ServerTypeUtilizationReportGrouped
 		return ret
 	}
 
@@ -91,7 +91,7 @@ func (o *ServerTypeUtilizationReport) GetGroupByServerTypeName() ServerTypeUtili
 
 // GetGroupByServerTypeNameOk returns a tuple with the GroupByServerTypeName field value
 // and a boolean to check if the value has been set.
-func (o *ServerTypeUtilizationReport) GetGroupByServerTypeNameOk() (*ServerTypeUtilizationReportGrouped, bool) {
+func (o *ServerTypeUtilizationReport) GetGroupByServerTypeNameOk() (*map[string]ServerTypeUtilizationReportGrouped, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,14 +99,14 @@ func (o *ServerTypeUtilizationReport) GetGroupByServerTypeNameOk() (*ServerTypeU
 }
 
 // SetGroupByServerTypeName sets field value
-func (o *ServerTypeUtilizationReport) SetGroupByServerTypeName(v ServerTypeUtilizationReportGrouped) {
+func (o *ServerTypeUtilizationReport) SetGroupByServerTypeName(v map[string]ServerTypeUtilizationReportGrouped) {
 	o.GroupByServerTypeName = v
 }
 
 // GetGroupByServerProductName returns the GroupByServerProductName field value
-func (o *ServerTypeUtilizationReport) GetGroupByServerProductName() ServerTypeUtilizationReportGrouped {
+func (o *ServerTypeUtilizationReport) GetGroupByServerProductName() map[string]ServerTypeUtilizationReportGrouped {
 	if o == nil {
-		var ret ServerTypeUtilizationReportGrouped
+		var ret map[string]ServerTypeUtilizationReportGrouped
 		return ret
 	}
 
@@ -115,7 +115,7 @@ func (o *ServerTypeUtilizationReport) GetGroupByServerProductName() ServerTypeUt
 
 // GetGroupByServerProductNameOk returns a tuple with the GroupByServerProductName field value
 // and a boolean to check if the value has been set.
-func (o *ServerTypeUtilizationReport) GetGroupByServerProductNameOk() (*ServerTypeUtilizationReportGrouped, bool) {
+func (o *ServerTypeUtilizationReport) GetGroupByServerProductNameOk() (*map[string]ServerTypeUtilizationReportGrouped, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -123,14 +123,14 @@ func (o *ServerTypeUtilizationReport) GetGroupByServerProductNameOk() (*ServerTy
 }
 
 // SetGroupByServerProductName sets field value
-func (o *ServerTypeUtilizationReport) SetGroupByServerProductName(v ServerTypeUtilizationReportGrouped) {
+func (o *ServerTypeUtilizationReport) SetGroupByServerProductName(v map[string]ServerTypeUtilizationReportGrouped) {
 	o.GroupByServerProductName = v
 }
 
 // GetGroupByUserId returns the GroupByUserId field value
-func (o *ServerTypeUtilizationReport) GetGroupByUserId() ServerTypeUtilizationReportGrouped {
+func (o *ServerTypeUtilizationReport) GetGroupByUserId() map[string]ServerTypeUtilizationReportGrouped {
 	if o == nil {
-		var ret ServerTypeUtilizationReportGrouped
+		var ret map[string]ServerTypeUtilizationReportGrouped
 		return ret
 	}
 
@@ -139,7 +139,7 @@ func (o *ServerTypeUtilizationReport) GetGroupByUserId() ServerTypeUtilizationRe
 
 // GetGroupByUserIdOk returns a tuple with the GroupByUserId field value
 // and a boolean to check if the value has been set.
-func (o *ServerTypeUtilizationReport) GetGroupByUserIdOk() (*ServerTypeUtilizationReportGrouped, bool) {
+func (o *ServerTypeUtilizationReport) GetGroupByUserIdOk() (*map[string]ServerTypeUtilizationReportGrouped, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -147,7 +147,7 @@ func (o *ServerTypeUtilizationReport) GetGroupByUserIdOk() (*ServerTypeUtilizati
 }
 
 // SetGroupByUserId sets field value
-func (o *ServerTypeUtilizationReport) SetGroupByUserId(v ServerTypeUtilizationReportGrouped) {
+func (o *ServerTypeUtilizationReport) SetGroupByUserId(v map[string]ServerTypeUtilizationReportGrouped) {
 	o.GroupByUserId = v
 }
 

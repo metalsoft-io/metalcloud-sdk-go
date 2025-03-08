@@ -362,7 +362,13 @@ type ServerInstanceAPIGetInfrastructureServerInstancesRequest struct {
 	infrastructureId int32
 	page *float32
 	limit *float32
-	filterId *[]string
+	filterInfrastructureId *[]string
+	filterGroupId *[]string
+	filterServerId *[]string
+	filterServiceStatus *[]string
+	filterConfigServerId *[]string
+	filterConfigDeployStatus *[]string
+	filterConfigDeployType *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -380,13 +386,49 @@ func (r ServerInstanceAPIGetInfrastructureServerInstancesRequest) Limit(limit fl
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r ServerInstanceAPIGetInfrastructureServerInstancesRequest) FilterId(filterId []string) ServerInstanceAPIGetInfrastructureServerInstancesRequest {
-	r.filterId = &filterId
+// Filter by infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetInfrastructureServerInstancesRequest) FilterInfrastructureId(filterInfrastructureId []string) ServerInstanceAPIGetInfrastructureServerInstancesRequest {
+	r.filterInfrastructureId = &filterInfrastructureId
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; label:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;       
+// Filter by groupId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.groupId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.groupId&#x3D;$not:$like:John Doe&amp;filter.groupId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetInfrastructureServerInstancesRequest) FilterGroupId(filterGroupId []string) ServerInstanceAPIGetInfrastructureServerInstancesRequest {
+	r.filterGroupId = &filterGroupId
+	return r
+}
+
+// Filter by serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverId&#x3D;$not:$like:John Doe&amp;filter.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetInfrastructureServerInstancesRequest) FilterServerId(filterServerId []string) ServerInstanceAPIGetInfrastructureServerInstancesRequest {
+	r.filterServerId = &filterServerId
+	return r
+}
+
+// Filter by serviceStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serviceStatus&#x3D;$not:$like:John Doe&amp;filter.serviceStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetInfrastructureServerInstancesRequest) FilterServiceStatus(filterServiceStatus []string) ServerInstanceAPIGetInfrastructureServerInstancesRequest {
+	r.filterServiceStatus = &filterServiceStatus
+	return r
+}
+
+// Filter by config.serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.serverId&#x3D;$not:$like:John Doe&amp;filter.config.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetInfrastructureServerInstancesRequest) FilterConfigServerId(filterConfigServerId []string) ServerInstanceAPIGetInfrastructureServerInstancesRequest {
+	r.filterConfigServerId = &filterConfigServerId
+	return r
+}
+
+// Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetInfrastructureServerInstancesRequest) FilterConfigDeployStatus(filterConfigDeployStatus []string) ServerInstanceAPIGetInfrastructureServerInstancesRequest {
+	r.filterConfigDeployStatus = &filterConfigDeployStatus
+	return r
+}
+
+// Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetInfrastructureServerInstancesRequest) FilterConfigDeployType(filterConfigDeployType []string) ServerInstanceAPIGetInfrastructureServerInstancesRequest {
+	r.filterConfigDeployType = &filterConfigDeployType
+	return r
+}
+
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;       
 func (r ServerInstanceAPIGetInfrastructureServerInstancesRequest) SortBy(sortBy []string) ServerInstanceAPIGetInfrastructureServerInstancesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -453,15 +495,81 @@ func (a *ServerInstanceAPIService) GetInfrastructureServerInstancesExecute(r Ser
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
-	if r.filterId != nil {
-		t := *r.filterId
+	if r.filterInfrastructureId != nil {
+		t := *r.filterInfrastructureId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", t, "form", "multi")
+		}
+	}
+	if r.filterGroupId != nil {
+		t := *r.filterGroupId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.groupId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.groupId", t, "form", "multi")
+		}
+	}
+	if r.filterServerId != nil {
+		t := *r.filterServerId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverId", t, "form", "multi")
+		}
+	}
+	if r.filterServiceStatus != nil {
+		t := *r.filterServiceStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigServerId != nil {
+		t := *r.filterConfigServerId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.serverId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.serverId", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployStatus != nil {
+		t := *r.filterConfigDeployStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployType != nil {
+		t := *r.filterConfigDeployType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -547,13 +655,6 @@ type ServerInstanceAPIGetPowerFromServerInstanceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
 	serverInstanceId int32
-	ifMatch *string
-}
-
-// Entity tag
-func (r ServerInstanceAPIGetPowerFromServerInstanceRequest) IfMatch(ifMatch string) ServerInstanceAPIGetPowerFromServerInstanceRequest {
-	r.ifMatch = &ifMatch
-	return r
 }
 
 func (r ServerInstanceAPIGetPowerFromServerInstanceRequest) Execute() (*http.Response, error) {
@@ -614,9 +715,6 @@ func (a *ServerInstanceAPIService) GetPowerFromServerInstanceExecute(r ServerIns
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ifMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
-	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -643,6 +741,121 @@ func (a *ServerInstanceAPIService) GetPowerFromServerInstanceExecute(r ServerIns
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type ServerInstanceAPIGetPowerStatusBatchRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceAPIService
+	infrastructureId int32
+	requestBody *[]string
+}
+
+// The list of server instance ids
+func (r ServerInstanceAPIGetPowerStatusBatchRequest) RequestBody(requestBody []string) ServerInstanceAPIGetPowerStatusBatchRequest {
+	r.requestBody = &requestBody
+	return r
+}
+
+func (r ServerInstanceAPIGetPowerStatusBatchRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.GetPowerStatusBatchExecute(r)
+}
+
+/*
+GetPowerStatusBatch Gets power status of multiple servers
+
+Gets the power status of the servers associated with specified instances
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @return ServerInstanceAPIGetPowerStatusBatchRequest
+*/
+func (a *ServerInstanceAPIService) GetPowerStatusBatch(ctx context.Context, infrastructureId int32) ServerInstanceAPIGetPowerStatusBatchRequest {
+	return ServerInstanceAPIGetPowerStatusBatchRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]interface{}
+func (a *ServerInstanceAPIService) GetPowerStatusBatchExecute(r ServerInstanceAPIGetPowerStatusBatchRequest) (map[string]interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.GetPowerStatusBatch")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/actions/power-get"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.requestBody == nil {
+		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.requestBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ServerInstanceAPIGetServerInstanceRequest struct {
@@ -857,7 +1070,7 @@ type ServerInstanceAPIGetServerInstanceCredentialsRequest struct {
 	serverInstanceId int32
 }
 
-func (r ServerInstanceAPIGetServerInstanceCredentialsRequest) Execute() (*ServerInstanceCredentials, *http.Response, error) {
+func (r ServerInstanceAPIGetServerInstanceCredentialsRequest) Execute() (string, *http.Response, error) {
 	return r.ApiService.GetServerInstanceCredentialsExecute(r)
 }
 
@@ -879,13 +1092,13 @@ func (a *ServerInstanceAPIService) GetServerInstanceCredentials(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return ServerInstanceCredentials
-func (a *ServerInstanceAPIService) GetServerInstanceCredentialsExecute(r ServerInstanceAPIGetServerInstanceCredentialsRequest) (*ServerInstanceCredentials, *http.Response, error) {
+//  @return string
+func (a *ServerInstanceAPIService) GetServerInstanceCredentialsExecute(r ServerInstanceAPIGetServerInstanceCredentialsRequest) (string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ServerInstanceCredentials
+		localVarReturnValue  string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.GetServerInstanceCredentials")
@@ -1405,12 +1618,117 @@ func (a *ServerInstanceAPIService) GetServerInstanceInterfacesExecute(r ServerIn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ServerInstanceAPIGetServerInstanceStatisticsRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceAPIService
+}
+
+func (r ServerInstanceAPIGetServerInstanceStatisticsRequest) Execute() (*ServerInstanceStatistics, *http.Response, error) {
+	return r.ApiService.GetServerInstanceStatisticsExecute(r)
+}
+
+/*
+GetServerInstanceStatistics Get Server Instance counters
+
+Returns the statistics related to server instances
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ServerInstanceAPIGetServerInstanceStatisticsRequest
+*/
+func (a *ServerInstanceAPIService) GetServerInstanceStatistics(ctx context.Context) ServerInstanceAPIGetServerInstanceStatisticsRequest {
+	return ServerInstanceAPIGetServerInstanceStatisticsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ServerInstanceStatistics
+func (a *ServerInstanceAPIService) GetServerInstanceStatisticsExecute(r ServerInstanceAPIGetServerInstanceStatisticsRequest) (*ServerInstanceStatistics, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServerInstanceStatistics
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.GetServerInstanceStatistics")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instances/statistics"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ServerInstanceAPIGetServerInstancesRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
 	page *float32
 	limit *float32
-	filterId *[]string
+	filterInfrastructureId *[]string
+	filterGroupId *[]string
+	filterServerId *[]string
+	filterServiceStatus *[]string
+	filterConfigServerId *[]string
+	filterConfigDeployStatus *[]string
+	filterConfigDeployType *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -1428,13 +1746,49 @@ func (r ServerInstanceAPIGetServerInstancesRequest) Limit(limit float32) ServerI
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r ServerInstanceAPIGetServerInstancesRequest) FilterId(filterId []string) ServerInstanceAPIGetServerInstancesRequest {
-	r.filterId = &filterId
+// Filter by infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetServerInstancesRequest) FilterInfrastructureId(filterInfrastructureId []string) ServerInstanceAPIGetServerInstancesRequest {
+	r.filterInfrastructureId = &filterInfrastructureId
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; label:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;       
+// Filter by groupId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.groupId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.groupId&#x3D;$not:$like:John Doe&amp;filter.groupId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetServerInstancesRequest) FilterGroupId(filterGroupId []string) ServerInstanceAPIGetServerInstancesRequest {
+	r.filterGroupId = &filterGroupId
+	return r
+}
+
+// Filter by serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverId&#x3D;$not:$like:John Doe&amp;filter.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetServerInstancesRequest) FilterServerId(filterServerId []string) ServerInstanceAPIGetServerInstancesRequest {
+	r.filterServerId = &filterServerId
+	return r
+}
+
+// Filter by serviceStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serviceStatus&#x3D;$not:$like:John Doe&amp;filter.serviceStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetServerInstancesRequest) FilterServiceStatus(filterServiceStatus []string) ServerInstanceAPIGetServerInstancesRequest {
+	r.filterServiceStatus = &filterServiceStatus
+	return r
+}
+
+// Filter by config.serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.serverId&#x3D;$not:$like:John Doe&amp;filter.config.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetServerInstancesRequest) FilterConfigServerId(filterConfigServerId []string) ServerInstanceAPIGetServerInstancesRequest {
+	r.filterConfigServerId = &filterConfigServerId
+	return r
+}
+
+// Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetServerInstancesRequest) FilterConfigDeployStatus(filterConfigDeployStatus []string) ServerInstanceAPIGetServerInstancesRequest {
+	r.filterConfigDeployStatus = &filterConfigDeployStatus
+	return r
+}
+
+// Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r ServerInstanceAPIGetServerInstancesRequest) FilterConfigDeployType(filterConfigDeployType []string) ServerInstanceAPIGetServerInstancesRequest {
+	r.filterConfigDeployType = &filterConfigDeployType
+	return r
+}
+
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt;&lt;/ul&gt;       
 func (r ServerInstanceAPIGetServerInstancesRequest) SortBy(sortBy []string) ServerInstanceAPIGetServerInstancesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1498,15 +1852,81 @@ func (a *ServerInstanceAPIService) GetServerInstancesExecute(r ServerInstanceAPI
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
-	if r.filterId != nil {
-		t := *r.filterId
+	if r.filterInfrastructureId != nil {
+		t := *r.filterInfrastructureId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", t, "form", "multi")
+		}
+	}
+	if r.filterGroupId != nil {
+		t := *r.filterGroupId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.groupId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.groupId", t, "form", "multi")
+		}
+	}
+	if r.filterServerId != nil {
+		t := *r.filterServerId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverId", t, "form", "multi")
+		}
+	}
+	if r.filterServiceStatus != nil {
+		t := *r.filterServiceStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigServerId != nil {
+		t := *r.filterConfigServerId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.serverId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.serverId", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployStatus != nil {
+		t := *r.filterConfigDeployStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployType != nil {
+		t := *r.filterConfigDeployType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -1586,6 +2006,120 @@ func (a *ServerInstanceAPIService) GetServerInstancesExecute(r ServerInstanceAPI
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ServerInstanceAPIReinstallServerInstanceOSRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceAPIService
+	serverInstanceId int32
+	serverInstanceReinstallOS *ServerInstanceReinstallOS
+	ifMatch *string
+}
+
+// reinstall OS options
+func (r ServerInstanceAPIReinstallServerInstanceOSRequest) ServerInstanceReinstallOS(serverInstanceReinstallOS ServerInstanceReinstallOS) ServerInstanceAPIReinstallServerInstanceOSRequest {
+	r.serverInstanceReinstallOS = &serverInstanceReinstallOS
+	return r
+}
+
+// Entity tag
+func (r ServerInstanceAPIReinstallServerInstanceOSRequest) IfMatch(ifMatch string) ServerInstanceAPIReinstallServerInstanceOSRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ServerInstanceAPIReinstallServerInstanceOSRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ReinstallServerInstanceOSExecute(r)
+}
+
+/*
+ReinstallServerInstanceOS Manage the flag to reinstall the operating system on the server
+
+Manage the flag to reinstall the operating system on the server. The reinstall operation is executed during the next deploy operation
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceId
+ @return ServerInstanceAPIReinstallServerInstanceOSRequest
+*/
+func (a *ServerInstanceAPIService) ReinstallServerInstanceOS(ctx context.Context, serverInstanceId int32) ServerInstanceAPIReinstallServerInstanceOSRequest {
+	return ServerInstanceAPIReinstallServerInstanceOSRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceId: serverInstanceId,
+	}
+}
+
+// Execute executes the request
+func (a *ServerInstanceAPIService) ReinstallServerInstanceOSExecute(r ServerInstanceAPIReinstallServerInstanceOSRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.ReinstallServerInstanceOS")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instances/{serverInstanceId}/actions/reinstall-os"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceId, "serverInstanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.serverInstanceReinstallOS == nil {
+		return nil, reportError("serverInstanceReinstallOS is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.serverInstanceReinstallOS
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type ServerInstanceAPIResetServerInstanceRequest struct {
@@ -1690,16 +2224,120 @@ func (a *ServerInstanceAPIService) ResetServerInstanceExecute(r ServerInstanceAP
 	return localVarHTTPResponse, nil
 }
 
+type ServerInstanceAPISetPowerStatusBatchRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceAPIService
+	infrastructureId int32
+	instancesSetPowerState *InstancesSetPowerState
+}
+
+// The list of server instance ids
+func (r ServerInstanceAPISetPowerStatusBatchRequest) InstancesSetPowerState(instancesSetPowerState InstancesSetPowerState) ServerInstanceAPISetPowerStatusBatchRequest {
+	r.instancesSetPowerState = &instancesSetPowerState
+	return r
+}
+
+func (r ServerInstanceAPISetPowerStatusBatchRequest) Execute() (*http.Response, error) {
+	return r.ApiService.SetPowerStatusBatchExecute(r)
+}
+
+/*
+SetPowerStatusBatch sets power status of multiple servers
+
+Initiates shutdown or powers on the servers associated with the specified instances
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @return ServerInstanceAPISetPowerStatusBatchRequest
+*/
+func (a *ServerInstanceAPIService) SetPowerStatusBatch(ctx context.Context, infrastructureId int32) ServerInstanceAPISetPowerStatusBatchRequest {
+	return ServerInstanceAPISetPowerStatusBatchRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+	}
+}
+
+// Execute executes the request
+func (a *ServerInstanceAPIService) SetPowerStatusBatchExecute(r ServerInstanceAPISetPowerStatusBatchRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.SetPowerStatusBatch")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/actions/power-set"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.instancesSetPowerState == nil {
+		return nil, reportError("instancesSetPowerState is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.instancesSetPowerState
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ServerInstanceAPISetPowerToServerInstanceRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
 	serverInstanceId int32
-	serverInstancePowerSetDto *ServerInstancePowerSetDto
+	serverInstancePowerSet *ServerInstancePowerSet
 	ifMatch *string
 }
 
-func (r ServerInstanceAPISetPowerToServerInstanceRequest) ServerInstancePowerSetDto(serverInstancePowerSetDto ServerInstancePowerSetDto) ServerInstanceAPISetPowerToServerInstanceRequest {
-	r.serverInstancePowerSetDto = &serverInstancePowerSetDto
+func (r ServerInstanceAPISetPowerToServerInstanceRequest) ServerInstancePowerSet(serverInstancePowerSet ServerInstancePowerSet) ServerInstanceAPISetPowerToServerInstanceRequest {
+	r.serverInstancePowerSet = &serverInstancePowerSet
 	return r
 }
 
@@ -1749,8 +2387,8 @@ func (a *ServerInstanceAPIService) SetPowerToServerInstanceExecute(r ServerInsta
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.serverInstancePowerSetDto == nil {
-		return nil, reportError("serverInstancePowerSetDto is required and must be specified")
+	if r.serverInstancePowerSet == nil {
+		return nil, reportError("serverInstancePowerSet is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1774,7 +2412,7 @@ func (a *ServerInstanceAPIService) SetPowerToServerInstanceExecute(r ServerInsta
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.serverInstancePowerSetDto
+	localVarPostBody = r.serverInstancePowerSet
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

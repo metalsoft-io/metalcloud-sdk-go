@@ -81,14 +81,74 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test VMInstanceGroupAPIService GetVMInstanceGroup", func(t *testing.T) {
+	t.Run("Test VMInstanceGroupAPIService GetInfrastructureVMInstanceGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var infrastructureId float32
 		var vmInstanceGroupId float32
 
-		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroup(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
+		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetInfrastructureVMInstanceGroup(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMInstanceGroupAPIService GetInfrastructureVMInstanceGroups", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+
+		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetInfrastructureVMInstanceGroups(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMInstanceGroupAPIService GetVMInstanceGroupConfigInfo", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var vmInstanceGroupId float32
+
+		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupConfigInfo(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMInstanceGroupAPIService GetVMInstanceGroupInterfaceInfo", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var vmInstanceGroupId float32
+		var vmInstanceGroupInterfaceId float32
+
+		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupInterfaceInfo(context.Background(), infrastructureId, vmInstanceGroupId, vmInstanceGroupInterfaceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMInstanceGroupAPIService GetVMInstanceGroupInterfaces", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var vmInstanceGroupId float32
+
+		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupInterfaces(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -111,13 +171,14 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test VMInstanceGroupAPIService GetVMInstanceGroups", func(t *testing.T) {
+	t.Run("Test VMInstanceGroupAPIService PatchVMInstanceGroupMeta", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var infrastructureId float32
+		var vmInstanceGroupId float32
 
-		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroups(context.Background(), infrastructureId).Execute()
+		resp, httpRes, err := apiClient.VMInstanceGroupAPI.PatchVMInstanceGroupMeta(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -125,30 +186,14 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test VMInstanceGroupAPIService UpdateNetworkProfileOnVMInstanceGroupNetwork", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var infrastructureId float32
-		var vmInstanceGroupId float32
-		var networkId float32
-
-		resp, httpRes, err := apiClient.VMInstanceGroupAPI.UpdateNetworkProfileOnVMInstanceGroupNetwork(context.Background(), infrastructureId, vmInstanceGroupId, networkId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test VMInstanceGroupAPIService UpdateVMInstanceGroup", func(t *testing.T) {
+	t.Run("Test VMInstanceGroupAPIService UpdateVMInstanceGroupConfig", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var infrastructureId float32
 		var vmInstanceGroupId float32
 
-		resp, httpRes, err := apiClient.VMInstanceGroupAPI.UpdateVMInstanceGroup(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
+		resp, httpRes, err := apiClient.VMInstanceGroupAPI.UpdateVMInstanceGroupConfig(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

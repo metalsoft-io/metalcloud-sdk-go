@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **CurrentPage** | **int32** | Current page number (1-based indexing) | 
 **TotalPages** | **int32** | Total number of pages based on the total number of items and the number of items per page | 
 **SortBy** | Pointer to **[][]string** | Array of [field, direction] pairs for sorting. Each pair must contain exactly 2 strings. | [optional] 
-**SearchBy** | Pointer to **[]string** | Columns that can be searched by | [optional] 
+**SearchBy** | Pointer to **[]string** |  | [optional] 
 **Search** | Pointer to **string** | Text to search for in searchable fields | [optional] 
 **Select** | Pointer to **[]string** | List of fields to include in the response | [optional] 
 **Filter** | Pointer to **map[string]interface{}** | Key-value pairs of filters applied to the query | [optional] 

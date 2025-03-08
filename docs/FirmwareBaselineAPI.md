@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateFirmwareBaseline
 
-> FirmwareBaseline CreateFirmwareBaseline(ctx).CreateFirmwareBaseline(createFirmwareBaseline).Execute()
+> CreateFirmwareBaseline CreateFirmwareBaseline(ctx).CreateFirmwareBaseline(createFirmwareBaseline).Execute()
 
 Create a new firmware baseline
 
@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	createFirmwareBaseline := *openapiclient.NewCreateFirmwareBaseline("Data center baseline name", openapiclient.BaselineLevelType("datacenter"), "["datacenter1", "datacenter2"]") // CreateFirmwareBaseline | 
+	createFirmwareBaseline := *openapiclient.NewCreateFirmwareBaseline("Data center baseline name", openapiclient.BaselineLevelType("datacenter"), []string{"LevelFilter_example"}) // CreateFirmwareBaseline | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -42,7 +42,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBaselineAPI.CreateFirmwareBaseline``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateFirmwareBaseline`: FirmwareBaseline
+	// response from `CreateFirmwareBaseline`: CreateFirmwareBaseline
 	fmt.Fprintf(os.Stdout, "Response from `FirmwareBaselineAPI.CreateFirmwareBaseline`: %v\n", resp)
 }
 ```
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FirmwareBaseline**](FirmwareBaseline.md)
+[**CreateFirmwareBaseline**](CreateFirmwareBaseline.md)
 
 ### Authorization
 
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ## GetFirmwareBaselines
 
-> FirmwareBaselinePaginatedList GetFirmwareBaselines(ctx).Page(page).Limit(limit).FilterServerFirmwareBaselineLevel(filterServerFirmwareBaselineLevel).FilterServerFirmwareBaselineLevelFilterJson(filterServerFirmwareBaselineLevelFilterJson).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
+> FirmwareBaselinePaginatedList GetFirmwareBaselines(ctx).Page(page).Limit(limit).FilterLevel(filterLevel).FilterLevelFilter(filterLevelFilter).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
 
 Get Firmware Baselines
 
@@ -239,16 +239,16 @@ import (
 func main() {
 	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
 	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 20           </p>       <p>              <b>Max Value: </b> 100           </p>        If provided value is greater than max value, max value will be applied.        (optional)
-	filterServerFirmwareBaselineLevel := []string{"Inner_example"} // []string | Filter by serverFirmwareBaselineLevel query param.           <p>              <b>Format: </b> filter.serverFirmwareBaselineLevel={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.serverFirmwareBaselineLevel=$not:$like:John Doe&filter.serverFirmwareBaselineLevel=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	filterServerFirmwareBaselineLevelFilterJson := []string{"Inner_example"} // []string | Filter by serverFirmwareBaselineLevelFilterJson query param.           <p>              <b>Format: </b> filter.serverFirmwareBaselineLevelFilterJson={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.serverFirmwareBaselineLevelFilterJson=$not:$like:John Doe&filter.serverFirmwareBaselineLevelFilterJson=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> serverFirmwareBaselineId:DESC           </p>       <h4>Available Fields</h4><ul><li>serverFirmwareBaselineId</li> <li>serverFirmwareBaselineName</li></ul>        (optional)
+	filterLevel := []string{"Inner_example"} // []string | Filter by level query param.           <p>              <b>Format: </b> filter.level={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.level=$not:$like:John Doe&filter.level=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
+	filterLevelFilter := []string{"Inner_example"} // []string | Filter by levelFilter query param.           <p>              <b>Format: </b> filter.levelFilter={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.levelFilter=$not:$like:John Doe&filter.levelFilter=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> id:DESC           </p>       <h4>Available Fields</h4><ul><li>id</li> <li>name</li></ul>        (optional)
 	search := "search_example" // string | Search term to filter result values         <p>              <b>Example: </b> John           </p>         <p>              <b>Default Value: </b> No default value           </p>          (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values         <p>              <b>Example: </b> serverFirmwareBaselineName,serverFirmwareBaselineLevelFilterJson           </p>         <p>              <b>Default Value: </b> By default all fields mentioned below will be used to search by term           </p>         <h4>Available Fields</h4><ul><li>serverFirmwareBaselineName</li> <li>serverFirmwareBaselineLevelFilterJson</li></ul>          (optional)
-	select_ := "select__example" // string | List of fields to select.       <p>              <b>Example: </b> serverFirmwareBaselineId,serverFirmwareBaselineName,serverFirmwareBaselineDescription,serverFirmwareBaselineCatalogJson,serverFirmwareBaselineLevel           </p>       <p>              <b>Default Value: </b> By default all fields returns. If you want to select only some fields, provide them in query param           </p>        (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values         <p>              <b>Example: </b> name,levelFilter           </p>         <p>              <b>Default Value: </b> By default all fields mentioned below will be used to search by term           </p>         <h4>Available Fields</h4><ul><li>name</li> <li>levelFilter</li></ul>          (optional)
+	select_ := "select__example" // string | List of fields to select.       <p>              <b>Example: </b> id,name,description,catalog,level           </p>       <p>              <b>Default Value: </b> By default all fields returns. If you want to select only some fields, provide them in query param           </p>        (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirmwareBaselineAPI.GetFirmwareBaselines(context.Background()).Page(page).Limit(limit).FilterServerFirmwareBaselineLevel(filterServerFirmwareBaselineLevel).FilterServerFirmwareBaselineLevelFilterJson(filterServerFirmwareBaselineLevelFilterJson).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
+	resp, r, err := apiClient.FirmwareBaselineAPI.GetFirmwareBaselines(context.Background()).Page(page).Limit(limit).FilterLevel(filterLevel).FilterLevelFilter(filterLevelFilter).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBaselineAPI.GetFirmwareBaselines``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -271,12 +271,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
  **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
- **filterServerFirmwareBaselineLevel** | **[]string** | Filter by serverFirmwareBaselineLevel query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareBaselineLevel&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareBaselineLevel&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareBaselineLevel&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **filterServerFirmwareBaselineLevelFilterJson** | **[]string** | Filter by serverFirmwareBaselineLevelFilterJson query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverFirmwareBaselineLevelFilterJson&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverFirmwareBaselineLevelFilterJson&#x3D;$not:$like:John Doe&amp;filter.serverFirmwareBaselineLevelFilterJson&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; serverFirmwareBaselineId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;serverFirmwareBaselineId&lt;/li&gt; &lt;li&gt;serverFirmwareBaselineName&lt;/li&gt;&lt;/ul&gt;        | 
+ **filterLevel** | **[]string** | Filter by level query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.level&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.level&#x3D;$not:$like:John Doe&amp;filter.level&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
+ **filterLevelFilter** | **[]string** | Filter by levelFilter query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.levelFilter&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.levelFilter&#x3D;$not:$like:John Doe&amp;filter.levelFilter&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
+ **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt;&lt;/ul&gt;        | 
  **search** | **string** | Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;          | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; serverFirmwareBaselineName,serverFirmwareBaselineLevelFilterJson           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;serverFirmwareBaselineName&lt;/li&gt; &lt;li&gt;serverFirmwareBaselineLevelFilterJson&lt;/li&gt;&lt;/ul&gt;          | 
- **select_** | **string** | List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; serverFirmwareBaselineId,serverFirmwareBaselineName,serverFirmwareBaselineDescription,serverFirmwareBaselineCatalogJson,serverFirmwareBaselineLevel           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;        | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; name,levelFilter           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;name&lt;/li&gt; &lt;li&gt;levelFilter&lt;/li&gt;&lt;/ul&gt;          | 
+ **select_** | **string** | List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,name,description,catalog,level           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;        | 
 
 ### Return type
 
@@ -318,7 +318,7 @@ import (
 
 func main() {
 	firmwareBaselineId := float32(8.14) // float32 | The firmware baseline id
-	updateFirmwareBaseline := *openapiclient.NewUpdateFirmwareBaseline("Data center baseline name", openapiclient.BaselineLevelType("datacenter"), "["datacenter1", "datacenter2"]") // UpdateFirmwareBaseline | 
+	updateFirmwareBaseline := *openapiclient.NewUpdateFirmwareBaseline("Data center baseline name", openapiclient.BaselineLevelType("datacenter"), []string{"LevelFilter_example"}) // UpdateFirmwareBaseline | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

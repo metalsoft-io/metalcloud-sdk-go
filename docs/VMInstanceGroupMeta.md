@@ -1,0 +1,82 @@
+# VMInstanceGroupMeta
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**GuiSettings** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
+**Tags** | Pointer to **[]string** | Tags for the VM Instance Group. | [optional] 
+
+## Methods
+
+### NewVMInstanceGroupMeta
+
+`func NewVMInstanceGroupMeta() *VMInstanceGroupMeta`
+
+NewVMInstanceGroupMeta instantiates a new VMInstanceGroupMeta object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewVMInstanceGroupMetaWithDefaults
+
+`func NewVMInstanceGroupMetaWithDefaults() *VMInstanceGroupMeta`
+
+NewVMInstanceGroupMetaWithDefaults instantiates a new VMInstanceGroupMeta object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetGuiSettings
+
+`func (o *VMInstanceGroupMeta) GetGuiSettings() GenericGUISettings`
+
+GetGuiSettings returns the GuiSettings field if non-nil, zero value otherwise.
+
+### GetGuiSettingsOk
+
+`func (o *VMInstanceGroupMeta) GetGuiSettingsOk() (*GenericGUISettings, bool)`
+
+GetGuiSettingsOk returns a tuple with the GuiSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGuiSettings
+
+`func (o *VMInstanceGroupMeta) SetGuiSettings(v GenericGUISettings)`
+
+SetGuiSettings sets GuiSettings field to given value.
+
+### HasGuiSettings
+
+`func (o *VMInstanceGroupMeta) HasGuiSettings() bool`
+
+HasGuiSettings returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *VMInstanceGroupMeta) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *VMInstanceGroupMeta) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *VMInstanceGroupMeta) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *VMInstanceGroupMeta) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -89,6 +89,20 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ServerInstanceAPIService GetPowerStatusBatch", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId int32
+
+		resp, httpRes, err := apiClient.ServerInstanceAPI.GetPowerStatusBatch(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ServerInstanceAPIService GetServerInstance", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -174,6 +188,18 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ServerInstanceAPIService GetServerInstanceStatistics", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.ServerInstanceAPI.GetServerInstanceStatistics(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ServerInstanceAPIService GetServerInstances", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -186,6 +212,19 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ServerInstanceAPIService ReinstallServerInstanceOS", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceId int32
+
+		httpRes, err := apiClient.ServerInstanceAPI.ReinstallServerInstanceOS(context.Background(), serverInstanceId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ServerInstanceAPIService ResetServerInstance", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -193,6 +232,19 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 		var serverInstanceId int32
 
 		httpRes, err := apiClient.ServerInstanceAPI.ResetServerInstance(context.Background(), serverInstanceId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ServerInstanceAPIService SetPowerStatusBatch", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId int32
+
+		httpRes, err := apiClient.ServerInstanceAPI.SetPowerStatusBatch(context.Background(), infrastructureId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
