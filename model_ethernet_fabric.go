@@ -24,7 +24,7 @@ type EthernetFabric struct {
 	// The type of network fabric
 	FabricType string `json:"fabricType"`
 	// Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile.
-	DefaultNetworkProfileId int32 `json:"defaultNetworkProfileId"`
+	DefaultNetworkProfileId *int32 `json:"defaultNetworkProfileId,omitempty"`
 	// Enables gNMI monitoring for telemetry data collection using the gNMI protocol.
 	GnmiMonitoringEnabled *bool `json:"gnmiMonitoringEnabled,omitempty"`
 	// Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting.
@@ -46,7 +46,7 @@ type EthernetFabric struct {
 	// MLAG ID ranges. Each range must be provided in \"start-end\" format with values between 1 and 4096.
 	MlagRanges []string `json:"mlagRanges,omitempty"`
 	// Number of spines adjacent to leaf switches. Must be a positive number.
-	NumberOfSpinesNextToLeafSwitches int32 `json:"numberOfSpinesNextToLeafSwitches"`
+	NumberOfSpinesNextToLeafSwitches *int32 `json:"numberOfSpinesNextToLeafSwitches,omitempty"`
 	// VLAN ranges that should be prevented from automatic cleanup. Format must be \"start-end\".
 	PreventVlanCleanup []string `json:"preventVlanCleanup,omitempty"`
 	// Flag indicating whether cleanup from uplink interfaces should be prevented.
@@ -72,11 +72,9 @@ type _EthernetFabric EthernetFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEthernetFabric(fabricType string, defaultNetworkProfileId int32, numberOfSpinesNextToLeafSwitches int32) *EthernetFabric {
+func NewEthernetFabric(fabricType string) *EthernetFabric {
 	this := EthernetFabric{}
 	this.FabricType = fabricType
-	this.DefaultNetworkProfileId = defaultNetworkProfileId
-	this.NumberOfSpinesNextToLeafSwitches = numberOfSpinesNextToLeafSwitches
 	return &this
 }
 
@@ -112,28 +110,36 @@ func (o *EthernetFabric) SetFabricType(v string) {
 	o.FabricType = v
 }
 
-// GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field value
+// GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field value if set, zero value otherwise.
 func (o *EthernetFabric) GetDefaultNetworkProfileId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.DefaultNetworkProfileId) {
 		var ret int32
 		return ret
 	}
-
-	return o.DefaultNetworkProfileId
+	return *o.DefaultNetworkProfileId
 }
 
-// GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field value
+// GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EthernetFabric) GetDefaultNetworkProfileIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DefaultNetworkProfileId) {
 		return nil, false
 	}
-	return &o.DefaultNetworkProfileId, true
+	return o.DefaultNetworkProfileId, true
 }
 
-// SetDefaultNetworkProfileId sets field value
+// HasDefaultNetworkProfileId returns a boolean if a field has been set.
+func (o *EthernetFabric) HasDefaultNetworkProfileId() bool {
+	if o != nil && !IsNil(o.DefaultNetworkProfileId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultNetworkProfileId gets a reference to the given int32 and assigns it to the DefaultNetworkProfileId field.
 func (o *EthernetFabric) SetDefaultNetworkProfileId(v int32) {
-	o.DefaultNetworkProfileId = v
+	o.DefaultNetworkProfileId = &v
 }
 
 // GetGnmiMonitoringEnabled returns the GnmiMonitoringEnabled field value if set, zero value otherwise.
@@ -456,28 +462,36 @@ func (o *EthernetFabric) SetMlagRanges(v []string) {
 	o.MlagRanges = v
 }
 
-// GetNumberOfSpinesNextToLeafSwitches returns the NumberOfSpinesNextToLeafSwitches field value
+// GetNumberOfSpinesNextToLeafSwitches returns the NumberOfSpinesNextToLeafSwitches field value if set, zero value otherwise.
 func (o *EthernetFabric) GetNumberOfSpinesNextToLeafSwitches() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.NumberOfSpinesNextToLeafSwitches) {
 		var ret int32
 		return ret
 	}
-
-	return o.NumberOfSpinesNextToLeafSwitches
+	return *o.NumberOfSpinesNextToLeafSwitches
 }
 
-// GetNumberOfSpinesNextToLeafSwitchesOk returns a tuple with the NumberOfSpinesNextToLeafSwitches field value
+// GetNumberOfSpinesNextToLeafSwitchesOk returns a tuple with the NumberOfSpinesNextToLeafSwitches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EthernetFabric) GetNumberOfSpinesNextToLeafSwitchesOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NumberOfSpinesNextToLeafSwitches) {
 		return nil, false
 	}
-	return &o.NumberOfSpinesNextToLeafSwitches, true
+	return o.NumberOfSpinesNextToLeafSwitches, true
 }
 
-// SetNumberOfSpinesNextToLeafSwitches sets field value
+// HasNumberOfSpinesNextToLeafSwitches returns a boolean if a field has been set.
+func (o *EthernetFabric) HasNumberOfSpinesNextToLeafSwitches() bool {
+	if o != nil && !IsNil(o.NumberOfSpinesNextToLeafSwitches) {
+		return true
+	}
+
+	return false
+}
+
+// SetNumberOfSpinesNextToLeafSwitches gets a reference to the given int32 and assigns it to the NumberOfSpinesNextToLeafSwitches field.
 func (o *EthernetFabric) SetNumberOfSpinesNextToLeafSwitches(v int32) {
-	o.NumberOfSpinesNextToLeafSwitches = v
+	o.NumberOfSpinesNextToLeafSwitches = &v
 }
 
 // GetPreventVlanCleanup returns the PreventVlanCleanup field value if set, zero value otherwise.
@@ -747,7 +761,9 @@ func (o EthernetFabric) MarshalJSON() ([]byte, error) {
 func (o EthernetFabric) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fabricType"] = o.FabricType
-	toSerialize["defaultNetworkProfileId"] = o.DefaultNetworkProfileId
+	if !IsNil(o.DefaultNetworkProfileId) {
+		toSerialize["defaultNetworkProfileId"] = o.DefaultNetworkProfileId
+	}
 	if !IsNil(o.GnmiMonitoringEnabled) {
 		toSerialize["gnmiMonitoringEnabled"] = o.GnmiMonitoringEnabled
 	}
@@ -778,7 +794,9 @@ func (o EthernetFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MlagRanges) {
 		toSerialize["mlagRanges"] = o.MlagRanges
 	}
-	toSerialize["numberOfSpinesNextToLeafSwitches"] = o.NumberOfSpinesNextToLeafSwitches
+	if !IsNil(o.NumberOfSpinesNextToLeafSwitches) {
+		toSerialize["numberOfSpinesNextToLeafSwitches"] = o.NumberOfSpinesNextToLeafSwitches
+	}
 	if !IsNil(o.PreventVlanCleanup) {
 		toSerialize["preventVlanCleanup"] = o.PreventVlanCleanup
 	}
@@ -817,8 +835,6 @@ func (o *EthernetFabric) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"fabricType",
-		"defaultNetworkProfileId",
-		"numberOfSpinesNextToLeafSwitches",
 	}
 
 	allProperties := make(map[string]interface{})

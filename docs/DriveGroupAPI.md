@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateDriveGroup**](DriveGroupAPI.md#CreateDriveGroup) | **Post** /api/v2/infrastructures/{infrastructureId}/drive-groups | Create a new Drive Group
 [**DeleteDriveGroup**](DriveGroupAPI.md#DeleteDriveGroup) | **Delete** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId} | Deletes a Drive Group
 [**GetDriveGroupConfigInfo**](DriveGroupAPI.md#GetDriveGroupConfigInfo) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/config | Get configuration information about the specified Drive Group
-[**GetDriveGroupDrives**](DriveGroupAPI.md#GetDriveGroupDrives) | **Get** /api/v2/{infrastructureId}/drive-groups/{driveGroupId}/drives | Get the Drives of the Drive Group
+[**GetDriveGroupDrives**](DriveGroupAPI.md#GetDriveGroupDrives) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/drives | Get the Drives of the Drive Group
 [**GetInfrastructureDriveGroup**](DriveGroupAPI.md#GetInfrastructureDriveGroup) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId} | Get DriveGroup information
 [**GetInfrastructureDriveGroups**](DriveGroupAPI.md#GetInfrastructureDriveGroups) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups | Get all Drive Groups on the infrastructure
 [**PatchDriveGroupConfig**](DriveGroupAPI.md#PatchDriveGroupConfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/config | Updates the config of a Drive Group
@@ -35,7 +35,7 @@ import (
 
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
-	createGroupDrive := *openapiclient.NewCreateGroupDrive(float32(1), float32(123)) // CreateGroupDrive | 
+	createGroupDrive := *openapiclient.NewCreateGroupDrive(float32(123), float32(1)) // CreateGroupDrive | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

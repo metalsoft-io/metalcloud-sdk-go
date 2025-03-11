@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DecommissionServer**](ServerAPI.md#DecommissionServer) | **Post** /api/v2/servers/{serverId}/actions/decommission | Decommissions a Server
+[**ArchiveServer**](ServerAPI.md#ArchiveServer) | **Post** /api/v2/servers/{serverId}/actions/archive | Archives a Server
 [**DeleteServer**](ServerAPI.md#DeleteServer) | **Delete** /api/v2/servers/{serverId} | Deletes a Server
 [**EnableServerSyslog**](ServerAPI.md#EnableServerSyslog) | **Post** /api/v2/servers/{serverId}/actions/syslog-subscribe | Enables remote syslog for a server
 [**GetServerCapabilities**](ServerAPI.md#GetServerCapabilities) | **Get** /api/v2/servers/{serverId}/capabilities | Get Server capabilities
@@ -25,11 +25,11 @@ Method | HTTP request | Description
 
 
 
-## DecommissionServer
+## ArchiveServer
 
-> DecommissionServer(ctx, serverId).IfMatch(ifMatch).Execute()
+> ArchiveServer(ctx, serverId).IfMatch(ifMatch).Execute()
 
-Decommissions a Server
+Archives a Server
 
 
 
@@ -51,9 +51,9 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ServerAPI.DecommissionServer(context.Background(), serverId).IfMatch(ifMatch).Execute()
+	r, err := apiClient.ServerAPI.ArchiveServer(context.Background(), serverId).IfMatch(ifMatch).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.DecommissionServer``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.ArchiveServer``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDecommissionServerRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiArchiveServerRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

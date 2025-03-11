@@ -24,7 +24,7 @@ type FibreChannelFabric struct {
 	// The type of network fabric
 	FabricType string `json:"fabricType"`
 	// Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile.
-	DefaultNetworkProfileId int32 `json:"defaultNetworkProfileId"`
+	DefaultNetworkProfileId *int32 `json:"defaultNetworkProfileId,omitempty"`
 	// Enables gNMI monitoring for telemetry data collection using the gNMI protocol.
 	GnmiMonitoringEnabled *bool `json:"gnmiMonitoringEnabled,omitempty"`
 	// Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting.
@@ -32,9 +32,9 @@ type FibreChannelFabric struct {
 	// Enables zero-touch provisioning for automatic device configuration.
 	ZeroTouchEnabled *bool `json:"zeroTouchEnabled,omitempty"`
 	// VSAN ID for the Fibre Channel fabric
-	VsanId int32 `json:"vsanId"`
+	VsanId *int32 `json:"vsanId,omitempty"`
 	// Fabric topology type
-	TopologyType string `json:"topologyType"`
+	TopologyType *string `json:"topologyType,omitempty"`
 	// Maximum transmission unit (MTU) size in bytes
 	Mtu *float32 `json:"mtu,omitempty"`
 	// Zoning configuration for the fabric
@@ -56,12 +56,9 @@ type _FibreChannelFabric FibreChannelFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFibreChannelFabric(fabricType string, defaultNetworkProfileId int32, vsanId int32, topologyType string) *FibreChannelFabric {
+func NewFibreChannelFabric(fabricType string) *FibreChannelFabric {
 	this := FibreChannelFabric{}
 	this.FabricType = fabricType
-	this.DefaultNetworkProfileId = defaultNetworkProfileId
-	this.VsanId = vsanId
-	this.TopologyType = topologyType
 	return &this
 }
 
@@ -97,28 +94,36 @@ func (o *FibreChannelFabric) SetFabricType(v string) {
 	o.FabricType = v
 }
 
-// GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field value
+// GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field value if set, zero value otherwise.
 func (o *FibreChannelFabric) GetDefaultNetworkProfileId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.DefaultNetworkProfileId) {
 		var ret int32
 		return ret
 	}
-
-	return o.DefaultNetworkProfileId
+	return *o.DefaultNetworkProfileId
 }
 
-// GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field value
+// GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FibreChannelFabric) GetDefaultNetworkProfileIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DefaultNetworkProfileId) {
 		return nil, false
 	}
-	return &o.DefaultNetworkProfileId, true
+	return o.DefaultNetworkProfileId, true
 }
 
-// SetDefaultNetworkProfileId sets field value
+// HasDefaultNetworkProfileId returns a boolean if a field has been set.
+func (o *FibreChannelFabric) HasDefaultNetworkProfileId() bool {
+	if o != nil && !IsNil(o.DefaultNetworkProfileId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultNetworkProfileId gets a reference to the given int32 and assigns it to the DefaultNetworkProfileId field.
 func (o *FibreChannelFabric) SetDefaultNetworkProfileId(v int32) {
-	o.DefaultNetworkProfileId = v
+	o.DefaultNetworkProfileId = &v
 }
 
 // GetGnmiMonitoringEnabled returns the GnmiMonitoringEnabled field value if set, zero value otherwise.
@@ -217,52 +222,68 @@ func (o *FibreChannelFabric) SetZeroTouchEnabled(v bool) {
 	o.ZeroTouchEnabled = &v
 }
 
-// GetVsanId returns the VsanId field value
+// GetVsanId returns the VsanId field value if set, zero value otherwise.
 func (o *FibreChannelFabric) GetVsanId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.VsanId) {
 		var ret int32
 		return ret
 	}
-
-	return o.VsanId
+	return *o.VsanId
 }
 
-// GetVsanIdOk returns a tuple with the VsanId field value
+// GetVsanIdOk returns a tuple with the VsanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FibreChannelFabric) GetVsanIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.VsanId) {
 		return nil, false
 	}
-	return &o.VsanId, true
+	return o.VsanId, true
 }
 
-// SetVsanId sets field value
+// HasVsanId returns a boolean if a field has been set.
+func (o *FibreChannelFabric) HasVsanId() bool {
+	if o != nil && !IsNil(o.VsanId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVsanId gets a reference to the given int32 and assigns it to the VsanId field.
 func (o *FibreChannelFabric) SetVsanId(v int32) {
-	o.VsanId = v
+	o.VsanId = &v
 }
 
-// GetTopologyType returns the TopologyType field value
+// GetTopologyType returns the TopologyType field value if set, zero value otherwise.
 func (o *FibreChannelFabric) GetTopologyType() string {
-	if o == nil {
+	if o == nil || IsNil(o.TopologyType) {
 		var ret string
 		return ret
 	}
-
-	return o.TopologyType
+	return *o.TopologyType
 }
 
-// GetTopologyTypeOk returns a tuple with the TopologyType field value
+// GetTopologyTypeOk returns a tuple with the TopologyType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FibreChannelFabric) GetTopologyTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TopologyType) {
 		return nil, false
 	}
-	return &o.TopologyType, true
+	return o.TopologyType, true
 }
 
-// SetTopologyType sets field value
+// HasTopologyType returns a boolean if a field has been set.
+func (o *FibreChannelFabric) HasTopologyType() bool {
+	if o != nil && !IsNil(o.TopologyType) {
+		return true
+	}
+
+	return false
+}
+
+// SetTopologyType gets a reference to the given string and assigns it to the TopologyType field.
 func (o *FibreChannelFabric) SetTopologyType(v string) {
-	o.TopologyType = v
+	o.TopologyType = &v
 }
 
 // GetMtu returns the Mtu field value if set, zero value otherwise.
@@ -468,7 +489,9 @@ func (o FibreChannelFabric) MarshalJSON() ([]byte, error) {
 func (o FibreChannelFabric) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fabricType"] = o.FabricType
-	toSerialize["defaultNetworkProfileId"] = o.DefaultNetworkProfileId
+	if !IsNil(o.DefaultNetworkProfileId) {
+		toSerialize["defaultNetworkProfileId"] = o.DefaultNetworkProfileId
+	}
 	if !IsNil(o.GnmiMonitoringEnabled) {
 		toSerialize["gnmiMonitoringEnabled"] = o.GnmiMonitoringEnabled
 	}
@@ -478,8 +501,12 @@ func (o FibreChannelFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ZeroTouchEnabled) {
 		toSerialize["zeroTouchEnabled"] = o.ZeroTouchEnabled
 	}
-	toSerialize["vsanId"] = o.VsanId
-	toSerialize["topologyType"] = o.TopologyType
+	if !IsNil(o.VsanId) {
+		toSerialize["vsanId"] = o.VsanId
+	}
+	if !IsNil(o.TopologyType) {
+		toSerialize["topologyType"] = o.TopologyType
+	}
 	if !IsNil(o.Mtu) {
 		toSerialize["mtu"] = o.Mtu
 	}
@@ -512,9 +539,6 @@ func (o *FibreChannelFabric) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"fabricType",
-		"defaultNetworkProfileId",
-		"vsanId",
-		"topologyType",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -23,8 +23,8 @@ var _ MappedNullable = &ServerInstanceConfiguration{}
 type ServerInstanceConfiguration struct {
 	// Revision number
 	Revision float32 `json:"revision"`
-	// The server instance label. Will be automatically generated if not provided.
-	Label *string `json:"label,omitempty"`
+	// The server instance label.
+	Label string `json:"label"`
 	// Timestamp of the latest update for the Server Instance.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	GroupId int32 `json:"groupId"`
@@ -72,9 +72,10 @@ type _ServerInstanceConfiguration ServerInstanceConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceConfiguration(revision float32, updatedTimestamp string, groupId int32, deployType string, deployStatus string) *ServerInstanceConfiguration {
+func NewServerInstanceConfiguration(revision float32, label string, updatedTimestamp string, groupId int32, deployType string, deployStatus string) *ServerInstanceConfiguration {
 	this := ServerInstanceConfiguration{}
 	this.Revision = revision
+	this.Label = label
 	this.UpdatedTimestamp = updatedTimestamp
 	this.GroupId = groupId
 	var enableAutoPortChannel bool = true
@@ -118,36 +119,28 @@ func (o *ServerInstanceConfiguration) SetRevision(v float32) {
 	o.Revision = v
 }
 
-// GetLabel returns the Label field value if set, zero value otherwise.
+// GetLabel returns the Label field value
 func (o *ServerInstanceConfiguration) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Label
+
+	return o.Label
 }
 
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
 func (o *ServerInstanceConfiguration) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Label, true
+	return &o.Label, true
 }
 
-// HasLabel returns a boolean if a field has been set.
-func (o *ServerInstanceConfiguration) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
+// SetLabel sets field value
 func (o *ServerInstanceConfiguration) SetLabel(v string) {
-	o.Label = &v
+	o.Label = v
 }
 
 // GetUpdatedTimestamp returns the UpdatedTimestamp field value
@@ -801,9 +794,7 @@ func (o ServerInstanceConfiguration) MarshalJSON() ([]byte, error) {
 func (o ServerInstanceConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["revision"] = o.Revision
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
+	toSerialize["label"] = o.Label
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	toSerialize["groupId"] = o.GroupId
 	if !IsNil(o.DriveIdBootable) {
@@ -873,6 +864,7 @@ func (o *ServerInstanceConfiguration) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"revision",
+		"label",
 		"updatedTimestamp",
 		"groupId",
 		"deployType",

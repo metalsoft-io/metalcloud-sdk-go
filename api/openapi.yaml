@@ -3163,7 +3163,7 @@ paths:
       summary: Get DriveGroup information
       tags:
       - Drive Group
-  /api/v2/{infrastructureId}/drive-groups/{driveGroupId}/drives:
+  /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/drives:
     get:
       description: Returns the Drives of the Drive Group
       operationId: getDriveGroupDrives
@@ -11262,6 +11262,14 @@ paths:
         schema:
           type: number
         style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -11276,6 +11284,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/NetworkDevice'
           description: Returns updated Network Device
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
         "400":
           description: Bad request
         "401":
@@ -11284,15 +11299,21 @@ paths:
           description: Forbidden
         "404":
           description: Not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+        "500":
+          description: Internal Server Error
       security:
       - JWT: []
       - apiKey: []
       summary: Update Network Device
       tags:
       - Network Device
-  /api/v2/network-devices/{networkDeviceId}/decommission:
-    delete:
-      operationId: NetworkDeviceController_decommissionNetworkDevice
+  /api/v2/network-devices/{networkDeviceId}/actions/archive:
+    post:
+      operationId: archiveNetworkDevice
       parameters:
       - explode: false
         in: path
@@ -11301,21 +11322,33 @@ paths:
         schema:
           type: number
         style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "204":
-          description: Network Device decommissioned
+          description: Network Device archived
         "400":
-          description: Invalid input or preconditions not met for decommissioning
+          description: Bad request
         "401":
           description: Unauthorized
         "403":
           description: Forbidden
         "404":
-          description: Network device not found
+          description: Not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
       security:
       - JWT: []
       - apiKey: []
-      summary: Decommission network device
+      summary: Archives a network device
       tags:
       - Network Device
   /api/v2/network-devices/{networkDeviceId}/replace:
@@ -12005,13 +12038,45 @@ paths:
             type: string
           type: array
         style: form
+      - description: |-
+          Filter by fabricConfiguration.fabricType query param.
+                    <p>
+                       <b>Format: </b> filter.fabricConfiguration.fabricType={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.fabricConfiguration.fabricType=$not:$like:John Doe&filter.fabricConfiguration.fabricType=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.fabricConfiguration.fabricType
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
           \ just provide query param multiple types. The order in url defines an order\
           \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
           \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
           \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
-          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>name</li>\n\
-          <li>createdTimestamp</li>\n<li>updatedTimestamp</li></ul>\n      "
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>siteId</li>\n\
+          <li>name</li>\n<li>createdTimestamp</li>\n<li>updatedTimestamp</li></ul>\n\
+          \      "
         explode: true
         in: query
         name: sortBy
@@ -12021,6 +12086,8 @@ paths:
             enum:
             - id:ASC
             - id:DESC
+            - siteId:ASC
+            - siteId:DESC
             - name:ASC
             - name:DESC
             - createdTimestamp:ASC
@@ -12041,11 +12108,11 @@ paths:
           type: string
         style: form
       - description: "List of fields to search by term to filter result values\n \
-          \       <p>\n             <b>Example: </b> name,description\n          </p>\n\
-          \        <p>\n             <b>Default Value: </b> By default all fields\
-          \ mentioned below will be used to search by term\n          </p>\n     \
-          \   <h4>Available Fields</h4><ul><li>name</li>\n<li>description</li></ul>\n\
-          \        "
+          \       <p>\n             <b>Example: </b> name,description,siteId,fabricConfiguration.fabricType\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
+          \ all fields mentioned below will be used to search by term\n          </p>\n\
+          \        <h4>Available Fields</h4><ul><li>name</li>\n<li>description</li>\n\
+          <li>siteId</li>\n<li>fabricConfiguration.fabricType</li></ul>\n        "
         explode: true
         in: query
         name: searchBy
@@ -17479,10 +17546,10 @@ paths:
       summary: Updates the server information
       tags:
       - Server
-  /api/v2/servers/{serverId}/actions/decommission:
+  /api/v2/servers/{serverId}/actions/archive:
     post:
-      description: Decommissions a Server
-      operationId: decommissionServer
+      description: Archives a Server
+      operationId: archiveServer
       parameters:
       - explode: false
         in: path
@@ -17501,7 +17568,7 @@ paths:
         style: simple
       responses:
         "204":
-          description: Server decommissioned
+          description: Server archived
         "400":
           description: Bad request
         "401":
@@ -17519,7 +17586,7 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Decommissions a Server
+      summary: Archives a Server
       tags:
       - Server
   /api/v2/servers/statistics:
@@ -28615,7 +28682,6 @@ components:
       type: object
     DriveGroupConfiguration:
       example:
-        driveCount: 1
         containerArrayId: 1
         label: label
         ioLimitPolicy: ioLimitPolicy
@@ -28645,10 +28711,6 @@ components:
           type: number
         templateId:
           description: Template Id
-          example: 1
-          type: number
-        driveCount:
-          description: Number of drives in the Drive Group
           example: 1
           type: number
         driveSizeMbDefault:
@@ -28713,7 +28775,6 @@ components:
       required:
       - deployStatus
       - deployType
-      - driveCount
       - driveSizeMbDefault
       - expandWithServerInstanceGroup
       - infrastructureId
@@ -28734,29 +28795,28 @@ components:
       type: object
     DriveGroup:
       example:
-        driveCount: 1
-        extensionInstanceId: 1
-        containerArrayId: 1
-        templateId: 1
-        updatedTimestamp: updatedTimestamp
-        expandWithServerInstanceGroup: 1
-        containerClusterId: 1
-        dnsSubdomainPermanentId: 2.3021358869347655
-        serviceStatus: ordered
-        id: 1.4658129805029452
         dnsSubdomainId: 5.637376656633329
         createdTimestamp: createdTimestamp
+        extensionInstanceId: 1
+        containerArrayId: 1
         label: label
         ioLimitPolicy: ioLimitPolicy
         subdomainPermanent: subdomainPermanent
+        templateId: 1
         allocationAffinity: same_storage
         filesystemInfo: "{}"
+        updatedTimestamp: updatedTimestamp
         revision: 5.962133916683182
+        expandWithServerInstanceGroup: 1
+        containerClusterId: 1
+        dnsSubdomainPermanentId: 2.3021358869347655
         infrastructureId: 0.8008281904610115
+        serviceStatus: ordered
         meta: ""
         storageType: iscsi_ssd
         subdomain: subdomain
         serverInstanceGroupId: 1
+        id: 1.4658129805029452
         driveSizeMbDefault: 6.027456183070403
         config: ""
       properties:
@@ -28768,10 +28828,6 @@ components:
           type: number
         templateId:
           description: Template Id
-          example: 1
-          type: number
-        driveCount:
-          description: Number of drives in the Drive Group
           example: 1
           type: number
         driveSizeMbDefault:
@@ -28859,7 +28915,6 @@ components:
       - allocationAffinity
       - config
       - createdTimestamp
-      - driveCount
       - driveSizeMbDefault
       - expandWithServerInstanceGroup
       - id
@@ -28874,54 +28929,52 @@ components:
     DriveGroupPaginatedList:
       example:
         data:
-        - driveCount: 1
+        - dnsSubdomainId: 5.637376656633329
+          createdTimestamp: createdTimestamp
           extensionInstanceId: 1
           containerArrayId: 1
-          templateId: 1
-          updatedTimestamp: updatedTimestamp
-          expandWithServerInstanceGroup: 1
-          containerClusterId: 1
-          dnsSubdomainPermanentId: 2.3021358869347655
-          serviceStatus: ordered
-          id: 1.4658129805029452
-          dnsSubdomainId: 5.637376656633329
-          createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
+          templateId: 1
           allocationAffinity: same_storage
           filesystemInfo: "{}"
+          updatedTimestamp: updatedTimestamp
           revision: 5.962133916683182
+          expandWithServerInstanceGroup: 1
+          containerClusterId: 1
+          dnsSubdomainPermanentId: 2.3021358869347655
           infrastructureId: 0.8008281904610115
+          serviceStatus: ordered
           meta: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           serverInstanceGroupId: 1
+          id: 1.4658129805029452
           driveSizeMbDefault: 6.027456183070403
           config: ""
-        - driveCount: 1
+        - dnsSubdomainId: 5.637376656633329
+          createdTimestamp: createdTimestamp
           extensionInstanceId: 1
           containerArrayId: 1
-          templateId: 1
-          updatedTimestamp: updatedTimestamp
-          expandWithServerInstanceGroup: 1
-          containerClusterId: 1
-          dnsSubdomainPermanentId: 2.3021358869347655
-          serviceStatus: ordered
-          id: 1.4658129805029452
-          dnsSubdomainId: 5.637376656633329
-          createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
+          templateId: 1
           allocationAffinity: same_storage
           filesystemInfo: "{}"
+          updatedTimestamp: updatedTimestamp
           revision: 5.962133916683182
+          expandWithServerInstanceGroup: 1
+          containerClusterId: 1
+          dnsSubdomainPermanentId: 2.3021358869347655
           infrastructureId: 0.8008281904610115
+          serviceStatus: ordered
           meta: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           serverInstanceGroupId: 1
+          id: 1.4658129805029452
           driveSizeMbDefault: 6.027456183070403
           config: ""
         meta: ""
@@ -28957,10 +29010,6 @@ components:
         allocationAffinity: same_storage
         driveSizeMbDefault: 0.8008281904610115
       properties:
-        driveCount:
-          description: Number of drives in the Drive Group
-          example: 1
-          type: number
         driveSizeMbDefault:
           description: Default disk size in MB for new Drives in the Drive Group
           type: number
@@ -28970,6 +29019,10 @@ components:
         label:
           description: Label of the Drive.
           type: string
+        driveCount:
+          description: Number of drives in the Drive Group
+          example: 1
+          type: number
         ioLimitPolicy:
           description: The IO limit policy of the Drive Group.
           type: string
@@ -34080,6 +34133,8 @@ components:
         revision:
           description: Revision of the Infrastructure
           type: number
+        label:
+          type: string
         deployType:
           default: create
           description: Deploy type of the Infrastructure
@@ -34109,9 +34164,6 @@ components:
         dnsSubdomainChangeId:
           description: DNS Subdomain Change ID
           type: number
-        label:
-          description: Label of the Infrastructure.
-          type: string
         datacenterName:
           description: Datacenter name where the Infrastructure is located.
           type: string
@@ -34164,7 +34216,7 @@ components:
           type: number
         certificatesJson:
           description: Certificates in JSON format.
-          type: object
+          type: string
         deployCookieJarJson:
           description: Deploy cookie jar JSON.
           type: object
@@ -34269,7 +34321,7 @@ components:
         isAutomanaged: 3.616076749251911
         instancesCountActive: 6.027456183070403
         settings: "{}"
-        certificatesJson: "{}"
+        certificatesJson: certificatesJson
         dnsSubdomainId: 7.386281948385884
         drivesCountActive: 1.4658129805029452
         createdTimestamp: createdTimestamp
@@ -34294,7 +34346,6 @@ components:
           groupCreatedTimestamp: 2022-01-01T00:00:00Z
       properties:
         label:
-          description: Label of the Infrastructure.
           type: string
         customVariables:
           description: Custom variables in JSON format.
@@ -34342,7 +34393,7 @@ components:
           type: number
         certificatesJson:
           description: Certificates in JSON format.
-          type: object
+          type: string
         deployCookieJarJson:
           description: Deploy cookie jar JSON.
           type: object
@@ -34441,7 +34492,7 @@ components:
           isAutomanaged: 3.616076749251911
           instancesCountActive: 6.027456183070403
           settings: "{}"
-          certificatesJson: "{}"
+          certificatesJson: certificatesJson
           dnsSubdomainId: 7.386281948385884
           drivesCountActive: 1.4658129805029452
           createdTimestamp: createdTimestamp
@@ -34483,7 +34534,7 @@ components:
           isAutomanaged: 3.616076749251911
           instancesCountActive: 6.027456183070403
           settings: "{}"
-          certificatesJson: "{}"
+          certificatesJson: certificatesJson
           dnsSubdomainId: 7.386281948385884
           drivesCountActive: 1.4658129805029452
           createdTimestamp: createdTimestamp
@@ -34548,7 +34599,6 @@ components:
         customVariables: "{}"
       properties:
         label:
-          description: Label of the Infrastructure.
           type: string
         siteId:
           description: The ID of the site where the Infrastructure is located.
@@ -34574,7 +34624,6 @@ components:
         customVariables: "{}"
       properties:
         label:
-          description: Label of the Infrastructure.
           type: string
         customVariables:
           description: Custom variables in JSON format.
@@ -34873,6 +34922,7 @@ components:
       - instanceCount
       - ipAllocateAuto
       - ipv4SubnetCreateAuto
+      - label
       - processorCoreCount
       - processorCoreMhz
       - processorCount
@@ -35151,6 +35201,7 @@ components:
       - ipAllocateAuto
       - ipv4SubnetCreateAuto
       - isVmGroup
+      - label
       - processorCoreCount
       - processorCoreMhz
       - processorCount
@@ -35385,12 +35436,6 @@ components:
         ramGbytes: 2
         virtualInterfacesEnabled: 1
       properties:
-        label:
-          description: The server instance group label. Will be automatically generated
-            if not provided.
-          example: server-instance-123
-          maxLength: 63
-          type: string
         serverGroupName:
           example: server-instance-123
           maxLength: 255
@@ -35474,6 +35519,12 @@ components:
         resourcePoolId:
           description: The resource pool assigned to this instance array
           type: integer
+        label:
+          description: The server instance group label. Will be automatically generated
+            if not provided.
+          example: server-instance-123
+          maxLength: 63
+          type: string
         serverTypeId:
           description: The server type ID.
           example: 5
@@ -35584,8 +35635,7 @@ components:
           example: 1
           type: number
         label:
-          description: The server instance label. Will be automatically generated
-            if not provided.
+          description: The server instance label.
           example: instance-123
           type: string
         updatedTimestamp:
@@ -35671,6 +35721,7 @@ components:
       - deployStatus
       - deployType
       - groupId
+      - label
       - revision
       - updatedTimestamp
       type: object
@@ -35768,8 +35819,7 @@ components:
           example: 1
           type: number
         label:
-          description: The server instance label. Will be automatically generated
-            if not provided.
+          description: The server instance label.
           example: instance-123
           type: string
         createdTimestamp:
@@ -35912,6 +35962,7 @@ components:
       - id
       - infrastructureId
       - isVmInstance
+      - label
       - revision
       - serviceStatus
       - updatedTimestamp
@@ -36122,11 +36173,6 @@ components:
         - tags
         enableAutoPortChannel: true
       properties:
-        label:
-          description: The server instance label. Will be automatically generated
-            if not provided.
-          example: instance-123
-          type: string
         groupId:
           type: integer
         serverTypeId:
@@ -36153,6 +36199,11 @@ components:
           items:
             $ref: '#/components/schemas/ServerInstanceConfiguration_networkProfiles_inner'
           type: array
+        label:
+          description: The server instance label. Will be automatically generated
+            if not provided.
+          example: instance-123
+          type: string
       type: object
     InstancesPowerState:
       properties: {}
@@ -37068,6 +37119,7 @@ components:
         serialNumber: serialNumber
         loopbackAddressIpv6: loopbackAddressIpv6
         managementAddressGateway: managementAddressGateway
+        revision: 1
         tags: tags
         requiresOsInstall: true
         driver: sonic_enterprise
@@ -37111,6 +37163,10 @@ components:
       properties:
         switchId:
           description: Unique identifier for the switch.
+          type: number
+        revision:
+          description: Revision number
+          example: 1
           type: number
         status:
           description: Current status of the network device
@@ -37295,6 +37351,7 @@ components:
       required:
       - driver
       - position
+      - revision
       - switchId
       type: object
     NetworkDevicePaginatedList:
@@ -37321,6 +37378,7 @@ components:
           serialNumber: serialNumber
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
+          revision: 1
           tags: tags
           requiresOsInstall: true
           driver: sonic_enterprise
@@ -37382,6 +37440,7 @@ components:
           serialNumber: serialNumber
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
+          revision: 1
           tags: tags
           requiresOsInstall: true
           driver: sonic_enterprise
@@ -38217,7 +38276,6 @@ components:
           example: false
           type: boolean
       required:
-      - defaultNetworkProfileId
       - fabricType
       type: object
     EthernetFabric:
@@ -38403,9 +38461,7 @@ components:
             type: string
           type: array
       required:
-      - defaultNetworkProfileId
       - fabricType
-      - numberOfSpinesNextToLeafSwitches
       type: object
     FibreChannelFabric:
       properties:
@@ -38481,15 +38537,138 @@ components:
           description: Port channel configuration for ISLs
           type: object
       required:
-      - defaultNetworkProfileId
       - fabricType
-      - topologyType
-      - vsanId
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-03-08T04:00:20.168Z
+        networkEquipment:
+        - bootstrapReadinessCheckInProgress: 9.301444243932576
+          country: country
+          mlagDomainId: 1.2315135367772556
+          datacenterName: datacenterName
+          switchId: 0.8008281904610115
+          quarantineSubnetGateway: quarantineSubnetGateway
+          datacenterMeta: datacenterMeta
+          vtepAddressIpv6: vtepAddressIpv6
+          managementMacAddress: managementMacAddress
+          isGateway: 7.457744773683766
+          identifierString: identifierString
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          bootstrapReadinessCheckResult: "{}"
+          bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
+          serialNumber: serialNumber
+          loopbackAddressIpv6: loopbackAddressIpv6
+          managementAddressGateway: managementAddressGateway
+          revision: 1
+          tags: tags
+          requiresOsInstall: true
+          driver: sonic_enterprise
+          provisionerType: provisionerType
+          mlagSystemMac: mlagSystemMac
+          rackPositionLowerUnit: 5.962133916683182
+          position: leaf
+          secretsMaterializedForOSAssets: "{}"
+          status: active
+          quarantineVlan: 1.4894159098541704
+          city: city
+          datacenterRack: datacenterRack
+          description: description
+          datacenterRoom: datacenterRoom
+          vtepAddress: vtepAddress
+          quarantineSubnetPrefixSize: 1.0246457001441578
+          rackPositionUpperUnit: 1.4658129805029452
+          bootstrapSkipInitialConfiguration: 4.145608029883936
+          defaultMtu: 6.84685269835264
+          managementAddress: managementAddress
+          loopbackAddress: loopbackAddress
+          quarantineSubnetEnd: quarantineSubnetEnd
+          subnetOobIndex: 2.027123023002322
+          managementAddressMask: managementAddressMask
+          chassisIdentifier: chassisIdentifier
+          readyForInitialConfiguration: 7.061401241503109
+          syslogEnabled: true
+          managementPort: 5.637376656633329
+          managementPassword: password
+          subnetOobId: 3.616076749251911
+          managementProtocol: managementProtocol
+          siteId: 6.027456183070403
+          orderIndex: 2.3021358869347655
+          variablesMaterializedForOSAssets: "{}"
+          networkTypesAllowed:
+          - networkTypesAllowed
+          - networkTypesAllowed
+          quarantineSubnetStart: quarantineSubnetStart
+          asn: 7.386281948385884
+          username: username
+        - bootstrapReadinessCheckInProgress: 9.301444243932576
+          country: country
+          mlagDomainId: 1.2315135367772556
+          datacenterName: datacenterName
+          switchId: 0.8008281904610115
+          quarantineSubnetGateway: quarantineSubnetGateway
+          datacenterMeta: datacenterMeta
+          vtepAddressIpv6: vtepAddressIpv6
+          managementMacAddress: managementMacAddress
+          isGateway: 7.457744773683766
+          identifierString: identifierString
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          bootstrapReadinessCheckResult: "{}"
+          bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
+          serialNumber: serialNumber
+          loopbackAddressIpv6: loopbackAddressIpv6
+          managementAddressGateway: managementAddressGateway
+          revision: 1
+          tags: tags
+          requiresOsInstall: true
+          driver: sonic_enterprise
+          provisionerType: provisionerType
+          mlagSystemMac: mlagSystemMac
+          rackPositionLowerUnit: 5.962133916683182
+          position: leaf
+          secretsMaterializedForOSAssets: "{}"
+          status: active
+          quarantineVlan: 1.4894159098541704
+          city: city
+          datacenterRack: datacenterRack
+          description: description
+          datacenterRoom: datacenterRoom
+          vtepAddress: vtepAddress
+          quarantineSubnetPrefixSize: 1.0246457001441578
+          rackPositionUpperUnit: 1.4658129805029452
+          bootstrapSkipInitialConfiguration: 4.145608029883936
+          defaultMtu: 6.84685269835264
+          managementAddress: managementAddress
+          loopbackAddress: loopbackAddress
+          quarantineSubnetEnd: quarantineSubnetEnd
+          subnetOobIndex: 2.027123023002322
+          managementAddressMask: managementAddressMask
+          chassisIdentifier: chassisIdentifier
+          readyForInitialConfiguration: 7.061401241503109
+          syslogEnabled: true
+          managementPort: 5.637376656633329
+          managementPassword: password
+          subnetOobId: 3.616076749251911
+          managementProtocol: managementProtocol
+          siteId: 6.027456183070403
+          orderIndex: 2.3021358869347655
+          variablesMaterializedForOSAssets: "{}"
+          networkTypesAllowed:
+          - networkTypesAllowed
+          - networkTypesAllowed
+          quarantineSubnetStart: quarantineSubnetStart
+          asn: 7.386281948385884
+          username: username
+        createdTimestamp: 2025-03-11T07:36:36.261Z
         name: My Network Fabric
+        siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -38535,9 +38714,13 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-03-08T04:00:20.168Z
+        updatedTimestamp: 2025-03-11T07:36:36.261Z
         revision: "1"
       properties:
+        siteId:
+          description: The ID of the site where the entity is located.
+          format: integer
+          type: number
         name:
           description: The network fabric name
           example: My Network Fabric
@@ -38558,12 +38741,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-03-08T04:00:20.168Z
+          example: 2025-03-11T07:36:36.261Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-03-08T04:00:20.168Z
+          example: 2025-03-11T07:36:36.261Z
           format: date-time
           type: string
         links:
@@ -38575,6 +38758,11 @@ components:
           description: The network fabric ID.
           example: "1"
           type: string
+        networkEquipment:
+          description: The network equipments in the fabric
+          items:
+            $ref: '#/components/schemas/NetworkDevice'
+          type: array
       required:
       - createdTimestamp
       - fabricConfiguration
@@ -38586,8 +38774,134 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-03-08T04:00:20.168Z
+        - networkEquipment:
+          - bootstrapReadinessCheckInProgress: 9.301444243932576
+            country: country
+            mlagDomainId: 1.2315135367772556
+            datacenterName: datacenterName
+            switchId: 0.8008281904610115
+            quarantineSubnetGateway: quarantineSubnetGateway
+            datacenterMeta: datacenterMeta
+            vtepAddressIpv6: vtepAddressIpv6
+            managementMacAddress: managementMacAddress
+            isGateway: 7.457744773683766
+            identifierString: identifierString
+            links:
+            - rel: self
+              href: /api/v2/path/to/resource
+            - rel: self
+              href: /api/v2/path/to/resource
+            bootstrapReadinessCheckResult: "{}"
+            bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
+            serialNumber: serialNumber
+            loopbackAddressIpv6: loopbackAddressIpv6
+            managementAddressGateway: managementAddressGateway
+            revision: 1
+            tags: tags
+            requiresOsInstall: true
+            driver: sonic_enterprise
+            provisionerType: provisionerType
+            mlagSystemMac: mlagSystemMac
+            rackPositionLowerUnit: 5.962133916683182
+            position: leaf
+            secretsMaterializedForOSAssets: "{}"
+            status: active
+            quarantineVlan: 1.4894159098541704
+            city: city
+            datacenterRack: datacenterRack
+            description: description
+            datacenterRoom: datacenterRoom
+            vtepAddress: vtepAddress
+            quarantineSubnetPrefixSize: 1.0246457001441578
+            rackPositionUpperUnit: 1.4658129805029452
+            bootstrapSkipInitialConfiguration: 4.145608029883936
+            defaultMtu: 6.84685269835264
+            managementAddress: managementAddress
+            loopbackAddress: loopbackAddress
+            quarantineSubnetEnd: quarantineSubnetEnd
+            subnetOobIndex: 2.027123023002322
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
+            syslogEnabled: true
+            managementPort: 5.637376656633329
+            managementPassword: password
+            subnetOobId: 3.616076749251911
+            managementProtocol: managementProtocol
+            siteId: 6.027456183070403
+            orderIndex: 2.3021358869347655
+            variablesMaterializedForOSAssets: "{}"
+            networkTypesAllowed:
+            - networkTypesAllowed
+            - networkTypesAllowed
+            quarantineSubnetStart: quarantineSubnetStart
+            asn: 7.386281948385884
+            username: username
+          - bootstrapReadinessCheckInProgress: 9.301444243932576
+            country: country
+            mlagDomainId: 1.2315135367772556
+            datacenterName: datacenterName
+            switchId: 0.8008281904610115
+            quarantineSubnetGateway: quarantineSubnetGateway
+            datacenterMeta: datacenterMeta
+            vtepAddressIpv6: vtepAddressIpv6
+            managementMacAddress: managementMacAddress
+            isGateway: 7.457744773683766
+            identifierString: identifierString
+            links:
+            - rel: self
+              href: /api/v2/path/to/resource
+            - rel: self
+              href: /api/v2/path/to/resource
+            bootstrapReadinessCheckResult: "{}"
+            bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
+            serialNumber: serialNumber
+            loopbackAddressIpv6: loopbackAddressIpv6
+            managementAddressGateway: managementAddressGateway
+            revision: 1
+            tags: tags
+            requiresOsInstall: true
+            driver: sonic_enterprise
+            provisionerType: provisionerType
+            mlagSystemMac: mlagSystemMac
+            rackPositionLowerUnit: 5.962133916683182
+            position: leaf
+            secretsMaterializedForOSAssets: "{}"
+            status: active
+            quarantineVlan: 1.4894159098541704
+            city: city
+            datacenterRack: datacenterRack
+            description: description
+            datacenterRoom: datacenterRoom
+            vtepAddress: vtepAddress
+            quarantineSubnetPrefixSize: 1.0246457001441578
+            rackPositionUpperUnit: 1.4658129805029452
+            bootstrapSkipInitialConfiguration: 4.145608029883936
+            defaultMtu: 6.84685269835264
+            managementAddress: managementAddress
+            loopbackAddress: loopbackAddress
+            quarantineSubnetEnd: quarantineSubnetEnd
+            subnetOobIndex: 2.027123023002322
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
+            syslogEnabled: true
+            managementPort: 5.637376656633329
+            managementPassword: password
+            subnetOobId: 3.616076749251911
+            managementProtocol: managementProtocol
+            siteId: 6.027456183070403
+            orderIndex: 2.3021358869347655
+            variablesMaterializedForOSAssets: "{}"
+            networkTypesAllowed:
+            - networkTypesAllowed
+            - networkTypesAllowed
+            quarantineSubnetStart: quarantineSubnetStart
+            asn: 7.386281948385884
+            username: username
+          createdTimestamp: 2025-03-11T07:36:36.261Z
           name: My Network Fabric
+          siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -38633,10 +38947,136 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-08T04:00:20.168Z
+          updatedTimestamp: 2025-03-11T07:36:36.261Z
           revision: "1"
-        - createdTimestamp: 2025-03-08T04:00:20.168Z
+        - networkEquipment:
+          - bootstrapReadinessCheckInProgress: 9.301444243932576
+            country: country
+            mlagDomainId: 1.2315135367772556
+            datacenterName: datacenterName
+            switchId: 0.8008281904610115
+            quarantineSubnetGateway: quarantineSubnetGateway
+            datacenterMeta: datacenterMeta
+            vtepAddressIpv6: vtepAddressIpv6
+            managementMacAddress: managementMacAddress
+            isGateway: 7.457744773683766
+            identifierString: identifierString
+            links:
+            - rel: self
+              href: /api/v2/path/to/resource
+            - rel: self
+              href: /api/v2/path/to/resource
+            bootstrapReadinessCheckResult: "{}"
+            bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
+            serialNumber: serialNumber
+            loopbackAddressIpv6: loopbackAddressIpv6
+            managementAddressGateway: managementAddressGateway
+            revision: 1
+            tags: tags
+            requiresOsInstall: true
+            driver: sonic_enterprise
+            provisionerType: provisionerType
+            mlagSystemMac: mlagSystemMac
+            rackPositionLowerUnit: 5.962133916683182
+            position: leaf
+            secretsMaterializedForOSAssets: "{}"
+            status: active
+            quarantineVlan: 1.4894159098541704
+            city: city
+            datacenterRack: datacenterRack
+            description: description
+            datacenterRoom: datacenterRoom
+            vtepAddress: vtepAddress
+            quarantineSubnetPrefixSize: 1.0246457001441578
+            rackPositionUpperUnit: 1.4658129805029452
+            bootstrapSkipInitialConfiguration: 4.145608029883936
+            defaultMtu: 6.84685269835264
+            managementAddress: managementAddress
+            loopbackAddress: loopbackAddress
+            quarantineSubnetEnd: quarantineSubnetEnd
+            subnetOobIndex: 2.027123023002322
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
+            syslogEnabled: true
+            managementPort: 5.637376656633329
+            managementPassword: password
+            subnetOobId: 3.616076749251911
+            managementProtocol: managementProtocol
+            siteId: 6.027456183070403
+            orderIndex: 2.3021358869347655
+            variablesMaterializedForOSAssets: "{}"
+            networkTypesAllowed:
+            - networkTypesAllowed
+            - networkTypesAllowed
+            quarantineSubnetStart: quarantineSubnetStart
+            asn: 7.386281948385884
+            username: username
+          - bootstrapReadinessCheckInProgress: 9.301444243932576
+            country: country
+            mlagDomainId: 1.2315135367772556
+            datacenterName: datacenterName
+            switchId: 0.8008281904610115
+            quarantineSubnetGateway: quarantineSubnetGateway
+            datacenterMeta: datacenterMeta
+            vtepAddressIpv6: vtepAddressIpv6
+            managementMacAddress: managementMacAddress
+            isGateway: 7.457744773683766
+            identifierString: identifierString
+            links:
+            - rel: self
+              href: /api/v2/path/to/resource
+            - rel: self
+              href: /api/v2/path/to/resource
+            bootstrapReadinessCheckResult: "{}"
+            bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
+            serialNumber: serialNumber
+            loopbackAddressIpv6: loopbackAddressIpv6
+            managementAddressGateway: managementAddressGateway
+            revision: 1
+            tags: tags
+            requiresOsInstall: true
+            driver: sonic_enterprise
+            provisionerType: provisionerType
+            mlagSystemMac: mlagSystemMac
+            rackPositionLowerUnit: 5.962133916683182
+            position: leaf
+            secretsMaterializedForOSAssets: "{}"
+            status: active
+            quarantineVlan: 1.4894159098541704
+            city: city
+            datacenterRack: datacenterRack
+            description: description
+            datacenterRoom: datacenterRoom
+            vtepAddress: vtepAddress
+            quarantineSubnetPrefixSize: 1.0246457001441578
+            rackPositionUpperUnit: 1.4658129805029452
+            bootstrapSkipInitialConfiguration: 4.145608029883936
+            defaultMtu: 6.84685269835264
+            managementAddress: managementAddress
+            loopbackAddress: loopbackAddress
+            quarantineSubnetEnd: quarantineSubnetEnd
+            subnetOobIndex: 2.027123023002322
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
+            syslogEnabled: true
+            managementPort: 5.637376656633329
+            managementPassword: password
+            subnetOobId: 3.616076749251911
+            managementProtocol: managementProtocol
+            siteId: 6.027456183070403
+            orderIndex: 2.3021358869347655
+            variablesMaterializedForOSAssets: "{}"
+            networkTypesAllowed:
+            - networkTypesAllowed
+            - networkTypesAllowed
+            quarantineSubnetStart: quarantineSubnetStart
+            asn: 7.386281948385884
+            username: username
+          createdTimestamp: 2025-03-11T07:36:36.261Z
           name: My Network Fabric
+          siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -38682,7 +39122,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-08T04:00:20.168Z
+          updatedTimestamp: 2025-03-11T07:36:36.261Z
           revision: "1"
         meta: ""
         links: ""
@@ -38710,6 +39150,7 @@ components:
     CreateNetworkFabric:
       example:
         name: My Network Fabric
+        siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -38750,6 +39191,10 @@ components:
           allocateDefaultVlan: true
           defaultNetworkProfileId: 101
       properties:
+        siteId:
+          description: The ID of the site where the entity is located.
+          format: integer
+          type: number
         name:
           description: The network fabric name
           example: My Network Fabric
@@ -38771,6 +39216,7 @@ components:
     UpdateNetworkFabric:
       example:
         name: My Network Fabric
+        siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -38811,6 +39257,10 @@ components:
           allocateDefaultVlan: true
           defaultNetworkProfileId: 101
       properties:
+        siteId:
+          description: The ID of the site where the entity is located.
+          format: integer
+          type: number
         name:
           description: The network fabric name
           example: My Network Fabric
@@ -40539,12 +40989,6 @@ components:
         ramGbytes: 3
         virtualInterfacesEnabled: 7
       properties:
-        label:
-          description: The server instance group label. Will be automatically generated
-            if not provided.
-          example: server-instance-123
-          maxLength: 63
-          type: string
         serverGroupName:
           example: server-instance-123
           maxLength: 255
@@ -40625,58 +41069,61 @@ components:
             \ applied."
           example: 1
           type: integer
+        label:
+          description: The server instance group label.
+          example: server-instance-123
+          maxLength: 63
+          type: string
       type: object
     DriveGroupList:
       example:
         data:
-        - driveCount: 1
+        - dnsSubdomainId: 5.637376656633329
+          createdTimestamp: createdTimestamp
           extensionInstanceId: 1
           containerArrayId: 1
-          templateId: 1
-          updatedTimestamp: updatedTimestamp
-          expandWithServerInstanceGroup: 1
-          containerClusterId: 1
-          dnsSubdomainPermanentId: 2.3021358869347655
-          serviceStatus: ordered
-          id: 1.4658129805029452
-          dnsSubdomainId: 5.637376656633329
-          createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
+          templateId: 1
           allocationAffinity: same_storage
           filesystemInfo: "{}"
+          updatedTimestamp: updatedTimestamp
           revision: 5.962133916683182
+          expandWithServerInstanceGroup: 1
+          containerClusterId: 1
+          dnsSubdomainPermanentId: 2.3021358869347655
           infrastructureId: 0.8008281904610115
+          serviceStatus: ordered
           meta: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           serverInstanceGroupId: 1
+          id: 1.4658129805029452
           driveSizeMbDefault: 6.027456183070403
           config: ""
-        - driveCount: 1
+        - dnsSubdomainId: 5.637376656633329
+          createdTimestamp: createdTimestamp
           extensionInstanceId: 1
           containerArrayId: 1
-          templateId: 1
-          updatedTimestamp: updatedTimestamp
-          expandWithServerInstanceGroup: 1
-          containerClusterId: 1
-          dnsSubdomainPermanentId: 2.3021358869347655
-          serviceStatus: ordered
-          id: 1.4658129805029452
-          dnsSubdomainId: 5.637376656633329
-          createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
+          templateId: 1
           allocationAffinity: same_storage
           filesystemInfo: "{}"
+          updatedTimestamp: updatedTimestamp
           revision: 5.962133916683182
+          expandWithServerInstanceGroup: 1
+          containerClusterId: 1
+          dnsSubdomainPermanentId: 2.3021358869347655
           infrastructureId: 0.8008281904610115
+          serviceStatus: ordered
           meta: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           serverInstanceGroupId: 1
+          id: 1.4658129805029452
           driveSizeMbDefault: 6.027456183070403
           config: ""
         links:
@@ -40770,6 +41217,7 @@ components:
       - deployType
       - groupId
       - index
+      - label
       - revision
       - updatedTimestamp
       type: object
@@ -40879,6 +41327,7 @@ components:
       - groupId
       - index
       - infrastructureId
+      - label
       - revision
       - serviceStatus
       - updatedTimestamp
@@ -41240,11 +41689,6 @@ components:
         - tags
         enableAutoPortChannel: true
       properties:
-        label:
-          description: The server instance label. Will be automatically generated
-            if not provided.
-          example: instance-123
-          type: string
         groupId:
           type: integer
         serverTypeId:
@@ -41271,6 +41715,11 @@ components:
           items:
             $ref: '#/components/schemas/ServerInstanceConfiguration_networkProfiles_inner'
           type: array
+        label:
+          description: The server instance label. Will be automatically generated
+            if not provided.
+          example: instance-123
+          type: string
       type: object
     ServerInstanceStatistics:
       example:
@@ -41461,6 +41910,7 @@ components:
       - deployType
       - index
       - instanceId
+      - label
       - revision
       - updatedTimestamp
       type: object
@@ -41594,6 +42044,7 @@ components:
       - index
       - infrastructureId
       - instanceId
+      - label
       - revision
       - serviceStatus
       - updatedTimestamp
@@ -41714,10 +42165,6 @@ components:
         label: if3
         capacityMbps: 0
       properties:
-        label:
-          description: The server instance interface label.
-          example: if3
-          type: string
         capacityMbps:
           type: integer
         networkId:
@@ -41725,6 +42172,10 @@ components:
             to.
           example: 10
           type: integer
+        label:
+          description: The server instance interface label.
+          example: if3
+          type: string
       type: object
     ServerInstanceProfileReference:
       example:

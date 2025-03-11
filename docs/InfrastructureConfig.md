@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Revision** | Pointer to **float32** | Revision of the Infrastructure | [optional] 
+**Label** | Pointer to **string** |  | [optional] 
 **DeployType** | Pointer to **string** | Deploy type of the Infrastructure | [optional] [default to "create"]
 **DeployStatus** | Pointer to **string** | Deploy status of the Infrastructure | [optional] [default to "not_started"]
 **ServerTypeIdToPreferredServerIds** | Pointer to **map[string]interface{}** | An object having as key the server type id and as value an array of preferred server ids | [optional] 
 **InfrastructureDeployId** | Pointer to **float32** | Id of the deployment for the Infrastructure | [optional] 
 **DnsSubdomainChangeId** | Pointer to **float32** | DNS Subdomain Change ID | [optional] 
-**Label** | Pointer to **string** | Label of the Infrastructure. | [optional] 
 **DatacenterName** | Pointer to **string** | Datacenter name where the Infrastructure is located. | [optional] 
 **SiteId** | Pointer to **float32** | The ID of the site where the Infrastructure is located. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables in JSON format. | [optional] 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **IsApiPrivate** | Pointer to **float32** | Whether the infrastructure API is private. | [optional] 
 **ExperimentalPriority** | Pointer to **string** | Experimental priority. | [optional] 
 **IsPublicDesignsMember** | Pointer to **float32** | Whether the infrastructure is a member of public designs. | [optional] 
-**CertificatesJson** | Pointer to **map[string]interface{}** | Certificates in JSON format. | [optional] 
+**CertificatesJson** | Pointer to **string** | Certificates in JSON format. | [optional] 
 **DeployCookieJarJson** | Pointer to **map[string]interface{}** | Deploy cookie jar JSON. | [optional] 
 **DeferredDeployAttemptLastErrorJson** | Pointer to **map[string]interface{}** | Last error of deferred deploy attempt. | [optional] 
 **IsAutomanaged** | Pointer to **float32** | Whether the infrastructure is automanaged. | [optional] 
@@ -79,6 +79,31 @@ SetRevision sets Revision field to given value.
 `func (o *InfrastructureConfig) HasRevision() bool`
 
 HasRevision returns a boolean if a field has been set.
+
+### GetLabel
+
+`func (o *InfrastructureConfig) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *InfrastructureConfig) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *InfrastructureConfig) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+### HasLabel
+
+`func (o *InfrastructureConfig) HasLabel() bool`
+
+HasLabel returns a boolean if a field has been set.
 
 ### GetDeployType
 
@@ -204,31 +229,6 @@ SetDnsSubdomainChangeId sets DnsSubdomainChangeId field to given value.
 `func (o *InfrastructureConfig) HasDnsSubdomainChangeId() bool`
 
 HasDnsSubdomainChangeId returns a boolean if a field has been set.
-
-### GetLabel
-
-`func (o *InfrastructureConfig) GetLabel() string`
-
-GetLabel returns the Label field if non-nil, zero value otherwise.
-
-### GetLabelOk
-
-`func (o *InfrastructureConfig) GetLabelOk() (*string, bool)`
-
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLabel
-
-`func (o *InfrastructureConfig) SetLabel(v string)`
-
-SetLabel sets Label field to given value.
-
-### HasLabel
-
-`func (o *InfrastructureConfig) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetDatacenterName
 
@@ -607,20 +607,20 @@ HasIsPublicDesignsMember returns a boolean if a field has been set.
 
 ### GetCertificatesJson
 
-`func (o *InfrastructureConfig) GetCertificatesJson() map[string]interface{}`
+`func (o *InfrastructureConfig) GetCertificatesJson() string`
 
 GetCertificatesJson returns the CertificatesJson field if non-nil, zero value otherwise.
 
 ### GetCertificatesJsonOk
 
-`func (o *InfrastructureConfig) GetCertificatesJsonOk() (*map[string]interface{}, bool)`
+`func (o *InfrastructureConfig) GetCertificatesJsonOk() (*string, bool)`
 
 GetCertificatesJsonOk returns a tuple with the CertificatesJson field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCertificatesJson
 
-`func (o *InfrastructureConfig) SetCertificatesJson(v map[string]interface{})`
+`func (o *InfrastructureConfig) SetCertificatesJson(v string)`
 
 SetCertificatesJson sets CertificatesJson field to given value.
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** | Label of the Infrastructure. | 
+**Label** | **string** |  | 
 **SiteId** | **float32** | The ID of the site where the Infrastructure is located. | 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables in JSON format. | [optional] 
 **UserIdOwner** | Pointer to **float32** | User ID of the owner of the Infrastructure. | [optional] 

@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **string** | The server instance group label. Will be automatically generated if not provided. | [optional] 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
 **Meta** | Pointer to [**GenericMeta**](GenericMeta.md) | Meta information | [optional] 
@@ -26,6 +25,7 @@ Name | Type | Description | Notes
 **OverrideIpv4WanVlanId** | Pointer to **int32** | The ipv4 vlan that should override the default from the WAN Network for the primary ip. | [optional] 
 **NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the InstanceInterfaces associated with this InstanceArray. | [optional] 
 **ResourcePoolId** | Pointer to **int32** | The resource pool assigned to this instance array | [optional] 
+**Label** | Pointer to **string** | The server instance group label. Will be automatically generated if not provided. | [optional] 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
 
 ## Methods
@@ -46,31 +46,6 @@ will change when the set of required properties is changed
 NewServerInstanceGroupCreateWithDefaults instantiates a new ServerInstanceGroupCreate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetLabel
-
-`func (o *ServerInstanceGroupCreate) GetLabel() string`
-
-GetLabel returns the Label field if non-nil, zero value otherwise.
-
-### GetLabelOk
-
-`func (o *ServerInstanceGroupCreate) GetLabelOk() (*string, bool)`
-
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLabel
-
-`func (o *ServerInstanceGroupCreate) SetLabel(v string)`
-
-SetLabel sets Label field to given value.
-
-### HasLabel
-
-`func (o *ServerInstanceGroupCreate) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetServerGroupName
 
@@ -596,6 +571,31 @@ SetResourcePoolId sets ResourcePoolId field to given value.
 `func (o *ServerInstanceGroupCreate) HasResourcePoolId() bool`
 
 HasResourcePoolId returns a boolean if a field has been set.
+
+### GetLabel
+
+`func (o *ServerInstanceGroupCreate) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *ServerInstanceGroupCreate) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *ServerInstanceGroupCreate) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+### HasLabel
+
+`func (o *ServerInstanceGroupCreate) HasLabel() bool`
+
+HasLabel returns a boolean if a field has been set.
 
 ### GetServerTypeId
 

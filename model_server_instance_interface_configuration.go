@@ -24,7 +24,7 @@ type ServerInstanceInterfaceConfiguration struct {
 	// Revision number
 	Revision float32 `json:"revision"`
 	// The server instance interface label.
-	Label *string `json:"label,omitempty"`
+	Label string `json:"label"`
 	// Subdomain of the Server Group.
 	Subdomain *string `json:"subdomain,omitempty"`
 	// Timestamp of the latest update for the Server Instance.
@@ -55,9 +55,10 @@ type _ServerInstanceInterfaceConfiguration ServerInstanceInterfaceConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceInterfaceConfiguration(revision float32, updatedTimestamp string, instanceId int32, index int32, capacityMbps int32, deployType string, deployStatus string) *ServerInstanceInterfaceConfiguration {
+func NewServerInstanceInterfaceConfiguration(revision float32, label string, updatedTimestamp string, instanceId int32, index int32, capacityMbps int32, deployType string, deployStatus string) *ServerInstanceInterfaceConfiguration {
 	this := ServerInstanceInterfaceConfiguration{}
 	this.Revision = revision
+	this.Label = label
 	this.UpdatedTimestamp = updatedTimestamp
 	this.InstanceId = instanceId
 	this.Index = index
@@ -99,36 +100,28 @@ func (o *ServerInstanceInterfaceConfiguration) SetRevision(v float32) {
 	o.Revision = v
 }
 
-// GetLabel returns the Label field value if set, zero value otherwise.
+// GetLabel returns the Label field value
 func (o *ServerInstanceInterfaceConfiguration) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Label
+
+	return o.Label
 }
 
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
 func (o *ServerInstanceInterfaceConfiguration) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Label, true
+	return &o.Label, true
 }
 
-// HasLabel returns a boolean if a field has been set.
-func (o *ServerInstanceInterfaceConfiguration) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
+// SetLabel sets field value
 func (o *ServerInstanceInterfaceConfiguration) SetLabel(v string) {
-	o.Label = &v
+	o.Label = v
 }
 
 // GetSubdomain returns the Subdomain field value if set, zero value otherwise.
@@ -478,9 +471,7 @@ func (o ServerInstanceInterfaceConfiguration) MarshalJSON() ([]byte, error) {
 func (o ServerInstanceInterfaceConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["revision"] = o.Revision
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
+	toSerialize["label"] = o.Label
 	if !IsNil(o.Subdomain) {
 		toSerialize["subdomain"] = o.Subdomain
 	}
@@ -519,6 +510,7 @@ func (o *ServerInstanceInterfaceConfiguration) UnmarshalJSON(data []byte) (err e
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"revision",
+		"label",
 		"updatedTimestamp",
 		"instanceId",
 		"index",

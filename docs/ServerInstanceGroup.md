@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** | The server instance group ID. | 
 **Revision** | **float32** | Revision number | 
-**Label** | Pointer to **string** | The server instance group label. Will be automatically generated if not provided. | [optional] 
+**Label** | **string** | The server instance group label. Will be automatically generated if not provided. | 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **InfrastructureId** | **int32** |  | 
 **ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
@@ -53,7 +53,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceGroup
 
-`func NewServerInstanceGroup(id int32, revision float32, infrastructureId int32, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, defaultServerProfileID int32, ) *ServerInstanceGroup`
+`func NewServerInstanceGroup(id int32, revision float32, label string, infrastructureId int32, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, defaultServerProfileID int32, ) *ServerInstanceGroup`
 
 NewServerInstanceGroup instantiates a new ServerInstanceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -127,11 +127,6 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
-### HasLabel
-
-`func (o *ServerInstanceGroup) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetServerGroupName
 

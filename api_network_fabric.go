@@ -334,6 +334,7 @@ type NetworkFabricAPIGetNetworkFabricsRequest struct {
 	filterName *[]string
 	filterDescription *[]string
 	filterSiteId *[]string
+	filterFabricConfigurationFabricType *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -375,7 +376,13 @@ func (r NetworkFabricAPIGetNetworkFabricsRequest) FilterSiteId(filterSiteId []st
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;createdTimestamp&lt;/li&gt; &lt;li&gt;updatedTimestamp&lt;/li&gt;&lt;/ul&gt;       
+// Filter by fabricConfiguration.fabricType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.fabricConfiguration.fabricType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.fabricConfiguration.fabricType&#x3D;$not:$like:John Doe&amp;filter.fabricConfiguration.fabricType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r NetworkFabricAPIGetNetworkFabricsRequest) FilterFabricConfigurationFabricType(filterFabricConfigurationFabricType []string) NetworkFabricAPIGetNetworkFabricsRequest {
+	r.filterFabricConfigurationFabricType = &filterFabricConfigurationFabricType
+	return r
+}
+
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;createdTimestamp&lt;/li&gt; &lt;li&gt;updatedTimestamp&lt;/li&gt;&lt;/ul&gt;       
 func (r NetworkFabricAPIGetNetworkFabricsRequest) SortBy(sortBy []string) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -387,7 +394,7 @@ func (r NetworkFabricAPIGetNetworkFabricsRequest) Search(search string) NetworkF
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; name,description           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;name&lt;/li&gt; &lt;li&gt;description&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; name,description,siteId,fabricConfiguration.fabricType           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;name&lt;/li&gt; &lt;li&gt;description&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;fabricConfiguration.fabricType&lt;/li&gt;&lt;/ul&gt;         
 func (r NetworkFabricAPIGetNetworkFabricsRequest) SearchBy(searchBy []string) NetworkFabricAPIGetNetworkFabricsRequest {
 	r.searchBy = &searchBy
 	return r
@@ -479,6 +486,17 @@ func (a *NetworkFabricAPIService) GetNetworkFabricsExecute(r NetworkFabricAPIGet
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
+		}
+	}
+	if r.filterFabricConfigurationFabricType != nil {
+		t := *r.filterFabricConfigurationFabricType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricConfiguration.fabricType", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricConfiguration.fabricType", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

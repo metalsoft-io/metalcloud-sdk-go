@@ -20,6 +20,8 @@ var _ MappedNullable = &UpdateNetworkFabric{}
 
 // UpdateNetworkFabric struct for UpdateNetworkFabric
 type UpdateNetworkFabric struct {
+	// The ID of the site where the entity is located.
+	SiteId *float32 `json:"siteId,omitempty"`
 	// The network fabric name
 	Name *string `json:"name,omitempty"`
 	// Network fabric description
@@ -45,6 +47,38 @@ func NewUpdateNetworkFabric() *UpdateNetworkFabric {
 func NewUpdateNetworkFabricWithDefaults() *UpdateNetworkFabric {
 	this := UpdateNetworkFabric{}
 	return &this
+}
+
+// GetSiteId returns the SiteId field value if set, zero value otherwise.
+func (o *UpdateNetworkFabric) GetSiteId() float32 {
+	if o == nil || IsNil(o.SiteId) {
+		var ret float32
+		return ret
+	}
+	return *o.SiteId
+}
+
+// GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNetworkFabric) GetSiteIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.SiteId) {
+		return nil, false
+	}
+	return o.SiteId, true
+}
+
+// HasSiteId returns a boolean if a field has been set.
+func (o *UpdateNetworkFabric) HasSiteId() bool {
+	if o != nil && !IsNil(o.SiteId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSiteId gets a reference to the given float32 and assigns it to the SiteId field.
+func (o *UpdateNetworkFabric) SetSiteId(v float32) {
+	o.SiteId = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -153,6 +187,9 @@ func (o UpdateNetworkFabric) MarshalJSON() ([]byte, error) {
 
 func (o UpdateNetworkFabric) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SiteId) {
+		toSerialize["siteId"] = o.SiteId
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -184,6 +221,7 @@ func (o *UpdateNetworkFabric) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "fabricConfiguration")

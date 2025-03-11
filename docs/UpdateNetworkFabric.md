@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**SiteId** | Pointer to **float32** | The ID of the site where the entity is located. | [optional] 
 **Name** | Pointer to **string** | The network fabric name | [optional] 
 **Description** | Pointer to **string** | Network fabric description | [optional] 
 **FabricConfiguration** | Pointer to [**NetworkFabricFabricConfiguration**](NetworkFabricFabricConfiguration.md) |  | [optional] 
@@ -26,6 +27,31 @@ will change when the set of required properties is changed
 NewUpdateNetworkFabricWithDefaults instantiates a new UpdateNetworkFabric object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetSiteId
+
+`func (o *UpdateNetworkFabric) GetSiteId() float32`
+
+GetSiteId returns the SiteId field if non-nil, zero value otherwise.
+
+### GetSiteIdOk
+
+`func (o *UpdateNetworkFabric) GetSiteIdOk() (*float32, bool)`
+
+GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSiteId
+
+`func (o *UpdateNetworkFabric) SetSiteId(v float32)`
+
+SetSiteId sets SiteId field to given value.
+
+### HasSiteId
+
+`func (o *UpdateNetworkFabric) HasSiteId() bool`
+
+HasSiteId returns a boolean if a field has been set.
 
 ### GetName
 

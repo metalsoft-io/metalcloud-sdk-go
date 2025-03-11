@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Revision** | **float32** | Revision number | 
-**Label** | Pointer to **string** | The server instance label. Will be automatically generated if not provided. | [optional] 
+**Label** | **string** | The server instance label. | 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update for the Server Instance. | 
 **GroupId** | **int32** |  | 
 **DriveIdBootable** | Pointer to **int32** |  | [optional] 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceConfiguration
 
-`func NewServerInstanceConfiguration(revision float32, updatedTimestamp string, groupId int32, deployType string, deployStatus string, ) *ServerInstanceConfiguration`
+`func NewServerInstanceConfiguration(revision float32, label string, updatedTimestamp string, groupId int32, deployType string, deployStatus string, ) *ServerInstanceConfiguration`
 
 NewServerInstanceConfiguration instantiates a new ServerInstanceConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -86,11 +86,6 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
-### HasLabel
-
-`func (o *ServerInstanceConfiguration) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetUpdatedTimestamp
 

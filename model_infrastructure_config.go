@@ -22,6 +22,7 @@ var _ MappedNullable = &InfrastructureConfig{}
 type InfrastructureConfig struct {
 	// Revision of the Infrastructure
 	Revision *float32 `json:"revision,omitempty"`
+	Label *string `json:"label,omitempty"`
 	// Deploy type of the Infrastructure
 	DeployType *string `json:"deployType,omitempty"`
 	// Deploy status of the Infrastructure
@@ -32,8 +33,6 @@ type InfrastructureConfig struct {
 	InfrastructureDeployId *float32 `json:"infrastructureDeployId,omitempty"`
 	// DNS Subdomain Change ID
 	DnsSubdomainChangeId *float32 `json:"dnsSubdomainChangeId,omitempty"`
-	// Label of the Infrastructure.
-	Label *string `json:"label,omitempty"`
 	// Datacenter name where the Infrastructure is located.
 	DatacenterName *string `json:"datacenterName,omitempty"`
 	// The ID of the site where the Infrastructure is located.
@@ -65,7 +64,7 @@ type InfrastructureConfig struct {
 	// Whether the infrastructure is a member of public designs.
 	IsPublicDesignsMember *float32 `json:"isPublicDesignsMember,omitempty"`
 	// Certificates in JSON format.
-	CertificatesJson map[string]interface{} `json:"certificatesJson,omitempty"`
+	CertificatesJson *string `json:"certificatesJson,omitempty"`
 	// Deploy cookie jar JSON.
 	DeployCookieJarJson map[string]interface{} `json:"deployCookieJarJson,omitempty"`
 	// Last error of deferred deploy attempt.
@@ -142,6 +141,38 @@ func (o *InfrastructureConfig) HasRevision() bool {
 // SetRevision gets a reference to the given float32 and assigns it to the Revision field.
 func (o *InfrastructureConfig) SetRevision(v float32) {
 	o.Revision = &v
+}
+
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *InfrastructureConfig) GetLabel() string {
+	if o == nil || IsNil(o.Label) {
+		var ret string
+		return ret
+	}
+	return *o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InfrastructureConfig) GetLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.Label) {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *InfrastructureConfig) HasLabel() bool {
+	if o != nil && !IsNil(o.Label) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *InfrastructureConfig) SetLabel(v string) {
+	o.Label = &v
 }
 
 // GetDeployType returns the DeployType field value if set, zero value otherwise.
@@ -302,38 +333,6 @@ func (o *InfrastructureConfig) HasDnsSubdomainChangeId() bool {
 // SetDnsSubdomainChangeId gets a reference to the given float32 and assigns it to the DnsSubdomainChangeId field.
 func (o *InfrastructureConfig) SetDnsSubdomainChangeId(v float32) {
 	o.DnsSubdomainChangeId = &v
-}
-
-// GetLabel returns the Label field value if set, zero value otherwise.
-func (o *InfrastructureConfig) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
-		var ret string
-		return ret
-	}
-	return *o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InfrastructureConfig) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
-		return nil, false
-	}
-	return o.Label, true
-}
-
-// HasLabel returns a boolean if a field has been set.
-func (o *InfrastructureConfig) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *InfrastructureConfig) SetLabel(v string) {
-	o.Label = &v
 }
 
 // GetDatacenterName returns the DatacenterName field value if set, zero value otherwise.
@@ -817,19 +816,19 @@ func (o *InfrastructureConfig) SetIsPublicDesignsMember(v float32) {
 }
 
 // GetCertificatesJson returns the CertificatesJson field value if set, zero value otherwise.
-func (o *InfrastructureConfig) GetCertificatesJson() map[string]interface{} {
+func (o *InfrastructureConfig) GetCertificatesJson() string {
 	if o == nil || IsNil(o.CertificatesJson) {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
-	return o.CertificatesJson
+	return *o.CertificatesJson
 }
 
 // GetCertificatesJsonOk returns a tuple with the CertificatesJson field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InfrastructureConfig) GetCertificatesJsonOk() (map[string]interface{}, bool) {
+func (o *InfrastructureConfig) GetCertificatesJsonOk() (*string, bool) {
 	if o == nil || IsNil(o.CertificatesJson) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.CertificatesJson, true
 }
@@ -843,9 +842,9 @@ func (o *InfrastructureConfig) HasCertificatesJson() bool {
 	return false
 }
 
-// SetCertificatesJson gets a reference to the given map[string]interface{} and assigns it to the CertificatesJson field.
-func (o *InfrastructureConfig) SetCertificatesJson(v map[string]interface{}) {
-	o.CertificatesJson = v
+// SetCertificatesJson gets a reference to the given string and assigns it to the CertificatesJson field.
+func (o *InfrastructureConfig) SetCertificatesJson(v string) {
+	o.CertificatesJson = &v
 }
 
 // GetDeployCookieJarJson returns the DeployCookieJarJson field value if set, zero value otherwise.
@@ -1117,6 +1116,9 @@ func (o InfrastructureConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Revision) {
 		toSerialize["revision"] = o.Revision
 	}
+	if !IsNil(o.Label) {
+		toSerialize["label"] = o.Label
+	}
 	if !IsNil(o.DeployType) {
 		toSerialize["deployType"] = o.DeployType
 	}
@@ -1131,9 +1133,6 @@ func (o InfrastructureConfig) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DnsSubdomainChangeId) {
 		toSerialize["dnsSubdomainChangeId"] = o.DnsSubdomainChangeId
-	}
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
 	}
 	if !IsNil(o.DatacenterName) {
 		toSerialize["datacenterName"] = o.DatacenterName
@@ -1230,12 +1229,12 @@ func (o *InfrastructureConfig) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "revision")
+		delete(additionalProperties, "label")
 		delete(additionalProperties, "deployType")
 		delete(additionalProperties, "deployStatus")
 		delete(additionalProperties, "serverTypeIdToPreferredServerIds")
 		delete(additionalProperties, "infrastructureDeployId")
 		delete(additionalProperties, "dnsSubdomainChangeId")
-		delete(additionalProperties, "label")
 		delete(additionalProperties, "datacenterName")
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "customVariables")

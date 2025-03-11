@@ -29,8 +29,6 @@ type DriveGroupConfiguration struct {
 	InfrastructureId float32 `json:"infrastructureId"`
 	// Template Id
 	TemplateId *float32 `json:"templateId,omitempty"`
-	// Number of drives in the Drive Group
-	DriveCount float32 `json:"driveCount"`
 	// Default disk size in MB for new Drives in the Drive Group
 	DriveSizeMbDefault float32 `json:"driveSizeMbDefault"`
 	ServerInstanceGroupId *float32 `json:"serverInstanceGroupId,omitempty"`
@@ -64,12 +62,11 @@ type _DriveGroupConfiguration DriveGroupConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDriveGroupConfiguration(revision float32, label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithServerInstanceGroup float32, storageType string, updatedTimestamp string, deployType string, deployStatus string) *DriveGroupConfiguration {
+func NewDriveGroupConfiguration(revision float32, label string, infrastructureId float32, driveSizeMbDefault float32, expandWithServerInstanceGroup float32, storageType string, updatedTimestamp string, deployType string, deployStatus string) *DriveGroupConfiguration {
 	this := DriveGroupConfiguration{}
 	this.Revision = revision
 	this.Label = label
 	this.InfrastructureId = infrastructureId
-	this.DriveCount = driveCount
 	this.DriveSizeMbDefault = driveSizeMbDefault
 	this.ExpandWithServerInstanceGroup = expandWithServerInstanceGroup
 	this.StorageType = storageType
@@ -195,30 +192,6 @@ func (o *DriveGroupConfiguration) HasTemplateId() bool {
 // SetTemplateId gets a reference to the given float32 and assigns it to the TemplateId field.
 func (o *DriveGroupConfiguration) SetTemplateId(v float32) {
 	o.TemplateId = &v
-}
-
-// GetDriveCount returns the DriveCount field value
-func (o *DriveGroupConfiguration) GetDriveCount() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.DriveCount
-}
-
-// GetDriveCountOk returns a tuple with the DriveCount field value
-// and a boolean to check if the value has been set.
-func (o *DriveGroupConfiguration) GetDriveCountOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DriveCount, true
-}
-
-// SetDriveCount sets field value
-func (o *DriveGroupConfiguration) SetDriveCount(v float32) {
-	o.DriveCount = v
 }
 
 // GetDriveSizeMbDefault returns the DriveSizeMbDefault field value
@@ -605,7 +578,6 @@ func (o DriveGroupConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TemplateId) {
 		toSerialize["templateId"] = o.TemplateId
 	}
-	toSerialize["driveCount"] = o.DriveCount
 	toSerialize["driveSizeMbDefault"] = o.DriveSizeMbDefault
 	if !IsNil(o.ServerInstanceGroupId) {
 		toSerialize["serverInstanceGroupId"] = o.ServerInstanceGroupId
@@ -649,7 +621,6 @@ func (o *DriveGroupConfiguration) UnmarshalJSON(data []byte) (err error) {
 		"revision",
 		"label",
 		"infrastructureId",
-		"driveCount",
 		"driveSizeMbDefault",
 		"expandWithServerInstanceGroup",
 		"storageType",
@@ -689,7 +660,6 @@ func (o *DriveGroupConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "templateId")
-		delete(additionalProperties, "driveCount")
 		delete(additionalProperties, "driveSizeMbDefault")
 		delete(additionalProperties, "serverInstanceGroupId")
 		delete(additionalProperties, "containerArrayId")

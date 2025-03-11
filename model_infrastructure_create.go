@@ -21,7 +21,6 @@ var _ MappedNullable = &InfrastructureCreate{}
 
 // InfrastructureCreate struct for InfrastructureCreate
 type InfrastructureCreate struct {
-	// Label of the Infrastructure.
 	Label string `json:"label"`
 	// The ID of the site where the Infrastructure is located.
 	SiteId float32 `json:"siteId"`

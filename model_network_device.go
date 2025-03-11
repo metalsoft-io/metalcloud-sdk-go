@@ -23,6 +23,8 @@ var _ MappedNullable = &NetworkDevice{}
 type NetworkDevice struct {
 	// Unique identifier for the switch.
 	SwitchId float32 `json:"switchId"`
+	// Revision number
+	Revision float32 `json:"revision"`
 	// Current status of the network device
 	Status *string `json:"status,omitempty"`
 	// Datacenter name where the network device is located
@@ -140,9 +142,10 @@ type _NetworkDevice NetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevice(switchId float32, driver NetworkDeviceDriver, position SwitchPosition) *NetworkDevice {
+func NewNetworkDevice(switchId float32, revision float32, driver NetworkDeviceDriver, position SwitchPosition) *NetworkDevice {
 	this := NetworkDevice{}
 	this.SwitchId = switchId
+	this.Revision = revision
 	this.Driver = driver
 	this.Position = position
 	return &this
@@ -178,6 +181,30 @@ func (o *NetworkDevice) GetSwitchIdOk() (*float32, bool) {
 // SetSwitchId sets field value
 func (o *NetworkDevice) SetSwitchId(v float32) {
 	o.SwitchId = v
+}
+
+// GetRevision returns the Revision field value
+func (o *NetworkDevice) GetRevision() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Revision
+}
+
+// GetRevisionOk returns a tuple with the Revision field value
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetRevisionOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Revision, true
+}
+
+// SetRevision sets field value
+func (o *NetworkDevice) SetRevision(v float32) {
+	o.Revision = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -1903,6 +1930,7 @@ func (o NetworkDevice) MarshalJSON() ([]byte, error) {
 func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["switchId"] = o.SwitchId
+	toSerialize["revision"] = o.Revision
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
@@ -2075,6 +2103,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"switchId",
+		"revision",
 		"driver",
 		"position",
 	}
@@ -2107,6 +2136,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "switchId")
+		delete(additionalProperties, "revision")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "datacenterName")
 		delete(additionalProperties, "siteId")

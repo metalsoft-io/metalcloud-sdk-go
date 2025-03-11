@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **string** | Label of the Infrastructure. | [optional] 
+**Label** | Pointer to **string** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables in JSON format. | [optional] 
 
 ## Methods

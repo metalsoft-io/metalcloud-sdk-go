@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** | The server instance ID. | 
 **Revision** | **float32** | Revision number | 
-**Label** | Pointer to **string** | The server instance label. Will be automatically generated if not provided. | [optional] 
+**Label** | **string** | The server instance label. | 
 **CreatedTimestamp** | **string** | Timestamp of the Server Instance creation. | 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update for the Server Instance. | 
 **InfrastructureId** | **int32** |  | 
@@ -52,7 +52,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstance
 
-`func NewServerInstance(id int32, revision float32, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance float32, ) *ServerInstance`
+`func NewServerInstance(id int32, revision float32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance float32, ) *ServerInstance`
 
 NewServerInstance instantiates a new ServerInstance object
 This constructor will assign default values to properties that have it defined,
@@ -126,11 +126,6 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
-### HasLabel
-
-`func (o *ServerInstance) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetCreatedTimestamp
 

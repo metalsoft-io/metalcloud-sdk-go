@@ -391,7 +391,7 @@ func (a *DriveGroupAPIService) GetDriveGroupDrivesExecute(r DriveGroupAPIGetDriv
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/{infrastructureId}/drive-groups/{driveGroupId}/drives"
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/drives"
 	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"driveGroupId"+"}", url.PathEscape(parameterValueToString(r.driveGroupId, "driveGroupId")), -1)
 

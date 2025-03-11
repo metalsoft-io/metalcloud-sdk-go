@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Revision** | **float32** | Revision number | 
-**Label** | Pointer to **string** | The server instance group interface label. | [optional] 
+**Label** | **string** | The server instance group interface label. | 
 **Subdomain** | Pointer to **string** | Subdomain of the Server Group. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update for the server instance group interface. | 
 **GroupId** | **int32** |  | 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceGroupInterfaceConfiguration
 
-`func NewServerInstanceGroupInterfaceConfiguration(revision float32, updatedTimestamp string, groupId int32, index int32, deployType string, deployStatus string, ) *ServerInstanceGroupInterfaceConfiguration`
+`func NewServerInstanceGroupInterfaceConfiguration(revision float32, label string, updatedTimestamp string, groupId int32, index int32, deployType string, deployStatus string, ) *ServerInstanceGroupInterfaceConfiguration`
 
 NewServerInstanceGroupInterfaceConfiguration instantiates a new ServerInstanceGroupInterfaceConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -75,11 +75,6 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
-### HasLabel
-
-`func (o *ServerInstanceGroupInterfaceConfiguration) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetSubdomain
 

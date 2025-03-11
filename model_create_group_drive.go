@@ -21,13 +21,13 @@ var _ MappedNullable = &CreateGroupDrive{}
 
 // CreateGroupDrive struct for CreateGroupDrive
 type CreateGroupDrive struct {
-	// Number of drives in the Drive Group
-	DriveCount float32 `json:"driveCount"`
 	// Default disk size in MB for new Drives in the Drive Group
 	DriveSizeMbDefault float32 `json:"driveSizeMbDefault"`
 	ExtensionInstanceId *float32 `json:"extensionInstanceId,omitempty"`
 	// Label of the Drive.
 	Label *string `json:"label,omitempty"`
+	// Number of drives in the Drive Group
+	DriveCount float32 `json:"driveCount"`
 	// The IO limit policy of the Drive Group.
 	IoLimitPolicy *string `json:"ioLimitPolicy,omitempty"`
 	// Flag to determine whether the Drive Group should be expanded with a Server Instance Group by adding one drive for each instance
@@ -43,10 +43,10 @@ type _CreateGroupDrive CreateGroupDrive
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateGroupDrive(driveCount float32, driveSizeMbDefault float32) *CreateGroupDrive {
+func NewCreateGroupDrive(driveSizeMbDefault float32, driveCount float32) *CreateGroupDrive {
 	this := CreateGroupDrive{}
-	this.DriveCount = driveCount
 	this.DriveSizeMbDefault = driveSizeMbDefault
+	this.DriveCount = driveCount
 	return &this
 }
 
@@ -56,30 +56,6 @@ func NewCreateGroupDrive(driveCount float32, driveSizeMbDefault float32) *Create
 func NewCreateGroupDriveWithDefaults() *CreateGroupDrive {
 	this := CreateGroupDrive{}
 	return &this
-}
-
-// GetDriveCount returns the DriveCount field value
-func (o *CreateGroupDrive) GetDriveCount() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.DriveCount
-}
-
-// GetDriveCountOk returns a tuple with the DriveCount field value
-// and a boolean to check if the value has been set.
-func (o *CreateGroupDrive) GetDriveCountOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DriveCount, true
-}
-
-// SetDriveCount sets field value
-func (o *CreateGroupDrive) SetDriveCount(v float32) {
-	o.DriveCount = v
 }
 
 // GetDriveSizeMbDefault returns the DriveSizeMbDefault field value
@@ -168,6 +144,30 @@ func (o *CreateGroupDrive) HasLabel() bool {
 // SetLabel gets a reference to the given string and assigns it to the Label field.
 func (o *CreateGroupDrive) SetLabel(v string) {
 	o.Label = &v
+}
+
+// GetDriveCount returns the DriveCount field value
+func (o *CreateGroupDrive) GetDriveCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.DriveCount
+}
+
+// GetDriveCountOk returns a tuple with the DriveCount field value
+// and a boolean to check if the value has been set.
+func (o *CreateGroupDrive) GetDriveCountOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DriveCount, true
+}
+
+// SetDriveCount sets field value
+func (o *CreateGroupDrive) SetDriveCount(v float32) {
+	o.DriveCount = v
 }
 
 // GetIoLimitPolicy returns the IoLimitPolicy field value if set, zero value otherwise.
@@ -276,7 +276,6 @@ func (o CreateGroupDrive) MarshalJSON() ([]byte, error) {
 
 func (o CreateGroupDrive) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["driveCount"] = o.DriveCount
 	toSerialize["driveSizeMbDefault"] = o.DriveSizeMbDefault
 	if !IsNil(o.ExtensionInstanceId) {
 		toSerialize["extensionInstanceId"] = o.ExtensionInstanceId
@@ -284,6 +283,7 @@ func (o CreateGroupDrive) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
+	toSerialize["driveCount"] = o.DriveCount
 	if !IsNil(o.IoLimitPolicy) {
 		toSerialize["ioLimitPolicy"] = o.IoLimitPolicy
 	}
@@ -306,8 +306,8 @@ func (o *CreateGroupDrive) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"driveCount",
 		"driveSizeMbDefault",
+		"driveCount",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -337,10 +337,10 @@ func (o *CreateGroupDrive) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "driveCount")
 		delete(additionalProperties, "driveSizeMbDefault")
 		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "driveCount")
 		delete(additionalProperties, "ioLimitPolicy")
 		delete(additionalProperties, "expandWithServerInstanceGroup")
 		delete(additionalProperties, "allocationAffinity")

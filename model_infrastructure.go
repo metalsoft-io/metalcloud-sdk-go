@@ -21,7 +21,6 @@ var _ MappedNullable = &Infrastructure{}
 
 // Infrastructure struct for Infrastructure
 type Infrastructure struct {
-	// Label of the Infrastructure.
 	Label string `json:"label"`
 	// Custom variables in JSON format.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
@@ -50,7 +49,7 @@ type Infrastructure struct {
 	// Whether the infrastructure is a member of public designs.
 	IsPublicDesignsMember *float32 `json:"isPublicDesignsMember,omitempty"`
 	// Certificates in JSON format.
-	CertificatesJson map[string]interface{} `json:"certificatesJson,omitempty"`
+	CertificatesJson *string `json:"certificatesJson,omitempty"`
 	// Deploy cookie jar JSON.
 	DeployCookieJarJson map[string]interface{} `json:"deployCookieJarJson,omitempty"`
 	// Last error of deferred deploy attempt.
@@ -559,19 +558,19 @@ func (o *Infrastructure) SetIsPublicDesignsMember(v float32) {
 }
 
 // GetCertificatesJson returns the CertificatesJson field value if set, zero value otherwise.
-func (o *Infrastructure) GetCertificatesJson() map[string]interface{} {
+func (o *Infrastructure) GetCertificatesJson() string {
 	if o == nil || IsNil(o.CertificatesJson) {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
-	return o.CertificatesJson
+	return *o.CertificatesJson
 }
 
 // GetCertificatesJsonOk returns a tuple with the CertificatesJson field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetCertificatesJsonOk() (map[string]interface{}, bool) {
+func (o *Infrastructure) GetCertificatesJsonOk() (*string, bool) {
 	if o == nil || IsNil(o.CertificatesJson) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.CertificatesJson, true
 }
@@ -585,9 +584,9 @@ func (o *Infrastructure) HasCertificatesJson() bool {
 	return false
 }
 
-// SetCertificatesJson gets a reference to the given map[string]interface{} and assigns it to the CertificatesJson field.
-func (o *Infrastructure) SetCertificatesJson(v map[string]interface{}) {
-	o.CertificatesJson = v
+// SetCertificatesJson gets a reference to the given string and assigns it to the CertificatesJson field.
+func (o *Infrastructure) SetCertificatesJson(v string) {
+	o.CertificatesJson = &v
 }
 
 // GetDeployCookieJarJson returns the DeployCookieJarJson field value if set, zero value otherwise.

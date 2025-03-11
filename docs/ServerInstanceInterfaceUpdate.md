@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **string** | The server instance interface label. | [optional] 
 **CapacityMbps** | Pointer to **int32** |  | [optional] 
 **NetworkId** | Pointer to **int32** | The ID of the network to which this interface is to be attached to. | [optional] 
+**Label** | Pointer to **string** | The server instance interface label. | [optional] 
 
 ## Methods
 
@@ -26,31 +26,6 @@ will change when the set of required properties is changed
 NewServerInstanceInterfaceUpdateWithDefaults instantiates a new ServerInstanceInterfaceUpdate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetLabel
-
-`func (o *ServerInstanceInterfaceUpdate) GetLabel() string`
-
-GetLabel returns the Label field if non-nil, zero value otherwise.
-
-### GetLabelOk
-
-`func (o *ServerInstanceInterfaceUpdate) GetLabelOk() (*string, bool)`
-
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLabel
-
-`func (o *ServerInstanceInterfaceUpdate) SetLabel(v string)`
-
-SetLabel sets Label field to given value.
-
-### HasLabel
-
-`func (o *ServerInstanceInterfaceUpdate) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetCapacityMbps
 
@@ -101,6 +76,31 @@ SetNetworkId sets NetworkId field to given value.
 `func (o *ServerInstanceInterfaceUpdate) HasNetworkId() bool`
 
 HasNetworkId returns a boolean if a field has been set.
+
+### GetLabel
+
+`func (o *ServerInstanceInterfaceUpdate) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *ServerInstanceInterfaceUpdate) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *ServerInstanceInterfaceUpdate) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+### HasLabel
+
+`func (o *ServerInstanceInterfaceUpdate) HasLabel() bool`
+
+HasLabel returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

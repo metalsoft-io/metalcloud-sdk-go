@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **Label** | **string** | Label of the Drive Group. | 
 **InfrastructureId** | **float32** | Infrastructure id of the Drive Group | 
 **TemplateId** | Pointer to **float32** | Template Id | [optional] 
-**DriveCount** | **float32** | Number of drives in the Drive Group | 
 **DriveSizeMbDefault** | **float32** | Default disk size in MB for new Drives in the Drive Group | 
 **ServerInstanceGroupId** | Pointer to **float32** |  | [optional] 
 **ContainerArrayId** | Pointer to **float32** |  | [optional] 
@@ -34,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewDriveGroup
 
-`func NewDriveGroup(label string, infrastructureId float32, driveCount float32, driveSizeMbDefault float32, expandWithServerInstanceGroup float32, storageType string, updatedTimestamp string, id float32, revision float32, serviceStatus string, allocationAffinity string, config DriveGroupConfiguration, createdTimestamp string, meta DriveGroupMeta, ) *DriveGroup`
+`func NewDriveGroup(label string, infrastructureId float32, driveSizeMbDefault float32, expandWithServerInstanceGroup float32, storageType string, updatedTimestamp string, id float32, revision float32, serviceStatus string, allocationAffinity string, config DriveGroupConfiguration, createdTimestamp string, meta DriveGroupMeta, ) *DriveGroup`
 
 NewDriveGroup instantiates a new DriveGroup object
 This constructor will assign default values to properties that have it defined,
@@ -113,26 +112,6 @@ SetTemplateId sets TemplateId field to given value.
 `func (o *DriveGroup) HasTemplateId() bool`
 
 HasTemplateId returns a boolean if a field has been set.
-
-### GetDriveCount
-
-`func (o *DriveGroup) GetDriveCount() float32`
-
-GetDriveCount returns the DriveCount field if non-nil, zero value otherwise.
-
-### GetDriveCountOk
-
-`func (o *DriveGroup) GetDriveCountOk() (*float32, bool)`
-
-GetDriveCountOk returns a tuple with the DriveCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDriveCount
-
-`func (o *DriveGroup) SetDriveCount(v float32)`
-
-SetDriveCount sets DriveCount field to given value.
-
 
 ### GetDriveSizeMbDefault
 

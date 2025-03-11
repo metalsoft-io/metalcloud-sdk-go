@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SwitchId** | **float32** | Unique identifier for the switch. | 
+**Revision** | **float32** | Revision number | 
 **Status** | Pointer to **string** | Current status of the network device | [optional] 
 **DatacenterName** | Pointer to **string** | Datacenter name where the network device is located | [optional] 
 **SiteId** | Pointer to **float32** | Site ID | [optional] 
@@ -64,7 +65,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDevice
 
-`func NewNetworkDevice(switchId float32, driver NetworkDeviceDriver, position SwitchPosition, ) *NetworkDevice`
+`func NewNetworkDevice(switchId float32, revision float32, driver NetworkDeviceDriver, position SwitchPosition, ) *NetworkDevice`
 
 NewNetworkDevice instantiates a new NetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -97,6 +98,26 @@ and a boolean to check if the value has been set.
 `func (o *NetworkDevice) SetSwitchId(v float32)`
 
 SetSwitchId sets SwitchId field to given value.
+
+
+### GetRevision
+
+`func (o *NetworkDevice) GetRevision() float32`
+
+GetRevision returns the Revision field if non-nil, zero value otherwise.
+
+### GetRevisionOk
+
+`func (o *NetworkDevice) GetRevisionOk() (*float32, bool)`
+
+GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevision
+
+`func (o *NetworkDevice) SetRevision(v float32)`
+
+SetRevision sets Revision field to given value.
 
 
 ### GetStatus

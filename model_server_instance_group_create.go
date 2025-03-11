@@ -20,8 +20,6 @@ var _ MappedNullable = &ServerInstanceGroupCreate{}
 
 // ServerInstanceGroupCreate struct for ServerInstanceGroupCreate
 type ServerInstanceGroupCreate struct {
-	// The server instance group label. Will be automatically generated if not provided.
-	Label *string `json:"label,omitempty"`
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`
 	// Meta information
@@ -62,6 +60,8 @@ type ServerInstanceGroupCreate struct {
 	NetworkEquipmentForceSubnetPoolIpv4WanId *int32 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
 	// The resource pool assigned to this instance array
 	ResourcePoolId *int32 `json:"resourcePoolId,omitempty"`
+	// The server instance group label. Will be automatically generated if not provided.
+	Label *string `json:"label,omitempty"`
 	// The server type ID.
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -124,38 +124,6 @@ func NewServerInstanceGroupCreateWithDefaults() *ServerInstanceGroupCreate {
 	var virtualInterfacesEnabled int32 = 0
 	this.VirtualInterfacesEnabled = &virtualInterfacesEnabled
 	return &this
-}
-
-// GetLabel returns the Label field value if set, zero value otherwise.
-func (o *ServerInstanceGroupCreate) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
-		var ret string
-		return ret
-	}
-	return *o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupCreate) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
-		return nil, false
-	}
-	return o.Label, true
-}
-
-// HasLabel returns a boolean if a field has been set.
-func (o *ServerInstanceGroupCreate) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *ServerInstanceGroupCreate) SetLabel(v string) {
-	o.Label = &v
 }
 
 // GetServerGroupName returns the ServerGroupName field value if set, zero value otherwise.
@@ -830,6 +798,38 @@ func (o *ServerInstanceGroupCreate) SetResourcePoolId(v int32) {
 	o.ResourcePoolId = &v
 }
 
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *ServerInstanceGroupCreate) GetLabel() string {
+	if o == nil || IsNil(o.Label) {
+		var ret string
+		return ret
+	}
+	return *o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupCreate) GetLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.Label) {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *ServerInstanceGroupCreate) HasLabel() bool {
+	if o != nil && !IsNil(o.Label) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *ServerInstanceGroupCreate) SetLabel(v string) {
+	o.Label = &v
+}
+
 // GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
 func (o *ServerInstanceGroupCreate) GetServerTypeId() int32 {
 	if o == nil || IsNil(o.ServerTypeId) {
@@ -872,9 +872,6 @@ func (o ServerInstanceGroupCreate) MarshalJSON() ([]byte, error) {
 
 func (o ServerInstanceGroupCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
 	if !IsNil(o.ServerGroupName) {
 		toSerialize["serverGroupName"] = o.ServerGroupName
 	}
@@ -938,6 +935,9 @@ func (o ServerInstanceGroupCreate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ResourcePoolId) {
 		toSerialize["resourcePoolId"] = o.ResourcePoolId
 	}
+	if !IsNil(o.Label) {
+		toSerialize["label"] = o.Label
+	}
 	if !IsNil(o.ServerTypeId) {
 		toSerialize["serverTypeId"] = o.ServerTypeId
 	}
@@ -963,7 +963,6 @@ func (o *ServerInstanceGroupCreate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "label")
 		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "meta")
@@ -985,6 +984,7 @@ func (o *ServerInstanceGroupCreate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "overrideIpv4WanVlanId")
 		delete(additionalProperties, "networkEquipmentForceSubnetPoolIpv4WanId")
 		delete(additionalProperties, "resourcePoolId")
+		delete(additionalProperties, "label")
 		delete(additionalProperties, "serverTypeId")
 		o.AdditionalProperties = additionalProperties
 	}

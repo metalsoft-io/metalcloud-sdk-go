@@ -20,8 +20,6 @@ var _ MappedNullable = &ServerInstanceCreate{}
 
 // ServerInstanceCreate struct for ServerInstanceCreate
 type ServerInstanceCreate struct {
-	// The server instance label. Will be automatically generated if not provided.
-	Label *string `json:"label,omitempty"`
 	GroupId *int32 `json:"groupId,omitempty"`
 	// The server type ID.
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
@@ -32,6 +30,8 @@ type ServerInstanceCreate struct {
 	EnableAutoPortChannel *bool `json:"enableAutoPortChannel,omitempty"`
 	// Network profiles mapping for each network in this infrastructure.
 	NetworkProfiles []ServerInstanceConfigurationNetworkProfilesInner `json:"networkProfiles,omitempty"`
+	// The server instance label. Will be automatically generated if not provided.
+	Label *string `json:"label,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,38 +56,6 @@ func NewServerInstanceCreateWithDefaults() *ServerInstanceCreate {
 	var enableAutoPortChannel bool = true
 	this.EnableAutoPortChannel = &enableAutoPortChannel
 	return &this
-}
-
-// GetLabel returns the Label field value if set, zero value otherwise.
-func (o *ServerInstanceCreate) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
-		var ret string
-		return ret
-	}
-	return *o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceCreate) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
-		return nil, false
-	}
-	return o.Label, true
-}
-
-// HasLabel returns a boolean if a field has been set.
-func (o *ServerInstanceCreate) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *ServerInstanceCreate) SetLabel(v string) {
-	o.Label = &v
 }
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
@@ -282,6 +250,38 @@ func (o *ServerInstanceCreate) SetNetworkProfiles(v []ServerInstanceConfiguratio
 	o.NetworkProfiles = v
 }
 
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *ServerInstanceCreate) GetLabel() string {
+	if o == nil || IsNil(o.Label) {
+		var ret string
+		return ret
+	}
+	return *o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceCreate) GetLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.Label) {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *ServerInstanceCreate) HasLabel() bool {
+	if o != nil && !IsNil(o.Label) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *ServerInstanceCreate) SetLabel(v string) {
+	o.Label = &v
+}
+
 func (o ServerInstanceCreate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -292,9 +292,6 @@ func (o ServerInstanceCreate) MarshalJSON() ([]byte, error) {
 
 func (o ServerInstanceCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
 	if !IsNil(o.GroupId) {
 		toSerialize["groupId"] = o.GroupId
 	}
@@ -312,6 +309,9 @@ func (o ServerInstanceCreate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.NetworkProfiles) {
 		toSerialize["networkProfiles"] = o.NetworkProfiles
+	}
+	if !IsNil(o.Label) {
+		toSerialize["label"] = o.Label
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -335,13 +335,13 @@ func (o *ServerInstanceCreate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "label")
 		delete(additionalProperties, "groupId")
 		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "templateId")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "enableAutoPortChannel")
 		delete(additionalProperties, "networkProfiles")
+		delete(additionalProperties, "label")
 		o.AdditionalProperties = additionalProperties
 	}
 

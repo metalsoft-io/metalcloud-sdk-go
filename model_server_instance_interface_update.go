@@ -20,11 +20,11 @@ var _ MappedNullable = &ServerInstanceInterfaceUpdate{}
 
 // ServerInstanceInterfaceUpdate struct for ServerInstanceInterfaceUpdate
 type ServerInstanceInterfaceUpdate struct {
-	// The server instance interface label.
-	Label *string `json:"label,omitempty"`
 	CapacityMbps *int32 `json:"capacityMbps,omitempty"`
 	// The ID of the network to which this interface is to be attached to.
 	NetworkId *int32 `json:"networkId,omitempty"`
+	// The server instance interface label.
+	Label *string `json:"label,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,38 +45,6 @@ func NewServerInstanceInterfaceUpdate() *ServerInstanceInterfaceUpdate {
 func NewServerInstanceInterfaceUpdateWithDefaults() *ServerInstanceInterfaceUpdate {
 	this := ServerInstanceInterfaceUpdate{}
 	return &this
-}
-
-// GetLabel returns the Label field value if set, zero value otherwise.
-func (o *ServerInstanceInterfaceUpdate) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
-		var ret string
-		return ret
-	}
-	return *o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceInterfaceUpdate) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
-		return nil, false
-	}
-	return o.Label, true
-}
-
-// HasLabel returns a boolean if a field has been set.
-func (o *ServerInstanceInterfaceUpdate) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *ServerInstanceInterfaceUpdate) SetLabel(v string) {
-	o.Label = &v
 }
 
 // GetCapacityMbps returns the CapacityMbps field value if set, zero value otherwise.
@@ -143,6 +111,38 @@ func (o *ServerInstanceInterfaceUpdate) SetNetworkId(v int32) {
 	o.NetworkId = &v
 }
 
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *ServerInstanceInterfaceUpdate) GetLabel() string {
+	if o == nil || IsNil(o.Label) {
+		var ret string
+		return ret
+	}
+	return *o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceInterfaceUpdate) GetLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.Label) {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *ServerInstanceInterfaceUpdate) HasLabel() bool {
+	if o != nil && !IsNil(o.Label) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *ServerInstanceInterfaceUpdate) SetLabel(v string) {
+	o.Label = &v
+}
+
 func (o ServerInstanceInterfaceUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -153,14 +153,14 @@ func (o ServerInstanceInterfaceUpdate) MarshalJSON() ([]byte, error) {
 
 func (o ServerInstanceInterfaceUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
 	if !IsNil(o.CapacityMbps) {
 		toSerialize["capacityMbps"] = o.CapacityMbps
 	}
 	if !IsNil(o.NetworkId) {
 		toSerialize["networkId"] = o.NetworkId
+	}
+	if !IsNil(o.Label) {
+		toSerialize["label"] = o.Label
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -184,9 +184,9 @@ func (o *ServerInstanceInterfaceUpdate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "label")
 		delete(additionalProperties, "capacityMbps")
 		delete(additionalProperties, "networkId")
+		delete(additionalProperties, "label")
 		o.AdditionalProperties = additionalProperties
 	}
 

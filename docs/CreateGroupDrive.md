@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DriveCount** | **float32** | Number of drives in the Drive Group | 
 **DriveSizeMbDefault** | **float32** | Default disk size in MB for new Drives in the Drive Group | 
 **ExtensionInstanceId** | Pointer to **float32** |  | [optional] 
 **Label** | Pointer to **string** | Label of the Drive. | [optional] 
+**DriveCount** | **float32** | Number of drives in the Drive Group | 
 **IoLimitPolicy** | Pointer to **string** | The IO limit policy of the Drive Group. | [optional] 
 **ExpandWithServerInstanceGroup** | Pointer to **float32** | Flag to determine whether the Drive Group should be expanded with a Server Instance Group by adding one drive for each instance | [optional] 
 **AllocationAffinity** | Pointer to **string** | Allocation affinity of the Drive Group | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewCreateGroupDrive
 
-`func NewCreateGroupDrive(driveCount float32, driveSizeMbDefault float32, ) *CreateGroupDrive`
+`func NewCreateGroupDrive(driveSizeMbDefault float32, driveCount float32, ) *CreateGroupDrive`
 
 NewCreateGroupDrive instantiates a new CreateGroupDrive object
 This constructor will assign default values to properties that have it defined,
@@ -30,26 +30,6 @@ will change when the set of required properties is changed
 NewCreateGroupDriveWithDefaults instantiates a new CreateGroupDrive object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetDriveCount
-
-`func (o *CreateGroupDrive) GetDriveCount() float32`
-
-GetDriveCount returns the DriveCount field if non-nil, zero value otherwise.
-
-### GetDriveCountOk
-
-`func (o *CreateGroupDrive) GetDriveCountOk() (*float32, bool)`
-
-GetDriveCountOk returns a tuple with the DriveCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDriveCount
-
-`func (o *CreateGroupDrive) SetDriveCount(v float32)`
-
-SetDriveCount sets DriveCount field to given value.
-
 
 ### GetDriveSizeMbDefault
 
@@ -120,6 +100,26 @@ SetLabel sets Label field to given value.
 `func (o *CreateGroupDrive) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
+
+### GetDriveCount
+
+`func (o *CreateGroupDrive) GetDriveCount() float32`
+
+GetDriveCount returns the DriveCount field if non-nil, zero value otherwise.
+
+### GetDriveCountOk
+
+`func (o *CreateGroupDrive) GetDriveCountOk() (*float32, bool)`
+
+GetDriveCountOk returns a tuple with the DriveCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriveCount
+
+`func (o *CreateGroupDrive) SetDriveCount(v float32)`
+
+SetDriveCount sets DriveCount field to given value.
+
 
 ### GetIoLimitPolicy
 

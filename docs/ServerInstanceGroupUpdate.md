@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **string** | The server instance group label. Will be automatically generated if not provided. | [optional] 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **InstanceCount** | Pointer to **int32** | The number of instances to be created on the InstanceArray. | [optional] [default to 1]
 **IpAllocateAuto** | Pointer to **int32** | Automatically allocate IP addresses to child Instance&#x60;s InstanceInterface elements. | [optional] [default to 1]
@@ -24,6 +23,7 @@ Name | Type | Description | Notes
 **OverrideIpv4WanVlanId** | Pointer to **int32** | The ipv4 vlan that should override the default from the WAN Network for the primary ip. | [optional] 
 **NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the InstanceInterfaces associated with this InstanceArray. | [optional] 
 **DefaultServerProfileID** | Pointer to **int32** | The group&#39;s default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied. | [optional] 
+**Label** | Pointer to **string** | The server instance group label. | [optional] 
 
 ## Methods
 
@@ -43,31 +43,6 @@ will change when the set of required properties is changed
 NewServerInstanceGroupUpdateWithDefaults instantiates a new ServerInstanceGroupUpdate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetLabel
-
-`func (o *ServerInstanceGroupUpdate) GetLabel() string`
-
-GetLabel returns the Label field if non-nil, zero value otherwise.
-
-### GetLabelOk
-
-`func (o *ServerInstanceGroupUpdate) GetLabelOk() (*string, bool)`
-
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLabel
-
-`func (o *ServerInstanceGroupUpdate) SetLabel(v string)`
-
-SetLabel sets Label field to given value.
-
-### HasLabel
-
-`func (o *ServerInstanceGroupUpdate) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetServerGroupName
 
@@ -543,6 +518,31 @@ SetDefaultServerProfileID sets DefaultServerProfileID field to given value.
 `func (o *ServerInstanceGroupUpdate) HasDefaultServerProfileID() bool`
 
 HasDefaultServerProfileID returns a boolean if a field has been set.
+
+### GetLabel
+
+`func (o *ServerInstanceGroupUpdate) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *ServerInstanceGroupUpdate) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *ServerInstanceGroupUpdate) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+### HasLabel
+
+`func (o *ServerInstanceGroupUpdate) HasLabel() bool`
+
+HasLabel returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

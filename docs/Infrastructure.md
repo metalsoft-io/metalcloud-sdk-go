@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** | Label of the Infrastructure. | 
+**Label** | **string** |  | 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables in JSON format. | [optional] 
 **UserIdOwner** | Pointer to **float32** | User ID of the owner of the Infrastructure. | [optional] 
 **Subdomain** | Pointer to **string** | Subdomain associated with the Infrastructure. | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **IsApiPrivate** | Pointer to **float32** | Whether the infrastructure API is private. | [optional] 
 **ExperimentalPriority** | Pointer to **string** | Experimental priority. | [optional] 
 **IsPublicDesignsMember** | Pointer to **float32** | Whether the infrastructure is a member of public designs. | [optional] 
-**CertificatesJson** | Pointer to **map[string]interface{}** | Certificates in JSON format. | [optional] 
+**CertificatesJson** | Pointer to **string** | Certificates in JSON format. | [optional] 
 **DeployCookieJarJson** | Pointer to **map[string]interface{}** | Deploy cookie jar JSON. | [optional] 
 **DeferredDeployAttemptLastErrorJson** | Pointer to **map[string]interface{}** | Last error of deferred deploy attempt. | [optional] 
 **IsAutomanaged** | Pointer to **float32** | Whether the infrastructure is automanaged. | [optional] 
@@ -404,20 +404,20 @@ HasIsPublicDesignsMember returns a boolean if a field has been set.
 
 ### GetCertificatesJson
 
-`func (o *Infrastructure) GetCertificatesJson() map[string]interface{}`
+`func (o *Infrastructure) GetCertificatesJson() string`
 
 GetCertificatesJson returns the CertificatesJson field if non-nil, zero value otherwise.
 
 ### GetCertificatesJsonOk
 
-`func (o *Infrastructure) GetCertificatesJsonOk() (*map[string]interface{}, bool)`
+`func (o *Infrastructure) GetCertificatesJsonOk() (*string, bool)`
 
 GetCertificatesJsonOk returns a tuple with the CertificatesJson field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCertificatesJson
 
-`func (o *Infrastructure) SetCertificatesJson(v map[string]interface{})`
+`func (o *Infrastructure) SetCertificatesJson(v string)`
 
 SetCertificatesJson sets CertificatesJson field to given value.
 

@@ -25,7 +25,7 @@ import (
 // ServerAPIService ServerAPI service
 type ServerAPIService service
 
-type ServerAPIDecommissionServerRequest struct {
+type ServerAPIArchiveServerRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
 	serverId float32
@@ -33,26 +33,26 @@ type ServerAPIDecommissionServerRequest struct {
 }
 
 // Entity tag
-func (r ServerAPIDecommissionServerRequest) IfMatch(ifMatch string) ServerAPIDecommissionServerRequest {
+func (r ServerAPIArchiveServerRequest) IfMatch(ifMatch string) ServerAPIArchiveServerRequest {
 	r.ifMatch = &ifMatch
 	return r
 }
 
-func (r ServerAPIDecommissionServerRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DecommissionServerExecute(r)
+func (r ServerAPIArchiveServerRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ArchiveServerExecute(r)
 }
 
 /*
-DecommissionServer Decommissions a Server
+ArchiveServer Archives a Server
 
-Decommissions a Server
+Archives a Server
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serverId
- @return ServerAPIDecommissionServerRequest
+ @return ServerAPIArchiveServerRequest
 */
-func (a *ServerAPIService) DecommissionServer(ctx context.Context, serverId float32) ServerAPIDecommissionServerRequest {
-	return ServerAPIDecommissionServerRequest{
+func (a *ServerAPIService) ArchiveServer(ctx context.Context, serverId float32) ServerAPIArchiveServerRequest {
+	return ServerAPIArchiveServerRequest{
 		ApiService: a,
 		ctx: ctx,
 		serverId: serverId,
@@ -60,19 +60,19 @@ func (a *ServerAPIService) DecommissionServer(ctx context.Context, serverId floa
 }
 
 // Execute executes the request
-func (a *ServerAPIService) DecommissionServerExecute(r ServerAPIDecommissionServerRequest) (*http.Response, error) {
+func (a *ServerAPIService) ArchiveServerExecute(r ServerAPIArchiveServerRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerAPIService.DecommissionServer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerAPIService.ArchiveServer")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/servers/{serverId}/actions/decommission"
+	localVarPath := localBasePath + "/api/v2/servers/{serverId}/actions/archive"
 	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(parameterValueToString(r.serverId, "serverId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

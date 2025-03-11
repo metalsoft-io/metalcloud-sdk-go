@@ -20,7 +20,6 @@ var _ MappedNullable = &UpdateInfrastructure{}
 
 // UpdateInfrastructure struct for UpdateInfrastructure
 type UpdateInfrastructure struct {
-	// Label of the Infrastructure.
 	Label *string `json:"label,omitempty"`
 	// Custom variables in JSON format.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`

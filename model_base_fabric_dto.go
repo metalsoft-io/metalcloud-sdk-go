@@ -24,7 +24,7 @@ type BaseFabricDto struct {
 	// The type of network fabric
 	FabricType string `json:"fabricType"`
 	// Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile.
-	DefaultNetworkProfileId int32 `json:"defaultNetworkProfileId"`
+	DefaultNetworkProfileId *int32 `json:"defaultNetworkProfileId,omitempty"`
 	// Enables gNMI monitoring for telemetry data collection using the gNMI protocol.
 	GnmiMonitoringEnabled *bool `json:"gnmiMonitoringEnabled,omitempty"`
 	// Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting.
@@ -40,10 +40,9 @@ type _BaseFabricDto BaseFabricDto
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBaseFabricDto(fabricType string, defaultNetworkProfileId int32) *BaseFabricDto {
+func NewBaseFabricDto(fabricType string) *BaseFabricDto {
 	this := BaseFabricDto{}
 	this.FabricType = fabricType
-	this.DefaultNetworkProfileId = defaultNetworkProfileId
 	return &this
 }
 
@@ -79,28 +78,36 @@ func (o *BaseFabricDto) SetFabricType(v string) {
 	o.FabricType = v
 }
 
-// GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field value
+// GetDefaultNetworkProfileId returns the DefaultNetworkProfileId field value if set, zero value otherwise.
 func (o *BaseFabricDto) GetDefaultNetworkProfileId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.DefaultNetworkProfileId) {
 		var ret int32
 		return ret
 	}
-
-	return o.DefaultNetworkProfileId
+	return *o.DefaultNetworkProfileId
 }
 
-// GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field value
+// GetDefaultNetworkProfileIdOk returns a tuple with the DefaultNetworkProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BaseFabricDto) GetDefaultNetworkProfileIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DefaultNetworkProfileId) {
 		return nil, false
 	}
-	return &o.DefaultNetworkProfileId, true
+	return o.DefaultNetworkProfileId, true
 }
 
-// SetDefaultNetworkProfileId sets field value
+// HasDefaultNetworkProfileId returns a boolean if a field has been set.
+func (o *BaseFabricDto) HasDefaultNetworkProfileId() bool {
+	if o != nil && !IsNil(o.DefaultNetworkProfileId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultNetworkProfileId gets a reference to the given int32 and assigns it to the DefaultNetworkProfileId field.
 func (o *BaseFabricDto) SetDefaultNetworkProfileId(v int32) {
-	o.DefaultNetworkProfileId = v
+	o.DefaultNetworkProfileId = &v
 }
 
 // GetGnmiMonitoringEnabled returns the GnmiMonitoringEnabled field value if set, zero value otherwise.
@@ -210,7 +217,9 @@ func (o BaseFabricDto) MarshalJSON() ([]byte, error) {
 func (o BaseFabricDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fabricType"] = o.FabricType
-	toSerialize["defaultNetworkProfileId"] = o.DefaultNetworkProfileId
+	if !IsNil(o.DefaultNetworkProfileId) {
+		toSerialize["defaultNetworkProfileId"] = o.DefaultNetworkProfileId
+	}
 	if !IsNil(o.GnmiMonitoringEnabled) {
 		toSerialize["gnmiMonitoringEnabled"] = o.GnmiMonitoringEnabled
 	}
@@ -234,7 +243,6 @@ func (o *BaseFabricDto) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"fabricType",
-		"defaultNetworkProfileId",
 	}
 
 	allProperties := make(map[string]interface{})

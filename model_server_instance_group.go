@@ -26,7 +26,7 @@ type ServerInstanceGroup struct {
 	// Revision number
 	Revision float32 `json:"revision"`
 	// The server instance group label. Will be automatically generated if not provided.
-	Label *string `json:"label,omitempty"`
+	Label string `json:"label"`
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	InfrastructureId int32 `json:"infrastructureId"`
 	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`
@@ -109,10 +109,11 @@ type _ServerInstanceGroup ServerInstanceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroup(id int32, revision float32, infrastructureId int32, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, defaultServerProfileID int32) *ServerInstanceGroup {
+func NewServerInstanceGroup(id int32, revision float32, label string, infrastructureId int32, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, defaultServerProfileID int32) *ServerInstanceGroup {
 	this := ServerInstanceGroup{}
 	this.Id = id
 	this.Revision = revision
+	this.Label = label
 	this.InfrastructureId = infrastructureId
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
@@ -213,36 +214,28 @@ func (o *ServerInstanceGroup) SetRevision(v float32) {
 	o.Revision = v
 }
 
-// GetLabel returns the Label field value if set, zero value otherwise.
+// GetLabel returns the Label field value
 func (o *ServerInstanceGroup) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Label
+
+	return o.Label
 }
 
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
 func (o *ServerInstanceGroup) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Label, true
+	return &o.Label, true
 }
 
-// HasLabel returns a boolean if a field has been set.
-func (o *ServerInstanceGroup) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
+// SetLabel sets field value
 func (o *ServerInstanceGroup) SetLabel(v string) {
-	o.Label = &v
+	o.Label = v
 }
 
 // GetServerGroupName returns the ServerGroupName field value if set, zero value otherwise.
@@ -1417,9 +1410,7 @@ func (o ServerInstanceGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
+	toSerialize["label"] = o.Label
 	if !IsNil(o.ServerGroupName) {
 		toSerialize["serverGroupName"] = o.ServerGroupName
 	}
@@ -1520,6 +1511,7 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"revision",
+		"label",
 		"infrastructureId",
 		"createdTimestamp",
 		"updatedTimestamp",

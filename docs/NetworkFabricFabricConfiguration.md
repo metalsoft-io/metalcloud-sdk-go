@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FabricType** | **string** | The type of network fabric | 
-**DefaultNetworkProfileId** | **int32** | Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile. | 
+**DefaultNetworkProfileId** | Pointer to **int32** | Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile. | [optional] 
 **GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
 **ZeroTouchEnabled** | Pointer to **bool** | Enables zero-touch provisioning for automatic device configuration. | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **LagRanges** | Pointer to **[]string** | Link Aggregation (LAG) ranges in the format \&quot;start-end\&quot;; each range must be within the bounds of 1 to 4096. | [optional] 
 **LeafSwitchesHaveMlagPairs** | Pointer to **bool** | Indicates if leaf switches have MLAG pairs. | [optional] 
 **MlagRanges** | Pointer to **[]string** | MLAG ID ranges. Each range must be provided in \&quot;start-end\&quot; format with values between 1 and 4096. | [optional] 
-**NumberOfSpinesNextToLeafSwitches** | **int32** | Number of spines adjacent to leaf switches. Must be a positive number. | 
+**NumberOfSpinesNextToLeafSwitches** | Pointer to **int32** | Number of spines adjacent to leaf switches. Must be a positive number. | [optional] 
 **PreventVlanCleanup** | Pointer to **[]string** | VLAN ranges that should be prevented from automatic cleanup. Format must be \&quot;start-end\&quot;. | [optional] 
 **PreventCleanupFromUplinks** | Pointer to **bool** | Flag indicating whether cleanup from uplink interfaces should be prevented. | [optional] 
 **ReservedVlans** | Pointer to **[]string** | Reserved VLAN ranges that are excluded from general allocation. Must follow the \&quot;start-end\&quot; format. | [optional] 
@@ -25,8 +25,8 @@ Name | Type | Description | Notes
 **PreventVrfCleanup** | Pointer to **[]string** | VRF ID ranges to be preserved from automatic cleanup. Each range must follow the \&quot;start-end\&quot; format. | [optional] 
 **ReservedVrfs** | Pointer to **[]string** | Reserved VRF ID ranges that are set aside exclusively for specific network functions. Each range must be provided in the \&quot;start-end\&quot; format. | [optional] 
 **VrfVlanRanges** | Pointer to **[]string** | VLAN ranges to be associated with VRF instances. Each value must be an ordered pair specified in the \&quot;start-end\&quot; format. | [optional] 
-**VsanId** | **int32** | VSAN ID for the Fibre Channel fabric | 
-**TopologyType** | **string** | Fabric topology type | 
+**VsanId** | Pointer to **int32** | VSAN ID for the Fibre Channel fabric | [optional] 
+**TopologyType** | Pointer to **string** | Fabric topology type | [optional] 
 **Mtu** | Pointer to **float32** | Maximum transmission unit (MTU) size in bytes | [optional] 
 **ZoningConfiguration** | Pointer to **map[string]interface{}** | Zoning configuration for the fabric | [optional] 
 **InteropMode** | Pointer to **string** | Interoperability mode for multi-vendor environments | [optional] 
@@ -38,7 +38,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabricFabricConfiguration
 
-`func NewNetworkFabricFabricConfiguration(fabricType string, defaultNetworkProfileId int32, numberOfSpinesNextToLeafSwitches int32, vsanId int32, topologyType string, ) *NetworkFabricFabricConfiguration`
+`func NewNetworkFabricFabricConfiguration(fabricType string, ) *NetworkFabricFabricConfiguration`
 
 NewNetworkFabricFabricConfiguration instantiates a new NetworkFabricFabricConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -92,6 +92,11 @@ and a boolean to check if the value has been set.
 
 SetDefaultNetworkProfileId sets DefaultNetworkProfileId field to given value.
 
+### HasDefaultNetworkProfileId
+
+`func (o *NetworkFabricFabricConfiguration) HasDefaultNetworkProfileId() bool`
+
+HasDefaultNetworkProfileId returns a boolean if a field has been set.
 
 ### GetGnmiMonitoringEnabled
 
@@ -362,6 +367,11 @@ and a boolean to check if the value has been set.
 
 SetNumberOfSpinesNextToLeafSwitches sets NumberOfSpinesNextToLeafSwitches field to given value.
 
+### HasNumberOfSpinesNextToLeafSwitches
+
+`func (o *NetworkFabricFabricConfiguration) HasNumberOfSpinesNextToLeafSwitches() bool`
+
+HasNumberOfSpinesNextToLeafSwitches returns a boolean if a field has been set.
 
 ### GetPreventVlanCleanup
 
@@ -582,6 +592,11 @@ and a boolean to check if the value has been set.
 
 SetVsanId sets VsanId field to given value.
 
+### HasVsanId
+
+`func (o *NetworkFabricFabricConfiguration) HasVsanId() bool`
+
+HasVsanId returns a boolean if a field has been set.
 
 ### GetTopologyType
 
@@ -602,6 +617,11 @@ and a boolean to check if the value has been set.
 
 SetTopologyType sets TopologyType field to given value.
 
+### HasTopologyType
+
+`func (o *NetworkFabricFabricConfiguration) HasTopologyType() bool`
+
+HasTopologyType returns a boolean if a field has been set.
 
 ### GetMtu
 

@@ -22,13 +22,13 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ServerAPIService DecommissionServer", func(t *testing.T) {
+	t.Run("Test ServerAPIService ArchiveServer", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var serverId float32
 
-		httpRes, err := apiClient.ServerAPI.DecommissionServer(context.Background(), serverId).Execute()
+		httpRes, err := apiClient.ServerAPI.ArchiveServer(context.Background(), serverId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

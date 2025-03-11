@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FabricType** | **string** | The type of network fabric | 
-**DefaultNetworkProfileId** | **int32** | Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile. | 
+**DefaultNetworkProfileId** | Pointer to **int32** | Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile. | [optional] 
 **GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
 **ZeroTouchEnabled** | Pointer to **bool** | Enables zero-touch provisioning for automatic device configuration. | [optional] 
-**VsanId** | **int32** | VSAN ID for the Fibre Channel fabric | 
-**TopologyType** | **string** | Fabric topology type | 
+**VsanId** | Pointer to **int32** | VSAN ID for the Fibre Channel fabric | [optional] 
+**TopologyType** | Pointer to **string** | Fabric topology type | [optional] 
 **Mtu** | Pointer to **float32** | Maximum transmission unit (MTU) size in bytes | [optional] 
 **ZoningConfiguration** | Pointer to **map[string]interface{}** | Zoning configuration for the fabric | [optional] 
 **InteropMode** | Pointer to **string** | Interoperability mode for multi-vendor environments | [optional] 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewFibreChannelFabric
 
-`func NewFibreChannelFabric(fabricType string, defaultNetworkProfileId int32, vsanId int32, topologyType string, ) *FibreChannelFabric`
+`func NewFibreChannelFabric(fabricType string, ) *FibreChannelFabric`
 
 NewFibreChannelFabric instantiates a new FibreChannelFabric object
 This constructor will assign default values to properties that have it defined,
@@ -76,6 +76,11 @@ and a boolean to check if the value has been set.
 
 SetDefaultNetworkProfileId sets DefaultNetworkProfileId field to given value.
 
+### HasDefaultNetworkProfileId
+
+`func (o *FibreChannelFabric) HasDefaultNetworkProfileId() bool`
+
+HasDefaultNetworkProfileId returns a boolean if a field has been set.
 
 ### GetGnmiMonitoringEnabled
 
@@ -171,6 +176,11 @@ and a boolean to check if the value has been set.
 
 SetVsanId sets VsanId field to given value.
 
+### HasVsanId
+
+`func (o *FibreChannelFabric) HasVsanId() bool`
+
+HasVsanId returns a boolean if a field has been set.
 
 ### GetTopologyType
 
@@ -191,6 +201,11 @@ and a boolean to check if the value has been set.
 
 SetTopologyType sets TopologyType field to given value.
 
+### HasTopologyType
+
+`func (o *FibreChannelFabric) HasTopologyType() bool`
+
+HasTopologyType returns a boolean if a field has been set.
 
 ### GetMtu
 

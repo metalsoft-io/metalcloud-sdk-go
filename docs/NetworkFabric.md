@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**SiteId** | Pointer to **float32** | The ID of the site where the entity is located. | [optional] 
 **Name** | **string** | The network fabric name | 
 **Description** | Pointer to **string** | Network fabric description | [optional] 
 **FabricConfiguration** | [**NetworkFabricFabricConfiguration**](NetworkFabricFabricConfiguration.md) |  | 
@@ -12,6 +13,7 @@ Name | Type | Description | Notes
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 **Id** | **string** | The network fabric ID. | 
+**NetworkEquipment** | Pointer to [**[]NetworkDevice**](NetworkDevice.md) | The network equipments in the fabric | [optional] 
 
 ## Methods
 
@@ -31,6 +33,31 @@ will change when the set of required properties is changed
 NewNetworkFabricWithDefaults instantiates a new NetworkFabric object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetSiteId
+
+`func (o *NetworkFabric) GetSiteId() float32`
+
+GetSiteId returns the SiteId field if non-nil, zero value otherwise.
+
+### GetSiteIdOk
+
+`func (o *NetworkFabric) GetSiteIdOk() (*float32, bool)`
+
+GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSiteId
+
+`func (o *NetworkFabric) SetSiteId(v float32)`
+
+SetSiteId sets SiteId field to given value.
+
+### HasSiteId
+
+`func (o *NetworkFabric) HasSiteId() bool`
+
+HasSiteId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -201,6 +228,31 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+
+### GetNetworkEquipment
+
+`func (o *NetworkFabric) GetNetworkEquipment() []NetworkDevice`
+
+GetNetworkEquipment returns the NetworkEquipment field if non-nil, zero value otherwise.
+
+### GetNetworkEquipmentOk
+
+`func (o *NetworkFabric) GetNetworkEquipmentOk() (*[]NetworkDevice, bool)`
+
+GetNetworkEquipmentOk returns a tuple with the NetworkEquipment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkEquipment
+
+`func (o *NetworkFabric) SetNetworkEquipment(v []NetworkDevice)`
+
+SetNetworkEquipment sets NetworkEquipment field to given value.
+
+### HasNetworkEquipment
+
+`func (o *NetworkFabric) HasNetworkEquipment() bool`
+
+HasNetworkEquipment returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

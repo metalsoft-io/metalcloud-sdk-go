@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AddNetworkDeviceDefaults**](NetworkDeviceAPI.md#AddNetworkDeviceDefaults) | **Post** /api/v2/network-devices/defaults | Add network device defaults
+[**ArchiveNetworkDevice**](NetworkDeviceAPI.md#ArchiveNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/archive | Archives a network device
 [**ChangeNetworkDeviceStatus**](NetworkDeviceAPI.md#ChangeNetworkDeviceStatus) | **Patch** /api/v2/network-devices/{networkDeviceId}/actions/change-status | Change status of a network device
 [**DiscoverNetworkDevice**](NetworkDeviceAPI.md#DiscoverNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/discover | Discover network device interfaces, hardware and software configuration
 [**EnableNetworkDeviceSyslog**](NetworkDeviceAPI.md#EnableNetworkDeviceSyslog) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/syslog-subscribe | Enables remote syslog for a network device
@@ -15,7 +16,6 @@ Method | HTTP request | Description
 [**GetNetworkDevices**](NetworkDeviceAPI.md#GetNetworkDevices) | **Get** /api/v2/network-devices | Get paginated Network Devices
 [**NetworkDeviceControllerAddTagsToNetworkDevice**](NetworkDeviceAPI.md#NetworkDeviceControllerAddTagsToNetworkDevice) | **Post** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Add tags to Network Device
 [**NetworkDeviceControllerCreateNetworkDevice**](NetworkDeviceAPI.md#NetworkDeviceControllerCreateNetworkDevice) | **Post** /api/v2/network-devices | Create Network Device
-[**NetworkDeviceControllerDecommissionNetworkDevice**](NetworkDeviceAPI.md#NetworkDeviceControllerDecommissionNetworkDevice) | **Delete** /api/v2/network-devices/{networkDeviceId}/decommission | Decommission network device
 [**NetworkDeviceControllerDeleteNetworkDevice**](NetworkDeviceAPI.md#NetworkDeviceControllerDeleteNetworkDevice) | **Delete** /api/v2/network-devices/{networkDeviceId} | Delete Network Device
 [**NetworkDeviceControllerGetIscsiBootServers**](NetworkDeviceAPI.md#NetworkDeviceControllerGetIscsiBootServers) | **Get** /api/v2/network-devices/{networkDeviceId}/iscsi-boot-servers | Returns information about servers which are setup to boot from iSCSI block devices. This is useful in the event of a switch device reboot
 [**NetworkDeviceControllerGetNetworkDeviceStatistics**](NetworkDeviceAPI.md#NetworkDeviceControllerGetNetworkDeviceStatistics) | **Get** /api/v2/network-devices/statistics | Get Network Device Statistics
@@ -86,6 +86,74 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ArchiveNetworkDevice
+
+> ArchiveNetworkDevice(ctx, networkDeviceId).IfMatch(ifMatch).Execute()
+
+Archives a network device
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.NetworkDeviceAPI.ArchiveNetworkDevice(context.Background(), networkDeviceId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.ArchiveNetworkDevice``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiArchiveNetworkDeviceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -793,72 +861,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## NetworkDeviceControllerDecommissionNetworkDevice
-
-> NetworkDeviceControllerDecommissionNetworkDevice(ctx, networkDeviceId).Execute()
-
-Decommission network device
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	networkDeviceId := float32(8.14) // float32 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.NetworkDeviceControllerDecommissionNetworkDevice(context.Background(), networkDeviceId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.NetworkDeviceControllerDecommissionNetworkDevice``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiNetworkDeviceControllerDecommissionNetworkDeviceRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## NetworkDeviceControllerDeleteNetworkDevice
 
 > NetworkDeviceControllerDeleteNetworkDevice(ctx, networkDeviceId).Execute()
@@ -1254,7 +1256,7 @@ Name | Type | Description  | Notes
 
 ## NetworkDeviceControllerUpdateNetworkDevice
 
-> NetworkDevice NetworkDeviceControllerUpdateNetworkDevice(ctx, networkDeviceId).UpdateNetworkDevice(updateNetworkDevice).Execute()
+> NetworkDevice NetworkDeviceControllerUpdateNetworkDevice(ctx, networkDeviceId).UpdateNetworkDevice(updateNetworkDevice).IfMatch(ifMatch).Execute()
 
 Update Network Device
 
@@ -1273,10 +1275,11 @@ import (
 func main() {
 	networkDeviceId := float32(8.14) // float32 | 
 	updateNetworkDevice := *openapiclient.NewUpdateNetworkDevice() // UpdateNetworkDevice | The Network Device update object
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.NetworkDeviceControllerUpdateNetworkDevice(context.Background(), networkDeviceId).UpdateNetworkDevice(updateNetworkDevice).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.NetworkDeviceControllerUpdateNetworkDevice(context.Background(), networkDeviceId).UpdateNetworkDevice(updateNetworkDevice).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.NetworkDeviceControllerUpdateNetworkDevice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1303,6 +1306,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **updateNetworkDevice** | [**UpdateNetworkDevice**](UpdateNetworkDevice.md) | The Network Device update object | 
+ **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 

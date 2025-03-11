@@ -20,8 +20,6 @@ var _ MappedNullable = &ServerInstanceGroupUpdate{}
 
 // ServerInstanceGroupUpdate struct for ServerInstanceGroupUpdate
 type ServerInstanceGroupUpdate struct {
-	// The server instance group label. Will be automatically generated if not provided.
-	Label *string `json:"label,omitempty"`
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	// The number of instances to be created on the InstanceArray.
 	InstanceCount *int32 `json:"instanceCount,omitempty"`
@@ -59,6 +57,8 @@ type ServerInstanceGroupUpdate struct {
 	NetworkEquipmentForceSubnetPoolIpv4WanId *int32 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
 	// The group's default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied.
 	DefaultServerProfileID *int32 `json:"defaultServerProfileID,omitempty"`
+	// The server instance group label.
+	Label *string `json:"label,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -119,38 +119,6 @@ func NewServerInstanceGroupUpdateWithDefaults() *ServerInstanceGroupUpdate {
 	var virtualInterfacesEnabled int32 = 0
 	this.VirtualInterfacesEnabled = &virtualInterfacesEnabled
 	return &this
-}
-
-// GetLabel returns the Label field value if set, zero value otherwise.
-func (o *ServerInstanceGroupUpdate) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
-		var ret string
-		return ret
-	}
-	return *o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupUpdate) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
-		return nil, false
-	}
-	return o.Label, true
-}
-
-// HasLabel returns a boolean if a field has been set.
-func (o *ServerInstanceGroupUpdate) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *ServerInstanceGroupUpdate) SetLabel(v string) {
-	o.Label = &v
 }
 
 // GetServerGroupName returns the ServerGroupName field value if set, zero value otherwise.
@@ -761,6 +729,38 @@ func (o *ServerInstanceGroupUpdate) SetDefaultServerProfileID(v int32) {
 	o.DefaultServerProfileID = &v
 }
 
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetLabel() string {
+	if o == nil || IsNil(o.Label) {
+		var ret string
+		return ret
+	}
+	return *o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupUpdate) GetLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.Label) {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasLabel() bool {
+	if o != nil && !IsNil(o.Label) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *ServerInstanceGroupUpdate) SetLabel(v string) {
+	o.Label = &v
+}
+
 func (o ServerInstanceGroupUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -771,9 +771,6 @@ func (o ServerInstanceGroupUpdate) MarshalJSON() ([]byte, error) {
 
 func (o ServerInstanceGroupUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
 	if !IsNil(o.ServerGroupName) {
 		toSerialize["serverGroupName"] = o.ServerGroupName
 	}
@@ -831,6 +828,9 @@ func (o ServerInstanceGroupUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DefaultServerProfileID) {
 		toSerialize["defaultServerProfileID"] = o.DefaultServerProfileID
 	}
+	if !IsNil(o.Label) {
+		toSerialize["label"] = o.Label
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -853,7 +853,6 @@ func (o *ServerInstanceGroupUpdate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "label")
 		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "instanceCount")
 		delete(additionalProperties, "ipAllocateAuto")
@@ -873,6 +872,7 @@ func (o *ServerInstanceGroupUpdate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "overrideIpv4WanVlanId")
 		delete(additionalProperties, "networkEquipmentForceSubnetPoolIpv4WanId")
 		delete(additionalProperties, "defaultServerProfileID")
+		delete(additionalProperties, "label")
 		o.AdditionalProperties = additionalProperties
 	}
 

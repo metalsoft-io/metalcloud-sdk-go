@@ -22,6 +22,8 @@ var _ MappedNullable = &NetworkFabric{}
 
 // NetworkFabric struct for NetworkFabric
 type NetworkFabric struct {
+	// The ID of the site where the entity is located.
+	SiteId *float32 `json:"siteId,omitempty"`
 	// The network fabric name
 	Name string `json:"name"`
 	// Network fabric description
@@ -37,6 +39,8 @@ type NetworkFabric struct {
 	Links []Link `json:"links,omitempty"`
 	// The network fabric ID.
 	Id string `json:"id"`
+	// The network equipments in the fabric
+	NetworkEquipment []NetworkDevice `json:"networkEquipment,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -63,6 +67,38 @@ func NewNetworkFabric(name string, fabricConfiguration NetworkFabricFabricConfig
 func NewNetworkFabricWithDefaults() *NetworkFabric {
 	this := NetworkFabric{}
 	return &this
+}
+
+// GetSiteId returns the SiteId field value if set, zero value otherwise.
+func (o *NetworkFabric) GetSiteId() float32 {
+	if o == nil || IsNil(o.SiteId) {
+		var ret float32
+		return ret
+	}
+	return *o.SiteId
+}
+
+// GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabric) GetSiteIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.SiteId) {
+		return nil, false
+	}
+	return o.SiteId, true
+}
+
+// HasSiteId returns a boolean if a field has been set.
+func (o *NetworkFabric) HasSiteId() bool {
+	if o != nil && !IsNil(o.SiteId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSiteId gets a reference to the given float32 and assigns it to the SiteId field.
+func (o *NetworkFabric) SetSiteId(v float32) {
+	o.SiteId = &v
 }
 
 // GetName returns the Name field value
@@ -273,6 +309,38 @@ func (o *NetworkFabric) SetId(v string) {
 	o.Id = v
 }
 
+// GetNetworkEquipment returns the NetworkEquipment field value if set, zero value otherwise.
+func (o *NetworkFabric) GetNetworkEquipment() []NetworkDevice {
+	if o == nil || IsNil(o.NetworkEquipment) {
+		var ret []NetworkDevice
+		return ret
+	}
+	return o.NetworkEquipment
+}
+
+// GetNetworkEquipmentOk returns a tuple with the NetworkEquipment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabric) GetNetworkEquipmentOk() ([]NetworkDevice, bool) {
+	if o == nil || IsNil(o.NetworkEquipment) {
+		return nil, false
+	}
+	return o.NetworkEquipment, true
+}
+
+// HasNetworkEquipment returns a boolean if a field has been set.
+func (o *NetworkFabric) HasNetworkEquipment() bool {
+	if o != nil && !IsNil(o.NetworkEquipment) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkEquipment gets a reference to the given []NetworkDevice and assigns it to the NetworkEquipment field.
+func (o *NetworkFabric) SetNetworkEquipment(v []NetworkDevice) {
+	o.NetworkEquipment = v
+}
+
 func (o NetworkFabric) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -283,6 +351,9 @@ func (o NetworkFabric) MarshalJSON() ([]byte, error) {
 
 func (o NetworkFabric) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SiteId) {
+		toSerialize["siteId"] = o.SiteId
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -295,6 +366,9 @@ func (o NetworkFabric) ToMap() (map[string]interface{}, error) {
 		toSerialize["links"] = o.Links
 	}
 	toSerialize["id"] = o.Id
+	if !IsNil(o.NetworkEquipment) {
+		toSerialize["networkEquipment"] = o.NetworkEquipment
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -343,6 +417,7 @@ func (o *NetworkFabric) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "fabricConfiguration")
@@ -351,6 +426,7 @@ func (o *NetworkFabric) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "links")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "networkEquipment")
 		o.AdditionalProperties = additionalProperties
 	}
 

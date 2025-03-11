@@ -25,8 +25,8 @@ type ServerInstance struct {
 	Id int32 `json:"id"`
 	// Revision number
 	Revision float32 `json:"revision"`
-	// The server instance label. Will be automatically generated if not provided.
-	Label *string `json:"label,omitempty"`
+	// The server instance label.
+	Label string `json:"label"`
 	// Timestamp of the Server Instance creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Timestamp of the latest update for the Server Instance.
@@ -107,10 +107,11 @@ type _ServerInstance ServerInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstance(id int32, revision float32, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance float32) *ServerInstance {
+func NewServerInstance(id int32, revision float32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance float32) *ServerInstance {
 	this := ServerInstance{}
 	this.Id = id
 	this.Revision = revision
+	this.Label = label
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
 	this.InfrastructureId = infrastructureId
@@ -180,36 +181,28 @@ func (o *ServerInstance) SetRevision(v float32) {
 	o.Revision = v
 }
 
-// GetLabel returns the Label field value if set, zero value otherwise.
+// GetLabel returns the Label field value
 func (o *ServerInstance) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Label
+
+	return o.Label
 }
 
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
 func (o *ServerInstance) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Label, true
+	return &o.Label, true
 }
 
-// HasLabel returns a boolean if a field has been set.
-func (o *ServerInstance) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
+// SetLabel sets field value
 func (o *ServerInstance) SetLabel(v string) {
-	o.Label = &v
+	o.Label = v
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
@@ -1456,9 +1449,7 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
+	toSerialize["label"] = o.Label
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	toSerialize["infrastructureId"] = o.InfrastructureId
@@ -1582,6 +1573,7 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"revision",
+		"label",
 		"createdTimestamp",
 		"updatedTimestamp",
 		"infrastructureId",

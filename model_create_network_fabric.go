@@ -21,6 +21,8 @@ var _ MappedNullable = &CreateNetworkFabric{}
 
 // CreateNetworkFabric struct for CreateNetworkFabric
 type CreateNetworkFabric struct {
+	// The ID of the site where the entity is located.
+	SiteId *float32 `json:"siteId,omitempty"`
 	// The network fabric name
 	Name string `json:"name"`
 	// Network fabric description
@@ -48,6 +50,38 @@ func NewCreateNetworkFabric(name string, fabricConfiguration NetworkFabricFabric
 func NewCreateNetworkFabricWithDefaults() *CreateNetworkFabric {
 	this := CreateNetworkFabric{}
 	return &this
+}
+
+// GetSiteId returns the SiteId field value if set, zero value otherwise.
+func (o *CreateNetworkFabric) GetSiteId() float32 {
+	if o == nil || IsNil(o.SiteId) {
+		var ret float32
+		return ret
+	}
+	return *o.SiteId
+}
+
+// GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkFabric) GetSiteIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.SiteId) {
+		return nil, false
+	}
+	return o.SiteId, true
+}
+
+// HasSiteId returns a boolean if a field has been set.
+func (o *CreateNetworkFabric) HasSiteId() bool {
+	if o != nil && !IsNil(o.SiteId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSiteId gets a reference to the given float32 and assigns it to the SiteId field.
+func (o *CreateNetworkFabric) SetSiteId(v float32) {
+	o.SiteId = &v
 }
 
 // GetName returns the Name field value
@@ -140,6 +174,9 @@ func (o CreateNetworkFabric) MarshalJSON() ([]byte, error) {
 
 func (o CreateNetworkFabric) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SiteId) {
+		toSerialize["siteId"] = o.SiteId
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -189,6 +226,7 @@ func (o *CreateNetworkFabric) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "fabricConfiguration")

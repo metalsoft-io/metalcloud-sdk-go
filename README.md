@@ -124,7 +124,7 @@ Class | Method | HTTP request | Description
 *DriveGroupAPI* | [**CreateDriveGroup**](docs/DriveGroupAPI.md#createdrivegroup) | **Post** /api/v2/infrastructures/{infrastructureId}/drive-groups | Create a new Drive Group
 *DriveGroupAPI* | [**DeleteDriveGroup**](docs/DriveGroupAPI.md#deletedrivegroup) | **Delete** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId} | Deletes a Drive Group
 *DriveGroupAPI* | [**GetDriveGroupConfigInfo**](docs/DriveGroupAPI.md#getdrivegroupconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/config | Get configuration information about the specified Drive Group
-*DriveGroupAPI* | [**GetDriveGroupDrives**](docs/DriveGroupAPI.md#getdrivegroupdrives) | **Get** /api/v2/{infrastructureId}/drive-groups/{driveGroupId}/drives | Get the Drives of the Drive Group
+*DriveGroupAPI* | [**GetDriveGroupDrives**](docs/DriveGroupAPI.md#getdrivegroupdrives) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/drives | Get the Drives of the Drive Group
 *DriveGroupAPI* | [**GetInfrastructureDriveGroup**](docs/DriveGroupAPI.md#getinfrastructuredrivegroup) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId} | Get DriveGroup information
 *DriveGroupAPI* | [**GetInfrastructureDriveGroups**](docs/DriveGroupAPI.md#getinfrastructuredrivegroups) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups | Get all Drive Groups on the infrastructure
 *DriveGroupAPI* | [**PatchDriveGroupConfig**](docs/DriveGroupAPI.md#patchdrivegroupconfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/config | Updates the config of a Drive Group
@@ -217,6 +217,7 @@ Class | Method | HTTP request | Description
 *NetworkAPI* | [**GetInfrastructureNetwork**](docs/NetworkAPI.md#getinfrastructurenetwork) | **Get** /api/v2/infrastructures/{infrastructureId}/networks/{networkId} | Gets the specified network from the infrastructure
 *NetworkAPI* | [**GetInfrastructureNetworks**](docs/NetworkAPI.md#getinfrastructurenetworks) | **Get** /api/v2/infrastructures/{infrastructureId}/networks | Retrieves all networks on the infrastructure
 *NetworkDeviceAPI* | [**AddNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#addnetworkdevicedefaults) | **Post** /api/v2/network-devices/defaults | Add network device defaults
+*NetworkDeviceAPI* | [**ArchiveNetworkDevice**](docs/NetworkDeviceAPI.md#archivenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/archive | Archives a network device
 *NetworkDeviceAPI* | [**ChangeNetworkDeviceStatus**](docs/NetworkDeviceAPI.md#changenetworkdevicestatus) | **Patch** /api/v2/network-devices/{networkDeviceId}/actions/change-status | Change status of a network device
 *NetworkDeviceAPI* | [**DiscoverNetworkDevice**](docs/NetworkDeviceAPI.md#discovernetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/discover | Discover network device interfaces, hardware and software configuration
 *NetworkDeviceAPI* | [**EnableNetworkDeviceSyslog**](docs/NetworkDeviceAPI.md#enablenetworkdevicesyslog) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/syslog-subscribe | Enables remote syslog for a network device
@@ -227,7 +228,6 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**GetNetworkDevices**](docs/NetworkDeviceAPI.md#getnetworkdevices) | **Get** /api/v2/network-devices | Get paginated Network Devices
 *NetworkDeviceAPI* | [**NetworkDeviceControllerAddTagsToNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrolleraddtagstonetworkdevice) | **Post** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Add tags to Network Device
 *NetworkDeviceAPI* | [**NetworkDeviceControllerCreateNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrollercreatenetworkdevice) | **Post** /api/v2/network-devices | Create Network Device
-*NetworkDeviceAPI* | [**NetworkDeviceControllerDecommissionNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrollerdecommissionnetworkdevice) | **Delete** /api/v2/network-devices/{networkDeviceId}/decommission | Decommission network device
 *NetworkDeviceAPI* | [**NetworkDeviceControllerDeleteNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrollerdeletenetworkdevice) | **Delete** /api/v2/network-devices/{networkDeviceId} | Delete Network Device
 *NetworkDeviceAPI* | [**NetworkDeviceControllerGetIscsiBootServers**](docs/NetworkDeviceAPI.md#networkdevicecontrollergetiscsibootservers) | **Get** /api/v2/network-devices/{networkDeviceId}/iscsi-boot-servers | Returns information about servers which are setup to boot from iSCSI block devices. This is useful in the event of a switch device reboot
 *NetworkDeviceAPI* | [**NetworkDeviceControllerGetNetworkDeviceStatistics**](docs/NetworkDeviceAPI.md#networkdevicecontrollergetnetworkdevicestatistics) | **Get** /api/v2/network-devices/statistics | Get Network Device Statistics
@@ -268,7 +268,7 @@ Class | Method | HTTP request | Description
 *ResourcePoolAPI* | [**UpdateResourcePool**](docs/ResourcePoolAPI.md#updateresourcepool) | **Put** /api/v2/resource-pools/{resourcePoolId} | Updates Resource Pool information
 *SecurityAPI* | [**GetProviders**](docs/SecurityAPI.md#getproviders) | **Get** /api/v2/authentication/providers | Get available authentication providers
 *SecurityAPI* | [**UpdateProvider**](docs/SecurityAPI.md#updateprovider) | **Patch** /api/v2/authentication/providers/{name} | Updates authentication provider
-*ServerAPI* | [**DecommissionServer**](docs/ServerAPI.md#decommissionserver) | **Post** /api/v2/servers/{serverId}/actions/decommission | Decommissions a Server
+*ServerAPI* | [**ArchiveServer**](docs/ServerAPI.md#archiveserver) | **Post** /api/v2/servers/{serverId}/actions/archive | Archives a Server
 *ServerAPI* | [**DeleteServer**](docs/ServerAPI.md#deleteserver) | **Delete** /api/v2/servers/{serverId} | Deletes a Server
 *ServerAPI* | [**EnableServerSyslog**](docs/ServerAPI.md#enableserversyslog) | **Post** /api/v2/servers/{serverId}/actions/syslog-subscribe | Enables remote syslog for a server
 *ServerAPI* | [**GetServerCapabilities**](docs/ServerAPI.md#getservercapabilities) | **Get** /api/v2/servers/{serverId}/capabilities | Get Server capabilities

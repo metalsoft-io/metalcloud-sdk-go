@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Revision** | **float32** | Revision number | 
-**Label** | Pointer to **string** | The server instance interface label. | [optional] 
+**Label** | **string** | The server instance interface label. | 
 **Subdomain** | Pointer to **string** | Subdomain of the Server Group. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update for the Server Instance. | 
 **InstanceId** | **int32** |  | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceProfileNetworkInterfacesConfig
 
-`func NewServerInstanceProfileNetworkInterfacesConfig(revision float32, updatedTimestamp string, instanceId int32, index int32, capacityMbps int32, deployType string, deployStatus string, ) *ServerInstanceProfileNetworkInterfacesConfig`
+`func NewServerInstanceProfileNetworkInterfacesConfig(revision float32, label string, updatedTimestamp string, instanceId int32, index int32, capacityMbps int32, deployType string, deployStatus string, ) *ServerInstanceProfileNetworkInterfacesConfig`
 
 NewServerInstanceProfileNetworkInterfacesConfig instantiates a new ServerInstanceProfileNetworkInterfacesConfig object
 This constructor will assign default values to properties that have it defined,
@@ -77,11 +77,6 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
-### HasLabel
-
-`func (o *ServerInstanceProfileNetworkInterfacesConfig) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetSubdomain
 
