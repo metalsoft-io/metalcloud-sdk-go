@@ -230,6 +230,7 @@ docs/NetworkDevicePaginatedList.md
 docs/NetworkDevicePolicy.md
 docs/NetworkDevicePortStatus.md
 docs/NetworkDeviceStatus.md
+docs/NetworkEquipmentToFabric.md
 docs/NetworkFabric.md
 docs/NetworkFabricAPI.md
 docs/NetworkFabricFabricConfiguration.md
@@ -602,6 +603,7 @@ model_network_device_paginated_list.go
 model_network_device_policy.go
 model_network_device_port_status.go
 model_network_device_status.go
+model_network_equipment_to_fabric.go
 model_network_fabric.go
 model_network_fabric_fabric_configuration.go
 model_network_fabric_paginated_list.go

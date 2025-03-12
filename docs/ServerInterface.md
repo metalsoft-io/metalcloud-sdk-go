@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **FibreChannelWwpn** | Pointer to **string** | The WWPN of the fibre channel. | [optional] 
 **Description** | Pointer to **string** | The description of the server interface. | [optional] 
 **AliasIndex** | Pointer to **float32** | The alias index of the server interface. | [optional] 
+**NetworkDevice** | Pointer to **map[string]interface{}** | The network device linked to the server. | [optional] 
+**NetworkDeviceInterface** | Pointer to **map[string]interface{}** | The network device interface linked to the server. | [optional] 
 
 ## Methods
 
@@ -393,6 +395,56 @@ SetAliasIndex sets AliasIndex field to given value.
 `func (o *ServerInterface) HasAliasIndex() bool`
 
 HasAliasIndex returns a boolean if a field has been set.
+
+### GetNetworkDevice
+
+`func (o *ServerInterface) GetNetworkDevice() map[string]interface{}`
+
+GetNetworkDevice returns the NetworkDevice field if non-nil, zero value otherwise.
+
+### GetNetworkDeviceOk
+
+`func (o *ServerInterface) GetNetworkDeviceOk() (*map[string]interface{}, bool)`
+
+GetNetworkDeviceOk returns a tuple with the NetworkDevice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDevice
+
+`func (o *ServerInterface) SetNetworkDevice(v map[string]interface{})`
+
+SetNetworkDevice sets NetworkDevice field to given value.
+
+### HasNetworkDevice
+
+`func (o *ServerInterface) HasNetworkDevice() bool`
+
+HasNetworkDevice returns a boolean if a field has been set.
+
+### GetNetworkDeviceInterface
+
+`func (o *ServerInterface) GetNetworkDeviceInterface() map[string]interface{}`
+
+GetNetworkDeviceInterface returns the NetworkDeviceInterface field if non-nil, zero value otherwise.
+
+### GetNetworkDeviceInterfaceOk
+
+`func (o *ServerInterface) GetNetworkDeviceInterfaceOk() (*map[string]interface{}, bool)`
+
+GetNetworkDeviceInterfaceOk returns a tuple with the NetworkDeviceInterface field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDeviceInterface
+
+`func (o *ServerInterface) SetNetworkDeviceInterface(v map[string]interface{})`
+
+SetNetworkDeviceInterface sets NetworkDeviceInterface field to given value.
+
+### HasNetworkDeviceInterface
+
+`func (o *ServerInterface) HasNetworkDeviceInterface() bool`
+
+HasNetworkDeviceInterface returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

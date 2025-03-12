@@ -23,13 +23,13 @@ var _ MappedNullable = &TemplateAssetFile{}
 type TemplateAssetFile struct {
 	// File name of the template asset file
 	Name string `json:"name"`
-	// The template asset usage
+	// The MIME type of the template asset file
 	MimeType string `json:"mimeType"`
-	// The checksums of the template asset file
+	// The checksums of the template asset file (sha1 or sha256)
 	Checksum *string `json:"checksum,omitempty"`
 	// The base64 encoded contents of the template asset file.                     Required if the URL is not provided
 	ContentBase64 *string `json:"contentBase64,omitempty"`
-	// The templating engine used to render the template asset file
+	// If the template asset file needs to be processed by a templating engine (Nunjucks)
 	TemplatingEngine bool `json:"templatingEngine"`
 	// The URL from where to fetch the template asset file
 	Url *string `json:"url,omitempty"`

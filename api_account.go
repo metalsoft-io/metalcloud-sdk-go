@@ -476,6 +476,7 @@ type AccountAPIGetAccountUsersRequest struct {
 	filterEmail *[]string
 	filterAccountId *[]string
 	filterArchived *[]string
+	filterInfrastructureIdDefault *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -520,6 +521,12 @@ func (r AccountAPIGetAccountUsersRequest) FilterAccountId(filterAccountId []stri
 // Filter by archived query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.archived&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.archived&#x3D;$not:$like:John Doe&amp;filter.archived&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
 func (r AccountAPIGetAccountUsersRequest) FilterArchived(filterArchived []string) AccountAPIGetAccountUsersRequest {
 	r.filterArchived = &filterArchived
+	return r
+}
+
+// Filter by infrastructureIdDefault query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureIdDefault&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureIdDefault&#x3D;$not:$like:John Doe&amp;filter.infrastructureIdDefault&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r AccountAPIGetAccountUsersRequest) FilterInfrastructureIdDefault(filterInfrastructureIdDefault []string) AccountAPIGetAccountUsersRequest {
+	r.filterInfrastructureIdDefault = &filterInfrastructureIdDefault
 	return r
 }
 
@@ -643,6 +650,17 @@ func (a *AccountAPIService) GetAccountUsersExecute(r AccountAPIGetAccountUsersRe
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.archived", t, "form", "multi")
+		}
+	}
+	if r.filterInfrastructureIdDefault != nil {
+		t := *r.filterInfrastructureIdDefault
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureIdDefault", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureIdDefault", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

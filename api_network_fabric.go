@@ -25,6 +25,119 @@ import (
 // NetworkFabricAPIService NetworkFabricAPI service
 type NetworkFabricAPIService service
 
+type NetworkFabricAPIAddNetworkEquipmentsToFabricRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+	networkEquipmentToFabric *NetworkEquipmentToFabric
+}
+
+// The network equipment list containing the IDs of the network equipments to add to the fabric
+func (r NetworkFabricAPIAddNetworkEquipmentsToFabricRequest) NetworkEquipmentToFabric(networkEquipmentToFabric NetworkEquipmentToFabric) NetworkFabricAPIAddNetworkEquipmentsToFabricRequest {
+	r.networkEquipmentToFabric = &networkEquipmentToFabric
+	return r
+}
+
+func (r NetworkFabricAPIAddNetworkEquipmentsToFabricRequest) Execute() (*NetworkFabric, *http.Response, error) {
+	return r.ApiService.AddNetworkEquipmentsToFabricExecute(r)
+}
+
+/*
+AddNetworkEquipmentsToFabric Add a list of network equipments to a fabric
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric
+ @return NetworkFabricAPIAddNetworkEquipmentsToFabricRequest
+*/
+func (a *NetworkFabricAPIService) AddNetworkEquipmentsToFabric(ctx context.Context, networkFabricId int32) NetworkFabricAPIAddNetworkEquipmentsToFabricRequest {
+	return NetworkFabricAPIAddNetworkEquipmentsToFabricRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabric
+func (a *NetworkFabricAPIService) AddNetworkEquipmentsToFabricExecute(r NetworkFabricAPIAddNetworkEquipmentsToFabricRequest) (*NetworkFabric, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabric
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.AddNetworkEquipmentsToFabric")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/network-equipment"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.networkEquipmentToFabric == nil {
+		return localVarReturnValue, nil, reportError("networkEquipmentToFabric is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.networkEquipmentToFabric
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type NetworkFabricAPICreateNetworkFabricRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
@@ -222,6 +335,107 @@ func (a *NetworkFabricAPIService) DeleteNetworkFabricExecute(r NetworkFabricAPID
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type NetworkFabricAPIGetFabricAndNetworkEquipmentRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+}
+
+func (r NetworkFabricAPIGetFabricAndNetworkEquipmentRequest) Execute() (*NetworkFabric, *http.Response, error) {
+	return r.ApiService.GetFabricAndNetworkEquipmentExecute(r)
+}
+
+/*
+GetFabricAndNetworkEquipment Get fabric and network equipment associated with the fabric
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric
+ @return NetworkFabricAPIGetFabricAndNetworkEquipmentRequest
+*/
+func (a *NetworkFabricAPIService) GetFabricAndNetworkEquipment(ctx context.Context, networkFabricId int32) NetworkFabricAPIGetFabricAndNetworkEquipmentRequest {
+	return NetworkFabricAPIGetFabricAndNetworkEquipmentRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabric
+func (a *NetworkFabricAPIService) GetFabricAndNetworkEquipmentExecute(r NetworkFabricAPIGetFabricAndNetworkEquipmentRequest) (*NetworkFabric, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabric
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.GetFabricAndNetworkEquipment")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/network-equipment"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type NetworkFabricAPIGetNetworkFabricByIdRequest struct {
@@ -524,6 +738,111 @@ func (a *NetworkFabricAPIService) GetNetworkFabricsExecute(r NetworkFabricAPIGet
 			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
 		}
 	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkFabricAPIRemoveNetworkEquipmentFromFabricRequest struct {
+	ctx context.Context
+	ApiService *NetworkFabricAPIService
+	networkFabricId int32
+	networkEquipmentId int32
+}
+
+func (r NetworkFabricAPIRemoveNetworkEquipmentFromFabricRequest) Execute() (*NetworkFabric, *http.Response, error) {
+	return r.ApiService.RemoveNetworkEquipmentFromFabricExecute(r)
+}
+
+/*
+RemoveNetworkEquipmentFromFabric Remove a network equipment from a fabric
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkFabricId The ID of the fabric to remove the network equipment from
+ @param networkEquipmentId The ID of the network equipment to remove from the fabric
+ @return NetworkFabricAPIRemoveNetworkEquipmentFromFabricRequest
+*/
+func (a *NetworkFabricAPIService) RemoveNetworkEquipmentFromFabric(ctx context.Context, networkFabricId int32, networkEquipmentId int32) NetworkFabricAPIRemoveNetworkEquipmentFromFabricRequest {
+	return NetworkFabricAPIRemoveNetworkEquipmentFromFabricRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkFabricId: networkFabricId,
+		networkEquipmentId: networkEquipmentId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkFabric
+func (a *NetworkFabricAPIService) RemoveNetworkEquipmentFromFabricExecute(r NetworkFabricAPIRemoveNetworkEquipmentFromFabricRequest) (*NetworkFabric, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkFabric
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.RemoveNetworkEquipmentFromFabric")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/network-equipment/{networkEquipmentId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkEquipmentId"+"}", url.PathEscape(parameterValueToString(r.networkEquipmentId, "networkEquipmentId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

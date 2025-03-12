@@ -21,7 +21,7 @@ var _ MappedNullable = &OSTemplateInstall{}
 
 // OSTemplateInstall struct for OSTemplateInstall
 type OSTemplateInstall struct {
-	// The OS template installation method
+	// The OS template installation method                     OOB - Out of Band (virtual media)                     ONIE - Open Network Install Environment                     DS_LXD - Cloud-init with datasource LXD
 	Method string `json:"method"`
 	// The OS template installation drive type
 	DriveType string `json:"driveType"`

@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **Password** | **string** | The password of the server. | 
 **Vendor** | Pointer to **string** | The vendor of the server. | [optional] 
 **Model** | Pointer to **string** | The model of the server. | [optional] 
-**VncPassword** | Pointer to **string** | The VNC password of the server. | [optional] 
-**VncPort** | Pointer to **float32** | The VNC port of the server. | [optional] 
-**SnmpPassword** | Pointer to **string** | The SNMP password of the server. | [optional] 
+**VncPassword** | Pointer to **NullableString** | The VNC password of the server. | [optional] 
+**VncPort** | Pointer to **NullableFloat32** | The VNC port of the server. | [optional] 
+**SnmpPassword** | Pointer to **NullableString** | The SNMP password of the server. | [optional] 
 
 ## Methods
 
@@ -188,6 +188,16 @@ SetVncPassword sets VncPassword field to given value.
 
 HasVncPassword returns a boolean if a field has been set.
 
+### SetVncPasswordNil
+
+`func (o *ServerCredentials) SetVncPasswordNil(b bool)`
+
+ SetVncPasswordNil sets the value for VncPassword to be an explicit nil
+
+### UnsetVncPassword
+`func (o *ServerCredentials) UnsetVncPassword()`
+
+UnsetVncPassword ensures that no value is present for VncPassword, not even an explicit nil
 ### GetVncPort
 
 `func (o *ServerCredentials) GetVncPort() float32`
@@ -213,6 +223,16 @@ SetVncPort sets VncPort field to given value.
 
 HasVncPort returns a boolean if a field has been set.
 
+### SetVncPortNil
+
+`func (o *ServerCredentials) SetVncPortNil(b bool)`
+
+ SetVncPortNil sets the value for VncPort to be an explicit nil
+
+### UnsetVncPort
+`func (o *ServerCredentials) UnsetVncPort()`
+
+UnsetVncPort ensures that no value is present for VncPort, not even an explicit nil
 ### GetSnmpPassword
 
 `func (o *ServerCredentials) GetSnmpPassword() string`
@@ -238,6 +258,16 @@ SetSnmpPassword sets SnmpPassword field to given value.
 
 HasSnmpPassword returns a boolean if a field has been set.
 
+### SetSnmpPasswordNil
+
+`func (o *ServerCredentials) SetSnmpPasswordNil(b bool)`
+
+ SetSnmpPasswordNil sets the value for SnmpPassword to be an explicit nil
+
+### UnsetSnmpPassword
+`func (o *ServerCredentials) UnsetSnmpPassword()`
+
+UnsetSnmpPassword ensures that no value is present for SnmpPassword, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -34,11 +34,11 @@ type ServerCredentials struct {
 	// The model of the server.
 	Model *string `json:"model,omitempty"`
 	// The VNC password of the server.
-	VncPassword *string `json:"vncPassword,omitempty"`
+	VncPassword NullableString `json:"vncPassword,omitempty"`
 	// The VNC port of the server.
-	VncPort *float32 `json:"vncPort,omitempty"`
+	VncPort NullableFloat32 `json:"vncPort,omitempty"`
 	// The SNMP password of the server.
-	SnmpPassword *string `json:"snmpPassword,omitempty"`
+	SnmpPassword NullableString `json:"snmpPassword,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -225,100 +225,130 @@ func (o *ServerCredentials) SetModel(v string) {
 	o.Model = &v
 }
 
-// GetVncPassword returns the VncPassword field value if set, zero value otherwise.
+// GetVncPassword returns the VncPassword field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ServerCredentials) GetVncPassword() string {
-	if o == nil || IsNil(o.VncPassword) {
+	if o == nil || IsNil(o.VncPassword.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.VncPassword
+	return *o.VncPassword.Get()
 }
 
 // GetVncPasswordOk returns a tuple with the VncPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServerCredentials) GetVncPasswordOk() (*string, bool) {
-	if o == nil || IsNil(o.VncPassword) {
+	if o == nil {
 		return nil, false
 	}
-	return o.VncPassword, true
+	return o.VncPassword.Get(), o.VncPassword.IsSet()
 }
 
 // HasVncPassword returns a boolean if a field has been set.
 func (o *ServerCredentials) HasVncPassword() bool {
-	if o != nil && !IsNil(o.VncPassword) {
+	if o != nil && o.VncPassword.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetVncPassword gets a reference to the given string and assigns it to the VncPassword field.
+// SetVncPassword gets a reference to the given NullableString and assigns it to the VncPassword field.
 func (o *ServerCredentials) SetVncPassword(v string) {
-	o.VncPassword = &v
+	o.VncPassword.Set(&v)
+}
+// SetVncPasswordNil sets the value for VncPassword to be an explicit nil
+func (o *ServerCredentials) SetVncPasswordNil() {
+	o.VncPassword.Set(nil)
 }
 
-// GetVncPort returns the VncPort field value if set, zero value otherwise.
+// UnsetVncPassword ensures that no value is present for VncPassword, not even an explicit nil
+func (o *ServerCredentials) UnsetVncPassword() {
+	o.VncPassword.Unset()
+}
+
+// GetVncPort returns the VncPort field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ServerCredentials) GetVncPort() float32 {
-	if o == nil || IsNil(o.VncPort) {
+	if o == nil || IsNil(o.VncPort.Get()) {
 		var ret float32
 		return ret
 	}
-	return *o.VncPort
+	return *o.VncPort.Get()
 }
 
 // GetVncPortOk returns a tuple with the VncPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServerCredentials) GetVncPortOk() (*float32, bool) {
-	if o == nil || IsNil(o.VncPort) {
+	if o == nil {
 		return nil, false
 	}
-	return o.VncPort, true
+	return o.VncPort.Get(), o.VncPort.IsSet()
 }
 
 // HasVncPort returns a boolean if a field has been set.
 func (o *ServerCredentials) HasVncPort() bool {
-	if o != nil && !IsNil(o.VncPort) {
+	if o != nil && o.VncPort.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetVncPort gets a reference to the given float32 and assigns it to the VncPort field.
+// SetVncPort gets a reference to the given NullableFloat32 and assigns it to the VncPort field.
 func (o *ServerCredentials) SetVncPort(v float32) {
-	o.VncPort = &v
+	o.VncPort.Set(&v)
+}
+// SetVncPortNil sets the value for VncPort to be an explicit nil
+func (o *ServerCredentials) SetVncPortNil() {
+	o.VncPort.Set(nil)
 }
 
-// GetSnmpPassword returns the SnmpPassword field value if set, zero value otherwise.
+// UnsetVncPort ensures that no value is present for VncPort, not even an explicit nil
+func (o *ServerCredentials) UnsetVncPort() {
+	o.VncPort.Unset()
+}
+
+// GetSnmpPassword returns the SnmpPassword field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ServerCredentials) GetSnmpPassword() string {
-	if o == nil || IsNil(o.SnmpPassword) {
+	if o == nil || IsNil(o.SnmpPassword.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.SnmpPassword
+	return *o.SnmpPassword.Get()
 }
 
 // GetSnmpPasswordOk returns a tuple with the SnmpPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServerCredentials) GetSnmpPasswordOk() (*string, bool) {
-	if o == nil || IsNil(o.SnmpPassword) {
+	if o == nil {
 		return nil, false
 	}
-	return o.SnmpPassword, true
+	return o.SnmpPassword.Get(), o.SnmpPassword.IsSet()
 }
 
 // HasSnmpPassword returns a boolean if a field has been set.
 func (o *ServerCredentials) HasSnmpPassword() bool {
-	if o != nil && !IsNil(o.SnmpPassword) {
+	if o != nil && o.SnmpPassword.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSnmpPassword gets a reference to the given string and assigns it to the SnmpPassword field.
+// SetSnmpPassword gets a reference to the given NullableString and assigns it to the SnmpPassword field.
 func (o *ServerCredentials) SetSnmpPassword(v string) {
-	o.SnmpPassword = &v
+	o.SnmpPassword.Set(&v)
+}
+// SetSnmpPasswordNil sets the value for SnmpPassword to be an explicit nil
+func (o *ServerCredentials) SetSnmpPasswordNil() {
+	o.SnmpPassword.Set(nil)
+}
+
+// UnsetSnmpPassword ensures that no value is present for SnmpPassword, not even an explicit nil
+func (o *ServerCredentials) UnsetSnmpPassword() {
+	o.SnmpPassword.Unset()
 }
 
 func (o ServerCredentials) MarshalJSON() ([]byte, error) {
@@ -341,14 +371,14 @@ func (o ServerCredentials) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Model) {
 		toSerialize["model"] = o.Model
 	}
-	if !IsNil(o.VncPassword) {
-		toSerialize["vncPassword"] = o.VncPassword
+	if o.VncPassword.IsSet() {
+		toSerialize["vncPassword"] = o.VncPassword.Get()
 	}
-	if !IsNil(o.VncPort) {
-		toSerialize["vncPort"] = o.VncPort
+	if o.VncPort.IsSet() {
+		toSerialize["vncPort"] = o.VncPort.Get()
 	}
-	if !IsNil(o.SnmpPassword) {
-		toSerialize["snmpPassword"] = o.SnmpPassword
+	if o.SnmpPassword.IsSet() {
+		toSerialize["snmpPassword"] = o.SnmpPassword.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {

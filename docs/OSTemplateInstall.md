@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Method** | **string** | The OS template installation method | 
+**Method** | **string** | The OS template installation method                     OOB - Out of Band (virtual media)                     ONIE - Open Network Install Environment                     DS_LXD - Cloud-init with datasource LXD | 
 **DriveType** | **string** | The OS template installation drive type | 
 **ReadyMethod** | **string** | The OS template installation ready method,                     The \&quot;ready method\&quot; is used to determine when the OS installation is complete. | 
 **OnieStrings** | Pointer to **[]string** | Used for selecting the OS template during network device ZTP | [optional] 

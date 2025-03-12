@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **InstanceId** | **float32** | The id of the instance. | 
 **ExtensionInstanceId** | Pointer to **float32** | The id of the extension instance. | [optional] 
 **Infrastructure** | **map[string]interface{}** | The infrastructure of the instance. | 
-**VolumeTemplate** | Pointer to **map[string]interface{}** | The volume template of the instance. | [optional] 
+**OsTemplateId** | Pointer to **float32** | The id of the os template used by the instance. | [optional] 
 
 ## Methods
 
@@ -93,30 +93,30 @@ and a boolean to check if the value has been set.
 SetInfrastructure sets Infrastructure field to given value.
 
 
-### GetVolumeTemplate
+### GetOsTemplateId
 
-`func (o *ServerAllocationInfo) GetVolumeTemplate() map[string]interface{}`
+`func (o *ServerAllocationInfo) GetOsTemplateId() float32`
 
-GetVolumeTemplate returns the VolumeTemplate field if non-nil, zero value otherwise.
+GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
-### GetVolumeTemplateOk
+### GetOsTemplateIdOk
 
-`func (o *ServerAllocationInfo) GetVolumeTemplateOk() (*map[string]interface{}, bool)`
+`func (o *ServerAllocationInfo) GetOsTemplateIdOk() (*float32, bool)`
 
-GetVolumeTemplateOk returns a tuple with the VolumeTemplate field if it's non-nil, zero value otherwise
+GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVolumeTemplate
+### SetOsTemplateId
 
-`func (o *ServerAllocationInfo) SetVolumeTemplate(v map[string]interface{})`
+`func (o *ServerAllocationInfo) SetOsTemplateId(v float32)`
 
-SetVolumeTemplate sets VolumeTemplate field to given value.
+SetOsTemplateId sets OsTemplateId field to given value.
 
-### HasVolumeTemplate
+### HasOsTemplateId
 
-`func (o *ServerAllocationInfo) HasVolumeTemplate() bool`
+`func (o *ServerAllocationInfo) HasOsTemplateId() bool`
 
-HasVolumeTemplate returns a boolean if a field has been set.
+HasOsTemplateId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

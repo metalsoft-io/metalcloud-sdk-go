@@ -240,10 +240,13 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**RemoveNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#removenetworkdevicedefaults) | **Delete** /api/v2/network-devices/defaults | Remove network device defaults
 *NetworkDeviceAPI* | [**ResetNetworkDevice**](docs/NetworkDeviceAPI.md#resetnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
 *NetworkDeviceAPI* | [**SetNetworkDevicePortStatus**](docs/NetworkDeviceAPI.md#setnetworkdeviceportstatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
+*NetworkFabricAPI* | [**AddNetworkEquipmentsToFabric**](docs/NetworkFabricAPI.md#addnetworkequipmentstofabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/network-equipment | Add a list of network equipments to a fabric
 *NetworkFabricAPI* | [**CreateNetworkFabric**](docs/NetworkFabricAPI.md#createnetworkfabric) | **Post** /api/v2/network-fabrics | Create a new network fabric
 *NetworkFabricAPI* | [**DeleteNetworkFabric**](docs/NetworkFabricAPI.md#deletenetworkfabric) | **Delete** /api/v2/network-fabrics/{networkFabricId} | Delete a network fabric
+*NetworkFabricAPI* | [**GetFabricAndNetworkEquipment**](docs/NetworkFabricAPI.md#getfabricandnetworkequipment) | **Get** /api/v2/network-fabrics/{networkFabricId}/network-equipment | Get fabric and network equipment associated with the fabric
 *NetworkFabricAPI* | [**GetNetworkFabricById**](docs/NetworkFabricAPI.md#getnetworkfabricbyid) | **Get** /api/v2/network-fabrics/{networkFabricId} | Get a network fabric by ID
 *NetworkFabricAPI* | [**GetNetworkFabrics**](docs/NetworkFabricAPI.md#getnetworkfabrics) | **Get** /api/v2/network-fabrics | List all network fabrics
+*NetworkFabricAPI* | [**RemoveNetworkEquipmentFromFabric**](docs/NetworkFabricAPI.md#removenetworkequipmentfromfabric) | **Delete** /api/v2/network-fabrics/{networkFabricId}/network-equipment/{networkEquipmentId} | Remove a network equipment from a fabric
 *NetworkFabricAPI* | [**UpdateNetworkFabric**](docs/NetworkFabricAPI.md#updatenetworkfabric) | **Patch** /api/v2/network-fabrics/{networkFabricId} | Update a network fabric
 *OSTemplateAPI* | [**CreateOSTemplate**](docs/OSTemplateAPI.md#createostemplate) | **Post** /api/v2/os-templates | Create OS template
 *OSTemplateAPI* | [**DeleteOSTemplate**](docs/OSTemplateAPI.md#deleteostemplate) | **Delete** /api/v2/os-templates/{osTemplateId} | Delete OS template
@@ -613,6 +616,7 @@ Class | Method | HTTP request | Description
  - [NetworkDevicePolicy](docs/NetworkDevicePolicy.md)
  - [NetworkDevicePortStatus](docs/NetworkDevicePortStatus.md)
  - [NetworkDeviceStatus](docs/NetworkDeviceStatus.md)
+ - [NetworkEquipmentToFabric](docs/NetworkEquipmentToFabric.md)
  - [NetworkFabric](docs/NetworkFabric.md)
  - [NetworkFabricFabricConfiguration](docs/NetworkFabricFabricConfiguration.md)
  - [NetworkFabricPaginatedList](docs/NetworkFabricPaginatedList.md)

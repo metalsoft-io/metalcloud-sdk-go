@@ -22,6 +22,20 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test NetworkFabricAPIService AddNetworkEquipmentsToFabric", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.AddNetworkEquipmentsToFabric(context.Background(), networkFabricId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkFabricAPIService CreateNetworkFabric", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -47,6 +61,20 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkFabricAPIService GetFabricAndNetworkEquipment", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.GetFabricAndNetworkEquipment(context.Background(), networkFabricId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkFabricAPIService GetNetworkFabricById", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -66,6 +94,21 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabrics(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricAPIService RemoveNetworkEquipmentFromFabric", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+		var networkEquipmentId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.RemoveNetworkEquipmentFromFabric(context.Background(), networkFabricId, networkEquipmentId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

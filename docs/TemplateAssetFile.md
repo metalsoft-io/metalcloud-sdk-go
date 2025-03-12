@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | File name of the template asset file | 
-**MimeType** | **string** | The template asset usage | 
-**Checksum** | Pointer to **string** | The checksums of the template asset file | [optional] 
+**MimeType** | **string** | The MIME type of the template asset file | 
+**Checksum** | Pointer to **string** | The checksums of the template asset file (sha1 or sha256) | [optional] 
 **ContentBase64** | Pointer to **string** | The base64 encoded contents of the template asset file.                     Required if the URL is not provided | [optional] 
-**TemplatingEngine** | **bool** | The templating engine used to render the template asset file | 
+**TemplatingEngine** | **bool** | If the template asset file needs to be processed by a templating engine (Nunjucks) | 
 **Url** | Pointer to **string** | The URL from where to fetch the template asset file | [optional] 
 **Path** | **string** |          - If the template asset usage is &#39;build_source_image&#39;, the path is ignored and &#39;url&#39; is required.         - If the template asset usage is &#39;build_component&#39;, the relative ISO location path where the template asset will be copied to.          | 
 

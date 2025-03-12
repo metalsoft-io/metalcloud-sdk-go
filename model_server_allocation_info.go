@@ -27,8 +27,8 @@ type ServerAllocationInfo struct {
 	ExtensionInstanceId *float32 `json:"extensionInstanceId,omitempty"`
 	// The infrastructure of the instance.
 	Infrastructure map[string]interface{} `json:"infrastructure"`
-	// The volume template of the instance.
-	VolumeTemplate map[string]interface{} `json:"volumeTemplate,omitempty"`
+	// The id of the os template used by the instance.
+	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -133,36 +133,36 @@ func (o *ServerAllocationInfo) SetInfrastructure(v map[string]interface{}) {
 	o.Infrastructure = v
 }
 
-// GetVolumeTemplate returns the VolumeTemplate field value if set, zero value otherwise.
-func (o *ServerAllocationInfo) GetVolumeTemplate() map[string]interface{} {
-	if o == nil || IsNil(o.VolumeTemplate) {
-		var ret map[string]interface{}
+// GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
+func (o *ServerAllocationInfo) GetOsTemplateId() float32 {
+	if o == nil || IsNil(o.OsTemplateId) {
+		var ret float32
 		return ret
 	}
-	return o.VolumeTemplate
+	return *o.OsTemplateId
 }
 
-// GetVolumeTemplateOk returns a tuple with the VolumeTemplate field value if set, nil otherwise
+// GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerAllocationInfo) GetVolumeTemplateOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.VolumeTemplate) {
-		return map[string]interface{}{}, false
+func (o *ServerAllocationInfo) GetOsTemplateIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.OsTemplateId) {
+		return nil, false
 	}
-	return o.VolumeTemplate, true
+	return o.OsTemplateId, true
 }
 
-// HasVolumeTemplate returns a boolean if a field has been set.
-func (o *ServerAllocationInfo) HasVolumeTemplate() bool {
-	if o != nil && !IsNil(o.VolumeTemplate) {
+// HasOsTemplateId returns a boolean if a field has been set.
+func (o *ServerAllocationInfo) HasOsTemplateId() bool {
+	if o != nil && !IsNil(o.OsTemplateId) {
 		return true
 	}
 
 	return false
 }
 
-// SetVolumeTemplate gets a reference to the given map[string]interface{} and assigns it to the VolumeTemplate field.
-func (o *ServerAllocationInfo) SetVolumeTemplate(v map[string]interface{}) {
-	o.VolumeTemplate = v
+// SetOsTemplateId gets a reference to the given float32 and assigns it to the OsTemplateId field.
+func (o *ServerAllocationInfo) SetOsTemplateId(v float32) {
+	o.OsTemplateId = &v
 }
 
 func (o ServerAllocationInfo) MarshalJSON() ([]byte, error) {
@@ -180,8 +180,8 @@ func (o ServerAllocationInfo) ToMap() (map[string]interface{}, error) {
 		toSerialize["extensionInstanceId"] = o.ExtensionInstanceId
 	}
 	toSerialize["infrastructure"] = o.Infrastructure
-	if !IsNil(o.VolumeTemplate) {
-		toSerialize["volumeTemplate"] = o.VolumeTemplate
+	if !IsNil(o.OsTemplateId) {
+		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -230,7 +230,7 @@ func (o *ServerAllocationInfo) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "instanceId")
 		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "infrastructure")
-		delete(additionalProperties, "volumeTemplate")
+		delete(additionalProperties, "osTemplateId")
 		o.AdditionalProperties = additionalProperties
 	}
 

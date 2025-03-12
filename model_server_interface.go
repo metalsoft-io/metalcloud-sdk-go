@@ -51,6 +51,10 @@ type ServerInterface struct {
 	Description *string `json:"description,omitempty"`
 	// The alias index of the server interface.
 	AliasIndex *float32 `json:"aliasIndex,omitempty"`
+	// The network device linked to the server.
+	NetworkDevice map[string]interface{} `json:"networkDevice,omitempty"`
+	// The network device interface linked to the server.
+	NetworkDeviceInterface map[string]interface{} `json:"networkDeviceInterface,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -525,6 +529,70 @@ func (o *ServerInterface) SetAliasIndex(v float32) {
 	o.AliasIndex = &v
 }
 
+// GetNetworkDevice returns the NetworkDevice field value if set, zero value otherwise.
+func (o *ServerInterface) GetNetworkDevice() map[string]interface{} {
+	if o == nil || IsNil(o.NetworkDevice) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.NetworkDevice
+}
+
+// GetNetworkDeviceOk returns a tuple with the NetworkDevice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInterface) GetNetworkDeviceOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.NetworkDevice) {
+		return map[string]interface{}{}, false
+	}
+	return o.NetworkDevice, true
+}
+
+// HasNetworkDevice returns a boolean if a field has been set.
+func (o *ServerInterface) HasNetworkDevice() bool {
+	if o != nil && !IsNil(o.NetworkDevice) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDevice gets a reference to the given map[string]interface{} and assigns it to the NetworkDevice field.
+func (o *ServerInterface) SetNetworkDevice(v map[string]interface{}) {
+	o.NetworkDevice = v
+}
+
+// GetNetworkDeviceInterface returns the NetworkDeviceInterface field value if set, zero value otherwise.
+func (o *ServerInterface) GetNetworkDeviceInterface() map[string]interface{} {
+	if o == nil || IsNil(o.NetworkDeviceInterface) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.NetworkDeviceInterface
+}
+
+// GetNetworkDeviceInterfaceOk returns a tuple with the NetworkDeviceInterface field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInterface) GetNetworkDeviceInterfaceOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.NetworkDeviceInterface) {
+		return map[string]interface{}{}, false
+	}
+	return o.NetworkDeviceInterface, true
+}
+
+// HasNetworkDeviceInterface returns a boolean if a field has been set.
+func (o *ServerInterface) HasNetworkDeviceInterface() bool {
+	if o != nil && !IsNil(o.NetworkDeviceInterface) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDeviceInterface gets a reference to the given map[string]interface{} and assigns it to the NetworkDeviceInterface field.
+func (o *ServerInterface) SetNetworkDeviceInterface(v map[string]interface{}) {
+	o.NetworkDeviceInterface = v
+}
+
 func (o ServerInterface) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -571,6 +639,12 @@ func (o ServerInterface) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.AliasIndex) {
 		toSerialize["aliasIndex"] = o.AliasIndex
+	}
+	if !IsNil(o.NetworkDevice) {
+		toSerialize["networkDevice"] = o.NetworkDevice
+	}
+	if !IsNil(o.NetworkDeviceInterface) {
+		toSerialize["networkDeviceInterface"] = o.NetworkDeviceInterface
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -633,6 +707,8 @@ func (o *ServerInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "fibreChannelWwpn")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "aliasIndex")
+		delete(additionalProperties, "networkDevice")
+		delete(additionalProperties, "networkDeviceInterface")
 		o.AdditionalProperties = additionalProperties
 	}
 

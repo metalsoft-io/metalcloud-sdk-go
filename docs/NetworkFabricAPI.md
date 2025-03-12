@@ -4,12 +4,85 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AddNetworkEquipmentsToFabric**](NetworkFabricAPI.md#AddNetworkEquipmentsToFabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/network-equipment | Add a list of network equipments to a fabric
 [**CreateNetworkFabric**](NetworkFabricAPI.md#CreateNetworkFabric) | **Post** /api/v2/network-fabrics | Create a new network fabric
 [**DeleteNetworkFabric**](NetworkFabricAPI.md#DeleteNetworkFabric) | **Delete** /api/v2/network-fabrics/{networkFabricId} | Delete a network fabric
+[**GetFabricAndNetworkEquipment**](NetworkFabricAPI.md#GetFabricAndNetworkEquipment) | **Get** /api/v2/network-fabrics/{networkFabricId}/network-equipment | Get fabric and network equipment associated with the fabric
 [**GetNetworkFabricById**](NetworkFabricAPI.md#GetNetworkFabricById) | **Get** /api/v2/network-fabrics/{networkFabricId} | Get a network fabric by ID
 [**GetNetworkFabrics**](NetworkFabricAPI.md#GetNetworkFabrics) | **Get** /api/v2/network-fabrics | List all network fabrics
+[**RemoveNetworkEquipmentFromFabric**](NetworkFabricAPI.md#RemoveNetworkEquipmentFromFabric) | **Delete** /api/v2/network-fabrics/{networkFabricId}/network-equipment/{networkEquipmentId} | Remove a network equipment from a fabric
 [**UpdateNetworkFabric**](NetworkFabricAPI.md#UpdateNetworkFabric) | **Patch** /api/v2/network-fabrics/{networkFabricId} | Update a network fabric
 
+
+
+## AddNetworkEquipmentsToFabric
+
+> NetworkFabric AddNetworkEquipmentsToFabric(ctx, networkFabricId).NetworkEquipmentToFabric(networkEquipmentToFabric).Execute()
+
+Add a list of network equipments to a fabric
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkFabricId := int32(56) // int32 | The ID of the fabric
+	networkEquipmentToFabric := *openapiclient.NewNetworkEquipmentToFabric([]float32{float32(123)}) // NetworkEquipmentToFabric | The network equipment list containing the IDs of the network equipments to add to the fabric
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkFabricAPI.AddNetworkEquipmentsToFabric(context.Background(), networkFabricId).NetworkEquipmentToFabric(networkEquipmentToFabric).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.AddNetworkEquipmentsToFabric``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AddNetworkEquipmentsToFabric`: NetworkFabric
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricAPI.AddNetworkEquipmentsToFabric`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkFabricId** | **int32** | The ID of the fabric | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAddNetworkEquipmentsToFabricRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **networkEquipmentToFabric** | [**NetworkEquipmentToFabric**](NetworkEquipmentToFabric.md) | The network equipment list containing the IDs of the network equipments to add to the fabric | 
+
+### Return type
+
+[**NetworkFabric**](NetworkFabric.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateNetworkFabric
@@ -136,6 +209,74 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetFabricAndNetworkEquipment
+
+> NetworkFabric GetFabricAndNetworkEquipment(ctx, networkFabricId).Execute()
+
+Get fabric and network equipment associated with the fabric
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkFabricId := int32(56) // int32 | The ID of the fabric
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkFabricAPI.GetFabricAndNetworkEquipment(context.Background(), networkFabricId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.GetFabricAndNetworkEquipment``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetFabricAndNetworkEquipment`: NetworkFabric
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricAPI.GetFabricAndNetworkEquipment`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkFabricId** | **int32** | The ID of the fabric | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetFabricAndNetworkEquipmentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**NetworkFabric**](NetworkFabric.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -277,6 +418,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**NetworkFabricPaginatedList**](NetworkFabricPaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RemoveNetworkEquipmentFromFabric
+
+> NetworkFabric RemoveNetworkEquipmentFromFabric(ctx, networkFabricId, networkEquipmentId).Execute()
+
+Remove a network equipment from a fabric
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkFabricId := int32(56) // int32 | The ID of the fabric to remove the network equipment from
+	networkEquipmentId := int32(56) // int32 | The ID of the network equipment to remove from the fabric
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkFabricAPI.RemoveNetworkEquipmentFromFabric(context.Background(), networkFabricId, networkEquipmentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.RemoveNetworkEquipmentFromFabric``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemoveNetworkEquipmentFromFabric`: NetworkFabric
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricAPI.RemoveNetworkEquipmentFromFabric`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkFabricId** | **int32** | The ID of the fabric to remove the network equipment from | 
+**networkEquipmentId** | **int32** | The ID of the network equipment to remove from the fabric | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemoveNetworkEquipmentFromFabricRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**NetworkFabric**](NetworkFabric.md)
 
 ### Authorization
 
