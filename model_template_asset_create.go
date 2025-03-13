@@ -22,7 +22,7 @@ var _ MappedNullable = &TemplateAssetCreate{}
 // TemplateAssetCreate struct for TemplateAssetCreate
 type TemplateAssetCreate struct {
 	// The ID of the OS template that this template asset belongs to
-	TemplateId float32 `json:"templateId"`
+	TemplateId int32 `json:"templateId"`
 	// The template asset usage
 	Usage string `json:"usage"`
 	File TemplateAssetFile `json:"file"`
@@ -37,7 +37,7 @@ type _TemplateAssetCreate TemplateAssetCreate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTemplateAssetCreate(templateId float32, usage string, file TemplateAssetFile) *TemplateAssetCreate {
+func NewTemplateAssetCreate(templateId int32, usage string, file TemplateAssetFile) *TemplateAssetCreate {
 	this := TemplateAssetCreate{}
 	this.TemplateId = templateId
 	this.Usage = usage
@@ -54,9 +54,9 @@ func NewTemplateAssetCreateWithDefaults() *TemplateAssetCreate {
 }
 
 // GetTemplateId returns the TemplateId field value
-func (o *TemplateAssetCreate) GetTemplateId() float32 {
+func (o *TemplateAssetCreate) GetTemplateId() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -65,7 +65,7 @@ func (o *TemplateAssetCreate) GetTemplateId() float32 {
 
 // GetTemplateIdOk returns a tuple with the TemplateId field value
 // and a boolean to check if the value has been set.
-func (o *TemplateAssetCreate) GetTemplateIdOk() (*float32, bool) {
+func (o *TemplateAssetCreate) GetTemplateIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -73,7 +73,7 @@ func (o *TemplateAssetCreate) GetTemplateIdOk() (*float32, bool) {
 }
 
 // SetTemplateId sets field value
-func (o *TemplateAssetCreate) SetTemplateId(v float32) {
+func (o *TemplateAssetCreate) SetTemplateId(v int32) {
 	o.TemplateId = v
 }
 

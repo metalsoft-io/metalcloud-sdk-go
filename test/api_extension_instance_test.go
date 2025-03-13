@@ -67,7 +67,9 @@ func Test_sdk_ExtensionInstanceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ExtensionInstanceAPI.GetExtensionInstances(context.Background()).Execute()
+		var infrastructureId float32
+
+		resp, httpRes, err := apiClient.ExtensionInstanceAPI.GetExtensionInstances(context.Background(), infrastructureId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

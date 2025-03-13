@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**CreateExtensionInstance**](ExtensionInstanceAPI.md#CreateExtensionInstance) | **Post** /api/v2/infrastructures/{infrastructureId}/extension-instances | Add extension instance to an infrastructure
 [**DeleteExtensionInstance**](ExtensionInstanceAPI.md#DeleteExtensionInstance) | **Delete** /api/v2/extension-instances/{extensionInstanceId} | Delete extension instance
 [**GetExtensionInstance**](ExtensionInstanceAPI.md#GetExtensionInstance) | **Get** /api/v2/extension-instances/{extensionInstanceId} | Get extension instance details
-[**GetExtensionInstances**](ExtensionInstanceAPI.md#GetExtensionInstances) | **Get** /api/v2/extension-instances | Get extension instances list
-[**UpdateExtensionInstance**](ExtensionInstanceAPI.md#UpdateExtensionInstance) | **Patch** /api/v2/extension-instances/{extensionInstanceId} | Update extension instance configuration
+[**GetExtensionInstances**](ExtensionInstanceAPI.md#GetExtensionInstances) | **Get** /api/v2/infrastructures/{infrastructureId}/extension-instances | Get extension instances list
+[**UpdateExtensionInstance**](ExtensionInstanceAPI.md#UpdateExtensionInstance) | **Patch** /api/v2/extension-instances/{extensionInstanceId}/config | Update extension instance configuration
 
 
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## GetExtensionInstances
 
-> ExtensionInstancePaginatedList GetExtensionInstances(ctx).Page(page).Limit(limit).FilterExtensionId(filterExtensionId).FilterInfrastructureId(filterInfrastructureId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> ExtensionInstancePaginatedList GetExtensionInstances(ctx, infrastructureId).Page(page).Limit(limit).FilterExtensionId(filterExtensionId).FilterInfrastructureId(filterInfrastructureId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get extension instances list
 
@@ -245,6 +245,7 @@ import (
 )
 
 func main() {
+	infrastructureId := float32(8.14) // float32 | 
 	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
 	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 20           </p>       <p>              <b>Max Value: </b> 100           </p>        If provided value is greater than max value, max value will be applied.        (optional)
 	filterExtensionId := []string{"Inner_example"} // []string | Filter by extensionId query param.           <p>              <b>Format: </b> filter.extensionId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.extensionId=$not:$like:John Doe&filter.extensionId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
@@ -255,7 +256,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ExtensionInstanceAPI.GetExtensionInstances(context.Background()).Page(page).Limit(limit).FilterExtensionId(filterExtensionId).FilterInfrastructureId(filterInfrastructureId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.ExtensionInstanceAPI.GetExtensionInstances(context.Background(), infrastructureId).Page(page).Limit(limit).FilterExtensionId(filterExtensionId).FilterInfrastructureId(filterInfrastructureId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExtensionInstanceAPI.GetExtensionInstances``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -268,6 +269,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
 
 ### Other Parameters
 
@@ -276,6 +281,7 @@ Other parameters are passed through a pointer to a apiGetExtensionInstancesReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
  **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
  **filterExtensionId** | **[]string** | Filter by extensionId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.extensionId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.extensionId&#x3D;$not:$like:John Doe&amp;filter.extensionId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 

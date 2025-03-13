@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The OS template name | 
 **Description** | Pointer to **string** | The OS template description | [optional] 
-**Label** | Pointer to **string** | The OS template label | [optional] 
+**Label** | Pointer to **string** | The OS template label. It must be unique | [optional] 
 **Device** | [**OSTemplateDevice**](OSTemplateDevice.md) |  | 
 **Install** | [**OSTemplateInstall**](OSTemplateInstall.md) |  | 
 **ImageBuild** | [**OSTemplateImageBuild**](OSTemplateImageBuild.md) |  | 

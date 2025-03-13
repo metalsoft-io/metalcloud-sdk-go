@@ -23,20 +23,20 @@ var _ MappedNullable = &TemplateAsset{}
 // TemplateAsset struct for TemplateAsset
 type TemplateAsset struct {
 	// The template asset ID
-	Id float32 `json:"id"`
+	Id int32 `json:"id"`
 	// The ID of the OS template that this template asset belongs to
-	TemplateId float32 `json:"templateId"`
+	TemplateId int32 `json:"templateId"`
 	// The template asset usage
 	Usage string `json:"usage"`
 	File TemplateAssetFile `json:"file"`
 	// The tags associated with the template asset
 	Tags []string `json:"tags,omitempty"`
 	// The revision number of the template asset
-	Revision float32 `json:"revision"`
+	Revision int32 `json:"revision"`
 	// The user ID of the user who created the template asset
-	CreatedBy float32 `json:"createdBy"`
+	CreatedBy int32 `json:"createdBy"`
 	// The user ID of the user who last modified the template asset
-	ModifiedBy *float32 `json:"modifiedBy,omitempty"`
+	ModifiedBy *int32 `json:"modifiedBy,omitempty"`
 	// The date and time the template asset was created
 	CreatedAt time.Time `json:"createdAt"`
 	// The date and time the template asset was last modified
@@ -52,7 +52,7 @@ type _TemplateAsset TemplateAsset
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTemplateAsset(id float32, templateId float32, usage string, file TemplateAssetFile, revision float32, createdBy float32, createdAt time.Time) *TemplateAsset {
+func NewTemplateAsset(id int32, templateId int32, usage string, file TemplateAssetFile, revision int32, createdBy int32, createdAt time.Time) *TemplateAsset {
 	this := TemplateAsset{}
 	this.Id = id
 	this.TemplateId = templateId
@@ -73,9 +73,9 @@ func NewTemplateAssetWithDefaults() *TemplateAsset {
 }
 
 // GetId returns the Id field value
-func (o *TemplateAsset) GetId() float32 {
+func (o *TemplateAsset) GetId() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -84,7 +84,7 @@ func (o *TemplateAsset) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *TemplateAsset) GetIdOk() (*float32, bool) {
+func (o *TemplateAsset) GetIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,14 +92,14 @@ func (o *TemplateAsset) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *TemplateAsset) SetId(v float32) {
+func (o *TemplateAsset) SetId(v int32) {
 	o.Id = v
 }
 
 // GetTemplateId returns the TemplateId field value
-func (o *TemplateAsset) GetTemplateId() float32 {
+func (o *TemplateAsset) GetTemplateId() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -108,7 +108,7 @@ func (o *TemplateAsset) GetTemplateId() float32 {
 
 // GetTemplateIdOk returns a tuple with the TemplateId field value
 // and a boolean to check if the value has been set.
-func (o *TemplateAsset) GetTemplateIdOk() (*float32, bool) {
+func (o *TemplateAsset) GetTemplateIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -116,7 +116,7 @@ func (o *TemplateAsset) GetTemplateIdOk() (*float32, bool) {
 }
 
 // SetTemplateId sets field value
-func (o *TemplateAsset) SetTemplateId(v float32) {
+func (o *TemplateAsset) SetTemplateId(v int32) {
 	o.TemplateId = v
 }
 
@@ -201,9 +201,9 @@ func (o *TemplateAsset) SetTags(v []string) {
 }
 
 // GetRevision returns the Revision field value
-func (o *TemplateAsset) GetRevision() float32 {
+func (o *TemplateAsset) GetRevision() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -212,7 +212,7 @@ func (o *TemplateAsset) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *TemplateAsset) GetRevisionOk() (*float32, bool) {
+func (o *TemplateAsset) GetRevisionOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -220,14 +220,14 @@ func (o *TemplateAsset) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *TemplateAsset) SetRevision(v float32) {
+func (o *TemplateAsset) SetRevision(v int32) {
 	o.Revision = v
 }
 
 // GetCreatedBy returns the CreatedBy field value
-func (o *TemplateAsset) GetCreatedBy() float32 {
+func (o *TemplateAsset) GetCreatedBy() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -236,7 +236,7 @@ func (o *TemplateAsset) GetCreatedBy() float32 {
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value
 // and a boolean to check if the value has been set.
-func (o *TemplateAsset) GetCreatedByOk() (*float32, bool) {
+func (o *TemplateAsset) GetCreatedByOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -244,14 +244,14 @@ func (o *TemplateAsset) GetCreatedByOk() (*float32, bool) {
 }
 
 // SetCreatedBy sets field value
-func (o *TemplateAsset) SetCreatedBy(v float32) {
+func (o *TemplateAsset) SetCreatedBy(v int32) {
 	o.CreatedBy = v
 }
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise.
-func (o *TemplateAsset) GetModifiedBy() float32 {
+func (o *TemplateAsset) GetModifiedBy() int32 {
 	if o == nil || IsNil(o.ModifiedBy) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.ModifiedBy
@@ -259,7 +259,7 @@ func (o *TemplateAsset) GetModifiedBy() float32 {
 
 // GetModifiedByOk returns a tuple with the ModifiedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TemplateAsset) GetModifiedByOk() (*float32, bool) {
+func (o *TemplateAsset) GetModifiedByOk() (*int32, bool) {
 	if o == nil || IsNil(o.ModifiedBy) {
 		return nil, false
 	}
@@ -275,8 +275,8 @@ func (o *TemplateAsset) HasModifiedBy() bool {
 	return false
 }
 
-// SetModifiedBy gets a reference to the given float32 and assigns it to the ModifiedBy field.
-func (o *TemplateAsset) SetModifiedBy(v float32) {
+// SetModifiedBy gets a reference to the given int32 and assigns it to the ModifiedBy field.
+func (o *TemplateAsset) SetModifiedBy(v int32) {
 	o.ModifiedBy = &v
 }
 

@@ -27,7 +27,7 @@ type OSTemplateOs struct {
 	Version string `json:"version"`
 	Credential OSTemplateOsCredential `json:"credential"`
 	// The initial operating system SSH port.
-	SshPort *float32 `json:"sshPort,omitempty"`
+	SshPort *int32 `json:"sshPort,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -126,9 +126,9 @@ func (o *OSTemplateOs) SetCredential(v OSTemplateOsCredential) {
 }
 
 // GetSshPort returns the SshPort field value if set, zero value otherwise.
-func (o *OSTemplateOs) GetSshPort() float32 {
+func (o *OSTemplateOs) GetSshPort() int32 {
 	if o == nil || IsNil(o.SshPort) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.SshPort
@@ -136,7 +136,7 @@ func (o *OSTemplateOs) GetSshPort() float32 {
 
 // GetSshPortOk returns a tuple with the SshPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OSTemplateOs) GetSshPortOk() (*float32, bool) {
+func (o *OSTemplateOs) GetSshPortOk() (*int32, bool) {
 	if o == nil || IsNil(o.SshPort) {
 		return nil, false
 	}
@@ -152,8 +152,8 @@ func (o *OSTemplateOs) HasSshPort() bool {
 	return false
 }
 
-// SetSshPort gets a reference to the given float32 and assigns it to the SshPort field.
-func (o *OSTemplateOs) SetSshPort(v float32) {
+// SetSshPort gets a reference to the given int32 and assigns it to the SshPort field.
+func (o *OSTemplateOs) SetSshPort(v int32) {
 	o.SshPort = &v
 }
 

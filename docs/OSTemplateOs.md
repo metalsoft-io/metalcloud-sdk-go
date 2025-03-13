@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | **string** | The name of the operating system that this template will install | 
 **Version** | **string** | The version of the operating system that this template will install | 
 **Credential** | [**OSTemplateOsCredential**](OSTemplateOsCredential.md) |  | 
-**SshPort** | Pointer to **float32** | The initial operating system SSH port. | [optional] 
+**SshPort** | Pointer to **int32** | The initial operating system SSH port. | [optional] 
 
 ## Methods
 
@@ -90,20 +90,20 @@ SetCredential sets Credential field to given value.
 
 ### GetSshPort
 
-`func (o *OSTemplateOs) GetSshPort() float32`
+`func (o *OSTemplateOs) GetSshPort() int32`
 
 GetSshPort returns the SshPort field if non-nil, zero value otherwise.
 
 ### GetSshPortOk
 
-`func (o *OSTemplateOs) GetSshPortOk() (*float32, bool)`
+`func (o *OSTemplateOs) GetSshPortOk() (*int32, bool)`
 
 GetSshPortOk returns a tuple with the SshPort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSshPort
 
-`func (o *OSTemplateOs) SetSshPort(v float32)`
+`func (o *OSTemplateOs) SetSshPort(v int32)`
 
 SetSshPort sets SshPort field to given value.
 

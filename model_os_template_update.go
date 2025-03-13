@@ -25,7 +25,7 @@ type OSTemplateUpdate struct {
 	Name string `json:"name"`
 	// The OS template description
 	Description *string `json:"description,omitempty"`
-	// The OS template label
+	// The OS template label. It must be unique
 	Label *string `json:"label,omitempty"`
 	Device OSTemplateDevice `json:"device"`
 	Install OSTemplateInstall `json:"install"`

@@ -33,7 +33,7 @@ type TemplateAssetFile struct {
 	TemplatingEngine bool `json:"templatingEngine"`
 	// The URL from where to fetch the template asset file
 	Url *string `json:"url,omitempty"`
-	//          - If the template asset usage is 'build_source_image', the path is ignored and 'url' is required.         - If the template asset usage is 'build_component', the relative ISO location path where the template asset will be copied to.         
+	// The path is unique for the same OS template ID.         - If the template asset usage is 'build_source_image', the path is ignored and 'url' is required.         - If the template asset usage is 'build_component', the relative ISO location path where the template asset will be copied to.         
 	Path string `json:"path"`
 	AdditionalProperties map[string]interface{}
 }

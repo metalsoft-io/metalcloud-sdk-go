@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | The template asset ID | [readonly] 
-**TemplateId** | **float32** | The ID of the OS template that this template asset belongs to | 
+**Id** | **int32** | The template asset ID | [readonly] 
+**TemplateId** | **int32** | The ID of the OS template that this template asset belongs to | 
 **Usage** | **string** | The template asset usage | 
 **File** | [**TemplateAssetFile**](TemplateAssetFile.md) |  | 
 **Tags** | Pointer to **[]string** | The tags associated with the template asset | [optional] 
-**Revision** | **float32** | The revision number of the template asset | [readonly] 
-**CreatedBy** | **float32** | The user ID of the user who created the template asset | 
-**ModifiedBy** | Pointer to **float32** | The user ID of the user who last modified the template asset | [optional] 
+**Revision** | **int32** | The revision number of the template asset | [readonly] 
+**CreatedBy** | **int32** | The user ID of the user who created the template asset | 
+**ModifiedBy** | Pointer to **int32** | The user ID of the user who last modified the template asset | [optional] 
 **CreatedAt** | **time.Time** | The date and time the template asset was created | [readonly] 
 **ModifiedAt** | Pointer to **time.Time** | The date and time the template asset was last modified | [optional] [readonly] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewTemplateAsset
 
-`func NewTemplateAsset(id float32, templateId float32, usage string, file TemplateAssetFile, revision float32, createdBy float32, createdAt time.Time, ) *TemplateAsset`
+`func NewTemplateAsset(id int32, templateId int32, usage string, file TemplateAssetFile, revision int32, createdBy int32, createdAt time.Time, ) *TemplateAsset`
 
 NewTemplateAsset instantiates a new TemplateAsset object
 This constructor will assign default values to properties that have it defined,
@@ -37,40 +37,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *TemplateAsset) GetId() float32`
+`func (o *TemplateAsset) GetId() int32`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *TemplateAsset) GetIdOk() (*float32, bool)`
+`func (o *TemplateAsset) GetIdOk() (*int32, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *TemplateAsset) SetId(v float32)`
+`func (o *TemplateAsset) SetId(v int32)`
 
 SetId sets Id field to given value.
 
 
 ### GetTemplateId
 
-`func (o *TemplateAsset) GetTemplateId() float32`
+`func (o *TemplateAsset) GetTemplateId() int32`
 
 GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
 
 ### GetTemplateIdOk
 
-`func (o *TemplateAsset) GetTemplateIdOk() (*float32, bool)`
+`func (o *TemplateAsset) GetTemplateIdOk() (*int32, bool)`
 
 GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplateId
 
-`func (o *TemplateAsset) SetTemplateId(v float32)`
+`func (o *TemplateAsset) SetTemplateId(v int32)`
 
 SetTemplateId sets TemplateId field to given value.
 
@@ -142,60 +142,60 @@ HasTags returns a boolean if a field has been set.
 
 ### GetRevision
 
-`func (o *TemplateAsset) GetRevision() float32`
+`func (o *TemplateAsset) GetRevision() int32`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *TemplateAsset) GetRevisionOk() (*float32, bool)`
+`func (o *TemplateAsset) GetRevisionOk() (*int32, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *TemplateAsset) SetRevision(v float32)`
+`func (o *TemplateAsset) SetRevision(v int32)`
 
 SetRevision sets Revision field to given value.
 
 
 ### GetCreatedBy
 
-`func (o *TemplateAsset) GetCreatedBy() float32`
+`func (o *TemplateAsset) GetCreatedBy() int32`
 
 GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
 ### GetCreatedByOk
 
-`func (o *TemplateAsset) GetCreatedByOk() (*float32, bool)`
+`func (o *TemplateAsset) GetCreatedByOk() (*int32, bool)`
 
 GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedBy
 
-`func (o *TemplateAsset) SetCreatedBy(v float32)`
+`func (o *TemplateAsset) SetCreatedBy(v int32)`
 
 SetCreatedBy sets CreatedBy field to given value.
 
 
 ### GetModifiedBy
 
-`func (o *TemplateAsset) GetModifiedBy() float32`
+`func (o *TemplateAsset) GetModifiedBy() int32`
 
 GetModifiedBy returns the ModifiedBy field if non-nil, zero value otherwise.
 
 ### GetModifiedByOk
 
-`func (o *TemplateAsset) GetModifiedByOk() (*float32, bool)`
+`func (o *TemplateAsset) GetModifiedByOk() (*int32, bool)`
 
 GetModifiedByOk returns a tuple with the ModifiedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModifiedBy
 
-`func (o *TemplateAsset) SetModifiedBy(v float32)`
+`func (o *TemplateAsset) SetModifiedBy(v int32)`
 
 SetModifiedBy sets ModifiedBy field to given value.
 

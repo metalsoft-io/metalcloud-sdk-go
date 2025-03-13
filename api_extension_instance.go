@@ -348,6 +348,7 @@ func (a *ExtensionInstanceAPIService) GetExtensionInstanceExecute(r ExtensionIns
 type ExtensionInstanceAPIGetExtensionInstancesRequest struct {
 	ctx context.Context
 	ApiService *ExtensionInstanceAPIService
+	infrastructureId float32
 	page *float32
 	limit *float32
 	filterExtensionId *[]string
@@ -409,12 +410,14 @@ GetExtensionInstances Get extension instances list
 Returns list of extension instances
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
  @return ExtensionInstanceAPIGetExtensionInstancesRequest
 */
-func (a *ExtensionInstanceAPIService) GetExtensionInstances(ctx context.Context) ExtensionInstanceAPIGetExtensionInstancesRequest {
+func (a *ExtensionInstanceAPIService) GetExtensionInstances(ctx context.Context, infrastructureId float32) ExtensionInstanceAPIGetExtensionInstancesRequest {
 	return ExtensionInstanceAPIGetExtensionInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
+		infrastructureId: infrastructureId,
 	}
 }
 
@@ -433,7 +436,8 @@ func (a *ExtensionInstanceAPIService) GetExtensionInstancesExecute(r ExtensionIn
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/extension-instances"
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/extension-instances"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -602,7 +606,7 @@ func (a *ExtensionInstanceAPIService) UpdateExtensionInstanceExecute(r Extension
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/extension-instances/{extensionInstanceId}"
+	localVarPath := localBasePath + "/api/v2/extension-instances/{extensionInstanceId}/config"
 	localVarPath = strings.Replace(localVarPath, "{"+"extensionInstanceId"+"}", url.PathEscape(parameterValueToString(r.extensionInstanceId, "extensionInstanceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

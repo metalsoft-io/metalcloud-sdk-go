@@ -37,16 +37,20 @@ func (dst *ServerInstanceProfileNetworkInterfacesConfig) UnmarshalJSON(data []by
 	// try to unmarshal data into ServerInstanceInterfaceConfiguration
 	err = newStrictDecoder(data).Decode(&dst.ServerInstanceInterfaceConfiguration)
 	if err == nil {
-		jsonServerInstanceInterfaceConfiguration, _ := json.Marshal(dst.ServerInstanceInterfaceConfiguration)
-		if string(jsonServerInstanceInterfaceConfiguration) == "{}" { // empty struct
-			dst.ServerInstanceInterfaceConfiguration = nil
-		} else {
-			if err = validator.Validate(dst.ServerInstanceInterfaceConfiguration); err != nil {
-				dst.ServerInstanceInterfaceConfiguration = nil
-			} else {
-				match++
-			}
-		}
+        if len(dst.ServerInstanceInterfaceConfiguration.AdditionalProperties) > 0 {
+            dst.ServerInstanceInterfaceConfiguration = nil
+        } else {
+            jsonServerInstanceInterfaceConfiguration, _ := json.Marshal(dst.ServerInstanceInterfaceConfiguration)
+            if string(jsonServerInstanceInterfaceConfiguration) == "{}" { // empty struct
+                dst.ServerInstanceInterfaceConfiguration = nil
+            } else {
+                if err = validator.Validate(dst.ServerInstanceInterfaceConfiguration); err != nil {
+                    dst.ServerInstanceInterfaceConfiguration = nil
+                } else {
+                    match++
+                }
+            }
+        }
 	} else {
 		dst.ServerInstanceInterfaceConfiguration = nil
 	}
@@ -79,6 +83,16 @@ func (obj *ServerInstanceProfileNetworkInterfacesConfig) GetActualInstance() (in
 	}
 	if obj.ServerInstanceInterfaceConfiguration != nil {
 		return obj.ServerInstanceInterfaceConfiguration
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj ServerInstanceProfileNetworkInterfacesConfig) GetActualInstanceValue() (interface{}) {
+	if obj.ServerInstanceInterfaceConfiguration != nil {
+		return *obj.ServerInstanceInterfaceConfiguration
 	}
 
 	// all schemas are nil

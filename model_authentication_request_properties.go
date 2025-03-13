@@ -53,16 +53,20 @@ func (dst *AuthenticationRequestProperties) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into AuthenticationRequestPropertiesLdap
 	err = newStrictDecoder(data).Decode(&dst.AuthenticationRequestPropertiesLdap)
 	if err == nil {
-		jsonAuthenticationRequestPropertiesLdap, _ := json.Marshal(dst.AuthenticationRequestPropertiesLdap)
-		if string(jsonAuthenticationRequestPropertiesLdap) == "{}" { // empty struct
-			dst.AuthenticationRequestPropertiesLdap = nil
-		} else {
-			if err = validator.Validate(dst.AuthenticationRequestPropertiesLdap); err != nil {
-				dst.AuthenticationRequestPropertiesLdap = nil
-			} else {
-				match++
-			}
-		}
+        if len(dst.AuthenticationRequestPropertiesLdap.AdditionalProperties) > 0 {
+            dst.AuthenticationRequestPropertiesLdap = nil
+        } else {
+            jsonAuthenticationRequestPropertiesLdap, _ := json.Marshal(dst.AuthenticationRequestPropertiesLdap)
+            if string(jsonAuthenticationRequestPropertiesLdap) == "{}" { // empty struct
+                dst.AuthenticationRequestPropertiesLdap = nil
+            } else {
+                if err = validator.Validate(dst.AuthenticationRequestPropertiesLdap); err != nil {
+                    dst.AuthenticationRequestPropertiesLdap = nil
+                } else {
+                    match++
+                }
+            }
+        }
 	} else {
 		dst.AuthenticationRequestPropertiesLdap = nil
 	}
@@ -70,16 +74,20 @@ func (dst *AuthenticationRequestProperties) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into AuthenticationRequestPropertiesMySql
 	err = newStrictDecoder(data).Decode(&dst.AuthenticationRequestPropertiesMySql)
 	if err == nil {
-		jsonAuthenticationRequestPropertiesMySql, _ := json.Marshal(dst.AuthenticationRequestPropertiesMySql)
-		if string(jsonAuthenticationRequestPropertiesMySql) == "{}" { // empty struct
-			dst.AuthenticationRequestPropertiesMySql = nil
-		} else {
-			if err = validator.Validate(dst.AuthenticationRequestPropertiesMySql); err != nil {
-				dst.AuthenticationRequestPropertiesMySql = nil
-			} else {
-				match++
-			}
-		}
+        if len(dst.AuthenticationRequestPropertiesMySql.AdditionalProperties) > 0 {
+            dst.AuthenticationRequestPropertiesMySql = nil
+        } else {
+            jsonAuthenticationRequestPropertiesMySql, _ := json.Marshal(dst.AuthenticationRequestPropertiesMySql)
+            if string(jsonAuthenticationRequestPropertiesMySql) == "{}" { // empty struct
+                dst.AuthenticationRequestPropertiesMySql = nil
+            } else {
+                if err = validator.Validate(dst.AuthenticationRequestPropertiesMySql); err != nil {
+                    dst.AuthenticationRequestPropertiesMySql = nil
+                } else {
+                    match++
+                }
+            }
+        }
 	} else {
 		dst.AuthenticationRequestPropertiesMySql = nil
 	}
@@ -87,16 +95,20 @@ func (dst *AuthenticationRequestProperties) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into AuthenticationRequestPropertiesSaml
 	err = newStrictDecoder(data).Decode(&dst.AuthenticationRequestPropertiesSaml)
 	if err == nil {
-		jsonAuthenticationRequestPropertiesSaml, _ := json.Marshal(dst.AuthenticationRequestPropertiesSaml)
-		if string(jsonAuthenticationRequestPropertiesSaml) == "{}" { // empty struct
-			dst.AuthenticationRequestPropertiesSaml = nil
-		} else {
-			if err = validator.Validate(dst.AuthenticationRequestPropertiesSaml); err != nil {
-				dst.AuthenticationRequestPropertiesSaml = nil
-			} else {
-				match++
-			}
-		}
+        if len(dst.AuthenticationRequestPropertiesSaml.AdditionalProperties) > 0 {
+            dst.AuthenticationRequestPropertiesSaml = nil
+        } else {
+            jsonAuthenticationRequestPropertiesSaml, _ := json.Marshal(dst.AuthenticationRequestPropertiesSaml)
+            if string(jsonAuthenticationRequestPropertiesSaml) == "{}" { // empty struct
+                dst.AuthenticationRequestPropertiesSaml = nil
+            } else {
+                if err = validator.Validate(dst.AuthenticationRequestPropertiesSaml); err != nil {
+                    dst.AuthenticationRequestPropertiesSaml = nil
+                } else {
+                    match++
+                }
+            }
+        }
 	} else {
 		dst.AuthenticationRequestPropertiesSaml = nil
 	}
@@ -147,6 +159,24 @@ func (obj *AuthenticationRequestProperties) GetActualInstance() (interface{}) {
 
 	if obj.AuthenticationRequestPropertiesSaml != nil {
 		return obj.AuthenticationRequestPropertiesSaml
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj AuthenticationRequestProperties) GetActualInstanceValue() (interface{}) {
+	if obj.AuthenticationRequestPropertiesLdap != nil {
+		return *obj.AuthenticationRequestPropertiesLdap
+	}
+
+	if obj.AuthenticationRequestPropertiesMySql != nil {
+		return *obj.AuthenticationRequestPropertiesMySql
+	}
+
+	if obj.AuthenticationRequestPropertiesSaml != nil {
+		return *obj.AuthenticationRequestPropertiesSaml
 	}
 
 	// all schemas are nil

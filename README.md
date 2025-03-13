@@ -140,8 +140,8 @@ Class | Method | HTTP request | Description
 *ExtensionInstanceAPI* | [**CreateExtensionInstance**](docs/ExtensionInstanceAPI.md#createextensioninstance) | **Post** /api/v2/infrastructures/{infrastructureId}/extension-instances | Add extension instance to an infrastructure
 *ExtensionInstanceAPI* | [**DeleteExtensionInstance**](docs/ExtensionInstanceAPI.md#deleteextensioninstance) | **Delete** /api/v2/extension-instances/{extensionInstanceId} | Delete extension instance
 *ExtensionInstanceAPI* | [**GetExtensionInstance**](docs/ExtensionInstanceAPI.md#getextensioninstance) | **Get** /api/v2/extension-instances/{extensionInstanceId} | Get extension instance details
-*ExtensionInstanceAPI* | [**GetExtensionInstances**](docs/ExtensionInstanceAPI.md#getextensioninstances) | **Get** /api/v2/extension-instances | Get extension instances list
-*ExtensionInstanceAPI* | [**UpdateExtensionInstance**](docs/ExtensionInstanceAPI.md#updateextensioninstance) | **Patch** /api/v2/extension-instances/{extensionInstanceId} | Update extension instance configuration
+*ExtensionInstanceAPI* | [**GetExtensionInstances**](docs/ExtensionInstanceAPI.md#getextensioninstances) | **Get** /api/v2/infrastructures/{infrastructureId}/extension-instances | Get extension instances list
+*ExtensionInstanceAPI* | [**UpdateExtensionInstance**](docs/ExtensionInstanceAPI.md#updateextensioninstance) | **Patch** /api/v2/extension-instances/{extensionInstanceId}/config | Update extension instance configuration
 *FileShareAPI* | [**CreateInfrastructureFileShare**](docs/FileShareAPI.md#createinfrastructurefileshare) | **Post** /api/v2/infrastructures/{infrastructureId}/file-shares | Creates a File Share
 *FileShareAPI* | [**DeleteFileShare**](docs/FileShareAPI.md#deletefileshare) | **Delete** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId} | Deletes a File Share
 *FileShareAPI* | [**GetFileShare**](docs/FileShareAPI.md#getfileshare) | **Get** /api/v2/file-shares/{fileShareId} | Get File Share information
@@ -545,6 +545,7 @@ Class | Method | HTTP request | Description
  - [ExtensionInfo](docs/ExtensionInfo.md)
  - [ExtensionInfrastructure](docs/ExtensionInfrastructure.md)
  - [ExtensionInput](docs/ExtensionInput.md)
+ - [ExtensionInputBoolean](docs/ExtensionInputBoolean.md)
  - [ExtensionInputInteger](docs/ExtensionInputInteger.md)
  - [ExtensionInputOptions](docs/ExtensionInputOptions.md)
  - [ExtensionInputOsTemplate](docs/ExtensionInputOsTemplate.md)
@@ -552,6 +553,7 @@ Class | Method | HTTP request | Description
  - [ExtensionInputString](docs/ExtensionInputString.md)
  - [ExtensionInstance](docs/ExtensionInstance.md)
  - [ExtensionInstanceArray](docs/ExtensionInstanceArray.md)
+ - [ExtensionInstanceConfiguration](docs/ExtensionInstanceConfiguration.md)
  - [ExtensionInstancePaginatedList](docs/ExtensionInstancePaginatedList.md)
  - [ExtensionList](docs/ExtensionList.md)
  - [ExtensionOutput](docs/ExtensionOutput.md)

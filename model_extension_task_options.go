@@ -45,16 +45,20 @@ func (dst *ExtensionTaskOptions) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ExtensionTaskAnsible
 	err = newStrictDecoder(data).Decode(&dst.ExtensionTaskAnsible)
 	if err == nil {
-		jsonExtensionTaskAnsible, _ := json.Marshal(dst.ExtensionTaskAnsible)
-		if string(jsonExtensionTaskAnsible) == "{}" { // empty struct
-			dst.ExtensionTaskAnsible = nil
-		} else {
-			if err = validator.Validate(dst.ExtensionTaskAnsible); err != nil {
-				dst.ExtensionTaskAnsible = nil
-			} else {
-				match++
-			}
-		}
+        if len(dst.ExtensionTaskAnsible.AdditionalProperties) > 0 {
+            dst.ExtensionTaskAnsible = nil
+        } else {
+            jsonExtensionTaskAnsible, _ := json.Marshal(dst.ExtensionTaskAnsible)
+            if string(jsonExtensionTaskAnsible) == "{}" { // empty struct
+                dst.ExtensionTaskAnsible = nil
+            } else {
+                if err = validator.Validate(dst.ExtensionTaskAnsible); err != nil {
+                    dst.ExtensionTaskAnsible = nil
+                } else {
+                    match++
+                }
+            }
+        }
 	} else {
 		dst.ExtensionTaskAnsible = nil
 	}
@@ -62,16 +66,20 @@ func (dst *ExtensionTaskOptions) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ExtensionTaskWebhook
 	err = newStrictDecoder(data).Decode(&dst.ExtensionTaskWebhook)
 	if err == nil {
-		jsonExtensionTaskWebhook, _ := json.Marshal(dst.ExtensionTaskWebhook)
-		if string(jsonExtensionTaskWebhook) == "{}" { // empty struct
-			dst.ExtensionTaskWebhook = nil
-		} else {
-			if err = validator.Validate(dst.ExtensionTaskWebhook); err != nil {
-				dst.ExtensionTaskWebhook = nil
-			} else {
-				match++
-			}
-		}
+        if len(dst.ExtensionTaskWebhook.AdditionalProperties) > 0 {
+            dst.ExtensionTaskWebhook = nil
+        } else {
+            jsonExtensionTaskWebhook, _ := json.Marshal(dst.ExtensionTaskWebhook)
+            if string(jsonExtensionTaskWebhook) == "{}" { // empty struct
+                dst.ExtensionTaskWebhook = nil
+            } else {
+                if err = validator.Validate(dst.ExtensionTaskWebhook); err != nil {
+                    dst.ExtensionTaskWebhook = nil
+                } else {
+                    match++
+                }
+            }
+        }
 	} else {
 		dst.ExtensionTaskWebhook = nil
 	}
@@ -113,6 +121,20 @@ func (obj *ExtensionTaskOptions) GetActualInstance() (interface{}) {
 
 	if obj.ExtensionTaskWebhook != nil {
 		return obj.ExtensionTaskWebhook
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj ExtensionTaskOptions) GetActualInstanceValue() (interface{}) {
+	if obj.ExtensionTaskAnsible != nil {
+		return *obj.ExtensionTaskAnsible
+	}
+
+	if obj.ExtensionTaskWebhook != nil {
+		return *obj.ExtensionTaskWebhook
 	}
 
 	// all schemas are nil

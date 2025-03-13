@@ -444,6 +444,7 @@ type OSTemplateAPIGetOSTemplatesRequest struct {
 	filterOsName *[]string
 	filterStatus *[]string
 	filterVisibility *[]string
+	filterTags *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -489,6 +490,12 @@ func (r OSTemplateAPIGetOSTemplatesRequest) FilterStatus(filterStatus []string) 
 // Filter by visibility query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.visibility&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.visibility&#x3D;$not:$like:John Doe&amp;filter.visibility&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
 func (r OSTemplateAPIGetOSTemplatesRequest) FilterVisibility(filterVisibility []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.filterVisibility = &filterVisibility
+	return r
+}
+
+// Filter by tags query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.tags&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.tags&#x3D;$not:$like:John Doe&amp;filter.tags&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r OSTemplateAPIGetOSTemplatesRequest) FilterTags(filterTags []string) OSTemplateAPIGetOSTemplatesRequest {
+	r.filterTags = &filterTags
 	return r
 }
 
@@ -615,6 +622,17 @@ func (a *OSTemplateAPIService) GetOSTemplatesExecute(r OSTemplateAPIGetOSTemplat
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.visibility", t, "form", "multi")
+		}
+	}
+	if r.filterTags != nil {
+		t := *r.filterTags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.tags", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.tags", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

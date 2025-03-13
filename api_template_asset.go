@@ -339,6 +339,7 @@ type TemplateAssetAPIGetTemplateAssetsRequest struct {
 	filterTemplateId *[]string
 	filterUsage *[]string
 	filterFileMimeType *[]string
+	filterTags *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -372,6 +373,12 @@ func (r TemplateAssetAPIGetTemplateAssetsRequest) FilterUsage(filterUsage []stri
 // Filter by file.mimeType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.file.mimeType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.file.mimeType&#x3D;$not:$like:John Doe&amp;filter.file.mimeType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
 func (r TemplateAssetAPIGetTemplateAssetsRequest) FilterFileMimeType(filterFileMimeType []string) TemplateAssetAPIGetTemplateAssetsRequest {
 	r.filterFileMimeType = &filterFileMimeType
+	return r
+}
+
+// Filter by tags query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.tags&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.tags&#x3D;$not:$like:John Doe&amp;filter.tags&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r TemplateAssetAPIGetTemplateAssetsRequest) FilterTags(filterTags []string) TemplateAssetAPIGetTemplateAssetsRequest {
+	r.filterTags = &filterTags
 	return r
 }
 
@@ -478,6 +485,17 @@ func (a *TemplateAssetAPIService) GetTemplateAssetsExecute(r TemplateAssetAPIGet
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.file.mimeType", t, "form", "multi")
 		}
 	}
+	if r.filterTags != nil {
+		t := *r.filterTags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.tags", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.tags", t, "form", "multi")
+		}
+	}
 	if r.sortBy != nil {
 		t := *r.sortBy
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -565,18 +583,11 @@ type TemplateAssetAPIUpdateTemplateAssetRequest struct {
 	ApiService *TemplateAssetAPIService
 	templateAssetId float32
 	templateAssetCreate *TemplateAssetCreate
-	ifMatch *string
 }
 
 // The template asset details
 func (r TemplateAssetAPIUpdateTemplateAssetRequest) TemplateAssetCreate(templateAssetCreate TemplateAssetCreate) TemplateAssetAPIUpdateTemplateAssetRequest {
 	r.templateAssetCreate = &templateAssetCreate
-	return r
-}
-
-// Entity tag
-func (r TemplateAssetAPIUpdateTemplateAssetRequest) IfMatch(ifMatch string) TemplateAssetAPIUpdateTemplateAssetRequest {
-	r.ifMatch = &ifMatch
 	return r
 }
 
@@ -642,9 +653,6 @@ func (a *TemplateAssetAPIService) UpdateTemplateAssetExecute(r TemplateAssetAPIU
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.templateAssetCreate

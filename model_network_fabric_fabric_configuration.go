@@ -45,16 +45,20 @@ func (dst *NetworkFabricFabricConfiguration) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into EthernetFabric
 	err = newStrictDecoder(data).Decode(&dst.EthernetFabric)
 	if err == nil {
-		jsonEthernetFabric, _ := json.Marshal(dst.EthernetFabric)
-		if string(jsonEthernetFabric) == "{}" { // empty struct
-			dst.EthernetFabric = nil
-		} else {
-			if err = validator.Validate(dst.EthernetFabric); err != nil {
-				dst.EthernetFabric = nil
-			} else {
-				match++
-			}
-		}
+        if len(dst.EthernetFabric.AdditionalProperties) > 0 {
+            dst.EthernetFabric = nil
+        } else {
+            jsonEthernetFabric, _ := json.Marshal(dst.EthernetFabric)
+            if string(jsonEthernetFabric) == "{}" { // empty struct
+                dst.EthernetFabric = nil
+            } else {
+                if err = validator.Validate(dst.EthernetFabric); err != nil {
+                    dst.EthernetFabric = nil
+                } else {
+                    match++
+                }
+            }
+        }
 	} else {
 		dst.EthernetFabric = nil
 	}
@@ -62,16 +66,20 @@ func (dst *NetworkFabricFabricConfiguration) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into FibreChannelFabric
 	err = newStrictDecoder(data).Decode(&dst.FibreChannelFabric)
 	if err == nil {
-		jsonFibreChannelFabric, _ := json.Marshal(dst.FibreChannelFabric)
-		if string(jsonFibreChannelFabric) == "{}" { // empty struct
-			dst.FibreChannelFabric = nil
-		} else {
-			if err = validator.Validate(dst.FibreChannelFabric); err != nil {
-				dst.FibreChannelFabric = nil
-			} else {
-				match++
-			}
-		}
+        if len(dst.FibreChannelFabric.AdditionalProperties) > 0 {
+            dst.FibreChannelFabric = nil
+        } else {
+            jsonFibreChannelFabric, _ := json.Marshal(dst.FibreChannelFabric)
+            if string(jsonFibreChannelFabric) == "{}" { // empty struct
+                dst.FibreChannelFabric = nil
+            } else {
+                if err = validator.Validate(dst.FibreChannelFabric); err != nil {
+                    dst.FibreChannelFabric = nil
+                } else {
+                    match++
+                }
+            }
+        }
 	} else {
 		dst.FibreChannelFabric = nil
 	}
@@ -113,6 +121,20 @@ func (obj *NetworkFabricFabricConfiguration) GetActualInstance() (interface{}) {
 
 	if obj.FibreChannelFabric != nil {
 		return obj.FibreChannelFabric
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj NetworkFabricFabricConfiguration) GetActualInstanceValue() (interface{}) {
+	if obj.EthernetFabric != nil {
+		return *obj.EthernetFabric
+	}
+
+	if obj.FibreChannelFabric != nil {
+		return *obj.FibreChannelFabric
 	}
 
 	// all schemas are nil

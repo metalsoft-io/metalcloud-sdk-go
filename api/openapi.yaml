@@ -3362,10 +3362,9 @@ paths:
       tags:
       - Drive Group
   /api/v2/infrastructures/{infrastructureId}/extension-instances:
-    post:
-      description: Adds extension instance to the specified infrastructure. Note that
-        a infrastructure deploy is needed for the changes to take effect.
-      operationId: createExtensionInstance
+    get:
+      description: Returns list of extension instances
+      operationId: getExtensionInstances
       parameters:
       - explode: false
         in: path
@@ -3374,52 +3373,6 @@ paths:
         schema:
           type: number
         style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateExtensionInstance'
-        description: The extension instance to create
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExtensionInstance'
-          description: The details of created extension instance
-          headers:
-            Location:
-              description: New Extension Instance link
-              explode: false
-              schema:
-                type: string
-              style: simple
-            ETag:
-              description: Entity tag
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Infrastructure not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Add extension instance to an infrastructure
-      tags:
-      - Extension Instance
-  /api/v2/extension-instances:
-    get:
-      description: Returns list of extension instances
-      operationId: getExtensionInstances
-      parameters:
       - description: "Page number to retrieve.If you provide invalid value the default\
           \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
           \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
@@ -3547,6 +3500,59 @@ paths:
       summary: Get extension instances list
       tags:
       - Extension Instance
+    post:
+      description: Adds extension instance to the specified infrastructure. Note that
+        a infrastructure deploy is needed for the changes to take effect.
+      operationId: createExtensionInstance
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExtensionInstance'
+        description: The extension instance to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtensionInstance'
+          description: The details of created extension instance
+          headers:
+            Location:
+              description: New Extension Instance link
+              explode: false
+              schema:
+                type: string
+              style: simple
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Infrastructure not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Add extension instance to an infrastructure
+      tags:
+      - Extension Instance
   /api/v2/extension-instances/{extensionInstanceId}:
     delete:
       description: Deletes the specified extension instance
@@ -3623,6 +3629,7 @@ paths:
       summary: Get extension instance details
       tags:
       - Extension Instance
+  /api/v2/extension-instances/{extensionInstanceId}/config:
     patch:
       description: Updates the specified extension instance
       operationId: updateExtensionInstance
@@ -11623,7 +11630,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/NetworkDeviceDefaultsResponse'
+                  $ref: '#/components/schemas/NetworkDeviceDefaults'
                 type: array
           description: Network device defaults found
         "401":
@@ -12540,6 +12547,25 @@ paths:
             type: string
           type: array
         style: form
+      - description: |-
+          Filter by tags query param.
+                    <p>
+                       <b>Format: </b> filter.tags={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.tags=$not:$like:John Doe&filter.tags=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$ilike</li>
+          <li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.tags
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
           \ just provide query param multiple types. The order in url defines an order\
           \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
@@ -12656,12 +12682,6 @@ paths:
               schema:
                 type: string
               style: simple
-            ETag:
-              description: Entity tag
-              explode: false
-              schema:
-                type: string
-              style: simple
         "400":
           description: Bad request
         "401":
@@ -12717,13 +12737,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/OSTemplate'
           description: The details of the specified OS template
-          headers:
-            ETag:
-              description: Entity tag
-              explode: false
-              schema:
-                type: string
-              style: simple
         "401":
           description: Unauthorized
         "403":
@@ -21831,6 +21844,25 @@ paths:
             type: string
           type: array
         style: form
+      - description: |-
+          Filter by tags query param.
+                    <p>
+                       <b>Format: </b> filter.tags={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.tags=$not:$like:John Doe&filter.tags=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$ilike</li>
+          <li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.tags
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
           \ just provide query param multiple types. The order in url defines an order\
           \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
@@ -21941,12 +21973,6 @@ paths:
               schema:
                 type: string
               style: simple
-            ETag:
-              description: Entity tag
-              explode: false
-              schema:
-                type: string
-              style: simple
         "400":
           description: Bad request
         "401":
@@ -22002,13 +22028,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/TemplateAsset'
           description: The details of the specified template asset
-          headers:
-            ETag:
-              description: Entity tag
-              explode: false
-              schema:
-                type: string
-              style: simple
         "401":
           description: Unauthorized
         "403":
@@ -22032,14 +22051,6 @@ paths:
         schema:
           type: number
         style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -22054,13 +22065,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/TemplateAsset'
           description: The details of the updated template asset
-          headers:
-            ETag:
-              description: Entity tag
-              explode: false
-              schema:
-                type: string
-              style: simple
         "400":
           description: Bad request
         "401":
@@ -29263,9 +29267,28 @@ components:
           value: value
         extensionId: 12
       properties:
+        label:
+          description: The extension instance label. Will be automatically generated
+            if not provided.
+          example: ext-instance-123
+          maxLength: 63
+          minLength: 1
+          type: string
         extensionId:
           description: The extension ID.
           example: 12
+          type: number
+        inputVariables:
+          description: Input variables values.
+          items:
+            $ref: '#/components/schemas/ExtensionVariable'
+          type: array
+      type: object
+    ExtensionInstanceConfiguration:
+      properties:
+        revision:
+          description: Revision number
+          example: 1
           type: number
         label:
           description: The extension instance label. Will be automatically generated
@@ -29274,15 +29297,63 @@ components:
           maxLength: 63
           minLength: 1
           type: string
-        inputVariables:
-          description: Input variables values.
-          items:
-            $ref: '#/components/schemas/ExtensionVariable'
-          type: array
+        automaticManagement:
+          description: Flag specifying if the extension instance supports automatic
+            management.
+          example: 1
+          type: number
+        subdomain:
+          description: Subdomain of the Extension Instance.
+          type: string
+        dnsSubdomainChangeId:
+          description: Id of the DNS subdomain for the Extension Instance.
+          type: number
+        deployType:
+          default: create
+          description: Deploy type of the Extension Instance
+          enum:
+          - create
+          - delete
+          - edit
+          - start
+          - stop
+          - suspend
+          type: string
+        deployStatus:
+          default: not_started
+          description: Deploy status of the Extension Instance
+          enum:
+          - not_started
+          - ongoing
+          - finished
+          type: string
+        infrastructureDeployId:
+          description: Id of the deployment for the Extension Instance.
+          type: number
+        updatedTimestamp:
+          description: Timestamp of the Extension Instance last update.
+          type: string
+      required:
+      - automaticManagement
+      - deployStatus
+      - deployType
+      - label
+      - revision
+      - updatedTimestamp
       type: object
     ExtensionInstance:
       example:
+        dnsSubdomainId: 0.8008281904610115
+        createdTimestamp: createdTimestamp
+        label: ext-instance-123
+        subdomainPermanent: subdomainPermanent
+        updatedTimestamp: updatedTimestamp
+        revision: 1
+        automaticManagement: 1
+        dnsSubdomainPermanentId: 6.027456183070403
         infrastructureId: 1
+        serviceStatus: ordered
+        subdomain: subdomain
         outputVariables:
         - label: label
           value: value
@@ -29294,21 +29365,38 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        label: ext-instance-123
         inputVariables:
         - label: label
           value: value
         - label: label
           value: value
         extensionId: 12
-        revision: 1
+        config: ""
       properties:
-        id:
-          description: The extension instance ID.
-          example: 1
-          type: number
         revision:
           description: Revision number
+          example: 1
+          type: number
+        label:
+          description: The extension instance label. Will be automatically generated
+            if not provided.
+          example: ext-instance-123
+          maxLength: 63
+          minLength: 1
+          type: string
+        automaticManagement:
+          description: Flag specifying if the extension instance supports automatic
+            management.
+          example: 1
+          type: number
+        subdomain:
+          description: Subdomain of the Extension Instance.
+          type: string
+        updatedTimestamp:
+          description: Timestamp of the Extension Instance last update.
+          type: string
+        id:
+          description: The extension instance ID.
           example: 1
           type: number
         infrastructureId:
@@ -29319,13 +29407,24 @@ components:
           description: The extension ID.
           example: 12
           type: number
-        label:
-          description: The extension instance label. Will be automatically generated
-            if not provided.
-          example: ext-instance-123
-          maxLength: 63
-          minLength: 1
+        serviceStatus:
+          description: Service status of the Extension Instance
+          enum:
+          - ordered
+          - active
+          - deleted
+          - stopped
+          - suspended
           type: string
+        subdomainPermanent:
+          description: Subdomain permanent of the Extension Instance.
+          type: string
+        dnsSubdomainId:
+          description: Id of the DNS subdomain for the Extension Instance.
+          type: number
+        dnsSubdomainPermanentId:
+          description: Id of the permanent DNS subdomain for the Extension Instance.
+          type: number
         inputVariables:
           description: Input variables values.
           items:
@@ -29336,12 +29435,22 @@ components:
           items:
             $ref: '#/components/schemas/ExtensionVariable'
           type: array
+        config:
+          allOf:
+          - $ref: '#/components/schemas/ExtensionInstanceConfiguration'
+          description: The current changes to be deployed for the Extension Instance.
+        createdTimestamp:
+          description: Timestamp of the Extension Instance creation.
+          type: string
         links:
           description: Reference links
           items:
             $ref: '#/components/schemas/Link'
           type: array
       required:
+      - automaticManagement
+      - config
+      - createdTimestamp
       - extensionId
       - id
       - infrastructureId
@@ -29349,11 +29458,23 @@ components:
       - label
       - outputVariables
       - revision
+      - serviceStatus
+      - updatedTimestamp
       type: object
     ExtensionInstancePaginatedList:
       example:
         data:
-        - infrastructureId: 1
+        - dnsSubdomainId: 0.8008281904610115
+          createdTimestamp: createdTimestamp
+          label: ext-instance-123
+          subdomainPermanent: subdomainPermanent
+          updatedTimestamp: updatedTimestamp
+          revision: 1
+          automaticManagement: 1
+          dnsSubdomainPermanentId: 6.027456183070403
+          infrastructureId: 1
+          serviceStatus: ordered
+          subdomain: subdomain
           outputVariables:
           - label: label
             value: value
@@ -29365,15 +29486,24 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          label: ext-instance-123
           inputVariables:
           - label: label
             value: value
           - label: label
             value: value
           extensionId: 12
+          config: ""
+        - dnsSubdomainId: 0.8008281904610115
+          createdTimestamp: createdTimestamp
+          label: ext-instance-123
+          subdomainPermanent: subdomainPermanent
+          updatedTimestamp: updatedTimestamp
           revision: 1
-        - infrastructureId: 1
+          automaticManagement: 1
+          dnsSubdomainPermanentId: 6.027456183070403
+          infrastructureId: 1
+          serviceStatus: ordered
+          subdomain: subdomain
           outputVariables:
           - label: label
             value: value
@@ -29385,14 +29515,13 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          label: ext-instance-123
           inputVariables:
           - label: label
             value: value
           - label: label
             value: value
           extensionId: 12
-          revision: 1
+          config: ""
         meta: ""
         links: ""
       properties:
@@ -30625,7 +30754,10 @@ components:
           type: string
       type: object
     ExtensionInputBoolean:
-      properties: {}
+      properties:
+        defaultValue:
+          description: Default value.
+          type: boolean
       type: object
     ExtensionTaskAnsible:
       example:
@@ -38227,7 +38359,7 @@ components:
     NetworkEquipmentReprovision:
       properties: {}
       type: object
-    NetworkDeviceDefaultsResponse:
+    NetworkDeviceDefaults:
       example: {}
       properties: {}
       type: object
@@ -38445,15 +38577,9 @@ components:
         zeroTouchEnabled: false
         fabricType: ethernet
         numberOfSpinesNextToLeafSwitches: 2
-        reservedVrfs:
-        - 4000-4100
-        - 4200-4300
         extraInternalIPsPerSubnet: 2
         leafSwitchesHaveMlagPairs: false
         defaultVlan: 10
-        preventVrfCleanup:
-        - 3000-3100
-        - 2000-2100
         mlagRanges:
         - 30-40
         - 50-60
@@ -38581,24 +38707,6 @@ components:
           description: The VNI prefix for the EVPN VXLAN fabric.
           example: 5000
           type: integer
-        preventVrfCleanup:
-          description: VRF ID ranges to be preserved from automatic cleanup. Each
-            range must follow the "start-end" format.
-          example:
-          - 3000-3100
-          - 2000-2100
-          items:
-            type: string
-          type: array
-        reservedVrfs:
-          description: Reserved VRF ID ranges that are set aside exclusively for specific
-            network functions. Each range must be provided in the "start-end" format.
-          example:
-          - 4000-4100
-          - 4200-4300
-          items:
-            type: string
-          type: array
         vrfVlanRanges:
           description: VLAN ranges to be associated with VRF instances. Each value
             must be an ordered pair specified in the "start-end" format.
@@ -38814,7 +38922,7 @@ components:
           quarantineSubnetStart: quarantineSubnetStart
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-03-12T10:57:30.046Z
+        createdTimestamp: 2025-03-12T21:14:41.899Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -38836,15 +38944,9 @@ components:
           zeroTouchEnabled: false
           fabricType: ethernet
           numberOfSpinesNextToLeafSwitches: 2
-          reservedVrfs:
-          - 4000-4100
-          - 4200-4300
           extraInternalIPsPerSubnet: 2
           leafSwitchesHaveMlagPairs: false
           defaultVlan: 10
-          preventVrfCleanup:
-          - 3000-3100
-          - 2000-2100
           mlagRanges:
           - 30-40
           - 50-60
@@ -38862,7 +38964,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-03-12T10:57:30.047Z
+        updatedTimestamp: 2025-03-12T21:14:41.899Z
         revision: "1"
       properties:
         siteId:
@@ -38889,12 +38991,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-03-12T10:57:30.046Z
+          example: 2025-03-12T21:14:41.899Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-03-12T10:57:30.047Z
+          example: 2025-03-12T21:14:41.899Z
           format: date-time
           type: string
         links:
@@ -39047,7 +39149,7 @@ components:
             quarantineSubnetStart: quarantineSubnetStart
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-03-12T10:57:30.046Z
+          createdTimestamp: 2025-03-12T21:14:41.899Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -39069,15 +39171,9 @@ components:
             zeroTouchEnabled: false
             fabricType: ethernet
             numberOfSpinesNextToLeafSwitches: 2
-            reservedVrfs:
-            - 4000-4100
-            - 4200-4300
             extraInternalIPsPerSubnet: 2
             leafSwitchesHaveMlagPairs: false
             defaultVlan: 10
-            preventVrfCleanup:
-            - 3000-3100
-            - 2000-2100
             mlagRanges:
             - 30-40
             - 50-60
@@ -39095,7 +39191,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-12T10:57:30.047Z
+          updatedTimestamp: 2025-03-12T21:14:41.899Z
           revision: "1"
         - networkEquipment:
           - bootstrapReadinessCheckInProgress: 9.301444243932576
@@ -39222,7 +39318,7 @@ components:
             quarantineSubnetStart: quarantineSubnetStart
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-03-12T10:57:30.046Z
+          createdTimestamp: 2025-03-12T21:14:41.899Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -39244,15 +39340,9 @@ components:
             zeroTouchEnabled: false
             fabricType: ethernet
             numberOfSpinesNextToLeafSwitches: 2
-            reservedVrfs:
-            - 4000-4100
-            - 4200-4300
             extraInternalIPsPerSubnet: 2
             leafSwitchesHaveMlagPairs: false
             defaultVlan: 10
-            preventVrfCleanup:
-            - 3000-3100
-            - 2000-2100
             mlagRanges:
             - 30-40
             - 50-60
@@ -39270,7 +39360,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-12T10:57:30.047Z
+          updatedTimestamp: 2025-03-12T21:14:41.899Z
           revision: "1"
         meta: ""
         links: ""
@@ -39318,15 +39408,9 @@ components:
           zeroTouchEnabled: false
           fabricType: ethernet
           numberOfSpinesNextToLeafSwitches: 2
-          reservedVrfs:
-          - 4000-4100
-          - 4200-4300
           extraInternalIPsPerSubnet: 2
           leafSwitchesHaveMlagPairs: false
           defaultVlan: 10
-          preventVrfCleanup:
-          - 3000-3100
-          - 2000-2100
           mlagRanges:
           - 30-40
           - 50-60
@@ -39384,15 +39468,9 @@ components:
           zeroTouchEnabled: false
           fabricType: ethernet
           numberOfSpinesNextToLeafSwitches: 2
-          reservedVrfs:
-          - 4000-4100
-          - 4200-4300
           extraInternalIPsPerSubnet: 2
           leafSwitchesHaveMlagPairs: false
           defaultVlan: 10
-          preventVrfCleanup:
-          - 3000-3100
-          - 2000-2100
           mlagRanges:
           - 30-40
           - 50-60
@@ -39516,6 +39594,7 @@ components:
           description: Used for selecting the OS template during network device ZTP
           example: x86_64-dell_z9664f-r0
           items:
+            maxLength: 255
             type: string
           type: array
       required:
@@ -39551,6 +39630,7 @@ components:
         username:
           description: The default username for the operating system
           example: root
+          maxLength: 255
           type: string
         passwordType:
           description: |-
@@ -39571,6 +39651,7 @@ components:
             The default username password.
                                 Required if the password type is PLAIN or HASHED
           example: MyP@ssword123 | $6$rounds=656000$saltsaltsalt$hashedpasswordexample
+          maxLength: 255
           type: string
       required:
       - passwordType
@@ -39589,18 +39670,20 @@ components:
         name:
           description: The name of the operating system that this template will install
           example: Ubuntu | CentOS | Suse | Windows | ESXi | ...
+          maxLength: 255
           type: string
         version:
           description: The version of the operating system that this template will
             install
           example: 22.04 | 8 | 15 | 2019 | ...
+          maxLength: 255
           type: string
         credential:
           $ref: '#/components/schemas/OSTemplateOsCredential'
         sshPort:
           description: The initial operating system SSH port.
           example: 22
-          type: number
+          type: integer
       required:
       - credential
       - name
@@ -39658,15 +39741,18 @@ components:
         name:
           description: The OS template name
           example: Ubuntu 24.04 LTS
+          maxLength: 255
           type: string
         description:
           description: The OS template description
           example: EKS Anywhere - Admin Machine
           type: string
         label:
-          description: The OS template label
+          description: The OS template label. It must be unique
           example: eksa
+          maxLength: 255
           type: string
+          uniqueItems: true
         device:
           $ref: '#/components/schemas/OSTemplateDevice'
         install:
@@ -39730,21 +39816,22 @@ components:
           description: The tags associated with the OS template
           example: "[\"cp\",\"linux\",\"Ubuntu\"]"
           items:
+            maxLength: 255
             type: string
           type: array
         revision:
           description: The revision number of the OS template
           example: 1
           readOnly: true
-          type: number
+          type: integer
         createdBy:
           description: The user ID of the user who created the OS template
           example: 6
-          type: number
+          type: integer
         modifiedBy:
           description: The user ID of the user who last modified the OS template
           example: 10
-          type: number
+          type: integer
         createdAt:
           description: The date and time the OS template was created
           example: 2024-01-01T00:00:00Z
@@ -39914,15 +40001,18 @@ components:
         name:
           description: The OS template name
           example: Ubuntu 24.04 LTS
+          maxLength: 255
           type: string
         description:
           description: The OS template description
           example: EKS Anywhere - Admin Machine
           type: string
         label:
-          description: The OS template label
+          description: The OS template label. It must be unique
           example: eksa
+          maxLength: 255
           type: string
+          uniqueItems: true
         device:
           $ref: '#/components/schemas/OSTemplateDevice'
         install:
@@ -39947,6 +40037,7 @@ components:
           description: The tags associated with the OS template
           example: "[\"cp\",\"linux\",\"Ubuntu\"]"
           items:
+            maxLength: 255
             type: string
           type: array
       required:
@@ -39988,15 +40079,18 @@ components:
         name:
           description: The OS template name
           example: Ubuntu 24.04 LTS
+          maxLength: 255
           type: string
         description:
           description: The OS template description
           example: EKS Anywhere - Admin Machine
           type: string
         label:
-          description: The OS template label
+          description: The OS template label. It must be unique
           example: eksa
+          maxLength: 255
           type: string
+          uniqueItems: true
         device:
           $ref: '#/components/schemas/OSTemplateDevice'
         install:
@@ -40049,6 +40143,7 @@ components:
           description: The tags associated with the OS template
           example: "[\"cp\",\"linux\",\"Ubuntu\"]"
           items:
+            maxLength: 255
             type: string
           type: array
       required:
@@ -46248,7 +46343,7 @@ components:
         name:
           description: File name of the template asset file
           example: user-data
-          maxLength: 250
+          maxLength: 255
           type: string
         mimeType:
           description: The MIME type of the template asset file
@@ -46260,6 +46355,7 @@ components:
         checksum:
           description: The checksums of the template asset file (sha1 or sha256)
           example: sha256:a4acfda10b18da50e2ec50ccaf860d7f20b389df8765611142305c0e911d16fd
+          maxLength: 255
           type: string
         contentBase64:
           description: |-
@@ -46274,13 +46370,16 @@ components:
         url:
           description: The URL from where to fetch the template asset file
           example: https://example.com/ubuntu-20.04-lts.iso
+          maxLength: 255
           type: string
         path:
-          description: "\n        - If the template asset usage is 'build_source_image',\
-            \ the path is ignored and 'url' is required.\n        - If the template\
-            \ asset usage is 'build_component', the relative ISO location path where\
-            \ the template asset will be copied to.\n        "
+          description: "The path is unique for the same OS template ID.\n        -\
+            \ If the template asset usage is 'build_source_image', the path is ignored\
+            \ and 'url' is required.\n        - If the template asset usage is 'build_component',\
+            \ the relative ISO location path where the template asset will be copied\
+            \ to.\n        "
           example: /boot/grub/grub.cfg
+          maxLength: 255
           type: string
       required:
       - mimeType
@@ -46317,12 +46416,12 @@ components:
           description: The template asset ID
           example: 10
           readOnly: true
-          type: number
+          type: integer
         templateId:
           description: The ID of the OS template that this template asset belongs
             to
           example: 4
-          type: number
+          type: integer
         usage:
           description: The template asset usage
           enum:
@@ -46337,21 +46436,22 @@ components:
           description: The tags associated with the template asset
           example: "[\"bootloader-config\",\"grub\",\"uefi\"]"
           items:
+            maxLength: 255
             type: string
           type: array
         revision:
           description: The revision number of the template asset
           example: 1
           readOnly: true
-          type: number
+          type: integer
         createdBy:
           description: The user ID of the user who created the template asset
           example: 6
-          type: number
+          type: integer
         modifiedBy:
           description: The user ID of the user who last modified the template asset
           example: 10
-          type: number
+          type: integer
         createdAt:
           description: The date and time the template asset was created
           example: 2024-01-01T00:00:00Z
@@ -46466,7 +46566,7 @@ components:
           description: The ID of the OS template that this template asset belongs
             to
           example: 4
-          type: number
+          type: integer
         usage:
           description: The template asset usage
           enum:
@@ -46481,6 +46581,7 @@ components:
           description: The tags associated with the template asset
           example: "[\"bootloader-config\",\"grub\",\"uefi\"]"
           items:
+            maxLength: 255
             type: string
           type: array
       required:

@@ -57,10 +57,6 @@ type EthernetFabric struct {
 	VlanRanges []string `json:"vlanRanges,omitempty"`
 	// The VNI prefix for the EVPN VXLAN fabric.
 	VniPrefix *int32 `json:"vniPrefix,omitempty"`
-	// VRF ID ranges to be preserved from automatic cleanup. Each range must follow the \"start-end\" format.
-	PreventVrfCleanup []string `json:"preventVrfCleanup,omitempty"`
-	// Reserved VRF ID ranges that are set aside exclusively for specific network functions. Each range must be provided in the \"start-end\" format.
-	ReservedVrfs []string `json:"reservedVrfs,omitempty"`
 	// VLAN ranges to be associated with VRF instances. Each value must be an ordered pair specified in the \"start-end\" format.
 	VrfVlanRanges []string `json:"vrfVlanRanges,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -654,70 +650,6 @@ func (o *EthernetFabric) SetVniPrefix(v int32) {
 	o.VniPrefix = &v
 }
 
-// GetPreventVrfCleanup returns the PreventVrfCleanup field value if set, zero value otherwise.
-func (o *EthernetFabric) GetPreventVrfCleanup() []string {
-	if o == nil || IsNil(o.PreventVrfCleanup) {
-		var ret []string
-		return ret
-	}
-	return o.PreventVrfCleanup
-}
-
-// GetPreventVrfCleanupOk returns a tuple with the PreventVrfCleanup field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetPreventVrfCleanupOk() ([]string, bool) {
-	if o == nil || IsNil(o.PreventVrfCleanup) {
-		return nil, false
-	}
-	return o.PreventVrfCleanup, true
-}
-
-// HasPreventVrfCleanup returns a boolean if a field has been set.
-func (o *EthernetFabric) HasPreventVrfCleanup() bool {
-	if o != nil && !IsNil(o.PreventVrfCleanup) {
-		return true
-	}
-
-	return false
-}
-
-// SetPreventVrfCleanup gets a reference to the given []string and assigns it to the PreventVrfCleanup field.
-func (o *EthernetFabric) SetPreventVrfCleanup(v []string) {
-	o.PreventVrfCleanup = v
-}
-
-// GetReservedVrfs returns the ReservedVrfs field value if set, zero value otherwise.
-func (o *EthernetFabric) GetReservedVrfs() []string {
-	if o == nil || IsNil(o.ReservedVrfs) {
-		var ret []string
-		return ret
-	}
-	return o.ReservedVrfs
-}
-
-// GetReservedVrfsOk returns a tuple with the ReservedVrfs field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetReservedVrfsOk() ([]string, bool) {
-	if o == nil || IsNil(o.ReservedVrfs) {
-		return nil, false
-	}
-	return o.ReservedVrfs, true
-}
-
-// HasReservedVrfs returns a boolean if a field has been set.
-func (o *EthernetFabric) HasReservedVrfs() bool {
-	if o != nil && !IsNil(o.ReservedVrfs) {
-		return true
-	}
-
-	return false
-}
-
-// SetReservedVrfs gets a reference to the given []string and assigns it to the ReservedVrfs field.
-func (o *EthernetFabric) SetReservedVrfs(v []string) {
-	o.ReservedVrfs = v
-}
-
 // GetVrfVlanRanges returns the VrfVlanRanges field value if set, zero value otherwise.
 func (o *EthernetFabric) GetVrfVlanRanges() []string {
 	if o == nil || IsNil(o.VrfVlanRanges) {
@@ -812,12 +744,6 @@ func (o EthernetFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VniPrefix) {
 		toSerialize["vniPrefix"] = o.VniPrefix
 	}
-	if !IsNil(o.PreventVrfCleanup) {
-		toSerialize["preventVrfCleanup"] = o.PreventVrfCleanup
-	}
-	if !IsNil(o.ReservedVrfs) {
-		toSerialize["reservedVrfs"] = o.ReservedVrfs
-	}
 	if !IsNil(o.VrfVlanRanges) {
 		toSerialize["vrfVlanRanges"] = o.VrfVlanRanges
 	}
@@ -882,8 +808,6 @@ func (o *EthernetFabric) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "reservedVlans")
 		delete(additionalProperties, "vlanRanges")
 		delete(additionalProperties, "vniPrefix")
-		delete(additionalProperties, "preventVrfCleanup")
-		delete(additionalProperties, "reservedVrfs")
 		delete(additionalProperties, "vrfVlanRanges")
 		o.AdditionalProperties = additionalProperties
 	}

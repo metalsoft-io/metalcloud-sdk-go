@@ -146,6 +146,7 @@ docs/ExtensionDependency.md
 docs/ExtensionInfo.md
 docs/ExtensionInfrastructure.md
 docs/ExtensionInput.md
+docs/ExtensionInputBoolean.md
 docs/ExtensionInputInteger.md
 docs/ExtensionInputOptions.md
 docs/ExtensionInputOsTemplate.md
@@ -154,6 +155,7 @@ docs/ExtensionInputString.md
 docs/ExtensionInstance.md
 docs/ExtensionInstanceAPI.md
 docs/ExtensionInstanceArray.md
+docs/ExtensionInstanceConfiguration.md
 docs/ExtensionInstancePaginatedList.md
 docs/ExtensionList.md
 docs/ExtensionOutput.md
@@ -532,6 +534,7 @@ model_extension_dependency.go
 model_extension_info.go
 model_extension_infrastructure.go
 model_extension_input.go
+model_extension_input_boolean.go
 model_extension_input_integer.go
 model_extension_input_options.go
 model_extension_input_os_template.go
@@ -539,6 +542,7 @@ model_extension_input_server_type.go
 model_extension_input_string.go
 model_extension_instance.go
 model_extension_instance_array.go
+model_extension_instance_configuration.go
 model_extension_instance_paginated_list.go
 model_extension_list.go
 model_extension_output.go

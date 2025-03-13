@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	templateAssetCreate := *openapiclient.NewTemplateAssetCreate(float32(4), "build_source_image", *openapiclient.NewTemplateAssetFile("user-data", "text/plain", false, "/boot/grub/grub.cfg")) // TemplateAssetCreate | The template asset details
+	templateAssetCreate := *openapiclient.NewTemplateAssetCreate(int32(4), "build_source_image", *openapiclient.NewTemplateAssetFile("user-data", "text/plain", false, "/boot/grub/grub.cfg")) // TemplateAssetCreate | The template asset details
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ## GetTemplateAssets
 
-> TemplateAssetPaginatedList GetTemplateAssets(ctx).Page(page).Limit(limit).FilterTemplateId(filterTemplateId).FilterUsage(filterUsage).FilterFileMimeType(filterFileMimeType).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
+> TemplateAssetPaginatedList GetTemplateAssets(ctx).Page(page).Limit(limit).FilterTemplateId(filterTemplateId).FilterUsage(filterUsage).FilterFileMimeType(filterFileMimeType).FilterTags(filterTags).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
 
 Get a list of available template assets
 
@@ -242,6 +242,7 @@ func main() {
 	filterTemplateId := []string{"Inner_example"} // []string | Filter by templateId query param.           <p>              <b>Format: </b> filter.templateId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.templateId=$not:$like:John Doe&filter.templateId=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
 	filterUsage := []string{"Inner_example"} // []string | Filter by usage query param.           <p>              <b>Format: </b> filter.usage={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.usage=$not:$like:John Doe&filter.usage=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
 	filterFileMimeType := []string{"Inner_example"} // []string | Filter by file.mimeType query param.           <p>              <b>Format: </b> filter.file.mimeType={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.file.mimeType=$not:$like:John Doe&filter.file.mimeType=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	filterTags := []string{"Inner_example"} // []string | Filter by tags query param.           <p>              <b>Format: </b> filter.tags={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.tags=$not:$like:John Doe&filter.tags=like:John           </p>           <h4>Available Operations</h4><ul><li>$ilike</li> <li>$eq</li></ul> (optional)
 	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> templateId:DESC           </p>       <h4>Available Fields</h4><ul><li>id</li> <li>templateId</li> <li>usage</li> <li>file.mimeType</li> <li>createdAt</li> <li>modifiedAt</li></ul>        (optional)
 	search := "search_example" // string | Search term to filter result values         <p>              <b>Example: </b> John           </p>         <p>              <b>Default Value: </b> No default value           </p>          (optional)
 	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values         <p>              <b>Example: </b> id,templateId,usage,file.name,file.mimeType           </p>         <p>              <b>Default Value: </b> By default all fields mentioned below will be used to search by term           </p>         <h4>Available Fields</h4><ul><li>id</li> <li>templateId</li> <li>usage</li> <li>file.name</li> <li>file.mimeType</li> <li>createdBy</li> <li>modifiedBy</li></ul>          (optional)
@@ -249,7 +250,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TemplateAssetAPI.GetTemplateAssets(context.Background()).Page(page).Limit(limit).FilterTemplateId(filterTemplateId).FilterUsage(filterUsage).FilterFileMimeType(filterFileMimeType).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
+	resp, r, err := apiClient.TemplateAssetAPI.GetTemplateAssets(context.Background()).Page(page).Limit(limit).FilterTemplateId(filterTemplateId).FilterUsage(filterUsage).FilterFileMimeType(filterFileMimeType).FilterTags(filterTags).SortBy(sortBy).Search(search).SearchBy(searchBy).Select_(select_).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TemplateAssetAPI.GetTemplateAssets``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,6 +276,7 @@ Name | Type | Description  | Notes
  **filterTemplateId** | **[]string** | Filter by templateId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.templateId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.templateId&#x3D;$not:$like:John Doe&amp;filter.templateId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
  **filterUsage** | **[]string** | Filter by usage query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.usage&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.usage&#x3D;$not:$like:John Doe&amp;filter.usage&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
  **filterFileMimeType** | **[]string** | Filter by file.mimeType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.file.mimeType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.file.mimeType&#x3D;$not:$like:John Doe&amp;filter.file.mimeType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **filterTags** | **[]string** | Filter by tags query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.tags&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.tags&#x3D;$not:$like:John Doe&amp;filter.tags&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
  **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; templateId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;usage&lt;/li&gt; &lt;li&gt;file.mimeType&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;modifiedAt&lt;/li&gt;&lt;/ul&gt;        | 
  **search** | **string** | Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;          | 
  **searchBy** | **[]string** | List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,templateId,usage,file.name,file.mimeType           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;templateId&lt;/li&gt; &lt;li&gt;usage&lt;/li&gt; &lt;li&gt;file.name&lt;/li&gt; &lt;li&gt;file.mimeType&lt;/li&gt; &lt;li&gt;createdBy&lt;/li&gt; &lt;li&gt;modifiedBy&lt;/li&gt;&lt;/ul&gt;          | 
@@ -300,7 +302,7 @@ Name | Type | Description  | Notes
 
 ## UpdateTemplateAsset
 
-> TemplateAsset UpdateTemplateAsset(ctx, templateAssetId).TemplateAssetCreate(templateAssetCreate).IfMatch(ifMatch).Execute()
+> TemplateAsset UpdateTemplateAsset(ctx, templateAssetId).TemplateAssetCreate(templateAssetCreate).Execute()
 
 Update template asset
 
@@ -320,12 +322,11 @@ import (
 
 func main() {
 	templateAssetId := float32(8.14) // float32 | 
-	templateAssetCreate := *openapiclient.NewTemplateAssetCreate(float32(4), "build_source_image", *openapiclient.NewTemplateAssetFile("user-data", "text/plain", false, "/boot/grub/grub.cfg")) // TemplateAssetCreate | The template asset details
-	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+	templateAssetCreate := *openapiclient.NewTemplateAssetCreate(int32(4), "build_source_image", *openapiclient.NewTemplateAssetFile("user-data", "text/plain", false, "/boot/grub/grub.cfg")) // TemplateAssetCreate | The template asset details
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TemplateAssetAPI.UpdateTemplateAsset(context.Background(), templateAssetId).TemplateAssetCreate(templateAssetCreate).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.TemplateAssetAPI.UpdateTemplateAsset(context.Background(), templateAssetId).TemplateAssetCreate(templateAssetCreate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TemplateAssetAPI.UpdateTemplateAsset``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -352,7 +353,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **templateAssetCreate** | [**TemplateAssetCreate**](TemplateAssetCreate.md) | The template asset details | 
- **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 

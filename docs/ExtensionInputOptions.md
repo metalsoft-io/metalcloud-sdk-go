@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **MinValue** | Pointer to **int32** | Minimum allowed value. | [optional] 
 **MaxValue** | Pointer to **int32** | Maximum allowed value. | [optional] 
 **DeniedValues** | Pointer to **[]int32** | Denied values. | [optional] 
+**DefaultValue** | Pointer to **bool** | Default value. | [optional] 
 **MinCpu** | Pointer to **int32** | Minimum CPU cores. | [optional] 
 **MinRamGb** | Pointer to **int32** | Minimum RAM GBs. | [optional] 
 **Vendor** | Pointer to **string** | Server vendor. | [optional] 
@@ -131,6 +132,31 @@ SetDeniedValues sets DeniedValues field to given value.
 `func (o *ExtensionInputOptions) HasDeniedValues() bool`
 
 HasDeniedValues returns a boolean if a field has been set.
+
+### GetDefaultValue
+
+`func (o *ExtensionInputOptions) GetDefaultValue() bool`
+
+GetDefaultValue returns the DefaultValue field if non-nil, zero value otherwise.
+
+### GetDefaultValueOk
+
+`func (o *ExtensionInputOptions) GetDefaultValueOk() (*bool, bool)`
+
+GetDefaultValueOk returns a tuple with the DefaultValue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultValue
+
+`func (o *ExtensionInputOptions) SetDefaultValue(v bool)`
+
+SetDefaultValue sets DefaultValue field to given value.
+
+### HasDefaultValue
+
+`func (o *ExtensionInputOptions) HasDefaultValue() bool`
+
+HasDefaultValue returns a boolean if a field has been set.
 
 ### GetMinCpu
 

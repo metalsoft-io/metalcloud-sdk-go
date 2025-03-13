@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **int32** | The OS template ID | [readonly] 
 **Name** | **string** | The OS template name | 
 **Description** | Pointer to **string** | The OS template description | [optional] 
-**Label** | Pointer to **string** | The OS template label | [optional] 
+**Label** | Pointer to **string** | The OS template label. It must be unique | [optional] 
 **Device** | [**OSTemplateDevice**](OSTemplateDevice.md) |  | 
 **Install** | [**OSTemplateInstall**](OSTemplateInstall.md) |  | 
 **ImageBuild** | [**OSTemplateImageBuild**](OSTemplateImageBuild.md) |  | 
@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 **Status** | **string** | The status, let the user to decide with templates to delete and when,                     and how much to keep them in the history (archived status). Also, it allows the user to                     resurrect the archived templates if needed.                     Status: READY                         - is the initial status of the template                         - the OS template is ready for deployment                         - the OS template can be deleted, use in deployments and updated                     Status: ACTIVE                         - the OS template is part of at least one ongoing deployment                         - can&#39;t be deleted (the template service will have validation for this)                         - the status can&#39;t be changed to ARCHIVED (the template service will have validation for this)                     Status: USED                         - the OS Template is part of at least one finished deployment, that is not deleted                         - can&#39;t be deleted (the template service will have validation for this)                         - can be updated, deploy or ARCHIVED                     Status: ARCHIVED                         - the OS Template is kept in the system for historical reasons                         - can&#39;t be deleted (the template service will have validation for this)                         - can&#39;t be updated or deployed                         - the status can be changed to READY or USED, if it needs to be used again or deleted | [default to "ready"]
 **TemplateAssetIDs** | Pointer to **[]int32** | The template asset IDs associated with the OS template | [optional] 
 **Tags** | Pointer to **[]string** | The tags associated with the OS template | [optional] 
-**Revision** | **float32** | The revision number of the OS template | [readonly] 
-**CreatedBy** | **float32** | The user ID of the user who created the OS template | 
-**ModifiedBy** | Pointer to **float32** | The user ID of the user who last modified the OS template | [optional] 
+**Revision** | **int32** | The revision number of the OS template | [readonly] 
+**CreatedBy** | **int32** | The user ID of the user who created the OS template | 
+**ModifiedBy** | Pointer to **int32** | The user ID of the user who last modified the OS template | [optional] 
 **CreatedAt** | **time.Time** | The date and time the OS template was created | [readonly] 
 **ModifiedAt** | Pointer to **time.Time** | The date and time the OS template was last modified | [optional] [readonly] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewOSTemplate
 
-`func NewOSTemplate(id int32, name string, device OSTemplateDevice, install OSTemplateInstall, imageBuild OSTemplateImageBuild, os OSTemplateOs, visibility string, status string, revision float32, createdBy float32, createdAt time.Time, ) *OSTemplate`
+`func NewOSTemplate(id int32, name string, device OSTemplateDevice, install OSTemplateInstall, imageBuild OSTemplateImageBuild, os OSTemplateOs, visibility string, status string, revision int32, createdBy int32, createdAt time.Time, ) *OSTemplate`
 
 NewOSTemplate instantiates a new OSTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -304,60 +304,60 @@ HasTags returns a boolean if a field has been set.
 
 ### GetRevision
 
-`func (o *OSTemplate) GetRevision() float32`
+`func (o *OSTemplate) GetRevision() int32`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *OSTemplate) GetRevisionOk() (*float32, bool)`
+`func (o *OSTemplate) GetRevisionOk() (*int32, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *OSTemplate) SetRevision(v float32)`
+`func (o *OSTemplate) SetRevision(v int32)`
 
 SetRevision sets Revision field to given value.
 
 
 ### GetCreatedBy
 
-`func (o *OSTemplate) GetCreatedBy() float32`
+`func (o *OSTemplate) GetCreatedBy() int32`
 
 GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
 ### GetCreatedByOk
 
-`func (o *OSTemplate) GetCreatedByOk() (*float32, bool)`
+`func (o *OSTemplate) GetCreatedByOk() (*int32, bool)`
 
 GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedBy
 
-`func (o *OSTemplate) SetCreatedBy(v float32)`
+`func (o *OSTemplate) SetCreatedBy(v int32)`
 
 SetCreatedBy sets CreatedBy field to given value.
 
 
 ### GetModifiedBy
 
-`func (o *OSTemplate) GetModifiedBy() float32`
+`func (o *OSTemplate) GetModifiedBy() int32`
 
 GetModifiedBy returns the ModifiedBy field if non-nil, zero value otherwise.
 
 ### GetModifiedByOk
 
-`func (o *OSTemplate) GetModifiedByOk() (*float32, bool)`
+`func (o *OSTemplate) GetModifiedByOk() (*int32, bool)`
 
 GetModifiedByOk returns a tuple with the ModifiedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModifiedBy
 
-`func (o *OSTemplate) SetModifiedBy(v float32)`
+`func (o *OSTemplate) SetModifiedBy(v int32)`
 
 SetModifiedBy sets ModifiedBy field to given value.
 

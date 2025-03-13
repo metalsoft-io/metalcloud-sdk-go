@@ -28,7 +28,7 @@ type OSTemplate struct {
 	Name string `json:"name"`
 	// The OS template description
 	Description *string `json:"description,omitempty"`
-	// The OS template label
+	// The OS template label. It must be unique
 	Label *string `json:"label,omitempty"`
 	Device OSTemplateDevice `json:"device"`
 	Install OSTemplateInstall `json:"install"`
@@ -43,11 +43,11 @@ type OSTemplate struct {
 	// The tags associated with the OS template
 	Tags []string `json:"tags,omitempty"`
 	// The revision number of the OS template
-	Revision float32 `json:"revision"`
+	Revision int32 `json:"revision"`
 	// The user ID of the user who created the OS template
-	CreatedBy float32 `json:"createdBy"`
+	CreatedBy int32 `json:"createdBy"`
 	// The user ID of the user who last modified the OS template
-	ModifiedBy *float32 `json:"modifiedBy,omitempty"`
+	ModifiedBy *int32 `json:"modifiedBy,omitempty"`
 	// The date and time the OS template was created
 	CreatedAt time.Time `json:"createdAt"`
 	// The date and time the OS template was last modified
@@ -63,7 +63,7 @@ type _OSTemplate OSTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOSTemplate(id int32, name string, device OSTemplateDevice, install OSTemplateInstall, imageBuild OSTemplateImageBuild, os OSTemplateOs, visibility string, status string, revision float32, createdBy float32, createdAt time.Time) *OSTemplate {
+func NewOSTemplate(id int32, name string, device OSTemplateDevice, install OSTemplateInstall, imageBuild OSTemplateImageBuild, os OSTemplateOs, visibility string, status string, revision int32, createdBy int32, createdAt time.Time) *OSTemplate {
 	this := OSTemplate{}
 	this.Id = id
 	this.Name = name
@@ -412,9 +412,9 @@ func (o *OSTemplate) SetTags(v []string) {
 }
 
 // GetRevision returns the Revision field value
-func (o *OSTemplate) GetRevision() float32 {
+func (o *OSTemplate) GetRevision() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -423,7 +423,7 @@ func (o *OSTemplate) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *OSTemplate) GetRevisionOk() (*float32, bool) {
+func (o *OSTemplate) GetRevisionOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -431,14 +431,14 @@ func (o *OSTemplate) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *OSTemplate) SetRevision(v float32) {
+func (o *OSTemplate) SetRevision(v int32) {
 	o.Revision = v
 }
 
 // GetCreatedBy returns the CreatedBy field value
-func (o *OSTemplate) GetCreatedBy() float32 {
+func (o *OSTemplate) GetCreatedBy() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -447,7 +447,7 @@ func (o *OSTemplate) GetCreatedBy() float32 {
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value
 // and a boolean to check if the value has been set.
-func (o *OSTemplate) GetCreatedByOk() (*float32, bool) {
+func (o *OSTemplate) GetCreatedByOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -455,14 +455,14 @@ func (o *OSTemplate) GetCreatedByOk() (*float32, bool) {
 }
 
 // SetCreatedBy sets field value
-func (o *OSTemplate) SetCreatedBy(v float32) {
+func (o *OSTemplate) SetCreatedBy(v int32) {
 	o.CreatedBy = v
 }
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise.
-func (o *OSTemplate) GetModifiedBy() float32 {
+func (o *OSTemplate) GetModifiedBy() int32 {
 	if o == nil || IsNil(o.ModifiedBy) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.ModifiedBy
@@ -470,7 +470,7 @@ func (o *OSTemplate) GetModifiedBy() float32 {
 
 // GetModifiedByOk returns a tuple with the ModifiedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OSTemplate) GetModifiedByOk() (*float32, bool) {
+func (o *OSTemplate) GetModifiedByOk() (*int32, bool) {
 	if o == nil || IsNil(o.ModifiedBy) {
 		return nil, false
 	}
@@ -486,8 +486,8 @@ func (o *OSTemplate) HasModifiedBy() bool {
 	return false
 }
 
-// SetModifiedBy gets a reference to the given float32 and assigns it to the ModifiedBy field.
-func (o *OSTemplate) SetModifiedBy(v float32) {
+// SetModifiedBy gets a reference to the given int32 and assigns it to the ModifiedBy field.
+func (o *OSTemplate) SetModifiedBy(v int32) {
 	o.ModifiedBy = &v
 }
 

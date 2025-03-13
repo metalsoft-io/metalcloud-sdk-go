@@ -20,10 +20,10 @@ var _ MappedNullable = &CreateExtensionInstance{}
 
 // CreateExtensionInstance struct for CreateExtensionInstance
 type CreateExtensionInstance struct {
-	// The extension ID.
-	ExtensionId *float32 `json:"extensionId,omitempty"`
 	// The extension instance label. Will be automatically generated if not provided.
 	Label *string `json:"label,omitempty"`
+	// The extension ID.
+	ExtensionId *float32 `json:"extensionId,omitempty"`
 	// Input variables values.
 	InputVariables []ExtensionVariable `json:"inputVariables,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -46,38 +46,6 @@ func NewCreateExtensionInstance() *CreateExtensionInstance {
 func NewCreateExtensionInstanceWithDefaults() *CreateExtensionInstance {
 	this := CreateExtensionInstance{}
 	return &this
-}
-
-// GetExtensionId returns the ExtensionId field value if set, zero value otherwise.
-func (o *CreateExtensionInstance) GetExtensionId() float32 {
-	if o == nil || IsNil(o.ExtensionId) {
-		var ret float32
-		return ret
-	}
-	return *o.ExtensionId
-}
-
-// GetExtensionIdOk returns a tuple with the ExtensionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateExtensionInstance) GetExtensionIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.ExtensionId) {
-		return nil, false
-	}
-	return o.ExtensionId, true
-}
-
-// HasExtensionId returns a boolean if a field has been set.
-func (o *CreateExtensionInstance) HasExtensionId() bool {
-	if o != nil && !IsNil(o.ExtensionId) {
-		return true
-	}
-
-	return false
-}
-
-// SetExtensionId gets a reference to the given float32 and assigns it to the ExtensionId field.
-func (o *CreateExtensionInstance) SetExtensionId(v float32) {
-	o.ExtensionId = &v
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
@@ -110,6 +78,38 @@ func (o *CreateExtensionInstance) HasLabel() bool {
 // SetLabel gets a reference to the given string and assigns it to the Label field.
 func (o *CreateExtensionInstance) SetLabel(v string) {
 	o.Label = &v
+}
+
+// GetExtensionId returns the ExtensionId field value if set, zero value otherwise.
+func (o *CreateExtensionInstance) GetExtensionId() float32 {
+	if o == nil || IsNil(o.ExtensionId) {
+		var ret float32
+		return ret
+	}
+	return *o.ExtensionId
+}
+
+// GetExtensionIdOk returns a tuple with the ExtensionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateExtensionInstance) GetExtensionIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.ExtensionId) {
+		return nil, false
+	}
+	return o.ExtensionId, true
+}
+
+// HasExtensionId returns a boolean if a field has been set.
+func (o *CreateExtensionInstance) HasExtensionId() bool {
+	if o != nil && !IsNil(o.ExtensionId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensionId gets a reference to the given float32 and assigns it to the ExtensionId field.
+func (o *CreateExtensionInstance) SetExtensionId(v float32) {
+	o.ExtensionId = &v
 }
 
 // GetInputVariables returns the InputVariables field value if set, zero value otherwise.
@@ -154,11 +154,11 @@ func (o CreateExtensionInstance) MarshalJSON() ([]byte, error) {
 
 func (o CreateExtensionInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ExtensionId) {
-		toSerialize["extensionId"] = o.ExtensionId
-	}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
+	}
+	if !IsNil(o.ExtensionId) {
+		toSerialize["extensionId"] = o.ExtensionId
 	}
 	if !IsNil(o.InputVariables) {
 		toSerialize["inputVariables"] = o.InputVariables
@@ -185,8 +185,8 @@ func (o *CreateExtensionInstance) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "extensionId")
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "extensionId")
 		delete(additionalProperties, "inputVariables")
 		o.AdditionalProperties = additionalProperties
 	}

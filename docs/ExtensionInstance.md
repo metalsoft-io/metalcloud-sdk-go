@@ -4,20 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | The extension instance ID. | 
 **Revision** | **float32** | Revision number | 
+**Label** | **string** | The extension instance label. Will be automatically generated if not provided. | 
+**AutomaticManagement** | **float32** | Flag specifying if the extension instance supports automatic management. | 
+**Subdomain** | Pointer to **string** | Subdomain of the Extension Instance. | [optional] 
+**UpdatedTimestamp** | **string** | Timestamp of the Extension Instance last update. | 
+**Id** | **float32** | The extension instance ID. | 
 **InfrastructureId** | **float32** | The infrastructure ID. | 
 **ExtensionId** | **float32** | The extension ID. | 
-**Label** | **string** | The extension instance label. Will be automatically generated if not provided. | 
+**ServiceStatus** | **string** | Service status of the Extension Instance | 
+**SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Extension Instance. | [optional] 
+**DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the Extension Instance. | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the Extension Instance. | [optional] 
 **InputVariables** | [**[]ExtensionVariable**](ExtensionVariable.md) | Input variables values. | 
 **OutputVariables** | [**[]ExtensionVariable**](ExtensionVariable.md) | Output variables values. | 
+**Config** | [**ExtensionInstanceConfiguration**](ExtensionInstanceConfiguration.md) | The current changes to be deployed for the Extension Instance. | 
+**CreatedTimestamp** | **string** | Timestamp of the Extension Instance creation. | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewExtensionInstance
 
-`func NewExtensionInstance(id float32, revision float32, infrastructureId float32, extensionId float32, label string, inputVariables []ExtensionVariable, outputVariables []ExtensionVariable, ) *ExtensionInstance`
+`func NewExtensionInstance(revision float32, label string, automaticManagement float32, updatedTimestamp string, id float32, infrastructureId float32, extensionId float32, serviceStatus string, inputVariables []ExtensionVariable, outputVariables []ExtensionVariable, config ExtensionInstanceConfiguration, createdTimestamp string, ) *ExtensionInstance`
 
 NewExtensionInstance instantiates a new ExtensionInstance object
 This constructor will assign default values to properties that have it defined,
@@ -31,26 +40,6 @@ will change when the set of required properties is changed
 NewExtensionInstanceWithDefaults instantiates a new ExtensionInstance object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *ExtensionInstance) GetId() float32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *ExtensionInstance) GetIdOk() (*float32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *ExtensionInstance) SetId(v float32)`
-
-SetId sets Id field to given value.
-
 
 ### GetRevision
 
@@ -70,6 +59,111 @@ and a boolean to check if the value has been set.
 `func (o *ExtensionInstance) SetRevision(v float32)`
 
 SetRevision sets Revision field to given value.
+
+
+### GetLabel
+
+`func (o *ExtensionInstance) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *ExtensionInstance) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *ExtensionInstance) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+
+### GetAutomaticManagement
+
+`func (o *ExtensionInstance) GetAutomaticManagement() float32`
+
+GetAutomaticManagement returns the AutomaticManagement field if non-nil, zero value otherwise.
+
+### GetAutomaticManagementOk
+
+`func (o *ExtensionInstance) GetAutomaticManagementOk() (*float32, bool)`
+
+GetAutomaticManagementOk returns a tuple with the AutomaticManagement field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutomaticManagement
+
+`func (o *ExtensionInstance) SetAutomaticManagement(v float32)`
+
+SetAutomaticManagement sets AutomaticManagement field to given value.
+
+
+### GetSubdomain
+
+`func (o *ExtensionInstance) GetSubdomain() string`
+
+GetSubdomain returns the Subdomain field if non-nil, zero value otherwise.
+
+### GetSubdomainOk
+
+`func (o *ExtensionInstance) GetSubdomainOk() (*string, bool)`
+
+GetSubdomainOk returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubdomain
+
+`func (o *ExtensionInstance) SetSubdomain(v string)`
+
+SetSubdomain sets Subdomain field to given value.
+
+### HasSubdomain
+
+`func (o *ExtensionInstance) HasSubdomain() bool`
+
+HasSubdomain returns a boolean if a field has been set.
+
+### GetUpdatedTimestamp
+
+`func (o *ExtensionInstance) GetUpdatedTimestamp() string`
+
+GetUpdatedTimestamp returns the UpdatedTimestamp field if non-nil, zero value otherwise.
+
+### GetUpdatedTimestampOk
+
+`func (o *ExtensionInstance) GetUpdatedTimestampOk() (*string, bool)`
+
+GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedTimestamp
+
+`func (o *ExtensionInstance) SetUpdatedTimestamp(v string)`
+
+SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
+
+
+### GetId
+
+`func (o *ExtensionInstance) GetId() float32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ExtensionInstance) GetIdOk() (*float32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ExtensionInstance) SetId(v float32)`
+
+SetId sets Id field to given value.
 
 
 ### GetInfrastructureId
@@ -112,25 +206,100 @@ and a boolean to check if the value has been set.
 SetExtensionId sets ExtensionId field to given value.
 
 
-### GetLabel
+### GetServiceStatus
 
-`func (o *ExtensionInstance) GetLabel() string`
+`func (o *ExtensionInstance) GetServiceStatus() string`
 
-GetLabel returns the Label field if non-nil, zero value otherwise.
+GetServiceStatus returns the ServiceStatus field if non-nil, zero value otherwise.
 
-### GetLabelOk
+### GetServiceStatusOk
 
-`func (o *ExtensionInstance) GetLabelOk() (*string, bool)`
+`func (o *ExtensionInstance) GetServiceStatusOk() (*string, bool)`
 
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+GetServiceStatusOk returns a tuple with the ServiceStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLabel
+### SetServiceStatus
 
-`func (o *ExtensionInstance) SetLabel(v string)`
+`func (o *ExtensionInstance) SetServiceStatus(v string)`
 
-SetLabel sets Label field to given value.
+SetServiceStatus sets ServiceStatus field to given value.
 
+
+### GetSubdomainPermanent
+
+`func (o *ExtensionInstance) GetSubdomainPermanent() string`
+
+GetSubdomainPermanent returns the SubdomainPermanent field if non-nil, zero value otherwise.
+
+### GetSubdomainPermanentOk
+
+`func (o *ExtensionInstance) GetSubdomainPermanentOk() (*string, bool)`
+
+GetSubdomainPermanentOk returns a tuple with the SubdomainPermanent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubdomainPermanent
+
+`func (o *ExtensionInstance) SetSubdomainPermanent(v string)`
+
+SetSubdomainPermanent sets SubdomainPermanent field to given value.
+
+### HasSubdomainPermanent
+
+`func (o *ExtensionInstance) HasSubdomainPermanent() bool`
+
+HasSubdomainPermanent returns a boolean if a field has been set.
+
+### GetDnsSubdomainId
+
+`func (o *ExtensionInstance) GetDnsSubdomainId() float32`
+
+GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
+
+### GetDnsSubdomainIdOk
+
+`func (o *ExtensionInstance) GetDnsSubdomainIdOk() (*float32, bool)`
+
+GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsSubdomainId
+
+`func (o *ExtensionInstance) SetDnsSubdomainId(v float32)`
+
+SetDnsSubdomainId sets DnsSubdomainId field to given value.
+
+### HasDnsSubdomainId
+
+`func (o *ExtensionInstance) HasDnsSubdomainId() bool`
+
+HasDnsSubdomainId returns a boolean if a field has been set.
+
+### GetDnsSubdomainPermanentId
+
+`func (o *ExtensionInstance) GetDnsSubdomainPermanentId() float32`
+
+GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field if non-nil, zero value otherwise.
+
+### GetDnsSubdomainPermanentIdOk
+
+`func (o *ExtensionInstance) GetDnsSubdomainPermanentIdOk() (*float32, bool)`
+
+GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsSubdomainPermanentId
+
+`func (o *ExtensionInstance) SetDnsSubdomainPermanentId(v float32)`
+
+SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
+
+### HasDnsSubdomainPermanentId
+
+`func (o *ExtensionInstance) HasDnsSubdomainPermanentId() bool`
+
+HasDnsSubdomainPermanentId returns a boolean if a field has been set.
 
 ### GetInputVariables
 
@@ -170,6 +339,46 @@ and a boolean to check if the value has been set.
 `func (o *ExtensionInstance) SetOutputVariables(v []ExtensionVariable)`
 
 SetOutputVariables sets OutputVariables field to given value.
+
+
+### GetConfig
+
+`func (o *ExtensionInstance) GetConfig() ExtensionInstanceConfiguration`
+
+GetConfig returns the Config field if non-nil, zero value otherwise.
+
+### GetConfigOk
+
+`func (o *ExtensionInstance) GetConfigOk() (*ExtensionInstanceConfiguration, bool)`
+
+GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfig
+
+`func (o *ExtensionInstance) SetConfig(v ExtensionInstanceConfiguration)`
+
+SetConfig sets Config field to given value.
+
+
+### GetCreatedTimestamp
+
+`func (o *ExtensionInstance) GetCreatedTimestamp() string`
+
+GetCreatedTimestamp returns the CreatedTimestamp field if non-nil, zero value otherwise.
+
+### GetCreatedTimestampOk
+
+`func (o *ExtensionInstance) GetCreatedTimestampOk() (*string, bool)`
+
+GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedTimestamp
+
+`func (o *ExtensionInstance) SetCreatedTimestamp(v string)`
+
+SetCreatedTimestamp sets CreatedTimestamp field to given value.
 
 
 ### GetLinks

@@ -22,8 +22,6 @@ Name | Type | Description | Notes
 **ReservedVlans** | Pointer to **[]string** | Reserved VLAN ranges that are excluded from general allocation. Must follow the \&quot;start-end\&quot; format. | [optional] 
 **VlanRanges** | Pointer to **[]string** | Array of VLAN range strings in \&quot;start-end\&quot; format to be used in configuration. | [optional] 
 **VniPrefix** | Pointer to **int32** | The VNI prefix for the EVPN VXLAN fabric. | [optional] 
-**PreventVrfCleanup** | Pointer to **[]string** | VRF ID ranges to be preserved from automatic cleanup. Each range must follow the \&quot;start-end\&quot; format. | [optional] 
-**ReservedVrfs** | Pointer to **[]string** | Reserved VRF ID ranges that are set aside exclusively for specific network functions. Each range must be provided in the \&quot;start-end\&quot; format. | [optional] 
 **VrfVlanRanges** | Pointer to **[]string** | VLAN ranges to be associated with VRF instances. Each value must be an ordered pair specified in the \&quot;start-end\&quot; format. | [optional] 
 **VsanId** | Pointer to **int32** | VSAN ID for the Fibre Channel fabric | [optional] 
 **TopologyType** | Pointer to **string** | Fabric topology type | [optional] 
@@ -497,56 +495,6 @@ SetVniPrefix sets VniPrefix field to given value.
 `func (o *NetworkFabricFabricConfiguration) HasVniPrefix() bool`
 
 HasVniPrefix returns a boolean if a field has been set.
-
-### GetPreventVrfCleanup
-
-`func (o *NetworkFabricFabricConfiguration) GetPreventVrfCleanup() []string`
-
-GetPreventVrfCleanup returns the PreventVrfCleanup field if non-nil, zero value otherwise.
-
-### GetPreventVrfCleanupOk
-
-`func (o *NetworkFabricFabricConfiguration) GetPreventVrfCleanupOk() (*[]string, bool)`
-
-GetPreventVrfCleanupOk returns a tuple with the PreventVrfCleanup field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPreventVrfCleanup
-
-`func (o *NetworkFabricFabricConfiguration) SetPreventVrfCleanup(v []string)`
-
-SetPreventVrfCleanup sets PreventVrfCleanup field to given value.
-
-### HasPreventVrfCleanup
-
-`func (o *NetworkFabricFabricConfiguration) HasPreventVrfCleanup() bool`
-
-HasPreventVrfCleanup returns a boolean if a field has been set.
-
-### GetReservedVrfs
-
-`func (o *NetworkFabricFabricConfiguration) GetReservedVrfs() []string`
-
-GetReservedVrfs returns the ReservedVrfs field if non-nil, zero value otherwise.
-
-### GetReservedVrfsOk
-
-`func (o *NetworkFabricFabricConfiguration) GetReservedVrfsOk() (*[]string, bool)`
-
-GetReservedVrfsOk returns a tuple with the ReservedVrfs field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReservedVrfs
-
-`func (o *NetworkFabricFabricConfiguration) SetReservedVrfs(v []string)`
-
-SetReservedVrfs sets ReservedVrfs field to given value.
-
-### HasReservedVrfs
-
-`func (o *NetworkFabricFabricConfiguration) HasReservedVrfs() bool`
-
-HasReservedVrfs returns a boolean if a field has been set.
 
 ### GetVrfVlanRanges
 
