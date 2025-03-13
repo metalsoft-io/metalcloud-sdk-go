@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RowIndex** | **float32** | Row index of the object. | 
-**ColumnIndex** | **float32** | Column index of the object. | 
-**ShowWidgetChildren** | **bool** | Whether to show the object children in the GUI. | 
-**RandomInstanceID** | **string** | Random instance ID. | 
-**UserAgent** | **string** | User agent. | 
+**RowIndex** | Pointer to **float32** | Row index of the object. | [optional] 
+**ColumnIndex** | Pointer to **float32** | Column index of the object. | [optional] 
+**ShowWidgetChildren** | Pointer to **bool** | Whether to show the object children in the GUI. | [optional] 
+**RandomInstanceID** | Pointer to **string** | Random instance ID. | [optional] 
+**UserAgent** | Pointer to **string** | User agent. | [optional] 
 
 ## Methods
 
 ### NewGenericGUISettings
 
-`func NewGenericGUISettings(rowIndex float32, columnIndex float32, showWidgetChildren bool, randomInstanceID string, userAgent string, ) *GenericGUISettings`
+`func NewGenericGUISettings() *GenericGUISettings`
 
 NewGenericGUISettings instantiates a new GenericGUISettings object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetRowIndex sets RowIndex field to given value.
 
+### HasRowIndex
+
+`func (o *GenericGUISettings) HasRowIndex() bool`
+
+HasRowIndex returns a boolean if a field has been set.
 
 ### GetColumnIndex
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetColumnIndex sets ColumnIndex field to given value.
 
+### HasColumnIndex
+
+`func (o *GenericGUISettings) HasColumnIndex() bool`
+
+HasColumnIndex returns a boolean if a field has been set.
 
 ### GetShowWidgetChildren
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetShowWidgetChildren sets ShowWidgetChildren field to given value.
 
+### HasShowWidgetChildren
+
+`func (o *GenericGUISettings) HasShowWidgetChildren() bool`
+
+HasShowWidgetChildren returns a boolean if a field has been set.
 
 ### GetRandomInstanceID
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetRandomInstanceID sets RandomInstanceID field to given value.
 
+### HasRandomInstanceID
+
+`func (o *GenericGUISettings) HasRandomInstanceID() bool`
+
+HasRandomInstanceID returns a boolean if a field has been set.
 
 ### GetUserAgent
 
@@ -128,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetUserAgent sets UserAgent field to given value.
 
+### HasUserAgent
+
+`func (o *GenericGUISettings) HasUserAgent() bool`
+
+HasUserAgent returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

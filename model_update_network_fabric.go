@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UpdateNetworkFabric type satisfies the MappedNullable interface at compile time
@@ -26,7 +27,7 @@ type UpdateNetworkFabric struct {
 	Name *string `json:"name,omitempty"`
 	// Network fabric description
 	Description *string `json:"description,omitempty"`
-	FabricConfiguration *NetworkFabricFabricConfiguration `json:"fabricConfiguration,omitempty"`
+	FabricConfiguration NetworkFabricFabricConfiguration `json:"fabricConfiguration"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,8 +37,9 @@ type _UpdateNetworkFabric UpdateNetworkFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateNetworkFabric() *UpdateNetworkFabric {
+func NewUpdateNetworkFabric(fabricConfiguration NetworkFabricFabricConfiguration) *UpdateNetworkFabric {
 	this := UpdateNetworkFabric{}
+	this.FabricConfiguration = fabricConfiguration
 	return &this
 }
 
@@ -145,36 +147,28 @@ func (o *UpdateNetworkFabric) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetFabricConfiguration returns the FabricConfiguration field value if set, zero value otherwise.
+// GetFabricConfiguration returns the FabricConfiguration field value
 func (o *UpdateNetworkFabric) GetFabricConfiguration() NetworkFabricFabricConfiguration {
-	if o == nil || IsNil(o.FabricConfiguration) {
+	if o == nil {
 		var ret NetworkFabricFabricConfiguration
 		return ret
 	}
-	return *o.FabricConfiguration
+
+	return o.FabricConfiguration
 }
 
-// GetFabricConfigurationOk returns a tuple with the FabricConfiguration field value if set, nil otherwise
+// GetFabricConfigurationOk returns a tuple with the FabricConfiguration field value
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFabric) GetFabricConfigurationOk() (*NetworkFabricFabricConfiguration, bool) {
-	if o == nil || IsNil(o.FabricConfiguration) {
+	if o == nil {
 		return nil, false
 	}
-	return o.FabricConfiguration, true
+	return &o.FabricConfiguration, true
 }
 
-// HasFabricConfiguration returns a boolean if a field has been set.
-func (o *UpdateNetworkFabric) HasFabricConfiguration() bool {
-	if o != nil && !IsNil(o.FabricConfiguration) {
-		return true
-	}
-
-	return false
-}
-
-// SetFabricConfiguration gets a reference to the given NetworkFabricFabricConfiguration and assigns it to the FabricConfiguration field.
+// SetFabricConfiguration sets field value
 func (o *UpdateNetworkFabric) SetFabricConfiguration(v NetworkFabricFabricConfiguration) {
-	o.FabricConfiguration = &v
+	o.FabricConfiguration = v
 }
 
 func (o UpdateNetworkFabric) MarshalJSON() ([]byte, error) {
@@ -196,9 +190,7 @@ func (o UpdateNetworkFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !IsNil(o.FabricConfiguration) {
-		toSerialize["fabricConfiguration"] = o.FabricConfiguration
-	}
+	toSerialize["fabricConfiguration"] = o.FabricConfiguration
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -208,6 +200,27 @@ func (o UpdateNetworkFabric) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *UpdateNetworkFabric) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"fabricConfiguration",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varUpdateNetworkFabric := _UpdateNetworkFabric{}
 
 	err = json.Unmarshal(data, &varUpdateNetworkFabric)

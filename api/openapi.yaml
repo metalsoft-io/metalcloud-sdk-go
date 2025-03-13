@@ -7050,7 +7050,34 @@ paths:
       summary: Retrieves the specified infrastructure
       tags:
       - Infrastructure
-  /api/v2/infrastructures/{infrastructureId}/configuration:
+  /api/v2/infrastructures/{infrastructureId}/config:
+    get:
+      operationId: getInfrastructureConfigInfo
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureConfiguration'
+          description: Returns the Infrastructure configuration information
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get configuration information about the specified Infrastructure
+      tags:
+      - Infrastructure
     patch:
       description: Updates the specified infrastructure configuration
       operationId: updateInfrastructureConfiguration
@@ -27882,12 +27909,6 @@ components:
         userAgent:
           description: User agent.
           type: string
-      required:
-      - columnIndex
-      - randomInstanceID
-      - rowIndex
-      - showWidgetChildren
-      - userAgent
       type: object
     BucketMeta:
       properties:
@@ -34909,6 +34930,160 @@ components:
           description: Custom variables in JSON format.
           type: object
       type: object
+    InfrastructureConfiguration:
+      example:
+        experimentalPriority: disallow
+        datacenterName: datacenterName
+        serverTypeIdToPreferredServerIds: "{}"
+        description: description
+        ipv6SubnetsCountActive: 3.616076749251911
+        updatedTimestamp: updatedTimestamp
+        deployType: create
+        customVariables: "{}"
+        ipv4UnusedIpAddresses: 2.027123023002322
+        dnsSubdomainChangeId: 1.4658129805029452
+        isApiPrivate: 4.145608029883936
+        infrastructureDeployId: 6.027456183070403
+        reservedLanIpRanges: "{}"
+        subnetPoolLan: "{}"
+        isAutomanaged: 1.2315135367772556
+        instancesCountActive: 2.3021358869347655
+        settings: "{}"
+        certificatesJson: certificatesJson
+        dnsSubdomainId: 1.4894159098541704
+        emptyEdit: 1.0246457001441578
+        drivesCountActive: 7.061401241503109
+        userIdOwner: 5.637376656633329
+        label: label
+        revision: 0.8008281904610115
+        isPublicDesignsMember: 7.386281948385884
+        ipv4SubnetsCountActive: 9.301444243932576
+        deployCookieJarJson: "{}"
+        deferredDeployAttemptLastErrorJson: "{}"
+        siteId: 5.962133916683182
+        subdomain: subdomain
+        deployStatus: not_started
+      properties:
+        revision:
+          description: Revision of the Infrastructure
+          type: number
+        label:
+          type: string
+        deployType:
+          default: create
+          description: Deploy type of the Infrastructure
+          enum:
+          - create
+          - delete
+          - edit
+          - start
+          - stop
+          - suspend
+          type: string
+        deployStatus:
+          default: not_started
+          description: Deploy status of the Infrastructure
+          enum:
+          - not_started
+          - ongoing
+          - finished
+          type: string
+        serverTypeIdToPreferredServerIds:
+          description: An object having as key the server type id and as value an
+            array of preferred server ids
+          type: object
+        infrastructureDeployId:
+          description: Id of the deployment for the Infrastructure
+          type: number
+        dnsSubdomainChangeId:
+          description: DNS Subdomain Change ID
+          type: number
+        datacenterName:
+          description: Datacenter name where the Infrastructure is located.
+          type: string
+        siteId:
+          description: The ID of the site where the Infrastructure is located.
+          type: number
+        customVariables:
+          description: Custom variables in JSON format.
+          type: object
+        userIdOwner:
+          description: User ID of the owner of the Infrastructure.
+          type: number
+        subdomain:
+          description: Subdomain associated with the Infrastructure.
+          type: string
+        instancesCountActive:
+          description: Number of active instances.
+          type: number
+        drivesCountActive:
+          description: Number of active drives.
+          type: number
+        ipv4SubnetsCountActive:
+          description: Number of active IPv4 subnets.
+          type: number
+        ipv6SubnetsCountActive:
+          description: Number of active IPv6 subnets.
+          type: number
+        ipv4UnusedIpAddresses:
+          description: Number of unused IPv4 addresses.
+          type: number
+        description:
+          description: Description of the infrastructure.
+          type: string
+        settings:
+          description: Settings in JSON format.
+          type: object
+        isApiPrivate:
+          description: Whether the infrastructure API is private.
+          type: number
+        experimentalPriority:
+          description: Experimental priority.
+          enum:
+          - disallow
+          - avoid
+          - equal
+          - prefer
+          type: string
+        isPublicDesignsMember:
+          description: Whether the infrastructure is a member of public designs.
+          type: number
+        certificatesJson:
+          description: Certificates in JSON format.
+          type: string
+        deployCookieJarJson:
+          description: Deploy cookie jar JSON.
+          type: object
+        deferredDeployAttemptLastErrorJson:
+          description: Last error of deferred deploy attempt.
+          type: object
+        isAutomanaged:
+          description: Whether the infrastructure is automanaged.
+          type: number
+        emptyEdit:
+          description: Number of empty edits
+          type: number
+        reservedLanIpRanges:
+          description: Reserved LAN IP ranges in JSON format.
+          type: object
+        subnetPoolLan:
+          description: Subnet pool for LAN in JSON format.
+          type: object
+        updatedTimestamp:
+          description: Timestamp of the latest update for the Infrastructure.
+          type: string
+        dnsSubdomainId:
+          description: DNS Subdomain ID.
+          type: number
+      required:
+      - datacenterName
+      - deployStatus
+      - deployType
+      - label
+      - revision
+      - siteId
+      - updatedTimestamp
+      type: object
     UpdateInfrastructureMeta:
       example:
         guiSettings:
@@ -35042,7 +35217,9 @@ components:
         - diskTypes
         additionalWanIpv4Json: "{}"
         revision: 1
-        firmwarePoliciesJson: "{}"
+        firmwarePoliciesJson:
+        - "{}"
+        - "{}"
         networkEquipmentForceSubnetPoolIpv4WanId: 7
         diskSizeMbytes: 6
         instanceCount: 3
@@ -35092,7 +35269,10 @@ components:
           type: integer
         firmwarePoliciesJson:
           description: Object containing associated firmware policies.
-          type: object
+          items:
+            type: object
+          nullable: true
+          type: array
         volumeTemplateId:
           description: The volume template ID (or name) to use if the servers in the
             InstanceArray have local disks.
@@ -35190,14 +35370,12 @@ components:
           description: Id of the deployment for the Instance Group.
           type: integer
       required:
-      - defaultServerProfileID
       - deployStatus
       - deployType
       - diskCount
       - diskSizeMbytes
       - diskTypes
       - firewallManaged
-      - firmwarePoliciesJson
       - instanceArrayBootMethod
       - instanceCount
       - ipAllocateAuto
@@ -35251,7 +35429,9 @@ components:
         - diskTypes
         additionalWanIpv4Json: "{}"
         revision: 1
-        firmwarePoliciesJson: "{}"
+        firmwarePoliciesJson:
+        - "{}"
+        - "{}"
         networkEquipmentForceSubnetPoolIpv4WanId: 6
         diskSizeMbytes: 1
         infrastructureId: 0
@@ -35291,7 +35471,9 @@ components:
           - diskTypes
           additionalWanIpv4Json: "{}"
           revision: 1
-          firmwarePoliciesJson: "{}"
+          firmwarePoliciesJson:
+          - "{}"
+          - "{}"
           networkEquipmentForceSubnetPoolIpv4WanId: 7
           diskSizeMbytes: 6
           instanceCount: 3
@@ -35365,7 +35547,10 @@ components:
           type: integer
         firmwarePoliciesJson:
           description: Object containing associated firmware policies.
-          type: object
+          items:
+            type: object
+          nullable: true
+          type: array
         volumeTemplateId:
           description: The volume template ID (or name) to use if the servers in the
             InstanceArray have local disks.
@@ -35468,12 +35653,10 @@ components:
           type: array
       required:
       - createdTimestamp
-      - defaultServerProfileID
       - diskCount
       - diskSizeMbytes
       - diskTypes
       - firewallManaged
-      - firmwarePoliciesJson
       - id
       - infrastructureId
       - instanceArrayBootMethod
@@ -35532,7 +35715,9 @@ components:
           - diskTypes
           additionalWanIpv4Json: "{}"
           revision: 1
-          firmwarePoliciesJson: "{}"
+          firmwarePoliciesJson:
+          - "{}"
+          - "{}"
           networkEquipmentForceSubnetPoolIpv4WanId: 6
           diskSizeMbytes: 1
           infrastructureId: 0
@@ -35572,7 +35757,9 @@ components:
             - diskTypes
             additionalWanIpv4Json: "{}"
             revision: 1
-            firmwarePoliciesJson: "{}"
+            firmwarePoliciesJson:
+            - "{}"
+            - "{}"
             networkEquipmentForceSubnetPoolIpv4WanId: 7
             diskSizeMbytes: 6
             instanceCount: 3
@@ -35618,7 +35805,9 @@ components:
           - diskTypes
           additionalWanIpv4Json: "{}"
           revision: 1
-          firmwarePoliciesJson: "{}"
+          firmwarePoliciesJson:
+          - "{}"
+          - "{}"
           networkEquipmentForceSubnetPoolIpv4WanId: 6
           diskSizeMbytes: 1
           infrastructureId: 0
@@ -35658,7 +35847,9 @@ components:
             - diskTypes
             additionalWanIpv4Json: "{}"
             revision: 1
-            firmwarePoliciesJson: "{}"
+            firmwarePoliciesJson:
+            - "{}"
+            - "{}"
             networkEquipmentForceSubnetPoolIpv4WanId: 7
             diskSizeMbytes: 6
             instanceCount: 3
@@ -38922,7 +39113,7 @@ components:
           quarantineSubnetStart: quarantineSubnetStart
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-03-12T21:14:41.899Z
+        createdTimestamp: 2025-03-13T15:59:33.442Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -38964,7 +39155,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-03-12T21:14:41.899Z
+        updatedTimestamp: 2025-03-13T15:59:33.443Z
         revision: "1"
       properties:
         siteId:
@@ -38991,12 +39182,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-03-12T21:14:41.899Z
+          example: 2025-03-13T15:59:33.442Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-03-12T21:14:41.899Z
+          example: 2025-03-13T15:59:33.443Z
           format: date-time
           type: string
         links:
@@ -39149,7 +39340,7 @@ components:
             quarantineSubnetStart: quarantineSubnetStart
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-03-12T21:14:41.899Z
+          createdTimestamp: 2025-03-13T15:59:33.442Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -39191,7 +39382,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-12T21:14:41.899Z
+          updatedTimestamp: 2025-03-13T15:59:33.443Z
           revision: "1"
         - networkEquipment:
           - bootstrapReadinessCheckInProgress: 9.301444243932576
@@ -39318,7 +39509,7 @@ components:
             quarantineSubnetStart: quarantineSubnetStart
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-03-12T21:14:41.899Z
+          createdTimestamp: 2025-03-13T15:59:33.442Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -39360,7 +39551,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-12T21:14:41.899Z
+          updatedTimestamp: 2025-03-13T15:59:33.443Z
           revision: "1"
         meta: ""
         links: ""
@@ -39501,6 +39692,8 @@ components:
           type: string
         fabricConfiguration:
           $ref: '#/components/schemas/NetworkFabric_fabricConfiguration'
+      required:
+      - fabricConfiguration
       type: object
     NetworkEquipmentToFabric:
       example:

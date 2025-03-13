@@ -54,7 +54,7 @@ type ServerInstanceGroup struct {
 	FirewallRulesSetId *int32 `json:"firewallRulesSetId,omitempty"`
 	FirewallManaged int32 `json:"firewallManaged"`
 	// Object containing associated firmware policies.
-	FirmwarePoliciesJson map[string]interface{} `json:"firmwarePoliciesJson"`
+	FirmwarePoliciesJson []map[string]interface{} `json:"firmwarePoliciesJson,omitempty"`
 	// The volume template ID (or name) to use if the servers in the InstanceArray have local disks.
 	VolumeTemplateId *int32 `json:"volumeTemplateId,omitempty"`
 	// Id of the bootable drive for the Server Instance Group.
@@ -96,7 +96,7 @@ type ServerInstanceGroup struct {
 	// Id of the VM Instance Group this Server Instance Group belongs to.
 	VmInstanceGroupId *int32 `json:"vmInstanceGroupId,omitempty"`
 	// The group's default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied.
-	DefaultServerProfileID int32 `json:"defaultServerProfileID"`
+	DefaultServerProfileID *int32 `json:"defaultServerProfileID,omitempty"`
 	Config *ServerInstanceGroupConfiguration `json:"config,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
@@ -109,7 +109,7 @@ type _ServerInstanceGroup ServerInstanceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroup(id int32, revision float32, label string, infrastructureId int32, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, defaultServerProfileID int32) *ServerInstanceGroup {
+func NewServerInstanceGroup(id int32, revision float32, label string, infrastructureId int32, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32) *ServerInstanceGroup {
 	this := ServerInstanceGroup{}
 	this.Id = id
 	this.Revision = revision
@@ -121,7 +121,6 @@ func NewServerInstanceGroup(id int32, revision float32, label string, infrastruc
 	this.IpAllocateAuto = ipAllocateAuto
 	this.Ipv4SubnetCreateAuto = ipv4SubnetCreateAuto
 	this.FirewallManaged = firewallManaged
-	this.FirmwarePoliciesJson = firmwarePoliciesJson
 	this.InstanceArrayBootMethod = instanceArrayBootMethod
 	this.ProcessorCount = processorCount
 	this.ProcessorCoreCount = processorCoreCount
@@ -134,7 +133,6 @@ func NewServerInstanceGroup(id int32, revision float32, label string, infrastruc
 	this.VirtualInterfacesEnabled = virtualInterfacesEnabled
 	this.ServiceStatus = serviceStatus
 	this.IsVmGroup = isVmGroup
-	this.DefaultServerProfileID = defaultServerProfileID
 	return &this
 }
 
@@ -694,27 +692,36 @@ func (o *ServerInstanceGroup) SetFirewallManaged(v int32) {
 	o.FirewallManaged = v
 }
 
-// GetFirmwarePoliciesJson returns the FirmwarePoliciesJson field value
-func (o *ServerInstanceGroup) GetFirmwarePoliciesJson() map[string]interface{} {
+// GetFirmwarePoliciesJson returns the FirmwarePoliciesJson field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ServerInstanceGroup) GetFirmwarePoliciesJson() []map[string]interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
-
 	return o.FirmwarePoliciesJson
 }
 
-// GetFirmwarePoliciesJsonOk returns a tuple with the FirmwarePoliciesJson field value
+// GetFirmwarePoliciesJsonOk returns a tuple with the FirmwarePoliciesJson field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetFirmwarePoliciesJsonOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ServerInstanceGroup) GetFirmwarePoliciesJsonOk() ([]map[string]interface{}, bool) {
+	if o == nil || IsNil(o.FirmwarePoliciesJson) {
+		return nil, false
 	}
 	return o.FirmwarePoliciesJson, true
 }
 
-// SetFirmwarePoliciesJson sets field value
-func (o *ServerInstanceGroup) SetFirmwarePoliciesJson(v map[string]interface{}) {
+// HasFirmwarePoliciesJson returns a boolean if a field has been set.
+func (o *ServerInstanceGroup) HasFirmwarePoliciesJson() bool {
+	if o != nil && !IsNil(o.FirmwarePoliciesJson) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirmwarePoliciesJson gets a reference to the given []map[string]interface{} and assigns it to the FirmwarePoliciesJson field.
+func (o *ServerInstanceGroup) SetFirmwarePoliciesJson(v []map[string]interface{}) {
 	o.FirmwarePoliciesJson = v
 }
 
@@ -1310,28 +1317,36 @@ func (o *ServerInstanceGroup) SetVmInstanceGroupId(v int32) {
 	o.VmInstanceGroupId = &v
 }
 
-// GetDefaultServerProfileID returns the DefaultServerProfileID field value
+// GetDefaultServerProfileID returns the DefaultServerProfileID field value if set, zero value otherwise.
 func (o *ServerInstanceGroup) GetDefaultServerProfileID() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.DefaultServerProfileID) {
 		var ret int32
 		return ret
 	}
-
-	return o.DefaultServerProfileID
+	return *o.DefaultServerProfileID
 }
 
-// GetDefaultServerProfileIDOk returns a tuple with the DefaultServerProfileID field value
+// GetDefaultServerProfileIDOk returns a tuple with the DefaultServerProfileID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerInstanceGroup) GetDefaultServerProfileIDOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DefaultServerProfileID) {
 		return nil, false
 	}
-	return &o.DefaultServerProfileID, true
+	return o.DefaultServerProfileID, true
 }
 
-// SetDefaultServerProfileID sets field value
+// HasDefaultServerProfileID returns a boolean if a field has been set.
+func (o *ServerInstanceGroup) HasDefaultServerProfileID() bool {
+	if o != nil && !IsNil(o.DefaultServerProfileID) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultServerProfileID gets a reference to the given int32 and assigns it to the DefaultServerProfileID field.
 func (o *ServerInstanceGroup) SetDefaultServerProfileID(v int32) {
-	o.DefaultServerProfileID = v
+	o.DefaultServerProfileID = &v
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
@@ -1445,7 +1460,9 @@ func (o ServerInstanceGroup) ToMap() (map[string]interface{}, error) {
 		toSerialize["firewallRulesSetId"] = o.FirewallRulesSetId
 	}
 	toSerialize["firewallManaged"] = o.FirewallManaged
-	toSerialize["firmwarePoliciesJson"] = o.FirmwarePoliciesJson
+	if o.FirmwarePoliciesJson != nil {
+		toSerialize["firmwarePoliciesJson"] = o.FirmwarePoliciesJson
+	}
 	if !IsNil(o.VolumeTemplateId) {
 		toSerialize["volumeTemplateId"] = o.VolumeTemplateId
 	}
@@ -1489,7 +1506,9 @@ func (o ServerInstanceGroup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VmInstanceGroupId) {
 		toSerialize["vmInstanceGroupId"] = o.VmInstanceGroupId
 	}
-	toSerialize["defaultServerProfileID"] = o.DefaultServerProfileID
+	if !IsNil(o.DefaultServerProfileID) {
+		toSerialize["defaultServerProfileID"] = o.DefaultServerProfileID
+	}
 	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
 	}
@@ -1519,7 +1538,6 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		"ipAllocateAuto",
 		"ipv4SubnetCreateAuto",
 		"firewallManaged",
-		"firmwarePoliciesJson",
 		"instanceArrayBootMethod",
 		"processorCount",
 		"processorCoreCount",
@@ -1530,7 +1548,6 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		"virtualInterfacesEnabled",
 		"serviceStatus",
 		"isVmGroup",
-		"defaultServerProfileID",
 	}
 
 	allProperties := make(map[string]interface{})

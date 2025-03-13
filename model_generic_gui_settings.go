@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the GenericGUISettings type satisfies the MappedNullable interface at compile time
@@ -22,15 +21,15 @@ var _ MappedNullable = &GenericGUISettings{}
 // GenericGUISettings struct for GenericGUISettings
 type GenericGUISettings struct {
 	// Row index of the object.
-	RowIndex float32 `json:"rowIndex"`
+	RowIndex *float32 `json:"rowIndex,omitempty"`
 	// Column index of the object.
-	ColumnIndex float32 `json:"columnIndex"`
+	ColumnIndex *float32 `json:"columnIndex,omitempty"`
 	// Whether to show the object children in the GUI.
-	ShowWidgetChildren bool `json:"showWidgetChildren"`
+	ShowWidgetChildren *bool `json:"showWidgetChildren,omitempty"`
 	// Random instance ID.
-	RandomInstanceID string `json:"randomInstanceID"`
+	RandomInstanceID *string `json:"randomInstanceID,omitempty"`
 	// User agent.
-	UserAgent string `json:"userAgent"`
+	UserAgent *string `json:"userAgent,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,13 +39,8 @@ type _GenericGUISettings GenericGUISettings
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenericGUISettings(rowIndex float32, columnIndex float32, showWidgetChildren bool, randomInstanceID string, userAgent string) *GenericGUISettings {
+func NewGenericGUISettings() *GenericGUISettings {
 	this := GenericGUISettings{}
-	this.RowIndex = rowIndex
-	this.ColumnIndex = columnIndex
-	this.ShowWidgetChildren = showWidgetChildren
-	this.RandomInstanceID = randomInstanceID
-	this.UserAgent = userAgent
 	return &this
 }
 
@@ -58,124 +52,164 @@ func NewGenericGUISettingsWithDefaults() *GenericGUISettings {
 	return &this
 }
 
-// GetRowIndex returns the RowIndex field value
+// GetRowIndex returns the RowIndex field value if set, zero value otherwise.
 func (o *GenericGUISettings) GetRowIndex() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.RowIndex) {
 		var ret float32
 		return ret
 	}
-
-	return o.RowIndex
+	return *o.RowIndex
 }
 
-// GetRowIndexOk returns a tuple with the RowIndex field value
+// GetRowIndexOk returns a tuple with the RowIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericGUISettings) GetRowIndexOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RowIndex) {
 		return nil, false
 	}
-	return &o.RowIndex, true
+	return o.RowIndex, true
 }
 
-// SetRowIndex sets field value
+// HasRowIndex returns a boolean if a field has been set.
+func (o *GenericGUISettings) HasRowIndex() bool {
+	if o != nil && !IsNil(o.RowIndex) {
+		return true
+	}
+
+	return false
+}
+
+// SetRowIndex gets a reference to the given float32 and assigns it to the RowIndex field.
 func (o *GenericGUISettings) SetRowIndex(v float32) {
-	o.RowIndex = v
+	o.RowIndex = &v
 }
 
-// GetColumnIndex returns the ColumnIndex field value
+// GetColumnIndex returns the ColumnIndex field value if set, zero value otherwise.
 func (o *GenericGUISettings) GetColumnIndex() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.ColumnIndex) {
 		var ret float32
 		return ret
 	}
-
-	return o.ColumnIndex
+	return *o.ColumnIndex
 }
 
-// GetColumnIndexOk returns a tuple with the ColumnIndex field value
+// GetColumnIndexOk returns a tuple with the ColumnIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericGUISettings) GetColumnIndexOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ColumnIndex) {
 		return nil, false
 	}
-	return &o.ColumnIndex, true
+	return o.ColumnIndex, true
 }
 
-// SetColumnIndex sets field value
+// HasColumnIndex returns a boolean if a field has been set.
+func (o *GenericGUISettings) HasColumnIndex() bool {
+	if o != nil && !IsNil(o.ColumnIndex) {
+		return true
+	}
+
+	return false
+}
+
+// SetColumnIndex gets a reference to the given float32 and assigns it to the ColumnIndex field.
 func (o *GenericGUISettings) SetColumnIndex(v float32) {
-	o.ColumnIndex = v
+	o.ColumnIndex = &v
 }
 
-// GetShowWidgetChildren returns the ShowWidgetChildren field value
+// GetShowWidgetChildren returns the ShowWidgetChildren field value if set, zero value otherwise.
 func (o *GenericGUISettings) GetShowWidgetChildren() bool {
-	if o == nil {
+	if o == nil || IsNil(o.ShowWidgetChildren) {
 		var ret bool
 		return ret
 	}
-
-	return o.ShowWidgetChildren
+	return *o.ShowWidgetChildren
 }
 
-// GetShowWidgetChildrenOk returns a tuple with the ShowWidgetChildren field value
+// GetShowWidgetChildrenOk returns a tuple with the ShowWidgetChildren field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericGUISettings) GetShowWidgetChildrenOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ShowWidgetChildren) {
 		return nil, false
 	}
-	return &o.ShowWidgetChildren, true
+	return o.ShowWidgetChildren, true
 }
 
-// SetShowWidgetChildren sets field value
+// HasShowWidgetChildren returns a boolean if a field has been set.
+func (o *GenericGUISettings) HasShowWidgetChildren() bool {
+	if o != nil && !IsNil(o.ShowWidgetChildren) {
+		return true
+	}
+
+	return false
+}
+
+// SetShowWidgetChildren gets a reference to the given bool and assigns it to the ShowWidgetChildren field.
 func (o *GenericGUISettings) SetShowWidgetChildren(v bool) {
-	o.ShowWidgetChildren = v
+	o.ShowWidgetChildren = &v
 }
 
-// GetRandomInstanceID returns the RandomInstanceID field value
+// GetRandomInstanceID returns the RandomInstanceID field value if set, zero value otherwise.
 func (o *GenericGUISettings) GetRandomInstanceID() string {
-	if o == nil {
+	if o == nil || IsNil(o.RandomInstanceID) {
 		var ret string
 		return ret
 	}
-
-	return o.RandomInstanceID
+	return *o.RandomInstanceID
 }
 
-// GetRandomInstanceIDOk returns a tuple with the RandomInstanceID field value
+// GetRandomInstanceIDOk returns a tuple with the RandomInstanceID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericGUISettings) GetRandomInstanceIDOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RandomInstanceID) {
 		return nil, false
 	}
-	return &o.RandomInstanceID, true
+	return o.RandomInstanceID, true
 }
 
-// SetRandomInstanceID sets field value
+// HasRandomInstanceID returns a boolean if a field has been set.
+func (o *GenericGUISettings) HasRandomInstanceID() bool {
+	if o != nil && !IsNil(o.RandomInstanceID) {
+		return true
+	}
+
+	return false
+}
+
+// SetRandomInstanceID gets a reference to the given string and assigns it to the RandomInstanceID field.
 func (o *GenericGUISettings) SetRandomInstanceID(v string) {
-	o.RandomInstanceID = v
+	o.RandomInstanceID = &v
 }
 
-// GetUserAgent returns the UserAgent field value
+// GetUserAgent returns the UserAgent field value if set, zero value otherwise.
 func (o *GenericGUISettings) GetUserAgent() string {
-	if o == nil {
+	if o == nil || IsNil(o.UserAgent) {
 		var ret string
 		return ret
 	}
-
-	return o.UserAgent
+	return *o.UserAgent
 }
 
-// GetUserAgentOk returns a tuple with the UserAgent field value
+// GetUserAgentOk returns a tuple with the UserAgent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericGUISettings) GetUserAgentOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserAgent) {
 		return nil, false
 	}
-	return &o.UserAgent, true
+	return o.UserAgent, true
 }
 
-// SetUserAgent sets field value
+// HasUserAgent returns a boolean if a field has been set.
+func (o *GenericGUISettings) HasUserAgent() bool {
+	if o != nil && !IsNil(o.UserAgent) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserAgent gets a reference to the given string and assigns it to the UserAgent field.
 func (o *GenericGUISettings) SetUserAgent(v string) {
-	o.UserAgent = v
+	o.UserAgent = &v
 }
 
 func (o GenericGUISettings) MarshalJSON() ([]byte, error) {
@@ -188,11 +222,21 @@ func (o GenericGUISettings) MarshalJSON() ([]byte, error) {
 
 func (o GenericGUISettings) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["rowIndex"] = o.RowIndex
-	toSerialize["columnIndex"] = o.ColumnIndex
-	toSerialize["showWidgetChildren"] = o.ShowWidgetChildren
-	toSerialize["randomInstanceID"] = o.RandomInstanceID
-	toSerialize["userAgent"] = o.UserAgent
+	if !IsNil(o.RowIndex) {
+		toSerialize["rowIndex"] = o.RowIndex
+	}
+	if !IsNil(o.ColumnIndex) {
+		toSerialize["columnIndex"] = o.ColumnIndex
+	}
+	if !IsNil(o.ShowWidgetChildren) {
+		toSerialize["showWidgetChildren"] = o.ShowWidgetChildren
+	}
+	if !IsNil(o.RandomInstanceID) {
+		toSerialize["randomInstanceID"] = o.RandomInstanceID
+	}
+	if !IsNil(o.UserAgent) {
+		toSerialize["userAgent"] = o.UserAgent
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -202,31 +246,6 @@ func (o GenericGUISettings) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *GenericGUISettings) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"rowIndex",
-		"columnIndex",
-		"showWidgetChildren",
-		"randomInstanceID",
-		"userAgent",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varGenericGUISettings := _GenericGUISettings{}
 
 	err = json.Unmarshal(data, &varGenericGUISettings)

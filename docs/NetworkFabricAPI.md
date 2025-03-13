@@ -524,7 +524,7 @@ import (
 
 func main() {
 	networkFabricId := int32(56) // int32 | The ID of the network fabric to update
-	updateNetworkFabric := *openapiclient.NewUpdateNetworkFabric() // UpdateNetworkFabric | Network fabric updates
+	updateNetworkFabric := *openapiclient.NewUpdateNetworkFabric(openapiclient.NetworkFabric_fabricConfiguration{EthernetFabric: openapiclient.NewEthernetFabric("ethernet")}) // UpdateNetworkFabric | Network fabric updates
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()

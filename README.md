@@ -183,12 +183,13 @@ Class | Method | HTTP request | Description
 *InfrastructureAPI* | [**DeleteInfrastructure**](docs/InfrastructureAPI.md#deleteinfrastructure) | **Delete** /api/v2/infrastructures/{infrastructureId} | Deletes the specified infrastructure
 *InfrastructureAPI* | [**DeployInfrastructure**](docs/InfrastructureAPI.md#deployinfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/deploy | Deploys the specified infrastructure
 *InfrastructureAPI* | [**GetInfrastructure**](docs/InfrastructureAPI.md#getinfrastructure) | **Get** /api/v2/infrastructures/{infrastructureId} | Retrieves the specified infrastructure
+*InfrastructureAPI* | [**GetInfrastructureConfigInfo**](docs/InfrastructureAPI.md#getinfrastructureconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/config | Get configuration information about the specified Infrastructure
 *InfrastructureAPI* | [**GetInfrastructureUserLimits**](docs/InfrastructureAPI.md#getinfrastructureuserlimits) | **Get** /api/v2/infrastructures/{infrastructureId}/user-limits | Retrieves the specified infrastructure user limits
 *InfrastructureAPI* | [**GetInfrastructureUsers**](docs/InfrastructureAPI.md#getinfrastructureusers) | **Get** /api/v2/infrastructures/{infrastructureId}/users | Retrieves the specified infrastructure users
 *InfrastructureAPI* | [**GetInfrastructures**](docs/InfrastructureAPI.md#getinfrastructures) | **Get** /api/v2/infrastructures | Get all infrastructures
 *InfrastructureAPI* | [**RemoveInfrastructureUser**](docs/InfrastructureAPI.md#removeinfrastructureuser) | **Delete** /api/v2/infrastructures/{infrastructureId}/users/{userId} | Removes a user from the specified infrastructure
 *InfrastructureAPI* | [**RevertInfrastructure**](docs/InfrastructureAPI.md#revertinfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/revert | Reverts the specified infrastructure
-*InfrastructureAPI* | [**UpdateInfrastructureConfiguration**](docs/InfrastructureAPI.md#updateinfrastructureconfiguration) | **Patch** /api/v2/infrastructures/{infrastructureId}/configuration | Updates the specified infrastructure configuration
+*InfrastructureAPI* | [**UpdateInfrastructureConfiguration**](docs/InfrastructureAPI.md#updateinfrastructureconfiguration) | **Patch** /api/v2/infrastructures/{infrastructureId}/config | Updates the specified infrastructure configuration
 *InfrastructureAPI* | [**UpdateInfrastructureMetadata**](docs/InfrastructureAPI.md#updateinfrastructuremetadata) | **Patch** /api/v2/infrastructures/{infrastructureId}/metadata | Updates the specified infrastructure metadata
 *JobAPI* | [**GetJob**](docs/JobAPI.md#getjob) | **Get** /api/v2/jobs/{jobId} | Get Job information
 *JobAPI* | [**GetJobExceptions**](docs/JobAPI.md#getjobexceptions) | **Get** /api/v2/jobs/{jobId}/exceptions | Get a list of Job Exceptions
@@ -587,6 +588,7 @@ Class | Method | HTTP request | Description
  - [GlobalFirmwareUpgradeConfiguration](docs/GlobalFirmwareUpgradeConfiguration.md)
  - [Infrastructure](docs/Infrastructure.md)
  - [InfrastructureConfig](docs/InfrastructureConfig.md)
+ - [InfrastructureConfiguration](docs/InfrastructureConfiguration.md)
  - [InfrastructureCreate](docs/InfrastructureCreate.md)
  - [InfrastructureDeployOptions](docs/InfrastructureDeployOptions.md)
  - [InfrastructureDeployShutdownOptions](docs/InfrastructureDeployShutdownOptions.md)

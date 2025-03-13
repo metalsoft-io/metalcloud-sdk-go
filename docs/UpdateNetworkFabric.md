@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **SiteId** | Pointer to **float32** | The ID of the site where the entity is located. | [optional] 
 **Name** | Pointer to **string** | The network fabric name | [optional] 
 **Description** | Pointer to **string** | Network fabric description | [optional] 
-**FabricConfiguration** | Pointer to [**NetworkFabricFabricConfiguration**](NetworkFabricFabricConfiguration.md) |  | [optional] 
+**FabricConfiguration** | [**NetworkFabricFabricConfiguration**](NetworkFabricFabricConfiguration.md) |  | 
 
 ## Methods
 
 ### NewUpdateNetworkFabric
 
-`func NewUpdateNetworkFabric() *UpdateNetworkFabric`
+`func NewUpdateNetworkFabric(fabricConfiguration NetworkFabricFabricConfiguration, ) *UpdateNetworkFabric`
 
 NewUpdateNetworkFabric instantiates a new UpdateNetworkFabric object
 This constructor will assign default values to properties that have it defined,
@@ -122,11 +122,6 @@ and a boolean to check if the value has been set.
 
 SetFabricConfiguration sets FabricConfiguration field to given value.
 
-### HasFabricConfiguration
-
-`func (o *UpdateNetworkFabric) HasFabricConfiguration() bool`
-
-HasFabricConfiguration returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

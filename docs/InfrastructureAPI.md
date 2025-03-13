@@ -9,12 +9,13 @@ Method | HTTP request | Description
 [**DeleteInfrastructure**](InfrastructureAPI.md#DeleteInfrastructure) | **Delete** /api/v2/infrastructures/{infrastructureId} | Deletes the specified infrastructure
 [**DeployInfrastructure**](InfrastructureAPI.md#DeployInfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/deploy | Deploys the specified infrastructure
 [**GetInfrastructure**](InfrastructureAPI.md#GetInfrastructure) | **Get** /api/v2/infrastructures/{infrastructureId} | Retrieves the specified infrastructure
+[**GetInfrastructureConfigInfo**](InfrastructureAPI.md#GetInfrastructureConfigInfo) | **Get** /api/v2/infrastructures/{infrastructureId}/config | Get configuration information about the specified Infrastructure
 [**GetInfrastructureUserLimits**](InfrastructureAPI.md#GetInfrastructureUserLimits) | **Get** /api/v2/infrastructures/{infrastructureId}/user-limits | Retrieves the specified infrastructure user limits
 [**GetInfrastructureUsers**](InfrastructureAPI.md#GetInfrastructureUsers) | **Get** /api/v2/infrastructures/{infrastructureId}/users | Retrieves the specified infrastructure users
 [**GetInfrastructures**](InfrastructureAPI.md#GetInfrastructures) | **Get** /api/v2/infrastructures | Get all infrastructures
 [**RemoveInfrastructureUser**](InfrastructureAPI.md#RemoveInfrastructureUser) | **Delete** /api/v2/infrastructures/{infrastructureId}/users/{userId} | Removes a user from the specified infrastructure
 [**RevertInfrastructure**](InfrastructureAPI.md#RevertInfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/revert | Reverts the specified infrastructure
-[**UpdateInfrastructureConfiguration**](InfrastructureAPI.md#UpdateInfrastructureConfiguration) | **Patch** /api/v2/infrastructures/{infrastructureId}/configuration | Updates the specified infrastructure configuration
+[**UpdateInfrastructureConfiguration**](InfrastructureAPI.md#UpdateInfrastructureConfiguration) | **Patch** /api/v2/infrastructures/{infrastructureId}/config | Updates the specified infrastructure configuration
 [**UpdateInfrastructureMetadata**](InfrastructureAPI.md#UpdateInfrastructureMetadata) | **Patch** /api/v2/infrastructures/{infrastructureId}/metadata | Updates the specified infrastructure metadata
 
 
@@ -352,6 +353,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Infrastructure**](Infrastructure.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetInfrastructureConfigInfo
+
+> InfrastructureConfiguration GetInfrastructureConfigInfo(ctx, infrastructureId).Execute()
+
+Get configuration information about the specified Infrastructure
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfrastructureAPI.GetInfrastructureConfigInfo(context.Background(), infrastructureId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.GetInfrastructureConfigInfo``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInfrastructureConfigInfo`: InfrastructureConfiguration
+	fmt.Fprintf(os.Stdout, "Response from `InfrastructureAPI.GetInfrastructureConfigInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetInfrastructureConfigInfoRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**InfrastructureConfiguration**](InfrastructureConfiguration.md)
 
 ### Authorization
 

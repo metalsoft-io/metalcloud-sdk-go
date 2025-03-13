@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **FirewallProfileId** | Pointer to **int32** |  | [optional] 
 **FirewallRulesSetId** | Pointer to **int32** |  | [optional] 
 **FirewallManaged** | **int32** |  | 
-**FirmwarePoliciesJson** | **map[string]interface{}** | Object containing associated firmware policies. | 
+**FirmwarePoliciesJson** | Pointer to **[]map[string]interface{}** | Object containing associated firmware policies. | [optional] 
 **VolumeTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the InstanceArray have local disks. | [optional] 
 **DriveArrayIdBoot** | Pointer to **int32** | Id of the bootable drive for the Server Instance Group. | [optional] 
 **InstanceArrayBootMethod** | **string** | Instance Array Boot Method | 
@@ -45,7 +45,7 @@ Name | Type | Description | Notes
 **ResourcePoolId** | Pointer to **int32** | The resource pool assigned to this instance array | [optional] 
 **IsVmGroup** | **int32** | Flag to indicate if the Server Instance Group is belongs to a VM. | 
 **VmInstanceGroupId** | Pointer to **int32** | Id of the VM Instance Group this Server Instance Group belongs to. | [optional] 
-**DefaultServerProfileID** | **int32** | The group&#39;s default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied. | 
+**DefaultServerProfileID** | Pointer to **int32** | The group&#39;s default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied. | [optional] 
 **Config** | Pointer to [**ServerInstanceGroupConfiguration**](ServerInstanceGroupConfiguration.md) |  | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -53,7 +53,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceGroup
 
-`func NewServerInstanceGroup(id int32, revision float32, label string, infrastructureId int32, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, firmwarePoliciesJson map[string]interface{}, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, defaultServerProfileID int32, ) *ServerInstanceGroup`
+`func NewServerInstanceGroup(id int32, revision float32, label string, infrastructureId int32, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, ) *ServerInstanceGroup`
 
 NewServerInstanceGroup instantiates a new ServerInstanceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -495,24 +495,39 @@ SetFirewallManaged sets FirewallManaged field to given value.
 
 ### GetFirmwarePoliciesJson
 
-`func (o *ServerInstanceGroup) GetFirmwarePoliciesJson() map[string]interface{}`
+`func (o *ServerInstanceGroup) GetFirmwarePoliciesJson() []map[string]interface{}`
 
 GetFirmwarePoliciesJson returns the FirmwarePoliciesJson field if non-nil, zero value otherwise.
 
 ### GetFirmwarePoliciesJsonOk
 
-`func (o *ServerInstanceGroup) GetFirmwarePoliciesJsonOk() (*map[string]interface{}, bool)`
+`func (o *ServerInstanceGroup) GetFirmwarePoliciesJsonOk() (*[]map[string]interface{}, bool)`
 
 GetFirmwarePoliciesJsonOk returns a tuple with the FirmwarePoliciesJson field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFirmwarePoliciesJson
 
-`func (o *ServerInstanceGroup) SetFirmwarePoliciesJson(v map[string]interface{})`
+`func (o *ServerInstanceGroup) SetFirmwarePoliciesJson(v []map[string]interface{})`
 
 SetFirmwarePoliciesJson sets FirmwarePoliciesJson field to given value.
 
+### HasFirmwarePoliciesJson
 
+`func (o *ServerInstanceGroup) HasFirmwarePoliciesJson() bool`
+
+HasFirmwarePoliciesJson returns a boolean if a field has been set.
+
+### SetFirmwarePoliciesJsonNil
+
+`func (o *ServerInstanceGroup) SetFirmwarePoliciesJsonNil(b bool)`
+
+ SetFirmwarePoliciesJsonNil sets the value for FirmwarePoliciesJson to be an explicit nil
+
+### UnsetFirmwarePoliciesJson
+`func (o *ServerInstanceGroup) UnsetFirmwarePoliciesJson()`
+
+UnsetFirmwarePoliciesJson ensures that no value is present for FirmwarePoliciesJson, not even an explicit nil
 ### GetVolumeTemplateId
 
 `func (o *ServerInstanceGroup) GetVolumeTemplateId() int32`
@@ -1007,6 +1022,11 @@ and a boolean to check if the value has been set.
 
 SetDefaultServerProfileID sets DefaultServerProfileID field to given value.
 
+### HasDefaultServerProfileID
+
+`func (o *ServerInstanceGroup) HasDefaultServerProfileID() bool`
+
+HasDefaultServerProfileID returns a boolean if a field has been set.
 
 ### GetConfig
 

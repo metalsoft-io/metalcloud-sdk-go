@@ -196,6 +196,7 @@ docs/GlobalFirmwareUpgradeConfiguration.md
 docs/Infrastructure.md
 docs/InfrastructureAPI.md
 docs/InfrastructureConfig.md
+docs/InfrastructureConfiguration.md
 docs/InfrastructureCreate.md
 docs/InfrastructureDeployOptions.md
 docs/InfrastructureDeployShutdownOptions.md
@@ -576,6 +577,7 @@ model_generic_meta.go
 model_global_firmware_upgrade_configuration.go
 model_infrastructure.go
 model_infrastructure_config.go
+model_infrastructure_configuration.go
 model_infrastructure_create.go
 model_infrastructure_deploy_options.go
 model_infrastructure_deploy_shutdown_options.go
