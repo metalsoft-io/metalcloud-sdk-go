@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Revision** | **float32** | Revision number | 
 **OwnerId** | Pointer to **int32** | The Server profile owner ID. Can be null if the profile is public. Will be set to the currently logged user. | [optional] 
 **Label** | Pointer to **string** | The Server profile label. Will be automatically generated if not provided. | [optional] 
-**NetworkProfiles** | Pointer to [**[]ServerInstanceConfigurationNetworkProfilesInner**](ServerInstanceConfigurationNetworkProfilesInner.md) | Network profiles mapping for each network in this infrastructure. Changes to this configuration will be duplicated on each vm-instance of this group. | [optional] 
+**NetworkProfiles** | Pointer to [**[]ServerInstanceProfileNetworkProfilesInner**](ServerInstanceProfileNetworkProfilesInner.md) | Network profiles mapping for each network in this infrastructure. Changes to this configuration will be duplicated on each vm-instance of this group. | [optional] 
 **NetworkInterfaces** | Pointer to [**ServerInstanceProfileNetworkInterfaces**](ServerInstanceProfileNetworkInterfaces.md) |  | [optional] 
 **TemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the Server. Can be null in which case no OS will be deployed but all operations will continue as normal. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -124,20 +124,20 @@ HasLabel returns a boolean if a field has been set.
 
 ### GetNetworkProfiles
 
-`func (o *ServerInstanceProfile) GetNetworkProfiles() []ServerInstanceConfigurationNetworkProfilesInner`
+`func (o *ServerInstanceProfile) GetNetworkProfiles() []ServerInstanceProfileNetworkProfilesInner`
 
 GetNetworkProfiles returns the NetworkProfiles field if non-nil, zero value otherwise.
 
 ### GetNetworkProfilesOk
 
-`func (o *ServerInstanceProfile) GetNetworkProfilesOk() (*[]ServerInstanceConfigurationNetworkProfilesInner, bool)`
+`func (o *ServerInstanceProfile) GetNetworkProfilesOk() (*[]ServerInstanceProfileNetworkProfilesInner, bool)`
 
 GetNetworkProfilesOk returns a tuple with the NetworkProfiles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkProfiles
 
-`func (o *ServerInstanceProfile) SetNetworkProfiles(v []ServerInstanceConfigurationNetworkProfilesInner)`
+`func (o *ServerInstanceProfile) SetNetworkProfiles(v []ServerInstanceProfileNetworkProfilesInner)`
 
 SetNetworkProfiles sets NetworkProfiles field to given value.
 

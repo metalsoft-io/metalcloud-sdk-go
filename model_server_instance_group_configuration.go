@@ -72,8 +72,6 @@ type ServerInstanceGroupConfiguration struct {
 	OverrideIpv4WanVlanId *int32 `json:"overrideIpv4WanVlanId,omitempty"`
 	// ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the InstanceInterfaces associated with this InstanceArray.
 	NetworkEquipmentForceSubnetPoolIpv4WanId *int32 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
-	// The group's default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied.
-	DefaultServerProfileID *int32 `json:"defaultServerProfileID,omitempty"`
 	// Number of empty edits
 	EmptyEdit *int32 `json:"emptyEdit,omitempty"`
 	// Server Instance Group deploy type
@@ -922,38 +920,6 @@ func (o *ServerInstanceGroupConfiguration) SetNetworkEquipmentForceSubnetPoolIpv
 	o.NetworkEquipmentForceSubnetPoolIpv4WanId = &v
 }
 
-// GetDefaultServerProfileID returns the DefaultServerProfileID field value if set, zero value otherwise.
-func (o *ServerInstanceGroupConfiguration) GetDefaultServerProfileID() int32 {
-	if o == nil || IsNil(o.DefaultServerProfileID) {
-		var ret int32
-		return ret
-	}
-	return *o.DefaultServerProfileID
-}
-
-// GetDefaultServerProfileIDOk returns a tuple with the DefaultServerProfileID field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupConfiguration) GetDefaultServerProfileIDOk() (*int32, bool) {
-	if o == nil || IsNil(o.DefaultServerProfileID) {
-		return nil, false
-	}
-	return o.DefaultServerProfileID, true
-}
-
-// HasDefaultServerProfileID returns a boolean if a field has been set.
-func (o *ServerInstanceGroupConfiguration) HasDefaultServerProfileID() bool {
-	if o != nil && !IsNil(o.DefaultServerProfileID) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultServerProfileID gets a reference to the given int32 and assigns it to the DefaultServerProfileID field.
-func (o *ServerInstanceGroupConfiguration) SetDefaultServerProfileID(v int32) {
-	o.DefaultServerProfileID = &v
-}
-
 // GetEmptyEdit returns the EmptyEdit field value if set, zero value otherwise.
 func (o *ServerInstanceGroupConfiguration) GetEmptyEdit() int32 {
 	if o == nil || IsNil(o.EmptyEdit) {
@@ -1162,9 +1128,6 @@ func (o ServerInstanceGroupConfiguration) ToMap() (map[string]interface{}, error
 	if !IsNil(o.NetworkEquipmentForceSubnetPoolIpv4WanId) {
 		toSerialize["networkEquipmentForceSubnetPoolIpv4WanId"] = o.NetworkEquipmentForceSubnetPoolIpv4WanId
 	}
-	if !IsNil(o.DefaultServerProfileID) {
-		toSerialize["defaultServerProfileID"] = o.DefaultServerProfileID
-	}
 	if !IsNil(o.EmptyEdit) {
 		toSerialize["emptyEdit"] = o.EmptyEdit
 	}
@@ -1263,7 +1226,6 @@ func (o *ServerInstanceGroupConfiguration) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "networkProfileGroupId")
 		delete(additionalProperties, "overrideIpv4WanVlanId")
 		delete(additionalProperties, "networkEquipmentForceSubnetPoolIpv4WanId")
-		delete(additionalProperties, "defaultServerProfileID")
 		delete(additionalProperties, "emptyEdit")
 		delete(additionalProperties, "deployType")
 		delete(additionalProperties, "deployStatus")

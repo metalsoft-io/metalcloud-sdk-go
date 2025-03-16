@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
 **CreatedTimestamp** | **string** | Timestamp of the Server Instance Group creation. | 
 **UpdatedTimestamp** | **string** | Timestamp of the latest update for the Server Instance Group. | 
-**Meta** | Pointer to [**GenericMeta**](GenericMeta.md) | Meta information | [optional] 
 **Subdomain** | Pointer to **string** | Subdomain of the Server Group. | [optional] 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Server Group. | [optional] 
 **DnsSubdomainId** | Pointer to **int32** | Id of the DNS subdomain for the Server Group. | [optional] 
@@ -46,6 +45,7 @@ Name | Type | Description | Notes
 **IsVmGroup** | **int32** | Flag to indicate if the Server Instance Group is belongs to a VM. | 
 **VmInstanceGroupId** | Pointer to **int32** | Id of the VM Instance Group this Server Instance Group belongs to. | [optional] 
 **DefaultServerProfileID** | Pointer to **int32** | The group&#39;s default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied. | [optional] 
+**Meta** | Pointer to [**GenericMeta**](GenericMeta.md) |  | [optional] 
 **Config** | Pointer to [**ServerInstanceGroupConfiguration**](ServerInstanceGroupConfiguration.md) |  | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -237,31 +237,6 @@ and a boolean to check if the value has been set.
 
 SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
-
-### GetMeta
-
-`func (o *ServerInstanceGroup) GetMeta() GenericMeta`
-
-GetMeta returns the Meta field if non-nil, zero value otherwise.
-
-### GetMetaOk
-
-`func (o *ServerInstanceGroup) GetMetaOk() (*GenericMeta, bool)`
-
-GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMeta
-
-`func (o *ServerInstanceGroup) SetMeta(v GenericMeta)`
-
-SetMeta sets Meta field to given value.
-
-### HasMeta
-
-`func (o *ServerInstanceGroup) HasMeta() bool`
-
-HasMeta returns a boolean if a field has been set.
 
 ### GetSubdomain
 
@@ -1027,6 +1002,31 @@ SetDefaultServerProfileID sets DefaultServerProfileID field to given value.
 `func (o *ServerInstanceGroup) HasDefaultServerProfileID() bool`
 
 HasDefaultServerProfileID returns a boolean if a field has been set.
+
+### GetMeta
+
+`func (o *ServerInstanceGroup) GetMeta() GenericMeta`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *ServerInstanceGroup) GetMetaOk() (*GenericMeta, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *ServerInstanceGroup) SetMeta(v GenericMeta)`
+
+SetMeta sets Meta field to given value.
+
+### HasMeta
+
+`func (o *ServerInstanceGroup) HasMeta() bool`
+
+HasMeta returns a boolean if a field has been set.
 
 ### GetConfig
 

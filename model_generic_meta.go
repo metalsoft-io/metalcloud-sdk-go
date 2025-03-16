@@ -20,7 +20,6 @@ var _ MappedNullable = &GenericMeta{}
 
 // GenericMeta struct for GenericMeta
 type GenericMeta struct {
-	// GUI settings in JSON format.
 	GuiSettings *GenericGUISettings `json:"guiSettings,omitempty"`
 	// List of tags representative for the associated product.
 	Tags []string `json:"tags,omitempty"`

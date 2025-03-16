@@ -32,7 +32,6 @@ Name | Type | Description | Notes
 **NetworkProfileGroupId** | Pointer to **int32** |  | [optional] 
 **OverrideIpv4WanVlanId** | Pointer to **int32** | The ipv4 vlan that should override the default from the WAN Network for the primary ip. | [optional] 
 **NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the InstanceInterfaces associated with this InstanceArray. | [optional] 
-**DefaultServerProfileID** | Pointer to **int32** | The group&#39;s default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied. | [optional] 
 **EmptyEdit** | Pointer to **int32** | Number of empty edits | [optional] 
 **DeployType** | **string** | Server Instance Group deploy type | 
 **DeployStatus** | **string** | Server Instance Group deploy status | 
@@ -692,31 +691,6 @@ SetNetworkEquipmentForceSubnetPoolIpv4WanId sets NetworkEquipmentForceSubnetPool
 `func (o *ServerInstanceGroupConfiguration) HasNetworkEquipmentForceSubnetPoolIpv4WanId() bool`
 
 HasNetworkEquipmentForceSubnetPoolIpv4WanId returns a boolean if a field has been set.
-
-### GetDefaultServerProfileID
-
-`func (o *ServerInstanceGroupConfiguration) GetDefaultServerProfileID() int32`
-
-GetDefaultServerProfileID returns the DefaultServerProfileID field if non-nil, zero value otherwise.
-
-### GetDefaultServerProfileIDOk
-
-`func (o *ServerInstanceGroupConfiguration) GetDefaultServerProfileIDOk() (*int32, bool)`
-
-GetDefaultServerProfileIDOk returns a tuple with the DefaultServerProfileID field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultServerProfileID
-
-`func (o *ServerInstanceGroupConfiguration) SetDefaultServerProfileID(v int32)`
-
-SetDefaultServerProfileID sets DefaultServerProfileID field to given value.
-
-### HasDefaultServerProfileID
-
-`func (o *ServerInstanceGroupConfiguration) HasDefaultServerProfileID() bool`
-
-HasDefaultServerProfileID returns a boolean if a field has been set.
 
 ### GetEmptyEdit
 

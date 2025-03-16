@@ -250,7 +250,6 @@ docs/OSTemplatePaginatedList.md
 docs/OSTemplateUpdate.md
 docs/PaginatedResponseLinks.md
 docs/PaginatedResponseMeta.md
-docs/ProvisionerType.md
 docs/ReRegisterServerResponse.md
 docs/RegisterServer.md
 docs/RegisterServerResponse.md
@@ -290,7 +289,6 @@ docs/ServerGpuInfo.md
 docs/ServerInstance.md
 docs/ServerInstanceAPI.md
 docs/ServerInstanceConfiguration.md
-docs/ServerInstanceConfigurationNetworkProfilesInner.md
 docs/ServerInstanceCreate.md
 docs/ServerInstanceGroup.md
 docs/ServerInstanceGroupAPI.md
@@ -312,6 +310,7 @@ docs/ServerInstanceProfileAPI.md
 docs/ServerInstanceProfileCreate.md
 docs/ServerInstanceProfileNetworkInterfaces.md
 docs/ServerInstanceProfileNetworkInterfacesConfig.md
+docs/ServerInstanceProfileNetworkProfilesInner.md
 docs/ServerInstanceProfilePaginatedList.md
 docs/ServerInstanceProfileReference.md
 docs/ServerInstanceProfileUpdate.md
@@ -624,7 +623,6 @@ model_os_template_paginated_list.go
 model_os_template_update.go
 model_paginated_response_links.go
 model_paginated_response_meta.go
-model_provisioner_type.go
 model_re_register_server_response.go
 model_register_server.go
 model_register_server_response.go
@@ -657,7 +655,6 @@ model_server_firmware_upgrade_policy_rule.go
 model_server_gpu_info.go
 model_server_instance.go
 model_server_instance_configuration.go
-model_server_instance_configuration_network_profiles_inner.go
 model_server_instance_create.go
 model_server_instance_group.go
 model_server_instance_group_configuration.go
@@ -677,6 +674,7 @@ model_server_instance_profile.go
 model_server_instance_profile_create.go
 model_server_instance_profile_network_interfaces.go
 model_server_instance_profile_network_interfaces_config.go
+model_server_instance_profile_network_profiles_inner.go
 model_server_instance_profile_paginated_list.go
 model_server_instance_profile_reference.go
 model_server_instance_profile_update.go

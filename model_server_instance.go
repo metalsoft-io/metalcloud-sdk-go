@@ -53,17 +53,14 @@ type ServerInstance struct {
 	PreferredServerIds []string `json:"preferredServerIds,omitempty"`
 	// RAID profile for the Instance Interface.
 	RaidProfile *ServerInstanceStorageProfile `json:"raidProfile,omitempty"`
-	// GUI settings in JSON format.
-	Meta *GenericGUISettings `json:"meta,omitempty"`
 	// Current status of the server instance.
 	ServiceStatus string `json:"serviceStatus"`
 	// Flag to indicate if this is a VM instance
 	IsVmInstance float32 `json:"isVmInstance"`
 	// The id of the linked VM instance
 	VmInstanceId *float32 `json:"vmInstanceId,omitempty"`
+	Meta *GenericGUISettings `json:"meta,omitempty"`
 	Tags []string `json:"tags,omitempty"`
-	// If enabled will enable port channel to be automatically created.
-	EnableAutoPortChannel *bool `json:"enableAutoPortChannel,omitempty"`
 	// Operating system information of the Instance.
 	OperatingSystemInfo map[string]interface{} `json:"operatingSystemInfo,omitempty"`
 	// Advanced variables used when building the OS image.
@@ -84,7 +81,7 @@ type ServerInstance struct {
 	// Build info regarding the OS image.
 	OsInstallImageBuildInfo *string `json:"osInstallImageBuildInfo,omitempty"`
 	// OS reinstall is required.
-	OsReinstallRequired *string `json:"osReinstallRequired,omitempty"`
+	OsReinstallRequired *float32 `json:"osReinstallRequired,omitempty"`
 	// iSCSI Initiator IQN for the Instance Interface.
 	IscsiInitiatorIqn *string `json:"iscsiInitiatorIqn,omitempty"`
 	// iSCSI Initiator Username for the Instance Interface.
@@ -93,8 +90,6 @@ type ServerInstance struct {
 	IscsiInitiatorPasswordEncrypted *string `json:"iscsiInitiatorPasswordEncrypted,omitempty"`
 	// Control panel url for the Instance Interface.
 	ControlPanelUrl *string `json:"controlPanelUrl,omitempty"`
-	// Network profiles mapping for each network in this infrastructure.
-	NetworkProfiles []ServerInstanceConfigurationNetworkProfilesInner `json:"networkProfiles,omitempty"`
 	Config *ServerInstanceConfiguration `json:"config,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
@@ -118,8 +113,6 @@ func NewServerInstance(id int32, revision float32, label string, createdTimestam
 	this.GroupId = groupId
 	this.ServiceStatus = serviceStatus
 	this.IsVmInstance = isVmInstance
-	var enableAutoPortChannel bool = true
-	this.EnableAutoPortChannel = &enableAutoPortChannel
 	return &this
 }
 
@@ -128,8 +121,6 @@ func NewServerInstance(id int32, revision float32, label string, createdTimestam
 // but it doesn't guarantee that properties required by API are set
 func NewServerInstanceWithDefaults() *ServerInstance {
 	this := ServerInstance{}
-	var enableAutoPortChannel bool = true
-	this.EnableAutoPortChannel = &enableAutoPortChannel
 	return &this
 }
 
@@ -685,38 +676,6 @@ func (o *ServerInstance) SetRaidProfile(v ServerInstanceStorageProfile) {
 	o.RaidProfile = &v
 }
 
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ServerInstance) GetMeta() GenericGUISettings {
-	if o == nil || IsNil(o.Meta) {
-		var ret GenericGUISettings
-		return ret
-	}
-	return *o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstance) GetMetaOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.Meta) {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ServerInstance) HasMeta() bool {
-	if o != nil && !IsNil(o.Meta) {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given GenericGUISettings and assigns it to the Meta field.
-func (o *ServerInstance) SetMeta(v GenericGUISettings) {
-	o.Meta = &v
-}
-
 // GetServiceStatus returns the ServiceStatus field value
 func (o *ServerInstance) GetServiceStatus() string {
 	if o == nil {
@@ -797,6 +756,38 @@ func (o *ServerInstance) SetVmInstanceId(v float32) {
 	o.VmInstanceId = &v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ServerInstance) GetMeta() GenericGUISettings {
+	if o == nil || IsNil(o.Meta) {
+		var ret GenericGUISettings
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstance) GetMetaOk() (*GenericGUISettings, bool) {
+	if o == nil || IsNil(o.Meta) {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ServerInstance) HasMeta() bool {
+	if o != nil && !IsNil(o.Meta) {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given GenericGUISettings and assigns it to the Meta field.
+func (o *ServerInstance) SetMeta(v GenericGUISettings) {
+	o.Meta = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ServerInstance) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
@@ -827,38 +818,6 @@ func (o *ServerInstance) HasTags() bool {
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *ServerInstance) SetTags(v []string) {
 	o.Tags = v
-}
-
-// GetEnableAutoPortChannel returns the EnableAutoPortChannel field value if set, zero value otherwise.
-func (o *ServerInstance) GetEnableAutoPortChannel() bool {
-	if o == nil || IsNil(o.EnableAutoPortChannel) {
-		var ret bool
-		return ret
-	}
-	return *o.EnableAutoPortChannel
-}
-
-// GetEnableAutoPortChannelOk returns a tuple with the EnableAutoPortChannel field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstance) GetEnableAutoPortChannelOk() (*bool, bool) {
-	if o == nil || IsNil(o.EnableAutoPortChannel) {
-		return nil, false
-	}
-	return o.EnableAutoPortChannel, true
-}
-
-// HasEnableAutoPortChannel returns a boolean if a field has been set.
-func (o *ServerInstance) HasEnableAutoPortChannel() bool {
-	if o != nil && !IsNil(o.EnableAutoPortChannel) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnableAutoPortChannel gets a reference to the given bool and assigns it to the EnableAutoPortChannel field.
-func (o *ServerInstance) SetEnableAutoPortChannel(v bool) {
-	o.EnableAutoPortChannel = &v
 }
 
 // GetOperatingSystemInfo returns the OperatingSystemInfo field value if set, zero value otherwise.
@@ -1182,9 +1141,9 @@ func (o *ServerInstance) SetOsInstallImageBuildInfo(v string) {
 }
 
 // GetOsReinstallRequired returns the OsReinstallRequired field value if set, zero value otherwise.
-func (o *ServerInstance) GetOsReinstallRequired() string {
+func (o *ServerInstance) GetOsReinstallRequired() float32 {
 	if o == nil || IsNil(o.OsReinstallRequired) {
-		var ret string
+		var ret float32
 		return ret
 	}
 	return *o.OsReinstallRequired
@@ -1192,7 +1151,7 @@ func (o *ServerInstance) GetOsReinstallRequired() string {
 
 // GetOsReinstallRequiredOk returns a tuple with the OsReinstallRequired field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstance) GetOsReinstallRequiredOk() (*string, bool) {
+func (o *ServerInstance) GetOsReinstallRequiredOk() (*float32, bool) {
 	if o == nil || IsNil(o.OsReinstallRequired) {
 		return nil, false
 	}
@@ -1208,8 +1167,8 @@ func (o *ServerInstance) HasOsReinstallRequired() bool {
 	return false
 }
 
-// SetOsReinstallRequired gets a reference to the given string and assigns it to the OsReinstallRequired field.
-func (o *ServerInstance) SetOsReinstallRequired(v string) {
+// SetOsReinstallRequired gets a reference to the given float32 and assigns it to the OsReinstallRequired field.
+func (o *ServerInstance) SetOsReinstallRequired(v float32) {
 	o.OsReinstallRequired = &v
 }
 
@@ -1341,38 +1300,6 @@ func (o *ServerInstance) SetControlPanelUrl(v string) {
 	o.ControlPanelUrl = &v
 }
 
-// GetNetworkProfiles returns the NetworkProfiles field value if set, zero value otherwise.
-func (o *ServerInstance) GetNetworkProfiles() []ServerInstanceConfigurationNetworkProfilesInner {
-	if o == nil || IsNil(o.NetworkProfiles) {
-		var ret []ServerInstanceConfigurationNetworkProfilesInner
-		return ret
-	}
-	return o.NetworkProfiles
-}
-
-// GetNetworkProfilesOk returns a tuple with the NetworkProfiles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstance) GetNetworkProfilesOk() ([]ServerInstanceConfigurationNetworkProfilesInner, bool) {
-	if o == nil || IsNil(o.NetworkProfiles) {
-		return nil, false
-	}
-	return o.NetworkProfiles, true
-}
-
-// HasNetworkProfiles returns a boolean if a field has been set.
-func (o *ServerInstance) HasNetworkProfiles() bool {
-	if o != nil && !IsNil(o.NetworkProfiles) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworkProfiles gets a reference to the given []ServerInstanceConfigurationNetworkProfilesInner and assigns it to the NetworkProfiles field.
-func (o *ServerInstance) SetNetworkProfiles(v []ServerInstanceConfigurationNetworkProfilesInner) {
-	o.NetworkProfiles = v
-}
-
 // GetConfig returns the Config field value if set, zero value otherwise.
 func (o *ServerInstance) GetConfig() ServerInstanceConfiguration {
 	if o == nil || IsNil(o.Config) {
@@ -1490,19 +1417,16 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RaidProfile) {
 		toSerialize["raidProfile"] = o.RaidProfile
 	}
-	if !IsNil(o.Meta) {
-		toSerialize["meta"] = o.Meta
-	}
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	toSerialize["isVmInstance"] = o.IsVmInstance
 	if !IsNil(o.VmInstanceId) {
 		toSerialize["vmInstanceId"] = o.VmInstanceId
 	}
+	if !IsNil(o.Meta) {
+		toSerialize["meta"] = o.Meta
+	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
-	}
-	if !IsNil(o.EnableAutoPortChannel) {
-		toSerialize["enableAutoPortChannel"] = o.EnableAutoPortChannel
 	}
 	if !IsNil(o.OperatingSystemInfo) {
 		toSerialize["operatingSystemInfo"] = o.OperatingSystemInfo
@@ -1548,9 +1472,6 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ControlPanelUrl) {
 		toSerialize["controlPanelUrl"] = o.ControlPanelUrl
-	}
-	if !IsNil(o.NetworkProfiles) {
-		toSerialize["networkProfiles"] = o.NetworkProfiles
 	}
 	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
@@ -1628,12 +1549,11 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "preferredServerIds")
 		delete(additionalProperties, "raidProfile")
-		delete(additionalProperties, "meta")
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "isVmInstance")
 		delete(additionalProperties, "vmInstanceId")
+		delete(additionalProperties, "meta")
 		delete(additionalProperties, "tags")
-		delete(additionalProperties, "enableAutoPortChannel")
 		delete(additionalProperties, "operatingSystemInfo")
 		delete(additionalProperties, "variablesOsAssetsTemplateTypeAdvanced")
 		delete(additionalProperties, "secretsOsAssetsTemplateTypeAdvanced")
@@ -1649,7 +1569,6 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "iscsiInitiatorUsername")
 		delete(additionalProperties, "iscsiInitiatorPasswordEncrypted")
 		delete(additionalProperties, "controlPanelUrl")
-		delete(additionalProperties, "networkProfiles")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

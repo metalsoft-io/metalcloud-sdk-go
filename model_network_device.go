@@ -21,118 +21,102 @@ var _ MappedNullable = &NetworkDevice{}
 
 // NetworkDevice struct for NetworkDevice
 type NetworkDevice struct {
-	// Unique identifier for the switch.
-	SwitchId float32 `json:"switchId"`
+	// Unique identifier for the network device.
+	Id string `json:"id"`
 	// Revision number
 	Revision float32 `json:"revision"`
 	// Current status of the network device
-	Status *string `json:"status,omitempty"`
-	// Datacenter name where the network device is located
-	DatacenterName *string `json:"datacenterName,omitempty"`
+	Status string `json:"status"`
 	// Site ID
-	SiteId *float32 `json:"siteId,omitempty"`
-	// Identifier string of the network device
-	IdentifierString *string `json:"identifierString,omitempty"`
+	SiteId float32 `json:"siteId"`
+	// Hostname of the network device
+	IdentifierString string `json:"identifierString"`
 	// Description of the network device
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// Chassis identifier of the network device
-	ChassisIdentifier *string `json:"chassisIdentifier,omitempty"`
+	ChassisIdentifier string `json:"chassisIdentifier"`
 	// Country of the network device
-	Country *string `json:"country,omitempty"`
+	Country string `json:"country"`
 	// City of the network device
-	City *string `json:"city,omitempty"`
+	City string `json:"city"`
 	// Datacenter metadata
-	DatacenterMeta *string `json:"datacenterMeta,omitempty"`
+	DatacenterMeta string `json:"datacenterMeta"`
 	// Room in the datacenter where the network device is located
-	DatacenterRoom *string `json:"datacenterRoom,omitempty"`
+	DatacenterRoom string `json:"datacenterRoom"`
 	// Rack in the datacenter where the network device is located
-	DatacenterRack *string `json:"datacenterRack,omitempty"`
+	DatacenterRack string `json:"datacenterRack"`
 	// Upper rack position in the datacenter
-	RackPositionUpperUnit *float32 `json:"rackPositionUpperUnit,omitempty"`
+	RackPositionUpperUnit float32 `json:"rackPositionUpperUnit"`
 	// Lower rack position in the datacenter
-	RackPositionLowerUnit *float32 `json:"rackPositionLowerUnit,omitempty"`
+	RackPositionLowerUnit float32 `json:"rackPositionLowerUnit"`
 	// Management address of the network device
-	ManagementAddress *string `json:"managementAddress,omitempty"`
+	ManagementAddress string `json:"managementAddress"`
 	// Management address mask
-	ManagementAddressMask *string `json:"managementAddressMask,omitempty"`
+	ManagementAddressMask string `json:"managementAddressMask"`
 	// Management gateway address
-	ManagementAddressGateway *string `json:"managementAddressGateway,omitempty"`
+	ManagementAddressGateway string `json:"managementAddressGateway"`
 	// Management port of the network device
-	ManagementPort *float32 `json:"managementPort,omitempty"`
+	ManagementPort float32 `json:"managementPort"`
 	// Is the network device syslog enabled
-	SyslogEnabled *bool `json:"syslogEnabled,omitempty"`
+	SyslogEnabled bool `json:"syslogEnabled"`
 	// Username used to connect to the network device
-	Username *string `json:"username,omitempty"`
+	Username string `json:"username"`
 	// Password used to connect to the network device
-	ManagementPassword *string `json:"managementPassword,omitempty"`
-	// Management protocol used by the network device
-	ManagementProtocol *string `json:"managementProtocol,omitempty"`
+	ManagementPassword string `json:"managementPassword"`
 	// MAC address of the management interface
-	ManagementMacAddress *string `json:"managementMacAddress,omitempty"`
+	ManagementMacAddress string `json:"managementMacAddress"`
 	// Serial number of the network device
-	SerialNumber *string `json:"serialNumber,omitempty"`
+	SerialNumber string `json:"serialNumber"`
 	// Driver software used to communicate with the network device
 	Driver NetworkDeviceDriver `json:"driver"`
 	// The physical or logical position of the network device in the network topology.
 	Position SwitchPosition `json:"position"`
-	// Provisioner type of the network device
-	ProvisionerType *string `json:"provisionerType,omitempty"`
-	// Allowed network types for the network device
-	NetworkTypesAllowed []string `json:"networkTypesAllowed,omitempty"`
 	// Order index of the network device
-	OrderIndex *float32 `json:"orderIndex,omitempty"`
+	OrderIndex float32 `json:"orderIndex"`
 	// Tags associated with the network device
-	Tags *string `json:"tags,omitempty"`
+	Tags string `json:"tags"`
 	// Whether the device is ready for initial configuration
-	ReadyForInitialConfiguration *float32 `json:"readyForInitialConfiguration,omitempty"`
+	ReadyForInitialConfiguration float32 `json:"readyForInitialConfiguration"`
 	// Whether bootstrap readiness check is in progress
-	BootstrapReadinessCheckInProgress *float32 `json:"bootstrapReadinessCheckInProgress,omitempty"`
+	BootstrapReadinessCheckInProgress float32 `json:"bootstrapReadinessCheckInProgress"`
 	// Subnet ID for OOB management
-	SubnetOobId *float32 `json:"subnetOobId,omitempty"`
+	SubnetOobId float32 `json:"subnetOobId"`
 	// Subnet OOB index
-	SubnetOobIndex *float32 `json:"subnetOobIndex,omitempty"`
+	SubnetOobIndex float32 `json:"subnetOobIndex"`
 	// Whether the device requires OS installation
-	RequiresOsInstall *bool `json:"requiresOsInstall,omitempty"`
+	RequiresOsInstall bool `json:"requiresOsInstall"`
 	// Whether to skip initial configuration during bootstrap
-	BootstrapSkipInitialConfiguration *float32 `json:"bootstrapSkipInitialConfiguration,omitempty"`
+	BootstrapSkipInitialConfiguration float32 `json:"bootstrapSkipInitialConfiguration"`
 	// Expected partner hostname during bootstrap
-	BootstrapExpectedPartnerHostname *string `json:"bootstrapExpectedPartnerHostname,omitempty"`
+	BootstrapExpectedPartnerHostname string `json:"bootstrapExpectedPartnerHostname"`
 	// Loopback IPv4 address
-	LoopbackAddress *string `json:"loopbackAddress,omitempty"`
+	LoopbackAddressIpv4 string `json:"loopbackAddressIpv4"`
 	// Loopback IPv6 address
-	LoopbackAddressIpv6 *string `json:"loopbackAddressIpv6,omitempty"`
+	LoopbackAddressIpv6 string `json:"loopbackAddressIpv6"`
 	// ASN of the network device
-	Asn *float32 `json:"asn,omitempty"`
+	Asn float32 `json:"asn"`
 	// VTEP IPv4 address
-	VtepAddress *string `json:"vtepAddress,omitempty"`
+	VtepAddressIpv4 string `json:"vtepAddressIpv4"`
 	// VTEP IPv6 address
-	VtepAddressIpv6 *string `json:"vtepAddressIpv6,omitempty"`
+	VtepAddressIpv6 string `json:"vtepAddressIpv6"`
 	// MLAG system MAC address
-	MlagSystemMac *string `json:"mlagSystemMac,omitempty"`
+	MlagSystemMac string `json:"mlagSystemMac"`
 	// MLAG domain ID
-	MlagDomainId *float32 `json:"mlagDomainId,omitempty"`
-	// Quarantine subnet start address
-	QuarantineSubnetStart *string `json:"quarantineSubnetStart,omitempty"`
-	// Quarantine subnet end address
-	QuarantineSubnetEnd *string `json:"quarantineSubnetEnd,omitempty"`
-	// Quarantine subnet prefix size
-	QuarantineSubnetPrefixSize *float32 `json:"quarantineSubnetPrefixSize,omitempty"`
-	// Quarantine subnet gateway address
-	QuarantineSubnetGateway *string `json:"quarantineSubnetGateway,omitempty"`
+	MlagDomainId float32 `json:"mlagDomainId"`
 	// Quarantine VLAN ID
-	QuarantineVlan *float32 `json:"quarantineVlan,omitempty"`
+	QuarantineVlan float32 `json:"quarantineVlan"`
 	// Default MTU
-	DefaultMtu *float32 `json:"defaultMtu,omitempty"`
+	DefaultMtu float32 `json:"defaultMtu"`
 	// Variables materialized for OS assets
-	VariablesMaterializedForOSAssets map[string]interface{} `json:"variablesMaterializedForOSAssets,omitempty"`
+	VariablesMaterializedForOSAssets map[string]interface{} `json:"variablesMaterializedForOSAssets"`
 	// Secrets materialized for OS assets
-	SecretsMaterializedForOSAssets map[string]interface{} `json:"secretsMaterializedForOSAssets,omitempty"`
+	SecretsMaterializedForOSAssets map[string]interface{} `json:"secretsMaterializedForOSAssets"`
 	// Bootstrap readiness check result
-	BootstrapReadinessCheckResult map[string]interface{} `json:"bootstrapReadinessCheckResult,omitempty"`
+	BootstrapReadinessCheckResult map[string]interface{} `json:"bootstrapReadinessCheckResult"`
 	// Whether the network device is a gateway
-	IsGateway *float32 `json:"isGateway,omitempty"`
+	IsGateway float32 `json:"isGateway"`
 	// Reference links
-	Links []Link `json:"links,omitempty"`
+	Links []Link `json:"links"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -142,12 +126,56 @@ type _NetworkDevice NetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevice(switchId float32, revision float32, driver NetworkDeviceDriver, position SwitchPosition) *NetworkDevice {
+func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressMask string, managementAddressGateway string, managementPort float32, syslogEnabled bool, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv4 string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv4 string, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, defaultMtu float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway float32, links []Link) *NetworkDevice {
 	this := NetworkDevice{}
-	this.SwitchId = switchId
+	this.Id = id
 	this.Revision = revision
+	this.Status = status
+	this.SiteId = siteId
+	this.IdentifierString = identifierString
+	this.Description = description
+	this.ChassisIdentifier = chassisIdentifier
+	this.Country = country
+	this.City = city
+	this.DatacenterMeta = datacenterMeta
+	this.DatacenterRoom = datacenterRoom
+	this.DatacenterRack = datacenterRack
+	this.RackPositionUpperUnit = rackPositionUpperUnit
+	this.RackPositionLowerUnit = rackPositionLowerUnit
+	this.ManagementAddress = managementAddress
+	this.ManagementAddressMask = managementAddressMask
+	this.ManagementAddressGateway = managementAddressGateway
+	this.ManagementPort = managementPort
+	this.SyslogEnabled = syslogEnabled
+	this.Username = username
+	this.ManagementPassword = managementPassword
+	this.ManagementMacAddress = managementMacAddress
+	this.SerialNumber = serialNumber
 	this.Driver = driver
 	this.Position = position
+	this.OrderIndex = orderIndex
+	this.Tags = tags
+	this.ReadyForInitialConfiguration = readyForInitialConfiguration
+	this.BootstrapReadinessCheckInProgress = bootstrapReadinessCheckInProgress
+	this.SubnetOobId = subnetOobId
+	this.SubnetOobIndex = subnetOobIndex
+	this.RequiresOsInstall = requiresOsInstall
+	this.BootstrapSkipInitialConfiguration = bootstrapSkipInitialConfiguration
+	this.BootstrapExpectedPartnerHostname = bootstrapExpectedPartnerHostname
+	this.LoopbackAddressIpv4 = loopbackAddressIpv4
+	this.LoopbackAddressIpv6 = loopbackAddressIpv6
+	this.Asn = asn
+	this.VtepAddressIpv4 = vtepAddressIpv4
+	this.VtepAddressIpv6 = vtepAddressIpv6
+	this.MlagSystemMac = mlagSystemMac
+	this.MlagDomainId = mlagDomainId
+	this.QuarantineVlan = quarantineVlan
+	this.DefaultMtu = defaultMtu
+	this.VariablesMaterializedForOSAssets = variablesMaterializedForOSAssets
+	this.SecretsMaterializedForOSAssets = secretsMaterializedForOSAssets
+	this.BootstrapReadinessCheckResult = bootstrapReadinessCheckResult
+	this.IsGateway = isGateway
+	this.Links = links
 	return &this
 }
 
@@ -159,28 +187,28 @@ func NewNetworkDeviceWithDefaults() *NetworkDevice {
 	return &this
 }
 
-// GetSwitchId returns the SwitchId field value
-func (o *NetworkDevice) GetSwitchId() float32 {
+// GetId returns the Id field value
+func (o *NetworkDevice) GetId() string {
 	if o == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 
-	return o.SwitchId
+	return o.Id
 }
 
-// GetSwitchIdOk returns a tuple with the SwitchId field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetSwitchIdOk() (*float32, bool) {
+func (o *NetworkDevice) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SwitchId, true
+	return &o.Id, true
 }
 
-// SetSwitchId sets field value
-func (o *NetworkDevice) SetSwitchId(v float32) {
-	o.SwitchId = v
+// SetId sets field value
+func (o *NetworkDevice) SetId(v string) {
+	o.Id = v
 }
 
 // GetRevision returns the Revision field value
@@ -207,740 +235,508 @@ func (o *NetworkDevice) SetRevision(v float32) {
 	o.Revision = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
+// GetStatus returns the Status field value
 func (o *NetworkDevice) GetStatus() string {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Status
+
+	return o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Status, true
+	return &o.Status, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *NetworkDevice) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
+// SetStatus sets field value
 func (o *NetworkDevice) SetStatus(v string) {
-	o.Status = &v
+	o.Status = v
 }
 
-// GetDatacenterName returns the DatacenterName field value if set, zero value otherwise.
-func (o *NetworkDevice) GetDatacenterName() string {
-	if o == nil || IsNil(o.DatacenterName) {
-		var ret string
-		return ret
-	}
-	return *o.DatacenterName
-}
-
-// GetDatacenterNameOk returns a tuple with the DatacenterName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetDatacenterNameOk() (*string, bool) {
-	if o == nil || IsNil(o.DatacenterName) {
-		return nil, false
-	}
-	return o.DatacenterName, true
-}
-
-// HasDatacenterName returns a boolean if a field has been set.
-func (o *NetworkDevice) HasDatacenterName() bool {
-	if o != nil && !IsNil(o.DatacenterName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDatacenterName gets a reference to the given string and assigns it to the DatacenterName field.
-func (o *NetworkDevice) SetDatacenterName(v string) {
-	o.DatacenterName = &v
-}
-
-// GetSiteId returns the SiteId field value if set, zero value otherwise.
+// GetSiteId returns the SiteId field value
 func (o *NetworkDevice) GetSiteId() float32 {
-	if o == nil || IsNil(o.SiteId) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.SiteId
+
+	return o.SiteId
 }
 
-// GetSiteIdOk returns a tuple with the SiteId field value if set, nil otherwise
+// GetSiteIdOk returns a tuple with the SiteId field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetSiteIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.SiteId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.SiteId, true
+	return &o.SiteId, true
 }
 
-// HasSiteId returns a boolean if a field has been set.
-func (o *NetworkDevice) HasSiteId() bool {
-	if o != nil && !IsNil(o.SiteId) {
-		return true
-	}
-
-	return false
-}
-
-// SetSiteId gets a reference to the given float32 and assigns it to the SiteId field.
+// SetSiteId sets field value
 func (o *NetworkDevice) SetSiteId(v float32) {
-	o.SiteId = &v
+	o.SiteId = v
 }
 
-// GetIdentifierString returns the IdentifierString field value if set, zero value otherwise.
+// GetIdentifierString returns the IdentifierString field value
 func (o *NetworkDevice) GetIdentifierString() string {
-	if o == nil || IsNil(o.IdentifierString) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.IdentifierString
+
+	return o.IdentifierString
 }
 
-// GetIdentifierStringOk returns a tuple with the IdentifierString field value if set, nil otherwise
+// GetIdentifierStringOk returns a tuple with the IdentifierString field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetIdentifierStringOk() (*string, bool) {
-	if o == nil || IsNil(o.IdentifierString) {
+	if o == nil {
 		return nil, false
 	}
-	return o.IdentifierString, true
+	return &o.IdentifierString, true
 }
 
-// HasIdentifierString returns a boolean if a field has been set.
-func (o *NetworkDevice) HasIdentifierString() bool {
-	if o != nil && !IsNil(o.IdentifierString) {
-		return true
-	}
-
-	return false
-}
-
-// SetIdentifierString gets a reference to the given string and assigns it to the IdentifierString field.
+// SetIdentifierString sets field value
 func (o *NetworkDevice) SetIdentifierString(v string) {
-	o.IdentifierString = &v
+	o.IdentifierString = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
+// GetDescription returns the Description field value
 func (o *NetworkDevice) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description
+
+	return o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Description, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *NetworkDevice) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription sets field value
 func (o *NetworkDevice) SetDescription(v string) {
-	o.Description = &v
+	o.Description = v
 }
 
-// GetChassisIdentifier returns the ChassisIdentifier field value if set, zero value otherwise.
+// GetChassisIdentifier returns the ChassisIdentifier field value
 func (o *NetworkDevice) GetChassisIdentifier() string {
-	if o == nil || IsNil(o.ChassisIdentifier) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ChassisIdentifier
+
+	return o.ChassisIdentifier
 }
 
-// GetChassisIdentifierOk returns a tuple with the ChassisIdentifier field value if set, nil otherwise
+// GetChassisIdentifierOk returns a tuple with the ChassisIdentifier field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetChassisIdentifierOk() (*string, bool) {
-	if o == nil || IsNil(o.ChassisIdentifier) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ChassisIdentifier, true
+	return &o.ChassisIdentifier, true
 }
 
-// HasChassisIdentifier returns a boolean if a field has been set.
-func (o *NetworkDevice) HasChassisIdentifier() bool {
-	if o != nil && !IsNil(o.ChassisIdentifier) {
-		return true
-	}
-
-	return false
-}
-
-// SetChassisIdentifier gets a reference to the given string and assigns it to the ChassisIdentifier field.
+// SetChassisIdentifier sets field value
 func (o *NetworkDevice) SetChassisIdentifier(v string) {
-	o.ChassisIdentifier = &v
+	o.ChassisIdentifier = v
 }
 
-// GetCountry returns the Country field value if set, zero value otherwise.
+// GetCountry returns the Country field value
 func (o *NetworkDevice) GetCountry() string {
-	if o == nil || IsNil(o.Country) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Country
+
+	return o.Country
 }
 
-// GetCountryOk returns a tuple with the Country field value if set, nil otherwise
+// GetCountryOk returns a tuple with the Country field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetCountryOk() (*string, bool) {
-	if o == nil || IsNil(o.Country) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Country, true
+	return &o.Country, true
 }
 
-// HasCountry returns a boolean if a field has been set.
-func (o *NetworkDevice) HasCountry() bool {
-	if o != nil && !IsNil(o.Country) {
-		return true
-	}
-
-	return false
-}
-
-// SetCountry gets a reference to the given string and assigns it to the Country field.
+// SetCountry sets field value
 func (o *NetworkDevice) SetCountry(v string) {
-	o.Country = &v
+	o.Country = v
 }
 
-// GetCity returns the City field value if set, zero value otherwise.
+// GetCity returns the City field value
 func (o *NetworkDevice) GetCity() string {
-	if o == nil || IsNil(o.City) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.City
+
+	return o.City
 }
 
-// GetCityOk returns a tuple with the City field value if set, nil otherwise
+// GetCityOk returns a tuple with the City field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetCityOk() (*string, bool) {
-	if o == nil || IsNil(o.City) {
+	if o == nil {
 		return nil, false
 	}
-	return o.City, true
+	return &o.City, true
 }
 
-// HasCity returns a boolean if a field has been set.
-func (o *NetworkDevice) HasCity() bool {
-	if o != nil && !IsNil(o.City) {
-		return true
-	}
-
-	return false
-}
-
-// SetCity gets a reference to the given string and assigns it to the City field.
+// SetCity sets field value
 func (o *NetworkDevice) SetCity(v string) {
-	o.City = &v
+	o.City = v
 }
 
-// GetDatacenterMeta returns the DatacenterMeta field value if set, zero value otherwise.
+// GetDatacenterMeta returns the DatacenterMeta field value
 func (o *NetworkDevice) GetDatacenterMeta() string {
-	if o == nil || IsNil(o.DatacenterMeta) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.DatacenterMeta
+
+	return o.DatacenterMeta
 }
 
-// GetDatacenterMetaOk returns a tuple with the DatacenterMeta field value if set, nil otherwise
+// GetDatacenterMetaOk returns a tuple with the DatacenterMeta field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetDatacenterMetaOk() (*string, bool) {
-	if o == nil || IsNil(o.DatacenterMeta) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DatacenterMeta, true
+	return &o.DatacenterMeta, true
 }
 
-// HasDatacenterMeta returns a boolean if a field has been set.
-func (o *NetworkDevice) HasDatacenterMeta() bool {
-	if o != nil && !IsNil(o.DatacenterMeta) {
-		return true
-	}
-
-	return false
-}
-
-// SetDatacenterMeta gets a reference to the given string and assigns it to the DatacenterMeta field.
+// SetDatacenterMeta sets field value
 func (o *NetworkDevice) SetDatacenterMeta(v string) {
-	o.DatacenterMeta = &v
+	o.DatacenterMeta = v
 }
 
-// GetDatacenterRoom returns the DatacenterRoom field value if set, zero value otherwise.
+// GetDatacenterRoom returns the DatacenterRoom field value
 func (o *NetworkDevice) GetDatacenterRoom() string {
-	if o == nil || IsNil(o.DatacenterRoom) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.DatacenterRoom
+
+	return o.DatacenterRoom
 }
 
-// GetDatacenterRoomOk returns a tuple with the DatacenterRoom field value if set, nil otherwise
+// GetDatacenterRoomOk returns a tuple with the DatacenterRoom field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetDatacenterRoomOk() (*string, bool) {
-	if o == nil || IsNil(o.DatacenterRoom) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DatacenterRoom, true
+	return &o.DatacenterRoom, true
 }
 
-// HasDatacenterRoom returns a boolean if a field has been set.
-func (o *NetworkDevice) HasDatacenterRoom() bool {
-	if o != nil && !IsNil(o.DatacenterRoom) {
-		return true
-	}
-
-	return false
-}
-
-// SetDatacenterRoom gets a reference to the given string and assigns it to the DatacenterRoom field.
+// SetDatacenterRoom sets field value
 func (o *NetworkDevice) SetDatacenterRoom(v string) {
-	o.DatacenterRoom = &v
+	o.DatacenterRoom = v
 }
 
-// GetDatacenterRack returns the DatacenterRack field value if set, zero value otherwise.
+// GetDatacenterRack returns the DatacenterRack field value
 func (o *NetworkDevice) GetDatacenterRack() string {
-	if o == nil || IsNil(o.DatacenterRack) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.DatacenterRack
+
+	return o.DatacenterRack
 }
 
-// GetDatacenterRackOk returns a tuple with the DatacenterRack field value if set, nil otherwise
+// GetDatacenterRackOk returns a tuple with the DatacenterRack field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetDatacenterRackOk() (*string, bool) {
-	if o == nil || IsNil(o.DatacenterRack) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DatacenterRack, true
+	return &o.DatacenterRack, true
 }
 
-// HasDatacenterRack returns a boolean if a field has been set.
-func (o *NetworkDevice) HasDatacenterRack() bool {
-	if o != nil && !IsNil(o.DatacenterRack) {
-		return true
-	}
-
-	return false
-}
-
-// SetDatacenterRack gets a reference to the given string and assigns it to the DatacenterRack field.
+// SetDatacenterRack sets field value
 func (o *NetworkDevice) SetDatacenterRack(v string) {
-	o.DatacenterRack = &v
+	o.DatacenterRack = v
 }
 
-// GetRackPositionUpperUnit returns the RackPositionUpperUnit field value if set, zero value otherwise.
+// GetRackPositionUpperUnit returns the RackPositionUpperUnit field value
 func (o *NetworkDevice) GetRackPositionUpperUnit() float32 {
-	if o == nil || IsNil(o.RackPositionUpperUnit) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.RackPositionUpperUnit
+
+	return o.RackPositionUpperUnit
 }
 
-// GetRackPositionUpperUnitOk returns a tuple with the RackPositionUpperUnit field value if set, nil otherwise
+// GetRackPositionUpperUnitOk returns a tuple with the RackPositionUpperUnit field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetRackPositionUpperUnitOk() (*float32, bool) {
-	if o == nil || IsNil(o.RackPositionUpperUnit) {
+	if o == nil {
 		return nil, false
 	}
-	return o.RackPositionUpperUnit, true
+	return &o.RackPositionUpperUnit, true
 }
 
-// HasRackPositionUpperUnit returns a boolean if a field has been set.
-func (o *NetworkDevice) HasRackPositionUpperUnit() bool {
-	if o != nil && !IsNil(o.RackPositionUpperUnit) {
-		return true
-	}
-
-	return false
-}
-
-// SetRackPositionUpperUnit gets a reference to the given float32 and assigns it to the RackPositionUpperUnit field.
+// SetRackPositionUpperUnit sets field value
 func (o *NetworkDevice) SetRackPositionUpperUnit(v float32) {
-	o.RackPositionUpperUnit = &v
+	o.RackPositionUpperUnit = v
 }
 
-// GetRackPositionLowerUnit returns the RackPositionLowerUnit field value if set, zero value otherwise.
+// GetRackPositionLowerUnit returns the RackPositionLowerUnit field value
 func (o *NetworkDevice) GetRackPositionLowerUnit() float32 {
-	if o == nil || IsNil(o.RackPositionLowerUnit) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.RackPositionLowerUnit
+
+	return o.RackPositionLowerUnit
 }
 
-// GetRackPositionLowerUnitOk returns a tuple with the RackPositionLowerUnit field value if set, nil otherwise
+// GetRackPositionLowerUnitOk returns a tuple with the RackPositionLowerUnit field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetRackPositionLowerUnitOk() (*float32, bool) {
-	if o == nil || IsNil(o.RackPositionLowerUnit) {
+	if o == nil {
 		return nil, false
 	}
-	return o.RackPositionLowerUnit, true
+	return &o.RackPositionLowerUnit, true
 }
 
-// HasRackPositionLowerUnit returns a boolean if a field has been set.
-func (o *NetworkDevice) HasRackPositionLowerUnit() bool {
-	if o != nil && !IsNil(o.RackPositionLowerUnit) {
-		return true
-	}
-
-	return false
-}
-
-// SetRackPositionLowerUnit gets a reference to the given float32 and assigns it to the RackPositionLowerUnit field.
+// SetRackPositionLowerUnit sets field value
 func (o *NetworkDevice) SetRackPositionLowerUnit(v float32) {
-	o.RackPositionLowerUnit = &v
+	o.RackPositionLowerUnit = v
 }
 
-// GetManagementAddress returns the ManagementAddress field value if set, zero value otherwise.
+// GetManagementAddress returns the ManagementAddress field value
 func (o *NetworkDevice) GetManagementAddress() string {
-	if o == nil || IsNil(o.ManagementAddress) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ManagementAddress
+
+	return o.ManagementAddress
 }
 
-// GetManagementAddressOk returns a tuple with the ManagementAddress field value if set, nil otherwise
+// GetManagementAddressOk returns a tuple with the ManagementAddress field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetManagementAddressOk() (*string, bool) {
-	if o == nil || IsNil(o.ManagementAddress) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ManagementAddress, true
+	return &o.ManagementAddress, true
 }
 
-// HasManagementAddress returns a boolean if a field has been set.
-func (o *NetworkDevice) HasManagementAddress() bool {
-	if o != nil && !IsNil(o.ManagementAddress) {
-		return true
-	}
-
-	return false
-}
-
-// SetManagementAddress gets a reference to the given string and assigns it to the ManagementAddress field.
+// SetManagementAddress sets field value
 func (o *NetworkDevice) SetManagementAddress(v string) {
-	o.ManagementAddress = &v
+	o.ManagementAddress = v
 }
 
-// GetManagementAddressMask returns the ManagementAddressMask field value if set, zero value otherwise.
+// GetManagementAddressMask returns the ManagementAddressMask field value
 func (o *NetworkDevice) GetManagementAddressMask() string {
-	if o == nil || IsNil(o.ManagementAddressMask) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ManagementAddressMask
+
+	return o.ManagementAddressMask
 }
 
-// GetManagementAddressMaskOk returns a tuple with the ManagementAddressMask field value if set, nil otherwise
+// GetManagementAddressMaskOk returns a tuple with the ManagementAddressMask field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetManagementAddressMaskOk() (*string, bool) {
-	if o == nil || IsNil(o.ManagementAddressMask) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ManagementAddressMask, true
+	return &o.ManagementAddressMask, true
 }
 
-// HasManagementAddressMask returns a boolean if a field has been set.
-func (o *NetworkDevice) HasManagementAddressMask() bool {
-	if o != nil && !IsNil(o.ManagementAddressMask) {
-		return true
-	}
-
-	return false
-}
-
-// SetManagementAddressMask gets a reference to the given string and assigns it to the ManagementAddressMask field.
+// SetManagementAddressMask sets field value
 func (o *NetworkDevice) SetManagementAddressMask(v string) {
-	o.ManagementAddressMask = &v
+	o.ManagementAddressMask = v
 }
 
-// GetManagementAddressGateway returns the ManagementAddressGateway field value if set, zero value otherwise.
+// GetManagementAddressGateway returns the ManagementAddressGateway field value
 func (o *NetworkDevice) GetManagementAddressGateway() string {
-	if o == nil || IsNil(o.ManagementAddressGateway) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ManagementAddressGateway
+
+	return o.ManagementAddressGateway
 }
 
-// GetManagementAddressGatewayOk returns a tuple with the ManagementAddressGateway field value if set, nil otherwise
+// GetManagementAddressGatewayOk returns a tuple with the ManagementAddressGateway field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetManagementAddressGatewayOk() (*string, bool) {
-	if o == nil || IsNil(o.ManagementAddressGateway) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ManagementAddressGateway, true
+	return &o.ManagementAddressGateway, true
 }
 
-// HasManagementAddressGateway returns a boolean if a field has been set.
-func (o *NetworkDevice) HasManagementAddressGateway() bool {
-	if o != nil && !IsNil(o.ManagementAddressGateway) {
-		return true
-	}
-
-	return false
-}
-
-// SetManagementAddressGateway gets a reference to the given string and assigns it to the ManagementAddressGateway field.
+// SetManagementAddressGateway sets field value
 func (o *NetworkDevice) SetManagementAddressGateway(v string) {
-	o.ManagementAddressGateway = &v
+	o.ManagementAddressGateway = v
 }
 
-// GetManagementPort returns the ManagementPort field value if set, zero value otherwise.
+// GetManagementPort returns the ManagementPort field value
 func (o *NetworkDevice) GetManagementPort() float32 {
-	if o == nil || IsNil(o.ManagementPort) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.ManagementPort
+
+	return o.ManagementPort
 }
 
-// GetManagementPortOk returns a tuple with the ManagementPort field value if set, nil otherwise
+// GetManagementPortOk returns a tuple with the ManagementPort field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetManagementPortOk() (*float32, bool) {
-	if o == nil || IsNil(o.ManagementPort) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ManagementPort, true
+	return &o.ManagementPort, true
 }
 
-// HasManagementPort returns a boolean if a field has been set.
-func (o *NetworkDevice) HasManagementPort() bool {
-	if o != nil && !IsNil(o.ManagementPort) {
-		return true
-	}
-
-	return false
-}
-
-// SetManagementPort gets a reference to the given float32 and assigns it to the ManagementPort field.
+// SetManagementPort sets field value
 func (o *NetworkDevice) SetManagementPort(v float32) {
-	o.ManagementPort = &v
+	o.ManagementPort = v
 }
 
-// GetSyslogEnabled returns the SyslogEnabled field value if set, zero value otherwise.
+// GetSyslogEnabled returns the SyslogEnabled field value
 func (o *NetworkDevice) GetSyslogEnabled() bool {
-	if o == nil || IsNil(o.SyslogEnabled) {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.SyslogEnabled
+
+	return o.SyslogEnabled
 }
 
-// GetSyslogEnabledOk returns a tuple with the SyslogEnabled field value if set, nil otherwise
+// GetSyslogEnabledOk returns a tuple with the SyslogEnabled field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetSyslogEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.SyslogEnabled) {
+	if o == nil {
 		return nil, false
 	}
-	return o.SyslogEnabled, true
+	return &o.SyslogEnabled, true
 }
 
-// HasSyslogEnabled returns a boolean if a field has been set.
-func (o *NetworkDevice) HasSyslogEnabled() bool {
-	if o != nil && !IsNil(o.SyslogEnabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetSyslogEnabled gets a reference to the given bool and assigns it to the SyslogEnabled field.
+// SetSyslogEnabled sets field value
 func (o *NetworkDevice) SetSyslogEnabled(v bool) {
-	o.SyslogEnabled = &v
+	o.SyslogEnabled = v
 }
 
-// GetUsername returns the Username field value if set, zero value otherwise.
+// GetUsername returns the Username field value
 func (o *NetworkDevice) GetUsername() string {
-	if o == nil || IsNil(o.Username) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Username
+
+	return o.Username
 }
 
-// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
+// GetUsernameOk returns a tuple with the Username field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Username) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Username, true
+	return &o.Username, true
 }
 
-// HasUsername returns a boolean if a field has been set.
-func (o *NetworkDevice) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
-		return true
-	}
-
-	return false
-}
-
-// SetUsername gets a reference to the given string and assigns it to the Username field.
+// SetUsername sets field value
 func (o *NetworkDevice) SetUsername(v string) {
-	o.Username = &v
+	o.Username = v
 }
 
-// GetManagementPassword returns the ManagementPassword field value if set, zero value otherwise.
+// GetManagementPassword returns the ManagementPassword field value
 func (o *NetworkDevice) GetManagementPassword() string {
-	if o == nil || IsNil(o.ManagementPassword) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ManagementPassword
+
+	return o.ManagementPassword
 }
 
-// GetManagementPasswordOk returns a tuple with the ManagementPassword field value if set, nil otherwise
+// GetManagementPasswordOk returns a tuple with the ManagementPassword field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetManagementPasswordOk() (*string, bool) {
-	if o == nil || IsNil(o.ManagementPassword) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ManagementPassword, true
+	return &o.ManagementPassword, true
 }
 
-// HasManagementPassword returns a boolean if a field has been set.
-func (o *NetworkDevice) HasManagementPassword() bool {
-	if o != nil && !IsNil(o.ManagementPassword) {
-		return true
-	}
-
-	return false
-}
-
-// SetManagementPassword gets a reference to the given string and assigns it to the ManagementPassword field.
+// SetManagementPassword sets field value
 func (o *NetworkDevice) SetManagementPassword(v string) {
-	o.ManagementPassword = &v
+	o.ManagementPassword = v
 }
 
-// GetManagementProtocol returns the ManagementProtocol field value if set, zero value otherwise.
-func (o *NetworkDevice) GetManagementProtocol() string {
-	if o == nil || IsNil(o.ManagementProtocol) {
-		var ret string
-		return ret
-	}
-	return *o.ManagementProtocol
-}
-
-// GetManagementProtocolOk returns a tuple with the ManagementProtocol field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetManagementProtocolOk() (*string, bool) {
-	if o == nil || IsNil(o.ManagementProtocol) {
-		return nil, false
-	}
-	return o.ManagementProtocol, true
-}
-
-// HasManagementProtocol returns a boolean if a field has been set.
-func (o *NetworkDevice) HasManagementProtocol() bool {
-	if o != nil && !IsNil(o.ManagementProtocol) {
-		return true
-	}
-
-	return false
-}
-
-// SetManagementProtocol gets a reference to the given string and assigns it to the ManagementProtocol field.
-func (o *NetworkDevice) SetManagementProtocol(v string) {
-	o.ManagementProtocol = &v
-}
-
-// GetManagementMacAddress returns the ManagementMacAddress field value if set, zero value otherwise.
+// GetManagementMacAddress returns the ManagementMacAddress field value
 func (o *NetworkDevice) GetManagementMacAddress() string {
-	if o == nil || IsNil(o.ManagementMacAddress) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ManagementMacAddress
+
+	return o.ManagementMacAddress
 }
 
-// GetManagementMacAddressOk returns a tuple with the ManagementMacAddress field value if set, nil otherwise
+// GetManagementMacAddressOk returns a tuple with the ManagementMacAddress field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetManagementMacAddressOk() (*string, bool) {
-	if o == nil || IsNil(o.ManagementMacAddress) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ManagementMacAddress, true
+	return &o.ManagementMacAddress, true
 }
 
-// HasManagementMacAddress returns a boolean if a field has been set.
-func (o *NetworkDevice) HasManagementMacAddress() bool {
-	if o != nil && !IsNil(o.ManagementMacAddress) {
-		return true
-	}
-
-	return false
-}
-
-// SetManagementMacAddress gets a reference to the given string and assigns it to the ManagementMacAddress field.
+// SetManagementMacAddress sets field value
 func (o *NetworkDevice) SetManagementMacAddress(v string) {
-	o.ManagementMacAddress = &v
+	o.ManagementMacAddress = v
 }
 
-// GetSerialNumber returns the SerialNumber field value if set, zero value otherwise.
+// GetSerialNumber returns the SerialNumber field value
 func (o *NetworkDevice) GetSerialNumber() string {
-	if o == nil || IsNil(o.SerialNumber) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.SerialNumber
+
+	return o.SerialNumber
 }
 
-// GetSerialNumberOk returns a tuple with the SerialNumber field value if set, nil otherwise
+// GetSerialNumberOk returns a tuple with the SerialNumber field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetSerialNumberOk() (*string, bool) {
-	if o == nil || IsNil(o.SerialNumber) {
+	if o == nil {
 		return nil, false
 	}
-	return o.SerialNumber, true
+	return &o.SerialNumber, true
 }
 
-// HasSerialNumber returns a boolean if a field has been set.
-func (o *NetworkDevice) HasSerialNumber() bool {
-	if o != nil && !IsNil(o.SerialNumber) {
-		return true
-	}
-
-	return false
-}
-
-// SetSerialNumber gets a reference to the given string and assigns it to the SerialNumber field.
+// SetSerialNumber sets field value
 func (o *NetworkDevice) SetSerialNumber(v string) {
-	o.SerialNumber = &v
+	o.SerialNumber = v
 }
 
 // GetDriver returns the Driver field value
@@ -991,930 +787,554 @@ func (o *NetworkDevice) SetPosition(v SwitchPosition) {
 	o.Position = v
 }
 
-// GetProvisionerType returns the ProvisionerType field value if set, zero value otherwise.
-func (o *NetworkDevice) GetProvisionerType() string {
-	if o == nil || IsNil(o.ProvisionerType) {
-		var ret string
-		return ret
-	}
-	return *o.ProvisionerType
-}
-
-// GetProvisionerTypeOk returns a tuple with the ProvisionerType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetProvisionerTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.ProvisionerType) {
-		return nil, false
-	}
-	return o.ProvisionerType, true
-}
-
-// HasProvisionerType returns a boolean if a field has been set.
-func (o *NetworkDevice) HasProvisionerType() bool {
-	if o != nil && !IsNil(o.ProvisionerType) {
-		return true
-	}
-
-	return false
-}
-
-// SetProvisionerType gets a reference to the given string and assigns it to the ProvisionerType field.
-func (o *NetworkDevice) SetProvisionerType(v string) {
-	o.ProvisionerType = &v
-}
-
-// GetNetworkTypesAllowed returns the NetworkTypesAllowed field value if set, zero value otherwise.
-func (o *NetworkDevice) GetNetworkTypesAllowed() []string {
-	if o == nil || IsNil(o.NetworkTypesAllowed) {
-		var ret []string
-		return ret
-	}
-	return o.NetworkTypesAllowed
-}
-
-// GetNetworkTypesAllowedOk returns a tuple with the NetworkTypesAllowed field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetNetworkTypesAllowedOk() ([]string, bool) {
-	if o == nil || IsNil(o.NetworkTypesAllowed) {
-		return nil, false
-	}
-	return o.NetworkTypesAllowed, true
-}
-
-// HasNetworkTypesAllowed returns a boolean if a field has been set.
-func (o *NetworkDevice) HasNetworkTypesAllowed() bool {
-	if o != nil && !IsNil(o.NetworkTypesAllowed) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworkTypesAllowed gets a reference to the given []string and assigns it to the NetworkTypesAllowed field.
-func (o *NetworkDevice) SetNetworkTypesAllowed(v []string) {
-	o.NetworkTypesAllowed = v
-}
-
-// GetOrderIndex returns the OrderIndex field value if set, zero value otherwise.
+// GetOrderIndex returns the OrderIndex field value
 func (o *NetworkDevice) GetOrderIndex() float32 {
-	if o == nil || IsNil(o.OrderIndex) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.OrderIndex
+
+	return o.OrderIndex
 }
 
-// GetOrderIndexOk returns a tuple with the OrderIndex field value if set, nil otherwise
+// GetOrderIndexOk returns a tuple with the OrderIndex field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetOrderIndexOk() (*float32, bool) {
-	if o == nil || IsNil(o.OrderIndex) {
+	if o == nil {
 		return nil, false
 	}
-	return o.OrderIndex, true
+	return &o.OrderIndex, true
 }
 
-// HasOrderIndex returns a boolean if a field has been set.
-func (o *NetworkDevice) HasOrderIndex() bool {
-	if o != nil && !IsNil(o.OrderIndex) {
-		return true
-	}
-
-	return false
-}
-
-// SetOrderIndex gets a reference to the given float32 and assigns it to the OrderIndex field.
+// SetOrderIndex sets field value
 func (o *NetworkDevice) SetOrderIndex(v float32) {
-	o.OrderIndex = &v
+	o.OrderIndex = v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
+// GetTags returns the Tags field value
 func (o *NetworkDevice) GetTags() string {
-	if o == nil || IsNil(o.Tags) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Tags
+
+	return o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// GetTagsOk returns a tuple with the Tags field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetTagsOk() (*string, bool) {
-	if o == nil || IsNil(o.Tags) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
-// HasTags returns a boolean if a field has been set.
-func (o *NetworkDevice) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given string and assigns it to the Tags field.
+// SetTags sets field value
 func (o *NetworkDevice) SetTags(v string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
-// GetReadyForInitialConfiguration returns the ReadyForInitialConfiguration field value if set, zero value otherwise.
+// GetReadyForInitialConfiguration returns the ReadyForInitialConfiguration field value
 func (o *NetworkDevice) GetReadyForInitialConfiguration() float32 {
-	if o == nil || IsNil(o.ReadyForInitialConfiguration) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.ReadyForInitialConfiguration
+
+	return o.ReadyForInitialConfiguration
 }
 
-// GetReadyForInitialConfigurationOk returns a tuple with the ReadyForInitialConfiguration field value if set, nil otherwise
+// GetReadyForInitialConfigurationOk returns a tuple with the ReadyForInitialConfiguration field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetReadyForInitialConfigurationOk() (*float32, bool) {
-	if o == nil || IsNil(o.ReadyForInitialConfiguration) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ReadyForInitialConfiguration, true
+	return &o.ReadyForInitialConfiguration, true
 }
 
-// HasReadyForInitialConfiguration returns a boolean if a field has been set.
-func (o *NetworkDevice) HasReadyForInitialConfiguration() bool {
-	if o != nil && !IsNil(o.ReadyForInitialConfiguration) {
-		return true
-	}
-
-	return false
-}
-
-// SetReadyForInitialConfiguration gets a reference to the given float32 and assigns it to the ReadyForInitialConfiguration field.
+// SetReadyForInitialConfiguration sets field value
 func (o *NetworkDevice) SetReadyForInitialConfiguration(v float32) {
-	o.ReadyForInitialConfiguration = &v
+	o.ReadyForInitialConfiguration = v
 }
 
-// GetBootstrapReadinessCheckInProgress returns the BootstrapReadinessCheckInProgress field value if set, zero value otherwise.
+// GetBootstrapReadinessCheckInProgress returns the BootstrapReadinessCheckInProgress field value
 func (o *NetworkDevice) GetBootstrapReadinessCheckInProgress() float32 {
-	if o == nil || IsNil(o.BootstrapReadinessCheckInProgress) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.BootstrapReadinessCheckInProgress
+
+	return o.BootstrapReadinessCheckInProgress
 }
 
-// GetBootstrapReadinessCheckInProgressOk returns a tuple with the BootstrapReadinessCheckInProgress field value if set, nil otherwise
+// GetBootstrapReadinessCheckInProgressOk returns a tuple with the BootstrapReadinessCheckInProgress field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetBootstrapReadinessCheckInProgressOk() (*float32, bool) {
-	if o == nil || IsNil(o.BootstrapReadinessCheckInProgress) {
+	if o == nil {
 		return nil, false
 	}
-	return o.BootstrapReadinessCheckInProgress, true
+	return &o.BootstrapReadinessCheckInProgress, true
 }
 
-// HasBootstrapReadinessCheckInProgress returns a boolean if a field has been set.
-func (o *NetworkDevice) HasBootstrapReadinessCheckInProgress() bool {
-	if o != nil && !IsNil(o.BootstrapReadinessCheckInProgress) {
-		return true
-	}
-
-	return false
-}
-
-// SetBootstrapReadinessCheckInProgress gets a reference to the given float32 and assigns it to the BootstrapReadinessCheckInProgress field.
+// SetBootstrapReadinessCheckInProgress sets field value
 func (o *NetworkDevice) SetBootstrapReadinessCheckInProgress(v float32) {
-	o.BootstrapReadinessCheckInProgress = &v
+	o.BootstrapReadinessCheckInProgress = v
 }
 
-// GetSubnetOobId returns the SubnetOobId field value if set, zero value otherwise.
+// GetSubnetOobId returns the SubnetOobId field value
 func (o *NetworkDevice) GetSubnetOobId() float32 {
-	if o == nil || IsNil(o.SubnetOobId) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.SubnetOobId
+
+	return o.SubnetOobId
 }
 
-// GetSubnetOobIdOk returns a tuple with the SubnetOobId field value if set, nil otherwise
+// GetSubnetOobIdOk returns a tuple with the SubnetOobId field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetSubnetOobIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.SubnetOobId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.SubnetOobId, true
+	return &o.SubnetOobId, true
 }
 
-// HasSubnetOobId returns a boolean if a field has been set.
-func (o *NetworkDevice) HasSubnetOobId() bool {
-	if o != nil && !IsNil(o.SubnetOobId) {
-		return true
-	}
-
-	return false
-}
-
-// SetSubnetOobId gets a reference to the given float32 and assigns it to the SubnetOobId field.
+// SetSubnetOobId sets field value
 func (o *NetworkDevice) SetSubnetOobId(v float32) {
-	o.SubnetOobId = &v
+	o.SubnetOobId = v
 }
 
-// GetSubnetOobIndex returns the SubnetOobIndex field value if set, zero value otherwise.
+// GetSubnetOobIndex returns the SubnetOobIndex field value
 func (o *NetworkDevice) GetSubnetOobIndex() float32 {
-	if o == nil || IsNil(o.SubnetOobIndex) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.SubnetOobIndex
+
+	return o.SubnetOobIndex
 }
 
-// GetSubnetOobIndexOk returns a tuple with the SubnetOobIndex field value if set, nil otherwise
+// GetSubnetOobIndexOk returns a tuple with the SubnetOobIndex field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetSubnetOobIndexOk() (*float32, bool) {
-	if o == nil || IsNil(o.SubnetOobIndex) {
+	if o == nil {
 		return nil, false
 	}
-	return o.SubnetOobIndex, true
+	return &o.SubnetOobIndex, true
 }
 
-// HasSubnetOobIndex returns a boolean if a field has been set.
-func (o *NetworkDevice) HasSubnetOobIndex() bool {
-	if o != nil && !IsNil(o.SubnetOobIndex) {
-		return true
-	}
-
-	return false
-}
-
-// SetSubnetOobIndex gets a reference to the given float32 and assigns it to the SubnetOobIndex field.
+// SetSubnetOobIndex sets field value
 func (o *NetworkDevice) SetSubnetOobIndex(v float32) {
-	o.SubnetOobIndex = &v
+	o.SubnetOobIndex = v
 }
 
-// GetRequiresOsInstall returns the RequiresOsInstall field value if set, zero value otherwise.
+// GetRequiresOsInstall returns the RequiresOsInstall field value
 func (o *NetworkDevice) GetRequiresOsInstall() bool {
-	if o == nil || IsNil(o.RequiresOsInstall) {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.RequiresOsInstall
+
+	return o.RequiresOsInstall
 }
 
-// GetRequiresOsInstallOk returns a tuple with the RequiresOsInstall field value if set, nil otherwise
+// GetRequiresOsInstallOk returns a tuple with the RequiresOsInstall field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetRequiresOsInstallOk() (*bool, bool) {
-	if o == nil || IsNil(o.RequiresOsInstall) {
+	if o == nil {
 		return nil, false
 	}
-	return o.RequiresOsInstall, true
+	return &o.RequiresOsInstall, true
 }
 
-// HasRequiresOsInstall returns a boolean if a field has been set.
-func (o *NetworkDevice) HasRequiresOsInstall() bool {
-	if o != nil && !IsNil(o.RequiresOsInstall) {
-		return true
-	}
-
-	return false
-}
-
-// SetRequiresOsInstall gets a reference to the given bool and assigns it to the RequiresOsInstall field.
+// SetRequiresOsInstall sets field value
 func (o *NetworkDevice) SetRequiresOsInstall(v bool) {
-	o.RequiresOsInstall = &v
+	o.RequiresOsInstall = v
 }
 
-// GetBootstrapSkipInitialConfiguration returns the BootstrapSkipInitialConfiguration field value if set, zero value otherwise.
+// GetBootstrapSkipInitialConfiguration returns the BootstrapSkipInitialConfiguration field value
 func (o *NetworkDevice) GetBootstrapSkipInitialConfiguration() float32 {
-	if o == nil || IsNil(o.BootstrapSkipInitialConfiguration) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.BootstrapSkipInitialConfiguration
+
+	return o.BootstrapSkipInitialConfiguration
 }
 
-// GetBootstrapSkipInitialConfigurationOk returns a tuple with the BootstrapSkipInitialConfiguration field value if set, nil otherwise
+// GetBootstrapSkipInitialConfigurationOk returns a tuple with the BootstrapSkipInitialConfiguration field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetBootstrapSkipInitialConfigurationOk() (*float32, bool) {
-	if o == nil || IsNil(o.BootstrapSkipInitialConfiguration) {
+	if o == nil {
 		return nil, false
 	}
-	return o.BootstrapSkipInitialConfiguration, true
+	return &o.BootstrapSkipInitialConfiguration, true
 }
 
-// HasBootstrapSkipInitialConfiguration returns a boolean if a field has been set.
-func (o *NetworkDevice) HasBootstrapSkipInitialConfiguration() bool {
-	if o != nil && !IsNil(o.BootstrapSkipInitialConfiguration) {
-		return true
-	}
-
-	return false
-}
-
-// SetBootstrapSkipInitialConfiguration gets a reference to the given float32 and assigns it to the BootstrapSkipInitialConfiguration field.
+// SetBootstrapSkipInitialConfiguration sets field value
 func (o *NetworkDevice) SetBootstrapSkipInitialConfiguration(v float32) {
-	o.BootstrapSkipInitialConfiguration = &v
+	o.BootstrapSkipInitialConfiguration = v
 }
 
-// GetBootstrapExpectedPartnerHostname returns the BootstrapExpectedPartnerHostname field value if set, zero value otherwise.
+// GetBootstrapExpectedPartnerHostname returns the BootstrapExpectedPartnerHostname field value
 func (o *NetworkDevice) GetBootstrapExpectedPartnerHostname() string {
-	if o == nil || IsNil(o.BootstrapExpectedPartnerHostname) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.BootstrapExpectedPartnerHostname
+
+	return o.BootstrapExpectedPartnerHostname
 }
 
-// GetBootstrapExpectedPartnerHostnameOk returns a tuple with the BootstrapExpectedPartnerHostname field value if set, nil otherwise
+// GetBootstrapExpectedPartnerHostnameOk returns a tuple with the BootstrapExpectedPartnerHostname field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetBootstrapExpectedPartnerHostnameOk() (*string, bool) {
-	if o == nil || IsNil(o.BootstrapExpectedPartnerHostname) {
+	if o == nil {
 		return nil, false
 	}
-	return o.BootstrapExpectedPartnerHostname, true
+	return &o.BootstrapExpectedPartnerHostname, true
 }
 
-// HasBootstrapExpectedPartnerHostname returns a boolean if a field has been set.
-func (o *NetworkDevice) HasBootstrapExpectedPartnerHostname() bool {
-	if o != nil && !IsNil(o.BootstrapExpectedPartnerHostname) {
-		return true
-	}
-
-	return false
-}
-
-// SetBootstrapExpectedPartnerHostname gets a reference to the given string and assigns it to the BootstrapExpectedPartnerHostname field.
+// SetBootstrapExpectedPartnerHostname sets field value
 func (o *NetworkDevice) SetBootstrapExpectedPartnerHostname(v string) {
-	o.BootstrapExpectedPartnerHostname = &v
+	o.BootstrapExpectedPartnerHostname = v
 }
 
-// GetLoopbackAddress returns the LoopbackAddress field value if set, zero value otherwise.
-func (o *NetworkDevice) GetLoopbackAddress() string {
-	if o == nil || IsNil(o.LoopbackAddress) {
+// GetLoopbackAddressIpv4 returns the LoopbackAddressIpv4 field value
+func (o *NetworkDevice) GetLoopbackAddressIpv4() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.LoopbackAddress
+
+	return o.LoopbackAddressIpv4
 }
 
-// GetLoopbackAddressOk returns a tuple with the LoopbackAddress field value if set, nil otherwise
+// GetLoopbackAddressIpv4Ok returns a tuple with the LoopbackAddressIpv4 field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetLoopbackAddressOk() (*string, bool) {
-	if o == nil || IsNil(o.LoopbackAddress) {
+func (o *NetworkDevice) GetLoopbackAddressIpv4Ok() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LoopbackAddress, true
+	return &o.LoopbackAddressIpv4, true
 }
 
-// HasLoopbackAddress returns a boolean if a field has been set.
-func (o *NetworkDevice) HasLoopbackAddress() bool {
-	if o != nil && !IsNil(o.LoopbackAddress) {
-		return true
-	}
-
-	return false
+// SetLoopbackAddressIpv4 sets field value
+func (o *NetworkDevice) SetLoopbackAddressIpv4(v string) {
+	o.LoopbackAddressIpv4 = v
 }
 
-// SetLoopbackAddress gets a reference to the given string and assigns it to the LoopbackAddress field.
-func (o *NetworkDevice) SetLoopbackAddress(v string) {
-	o.LoopbackAddress = &v
-}
-
-// GetLoopbackAddressIpv6 returns the LoopbackAddressIpv6 field value if set, zero value otherwise.
+// GetLoopbackAddressIpv6 returns the LoopbackAddressIpv6 field value
 func (o *NetworkDevice) GetLoopbackAddressIpv6() string {
-	if o == nil || IsNil(o.LoopbackAddressIpv6) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.LoopbackAddressIpv6
+
+	return o.LoopbackAddressIpv6
 }
 
-// GetLoopbackAddressIpv6Ok returns a tuple with the LoopbackAddressIpv6 field value if set, nil otherwise
+// GetLoopbackAddressIpv6Ok returns a tuple with the LoopbackAddressIpv6 field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetLoopbackAddressIpv6Ok() (*string, bool) {
-	if o == nil || IsNil(o.LoopbackAddressIpv6) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LoopbackAddressIpv6, true
+	return &o.LoopbackAddressIpv6, true
 }
 
-// HasLoopbackAddressIpv6 returns a boolean if a field has been set.
-func (o *NetworkDevice) HasLoopbackAddressIpv6() bool {
-	if o != nil && !IsNil(o.LoopbackAddressIpv6) {
-		return true
-	}
-
-	return false
-}
-
-// SetLoopbackAddressIpv6 gets a reference to the given string and assigns it to the LoopbackAddressIpv6 field.
+// SetLoopbackAddressIpv6 sets field value
 func (o *NetworkDevice) SetLoopbackAddressIpv6(v string) {
-	o.LoopbackAddressIpv6 = &v
+	o.LoopbackAddressIpv6 = v
 }
 
-// GetAsn returns the Asn field value if set, zero value otherwise.
+// GetAsn returns the Asn field value
 func (o *NetworkDevice) GetAsn() float32 {
-	if o == nil || IsNil(o.Asn) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.Asn
+
+	return o.Asn
 }
 
-// GetAsnOk returns a tuple with the Asn field value if set, nil otherwise
+// GetAsnOk returns a tuple with the Asn field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetAsnOk() (*float32, bool) {
-	if o == nil || IsNil(o.Asn) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Asn, true
+	return &o.Asn, true
 }
 
-// HasAsn returns a boolean if a field has been set.
-func (o *NetworkDevice) HasAsn() bool {
-	if o != nil && !IsNil(o.Asn) {
-		return true
-	}
-
-	return false
-}
-
-// SetAsn gets a reference to the given float32 and assigns it to the Asn field.
+// SetAsn sets field value
 func (o *NetworkDevice) SetAsn(v float32) {
-	o.Asn = &v
+	o.Asn = v
 }
 
-// GetVtepAddress returns the VtepAddress field value if set, zero value otherwise.
-func (o *NetworkDevice) GetVtepAddress() string {
-	if o == nil || IsNil(o.VtepAddress) {
+// GetVtepAddressIpv4 returns the VtepAddressIpv4 field value
+func (o *NetworkDevice) GetVtepAddressIpv4() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.VtepAddress
+
+	return o.VtepAddressIpv4
 }
 
-// GetVtepAddressOk returns a tuple with the VtepAddress field value if set, nil otherwise
+// GetVtepAddressIpv4Ok returns a tuple with the VtepAddressIpv4 field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetVtepAddressOk() (*string, bool) {
-	if o == nil || IsNil(o.VtepAddress) {
+func (o *NetworkDevice) GetVtepAddressIpv4Ok() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.VtepAddress, true
+	return &o.VtepAddressIpv4, true
 }
 
-// HasVtepAddress returns a boolean if a field has been set.
-func (o *NetworkDevice) HasVtepAddress() bool {
-	if o != nil && !IsNil(o.VtepAddress) {
-		return true
-	}
-
-	return false
+// SetVtepAddressIpv4 sets field value
+func (o *NetworkDevice) SetVtepAddressIpv4(v string) {
+	o.VtepAddressIpv4 = v
 }
 
-// SetVtepAddress gets a reference to the given string and assigns it to the VtepAddress field.
-func (o *NetworkDevice) SetVtepAddress(v string) {
-	o.VtepAddress = &v
-}
-
-// GetVtepAddressIpv6 returns the VtepAddressIpv6 field value if set, zero value otherwise.
+// GetVtepAddressIpv6 returns the VtepAddressIpv6 field value
 func (o *NetworkDevice) GetVtepAddressIpv6() string {
-	if o == nil || IsNil(o.VtepAddressIpv6) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.VtepAddressIpv6
+
+	return o.VtepAddressIpv6
 }
 
-// GetVtepAddressIpv6Ok returns a tuple with the VtepAddressIpv6 field value if set, nil otherwise
+// GetVtepAddressIpv6Ok returns a tuple with the VtepAddressIpv6 field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetVtepAddressIpv6Ok() (*string, bool) {
-	if o == nil || IsNil(o.VtepAddressIpv6) {
+	if o == nil {
 		return nil, false
 	}
-	return o.VtepAddressIpv6, true
+	return &o.VtepAddressIpv6, true
 }
 
-// HasVtepAddressIpv6 returns a boolean if a field has been set.
-func (o *NetworkDevice) HasVtepAddressIpv6() bool {
-	if o != nil && !IsNil(o.VtepAddressIpv6) {
-		return true
-	}
-
-	return false
-}
-
-// SetVtepAddressIpv6 gets a reference to the given string and assigns it to the VtepAddressIpv6 field.
+// SetVtepAddressIpv6 sets field value
 func (o *NetworkDevice) SetVtepAddressIpv6(v string) {
-	o.VtepAddressIpv6 = &v
+	o.VtepAddressIpv6 = v
 }
 
-// GetMlagSystemMac returns the MlagSystemMac field value if set, zero value otherwise.
+// GetMlagSystemMac returns the MlagSystemMac field value
 func (o *NetworkDevice) GetMlagSystemMac() string {
-	if o == nil || IsNil(o.MlagSystemMac) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MlagSystemMac
+
+	return o.MlagSystemMac
 }
 
-// GetMlagSystemMacOk returns a tuple with the MlagSystemMac field value if set, nil otherwise
+// GetMlagSystemMacOk returns a tuple with the MlagSystemMac field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetMlagSystemMacOk() (*string, bool) {
-	if o == nil || IsNil(o.MlagSystemMac) {
+	if o == nil {
 		return nil, false
 	}
-	return o.MlagSystemMac, true
+	return &o.MlagSystemMac, true
 }
 
-// HasMlagSystemMac returns a boolean if a field has been set.
-func (o *NetworkDevice) HasMlagSystemMac() bool {
-	if o != nil && !IsNil(o.MlagSystemMac) {
-		return true
-	}
-
-	return false
-}
-
-// SetMlagSystemMac gets a reference to the given string and assigns it to the MlagSystemMac field.
+// SetMlagSystemMac sets field value
 func (o *NetworkDevice) SetMlagSystemMac(v string) {
-	o.MlagSystemMac = &v
+	o.MlagSystemMac = v
 }
 
-// GetMlagDomainId returns the MlagDomainId field value if set, zero value otherwise.
+// GetMlagDomainId returns the MlagDomainId field value
 func (o *NetworkDevice) GetMlagDomainId() float32 {
-	if o == nil || IsNil(o.MlagDomainId) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.MlagDomainId
+
+	return o.MlagDomainId
 }
 
-// GetMlagDomainIdOk returns a tuple with the MlagDomainId field value if set, nil otherwise
+// GetMlagDomainIdOk returns a tuple with the MlagDomainId field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetMlagDomainIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.MlagDomainId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.MlagDomainId, true
+	return &o.MlagDomainId, true
 }
 
-// HasMlagDomainId returns a boolean if a field has been set.
-func (o *NetworkDevice) HasMlagDomainId() bool {
-	if o != nil && !IsNil(o.MlagDomainId) {
-		return true
-	}
-
-	return false
-}
-
-// SetMlagDomainId gets a reference to the given float32 and assigns it to the MlagDomainId field.
+// SetMlagDomainId sets field value
 func (o *NetworkDevice) SetMlagDomainId(v float32) {
-	o.MlagDomainId = &v
+	o.MlagDomainId = v
 }
 
-// GetQuarantineSubnetStart returns the QuarantineSubnetStart field value if set, zero value otherwise.
-func (o *NetworkDevice) GetQuarantineSubnetStart() string {
-	if o == nil || IsNil(o.QuarantineSubnetStart) {
-		var ret string
-		return ret
-	}
-	return *o.QuarantineSubnetStart
-}
-
-// GetQuarantineSubnetStartOk returns a tuple with the QuarantineSubnetStart field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetQuarantineSubnetStartOk() (*string, bool) {
-	if o == nil || IsNil(o.QuarantineSubnetStart) {
-		return nil, false
-	}
-	return o.QuarantineSubnetStart, true
-}
-
-// HasQuarantineSubnetStart returns a boolean if a field has been set.
-func (o *NetworkDevice) HasQuarantineSubnetStart() bool {
-	if o != nil && !IsNil(o.QuarantineSubnetStart) {
-		return true
-	}
-
-	return false
-}
-
-// SetQuarantineSubnetStart gets a reference to the given string and assigns it to the QuarantineSubnetStart field.
-func (o *NetworkDevice) SetQuarantineSubnetStart(v string) {
-	o.QuarantineSubnetStart = &v
-}
-
-// GetQuarantineSubnetEnd returns the QuarantineSubnetEnd field value if set, zero value otherwise.
-func (o *NetworkDevice) GetQuarantineSubnetEnd() string {
-	if o == nil || IsNil(o.QuarantineSubnetEnd) {
-		var ret string
-		return ret
-	}
-	return *o.QuarantineSubnetEnd
-}
-
-// GetQuarantineSubnetEndOk returns a tuple with the QuarantineSubnetEnd field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetQuarantineSubnetEndOk() (*string, bool) {
-	if o == nil || IsNil(o.QuarantineSubnetEnd) {
-		return nil, false
-	}
-	return o.QuarantineSubnetEnd, true
-}
-
-// HasQuarantineSubnetEnd returns a boolean if a field has been set.
-func (o *NetworkDevice) HasQuarantineSubnetEnd() bool {
-	if o != nil && !IsNil(o.QuarantineSubnetEnd) {
-		return true
-	}
-
-	return false
-}
-
-// SetQuarantineSubnetEnd gets a reference to the given string and assigns it to the QuarantineSubnetEnd field.
-func (o *NetworkDevice) SetQuarantineSubnetEnd(v string) {
-	o.QuarantineSubnetEnd = &v
-}
-
-// GetQuarantineSubnetPrefixSize returns the QuarantineSubnetPrefixSize field value if set, zero value otherwise.
-func (o *NetworkDevice) GetQuarantineSubnetPrefixSize() float32 {
-	if o == nil || IsNil(o.QuarantineSubnetPrefixSize) {
-		var ret float32
-		return ret
-	}
-	return *o.QuarantineSubnetPrefixSize
-}
-
-// GetQuarantineSubnetPrefixSizeOk returns a tuple with the QuarantineSubnetPrefixSize field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetQuarantineSubnetPrefixSizeOk() (*float32, bool) {
-	if o == nil || IsNil(o.QuarantineSubnetPrefixSize) {
-		return nil, false
-	}
-	return o.QuarantineSubnetPrefixSize, true
-}
-
-// HasQuarantineSubnetPrefixSize returns a boolean if a field has been set.
-func (o *NetworkDevice) HasQuarantineSubnetPrefixSize() bool {
-	if o != nil && !IsNil(o.QuarantineSubnetPrefixSize) {
-		return true
-	}
-
-	return false
-}
-
-// SetQuarantineSubnetPrefixSize gets a reference to the given float32 and assigns it to the QuarantineSubnetPrefixSize field.
-func (o *NetworkDevice) SetQuarantineSubnetPrefixSize(v float32) {
-	o.QuarantineSubnetPrefixSize = &v
-}
-
-// GetQuarantineSubnetGateway returns the QuarantineSubnetGateway field value if set, zero value otherwise.
-func (o *NetworkDevice) GetQuarantineSubnetGateway() string {
-	if o == nil || IsNil(o.QuarantineSubnetGateway) {
-		var ret string
-		return ret
-	}
-	return *o.QuarantineSubnetGateway
-}
-
-// GetQuarantineSubnetGatewayOk returns a tuple with the QuarantineSubnetGateway field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetQuarantineSubnetGatewayOk() (*string, bool) {
-	if o == nil || IsNil(o.QuarantineSubnetGateway) {
-		return nil, false
-	}
-	return o.QuarantineSubnetGateway, true
-}
-
-// HasQuarantineSubnetGateway returns a boolean if a field has been set.
-func (o *NetworkDevice) HasQuarantineSubnetGateway() bool {
-	if o != nil && !IsNil(o.QuarantineSubnetGateway) {
-		return true
-	}
-
-	return false
-}
-
-// SetQuarantineSubnetGateway gets a reference to the given string and assigns it to the QuarantineSubnetGateway field.
-func (o *NetworkDevice) SetQuarantineSubnetGateway(v string) {
-	o.QuarantineSubnetGateway = &v
-}
-
-// GetQuarantineVlan returns the QuarantineVlan field value if set, zero value otherwise.
+// GetQuarantineVlan returns the QuarantineVlan field value
 func (o *NetworkDevice) GetQuarantineVlan() float32 {
-	if o == nil || IsNil(o.QuarantineVlan) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.QuarantineVlan
+
+	return o.QuarantineVlan
 }
 
-// GetQuarantineVlanOk returns a tuple with the QuarantineVlan field value if set, nil otherwise
+// GetQuarantineVlanOk returns a tuple with the QuarantineVlan field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetQuarantineVlanOk() (*float32, bool) {
-	if o == nil || IsNil(o.QuarantineVlan) {
+	if o == nil {
 		return nil, false
 	}
-	return o.QuarantineVlan, true
+	return &o.QuarantineVlan, true
 }
 
-// HasQuarantineVlan returns a boolean if a field has been set.
-func (o *NetworkDevice) HasQuarantineVlan() bool {
-	if o != nil && !IsNil(o.QuarantineVlan) {
-		return true
-	}
-
-	return false
-}
-
-// SetQuarantineVlan gets a reference to the given float32 and assigns it to the QuarantineVlan field.
+// SetQuarantineVlan sets field value
 func (o *NetworkDevice) SetQuarantineVlan(v float32) {
-	o.QuarantineVlan = &v
+	o.QuarantineVlan = v
 }
 
-// GetDefaultMtu returns the DefaultMtu field value if set, zero value otherwise.
+// GetDefaultMtu returns the DefaultMtu field value
 func (o *NetworkDevice) GetDefaultMtu() float32 {
-	if o == nil || IsNil(o.DefaultMtu) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.DefaultMtu
+
+	return o.DefaultMtu
 }
 
-// GetDefaultMtuOk returns a tuple with the DefaultMtu field value if set, nil otherwise
+// GetDefaultMtuOk returns a tuple with the DefaultMtu field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetDefaultMtuOk() (*float32, bool) {
-	if o == nil || IsNil(o.DefaultMtu) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DefaultMtu, true
+	return &o.DefaultMtu, true
 }
 
-// HasDefaultMtu returns a boolean if a field has been set.
-func (o *NetworkDevice) HasDefaultMtu() bool {
-	if o != nil && !IsNil(o.DefaultMtu) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultMtu gets a reference to the given float32 and assigns it to the DefaultMtu field.
+// SetDefaultMtu sets field value
 func (o *NetworkDevice) SetDefaultMtu(v float32) {
-	o.DefaultMtu = &v
+	o.DefaultMtu = v
 }
 
-// GetVariablesMaterializedForOSAssets returns the VariablesMaterializedForOSAssets field value if set, zero value otherwise.
+// GetVariablesMaterializedForOSAssets returns the VariablesMaterializedForOSAssets field value
 func (o *NetworkDevice) GetVariablesMaterializedForOSAssets() map[string]interface{} {
-	if o == nil || IsNil(o.VariablesMaterializedForOSAssets) {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
+
 	return o.VariablesMaterializedForOSAssets
 }
 
-// GetVariablesMaterializedForOSAssetsOk returns a tuple with the VariablesMaterializedForOSAssets field value if set, nil otherwise
+// GetVariablesMaterializedForOSAssetsOk returns a tuple with the VariablesMaterializedForOSAssets field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetVariablesMaterializedForOSAssetsOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.VariablesMaterializedForOSAssets) {
+	if o == nil {
 		return map[string]interface{}{}, false
 	}
 	return o.VariablesMaterializedForOSAssets, true
 }
 
-// HasVariablesMaterializedForOSAssets returns a boolean if a field has been set.
-func (o *NetworkDevice) HasVariablesMaterializedForOSAssets() bool {
-	if o != nil && !IsNil(o.VariablesMaterializedForOSAssets) {
-		return true
-	}
-
-	return false
-}
-
-// SetVariablesMaterializedForOSAssets gets a reference to the given map[string]interface{} and assigns it to the VariablesMaterializedForOSAssets field.
+// SetVariablesMaterializedForOSAssets sets field value
 func (o *NetworkDevice) SetVariablesMaterializedForOSAssets(v map[string]interface{}) {
 	o.VariablesMaterializedForOSAssets = v
 }
 
-// GetSecretsMaterializedForOSAssets returns the SecretsMaterializedForOSAssets field value if set, zero value otherwise.
+// GetSecretsMaterializedForOSAssets returns the SecretsMaterializedForOSAssets field value
 func (o *NetworkDevice) GetSecretsMaterializedForOSAssets() map[string]interface{} {
-	if o == nil || IsNil(o.SecretsMaterializedForOSAssets) {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
+
 	return o.SecretsMaterializedForOSAssets
 }
 
-// GetSecretsMaterializedForOSAssetsOk returns a tuple with the SecretsMaterializedForOSAssets field value if set, nil otherwise
+// GetSecretsMaterializedForOSAssetsOk returns a tuple with the SecretsMaterializedForOSAssets field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetSecretsMaterializedForOSAssetsOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.SecretsMaterializedForOSAssets) {
+	if o == nil {
 		return map[string]interface{}{}, false
 	}
 	return o.SecretsMaterializedForOSAssets, true
 }
 
-// HasSecretsMaterializedForOSAssets returns a boolean if a field has been set.
-func (o *NetworkDevice) HasSecretsMaterializedForOSAssets() bool {
-	if o != nil && !IsNil(o.SecretsMaterializedForOSAssets) {
-		return true
-	}
-
-	return false
-}
-
-// SetSecretsMaterializedForOSAssets gets a reference to the given map[string]interface{} and assigns it to the SecretsMaterializedForOSAssets field.
+// SetSecretsMaterializedForOSAssets sets field value
 func (o *NetworkDevice) SetSecretsMaterializedForOSAssets(v map[string]interface{}) {
 	o.SecretsMaterializedForOSAssets = v
 }
 
-// GetBootstrapReadinessCheckResult returns the BootstrapReadinessCheckResult field value if set, zero value otherwise.
+// GetBootstrapReadinessCheckResult returns the BootstrapReadinessCheckResult field value
 func (o *NetworkDevice) GetBootstrapReadinessCheckResult() map[string]interface{} {
-	if o == nil || IsNil(o.BootstrapReadinessCheckResult) {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
+
 	return o.BootstrapReadinessCheckResult
 }
 
-// GetBootstrapReadinessCheckResultOk returns a tuple with the BootstrapReadinessCheckResult field value if set, nil otherwise
+// GetBootstrapReadinessCheckResultOk returns a tuple with the BootstrapReadinessCheckResult field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetBootstrapReadinessCheckResultOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.BootstrapReadinessCheckResult) {
+	if o == nil {
 		return map[string]interface{}{}, false
 	}
 	return o.BootstrapReadinessCheckResult, true
 }
 
-// HasBootstrapReadinessCheckResult returns a boolean if a field has been set.
-func (o *NetworkDevice) HasBootstrapReadinessCheckResult() bool {
-	if o != nil && !IsNil(o.BootstrapReadinessCheckResult) {
-		return true
-	}
-
-	return false
-}
-
-// SetBootstrapReadinessCheckResult gets a reference to the given map[string]interface{} and assigns it to the BootstrapReadinessCheckResult field.
+// SetBootstrapReadinessCheckResult sets field value
 func (o *NetworkDevice) SetBootstrapReadinessCheckResult(v map[string]interface{}) {
 	o.BootstrapReadinessCheckResult = v
 }
 
-// GetIsGateway returns the IsGateway field value if set, zero value otherwise.
+// GetIsGateway returns the IsGateway field value
 func (o *NetworkDevice) GetIsGateway() float32 {
-	if o == nil || IsNil(o.IsGateway) {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.IsGateway
+
+	return o.IsGateway
 }
 
-// GetIsGatewayOk returns a tuple with the IsGateway field value if set, nil otherwise
+// GetIsGatewayOk returns a tuple with the IsGateway field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetIsGatewayOk() (*float32, bool) {
-	if o == nil || IsNil(o.IsGateway) {
+	if o == nil {
 		return nil, false
 	}
-	return o.IsGateway, true
+	return &o.IsGateway, true
 }
 
-// HasIsGateway returns a boolean if a field has been set.
-func (o *NetworkDevice) HasIsGateway() bool {
-	if o != nil && !IsNil(o.IsGateway) {
-		return true
-	}
-
-	return false
-}
-
-// SetIsGateway gets a reference to the given float32 and assigns it to the IsGateway field.
+// SetIsGateway sets field value
 func (o *NetworkDevice) SetIsGateway(v float32) {
-	o.IsGateway = &v
+	o.IsGateway = v
 }
 
-// GetLinks returns the Links field value if set, zero value otherwise.
+// GetLinks returns the Links field value
 func (o *NetworkDevice) GetLinks() []Link {
-	if o == nil || IsNil(o.Links) {
+	if o == nil {
 		var ret []Link
 		return ret
 	}
+
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
+// GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetLinksOk() ([]Link, bool) {
-	if o == nil || IsNil(o.Links) {
+	if o == nil {
 		return nil, false
 	}
 	return o.Links, true
 }
 
-// HasLinks returns a boolean if a field has been set.
-func (o *NetworkDevice) HasLinks() bool {
-	if o != nil && !IsNil(o.Links) {
-		return true
-	}
-
-	return false
-}
-
-// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+// SetLinks sets field value
 func (o *NetworkDevice) SetLinks(v []Link) {
 	o.Links = v
 }
@@ -1929,166 +1349,54 @@ func (o NetworkDevice) MarshalJSON() ([]byte, error) {
 
 func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["switchId"] = o.SwitchId
+	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !IsNil(o.DatacenterName) {
-		toSerialize["datacenterName"] = o.DatacenterName
-	}
-	if !IsNil(o.SiteId) {
-		toSerialize["siteId"] = o.SiteId
-	}
-	if !IsNil(o.IdentifierString) {
-		toSerialize["identifierString"] = o.IdentifierString
-	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if !IsNil(o.ChassisIdentifier) {
-		toSerialize["chassisIdentifier"] = o.ChassisIdentifier
-	}
-	if !IsNil(o.Country) {
-		toSerialize["country"] = o.Country
-	}
-	if !IsNil(o.City) {
-		toSerialize["city"] = o.City
-	}
-	if !IsNil(o.DatacenterMeta) {
-		toSerialize["datacenterMeta"] = o.DatacenterMeta
-	}
-	if !IsNil(o.DatacenterRoom) {
-		toSerialize["datacenterRoom"] = o.DatacenterRoom
-	}
-	if !IsNil(o.DatacenterRack) {
-		toSerialize["datacenterRack"] = o.DatacenterRack
-	}
-	if !IsNil(o.RackPositionUpperUnit) {
-		toSerialize["rackPositionUpperUnit"] = o.RackPositionUpperUnit
-	}
-	if !IsNil(o.RackPositionLowerUnit) {
-		toSerialize["rackPositionLowerUnit"] = o.RackPositionLowerUnit
-	}
-	if !IsNil(o.ManagementAddress) {
-		toSerialize["managementAddress"] = o.ManagementAddress
-	}
-	if !IsNil(o.ManagementAddressMask) {
-		toSerialize["managementAddressMask"] = o.ManagementAddressMask
-	}
-	if !IsNil(o.ManagementAddressGateway) {
-		toSerialize["managementAddressGateway"] = o.ManagementAddressGateway
-	}
-	if !IsNil(o.ManagementPort) {
-		toSerialize["managementPort"] = o.ManagementPort
-	}
-	if !IsNil(o.SyslogEnabled) {
-		toSerialize["syslogEnabled"] = o.SyslogEnabled
-	}
-	if !IsNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
-	if !IsNil(o.ManagementPassword) {
-		toSerialize["managementPassword"] = o.ManagementPassword
-	}
-	if !IsNil(o.ManagementProtocol) {
-		toSerialize["managementProtocol"] = o.ManagementProtocol
-	}
-	if !IsNil(o.ManagementMacAddress) {
-		toSerialize["managementMacAddress"] = o.ManagementMacAddress
-	}
-	if !IsNil(o.SerialNumber) {
-		toSerialize["serialNumber"] = o.SerialNumber
-	}
+	toSerialize["status"] = o.Status
+	toSerialize["siteId"] = o.SiteId
+	toSerialize["identifierString"] = o.IdentifierString
+	toSerialize["description"] = o.Description
+	toSerialize["chassisIdentifier"] = o.ChassisIdentifier
+	toSerialize["country"] = o.Country
+	toSerialize["city"] = o.City
+	toSerialize["datacenterMeta"] = o.DatacenterMeta
+	toSerialize["datacenterRoom"] = o.DatacenterRoom
+	toSerialize["datacenterRack"] = o.DatacenterRack
+	toSerialize["rackPositionUpperUnit"] = o.RackPositionUpperUnit
+	toSerialize["rackPositionLowerUnit"] = o.RackPositionLowerUnit
+	toSerialize["managementAddress"] = o.ManagementAddress
+	toSerialize["managementAddressMask"] = o.ManagementAddressMask
+	toSerialize["managementAddressGateway"] = o.ManagementAddressGateway
+	toSerialize["managementPort"] = o.ManagementPort
+	toSerialize["syslogEnabled"] = o.SyslogEnabled
+	toSerialize["username"] = o.Username
+	toSerialize["managementPassword"] = o.ManagementPassword
+	toSerialize["managementMacAddress"] = o.ManagementMacAddress
+	toSerialize["serialNumber"] = o.SerialNumber
 	toSerialize["driver"] = o.Driver
 	toSerialize["position"] = o.Position
-	if !IsNil(o.ProvisionerType) {
-		toSerialize["provisionerType"] = o.ProvisionerType
-	}
-	if !IsNil(o.NetworkTypesAllowed) {
-		toSerialize["networkTypesAllowed"] = o.NetworkTypesAllowed
-	}
-	if !IsNil(o.OrderIndex) {
-		toSerialize["orderIndex"] = o.OrderIndex
-	}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !IsNil(o.ReadyForInitialConfiguration) {
-		toSerialize["readyForInitialConfiguration"] = o.ReadyForInitialConfiguration
-	}
-	if !IsNil(o.BootstrapReadinessCheckInProgress) {
-		toSerialize["bootstrapReadinessCheckInProgress"] = o.BootstrapReadinessCheckInProgress
-	}
-	if !IsNil(o.SubnetOobId) {
-		toSerialize["subnetOobId"] = o.SubnetOobId
-	}
-	if !IsNil(o.SubnetOobIndex) {
-		toSerialize["subnetOobIndex"] = o.SubnetOobIndex
-	}
-	if !IsNil(o.RequiresOsInstall) {
-		toSerialize["requiresOsInstall"] = o.RequiresOsInstall
-	}
-	if !IsNil(o.BootstrapSkipInitialConfiguration) {
-		toSerialize["bootstrapSkipInitialConfiguration"] = o.BootstrapSkipInitialConfiguration
-	}
-	if !IsNil(o.BootstrapExpectedPartnerHostname) {
-		toSerialize["bootstrapExpectedPartnerHostname"] = o.BootstrapExpectedPartnerHostname
-	}
-	if !IsNil(o.LoopbackAddress) {
-		toSerialize["loopbackAddress"] = o.LoopbackAddress
-	}
-	if !IsNil(o.LoopbackAddressIpv6) {
-		toSerialize["loopbackAddressIpv6"] = o.LoopbackAddressIpv6
-	}
-	if !IsNil(o.Asn) {
-		toSerialize["asn"] = o.Asn
-	}
-	if !IsNil(o.VtepAddress) {
-		toSerialize["vtepAddress"] = o.VtepAddress
-	}
-	if !IsNil(o.VtepAddressIpv6) {
-		toSerialize["vtepAddressIpv6"] = o.VtepAddressIpv6
-	}
-	if !IsNil(o.MlagSystemMac) {
-		toSerialize["mlagSystemMac"] = o.MlagSystemMac
-	}
-	if !IsNil(o.MlagDomainId) {
-		toSerialize["mlagDomainId"] = o.MlagDomainId
-	}
-	if !IsNil(o.QuarantineSubnetStart) {
-		toSerialize["quarantineSubnetStart"] = o.QuarantineSubnetStart
-	}
-	if !IsNil(o.QuarantineSubnetEnd) {
-		toSerialize["quarantineSubnetEnd"] = o.QuarantineSubnetEnd
-	}
-	if !IsNil(o.QuarantineSubnetPrefixSize) {
-		toSerialize["quarantineSubnetPrefixSize"] = o.QuarantineSubnetPrefixSize
-	}
-	if !IsNil(o.QuarantineSubnetGateway) {
-		toSerialize["quarantineSubnetGateway"] = o.QuarantineSubnetGateway
-	}
-	if !IsNil(o.QuarantineVlan) {
-		toSerialize["quarantineVlan"] = o.QuarantineVlan
-	}
-	if !IsNil(o.DefaultMtu) {
-		toSerialize["defaultMtu"] = o.DefaultMtu
-	}
-	if !IsNil(o.VariablesMaterializedForOSAssets) {
-		toSerialize["variablesMaterializedForOSAssets"] = o.VariablesMaterializedForOSAssets
-	}
-	if !IsNil(o.SecretsMaterializedForOSAssets) {
-		toSerialize["secretsMaterializedForOSAssets"] = o.SecretsMaterializedForOSAssets
-	}
-	if !IsNil(o.BootstrapReadinessCheckResult) {
-		toSerialize["bootstrapReadinessCheckResult"] = o.BootstrapReadinessCheckResult
-	}
-	if !IsNil(o.IsGateway) {
-		toSerialize["isGateway"] = o.IsGateway
-	}
-	if !IsNil(o.Links) {
-		toSerialize["links"] = o.Links
-	}
+	toSerialize["orderIndex"] = o.OrderIndex
+	toSerialize["tags"] = o.Tags
+	toSerialize["readyForInitialConfiguration"] = o.ReadyForInitialConfiguration
+	toSerialize["bootstrapReadinessCheckInProgress"] = o.BootstrapReadinessCheckInProgress
+	toSerialize["subnetOobId"] = o.SubnetOobId
+	toSerialize["subnetOobIndex"] = o.SubnetOobIndex
+	toSerialize["requiresOsInstall"] = o.RequiresOsInstall
+	toSerialize["bootstrapSkipInitialConfiguration"] = o.BootstrapSkipInitialConfiguration
+	toSerialize["bootstrapExpectedPartnerHostname"] = o.BootstrapExpectedPartnerHostname
+	toSerialize["loopbackAddressIpv4"] = o.LoopbackAddressIpv4
+	toSerialize["loopbackAddressIpv6"] = o.LoopbackAddressIpv6
+	toSerialize["asn"] = o.Asn
+	toSerialize["vtepAddressIpv4"] = o.VtepAddressIpv4
+	toSerialize["vtepAddressIpv6"] = o.VtepAddressIpv6
+	toSerialize["mlagSystemMac"] = o.MlagSystemMac
+	toSerialize["mlagDomainId"] = o.MlagDomainId
+	toSerialize["quarantineVlan"] = o.QuarantineVlan
+	toSerialize["defaultMtu"] = o.DefaultMtu
+	toSerialize["variablesMaterializedForOSAssets"] = o.VariablesMaterializedForOSAssets
+	toSerialize["secretsMaterializedForOSAssets"] = o.SecretsMaterializedForOSAssets
+	toSerialize["bootstrapReadinessCheckResult"] = o.BootstrapReadinessCheckResult
+	toSerialize["isGateway"] = o.IsGateway
+	toSerialize["links"] = o.Links
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -2102,10 +1410,54 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"switchId",
+		"id",
 		"revision",
+		"status",
+		"siteId",
+		"identifierString",
+		"description",
+		"chassisIdentifier",
+		"country",
+		"city",
+		"datacenterMeta",
+		"datacenterRoom",
+		"datacenterRack",
+		"rackPositionUpperUnit",
+		"rackPositionLowerUnit",
+		"managementAddress",
+		"managementAddressMask",
+		"managementAddressGateway",
+		"managementPort",
+		"syslogEnabled",
+		"username",
+		"managementPassword",
+		"managementMacAddress",
+		"serialNumber",
 		"driver",
 		"position",
+		"orderIndex",
+		"tags",
+		"readyForInitialConfiguration",
+		"bootstrapReadinessCheckInProgress",
+		"subnetOobId",
+		"subnetOobIndex",
+		"requiresOsInstall",
+		"bootstrapSkipInitialConfiguration",
+		"bootstrapExpectedPartnerHostname",
+		"loopbackAddressIpv4",
+		"loopbackAddressIpv6",
+		"asn",
+		"vtepAddressIpv4",
+		"vtepAddressIpv6",
+		"mlagSystemMac",
+		"mlagDomainId",
+		"quarantineVlan",
+		"defaultMtu",
+		"variablesMaterializedForOSAssets",
+		"secretsMaterializedForOSAssets",
+		"bootstrapReadinessCheckResult",
+		"isGateway",
+		"links",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -2135,10 +1487,9 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "switchId")
+		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "status")
-		delete(additionalProperties, "datacenterName")
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "identifierString")
 		delete(additionalProperties, "description")
@@ -2157,13 +1508,10 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "syslogEnabled")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "managementPassword")
-		delete(additionalProperties, "managementProtocol")
 		delete(additionalProperties, "managementMacAddress")
 		delete(additionalProperties, "serialNumber")
 		delete(additionalProperties, "driver")
 		delete(additionalProperties, "position")
-		delete(additionalProperties, "provisionerType")
-		delete(additionalProperties, "networkTypesAllowed")
 		delete(additionalProperties, "orderIndex")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "readyForInitialConfiguration")
@@ -2173,17 +1521,13 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "requiresOsInstall")
 		delete(additionalProperties, "bootstrapSkipInitialConfiguration")
 		delete(additionalProperties, "bootstrapExpectedPartnerHostname")
-		delete(additionalProperties, "loopbackAddress")
+		delete(additionalProperties, "loopbackAddressIpv4")
 		delete(additionalProperties, "loopbackAddressIpv6")
 		delete(additionalProperties, "asn")
-		delete(additionalProperties, "vtepAddress")
+		delete(additionalProperties, "vtepAddressIpv4")
 		delete(additionalProperties, "vtepAddressIpv6")
 		delete(additionalProperties, "mlagSystemMac")
 		delete(additionalProperties, "mlagDomainId")
-		delete(additionalProperties, "quarantineSubnetStart")
-		delete(additionalProperties, "quarantineSubnetEnd")
-		delete(additionalProperties, "quarantineSubnetPrefixSize")
-		delete(additionalProperties, "quarantineSubnetGateway")
 		delete(additionalProperties, "quarantineVlan")
 		delete(additionalProperties, "defaultMtu")
 		delete(additionalProperties, "variablesMaterializedForOSAssets")

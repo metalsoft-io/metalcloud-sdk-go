@@ -20,18 +20,14 @@ var _ MappedNullable = &ServerInstanceCreate{}
 
 // ServerInstanceCreate struct for ServerInstanceCreate
 type ServerInstanceCreate struct {
+	// The server instance label.
+	Label *string `json:"label,omitempty"`
 	GroupId *int32 `json:"groupId,omitempty"`
 	// The server type ID.
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
 	// The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal. 
 	TemplateId *int32 `json:"templateId,omitempty"`
 	Tags []string `json:"tags,omitempty"`
-	// If enabled will enable port channel to be automatically created.
-	EnableAutoPortChannel *bool `json:"enableAutoPortChannel,omitempty"`
-	// Network profiles mapping for each network in this infrastructure.
-	NetworkProfiles []ServerInstanceConfigurationNetworkProfilesInner `json:"networkProfiles,omitempty"`
-	// The server instance label. Will be automatically generated if not provided.
-	Label *string `json:"label,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,8 +39,6 @@ type _ServerInstanceCreate ServerInstanceCreate
 // will change when the set of required properties is changed
 func NewServerInstanceCreate() *ServerInstanceCreate {
 	this := ServerInstanceCreate{}
-	var enableAutoPortChannel bool = true
-	this.EnableAutoPortChannel = &enableAutoPortChannel
 	return &this
 }
 
@@ -53,9 +47,39 @@ func NewServerInstanceCreate() *ServerInstanceCreate {
 // but it doesn't guarantee that properties required by API are set
 func NewServerInstanceCreateWithDefaults() *ServerInstanceCreate {
 	this := ServerInstanceCreate{}
-	var enableAutoPortChannel bool = true
-	this.EnableAutoPortChannel = &enableAutoPortChannel
 	return &this
+}
+
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *ServerInstanceCreate) GetLabel() string {
+	if o == nil || IsNil(o.Label) {
+		var ret string
+		return ret
+	}
+	return *o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceCreate) GetLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.Label) {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *ServerInstanceCreate) HasLabel() bool {
+	if o != nil && !IsNil(o.Label) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *ServerInstanceCreate) SetLabel(v string) {
+	o.Label = &v
 }
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
@@ -186,102 +210,6 @@ func (o *ServerInstanceCreate) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetEnableAutoPortChannel returns the EnableAutoPortChannel field value if set, zero value otherwise.
-func (o *ServerInstanceCreate) GetEnableAutoPortChannel() bool {
-	if o == nil || IsNil(o.EnableAutoPortChannel) {
-		var ret bool
-		return ret
-	}
-	return *o.EnableAutoPortChannel
-}
-
-// GetEnableAutoPortChannelOk returns a tuple with the EnableAutoPortChannel field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceCreate) GetEnableAutoPortChannelOk() (*bool, bool) {
-	if o == nil || IsNil(o.EnableAutoPortChannel) {
-		return nil, false
-	}
-	return o.EnableAutoPortChannel, true
-}
-
-// HasEnableAutoPortChannel returns a boolean if a field has been set.
-func (o *ServerInstanceCreate) HasEnableAutoPortChannel() bool {
-	if o != nil && !IsNil(o.EnableAutoPortChannel) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnableAutoPortChannel gets a reference to the given bool and assigns it to the EnableAutoPortChannel field.
-func (o *ServerInstanceCreate) SetEnableAutoPortChannel(v bool) {
-	o.EnableAutoPortChannel = &v
-}
-
-// GetNetworkProfiles returns the NetworkProfiles field value if set, zero value otherwise.
-func (o *ServerInstanceCreate) GetNetworkProfiles() []ServerInstanceConfigurationNetworkProfilesInner {
-	if o == nil || IsNil(o.NetworkProfiles) {
-		var ret []ServerInstanceConfigurationNetworkProfilesInner
-		return ret
-	}
-	return o.NetworkProfiles
-}
-
-// GetNetworkProfilesOk returns a tuple with the NetworkProfiles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceCreate) GetNetworkProfilesOk() ([]ServerInstanceConfigurationNetworkProfilesInner, bool) {
-	if o == nil || IsNil(o.NetworkProfiles) {
-		return nil, false
-	}
-	return o.NetworkProfiles, true
-}
-
-// HasNetworkProfiles returns a boolean if a field has been set.
-func (o *ServerInstanceCreate) HasNetworkProfiles() bool {
-	if o != nil && !IsNil(o.NetworkProfiles) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworkProfiles gets a reference to the given []ServerInstanceConfigurationNetworkProfilesInner and assigns it to the NetworkProfiles field.
-func (o *ServerInstanceCreate) SetNetworkProfiles(v []ServerInstanceConfigurationNetworkProfilesInner) {
-	o.NetworkProfiles = v
-}
-
-// GetLabel returns the Label field value if set, zero value otherwise.
-func (o *ServerInstanceCreate) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
-		var ret string
-		return ret
-	}
-	return *o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceCreate) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
-		return nil, false
-	}
-	return o.Label, true
-}
-
-// HasLabel returns a boolean if a field has been set.
-func (o *ServerInstanceCreate) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *ServerInstanceCreate) SetLabel(v string) {
-	o.Label = &v
-}
-
 func (o ServerInstanceCreate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -292,6 +220,9 @@ func (o ServerInstanceCreate) MarshalJSON() ([]byte, error) {
 
 func (o ServerInstanceCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Label) {
+		toSerialize["label"] = o.Label
+	}
 	if !IsNil(o.GroupId) {
 		toSerialize["groupId"] = o.GroupId
 	}
@@ -303,15 +234,6 @@ func (o ServerInstanceCreate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
-	}
-	if !IsNil(o.EnableAutoPortChannel) {
-		toSerialize["enableAutoPortChannel"] = o.EnableAutoPortChannel
-	}
-	if !IsNil(o.NetworkProfiles) {
-		toSerialize["networkProfiles"] = o.NetworkProfiles
-	}
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -335,13 +257,11 @@ func (o *ServerInstanceCreate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "label")
 		delete(additionalProperties, "groupId")
 		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "templateId")
 		delete(additionalProperties, "tags")
-		delete(additionalProperties, "enableAutoPortChannel")
-		delete(additionalProperties, "networkProfiles")
-		delete(additionalProperties, "label")
 		o.AdditionalProperties = additionalProperties
 	}
 

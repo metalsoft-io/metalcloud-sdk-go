@@ -41,8 +41,6 @@ type ServerInstanceConfiguration struct {
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// RAID profile for the Instance Interface.
 	RaidProfile *ServerInstanceStorageProfile `json:"raidProfile,omitempty"`
-	// If enabled will enable port channel to be automatically created.
-	EnableAutoPortChannel *bool `json:"enableAutoPortChannel,omitempty"`
 	// iSCSI Initiator IQN for the Instance Interface.
 	IscsiInitiatorIqn *string `json:"iscsiInitiatorIqn,omitempty"`
 	// iSCSI Initiator Username for the Instance Interface.
@@ -51,8 +49,6 @@ type ServerInstanceConfiguration struct {
 	IscsiInitiatorPasswordEncrypted *string `json:"iscsiInitiatorPasswordEncrypted,omitempty"`
 	// Control panel url for the Instance Interface.
 	ControlPanelUrl *string `json:"controlPanelUrl,omitempty"`
-	// Network profiles mapping for each network in this infrastructure.
-	NetworkProfiles []ServerInstanceConfigurationNetworkProfilesInner `json:"networkProfiles,omitempty"`
 	// Number of empty edits
 	EmptyEdit *int32 `json:"emptyEdit,omitempty"`
 	// Server Instance deploy type
@@ -78,8 +74,6 @@ func NewServerInstanceConfiguration(revision float32, label string, updatedTimes
 	this.Label = label
 	this.UpdatedTimestamp = updatedTimestamp
 	this.GroupId = groupId
-	var enableAutoPortChannel bool = true
-	this.EnableAutoPortChannel = &enableAutoPortChannel
 	this.DeployType = deployType
 	this.DeployStatus = deployStatus
 	return &this
@@ -90,8 +84,6 @@ func NewServerInstanceConfiguration(revision float32, label string, updatedTimes
 // but it doesn't guarantee that properties required by API are set
 func NewServerInstanceConfigurationWithDefaults() *ServerInstanceConfiguration {
 	this := ServerInstanceConfiguration{}
-	var enableAutoPortChannel bool = true
-	this.EnableAutoPortChannel = &enableAutoPortChannel
 	return &this
 }
 
@@ -447,38 +439,6 @@ func (o *ServerInstanceConfiguration) SetRaidProfile(v ServerInstanceStorageProf
 	o.RaidProfile = &v
 }
 
-// GetEnableAutoPortChannel returns the EnableAutoPortChannel field value if set, zero value otherwise.
-func (o *ServerInstanceConfiguration) GetEnableAutoPortChannel() bool {
-	if o == nil || IsNil(o.EnableAutoPortChannel) {
-		var ret bool
-		return ret
-	}
-	return *o.EnableAutoPortChannel
-}
-
-// GetEnableAutoPortChannelOk returns a tuple with the EnableAutoPortChannel field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceConfiguration) GetEnableAutoPortChannelOk() (*bool, bool) {
-	if o == nil || IsNil(o.EnableAutoPortChannel) {
-		return nil, false
-	}
-	return o.EnableAutoPortChannel, true
-}
-
-// HasEnableAutoPortChannel returns a boolean if a field has been set.
-func (o *ServerInstanceConfiguration) HasEnableAutoPortChannel() bool {
-	if o != nil && !IsNil(o.EnableAutoPortChannel) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnableAutoPortChannel gets a reference to the given bool and assigns it to the EnableAutoPortChannel field.
-func (o *ServerInstanceConfiguration) SetEnableAutoPortChannel(v bool) {
-	o.EnableAutoPortChannel = &v
-}
-
 // GetIscsiInitiatorIqn returns the IscsiInitiatorIqn field value if set, zero value otherwise.
 func (o *ServerInstanceConfiguration) GetIscsiInitiatorIqn() string {
 	if o == nil || IsNil(o.IscsiInitiatorIqn) {
@@ -605,38 +565,6 @@ func (o *ServerInstanceConfiguration) HasControlPanelUrl() bool {
 // SetControlPanelUrl gets a reference to the given string and assigns it to the ControlPanelUrl field.
 func (o *ServerInstanceConfiguration) SetControlPanelUrl(v string) {
 	o.ControlPanelUrl = &v
-}
-
-// GetNetworkProfiles returns the NetworkProfiles field value if set, zero value otherwise.
-func (o *ServerInstanceConfiguration) GetNetworkProfiles() []ServerInstanceConfigurationNetworkProfilesInner {
-	if o == nil || IsNil(o.NetworkProfiles) {
-		var ret []ServerInstanceConfigurationNetworkProfilesInner
-		return ret
-	}
-	return o.NetworkProfiles
-}
-
-// GetNetworkProfilesOk returns a tuple with the NetworkProfiles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceConfiguration) GetNetworkProfilesOk() ([]ServerInstanceConfigurationNetworkProfilesInner, bool) {
-	if o == nil || IsNil(o.NetworkProfiles) {
-		return nil, false
-	}
-	return o.NetworkProfiles, true
-}
-
-// HasNetworkProfiles returns a boolean if a field has been set.
-func (o *ServerInstanceConfiguration) HasNetworkProfiles() bool {
-	if o != nil && !IsNil(o.NetworkProfiles) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworkProfiles gets a reference to the given []ServerInstanceConfigurationNetworkProfilesInner and assigns it to the NetworkProfiles field.
-func (o *ServerInstanceConfiguration) SetNetworkProfiles(v []ServerInstanceConfigurationNetworkProfilesInner) {
-	o.NetworkProfiles = v
 }
 
 // GetEmptyEdit returns the EmptyEdit field value if set, zero value otherwise.
@@ -821,9 +749,6 @@ func (o ServerInstanceConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RaidProfile) {
 		toSerialize["raidProfile"] = o.RaidProfile
 	}
-	if !IsNil(o.EnableAutoPortChannel) {
-		toSerialize["enableAutoPortChannel"] = o.EnableAutoPortChannel
-	}
 	if !IsNil(o.IscsiInitiatorIqn) {
 		toSerialize["iscsiInitiatorIqn"] = o.IscsiInitiatorIqn
 	}
@@ -835,9 +760,6 @@ func (o ServerInstanceConfiguration) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ControlPanelUrl) {
 		toSerialize["controlPanelUrl"] = o.ControlPanelUrl
-	}
-	if !IsNil(o.NetworkProfiles) {
-		toSerialize["networkProfiles"] = o.NetworkProfiles
 	}
 	if !IsNil(o.EmptyEdit) {
 		toSerialize["emptyEdit"] = o.EmptyEdit
@@ -910,12 +832,10 @@ func (o *ServerInstanceConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "instanceWanMlagId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "raidProfile")
-		delete(additionalProperties, "enableAutoPortChannel")
 		delete(additionalProperties, "iscsiInitiatorIqn")
 		delete(additionalProperties, "iscsiInitiatorUsername")
 		delete(additionalProperties, "iscsiInitiatorPasswordEncrypted")
 		delete(additionalProperties, "controlPanelUrl")
-		delete(additionalProperties, "networkProfiles")
 		delete(additionalProperties, "emptyEdit")
 		delete(additionalProperties, "deployType")
 		delete(additionalProperties, "deployStatus")

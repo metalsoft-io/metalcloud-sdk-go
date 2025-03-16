@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GuiSettings** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) | GUI settings in JSON format. | [optional] 
+**GuiSettings** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
 **Tags** | Pointer to **[]string** | List of tags representative for the associated product. | [optional] [default to []]
 
 ## Methods

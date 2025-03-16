@@ -23,12 +23,11 @@ Name | Type | Description | Notes
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
 **PreferredServerIds** | Pointer to **[]string** |  | [optional] 
 **RaidProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | RAID profile for the Instance Interface. | [optional] 
-**Meta** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) | GUI settings in JSON format. | [optional] 
 **ServiceStatus** | **string** | Current status of the server instance. | 
 **IsVmInstance** | **float32** | Flag to indicate if this is a VM instance | 
 **VmInstanceId** | Pointer to **float32** | The id of the linked VM instance | [optional] 
+**Meta** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**EnableAutoPortChannel** | Pointer to **bool** | If enabled will enable port channel to be automatically created. | [optional] [default to true]
 **OperatingSystemInfo** | Pointer to **map[string]interface{}** | Operating system information of the Instance. | [optional] 
 **VariablesOsAssetsTemplateTypeAdvanced** | Pointer to **map[string]interface{}** | Advanced variables used when building the OS image. | [optional] 
 **SecretsOsAssetsTemplateTypeAdvanced** | Pointer to **map[string]interface{}** | Advanced secrets used when building the OS image. | [optional] 
@@ -39,12 +38,11 @@ Name | Type | Description | Notes
 **OsInstallImageUrl** | Pointer to **string** | URL where the OS image is available. | [optional] 
 **OsInstallImageBuildError** | Pointer to **string** | Last error message during OS image build. | [optional] 
 **OsInstallImageBuildInfo** | Pointer to **string** | Build info regarding the OS image. | [optional] 
-**OsReinstallRequired** | Pointer to **string** | OS reinstall is required. | [optional] 
+**OsReinstallRequired** | Pointer to **float32** | OS reinstall is required. | [optional] 
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
 **IscsiInitiatorPasswordEncrypted** | Pointer to **string** | iSCSI Initiator Password for the Instance Interface. | [optional] 
 **ControlPanelUrl** | Pointer to **string** | Control panel url for the Instance Interface. | [optional] 
-**NetworkProfiles** | Pointer to [**[]ServerInstanceConfigurationNetworkProfilesInner**](ServerInstanceConfigurationNetworkProfilesInner.md) | Network profiles mapping for each network in this infrastructure. | [optional] 
 **Config** | Pointer to [**ServerInstanceConfiguration**](ServerInstanceConfiguration.md) |  | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -507,31 +505,6 @@ SetRaidProfile sets RaidProfile field to given value.
 
 HasRaidProfile returns a boolean if a field has been set.
 
-### GetMeta
-
-`func (o *ServerInstance) GetMeta() GenericGUISettings`
-
-GetMeta returns the Meta field if non-nil, zero value otherwise.
-
-### GetMetaOk
-
-`func (o *ServerInstance) GetMetaOk() (*GenericGUISettings, bool)`
-
-GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMeta
-
-`func (o *ServerInstance) SetMeta(v GenericGUISettings)`
-
-SetMeta sets Meta field to given value.
-
-### HasMeta
-
-`func (o *ServerInstance) HasMeta() bool`
-
-HasMeta returns a boolean if a field has been set.
-
 ### GetServiceStatus
 
 `func (o *ServerInstance) GetServiceStatus() string`
@@ -597,6 +570,31 @@ SetVmInstanceId sets VmInstanceId field to given value.
 
 HasVmInstanceId returns a boolean if a field has been set.
 
+### GetMeta
+
+`func (o *ServerInstance) GetMeta() GenericGUISettings`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *ServerInstance) GetMetaOk() (*GenericGUISettings, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *ServerInstance) SetMeta(v GenericGUISettings)`
+
+SetMeta sets Meta field to given value.
+
+### HasMeta
+
+`func (o *ServerInstance) HasMeta() bool`
+
+HasMeta returns a boolean if a field has been set.
+
 ### GetTags
 
 `func (o *ServerInstance) GetTags() []string`
@@ -621,31 +619,6 @@ SetTags sets Tags field to given value.
 `func (o *ServerInstance) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
-
-### GetEnableAutoPortChannel
-
-`func (o *ServerInstance) GetEnableAutoPortChannel() bool`
-
-GetEnableAutoPortChannel returns the EnableAutoPortChannel field if non-nil, zero value otherwise.
-
-### GetEnableAutoPortChannelOk
-
-`func (o *ServerInstance) GetEnableAutoPortChannelOk() (*bool, bool)`
-
-GetEnableAutoPortChannelOk returns a tuple with the EnableAutoPortChannel field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnableAutoPortChannel
-
-`func (o *ServerInstance) SetEnableAutoPortChannel(v bool)`
-
-SetEnableAutoPortChannel sets EnableAutoPortChannel field to given value.
-
-### HasEnableAutoPortChannel
-
-`func (o *ServerInstance) HasEnableAutoPortChannel() bool`
-
-HasEnableAutoPortChannel returns a boolean if a field has been set.
 
 ### GetOperatingSystemInfo
 
@@ -899,20 +872,20 @@ HasOsInstallImageBuildInfo returns a boolean if a field has been set.
 
 ### GetOsReinstallRequired
 
-`func (o *ServerInstance) GetOsReinstallRequired() string`
+`func (o *ServerInstance) GetOsReinstallRequired() float32`
 
 GetOsReinstallRequired returns the OsReinstallRequired field if non-nil, zero value otherwise.
 
 ### GetOsReinstallRequiredOk
 
-`func (o *ServerInstance) GetOsReinstallRequiredOk() (*string, bool)`
+`func (o *ServerInstance) GetOsReinstallRequiredOk() (*float32, bool)`
 
 GetOsReinstallRequiredOk returns a tuple with the OsReinstallRequired field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOsReinstallRequired
 
-`func (o *ServerInstance) SetOsReinstallRequired(v string)`
+`func (o *ServerInstance) SetOsReinstallRequired(v float32)`
 
 SetOsReinstallRequired sets OsReinstallRequired field to given value.
 
@@ -1021,31 +994,6 @@ SetControlPanelUrl sets ControlPanelUrl field to given value.
 `func (o *ServerInstance) HasControlPanelUrl() bool`
 
 HasControlPanelUrl returns a boolean if a field has been set.
-
-### GetNetworkProfiles
-
-`func (o *ServerInstance) GetNetworkProfiles() []ServerInstanceConfigurationNetworkProfilesInner`
-
-GetNetworkProfiles returns the NetworkProfiles field if non-nil, zero value otherwise.
-
-### GetNetworkProfilesOk
-
-`func (o *ServerInstance) GetNetworkProfilesOk() (*[]ServerInstanceConfigurationNetworkProfilesInner, bool)`
-
-GetNetworkProfilesOk returns a tuple with the NetworkProfiles field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetworkProfiles
-
-`func (o *ServerInstance) SetNetworkProfiles(v []ServerInstanceConfigurationNetworkProfilesInner)`
-
-SetNetworkProfiles sets NetworkProfiles field to given value.
-
-### HasNetworkProfiles
-
-`func (o *ServerInstance) HasNetworkProfiles() bool`
-
-HasNetworkProfiles returns a boolean if a field has been set.
 
 ### GetConfig
 

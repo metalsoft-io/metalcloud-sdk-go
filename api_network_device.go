@@ -825,7 +825,7 @@ func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) Execute() (*http.Response,
 }
 
 /*
-GetNetworkDevicePorts Get port statistics for network device directly from the device
+GetNetworkDevicePorts Port statistics for network device directly from the device
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param networkDeviceId
@@ -989,7 +989,7 @@ func (r NetworkDeviceAPIGetNetworkDevicesRequest) FilterIdentifierString(filterI
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; switchId:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;switchId&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;datacenterName&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;position&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;position&lt;/li&gt;&lt;/ul&gt;       
 func (r NetworkDeviceAPIGetNetworkDevicesRequest) SortBy(sortBy []string) NetworkDeviceAPIGetNetworkDevicesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1001,7 +1001,7 @@ func (r NetworkDeviceAPIGetNetworkDevicesRequest) Search(search string) NetworkD
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; switchId,status,datacenterName,managementAddress,provisionerType           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;switchId&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;datacenterName&lt;/li&gt; &lt;li&gt;managementAddress&lt;/li&gt; &lt;li&gt;provisionerType&lt;/li&gt; &lt;li&gt;position&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,status,siteId,managementAddress,position           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;managementAddress&lt;/li&gt; &lt;li&gt;position&lt;/li&gt;&lt;/ul&gt;         
 func (r NetworkDeviceAPIGetNetworkDevicesRequest) SearchBy(searchBy []string) NetworkDeviceAPIGetNetworkDevicesRequest {
 	r.searchBy = &searchBy
 	return r

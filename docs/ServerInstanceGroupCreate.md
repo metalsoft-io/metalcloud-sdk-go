@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Label** | Pointer to **string** | The server instance group label. Will be automatically generated if not provided. | [optional] 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
-**Meta** | Pointer to [**GenericMeta**](GenericMeta.md) | Meta information | [optional] 
 **InstanceCount** | Pointer to **int32** | The number of instances to be created on the InstanceArray. | [optional] [default to 1]
 **IpAllocateAuto** | Pointer to **int32** | Automatically allocate IP addresses to child Instance&#x60;s InstanceInterface elements. | [optional] [default to 1]
 **Ipv4SubnetCreateAuto** | Pointer to **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [optional] [default to 1]
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **OverrideIpv4WanVlanId** | Pointer to **int32** | The ipv4 vlan that should override the default from the WAN Network for the primary ip. | [optional] 
 **NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the InstanceInterfaces associated with this InstanceArray. | [optional] 
 **ResourcePoolId** | Pointer to **int32** | The resource pool assigned to this instance array | [optional] 
-**Label** | Pointer to **string** | The server instance group label. Will be automatically generated if not provided. | [optional] 
+**Meta** | Pointer to [**GenericMeta**](GenericMeta.md) |  | [optional] 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
 
 ## Methods
@@ -46,6 +46,31 @@ will change when the set of required properties is changed
 NewServerInstanceGroupCreateWithDefaults instantiates a new ServerInstanceGroupCreate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetLabel
+
+`func (o *ServerInstanceGroupCreate) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *ServerInstanceGroupCreate) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *ServerInstanceGroupCreate) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+### HasLabel
+
+`func (o *ServerInstanceGroupCreate) HasLabel() bool`
+
+HasLabel returns a boolean if a field has been set.
 
 ### GetServerGroupName
 
@@ -96,31 +121,6 @@ SetExtensionInstanceId sets ExtensionInstanceId field to given value.
 `func (o *ServerInstanceGroupCreate) HasExtensionInstanceId() bool`
 
 HasExtensionInstanceId returns a boolean if a field has been set.
-
-### GetMeta
-
-`func (o *ServerInstanceGroupCreate) GetMeta() GenericMeta`
-
-GetMeta returns the Meta field if non-nil, zero value otherwise.
-
-### GetMetaOk
-
-`func (o *ServerInstanceGroupCreate) GetMetaOk() (*GenericMeta, bool)`
-
-GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMeta
-
-`func (o *ServerInstanceGroupCreate) SetMeta(v GenericMeta)`
-
-SetMeta sets Meta field to given value.
-
-### HasMeta
-
-`func (o *ServerInstanceGroupCreate) HasMeta() bool`
-
-HasMeta returns a boolean if a field has been set.
 
 ### GetInstanceCount
 
@@ -572,30 +572,30 @@ SetResourcePoolId sets ResourcePoolId field to given value.
 
 HasResourcePoolId returns a boolean if a field has been set.
 
-### GetLabel
+### GetMeta
 
-`func (o *ServerInstanceGroupCreate) GetLabel() string`
+`func (o *ServerInstanceGroupCreate) GetMeta() GenericMeta`
 
-GetLabel returns the Label field if non-nil, zero value otherwise.
+GetMeta returns the Meta field if non-nil, zero value otherwise.
 
-### GetLabelOk
+### GetMetaOk
 
-`func (o *ServerInstanceGroupCreate) GetLabelOk() (*string, bool)`
+`func (o *ServerInstanceGroupCreate) GetMetaOk() (*GenericMeta, bool)`
 
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLabel
+### SetMeta
 
-`func (o *ServerInstanceGroupCreate) SetLabel(v string)`
+`func (o *ServerInstanceGroupCreate) SetMeta(v GenericMeta)`
 
-SetLabel sets Label field to given value.
+SetMeta sets Meta field to given value.
 
-### HasLabel
+### HasMeta
 
-`func (o *ServerInstanceGroupCreate) HasLabel() bool`
+`func (o *ServerInstanceGroupCreate) HasMeta() bool`
 
-HasLabel returns a boolean if a field has been set.
+HasMeta returns a boolean if a field has been set.
 
 ### GetServerTypeId
 

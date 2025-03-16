@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **IdentifierString** | Pointer to **string** | Unique identifier string for the network device | [optional] 
 **ChassisRackId** | Pointer to **int32** | ID of the rack where the network device chassis is installed | [optional] 
 **ChassisIdentifier** | Pointer to **NullableString** | Unique identifier for the network device chassis | [optional] 
-**ProvisionerType** | Pointer to [**ProvisionerType**](ProvisionerType.md) | Type of provisioner used for this network device | [optional] 
 **Driver** | [**NetworkDeviceDriver**](NetworkDeviceDriver.md) | Driver software used to communicate with the network device | 
 **Position** | **string** | The physical or logical position of the network device in the network topology. | 
 **TorLinkedId** | Pointer to **NullableFloat32** | ID of the Top-of-Rack (TOR) switch that this network device is linked to. Used for establishing hierarchical relationships between network devices. | [optional] 
@@ -17,12 +16,7 @@ Name | Type | Description | Notes
 **SyslogEnabled** | Pointer to **NullableBool** | Indicates if syslog logging is enabled for this network device | [optional] 
 **IsStorageSwitch** | Pointer to **bool** | Indicates if this network device is dedicated to storage traffic | [optional] 
 **IsBorderDevice** | Pointer to **bool** | Indicates if this network device functions as a border device connecting to external networks | [optional] 
-**QuarantineSubnetStart** | Pointer to **NullableString** | The starting IP address of the quarantine subnet range | [optional] 
-**QuarantineSubnetEnd** | Pointer to **NullableString** | The ending IP address of the quarantine subnet range | [optional] 
-**QuarantineSubnetPrefixSize** | Pointer to **NullableInt32** | The prefix size for the quarantine subnet | [optional] 
-**QuarantineSubnetGateway** | Pointer to **NullableString** | The gateway IP address for the quarantine subnet | [optional] 
 **QuarantineVlan** | Pointer to **int32** | The VLAN ID for the quarantine network | [optional] 
-**ManagementProtocol** | Pointer to **NullableString** | The protocol used to manage the network device (e.g., SSH, HTTPS) | [optional] 
 **ManagementAddress** | Pointer to **NullableString** | The IP address used to manage the network device | [optional] 
 **ManagementPort** | Pointer to **NullableInt32** | The port number used for management connections | [optional] 
 **Username** | Pointer to **NullableString** | The username used for management authentication | [optional] 
@@ -33,7 +27,6 @@ Name | Type | Description | Notes
 **LoopbackAddress** | Pointer to **NullableString** | The loopback IP address assigned to the network device | [optional] 
 **VtepAddress** | Pointer to **NullableString** | The VTEP (VXLAN Tunnel Endpoint) IP address for overlay networking | [optional] 
 **Asn** | Pointer to **NullableFloat32** | The Autonomous System Number for BGP routing | [optional] 
-**NetworkTypesAllowed** | Pointer to **[]string** | Network types allowed | [optional] 
 **Description** | Pointer to **NullableString** | Additional description or notes about the network device | [optional] 
 **Country** | Pointer to **NullableString** | The country where the network device is located | [optional] 
 **City** | Pointer to **NullableString** | The city where the network device is located | [optional] 
@@ -47,7 +40,6 @@ Name | Type | Description | Notes
 **DefaultMtu** | Pointer to **NullableFloat32** | The default Maximum Transmission Unit (MTU) for interfaces on this device | [optional] 
 **Tags** | Pointer to **[]string** | Tags for categorizing and filtering network devices | [optional] 
 **RequiresOsInstall** | Pointer to **bool** | Indicates if the device requires OS installation before provisioning | [optional] 
-**OobMgmtIpv4Address** | Pointer to **NullableString** | The IPv4 address for out-of-band management | [optional] 
 **OverwriteWithHostnameFromFetchedSwitch** | Pointer to **NullableBool** | Whether to overwrite the hostname with the one fetched from the device | [optional] 
 
 ## Methods
@@ -204,31 +196,6 @@ HasChassisIdentifier returns a boolean if a field has been set.
 `func (o *CreateNetworkDevice) UnsetChassisIdentifier()`
 
 UnsetChassisIdentifier ensures that no value is present for ChassisIdentifier, not even an explicit nil
-### GetProvisionerType
-
-`func (o *CreateNetworkDevice) GetProvisionerType() ProvisionerType`
-
-GetProvisionerType returns the ProvisionerType field if non-nil, zero value otherwise.
-
-### GetProvisionerTypeOk
-
-`func (o *CreateNetworkDevice) GetProvisionerTypeOk() (*ProvisionerType, bool)`
-
-GetProvisionerTypeOk returns a tuple with the ProvisionerType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProvisionerType
-
-`func (o *CreateNetworkDevice) SetProvisionerType(v ProvisionerType)`
-
-SetProvisionerType sets ProvisionerType field to given value.
-
-### HasProvisionerType
-
-`func (o *CreateNetworkDevice) HasProvisionerType() bool`
-
-HasProvisionerType returns a boolean if a field has been set.
-
 ### GetDriver
 
 `func (o *CreateNetworkDevice) GetDriver() NetworkDeviceDriver`
@@ -414,146 +381,6 @@ SetIsBorderDevice sets IsBorderDevice field to given value.
 
 HasIsBorderDevice returns a boolean if a field has been set.
 
-### GetQuarantineSubnetStart
-
-`func (o *CreateNetworkDevice) GetQuarantineSubnetStart() string`
-
-GetQuarantineSubnetStart returns the QuarantineSubnetStart field if non-nil, zero value otherwise.
-
-### GetQuarantineSubnetStartOk
-
-`func (o *CreateNetworkDevice) GetQuarantineSubnetStartOk() (*string, bool)`
-
-GetQuarantineSubnetStartOk returns a tuple with the QuarantineSubnetStart field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQuarantineSubnetStart
-
-`func (o *CreateNetworkDevice) SetQuarantineSubnetStart(v string)`
-
-SetQuarantineSubnetStart sets QuarantineSubnetStart field to given value.
-
-### HasQuarantineSubnetStart
-
-`func (o *CreateNetworkDevice) HasQuarantineSubnetStart() bool`
-
-HasQuarantineSubnetStart returns a boolean if a field has been set.
-
-### SetQuarantineSubnetStartNil
-
-`func (o *CreateNetworkDevice) SetQuarantineSubnetStartNil(b bool)`
-
- SetQuarantineSubnetStartNil sets the value for QuarantineSubnetStart to be an explicit nil
-
-### UnsetQuarantineSubnetStart
-`func (o *CreateNetworkDevice) UnsetQuarantineSubnetStart()`
-
-UnsetQuarantineSubnetStart ensures that no value is present for QuarantineSubnetStart, not even an explicit nil
-### GetQuarantineSubnetEnd
-
-`func (o *CreateNetworkDevice) GetQuarantineSubnetEnd() string`
-
-GetQuarantineSubnetEnd returns the QuarantineSubnetEnd field if non-nil, zero value otherwise.
-
-### GetQuarantineSubnetEndOk
-
-`func (o *CreateNetworkDevice) GetQuarantineSubnetEndOk() (*string, bool)`
-
-GetQuarantineSubnetEndOk returns a tuple with the QuarantineSubnetEnd field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQuarantineSubnetEnd
-
-`func (o *CreateNetworkDevice) SetQuarantineSubnetEnd(v string)`
-
-SetQuarantineSubnetEnd sets QuarantineSubnetEnd field to given value.
-
-### HasQuarantineSubnetEnd
-
-`func (o *CreateNetworkDevice) HasQuarantineSubnetEnd() bool`
-
-HasQuarantineSubnetEnd returns a boolean if a field has been set.
-
-### SetQuarantineSubnetEndNil
-
-`func (o *CreateNetworkDevice) SetQuarantineSubnetEndNil(b bool)`
-
- SetQuarantineSubnetEndNil sets the value for QuarantineSubnetEnd to be an explicit nil
-
-### UnsetQuarantineSubnetEnd
-`func (o *CreateNetworkDevice) UnsetQuarantineSubnetEnd()`
-
-UnsetQuarantineSubnetEnd ensures that no value is present for QuarantineSubnetEnd, not even an explicit nil
-### GetQuarantineSubnetPrefixSize
-
-`func (o *CreateNetworkDevice) GetQuarantineSubnetPrefixSize() int32`
-
-GetQuarantineSubnetPrefixSize returns the QuarantineSubnetPrefixSize field if non-nil, zero value otherwise.
-
-### GetQuarantineSubnetPrefixSizeOk
-
-`func (o *CreateNetworkDevice) GetQuarantineSubnetPrefixSizeOk() (*int32, bool)`
-
-GetQuarantineSubnetPrefixSizeOk returns a tuple with the QuarantineSubnetPrefixSize field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQuarantineSubnetPrefixSize
-
-`func (o *CreateNetworkDevice) SetQuarantineSubnetPrefixSize(v int32)`
-
-SetQuarantineSubnetPrefixSize sets QuarantineSubnetPrefixSize field to given value.
-
-### HasQuarantineSubnetPrefixSize
-
-`func (o *CreateNetworkDevice) HasQuarantineSubnetPrefixSize() bool`
-
-HasQuarantineSubnetPrefixSize returns a boolean if a field has been set.
-
-### SetQuarantineSubnetPrefixSizeNil
-
-`func (o *CreateNetworkDevice) SetQuarantineSubnetPrefixSizeNil(b bool)`
-
- SetQuarantineSubnetPrefixSizeNil sets the value for QuarantineSubnetPrefixSize to be an explicit nil
-
-### UnsetQuarantineSubnetPrefixSize
-`func (o *CreateNetworkDevice) UnsetQuarantineSubnetPrefixSize()`
-
-UnsetQuarantineSubnetPrefixSize ensures that no value is present for QuarantineSubnetPrefixSize, not even an explicit nil
-### GetQuarantineSubnetGateway
-
-`func (o *CreateNetworkDevice) GetQuarantineSubnetGateway() string`
-
-GetQuarantineSubnetGateway returns the QuarantineSubnetGateway field if non-nil, zero value otherwise.
-
-### GetQuarantineSubnetGatewayOk
-
-`func (o *CreateNetworkDevice) GetQuarantineSubnetGatewayOk() (*string, bool)`
-
-GetQuarantineSubnetGatewayOk returns a tuple with the QuarantineSubnetGateway field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQuarantineSubnetGateway
-
-`func (o *CreateNetworkDevice) SetQuarantineSubnetGateway(v string)`
-
-SetQuarantineSubnetGateway sets QuarantineSubnetGateway field to given value.
-
-### HasQuarantineSubnetGateway
-
-`func (o *CreateNetworkDevice) HasQuarantineSubnetGateway() bool`
-
-HasQuarantineSubnetGateway returns a boolean if a field has been set.
-
-### SetQuarantineSubnetGatewayNil
-
-`func (o *CreateNetworkDevice) SetQuarantineSubnetGatewayNil(b bool)`
-
- SetQuarantineSubnetGatewayNil sets the value for QuarantineSubnetGateway to be an explicit nil
-
-### UnsetQuarantineSubnetGateway
-`func (o *CreateNetworkDevice) UnsetQuarantineSubnetGateway()`
-
-UnsetQuarantineSubnetGateway ensures that no value is present for QuarantineSubnetGateway, not even an explicit nil
 ### GetQuarantineVlan
 
 `func (o *CreateNetworkDevice) GetQuarantineVlan() int32`
@@ -579,41 +406,6 @@ SetQuarantineVlan sets QuarantineVlan field to given value.
 
 HasQuarantineVlan returns a boolean if a field has been set.
 
-### GetManagementProtocol
-
-`func (o *CreateNetworkDevice) GetManagementProtocol() string`
-
-GetManagementProtocol returns the ManagementProtocol field if non-nil, zero value otherwise.
-
-### GetManagementProtocolOk
-
-`func (o *CreateNetworkDevice) GetManagementProtocolOk() (*string, bool)`
-
-GetManagementProtocolOk returns a tuple with the ManagementProtocol field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetManagementProtocol
-
-`func (o *CreateNetworkDevice) SetManagementProtocol(v string)`
-
-SetManagementProtocol sets ManagementProtocol field to given value.
-
-### HasManagementProtocol
-
-`func (o *CreateNetworkDevice) HasManagementProtocol() bool`
-
-HasManagementProtocol returns a boolean if a field has been set.
-
-### SetManagementProtocolNil
-
-`func (o *CreateNetworkDevice) SetManagementProtocolNil(b bool)`
-
- SetManagementProtocolNil sets the value for ManagementProtocol to be an explicit nil
-
-### UnsetManagementProtocol
-`func (o *CreateNetworkDevice) UnsetManagementProtocol()`
-
-UnsetManagementProtocol ensures that no value is present for ManagementProtocol, not even an explicit nil
 ### GetManagementAddress
 
 `func (o *CreateNetworkDevice) GetManagementAddress() string`
@@ -964,31 +756,6 @@ HasAsn returns a boolean if a field has been set.
 `func (o *CreateNetworkDevice) UnsetAsn()`
 
 UnsetAsn ensures that no value is present for Asn, not even an explicit nil
-### GetNetworkTypesAllowed
-
-`func (o *CreateNetworkDevice) GetNetworkTypesAllowed() []string`
-
-GetNetworkTypesAllowed returns the NetworkTypesAllowed field if non-nil, zero value otherwise.
-
-### GetNetworkTypesAllowedOk
-
-`func (o *CreateNetworkDevice) GetNetworkTypesAllowedOk() (*[]string, bool)`
-
-GetNetworkTypesAllowedOk returns a tuple with the NetworkTypesAllowed field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetworkTypesAllowed
-
-`func (o *CreateNetworkDevice) SetNetworkTypesAllowed(v []string)`
-
-SetNetworkTypesAllowed sets NetworkTypesAllowed field to given value.
-
-### HasNetworkTypesAllowed
-
-`func (o *CreateNetworkDevice) HasNetworkTypesAllowed() bool`
-
-HasNetworkTypesAllowed returns a boolean if a field has been set.
-
 ### GetDescription
 
 `func (o *CreateNetworkDevice) GetDescription() string`
@@ -1414,41 +1181,6 @@ SetRequiresOsInstall sets RequiresOsInstall field to given value.
 
 HasRequiresOsInstall returns a boolean if a field has been set.
 
-### GetOobMgmtIpv4Address
-
-`func (o *CreateNetworkDevice) GetOobMgmtIpv4Address() string`
-
-GetOobMgmtIpv4Address returns the OobMgmtIpv4Address field if non-nil, zero value otherwise.
-
-### GetOobMgmtIpv4AddressOk
-
-`func (o *CreateNetworkDevice) GetOobMgmtIpv4AddressOk() (*string, bool)`
-
-GetOobMgmtIpv4AddressOk returns a tuple with the OobMgmtIpv4Address field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOobMgmtIpv4Address
-
-`func (o *CreateNetworkDevice) SetOobMgmtIpv4Address(v string)`
-
-SetOobMgmtIpv4Address sets OobMgmtIpv4Address field to given value.
-
-### HasOobMgmtIpv4Address
-
-`func (o *CreateNetworkDevice) HasOobMgmtIpv4Address() bool`
-
-HasOobMgmtIpv4Address returns a boolean if a field has been set.
-
-### SetOobMgmtIpv4AddressNil
-
-`func (o *CreateNetworkDevice) SetOobMgmtIpv4AddressNil(b bool)`
-
- SetOobMgmtIpv4AddressNil sets the value for OobMgmtIpv4Address to be an explicit nil
-
-### UnsetOobMgmtIpv4Address
-`func (o *CreateNetworkDevice) UnsetOobMgmtIpv4Address()`
-
-UnsetOobMgmtIpv4Address ensures that no value is present for OobMgmtIpv4Address, not even an explicit nil
 ### GetOverwriteWithHostnameFromFetchedSwitch
 
 `func (o *CreateNetworkDevice) GetOverwriteWithHostnameFromFetchedSwitch() bool`

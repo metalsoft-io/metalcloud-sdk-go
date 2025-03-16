@@ -30,7 +30,7 @@ type ServerInstanceProfile struct {
 	// The Server profile label. Will be automatically generated if not provided.
 	Label *string `json:"label,omitempty"`
 	// Network profiles mapping for each network in this infrastructure. Changes to this configuration will be duplicated on each vm-instance of this group.
-	NetworkProfiles []ServerInstanceConfigurationNetworkProfilesInner `json:"networkProfiles,omitempty"`
+	NetworkProfiles []ServerInstanceProfileNetworkProfilesInner `json:"networkProfiles,omitempty"`
 	NetworkInterfaces *ServerInstanceProfileNetworkInterfaces `json:"networkInterfaces,omitempty"`
 	// The template id of the operating system to deploy on the Server. Can be null in which case no OS will be deployed but all operations will continue as normal.
 	TemplateId *int32 `json:"templateId,omitempty"`
@@ -173,9 +173,9 @@ func (o *ServerInstanceProfile) SetLabel(v string) {
 }
 
 // GetNetworkProfiles returns the NetworkProfiles field value if set, zero value otherwise.
-func (o *ServerInstanceProfile) GetNetworkProfiles() []ServerInstanceConfigurationNetworkProfilesInner {
+func (o *ServerInstanceProfile) GetNetworkProfiles() []ServerInstanceProfileNetworkProfilesInner {
 	if o == nil || IsNil(o.NetworkProfiles) {
-		var ret []ServerInstanceConfigurationNetworkProfilesInner
+		var ret []ServerInstanceProfileNetworkProfilesInner
 		return ret
 	}
 	return o.NetworkProfiles
@@ -183,7 +183,7 @@ func (o *ServerInstanceProfile) GetNetworkProfiles() []ServerInstanceConfigurati
 
 // GetNetworkProfilesOk returns a tuple with the NetworkProfiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceProfile) GetNetworkProfilesOk() ([]ServerInstanceConfigurationNetworkProfilesInner, bool) {
+func (o *ServerInstanceProfile) GetNetworkProfilesOk() ([]ServerInstanceProfileNetworkProfilesInner, bool) {
 	if o == nil || IsNil(o.NetworkProfiles) {
 		return nil, false
 	}
@@ -199,8 +199,8 @@ func (o *ServerInstanceProfile) HasNetworkProfiles() bool {
 	return false
 }
 
-// SetNetworkProfiles gets a reference to the given []ServerInstanceConfigurationNetworkProfilesInner and assigns it to the NetworkProfiles field.
-func (o *ServerInstanceProfile) SetNetworkProfiles(v []ServerInstanceConfigurationNetworkProfilesInner) {
+// SetNetworkProfiles gets a reference to the given []ServerInstanceProfileNetworkProfilesInner and assigns it to the NetworkProfiles field.
+func (o *ServerInstanceProfile) SetNetworkProfiles(v []ServerInstanceProfileNetworkProfilesInner) {
 	o.NetworkProfiles = v
 }
 

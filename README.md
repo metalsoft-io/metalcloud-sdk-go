@@ -225,7 +225,7 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**GetNetworkDevice**](docs/NetworkDeviceAPI.md#getnetworkdevice) | **Get** /api/v2/network-devices/{networkDeviceId} | Get Network Device
 *NetworkDeviceAPI* | [**GetNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#getnetworkdevicedefaults) | **Get** /api/v2/network-devices/defaults/{datacenterName} | Get network device defaults for a datacenter
 *NetworkDeviceAPI* | [**GetNetworkDeviceInventoryPorts**](docs/NetworkDeviceAPI.md#getnetworkdeviceinventoryports) | **Get** /api/v2/network-devices/{networkDeviceId}/ports | Get all ports for network device from the inventory (cached)
-*NetworkDeviceAPI* | [**GetNetworkDevicePorts**](docs/NetworkDeviceAPI.md#getnetworkdeviceports) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Get port statistics for network device directly from the device
+*NetworkDeviceAPI* | [**GetNetworkDevicePorts**](docs/NetworkDeviceAPI.md#getnetworkdeviceports) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
 *NetworkDeviceAPI* | [**GetNetworkDevices**](docs/NetworkDeviceAPI.md#getnetworkdevices) | **Get** /api/v2/network-devices | Get paginated Network Devices
 *NetworkDeviceAPI* | [**NetworkDeviceControllerAddTagsToNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrolleraddtagstonetworkdevice) | **Post** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Add tags to Network Device
 *NetworkDeviceAPI* | [**NetworkDeviceControllerCreateNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrollercreatenetworkdevice) | **Post** /api/v2/network-devices | Create Network Device
@@ -635,7 +635,6 @@ Class | Method | HTTP request | Description
  - [OSTemplateUpdate](docs/OSTemplateUpdate.md)
  - [PaginatedResponseLinks](docs/PaginatedResponseLinks.md)
  - [PaginatedResponseMeta](docs/PaginatedResponseMeta.md)
- - [ProvisionerType](docs/ProvisionerType.md)
  - [ReRegisterServerResponse](docs/ReRegisterServerResponse.md)
  - [RegisterServer](docs/RegisterServer.md)
  - [RegisterServerResponse](docs/RegisterServerResponse.md)
@@ -668,7 +667,6 @@ Class | Method | HTTP request | Description
  - [ServerGpuInfo](docs/ServerGpuInfo.md)
  - [ServerInstance](docs/ServerInstance.md)
  - [ServerInstanceConfiguration](docs/ServerInstanceConfiguration.md)
- - [ServerInstanceConfigurationNetworkProfilesInner](docs/ServerInstanceConfigurationNetworkProfilesInner.md)
  - [ServerInstanceCreate](docs/ServerInstanceCreate.md)
  - [ServerInstanceGroup](docs/ServerInstanceGroup.md)
  - [ServerInstanceGroupConfiguration](docs/ServerInstanceGroupConfiguration.md)
@@ -688,6 +686,7 @@ Class | Method | HTTP request | Description
  - [ServerInstanceProfileCreate](docs/ServerInstanceProfileCreate.md)
  - [ServerInstanceProfileNetworkInterfaces](docs/ServerInstanceProfileNetworkInterfaces.md)
  - [ServerInstanceProfileNetworkInterfacesConfig](docs/ServerInstanceProfileNetworkInterfacesConfig.md)
+ - [ServerInstanceProfileNetworkProfilesInner](docs/ServerInstanceProfileNetworkProfilesInner.md)
  - [ServerInstanceProfilePaginatedList](docs/ServerInstanceProfilePaginatedList.md)
  - [ServerInstanceProfileReference](docs/ServerInstanceProfileReference.md)
  - [ServerInstanceProfileUpdate](docs/ServerInstanceProfileUpdate.md)

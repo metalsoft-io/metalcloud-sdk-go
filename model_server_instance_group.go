@@ -34,8 +34,6 @@ type ServerInstanceGroup struct {
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Timestamp of the latest update for the Server Instance Group.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
-	// Meta information
-	Meta *GenericMeta `json:"meta,omitempty"`
 	// Subdomain of the Server Group.
 	Subdomain *string `json:"subdomain,omitempty"`
 	// Subdomain permanent of the Server Group.
@@ -97,6 +95,7 @@ type ServerInstanceGroup struct {
 	VmInstanceGroupId *int32 `json:"vmInstanceGroupId,omitempty"`
 	// The group's default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied.
 	DefaultServerProfileID *int32 `json:"defaultServerProfileID,omitempty"`
+	Meta *GenericMeta `json:"meta,omitempty"`
 	Config *ServerInstanceGroupConfiguration `json:"config,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
@@ -370,38 +369,6 @@ func (o *ServerInstanceGroup) GetUpdatedTimestampOk() (*string, bool) {
 // SetUpdatedTimestamp sets field value
 func (o *ServerInstanceGroup) SetUpdatedTimestamp(v string) {
 	o.UpdatedTimestamp = v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ServerInstanceGroup) GetMeta() GenericMeta {
-	if o == nil || IsNil(o.Meta) {
-		var ret GenericMeta
-		return ret
-	}
-	return *o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetMetaOk() (*GenericMeta, bool) {
-	if o == nil || IsNil(o.Meta) {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ServerInstanceGroup) HasMeta() bool {
-	if o != nil && !IsNil(o.Meta) {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given GenericMeta and assigns it to the Meta field.
-func (o *ServerInstanceGroup) SetMeta(v GenericMeta) {
-	o.Meta = &v
 }
 
 // GetSubdomain returns the Subdomain field value if set, zero value otherwise.
@@ -1349,6 +1316,38 @@ func (o *ServerInstanceGroup) SetDefaultServerProfileID(v int32) {
 	o.DefaultServerProfileID = &v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ServerInstanceGroup) GetMeta() GenericMeta {
+	if o == nil || IsNil(o.Meta) {
+		var ret GenericMeta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroup) GetMetaOk() (*GenericMeta, bool) {
+	if o == nil || IsNil(o.Meta) {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ServerInstanceGroup) HasMeta() bool {
+	if o != nil && !IsNil(o.Meta) {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given GenericMeta and assigns it to the Meta field.
+func (o *ServerInstanceGroup) SetMeta(v GenericMeta) {
+	o.Meta = &v
+}
+
 // GetConfig returns the Config field value if set, zero value otherwise.
 func (o *ServerInstanceGroup) GetConfig() ServerInstanceGroupConfiguration {
 	if o == nil || IsNil(o.Config) {
@@ -1435,9 +1434,6 @@ func (o ServerInstanceGroup) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
-	if !IsNil(o.Meta) {
-		toSerialize["meta"] = o.Meta
-	}
 	if !IsNil(o.Subdomain) {
 		toSerialize["subdomain"] = o.Subdomain
 	}
@@ -1508,6 +1504,9 @@ func (o ServerInstanceGroup) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DefaultServerProfileID) {
 		toSerialize["defaultServerProfileID"] = o.DefaultServerProfileID
+	}
+	if !IsNil(o.Meta) {
+		toSerialize["meta"] = o.Meta
 	}
 	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
@@ -1585,7 +1584,6 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
-		delete(additionalProperties, "meta")
 		delete(additionalProperties, "subdomain")
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
@@ -1619,6 +1617,7 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "isVmGroup")
 		delete(additionalProperties, "vmInstanceGroupId")
 		delete(additionalProperties, "defaultServerProfileID")
+		delete(additionalProperties, "meta")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

@@ -16,12 +16,10 @@ Name | Type | Description | Notes
 **InstanceWanMlagId** | Pointer to **int32** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
 **RaidProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | RAID profile for the Instance Interface. | [optional] 
-**EnableAutoPortChannel** | Pointer to **bool** | If enabled will enable port channel to be automatically created. | [optional] [default to true]
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
 **IscsiInitiatorPasswordEncrypted** | Pointer to **string** | iSCSI Initiator Password for the Instance Interface. | [optional] 
 **ControlPanelUrl** | Pointer to **string** | Control panel url for the Instance Interface. | [optional] 
-**NetworkProfiles** | Pointer to [**[]ServerInstanceConfigurationNetworkProfilesInner**](ServerInstanceConfigurationNetworkProfilesInner.md) | Network profiles mapping for each network in this infrastructure. | [optional] 
 **EmptyEdit** | Pointer to **int32** | Number of empty edits | [optional] 
 **DeployType** | **string** | Server Instance deploy type | 
 **DeployStatus** | **string** | Server Instance deploy status | 
@@ -327,31 +325,6 @@ SetRaidProfile sets RaidProfile field to given value.
 
 HasRaidProfile returns a boolean if a field has been set.
 
-### GetEnableAutoPortChannel
-
-`func (o *ServerInstanceConfiguration) GetEnableAutoPortChannel() bool`
-
-GetEnableAutoPortChannel returns the EnableAutoPortChannel field if non-nil, zero value otherwise.
-
-### GetEnableAutoPortChannelOk
-
-`func (o *ServerInstanceConfiguration) GetEnableAutoPortChannelOk() (*bool, bool)`
-
-GetEnableAutoPortChannelOk returns a tuple with the EnableAutoPortChannel field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnableAutoPortChannel
-
-`func (o *ServerInstanceConfiguration) SetEnableAutoPortChannel(v bool)`
-
-SetEnableAutoPortChannel sets EnableAutoPortChannel field to given value.
-
-### HasEnableAutoPortChannel
-
-`func (o *ServerInstanceConfiguration) HasEnableAutoPortChannel() bool`
-
-HasEnableAutoPortChannel returns a boolean if a field has been set.
-
 ### GetIscsiInitiatorIqn
 
 `func (o *ServerInstanceConfiguration) GetIscsiInitiatorIqn() string`
@@ -451,31 +424,6 @@ SetControlPanelUrl sets ControlPanelUrl field to given value.
 `func (o *ServerInstanceConfiguration) HasControlPanelUrl() bool`
 
 HasControlPanelUrl returns a boolean if a field has been set.
-
-### GetNetworkProfiles
-
-`func (o *ServerInstanceConfiguration) GetNetworkProfiles() []ServerInstanceConfigurationNetworkProfilesInner`
-
-GetNetworkProfiles returns the NetworkProfiles field if non-nil, zero value otherwise.
-
-### GetNetworkProfilesOk
-
-`func (o *ServerInstanceConfiguration) GetNetworkProfilesOk() (*[]ServerInstanceConfigurationNetworkProfilesInner, bool)`
-
-GetNetworkProfilesOk returns a tuple with the NetworkProfiles field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetworkProfiles
-
-`func (o *ServerInstanceConfiguration) SetNetworkProfiles(v []ServerInstanceConfigurationNetworkProfilesInner)`
-
-SetNetworkProfiles sets NetworkProfiles field to given value.
-
-### HasNetworkProfiles
-
-`func (o *ServerInstanceConfiguration) HasNetworkProfiles() bool`
-
-HasNetworkProfiles returns a boolean if a field has been set.
 
 ### GetEmptyEdit
 

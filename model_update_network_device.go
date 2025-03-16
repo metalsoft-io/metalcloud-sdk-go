@@ -30,8 +30,6 @@ type UpdateNetworkDevice struct {
 	ChassisRackId *int32 `json:"chassisRackId,omitempty"`
 	// Unique identifier for the network device chassis
 	ChassisIdentifier NullableString `json:"chassisIdentifier,omitempty"`
-	// Type of provisioner used for this network device
-	ProvisionerType *ProvisionerType `json:"provisionerType,omitempty"`
 	// Driver software used to communicate with the network device
 	Driver *NetworkDeviceDriver `json:"driver,omitempty"`
 	// The physical or logical position of the network device in the network topology.
@@ -46,18 +44,8 @@ type UpdateNetworkDevice struct {
 	IsStorageSwitch *bool `json:"isStorageSwitch,omitempty"`
 	// Is border device
 	IsBorderDevice *bool `json:"isBorderDevice,omitempty"`
-	// The starting IP address of the quarantine subnet range
-	QuarantineSubnetStart NullableString `json:"quarantineSubnetStart,omitempty"`
-	// The ending IP address of the quarantine subnet range
-	QuarantineSubnetEnd NullableString `json:"quarantineSubnetEnd,omitempty"`
-	// The prefix size for the quarantine subnet
-	QuarantineSubnetPrefixSize NullableInt32 `json:"quarantineSubnetPrefixSize,omitempty"`
-	// The gateway IP address for the quarantine subnet
-	QuarantineSubnetGateway NullableString `json:"quarantineSubnetGateway,omitempty"`
 	// The VLAN ID for the quarantine network
 	QuarantineVlan *int32 `json:"quarantineVlan,omitempty"`
-	// The protocol used to manage the network device (e.g., SSH, HTTPS)
-	ManagementProtocol NullableString `json:"managementProtocol,omitempty"`
 	// Management Address
 	ManagementAddress NullableString `json:"managementAddress,omitempty"`
 	// Management Port
@@ -78,8 +66,6 @@ type UpdateNetworkDevice struct {
 	VtepAddress NullableString `json:"vtepAddress,omitempty"`
 	// The Autonomous System Number for BGP routing
 	Asn NullableFloat32 `json:"asn,omitempty"`
-	// Network types allowed
-	NetworkTypesAllowed []string `json:"networkTypesAllowed,omitempty"`
 	// Additional description or notes about the network device
 	Description NullableString `json:"description,omitempty"`
 	// The country where the network device is located
@@ -298,38 +284,6 @@ func (o *UpdateNetworkDevice) SetChassisIdentifierNil() {
 // UnsetChassisIdentifier ensures that no value is present for ChassisIdentifier, not even an explicit nil
 func (o *UpdateNetworkDevice) UnsetChassisIdentifier() {
 	o.ChassisIdentifier.Unset()
-}
-
-// GetProvisionerType returns the ProvisionerType field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetProvisionerType() ProvisionerType {
-	if o == nil || IsNil(o.ProvisionerType) {
-		var ret ProvisionerType
-		return ret
-	}
-	return *o.ProvisionerType
-}
-
-// GetProvisionerTypeOk returns a tuple with the ProvisionerType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetProvisionerTypeOk() (*ProvisionerType, bool) {
-	if o == nil || IsNil(o.ProvisionerType) {
-		return nil, false
-	}
-	return o.ProvisionerType, true
-}
-
-// HasProvisionerType returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasProvisionerType() bool {
-	if o != nil && !IsNil(o.ProvisionerType) {
-		return true
-	}
-
-	return false
-}
-
-// SetProvisionerType gets a reference to the given ProvisionerType and assigns it to the ProvisionerType field.
-func (o *UpdateNetworkDevice) SetProvisionerType(v ProvisionerType) {
-	o.ProvisionerType = &v
 }
 
 // GetDriver returns the Driver field value if set, zero value otherwise.
@@ -576,174 +530,6 @@ func (o *UpdateNetworkDevice) SetIsBorderDevice(v bool) {
 	o.IsBorderDevice = &v
 }
 
-// GetQuarantineSubnetStart returns the QuarantineSubnetStart field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateNetworkDevice) GetQuarantineSubnetStart() string {
-	if o == nil || IsNil(o.QuarantineSubnetStart.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.QuarantineSubnetStart.Get()
-}
-
-// GetQuarantineSubnetStartOk returns a tuple with the QuarantineSubnetStart field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateNetworkDevice) GetQuarantineSubnetStartOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.QuarantineSubnetStart.Get(), o.QuarantineSubnetStart.IsSet()
-}
-
-// HasQuarantineSubnetStart returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasQuarantineSubnetStart() bool {
-	if o != nil && o.QuarantineSubnetStart.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetQuarantineSubnetStart gets a reference to the given NullableString and assigns it to the QuarantineSubnetStart field.
-func (o *UpdateNetworkDevice) SetQuarantineSubnetStart(v string) {
-	o.QuarantineSubnetStart.Set(&v)
-}
-// SetQuarantineSubnetStartNil sets the value for QuarantineSubnetStart to be an explicit nil
-func (o *UpdateNetworkDevice) SetQuarantineSubnetStartNil() {
-	o.QuarantineSubnetStart.Set(nil)
-}
-
-// UnsetQuarantineSubnetStart ensures that no value is present for QuarantineSubnetStart, not even an explicit nil
-func (o *UpdateNetworkDevice) UnsetQuarantineSubnetStart() {
-	o.QuarantineSubnetStart.Unset()
-}
-
-// GetQuarantineSubnetEnd returns the QuarantineSubnetEnd field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateNetworkDevice) GetQuarantineSubnetEnd() string {
-	if o == nil || IsNil(o.QuarantineSubnetEnd.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.QuarantineSubnetEnd.Get()
-}
-
-// GetQuarantineSubnetEndOk returns a tuple with the QuarantineSubnetEnd field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateNetworkDevice) GetQuarantineSubnetEndOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.QuarantineSubnetEnd.Get(), o.QuarantineSubnetEnd.IsSet()
-}
-
-// HasQuarantineSubnetEnd returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasQuarantineSubnetEnd() bool {
-	if o != nil && o.QuarantineSubnetEnd.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetQuarantineSubnetEnd gets a reference to the given NullableString and assigns it to the QuarantineSubnetEnd field.
-func (o *UpdateNetworkDevice) SetQuarantineSubnetEnd(v string) {
-	o.QuarantineSubnetEnd.Set(&v)
-}
-// SetQuarantineSubnetEndNil sets the value for QuarantineSubnetEnd to be an explicit nil
-func (o *UpdateNetworkDevice) SetQuarantineSubnetEndNil() {
-	o.QuarantineSubnetEnd.Set(nil)
-}
-
-// UnsetQuarantineSubnetEnd ensures that no value is present for QuarantineSubnetEnd, not even an explicit nil
-func (o *UpdateNetworkDevice) UnsetQuarantineSubnetEnd() {
-	o.QuarantineSubnetEnd.Unset()
-}
-
-// GetQuarantineSubnetPrefixSize returns the QuarantineSubnetPrefixSize field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateNetworkDevice) GetQuarantineSubnetPrefixSize() int32 {
-	if o == nil || IsNil(o.QuarantineSubnetPrefixSize.Get()) {
-		var ret int32
-		return ret
-	}
-	return *o.QuarantineSubnetPrefixSize.Get()
-}
-
-// GetQuarantineSubnetPrefixSizeOk returns a tuple with the QuarantineSubnetPrefixSize field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateNetworkDevice) GetQuarantineSubnetPrefixSizeOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.QuarantineSubnetPrefixSize.Get(), o.QuarantineSubnetPrefixSize.IsSet()
-}
-
-// HasQuarantineSubnetPrefixSize returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasQuarantineSubnetPrefixSize() bool {
-	if o != nil && o.QuarantineSubnetPrefixSize.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetQuarantineSubnetPrefixSize gets a reference to the given NullableInt32 and assigns it to the QuarantineSubnetPrefixSize field.
-func (o *UpdateNetworkDevice) SetQuarantineSubnetPrefixSize(v int32) {
-	o.QuarantineSubnetPrefixSize.Set(&v)
-}
-// SetQuarantineSubnetPrefixSizeNil sets the value for QuarantineSubnetPrefixSize to be an explicit nil
-func (o *UpdateNetworkDevice) SetQuarantineSubnetPrefixSizeNil() {
-	o.QuarantineSubnetPrefixSize.Set(nil)
-}
-
-// UnsetQuarantineSubnetPrefixSize ensures that no value is present for QuarantineSubnetPrefixSize, not even an explicit nil
-func (o *UpdateNetworkDevice) UnsetQuarantineSubnetPrefixSize() {
-	o.QuarantineSubnetPrefixSize.Unset()
-}
-
-// GetQuarantineSubnetGateway returns the QuarantineSubnetGateway field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateNetworkDevice) GetQuarantineSubnetGateway() string {
-	if o == nil || IsNil(o.QuarantineSubnetGateway.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.QuarantineSubnetGateway.Get()
-}
-
-// GetQuarantineSubnetGatewayOk returns a tuple with the QuarantineSubnetGateway field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateNetworkDevice) GetQuarantineSubnetGatewayOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.QuarantineSubnetGateway.Get(), o.QuarantineSubnetGateway.IsSet()
-}
-
-// HasQuarantineSubnetGateway returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasQuarantineSubnetGateway() bool {
-	if o != nil && o.QuarantineSubnetGateway.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetQuarantineSubnetGateway gets a reference to the given NullableString and assigns it to the QuarantineSubnetGateway field.
-func (o *UpdateNetworkDevice) SetQuarantineSubnetGateway(v string) {
-	o.QuarantineSubnetGateway.Set(&v)
-}
-// SetQuarantineSubnetGatewayNil sets the value for QuarantineSubnetGateway to be an explicit nil
-func (o *UpdateNetworkDevice) SetQuarantineSubnetGatewayNil() {
-	o.QuarantineSubnetGateway.Set(nil)
-}
-
-// UnsetQuarantineSubnetGateway ensures that no value is present for QuarantineSubnetGateway, not even an explicit nil
-func (o *UpdateNetworkDevice) UnsetQuarantineSubnetGateway() {
-	o.QuarantineSubnetGateway.Unset()
-}
-
 // GetQuarantineVlan returns the QuarantineVlan field value if set, zero value otherwise.
 func (o *UpdateNetworkDevice) GetQuarantineVlan() int32 {
 	if o == nil || IsNil(o.QuarantineVlan) {
@@ -774,48 +560,6 @@ func (o *UpdateNetworkDevice) HasQuarantineVlan() bool {
 // SetQuarantineVlan gets a reference to the given int32 and assigns it to the QuarantineVlan field.
 func (o *UpdateNetworkDevice) SetQuarantineVlan(v int32) {
 	o.QuarantineVlan = &v
-}
-
-// GetManagementProtocol returns the ManagementProtocol field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateNetworkDevice) GetManagementProtocol() string {
-	if o == nil || IsNil(o.ManagementProtocol.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ManagementProtocol.Get()
-}
-
-// GetManagementProtocolOk returns a tuple with the ManagementProtocol field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateNetworkDevice) GetManagementProtocolOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ManagementProtocol.Get(), o.ManagementProtocol.IsSet()
-}
-
-// HasManagementProtocol returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasManagementProtocol() bool {
-	if o != nil && o.ManagementProtocol.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetManagementProtocol gets a reference to the given NullableString and assigns it to the ManagementProtocol field.
-func (o *UpdateNetworkDevice) SetManagementProtocol(v string) {
-	o.ManagementProtocol.Set(&v)
-}
-// SetManagementProtocolNil sets the value for ManagementProtocol to be an explicit nil
-func (o *UpdateNetworkDevice) SetManagementProtocolNil() {
-	o.ManagementProtocol.Set(nil)
-}
-
-// UnsetManagementProtocol ensures that no value is present for ManagementProtocol, not even an explicit nil
-func (o *UpdateNetworkDevice) UnsetManagementProtocol() {
-	o.ManagementProtocol.Unset()
 }
 
 // GetManagementAddress returns the ManagementAddress field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1236,38 +980,6 @@ func (o *UpdateNetworkDevice) SetAsnNil() {
 // UnsetAsn ensures that no value is present for Asn, not even an explicit nil
 func (o *UpdateNetworkDevice) UnsetAsn() {
 	o.Asn.Unset()
-}
-
-// GetNetworkTypesAllowed returns the NetworkTypesAllowed field value if set, zero value otherwise.
-func (o *UpdateNetworkDevice) GetNetworkTypesAllowed() []string {
-	if o == nil || IsNil(o.NetworkTypesAllowed) {
-		var ret []string
-		return ret
-	}
-	return o.NetworkTypesAllowed
-}
-
-// GetNetworkTypesAllowedOk returns a tuple with the NetworkTypesAllowed field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateNetworkDevice) GetNetworkTypesAllowedOk() ([]string, bool) {
-	if o == nil || IsNil(o.NetworkTypesAllowed) {
-		return nil, false
-	}
-	return o.NetworkTypesAllowed, true
-}
-
-// HasNetworkTypesAllowed returns a boolean if a field has been set.
-func (o *UpdateNetworkDevice) HasNetworkTypesAllowed() bool {
-	if o != nil && !IsNil(o.NetworkTypesAllowed) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworkTypesAllowed gets a reference to the given []string and assigns it to the NetworkTypesAllowed field.
-func (o *UpdateNetworkDevice) SetNetworkTypesAllowed(v []string) {
-	o.NetworkTypesAllowed = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1844,9 +1556,6 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if o.ChassisIdentifier.IsSet() {
 		toSerialize["chassisIdentifier"] = o.ChassisIdentifier.Get()
 	}
-	if !IsNil(o.ProvisionerType) {
-		toSerialize["provisionerType"] = o.ProvisionerType
-	}
 	if !IsNil(o.Driver) {
 		toSerialize["driver"] = o.Driver
 	}
@@ -1868,23 +1577,8 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsBorderDevice) {
 		toSerialize["isBorderDevice"] = o.IsBorderDevice
 	}
-	if o.QuarantineSubnetStart.IsSet() {
-		toSerialize["quarantineSubnetStart"] = o.QuarantineSubnetStart.Get()
-	}
-	if o.QuarantineSubnetEnd.IsSet() {
-		toSerialize["quarantineSubnetEnd"] = o.QuarantineSubnetEnd.Get()
-	}
-	if o.QuarantineSubnetPrefixSize.IsSet() {
-		toSerialize["quarantineSubnetPrefixSize"] = o.QuarantineSubnetPrefixSize.Get()
-	}
-	if o.QuarantineSubnetGateway.IsSet() {
-		toSerialize["quarantineSubnetGateway"] = o.QuarantineSubnetGateway.Get()
-	}
 	if !IsNil(o.QuarantineVlan) {
 		toSerialize["quarantineVlan"] = o.QuarantineVlan
-	}
-	if o.ManagementProtocol.IsSet() {
-		toSerialize["managementProtocol"] = o.ManagementProtocol.Get()
 	}
 	if o.ManagementAddress.IsSet() {
 		toSerialize["managementAddress"] = o.ManagementAddress.Get()
@@ -1915,9 +1609,6 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Asn.IsSet() {
 		toSerialize["asn"] = o.Asn.Get()
-	}
-	if !IsNil(o.NetworkTypesAllowed) {
-		toSerialize["networkTypesAllowed"] = o.NetworkTypesAllowed
 	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
@@ -1988,7 +1679,6 @@ func (o *UpdateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "identifierString")
 		delete(additionalProperties, "chassisRackId")
 		delete(additionalProperties, "chassisIdentifier")
-		delete(additionalProperties, "provisionerType")
 		delete(additionalProperties, "driver")
 		delete(additionalProperties, "position")
 		delete(additionalProperties, "torLinkedId")
@@ -1996,12 +1686,7 @@ func (o *UpdateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "syslogEnabled")
 		delete(additionalProperties, "isStorageSwitch")
 		delete(additionalProperties, "isBorderDevice")
-		delete(additionalProperties, "quarantineSubnetStart")
-		delete(additionalProperties, "quarantineSubnetEnd")
-		delete(additionalProperties, "quarantineSubnetPrefixSize")
-		delete(additionalProperties, "quarantineSubnetGateway")
 		delete(additionalProperties, "quarantineVlan")
-		delete(additionalProperties, "managementProtocol")
 		delete(additionalProperties, "managementAddress")
 		delete(additionalProperties, "managementPort")
 		delete(additionalProperties, "username")
@@ -2012,7 +1697,6 @@ func (o *UpdateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "loopbackAddress")
 		delete(additionalProperties, "vtepAddress")
 		delete(additionalProperties, "asn")
-		delete(additionalProperties, "networkTypesAllowed")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "country")
 		delete(additionalProperties, "city")

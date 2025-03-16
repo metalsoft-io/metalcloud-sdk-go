@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | The Server profile label. Will be automatically generated if not provided. | [optional] 
-**NetworkProfiles** | Pointer to [**[]ServerInstanceConfigurationNetworkProfilesInner**](ServerInstanceConfigurationNetworkProfilesInner.md) | Network profiles mapping for each network in this infrastructure. Changes to this configuration will be duplicated on each vm-instance of this group. | [optional] 
+**NetworkProfiles** | Pointer to [**[]ServerInstanceProfileNetworkProfilesInner**](ServerInstanceProfileNetworkProfilesInner.md) | Network profiles mapping for each network in this infrastructure. Changes to this configuration will be duplicated on each vm-instance of this group. | [optional] 
 **NetworkInterfaces** | Pointer to [**ServerInstanceProfileNetworkInterfaces**](ServerInstanceProfileNetworkInterfaces.md) |  | [optional] 
 
 ## Methods
@@ -54,20 +54,20 @@ HasLabel returns a boolean if a field has been set.
 
 ### GetNetworkProfiles
 
-`func (o *ServerInstanceProfileUpdate) GetNetworkProfiles() []ServerInstanceConfigurationNetworkProfilesInner`
+`func (o *ServerInstanceProfileUpdate) GetNetworkProfiles() []ServerInstanceProfileNetworkProfilesInner`
 
 GetNetworkProfiles returns the NetworkProfiles field if non-nil, zero value otherwise.
 
 ### GetNetworkProfilesOk
 
-`func (o *ServerInstanceProfileUpdate) GetNetworkProfilesOk() (*[]ServerInstanceConfigurationNetworkProfilesInner, bool)`
+`func (o *ServerInstanceProfileUpdate) GetNetworkProfilesOk() (*[]ServerInstanceProfileNetworkProfilesInner, bool)`
 
 GetNetworkProfilesOk returns a tuple with the NetworkProfiles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkProfiles
 
-`func (o *ServerInstanceProfileUpdate) SetNetworkProfiles(v []ServerInstanceConfigurationNetworkProfilesInner)`
+`func (o *ServerInstanceProfileUpdate) SetNetworkProfiles(v []ServerInstanceProfileNetworkProfilesInner)`
 
 SetNetworkProfiles sets NetworkProfiles field to given value.
 
