@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The server instance group ID. | 
-**Revision** | **float32** | Revision number | 
-**Label** | **string** | The server instance group label. Will be automatically generated if not provided. | 
+**Id** | **int32** | The Product Instance ID. | 
+**Revision** | **int32** | Revision number | 
+**Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
+**CreatedTimestamp** | **string** | Timestamp of the Product Instance creation. | 
+**UpdatedTimestamp** | **string** | Timestamp of the latest update of the Product Instance. | 
+**Subdomain** | Pointer to **string** | Subdomain of the Product Instance. | [optional] 
+**SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Product Instance. | [optional] 
+**DnsSubdomainId** | Pointer to **int32** | Id of the DNS subdomain for the Product Instance | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **int32** | Id of the permanent DNS subdomain for the Product Instance | [optional] 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **InfrastructureId** | **int32** |  | 
 **ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
-**CreatedTimestamp** | **string** | Timestamp of the Server Instance Group creation. | 
-**UpdatedTimestamp** | **string** | Timestamp of the latest update for the Server Instance Group. | 
-**Subdomain** | Pointer to **string** | Subdomain of the Server Group. | [optional] 
-**SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Server Group. | [optional] 
-**DnsSubdomainId** | Pointer to **int32** | Id of the DNS subdomain for the Server Group. | [optional] 
-**DnsSubdomainPermanentId** | Pointer to **int32** | Id of the permanent DNS subdomain for the Server Group. | [optional] 
 **InstanceCount** | **int32** | The number of instances to be created on the InstanceArray. | [default to 1]
 **IpAllocateAuto** | **int32** | Automatically allocate IP addresses to child Instance&#x60;s InstanceInterface elements. | [default to 1]
 **Ipv4SubnetCreateAuto** | **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [default to 1]
 **FirewallProfileId** | Pointer to **int32** |  | [optional] 
 **FirewallRulesSetId** | Pointer to **int32** |  | [optional] 
 **FirewallManaged** | **int32** |  | 
-**FirmwarePoliciesJson** | Pointer to **[]map[string]interface{}** | Object containing associated firmware policies. | [optional] 
+**FirmwarePolicyIds** | Pointer to **[]float32** | Array of firmware policy ids containing associated firmware policies. | [optional] 
 **VolumeTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the InstanceArray have local disks. | [optional] 
 **DriveArrayIdBoot** | Pointer to **int32** | Id of the bootable drive for the Server Instance Group. | [optional] 
 **InstanceArrayBootMethod** | **string** | Instance Array Boot Method | 
@@ -53,7 +53,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceGroup
 
-`func NewServerInstanceGroup(id int32, revision float32, label string, infrastructureId int32, createdTimestamp string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, ) *ServerInstanceGroup`
+`func NewServerInstanceGroup(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, ) *ServerInstanceGroup`
 
 NewServerInstanceGroup instantiates a new ServerInstanceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -90,20 +90,20 @@ SetId sets Id field to given value.
 
 ### GetRevision
 
-`func (o *ServerInstanceGroup) GetRevision() float32`
+`func (o *ServerInstanceGroup) GetRevision() int32`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *ServerInstanceGroup) GetRevisionOk() (*float32, bool)`
+`func (o *ServerInstanceGroup) GetRevisionOk() (*int32, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *ServerInstanceGroup) SetRevision(v float32)`
+`func (o *ServerInstanceGroup) SetRevision(v int32)`
 
 SetRevision sets Revision field to given value.
 
@@ -127,76 +127,6 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
-
-### GetServerGroupName
-
-`func (o *ServerInstanceGroup) GetServerGroupName() string`
-
-GetServerGroupName returns the ServerGroupName field if non-nil, zero value otherwise.
-
-### GetServerGroupNameOk
-
-`func (o *ServerInstanceGroup) GetServerGroupNameOk() (*string, bool)`
-
-GetServerGroupNameOk returns a tuple with the ServerGroupName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetServerGroupName
-
-`func (o *ServerInstanceGroup) SetServerGroupName(v string)`
-
-SetServerGroupName sets ServerGroupName field to given value.
-
-### HasServerGroupName
-
-`func (o *ServerInstanceGroup) HasServerGroupName() bool`
-
-HasServerGroupName returns a boolean if a field has been set.
-
-### GetInfrastructureId
-
-`func (o *ServerInstanceGroup) GetInfrastructureId() int32`
-
-GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
-
-### GetInfrastructureIdOk
-
-`func (o *ServerInstanceGroup) GetInfrastructureIdOk() (*int32, bool)`
-
-GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInfrastructureId
-
-`func (o *ServerInstanceGroup) SetInfrastructureId(v int32)`
-
-SetInfrastructureId sets InfrastructureId field to given value.
-
-
-### GetExtensionInstanceId
-
-`func (o *ServerInstanceGroup) GetExtensionInstanceId() int32`
-
-GetExtensionInstanceId returns the ExtensionInstanceId field if non-nil, zero value otherwise.
-
-### GetExtensionInstanceIdOk
-
-`func (o *ServerInstanceGroup) GetExtensionInstanceIdOk() (*int32, bool)`
-
-GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExtensionInstanceId
-
-`func (o *ServerInstanceGroup) SetExtensionInstanceId(v int32)`
-
-SetExtensionInstanceId sets ExtensionInstanceId field to given value.
-
-### HasExtensionInstanceId
-
-`func (o *ServerInstanceGroup) HasExtensionInstanceId() bool`
-
-HasExtensionInstanceId returns a boolean if a field has been set.
 
 ### GetCreatedTimestamp
 
@@ -338,6 +268,76 @@ SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 
 HasDnsSubdomainPermanentId returns a boolean if a field has been set.
 
+### GetServerGroupName
+
+`func (o *ServerInstanceGroup) GetServerGroupName() string`
+
+GetServerGroupName returns the ServerGroupName field if non-nil, zero value otherwise.
+
+### GetServerGroupNameOk
+
+`func (o *ServerInstanceGroup) GetServerGroupNameOk() (*string, bool)`
+
+GetServerGroupNameOk returns a tuple with the ServerGroupName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerGroupName
+
+`func (o *ServerInstanceGroup) SetServerGroupName(v string)`
+
+SetServerGroupName sets ServerGroupName field to given value.
+
+### HasServerGroupName
+
+`func (o *ServerInstanceGroup) HasServerGroupName() bool`
+
+HasServerGroupName returns a boolean if a field has been set.
+
+### GetInfrastructureId
+
+`func (o *ServerInstanceGroup) GetInfrastructureId() int32`
+
+GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
+
+### GetInfrastructureIdOk
+
+`func (o *ServerInstanceGroup) GetInfrastructureIdOk() (*int32, bool)`
+
+GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructureId
+
+`func (o *ServerInstanceGroup) SetInfrastructureId(v int32)`
+
+SetInfrastructureId sets InfrastructureId field to given value.
+
+
+### GetExtensionInstanceId
+
+`func (o *ServerInstanceGroup) GetExtensionInstanceId() int32`
+
+GetExtensionInstanceId returns the ExtensionInstanceId field if non-nil, zero value otherwise.
+
+### GetExtensionInstanceIdOk
+
+`func (o *ServerInstanceGroup) GetExtensionInstanceIdOk() (*int32, bool)`
+
+GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtensionInstanceId
+
+`func (o *ServerInstanceGroup) SetExtensionInstanceId(v int32)`
+
+SetExtensionInstanceId sets ExtensionInstanceId field to given value.
+
+### HasExtensionInstanceId
+
+`func (o *ServerInstanceGroup) HasExtensionInstanceId() bool`
+
+HasExtensionInstanceId returns a boolean if a field has been set.
+
 ### GetInstanceCount
 
 `func (o *ServerInstanceGroup) GetInstanceCount() int32`
@@ -468,41 +468,41 @@ and a boolean to check if the value has been set.
 SetFirewallManaged sets FirewallManaged field to given value.
 
 
-### GetFirmwarePoliciesJson
+### GetFirmwarePolicyIds
 
-`func (o *ServerInstanceGroup) GetFirmwarePoliciesJson() []map[string]interface{}`
+`func (o *ServerInstanceGroup) GetFirmwarePolicyIds() []float32`
 
-GetFirmwarePoliciesJson returns the FirmwarePoliciesJson field if non-nil, zero value otherwise.
+GetFirmwarePolicyIds returns the FirmwarePolicyIds field if non-nil, zero value otherwise.
 
-### GetFirmwarePoliciesJsonOk
+### GetFirmwarePolicyIdsOk
 
-`func (o *ServerInstanceGroup) GetFirmwarePoliciesJsonOk() (*[]map[string]interface{}, bool)`
+`func (o *ServerInstanceGroup) GetFirmwarePolicyIdsOk() (*[]float32, bool)`
 
-GetFirmwarePoliciesJsonOk returns a tuple with the FirmwarePoliciesJson field if it's non-nil, zero value otherwise
+GetFirmwarePolicyIdsOk returns a tuple with the FirmwarePolicyIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFirmwarePoliciesJson
+### SetFirmwarePolicyIds
 
-`func (o *ServerInstanceGroup) SetFirmwarePoliciesJson(v []map[string]interface{})`
+`func (o *ServerInstanceGroup) SetFirmwarePolicyIds(v []float32)`
 
-SetFirmwarePoliciesJson sets FirmwarePoliciesJson field to given value.
+SetFirmwarePolicyIds sets FirmwarePolicyIds field to given value.
 
-### HasFirmwarePoliciesJson
+### HasFirmwarePolicyIds
 
-`func (o *ServerInstanceGroup) HasFirmwarePoliciesJson() bool`
+`func (o *ServerInstanceGroup) HasFirmwarePolicyIds() bool`
 
-HasFirmwarePoliciesJson returns a boolean if a field has been set.
+HasFirmwarePolicyIds returns a boolean if a field has been set.
 
-### SetFirmwarePoliciesJsonNil
+### SetFirmwarePolicyIdsNil
 
-`func (o *ServerInstanceGroup) SetFirmwarePoliciesJsonNil(b bool)`
+`func (o *ServerInstanceGroup) SetFirmwarePolicyIdsNil(b bool)`
 
- SetFirmwarePoliciesJsonNil sets the value for FirmwarePoliciesJson to be an explicit nil
+ SetFirmwarePolicyIdsNil sets the value for FirmwarePolicyIds to be an explicit nil
 
-### UnsetFirmwarePoliciesJson
-`func (o *ServerInstanceGroup) UnsetFirmwarePoliciesJson()`
+### UnsetFirmwarePolicyIds
+`func (o *ServerInstanceGroup) UnsetFirmwarePolicyIds()`
 
-UnsetFirmwarePoliciesJson ensures that no value is present for FirmwarePoliciesJson, not even an explicit nil
+UnsetFirmwarePolicyIds ensures that no value is present for FirmwarePolicyIds, not even an explicit nil
 ### GetVolumeTemplateId
 
 `func (o *ServerInstanceGroup) GetVolumeTemplateId() int32`

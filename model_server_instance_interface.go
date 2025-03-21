@@ -21,24 +21,24 @@ var _ MappedNullable = &ServerInstanceInterface{}
 
 // ServerInstanceInterface struct for ServerInstanceInterface
 type ServerInstanceInterface struct {
-	// The server instance interface ID.
-	Id *int32 `json:"id,omitempty"`
+	// The Product Instance ID.
+	Id int32 `json:"id"`
 	// Revision number
-	Revision float32 `json:"revision"`
-	// The server instance interface label.
+	Revision int32 `json:"revision"`
+	// The Product Instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
-	// Subdomain of the Server Group.
-	Subdomain *string `json:"subdomain,omitempty"`
-	// Subdomain permanent of the Server Group.
-	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
-	// Id of the DNS subdomain for the Server Group.
-	DnsSubdomainId *int32 `json:"dnsSubdomainId,omitempty"`
-	// Id of the permanent DNS subdomain for the Server Group.
-	DnsSubdomainPermanentId *int32 `json:"dnsSubdomainPermanentId,omitempty"`
-	// Timestamp of the Server Instance creation.
+	// Timestamp of the Product Instance creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
-	// Timestamp of the latest update for the Server Instance.
+	// Timestamp of the latest update of the Product Instance.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
+	// Subdomain of the Product Instance.
+	Subdomain *string `json:"subdomain,omitempty"`
+	// Subdomain permanent of the Product Instance.
+	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
+	// Id of the DNS subdomain for the Product Instance
+	DnsSubdomainId *int32 `json:"dnsSubdomainId,omitempty"`
+	// Id of the permanent DNS subdomain for the Product Instance
+	DnsSubdomainPermanentId *int32 `json:"dnsSubdomainPermanentId,omitempty"`
 	// GUI settings in JSON format.
 	Meta *GenericGUISettings `json:"meta,omitempty"`
 	InfrastructureId int32 `json:"infrastructureId"`
@@ -68,8 +68,9 @@ type _ServerInstanceInterface ServerInstanceInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceInterface(revision float32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceId int32, index int32, capacityMbps int32, dirtyBit bool, serviceStatus string) *ServerInstanceInterface {
+func NewServerInstanceInterface(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceId int32, index int32, capacityMbps int32, dirtyBit bool, serviceStatus string) *ServerInstanceInterface {
 	this := ServerInstanceInterface{}
+	this.Id = id
 	this.Revision = revision
 	this.Label = label
 	this.CreatedTimestamp = createdTimestamp
@@ -91,42 +92,34 @@ func NewServerInstanceInterfaceWithDefaults() *ServerInstanceInterface {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *ServerInstanceInterface) GetId() int32 {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *ServerInstanceInterface) GetIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *ServerInstanceInterface) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given int32 and assigns it to the Id field.
+// SetId sets field value
 func (o *ServerInstanceInterface) SetId(v int32) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *ServerInstanceInterface) GetRevision() float32 {
+func (o *ServerInstanceInterface) GetRevision() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -135,7 +128,7 @@ func (o *ServerInstanceInterface) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceInterface) GetRevisionOk() (*float32, bool) {
+func (o *ServerInstanceInterface) GetRevisionOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -143,7 +136,7 @@ func (o *ServerInstanceInterface) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *ServerInstanceInterface) SetRevision(v float32) {
+func (o *ServerInstanceInterface) SetRevision(v int32) {
 	o.Revision = v
 }
 
@@ -169,6 +162,54 @@ func (o *ServerInstanceInterface) GetLabelOk() (*string, bool) {
 // SetLabel sets field value
 func (o *ServerInstanceInterface) SetLabel(v string) {
 	o.Label = v
+}
+
+// GetCreatedTimestamp returns the CreatedTimestamp field value
+func (o *ServerInstanceInterface) GetCreatedTimestamp() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedTimestamp
+}
+
+// GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceInterface) GetCreatedTimestampOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedTimestamp, true
+}
+
+// SetCreatedTimestamp sets field value
+func (o *ServerInstanceInterface) SetCreatedTimestamp(v string) {
+	o.CreatedTimestamp = v
+}
+
+// GetUpdatedTimestamp returns the UpdatedTimestamp field value
+func (o *ServerInstanceInterface) GetUpdatedTimestamp() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UpdatedTimestamp
+}
+
+// GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceInterface) GetUpdatedTimestampOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdatedTimestamp, true
+}
+
+// SetUpdatedTimestamp sets field value
+func (o *ServerInstanceInterface) SetUpdatedTimestamp(v string) {
+	o.UpdatedTimestamp = v
 }
 
 // GetSubdomain returns the Subdomain field value if set, zero value otherwise.
@@ -297,54 +338,6 @@ func (o *ServerInstanceInterface) HasDnsSubdomainPermanentId() bool {
 // SetDnsSubdomainPermanentId gets a reference to the given int32 and assigns it to the DnsSubdomainPermanentId field.
 func (o *ServerInstanceInterface) SetDnsSubdomainPermanentId(v int32) {
 	o.DnsSubdomainPermanentId = &v
-}
-
-// GetCreatedTimestamp returns the CreatedTimestamp field value
-func (o *ServerInstanceInterface) GetCreatedTimestamp() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CreatedTimestamp
-}
-
-// GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceInterface) GetCreatedTimestampOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CreatedTimestamp, true
-}
-
-// SetCreatedTimestamp sets field value
-func (o *ServerInstanceInterface) SetCreatedTimestamp(v string) {
-	o.CreatedTimestamp = v
-}
-
-// GetUpdatedTimestamp returns the UpdatedTimestamp field value
-func (o *ServerInstanceInterface) GetUpdatedTimestamp() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.UpdatedTimestamp
-}
-
-// GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field value
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceInterface) GetUpdatedTimestampOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UpdatedTimestamp, true
-}
-
-// SetUpdatedTimestamp sets field value
-func (o *ServerInstanceInterface) SetUpdatedTimestamp(v string) {
-	o.UpdatedTimestamp = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
@@ -789,11 +782,11 @@ func (o ServerInstanceInterface) MarshalJSON() ([]byte, error) {
 
 func (o ServerInstanceInterface) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["label"] = o.Label
+	toSerialize["createdTimestamp"] = o.CreatedTimestamp
+	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Subdomain) {
 		toSerialize["subdomain"] = o.Subdomain
 	}
@@ -806,8 +799,6 @@ func (o ServerInstanceInterface) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DnsSubdomainPermanentId) {
 		toSerialize["dnsSubdomainPermanentId"] = o.DnsSubdomainPermanentId
 	}
-	toSerialize["createdTimestamp"] = o.CreatedTimestamp
-	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
 	}
@@ -854,6 +845,7 @@ func (o *ServerInstanceInterface) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"id",
 		"revision",
 		"label",
 		"createdTimestamp",
@@ -896,12 +888,12 @@ func (o *ServerInstanceInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "createdTimestamp")
+		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "subdomain")
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "dnsSubdomainPermanentId")
-		delete(additionalProperties, "createdTimestamp")
-		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "meta")
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "instanceId")

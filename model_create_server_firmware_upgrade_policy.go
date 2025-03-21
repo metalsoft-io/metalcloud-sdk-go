@@ -29,8 +29,8 @@ type CreateServerFirmwareUpgradePolicy struct {
 	Action string `json:"action"`
 	// The rules of the firmware upgrade policy.
 	Rules []ServerFirmwareUpgradePolicyRule `json:"rules,omitempty"`
-	// The unique identifiers of the instance arrays associated with the firmware upgrade policy.
-	InstanceArrayIds []float32 `json:"instanceArrayIds,omitempty"`
+	// The unique identifiers of the server instance groups associated with the firmware upgrade policy.
+	ServerInstanceGroupIds []float32 `json:"serverInstanceGroupIds,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -167,36 +167,36 @@ func (o *CreateServerFirmwareUpgradePolicy) SetRules(v []ServerFirmwareUpgradePo
 	o.Rules = v
 }
 
-// GetInstanceArrayIds returns the InstanceArrayIds field value if set, zero value otherwise.
-func (o *CreateServerFirmwareUpgradePolicy) GetInstanceArrayIds() []float32 {
-	if o == nil || IsNil(o.InstanceArrayIds) {
+// GetServerInstanceGroupIds returns the ServerInstanceGroupIds field value if set, zero value otherwise.
+func (o *CreateServerFirmwareUpgradePolicy) GetServerInstanceGroupIds() []float32 {
+	if o == nil || IsNil(o.ServerInstanceGroupIds) {
 		var ret []float32
 		return ret
 	}
-	return o.InstanceArrayIds
+	return o.ServerInstanceGroupIds
 }
 
-// GetInstanceArrayIdsOk returns a tuple with the InstanceArrayIds field value if set, nil otherwise
+// GetServerInstanceGroupIdsOk returns a tuple with the ServerInstanceGroupIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerFirmwareUpgradePolicy) GetInstanceArrayIdsOk() ([]float32, bool) {
-	if o == nil || IsNil(o.InstanceArrayIds) {
+func (o *CreateServerFirmwareUpgradePolicy) GetServerInstanceGroupIdsOk() ([]float32, bool) {
+	if o == nil || IsNil(o.ServerInstanceGroupIds) {
 		return nil, false
 	}
-	return o.InstanceArrayIds, true
+	return o.ServerInstanceGroupIds, true
 }
 
-// HasInstanceArrayIds returns a boolean if a field has been set.
-func (o *CreateServerFirmwareUpgradePolicy) HasInstanceArrayIds() bool {
-	if o != nil && !IsNil(o.InstanceArrayIds) {
+// HasServerInstanceGroupIds returns a boolean if a field has been set.
+func (o *CreateServerFirmwareUpgradePolicy) HasServerInstanceGroupIds() bool {
+	if o != nil && !IsNil(o.ServerInstanceGroupIds) {
 		return true
 	}
 
 	return false
 }
 
-// SetInstanceArrayIds gets a reference to the given []float32 and assigns it to the InstanceArrayIds field.
-func (o *CreateServerFirmwareUpgradePolicy) SetInstanceArrayIds(v []float32) {
-	o.InstanceArrayIds = v
+// SetServerInstanceGroupIds gets a reference to the given []float32 and assigns it to the ServerInstanceGroupIds field.
+func (o *CreateServerFirmwareUpgradePolicy) SetServerInstanceGroupIds(v []float32) {
+	o.ServerInstanceGroupIds = v
 }
 
 func (o CreateServerFirmwareUpgradePolicy) MarshalJSON() ([]byte, error) {
@@ -217,8 +217,8 @@ func (o CreateServerFirmwareUpgradePolicy) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.Rules) {
 		toSerialize["rules"] = o.Rules
 	}
-	if !IsNil(o.InstanceArrayIds) {
-		toSerialize["instanceArrayIds"] = o.InstanceArrayIds
+	if !IsNil(o.ServerInstanceGroupIds) {
+		toSerialize["serverInstanceGroupIds"] = o.ServerInstanceGroupIds
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -268,7 +268,7 @@ func (o *CreateServerFirmwareUpgradePolicy) UnmarshalJSON(data []byte) (err erro
 		delete(additionalProperties, "userIdOwner")
 		delete(additionalProperties, "action")
 		delete(additionalProperties, "rules")
-		delete(additionalProperties, "instanceArrayIds")
+		delete(additionalProperties, "serverInstanceGroupIds")
 		o.AdditionalProperties = additionalProperties
 	}
 

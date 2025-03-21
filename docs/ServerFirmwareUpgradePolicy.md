@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Status** | **string** | The status of the firmware upgrade policy. | 
 **Action** | **string** | The action of the firmware upgrade policy. | 
 **Rules** | Pointer to [**[]ServerFirmwareUpgradePolicyRule**](ServerFirmwareUpgradePolicyRule.md) | The rules of the firmware upgrade policy. | [optional] 
-**InstanceArrayIds** | Pointer to **[]float32** | The unique identifiers of the instance arrays associated with the firmware upgrade policy. | [optional] 
+**ServerInstanceGroupIds** | Pointer to **[]float32** | The unique identifiers of the server instance groups associated with the firmware upgrade policy. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
@@ -204,30 +204,30 @@ SetRules sets Rules field to given value.
 
 HasRules returns a boolean if a field has been set.
 
-### GetInstanceArrayIds
+### GetServerInstanceGroupIds
 
-`func (o *ServerFirmwareUpgradePolicy) GetInstanceArrayIds() []float32`
+`func (o *ServerFirmwareUpgradePolicy) GetServerInstanceGroupIds() []float32`
 
-GetInstanceArrayIds returns the InstanceArrayIds field if non-nil, zero value otherwise.
+GetServerInstanceGroupIds returns the ServerInstanceGroupIds field if non-nil, zero value otherwise.
 
-### GetInstanceArrayIdsOk
+### GetServerInstanceGroupIdsOk
 
-`func (o *ServerFirmwareUpgradePolicy) GetInstanceArrayIdsOk() (*[]float32, bool)`
+`func (o *ServerFirmwareUpgradePolicy) GetServerInstanceGroupIdsOk() (*[]float32, bool)`
 
-GetInstanceArrayIdsOk returns a tuple with the InstanceArrayIds field if it's non-nil, zero value otherwise
+GetServerInstanceGroupIdsOk returns a tuple with the ServerInstanceGroupIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInstanceArrayIds
+### SetServerInstanceGroupIds
 
-`func (o *ServerFirmwareUpgradePolicy) SetInstanceArrayIds(v []float32)`
+`func (o *ServerFirmwareUpgradePolicy) SetServerInstanceGroupIds(v []float32)`
 
-SetInstanceArrayIds sets InstanceArrayIds field to given value.
+SetServerInstanceGroupIds sets ServerInstanceGroupIds field to given value.
 
-### HasInstanceArrayIds
+### HasServerInstanceGroupIds
 
-`func (o *ServerFirmwareUpgradePolicy) HasInstanceArrayIds() bool`
+`func (o *ServerFirmwareUpgradePolicy) HasServerInstanceGroupIds() bool`
 
-HasInstanceArrayIds returns a boolean if a field has been set.
+HasServerInstanceGroupIds returns a boolean if a field has been set.
 
 ### GetLinks
 

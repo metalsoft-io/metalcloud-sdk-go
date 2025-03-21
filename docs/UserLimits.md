@@ -89,7 +89,6 @@ Name | Type | Description | Notes
 **EnableCustomRaidConfiguration** | Pointer to **bool** |  | [optional] 
 **EnableCustomSubnets** | Pointer to **bool** |  | [optional] 
 **ShowStackTrace** | Pointer to **bool** |  | [optional] 
-**AllowedNetworkProfiles** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -2234,31 +2233,6 @@ SetShowStackTrace sets ShowStackTrace field to given value.
 `func (o *UserLimits) HasShowStackTrace() bool`
 
 HasShowStackTrace returns a boolean if a field has been set.
-
-### GetAllowedNetworkProfiles
-
-`func (o *UserLimits) GetAllowedNetworkProfiles() map[string]interface{}`
-
-GetAllowedNetworkProfiles returns the AllowedNetworkProfiles field if non-nil, zero value otherwise.
-
-### GetAllowedNetworkProfilesOk
-
-`func (o *UserLimits) GetAllowedNetworkProfilesOk() (*map[string]interface{}, bool)`
-
-GetAllowedNetworkProfilesOk returns a tuple with the AllowedNetworkProfiles field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAllowedNetworkProfiles
-
-`func (o *UserLimits) SetAllowedNetworkProfiles(v map[string]interface{})`
-
-SetAllowedNetworkProfiles sets AllowedNetworkProfiles field to given value.
-
-### HasAllowedNetworkProfiles
-
-`func (o *UserLimits) HasAllowedNetworkProfiles() bool`
-
-HasAllowedNetworkProfiles returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -508,7 +508,7 @@ Name | Type | Description  | Notes
 
 ## GetInfrastructureUsers
 
-> []UserInfo GetInfrastructureUsers(ctx, infrastructureId).Execute()
+> UserPaginatedList GetInfrastructureUsers(ctx, infrastructureId).Execute()
 
 Retrieves the specified infrastructure users
 
@@ -536,7 +536,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.GetInfrastructureUsers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetInfrastructureUsers`: []UserInfo
+	// response from `GetInfrastructureUsers`: UserPaginatedList
 	fmt.Fprintf(os.Stdout, "Response from `InfrastructureAPI.GetInfrastructureUsers`: %v\n", resp)
 }
 ```
@@ -560,7 +560,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]UserInfo**](UserInfo.md)
+[**UserPaginatedList**](UserPaginatedList.md)
 
 ### Authorization
 
@@ -743,7 +743,7 @@ Name | Type | Description  | Notes
 
 ## RevertInfrastructure
 
-> RevertInfrastructure(ctx, infrastructureId).Execute()
+> RevertInfrastructure(ctx, infrastructureId).IfMatch(ifMatch).Execute()
 
 Reverts the specified infrastructure
 
@@ -763,10 +763,11 @@ import (
 
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.InfrastructureAPI.RevertInfrastructure(context.Background(), infrastructureId).Execute()
+	r, err := apiClient.InfrastructureAPI.RevertInfrastructure(context.Background(), infrastructureId).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.RevertInfrastructure``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -790,6 +791,7 @@ Other parameters are passed through a pointer to a apiRevertInfrastructureReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 

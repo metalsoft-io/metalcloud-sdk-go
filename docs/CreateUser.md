@@ -5,10 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DisplayName** | **string** | The display name of the user | 
+**AccessLevel** | **string** | The access level of the user | 
 **Email** | **string** | The email address of the user | 
-**AccessLevel** | Pointer to **string** | The access level of the user | [optional] 
 **Password** | Pointer to **string** | The password of the user | [optional] 
-**RedirectUrl** | Pointer to **string** | The redirect URL for the user | [optional] 
 **EmailVerified** | Pointer to **bool** | Whether the user has verified their email address | [optional] [default to false]
 **CreateWithAccount** | Pointer to **bool** | Whether an account should be created with the user | [optional] [default to false]
 **AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
@@ -17,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewCreateUser
 
-`func NewCreateUser(displayName string, email string, ) *CreateUser`
+`func NewCreateUser(displayName string, accessLevel string, email string, ) *CreateUser`
 
 NewCreateUser instantiates a new CreateUser object
 This constructor will assign default values to properties that have it defined,
@@ -52,26 +51,6 @@ and a boolean to check if the value has been set.
 SetDisplayName sets DisplayName field to given value.
 
 
-### GetEmail
-
-`func (o *CreateUser) GetEmail() string`
-
-GetEmail returns the Email field if non-nil, zero value otherwise.
-
-### GetEmailOk
-
-`func (o *CreateUser) GetEmailOk() (*string, bool)`
-
-GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmail
-
-`func (o *CreateUser) SetEmail(v string)`
-
-SetEmail sets Email field to given value.
-
-
 ### GetAccessLevel
 
 `func (o *CreateUser) GetAccessLevel() string`
@@ -91,11 +70,26 @@ and a boolean to check if the value has been set.
 
 SetAccessLevel sets AccessLevel field to given value.
 
-### HasAccessLevel
 
-`func (o *CreateUser) HasAccessLevel() bool`
+### GetEmail
 
-HasAccessLevel returns a boolean if a field has been set.
+`func (o *CreateUser) GetEmail() string`
+
+GetEmail returns the Email field if non-nil, zero value otherwise.
+
+### GetEmailOk
+
+`func (o *CreateUser) GetEmailOk() (*string, bool)`
+
+GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmail
+
+`func (o *CreateUser) SetEmail(v string)`
+
+SetEmail sets Email field to given value.
+
 
 ### GetPassword
 
@@ -121,31 +115,6 @@ SetPassword sets Password field to given value.
 `func (o *CreateUser) HasPassword() bool`
 
 HasPassword returns a boolean if a field has been set.
-
-### GetRedirectUrl
-
-`func (o *CreateUser) GetRedirectUrl() string`
-
-GetRedirectUrl returns the RedirectUrl field if non-nil, zero value otherwise.
-
-### GetRedirectUrlOk
-
-`func (o *CreateUser) GetRedirectUrlOk() (*string, bool)`
-
-GetRedirectUrlOk returns a tuple with the RedirectUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRedirectUrl
-
-`func (o *CreateUser) SetRedirectUrl(v string)`
-
-SetRedirectUrl sets RedirectUrl field to given value.
-
-### HasRedirectUrl
-
-`func (o *CreateUser) HasRedirectUrl() bool`
-
-HasRedirectUrl returns a boolean if a field has been set.
 
 ### GetEmailVerified
 

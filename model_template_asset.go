@@ -26,7 +26,7 @@ type TemplateAsset struct {
 	Id int32 `json:"id"`
 	// The ID of the OS template that this template asset belongs to
 	TemplateId int32 `json:"templateId"`
-	// The template asset usage
+	// The template asset usage:         - build_source_image: The template asset represents the source image, used as the base image for constructing the install image.         - build_component: The template asset represents the file that will be part of the install image.         - switch_ztp_config: The template asset represents the switch ZTP configuration.         - metadata_source_image: The template asset contains data about the install image.         - generic: The template asset is used for generic purposes.
 	Usage string `json:"usage"`
 	File TemplateAssetFile `json:"file"`
 	// The tags associated with the template asset

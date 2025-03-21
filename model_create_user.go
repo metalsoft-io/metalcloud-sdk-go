@@ -23,14 +23,12 @@ var _ MappedNullable = &CreateUser{}
 type CreateUser struct {
 	// The display name of the user
 	DisplayName string `json:"displayName"`
+	// The access level of the user
+	AccessLevel string `json:"accessLevel"`
 	// The email address of the user
 	Email string `json:"email"`
-	// The access level of the user
-	AccessLevel *string `json:"accessLevel,omitempty"`
 	// The password of the user
 	Password *string `json:"password,omitempty"`
-	// The redirect URL for the user
-	RedirectUrl *string `json:"redirectUrl,omitempty"`
 	// Whether the user has verified their email address
 	EmailVerified *bool `json:"emailVerified,omitempty"`
 	// Whether an account should be created with the user
@@ -46,9 +44,10 @@ type _CreateUser CreateUser
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateUser(displayName string, email string) *CreateUser {
+func NewCreateUser(displayName string, accessLevel string, email string) *CreateUser {
 	this := CreateUser{}
 	this.DisplayName = displayName
+	this.AccessLevel = accessLevel
 	this.Email = email
 	var emailVerified bool = false
 	this.EmailVerified = &emailVerified
@@ -93,6 +92,30 @@ func (o *CreateUser) SetDisplayName(v string) {
 	o.DisplayName = v
 }
 
+// GetAccessLevel returns the AccessLevel field value
+func (o *CreateUser) GetAccessLevel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AccessLevel
+}
+
+// GetAccessLevelOk returns a tuple with the AccessLevel field value
+// and a boolean to check if the value has been set.
+func (o *CreateUser) GetAccessLevelOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccessLevel, true
+}
+
+// SetAccessLevel sets field value
+func (o *CreateUser) SetAccessLevel(v string) {
+	o.AccessLevel = v
+}
+
 // GetEmail returns the Email field value
 func (o *CreateUser) GetEmail() string {
 	if o == nil {
@@ -115,38 +138,6 @@ func (o *CreateUser) GetEmailOk() (*string, bool) {
 // SetEmail sets field value
 func (o *CreateUser) SetEmail(v string) {
 	o.Email = v
-}
-
-// GetAccessLevel returns the AccessLevel field value if set, zero value otherwise.
-func (o *CreateUser) GetAccessLevel() string {
-	if o == nil || IsNil(o.AccessLevel) {
-		var ret string
-		return ret
-	}
-	return *o.AccessLevel
-}
-
-// GetAccessLevelOk returns a tuple with the AccessLevel field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateUser) GetAccessLevelOk() (*string, bool) {
-	if o == nil || IsNil(o.AccessLevel) {
-		return nil, false
-	}
-	return o.AccessLevel, true
-}
-
-// HasAccessLevel returns a boolean if a field has been set.
-func (o *CreateUser) HasAccessLevel() bool {
-	if o != nil && !IsNil(o.AccessLevel) {
-		return true
-	}
-
-	return false
-}
-
-// SetAccessLevel gets a reference to the given string and assigns it to the AccessLevel field.
-func (o *CreateUser) SetAccessLevel(v string) {
-	o.AccessLevel = &v
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise.
@@ -179,38 +170,6 @@ func (o *CreateUser) HasPassword() bool {
 // SetPassword gets a reference to the given string and assigns it to the Password field.
 func (o *CreateUser) SetPassword(v string) {
 	o.Password = &v
-}
-
-// GetRedirectUrl returns the RedirectUrl field value if set, zero value otherwise.
-func (o *CreateUser) GetRedirectUrl() string {
-	if o == nil || IsNil(o.RedirectUrl) {
-		var ret string
-		return ret
-	}
-	return *o.RedirectUrl
-}
-
-// GetRedirectUrlOk returns a tuple with the RedirectUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateUser) GetRedirectUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.RedirectUrl) {
-		return nil, false
-	}
-	return o.RedirectUrl, true
-}
-
-// HasRedirectUrl returns a boolean if a field has been set.
-func (o *CreateUser) HasRedirectUrl() bool {
-	if o != nil && !IsNil(o.RedirectUrl) {
-		return true
-	}
-
-	return false
-}
-
-// SetRedirectUrl gets a reference to the given string and assigns it to the RedirectUrl field.
-func (o *CreateUser) SetRedirectUrl(v string) {
-	o.RedirectUrl = &v
 }
 
 // GetEmailVerified returns the EmailVerified field value if set, zero value otherwise.
@@ -320,15 +279,10 @@ func (o CreateUser) MarshalJSON() ([]byte, error) {
 func (o CreateUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["displayName"] = o.DisplayName
+	toSerialize["accessLevel"] = o.AccessLevel
 	toSerialize["email"] = o.Email
-	if !IsNil(o.AccessLevel) {
-		toSerialize["accessLevel"] = o.AccessLevel
-	}
 	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
-	}
-	if !IsNil(o.RedirectUrl) {
-		toSerialize["redirectUrl"] = o.RedirectUrl
 	}
 	if !IsNil(o.EmailVerified) {
 		toSerialize["emailVerified"] = o.EmailVerified
@@ -353,6 +307,7 @@ func (o *CreateUser) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"displayName",
+		"accessLevel",
 		"email",
 	}
 
@@ -384,10 +339,9 @@ func (o *CreateUser) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "email")
 		delete(additionalProperties, "accessLevel")
+		delete(additionalProperties, "email")
 		delete(additionalProperties, "password")
-		delete(additionalProperties, "redirectUrl")
 		delete(additionalProperties, "emailVerified")
 		delete(additionalProperties, "createWithAccount")
 		delete(additionalProperties, "accountId")

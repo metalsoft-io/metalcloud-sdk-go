@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revision** | **float32** | Revision number | 
-**Label** | **string** | The server instance label. | 
-**UpdatedTimestamp** | **string** | Timestamp of the latest update for the Server Instance. | 
+**Revision** | **int32** | Revision number | 
+**Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
+**UpdatedTimestamp** | **string** | Timestamp of the latest update of the Product Instance. | 
+**Subdomain** | Pointer to **string** | Subdomain of the Product Instance. | [optional] 
 **GroupId** | **int32** |  | 
 **DriveIdBootable** | Pointer to **int32** |  | [optional] 
-**Subdomain** | Pointer to **string** | Subdomain of the Server Group. | [optional] 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
 **ServerId** | Pointer to **int32** | The ID of the server assigned to the instance. | [optional] 
 **TemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
@@ -20,17 +20,17 @@ Name | Type | Description | Notes
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
 **IscsiInitiatorPasswordEncrypted** | Pointer to **string** | iSCSI Initiator Password for the Instance Interface. | [optional] 
 **ControlPanelUrl** | Pointer to **string** | Control panel url for the Instance Interface. | [optional] 
+**DnsSubdomainChangeId** | Pointer to **int32** | Id of the DNS subdomain for the Product Instance | [optional] 
+**InfrastructureDeployId** | Pointer to **int32** | Id of the deployment for the Product Instance | [optional] 
 **EmptyEdit** | Pointer to **int32** | Number of empty edits | [optional] 
-**DeployType** | **string** | Server Instance deploy type | 
-**DeployStatus** | **string** | Server Instance deploy status | 
-**DnsSubdomainChangeId** | Pointer to **int32** | Id of the DNS subdomain for the Server Instance. | [optional] 
-**InfrastructureDeployId** | Pointer to **int32** | Id of the deployment for the Server Instance. | [optional] 
+**DeployType** | **string** | Product Instance deploy type | [default to "create"]
+**DeployStatus** | **string** | Product Instance deploy status | [default to "not_started"]
 
 ## Methods
 
 ### NewServerInstanceConfiguration
 
-`func NewServerInstanceConfiguration(revision float32, label string, updatedTimestamp string, groupId int32, deployType string, deployStatus string, ) *ServerInstanceConfiguration`
+`func NewServerInstanceConfiguration(revision int32, label string, updatedTimestamp string, groupId int32, deployType string, deployStatus string, ) *ServerInstanceConfiguration`
 
 NewServerInstanceConfiguration instantiates a new ServerInstanceConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -47,20 +47,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRevision
 
-`func (o *ServerInstanceConfiguration) GetRevision() float32`
+`func (o *ServerInstanceConfiguration) GetRevision() int32`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *ServerInstanceConfiguration) GetRevisionOk() (*float32, bool)`
+`func (o *ServerInstanceConfiguration) GetRevisionOk() (*int32, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *ServerInstanceConfiguration) SetRevision(v float32)`
+`func (o *ServerInstanceConfiguration) SetRevision(v int32)`
 
 SetRevision sets Revision field to given value.
 
@@ -104,6 +104,31 @@ and a boolean to check if the value has been set.
 
 SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
+
+### GetSubdomain
+
+`func (o *ServerInstanceConfiguration) GetSubdomain() string`
+
+GetSubdomain returns the Subdomain field if non-nil, zero value otherwise.
+
+### GetSubdomainOk
+
+`func (o *ServerInstanceConfiguration) GetSubdomainOk() (*string, bool)`
+
+GetSubdomainOk returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubdomain
+
+`func (o *ServerInstanceConfiguration) SetSubdomain(v string)`
+
+SetSubdomain sets Subdomain field to given value.
+
+### HasSubdomain
+
+`func (o *ServerInstanceConfiguration) HasSubdomain() bool`
+
+HasSubdomain returns a boolean if a field has been set.
 
 ### GetGroupId
 
@@ -149,31 +174,6 @@ SetDriveIdBootable sets DriveIdBootable field to given value.
 `func (o *ServerInstanceConfiguration) HasDriveIdBootable() bool`
 
 HasDriveIdBootable returns a boolean if a field has been set.
-
-### GetSubdomain
-
-`func (o *ServerInstanceConfiguration) GetSubdomain() string`
-
-GetSubdomain returns the Subdomain field if non-nil, zero value otherwise.
-
-### GetSubdomainOk
-
-`func (o *ServerInstanceConfiguration) GetSubdomainOk() (*string, bool)`
-
-GetSubdomainOk returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubdomain
-
-`func (o *ServerInstanceConfiguration) SetSubdomain(v string)`
-
-SetSubdomain sets Subdomain field to given value.
-
-### HasSubdomain
-
-`func (o *ServerInstanceConfiguration) HasSubdomain() bool`
-
-HasSubdomain returns a boolean if a field has been set.
 
 ### GetServerTypeId
 
@@ -425,6 +425,56 @@ SetControlPanelUrl sets ControlPanelUrl field to given value.
 
 HasControlPanelUrl returns a boolean if a field has been set.
 
+### GetDnsSubdomainChangeId
+
+`func (o *ServerInstanceConfiguration) GetDnsSubdomainChangeId() int32`
+
+GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field if non-nil, zero value otherwise.
+
+### GetDnsSubdomainChangeIdOk
+
+`func (o *ServerInstanceConfiguration) GetDnsSubdomainChangeIdOk() (*int32, bool)`
+
+GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsSubdomainChangeId
+
+`func (o *ServerInstanceConfiguration) SetDnsSubdomainChangeId(v int32)`
+
+SetDnsSubdomainChangeId sets DnsSubdomainChangeId field to given value.
+
+### HasDnsSubdomainChangeId
+
+`func (o *ServerInstanceConfiguration) HasDnsSubdomainChangeId() bool`
+
+HasDnsSubdomainChangeId returns a boolean if a field has been set.
+
+### GetInfrastructureDeployId
+
+`func (o *ServerInstanceConfiguration) GetInfrastructureDeployId() int32`
+
+GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
+
+### GetInfrastructureDeployIdOk
+
+`func (o *ServerInstanceConfiguration) GetInfrastructureDeployIdOk() (*int32, bool)`
+
+GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructureDeployId
+
+`func (o *ServerInstanceConfiguration) SetInfrastructureDeployId(v int32)`
+
+SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
+
+### HasInfrastructureDeployId
+
+`func (o *ServerInstanceConfiguration) HasInfrastructureDeployId() bool`
+
+HasInfrastructureDeployId returns a boolean if a field has been set.
+
 ### GetEmptyEdit
 
 `func (o *ServerInstanceConfiguration) GetEmptyEdit() int32`
@@ -489,56 +539,6 @@ and a boolean to check if the value has been set.
 
 SetDeployStatus sets DeployStatus field to given value.
 
-
-### GetDnsSubdomainChangeId
-
-`func (o *ServerInstanceConfiguration) GetDnsSubdomainChangeId() int32`
-
-GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field if non-nil, zero value otherwise.
-
-### GetDnsSubdomainChangeIdOk
-
-`func (o *ServerInstanceConfiguration) GetDnsSubdomainChangeIdOk() (*int32, bool)`
-
-GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDnsSubdomainChangeId
-
-`func (o *ServerInstanceConfiguration) SetDnsSubdomainChangeId(v int32)`
-
-SetDnsSubdomainChangeId sets DnsSubdomainChangeId field to given value.
-
-### HasDnsSubdomainChangeId
-
-`func (o *ServerInstanceConfiguration) HasDnsSubdomainChangeId() bool`
-
-HasDnsSubdomainChangeId returns a boolean if a field has been set.
-
-### GetInfrastructureDeployId
-
-`func (o *ServerInstanceConfiguration) GetInfrastructureDeployId() int32`
-
-GetInfrastructureDeployId returns the InfrastructureDeployId field if non-nil, zero value otherwise.
-
-### GetInfrastructureDeployIdOk
-
-`func (o *ServerInstanceConfiguration) GetInfrastructureDeployIdOk() (*int32, bool)`
-
-GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInfrastructureDeployId
-
-`func (o *ServerInstanceConfiguration) SetInfrastructureDeployId(v int32)`
-
-SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
-
-### HasInfrastructureDeployId
-
-`func (o *ServerInstanceConfiguration) HasInfrastructureDeployId() bool`
-
-HasInfrastructureDeployId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

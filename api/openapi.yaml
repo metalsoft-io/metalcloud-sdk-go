@@ -373,9 +373,46 @@ paths:
       summary: Get account by id
       tags:
       - Account
+  /api/v2/accounts/{accountId}/config:
+    get:
+      operationId: AccountController_getUserConfiguration
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountConfig'
+          description: The account configuration with the specified ID
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Account not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get account configuration by ID
+      tags:
+      - Account
     patch:
-      description: Updates an account
-      operationId: updateAccount
+      description: Updates an account configuration
+      operationId: updateAccountConfig
       parameters:
       - explode: false
         in: path
@@ -404,8 +441,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Account'
-          description: Account successfully updated
+                $ref: '#/components/schemas/AccountConfig'
+          description: Account configuration successfully updated
           headers:
             ETag:
               description: Entity tag
@@ -428,7 +465,7 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Update account
+      summary: Update account configuration
       tags:
       - Account
   /api/v2/accounts/{accountId}/actions/archive:
@@ -573,6 +610,7 @@ paths:
       summary: Get account limits
       tags:
       - Account
+  /api/v2/accounts/{accountId}/actions/change-limits:
     patch:
       description: Updates the limits of an account
       operationId: updateAccountLimits
@@ -1000,6 +1038,51 @@ paths:
         "404":
           description: Authentication providers not found
       summary: Retrieve all authentication providers
+      tags:
+      - Authentication
+  /api/v2/sign-up:
+    post:
+      description: Sign up a new user.
+      operationId: SignUp
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUser'
+        description: The user to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: User successfully signed up
+          headers:
+            Location:
+              description: New User link
+              explode: false
+              schema:
+                type: string
+              style: simple
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "409":
+          description: Conflict
+      summary: Sign up
       tags:
       - Authentication
   /api/v2/buckets/{bucketId}:
@@ -6291,12 +6374,12 @@ paths:
           type: array
         style: form
       - description: |-
-          Filter by instanceArrayIds query param.
+          Filter by serverInstanceGroupIds query param.
                     <p>
-                       <b>Format: </b> filter.instanceArrayIds={$not}:OPERATION:VALUE
+                       <b>Format: </b> filter.serverInstanceGroupIds={$not}:OPERATION:VALUE
                     </p>
                     <p>
-                       <b>Example: </b> filter.instanceArrayIds=$not:$like:John Doe&filter.instanceArrayIds=like:John
+                       <b>Example: </b> filter.serverInstanceGroupIds=$not:$like:John Doe&filter.serverInstanceGroupIds=like:John
                     </p>
                     <h4>Available Operations</h4><ul><li>$and</li>
           <li>$or</li>
@@ -6314,7 +6397,7 @@ paths:
           <li>$contains</li></ul>
         explode: true
         in: query
-        name: filter.instanceArrayIds
+        name: filter.serverInstanceGroupIds
         required: false
         schema:
           items:
@@ -6394,7 +6477,7 @@ paths:
           \          </p>\n        <p>\n             <b>Default Value: </b> By default\
           \ all fields mentioned below will be used to search by term\n          </p>\n\
           \        <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>status</li>\n\
-          <li>action</li>\n<li>userIdOwner</li>\n<li>instanceArrayIds</li></ul>\n\
+          <li>action</li>\n<li>userIdOwner</li>\n<li>serverInstanceGroupIds</li></ul>\n\
           \        "
         explode: true
         in: query
@@ -7182,9 +7265,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/UserInfo'
-                type: array
+                $ref: '#/components/schemas/UserPaginatedList'
           description: Retrieved the specified infrastructure users
         "400":
           description: Bad request
@@ -7355,6 +7436,14 @@ paths:
         required: true
         schema:
           type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
         style: simple
       responses:
         "202":
@@ -10264,7 +10353,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchLogicalNetworkDto'
+              $ref: '#/components/schemas/UpdateLogicalNetworkDto'
         description: The Logical Network update object
         required: true
       responses:
@@ -10638,7 +10727,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchLogicalNetworkProfileDto'
+              $ref: '#/components/schemas/UpdateLogicalNetworkProfileDto'
         description: The Logical Network Profile update object
         required: true
       responses:
@@ -20255,13 +20344,6 @@ paths:
         schema:
           type: number
         style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateStorage'
-        description: The Storage object to delete
-        required: true
       responses:
         "204":
           description: The Storage successfully deleted
@@ -20330,7 +20412,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateStorage'
+              $ref: '#/components/schemas/UpdateStorageInternal'
         description: The Storage update object
         required: true
       responses:
@@ -22642,8 +22724,8 @@ paths:
       tags:
       - User
     post:
-      description: Creates a user
-      operationId: createUser
+      description: Creates another user
+      operationId: createUserAuthorized
       parameters: []
       requestBody:
         content:
@@ -22685,7 +22767,7 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Creates a user
+      summary: Creates another user
       tags:
       - User
   /api/v2/users/{userId}:
@@ -22734,9 +22816,39 @@ paths:
       summary: Get user
       tags:
       - User
+  /api/v2/users/{userId}/config:
+    get:
+      operationId: UserController_getUserConfiguration
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserConfiguration'
+          description: The user configuration with the specified ID
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get user configuration by ID
+      tags:
+      - User
     patch:
-      description: Updates a user
-      operationId: updateUser
+      description: Updates a user configuration
+      operationId: updateUserConfig
       parameters:
       - explode: false
         in: path
@@ -22765,8 +22877,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-          description: User successfully updated
+                $ref: '#/components/schemas/UserConfiguration'
+          description: User configuration successfully updated
           headers:
             ETag:
               description: Entity tag
@@ -22775,13 +22887,13 @@ paths:
                 type: string
               style: simple
         "400":
-          description: Bad request
+          description: Invalid request sent
         "401":
           description: Unauthorized
         "403":
           description: Forbidden
         "404":
-          description: Not found
+          description: User not found
         "412":
           description: Precondition failed
         "428":
@@ -22789,7 +22901,49 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Update user
+      summary: Update user configuration
+      tags:
+      - User
+  /api/v2/users/{userId}/meta:
+    patch:
+      operationId: UserController_updateUserMeta
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserMeta'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserMeta'
+          description: The user metadata has been successfully updated.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update user metadata
       tags:
       - User
   /api/v2/users/{userId}/actions/change-account:
@@ -22989,6 +23143,7 @@ paths:
       summary: Get user limits
       tags:
       - User
+  /api/v2/users/{userId}/actions/change-limits:
     patch:
       description: Updates the limits of a user
       operationId: updateUserLimits
@@ -23043,6 +23198,460 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Update user limits
+      tags:
+      - User
+  /api/v2/users/{userId}/parent-delegates:
+    get:
+      operationId: UserController_getUserParentDelegates
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: true
+        in: query
+        name: recursion
+        required: false
+        schema:
+          type: number
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+          description: List of parent delegates for the specified user
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get user parent delegates by ID
+      tags:
+      - User
+  /api/v2/users/{userId}/child-delegates:
+    get:
+      operationId: UserController_getUserChildDelegates
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: true
+        in: query
+        name: recursion
+        required: false
+        schema:
+          type: number
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+          description: List of child delegates for the specified user
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get user child delegates by ID
+      tags:
+      - User
+  /api/v2/users/{userId}/actions/add-delegate/{delegateId}:
+    post:
+      operationId: UserController_addDelegate
+      parameters:
+      - description: ID of the user
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: ID of the delegate to add
+        explode: false
+        in: path
+        name: delegateId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: The delegate has been successfully added to the user.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User or delegate not found
+        "409":
+          description: Delegate already exists for user
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Add a delegate to a user
+      tags:
+      - User
+  /api/v2/users/{userId}/actions/remove-delegate/{delegateId}:
+    post:
+      operationId: UserController_removeDelegate
+      parameters:
+      - description: ID of the user
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: ID of the delegate to remove
+        explode: false
+        in: path
+        name: delegateId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: The delegate has been successfully removed from the user.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User or delegate not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Remove a delegate from a user
+      tags:
+      - User
+  /api/v2/users/{userId}/actions/suspend:
+    post:
+      operationId: UserController_suspendUser
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSuspend'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSuspendReason'
+          description: The user has been successfully suspended.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Suspend a user
+      tags:
+      - User
+  /api/v2/users/{userId}/actions/unsuspend:
+    post:
+      operationId: UserController_unsuspendUser
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: The user has been successfully unsuspended.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Unsuspend a user
+      tags:
+      - User
+  /api/v2/users/{userId}/suspend-reasons:
+    get:
+      operationId: UserController_getUserSuspendReasons
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSuspendReasonList'
+          description: List of suspend reasons for the specified user
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get user suspend reasons by ID
+      tags:
+      - User
+  /api/v2/users/{userId}/permissions:
+    get:
+      operationId: UserController_getUserPermissions
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPermissions'
+          description: The user resource permissions with the specified ID
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get user resource permissions by ID
+      tags:
+      - User
+  /api/v2/users/{userId}/actions/change-resource-permissions:
+    post:
+      operationId: UserController_updateUserPermissions
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserPermissionsDto'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPermissions'
+          description: The user resource permissions have been successfully updated.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update user resource permissions
+      tags:
+      - User
+  /api/v2/users/{userId}/actions/change-password:
+    post:
+      operationId: UserController_updateUserPassword
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdatePassword'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: The user password has been successfully updated.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Change user password
+      tags:
+      - User
+  /api/v2/users/{userId}/actions/change-email:
+    post:
+      operationId: UserController_updateUserEmail
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeUserEmail'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: The user email has been successfully updated.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Change user email
       tags:
       - User
   /api/v2/vms/{vmId}:
@@ -26733,28 +27342,9 @@ components:
         wanSubnetPrefixSizeToMaxCount:
           type: object
       type: object
-    Link:
-      example:
-        rel: self
-        href: /api/v2/path/to/resource
-      properties:
-        rel:
-          description: "Indicates the relation type of the hyperlink (e.g., \"self\"\
-            \ refers to the current resource)."
-          example: self
-          type: string
-        href:
-          description: The URI for accessing the linked resource.
-          example: /api/v2/path/to/resource
-          type: string
-      required:
-      - href
-      - rel
-      type: object
-    Account:
+    AccountConfig:
       example:
         parentAccountId: 0.8008281904610115
-        archived: 5.962133916683182
         code: code
         address:
           country: country
@@ -26763,24 +27353,12 @@ components:
           addressLine2: addressLine2
           state: state
         secondaryContactId: 1.4658129805029452
+        isArchived: true
         name: name
-        links:
-        - rel: self
-          href: /api/v2/path/to/resource
-        - rel: self
-          href: /api/v2/path/to/resource
-        id: 1
         fiscalNumber: fiscalNumber
-        limits:
-          wanSubnetPrefixSizeToMaxCount: "{}"
-          userResourceServerTypeNameToMaxCount: "{}"
         revision: 1
         primaryContactId: 6.027456183070403
       properties:
-        id:
-          description: Account ID
-          example: 1
-          type: number
         revision:
           description: Revision number
           example: 1
@@ -26805,17 +27383,102 @@ components:
         secondaryContactId:
           description: The user ID of the secondary contact
           type: number
-        archived:
+        isArchived:
           description: Whether the account is archived
+          type: boolean
+      required:
+      - name
+      - revision
+      type: object
+    Link:
+      example:
+        rel: self
+        href: /api/v2/path/to/resource
+      properties:
+        rel:
+          description: "Indicates the relation type of the hyperlink (e.g., \"self\"\
+            \ refers to the current resource)."
+          example: self
+          type: string
+        href:
+          description: The URI for accessing the linked resource.
+          example: /api/v2/path/to/resource
+          type: string
+      required:
+      - href
+      - rel
+      type: object
+    Account:
+      example:
+        code: code
+        address:
+          country: country
+          postalCode: postalCode
+          addressLine1: addressLine1
+          addressLine2: addressLine2
+          state: state
+        secondaryContactId: 1.4658129805029452
+        isArchived: true
+        primaryContactId: 6.027456183070403
+        revision: 1
+        parentAccountId: 0.8008281904610115
+        name: name
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        id: 1
+        fiscalNumber: fiscalNumber
+        config: ""
+        limits:
+          wanSubnetPrefixSizeToMaxCount: "{}"
+          userResourceServerTypeNameToMaxCount: "{}"
+      properties:
+        parentAccountId:
+          description: The ID of the parent account
+          type: number
+        name:
+          description: The name of the account
+          type: string
+        code:
+          description: The code of the account
+          type: string
+        fiscalNumber:
+          description: The fiscal number of the account
+          type: string
+        address:
+          $ref: '#/components/schemas/AccountAddress'
+        primaryContactId:
+          description: The user ID of the primary contact
+          type: number
+        secondaryContactId:
+          description: The user ID of the secondary contact
+          type: number
+        isArchived:
+          description: Whether the account is archived
+          type: boolean
+        id:
+          description: Account ID
+          example: 1
+          type: number
+        revision:
+          description: Revision number
+          example: 1
           type: number
         limits:
           $ref: '#/components/schemas/AccountLimits'
+        config:
+          allOf:
+          - $ref: '#/components/schemas/AccountConfig'
+          description: The new configuration of the account.
         links:
           description: Reference links
           items:
             $ref: '#/components/schemas/Link'
           type: array
       required:
+      - config
       - id
       - limits
       - name
@@ -26824,9 +27487,7 @@ components:
     AccountPaginatedList:
       example:
         data:
-        - parentAccountId: 0.8008281904610115
-          archived: 5.962133916683182
-          code: code
+        - code: code
           address:
             country: country
             postalCode: postalCode
@@ -26834,6 +27495,10 @@ components:
             addressLine2: addressLine2
             state: state
           secondaryContactId: 1.4658129805029452
+          isArchived: true
+          primaryContactId: 6.027456183070403
+          revision: 1
+          parentAccountId: 0.8008281904610115
           name: name
           links:
           - rel: self
@@ -26842,14 +27507,11 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           fiscalNumber: fiscalNumber
+          config: ""
           limits:
             wanSubnetPrefixSizeToMaxCount: "{}"
             userResourceServerTypeNameToMaxCount: "{}"
-          revision: 1
-          primaryContactId: 6.027456183070403
-        - parentAccountId: 0.8008281904610115
-          archived: 5.962133916683182
-          code: code
+        - code: code
           address:
             country: country
             postalCode: postalCode
@@ -26857,6 +27519,10 @@ components:
             addressLine2: addressLine2
             state: state
           secondaryContactId: 1.4658129805029452
+          isArchived: true
+          primaryContactId: 6.027456183070403
+          revision: 1
+          parentAccountId: 0.8008281904610115
           name: name
           links:
           - rel: self
@@ -26865,11 +27531,10 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           fiscalNumber: fiscalNumber
+          config: ""
           limits:
             wanSubnetPrefixSizeToMaxCount: "{}"
             userResourceServerTypeNameToMaxCount: "{}"
-          revision: 1
-          primaryContactId: 6.027456183070403
         meta: ""
         links: ""
       properties:
@@ -26934,6 +27599,7 @@ components:
           addressLine2: addressLine2
           state: state
         secondaryContactId: 1.4658129805029452
+        isArchived: true
         name: name
         fiscalNumber: fiscalNumber
         primaryContactId: 6.027456183070403
@@ -26958,16 +27624,17 @@ components:
         secondaryContactId:
           description: The user ID of the secondary contact
           type: number
-      required:
-      - name
+        isArchived:
+          description: Whether the account is archived
+          type: boolean
       type: object
     UserInfo:
       example:
         lastLoginTimestamp: lastLoginTimestamp
-        archived: 0.8008281904610115
-        accountId: 6.027456183070403
+        accountId: 0.8008281904610115
         accessLevel: accessLevel
         displayName: displayName
+        isArchived: true
         createdTimestamp: createdTimestamp
         language: en
         links:
@@ -26975,30 +27642,12 @@ components:
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
-        id: id
+        id: 6.027456183070403
         email: email
-        revision: revision
+        revision: 1.4658129805029452
       properties:
-        id:
-          description: User ID
-          type: string
-        revision:
-          description: Revision number
-          type: string
         displayName:
           description: The display name of the user
-          type: string
-        email:
-          description: The email address of the user
-          type: string
-        createdTimestamp:
-          description: The timestamp when the user was created
-          type: string
-        lastLoginTimestamp:
-          description: The timestamp when the user logged in last
-          type: string
-        accessLevel:
-          description: The access level of the user
           type: string
         language:
           description: The language of the user
@@ -27006,12 +27655,30 @@ components:
           - en
           - ro
           type: string
-        archived:
+        lastLoginTimestamp:
+          description: The timestamp when the user logged in last
+          type: string
+        accessLevel:
+          description: The access level of the user
+          type: string
+        isArchived:
           description: Whether the user is a archived
-          type: number
+          type: boolean
         accountId:
           description: The account ID of the user
           type: number
+        id:
+          description: User ID
+          type: number
+        revision:
+          description: Revision of the user
+          type: number
+        email:
+          description: The email address of the user
+          type: string
+        createdTimestamp:
+          description: The timestamp when the user was created
+          type: string
         links:
           description: Reference links
           items:
@@ -27019,12 +27686,11 @@ components:
           type: array
       required:
       - accessLevel
-      - accountId
-      - archived
       - createdTimestamp
       - displayName
       - email
       - id
+      - isArchived
       - language
       - lastLoginTimestamp
       - revision
@@ -27033,10 +27699,10 @@ components:
       example:
         data:
         - lastLoginTimestamp: lastLoginTimestamp
-          archived: 0.8008281904610115
-          accountId: 6.027456183070403
+          accountId: 0.8008281904610115
           accessLevel: accessLevel
           displayName: displayName
+          isArchived: true
           createdTimestamp: createdTimestamp
           language: en
           links:
@@ -27044,14 +27710,14 @@ components:
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
-          id: id
+          id: 6.027456183070403
           email: email
-          revision: revision
+          revision: 1.4658129805029452
         - lastLoginTimestamp: lastLoginTimestamp
-          archived: 0.8008281904610115
-          accountId: 6.027456183070403
+          accountId: 0.8008281904610115
           accessLevel: accessLevel
           displayName: displayName
+          isArchived: true
           createdTimestamp: createdTimestamp
           language: en
           links:
@@ -27059,9 +27725,9 @@ components:
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
-          id: id
+          id: 6.027456183070403
           email: email
-          revision: revision
+          revision: 1.4658129805029452
         meta: ""
         links: ""
       properties:
@@ -27200,6 +27866,12 @@ components:
           type: boolean
       type: object
     UserPermissions:
+      example:
+        specialPermissions: ""
+        adminPasswordRevealPermissions: ""
+        rolePermissions:
+        - role1
+        - role2
       properties:
         adminPasswordRevealPermissions:
           allOf:
@@ -27219,72 +27891,71 @@ components:
           type: array
       required:
       - rolePermissions
-      - specialPermissions
       type: object
     UserLimits:
       example:
-        fileShareMinSizeGb: 8.969578798196912
-        driveArrayDrivesMaxCount: 1.0246457001441578
-        infrastructureLanMaxCount: 3.5571952270680973
-        sharedDriveMaxSizeMbytes: 6.519180951018382
-        vmInstanceMaxDiskSizeMbytes: 7.143538047012306
+        fileShareMinSizeGb: 6.519180951018382
+        driveArrayDrivesMaxCount: 4.145608029883936
+        infrastructureLanMaxCount: 8.762042012749001
+        sharedDriveMaxSizeMbytes: 7.143538047012306
+        vmInstanceMaxDiskSizeMbytes: 6.704019297950036
         showDiagramAppClusterTypeKubernetesEksa: true
-        containerArraySecretsMaxCount: 7.386281948385884
+        containerArraySecretsMaxCount: 3.616076749251911
         showDiagramVmInstanceGroups: true
-        infrastructureSanMaxCount: 6.965117697638846
+        infrastructureSanMaxCount: 9.018348186070783
         showDiagramAppClusterTypeMysqlPercona: true
-        vmInstanceGroupVmInstancesMaxCount: 3.0937452626664474
-        userSshKeysCountMax: 3.2588565619047607
+        vmInstanceGroupVmInstancesMaxCount: 5.944895607614016
+        userSshKeysCountMax: 3.0576100241049344
         infrastructureContainerClusterZookeeperAllowed: true
         showDiagramAppClusterTypeDatastax: true
-        driveMaxSizeMbytes: 6.84685269835264
-        infrastructureFileShareMaxCount: 2.8841621266687802
+        driveMaxSizeMbytes: 1.2315135367772556
+        infrastructureFileShareMaxCount: 3.5571952270680973
         showDiagramAppClusterTypeSplunk: true
         enableCustomRaidConfiguration: true
         infrastructureContainerClusterSparksqlAllowed: true
-        infrastructureWanMaxCount: 6.878052220127876
+        infrastructureWanMaxCount: 1.284659006116532
         allowVlanOverrides: true
-        fileShareMaxSizeGb: 4.652396432933246
+        fileShareMaxSizeGb: 7.058770351582356
         showDiagramAppClusterTypeVmwareVcf: true
-        infrastructureClusterMaxCount: 4.965218492984954
+        infrastructureClusterMaxCount: 6.84685269835264
         infrastructureVolumeTemplateExperimentalAllowed: true
-        infrastructureContainerClusterMaxCount: 5.025004791520295
+        infrastructureContainerClusterMaxCount: 7.457744773683766
         showDiagramAppClusterTypeMapr: true
         infrastructureContainerClusterZoomdataAllowed: true
-        infrastructureVmInstanceGroupMaxCount: 3.353193347011243
+        infrastructureVmInstanceGroupMaxCount: 6.878052220127876
         showDiagramAppClusterTypeCouchbase: true
-        driveMinSizeMbytes: 7.457744773683766
-        infrastructureActiveMaxCount: 1.1730742509559433
-        containerArrayContainersMinCount: 3.616076749251911
-        bucketMinSizeGb: 3.0205796992916243
+        driveMinSizeMbytes: 1.0246457001441578
+        infrastructureActiveMaxCount: 1.4894159098541704
+        containerArrayContainersMinCount: 2.3021358869347655
+        bucketMinSizeGb: 4.652396432933246
         showDiagramAppClusterTypeCloudera: true
         showStackTrace: true
-        containerArrayContainersMaxCount: 9.301444243932576
+        containerArrayContainersMaxCount: 5.637376656633329
         ownerIsBillable: true
         infrastructureDataLakeEnabled: true
-        sharedDriveMinSizeMbytes: 0.10263654006109402
-        userResourceServersMaxCount: 5.533258397034986
-        wanSubnetIpv4MaxCount: 4.078845849666752
+        sharedDriveMinSizeMbytes: 0.8851374739011653
+        userResourceServersMaxCount: 3.0205796992916243
+        wanSubnetIpv4MaxCount: 7.04836565559697
         showDiagramAppClusterTypeExasol: true
-        driveArrayDrivesMinCount: 1.4894159098541704
+        driveArrayDrivesMinCount: 7.386281948385884
         allowNetworkProfiles: true
         showOperatingSystemImagesTab: true
-        wanSubnetIpv6MaxCount: 0.2025324113236393
+        wanSubnetIpv6MaxCount: 5.533258397034986
         showDiagramAppsGlobal: true
-        infrastructureInstanceArrayMaxCount: 6.438423552598547
-        infrastructureDriveArrayMaxCount: 8.762042012749001
+        infrastructureInstanceArrayMaxCount: 6.683562403749608
+        infrastructureDriveArrayMaxCount: 9.965781217890562
         wanSubnetPrefixSizeToMaxCount: "{}"
-        bucketMaxSizeGb: 7.740351818741173
-        containerPlatformContainerArrayMaxCount: 1.2315135367772556
+        bucketMaxSizeGb: 0.10263654006109402
+        containerPlatformContainerArrayMaxCount: 2.027123023002322
         infrastructureContainerClusterKafkaAllowed: true
-        infrastructureBucketMaxCount: 6.778324963048013
+        infrastructureBucketMaxCount: 6.965117697638846
         infrastructureContainerClusterSparkArrayAllowed: true
-        userResourceIscsiStorageSpaceMaxGbytes: 7.04836565559697
+        userResourceIscsiStorageSpaceMaxGbytes: 7.740351818741173
         infrastructureContainerClusterStreamsetsAllowed: true
-        instanceArrayInstancesMinCount: 6.704019297950036
-        infrastructureSharedDriveMaxCount: 1.284659006116532
+        instanceArrayInstancesMinCount: 6.778324963048013
+        infrastructureSharedDriveMaxCount: 6.438423552598547
         showDiagramAppClusterTypeMesos: true
-        infrastructureDataLakeMaxCount: 9.369310271410669
+        infrastructureDataLakeMaxCount: 4.965218492984954
         showExperimentalPages: true
         infrastructureContainerClusterPostgresqlAllowed: true
         showEliChatBot: true
@@ -27295,22 +27966,21 @@ components:
         showDiagramAppClusterTypeKubernetes: true
         userResourceServerTypeNameToMaxCount: "{}"
         enableCustomSubnets: true
-        instanceArrayInstancesMaxCount: 5.944895607614016
+        instanceArrayInstancesMaxCount: 2.8841621266687802
         showLegacyPages: true
-        infrastructureContainerPlatformMaxCount: 9.965781217890562
+        infrastructureContainerPlatformMaxCount: 1.1730742509559433
         showDiagramAppClusterTypeVmwareVsphere: true
         infrastructureClusterMysqlAllowed: true
-        containerArrayDriveArraysMinCount: 4.145608029883936
+        containerArrayDriveArraysMinCount: 9.301444243932576
         showTemplateAssetsView: true
         showDiagramAppClusterTypeDatameer: true
-        thresholdMaxCount: 3.0576100241049344
-        serverTypeReservationMaxQuantity: 7.058770351582356
-        containerArrayDriveArraysMaxCount: 2.027123023002322
-        infrastructureInactiveMaxCount: 9.018348186070783
+        thresholdMaxCount: 8.969578798196912
+        serverTypeReservationMaxQuantity: 3.0937452626664474
+        containerArrayDriveArraysMaxCount: 7.061401241503109
+        infrastructureInactiveMaxCount: 9.369310271410669
         showDiagramAppClusterTypeElasticsearch: true
-        serverTypeReservationMaxCount: 0.8851374739011653
-        infrastructureDeletedMaxCount: 6.683562403749608
-        allowedNetworkProfiles: "{}"
+        serverTypeReservationMaxCount: 3.353193347011243
+        infrastructureDeletedMaxCount: 5.025004791520295
       properties:
         containerArrayContainersMaxCount:
           type: number
@@ -27484,98 +28154,287 @@ components:
           type: boolean
         showStackTrace:
           type: boolean
-        allowedNetworkProfiles:
+      type: object
+    UserConfiguration:
+      example:
+        isTestingMode: true
+        authenticatorCreatedTimestamp: authenticatorCreatedTimestamp
+        passwordChangeRequired: true
+        promotionTags:
+        - promotionTags
+        - promotionTags
+        displayName: displayName
+        isArchived: true
+        isBlocked: true
+        language: en
+        infrastructureIdDefault: 6.027456183070403
+        authenticatorMustChange: true
+        isTestAccount: true
+        isBrandManager: true
+        isDatastorePublisher: true
+        brand: default
+        lastLoginType: md5
+        experimentalTags:
+        - storage_pools
+        - storage_pools
+        accessLevel: accessLevel
+        externalIds: "{}"
+        revision: 0.8008281904610115
+        isBillable: true
+        lastLoginTimestamp: lastLoginTimestamp
+        excludeFromReports: true
+        accountId: 1.4658129805029452
+        emailStatus: not_verified
+        authenticatorEnabled: true
+      properties:
+        revision:
+          description: Revision of the user configuration
+          type: number
+        displayName:
+          description: The display name of the user
+          type: string
+        emailStatus:
+          description: The email status of the user
+          enum:
+          - not_verified
+          - verified
+          type: string
+        language:
+          description: The language of the user
+          enum:
+          - en
+          - ro
+          type: string
+        brand:
+          default: default
+          description: The brand of the user
+          type: string
+        isBrandManager:
+          description: Whether the user is a brand manager
+          type: boolean
+        lastLoginTimestamp:
+          description: The timestamp when the user logged in last
+          type: string
+        lastLoginType:
+          default: md5
+          description: The last login type of the user
+          enum:
+          - md5
+          - smtp
+          example: md5
+          type: string
+        isBlocked:
+          description: Whether the user is blocked
+          type: boolean
+        passwordChangeRequired:
+          description: Whether the user must change password
+          type: boolean
+        accessLevel:
+          description: The access level of the user
+          type: string
+        isBillable:
+          description: Whether the user is billable
+          type: boolean
+        isTestingMode:
+          description: Whether the user is in testing mode
+          type: boolean
+        infrastructureIdDefault:
+          description: The default infrastructure ID of the user
+          type: number
+        authenticatorMustChange:
+          description: Whether the user must change authenticator
+          type: boolean
+        authenticatorCreatedTimestamp:
+          description: The timestamp when the authenticator was created
+          type: string
+        authenticatorEnabled:
+          description: Whether the user has an authenticator
+          type: boolean
+        promotionTags:
+          description: The promotion tags of the user
+          items:
+            type: string
+          type: array
+        experimentalTags:
+          description: The experimental tags of the user
+          items:
+            enum:
+            - storage_pools
+            - vm_pools
+            - servers
+            - volume_template
+            type: string
+          type: array
+        externalIds:
+          description: The external IDs of the user
           type: object
+        excludeFromReports:
+          description: Whether the user is excluded from reports
+          type: boolean
+        isTestAccount:
+          description: Whether the user is a test account
+          type: boolean
+        isArchived:
+          description: Whether the user is a archived
+          type: boolean
+        isDatastorePublisher:
+          description: Whether the user is a datastore publisher
+          type: boolean
+        accountId:
+          description: The account ID of the user
+          type: number
+      required:
+      - accessLevel
+      - authenticatorCreatedTimestamp
+      - authenticatorEnabled
+      - authenticatorMustChange
+      - brand
+      - displayName
+      - emailStatus
+      - excludeFromReports
+      - isArchived
+      - isBillable
+      - isBlocked
+      - isBrandManager
+      - isDatastorePublisher
+      - isTestAccount
+      - isTestingMode
+      - language
+      - lastLoginTimestamp
+      - lastLoginType
+      - passwordChangeRequired
+      - revision
+      type: object
+    GenericGUISettings:
+      example:
+        rowIndex: 6.027456183070403
+        columnIndex: 1.4658129805029452
+        userAgent: userAgent
+        randomInstanceID: randomInstanceID
+        showWidgetChildren: true
+      properties:
+        rowIndex:
+          description: Row index of the object.
+          type: number
+        columnIndex:
+          description: Column index of the object.
+          type: number
+        showWidgetChildren:
+          description: Whether to show the object children in the GUI.
+          type: boolean
+        randomInstanceID:
+          description: Random instance ID.
+          type: string
+        userAgent:
+          description: User agent.
+          type: string
+      type: object
+    UserMeta:
+      example:
+        guiSettings:
+          rowIndex: 6.027456183070403
+          columnIndex: 1.4658129805029452
+          userAgent: userAgent
+          randomInstanceID: randomInstanceID
+          showWidgetChildren: true
+      properties:
+        guiSettings:
+          $ref: '#/components/schemas/GenericGUISettings'
       type: object
     User:
       example:
+        isTestingMode: true
         authenticatorCreatedTimestamp: authenticatorCreatedTimestamp
-        isTestingMode: 5.637376656633329
+        passwordChangeRequired: true
         franchise: franchise
-        passwordChangeRequired: 1.4658129805029452
-        promotionTags: "{}"
+        promotionTags:
+        - promotionTags
+        - promotionTags
         displayName: displayName
+        isArchived: true
+        isBlocked: true
         language: en
-        infrastructureIdDefault: 7.061401241503109
-        authenticatorMustChange: 0.8008281904610115
-        isTestAccount: 4.258773108174356
-        archived: 7.260521264802104
-        blocked: 6.027456183070403
+        infrastructureIdDefault: 0.8008281904610115
+        authenticatorMustChange: true
+        childDelegates:
+        - childDelegates
+        - childDelegates
+        isTestAccount: true
         provider: default
         permissions: ""
-        isBrandManager: 1.041444916118296
+        isBrandManager: true
         links:
         - rel: self
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
-        id: id
-        isDatastorePublisher: 4.678947989005849
+        isDatastorePublisher: true
+        id: 1.4658129805029452
         brand: default
         email: email
         limits:
-          fileShareMinSizeGb: 8.969578798196912
-          driveArrayDrivesMaxCount: 1.0246457001441578
-          infrastructureLanMaxCount: 3.5571952270680973
-          sharedDriveMaxSizeMbytes: 6.519180951018382
-          vmInstanceMaxDiskSizeMbytes: 7.143538047012306
+          fileShareMinSizeGb: 6.519180951018382
+          driveArrayDrivesMaxCount: 4.145608029883936
+          infrastructureLanMaxCount: 8.762042012749001
+          sharedDriveMaxSizeMbytes: 7.143538047012306
+          vmInstanceMaxDiskSizeMbytes: 6.704019297950036
           showDiagramAppClusterTypeKubernetesEksa: true
-          containerArraySecretsMaxCount: 7.386281948385884
+          containerArraySecretsMaxCount: 3.616076749251911
           showDiagramVmInstanceGroups: true
-          infrastructureSanMaxCount: 6.965117697638846
+          infrastructureSanMaxCount: 9.018348186070783
           showDiagramAppClusterTypeMysqlPercona: true
-          vmInstanceGroupVmInstancesMaxCount: 3.0937452626664474
-          userSshKeysCountMax: 3.2588565619047607
+          vmInstanceGroupVmInstancesMaxCount: 5.944895607614016
+          userSshKeysCountMax: 3.0576100241049344
           infrastructureContainerClusterZookeeperAllowed: true
           showDiagramAppClusterTypeDatastax: true
-          driveMaxSizeMbytes: 6.84685269835264
-          infrastructureFileShareMaxCount: 2.8841621266687802
+          driveMaxSizeMbytes: 1.2315135367772556
+          infrastructureFileShareMaxCount: 3.5571952270680973
           showDiagramAppClusterTypeSplunk: true
           enableCustomRaidConfiguration: true
           infrastructureContainerClusterSparksqlAllowed: true
-          infrastructureWanMaxCount: 6.878052220127876
+          infrastructureWanMaxCount: 1.284659006116532
           allowVlanOverrides: true
-          fileShareMaxSizeGb: 4.652396432933246
+          fileShareMaxSizeGb: 7.058770351582356
           showDiagramAppClusterTypeVmwareVcf: true
-          infrastructureClusterMaxCount: 4.965218492984954
+          infrastructureClusterMaxCount: 6.84685269835264
           infrastructureVolumeTemplateExperimentalAllowed: true
-          infrastructureContainerClusterMaxCount: 5.025004791520295
+          infrastructureContainerClusterMaxCount: 7.457744773683766
           showDiagramAppClusterTypeMapr: true
           infrastructureContainerClusterZoomdataAllowed: true
-          infrastructureVmInstanceGroupMaxCount: 3.353193347011243
+          infrastructureVmInstanceGroupMaxCount: 6.878052220127876
           showDiagramAppClusterTypeCouchbase: true
-          driveMinSizeMbytes: 7.457744773683766
-          infrastructureActiveMaxCount: 1.1730742509559433
-          containerArrayContainersMinCount: 3.616076749251911
-          bucketMinSizeGb: 3.0205796992916243
+          driveMinSizeMbytes: 1.0246457001441578
+          infrastructureActiveMaxCount: 1.4894159098541704
+          containerArrayContainersMinCount: 2.3021358869347655
+          bucketMinSizeGb: 4.652396432933246
           showDiagramAppClusterTypeCloudera: true
           showStackTrace: true
-          containerArrayContainersMaxCount: 9.301444243932576
+          containerArrayContainersMaxCount: 5.637376656633329
           ownerIsBillable: true
           infrastructureDataLakeEnabled: true
-          sharedDriveMinSizeMbytes: 0.10263654006109402
-          userResourceServersMaxCount: 5.533258397034986
-          wanSubnetIpv4MaxCount: 4.078845849666752
+          sharedDriveMinSizeMbytes: 0.8851374739011653
+          userResourceServersMaxCount: 3.0205796992916243
+          wanSubnetIpv4MaxCount: 7.04836565559697
           showDiagramAppClusterTypeExasol: true
-          driveArrayDrivesMinCount: 1.4894159098541704
+          driveArrayDrivesMinCount: 7.386281948385884
           allowNetworkProfiles: true
           showOperatingSystemImagesTab: true
-          wanSubnetIpv6MaxCount: 0.2025324113236393
+          wanSubnetIpv6MaxCount: 5.533258397034986
           showDiagramAppsGlobal: true
-          infrastructureInstanceArrayMaxCount: 6.438423552598547
-          infrastructureDriveArrayMaxCount: 8.762042012749001
+          infrastructureInstanceArrayMaxCount: 6.683562403749608
+          infrastructureDriveArrayMaxCount: 9.965781217890562
           wanSubnetPrefixSizeToMaxCount: "{}"
-          bucketMaxSizeGb: 7.740351818741173
-          containerPlatformContainerArrayMaxCount: 1.2315135367772556
+          bucketMaxSizeGb: 0.10263654006109402
+          containerPlatformContainerArrayMaxCount: 2.027123023002322
           infrastructureContainerClusterKafkaAllowed: true
-          infrastructureBucketMaxCount: 6.778324963048013
+          infrastructureBucketMaxCount: 6.965117697638846
           infrastructureContainerClusterSparkArrayAllowed: true
-          userResourceIscsiStorageSpaceMaxGbytes: 7.04836565559697
+          userResourceIscsiStorageSpaceMaxGbytes: 7.740351818741173
           infrastructureContainerClusterStreamsetsAllowed: true
-          instanceArrayInstancesMinCount: 6.704019297950036
-          infrastructureSharedDriveMaxCount: 1.284659006116532
+          instanceArrayInstancesMinCount: 6.778324963048013
+          infrastructureSharedDriveMaxCount: 6.438423552598547
           showDiagramAppClusterTypeMesos: true
-          infrastructureDataLakeMaxCount: 9.369310271410669
+          infrastructureDataLakeMaxCount: 4.965218492984954
           showExperimentalPages: true
           infrastructureContainerClusterPostgresqlAllowed: true
           showEliChatBot: true
@@ -27586,131 +28445,151 @@ components:
           showDiagramAppClusterTypeKubernetes: true
           userResourceServerTypeNameToMaxCount: "{}"
           enableCustomSubnets: true
-          instanceArrayInstancesMaxCount: 5.944895607614016
+          instanceArrayInstancesMaxCount: 2.8841621266687802
           showLegacyPages: true
-          infrastructureContainerPlatformMaxCount: 9.965781217890562
+          infrastructureContainerPlatformMaxCount: 1.1730742509559433
           showDiagramAppClusterTypeVmwareVsphere: true
           infrastructureClusterMysqlAllowed: true
-          containerArrayDriveArraysMinCount: 4.145608029883936
+          containerArrayDriveArraysMinCount: 9.301444243932576
           showTemplateAssetsView: true
           showDiagramAppClusterTypeDatameer: true
-          thresholdMaxCount: 3.0576100241049344
-          serverTypeReservationMaxQuantity: 7.058770351582356
-          containerArrayDriveArraysMaxCount: 2.027123023002322
-          infrastructureInactiveMaxCount: 9.018348186070783
+          thresholdMaxCount: 8.969578798196912
+          serverTypeReservationMaxQuantity: 3.0937452626664474
+          containerArrayDriveArraysMaxCount: 7.061401241503109
+          infrastructureInactiveMaxCount: 9.369310271410669
           showDiagramAppClusterTypeElasticsearch: true
-          serverTypeReservationMaxCount: 0.8851374739011653
-          infrastructureDeletedMaxCount: 6.683562403749608
-          allowedNetworkProfiles: "{}"
+          serverTypeReservationMaxCount: 3.353193347011243
+          infrastructureDeletedMaxCount: 5.025004791520295
         lastLoginType: md5
-        experimentalTags: "{}"
-        isSuspended: 2.3021358869347655
+        parentDelegates:
+        - parentDelegates
+        - parentDelegates
+        experimentalTags:
+        - storage_pools
+        - storage_pools
         planType: vanilla
+        isSuspended: true
         accessLevel: accessLevel
         createdTimestamp: createdTimestamp
         externalIds: "{}"
-        revision: revision
-        isBillable: 5.962133916683182
+        isBillable: true
+        revision: 5.962133916683182
         lastLoginTimestamp: lastLoginTimestamp
-        excludeFromReports: 6.628464275087742
-        accountId: 9.132027271330688
+        excludeFromReports: true
+        accountId: 6.027456183070403
         emailStatus: not_verified
         authenticatorEnabled: true
-        guiSettings: "{}"
+        meta: ""
+        config: ""
       properties:
-        id:
-          description: User ID
-          type: string
-        revision:
-          description: Revision number
-          type: string
-        franchise:
-          description: The franchise of the user
-          type: string
         displayName:
           description: The display name of the user
           type: string
-        email:
-          description: The email address of the user
-          type: string
-        authenticatorMustChange:
-          description: Whether the user must change authenticator
-          type: number
-        authenticatorCreatedTimestamp:
-          description: The timestamp when the authenticator was created
-          type: string
-        authenticatorEnabled:
-          description: Whether the user has an authenticator
-          type: boolean
-        createdTimestamp:
-          description: The timestamp when the user was created
-          type: string
-        lastLoginTimestamp:
-          description: The timestamp when the user logged in last
-          type: string
-        lastLoginType:
-          description: The last login type of the user
-          enum:
-          - md5
-          - smtp
-          type: string
-        blocked:
-          description: Whether the user is blocked
-          type: number
         emailStatus:
           description: The email status of the user
           enum:
           - not_verified
           - verified
           type: string
-        passwordChangeRequired:
-          description: Whether the user must change password
-          type: number
-        accessLevel:
-          description: The access level of the user
-          type: string
-        isBillable:
-          description: Whether the user is billable
-          type: number
-        isTestingMode:
-          description: Whether the user is in testing mode
-          type: number
-        isSuspended:
-          description: Whether the user is suspended
-          type: number
         language:
           description: The language of the user
           enum:
           - en
           - ro
           type: string
+        brand:
+          default: default
+          description: The brand of the user
+          type: string
+        isBrandManager:
+          description: Whether the user is a brand manager
+          type: boolean
+        lastLoginTimestamp:
+          description: The timestamp when the user logged in last
+          type: string
+        lastLoginType:
+          default: md5
+          description: The last login type of the user
+          enum:
+          - md5
+          - smtp
+          example: md5
+          type: string
+        isBlocked:
+          description: Whether the user is blocked
+          type: boolean
+        passwordChangeRequired:
+          description: Whether the user must change password
+          type: boolean
+        accessLevel:
+          description: The access level of the user
+          type: string
+        isBillable:
+          description: Whether the user is billable
+          type: boolean
+        isTestingMode:
+          description: Whether the user is in testing mode
+          type: boolean
         infrastructureIdDefault:
           description: The default infrastructure ID of the user
           type: number
-        guiSettings:
-          description: The GUI settings of the user
-          type: object
+        authenticatorMustChange:
+          description: Whether the user must change authenticator
+          type: boolean
+        authenticatorCreatedTimestamp:
+          description: The timestamp when the authenticator was created
+          type: string
+        authenticatorEnabled:
+          description: Whether the user has an authenticator
+          type: boolean
         promotionTags:
           description: The promotion tags of the user
-          type: object
+          items:
+            type: string
+          type: array
         experimentalTags:
           description: The experimental tags of the user
-          type: object
-        permissions:
-          allOf:
-          - $ref: '#/components/schemas/UserPermissions'
-          description: The permissions of the user
+          items:
+            enum:
+            - storage_pools
+            - vm_pools
+            - servers
+            - volume_template
+            type: string
+          type: array
         externalIds:
           description: The external IDs of the user
           type: object
-        limits:
-          $ref: '#/components/schemas/UserLimits'
         excludeFromReports:
           description: Whether the user is excluded from reports
-          type: number
+          type: boolean
         isTestAccount:
           description: Whether the user is a test account
+          type: boolean
+        isArchived:
+          description: Whether the user is a archived
+          type: boolean
+        isDatastorePublisher:
+          description: Whether the user is a datastore publisher
+          type: boolean
+        accountId:
+          description: The account ID of the user
           type: number
+        id:
+          description: User ID
+          type: number
+        revision:
+          description: Revision of the user
+          type: number
+        email:
+          description: The email address of the user
+          type: string
+        franchise:
+          description: The franchise of the user
+          type: string
+        createdTimestamp:
+          description: The timestamp when the user was created
+          type: string
         planType:
           default: vanilla
           description: The plan type of the user
@@ -27719,27 +28598,39 @@ components:
           - starter
           - starter_redundant
           - custom
+          example: vanilla
           type: string
-        brand:
-          default: default
-          description: The brand of the user
-          type: string
-        isBrandManager:
-          description: Whether the user is a brand manager
-          type: number
-        isDatastorePublisher:
-          description: Whether the user is a datastore publisher
-          type: number
         provider:
           default: default
           description: The provider of the user
           type: string
-        archived:
-          description: Whether the user is a archived
-          type: number
-        accountId:
-          description: The account ID of the user
-          type: number
+        permissions:
+          allOf:
+          - $ref: '#/components/schemas/UserPermissions'
+          description: The permissions of the user
+        limits:
+          $ref: '#/components/schemas/UserLimits'
+        parentDelegates:
+          description: The email addresses of the parent delegate users
+          items:
+            type: string
+          type: array
+        childDelegates:
+          description: The email addresses of the child delegate users
+          items:
+            type: string
+          type: array
+        isSuspended:
+          description: Whether the user is suspended
+          type: boolean
+        config:
+          allOf:
+          - $ref: '#/components/schemas/UserConfiguration'
+          description: The new configuration of the user.
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/UserMeta'
+          description: Meta information of the user.
         links:
           description: Reference links
           items:
@@ -27747,13 +28638,11 @@ components:
           type: array
       required:
       - accessLevel
-      - accountId
-      - archived
       - authenticatorCreatedTimestamp
       - authenticatorEnabled
       - authenticatorMustChange
-      - blocked
       - brand
+      - config
       - createdTimestamp
       - displayName
       - email
@@ -27761,7 +28650,9 @@ components:
       - excludeFromReports
       - franchise
       - id
+      - isArchived
       - isBillable
+      - isBlocked
       - isBrandManager
       - isDatastorePublisher
       - isSuspended
@@ -27770,6 +28661,7 @@ components:
       - language
       - lastLoginTimestamp
       - lastLoginType
+      - meta
       - passwordChangeRequired
       - planType
       - provider
@@ -27818,6 +28710,44 @@ components:
       - mysql
       - saml
       - ssoEntryPoint
+      type: object
+    CreateUser:
+      example:
+        emailVerified: false
+        accountId: 0.8008281904610115
+        password: password
+        accessLevel: accessLevel
+        displayName: displayName
+        email: email
+        createWithAccount: false
+      properties:
+        displayName:
+          description: The display name of the user
+          type: string
+        accessLevel:
+          description: The access level of the user
+          type: string
+        email:
+          description: The email address of the user
+          type: string
+        password:
+          description: The password of the user
+          type: string
+        emailVerified:
+          default: false
+          description: Whether the user has verified their email address
+          type: boolean
+        createWithAccount:
+          default: false
+          description: Whether an account should be created with the user
+          type: boolean
+        accountId:
+          description: The account ID of the user
+          type: number
+      required:
+      - accessLevel
+      - displayName
+      - email
       type: object
     BucketConfiguration:
       example:
@@ -27883,30 +28813,6 @@ components:
       - sizeGB
       - subdomain
       - updatedTimestamp
-      type: object
-    GenericGUISettings:
-      example:
-        rowIndex: 6.027456183070403
-        columnIndex: 1.4658129805029452
-        userAgent: userAgent
-        randomInstanceID: randomInstanceID
-        showWidgetChildren: true
-      properties:
-        rowIndex:
-          description: Row index of the object.
-          type: number
-        columnIndex:
-          description: Column index of the object.
-          type: number
-        showWidgetChildren:
-          description: Whether to show the object children in the GUI.
-          type: boolean
-        randomInstanceID:
-          description: Random instance ID.
-          type: string
-        userAgent:
-          description: User agent.
-          type: string
       type: object
     BucketMeta:
       properties:
@@ -34075,8 +34981,6 @@ components:
       type: object
     ServerFirmwareUpgradePolicy:
       example:
-        instanceArrayIds:
-        - 1
         createdTimestamp: createdTimestamp
         userIdOwner: 1
         action: accept
@@ -34091,6 +34995,8 @@ components:
           href: /api/v2/path/to/resource
         id: 1
         label: Firmware upgrade policy 1
+        serverInstanceGroupIds:
+        - 1
         updatedTimestamp: updatedTimestamp
         status: active
       properties:
@@ -34137,9 +35043,9 @@ components:
           items:
             $ref: '#/components/schemas/ServerFirmwareUpgradePolicyRule'
           type: array
-        instanceArrayIds:
-          description: The unique identifiers of the instance arrays associated with
-            the firmware upgrade policy.
+        serverInstanceGroupIds:
+          description: The unique identifiers of the server instance groups associated
+            with the firmware upgrade policy.
           example:
           - 1
           items:
@@ -34161,9 +35067,7 @@ components:
     ServerFirmwareUpgradePolicyPaginatedList:
       example:
         data:
-        - instanceArrayIds:
-          - 1
-          createdTimestamp: createdTimestamp
+        - createdTimestamp: createdTimestamp
           userIdOwner: 1
           action: accept
           rules:
@@ -34177,11 +35081,11 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           label: Firmware upgrade policy 1
+          serverInstanceGroupIds:
+          - 1
           updatedTimestamp: updatedTimestamp
           status: active
-        - instanceArrayIds:
-          - 1
-          createdTimestamp: createdTimestamp
+        - createdTimestamp: createdTimestamp
           userIdOwner: 1
           action: accept
           rules:
@@ -34195,6 +35099,8 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           label: Firmware upgrade policy 1
+          serverInstanceGroupIds:
+          - 1
           updatedTimestamp: updatedTimestamp
           status: active
         meta: ""
@@ -34222,8 +35128,6 @@ components:
       type: object
     CreateServerFirmwareUpgradePolicy:
       example:
-        instanceArrayIds:
-        - 1
         userIdOwner: 1
         action: accept
         rules:
@@ -34231,6 +35135,8 @@ components:
           operation: string_equals
           value: 1.0.0
         label: Firmware upgrade policy 1
+        serverInstanceGroupIds:
+        - 1
       properties:
         label:
           description: The label of the firmware upgrade policy.
@@ -34258,9 +35164,9 @@ components:
           items:
             $ref: '#/components/schemas/ServerFirmwareUpgradePolicyRule'
           type: array
-        instanceArrayIds:
-          description: The unique identifiers of the instance arrays associated with
-            the firmware upgrade policy.
+        serverInstanceGroupIds:
+          description: The unique identifiers of the server instance groups associated
+            with the firmware upgrade policy.
           example:
           - 1
           items:
@@ -34272,14 +35178,14 @@ components:
       type: object
     UpdateServerFirmwareUpgradePolicy:
       example:
-        instanceArrayIds:
-        - 1
         action: accept
         rules:
         - property: server_component_name
           operation: string_equals
           value: 1.0.0
         label: Firmware upgrade policy 1
+        serverInstanceGroupIds:
+        - 1
         status: active
       properties:
         rules:
@@ -34291,9 +35197,9 @@ components:
           items:
             $ref: '#/components/schemas/ServerFirmwareUpgradePolicyRule'
           type: array
-        instanceArrayIds:
-          description: The unique identifiers of the instance arrays associated with
-            the firmware upgrade policy.
+        serverInstanceGroupIds:
+          description: The unique identifiers of the server instance groups associated
+            with the firmware upgrade policy.
           example:
           - 1
           items:
@@ -35189,63 +36095,62 @@ components:
       type: object
     ServerInstanceGroupConfiguration:
       example:
-        ipv4SubnetCreateAuto: 1
-        driveArrayIdBoot: 6
-        overrideIpv4WanVlanId: 8
-        diskCount: 7
+        ipv4SubnetCreateAuto: 2
+        driveArrayIdBoot: 3
+        overrideIpv4WanVlanId: 3
+        firmwarePolicyIds:
+        - 6.704019297950036
+        - 6.704019297950036
+        diskCount: 0
         updatedTimestamp: updatedTimestamp
         customVariables: "{}"
         deployType: create
         processorCoreMhz: 7
-        volumeTemplateId: 5
-        dnsSubdomainChangeId: 3
-        processorCoreCount: 3
-        infrastructureDeployId: 7
-        virtualInterfacesEnabled: 0
+        volumeTemplateId: 3
+        dnsSubdomainChangeId: 7
+        processorCoreCount: 0
+        infrastructureDeployId: 5
+        virtualInterfacesEnabled: 8
         firewallRulesSetId: 6
         instanceArrayBootMethod: pxe_iscsi
-        networkProfileGroupId: 4
+        networkProfileGroupId: 7
         serverGroupName: server-instance-group-name
         emptyEdit: 3
-        processorCount: 3
-        firewallProfileId: 2
-        ipAllocateAuto: 6
-        firewallManaged: 6
-        label: server-instance-group-123
+        processorCount: 7
+        firewallProfileId: 6
+        ipAllocateAuto: 1
+        firewallManaged: 5
+        label: label
         diskTypes:
         - diskTypes
         - diskTypes
         additionalWanIpv4Json: "{}"
         revision: 1
-        firmwarePoliciesJson:
-        - "{}"
-        - "{}"
-        networkEquipmentForceSubnetPoolIpv4WanId: 7
-        diskSizeMbytes: 6
-        instanceCount: 3
+        networkEquipmentForceSubnetPoolIpv4WanId: 3
+        diskSizeMbytes: 4
+        instanceCount: 6
         subdomain: subdomain
-        ramGbytes: 0
+        ramGbytes: 6
         deployStatus: not_started
       properties:
         revision:
           description: Revision number
           example: 1
-          type: number
+          type: integer
         label:
-          description: The server instance group label. Will be automatically generated
+          description: The Product Instance label. Will be automatically generated
             if not provided.
-          example: server-instance-group-123
           maxLength: 63
+          type: string
+        updatedTimestamp:
+          description: Timestamp of the latest update of the Product Instance.
+          type: string
+        subdomain:
+          description: Subdomain of the Product Instance.
           type: string
         serverGroupName:
           example: server-instance-group-name
           maxLength: 255
-          type: string
-        updatedTimestamp:
-          description: Timestamp of the latest update for the Server Instance Group.
-          type: string
-        subdomain:
-          description: Subdomain of the Server Group.
           type: string
         instanceCount:
           default: 1
@@ -35267,10 +36172,11 @@ components:
           type: integer
         firewallManaged:
           type: integer
-        firmwarePoliciesJson:
-          description: Object containing associated firmware policies.
+        firmwarePolicyIds:
+          description: Array of firmware policy ids containing associated firmware
+            policies.
           items:
-            type: object
+            type: number
           nullable: true
           type: array
         volumeTemplateId:
@@ -35337,11 +36243,18 @@ components:
           description: ID of a ipv4 WAN subnet-pool from which to force the subnet
             allocation for the InstanceInterfaces associated with this InstanceArray.
           type: integer
+        dnsSubdomainChangeId:
+          description: Id of the DNS subdomain for the Product Instance
+          type: integer
+        infrastructureDeployId:
+          description: Id of the deployment for the Product Instance
+          type: integer
         emptyEdit:
           description: Number of empty edits
           type: integer
         deployType:
-          description: Server Instance Group deploy type
+          default: create
+          description: Product Instance deploy type
           enum:
           - create
           - delete
@@ -35351,18 +36264,13 @@ components:
           - suspend
           type: string
         deployStatus:
-          description: Server Instance Group deploy status
+          default: not_started
+          description: Product Instance deploy status
           enum:
           - not_started
           - ongoing
           - finished
           type: string
-        dnsSubdomainChangeId:
-          description: Id of the DNS subdomain for the Server Instance Group.
-          type: integer
-        infrastructureDeployId:
-          description: Id of the deployment for the Instance Group.
-          type: integer
       required:
       - deployStatus
       - deployType
@@ -35385,19 +36293,22 @@ components:
     ServerInstanceGroup:
       example:
         ipv4SubnetCreateAuto: 7
-        driveArrayIdBoot: 7
-        overrideIpv4WanVlanId: 9
-        extensionInstanceId: 6
-        diskCount: 7
+        driveArrayIdBoot: 1
+        overrideIpv4WanVlanId: 6
+        firmwarePolicyIds:
+        - 4.145608029883936
+        - 4.145608029883936
+        extensionInstanceId: 5
+        diskCount: 1
         updatedTimestamp: updatedTimestamp
         customVariables: "{}"
-        isVmGroup: 9
-        processorCoreMhz: 1
-        dnsSubdomainPermanentId: 5
-        volumeTemplateId: 4
+        isVmGroup: 6
+        processorCoreMhz: 6
+        dnsSubdomainPermanentId: 6
+        volumeTemplateId: 7
         processorCoreCount: 1
         serviceStatus: ordered
-        virtualInterfacesEnabled: 4
+        virtualInterfacesEnabled: 5
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -35406,8 +36317,8 @@ components:
         id: 1
         firewallRulesSetId: 3
         instanceArrayBootMethod: pxe_iscsi
-        networkProfileGroupId: 5
-        dnsSubdomainId: 1
+        networkProfileGroupId: 9
+        dnsSubdomainId: 0
         defaultServerProfileID: 1
         serverGroupName: server-instance-group-name
         networkProfileSnapshotId: 9
@@ -35416,22 +36327,19 @@ components:
         firewallProfileId: 9
         ipAllocateAuto: 2
         firewallManaged: 2
-        label: server-instance-group-123
+        label: label
         subdomainPermanent: subdomainPermanent
         diskTypes:
         - diskTypes
         - diskTypes
         additionalWanIpv4Json: "{}"
         revision: 1
-        firmwarePoliciesJson:
-        - "{}"
-        - "{}"
-        networkEquipmentForceSubnetPoolIpv4WanId: 6
-        diskSizeMbytes: 1
-        infrastructureId: 0
-        vmInstanceGroupId: 6
+        networkEquipmentForceSubnetPoolIpv4WanId: 8
+        diskSizeMbytes: 4
+        infrastructureId: 1
+        vmInstanceGroupId: 3
         instanceCount: 5
-        resourcePoolId: 8
+        resourcePoolId: 9
         meta:
           guiSettings:
             rowIndex: 6.027456183070403
@@ -35443,60 +36351,77 @@ components:
           - tags
           - tags
         subdomain: subdomain
-        ramGbytes: 6
+        ramGbytes: 7
         config:
-          ipv4SubnetCreateAuto: 1
-          driveArrayIdBoot: 6
-          overrideIpv4WanVlanId: 8
-          diskCount: 7
+          ipv4SubnetCreateAuto: 2
+          driveArrayIdBoot: 3
+          overrideIpv4WanVlanId: 3
+          firmwarePolicyIds:
+          - 6.704019297950036
+          - 6.704019297950036
+          diskCount: 0
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
           deployType: create
           processorCoreMhz: 7
-          volumeTemplateId: 5
-          dnsSubdomainChangeId: 3
-          processorCoreCount: 3
-          infrastructureDeployId: 7
-          virtualInterfacesEnabled: 0
+          volumeTemplateId: 3
+          dnsSubdomainChangeId: 7
+          processorCoreCount: 0
+          infrastructureDeployId: 5
+          virtualInterfacesEnabled: 8
           firewallRulesSetId: 6
           instanceArrayBootMethod: pxe_iscsi
-          networkProfileGroupId: 4
+          networkProfileGroupId: 7
           serverGroupName: server-instance-group-name
           emptyEdit: 3
-          processorCount: 3
-          firewallProfileId: 2
-          ipAllocateAuto: 6
-          firewallManaged: 6
-          label: server-instance-group-123
+          processorCount: 7
+          firewallProfileId: 6
+          ipAllocateAuto: 1
+          firewallManaged: 5
+          label: label
           diskTypes:
           - diskTypes
           - diskTypes
           additionalWanIpv4Json: "{}"
           revision: 1
-          firmwarePoliciesJson:
-          - "{}"
-          - "{}"
-          networkEquipmentForceSubnetPoolIpv4WanId: 7
-          diskSizeMbytes: 6
-          instanceCount: 3
+          networkEquipmentForceSubnetPoolIpv4WanId: 3
+          diskSizeMbytes: 4
+          instanceCount: 6
           subdomain: subdomain
-          ramGbytes: 0
+          ramGbytes: 6
           deployStatus: not_started
       properties:
         id:
-          description: The server instance group ID.
+          description: The Product Instance ID.
           example: 1
           type: integer
         revision:
           description: Revision number
           example: 1
-          type: number
+          type: integer
         label:
-          description: The server instance group label. Will be automatically generated
+          description: The Product Instance label. Will be automatically generated
             if not provided.
-          example: server-instance-group-123
           maxLength: 63
           type: string
+        createdTimestamp:
+          description: Timestamp of the Product Instance creation.
+          type: string
+        updatedTimestamp:
+          description: Timestamp of the latest update of the Product Instance.
+          type: string
+        subdomain:
+          description: Subdomain of the Product Instance.
+          type: string
+        subdomainPermanent:
+          description: Subdomain permanent of the Product Instance.
+          type: string
+        dnsSubdomainId:
+          description: Id of the DNS subdomain for the Product Instance
+          type: integer
+        dnsSubdomainPermanentId:
+          description: Id of the permanent DNS subdomain for the Product Instance
+          type: integer
         serverGroupName:
           example: server-instance-group-name
           maxLength: 255
@@ -35504,24 +36429,6 @@ components:
         infrastructureId:
           type: integer
         extensionInstanceId:
-          type: integer
-        createdTimestamp:
-          description: Timestamp of the Server Instance Group creation.
-          type: string
-        updatedTimestamp:
-          description: Timestamp of the latest update for the Server Instance Group.
-          type: string
-        subdomain:
-          description: Subdomain of the Server Group.
-          type: string
-        subdomainPermanent:
-          description: Subdomain permanent of the Server Group.
-          type: string
-        dnsSubdomainId:
-          description: Id of the DNS subdomain for the Server Group.
-          type: integer
-        dnsSubdomainPermanentId:
-          description: Id of the permanent DNS subdomain for the Server Group.
           type: integer
         instanceCount:
           default: 1
@@ -35543,10 +36450,11 @@ components:
           type: integer
         firewallManaged:
           type: integer
-        firmwarePoliciesJson:
-          description: Object containing associated firmware policies.
+        firmwarePolicyIds:
+          description: Array of firmware policy ids containing associated firmware
+            policies.
           items:
-            type: object
+            type: number
           nullable: true
           type: array
         volumeTemplateId:
@@ -35677,19 +36585,22 @@ components:
       example:
         data:
         - ipv4SubnetCreateAuto: 7
-          driveArrayIdBoot: 7
-          overrideIpv4WanVlanId: 9
-          extensionInstanceId: 6
-          diskCount: 7
+          driveArrayIdBoot: 1
+          overrideIpv4WanVlanId: 6
+          firmwarePolicyIds:
+          - 4.145608029883936
+          - 4.145608029883936
+          extensionInstanceId: 5
+          diskCount: 1
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
-          isVmGroup: 9
-          processorCoreMhz: 1
-          dnsSubdomainPermanentId: 5
-          volumeTemplateId: 4
+          isVmGroup: 6
+          processorCoreMhz: 6
+          dnsSubdomainPermanentId: 6
+          volumeTemplateId: 7
           processorCoreCount: 1
           serviceStatus: ordered
-          virtualInterfacesEnabled: 4
+          virtualInterfacesEnabled: 5
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -35698,8 +36609,8 @@ components:
           id: 1
           firewallRulesSetId: 3
           instanceArrayBootMethod: pxe_iscsi
-          networkProfileGroupId: 5
-          dnsSubdomainId: 1
+          networkProfileGroupId: 9
+          dnsSubdomainId: 0
           defaultServerProfileID: 1
           serverGroupName: server-instance-group-name
           networkProfileSnapshotId: 9
@@ -35708,22 +36619,19 @@ components:
           firewallProfileId: 9
           ipAllocateAuto: 2
           firewallManaged: 2
-          label: server-instance-group-123
+          label: label
           subdomainPermanent: subdomainPermanent
           diskTypes:
           - diskTypes
           - diskTypes
           additionalWanIpv4Json: "{}"
           revision: 1
-          firmwarePoliciesJson:
-          - "{}"
-          - "{}"
-          networkEquipmentForceSubnetPoolIpv4WanId: 6
-          diskSizeMbytes: 1
-          infrastructureId: 0
-          vmInstanceGroupId: 6
+          networkEquipmentForceSubnetPoolIpv4WanId: 8
+          diskSizeMbytes: 4
+          infrastructureId: 1
+          vmInstanceGroupId: 3
           instanceCount: 5
-          resourcePoolId: 8
+          resourcePoolId: 9
           meta:
             guiSettings:
               rowIndex: 6.027456183070403
@@ -35735,59 +36643,62 @@ components:
             - tags
             - tags
           subdomain: subdomain
-          ramGbytes: 6
+          ramGbytes: 7
           config:
-            ipv4SubnetCreateAuto: 1
-            driveArrayIdBoot: 6
-            overrideIpv4WanVlanId: 8
-            diskCount: 7
+            ipv4SubnetCreateAuto: 2
+            driveArrayIdBoot: 3
+            overrideIpv4WanVlanId: 3
+            firmwarePolicyIds:
+            - 6.704019297950036
+            - 6.704019297950036
+            diskCount: 0
             updatedTimestamp: updatedTimestamp
             customVariables: "{}"
             deployType: create
             processorCoreMhz: 7
-            volumeTemplateId: 5
-            dnsSubdomainChangeId: 3
-            processorCoreCount: 3
-            infrastructureDeployId: 7
-            virtualInterfacesEnabled: 0
+            volumeTemplateId: 3
+            dnsSubdomainChangeId: 7
+            processorCoreCount: 0
+            infrastructureDeployId: 5
+            virtualInterfacesEnabled: 8
             firewallRulesSetId: 6
             instanceArrayBootMethod: pxe_iscsi
-            networkProfileGroupId: 4
+            networkProfileGroupId: 7
             serverGroupName: server-instance-group-name
             emptyEdit: 3
-            processorCount: 3
-            firewallProfileId: 2
-            ipAllocateAuto: 6
-            firewallManaged: 6
-            label: server-instance-group-123
+            processorCount: 7
+            firewallProfileId: 6
+            ipAllocateAuto: 1
+            firewallManaged: 5
+            label: label
             diskTypes:
             - diskTypes
             - diskTypes
             additionalWanIpv4Json: "{}"
             revision: 1
-            firmwarePoliciesJson:
-            - "{}"
-            - "{}"
-            networkEquipmentForceSubnetPoolIpv4WanId: 7
-            diskSizeMbytes: 6
-            instanceCount: 3
+            networkEquipmentForceSubnetPoolIpv4WanId: 3
+            diskSizeMbytes: 4
+            instanceCount: 6
             subdomain: subdomain
-            ramGbytes: 0
+            ramGbytes: 6
             deployStatus: not_started
         - ipv4SubnetCreateAuto: 7
-          driveArrayIdBoot: 7
-          overrideIpv4WanVlanId: 9
-          extensionInstanceId: 6
-          diskCount: 7
+          driveArrayIdBoot: 1
+          overrideIpv4WanVlanId: 6
+          firmwarePolicyIds:
+          - 4.145608029883936
+          - 4.145608029883936
+          extensionInstanceId: 5
+          diskCount: 1
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
-          isVmGroup: 9
-          processorCoreMhz: 1
-          dnsSubdomainPermanentId: 5
-          volumeTemplateId: 4
+          isVmGroup: 6
+          processorCoreMhz: 6
+          dnsSubdomainPermanentId: 6
+          volumeTemplateId: 7
           processorCoreCount: 1
           serviceStatus: ordered
-          virtualInterfacesEnabled: 4
+          virtualInterfacesEnabled: 5
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -35796,8 +36707,8 @@ components:
           id: 1
           firewallRulesSetId: 3
           instanceArrayBootMethod: pxe_iscsi
-          networkProfileGroupId: 5
-          dnsSubdomainId: 1
+          networkProfileGroupId: 9
+          dnsSubdomainId: 0
           defaultServerProfileID: 1
           serverGroupName: server-instance-group-name
           networkProfileSnapshotId: 9
@@ -35806,22 +36717,19 @@ components:
           firewallProfileId: 9
           ipAllocateAuto: 2
           firewallManaged: 2
-          label: server-instance-group-123
+          label: label
           subdomainPermanent: subdomainPermanent
           diskTypes:
           - diskTypes
           - diskTypes
           additionalWanIpv4Json: "{}"
           revision: 1
-          firmwarePoliciesJson:
-          - "{}"
-          - "{}"
-          networkEquipmentForceSubnetPoolIpv4WanId: 6
-          diskSizeMbytes: 1
-          infrastructureId: 0
-          vmInstanceGroupId: 6
+          networkEquipmentForceSubnetPoolIpv4WanId: 8
+          diskSizeMbytes: 4
+          infrastructureId: 1
+          vmInstanceGroupId: 3
           instanceCount: 5
-          resourcePoolId: 8
+          resourcePoolId: 9
           meta:
             guiSettings:
               rowIndex: 6.027456183070403
@@ -35833,44 +36741,44 @@ components:
             - tags
             - tags
           subdomain: subdomain
-          ramGbytes: 6
+          ramGbytes: 7
           config:
-            ipv4SubnetCreateAuto: 1
-            driveArrayIdBoot: 6
-            overrideIpv4WanVlanId: 8
-            diskCount: 7
+            ipv4SubnetCreateAuto: 2
+            driveArrayIdBoot: 3
+            overrideIpv4WanVlanId: 3
+            firmwarePolicyIds:
+            - 6.704019297950036
+            - 6.704019297950036
+            diskCount: 0
             updatedTimestamp: updatedTimestamp
             customVariables: "{}"
             deployType: create
             processorCoreMhz: 7
-            volumeTemplateId: 5
-            dnsSubdomainChangeId: 3
-            processorCoreCount: 3
-            infrastructureDeployId: 7
-            virtualInterfacesEnabled: 0
+            volumeTemplateId: 3
+            dnsSubdomainChangeId: 7
+            processorCoreCount: 0
+            infrastructureDeployId: 5
+            virtualInterfacesEnabled: 8
             firewallRulesSetId: 6
             instanceArrayBootMethod: pxe_iscsi
-            networkProfileGroupId: 4
+            networkProfileGroupId: 7
             serverGroupName: server-instance-group-name
             emptyEdit: 3
-            processorCount: 3
-            firewallProfileId: 2
-            ipAllocateAuto: 6
-            firewallManaged: 6
-            label: server-instance-group-123
+            processorCount: 7
+            firewallProfileId: 6
+            ipAllocateAuto: 1
+            firewallManaged: 5
+            label: label
             diskTypes:
             - diskTypes
             - diskTypes
             additionalWanIpv4Json: "{}"
             revision: 1
-            firmwarePoliciesJson:
-            - "{}"
-            - "{}"
-            networkEquipmentForceSubnetPoolIpv4WanId: 7
-            diskSizeMbytes: 6
-            instanceCount: 3
+            networkEquipmentForceSubnetPoolIpv4WanId: 3
+            diskSizeMbytes: 4
+            instanceCount: 6
             subdomain: subdomain
-            ramGbytes: 0
+            ramGbytes: 6
             deployStatus: not_started
         meta: ""
         links: ""
@@ -35905,7 +36813,7 @@ components:
         processorCount: 7
         extensionInstanceId: 0
         ipAllocateAuto: 1
-        label: server-instance-group-123
+        label: label
         diskCount: 4
         customVariables: "{}"
         diskTypes:
@@ -35933,9 +36841,8 @@ components:
         virtualInterfacesEnabled: 1
       properties:
         label:
-          description: The server instance group label. Will be automatically generated
+          description: The Product Instance label. Will be automatically generated
             if not provided.
-          example: server-instance-group-123
           maxLength: 63
           type: string
         serverGroupName:
@@ -36094,16 +37001,36 @@ components:
             $ref: '#/components/schemas/ServerInstanceStorageProfileController'
           type: array
       type: object
+    ServerInstanceClusterCustomInfo:
+      example:
+        initialPasswordEncrypted: initialPasswordEncrypted
+      properties:
+        initialPasswordEncrypted:
+          description: Initial password of the instance.
+          type: string
+      type: object
+    ServerInstanceOsInstallImageBuildInfo:
+      properties:
+        path:
+          description: The path of the OS image.
+          type: string
+        fileName:
+          description: The filename of the OS image.
+          type: string
+      required:
+      - fileName
+      - path
+      type: object
     ServerInstanceConfiguration:
       example:
         serverTypeId: 5
-        emptyEdit: 1
+        emptyEdit: 7
         raidProfile: ""
         groupId: 4
         iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
         controlPanelUrl: controlPanelUrl
         driveIdBootable: 7
-        label: instance-123
+        label: label
         templateId: 1
         updatedTimestamp: updatedTimestamp
         serverId: 1
@@ -36112,31 +37039,31 @@ components:
         revision: 1
         iscsiInitiatorUsername: iscsiInitiatorUsername
         iscsiInitiatorIqn: iscsiInitiatorIqn
-        dnsSubdomainChangeId: 6
+        dnsSubdomainChangeId: 1
         subdomain: subdomain
-        infrastructureDeployId: 7
+        infrastructureDeployId: 6
         instanceWanMlagId: 1
         deployStatus: not_started
       properties:
         revision:
           description: Revision number
           example: 1
-          type: number
+          type: integer
         label:
-          description: The server instance label.
-          example: instance-123
+          description: The Product Instance label. Will be automatically generated
+            if not provided.
           maxLength: 63
           type: string
         updatedTimestamp:
-          description: Timestamp of the latest update for the Server Instance.
+          description: Timestamp of the latest update of the Product Instance.
+          type: string
+        subdomain:
+          description: Subdomain of the Product Instance.
           type: string
         groupId:
           type: integer
         driveIdBootable:
           type: integer
-        subdomain:
-          description: Subdomain of the Server Group.
-          type: string
         serverTypeId:
           description: The server type ID.
           example: 5
@@ -36170,11 +37097,18 @@ components:
         controlPanelUrl:
           description: Control panel url for the Instance Interface.
           type: string
+        dnsSubdomainChangeId:
+          description: Id of the DNS subdomain for the Product Instance
+          type: integer
+        infrastructureDeployId:
+          description: Id of the deployment for the Product Instance
+          type: integer
         emptyEdit:
           description: Number of empty edits
           type: integer
         deployType:
-          description: Server Instance deploy type
+          default: create
+          description: Product Instance deploy type
           enum:
           - create
           - delete
@@ -36184,18 +37118,13 @@ components:
           - suspend
           type: string
         deployStatus:
-          description: Server Instance deploy status
+          default: not_started
+          description: Product Instance deploy status
           enum:
           - not_started
           - ongoing
           - finished
           type: string
-        dnsSubdomainChangeId:
-          description: Id of the DNS subdomain for the Server Instance.
-          type: integer
-        infrastructureDeployId:
-          description: Id of the deployment for the Server Instance.
-          type: integer
       required:
       - deployStatus
       - deployType
@@ -36207,11 +37136,11 @@ components:
     ServerInstance:
       example:
         serverTypeId: 5
-        osInstallImageBuildInfo: osInstallImageBuildInfo
+        osInstallImageBuildInfo: ""
         osInstallError: osInstallError
         variablesOsAssetsTemplateTypeAdvanced: "{}"
         raidProfile: ""
-        groupId: 6
+        groupId: 5
         preferredServerIds:
         - preferredServerIds
         - preferredServerIds
@@ -36220,7 +37149,7 @@ components:
         serverId: 2
         osInstallImageUrl: osInstallImageUrl
         customVariables: "{}"
-        dnsSubdomainPermanentId: 5
+        dnsSubdomainPermanentId: 6
         iscsiInitiatorIqn: iscsiInitiatorIqn
         serviceStatus: ordered
         operatingSystemInfo: "{}"
@@ -36230,12 +37159,12 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        dnsSubdomainId: 5
+        dnsSubdomainId: 0
         createdTimestamp: createdTimestamp
         iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
         controlPanelUrl: controlPanelUrl
-        driveIdBootable: 1
-        label: instance-123
+        driveIdBootable: 5
+        label: label
         subdomainPermanent: subdomainPermanent
         secretsOsAssetsTemplateTypeAdvanced: "{}"
         revision: 1
@@ -36243,11 +37172,12 @@ components:
         tags:
         - tags
         - tags
-        clusterCustomInfo: "{}"
+        clusterCustomInfo:
+          initialPasswordEncrypted: initialPasswordEncrypted
         vmInstanceId: 3.616076749251911
         osReinstallRequired: 2.027123023002322
         iscsiInitiatorUsername: iscsiInitiatorUsername
-        infrastructureId: 0
+        infrastructureId: 1
         meta:
           rowIndex: 6.027456183070403
           columnIndex: 1.4658129805029452
@@ -36261,13 +37191,13 @@ components:
         secretsMaterializedForOSAssets: "{}"
         config:
           serverTypeId: 5
-          emptyEdit: 1
+          emptyEdit: 7
           raidProfile: ""
           groupId: 4
           iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
           controlPanelUrl: controlPanelUrl
           driveIdBootable: 7
-          label: instance-123
+          label: label
           templateId: 1
           updatedTimestamp: updatedTimestamp
           serverId: 1
@@ -36276,48 +37206,48 @@ components:
           revision: 1
           iscsiInitiatorUsername: iscsiInitiatorUsername
           iscsiInitiatorIqn: iscsiInitiatorIqn
-          dnsSubdomainChangeId: 6
+          dnsSubdomainChangeId: 1
           subdomain: subdomain
-          infrastructureDeployId: 7
+          infrastructureDeployId: 6
           instanceWanMlagId: 1
           deployStatus: not_started
       properties:
         id:
-          description: The server instance ID.
+          description: The Product Instance ID.
           example: 1
           type: integer
         revision:
           description: Revision number
           example: 1
-          type: number
+          type: integer
         label:
-          description: The server instance label.
-          example: instance-123
+          description: The Product Instance label. Will be automatically generated
+            if not provided.
           maxLength: 63
           type: string
         createdTimestamp:
-          description: Timestamp of the Server Instance creation.
+          description: Timestamp of the Product Instance creation.
           type: string
         updatedTimestamp:
-          description: Timestamp of the latest update for the Server Instance.
+          description: Timestamp of the latest update of the Product Instance.
           type: string
+        subdomain:
+          description: Subdomain of the Product Instance.
+          type: string
+        subdomainPermanent:
+          description: Subdomain permanent of the Product Instance.
+          type: string
+        dnsSubdomainId:
+          description: Id of the DNS subdomain for the Product Instance
+          type: integer
+        dnsSubdomainPermanentId:
+          description: Id of the permanent DNS subdomain for the Product Instance
+          type: integer
         infrastructureId:
           type: integer
         groupId:
           type: integer
         driveIdBootable:
-          type: integer
-        subdomain:
-          description: Subdomain of the Server Group.
-          type: string
-        subdomainPermanent:
-          description: Subdomain permanent of the Server Group.
-          type: string
-        dnsSubdomainId:
-          description: Id of the DNS subdomain for the Server Group.
-          type: integer
-        dnsSubdomainPermanentId:
-          description: Id of the permanent DNS subdomain for the Server Group.
           type: integer
         serverTypeId:
           description: The server type ID.
@@ -36382,7 +37312,7 @@ components:
           description: Secrets used when building the OS image.
           type: object
         clusterCustomInfo:
-          type: object
+          $ref: '#/components/schemas/ServerInstanceClusterCustomInfo'
         osInstallError:
           description: Last error message during OS install.
           type: string
@@ -36393,8 +37323,9 @@ components:
           description: Last error message during OS image build.
           type: string
         osInstallImageBuildInfo:
+          allOf:
+          - $ref: '#/components/schemas/ServerInstanceOsInstallImageBuildInfo'
           description: Build info regarding the OS image.
-          type: string
         osReinstallRequired:
           description: OS reinstall is required.
           type: number
@@ -36432,11 +37363,11 @@ components:
       example:
         data:
         - serverTypeId: 5
-          osInstallImageBuildInfo: osInstallImageBuildInfo
+          osInstallImageBuildInfo: ""
           osInstallError: osInstallError
           variablesOsAssetsTemplateTypeAdvanced: "{}"
           raidProfile: ""
-          groupId: 6
+          groupId: 5
           preferredServerIds:
           - preferredServerIds
           - preferredServerIds
@@ -36445,7 +37376,7 @@ components:
           serverId: 2
           osInstallImageUrl: osInstallImageUrl
           customVariables: "{}"
-          dnsSubdomainPermanentId: 5
+          dnsSubdomainPermanentId: 6
           iscsiInitiatorIqn: iscsiInitiatorIqn
           serviceStatus: ordered
           operatingSystemInfo: "{}"
@@ -36455,12 +37386,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          dnsSubdomainId: 5
+          dnsSubdomainId: 0
           createdTimestamp: createdTimestamp
           iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
           controlPanelUrl: controlPanelUrl
-          driveIdBootable: 1
-          label: instance-123
+          driveIdBootable: 5
+          label: label
           subdomainPermanent: subdomainPermanent
           secretsOsAssetsTemplateTypeAdvanced: "{}"
           revision: 1
@@ -36468,11 +37399,12 @@ components:
           tags:
           - tags
           - tags
-          clusterCustomInfo: "{}"
+          clusterCustomInfo:
+            initialPasswordEncrypted: initialPasswordEncrypted
           vmInstanceId: 3.616076749251911
           osReinstallRequired: 2.027123023002322
           iscsiInitiatorUsername: iscsiInitiatorUsername
-          infrastructureId: 0
+          infrastructureId: 1
           meta:
             rowIndex: 6.027456183070403
             columnIndex: 1.4658129805029452
@@ -36486,13 +37418,13 @@ components:
           secretsMaterializedForOSAssets: "{}"
           config:
             serverTypeId: 5
-            emptyEdit: 1
+            emptyEdit: 7
             raidProfile: ""
             groupId: 4
             iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
             controlPanelUrl: controlPanelUrl
             driveIdBootable: 7
-            label: instance-123
+            label: label
             templateId: 1
             updatedTimestamp: updatedTimestamp
             serverId: 1
@@ -36501,17 +37433,17 @@ components:
             revision: 1
             iscsiInitiatorUsername: iscsiInitiatorUsername
             iscsiInitiatorIqn: iscsiInitiatorIqn
-            dnsSubdomainChangeId: 6
+            dnsSubdomainChangeId: 1
             subdomain: subdomain
-            infrastructureDeployId: 7
+            infrastructureDeployId: 6
             instanceWanMlagId: 1
             deployStatus: not_started
         - serverTypeId: 5
-          osInstallImageBuildInfo: osInstallImageBuildInfo
+          osInstallImageBuildInfo: ""
           osInstallError: osInstallError
           variablesOsAssetsTemplateTypeAdvanced: "{}"
           raidProfile: ""
-          groupId: 6
+          groupId: 5
           preferredServerIds:
           - preferredServerIds
           - preferredServerIds
@@ -36520,7 +37452,7 @@ components:
           serverId: 2
           osInstallImageUrl: osInstallImageUrl
           customVariables: "{}"
-          dnsSubdomainPermanentId: 5
+          dnsSubdomainPermanentId: 6
           iscsiInitiatorIqn: iscsiInitiatorIqn
           serviceStatus: ordered
           operatingSystemInfo: "{}"
@@ -36530,12 +37462,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          dnsSubdomainId: 5
+          dnsSubdomainId: 0
           createdTimestamp: createdTimestamp
           iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
           controlPanelUrl: controlPanelUrl
-          driveIdBootable: 1
-          label: instance-123
+          driveIdBootable: 5
+          label: label
           subdomainPermanent: subdomainPermanent
           secretsOsAssetsTemplateTypeAdvanced: "{}"
           revision: 1
@@ -36543,11 +37475,12 @@ components:
           tags:
           - tags
           - tags
-          clusterCustomInfo: "{}"
+          clusterCustomInfo:
+            initialPasswordEncrypted: initialPasswordEncrypted
           vmInstanceId: 3.616076749251911
           osReinstallRequired: 2.027123023002322
           iscsiInitiatorUsername: iscsiInitiatorUsername
-          infrastructureId: 0
+          infrastructureId: 1
           meta:
             rowIndex: 6.027456183070403
             columnIndex: 1.4658129805029452
@@ -36561,13 +37494,13 @@ components:
           secretsMaterializedForOSAssets: "{}"
           config:
             serverTypeId: 5
-            emptyEdit: 1
+            emptyEdit: 7
             raidProfile: ""
             groupId: 4
             iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
             controlPanelUrl: controlPanelUrl
             driveIdBootable: 7
-            label: instance-123
+            label: label
             templateId: 1
             updatedTimestamp: updatedTimestamp
             serverId: 1
@@ -36576,9 +37509,9 @@ components:
             revision: 1
             iscsiInitiatorUsername: iscsiInitiatorUsername
             iscsiInitiatorIqn: iscsiInitiatorIqn
-            dnsSubdomainChangeId: 6
+            dnsSubdomainChangeId: 1
             subdomain: subdomain
-            infrastructureDeployId: 7
+            infrastructureDeployId: 6
             instanceWanMlagId: 1
             deployStatus: not_started
         meta: ""
@@ -36608,15 +37541,15 @@ components:
       example:
         serverTypeId: 5
         groupId: 0
-        label: instance-123
+        label: label
         templateId: 1
         tags:
         - tags
         - tags
       properties:
         label:
-          description: The server instance label.
-          example: instance-123
+          description: The Product Instance label. Will be automatically generated
+            if not provided.
           maxLength: 63
           type: string
         groupId:
@@ -37415,25 +38348,229 @@ components:
       - jobsTotal
       type: object
     LogicalNetworkDto:
-      properties: {}
+      example:
+        infrastructureId: 5.962133916683182
+        logicalNetworkType: vlan
+        fabricId: 1.4658129805029452
+        name: name
+        description: description
+        annotations: "{}"
+        id: 0.8008281904610115
+        label: label
+        revision: 6.027456183070403
+      properties:
+        id:
+          description: ID of the logical network
+          type: number
+        revision:
+          description: Revision number of the logical network
+          type: number
+        label:
+          description: Label for the logical network
+          type: string
+        name:
+          description: Name of the logical network
+          type: string
+        description:
+          description: Description of the logical network
+          type: string
+        annotations:
+          description: Annotations for the logical network
+          type: object
+        fabricId:
+          description: Fabric ID associated with the logical network
+          type: number
+        infrastructureId:
+          description: Infrastructure ID associated with the logical network
+          type: number
+        logicalNetworkType:
+          description: Type of the logical network
+          enum:
+          - vlan
+          - vxlan
+          - legacy_vlan_bundle
+          type: string
+      required:
+      - fabricId
+      - id
+      - logicalNetworkType
+      - revision
       type: object
     Paginated:
       properties: {}
       type: object
     CreateLogicalNetworkDto:
-      properties: {}
+      example:
+        infrastructureId: 6.027456183070403
+        logicalNetworkType: vlan
+        fabricId: 0.8008281904610115
+        name: name
+        description: description
+        annotations: "{}"
+        label: label
+      properties:
+        label:
+          description: Label for the logical network
+          type: string
+        name:
+          description: Name of the logical network
+          type: string
+        description:
+          description: Description of the logical network
+          type: string
+        annotations:
+          description: Annotations for the logical network
+          type: object
+        fabricId:
+          description: Fabric ID associated with the logical network
+          type: number
+        infrastructureId:
+          description: Infrastructure ID associated with the logical network
+          type: number
+        logicalNetworkType:
+          description: Type of the logical network
+          enum:
+          - vlan
+          - vxlan
+          - legacy_vlan_bundle
+          type: string
+      required:
+      - fabricId
+      - logicalNetworkType
       type: object
-    PatchLogicalNetworkDto:
-      properties: {}
+    UpdateLogicalNetworkDto:
+      example:
+        infrastructureId: 6.027456183070403
+        logicalNetworkType: vlan
+        fabricId: 0.8008281904610115
+        name: name
+        description: description
+        annotations: "{}"
+        label: label
+      properties:
+        label:
+          description: Label for the logical network
+          type: string
+        name:
+          description: Name of the logical network
+          type: string
+        description:
+          description: Description of the logical network
+          type: string
+        annotations:
+          description: Annotations for the logical network
+          type: object
+        fabricId:
+          description: Fabric ID associated with the logical network
+          type: number
+        infrastructureId:
+          description: Infrastructure ID associated with the logical network
+          type: number
+        logicalNetworkType:
+          description: Type of the logical network
+          enum:
+          - vlan
+          - vxlan
+          - legacy_vlan_bundle
+          type: string
       type: object
     LogicalNetworkProfileDto:
-      properties: {}
+      example:
+        logicalNetworkType: vlan
+        name: name
+        description: description
+        annotations: "{}"
+        id: 0.8008281904610115
+        label: label
+        revision: 6.027456183070403
+      properties:
+        id:
+          description: ID of the logical network profile
+          type: number
+        revision:
+          description: Revision number of the logical network profile
+          type: number
+        label:
+          description: Label for the logical network profile
+          type: string
+        name:
+          description: Name of the logical network profile
+          type: string
+        description:
+          description: Description of the logical network profile
+          type: string
+        annotations:
+          description: Annotations for the logical network profile
+          type: object
+        logicalNetworkType:
+          description: Type of the logical network profile
+          enum:
+          - vlan
+          - vxlan
+          - legacy_vlan_bundle
+          type: string
+      required:
+      - id
+      - logicalNetworkType
+      - revision
       type: object
     CreateLogicalNetworkProfileDto:
-      properties: {}
+      example:
+        logicalNetworkType: vlan
+        name: name
+        description: description
+        annotations: "{}"
+        label: label
+      properties:
+        label:
+          description: Label for the logical network profile
+          type: string
+        name:
+          description: Name of the logical network profile
+          type: string
+        description:
+          description: Description of the logical network profile
+          type: string
+        annotations:
+          description: Annotations for the logical network profile
+          type: object
+        logicalNetworkType:
+          description: Type of the logical network profile
+          enum:
+          - vlan
+          - vxlan
+          - legacy_vlan_bundle
+          type: string
+      required:
+      - logicalNetworkType
       type: object
-    PatchLogicalNetworkProfileDto:
-      properties: {}
+    UpdateLogicalNetworkProfileDto:
+      example:
+        logicalNetworkType: vlan
+        name: name
+        description: description
+        annotations: "{}"
+        label: label
+      properties:
+        label:
+          description: Label for the logical network profile
+          type: string
+        name:
+          description: Name of the logical network profile
+          type: string
+        description:
+          description: Description of the logical network profile
+          type: string
+        annotations:
+          description: Annotations for the logical network profile
+          type: object
+        logicalNetworkType:
+          description: Type of the logical network profile
+          enum:
+          - vlan
+          - vxlan
+          - legacy_vlan_bundle
+          type: string
       type: object
     Network:
       example:
@@ -37929,7 +39066,6 @@ components:
         datacenterName: DC-North
         city: San Francisco
         datacenterRack: Rack-01
-        torLinkedId: 42
         description: Primary datacenter core switch
         isBorderDevice: false
         datacenterMeta: dc-west-1
@@ -38002,13 +39138,6 @@ components:
           - other
           example: leaf
           type: string
-        torLinkedId:
-          description: ID of the Top-of-Rack (TOR) switch that this network device
-            is linked to. Used for establishing hierarchical relationships between
-            network devices.
-          example: 42
-          nullable: true
-          type: number
         isGateway:
           description: Indicates if this network device acts as a gateway for external
             network traffic
@@ -38165,7 +39294,6 @@ components:
         datacenterName: DC-North
         city: San Francisco
         datacenterRack: Rack-01
-        torLinkedId: 42
         description: Primary datacenter core switch
         isBorderDevice: false
         datacenterMeta: dc-west-1
@@ -38238,13 +39366,6 @@ components:
           - other
           example: leaf
           type: string
-        torLinkedId:
-          description: ID of the Top-of-Rack (TOR) switch that this network device
-            is linked to. Used for establishing hierarchical relationships between
-            network devices.
-          example: 42
-          nullable: true
-          type: number
         isGateway:
           description: Indicates if this network device acts as a gateway for external
             network traffic
@@ -38936,7 +40057,7 @@ components:
           status: active
           username: username
           quarantineVlan: 1.2315135367772556
-        createdTimestamp: 2025-03-16T16:03:16.862Z
+        createdTimestamp: 2025-03-21T08:10:28.607Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -38978,7 +40099,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-03-16T16:03:16.862Z
+        updatedTimestamp: 2025-03-21T08:10:28.607Z
         revision: "1"
       properties:
         siteId:
@@ -39005,12 +40126,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-03-16T16:03:16.862Z
+          example: 2025-03-21T08:10:28.607Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-03-16T16:03:16.862Z
+          example: 2025-03-21T08:10:28.607Z
           format: date-time
           type: string
         links:
@@ -39143,7 +40264,7 @@ components:
             status: active
             username: username
             quarantineVlan: 1.2315135367772556
-          createdTimestamp: 2025-03-16T16:03:16.862Z
+          createdTimestamp: 2025-03-21T08:10:28.607Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -39185,7 +40306,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-16T16:03:16.862Z
+          updatedTimestamp: 2025-03-21T08:10:28.607Z
           revision: "1"
         - networkEquipment:
           - bootstrapReadinessCheckInProgress: 7.061401241503109
@@ -39292,7 +40413,7 @@ components:
             status: active
             username: username
             quarantineVlan: 1.2315135367772556
-          createdTimestamp: 2025-03-16T16:03:16.862Z
+          createdTimestamp: 2025-03-21T08:10:28.607Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -39334,7 +40455,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-16T16:03:16.862Z
+          updatedTimestamp: 2025-03-21T08:10:28.607Z
           revision: "1"
         meta: ""
         links: ""
@@ -39564,6 +40685,7 @@ components:
           - wait_for_power_off
           - wait_for_signal_from_os
           - wait_for_ssh
+          - wait_for_api_response
           example: wait_for_power_off
           type: string
         onieStrings:
@@ -41377,14 +42499,14 @@ components:
       type: object
     ServerInstanceGroupInterfaceConfiguration:
       example:
-        emptyEdit: 2
-        dnsSubdomainChangeId: 7
+        emptyEdit: 9
+        dnsSubdomainChangeId: 2
         groupId: 5
         subdomain: subdomain
         index: 1
-        infrastructureDeployId: 9
+        infrastructureDeployId: 7
         networkId: 10
-        label: if3
+        label: label
         updatedTimestamp: updatedTimestamp
         deployType: create
         revision: 1
@@ -41393,17 +42515,17 @@ components:
         revision:
           description: Revision number
           example: 1
-          type: number
+          type: integer
         label:
-          description: The server instance group interface label.
-          example: if3
-          type: string
-        subdomain:
-          description: Subdomain of the Server Group.
+          description: The Product Instance label. Will be automatically generated
+            if not provided.
+          maxLength: 63
           type: string
         updatedTimestamp:
-          description: Timestamp of the latest update for the server instance group
-            interface.
+          description: Timestamp of the latest update of the Product Instance.
+          type: string
+        subdomain:
+          description: Subdomain of the Product Instance.
           type: string
         groupId:
           type: integer
@@ -41416,11 +42538,18 @@ components:
             to.
           example: 10
           type: integer
+        dnsSubdomainChangeId:
+          description: Id of the DNS subdomain for the Product Instance
+          type: integer
+        infrastructureDeployId:
+          description: Id of the deployment for the Product Instance
+          type: integer
         emptyEdit:
           description: Number of empty edits
           type: integer
         deployType:
-          description: Server instance group Interface deploy type
+          default: create
+          description: Product Instance deploy type
           enum:
           - create
           - delete
@@ -41430,18 +42559,13 @@ components:
           - suspend
           type: string
         deployStatus:
-          description: Server instance group Interface deploy status
+          default: not_started
+          description: Product Instance deploy status
           enum:
           - not_started
           - ongoing
           - finished
           type: string
-        dnsSubdomainChangeId:
-          description: Id of the DNS subdomain for the server instance group Interface.
-          type: integer
-        infrastructureDeployId:
-          description: Id of the deployment for the server instance group Interface.
-          type: integer
       required:
       - deployStatus
       - deployType
@@ -41457,7 +42581,7 @@ components:
         createdTimestamp: createdTimestamp
         groupId: 5
         index: 1
-        label: if3
+        label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
         revision: 1
@@ -41474,50 +42598,50 @@ components:
           href: /api/v2/path/to/resource
         id: 1
         config:
-          emptyEdit: 2
-          dnsSubdomainChangeId: 7
+          emptyEdit: 9
+          dnsSubdomainChangeId: 2
           groupId: 5
           subdomain: subdomain
           index: 1
-          infrastructureDeployId: 9
+          infrastructureDeployId: 7
           networkId: 10
-          label: if3
+          label: label
           updatedTimestamp: updatedTimestamp
           deployType: create
           revision: 1
           deployStatus: not_started
       properties:
         id:
-          description: The server instance group interface ID.
+          description: The Product Instance ID.
           example: 1
           type: integer
         revision:
           description: Revision number
           example: 1
-          type: number
+          type: integer
         label:
-          description: The server instance group interface label.
-          example: if3
+          description: The Product Instance label. Will be automatically generated
+            if not provided.
+          maxLength: 63
           type: string
-        subdomain:
-          description: Subdomain of the Server Group.
-          type: string
-        subdomainPermanent:
-          description: Subdomain permanent of the Server Group.
-          type: string
-        dnsSubdomainId:
-          description: Id of the DNS subdomain for the Server Group.
-          type: integer
-        dnsSubdomainPermanentId:
-          description: Id of the permanent DNS subdomain for the Server Group.
-          type: integer
         createdTimestamp:
-          description: Timestamp of the server instance group interface creation.
+          description: Timestamp of the Product Instance creation.
           type: string
         updatedTimestamp:
-          description: Timestamp of the latest update for the server instance group
-            interface.
+          description: Timestamp of the latest update of the Product Instance.
           type: string
+        subdomain:
+          description: Subdomain of the Product Instance.
+          type: string
+        subdomainPermanent:
+          description: Subdomain permanent of the Product Instance.
+          type: string
+        dnsSubdomainId:
+          description: Id of the DNS subdomain for the Product Instance
+          type: integer
+        dnsSubdomainPermanentId:
+          description: Id of the permanent DNS subdomain for the Product Instance
+          type: integer
         meta:
           allOf:
           - $ref: '#/components/schemas/GenericGUISettings'
@@ -41555,6 +42679,7 @@ components:
       required:
       - createdTimestamp
       - groupId
+      - id
       - index
       - infrastructureId
       - label
@@ -41569,7 +42694,7 @@ components:
           createdTimestamp: createdTimestamp
           groupId: 5
           index: 1
-          label: if3
+          label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 1
@@ -41586,14 +42711,14 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           config:
-            emptyEdit: 2
-            dnsSubdomainChangeId: 7
+            emptyEdit: 9
+            dnsSubdomainChangeId: 2
             groupId: 5
             subdomain: subdomain
             index: 1
-            infrastructureDeployId: 9
+            infrastructureDeployId: 7
             networkId: 10
-            label: if3
+            label: label
             updatedTimestamp: updatedTimestamp
             deployType: create
             revision: 1
@@ -41602,7 +42727,7 @@ components:
           createdTimestamp: createdTimestamp
           groupId: 5
           index: 1
-          label: if3
+          label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 1
@@ -41619,14 +42744,14 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           config:
-            emptyEdit: 2
-            dnsSubdomainChangeId: 7
+            emptyEdit: 9
+            dnsSubdomainChangeId: 2
             groupId: 5
             subdomain: subdomain
             index: 1
-            infrastructureDeployId: 9
+            infrastructureDeployId: 7
             networkId: 10
-            label: if3
+            label: label
             updatedTimestamp: updatedTimestamp
             deployType: create
             revision: 1
@@ -41660,16 +42785,16 @@ components:
           index: 0
           config:
             serverInterfaceId: 5
-            emptyEdit: 5
+            emptyEdit: 7
             index: 1
-            label: if3
+            label: label
             updatedTimestamp: updatedTimestamp
             deployType: create
             revision: 1
             instanceId: 6
-            dnsSubdomainChangeId: 2
+            dnsSubdomainChangeId: 5
             subdomain: subdomain
-            infrastructureDeployId: 7
+            infrastructureDeployId: 2
             networkId: 10
             capacityMbps: 1
             deployStatus: not_started
@@ -41738,16 +42863,16 @@ components:
             index: 0
             config:
               serverInterfaceId: 5
-              emptyEdit: 5
+              emptyEdit: 7
               index: 1
-              label: if3
+              label: label
               updatedTimestamp: updatedTimestamp
               deployType: create
               revision: 1
               instanceId: 6
-              dnsSubdomainChangeId: 2
+              dnsSubdomainChangeId: 5
               subdomain: subdomain
-              infrastructureDeployId: 7
+              infrastructureDeployId: 2
               networkId: 10
               capacityMbps: 1
               deployStatus: not_started
@@ -41770,16 +42895,16 @@ components:
             index: 0
             config:
               serverInterfaceId: 5
-              emptyEdit: 5
+              emptyEdit: 7
               index: 1
-              label: if3
+              label: label
               updatedTimestamp: updatedTimestamp
               deployType: create
               revision: 1
               instanceId: 6
-              dnsSubdomainChangeId: 2
+              dnsSubdomainChangeId: 5
               subdomain: subdomain
-              infrastructureDeployId: 7
+              infrastructureDeployId: 2
               networkId: 10
               capacityMbps: 1
               deployStatus: not_started
@@ -41827,16 +42952,16 @@ components:
           index: 0
           config:
             serverInterfaceId: 5
-            emptyEdit: 5
+            emptyEdit: 7
             index: 1
-            label: if3
+            label: label
             updatedTimestamp: updatedTimestamp
             deployType: create
             revision: 1
             instanceId: 6
-            dnsSubdomainChangeId: 2
+            dnsSubdomainChangeId: 5
             subdomain: subdomain
-            infrastructureDeployId: 7
+            infrastructureDeployId: 2
             networkId: 10
             capacityMbps: 1
             deployStatus: not_started
@@ -41868,16 +42993,16 @@ components:
           index: 0
           config:
             serverInterfaceId: 5
-            emptyEdit: 5
+            emptyEdit: 7
             index: 1
-            label: if3
+            label: label
             updatedTimestamp: updatedTimestamp
             deployType: create
             revision: 1
             instanceId: 6
-            dnsSubdomainChangeId: 2
+            dnsSubdomainChangeId: 5
             subdomain: subdomain
-            infrastructureDeployId: 7
+            infrastructureDeployId: 2
             networkId: 10
             capacityMbps: 1
             deployStatus: not_started
@@ -41914,8 +43039,7 @@ components:
         - tags
       properties:
         label:
-          description: The server instance label. Will be automatically generated
-            if not provided.
+          description: The server instance label.
           example: server-instance-123
           maxLength: 63
           type: string
@@ -42050,16 +43174,16 @@ components:
     ServerInstanceInterfaceConfiguration:
       example:
         serverInterfaceId: 5
-        emptyEdit: 5
+        emptyEdit: 7
         index: 1
-        label: if3
+        label: label
         updatedTimestamp: updatedTimestamp
         deployType: create
         revision: 1
         instanceId: 6
-        dnsSubdomainChangeId: 2
+        dnsSubdomainChangeId: 5
         subdomain: subdomain
-        infrastructureDeployId: 7
+        infrastructureDeployId: 2
         networkId: 10
         capacityMbps: 1
         deployStatus: not_started
@@ -42067,16 +43191,17 @@ components:
         revision:
           description: Revision number
           example: 1
-          type: number
+          type: integer
         label:
-          description: The server instance interface label.
-          example: if3
-          type: string
-        subdomain:
-          description: Subdomain of the Server Group.
+          description: The Product Instance label. Will be automatically generated
+            if not provided.
+          maxLength: 63
           type: string
         updatedTimestamp:
-          description: Timestamp of the latest update for the Server Instance.
+          description: Timestamp of the latest update of the Product Instance.
+          type: string
+        subdomain:
+          description: Subdomain of the Product Instance.
           type: string
         instanceId:
           type: integer
@@ -42093,11 +43218,18 @@ components:
           type: integer
         serverInterfaceId:
           type: integer
+        dnsSubdomainChangeId:
+          description: Id of the DNS subdomain for the Product Instance
+          type: integer
+        infrastructureDeployId:
+          description: Id of the deployment for the Product Instance
+          type: integer
         emptyEdit:
           description: Number of empty edits
           type: integer
         deployType:
-          description: Server Instance Interface deploy type
+          default: create
+          description: Product Instance deploy type
           enum:
           - create
           - delete
@@ -42107,18 +43239,13 @@ components:
           - suspend
           type: string
         deployStatus:
-          description: Server Instance Interface deploy status
+          default: not_started
+          description: Product Instance deploy status
           enum:
           - not_started
           - ongoing
           - finished
           type: string
-        dnsSubdomainChangeId:
-          description: Id of the DNS subdomain for the Server Instance Interface.
-          type: integer
-        infrastructureDeployId:
-          description: Id of the deployment for the Server Instance Interface.
-          type: integer
       required:
       - capacityMbps
       - deployStatus
@@ -42135,7 +43262,7 @@ components:
         dnsSubdomainId: 0
         createdTimestamp: createdTimestamp
         index: 1
-        label: if3
+        label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
         revision: 1
@@ -42159,51 +43286,52 @@ components:
         dirtyBit: true
         config:
           serverInterfaceId: 5
-          emptyEdit: 5
+          emptyEdit: 7
           index: 1
-          label: if3
+          label: label
           updatedTimestamp: updatedTimestamp
           deployType: create
           revision: 1
           instanceId: 6
-          dnsSubdomainChangeId: 2
+          dnsSubdomainChangeId: 5
           subdomain: subdomain
-          infrastructureDeployId: 7
+          infrastructureDeployId: 2
           networkId: 10
           capacityMbps: 1
           deployStatus: not_started
         capacityMbps: 5
       properties:
         id:
-          description: The server instance interface ID.
+          description: The Product Instance ID.
           example: 1
           type: integer
         revision:
           description: Revision number
           example: 1
-          type: number
+          type: integer
         label:
-          description: The server instance interface label.
-          example: if3
+          description: The Product Instance label. Will be automatically generated
+            if not provided.
+          maxLength: 63
           type: string
-        subdomain:
-          description: Subdomain of the Server Group.
-          type: string
-        subdomainPermanent:
-          description: Subdomain permanent of the Server Group.
-          type: string
-        dnsSubdomainId:
-          description: Id of the DNS subdomain for the Server Group.
-          type: integer
-        dnsSubdomainPermanentId:
-          description: Id of the permanent DNS subdomain for the Server Group.
-          type: integer
         createdTimestamp:
-          description: Timestamp of the Server Instance creation.
+          description: Timestamp of the Product Instance creation.
           type: string
         updatedTimestamp:
-          description: Timestamp of the latest update for the Server Instance.
+          description: Timestamp of the latest update of the Product Instance.
           type: string
+        subdomain:
+          description: Subdomain of the Product Instance.
+          type: string
+        subdomainPermanent:
+          description: Subdomain permanent of the Product Instance.
+          type: string
+        dnsSubdomainId:
+          description: Id of the DNS subdomain for the Product Instance
+          type: integer
+        dnsSubdomainPermanentId:
+          description: Id of the permanent DNS subdomain for the Product Instance
+          type: integer
         meta:
           allOf:
           - $ref: '#/components/schemas/GenericGUISettings'
@@ -42256,6 +43384,7 @@ components:
       - capacityMbps
       - createdTimestamp
       - dirtyBit
+      - id
       - index
       - infrastructureId
       - instanceId
@@ -42271,7 +43400,7 @@ components:
           dnsSubdomainId: 0
           createdTimestamp: createdTimestamp
           index: 1
-          label: if3
+          label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 1
@@ -42295,16 +43424,16 @@ components:
           dirtyBit: true
           config:
             serverInterfaceId: 5
-            emptyEdit: 5
+            emptyEdit: 7
             index: 1
-            label: if3
+            label: label
             updatedTimestamp: updatedTimestamp
             deployType: create
             revision: 1
             instanceId: 6
-            dnsSubdomainChangeId: 2
+            dnsSubdomainChangeId: 5
             subdomain: subdomain
-            infrastructureDeployId: 7
+            infrastructureDeployId: 2
             networkId: 10
             capacityMbps: 1
             deployStatus: not_started
@@ -42313,7 +43442,7 @@ components:
           dnsSubdomainId: 0
           createdTimestamp: createdTimestamp
           index: 1
-          label: if3
+          label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
           revision: 1
@@ -42337,16 +43466,16 @@ components:
           dirtyBit: true
           config:
             serverInterfaceId: 5
-            emptyEdit: 5
+            emptyEdit: 7
             index: 1
-            label: if3
+            label: label
             updatedTimestamp: updatedTimestamp
             deployType: create
             revision: 1
             instanceId: 6
-            dnsSubdomainChangeId: 2
+            dnsSubdomainChangeId: 5
             subdomain: subdomain
-            infrastructureDeployId: 7
+            infrastructureDeployId: 2
             networkId: 10
             capacityMbps: 1
             deployStatus: not_started
@@ -42390,6 +43519,7 @@ components:
         label:
           description: The server instance interface label.
           example: if3
+          maxLength: 63
           type: string
       type: object
     ServerInstanceProfileReference:
@@ -45550,6 +46680,84 @@ components:
       - agentVersion
       - siteName
       type: object
+    StorageOptions:
+      properties:
+        enableDataReduction:
+          description: Enable data reduction
+          type: number
+        enableAdvancedDeduplication:
+          description: Enable advanced deduplication
+          type: number
+        volumeName:
+          description: Volume name
+          type: string
+        arrayId:
+          description: Array id to use (for certain storage drivers)
+          type: string
+        directorId:
+          description: Director id to use (for certain storage drivers)
+          type: string
+        s3Hostname:
+          description: S3 Hostname to use (for certain storage drivers)
+          type: string
+        s3Port:
+          description: Enable advanced deduplication
+          type: number
+        defaultServiceLevel:
+          description: Default service level to use (for certain storage drivers)
+          type: string
+        fibreChannelEnabled:
+          description: Fibre channel enabled
+          type: number
+        directors:
+          description: Array of directors
+          items:
+            type: string
+          type: array
+        resourcePool:
+          description: Resource pool
+          type: string
+        version:
+          description: Version of the storage
+          type: string
+        majorVersion:
+          description: Major version of the storage
+          type: string
+        arrays:
+          description: Arrays
+          items:
+            type: string
+          type: array
+        info:
+          description: Storage info
+          type: object
+        serviceLevelNames:
+          description: Service level names
+          items:
+            type: string
+          type: array
+        fibreChannelCapable:
+          description: Fibre channel capable
+          type: number
+        portsIscsi:
+          description: ISCSI ports
+          items:
+            type: object
+          type: array
+        portsScsiFc:
+          description: SCSI FC ports
+          items:
+            type: object
+          type: array
+        infoGatherError:
+          description: Error message when gathering storage info
+          type: string
+        configureError:
+          description: Error message when configuring storage
+          type: string
+      required:
+      - volumeName
+      type: object
     Storage:
       example:
         inMaintenance: 5.637376656633329
@@ -45561,7 +46769,7 @@ components:
           jobGroupId: 6.027456183070403
         storageDriver: dummy_driver
         targetIQN: targetIQN
-        options: "{}"
+        options: ""
         drivePriority: 7.061401241503109
         links:
         - rel: self
@@ -45649,8 +46857,9 @@ components:
           description: Password encrypted
           type: string
         options:
+          allOf:
+          - $ref: '#/components/schemas/StorageOptions'
           description: Options for the storage
-          type: object
         inMaintenance:
           description: Specifies if the storage is in maintenance
           type: number
@@ -45711,12 +46920,10 @@ components:
             $ref: '#/components/schemas/Link'
           type: array
       required:
-      - drivePriority
       - inMaintenance
       - managementHost
       - name
       - passwordEncrypted
-      - sharedDrivePriority
       - siteId
       - storageDriver
       - storageId
@@ -45737,7 +46944,7 @@ components:
             jobGroupId: 6.027456183070403
           storageDriver: dummy_driver
           targetIQN: targetIQN
-          options: "{}"
+          options: ""
           drivePriority: 7.061401241503109
           links:
           - rel: self
@@ -45777,7 +46984,7 @@ components:
             jobGroupId: 6.027456183070403
           storageDriver: dummy_driver
           targetIQN: targetIQN
-          options: "{}"
+          options: ""
           drivePriority: 7.061401241503109
           links:
           - rel: self
@@ -45834,6 +47041,35 @@ components:
     StorageStatistics:
       properties: {}
       type: object
+    UpdateStorageOptions:
+      properties:
+        enableDataReduction:
+          description: Enable data reduction
+          type: number
+        enableAdvancedDeduplication:
+          description: Enable advanced deduplication
+          type: number
+        volumeName:
+          description: Volume name
+          type: string
+        arrayId:
+          description: Array id to use (for certain storage drivers)
+          type: string
+        directorId:
+          description: Director id to use (for certain storage drivers)
+          type: string
+        s3Hostname:
+          description: S3 Hostname to use (for certain storage drivers)
+          type: string
+        s3Port:
+          description: Enable advanced deduplication
+          type: number
+        fibreChannelEnabled:
+          description: Fibre channel enabled
+          type: number
+      required:
+      - volumeName
+      type: object
     CreateStorage:
       example:
         inMaintenance: 5.962133916683182
@@ -45846,7 +47082,7 @@ components:
         password: password
         storageDriver: dummy_driver
         targetIQN: targetIQN
-        options: "{}"
+        options: ""
         drivePriority: 2.3021358869347655
         links:
         - rel: self
@@ -45929,9 +47165,6 @@ components:
         passwordEncrypted:
           description: Password encrypted
           type: string
-        options:
-          description: Options for the storage
-          type: object
         inMaintenance:
           description: Specifies if the storage is in maintenance
           type: number
@@ -45991,17 +47224,19 @@ components:
           items:
             $ref: '#/components/schemas/Link'
           type: array
+        options:
+          allOf:
+          - $ref: '#/components/schemas/UpdateStorageOptions'
+          description: Options for the storage
         password:
           description: The password to use.
           type: string
       required:
-      - drivePriority
       - inMaintenance
       - managementHost
       - name
       - password
       - passwordEncrypted
-      - sharedDrivePriority
       - siteId
       - storageDriver
       - storageTechnology
@@ -46024,16 +47259,13 @@ components:
       required:
       - storageId
       type: object
-    UpdateStorage:
+    UpdateStorageInternal:
       example:
         portGroupAllocationOrder: "{}"
         directorId: directorId
         inMaintenance: 0.8008281904610115
         s3Hostname: s3Hostname
         arrayId: arrayId
-        jobInfo:
-          jobId: 0.8008281904610115
-          jobGroupId: 6.027456183070403
         sharedDrivePriority: 5.962133916683182
         tags:
         - tags
@@ -46042,19 +47274,11 @@ components:
         password: password
         isExperimental: 6.027456183070403
         s3Port: s3Port
-        options: "{}"
+        options: ""
         drivePriority: 1.4658129805029452
-        links:
-        - rel: self
-          href: /api/v2/path/to/resource
-        - rel: self
-          href: /api/v2/path/to/resource
         portGroupPhysicalPorts: "{}"
         username: username
       properties:
-        options:
-          description: Options for the storage
-          type: object
         inMaintenance:
           description: Specifies if the storage is in maintenance
           type: number
@@ -46093,13 +47317,10 @@ components:
         s3Port:
           description: S3 port
           type: string
-        jobInfo:
-          $ref: '#/components/schemas/JobInfo'
-        links:
-          description: Reference links
-          items:
-            $ref: '#/components/schemas/Link'
-          type: array
+        options:
+          allOf:
+          - $ref: '#/components/schemas/StorageOptions'
+          description: Options for the storage
         username:
           description: Username
           type: string
@@ -46377,11 +47598,19 @@ components:
           example: 4
           type: integer
         usage:
-          description: The template asset usage
+          description: |-
+            The template asset usage:
+                    - build_source_image: The template asset represents the source image, used as the base image for constructing the install image.
+                    - build_component: The template asset represents the file that will be part of the install image.
+                    - switch_ztp_config: The template asset represents the switch ZTP configuration.
+                    - metadata_source_image: The template asset contains data about the install image.
+                    - generic: The template asset is used for generic purposes.
           enum:
           - build_source_image
           - build_component
           - switch_ztp_config
+          - metadata_source_image
+          - generic
           example: build_source_image
           type: string
         file:
@@ -46527,6 +47756,8 @@ components:
           - build_source_image
           - build_component
           - switch_ztp_config
+          - metadata_source_image
+          - generic
           example: build_source_image
           type: string
         file:
@@ -47017,6 +48248,7 @@ components:
           - 218
           - 479
           - 219
+          - 544
           - 490
           - 492
           - 485
@@ -47164,73 +48396,198 @@ components:
       - links
       - meta
       type: object
-    CreateUser:
+    UpdateUser:
       example:
-        emailVerified: false
-        accountId: 0.8008281904610115
-        password: password
-        redirectUrl: redirectUrl
+        experimentalTags:
+        - storage_pools
+        - storage_pools
+        isTestingMode: true
+        authenticatorCreatedTimestamp: authenticatorCreatedTimestamp
+        passwordChangeRequired: true
+        promotionTags:
+        - promotionTags
+        - promotionTags
         accessLevel: accessLevel
         displayName: displayName
-        email: email
-        createWithAccount: false
+        isArchived: true
+        isBlocked: true
+        externalIds: "{}"
+        language: en
+        infrastructureIdDefault: 0.8008281904610115
+        authenticatorMustChange: true
+        isBillable: true
+        lastLoginTimestamp: lastLoginTimestamp
+        isTestAccount: true
+        excludeFromReports: true
+        accountId: 6.027456183070403
+        emailStatus: not_verified
+        authenticatorEnabled: true
+        isBrandManager: true
+        isDatastorePublisher: true
+        brand: default
+        lastLoginType: md5
       properties:
         displayName:
           description: The display name of the user
           type: string
-        email:
-          description: The email address of the user
+        emailStatus:
+          description: The email status of the user
+          enum:
+          - not_verified
+          - verified
           type: string
+        language:
+          description: The language of the user
+          enum:
+          - en
+          - ro
+          type: string
+        brand:
+          default: default
+          description: The brand of the user
+          type: string
+        isBrandManager:
+          description: Whether the user is a brand manager
+          type: boolean
+        lastLoginTimestamp:
+          description: The timestamp when the user logged in last
+          type: string
+        lastLoginType:
+          default: md5
+          description: The last login type of the user
+          enum:
+          - md5
+          - smtp
+          example: md5
+          type: string
+        isBlocked:
+          description: Whether the user is blocked
+          type: boolean
+        passwordChangeRequired:
+          description: Whether the user must change password
+          type: boolean
         accessLevel:
           description: The access level of the user
           type: string
-        password:
-          description: The password of the user
-          type: string
-        redirectUrl:
-          description: The redirect URL for the user
-          type: string
-        emailVerified:
-          default: false
-          description: Whether the user has verified their email address
+        isBillable:
+          description: Whether the user is billable
           type: boolean
-        createWithAccount:
-          default: false
-          description: Whether an account should be created with the user
+        isTestingMode:
+          description: Whether the user is in testing mode
+          type: boolean
+        infrastructureIdDefault:
+          description: The default infrastructure ID of the user
+          type: number
+        authenticatorMustChange:
+          description: Whether the user must change authenticator
+          type: boolean
+        authenticatorCreatedTimestamp:
+          description: The timestamp when the authenticator was created
+          type: string
+        authenticatorEnabled:
+          description: Whether the user has an authenticator
+          type: boolean
+        promotionTags:
+          description: The promotion tags of the user
+          items:
+            type: string
+          type: array
+        experimentalTags:
+          description: The experimental tags of the user
+          items:
+            enum:
+            - storage_pools
+            - vm_pools
+            - servers
+            - volume_template
+            type: string
+          type: array
+        externalIds:
+          description: The external IDs of the user
+          type: object
+        excludeFromReports:
+          description: Whether the user is excluded from reports
+          type: boolean
+        isTestAccount:
+          description: Whether the user is a test account
+          type: boolean
+        isArchived:
+          description: Whether the user is a archived
+          type: boolean
+        isDatastorePublisher:
+          description: Whether the user is a datastore publisher
           type: boolean
         accountId:
           description: The account ID of the user
           type: number
-      required:
-      - displayName
-      - email
       type: object
-    UserDelegate:
+    ChangeUserAccount:
       example:
-        removeDelegate: false
-        email: email
-        createIfNotExists: false
+        newAccountId: 0.8008281904610115
       properties:
-        email:
-          description: The user delegate e-mail
-          type: string
-        createIfNotExists:
-          default: false
-          description: Whether to create the delegate if it does not exist. Can only
-            be used when creating a new delegate.
-          type: boolean
-        removeDelegate:
-          default: false
-          description: Whether to remove the delegate. Cannot be used when creating
-            a new delegate.
-          type: boolean
+        newAccountId:
+          description: The ID of the parent account
+          type: number
+      required:
+      - newAccountId
+      type: object
+    UserList:
+      example:
+        data:
+        - lastLoginTimestamp: lastLoginTimestamp
+          accountId: 0.8008281904610115
+          accessLevel: accessLevel
+          displayName: displayName
+          isArchived: true
+          createdTimestamp: createdTimestamp
+          language: en
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 6.027456183070403
+          email: email
+          revision: 1.4658129805029452
+        - lastLoginTimestamp: lastLoginTimestamp
+          accountId: 0.8008281904610115
+          accessLevel: accessLevel
+          displayName: displayName
+          isArchived: true
+          createdTimestamp: createdTimestamp
+          language: en
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 6.027456183070403
+          email: email
+          revision: 1.4658129805029452
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/UserInfo'
+          title: List of user infos
+          type: array
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - data
       type: object
     UserSuspend:
       example:
         suspendReasonPrivateComment: suspendReasonPrivateComment
         suspendReason: unpaid
         suspendReasonPublicComment: suspendReasonPublicComment
-        removeSuspension: false
       properties:
         suspendReason:
           description: The suspend reason of the user
@@ -47244,227 +48601,132 @@ components:
         suspendReasonPrivateComment:
           description: The private comment for the suspension
           type: string
-        removeSuspension:
-          default: false
-          description: Whether to remove the suspension
-          type: boolean
-      type: object
-    UserPromotion:
-      example:
-        removePromotion: false
-        promotion: promotion
-      properties:
-        promotion:
-          description: The promotion for the user
-          type: string
-        removePromotion:
-          default: false
-          description: Whether to remove the promotion
-          type: boolean
-      type: object
-    UserExperimentalTag:
-      example:
-        removeExperimentalTag: false
-        experimentalTag: storage_pools
-      properties:
-        experimentalTag:
-          description: The experimental tag for the user
-          enum:
-          - storage_pools
-          - vm_pools
-          - servers
-          - volume_template
-          type: string
-        removeExperimentalTag:
-          default: false
-          description: Whether to remove the experimental tag
-          type: boolean
-      type: object
-    UserPasswordRevealPermission:
-      example:
-        enablePermission: true
-        passwordRevealPermission: chassis_rack
-      properties:
-        passwordRevealPermission:
-          description: The password reveal permission for the user
-          enum:
-          - chassis_rack
-          - cluster
-          - container
-          - datacenter
-          - drive
-          - hdfs
-          - instance
-          - server
-          - storage_pool
-          - switch
-          - workflow
-          type: string
-        enablePermission:
-          description: Whether to enable the permission
-          type: boolean
       required:
-      - passwordRevealPermission
+      - suspendReason
+      - suspendReasonPublicComment
       type: object
-    UserSpecialPermission:
+    UserSuspendReason:
       example:
-        enablePermission: true
-        specialPermission: create_verified_user
+        createdTimestamp: 2000-01-23T04:56:07.000+00:00
+        publicComment: publicComment
+        id: 0.8008281904610115
+        type: custom
+        userId: 6.027456183070403
+        endTimestamp: 2000-01-23T04:56:07.000+00:00
+        privateComment: privateComment
       properties:
-        specialPermission:
-          description: The resource permission for the user
+        id:
+          description: The ID of the user suspend reasons
+          type: number
+        userId:
+          description: The ID of the user
+          type: number
+        type:
+          description: The type of the user suspend reason
           enum:
-          - create_verified_user
+          - unpaid
+          - custom
+          example: custom
           type: string
-        enablePermission:
-          description: Whether to enable the permission
-          type: boolean
+        createdTimestamp:
+          description: The timestamp when the user logged in
+          format: date-time
+          type: string
+        endTimestamp:
+          description: The timestamp when the user was last updated
+          format: date-time
+          type: string
+        publicComment:
+          description: The public comment of the user suspend reason
+          type: string
+        privateComment:
+          description: The private comment of the user suspend reason
+          type: string
       required:
-      - specialPermission
+      - createdTimestamp
+      - id
+      - publicComment
+      - type
+      - userId
       type: object
-    UserResourcePermissions:
+    UserSuspendReasonList:
       example:
-        specialPermissions:
-        - enablePermission: true
-          specialPermission: create_verified_user
-        - enablePermission: true
-          specialPermission: create_verified_user
-        passwordRevealPermissions:
-        - enablePermission: true
-          passwordRevealPermission: chassis_rack
-        - enablePermission: true
-          passwordRevealPermission: chassis_rack
+        data:
+        - createdTimestamp: 2000-01-23T04:56:07.000+00:00
+          publicComment: publicComment
+          id: 0.8008281904610115
+          type: custom
+          userId: 6.027456183070403
+          endTimestamp: 2000-01-23T04:56:07.000+00:00
+          privateComment: privateComment
+        - createdTimestamp: 2000-01-23T04:56:07.000+00:00
+          publicComment: publicComment
+          id: 0.8008281904610115
+          type: custom
+          userId: 6.027456183070403
+          endTimestamp: 2000-01-23T04:56:07.000+00:00
+          privateComment: privateComment
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
       properties:
-        passwordRevealPermissions:
-          description: The new password reveal permissions of the user.
+        data:
           items:
-            $ref: '#/components/schemas/UserPasswordRevealPermission'
+            $ref: '#/components/schemas/UserSuspendReason'
+          title: List of user suspend reasons
           type: array
-        specialPermissions:
-          description: The new special permissions of the user.
+        links:
+          description: Reference links
           items:
-            $ref: '#/components/schemas/UserSpecialPermission'
+            $ref: '#/components/schemas/Link'
           type: array
+      required:
+      - data
       type: object
-    UpdateUser:
+    UpdateUserPermissionsDto:
       example:
-        experimentalTags:
-        - removeExperimentalTag: false
-          experimentalTag: storage_pools
-        - removeExperimentalTag: false
-          experimentalTag: storage_pools
+        specialPermissions: ""
+        adminPasswordRevealPermissions: ""
+      properties:
+        adminPasswordRevealPermissions:
+          allOf:
+          - $ref: '#/components/schemas/AdminPasswordRevealPermissions'
+          description: Admin password reveal permissions
+        specialPermissions:
+          allOf:
+          - $ref: '#/components/schemas/SpecialPermissions'
+          description: Special permissions
+      type: object
+    UserUpdatePassword:
+      example:
+        oldPassword: oldPassword
+        newPassword: newPassword
+      properties:
+        newPassword:
+          description: The new password of the user
+          type: string
+        oldPassword:
+          description: The old password of the user
+          type: string
+      required:
+      - newPassword
+      - oldPassword
+      type: object
+    ChangeUserEmail:
+      example:
         redirectUrl: redirectUrl
-        accessLevel: accessLevel
-        displayName: displayName
-        isBlocked: true
-        language: en
-        infrastructureIdDefault: 0.8008281904610115
-        delegates:
-        - removeDelegate: false
-          email: email
-          createIfNotExists: false
-        - removeDelegate: false
-          email: email
-          createIfNotExists: false
-        isBillable: true
-        isTestAccount: true
-        emailStatus: not_verified
-        promotions:
-        - removePromotion: false
-          promotion: promotion
-        - removePromotion: false
-          promotion: promotion
-        permissions:
-          specialPermissions:
-          - enablePermission: true
-            specialPermission: create_verified_user
-          - enablePermission: true
-            specialPermission: create_verified_user
-          passwordRevealPermissions:
-          - enablePermission: true
-            passwordRevealPermission: chassis_rack
-          - enablePermission: true
-            passwordRevealPermission: chassis_rack
-        isBrandManager: true
-        brand: brand
         email: email
-        suspension:
-          suspendReasonPrivateComment: suspendReasonPrivateComment
-          suspendReason: unpaid
-          suspendReasonPublicComment: suspendReasonPublicComment
-          removeSuspension: false
       properties:
-        redirectUrl:
-          description: The redirect URL for the user
-          type: string
-        displayName:
-          description: The new display name of the user
-          type: string
         email:
-          description: The new login e-mail of the user
+          description: The new email address of the user
           type: string
-        emailStatus:
-          description: The new e-mail status of the user
-          enum:
-          - not_verified
-          - verified
+        redirectUrl:
+          description: The redirect URL after email verification
           type: string
-        language:
-          description: The new language of the user
-          enum:
-          - en
-          - ro
-          type: string
-        brand:
-          description: The new brand of the user
-          type: string
-        isBrandManager:
-          description: The new brand manager status of the user
-          type: boolean
-        delegates:
-          description: The new user delegates of the user.
-          items:
-            $ref: '#/components/schemas/UserDelegate'
-          type: array
-        isBlocked:
-          description: The new blocked status of the user
-          type: boolean
-        suspension:
-          $ref: '#/components/schemas/UserSuspend'
-        accessLevel:
-          description: The new access level of the user
-          type: string
-        promotions:
-          description: The new promotions of the user.
-          items:
-            $ref: '#/components/schemas/UserPromotion'
-          type: array
-        experimentalTags:
-          description: The new experimental tags of the user.
-          items:
-            $ref: '#/components/schemas/UserExperimentalTag'
-          type: array
-        permissions:
-          $ref: '#/components/schemas/UserResourcePermissions'
-        isTestAccount:
-          description: Whether the user account is a test one.
-          type: boolean
-        isBillable:
-          description: Whether the user account is billable.
-          type: boolean
-        infrastructureIdDefault:
-          description: The default infrastructure ID of the user
-          type: number
-      type: object
-    ChangeUserAccount:
-      example:
-        newAccountId: 0.8008281904610115
-      properties:
-        newAccountId:
-          description: The ID of the parent account
-          type: number
       required:
-      - newAccountId
+      - email
       type: object
     VMDisk:
       example:
@@ -49423,16 +50685,16 @@ components:
         index: 0
         config:
           serverInterfaceId: 5
-          emptyEdit: 5
+          emptyEdit: 7
           index: 1
-          label: if3
+          label: label
           updatedTimestamp: updatedTimestamp
           deployType: create
           revision: 1
           instanceId: 6
-          dnsSubdomainChangeId: 2
+          dnsSubdomainChangeId: 5
           subdomain: subdomain
-          infrastructureDeployId: 7
+          infrastructureDeployId: 2
           networkId: 10
           capacityMbps: 1
           deployStatus: not_started

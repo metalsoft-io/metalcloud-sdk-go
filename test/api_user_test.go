@@ -50,11 +50,11 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserAPIService CreateUser", func(t *testing.T) {
+	t.Run("Test UserAPIService CreateUserAuthorized", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.UserAPI.CreateUser(context.Background()).Execute()
+		resp, httpRes, err := apiClient.UserAPI.CreateUserAuthorized(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -116,13 +116,13 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserAPIService UpdateUser", func(t *testing.T) {
+	t.Run("Test UserAPIService UpdateUserConfig", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var userId float32
 
-		resp, httpRes, err := apiClient.UserAPI.UpdateUser(context.Background(), userId).Execute()
+		resp, httpRes, err := apiClient.UserAPI.UpdateUserConfig(context.Background(), userId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -137,6 +137,189 @@ func Test_sdk_UserAPIService(t *testing.T) {
 		var userId float32
 
 		resp, httpRes, err := apiClient.UserAPI.UpdateUserLimits(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerAddDelegate", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+		var delegateId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerAddDelegate(context.Background(), userId, delegateId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerGetUserChildDelegates", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerGetUserChildDelegates(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerGetUserConfiguration", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerGetUserConfiguration(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerGetUserParentDelegates", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerGetUserParentDelegates(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerGetUserPermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerGetUserPermissions(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerGetUserSuspendReasons", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerGetUserSuspendReasons(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerRemoveDelegate", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+		var delegateId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerRemoveDelegate(context.Background(), userId, delegateId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerSuspendUser", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerSuspendUser(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerUnsuspendUser", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		httpRes, err := apiClient.UserAPI.UserControllerUnsuspendUser(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerUpdateUserEmail", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerUpdateUserEmail(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerUpdateUserMeta", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerUpdateUserMeta(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerUpdateUserPassword", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerUpdateUserPassword(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerUpdateUserPermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerUpdateUserPermissions(context.Background(), userId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -20,7 +20,7 @@ var _ MappedNullable = &ServerInstanceUpdate{}
 
 // ServerInstanceUpdate struct for ServerInstanceUpdate
 type ServerInstanceUpdate struct {
-	// The server instance label. Will be automatically generated if not provided.
+	// The server instance label.
 	Label *string `json:"label,omitempty"`
 	GroupId *int32 `json:"groupId,omitempty"`
 	// The server type ID.

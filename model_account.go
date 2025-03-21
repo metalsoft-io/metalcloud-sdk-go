@@ -21,10 +21,6 @@ var _ MappedNullable = &Account{}
 
 // Account struct for Account
 type Account struct {
-	// Account ID
-	Id float32 `json:"id"`
-	// Revision number
-	Revision float32 `json:"revision"`
 	// The ID of the parent account
 	ParentAccountId *float32 `json:"parentAccountId,omitempty"`
 	// The name of the account
@@ -39,8 +35,14 @@ type Account struct {
 	// The user ID of the secondary contact
 	SecondaryContactId *float32 `json:"secondaryContactId,omitempty"`
 	// Whether the account is archived
-	Archived *float32 `json:"archived,omitempty"`
+	IsArchived *bool `json:"isArchived,omitempty"`
+	// Account ID
+	Id float32 `json:"id"`
+	// Revision number
+	Revision float32 `json:"revision"`
 	Limits AccountLimits `json:"limits"`
+	// The new configuration of the account.
+	Config AccountConfig `json:"config"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -52,12 +54,13 @@ type _Account Account
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccount(id float32, revision float32, name string, limits AccountLimits) *Account {
+func NewAccount(name string, id float32, revision float32, limits AccountLimits, config AccountConfig) *Account {
 	this := Account{}
+	this.Name = name
 	this.Id = id
 	this.Revision = revision
-	this.Name = name
 	this.Limits = limits
+	this.Config = config
 	return &this
 }
 
@@ -67,54 +70,6 @@ func NewAccount(id float32, revision float32, name string, limits AccountLimits)
 func NewAccountWithDefaults() *Account {
 	this := Account{}
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *Account) GetId() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *Account) GetIdOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *Account) SetId(v float32) {
-	o.Id = v
-}
-
-// GetRevision returns the Revision field value
-func (o *Account) GetRevision() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Revision
-}
-
-// GetRevisionOk returns a tuple with the Revision field value
-// and a boolean to check if the value has been set.
-func (o *Account) GetRevisionOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Revision, true
-}
-
-// SetRevision sets field value
-func (o *Account) SetRevision(v float32) {
-	o.Revision = v
 }
 
 // GetParentAccountId returns the ParentAccountId field value if set, zero value otherwise.
@@ -333,36 +288,84 @@ func (o *Account) SetSecondaryContactId(v float32) {
 	o.SecondaryContactId = &v
 }
 
-// GetArchived returns the Archived field value if set, zero value otherwise.
-func (o *Account) GetArchived() float32 {
-	if o == nil || IsNil(o.Archived) {
-		var ret float32
+// GetIsArchived returns the IsArchived field value if set, zero value otherwise.
+func (o *Account) GetIsArchived() bool {
+	if o == nil || IsNil(o.IsArchived) {
+		var ret bool
 		return ret
 	}
-	return *o.Archived
+	return *o.IsArchived
 }
 
-// GetArchivedOk returns a tuple with the Archived field value if set, nil otherwise
+// GetIsArchivedOk returns a tuple with the IsArchived field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Account) GetArchivedOk() (*float32, bool) {
-	if o == nil || IsNil(o.Archived) {
+func (o *Account) GetIsArchivedOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsArchived) {
 		return nil, false
 	}
-	return o.Archived, true
+	return o.IsArchived, true
 }
 
-// HasArchived returns a boolean if a field has been set.
-func (o *Account) HasArchived() bool {
-	if o != nil && !IsNil(o.Archived) {
+// HasIsArchived returns a boolean if a field has been set.
+func (o *Account) HasIsArchived() bool {
+	if o != nil && !IsNil(o.IsArchived) {
 		return true
 	}
 
 	return false
 }
 
-// SetArchived gets a reference to the given float32 and assigns it to the Archived field.
-func (o *Account) SetArchived(v float32) {
-	o.Archived = &v
+// SetIsArchived gets a reference to the given bool and assigns it to the IsArchived field.
+func (o *Account) SetIsArchived(v bool) {
+	o.IsArchived = &v
+}
+
+// GetId returns the Id field value
+func (o *Account) GetId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *Account) SetId(v float32) {
+	o.Id = v
+}
+
+// GetRevision returns the Revision field value
+func (o *Account) GetRevision() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Revision
+}
+
+// GetRevisionOk returns a tuple with the Revision field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetRevisionOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Revision, true
+}
+
+// SetRevision sets field value
+func (o *Account) SetRevision(v float32) {
+	o.Revision = v
 }
 
 // GetLimits returns the Limits field value
@@ -387,6 +390,30 @@ func (o *Account) GetLimitsOk() (*AccountLimits, bool) {
 // SetLimits sets field value
 func (o *Account) SetLimits(v AccountLimits) {
 	o.Limits = v
+}
+
+// GetConfig returns the Config field value
+func (o *Account) GetConfig() AccountConfig {
+	if o == nil {
+		var ret AccountConfig
+		return ret
+	}
+
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetConfigOk() (*AccountConfig, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Config, true
+}
+
+// SetConfig sets field value
+func (o *Account) SetConfig(v AccountConfig) {
+	o.Config = v
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
@@ -431,8 +458,6 @@ func (o Account) MarshalJSON() ([]byte, error) {
 
 func (o Account) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["revision"] = o.Revision
 	if !IsNil(o.ParentAccountId) {
 		toSerialize["parentAccountId"] = o.ParentAccountId
 	}
@@ -452,10 +477,13 @@ func (o Account) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SecondaryContactId) {
 		toSerialize["secondaryContactId"] = o.SecondaryContactId
 	}
-	if !IsNil(o.Archived) {
-		toSerialize["archived"] = o.Archived
+	if !IsNil(o.IsArchived) {
+		toSerialize["isArchived"] = o.IsArchived
 	}
+	toSerialize["id"] = o.Id
+	toSerialize["revision"] = o.Revision
 	toSerialize["limits"] = o.Limits
+	toSerialize["config"] = o.Config
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -472,10 +500,11 @@ func (o *Account) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"name",
 		"id",
 		"revision",
-		"name",
 		"limits",
+		"config",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -505,8 +534,6 @@ func (o *Account) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "revision")
 		delete(additionalProperties, "parentAccountId")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "code")
@@ -514,8 +541,11 @@ func (o *Account) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "address")
 		delete(additionalProperties, "primaryContactId")
 		delete(additionalProperties, "secondaryContactId")
-		delete(additionalProperties, "archived")
+		delete(additionalProperties, "isArchived")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "revision")
 		delete(additionalProperties, "limits")
+		delete(additionalProperties, "config")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

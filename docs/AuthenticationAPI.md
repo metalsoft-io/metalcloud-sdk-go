@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**GetCurrentUser**](AuthenticationAPI.md#GetCurrentUser) | **Get** /api/v2/user | Get current user
 [**Login**](AuthenticationAPI.md#Login) | **Post** /api/v2/login | User login
 [**Logout**](AuthenticationAPI.md#Logout) | **Post** /api/v2/logout | Logout user
+[**SignUp**](AuthenticationAPI.md#SignUp) | **Post** /api/v2/sign-up | Sign up
 
 
 
@@ -324,6 +325,72 @@ Other parameters are passed through a pointer to a apiLogoutRequest struct via t
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SignUp
+
+> User SignUp(ctx).CreateUser(createUser).Execute()
+
+Sign up
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	createUser := *openapiclient.NewCreateUser("DisplayName_example", "AccessLevel_example", "Email_example") // CreateUser | The user to create
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.SignUp(context.Background()).CreateUser(createUser).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.SignUp``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SignUp`: User
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.SignUp`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSignUpRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createUser** | [**CreateUser**](CreateUser.md) | The user to create | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

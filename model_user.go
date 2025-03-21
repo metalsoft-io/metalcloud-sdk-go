@@ -21,75 +21,81 @@ var _ MappedNullable = &User{}
 
 // User struct for User
 type User struct {
-	// User ID
-	Id string `json:"id"`
-	// Revision number
-	Revision string `json:"revision"`
-	// The franchise of the user
-	Franchise string `json:"franchise"`
 	// The display name of the user
 	DisplayName string `json:"displayName"`
-	// The email address of the user
-	Email string `json:"email"`
-	// Whether the user must change authenticator
-	AuthenticatorMustChange float32 `json:"authenticatorMustChange"`
-	// The timestamp when the authenticator was created
-	AuthenticatorCreatedTimestamp string `json:"authenticatorCreatedTimestamp"`
-	// Whether the user has an authenticator
-	AuthenticatorEnabled bool `json:"authenticatorEnabled"`
-	// The timestamp when the user was created
-	CreatedTimestamp string `json:"createdTimestamp"`
+	// The email status of the user
+	EmailStatus string `json:"emailStatus"`
+	// The language of the user
+	Language string `json:"language"`
+	// The brand of the user
+	Brand string `json:"brand"`
+	// Whether the user is a brand manager
+	IsBrandManager bool `json:"isBrandManager"`
 	// The timestamp when the user logged in last
 	LastLoginTimestamp string `json:"lastLoginTimestamp"`
 	// The last login type of the user
 	LastLoginType string `json:"lastLoginType"`
 	// Whether the user is blocked
-	Blocked float32 `json:"blocked"`
-	// The email status of the user
-	EmailStatus string `json:"emailStatus"`
+	IsBlocked bool `json:"isBlocked"`
 	// Whether the user must change password
-	PasswordChangeRequired float32 `json:"passwordChangeRequired"`
+	PasswordChangeRequired bool `json:"passwordChangeRequired"`
 	// The access level of the user
 	AccessLevel string `json:"accessLevel"`
 	// Whether the user is billable
-	IsBillable float32 `json:"isBillable"`
+	IsBillable bool `json:"isBillable"`
 	// Whether the user is in testing mode
-	IsTestingMode float32 `json:"isTestingMode"`
-	// Whether the user is suspended
-	IsSuspended float32 `json:"isSuspended"`
-	// The language of the user
-	Language string `json:"language"`
+	IsTestingMode bool `json:"isTestingMode"`
 	// The default infrastructure ID of the user
 	InfrastructureIdDefault *float32 `json:"infrastructureIdDefault,omitempty"`
-	// The GUI settings of the user
-	GuiSettings map[string]interface{} `json:"guiSettings,omitempty"`
+	// Whether the user must change authenticator
+	AuthenticatorMustChange bool `json:"authenticatorMustChange"`
+	// The timestamp when the authenticator was created
+	AuthenticatorCreatedTimestamp string `json:"authenticatorCreatedTimestamp"`
+	// Whether the user has an authenticator
+	AuthenticatorEnabled bool `json:"authenticatorEnabled"`
 	// The promotion tags of the user
-	PromotionTags map[string]interface{} `json:"promotionTags,omitempty"`
+	PromotionTags []string `json:"promotionTags,omitempty"`
 	// The experimental tags of the user
-	ExperimentalTags map[string]interface{} `json:"experimentalTags,omitempty"`
-	// The permissions of the user
-	Permissions *UserPermissions `json:"permissions,omitempty"`
+	ExperimentalTags []string `json:"experimentalTags,omitempty"`
 	// The external IDs of the user
 	ExternalIds map[string]interface{} `json:"externalIds,omitempty"`
-	Limits *UserLimits `json:"limits,omitempty"`
 	// Whether the user is excluded from reports
-	ExcludeFromReports float32 `json:"excludeFromReports"`
+	ExcludeFromReports bool `json:"excludeFromReports"`
 	// Whether the user is a test account
-	IsTestAccount float32 `json:"isTestAccount"`
+	IsTestAccount bool `json:"isTestAccount"`
+	// Whether the user is a archived
+	IsArchived bool `json:"isArchived"`
+	// Whether the user is a datastore publisher
+	IsDatastorePublisher bool `json:"isDatastorePublisher"`
+	// The account ID of the user
+	AccountId *float32 `json:"accountId,omitempty"`
+	// User ID
+	Id float32 `json:"id"`
+	// Revision of the user
+	Revision float32 `json:"revision"`
+	// The email address of the user
+	Email string `json:"email"`
+	// The franchise of the user
+	Franchise string `json:"franchise"`
+	// The timestamp when the user was created
+	CreatedTimestamp string `json:"createdTimestamp"`
 	// The plan type of the user
 	PlanType string `json:"planType"`
-	// The brand of the user
-	Brand string `json:"brand"`
-	// Whether the user is a brand manager
-	IsBrandManager float32 `json:"isBrandManager"`
-	// Whether the user is a datastore publisher
-	IsDatastorePublisher float32 `json:"isDatastorePublisher"`
 	// The provider of the user
 	Provider string `json:"provider"`
-	// Whether the user is a archived
-	Archived float32 `json:"archived"`
-	// The account ID of the user
-	AccountId float32 `json:"accountId"`
+	// The permissions of the user
+	Permissions *UserPermissions `json:"permissions,omitempty"`
+	Limits *UserLimits `json:"limits,omitempty"`
+	// The email addresses of the parent delegate users
+	ParentDelegates []string `json:"parentDelegates,omitempty"`
+	// The email addresses of the child delegate users
+	ChildDelegates []string `json:"childDelegates,omitempty"`
+	// Whether the user is suspended
+	IsSuspended bool `json:"isSuspended"`
+	// The new configuration of the user.
+	Config UserConfiguration `json:"config"`
+	// Meta information of the user.
+	Meta UserMeta `json:"meta"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -101,36 +107,37 @@ type _User User
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUser(id string, revision string, franchise string, displayName string, email string, authenticatorMustChange float32, authenticatorCreatedTimestamp string, authenticatorEnabled bool, createdTimestamp string, lastLoginTimestamp string, lastLoginType string, blocked float32, emailStatus string, passwordChangeRequired float32, accessLevel string, isBillable float32, isTestingMode float32, isSuspended float32, language string, excludeFromReports float32, isTestAccount float32, planType string, brand string, isBrandManager float32, isDatastorePublisher float32, provider string, archived float32, accountId float32) *User {
+func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, authenticatorEnabled bool, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, provider string, isSuspended bool, config UserConfiguration, meta UserMeta) *User {
 	this := User{}
-	this.Id = id
-	this.Revision = revision
-	this.Franchise = franchise
 	this.DisplayName = displayName
-	this.Email = email
-	this.AuthenticatorMustChange = authenticatorMustChange
-	this.AuthenticatorCreatedTimestamp = authenticatorCreatedTimestamp
-	this.AuthenticatorEnabled = authenticatorEnabled
-	this.CreatedTimestamp = createdTimestamp
+	this.EmailStatus = emailStatus
+	this.Language = language
+	this.Brand = brand
+	this.IsBrandManager = isBrandManager
 	this.LastLoginTimestamp = lastLoginTimestamp
 	this.LastLoginType = lastLoginType
-	this.Blocked = blocked
-	this.EmailStatus = emailStatus
+	this.IsBlocked = isBlocked
 	this.PasswordChangeRequired = passwordChangeRequired
 	this.AccessLevel = accessLevel
 	this.IsBillable = isBillable
 	this.IsTestingMode = isTestingMode
-	this.IsSuspended = isSuspended
-	this.Language = language
+	this.AuthenticatorMustChange = authenticatorMustChange
+	this.AuthenticatorCreatedTimestamp = authenticatorCreatedTimestamp
+	this.AuthenticatorEnabled = authenticatorEnabled
 	this.ExcludeFromReports = excludeFromReports
 	this.IsTestAccount = isTestAccount
-	this.PlanType = planType
-	this.Brand = brand
-	this.IsBrandManager = isBrandManager
+	this.IsArchived = isArchived
 	this.IsDatastorePublisher = isDatastorePublisher
+	this.Id = id
+	this.Revision = revision
+	this.Email = email
+	this.Franchise = franchise
+	this.CreatedTimestamp = createdTimestamp
+	this.PlanType = planType
 	this.Provider = provider
-	this.Archived = archived
-	this.AccountId = accountId
+	this.IsSuspended = isSuspended
+	this.Config = config
+	this.Meta = meta
 	return &this
 }
 
@@ -139,85 +146,15 @@ func NewUser(id string, revision string, franchise string, displayName string, e
 // but it doesn't guarantee that properties required by API are set
 func NewUserWithDefaults() *User {
 	this := User{}
-	var planType string = "vanilla"
-	this.PlanType = planType
 	var brand string = "default"
 	this.Brand = brand
+	var lastLoginType string = "md5"
+	this.LastLoginType = lastLoginType
+	var planType string = "vanilla"
+	this.PlanType = planType
 	var provider string = "default"
 	this.Provider = provider
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *User) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *User) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *User) SetId(v string) {
-	o.Id = v
-}
-
-// GetRevision returns the Revision field value
-func (o *User) GetRevision() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Revision
-}
-
-// GetRevisionOk returns a tuple with the Revision field value
-// and a boolean to check if the value has been set.
-func (o *User) GetRevisionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Revision, true
-}
-
-// SetRevision sets field value
-func (o *User) SetRevision(v string) {
-	o.Revision = v
-}
-
-// GetFranchise returns the Franchise field value
-func (o *User) GetFranchise() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Franchise
-}
-
-// GetFranchiseOk returns a tuple with the Franchise field value
-// and a boolean to check if the value has been set.
-func (o *User) GetFranchiseOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Franchise, true
-}
-
-// SetFranchise sets field value
-func (o *User) SetFranchise(v string) {
-	o.Franchise = v
 }
 
 // GetDisplayName returns the DisplayName field value
@@ -244,34 +181,306 @@ func (o *User) SetDisplayName(v string) {
 	o.DisplayName = v
 }
 
-// GetEmail returns the Email field value
-func (o *User) GetEmail() string {
+// GetEmailStatus returns the EmailStatus field value
+func (o *User) GetEmailStatus() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Email
+	return o.EmailStatus
 }
 
-// GetEmailOk returns a tuple with the Email field value
+// GetEmailStatusOk returns a tuple with the EmailStatus field value
 // and a boolean to check if the value has been set.
-func (o *User) GetEmailOk() (*string, bool) {
+func (o *User) GetEmailStatusOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Email, true
+	return &o.EmailStatus, true
 }
 
-// SetEmail sets field value
-func (o *User) SetEmail(v string) {
-	o.Email = v
+// SetEmailStatus sets field value
+func (o *User) SetEmailStatus(v string) {
+	o.EmailStatus = v
+}
+
+// GetLanguage returns the Language field value
+func (o *User) GetLanguage() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Language
+}
+
+// GetLanguageOk returns a tuple with the Language field value
+// and a boolean to check if the value has been set.
+func (o *User) GetLanguageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Language, true
+}
+
+// SetLanguage sets field value
+func (o *User) SetLanguage(v string) {
+	o.Language = v
+}
+
+// GetBrand returns the Brand field value
+func (o *User) GetBrand() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Brand
+}
+
+// GetBrandOk returns a tuple with the Brand field value
+// and a boolean to check if the value has been set.
+func (o *User) GetBrandOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Brand, true
+}
+
+// SetBrand sets field value
+func (o *User) SetBrand(v string) {
+	o.Brand = v
+}
+
+// GetIsBrandManager returns the IsBrandManager field value
+func (o *User) GetIsBrandManager() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsBrandManager
+}
+
+// GetIsBrandManagerOk returns a tuple with the IsBrandManager field value
+// and a boolean to check if the value has been set.
+func (o *User) GetIsBrandManagerOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsBrandManager, true
+}
+
+// SetIsBrandManager sets field value
+func (o *User) SetIsBrandManager(v bool) {
+	o.IsBrandManager = v
+}
+
+// GetLastLoginTimestamp returns the LastLoginTimestamp field value
+func (o *User) GetLastLoginTimestamp() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LastLoginTimestamp
+}
+
+// GetLastLoginTimestampOk returns a tuple with the LastLoginTimestamp field value
+// and a boolean to check if the value has been set.
+func (o *User) GetLastLoginTimestampOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastLoginTimestamp, true
+}
+
+// SetLastLoginTimestamp sets field value
+func (o *User) SetLastLoginTimestamp(v string) {
+	o.LastLoginTimestamp = v
+}
+
+// GetLastLoginType returns the LastLoginType field value
+func (o *User) GetLastLoginType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LastLoginType
+}
+
+// GetLastLoginTypeOk returns a tuple with the LastLoginType field value
+// and a boolean to check if the value has been set.
+func (o *User) GetLastLoginTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastLoginType, true
+}
+
+// SetLastLoginType sets field value
+func (o *User) SetLastLoginType(v string) {
+	o.LastLoginType = v
+}
+
+// GetIsBlocked returns the IsBlocked field value
+func (o *User) GetIsBlocked() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsBlocked
+}
+
+// GetIsBlockedOk returns a tuple with the IsBlocked field value
+// and a boolean to check if the value has been set.
+func (o *User) GetIsBlockedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsBlocked, true
+}
+
+// SetIsBlocked sets field value
+func (o *User) SetIsBlocked(v bool) {
+	o.IsBlocked = v
+}
+
+// GetPasswordChangeRequired returns the PasswordChangeRequired field value
+func (o *User) GetPasswordChangeRequired() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.PasswordChangeRequired
+}
+
+// GetPasswordChangeRequiredOk returns a tuple with the PasswordChangeRequired field value
+// and a boolean to check if the value has been set.
+func (o *User) GetPasswordChangeRequiredOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PasswordChangeRequired, true
+}
+
+// SetPasswordChangeRequired sets field value
+func (o *User) SetPasswordChangeRequired(v bool) {
+	o.PasswordChangeRequired = v
+}
+
+// GetAccessLevel returns the AccessLevel field value
+func (o *User) GetAccessLevel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AccessLevel
+}
+
+// GetAccessLevelOk returns a tuple with the AccessLevel field value
+// and a boolean to check if the value has been set.
+func (o *User) GetAccessLevelOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccessLevel, true
+}
+
+// SetAccessLevel sets field value
+func (o *User) SetAccessLevel(v string) {
+	o.AccessLevel = v
+}
+
+// GetIsBillable returns the IsBillable field value
+func (o *User) GetIsBillable() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsBillable
+}
+
+// GetIsBillableOk returns a tuple with the IsBillable field value
+// and a boolean to check if the value has been set.
+func (o *User) GetIsBillableOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsBillable, true
+}
+
+// SetIsBillable sets field value
+func (o *User) SetIsBillable(v bool) {
+	o.IsBillable = v
+}
+
+// GetIsTestingMode returns the IsTestingMode field value
+func (o *User) GetIsTestingMode() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsTestingMode
+}
+
+// GetIsTestingModeOk returns a tuple with the IsTestingMode field value
+// and a boolean to check if the value has been set.
+func (o *User) GetIsTestingModeOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsTestingMode, true
+}
+
+// SetIsTestingMode sets field value
+func (o *User) SetIsTestingMode(v bool) {
+	o.IsTestingMode = v
+}
+
+// GetInfrastructureIdDefault returns the InfrastructureIdDefault field value if set, zero value otherwise.
+func (o *User) GetInfrastructureIdDefault() float32 {
+	if o == nil || IsNil(o.InfrastructureIdDefault) {
+		var ret float32
+		return ret
+	}
+	return *o.InfrastructureIdDefault
+}
+
+// GetInfrastructureIdDefaultOk returns a tuple with the InfrastructureIdDefault field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetInfrastructureIdDefaultOk() (*float32, bool) {
+	if o == nil || IsNil(o.InfrastructureIdDefault) {
+		return nil, false
+	}
+	return o.InfrastructureIdDefault, true
+}
+
+// HasInfrastructureIdDefault returns a boolean if a field has been set.
+func (o *User) HasInfrastructureIdDefault() bool {
+	if o != nil && !IsNil(o.InfrastructureIdDefault) {
+		return true
+	}
+
+	return false
+}
+
+// SetInfrastructureIdDefault gets a reference to the given float32 and assigns it to the InfrastructureIdDefault field.
+func (o *User) SetInfrastructureIdDefault(v float32) {
+	o.InfrastructureIdDefault = &v
 }
 
 // GetAuthenticatorMustChange returns the AuthenticatorMustChange field value
-func (o *User) GetAuthenticatorMustChange() float32 {
+func (o *User) GetAuthenticatorMustChange() bool {
 	if o == nil {
-		var ret float32
+		var ret bool
 		return ret
 	}
 
@@ -280,7 +489,7 @@ func (o *User) GetAuthenticatorMustChange() float32 {
 
 // GetAuthenticatorMustChangeOk returns a tuple with the AuthenticatorMustChange field value
 // and a boolean to check if the value has been set.
-func (o *User) GetAuthenticatorMustChangeOk() (*float32, bool) {
+func (o *User) GetAuthenticatorMustChangeOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -288,7 +497,7 @@ func (o *User) GetAuthenticatorMustChangeOk() (*float32, bool) {
 }
 
 // SetAuthenticatorMustChange sets field value
-func (o *User) SetAuthenticatorMustChange(v float32) {
+func (o *User) SetAuthenticatorMustChange(v bool) {
 	o.AuthenticatorMustChange = v
 }
 
@@ -340,338 +549,10 @@ func (o *User) SetAuthenticatorEnabled(v bool) {
 	o.AuthenticatorEnabled = v
 }
 
-// GetCreatedTimestamp returns the CreatedTimestamp field value
-func (o *User) GetCreatedTimestamp() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CreatedTimestamp
-}
-
-// GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
-// and a boolean to check if the value has been set.
-func (o *User) GetCreatedTimestampOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CreatedTimestamp, true
-}
-
-// SetCreatedTimestamp sets field value
-func (o *User) SetCreatedTimestamp(v string) {
-	o.CreatedTimestamp = v
-}
-
-// GetLastLoginTimestamp returns the LastLoginTimestamp field value
-func (o *User) GetLastLoginTimestamp() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.LastLoginTimestamp
-}
-
-// GetLastLoginTimestampOk returns a tuple with the LastLoginTimestamp field value
-// and a boolean to check if the value has been set.
-func (o *User) GetLastLoginTimestampOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastLoginTimestamp, true
-}
-
-// SetLastLoginTimestamp sets field value
-func (o *User) SetLastLoginTimestamp(v string) {
-	o.LastLoginTimestamp = v
-}
-
-// GetLastLoginType returns the LastLoginType field value
-func (o *User) GetLastLoginType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.LastLoginType
-}
-
-// GetLastLoginTypeOk returns a tuple with the LastLoginType field value
-// and a boolean to check if the value has been set.
-func (o *User) GetLastLoginTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastLoginType, true
-}
-
-// SetLastLoginType sets field value
-func (o *User) SetLastLoginType(v string) {
-	o.LastLoginType = v
-}
-
-// GetBlocked returns the Blocked field value
-func (o *User) GetBlocked() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Blocked
-}
-
-// GetBlockedOk returns a tuple with the Blocked field value
-// and a boolean to check if the value has been set.
-func (o *User) GetBlockedOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Blocked, true
-}
-
-// SetBlocked sets field value
-func (o *User) SetBlocked(v float32) {
-	o.Blocked = v
-}
-
-// GetEmailStatus returns the EmailStatus field value
-func (o *User) GetEmailStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.EmailStatus
-}
-
-// GetEmailStatusOk returns a tuple with the EmailStatus field value
-// and a boolean to check if the value has been set.
-func (o *User) GetEmailStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EmailStatus, true
-}
-
-// SetEmailStatus sets field value
-func (o *User) SetEmailStatus(v string) {
-	o.EmailStatus = v
-}
-
-// GetPasswordChangeRequired returns the PasswordChangeRequired field value
-func (o *User) GetPasswordChangeRequired() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.PasswordChangeRequired
-}
-
-// GetPasswordChangeRequiredOk returns a tuple with the PasswordChangeRequired field value
-// and a boolean to check if the value has been set.
-func (o *User) GetPasswordChangeRequiredOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.PasswordChangeRequired, true
-}
-
-// SetPasswordChangeRequired sets field value
-func (o *User) SetPasswordChangeRequired(v float32) {
-	o.PasswordChangeRequired = v
-}
-
-// GetAccessLevel returns the AccessLevel field value
-func (o *User) GetAccessLevel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.AccessLevel
-}
-
-// GetAccessLevelOk returns a tuple with the AccessLevel field value
-// and a boolean to check if the value has been set.
-func (o *User) GetAccessLevelOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AccessLevel, true
-}
-
-// SetAccessLevel sets field value
-func (o *User) SetAccessLevel(v string) {
-	o.AccessLevel = v
-}
-
-// GetIsBillable returns the IsBillable field value
-func (o *User) GetIsBillable() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.IsBillable
-}
-
-// GetIsBillableOk returns a tuple with the IsBillable field value
-// and a boolean to check if the value has been set.
-func (o *User) GetIsBillableOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsBillable, true
-}
-
-// SetIsBillable sets field value
-func (o *User) SetIsBillable(v float32) {
-	o.IsBillable = v
-}
-
-// GetIsTestingMode returns the IsTestingMode field value
-func (o *User) GetIsTestingMode() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.IsTestingMode
-}
-
-// GetIsTestingModeOk returns a tuple with the IsTestingMode field value
-// and a boolean to check if the value has been set.
-func (o *User) GetIsTestingModeOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsTestingMode, true
-}
-
-// SetIsTestingMode sets field value
-func (o *User) SetIsTestingMode(v float32) {
-	o.IsTestingMode = v
-}
-
-// GetIsSuspended returns the IsSuspended field value
-func (o *User) GetIsSuspended() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.IsSuspended
-}
-
-// GetIsSuspendedOk returns a tuple with the IsSuspended field value
-// and a boolean to check if the value has been set.
-func (o *User) GetIsSuspendedOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsSuspended, true
-}
-
-// SetIsSuspended sets field value
-func (o *User) SetIsSuspended(v float32) {
-	o.IsSuspended = v
-}
-
-// GetLanguage returns the Language field value
-func (o *User) GetLanguage() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Language
-}
-
-// GetLanguageOk returns a tuple with the Language field value
-// and a boolean to check if the value has been set.
-func (o *User) GetLanguageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Language, true
-}
-
-// SetLanguage sets field value
-func (o *User) SetLanguage(v string) {
-	o.Language = v
-}
-
-// GetInfrastructureIdDefault returns the InfrastructureIdDefault field value if set, zero value otherwise.
-func (o *User) GetInfrastructureIdDefault() float32 {
-	if o == nil || IsNil(o.InfrastructureIdDefault) {
-		var ret float32
-		return ret
-	}
-	return *o.InfrastructureIdDefault
-}
-
-// GetInfrastructureIdDefaultOk returns a tuple with the InfrastructureIdDefault field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetInfrastructureIdDefaultOk() (*float32, bool) {
-	if o == nil || IsNil(o.InfrastructureIdDefault) {
-		return nil, false
-	}
-	return o.InfrastructureIdDefault, true
-}
-
-// HasInfrastructureIdDefault returns a boolean if a field has been set.
-func (o *User) HasInfrastructureIdDefault() bool {
-	if o != nil && !IsNil(o.InfrastructureIdDefault) {
-		return true
-	}
-
-	return false
-}
-
-// SetInfrastructureIdDefault gets a reference to the given float32 and assigns it to the InfrastructureIdDefault field.
-func (o *User) SetInfrastructureIdDefault(v float32) {
-	o.InfrastructureIdDefault = &v
-}
-
-// GetGuiSettings returns the GuiSettings field value if set, zero value otherwise.
-func (o *User) GetGuiSettings() map[string]interface{} {
-	if o == nil || IsNil(o.GuiSettings) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.GuiSettings
-}
-
-// GetGuiSettingsOk returns a tuple with the GuiSettings field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetGuiSettingsOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.GuiSettings) {
-		return map[string]interface{}{}, false
-	}
-	return o.GuiSettings, true
-}
-
-// HasGuiSettings returns a boolean if a field has been set.
-func (o *User) HasGuiSettings() bool {
-	if o != nil && !IsNil(o.GuiSettings) {
-		return true
-	}
-
-	return false
-}
-
-// SetGuiSettings gets a reference to the given map[string]interface{} and assigns it to the GuiSettings field.
-func (o *User) SetGuiSettings(v map[string]interface{}) {
-	o.GuiSettings = v
-}
-
 // GetPromotionTags returns the PromotionTags field value if set, zero value otherwise.
-func (o *User) GetPromotionTags() map[string]interface{} {
+func (o *User) GetPromotionTags() []string {
 	if o == nil || IsNil(o.PromotionTags) {
-		var ret map[string]interface{}
+		var ret []string
 		return ret
 	}
 	return o.PromotionTags
@@ -679,9 +560,9 @@ func (o *User) GetPromotionTags() map[string]interface{} {
 
 // GetPromotionTagsOk returns a tuple with the PromotionTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetPromotionTagsOk() (map[string]interface{}, bool) {
+func (o *User) GetPromotionTagsOk() ([]string, bool) {
 	if o == nil || IsNil(o.PromotionTags) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.PromotionTags, true
 }
@@ -695,15 +576,15 @@ func (o *User) HasPromotionTags() bool {
 	return false
 }
 
-// SetPromotionTags gets a reference to the given map[string]interface{} and assigns it to the PromotionTags field.
-func (o *User) SetPromotionTags(v map[string]interface{}) {
+// SetPromotionTags gets a reference to the given []string and assigns it to the PromotionTags field.
+func (o *User) SetPromotionTags(v []string) {
 	o.PromotionTags = v
 }
 
 // GetExperimentalTags returns the ExperimentalTags field value if set, zero value otherwise.
-func (o *User) GetExperimentalTags() map[string]interface{} {
+func (o *User) GetExperimentalTags() []string {
 	if o == nil || IsNil(o.ExperimentalTags) {
-		var ret map[string]interface{}
+		var ret []string
 		return ret
 	}
 	return o.ExperimentalTags
@@ -711,9 +592,9 @@ func (o *User) GetExperimentalTags() map[string]interface{} {
 
 // GetExperimentalTagsOk returns a tuple with the ExperimentalTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetExperimentalTagsOk() (map[string]interface{}, bool) {
+func (o *User) GetExperimentalTagsOk() ([]string, bool) {
 	if o == nil || IsNil(o.ExperimentalTags) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.ExperimentalTags, true
 }
@@ -727,41 +608,9 @@ func (o *User) HasExperimentalTags() bool {
 	return false
 }
 
-// SetExperimentalTags gets a reference to the given map[string]interface{} and assigns it to the ExperimentalTags field.
-func (o *User) SetExperimentalTags(v map[string]interface{}) {
+// SetExperimentalTags gets a reference to the given []string and assigns it to the ExperimentalTags field.
+func (o *User) SetExperimentalTags(v []string) {
 	o.ExperimentalTags = v
-}
-
-// GetPermissions returns the Permissions field value if set, zero value otherwise.
-func (o *User) GetPermissions() UserPermissions {
-	if o == nil || IsNil(o.Permissions) {
-		var ret UserPermissions
-		return ret
-	}
-	return *o.Permissions
-}
-
-// GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetPermissionsOk() (*UserPermissions, bool) {
-	if o == nil || IsNil(o.Permissions) {
-		return nil, false
-	}
-	return o.Permissions, true
-}
-
-// HasPermissions returns a boolean if a field has been set.
-func (o *User) HasPermissions() bool {
-	if o != nil && !IsNil(o.Permissions) {
-		return true
-	}
-
-	return false
-}
-
-// SetPermissions gets a reference to the given UserPermissions and assigns it to the Permissions field.
-func (o *User) SetPermissions(v UserPermissions) {
-	o.Permissions = &v
 }
 
 // GetExternalIds returns the ExternalIds field value if set, zero value otherwise.
@@ -796,6 +645,334 @@ func (o *User) SetExternalIds(v map[string]interface{}) {
 	o.ExternalIds = v
 }
 
+// GetExcludeFromReports returns the ExcludeFromReports field value
+func (o *User) GetExcludeFromReports() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ExcludeFromReports
+}
+
+// GetExcludeFromReportsOk returns a tuple with the ExcludeFromReports field value
+// and a boolean to check if the value has been set.
+func (o *User) GetExcludeFromReportsOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExcludeFromReports, true
+}
+
+// SetExcludeFromReports sets field value
+func (o *User) SetExcludeFromReports(v bool) {
+	o.ExcludeFromReports = v
+}
+
+// GetIsTestAccount returns the IsTestAccount field value
+func (o *User) GetIsTestAccount() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsTestAccount
+}
+
+// GetIsTestAccountOk returns a tuple with the IsTestAccount field value
+// and a boolean to check if the value has been set.
+func (o *User) GetIsTestAccountOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsTestAccount, true
+}
+
+// SetIsTestAccount sets field value
+func (o *User) SetIsTestAccount(v bool) {
+	o.IsTestAccount = v
+}
+
+// GetIsArchived returns the IsArchived field value
+func (o *User) GetIsArchived() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsArchived
+}
+
+// GetIsArchivedOk returns a tuple with the IsArchived field value
+// and a boolean to check if the value has been set.
+func (o *User) GetIsArchivedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsArchived, true
+}
+
+// SetIsArchived sets field value
+func (o *User) SetIsArchived(v bool) {
+	o.IsArchived = v
+}
+
+// GetIsDatastorePublisher returns the IsDatastorePublisher field value
+func (o *User) GetIsDatastorePublisher() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsDatastorePublisher
+}
+
+// GetIsDatastorePublisherOk returns a tuple with the IsDatastorePublisher field value
+// and a boolean to check if the value has been set.
+func (o *User) GetIsDatastorePublisherOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsDatastorePublisher, true
+}
+
+// SetIsDatastorePublisher sets field value
+func (o *User) SetIsDatastorePublisher(v bool) {
+	o.IsDatastorePublisher = v
+}
+
+// GetAccountId returns the AccountId field value if set, zero value otherwise.
+func (o *User) GetAccountId() float32 {
+	if o == nil || IsNil(o.AccountId) {
+		var ret float32
+		return ret
+	}
+	return *o.AccountId
+}
+
+// GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetAccountIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.AccountId) {
+		return nil, false
+	}
+	return o.AccountId, true
+}
+
+// HasAccountId returns a boolean if a field has been set.
+func (o *User) HasAccountId() bool {
+	if o != nil && !IsNil(o.AccountId) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountId gets a reference to the given float32 and assigns it to the AccountId field.
+func (o *User) SetAccountId(v float32) {
+	o.AccountId = &v
+}
+
+// GetId returns the Id field value
+func (o *User) GetId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *User) GetIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *User) SetId(v float32) {
+	o.Id = v
+}
+
+// GetRevision returns the Revision field value
+func (o *User) GetRevision() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Revision
+}
+
+// GetRevisionOk returns a tuple with the Revision field value
+// and a boolean to check if the value has been set.
+func (o *User) GetRevisionOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Revision, true
+}
+
+// SetRevision sets field value
+func (o *User) SetRevision(v float32) {
+	o.Revision = v
+}
+
+// GetEmail returns the Email field value
+func (o *User) GetEmail() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Email
+}
+
+// GetEmailOk returns a tuple with the Email field value
+// and a boolean to check if the value has been set.
+func (o *User) GetEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Email, true
+}
+
+// SetEmail sets field value
+func (o *User) SetEmail(v string) {
+	o.Email = v
+}
+
+// GetFranchise returns the Franchise field value
+func (o *User) GetFranchise() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Franchise
+}
+
+// GetFranchiseOk returns a tuple with the Franchise field value
+// and a boolean to check if the value has been set.
+func (o *User) GetFranchiseOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Franchise, true
+}
+
+// SetFranchise sets field value
+func (o *User) SetFranchise(v string) {
+	o.Franchise = v
+}
+
+// GetCreatedTimestamp returns the CreatedTimestamp field value
+func (o *User) GetCreatedTimestamp() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedTimestamp
+}
+
+// GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
+// and a boolean to check if the value has been set.
+func (o *User) GetCreatedTimestampOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedTimestamp, true
+}
+
+// SetCreatedTimestamp sets field value
+func (o *User) SetCreatedTimestamp(v string) {
+	o.CreatedTimestamp = v
+}
+
+// GetPlanType returns the PlanType field value
+func (o *User) GetPlanType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PlanType
+}
+
+// GetPlanTypeOk returns a tuple with the PlanType field value
+// and a boolean to check if the value has been set.
+func (o *User) GetPlanTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PlanType, true
+}
+
+// SetPlanType sets field value
+func (o *User) SetPlanType(v string) {
+	o.PlanType = v
+}
+
+// GetProvider returns the Provider field value
+func (o *User) GetProvider() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Provider
+}
+
+// GetProviderOk returns a tuple with the Provider field value
+// and a boolean to check if the value has been set.
+func (o *User) GetProviderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Provider, true
+}
+
+// SetProvider sets field value
+func (o *User) SetProvider(v string) {
+	o.Provider = v
+}
+
+// GetPermissions returns the Permissions field value if set, zero value otherwise.
+func (o *User) GetPermissions() UserPermissions {
+	if o == nil || IsNil(o.Permissions) {
+		var ret UserPermissions
+		return ret
+	}
+	return *o.Permissions
+}
+
+// GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetPermissionsOk() (*UserPermissions, bool) {
+	if o == nil || IsNil(o.Permissions) {
+		return nil, false
+	}
+	return o.Permissions, true
+}
+
+// HasPermissions returns a boolean if a field has been set.
+func (o *User) HasPermissions() bool {
+	if o != nil && !IsNil(o.Permissions) {
+		return true
+	}
+
+	return false
+}
+
+// SetPermissions gets a reference to the given UserPermissions and assigns it to the Permissions field.
+func (o *User) SetPermissions(v UserPermissions) {
+	o.Permissions = &v
+}
+
 // GetLimits returns the Limits field value if set, zero value otherwise.
 func (o *User) GetLimits() UserLimits {
 	if o == nil || IsNil(o.Limits) {
@@ -828,220 +1005,140 @@ func (o *User) SetLimits(v UserLimits) {
 	o.Limits = &v
 }
 
-// GetExcludeFromReports returns the ExcludeFromReports field value
-func (o *User) GetExcludeFromReports() float32 {
+// GetParentDelegates returns the ParentDelegates field value if set, zero value otherwise.
+func (o *User) GetParentDelegates() []string {
+	if o == nil || IsNil(o.ParentDelegates) {
+		var ret []string
+		return ret
+	}
+	return o.ParentDelegates
+}
+
+// GetParentDelegatesOk returns a tuple with the ParentDelegates field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetParentDelegatesOk() ([]string, bool) {
+	if o == nil || IsNil(o.ParentDelegates) {
+		return nil, false
+	}
+	return o.ParentDelegates, true
+}
+
+// HasParentDelegates returns a boolean if a field has been set.
+func (o *User) HasParentDelegates() bool {
+	if o != nil && !IsNil(o.ParentDelegates) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentDelegates gets a reference to the given []string and assigns it to the ParentDelegates field.
+func (o *User) SetParentDelegates(v []string) {
+	o.ParentDelegates = v
+}
+
+// GetChildDelegates returns the ChildDelegates field value if set, zero value otherwise.
+func (o *User) GetChildDelegates() []string {
+	if o == nil || IsNil(o.ChildDelegates) {
+		var ret []string
+		return ret
+	}
+	return o.ChildDelegates
+}
+
+// GetChildDelegatesOk returns a tuple with the ChildDelegates field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetChildDelegatesOk() ([]string, bool) {
+	if o == nil || IsNil(o.ChildDelegates) {
+		return nil, false
+	}
+	return o.ChildDelegates, true
+}
+
+// HasChildDelegates returns a boolean if a field has been set.
+func (o *User) HasChildDelegates() bool {
+	if o != nil && !IsNil(o.ChildDelegates) {
+		return true
+	}
+
+	return false
+}
+
+// SetChildDelegates gets a reference to the given []string and assigns it to the ChildDelegates field.
+func (o *User) SetChildDelegates(v []string) {
+	o.ChildDelegates = v
+}
+
+// GetIsSuspended returns the IsSuspended field value
+func (o *User) GetIsSuspended() bool {
 	if o == nil {
-		var ret float32
+		var ret bool
 		return ret
 	}
 
-	return o.ExcludeFromReports
+	return o.IsSuspended
 }
 
-// GetExcludeFromReportsOk returns a tuple with the ExcludeFromReports field value
+// GetIsSuspendedOk returns a tuple with the IsSuspended field value
 // and a boolean to check if the value has been set.
-func (o *User) GetExcludeFromReportsOk() (*float32, bool) {
+func (o *User) GetIsSuspendedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ExcludeFromReports, true
+	return &o.IsSuspended, true
 }
 
-// SetExcludeFromReports sets field value
-func (o *User) SetExcludeFromReports(v float32) {
-	o.ExcludeFromReports = v
+// SetIsSuspended sets field value
+func (o *User) SetIsSuspended(v bool) {
+	o.IsSuspended = v
 }
 
-// GetIsTestAccount returns the IsTestAccount field value
-func (o *User) GetIsTestAccount() float32 {
+// GetConfig returns the Config field value
+func (o *User) GetConfig() UserConfiguration {
 	if o == nil {
-		var ret float32
+		var ret UserConfiguration
 		return ret
 	}
 
-	return o.IsTestAccount
+	return o.Config
 }
 
-// GetIsTestAccountOk returns a tuple with the IsTestAccount field value
+// GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
-func (o *User) GetIsTestAccountOk() (*float32, bool) {
+func (o *User) GetConfigOk() (*UserConfiguration, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.IsTestAccount, true
+	return &o.Config, true
 }
 
-// SetIsTestAccount sets field value
-func (o *User) SetIsTestAccount(v float32) {
-	o.IsTestAccount = v
+// SetConfig sets field value
+func (o *User) SetConfig(v UserConfiguration) {
+	o.Config = v
 }
 
-// GetPlanType returns the PlanType field value
-func (o *User) GetPlanType() string {
+// GetMeta returns the Meta field value
+func (o *User) GetMeta() UserMeta {
 	if o == nil {
-		var ret string
+		var ret UserMeta
 		return ret
 	}
 
-	return o.PlanType
+	return o.Meta
 }
 
-// GetPlanTypeOk returns a tuple with the PlanType field value
+// GetMetaOk returns a tuple with the Meta field value
 // and a boolean to check if the value has been set.
-func (o *User) GetPlanTypeOk() (*string, bool) {
+func (o *User) GetMetaOk() (*UserMeta, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PlanType, true
+	return &o.Meta, true
 }
 
-// SetPlanType sets field value
-func (o *User) SetPlanType(v string) {
-	o.PlanType = v
-}
-
-// GetBrand returns the Brand field value
-func (o *User) GetBrand() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Brand
-}
-
-// GetBrandOk returns a tuple with the Brand field value
-// and a boolean to check if the value has been set.
-func (o *User) GetBrandOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Brand, true
-}
-
-// SetBrand sets field value
-func (o *User) SetBrand(v string) {
-	o.Brand = v
-}
-
-// GetIsBrandManager returns the IsBrandManager field value
-func (o *User) GetIsBrandManager() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.IsBrandManager
-}
-
-// GetIsBrandManagerOk returns a tuple with the IsBrandManager field value
-// and a boolean to check if the value has been set.
-func (o *User) GetIsBrandManagerOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsBrandManager, true
-}
-
-// SetIsBrandManager sets field value
-func (o *User) SetIsBrandManager(v float32) {
-	o.IsBrandManager = v
-}
-
-// GetIsDatastorePublisher returns the IsDatastorePublisher field value
-func (o *User) GetIsDatastorePublisher() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.IsDatastorePublisher
-}
-
-// GetIsDatastorePublisherOk returns a tuple with the IsDatastorePublisher field value
-// and a boolean to check if the value has been set.
-func (o *User) GetIsDatastorePublisherOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsDatastorePublisher, true
-}
-
-// SetIsDatastorePublisher sets field value
-func (o *User) SetIsDatastorePublisher(v float32) {
-	o.IsDatastorePublisher = v
-}
-
-// GetProvider returns the Provider field value
-func (o *User) GetProvider() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Provider
-}
-
-// GetProviderOk returns a tuple with the Provider field value
-// and a boolean to check if the value has been set.
-func (o *User) GetProviderOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Provider, true
-}
-
-// SetProvider sets field value
-func (o *User) SetProvider(v string) {
-	o.Provider = v
-}
-
-// GetArchived returns the Archived field value
-func (o *User) GetArchived() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Archived
-}
-
-// GetArchivedOk returns a tuple with the Archived field value
-// and a boolean to check if the value has been set.
-func (o *User) GetArchivedOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Archived, true
-}
-
-// SetArchived sets field value
-func (o *User) SetArchived(v float32) {
-	o.Archived = v
-}
-
-// GetAccountId returns the AccountId field value
-func (o *User) GetAccountId() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.AccountId
-}
-
-// GetAccountIdOk returns a tuple with the AccountId field value
-// and a boolean to check if the value has been set.
-func (o *User) GetAccountIdOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AccountId, true
-}
-
-// SetAccountId sets field value
-func (o *User) SetAccountId(v float32) {
-	o.AccountId = v
+// SetMeta sets field value
+func (o *User) SetMeta(v UserMeta) {
+	o.Meta = v
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
@@ -1086,55 +1183,62 @@ func (o User) MarshalJSON() ([]byte, error) {
 
 func (o User) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["revision"] = o.Revision
-	toSerialize["franchise"] = o.Franchise
 	toSerialize["displayName"] = o.DisplayName
-	toSerialize["email"] = o.Email
-	toSerialize["authenticatorMustChange"] = o.AuthenticatorMustChange
-	toSerialize["authenticatorCreatedTimestamp"] = o.AuthenticatorCreatedTimestamp
-	toSerialize["authenticatorEnabled"] = o.AuthenticatorEnabled
-	toSerialize["createdTimestamp"] = o.CreatedTimestamp
+	toSerialize["emailStatus"] = o.EmailStatus
+	toSerialize["language"] = o.Language
+	toSerialize["brand"] = o.Brand
+	toSerialize["isBrandManager"] = o.IsBrandManager
 	toSerialize["lastLoginTimestamp"] = o.LastLoginTimestamp
 	toSerialize["lastLoginType"] = o.LastLoginType
-	toSerialize["blocked"] = o.Blocked
-	toSerialize["emailStatus"] = o.EmailStatus
+	toSerialize["isBlocked"] = o.IsBlocked
 	toSerialize["passwordChangeRequired"] = o.PasswordChangeRequired
 	toSerialize["accessLevel"] = o.AccessLevel
 	toSerialize["isBillable"] = o.IsBillable
 	toSerialize["isTestingMode"] = o.IsTestingMode
-	toSerialize["isSuspended"] = o.IsSuspended
-	toSerialize["language"] = o.Language
 	if !IsNil(o.InfrastructureIdDefault) {
 		toSerialize["infrastructureIdDefault"] = o.InfrastructureIdDefault
 	}
-	if !IsNil(o.GuiSettings) {
-		toSerialize["guiSettings"] = o.GuiSettings
-	}
+	toSerialize["authenticatorMustChange"] = o.AuthenticatorMustChange
+	toSerialize["authenticatorCreatedTimestamp"] = o.AuthenticatorCreatedTimestamp
+	toSerialize["authenticatorEnabled"] = o.AuthenticatorEnabled
 	if !IsNil(o.PromotionTags) {
 		toSerialize["promotionTags"] = o.PromotionTags
 	}
 	if !IsNil(o.ExperimentalTags) {
 		toSerialize["experimentalTags"] = o.ExperimentalTags
 	}
-	if !IsNil(o.Permissions) {
-		toSerialize["permissions"] = o.Permissions
-	}
 	if !IsNil(o.ExternalIds) {
 		toSerialize["externalIds"] = o.ExternalIds
+	}
+	toSerialize["excludeFromReports"] = o.ExcludeFromReports
+	toSerialize["isTestAccount"] = o.IsTestAccount
+	toSerialize["isArchived"] = o.IsArchived
+	toSerialize["isDatastorePublisher"] = o.IsDatastorePublisher
+	if !IsNil(o.AccountId) {
+		toSerialize["accountId"] = o.AccountId
+	}
+	toSerialize["id"] = o.Id
+	toSerialize["revision"] = o.Revision
+	toSerialize["email"] = o.Email
+	toSerialize["franchise"] = o.Franchise
+	toSerialize["createdTimestamp"] = o.CreatedTimestamp
+	toSerialize["planType"] = o.PlanType
+	toSerialize["provider"] = o.Provider
+	if !IsNil(o.Permissions) {
+		toSerialize["permissions"] = o.Permissions
 	}
 	if !IsNil(o.Limits) {
 		toSerialize["limits"] = o.Limits
 	}
-	toSerialize["excludeFromReports"] = o.ExcludeFromReports
-	toSerialize["isTestAccount"] = o.IsTestAccount
-	toSerialize["planType"] = o.PlanType
-	toSerialize["brand"] = o.Brand
-	toSerialize["isBrandManager"] = o.IsBrandManager
-	toSerialize["isDatastorePublisher"] = o.IsDatastorePublisher
-	toSerialize["provider"] = o.Provider
-	toSerialize["archived"] = o.Archived
-	toSerialize["accountId"] = o.AccountId
+	if !IsNil(o.ParentDelegates) {
+		toSerialize["parentDelegates"] = o.ParentDelegates
+	}
+	if !IsNil(o.ChildDelegates) {
+		toSerialize["childDelegates"] = o.ChildDelegates
+	}
+	toSerialize["isSuspended"] = o.IsSuspended
+	toSerialize["config"] = o.Config
+	toSerialize["meta"] = o.Meta
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -1151,34 +1255,35 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
-		"revision",
-		"franchise",
 		"displayName",
-		"email",
-		"authenticatorMustChange",
-		"authenticatorCreatedTimestamp",
-		"authenticatorEnabled",
-		"createdTimestamp",
+		"emailStatus",
+		"language",
+		"brand",
+		"isBrandManager",
 		"lastLoginTimestamp",
 		"lastLoginType",
-		"blocked",
-		"emailStatus",
+		"isBlocked",
 		"passwordChangeRequired",
 		"accessLevel",
 		"isBillable",
 		"isTestingMode",
-		"isSuspended",
-		"language",
+		"authenticatorMustChange",
+		"authenticatorCreatedTimestamp",
+		"authenticatorEnabled",
 		"excludeFromReports",
 		"isTestAccount",
-		"planType",
-		"brand",
-		"isBrandManager",
+		"isArchived",
 		"isDatastorePublisher",
+		"id",
+		"revision",
+		"email",
+		"franchise",
+		"createdTimestamp",
+		"planType",
 		"provider",
-		"archived",
-		"accountId",
+		"isSuspended",
+		"config",
+		"meta",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -1208,41 +1313,44 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "revision")
-		delete(additionalProperties, "franchise")
 		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "email")
-		delete(additionalProperties, "authenticatorMustChange")
-		delete(additionalProperties, "authenticatorCreatedTimestamp")
-		delete(additionalProperties, "authenticatorEnabled")
-		delete(additionalProperties, "createdTimestamp")
+		delete(additionalProperties, "emailStatus")
+		delete(additionalProperties, "language")
+		delete(additionalProperties, "brand")
+		delete(additionalProperties, "isBrandManager")
 		delete(additionalProperties, "lastLoginTimestamp")
 		delete(additionalProperties, "lastLoginType")
-		delete(additionalProperties, "blocked")
-		delete(additionalProperties, "emailStatus")
+		delete(additionalProperties, "isBlocked")
 		delete(additionalProperties, "passwordChangeRequired")
 		delete(additionalProperties, "accessLevel")
 		delete(additionalProperties, "isBillable")
 		delete(additionalProperties, "isTestingMode")
-		delete(additionalProperties, "isSuspended")
-		delete(additionalProperties, "language")
 		delete(additionalProperties, "infrastructureIdDefault")
-		delete(additionalProperties, "guiSettings")
+		delete(additionalProperties, "authenticatorMustChange")
+		delete(additionalProperties, "authenticatorCreatedTimestamp")
+		delete(additionalProperties, "authenticatorEnabled")
 		delete(additionalProperties, "promotionTags")
 		delete(additionalProperties, "experimentalTags")
-		delete(additionalProperties, "permissions")
 		delete(additionalProperties, "externalIds")
-		delete(additionalProperties, "limits")
 		delete(additionalProperties, "excludeFromReports")
 		delete(additionalProperties, "isTestAccount")
-		delete(additionalProperties, "planType")
-		delete(additionalProperties, "brand")
-		delete(additionalProperties, "isBrandManager")
+		delete(additionalProperties, "isArchived")
 		delete(additionalProperties, "isDatastorePublisher")
-		delete(additionalProperties, "provider")
-		delete(additionalProperties, "archived")
 		delete(additionalProperties, "accountId")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "revision")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "franchise")
+		delete(additionalProperties, "createdTimestamp")
+		delete(additionalProperties, "planType")
+		delete(additionalProperties, "provider")
+		delete(additionalProperties, "permissions")
+		delete(additionalProperties, "limits")
+		delete(additionalProperties, "parentDelegates")
+		delete(additionalProperties, "childDelegates")
+		delete(additionalProperties, "isSuspended")
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "meta")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

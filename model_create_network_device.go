@@ -35,8 +35,6 @@ type CreateNetworkDevice struct {
 	Driver NetworkDeviceDriver `json:"driver"`
 	// The physical or logical position of the network device in the network topology.
 	Position string `json:"position"`
-	// ID of the Top-of-Rack (TOR) switch that this network device is linked to. Used for establishing hierarchical relationships between network devices.
-	TorLinkedId NullableFloat32 `json:"torLinkedId,omitempty"`
 	// Indicates if this network device acts as a gateway for external network traffic
 	IsGateway *bool `json:"isGateway,omitempty"`
 	// Indicates if syslog logging is enabled for this network device
@@ -335,48 +333,6 @@ func (o *CreateNetworkDevice) GetPositionOk() (*string, bool) {
 // SetPosition sets field value
 func (o *CreateNetworkDevice) SetPosition(v string) {
 	o.Position = v
-}
-
-// GetTorLinkedId returns the TorLinkedId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateNetworkDevice) GetTorLinkedId() float32 {
-	if o == nil || IsNil(o.TorLinkedId.Get()) {
-		var ret float32
-		return ret
-	}
-	return *o.TorLinkedId.Get()
-}
-
-// GetTorLinkedIdOk returns a tuple with the TorLinkedId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateNetworkDevice) GetTorLinkedIdOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TorLinkedId.Get(), o.TorLinkedId.IsSet()
-}
-
-// HasTorLinkedId returns a boolean if a field has been set.
-func (o *CreateNetworkDevice) HasTorLinkedId() bool {
-	if o != nil && o.TorLinkedId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTorLinkedId gets a reference to the given NullableFloat32 and assigns it to the TorLinkedId field.
-func (o *CreateNetworkDevice) SetTorLinkedId(v float32) {
-	o.TorLinkedId.Set(&v)
-}
-// SetTorLinkedIdNil sets the value for TorLinkedId to be an explicit nil
-func (o *CreateNetworkDevice) SetTorLinkedIdNil() {
-	o.TorLinkedId.Set(nil)
-}
-
-// UnsetTorLinkedId ensures that no value is present for TorLinkedId, not even an explicit nil
-func (o *CreateNetworkDevice) UnsetTorLinkedId() {
-	o.TorLinkedId.Unset()
 }
 
 // GetIsGateway returns the IsGateway field value if set, zero value otherwise.
@@ -1545,9 +1501,6 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["driver"] = o.Driver
 	toSerialize["position"] = o.Position
-	if o.TorLinkedId.IsSet() {
-		toSerialize["torLinkedId"] = o.TorLinkedId.Get()
-	}
 	if !IsNil(o.IsGateway) {
 		toSerialize["isGateway"] = o.IsGateway
 	}
@@ -1686,7 +1639,6 @@ func (o *CreateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "chassisIdentifier")
 		delete(additionalProperties, "driver")
 		delete(additionalProperties, "position")
-		delete(additionalProperties, "torLinkedId")
 		delete(additionalProperties, "isGateway")
 		delete(additionalProperties, "syslogEnabled")
 		delete(additionalProperties, "isStorageSwitch")

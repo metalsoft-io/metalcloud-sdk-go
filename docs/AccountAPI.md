@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AccountControllerGetUserConfiguration**](AccountAPI.md#AccountControllerGetUserConfiguration) | **Get** /api/v2/accounts/{accountId}/config | Get account configuration by ID
 [**ArchiveAccount**](AccountAPI.md#ArchiveAccount) | **Post** /api/v2/accounts/{accountId}/actions/archive | Archive account
 [**CreateAccount**](AccountAPI.md#CreateAccount) | **Post** /api/v2/accounts | Create account
 [**GetAccount**](AccountAPI.md#GetAccount) | **Get** /api/v2/accounts/{accountId} | Get account by id
@@ -11,9 +12,80 @@ Method | HTTP request | Description
 [**GetAccountUsers**](AccountAPI.md#GetAccountUsers) | **Get** /api/v2/accounts/{accountId}/users | Get users for account
 [**GetAccounts**](AccountAPI.md#GetAccounts) | **Get** /api/v2/accounts | Get all accounts
 [**UnarchiveAccount**](AccountAPI.md#UnarchiveAccount) | **Post** /api/v2/accounts/{accountId}/actions/unarchive | Unarchive account
-[**UpdateAccount**](AccountAPI.md#UpdateAccount) | **Patch** /api/v2/accounts/{accountId} | Update account
-[**UpdateAccountLimits**](AccountAPI.md#UpdateAccountLimits) | **Patch** /api/v2/accounts/{accountId}/limits | Update account limits
+[**UpdateAccountConfig**](AccountAPI.md#UpdateAccountConfig) | **Patch** /api/v2/accounts/{accountId}/config | Update account configuration
+[**UpdateAccountLimits**](AccountAPI.md#UpdateAccountLimits) | **Patch** /api/v2/accounts/{accountId}/actions/change-limits | Update account limits
 
+
+
+## AccountControllerGetUserConfiguration
+
+> AccountConfig AccountControllerGetUserConfiguration(ctx, userId, accountId).Execute()
+
+Get account configuration by ID
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	accountId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AccountAPI.AccountControllerGetUserConfiguration(context.Background(), userId, accountId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.AccountControllerGetUserConfiguration``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AccountControllerGetUserConfiguration`: AccountConfig
+	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.AccountControllerGetUserConfiguration`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+**accountId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAccountControllerGetUserConfigurationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**AccountConfig**](AccountConfig.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## ArchiveAccount
@@ -546,11 +618,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateAccount
+## UpdateAccountConfig
 
-> Account UpdateAccount(ctx, accountId).UpdateAccount(updateAccount).IfMatch(ifMatch).Execute()
+> AccountConfig UpdateAccountConfig(ctx, accountId).UpdateAccount(updateAccount).IfMatch(ifMatch).Execute()
 
-Update account
+Update account configuration
 
 
 
@@ -568,18 +640,18 @@ import (
 
 func main() {
 	accountId := float32(8.14) // float32 | 
-	updateAccount := *openapiclient.NewUpdateAccount("Name_example") // UpdateAccount | The account updates
+	updateAccount := *openapiclient.NewUpdateAccount() // UpdateAccount | The account updates
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountAPI.UpdateAccount(context.Background(), accountId).UpdateAccount(updateAccount).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.AccountAPI.UpdateAccountConfig(context.Background(), accountId).UpdateAccount(updateAccount).IfMatch(ifMatch).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.UpdateAccount``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.UpdateAccountConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateAccount`: Account
-	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.UpdateAccount`: %v\n", resp)
+	// response from `UpdateAccountConfig`: AccountConfig
+	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.UpdateAccountConfig`: %v\n", resp)
 }
 ```
 
@@ -593,7 +665,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateAccountRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateAccountConfigRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -604,7 +676,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Account**](Account.md)
+[**AccountConfig**](AccountConfig.md)
 
 ### Authorization
 

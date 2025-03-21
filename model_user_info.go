@@ -21,26 +21,26 @@ var _ MappedNullable = &UserInfo{}
 
 // UserInfo struct for UserInfo
 type UserInfo struct {
-	// User ID
-	Id string `json:"id"`
-	// Revision number
-	Revision string `json:"revision"`
 	// The display name of the user
 	DisplayName string `json:"displayName"`
-	// The email address of the user
-	Email string `json:"email"`
-	// The timestamp when the user was created
-	CreatedTimestamp string `json:"createdTimestamp"`
+	// The language of the user
+	Language string `json:"language"`
 	// The timestamp when the user logged in last
 	LastLoginTimestamp string `json:"lastLoginTimestamp"`
 	// The access level of the user
 	AccessLevel string `json:"accessLevel"`
-	// The language of the user
-	Language string `json:"language"`
 	// Whether the user is a archived
-	Archived float32 `json:"archived"`
+	IsArchived bool `json:"isArchived"`
 	// The account ID of the user
-	AccountId float32 `json:"accountId"`
+	AccountId *float32 `json:"accountId,omitempty"`
+	// User ID
+	Id float32 `json:"id"`
+	// Revision of the user
+	Revision float32 `json:"revision"`
+	// The email address of the user
+	Email string `json:"email"`
+	// The timestamp when the user was created
+	CreatedTimestamp string `json:"createdTimestamp"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -52,18 +52,17 @@ type _UserInfo UserInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserInfo(id string, revision string, displayName string, email string, createdTimestamp string, lastLoginTimestamp string, accessLevel string, language string, archived float32, accountId float32) *UserInfo {
+func NewUserInfo(displayName string, language string, lastLoginTimestamp string, accessLevel string, isArchived bool, id float32, revision float32, email string, createdTimestamp string) *UserInfo {
 	this := UserInfo{}
-	this.Id = id
-	this.Revision = revision
 	this.DisplayName = displayName
-	this.Email = email
-	this.CreatedTimestamp = createdTimestamp
+	this.Language = language
 	this.LastLoginTimestamp = lastLoginTimestamp
 	this.AccessLevel = accessLevel
-	this.Language = language
-	this.Archived = archived
-	this.AccountId = accountId
+	this.IsArchived = isArchived
+	this.Id = id
+	this.Revision = revision
+	this.Email = email
+	this.CreatedTimestamp = createdTimestamp
 	return &this
 }
 
@@ -73,54 +72,6 @@ func NewUserInfo(id string, revision string, displayName string, email string, c
 func NewUserInfoWithDefaults() *UserInfo {
 	this := UserInfo{}
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *UserInfo) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *UserInfo) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *UserInfo) SetId(v string) {
-	o.Id = v
-}
-
-// GetRevision returns the Revision field value
-func (o *UserInfo) GetRevision() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Revision
-}
-
-// GetRevisionOk returns a tuple with the Revision field value
-// and a boolean to check if the value has been set.
-func (o *UserInfo) GetRevisionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Revision, true
-}
-
-// SetRevision sets field value
-func (o *UserInfo) SetRevision(v string) {
-	o.Revision = v
 }
 
 // GetDisplayName returns the DisplayName field value
@@ -147,52 +98,28 @@ func (o *UserInfo) SetDisplayName(v string) {
 	o.DisplayName = v
 }
 
-// GetEmail returns the Email field value
-func (o *UserInfo) GetEmail() string {
+// GetLanguage returns the Language field value
+func (o *UserInfo) GetLanguage() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Email
+	return o.Language
 }
 
-// GetEmailOk returns a tuple with the Email field value
+// GetLanguageOk returns a tuple with the Language field value
 // and a boolean to check if the value has been set.
-func (o *UserInfo) GetEmailOk() (*string, bool) {
+func (o *UserInfo) GetLanguageOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Email, true
+	return &o.Language, true
 }
 
-// SetEmail sets field value
-func (o *UserInfo) SetEmail(v string) {
-	o.Email = v
-}
-
-// GetCreatedTimestamp returns the CreatedTimestamp field value
-func (o *UserInfo) GetCreatedTimestamp() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CreatedTimestamp
-}
-
-// GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
-// and a boolean to check if the value has been set.
-func (o *UserInfo) GetCreatedTimestampOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CreatedTimestamp, true
-}
-
-// SetCreatedTimestamp sets field value
-func (o *UserInfo) SetCreatedTimestamp(v string) {
-	o.CreatedTimestamp = v
+// SetLanguage sets field value
+func (o *UserInfo) SetLanguage(v string) {
+	o.Language = v
 }
 
 // GetLastLoginTimestamp returns the LastLoginTimestamp field value
@@ -243,76 +170,156 @@ func (o *UserInfo) SetAccessLevel(v string) {
 	o.AccessLevel = v
 }
 
-// GetLanguage returns the Language field value
-func (o *UserInfo) GetLanguage() string {
+// GetIsArchived returns the IsArchived field value
+func (o *UserInfo) GetIsArchived() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsArchived
+}
+
+// GetIsArchivedOk returns a tuple with the IsArchived field value
+// and a boolean to check if the value has been set.
+func (o *UserInfo) GetIsArchivedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsArchived, true
+}
+
+// SetIsArchived sets field value
+func (o *UserInfo) SetIsArchived(v bool) {
+	o.IsArchived = v
+}
+
+// GetAccountId returns the AccountId field value if set, zero value otherwise.
+func (o *UserInfo) GetAccountId() float32 {
+	if o == nil || IsNil(o.AccountId) {
+		var ret float32
+		return ret
+	}
+	return *o.AccountId
+}
+
+// GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserInfo) GetAccountIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.AccountId) {
+		return nil, false
+	}
+	return o.AccountId, true
+}
+
+// HasAccountId returns a boolean if a field has been set.
+func (o *UserInfo) HasAccountId() bool {
+	if o != nil && !IsNil(o.AccountId) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountId gets a reference to the given float32 and assigns it to the AccountId field.
+func (o *UserInfo) SetAccountId(v float32) {
+	o.AccountId = &v
+}
+
+// GetId returns the Id field value
+func (o *UserInfo) GetId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *UserInfo) GetIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *UserInfo) SetId(v float32) {
+	o.Id = v
+}
+
+// GetRevision returns the Revision field value
+func (o *UserInfo) GetRevision() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Revision
+}
+
+// GetRevisionOk returns a tuple with the Revision field value
+// and a boolean to check if the value has been set.
+func (o *UserInfo) GetRevisionOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Revision, true
+}
+
+// SetRevision sets field value
+func (o *UserInfo) SetRevision(v float32) {
+	o.Revision = v
+}
+
+// GetEmail returns the Email field value
+func (o *UserInfo) GetEmail() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Language
+	return o.Email
 }
 
-// GetLanguageOk returns a tuple with the Language field value
+// GetEmailOk returns a tuple with the Email field value
 // and a boolean to check if the value has been set.
-func (o *UserInfo) GetLanguageOk() (*string, bool) {
+func (o *UserInfo) GetEmailOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Language, true
+	return &o.Email, true
 }
 
-// SetLanguage sets field value
-func (o *UserInfo) SetLanguage(v string) {
-	o.Language = v
+// SetEmail sets field value
+func (o *UserInfo) SetEmail(v string) {
+	o.Email = v
 }
 
-// GetArchived returns the Archived field value
-func (o *UserInfo) GetArchived() float32 {
+// GetCreatedTimestamp returns the CreatedTimestamp field value
+func (o *UserInfo) GetCreatedTimestamp() string {
 	if o == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 
-	return o.Archived
+	return o.CreatedTimestamp
 }
 
-// GetArchivedOk returns a tuple with the Archived field value
+// GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *UserInfo) GetArchivedOk() (*float32, bool) {
+func (o *UserInfo) GetCreatedTimestampOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Archived, true
+	return &o.CreatedTimestamp, true
 }
 
-// SetArchived sets field value
-func (o *UserInfo) SetArchived(v float32) {
-	o.Archived = v
-}
-
-// GetAccountId returns the AccountId field value
-func (o *UserInfo) GetAccountId() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.AccountId
-}
-
-// GetAccountIdOk returns a tuple with the AccountId field value
-// and a boolean to check if the value has been set.
-func (o *UserInfo) GetAccountIdOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AccountId, true
-}
-
-// SetAccountId sets field value
-func (o *UserInfo) SetAccountId(v float32) {
-	o.AccountId = v
+// SetCreatedTimestamp sets field value
+func (o *UserInfo) SetCreatedTimestamp(v string) {
+	o.CreatedTimestamp = v
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
@@ -357,16 +364,18 @@ func (o UserInfo) MarshalJSON() ([]byte, error) {
 
 func (o UserInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["revision"] = o.Revision
 	toSerialize["displayName"] = o.DisplayName
-	toSerialize["email"] = o.Email
-	toSerialize["createdTimestamp"] = o.CreatedTimestamp
+	toSerialize["language"] = o.Language
 	toSerialize["lastLoginTimestamp"] = o.LastLoginTimestamp
 	toSerialize["accessLevel"] = o.AccessLevel
-	toSerialize["language"] = o.Language
-	toSerialize["archived"] = o.Archived
-	toSerialize["accountId"] = o.AccountId
+	toSerialize["isArchived"] = o.IsArchived
+	if !IsNil(o.AccountId) {
+		toSerialize["accountId"] = o.AccountId
+	}
+	toSerialize["id"] = o.Id
+	toSerialize["revision"] = o.Revision
+	toSerialize["email"] = o.Email
+	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -383,16 +392,15 @@ func (o *UserInfo) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
-		"revision",
 		"displayName",
-		"email",
-		"createdTimestamp",
+		"language",
 		"lastLoginTimestamp",
 		"accessLevel",
-		"language",
-		"archived",
-		"accountId",
+		"isArchived",
+		"id",
+		"revision",
+		"email",
+		"createdTimestamp",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -422,16 +430,16 @@ func (o *UserInfo) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "revision")
 		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "email")
-		delete(additionalProperties, "createdTimestamp")
+		delete(additionalProperties, "language")
 		delete(additionalProperties, "lastLoginTimestamp")
 		delete(additionalProperties, "accessLevel")
-		delete(additionalProperties, "language")
-		delete(additionalProperties, "archived")
+		delete(additionalProperties, "isArchived")
 		delete(additionalProperties, "accountId")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "revision")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

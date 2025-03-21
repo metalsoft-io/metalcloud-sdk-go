@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | User ID | 
-**Revision** | **string** | Revision number | 
 **DisplayName** | **string** | The display name of the user | 
-**Email** | **string** | The email address of the user | 
-**CreatedTimestamp** | **string** | The timestamp when the user was created | 
+**Language** | **string** | The language of the user | 
 **LastLoginTimestamp** | **string** | The timestamp when the user logged in last | 
 **AccessLevel** | **string** | The access level of the user | 
-**Language** | **string** | The language of the user | 
-**Archived** | **float32** | Whether the user is a archived | 
-**AccountId** | **float32** | The account ID of the user | 
+**IsArchived** | **bool** | Whether the user is a archived | 
+**AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
+**Id** | **float32** | User ID | 
+**Revision** | **float32** | Revision of the user | 
+**Email** | **string** | The email address of the user | 
+**CreatedTimestamp** | **string** | The timestamp when the user was created | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewUserInfo
 
-`func NewUserInfo(id string, revision string, displayName string, email string, createdTimestamp string, lastLoginTimestamp string, accessLevel string, language string, archived float32, accountId float32, ) *UserInfo`
+`func NewUserInfo(displayName string, language string, lastLoginTimestamp string, accessLevel string, isArchived bool, id float32, revision float32, email string, createdTimestamp string, ) *UserInfo`
 
 NewUserInfo instantiates a new UserInfo object
 This constructor will assign default values to properties that have it defined,
@@ -34,46 +34,6 @@ will change when the set of required properties is changed
 NewUserInfoWithDefaults instantiates a new UserInfo object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *UserInfo) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *UserInfo) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *UserInfo) SetId(v string)`
-
-SetId sets Id field to given value.
-
-
-### GetRevision
-
-`func (o *UserInfo) GetRevision() string`
-
-GetRevision returns the Revision field if non-nil, zero value otherwise.
-
-### GetRevisionOk
-
-`func (o *UserInfo) GetRevisionOk() (*string, bool)`
-
-GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRevision
-
-`func (o *UserInfo) SetRevision(v string)`
-
-SetRevision sets Revision field to given value.
-
 
 ### GetDisplayName
 
@@ -95,44 +55,24 @@ and a boolean to check if the value has been set.
 SetDisplayName sets DisplayName field to given value.
 
 
-### GetEmail
+### GetLanguage
 
-`func (o *UserInfo) GetEmail() string`
+`func (o *UserInfo) GetLanguage() string`
 
-GetEmail returns the Email field if non-nil, zero value otherwise.
+GetLanguage returns the Language field if non-nil, zero value otherwise.
 
-### GetEmailOk
+### GetLanguageOk
 
-`func (o *UserInfo) GetEmailOk() (*string, bool)`
+`func (o *UserInfo) GetLanguageOk() (*string, bool)`
 
-GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
+GetLanguageOk returns a tuple with the Language field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEmail
+### SetLanguage
 
-`func (o *UserInfo) SetEmail(v string)`
+`func (o *UserInfo) SetLanguage(v string)`
 
-SetEmail sets Email field to given value.
-
-
-### GetCreatedTimestamp
-
-`func (o *UserInfo) GetCreatedTimestamp() string`
-
-GetCreatedTimestamp returns the CreatedTimestamp field if non-nil, zero value otherwise.
-
-### GetCreatedTimestampOk
-
-`func (o *UserInfo) GetCreatedTimestampOk() (*string, bool)`
-
-GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedTimestamp
-
-`func (o *UserInfo) SetCreatedTimestamp(v string)`
-
-SetCreatedTimestamp sets CreatedTimestamp field to given value.
+SetLanguage sets Language field to given value.
 
 
 ### GetLastLoginTimestamp
@@ -175,44 +115,24 @@ and a boolean to check if the value has been set.
 SetAccessLevel sets AccessLevel field to given value.
 
 
-### GetLanguage
+### GetIsArchived
 
-`func (o *UserInfo) GetLanguage() string`
+`func (o *UserInfo) GetIsArchived() bool`
 
-GetLanguage returns the Language field if non-nil, zero value otherwise.
+GetIsArchived returns the IsArchived field if non-nil, zero value otherwise.
 
-### GetLanguageOk
+### GetIsArchivedOk
 
-`func (o *UserInfo) GetLanguageOk() (*string, bool)`
+`func (o *UserInfo) GetIsArchivedOk() (*bool, bool)`
 
-GetLanguageOk returns a tuple with the Language field if it's non-nil, zero value otherwise
+GetIsArchivedOk returns a tuple with the IsArchived field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLanguage
+### SetIsArchived
 
-`func (o *UserInfo) SetLanguage(v string)`
+`func (o *UserInfo) SetIsArchived(v bool)`
 
-SetLanguage sets Language field to given value.
-
-
-### GetArchived
-
-`func (o *UserInfo) GetArchived() float32`
-
-GetArchived returns the Archived field if non-nil, zero value otherwise.
-
-### GetArchivedOk
-
-`func (o *UserInfo) GetArchivedOk() (*float32, bool)`
-
-GetArchivedOk returns a tuple with the Archived field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetArchived
-
-`func (o *UserInfo) SetArchived(v float32)`
-
-SetArchived sets Archived field to given value.
+SetIsArchived sets IsArchived field to given value.
 
 
 ### GetAccountId
@@ -233,6 +153,91 @@ and a boolean to check if the value has been set.
 `func (o *UserInfo) SetAccountId(v float32)`
 
 SetAccountId sets AccountId field to given value.
+
+### HasAccountId
+
+`func (o *UserInfo) HasAccountId() bool`
+
+HasAccountId returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *UserInfo) GetId() float32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *UserInfo) GetIdOk() (*float32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *UserInfo) SetId(v float32)`
+
+SetId sets Id field to given value.
+
+
+### GetRevision
+
+`func (o *UserInfo) GetRevision() float32`
+
+GetRevision returns the Revision field if non-nil, zero value otherwise.
+
+### GetRevisionOk
+
+`func (o *UserInfo) GetRevisionOk() (*float32, bool)`
+
+GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevision
+
+`func (o *UserInfo) SetRevision(v float32)`
+
+SetRevision sets Revision field to given value.
+
+
+### GetEmail
+
+`func (o *UserInfo) GetEmail() string`
+
+GetEmail returns the Email field if non-nil, zero value otherwise.
+
+### GetEmailOk
+
+`func (o *UserInfo) GetEmailOk() (*string, bool)`
+
+GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmail
+
+`func (o *UserInfo) SetEmail(v string)`
+
+SetEmail sets Email field to given value.
+
+
+### GetCreatedTimestamp
+
+`func (o *UserInfo) GetCreatedTimestamp() string`
+
+GetCreatedTimestamp returns the CreatedTimestamp field if non-nil, zero value otherwise.
+
+### GetCreatedTimestampOk
+
+`func (o *UserInfo) GetCreatedTimestampOk() (*string, bool)`
+
+GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedTimestamp
+
+`func (o *UserInfo) SetCreatedTimestamp(v string)`
+
+SetCreatedTimestamp sets CreatedTimestamp field to given value.
 
 
 ### GetLinks

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The server instance interface ID. | [optional] 
-**Revision** | **float32** | Revision number | 
-**Label** | **string** | The server instance interface label. | 
-**Subdomain** | Pointer to **string** | Subdomain of the Server Group. | [optional] 
-**SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Server Group. | [optional] 
-**DnsSubdomainId** | Pointer to **int32** | Id of the DNS subdomain for the Server Group. | [optional] 
-**DnsSubdomainPermanentId** | Pointer to **int32** | Id of the permanent DNS subdomain for the Server Group. | [optional] 
-**CreatedTimestamp** | **string** | Timestamp of the Server Instance creation. | 
-**UpdatedTimestamp** | **string** | Timestamp of the latest update for the Server Instance. | 
+**Id** | **int32** | The Product Instance ID. | 
+**Revision** | **int32** | Revision number | 
+**Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
+**CreatedTimestamp** | **string** | Timestamp of the Product Instance creation. | 
+**UpdatedTimestamp** | **string** | Timestamp of the latest update of the Product Instance. | 
+**Subdomain** | Pointer to **string** | Subdomain of the Product Instance. | [optional] 
+**SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Product Instance. | [optional] 
+**DnsSubdomainId** | Pointer to **int32** | Id of the DNS subdomain for the Product Instance | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **int32** | Id of the permanent DNS subdomain for the Product Instance | [optional] 
 **Meta** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) | GUI settings in JSON format. | [optional] 
 **InfrastructureId** | **int32** |  | 
 **InstanceId** | **int32** |  | 
@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceInterface
 
-`func NewServerInstanceInterface(revision float32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceId int32, index int32, capacityMbps int32, dirtyBit bool, serviceStatus string, ) *ServerInstanceInterface`
+`func NewServerInstanceInterface(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceId int32, index int32, capacityMbps int32, dirtyBit bool, serviceStatus string, ) *ServerInstanceInterface`
 
 NewServerInstanceInterface instantiates a new ServerInstanceInterface object
 This constructor will assign default values to properties that have it defined,
@@ -67,28 +67,23 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *ServerInstanceInterface) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetRevision
 
-`func (o *ServerInstanceInterface) GetRevision() float32`
+`func (o *ServerInstanceInterface) GetRevision() int32`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *ServerInstanceInterface) GetRevisionOk() (*float32, bool)`
+`func (o *ServerInstanceInterface) GetRevisionOk() (*int32, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *ServerInstanceInterface) SetRevision(v float32)`
+`func (o *ServerInstanceInterface) SetRevision(v int32)`
 
 SetRevision sets Revision field to given value.
 
@@ -111,6 +106,46 @@ and a boolean to check if the value has been set.
 `func (o *ServerInstanceInterface) SetLabel(v string)`
 
 SetLabel sets Label field to given value.
+
+
+### GetCreatedTimestamp
+
+`func (o *ServerInstanceInterface) GetCreatedTimestamp() string`
+
+GetCreatedTimestamp returns the CreatedTimestamp field if non-nil, zero value otherwise.
+
+### GetCreatedTimestampOk
+
+`func (o *ServerInstanceInterface) GetCreatedTimestampOk() (*string, bool)`
+
+GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedTimestamp
+
+`func (o *ServerInstanceInterface) SetCreatedTimestamp(v string)`
+
+SetCreatedTimestamp sets CreatedTimestamp field to given value.
+
+
+### GetUpdatedTimestamp
+
+`func (o *ServerInstanceInterface) GetUpdatedTimestamp() string`
+
+GetUpdatedTimestamp returns the UpdatedTimestamp field if non-nil, zero value otherwise.
+
+### GetUpdatedTimestampOk
+
+`func (o *ServerInstanceInterface) GetUpdatedTimestampOk() (*string, bool)`
+
+GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedTimestamp
+
+`func (o *ServerInstanceInterface) SetUpdatedTimestamp(v string)`
+
+SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
 
 ### GetSubdomain
@@ -212,46 +247,6 @@ SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 `func (o *ServerInstanceInterface) HasDnsSubdomainPermanentId() bool`
 
 HasDnsSubdomainPermanentId returns a boolean if a field has been set.
-
-### GetCreatedTimestamp
-
-`func (o *ServerInstanceInterface) GetCreatedTimestamp() string`
-
-GetCreatedTimestamp returns the CreatedTimestamp field if non-nil, zero value otherwise.
-
-### GetCreatedTimestampOk
-
-`func (o *ServerInstanceInterface) GetCreatedTimestampOk() (*string, bool)`
-
-GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedTimestamp
-
-`func (o *ServerInstanceInterface) SetCreatedTimestamp(v string)`
-
-SetCreatedTimestamp sets CreatedTimestamp field to given value.
-
-
-### GetUpdatedTimestamp
-
-`func (o *ServerInstanceInterface) GetUpdatedTimestamp() string`
-
-GetUpdatedTimestamp returns the UpdatedTimestamp field if non-nil, zero value otherwise.
-
-### GetUpdatedTimestampOk
-
-`func (o *ServerInstanceInterface) GetUpdatedTimestampOk() (*string, bool)`
-
-GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedTimestamp
-
-`func (o *ServerInstanceInterface) SetUpdatedTimestamp(v string)`
-
-SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
-
 
 ### GetMeta
 

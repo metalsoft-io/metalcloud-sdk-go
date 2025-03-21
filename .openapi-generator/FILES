@@ -55,6 +55,7 @@ docs/AIGenerateResponse.md
 docs/Account.md
 docs/AccountAPI.md
 docs/AccountAddress.md
+docs/AccountConfig.md
 docs/AccountLimits.md
 docs/AccountPaginatedList.md
 docs/AddUserToInfrastructure.md
@@ -86,6 +87,7 @@ docs/BucketMeta.md
 docs/BucketPaginatedList.md
 docs/CatalogUpdateType.md
 docs/ChangeUserAccount.md
+docs/ChangeUserEmail.md
 docs/ConfigurationAPI.md
 docs/ControllerPolicy.md
 docs/CreateAccount.md
@@ -99,6 +101,8 @@ docs/CreateFirmwareBaseline.md
 docs/CreateFirmwareBinary.md
 docs/CreateFirmwareCatalog.md
 docs/CreateGroupDrive.md
+docs/CreateLogicalNetworkDto.md
+docs/CreateLogicalNetworkProfileDto.md
 docs/CreateNetwork.md
 docs/CreateNetworkDevice.md
 docs/CreateNetworkDeviceDefaults.md
@@ -221,6 +225,8 @@ docs/JobRetryInfo.md
 docs/JobStatistics.md
 docs/Link.md
 docs/Location.md
+docs/LogicalNetworkDto.md
+docs/LogicalNetworkProfileDto.md
 docs/LogicalNetworkProfilesAPI.md
 docs/LogicalNetworksAPI.md
 docs/Network.md
@@ -288,6 +294,7 @@ docs/ServerFirmwareUpgradePolicyRule.md
 docs/ServerGpuInfo.md
 docs/ServerInstance.md
 docs/ServerInstanceAPI.md
+docs/ServerInstanceClusterCustomInfo.md
 docs/ServerInstanceConfiguration.md
 docs/ServerInstanceCreate.md
 docs/ServerInstanceGroup.md
@@ -303,6 +310,7 @@ docs/ServerInstanceInterface.md
 docs/ServerInstanceInterfaceConfiguration.md
 docs/ServerInstanceInterfacePaginatedList.md
 docs/ServerInstanceInterfaceUpdate.md
+docs/ServerInstanceOsInstallImageBuildInfo.md
 docs/ServerInstancePaginatedList.md
 docs/ServerInstancePowerSet.md
 docs/ServerInstanceProfile.md
@@ -357,6 +365,7 @@ docs/SpecialPermissions.md
 docs/Storage.md
 docs/StorageAPI.md
 docs/StorageNetworkDeviceConfiguration.md
+docs/StorageOptions.md
 docs/StoragePaginatedList.md
 docs/SwitchPosition.md
 docs/SystemAPI.md
@@ -383,6 +392,8 @@ docs/UpdateGlobalFirmwareUpgradeConfiguration.md
 docs/UpdateGroupDrive.md
 docs/UpdateInfrastructure.md
 docs/UpdateInfrastructureMeta.md
+docs/UpdateLogicalNetworkDto.md
+docs/UpdateLogicalNetworkProfileDto.md
 docs/UpdateNetworkDevice.md
 docs/UpdateNetworkFabric.md
 docs/UpdateResourcePool.md
@@ -395,9 +406,11 @@ docs/UpdateServerIpmiCredentials.md
 docs/UpdateServerType.md
 docs/UpdateSharedDrive.md
 docs/UpdateSharedDriveMeta.md
-docs/UpdateStorage.md
+docs/UpdateStorageInternal.md
 docs/UpdateStorageNetworkDeviceConfiguration.md
+docs/UpdateStorageOptions.md
 docs/UpdateUser.md
+docs/UpdateUserPermissionsDto.md
 docs/UpdateVM.md
 docs/UpdateVMInstance.md
 docs/UpdateVMInstanceGroup.md
@@ -408,17 +421,17 @@ docs/UpdateVMPoolHostInterface.md
 docs/UpdateVMType.md
 docs/User.md
 docs/UserAPI.md
-docs/UserDelegate.md
-docs/UserExperimentalTag.md
+docs/UserConfiguration.md
 docs/UserInfo.md
 docs/UserLimits.md
+docs/UserList.md
+docs/UserMeta.md
 docs/UserPaginatedList.md
-docs/UserPasswordRevealPermission.md
 docs/UserPermissions.md
-docs/UserPromotion.md
-docs/UserResourcePermissions.md
-docs/UserSpecialPermission.md
 docs/UserSuspend.md
+docs/UserSuspendReason.md
+docs/UserSuspendReasonList.md
+docs/UserUpdatePassword.md
 docs/VM.md
 docs/VMAPI.md
 docs/VMDisk.md
@@ -449,6 +462,7 @@ docs/Version.md
 git_push.sh
 model_account.go
 model_account_address.go
+model_account_config.go
 model_account_limits.go
 model_account_paginated_list.go
 model_add_user_to_infrastructure.go
@@ -480,6 +494,7 @@ model_bucket_meta.go
 model_bucket_paginated_list.go
 model_catalog_update_type.go
 model_change_user_account.go
+model_change_user_email.go
 model_controller_policy.go
 model_create_account.go
 model_create_bucket.go
@@ -492,6 +507,8 @@ model_create_firmware_baseline.go
 model_create_firmware_binary.go
 model_create_firmware_catalog.go
 model_create_group_drive.go
+model_create_logical_network_dto.go
+model_create_logical_network_profile_dto.go
 model_create_network.go
 model_create_network_device.go
 model_create_network_device_defaults.go
@@ -600,6 +617,8 @@ model_job_retry_info.go
 model_job_statistics.go
 model_link.go
 model_location.go
+model_logical_network_dto.go
+model_logical_network_profile_dto.go
 model_network.go
 model_network_device.go
 model_network_device_controller_update_tags_for_network_device_request.go
@@ -654,6 +673,7 @@ model_server_firmware_upgrade_policy_paginated_list.go
 model_server_firmware_upgrade_policy_rule.go
 model_server_gpu_info.go
 model_server_instance.go
+model_server_instance_cluster_custom_info.go
 model_server_instance_configuration.go
 model_server_instance_create.go
 model_server_instance_group.go
@@ -668,6 +688,7 @@ model_server_instance_interface.go
 model_server_instance_interface_configuration.go
 model_server_instance_interface_paginated_list.go
 model_server_instance_interface_update.go
+model_server_instance_os_install_image_build_info.go
 model_server_instance_paginated_list.go
 model_server_instance_power_set.go
 model_server_instance_profile.go
@@ -717,6 +738,7 @@ model_site_update.go
 model_special_permissions.go
 model_storage.go
 model_storage_network_device_configuration.go
+model_storage_options.go
 model_storage_paginated_list.go
 model_switch_position.go
 model_template_asset.go
@@ -741,6 +763,8 @@ model_update_global_firmware_upgrade_configuration.go
 model_update_group_drive.go
 model_update_infrastructure.go
 model_update_infrastructure_meta.go
+model_update_logical_network_dto.go
+model_update_logical_network_profile_dto.go
 model_update_network_device.go
 model_update_network_fabric.go
 model_update_resource_pool.go
@@ -753,9 +777,11 @@ model_update_server_ipmi_credentials.go
 model_update_server_type.go
 model_update_shared_drive.go
 model_update_shared_drive_meta.go
-model_update_storage.go
+model_update_storage_internal.go
 model_update_storage_network_device_configuration.go
+model_update_storage_options.go
 model_update_user.go
+model_update_user_permissions_dto.go
 model_update_vm.go
 model_update_vm_instance.go
 model_update_vm_instance_group.go
@@ -765,17 +791,17 @@ model_update_vm_pool.go
 model_update_vm_pool_host_interface.go
 model_update_vm_type.go
 model_user.go
-model_user_delegate.go
-model_user_experimental_tag.go
+model_user_configuration.go
 model_user_info.go
 model_user_limits.go
+model_user_list.go
+model_user_meta.go
 model_user_paginated_list.go
-model_user_password_reveal_permission.go
 model_user_permissions.go
-model_user_promotion.go
-model_user_resource_permissions.go
-model_user_special_permission.go
 model_user_suspend.go
+model_user_suspend_reason.go
+model_user_suspend_reason_list.go
+model_user_update_password.go
 model_version.go
 model_vm.go
 model_vm_disk.go

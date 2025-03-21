@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** | The template asset ID | [readonly] 
 **TemplateId** | **int32** | The ID of the OS template that this template asset belongs to | 
-**Usage** | **string** | The template asset usage | 
+**Usage** | **string** | The template asset usage:         - build_source_image: The template asset represents the source image, used as the base image for constructing the install image.         - build_component: The template asset represents the file that will be part of the install image.         - switch_ztp_config: The template asset represents the switch ZTP configuration.         - metadata_source_image: The template asset contains data about the install image.         - generic: The template asset is used for generic purposes. | 
 **File** | [**TemplateAssetFile**](TemplateAssetFile.md) |  | 
 **Tags** | Pointer to **[]string** | The tags associated with the template asset | [optional] 
 **Revision** | **int32** | The revision number of the template asset | [readonly] 

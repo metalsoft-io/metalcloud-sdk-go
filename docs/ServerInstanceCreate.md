@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **string** | The server instance label. | [optional] 
+**Label** | Pointer to **string** | The Product Instance label. Will be automatically generated if not provided. | [optional] 
 **GroupId** | Pointer to **int32** |  | [optional] 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
 **TemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 

@@ -44,7 +44,7 @@ import (
 )
 
 func main() {
-	createStorage := *openapiclient.NewCreateStorage(float32(123), "StorageDriver_example", "StorageTechnology_example", "StorageType_example", "Name_example", "ManagementHost_example", "Username_example", "PasswordEncrypted_example", float32(123), float32(123), float32(123), "SubnetType_example", "Password_example") // CreateStorage | The Storage create object
+	createStorage := *openapiclient.NewCreateStorage(float32(123), "StorageDriver_example", "StorageTechnology_example", "StorageType_example", "Name_example", "ManagementHost_example", "Username_example", "PasswordEncrypted_example", float32(123), "SubnetType_example", "Password_example") // CreateStorage | The Storage create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ## DeleteStorage
 
-> DeleteStorage(ctx, storageId).UpdateStorage(updateStorage).Execute()
+> DeleteStorage(ctx, storageId).Execute()
 
 Deletes a Storage
 
@@ -181,11 +181,10 @@ import (
 
 func main() {
 	storageId := float32(8.14) // float32 | 
-	updateStorage := *openapiclient.NewUpdateStorage() // UpdateStorage | The Storage object to delete
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.StorageAPI.DeleteStorage(context.Background(), storageId).UpdateStorage(updateStorage).Execute()
+	r, err := apiClient.StorageAPI.DeleteStorage(context.Background(), storageId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.DeleteStorage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,7 +208,6 @@ Other parameters are passed through a pointer to a apiDeleteStorageRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateStorage** | [**UpdateStorage**](UpdateStorage.md) | The Storage object to delete | 
 
 ### Return type
 
@@ -221,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1132,7 +1130,7 @@ Name | Type | Description  | Notes
 
 ## UpdateStorage
 
-> Storage UpdateStorage(ctx, storageId).UpdateStorage(updateStorage).Execute()
+> Storage UpdateStorage(ctx, storageId).UpdateStorageInternal(updateStorageInternal).Execute()
 
 Updates a Storage
 
@@ -1152,11 +1150,11 @@ import (
 
 func main() {
 	storageId := float32(8.14) // float32 | 
-	updateStorage := *openapiclient.NewUpdateStorage() // UpdateStorage | The Storage update object
+	updateStorageInternal := *openapiclient.NewUpdateStorageInternal() // UpdateStorageInternal | The Storage update object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageAPI.UpdateStorage(context.Background(), storageId).UpdateStorage(updateStorage).Execute()
+	resp, r, err := apiClient.StorageAPI.UpdateStorage(context.Background(), storageId).UpdateStorageInternal(updateStorageInternal).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.UpdateStorage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1182,7 +1180,7 @@ Other parameters are passed through a pointer to a apiUpdateStorageRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateStorage** | [**UpdateStorage**](UpdateStorage.md) | The Storage update object | 
+ **updateStorageInternal** | [**UpdateStorageInternal**](UpdateStorageInternal.md) | The Storage update object | 
 
 ### Return type
 

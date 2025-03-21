@@ -20,7 +20,7 @@ var _ MappedNullable = &ServerInstanceGroupCreate{}
 
 // ServerInstanceGroupCreate struct for ServerInstanceGroupCreate
 type ServerInstanceGroupCreate struct {
-	// The server instance group label. Will be automatically generated if not provided.
+	// The Product Instance label. Will be automatically generated if not provided.
 	Label *string `json:"label,omitempty"`
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`

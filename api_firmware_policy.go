@@ -538,7 +538,7 @@ type FirmwarePolicyAPIGetFirmwarePoliciesRequest struct {
 	filterLabel *[]string
 	filterStatus *[]string
 	filterAction *[]string
-	filterInstanceArrayIds *[]string
+	filterServerInstanceGroupIds *[]string
 	filterUserIdOwner *[]string
 	sortBy *[]string
 	search *string
@@ -581,9 +581,9 @@ func (r FirmwarePolicyAPIGetFirmwarePoliciesRequest) FilterAction(filterAction [
 	return r
 }
 
-// Filter by instanceArrayIds query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.instanceArrayIds&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.instanceArrayIds&#x3D;$not:$like:John Doe&amp;filter.instanceArrayIds&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r FirmwarePolicyAPIGetFirmwarePoliciesRequest) FilterInstanceArrayIds(filterInstanceArrayIds []string) FirmwarePolicyAPIGetFirmwarePoliciesRequest {
-	r.filterInstanceArrayIds = &filterInstanceArrayIds
+// Filter by serverInstanceGroupIds query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverInstanceGroupIds&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverInstanceGroupIds&#x3D;$not:$like:John Doe&amp;filter.serverInstanceGroupIds&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r FirmwarePolicyAPIGetFirmwarePoliciesRequest) FilterServerInstanceGroupIds(filterServerInstanceGroupIds []string) FirmwarePolicyAPIGetFirmwarePoliciesRequest {
+	r.filterServerInstanceGroupIds = &filterServerInstanceGroupIds
 	return r
 }
 
@@ -605,7 +605,7 @@ func (r FirmwarePolicyAPIGetFirmwarePoliciesRequest) Search(search string) Firmw
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,status,action,userIdOwner           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;action&lt;/li&gt; &lt;li&gt;userIdOwner&lt;/li&gt; &lt;li&gt;instanceArrayIds&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,status,action,userIdOwner           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;action&lt;/li&gt; &lt;li&gt;userIdOwner&lt;/li&gt; &lt;li&gt;serverInstanceGroupIds&lt;/li&gt;&lt;/ul&gt;         
 func (r FirmwarePolicyAPIGetFirmwarePoliciesRequest) SearchBy(searchBy []string) FirmwarePolicyAPIGetFirmwarePoliciesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -701,15 +701,15 @@ func (a *FirmwarePolicyAPIService) GetFirmwarePoliciesExecute(r FirmwarePolicyAP
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.action", t, "form", "multi")
 		}
 	}
-	if r.filterInstanceArrayIds != nil {
-		t := *r.filterInstanceArrayIds
+	if r.filterServerInstanceGroupIds != nil {
+		t := *r.filterServerInstanceGroupIds
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.instanceArrayIds", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverInstanceGroupIds", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.instanceArrayIds", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverInstanceGroupIds", t, "form", "multi")
 		}
 	}
 	if r.filterUserIdOwner != nil {

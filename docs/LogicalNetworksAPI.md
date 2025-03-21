@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateLogicalNetwork
 
-> map[string]interface{} CreateLogicalNetwork(ctx).Body(body).Execute()
+> LogicalNetworkDto CreateLogicalNetwork(ctx).CreateLogicalNetworkDto(createLogicalNetworkDto).Execute()
 
 Create a new logical network
 
@@ -33,16 +33,16 @@ import (
 )
 
 func main() {
-	body := map[string]interface{}{ ... } // map[string]interface{} | The Logical Network create object
+	createLogicalNetworkDto := *openapiclient.NewCreateLogicalNetworkDto(float32(123), "LogicalNetworkType_example") // CreateLogicalNetworkDto | The Logical Network create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworksAPI.CreateLogicalNetwork(context.Background()).Body(body).Execute()
+	resp, r, err := apiClient.LogicalNetworksAPI.CreateLogicalNetwork(context.Background()).CreateLogicalNetworkDto(createLogicalNetworkDto).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworksAPI.CreateLogicalNetwork``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetwork`: map[string]interface{}
+	// response from `CreateLogicalNetwork`: LogicalNetworkDto
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworksAPI.CreateLogicalNetwork`: %v\n", resp)
 }
 ```
@@ -58,11 +58,11 @@ Other parameters are passed through a pointer to a apiCreateLogicalNetworkReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **map[string]interface{}** | The Logical Network create object | 
+ **createLogicalNetworkDto** | [**CreateLogicalNetworkDto**](CreateLogicalNetworkDto.md) | The Logical Network create object | 
 
 ### Return type
 
-**map[string]interface{}**
+[**LogicalNetworkDto**](LogicalNetworkDto.md)
 
 ### Authorization
 
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworkById
 
-> map[string]interface{} GetLogicalNetworkById(ctx, logicalNetworkId).Execute()
+> LogicalNetworkDto GetLogicalNetworkById(ctx, logicalNetworkId).Execute()
 
 Get a logical network by ID
 
@@ -264,7 +264,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworksAPI.GetLogicalNetworkById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkById`: map[string]interface{}
+	// response from `GetLogicalNetworkById`: LogicalNetworkDto
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworksAPI.GetLogicalNetworkById`: %v\n", resp)
 }
 ```
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**LogicalNetworkDto**](LogicalNetworkDto.md)
 
 ### Authorization
 
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLogicalNetwork
 
-> map[string]interface{} UpdateLogicalNetwork(ctx, logicalNetworkId).Body(body).Execute()
+> LogicalNetworkDto UpdateLogicalNetwork(ctx, logicalNetworkId).UpdateLogicalNetworkDto(updateLogicalNetworkDto).Execute()
 
 Update a logical network
 
@@ -326,16 +326,16 @@ import (
 
 func main() {
 	logicalNetworkId := float32(8.14) // float32 | 
-	body := map[string]interface{}{ ... } // map[string]interface{} | The Logical Network update object
+	updateLogicalNetworkDto := *openapiclient.NewUpdateLogicalNetworkDto() // UpdateLogicalNetworkDto | The Logical Network update object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworksAPI.UpdateLogicalNetwork(context.Background(), logicalNetworkId).Body(body).Execute()
+	resp, r, err := apiClient.LogicalNetworksAPI.UpdateLogicalNetwork(context.Background(), logicalNetworkId).UpdateLogicalNetworkDto(updateLogicalNetworkDto).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworksAPI.UpdateLogicalNetwork``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateLogicalNetwork`: map[string]interface{}
+	// response from `UpdateLogicalNetwork`: LogicalNetworkDto
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworksAPI.UpdateLogicalNetwork`: %v\n", resp)
 }
 ```
@@ -356,11 +356,11 @@ Other parameters are passed through a pointer to a apiUpdateLogicalNetworkReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | **map[string]interface{}** | The Logical Network update object | 
+ **updateLogicalNetworkDto** | [**UpdateLogicalNetworkDto**](UpdateLogicalNetworkDto.md) | The Logical Network update object | 
 
 ### Return type
 
-**map[string]interface{}**
+[**LogicalNetworkDto**](LogicalNetworkDto.md)
 
 ### Authorization
 

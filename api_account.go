@@ -25,6 +25,111 @@ import (
 // AccountAPIService AccountAPI service
 type AccountAPIService service
 
+type AccountAPIAccountControllerGetUserConfigurationRequest struct {
+	ctx context.Context
+	ApiService *AccountAPIService
+	userId float32
+	accountId float32
+}
+
+func (r AccountAPIAccountControllerGetUserConfigurationRequest) Execute() (*AccountConfig, *http.Response, error) {
+	return r.ApiService.AccountControllerGetUserConfigurationExecute(r)
+}
+
+/*
+AccountControllerGetUserConfiguration Get account configuration by ID
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId
+ @param accountId
+ @return AccountAPIAccountControllerGetUserConfigurationRequest
+*/
+func (a *AccountAPIService) AccountControllerGetUserConfiguration(ctx context.Context, userId float32, accountId float32) AccountAPIAccountControllerGetUserConfigurationRequest {
+	return AccountAPIAccountControllerGetUserConfigurationRequest{
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
+		accountId: accountId,
+	}
+}
+
+// Execute executes the request
+//  @return AccountConfig
+func (a *AccountAPIService) AccountControllerGetUserConfigurationExecute(r AccountAPIAccountControllerGetUserConfigurationRequest) (*AccountConfig, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AccountConfig
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountAPIService.AccountControllerGetUserConfiguration")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/accounts/{accountId}/config"
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"accountId"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type AccountAPIArchiveAccountRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
@@ -1128,7 +1233,7 @@ func (a *AccountAPIService) UnarchiveAccountExecute(r AccountAPIUnarchiveAccount
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type AccountAPIUpdateAccountRequest struct {
+type AccountAPIUpdateAccountConfigRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
 	accountId float32
@@ -1137,32 +1242,32 @@ type AccountAPIUpdateAccountRequest struct {
 }
 
 // The account updates
-func (r AccountAPIUpdateAccountRequest) UpdateAccount(updateAccount UpdateAccount) AccountAPIUpdateAccountRequest {
+func (r AccountAPIUpdateAccountConfigRequest) UpdateAccount(updateAccount UpdateAccount) AccountAPIUpdateAccountConfigRequest {
 	r.updateAccount = &updateAccount
 	return r
 }
 
 // Entity tag
-func (r AccountAPIUpdateAccountRequest) IfMatch(ifMatch string) AccountAPIUpdateAccountRequest {
+func (r AccountAPIUpdateAccountConfigRequest) IfMatch(ifMatch string) AccountAPIUpdateAccountConfigRequest {
 	r.ifMatch = &ifMatch
 	return r
 }
 
-func (r AccountAPIUpdateAccountRequest) Execute() (*Account, *http.Response, error) {
-	return r.ApiService.UpdateAccountExecute(r)
+func (r AccountAPIUpdateAccountConfigRequest) Execute() (*AccountConfig, *http.Response, error) {
+	return r.ApiService.UpdateAccountConfigExecute(r)
 }
 
 /*
-UpdateAccount Update account
+UpdateAccountConfig Update account configuration
 
-Updates an account
+Updates an account configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param accountId
- @return AccountAPIUpdateAccountRequest
+ @return AccountAPIUpdateAccountConfigRequest
 */
-func (a *AccountAPIService) UpdateAccount(ctx context.Context, accountId float32) AccountAPIUpdateAccountRequest {
-	return AccountAPIUpdateAccountRequest{
+func (a *AccountAPIService) UpdateAccountConfig(ctx context.Context, accountId float32) AccountAPIUpdateAccountConfigRequest {
+	return AccountAPIUpdateAccountConfigRequest{
 		ApiService: a,
 		ctx: ctx,
 		accountId: accountId,
@@ -1170,21 +1275,21 @@ func (a *AccountAPIService) UpdateAccount(ctx context.Context, accountId float32
 }
 
 // Execute executes the request
-//  @return Account
-func (a *AccountAPIService) UpdateAccountExecute(r AccountAPIUpdateAccountRequest) (*Account, *http.Response, error) {
+//  @return AccountConfig
+func (a *AccountAPIService) UpdateAccountConfigExecute(r AccountAPIUpdateAccountConfigRequest) (*AccountConfig, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Account
+		localVarReturnValue  *AccountConfig
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountAPIService.UpdateAccount")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountAPIService.UpdateAccountConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/accounts/{accountId}"
+	localVarPath := localBasePath + "/api/v2/accounts/{accountId}/config"
 	localVarPath = strings.Replace(localVarPath, "{"+"accountId"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1309,7 +1414,7 @@ func (a *AccountAPIService) UpdateAccountLimitsExecute(r AccountAPIUpdateAccount
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/accounts/{accountId}/limits"
+	localVarPath := localBasePath + "/api/v2/accounts/{accountId}/actions/change-limits"
 	localVarPath = strings.Replace(localVarPath, "{"+"accountId"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

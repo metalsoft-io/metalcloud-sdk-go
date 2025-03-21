@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **ChassisIdentifier** | Pointer to **NullableString** | Unique identifier for the network device chassis | [optional] 
 **Driver** | [**NetworkDeviceDriver**](NetworkDeviceDriver.md) | Driver software used to communicate with the network device | 
 **Position** | **string** | The physical or logical position of the network device in the network topology. | 
-**TorLinkedId** | Pointer to **NullableFloat32** | ID of the Top-of-Rack (TOR) switch that this network device is linked to. Used for establishing hierarchical relationships between network devices. | [optional] 
 **IsGateway** | Pointer to **bool** | Indicates if this network device acts as a gateway for external network traffic | [optional] 
 **SyslogEnabled** | Pointer to **NullableBool** | Indicates if syslog logging is enabled for this network device | [optional] 
 **IsStorageSwitch** | Pointer to **bool** | Indicates if this network device is dedicated to storage traffic | [optional] 
@@ -236,41 +235,6 @@ and a boolean to check if the value has been set.
 SetPosition sets Position field to given value.
 
 
-### GetTorLinkedId
-
-`func (o *CreateNetworkDevice) GetTorLinkedId() float32`
-
-GetTorLinkedId returns the TorLinkedId field if non-nil, zero value otherwise.
-
-### GetTorLinkedIdOk
-
-`func (o *CreateNetworkDevice) GetTorLinkedIdOk() (*float32, bool)`
-
-GetTorLinkedIdOk returns a tuple with the TorLinkedId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTorLinkedId
-
-`func (o *CreateNetworkDevice) SetTorLinkedId(v float32)`
-
-SetTorLinkedId sets TorLinkedId field to given value.
-
-### HasTorLinkedId
-
-`func (o *CreateNetworkDevice) HasTorLinkedId() bool`
-
-HasTorLinkedId returns a boolean if a field has been set.
-
-### SetTorLinkedIdNil
-
-`func (o *CreateNetworkDevice) SetTorLinkedIdNil(b bool)`
-
- SetTorLinkedIdNil sets the value for TorLinkedId to be an explicit nil
-
-### UnsetTorLinkedId
-`func (o *CreateNetworkDevice) UnsetTorLinkedId()`
-
-UnsetTorLinkedId ensures that no value is present for TorLinkedId, not even an explicit nil
 ### GetIsGateway
 
 `func (o *CreateNetworkDevice) GetIsGateway() bool`

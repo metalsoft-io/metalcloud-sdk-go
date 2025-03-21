@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UserSuspend type satisfies the MappedNullable interface at compile time
@@ -21,13 +22,11 @@ var _ MappedNullable = &UserSuspend{}
 // UserSuspend struct for UserSuspend
 type UserSuspend struct {
 	// The suspend reason of the user
-	SuspendReason *string `json:"suspendReason,omitempty"`
+	SuspendReason string `json:"suspendReason"`
 	// The public comment for the suspension
-	SuspendReasonPublicComment *string `json:"suspendReasonPublicComment,omitempty"`
+	SuspendReasonPublicComment string `json:"suspendReasonPublicComment"`
 	// The private comment for the suspension
 	SuspendReasonPrivateComment *string `json:"suspendReasonPrivateComment,omitempty"`
-	// Whether to remove the suspension
-	RemoveSuspension *bool `json:"removeSuspension,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,10 +36,10 @@ type _UserSuspend UserSuspend
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserSuspend() *UserSuspend {
+func NewUserSuspend(suspendReason string, suspendReasonPublicComment string) *UserSuspend {
 	this := UserSuspend{}
-	var removeSuspension bool = false
-	this.RemoveSuspension = &removeSuspension
+	this.SuspendReason = suspendReason
+	this.SuspendReasonPublicComment = suspendReasonPublicComment
 	return &this
 }
 
@@ -49,73 +48,55 @@ func NewUserSuspend() *UserSuspend {
 // but it doesn't guarantee that properties required by API are set
 func NewUserSuspendWithDefaults() *UserSuspend {
 	this := UserSuspend{}
-	var removeSuspension bool = false
-	this.RemoveSuspension = &removeSuspension
 	return &this
 }
 
-// GetSuspendReason returns the SuspendReason field value if set, zero value otherwise.
+// GetSuspendReason returns the SuspendReason field value
 func (o *UserSuspend) GetSuspendReason() string {
-	if o == nil || IsNil(o.SuspendReason) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.SuspendReason
+
+	return o.SuspendReason
 }
 
-// GetSuspendReasonOk returns a tuple with the SuspendReason field value if set, nil otherwise
+// GetSuspendReasonOk returns a tuple with the SuspendReason field value
 // and a boolean to check if the value has been set.
 func (o *UserSuspend) GetSuspendReasonOk() (*string, bool) {
-	if o == nil || IsNil(o.SuspendReason) {
+	if o == nil {
 		return nil, false
 	}
-	return o.SuspendReason, true
+	return &o.SuspendReason, true
 }
 
-// HasSuspendReason returns a boolean if a field has been set.
-func (o *UserSuspend) HasSuspendReason() bool {
-	if o != nil && !IsNil(o.SuspendReason) {
-		return true
-	}
-
-	return false
-}
-
-// SetSuspendReason gets a reference to the given string and assigns it to the SuspendReason field.
+// SetSuspendReason sets field value
 func (o *UserSuspend) SetSuspendReason(v string) {
-	o.SuspendReason = &v
+	o.SuspendReason = v
 }
 
-// GetSuspendReasonPublicComment returns the SuspendReasonPublicComment field value if set, zero value otherwise.
+// GetSuspendReasonPublicComment returns the SuspendReasonPublicComment field value
 func (o *UserSuspend) GetSuspendReasonPublicComment() string {
-	if o == nil || IsNil(o.SuspendReasonPublicComment) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.SuspendReasonPublicComment
+
+	return o.SuspendReasonPublicComment
 }
 
-// GetSuspendReasonPublicCommentOk returns a tuple with the SuspendReasonPublicComment field value if set, nil otherwise
+// GetSuspendReasonPublicCommentOk returns a tuple with the SuspendReasonPublicComment field value
 // and a boolean to check if the value has been set.
 func (o *UserSuspend) GetSuspendReasonPublicCommentOk() (*string, bool) {
-	if o == nil || IsNil(o.SuspendReasonPublicComment) {
+	if o == nil {
 		return nil, false
 	}
-	return o.SuspendReasonPublicComment, true
+	return &o.SuspendReasonPublicComment, true
 }
 
-// HasSuspendReasonPublicComment returns a boolean if a field has been set.
-func (o *UserSuspend) HasSuspendReasonPublicComment() bool {
-	if o != nil && !IsNil(o.SuspendReasonPublicComment) {
-		return true
-	}
-
-	return false
-}
-
-// SetSuspendReasonPublicComment gets a reference to the given string and assigns it to the SuspendReasonPublicComment field.
+// SetSuspendReasonPublicComment sets field value
 func (o *UserSuspend) SetSuspendReasonPublicComment(v string) {
-	o.SuspendReasonPublicComment = &v
+	o.SuspendReasonPublicComment = v
 }
 
 // GetSuspendReasonPrivateComment returns the SuspendReasonPrivateComment field value if set, zero value otherwise.
@@ -150,38 +131,6 @@ func (o *UserSuspend) SetSuspendReasonPrivateComment(v string) {
 	o.SuspendReasonPrivateComment = &v
 }
 
-// GetRemoveSuspension returns the RemoveSuspension field value if set, zero value otherwise.
-func (o *UserSuspend) GetRemoveSuspension() bool {
-	if o == nil || IsNil(o.RemoveSuspension) {
-		var ret bool
-		return ret
-	}
-	return *o.RemoveSuspension
-}
-
-// GetRemoveSuspensionOk returns a tuple with the RemoveSuspension field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserSuspend) GetRemoveSuspensionOk() (*bool, bool) {
-	if o == nil || IsNil(o.RemoveSuspension) {
-		return nil, false
-	}
-	return o.RemoveSuspension, true
-}
-
-// HasRemoveSuspension returns a boolean if a field has been set.
-func (o *UserSuspend) HasRemoveSuspension() bool {
-	if o != nil && !IsNil(o.RemoveSuspension) {
-		return true
-	}
-
-	return false
-}
-
-// SetRemoveSuspension gets a reference to the given bool and assigns it to the RemoveSuspension field.
-func (o *UserSuspend) SetRemoveSuspension(v bool) {
-	o.RemoveSuspension = &v
-}
-
 func (o UserSuspend) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -192,17 +141,10 @@ func (o UserSuspend) MarshalJSON() ([]byte, error) {
 
 func (o UserSuspend) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.SuspendReason) {
-		toSerialize["suspendReason"] = o.SuspendReason
-	}
-	if !IsNil(o.SuspendReasonPublicComment) {
-		toSerialize["suspendReasonPublicComment"] = o.SuspendReasonPublicComment
-	}
+	toSerialize["suspendReason"] = o.SuspendReason
+	toSerialize["suspendReasonPublicComment"] = o.SuspendReasonPublicComment
 	if !IsNil(o.SuspendReasonPrivateComment) {
 		toSerialize["suspendReasonPrivateComment"] = o.SuspendReasonPrivateComment
-	}
-	if !IsNil(o.RemoveSuspension) {
-		toSerialize["removeSuspension"] = o.RemoveSuspension
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -213,6 +155,28 @@ func (o UserSuspend) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *UserSuspend) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"suspendReason",
+		"suspendReasonPublicComment",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varUserSuspend := _UserSuspend{}
 
 	err = json.Unmarshal(data, &varUserSuspend)
@@ -229,7 +193,6 @@ func (o *UserSuspend) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "suspendReason")
 		delete(additionalProperties, "suspendReasonPublicComment")
 		delete(additionalProperties, "suspendReasonPrivateComment")
-		delete(additionalProperties, "removeSuspension")
 		o.AdditionalProperties = additionalProperties
 	}
 

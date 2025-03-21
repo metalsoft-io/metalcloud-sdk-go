@@ -22,14 +22,14 @@ var _ MappedNullable = &ServerInstanceGroupConfiguration{}
 // ServerInstanceGroupConfiguration struct for ServerInstanceGroupConfiguration
 type ServerInstanceGroupConfiguration struct {
 	// Revision number
-	Revision float32 `json:"revision"`
-	// The server instance group label. Will be automatically generated if not provided.
+	Revision int32 `json:"revision"`
+	// The Product Instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
-	ServerGroupName *string `json:"serverGroupName,omitempty"`
-	// Timestamp of the latest update for the Server Instance Group.
+	// Timestamp of the latest update of the Product Instance.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
-	// Subdomain of the Server Group.
+	// Subdomain of the Product Instance.
 	Subdomain *string `json:"subdomain,omitempty"`
+	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	// The number of instances to be created on the InstanceArray.
 	InstanceCount int32 `json:"instanceCount"`
 	// Automatically allocate IP addresses to child Instance`s InstanceInterface elements.
@@ -39,8 +39,8 @@ type ServerInstanceGroupConfiguration struct {
 	FirewallProfileId *int32 `json:"firewallProfileId,omitempty"`
 	FirewallRulesSetId *int32 `json:"firewallRulesSetId,omitempty"`
 	FirewallManaged int32 `json:"firewallManaged"`
-	// Object containing associated firmware policies.
-	FirmwarePoliciesJson []map[string]interface{} `json:"firmwarePoliciesJson,omitempty"`
+	// Array of firmware policy ids containing associated firmware policies.
+	FirmwarePolicyIds []float32 `json:"firmwarePolicyIds,omitempty"`
 	// The volume template ID (or name) to use if the servers in the InstanceArray have local disks.
 	VolumeTemplateId *int32 `json:"volumeTemplateId,omitempty"`
 	// Id of the bootable drive for the Server Instance Group.
@@ -72,16 +72,16 @@ type ServerInstanceGroupConfiguration struct {
 	OverrideIpv4WanVlanId *int32 `json:"overrideIpv4WanVlanId,omitempty"`
 	// ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the InstanceInterfaces associated with this InstanceArray.
 	NetworkEquipmentForceSubnetPoolIpv4WanId *int32 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
+	// Id of the DNS subdomain for the Product Instance
+	DnsSubdomainChangeId *int32 `json:"dnsSubdomainChangeId,omitempty"`
+	// Id of the deployment for the Product Instance
+	InfrastructureDeployId *int32 `json:"infrastructureDeployId,omitempty"`
 	// Number of empty edits
 	EmptyEdit *int32 `json:"emptyEdit,omitempty"`
-	// Server Instance Group deploy type
+	// Product Instance deploy type
 	DeployType string `json:"deployType"`
-	// Server Instance Group deploy status
+	// Product Instance deploy status
 	DeployStatus string `json:"deployStatus"`
-	// Id of the DNS subdomain for the Server Instance Group.
-	DnsSubdomainChangeId *int32 `json:"dnsSubdomainChangeId,omitempty"`
-	// Id of the deployment for the Instance Group.
-	InfrastructureDeployId *int32 `json:"infrastructureDeployId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -91,7 +91,7 @@ type _ServerInstanceGroupConfiguration ServerInstanceGroupConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroupConfiguration(revision float32, label string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, deployType string, deployStatus string) *ServerInstanceGroupConfiguration {
+func NewServerInstanceGroupConfiguration(revision int32, label string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, deployType string, deployStatus string) *ServerInstanceGroupConfiguration {
 	this := ServerInstanceGroupConfiguration{}
 	this.Revision = revision
 	this.Label = label
@@ -140,13 +140,17 @@ func NewServerInstanceGroupConfigurationWithDefaults() *ServerInstanceGroupConfi
 	this.DiskSizeMbytes = diskSizeMbytes
 	var virtualInterfacesEnabled int32 = 0
 	this.VirtualInterfacesEnabled = virtualInterfacesEnabled
+	var deployType string = "create"
+	this.DeployType = deployType
+	var deployStatus string = "not_started"
+	this.DeployStatus = deployStatus
 	return &this
 }
 
 // GetRevision returns the Revision field value
-func (o *ServerInstanceGroupConfiguration) GetRevision() float32 {
+func (o *ServerInstanceGroupConfiguration) GetRevision() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -155,7 +159,7 @@ func (o *ServerInstanceGroupConfiguration) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupConfiguration) GetRevisionOk() (*float32, bool) {
+func (o *ServerInstanceGroupConfiguration) GetRevisionOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -163,7 +167,7 @@ func (o *ServerInstanceGroupConfiguration) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *ServerInstanceGroupConfiguration) SetRevision(v float32) {
+func (o *ServerInstanceGroupConfiguration) SetRevision(v int32) {
 	o.Revision = v
 }
 
@@ -189,38 +193,6 @@ func (o *ServerInstanceGroupConfiguration) GetLabelOk() (*string, bool) {
 // SetLabel sets field value
 func (o *ServerInstanceGroupConfiguration) SetLabel(v string) {
 	o.Label = v
-}
-
-// GetServerGroupName returns the ServerGroupName field value if set, zero value otherwise.
-func (o *ServerInstanceGroupConfiguration) GetServerGroupName() string {
-	if o == nil || IsNil(o.ServerGroupName) {
-		var ret string
-		return ret
-	}
-	return *o.ServerGroupName
-}
-
-// GetServerGroupNameOk returns a tuple with the ServerGroupName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupConfiguration) GetServerGroupNameOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerGroupName) {
-		return nil, false
-	}
-	return o.ServerGroupName, true
-}
-
-// HasServerGroupName returns a boolean if a field has been set.
-func (o *ServerInstanceGroupConfiguration) HasServerGroupName() bool {
-	if o != nil && !IsNil(o.ServerGroupName) {
-		return true
-	}
-
-	return false
-}
-
-// SetServerGroupName gets a reference to the given string and assigns it to the ServerGroupName field.
-func (o *ServerInstanceGroupConfiguration) SetServerGroupName(v string) {
-	o.ServerGroupName = &v
 }
 
 // GetUpdatedTimestamp returns the UpdatedTimestamp field value
@@ -277,6 +249,38 @@ func (o *ServerInstanceGroupConfiguration) HasSubdomain() bool {
 // SetSubdomain gets a reference to the given string and assigns it to the Subdomain field.
 func (o *ServerInstanceGroupConfiguration) SetSubdomain(v string) {
 	o.Subdomain = &v
+}
+
+// GetServerGroupName returns the ServerGroupName field value if set, zero value otherwise.
+func (o *ServerInstanceGroupConfiguration) GetServerGroupName() string {
+	if o == nil || IsNil(o.ServerGroupName) {
+		var ret string
+		return ret
+	}
+	return *o.ServerGroupName
+}
+
+// GetServerGroupNameOk returns a tuple with the ServerGroupName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupConfiguration) GetServerGroupNameOk() (*string, bool) {
+	if o == nil || IsNil(o.ServerGroupName) {
+		return nil, false
+	}
+	return o.ServerGroupName, true
+}
+
+// HasServerGroupName returns a boolean if a field has been set.
+func (o *ServerInstanceGroupConfiguration) HasServerGroupName() bool {
+	if o != nil && !IsNil(o.ServerGroupName) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerGroupName gets a reference to the given string and assigns it to the ServerGroupName field.
+func (o *ServerInstanceGroupConfiguration) SetServerGroupName(v string) {
+	o.ServerGroupName = &v
 }
 
 // GetInstanceCount returns the InstanceCount field value
@@ -439,37 +443,37 @@ func (o *ServerInstanceGroupConfiguration) SetFirewallManaged(v int32) {
 	o.FirewallManaged = v
 }
 
-// GetFirmwarePoliciesJson returns the FirmwarePoliciesJson field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ServerInstanceGroupConfiguration) GetFirmwarePoliciesJson() []map[string]interface{} {
+// GetFirmwarePolicyIds returns the FirmwarePolicyIds field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ServerInstanceGroupConfiguration) GetFirmwarePolicyIds() []float32 {
 	if o == nil {
-		var ret []map[string]interface{}
+		var ret []float32
 		return ret
 	}
-	return o.FirmwarePoliciesJson
+	return o.FirmwarePolicyIds
 }
 
-// GetFirmwarePoliciesJsonOk returns a tuple with the FirmwarePoliciesJson field value if set, nil otherwise
+// GetFirmwarePolicyIdsOk returns a tuple with the FirmwarePolicyIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ServerInstanceGroupConfiguration) GetFirmwarePoliciesJsonOk() ([]map[string]interface{}, bool) {
-	if o == nil || IsNil(o.FirmwarePoliciesJson) {
+func (o *ServerInstanceGroupConfiguration) GetFirmwarePolicyIdsOk() ([]float32, bool) {
+	if o == nil || IsNil(o.FirmwarePolicyIds) {
 		return nil, false
 	}
-	return o.FirmwarePoliciesJson, true
+	return o.FirmwarePolicyIds, true
 }
 
-// HasFirmwarePoliciesJson returns a boolean if a field has been set.
-func (o *ServerInstanceGroupConfiguration) HasFirmwarePoliciesJson() bool {
-	if o != nil && !IsNil(o.FirmwarePoliciesJson) {
+// HasFirmwarePolicyIds returns a boolean if a field has been set.
+func (o *ServerInstanceGroupConfiguration) HasFirmwarePolicyIds() bool {
+	if o != nil && !IsNil(o.FirmwarePolicyIds) {
 		return true
 	}
 
 	return false
 }
 
-// SetFirmwarePoliciesJson gets a reference to the given []map[string]interface{} and assigns it to the FirmwarePoliciesJson field.
-func (o *ServerInstanceGroupConfiguration) SetFirmwarePoliciesJson(v []map[string]interface{}) {
-	o.FirmwarePoliciesJson = v
+// SetFirmwarePolicyIds gets a reference to the given []float32 and assigns it to the FirmwarePolicyIds field.
+func (o *ServerInstanceGroupConfiguration) SetFirmwarePolicyIds(v []float32) {
+	o.FirmwarePolicyIds = v
 }
 
 // GetVolumeTemplateId returns the VolumeTemplateId field value if set, zero value otherwise.
@@ -920,6 +924,70 @@ func (o *ServerInstanceGroupConfiguration) SetNetworkEquipmentForceSubnetPoolIpv
 	o.NetworkEquipmentForceSubnetPoolIpv4WanId = &v
 }
 
+// GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
+func (o *ServerInstanceGroupConfiguration) GetDnsSubdomainChangeId() int32 {
+	if o == nil || IsNil(o.DnsSubdomainChangeId) {
+		var ret int32
+		return ret
+	}
+	return *o.DnsSubdomainChangeId
+}
+
+// GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupConfiguration) GetDnsSubdomainChangeIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.DnsSubdomainChangeId) {
+		return nil, false
+	}
+	return o.DnsSubdomainChangeId, true
+}
+
+// HasDnsSubdomainChangeId returns a boolean if a field has been set.
+func (o *ServerInstanceGroupConfiguration) HasDnsSubdomainChangeId() bool {
+	if o != nil && !IsNil(o.DnsSubdomainChangeId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDnsSubdomainChangeId gets a reference to the given int32 and assigns it to the DnsSubdomainChangeId field.
+func (o *ServerInstanceGroupConfiguration) SetDnsSubdomainChangeId(v int32) {
+	o.DnsSubdomainChangeId = &v
+}
+
+// GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
+func (o *ServerInstanceGroupConfiguration) GetInfrastructureDeployId() int32 {
+	if o == nil || IsNil(o.InfrastructureDeployId) {
+		var ret int32
+		return ret
+	}
+	return *o.InfrastructureDeployId
+}
+
+// GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupConfiguration) GetInfrastructureDeployIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.InfrastructureDeployId) {
+		return nil, false
+	}
+	return o.InfrastructureDeployId, true
+}
+
+// HasInfrastructureDeployId returns a boolean if a field has been set.
+func (o *ServerInstanceGroupConfiguration) HasInfrastructureDeployId() bool {
+	if o != nil && !IsNil(o.InfrastructureDeployId) {
+		return true
+	}
+
+	return false
+}
+
+// SetInfrastructureDeployId gets a reference to the given int32 and assigns it to the InfrastructureDeployId field.
+func (o *ServerInstanceGroupConfiguration) SetInfrastructureDeployId(v int32) {
+	o.InfrastructureDeployId = &v
+}
+
 // GetEmptyEdit returns the EmptyEdit field value if set, zero value otherwise.
 func (o *ServerInstanceGroupConfiguration) GetEmptyEdit() int32 {
 	if o == nil || IsNil(o.EmptyEdit) {
@@ -1000,70 +1068,6 @@ func (o *ServerInstanceGroupConfiguration) SetDeployStatus(v string) {
 	o.DeployStatus = v
 }
 
-// GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupConfiguration) GetDnsSubdomainChangeId() int32 {
-	if o == nil || IsNil(o.DnsSubdomainChangeId) {
-		var ret int32
-		return ret
-	}
-	return *o.DnsSubdomainChangeId
-}
-
-// GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupConfiguration) GetDnsSubdomainChangeIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.DnsSubdomainChangeId) {
-		return nil, false
-	}
-	return o.DnsSubdomainChangeId, true
-}
-
-// HasDnsSubdomainChangeId returns a boolean if a field has been set.
-func (o *ServerInstanceGroupConfiguration) HasDnsSubdomainChangeId() bool {
-	if o != nil && !IsNil(o.DnsSubdomainChangeId) {
-		return true
-	}
-
-	return false
-}
-
-// SetDnsSubdomainChangeId gets a reference to the given int32 and assigns it to the DnsSubdomainChangeId field.
-func (o *ServerInstanceGroupConfiguration) SetDnsSubdomainChangeId(v int32) {
-	o.DnsSubdomainChangeId = &v
-}
-
-// GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupConfiguration) GetInfrastructureDeployId() int32 {
-	if o == nil || IsNil(o.InfrastructureDeployId) {
-		var ret int32
-		return ret
-	}
-	return *o.InfrastructureDeployId
-}
-
-// GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupConfiguration) GetInfrastructureDeployIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.InfrastructureDeployId) {
-		return nil, false
-	}
-	return o.InfrastructureDeployId, true
-}
-
-// HasInfrastructureDeployId returns a boolean if a field has been set.
-func (o *ServerInstanceGroupConfiguration) HasInfrastructureDeployId() bool {
-	if o != nil && !IsNil(o.InfrastructureDeployId) {
-		return true
-	}
-
-	return false
-}
-
-// SetInfrastructureDeployId gets a reference to the given int32 and assigns it to the InfrastructureDeployId field.
-func (o *ServerInstanceGroupConfiguration) SetInfrastructureDeployId(v int32) {
-	o.InfrastructureDeployId = &v
-}
-
 func (o ServerInstanceGroupConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1076,12 +1080,12 @@ func (o ServerInstanceGroupConfiguration) ToMap() (map[string]interface{}, error
 	toSerialize := map[string]interface{}{}
 	toSerialize["revision"] = o.Revision
 	toSerialize["label"] = o.Label
-	if !IsNil(o.ServerGroupName) {
-		toSerialize["serverGroupName"] = o.ServerGroupName
-	}
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Subdomain) {
 		toSerialize["subdomain"] = o.Subdomain
+	}
+	if !IsNil(o.ServerGroupName) {
+		toSerialize["serverGroupName"] = o.ServerGroupName
 	}
 	toSerialize["instanceCount"] = o.InstanceCount
 	toSerialize["ipAllocateAuto"] = o.IpAllocateAuto
@@ -1093,8 +1097,8 @@ func (o ServerInstanceGroupConfiguration) ToMap() (map[string]interface{}, error
 		toSerialize["firewallRulesSetId"] = o.FirewallRulesSetId
 	}
 	toSerialize["firewallManaged"] = o.FirewallManaged
-	if o.FirmwarePoliciesJson != nil {
-		toSerialize["firmwarePoliciesJson"] = o.FirmwarePoliciesJson
+	if o.FirmwarePolicyIds != nil {
+		toSerialize["firmwarePolicyIds"] = o.FirmwarePolicyIds
 	}
 	if !IsNil(o.VolumeTemplateId) {
 		toSerialize["volumeTemplateId"] = o.VolumeTemplateId
@@ -1128,17 +1132,17 @@ func (o ServerInstanceGroupConfiguration) ToMap() (map[string]interface{}, error
 	if !IsNil(o.NetworkEquipmentForceSubnetPoolIpv4WanId) {
 		toSerialize["networkEquipmentForceSubnetPoolIpv4WanId"] = o.NetworkEquipmentForceSubnetPoolIpv4WanId
 	}
-	if !IsNil(o.EmptyEdit) {
-		toSerialize["emptyEdit"] = o.EmptyEdit
-	}
-	toSerialize["deployType"] = o.DeployType
-	toSerialize["deployStatus"] = o.DeployStatus
 	if !IsNil(o.DnsSubdomainChangeId) {
 		toSerialize["dnsSubdomainChangeId"] = o.DnsSubdomainChangeId
 	}
 	if !IsNil(o.InfrastructureDeployId) {
 		toSerialize["infrastructureDeployId"] = o.InfrastructureDeployId
 	}
+	if !IsNil(o.EmptyEdit) {
+		toSerialize["emptyEdit"] = o.EmptyEdit
+	}
+	toSerialize["deployType"] = o.DeployType
+	toSerialize["deployStatus"] = o.DeployStatus
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1200,16 +1204,16 @@ func (o *ServerInstanceGroupConfiguration) UnmarshalJSON(data []byte) (err error
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "label")
-		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "subdomain")
+		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "instanceCount")
 		delete(additionalProperties, "ipAllocateAuto")
 		delete(additionalProperties, "ipv4SubnetCreateAuto")
 		delete(additionalProperties, "firewallProfileId")
 		delete(additionalProperties, "firewallRulesSetId")
 		delete(additionalProperties, "firewallManaged")
-		delete(additionalProperties, "firmwarePoliciesJson")
+		delete(additionalProperties, "firmwarePolicyIds")
 		delete(additionalProperties, "volumeTemplateId")
 		delete(additionalProperties, "driveArrayIdBoot")
 		delete(additionalProperties, "instanceArrayBootMethod")
@@ -1226,11 +1230,11 @@ func (o *ServerInstanceGroupConfiguration) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "networkProfileGroupId")
 		delete(additionalProperties, "overrideIpv4WanVlanId")
 		delete(additionalProperties, "networkEquipmentForceSubnetPoolIpv4WanId")
+		delete(additionalProperties, "dnsSubdomainChangeId")
+		delete(additionalProperties, "infrastructureDeployId")
 		delete(additionalProperties, "emptyEdit")
 		delete(additionalProperties, "deployType")
 		delete(additionalProperties, "deployStatus")
-		delete(additionalProperties, "dnsSubdomainChangeId")
-		delete(additionalProperties, "infrastructureDeployId")
 		o.AdditionalProperties = additionalProperties
 	}
 

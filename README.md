@@ -80,6 +80,7 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AIAPI* | [**GenerateEliResponse**](docs/AIAPI.md#generateeliresponse) | **Post** /api/v2/ai/generate | Request from AI a response for the given input
+*AccountAPI* | [**AccountControllerGetUserConfiguration**](docs/AccountAPI.md#accountcontrollergetuserconfiguration) | **Get** /api/v2/accounts/{accountId}/config | Get account configuration by ID
 *AccountAPI* | [**ArchiveAccount**](docs/AccountAPI.md#archiveaccount) | **Post** /api/v2/accounts/{accountId}/actions/archive | Archive account
 *AccountAPI* | [**CreateAccount**](docs/AccountAPI.md#createaccount) | **Post** /api/v2/accounts | Create account
 *AccountAPI* | [**GetAccount**](docs/AccountAPI.md#getaccount) | **Get** /api/v2/accounts/{accountId} | Get account by id
@@ -87,13 +88,14 @@ Class | Method | HTTP request | Description
 *AccountAPI* | [**GetAccountUsers**](docs/AccountAPI.md#getaccountusers) | **Get** /api/v2/accounts/{accountId}/users | Get users for account
 *AccountAPI* | [**GetAccounts**](docs/AccountAPI.md#getaccounts) | **Get** /api/v2/accounts | Get all accounts
 *AccountAPI* | [**UnarchiveAccount**](docs/AccountAPI.md#unarchiveaccount) | **Post** /api/v2/accounts/{accountId}/actions/unarchive | Unarchive account
-*AccountAPI* | [**UpdateAccount**](docs/AccountAPI.md#updateaccount) | **Patch** /api/v2/accounts/{accountId} | Update account
-*AccountAPI* | [**UpdateAccountLimits**](docs/AccountAPI.md#updateaccountlimits) | **Patch** /api/v2/accounts/{accountId}/limits | Update account limits
+*AccountAPI* | [**UpdateAccountConfig**](docs/AccountAPI.md#updateaccountconfig) | **Patch** /api/v2/accounts/{accountId}/config | Update account configuration
+*AccountAPI* | [**UpdateAccountLimits**](docs/AccountAPI.md#updateaccountlimits) | **Patch** /api/v2/accounts/{accountId}/actions/change-limits | Update account limits
 *AuthenticationAPI* | [**GetAuthenticationProvider**](docs/AuthenticationAPI.md#getauthenticationprovider) | **Get** /api/v2/authentication-provider | Retrieve authentication provider for an email
 *AuthenticationAPI* | [**GetAuthenticationProviders**](docs/AuthenticationAPI.md#getauthenticationproviders) | **Get** /api/v2/authentication-providers | Retrieve all authentication providers
 *AuthenticationAPI* | [**GetCurrentUser**](docs/AuthenticationAPI.md#getcurrentuser) | **Get** /api/v2/user | Get current user
 *AuthenticationAPI* | [**Login**](docs/AuthenticationAPI.md#login) | **Post** /api/v2/login | User login
 *AuthenticationAPI* | [**Logout**](docs/AuthenticationAPI.md#logout) | **Post** /api/v2/logout | Logout user
+*AuthenticationAPI* | [**SignUp**](docs/AuthenticationAPI.md#signup) | **Post** /api/v2/sign-up | Sign up
 *BucketAPI* | [**CreateInfrastructureBucket**](docs/BucketAPI.md#createinfrastructurebucket) | **Post** /api/v2/infrastructures/{infrastructureId}/buckets | Creates a Bucket
 *BucketAPI* | [**DeleteBucket**](docs/BucketAPI.md#deletebucket) | **Delete** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId} | Deletes a Bucket
 *BucketAPI* | [**GetBucket**](docs/BucketAPI.md#getbucket) | **Get** /api/v2/buckets/{bucketId} | Get Bucket information
@@ -399,13 +401,26 @@ Class | Method | HTTP request | Description
 *TemplateAssetAPI* | [**UpdateTemplateAsset**](docs/TemplateAssetAPI.md#updatetemplateasset) | **Put** /api/v2/template-assets/{templateAssetId} | Update template asset
 *UserAPI* | [**ArchiveUser**](docs/UserAPI.md#archiveuser) | **Post** /api/v2/users/{userId}/actions/archive | Archive user
 *UserAPI* | [**ChangeUserAccount**](docs/UserAPI.md#changeuseraccount) | **Post** /api/v2/users/{userId}/actions/change-account | Change account for user
-*UserAPI* | [**CreateUser**](docs/UserAPI.md#createuser) | **Post** /api/v2/users | Creates a user
+*UserAPI* | [**CreateUserAuthorized**](docs/UserAPI.md#createuserauthorized) | **Post** /api/v2/users | Creates another user
 *UserAPI* | [**GetUser**](docs/UserAPI.md#getuser) | **Get** /api/v2/users/{userId} | Get user
 *UserAPI* | [**GetUserLimits**](docs/UserAPI.md#getuserlimits) | **Get** /api/v2/users/{userId}/limits | Get user limits
 *UserAPI* | [**GetUsers**](docs/UserAPI.md#getusers) | **Get** /api/v2/users | Get users
 *UserAPI* | [**UnarchiveUser**](docs/UserAPI.md#unarchiveuser) | **Post** /api/v2/users/{userId}/actions/unarchive | Unarchive user
-*UserAPI* | [**UpdateUser**](docs/UserAPI.md#updateuser) | **Patch** /api/v2/users/{userId} | Update user
-*UserAPI* | [**UpdateUserLimits**](docs/UserAPI.md#updateuserlimits) | **Patch** /api/v2/users/{userId}/limits | Update user limits
+*UserAPI* | [**UpdateUserConfig**](docs/UserAPI.md#updateuserconfig) | **Patch** /api/v2/users/{userId}/config | Update user configuration
+*UserAPI* | [**UpdateUserLimits**](docs/UserAPI.md#updateuserlimits) | **Patch** /api/v2/users/{userId}/actions/change-limits | Update user limits
+*UserAPI* | [**UserControllerAddDelegate**](docs/UserAPI.md#usercontrolleradddelegate) | **Post** /api/v2/users/{userId}/actions/add-delegate/{delegateId} | Add a delegate to a user
+*UserAPI* | [**UserControllerGetUserChildDelegates**](docs/UserAPI.md#usercontrollergetuserchilddelegates) | **Get** /api/v2/users/{userId}/child-delegates | Get user child delegates by ID
+*UserAPI* | [**UserControllerGetUserConfiguration**](docs/UserAPI.md#usercontrollergetuserconfiguration) | **Get** /api/v2/users/{userId}/config | Get user configuration by ID
+*UserAPI* | [**UserControllerGetUserParentDelegates**](docs/UserAPI.md#usercontrollergetuserparentdelegates) | **Get** /api/v2/users/{userId}/parent-delegates | Get user parent delegates by ID
+*UserAPI* | [**UserControllerGetUserPermissions**](docs/UserAPI.md#usercontrollergetuserpermissions) | **Get** /api/v2/users/{userId}/permissions | Get user resource permissions by ID
+*UserAPI* | [**UserControllerGetUserSuspendReasons**](docs/UserAPI.md#usercontrollergetusersuspendreasons) | **Get** /api/v2/users/{userId}/suspend-reasons | Get user suspend reasons by ID
+*UserAPI* | [**UserControllerRemoveDelegate**](docs/UserAPI.md#usercontrollerremovedelegate) | **Post** /api/v2/users/{userId}/actions/remove-delegate/{delegateId} | Remove a delegate from a user
+*UserAPI* | [**UserControllerSuspendUser**](docs/UserAPI.md#usercontrollersuspenduser) | **Post** /api/v2/users/{userId}/actions/suspend | Suspend a user
+*UserAPI* | [**UserControllerUnsuspendUser**](docs/UserAPI.md#usercontrollerunsuspenduser) | **Post** /api/v2/users/{userId}/actions/unsuspend | Unsuspend a user
+*UserAPI* | [**UserControllerUpdateUserEmail**](docs/UserAPI.md#usercontrollerupdateuseremail) | **Post** /api/v2/users/{userId}/actions/change-email | Change user email
+*UserAPI* | [**UserControllerUpdateUserMeta**](docs/UserAPI.md#usercontrollerupdateusermeta) | **Patch** /api/v2/users/{userId}/meta | Update user metadata
+*UserAPI* | [**UserControllerUpdateUserPassword**](docs/UserAPI.md#usercontrollerupdateuserpassword) | **Post** /api/v2/users/{userId}/actions/change-password | Change user password
+*UserAPI* | [**UserControllerUpdateUserPermissions**](docs/UserAPI.md#usercontrollerupdateuserpermissions) | **Post** /api/v2/users/{userId}/actions/change-resource-permissions | Update user resource permissions
 *VMAPI* | [**GetVM**](docs/VMAPI.md#getvm) | **Get** /api/v2/vms/{vmId} | Retrieves the VM information
 *VMAPI* | [**GetVMPowerStatus**](docs/VMAPI.md#getvmpowerstatus) | **Get** /api/v2/vms/{vmId}/power-status | Retrieves the power status of the VM
 *VMAPI* | [**GetVMRemoteConsoleInfo**](docs/VMAPI.md#getvmremoteconsoleinfo) | **Get** /api/v2/vms/{vmId}/remote-console-info | Get Remote Console information
@@ -463,6 +478,7 @@ Class | Method | HTTP request | Description
  - [AIGenerateResponse](docs/AIGenerateResponse.md)
  - [Account](docs/Account.md)
  - [AccountAddress](docs/AccountAddress.md)
+ - [AccountConfig](docs/AccountConfig.md)
  - [AccountLimits](docs/AccountLimits.md)
  - [AccountPaginatedList](docs/AccountPaginatedList.md)
  - [AddUserToInfrastructure](docs/AddUserToInfrastructure.md)
@@ -492,6 +508,7 @@ Class | Method | HTTP request | Description
  - [BucketPaginatedList](docs/BucketPaginatedList.md)
  - [CatalogUpdateType](docs/CatalogUpdateType.md)
  - [ChangeUserAccount](docs/ChangeUserAccount.md)
+ - [ChangeUserEmail](docs/ChangeUserEmail.md)
  - [ControllerPolicy](docs/ControllerPolicy.md)
  - [CreateAccount](docs/CreateAccount.md)
  - [CreateBucket](docs/CreateBucket.md)
@@ -504,6 +521,8 @@ Class | Method | HTTP request | Description
  - [CreateFirmwareBinary](docs/CreateFirmwareBinary.md)
  - [CreateFirmwareCatalog](docs/CreateFirmwareCatalog.md)
  - [CreateGroupDrive](docs/CreateGroupDrive.md)
+ - [CreateLogicalNetworkDto](docs/CreateLogicalNetworkDto.md)
+ - [CreateLogicalNetworkProfileDto](docs/CreateLogicalNetworkProfileDto.md)
  - [CreateNetwork](docs/CreateNetwork.md)
  - [CreateNetworkDevice](docs/CreateNetworkDevice.md)
  - [CreateNetworkDeviceDefaults](docs/CreateNetworkDeviceDefaults.md)
@@ -612,6 +631,8 @@ Class | Method | HTTP request | Description
  - [JobStatistics](docs/JobStatistics.md)
  - [Link](docs/Link.md)
  - [Location](docs/Location.md)
+ - [LogicalNetworkDto](docs/LogicalNetworkDto.md)
+ - [LogicalNetworkProfileDto](docs/LogicalNetworkProfileDto.md)
  - [Network](docs/Network.md)
  - [NetworkDevice](docs/NetworkDevice.md)
  - [NetworkDeviceControllerUpdateTagsForNetworkDeviceRequest](docs/NetworkDeviceControllerUpdateTagsForNetworkDeviceRequest.md)
@@ -666,6 +687,7 @@ Class | Method | HTTP request | Description
  - [ServerFirmwareUpgradePolicyRule](docs/ServerFirmwareUpgradePolicyRule.md)
  - [ServerGpuInfo](docs/ServerGpuInfo.md)
  - [ServerInstance](docs/ServerInstance.md)
+ - [ServerInstanceClusterCustomInfo](docs/ServerInstanceClusterCustomInfo.md)
  - [ServerInstanceConfiguration](docs/ServerInstanceConfiguration.md)
  - [ServerInstanceCreate](docs/ServerInstanceCreate.md)
  - [ServerInstanceGroup](docs/ServerInstanceGroup.md)
@@ -680,6 +702,7 @@ Class | Method | HTTP request | Description
  - [ServerInstanceInterfaceConfiguration](docs/ServerInstanceInterfaceConfiguration.md)
  - [ServerInstanceInterfacePaginatedList](docs/ServerInstanceInterfacePaginatedList.md)
  - [ServerInstanceInterfaceUpdate](docs/ServerInstanceInterfaceUpdate.md)
+ - [ServerInstanceOsInstallImageBuildInfo](docs/ServerInstanceOsInstallImageBuildInfo.md)
  - [ServerInstancePaginatedList](docs/ServerInstancePaginatedList.md)
  - [ServerInstancePowerSet](docs/ServerInstancePowerSet.md)
  - [ServerInstanceProfile](docs/ServerInstanceProfile.md)
@@ -729,6 +752,7 @@ Class | Method | HTTP request | Description
  - [SpecialPermissions](docs/SpecialPermissions.md)
  - [Storage](docs/Storage.md)
  - [StorageNetworkDeviceConfiguration](docs/StorageNetworkDeviceConfiguration.md)
+ - [StorageOptions](docs/StorageOptions.md)
  - [StoragePaginatedList](docs/StoragePaginatedList.md)
  - [SwitchPosition](docs/SwitchPosition.md)
  - [TemplateAsset](docs/TemplateAsset.md)
@@ -753,6 +777,8 @@ Class | Method | HTTP request | Description
  - [UpdateGroupDrive](docs/UpdateGroupDrive.md)
  - [UpdateInfrastructure](docs/UpdateInfrastructure.md)
  - [UpdateInfrastructureMeta](docs/UpdateInfrastructureMeta.md)
+ - [UpdateLogicalNetworkDto](docs/UpdateLogicalNetworkDto.md)
+ - [UpdateLogicalNetworkProfileDto](docs/UpdateLogicalNetworkProfileDto.md)
  - [UpdateNetworkDevice](docs/UpdateNetworkDevice.md)
  - [UpdateNetworkFabric](docs/UpdateNetworkFabric.md)
  - [UpdateResourcePool](docs/UpdateResourcePool.md)
@@ -765,9 +791,11 @@ Class | Method | HTTP request | Description
  - [UpdateServerType](docs/UpdateServerType.md)
  - [UpdateSharedDrive](docs/UpdateSharedDrive.md)
  - [UpdateSharedDriveMeta](docs/UpdateSharedDriveMeta.md)
- - [UpdateStorage](docs/UpdateStorage.md)
+ - [UpdateStorageInternal](docs/UpdateStorageInternal.md)
  - [UpdateStorageNetworkDeviceConfiguration](docs/UpdateStorageNetworkDeviceConfiguration.md)
+ - [UpdateStorageOptions](docs/UpdateStorageOptions.md)
  - [UpdateUser](docs/UpdateUser.md)
+ - [UpdateUserPermissionsDto](docs/UpdateUserPermissionsDto.md)
  - [UpdateVM](docs/UpdateVM.md)
  - [UpdateVMInstance](docs/UpdateVMInstance.md)
  - [UpdateVMInstanceGroup](docs/UpdateVMInstanceGroup.md)
@@ -777,17 +805,17 @@ Class | Method | HTTP request | Description
  - [UpdateVMPoolHostInterface](docs/UpdateVMPoolHostInterface.md)
  - [UpdateVMType](docs/UpdateVMType.md)
  - [User](docs/User.md)
- - [UserDelegate](docs/UserDelegate.md)
- - [UserExperimentalTag](docs/UserExperimentalTag.md)
+ - [UserConfiguration](docs/UserConfiguration.md)
  - [UserInfo](docs/UserInfo.md)
  - [UserLimits](docs/UserLimits.md)
+ - [UserList](docs/UserList.md)
+ - [UserMeta](docs/UserMeta.md)
  - [UserPaginatedList](docs/UserPaginatedList.md)
- - [UserPasswordRevealPermission](docs/UserPasswordRevealPermission.md)
  - [UserPermissions](docs/UserPermissions.md)
- - [UserPromotion](docs/UserPromotion.md)
- - [UserResourcePermissions](docs/UserResourcePermissions.md)
- - [UserSpecialPermission](docs/UserSpecialPermission.md)
  - [UserSuspend](docs/UserSuspend.md)
+ - [UserSuspendReason](docs/UserSuspendReason.md)
+ - [UserSuspendReasonList](docs/UserSuspendReasonList.md)
+ - [UserUpdatePassword](docs/UserUpdatePassword.md)
  - [VM](docs/VM.md)
  - [VMDisk](docs/VMDisk.md)
  - [VMInstance](docs/VMInstance.md)

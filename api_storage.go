@@ -244,13 +244,6 @@ type StorageAPIDeleteStorageRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
 	storageId float32
-	updateStorage *UpdateStorage
-}
-
-// The Storage object to delete
-func (r StorageAPIDeleteStorageRequest) UpdateStorage(updateStorage UpdateStorage) StorageAPIDeleteStorageRequest {
-	r.updateStorage = &updateStorage
-	return r
 }
 
 func (r StorageAPIDeleteStorageRequest) Execute() (*http.Response, error) {
@@ -293,12 +286,9 @@ func (a *StorageAPIService) DeleteStorageExecute(r StorageAPIDeleteStorageReques
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateStorage == nil {
-		return nil, reportError("updateStorage is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -314,8 +304,6 @@ func (a *StorageAPIService) DeleteStorageExecute(r StorageAPIDeleteStorageReques
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.updateStorage
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -2607,12 +2595,12 @@ type StorageAPIUpdateStorageRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
 	storageId float32
-	updateStorage *UpdateStorage
+	updateStorageInternal *UpdateStorageInternal
 }
 
 // The Storage update object
-func (r StorageAPIUpdateStorageRequest) UpdateStorage(updateStorage UpdateStorage) StorageAPIUpdateStorageRequest {
-	r.updateStorage = &updateStorage
+func (r StorageAPIUpdateStorageRequest) UpdateStorageInternal(updateStorageInternal UpdateStorageInternal) StorageAPIUpdateStorageRequest {
+	r.updateStorageInternal = &updateStorageInternal
 	return r
 }
 
@@ -2658,8 +2646,8 @@ func (a *StorageAPIService) UpdateStorageExecute(r StorageAPIUpdateStorageReques
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateStorage == nil {
-		return localVarReturnValue, nil, reportError("updateStorage is required and must be specified")
+	if r.updateStorageInternal == nil {
+		return localVarReturnValue, nil, reportError("updateStorageInternal is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2680,7 +2668,7 @@ func (a *StorageAPIService) UpdateStorageExecute(r StorageAPIUpdateStorageReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateStorage
+	localVarPostBody = r.updateStorageInternal
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

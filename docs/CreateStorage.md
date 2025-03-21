@@ -15,12 +15,11 @@ Name | Type | Description | Notes
 **ManagementHost** | **string** | Management host | 
 **Username** | **string** | Username | 
 **PasswordEncrypted** | **string** | Password encrypted | 
-**Options** | Pointer to **map[string]interface{}** | Options for the storage | [optional] 
 **InMaintenance** | **float32** | Specifies if the storage is in maintenance | 
 **TargetIQN** | Pointer to **string** | Target IQN | [optional] 
 **IsExperimental** | Pointer to **float32** | Specifies if the storage is experimental | [optional] 
-**DrivePriority** | **float32** | Specifies the drive priority | 
-**SharedDrivePriority** | **float32** | Specifies the shared drive priority | 
+**DrivePriority** | Pointer to **float32** | Specifies the drive priority | [optional] 
+**SharedDrivePriority** | Pointer to **float32** | Specifies the shared drive priority | [optional] 
 **AlternateSanIPs** | Pointer to **[]string** | Alternate SAN IPs | [optional] 
 **Tags** | Pointer to **[]string** | Tags | [optional] 
 **PortGroupAllocationOrder** | Pointer to **map[string]interface{}** | Port group allocation order | [optional] 
@@ -33,13 +32,14 @@ Name | Type | Description | Notes
 **S3Port** | Pointer to **string** | S3 port | [optional] 
 **JobInfo** | Pointer to [**JobInfo**](JobInfo.md) |  | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
+**Options** | Pointer to [**UpdateStorageOptions**](UpdateStorageOptions.md) | Options for the storage | [optional] 
 **Password** | **string** | The password to use. | 
 
 ## Methods
 
 ### NewCreateStorage
 
-`func NewCreateStorage(siteId float32, storageDriver string, storageTechnology string, storageType string, name string, managementHost string, username string, passwordEncrypted string, inMaintenance float32, drivePriority float32, sharedDrivePriority float32, subnetType string, password string, ) *CreateStorage`
+`func NewCreateStorage(siteId float32, storageDriver string, storageTechnology string, storageType string, name string, managementHost string, username string, passwordEncrypted string, inMaintenance float32, subnetType string, password string, ) *CreateStorage`
 
 NewCreateStorage instantiates a new CreateStorage object
 This constructor will assign default values to properties that have it defined,
@@ -289,31 +289,6 @@ and a boolean to check if the value has been set.
 SetPasswordEncrypted sets PasswordEncrypted field to given value.
 
 
-### GetOptions
-
-`func (o *CreateStorage) GetOptions() map[string]interface{}`
-
-GetOptions returns the Options field if non-nil, zero value otherwise.
-
-### GetOptionsOk
-
-`func (o *CreateStorage) GetOptionsOk() (*map[string]interface{}, bool)`
-
-GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOptions
-
-`func (o *CreateStorage) SetOptions(v map[string]interface{})`
-
-SetOptions sets Options field to given value.
-
-### HasOptions
-
-`func (o *CreateStorage) HasOptions() bool`
-
-HasOptions returns a boolean if a field has been set.
-
 ### GetInMaintenance
 
 `func (o *CreateStorage) GetInMaintenance() float32`
@@ -403,6 +378,11 @@ and a boolean to check if the value has been set.
 
 SetDrivePriority sets DrivePriority field to given value.
 
+### HasDrivePriority
+
+`func (o *CreateStorage) HasDrivePriority() bool`
+
+HasDrivePriority returns a boolean if a field has been set.
 
 ### GetSharedDrivePriority
 
@@ -423,6 +403,11 @@ and a boolean to check if the value has been set.
 
 SetSharedDrivePriority sets SharedDrivePriority field to given value.
 
+### HasSharedDrivePriority
+
+`func (o *CreateStorage) HasSharedDrivePriority() bool`
+
+HasSharedDrivePriority returns a boolean if a field has been set.
 
 ### GetAlternateSanIPs
 
@@ -718,6 +703,31 @@ SetLinks sets Links field to given value.
 `func (o *CreateStorage) HasLinks() bool`
 
 HasLinks returns a boolean if a field has been set.
+
+### GetOptions
+
+`func (o *CreateStorage) GetOptions() UpdateStorageOptions`
+
+GetOptions returns the Options field if non-nil, zero value otherwise.
+
+### GetOptionsOk
+
+`func (o *CreateStorage) GetOptionsOk() (*UpdateStorageOptions, bool)`
+
+GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOptions
+
+`func (o *CreateStorage) SetOptions(v UpdateStorageOptions)`
+
+SetOptions sets Options field to given value.
+
+### HasOptions
+
+`func (o *CreateStorage) HasOptions() bool`
+
+HasOptions returns a boolean if a field has been set.
 
 ### GetPassword
 

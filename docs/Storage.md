@@ -16,12 +16,12 @@ Name | Type | Description | Notes
 **ManagementHost** | **string** | Management host | 
 **Username** | **string** | Username | 
 **PasswordEncrypted** | **string** | Password encrypted | 
-**Options** | Pointer to **map[string]interface{}** | Options for the storage | [optional] 
+**Options** | Pointer to [**StorageOptions**](StorageOptions.md) | Options for the storage | [optional] 
 **InMaintenance** | **float32** | Specifies if the storage is in maintenance | 
 **TargetIQN** | Pointer to **string** | Target IQN | [optional] 
 **IsExperimental** | Pointer to **float32** | Specifies if the storage is experimental | [optional] 
-**DrivePriority** | **float32** | Specifies the drive priority | 
-**SharedDrivePriority** | **float32** | Specifies the shared drive priority | 
+**DrivePriority** | Pointer to **float32** | Specifies the drive priority | [optional] 
+**SharedDrivePriority** | Pointer to **float32** | Specifies the shared drive priority | [optional] 
 **AlternateSanIPs** | Pointer to **[]string** | Alternate SAN IPs | [optional] 
 **Tags** | Pointer to **[]string** | Tags | [optional] 
 **PortGroupAllocationOrder** | Pointer to **map[string]interface{}** | Port group allocation order | [optional] 
@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 
 ### NewStorage
 
-`func NewStorage(storageId float32, siteId float32, storageDriver string, storageTechnology string, storageType string, name string, managementHost string, username string, passwordEncrypted string, inMaintenance float32, drivePriority float32, sharedDrivePriority float32, subnetType string, ) *Storage`
+`func NewStorage(storageId float32, siteId float32, storageDriver string, storageTechnology string, storageType string, name string, managementHost string, username string, passwordEncrypted string, inMaintenance float32, subnetType string, ) *Storage`
 
 NewStorage instantiates a new Storage object
 This constructor will assign default values to properties that have it defined,
@@ -311,20 +311,20 @@ SetPasswordEncrypted sets PasswordEncrypted field to given value.
 
 ### GetOptions
 
-`func (o *Storage) GetOptions() map[string]interface{}`
+`func (o *Storage) GetOptions() StorageOptions`
 
 GetOptions returns the Options field if non-nil, zero value otherwise.
 
 ### GetOptionsOk
 
-`func (o *Storage) GetOptionsOk() (*map[string]interface{}, bool)`
+`func (o *Storage) GetOptionsOk() (*StorageOptions, bool)`
 
 GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptions
 
-`func (o *Storage) SetOptions(v map[string]interface{})`
+`func (o *Storage) SetOptions(v StorageOptions)`
 
 SetOptions sets Options field to given value.
 
@@ -423,6 +423,11 @@ and a boolean to check if the value has been set.
 
 SetDrivePriority sets DrivePriority field to given value.
 
+### HasDrivePriority
+
+`func (o *Storage) HasDrivePriority() bool`
+
+HasDrivePriority returns a boolean if a field has been set.
 
 ### GetSharedDrivePriority
 
@@ -443,6 +448,11 @@ and a boolean to check if the value has been set.
 
 SetSharedDrivePriority sets SharedDrivePriority field to given value.
 
+### HasSharedDrivePriority
+
+`func (o *Storage) HasSharedDrivePriority() bool`
+
+HasSharedDrivePriority returns a boolean if a field has been set.
 
 ### GetAlternateSanIPs
 

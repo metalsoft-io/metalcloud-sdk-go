@@ -6,13 +6,26 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ArchiveUser**](UserAPI.md#ArchiveUser) | **Post** /api/v2/users/{userId}/actions/archive | Archive user
 [**ChangeUserAccount**](UserAPI.md#ChangeUserAccount) | **Post** /api/v2/users/{userId}/actions/change-account | Change account for user
-[**CreateUser**](UserAPI.md#CreateUser) | **Post** /api/v2/users | Creates a user
+[**CreateUserAuthorized**](UserAPI.md#CreateUserAuthorized) | **Post** /api/v2/users | Creates another user
 [**GetUser**](UserAPI.md#GetUser) | **Get** /api/v2/users/{userId} | Get user
 [**GetUserLimits**](UserAPI.md#GetUserLimits) | **Get** /api/v2/users/{userId}/limits | Get user limits
 [**GetUsers**](UserAPI.md#GetUsers) | **Get** /api/v2/users | Get users
 [**UnarchiveUser**](UserAPI.md#UnarchiveUser) | **Post** /api/v2/users/{userId}/actions/unarchive | Unarchive user
-[**UpdateUser**](UserAPI.md#UpdateUser) | **Patch** /api/v2/users/{userId} | Update user
-[**UpdateUserLimits**](UserAPI.md#UpdateUserLimits) | **Patch** /api/v2/users/{userId}/limits | Update user limits
+[**UpdateUserConfig**](UserAPI.md#UpdateUserConfig) | **Patch** /api/v2/users/{userId}/config | Update user configuration
+[**UpdateUserLimits**](UserAPI.md#UpdateUserLimits) | **Patch** /api/v2/users/{userId}/actions/change-limits | Update user limits
+[**UserControllerAddDelegate**](UserAPI.md#UserControllerAddDelegate) | **Post** /api/v2/users/{userId}/actions/add-delegate/{delegateId} | Add a delegate to a user
+[**UserControllerGetUserChildDelegates**](UserAPI.md#UserControllerGetUserChildDelegates) | **Get** /api/v2/users/{userId}/child-delegates | Get user child delegates by ID
+[**UserControllerGetUserConfiguration**](UserAPI.md#UserControllerGetUserConfiguration) | **Get** /api/v2/users/{userId}/config | Get user configuration by ID
+[**UserControllerGetUserParentDelegates**](UserAPI.md#UserControllerGetUserParentDelegates) | **Get** /api/v2/users/{userId}/parent-delegates | Get user parent delegates by ID
+[**UserControllerGetUserPermissions**](UserAPI.md#UserControllerGetUserPermissions) | **Get** /api/v2/users/{userId}/permissions | Get user resource permissions by ID
+[**UserControllerGetUserSuspendReasons**](UserAPI.md#UserControllerGetUserSuspendReasons) | **Get** /api/v2/users/{userId}/suspend-reasons | Get user suspend reasons by ID
+[**UserControllerRemoveDelegate**](UserAPI.md#UserControllerRemoveDelegate) | **Post** /api/v2/users/{userId}/actions/remove-delegate/{delegateId} | Remove a delegate from a user
+[**UserControllerSuspendUser**](UserAPI.md#UserControllerSuspendUser) | **Post** /api/v2/users/{userId}/actions/suspend | Suspend a user
+[**UserControllerUnsuspendUser**](UserAPI.md#UserControllerUnsuspendUser) | **Post** /api/v2/users/{userId}/actions/unsuspend | Unsuspend a user
+[**UserControllerUpdateUserEmail**](UserAPI.md#UserControllerUpdateUserEmail) | **Post** /api/v2/users/{userId}/actions/change-email | Change user email
+[**UserControllerUpdateUserMeta**](UserAPI.md#UserControllerUpdateUserMeta) | **Patch** /api/v2/users/{userId}/meta | Update user metadata
+[**UserControllerUpdateUserPassword**](UserAPI.md#UserControllerUpdateUserPassword) | **Post** /api/v2/users/{userId}/actions/change-password | Change user password
+[**UserControllerUpdateUserPermissions**](UserAPI.md#UserControllerUpdateUserPermissions) | **Post** /api/v2/users/{userId}/actions/change-resource-permissions | Update user resource permissions
 
 
 
@@ -162,11 +175,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateUser
+## CreateUserAuthorized
 
-> User CreateUser(ctx).CreateUser(createUser).Execute()
+> User CreateUserAuthorized(ctx).CreateUser(createUser).Execute()
 
-Creates a user
+Creates another user
 
 
 
@@ -183,17 +196,17 @@ import (
 )
 
 func main() {
-	createUser := *openapiclient.NewCreateUser("DisplayName_example", "Email_example") // CreateUser | The user to create
+	createUser := *openapiclient.NewCreateUser("DisplayName_example", "AccessLevel_example", "Email_example") // CreateUser | The user to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.CreateUser(context.Background()).CreateUser(createUser).Execute()
+	resp, r, err := apiClient.UserAPI.CreateUserAuthorized(context.Background()).CreateUser(createUser).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.CreateUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.CreateUserAuthorized``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateUser`: User
-	fmt.Fprintf(os.Stdout, "Response from `UserAPI.CreateUser`: %v\n", resp)
+	// response from `CreateUserAuthorized`: User
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.CreateUserAuthorized`: %v\n", resp)
 }
 ```
 
@@ -203,7 +216,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateUserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateUserAuthorizedRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -528,11 +541,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateUser
+## UpdateUserConfig
 
-> User UpdateUser(ctx, userId).UpdateUser(updateUser).IfMatch(ifMatch).Execute()
+> UserConfiguration UpdateUserConfig(ctx, userId).UpdateUser(updateUser).IfMatch(ifMatch).Execute()
 
-Update user
+Update user configuration
 
 
 
@@ -555,13 +568,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.UpdateUser(context.Background(), userId).UpdateUser(updateUser).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.UserAPI.UpdateUserConfig(context.Background(), userId).UpdateUser(updateUser).IfMatch(ifMatch).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UpdateUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UpdateUserConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateUser`: User
-	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UpdateUser`: %v\n", resp)
+	// response from `UpdateUserConfig`: UserConfiguration
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UpdateUserConfig`: %v\n", resp)
 }
 ```
 
@@ -575,7 +588,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateUserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateUserConfigRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -586,7 +599,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**User**](User.md)
+[**UserConfiguration**](UserConfiguration.md)
 
 ### Authorization
 
@@ -661,6 +674,918 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserLimits**](UserLimits.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerAddDelegate
+
+> User UserControllerAddDelegate(ctx, userId, delegateId).Execute()
+
+Add a delegate to a user
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | ID of the user
+	delegateId := float32(8.14) // float32 | ID of the delegate to add
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerAddDelegate(context.Background(), userId, delegateId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerAddDelegate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerAddDelegate`: User
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerAddDelegate`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** | ID of the user | 
+**delegateId** | **float32** | ID of the delegate to add | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerAddDelegateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerGetUserChildDelegates
+
+> UserList UserControllerGetUserChildDelegates(ctx, userId).Recursion(recursion).Execute()
+
+Get user child delegates by ID
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	recursion := float32(8.14) // float32 |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerGetUserChildDelegates(context.Background(), userId).Recursion(recursion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerGetUserChildDelegates``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerGetUserChildDelegates`: UserList
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerGetUserChildDelegates`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerGetUserChildDelegatesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **recursion** | **float32** |  | 
+
+### Return type
+
+[**UserList**](UserList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerGetUserConfiguration
+
+> UserConfiguration UserControllerGetUserConfiguration(ctx, userId).Execute()
+
+Get user configuration by ID
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerGetUserConfiguration(context.Background(), userId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerGetUserConfiguration``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerGetUserConfiguration`: UserConfiguration
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerGetUserConfiguration`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerGetUserConfigurationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**UserConfiguration**](UserConfiguration.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerGetUserParentDelegates
+
+> UserList UserControllerGetUserParentDelegates(ctx, userId).Recursion(recursion).Execute()
+
+Get user parent delegates by ID
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	recursion := float32(8.14) // float32 |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerGetUserParentDelegates(context.Background(), userId).Recursion(recursion).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerGetUserParentDelegates``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerGetUserParentDelegates`: UserList
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerGetUserParentDelegates`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerGetUserParentDelegatesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **recursion** | **float32** |  | 
+
+### Return type
+
+[**UserList**](UserList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerGetUserPermissions
+
+> UserPermissions UserControllerGetUserPermissions(ctx, userId).Execute()
+
+Get user resource permissions by ID
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerGetUserPermissions(context.Background(), userId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerGetUserPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerGetUserPermissions`: UserPermissions
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerGetUserPermissions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerGetUserPermissionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**UserPermissions**](UserPermissions.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerGetUserSuspendReasons
+
+> UserSuspendReasonList UserControllerGetUserSuspendReasons(ctx, userId).Execute()
+
+Get user suspend reasons by ID
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerGetUserSuspendReasons(context.Background(), userId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerGetUserSuspendReasons``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerGetUserSuspendReasons`: UserSuspendReasonList
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerGetUserSuspendReasons`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerGetUserSuspendReasonsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**UserSuspendReasonList**](UserSuspendReasonList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerRemoveDelegate
+
+> User UserControllerRemoveDelegate(ctx, userId, delegateId).Execute()
+
+Remove a delegate from a user
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | ID of the user
+	delegateId := float32(8.14) // float32 | ID of the delegate to remove
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerRemoveDelegate(context.Background(), userId, delegateId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerRemoveDelegate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerRemoveDelegate`: User
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerRemoveDelegate`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** | ID of the user | 
+**delegateId** | **float32** | ID of the delegate to remove | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerRemoveDelegateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerSuspendUser
+
+> UserSuspendReason UserControllerSuspendUser(ctx, userId).UserSuspend(userSuspend).IfMatch(ifMatch).Execute()
+
+Suspend a user
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	userSuspend := *openapiclient.NewUserSuspend("SuspendReason_example", "SuspendReasonPublicComment_example") // UserSuspend | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerSuspendUser(context.Background(), userId).UserSuspend(userSuspend).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerSuspendUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerSuspendUser`: UserSuspendReason
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerSuspendUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerSuspendUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **userSuspend** | [**UserSuspend**](UserSuspend.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**UserSuspendReason**](UserSuspendReason.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerUnsuspendUser
+
+> UserControllerUnsuspendUser(ctx, userId).IfMatch(ifMatch).Execute()
+
+Unsuspend a user
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.UserAPI.UserControllerUnsuspendUser(context.Background(), userId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerUnsuspendUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerUnsuspendUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerUpdateUserEmail
+
+> User UserControllerUpdateUserEmail(ctx, userId).ChangeUserEmail(changeUserEmail).IfMatch(ifMatch).Execute()
+
+Change user email
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	changeUserEmail := *openapiclient.NewChangeUserEmail("Email_example") // ChangeUserEmail | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerUpdateUserEmail(context.Background(), userId).ChangeUserEmail(changeUserEmail).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerUpdateUserEmail``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerUpdateUserEmail`: User
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerUpdateUserEmail`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerUpdateUserEmailRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **changeUserEmail** | [**ChangeUserEmail**](ChangeUserEmail.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerUpdateUserMeta
+
+> UserMeta UserControllerUpdateUserMeta(ctx, userId).UserMeta(userMeta).Execute()
+
+Update user metadata
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	userMeta := *openapiclient.NewUserMeta() // UserMeta | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerUpdateUserMeta(context.Background(), userId).UserMeta(userMeta).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerUpdateUserMeta``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerUpdateUserMeta`: UserMeta
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerUpdateUserMeta`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerUpdateUserMetaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **userMeta** | [**UserMeta**](UserMeta.md) |  | 
+
+### Return type
+
+[**UserMeta**](UserMeta.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerUpdateUserPassword
+
+> User UserControllerUpdateUserPassword(ctx, userId).UserUpdatePassword(userUpdatePassword).IfMatch(ifMatch).Execute()
+
+Change user password
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	userUpdatePassword := *openapiclient.NewUserUpdatePassword("NewPassword_example", "OldPassword_example") // UserUpdatePassword | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerUpdateUserPassword(context.Background(), userId).UserUpdatePassword(userUpdatePassword).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerUpdateUserPassword``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerUpdateUserPassword`: User
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerUpdateUserPassword`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerUpdateUserPasswordRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **userUpdatePassword** | [**UserUpdatePassword**](UserUpdatePassword.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerUpdateUserPermissions
+
+> UserPermissions UserControllerUpdateUserPermissions(ctx, userId).UpdateUserPermissionsDto(updateUserPermissionsDto).IfMatch(ifMatch).Execute()
+
+Update user resource permissions
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	updateUserPermissionsDto := *openapiclient.NewUpdateUserPermissionsDto() // UpdateUserPermissionsDto | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerUpdateUserPermissions(context.Background(), userId).UpdateUserPermissionsDto(updateUserPermissionsDto).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerUpdateUserPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerUpdateUserPermissions`: UserPermissions
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerUpdateUserPermissions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerUpdateUserPermissionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **updateUserPermissionsDto** | [**UpdateUserPermissionsDto**](UpdateUserPermissionsDto.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**UserPermissions**](UserPermissions.md)
 
 ### Authorization
 

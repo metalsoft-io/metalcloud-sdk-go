@@ -21,27 +21,27 @@ var _ MappedNullable = &ServerInstance{}
 
 // ServerInstance struct for ServerInstance
 type ServerInstance struct {
-	// The server instance ID.
+	// The Product Instance ID.
 	Id int32 `json:"id"`
 	// Revision number
-	Revision float32 `json:"revision"`
-	// The server instance label.
+	Revision int32 `json:"revision"`
+	// The Product Instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
-	// Timestamp of the Server Instance creation.
+	// Timestamp of the Product Instance creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
-	// Timestamp of the latest update for the Server Instance.
+	// Timestamp of the latest update of the Product Instance.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
+	// Subdomain of the Product Instance.
+	Subdomain *string `json:"subdomain,omitempty"`
+	// Subdomain permanent of the Product Instance.
+	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
+	// Id of the DNS subdomain for the Product Instance
+	DnsSubdomainId *int32 `json:"dnsSubdomainId,omitempty"`
+	// Id of the permanent DNS subdomain for the Product Instance
+	DnsSubdomainPermanentId *int32 `json:"dnsSubdomainPermanentId,omitempty"`
 	InfrastructureId int32 `json:"infrastructureId"`
 	GroupId int32 `json:"groupId"`
 	DriveIdBootable *int32 `json:"driveIdBootable,omitempty"`
-	// Subdomain of the Server Group.
-	Subdomain *string `json:"subdomain,omitempty"`
-	// Subdomain permanent of the Server Group.
-	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
-	// Id of the DNS subdomain for the Server Group.
-	DnsSubdomainId *int32 `json:"dnsSubdomainId,omitempty"`
-	// Id of the permanent DNS subdomain for the Server Group.
-	DnsSubdomainPermanentId *int32 `json:"dnsSubdomainPermanentId,omitempty"`
 	// The server type ID.
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
 	// The ID of the server assigned to the instance.
@@ -71,7 +71,7 @@ type ServerInstance struct {
 	VariablesMaterializedForOSAssets map[string]interface{} `json:"variablesMaterializedForOSAssets,omitempty"`
 	// Secrets used when building the OS image.
 	SecretsMaterializedForOSAssets map[string]interface{} `json:"secretsMaterializedForOSAssets,omitempty"`
-	ClusterCustomInfo map[string]interface{} `json:"clusterCustomInfo,omitempty"`
+	ClusterCustomInfo *ServerInstanceClusterCustomInfo `json:"clusterCustomInfo,omitempty"`
 	// Last error message during OS install.
 	OsInstallError *string `json:"osInstallError,omitempty"`
 	// URL where the OS image is available.
@@ -79,7 +79,7 @@ type ServerInstance struct {
 	// Last error message during OS image build.
 	OsInstallImageBuildError *string `json:"osInstallImageBuildError,omitempty"`
 	// Build info regarding the OS image.
-	OsInstallImageBuildInfo *string `json:"osInstallImageBuildInfo,omitempty"`
+	OsInstallImageBuildInfo *ServerInstanceOsInstallImageBuildInfo `json:"osInstallImageBuildInfo,omitempty"`
 	// OS reinstall is required.
 	OsReinstallRequired *float32 `json:"osReinstallRequired,omitempty"`
 	// iSCSI Initiator IQN for the Instance Interface.
@@ -102,7 +102,7 @@ type _ServerInstance ServerInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstance(id int32, revision float32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance float32) *ServerInstance {
+func NewServerInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance float32) *ServerInstance {
 	this := ServerInstance{}
 	this.Id = id
 	this.Revision = revision
@@ -149,9 +149,9 @@ func (o *ServerInstance) SetId(v int32) {
 }
 
 // GetRevision returns the Revision field value
-func (o *ServerInstance) GetRevision() float32 {
+func (o *ServerInstance) GetRevision() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -160,7 +160,7 @@ func (o *ServerInstance) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstance) GetRevisionOk() (*float32, bool) {
+func (o *ServerInstance) GetRevisionOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -168,7 +168,7 @@ func (o *ServerInstance) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *ServerInstance) SetRevision(v float32) {
+func (o *ServerInstance) SetRevision(v int32) {
 	o.Revision = v
 }
 
@@ -242,86 +242,6 @@ func (o *ServerInstance) GetUpdatedTimestampOk() (*string, bool) {
 // SetUpdatedTimestamp sets field value
 func (o *ServerInstance) SetUpdatedTimestamp(v string) {
 	o.UpdatedTimestamp = v
-}
-
-// GetInfrastructureId returns the InfrastructureId field value
-func (o *ServerInstance) GetInfrastructureId() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.InfrastructureId
-}
-
-// GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
-// and a boolean to check if the value has been set.
-func (o *ServerInstance) GetInfrastructureIdOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.InfrastructureId, true
-}
-
-// SetInfrastructureId sets field value
-func (o *ServerInstance) SetInfrastructureId(v int32) {
-	o.InfrastructureId = v
-}
-
-// GetGroupId returns the GroupId field value
-func (o *ServerInstance) GetGroupId() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.GroupId
-}
-
-// GetGroupIdOk returns a tuple with the GroupId field value
-// and a boolean to check if the value has been set.
-func (o *ServerInstance) GetGroupIdOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.GroupId, true
-}
-
-// SetGroupId sets field value
-func (o *ServerInstance) SetGroupId(v int32) {
-	o.GroupId = v
-}
-
-// GetDriveIdBootable returns the DriveIdBootable field value if set, zero value otherwise.
-func (o *ServerInstance) GetDriveIdBootable() int32 {
-	if o == nil || IsNil(o.DriveIdBootable) {
-		var ret int32
-		return ret
-	}
-	return *o.DriveIdBootable
-}
-
-// GetDriveIdBootableOk returns a tuple with the DriveIdBootable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstance) GetDriveIdBootableOk() (*int32, bool) {
-	if o == nil || IsNil(o.DriveIdBootable) {
-		return nil, false
-	}
-	return o.DriveIdBootable, true
-}
-
-// HasDriveIdBootable returns a boolean if a field has been set.
-func (o *ServerInstance) HasDriveIdBootable() bool {
-	if o != nil && !IsNil(o.DriveIdBootable) {
-		return true
-	}
-
-	return false
-}
-
-// SetDriveIdBootable gets a reference to the given int32 and assigns it to the DriveIdBootable field.
-func (o *ServerInstance) SetDriveIdBootable(v int32) {
-	o.DriveIdBootable = &v
 }
 
 // GetSubdomain returns the Subdomain field value if set, zero value otherwise.
@@ -450,6 +370,86 @@ func (o *ServerInstance) HasDnsSubdomainPermanentId() bool {
 // SetDnsSubdomainPermanentId gets a reference to the given int32 and assigns it to the DnsSubdomainPermanentId field.
 func (o *ServerInstance) SetDnsSubdomainPermanentId(v int32) {
 	o.DnsSubdomainPermanentId = &v
+}
+
+// GetInfrastructureId returns the InfrastructureId field value
+func (o *ServerInstance) GetInfrastructureId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.InfrastructureId
+}
+
+// GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstance) GetInfrastructureIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InfrastructureId, true
+}
+
+// SetInfrastructureId sets field value
+func (o *ServerInstance) SetInfrastructureId(v int32) {
+	o.InfrastructureId = v
+}
+
+// GetGroupId returns the GroupId field value
+func (o *ServerInstance) GetGroupId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.GroupId
+}
+
+// GetGroupIdOk returns a tuple with the GroupId field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstance) GetGroupIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.GroupId, true
+}
+
+// SetGroupId sets field value
+func (o *ServerInstance) SetGroupId(v int32) {
+	o.GroupId = v
+}
+
+// GetDriveIdBootable returns the DriveIdBootable field value if set, zero value otherwise.
+func (o *ServerInstance) GetDriveIdBootable() int32 {
+	if o == nil || IsNil(o.DriveIdBootable) {
+		var ret int32
+		return ret
+	}
+	return *o.DriveIdBootable
+}
+
+// GetDriveIdBootableOk returns a tuple with the DriveIdBootable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstance) GetDriveIdBootableOk() (*int32, bool) {
+	if o == nil || IsNil(o.DriveIdBootable) {
+		return nil, false
+	}
+	return o.DriveIdBootable, true
+}
+
+// HasDriveIdBootable returns a boolean if a field has been set.
+func (o *ServerInstance) HasDriveIdBootable() bool {
+	if o != nil && !IsNil(o.DriveIdBootable) {
+		return true
+	}
+
+	return false
+}
+
+// SetDriveIdBootable gets a reference to the given int32 and assigns it to the DriveIdBootable field.
+func (o *ServerInstance) SetDriveIdBootable(v int32) {
+	o.DriveIdBootable = &v
 }
 
 // GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
@@ -981,19 +981,19 @@ func (o *ServerInstance) SetSecretsMaterializedForOSAssets(v map[string]interfac
 }
 
 // GetClusterCustomInfo returns the ClusterCustomInfo field value if set, zero value otherwise.
-func (o *ServerInstance) GetClusterCustomInfo() map[string]interface{} {
+func (o *ServerInstance) GetClusterCustomInfo() ServerInstanceClusterCustomInfo {
 	if o == nil || IsNil(o.ClusterCustomInfo) {
-		var ret map[string]interface{}
+		var ret ServerInstanceClusterCustomInfo
 		return ret
 	}
-	return o.ClusterCustomInfo
+	return *o.ClusterCustomInfo
 }
 
 // GetClusterCustomInfoOk returns a tuple with the ClusterCustomInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstance) GetClusterCustomInfoOk() (map[string]interface{}, bool) {
+func (o *ServerInstance) GetClusterCustomInfoOk() (*ServerInstanceClusterCustomInfo, bool) {
 	if o == nil || IsNil(o.ClusterCustomInfo) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.ClusterCustomInfo, true
 }
@@ -1007,9 +1007,9 @@ func (o *ServerInstance) HasClusterCustomInfo() bool {
 	return false
 }
 
-// SetClusterCustomInfo gets a reference to the given map[string]interface{} and assigns it to the ClusterCustomInfo field.
-func (o *ServerInstance) SetClusterCustomInfo(v map[string]interface{}) {
-	o.ClusterCustomInfo = v
+// SetClusterCustomInfo gets a reference to the given ServerInstanceClusterCustomInfo and assigns it to the ClusterCustomInfo field.
+func (o *ServerInstance) SetClusterCustomInfo(v ServerInstanceClusterCustomInfo) {
+	o.ClusterCustomInfo = &v
 }
 
 // GetOsInstallError returns the OsInstallError field value if set, zero value otherwise.
@@ -1109,9 +1109,9 @@ func (o *ServerInstance) SetOsInstallImageBuildError(v string) {
 }
 
 // GetOsInstallImageBuildInfo returns the OsInstallImageBuildInfo field value if set, zero value otherwise.
-func (o *ServerInstance) GetOsInstallImageBuildInfo() string {
+func (o *ServerInstance) GetOsInstallImageBuildInfo() ServerInstanceOsInstallImageBuildInfo {
 	if o == nil || IsNil(o.OsInstallImageBuildInfo) {
-		var ret string
+		var ret ServerInstanceOsInstallImageBuildInfo
 		return ret
 	}
 	return *o.OsInstallImageBuildInfo
@@ -1119,7 +1119,7 @@ func (o *ServerInstance) GetOsInstallImageBuildInfo() string {
 
 // GetOsInstallImageBuildInfoOk returns a tuple with the OsInstallImageBuildInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstance) GetOsInstallImageBuildInfoOk() (*string, bool) {
+func (o *ServerInstance) GetOsInstallImageBuildInfoOk() (*ServerInstanceOsInstallImageBuildInfo, bool) {
 	if o == nil || IsNil(o.OsInstallImageBuildInfo) {
 		return nil, false
 	}
@@ -1135,8 +1135,8 @@ func (o *ServerInstance) HasOsInstallImageBuildInfo() bool {
 	return false
 }
 
-// SetOsInstallImageBuildInfo gets a reference to the given string and assigns it to the OsInstallImageBuildInfo field.
-func (o *ServerInstance) SetOsInstallImageBuildInfo(v string) {
+// SetOsInstallImageBuildInfo gets a reference to the given ServerInstanceOsInstallImageBuildInfo and assigns it to the OsInstallImageBuildInfo field.
+func (o *ServerInstance) SetOsInstallImageBuildInfo(v ServerInstanceOsInstallImageBuildInfo) {
 	o.OsInstallImageBuildInfo = &v
 }
 
@@ -1379,11 +1379,6 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize["label"] = o.Label
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
-	toSerialize["infrastructureId"] = o.InfrastructureId
-	toSerialize["groupId"] = o.GroupId
-	if !IsNil(o.DriveIdBootable) {
-		toSerialize["driveIdBootable"] = o.DriveIdBootable
-	}
 	if !IsNil(o.Subdomain) {
 		toSerialize["subdomain"] = o.Subdomain
 	}
@@ -1395,6 +1390,11 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DnsSubdomainPermanentId) {
 		toSerialize["dnsSubdomainPermanentId"] = o.DnsSubdomainPermanentId
+	}
+	toSerialize["infrastructureId"] = o.InfrastructureId
+	toSerialize["groupId"] = o.GroupId
+	if !IsNil(o.DriveIdBootable) {
+		toSerialize["driveIdBootable"] = o.DriveIdBootable
 	}
 	if !IsNil(o.ServerTypeId) {
 		toSerialize["serverTypeId"] = o.ServerTypeId
@@ -1535,13 +1535,13 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
-		delete(additionalProperties, "infrastructureId")
-		delete(additionalProperties, "groupId")
-		delete(additionalProperties, "driveIdBootable")
 		delete(additionalProperties, "subdomain")
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "dnsSubdomainPermanentId")
+		delete(additionalProperties, "infrastructureId")
+		delete(additionalProperties, "groupId")
+		delete(additionalProperties, "driveIdBootable")
 		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "serverId")
 		delete(additionalProperties, "templateId")

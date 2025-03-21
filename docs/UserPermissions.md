@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AdminPasswordRevealPermissions** | Pointer to [**AdminPasswordRevealPermissions**](AdminPasswordRevealPermissions.md) | Admin password reveal permissions | [optional] 
-**SpecialPermissions** | [**SpecialPermissions**](SpecialPermissions.md) | Special permissions | 
+**SpecialPermissions** | Pointer to [**SpecialPermissions**](SpecialPermissions.md) | Special permissions | [optional] 
 **RolePermissions** | **[]string** | Role permissions | 
 
 ## Methods
 
 ### NewUserPermissions
 
-`func NewUserPermissions(specialPermissions SpecialPermissions, rolePermissions []string, ) *UserPermissions`
+`func NewUserPermissions(rolePermissions []string, ) *UserPermissions`
 
 NewUserPermissions instantiates a new UserPermissions object
 This constructor will assign default values to properties that have it defined,
@@ -71,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetSpecialPermissions sets SpecialPermissions field to given value.
 
+### HasSpecialPermissions
+
+`func (o *UserPermissions) HasSpecialPermissions() bool`
+
+HasSpecialPermissions returns a boolean if a field has been set.
 
 ### GetRolePermissions
 

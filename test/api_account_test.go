@@ -22,6 +22,21 @@ func Test_sdk_AccountAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test AccountAPIService AccountControllerGetUserConfiguration", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+		var accountId float32
+
+		resp, httpRes, err := apiClient.AccountAPI.AccountControllerGetUserConfiguration(context.Background(), userId, accountId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test AccountAPIService ArchiveAccount", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -116,13 +131,13 @@ func Test_sdk_AccountAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test AccountAPIService UpdateAccount", func(t *testing.T) {
+	t.Run("Test AccountAPIService UpdateAccountConfig", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var accountId float32
 
-		resp, httpRes, err := apiClient.AccountAPI.UpdateAccount(context.Background(), accountId).Execute()
+		resp, httpRes, err := apiClient.AccountAPI.UpdateAccountConfig(context.Background(), accountId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

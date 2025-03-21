@@ -43,8 +43,6 @@ type CreateStorage struct {
 	Username string `json:"username"`
 	// Password encrypted
 	PasswordEncrypted string `json:"passwordEncrypted"`
-	// Options for the storage
-	Options map[string]interface{} `json:"options,omitempty"`
 	// Specifies if the storage is in maintenance
 	InMaintenance float32 `json:"inMaintenance"`
 	// Target IQN
@@ -52,9 +50,9 @@ type CreateStorage struct {
 	// Specifies if the storage is experimental
 	IsExperimental *float32 `json:"isExperimental,omitempty"`
 	// Specifies the drive priority
-	DrivePriority float32 `json:"drivePriority"`
+	DrivePriority *float32 `json:"drivePriority,omitempty"`
 	// Specifies the shared drive priority
-	SharedDrivePriority float32 `json:"sharedDrivePriority"`
+	SharedDrivePriority *float32 `json:"sharedDrivePriority,omitempty"`
 	// Alternate SAN IPs
 	AlternateSanIPs []string `json:"alternateSanIPs,omitempty"`
 	// Tags
@@ -78,6 +76,8 @@ type CreateStorage struct {
 	JobInfo *JobInfo `json:"jobInfo,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
+	// Options for the storage
+	Options *UpdateStorageOptions `json:"options,omitempty"`
 	// The password to use.
 	Password string `json:"password"`
 	AdditionalProperties map[string]interface{}
@@ -89,7 +89,7 @@ type _CreateStorage CreateStorage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateStorage(siteId float32, storageDriver string, storageTechnology string, storageType string, name string, managementHost string, username string, passwordEncrypted string, inMaintenance float32, drivePriority float32, sharedDrivePriority float32, subnetType string, password string) *CreateStorage {
+func NewCreateStorage(siteId float32, storageDriver string, storageTechnology string, storageType string, name string, managementHost string, username string, passwordEncrypted string, inMaintenance float32, subnetType string, password string) *CreateStorage {
 	this := CreateStorage{}
 	this.SiteId = siteId
 	this.StorageDriver = storageDriver
@@ -100,8 +100,6 @@ func NewCreateStorage(siteId float32, storageDriver string, storageTechnology st
 	this.Username = username
 	this.PasswordEncrypted = passwordEncrypted
 	this.InMaintenance = inMaintenance
-	this.DrivePriority = drivePriority
-	this.SharedDrivePriority = sharedDrivePriority
 	this.SubnetType = subnetType
 	this.Password = password
 	return &this
@@ -403,38 +401,6 @@ func (o *CreateStorage) SetPasswordEncrypted(v string) {
 	o.PasswordEncrypted = v
 }
 
-// GetOptions returns the Options field value if set, zero value otherwise.
-func (o *CreateStorage) GetOptions() map[string]interface{} {
-	if o == nil || IsNil(o.Options) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Options
-}
-
-// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateStorage) GetOptionsOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Options) {
-		return map[string]interface{}{}, false
-	}
-	return o.Options, true
-}
-
-// HasOptions returns a boolean if a field has been set.
-func (o *CreateStorage) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
-		return true
-	}
-
-	return false
-}
-
-// SetOptions gets a reference to the given map[string]interface{} and assigns it to the Options field.
-func (o *CreateStorage) SetOptions(v map[string]interface{}) {
-	o.Options = v
-}
-
 // GetInMaintenance returns the InMaintenance field value
 func (o *CreateStorage) GetInMaintenance() float32 {
 	if o == nil {
@@ -523,52 +489,68 @@ func (o *CreateStorage) SetIsExperimental(v float32) {
 	o.IsExperimental = &v
 }
 
-// GetDrivePriority returns the DrivePriority field value
+// GetDrivePriority returns the DrivePriority field value if set, zero value otherwise.
 func (o *CreateStorage) GetDrivePriority() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.DrivePriority) {
 		var ret float32
 		return ret
 	}
-
-	return o.DrivePriority
+	return *o.DrivePriority
 }
 
-// GetDrivePriorityOk returns a tuple with the DrivePriority field value
+// GetDrivePriorityOk returns a tuple with the DrivePriority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateStorage) GetDrivePriorityOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DrivePriority) {
 		return nil, false
 	}
-	return &o.DrivePriority, true
+	return o.DrivePriority, true
 }
 
-// SetDrivePriority sets field value
+// HasDrivePriority returns a boolean if a field has been set.
+func (o *CreateStorage) HasDrivePriority() bool {
+	if o != nil && !IsNil(o.DrivePriority) {
+		return true
+	}
+
+	return false
+}
+
+// SetDrivePriority gets a reference to the given float32 and assigns it to the DrivePriority field.
 func (o *CreateStorage) SetDrivePriority(v float32) {
-	o.DrivePriority = v
+	o.DrivePriority = &v
 }
 
-// GetSharedDrivePriority returns the SharedDrivePriority field value
+// GetSharedDrivePriority returns the SharedDrivePriority field value if set, zero value otherwise.
 func (o *CreateStorage) GetSharedDrivePriority() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.SharedDrivePriority) {
 		var ret float32
 		return ret
 	}
-
-	return o.SharedDrivePriority
+	return *o.SharedDrivePriority
 }
 
-// GetSharedDrivePriorityOk returns a tuple with the SharedDrivePriority field value
+// GetSharedDrivePriorityOk returns a tuple with the SharedDrivePriority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateStorage) GetSharedDrivePriorityOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SharedDrivePriority) {
 		return nil, false
 	}
-	return &o.SharedDrivePriority, true
+	return o.SharedDrivePriority, true
 }
 
-// SetSharedDrivePriority sets field value
+// HasSharedDrivePriority returns a boolean if a field has been set.
+func (o *CreateStorage) HasSharedDrivePriority() bool {
+	if o != nil && !IsNil(o.SharedDrivePriority) {
+		return true
+	}
+
+	return false
+}
+
+// SetSharedDrivePriority gets a reference to the given float32 and assigns it to the SharedDrivePriority field.
 func (o *CreateStorage) SetSharedDrivePriority(v float32) {
-	o.SharedDrivePriority = v
+	o.SharedDrivePriority = &v
 }
 
 // GetAlternateSanIPs returns the AlternateSanIPs field value if set, zero value otherwise.
@@ -947,6 +929,38 @@ func (o *CreateStorage) SetLinks(v []Link) {
 	o.Links = v
 }
 
+// GetOptions returns the Options field value if set, zero value otherwise.
+func (o *CreateStorage) GetOptions() UpdateStorageOptions {
+	if o == nil || IsNil(o.Options) {
+		var ret UpdateStorageOptions
+		return ret
+	}
+	return *o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateStorage) GetOptionsOk() (*UpdateStorageOptions, bool) {
+	if o == nil || IsNil(o.Options) {
+		return nil, false
+	}
+	return o.Options, true
+}
+
+// HasOptions returns a boolean if a field has been set.
+func (o *CreateStorage) HasOptions() bool {
+	if o != nil && !IsNil(o.Options) {
+		return true
+	}
+
+	return false
+}
+
+// SetOptions gets a reference to the given UpdateStorageOptions and assigns it to the Options field.
+func (o *CreateStorage) SetOptions(v UpdateStorageOptions) {
+	o.Options = &v
+}
+
 // GetPassword returns the Password field value
 func (o *CreateStorage) GetPassword() string {
 	if o == nil {
@@ -998,9 +1012,6 @@ func (o CreateStorage) ToMap() (map[string]interface{}, error) {
 	toSerialize["managementHost"] = o.ManagementHost
 	toSerialize["username"] = o.Username
 	toSerialize["passwordEncrypted"] = o.PasswordEncrypted
-	if !IsNil(o.Options) {
-		toSerialize["options"] = o.Options
-	}
 	toSerialize["inMaintenance"] = o.InMaintenance
 	if !IsNil(o.TargetIQN) {
 		toSerialize["targetIQN"] = o.TargetIQN
@@ -1008,8 +1019,12 @@ func (o CreateStorage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsExperimental) {
 		toSerialize["isExperimental"] = o.IsExperimental
 	}
-	toSerialize["drivePriority"] = o.DrivePriority
-	toSerialize["sharedDrivePriority"] = o.SharedDrivePriority
+	if !IsNil(o.DrivePriority) {
+		toSerialize["drivePriority"] = o.DrivePriority
+	}
+	if !IsNil(o.SharedDrivePriority) {
+		toSerialize["sharedDrivePriority"] = o.SharedDrivePriority
+	}
 	if !IsNil(o.AlternateSanIPs) {
 		toSerialize["alternateSanIPs"] = o.AlternateSanIPs
 	}
@@ -1044,6 +1059,9 @@ func (o CreateStorage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
+	if !IsNil(o.Options) {
+		toSerialize["options"] = o.Options
+	}
 	toSerialize["password"] = o.Password
 
 	for key, value := range o.AdditionalProperties {
@@ -1067,8 +1085,6 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 		"username",
 		"passwordEncrypted",
 		"inMaintenance",
-		"drivePriority",
-		"sharedDrivePriority",
 		"subnetType",
 		"password",
 	}
@@ -1111,7 +1127,6 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "managementHost")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "passwordEncrypted")
-		delete(additionalProperties, "options")
 		delete(additionalProperties, "inMaintenance")
 		delete(additionalProperties, "targetIQN")
 		delete(additionalProperties, "isExperimental")
@@ -1129,6 +1144,7 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "s3Port")
 		delete(additionalProperties, "jobInfo")
 		delete(additionalProperties, "links")
+		delete(additionalProperties, "options")
 		delete(additionalProperties, "password")
 		o.AdditionalProperties = additionalProperties
 	}

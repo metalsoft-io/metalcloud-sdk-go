@@ -15,13 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the UpdateStorage type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateStorage{}
+// checks if the UpdateStorageInternal type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateStorageInternal{}
 
-// UpdateStorage struct for UpdateStorage
-type UpdateStorage struct {
-	// Options for the storage
-	Options map[string]interface{} `json:"options,omitempty"`
+// UpdateStorageInternal struct for UpdateStorageInternal
+type UpdateStorageInternal struct {
 	// Specifies if the storage is in maintenance
 	InMaintenance *float32 `json:"inMaintenance,omitempty"`
 	// Specifies if the storage is experimental
@@ -46,9 +44,8 @@ type UpdateStorage struct {
 	S3Hostname *string `json:"s3Hostname,omitempty"`
 	// S3 port
 	S3Port *string `json:"s3Port,omitempty"`
-	JobInfo *JobInfo `json:"jobInfo,omitempty"`
-	// Reference links
-	Links []Link `json:"links,omitempty"`
+	// Options for the storage
+	Options *StorageOptions `json:"options,omitempty"`
 	// Username
 	Username *string `json:"username,omitempty"`
 	// The password to use.
@@ -56,59 +53,27 @@ type UpdateStorage struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _UpdateStorage UpdateStorage
+type _UpdateStorageInternal UpdateStorageInternal
 
-// NewUpdateStorage instantiates a new UpdateStorage object
+// NewUpdateStorageInternal instantiates a new UpdateStorageInternal object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateStorage() *UpdateStorage {
-	this := UpdateStorage{}
+func NewUpdateStorageInternal() *UpdateStorageInternal {
+	this := UpdateStorageInternal{}
 	return &this
 }
 
-// NewUpdateStorageWithDefaults instantiates a new UpdateStorage object
+// NewUpdateStorageInternalWithDefaults instantiates a new UpdateStorageInternal object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateStorageWithDefaults() *UpdateStorage {
-	this := UpdateStorage{}
+func NewUpdateStorageInternalWithDefaults() *UpdateStorageInternal {
+	this := UpdateStorageInternal{}
 	return &this
-}
-
-// GetOptions returns the Options field value if set, zero value otherwise.
-func (o *UpdateStorage) GetOptions() map[string]interface{} {
-	if o == nil || IsNil(o.Options) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Options
-}
-
-// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetOptionsOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Options) {
-		return map[string]interface{}{}, false
-	}
-	return o.Options, true
-}
-
-// HasOptions returns a boolean if a field has been set.
-func (o *UpdateStorage) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
-		return true
-	}
-
-	return false
-}
-
-// SetOptions gets a reference to the given map[string]interface{} and assigns it to the Options field.
-func (o *UpdateStorage) SetOptions(v map[string]interface{}) {
-	o.Options = v
 }
 
 // GetInMaintenance returns the InMaintenance field value if set, zero value otherwise.
-func (o *UpdateStorage) GetInMaintenance() float32 {
+func (o *UpdateStorageInternal) GetInMaintenance() float32 {
 	if o == nil || IsNil(o.InMaintenance) {
 		var ret float32
 		return ret
@@ -118,7 +83,7 @@ func (o *UpdateStorage) GetInMaintenance() float32 {
 
 // GetInMaintenanceOk returns a tuple with the InMaintenance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetInMaintenanceOk() (*float32, bool) {
+func (o *UpdateStorageInternal) GetInMaintenanceOk() (*float32, bool) {
 	if o == nil || IsNil(o.InMaintenance) {
 		return nil, false
 	}
@@ -126,7 +91,7 @@ func (o *UpdateStorage) GetInMaintenanceOk() (*float32, bool) {
 }
 
 // HasInMaintenance returns a boolean if a field has been set.
-func (o *UpdateStorage) HasInMaintenance() bool {
+func (o *UpdateStorageInternal) HasInMaintenance() bool {
 	if o != nil && !IsNil(o.InMaintenance) {
 		return true
 	}
@@ -135,12 +100,12 @@ func (o *UpdateStorage) HasInMaintenance() bool {
 }
 
 // SetInMaintenance gets a reference to the given float32 and assigns it to the InMaintenance field.
-func (o *UpdateStorage) SetInMaintenance(v float32) {
+func (o *UpdateStorageInternal) SetInMaintenance(v float32) {
 	o.InMaintenance = &v
 }
 
 // GetIsExperimental returns the IsExperimental field value if set, zero value otherwise.
-func (o *UpdateStorage) GetIsExperimental() float32 {
+func (o *UpdateStorageInternal) GetIsExperimental() float32 {
 	if o == nil || IsNil(o.IsExperimental) {
 		var ret float32
 		return ret
@@ -150,7 +115,7 @@ func (o *UpdateStorage) GetIsExperimental() float32 {
 
 // GetIsExperimentalOk returns a tuple with the IsExperimental field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetIsExperimentalOk() (*float32, bool) {
+func (o *UpdateStorageInternal) GetIsExperimentalOk() (*float32, bool) {
 	if o == nil || IsNil(o.IsExperimental) {
 		return nil, false
 	}
@@ -158,7 +123,7 @@ func (o *UpdateStorage) GetIsExperimentalOk() (*float32, bool) {
 }
 
 // HasIsExperimental returns a boolean if a field has been set.
-func (o *UpdateStorage) HasIsExperimental() bool {
+func (o *UpdateStorageInternal) HasIsExperimental() bool {
 	if o != nil && !IsNil(o.IsExperimental) {
 		return true
 	}
@@ -167,12 +132,12 @@ func (o *UpdateStorage) HasIsExperimental() bool {
 }
 
 // SetIsExperimental gets a reference to the given float32 and assigns it to the IsExperimental field.
-func (o *UpdateStorage) SetIsExperimental(v float32) {
+func (o *UpdateStorageInternal) SetIsExperimental(v float32) {
 	o.IsExperimental = &v
 }
 
 // GetDrivePriority returns the DrivePriority field value if set, zero value otherwise.
-func (o *UpdateStorage) GetDrivePriority() float32 {
+func (o *UpdateStorageInternal) GetDrivePriority() float32 {
 	if o == nil || IsNil(o.DrivePriority) {
 		var ret float32
 		return ret
@@ -182,7 +147,7 @@ func (o *UpdateStorage) GetDrivePriority() float32 {
 
 // GetDrivePriorityOk returns a tuple with the DrivePriority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetDrivePriorityOk() (*float32, bool) {
+func (o *UpdateStorageInternal) GetDrivePriorityOk() (*float32, bool) {
 	if o == nil || IsNil(o.DrivePriority) {
 		return nil, false
 	}
@@ -190,7 +155,7 @@ func (o *UpdateStorage) GetDrivePriorityOk() (*float32, bool) {
 }
 
 // HasDrivePriority returns a boolean if a field has been set.
-func (o *UpdateStorage) HasDrivePriority() bool {
+func (o *UpdateStorageInternal) HasDrivePriority() bool {
 	if o != nil && !IsNil(o.DrivePriority) {
 		return true
 	}
@@ -199,12 +164,12 @@ func (o *UpdateStorage) HasDrivePriority() bool {
 }
 
 // SetDrivePriority gets a reference to the given float32 and assigns it to the DrivePriority field.
-func (o *UpdateStorage) SetDrivePriority(v float32) {
+func (o *UpdateStorageInternal) SetDrivePriority(v float32) {
 	o.DrivePriority = &v
 }
 
 // GetSharedDrivePriority returns the SharedDrivePriority field value if set, zero value otherwise.
-func (o *UpdateStorage) GetSharedDrivePriority() float32 {
+func (o *UpdateStorageInternal) GetSharedDrivePriority() float32 {
 	if o == nil || IsNil(o.SharedDrivePriority) {
 		var ret float32
 		return ret
@@ -214,7 +179,7 @@ func (o *UpdateStorage) GetSharedDrivePriority() float32 {
 
 // GetSharedDrivePriorityOk returns a tuple with the SharedDrivePriority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetSharedDrivePriorityOk() (*float32, bool) {
+func (o *UpdateStorageInternal) GetSharedDrivePriorityOk() (*float32, bool) {
 	if o == nil || IsNil(o.SharedDrivePriority) {
 		return nil, false
 	}
@@ -222,7 +187,7 @@ func (o *UpdateStorage) GetSharedDrivePriorityOk() (*float32, bool) {
 }
 
 // HasSharedDrivePriority returns a boolean if a field has been set.
-func (o *UpdateStorage) HasSharedDrivePriority() bool {
+func (o *UpdateStorageInternal) HasSharedDrivePriority() bool {
 	if o != nil && !IsNil(o.SharedDrivePriority) {
 		return true
 	}
@@ -231,12 +196,12 @@ func (o *UpdateStorage) HasSharedDrivePriority() bool {
 }
 
 // SetSharedDrivePriority gets a reference to the given float32 and assigns it to the SharedDrivePriority field.
-func (o *UpdateStorage) SetSharedDrivePriority(v float32) {
+func (o *UpdateStorageInternal) SetSharedDrivePriority(v float32) {
 	o.SharedDrivePriority = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *UpdateStorage) GetTags() []string {
+func (o *UpdateStorageInternal) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
@@ -246,7 +211,7 @@ func (o *UpdateStorage) GetTags() []string {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetTagsOk() ([]string, bool) {
+func (o *UpdateStorageInternal) GetTagsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -254,7 +219,7 @@ func (o *UpdateStorage) GetTagsOk() ([]string, bool) {
 }
 
 // HasTags returns a boolean if a field has been set.
-func (o *UpdateStorage) HasTags() bool {
+func (o *UpdateStorageInternal) HasTags() bool {
 	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
@@ -263,12 +228,12 @@ func (o *UpdateStorage) HasTags() bool {
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *UpdateStorage) SetTags(v []string) {
+func (o *UpdateStorageInternal) SetTags(v []string) {
 	o.Tags = v
 }
 
 // GetPortGroupAllocationOrder returns the PortGroupAllocationOrder field value if set, zero value otherwise.
-func (o *UpdateStorage) GetPortGroupAllocationOrder() map[string]interface{} {
+func (o *UpdateStorageInternal) GetPortGroupAllocationOrder() map[string]interface{} {
 	if o == nil || IsNil(o.PortGroupAllocationOrder) {
 		var ret map[string]interface{}
 		return ret
@@ -278,7 +243,7 @@ func (o *UpdateStorage) GetPortGroupAllocationOrder() map[string]interface{} {
 
 // GetPortGroupAllocationOrderOk returns a tuple with the PortGroupAllocationOrder field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetPortGroupAllocationOrderOk() (map[string]interface{}, bool) {
+func (o *UpdateStorageInternal) GetPortGroupAllocationOrderOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.PortGroupAllocationOrder) {
 		return map[string]interface{}{}, false
 	}
@@ -286,7 +251,7 @@ func (o *UpdateStorage) GetPortGroupAllocationOrderOk() (map[string]interface{},
 }
 
 // HasPortGroupAllocationOrder returns a boolean if a field has been set.
-func (o *UpdateStorage) HasPortGroupAllocationOrder() bool {
+func (o *UpdateStorageInternal) HasPortGroupAllocationOrder() bool {
 	if o != nil && !IsNil(o.PortGroupAllocationOrder) {
 		return true
 	}
@@ -295,12 +260,12 @@ func (o *UpdateStorage) HasPortGroupAllocationOrder() bool {
 }
 
 // SetPortGroupAllocationOrder gets a reference to the given map[string]interface{} and assigns it to the PortGroupAllocationOrder field.
-func (o *UpdateStorage) SetPortGroupAllocationOrder(v map[string]interface{}) {
+func (o *UpdateStorageInternal) SetPortGroupAllocationOrder(v map[string]interface{}) {
 	o.PortGroupAllocationOrder = v
 }
 
 // GetPortGroupPhysicalPorts returns the PortGroupPhysicalPorts field value if set, zero value otherwise.
-func (o *UpdateStorage) GetPortGroupPhysicalPorts() map[string]interface{} {
+func (o *UpdateStorageInternal) GetPortGroupPhysicalPorts() map[string]interface{} {
 	if o == nil || IsNil(o.PortGroupPhysicalPorts) {
 		var ret map[string]interface{}
 		return ret
@@ -310,7 +275,7 @@ func (o *UpdateStorage) GetPortGroupPhysicalPorts() map[string]interface{} {
 
 // GetPortGroupPhysicalPortsOk returns a tuple with the PortGroupPhysicalPorts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetPortGroupPhysicalPortsOk() (map[string]interface{}, bool) {
+func (o *UpdateStorageInternal) GetPortGroupPhysicalPortsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.PortGroupPhysicalPorts) {
 		return map[string]interface{}{}, false
 	}
@@ -318,7 +283,7 @@ func (o *UpdateStorage) GetPortGroupPhysicalPortsOk() (map[string]interface{}, b
 }
 
 // HasPortGroupPhysicalPorts returns a boolean if a field has been set.
-func (o *UpdateStorage) HasPortGroupPhysicalPorts() bool {
+func (o *UpdateStorageInternal) HasPortGroupPhysicalPorts() bool {
 	if o != nil && !IsNil(o.PortGroupPhysicalPorts) {
 		return true
 	}
@@ -327,12 +292,12 @@ func (o *UpdateStorage) HasPortGroupPhysicalPorts() bool {
 }
 
 // SetPortGroupPhysicalPorts gets a reference to the given map[string]interface{} and assigns it to the PortGroupPhysicalPorts field.
-func (o *UpdateStorage) SetPortGroupPhysicalPorts(v map[string]interface{}) {
+func (o *UpdateStorageInternal) SetPortGroupPhysicalPorts(v map[string]interface{}) {
 	o.PortGroupPhysicalPorts = v
 }
 
 // GetDefaultIoLimitPolicy returns the DefaultIoLimitPolicy field value if set, zero value otherwise.
-func (o *UpdateStorage) GetDefaultIoLimitPolicy() string {
+func (o *UpdateStorageInternal) GetDefaultIoLimitPolicy() string {
 	if o == nil || IsNil(o.DefaultIoLimitPolicy) {
 		var ret string
 		return ret
@@ -342,7 +307,7 @@ func (o *UpdateStorage) GetDefaultIoLimitPolicy() string {
 
 // GetDefaultIoLimitPolicyOk returns a tuple with the DefaultIoLimitPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetDefaultIoLimitPolicyOk() (*string, bool) {
+func (o *UpdateStorageInternal) GetDefaultIoLimitPolicyOk() (*string, bool) {
 	if o == nil || IsNil(o.DefaultIoLimitPolicy) {
 		return nil, false
 	}
@@ -350,7 +315,7 @@ func (o *UpdateStorage) GetDefaultIoLimitPolicyOk() (*string, bool) {
 }
 
 // HasDefaultIoLimitPolicy returns a boolean if a field has been set.
-func (o *UpdateStorage) HasDefaultIoLimitPolicy() bool {
+func (o *UpdateStorageInternal) HasDefaultIoLimitPolicy() bool {
 	if o != nil && !IsNil(o.DefaultIoLimitPolicy) {
 		return true
 	}
@@ -359,12 +324,12 @@ func (o *UpdateStorage) HasDefaultIoLimitPolicy() bool {
 }
 
 // SetDefaultIoLimitPolicy gets a reference to the given string and assigns it to the DefaultIoLimitPolicy field.
-func (o *UpdateStorage) SetDefaultIoLimitPolicy(v string) {
+func (o *UpdateStorageInternal) SetDefaultIoLimitPolicy(v string) {
 	o.DefaultIoLimitPolicy = &v
 }
 
 // GetArrayId returns the ArrayId field value if set, zero value otherwise.
-func (o *UpdateStorage) GetArrayId() string {
+func (o *UpdateStorageInternal) GetArrayId() string {
 	if o == nil || IsNil(o.ArrayId) {
 		var ret string
 		return ret
@@ -374,7 +339,7 @@ func (o *UpdateStorage) GetArrayId() string {
 
 // GetArrayIdOk returns a tuple with the ArrayId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetArrayIdOk() (*string, bool) {
+func (o *UpdateStorageInternal) GetArrayIdOk() (*string, bool) {
 	if o == nil || IsNil(o.ArrayId) {
 		return nil, false
 	}
@@ -382,7 +347,7 @@ func (o *UpdateStorage) GetArrayIdOk() (*string, bool) {
 }
 
 // HasArrayId returns a boolean if a field has been set.
-func (o *UpdateStorage) HasArrayId() bool {
+func (o *UpdateStorageInternal) HasArrayId() bool {
 	if o != nil && !IsNil(o.ArrayId) {
 		return true
 	}
@@ -391,12 +356,12 @@ func (o *UpdateStorage) HasArrayId() bool {
 }
 
 // SetArrayId gets a reference to the given string and assigns it to the ArrayId field.
-func (o *UpdateStorage) SetArrayId(v string) {
+func (o *UpdateStorageInternal) SetArrayId(v string) {
 	o.ArrayId = &v
 }
 
 // GetDirectorId returns the DirectorId field value if set, zero value otherwise.
-func (o *UpdateStorage) GetDirectorId() string {
+func (o *UpdateStorageInternal) GetDirectorId() string {
 	if o == nil || IsNil(o.DirectorId) {
 		var ret string
 		return ret
@@ -406,7 +371,7 @@ func (o *UpdateStorage) GetDirectorId() string {
 
 // GetDirectorIdOk returns a tuple with the DirectorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetDirectorIdOk() (*string, bool) {
+func (o *UpdateStorageInternal) GetDirectorIdOk() (*string, bool) {
 	if o == nil || IsNil(o.DirectorId) {
 		return nil, false
 	}
@@ -414,7 +379,7 @@ func (o *UpdateStorage) GetDirectorIdOk() (*string, bool) {
 }
 
 // HasDirectorId returns a boolean if a field has been set.
-func (o *UpdateStorage) HasDirectorId() bool {
+func (o *UpdateStorageInternal) HasDirectorId() bool {
 	if o != nil && !IsNil(o.DirectorId) {
 		return true
 	}
@@ -423,12 +388,12 @@ func (o *UpdateStorage) HasDirectorId() bool {
 }
 
 // SetDirectorId gets a reference to the given string and assigns it to the DirectorId field.
-func (o *UpdateStorage) SetDirectorId(v string) {
+func (o *UpdateStorageInternal) SetDirectorId(v string) {
 	o.DirectorId = &v
 }
 
 // GetS3Hostname returns the S3Hostname field value if set, zero value otherwise.
-func (o *UpdateStorage) GetS3Hostname() string {
+func (o *UpdateStorageInternal) GetS3Hostname() string {
 	if o == nil || IsNil(o.S3Hostname) {
 		var ret string
 		return ret
@@ -438,7 +403,7 @@ func (o *UpdateStorage) GetS3Hostname() string {
 
 // GetS3HostnameOk returns a tuple with the S3Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetS3HostnameOk() (*string, bool) {
+func (o *UpdateStorageInternal) GetS3HostnameOk() (*string, bool) {
 	if o == nil || IsNil(o.S3Hostname) {
 		return nil, false
 	}
@@ -446,7 +411,7 @@ func (o *UpdateStorage) GetS3HostnameOk() (*string, bool) {
 }
 
 // HasS3Hostname returns a boolean if a field has been set.
-func (o *UpdateStorage) HasS3Hostname() bool {
+func (o *UpdateStorageInternal) HasS3Hostname() bool {
 	if o != nil && !IsNil(o.S3Hostname) {
 		return true
 	}
@@ -455,12 +420,12 @@ func (o *UpdateStorage) HasS3Hostname() bool {
 }
 
 // SetS3Hostname gets a reference to the given string and assigns it to the S3Hostname field.
-func (o *UpdateStorage) SetS3Hostname(v string) {
+func (o *UpdateStorageInternal) SetS3Hostname(v string) {
 	o.S3Hostname = &v
 }
 
 // GetS3Port returns the S3Port field value if set, zero value otherwise.
-func (o *UpdateStorage) GetS3Port() string {
+func (o *UpdateStorageInternal) GetS3Port() string {
 	if o == nil || IsNil(o.S3Port) {
 		var ret string
 		return ret
@@ -470,7 +435,7 @@ func (o *UpdateStorage) GetS3Port() string {
 
 // GetS3PortOk returns a tuple with the S3Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetS3PortOk() (*string, bool) {
+func (o *UpdateStorageInternal) GetS3PortOk() (*string, bool) {
 	if o == nil || IsNil(o.S3Port) {
 		return nil, false
 	}
@@ -478,7 +443,7 @@ func (o *UpdateStorage) GetS3PortOk() (*string, bool) {
 }
 
 // HasS3Port returns a boolean if a field has been set.
-func (o *UpdateStorage) HasS3Port() bool {
+func (o *UpdateStorageInternal) HasS3Port() bool {
 	if o != nil && !IsNil(o.S3Port) {
 		return true
 	}
@@ -487,76 +452,44 @@ func (o *UpdateStorage) HasS3Port() bool {
 }
 
 // SetS3Port gets a reference to the given string and assigns it to the S3Port field.
-func (o *UpdateStorage) SetS3Port(v string) {
+func (o *UpdateStorageInternal) SetS3Port(v string) {
 	o.S3Port = &v
 }
 
-// GetJobInfo returns the JobInfo field value if set, zero value otherwise.
-func (o *UpdateStorage) GetJobInfo() JobInfo {
-	if o == nil || IsNil(o.JobInfo) {
-		var ret JobInfo
+// GetOptions returns the Options field value if set, zero value otherwise.
+func (o *UpdateStorageInternal) GetOptions() StorageOptions {
+	if o == nil || IsNil(o.Options) {
+		var ret StorageOptions
 		return ret
 	}
-	return *o.JobInfo
+	return *o.Options
 }
 
-// GetJobInfoOk returns a tuple with the JobInfo field value if set, nil otherwise
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetJobInfoOk() (*JobInfo, bool) {
-	if o == nil || IsNil(o.JobInfo) {
+func (o *UpdateStorageInternal) GetOptionsOk() (*StorageOptions, bool) {
+	if o == nil || IsNil(o.Options) {
 		return nil, false
 	}
-	return o.JobInfo, true
+	return o.Options, true
 }
 
-// HasJobInfo returns a boolean if a field has been set.
-func (o *UpdateStorage) HasJobInfo() bool {
-	if o != nil && !IsNil(o.JobInfo) {
+// HasOptions returns a boolean if a field has been set.
+func (o *UpdateStorageInternal) HasOptions() bool {
+	if o != nil && !IsNil(o.Options) {
 		return true
 	}
 
 	return false
 }
 
-// SetJobInfo gets a reference to the given JobInfo and assigns it to the JobInfo field.
-func (o *UpdateStorage) SetJobInfo(v JobInfo) {
-	o.JobInfo = &v
-}
-
-// GetLinks returns the Links field value if set, zero value otherwise.
-func (o *UpdateStorage) GetLinks() []Link {
-	if o == nil || IsNil(o.Links) {
-		var ret []Link
-		return ret
-	}
-	return o.Links
-}
-
-// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetLinksOk() ([]Link, bool) {
-	if o == nil || IsNil(o.Links) {
-		return nil, false
-	}
-	return o.Links, true
-}
-
-// HasLinks returns a boolean if a field has been set.
-func (o *UpdateStorage) HasLinks() bool {
-	if o != nil && !IsNil(o.Links) {
-		return true
-	}
-
-	return false
-}
-
-// SetLinks gets a reference to the given []Link and assigns it to the Links field.
-func (o *UpdateStorage) SetLinks(v []Link) {
-	o.Links = v
+// SetOptions gets a reference to the given StorageOptions and assigns it to the Options field.
+func (o *UpdateStorageInternal) SetOptions(v StorageOptions) {
+	o.Options = &v
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
-func (o *UpdateStorage) GetUsername() string {
+func (o *UpdateStorageInternal) GetUsername() string {
 	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
@@ -566,7 +499,7 @@ func (o *UpdateStorage) GetUsername() string {
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetUsernameOk() (*string, bool) {
+func (o *UpdateStorageInternal) GetUsernameOk() (*string, bool) {
 	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
@@ -574,7 +507,7 @@ func (o *UpdateStorage) GetUsernameOk() (*string, bool) {
 }
 
 // HasUsername returns a boolean if a field has been set.
-func (o *UpdateStorage) HasUsername() bool {
+func (o *UpdateStorageInternal) HasUsername() bool {
 	if o != nil && !IsNil(o.Username) {
 		return true
 	}
@@ -583,12 +516,12 @@ func (o *UpdateStorage) HasUsername() bool {
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *UpdateStorage) SetUsername(v string) {
+func (o *UpdateStorageInternal) SetUsername(v string) {
 	o.Username = &v
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise.
-func (o *UpdateStorage) GetPassword() string {
+func (o *UpdateStorageInternal) GetPassword() string {
 	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
@@ -598,7 +531,7 @@ func (o *UpdateStorage) GetPassword() string {
 
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetPasswordOk() (*string, bool) {
+func (o *UpdateStorageInternal) GetPasswordOk() (*string, bool) {
 	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
@@ -606,7 +539,7 @@ func (o *UpdateStorage) GetPasswordOk() (*string, bool) {
 }
 
 // HasPassword returns a boolean if a field has been set.
-func (o *UpdateStorage) HasPassword() bool {
+func (o *UpdateStorageInternal) HasPassword() bool {
 	if o != nil && !IsNil(o.Password) {
 		return true
 	}
@@ -615,11 +548,11 @@ func (o *UpdateStorage) HasPassword() bool {
 }
 
 // SetPassword gets a reference to the given string and assigns it to the Password field.
-func (o *UpdateStorage) SetPassword(v string) {
+func (o *UpdateStorageInternal) SetPassword(v string) {
 	o.Password = &v
 }
 
-func (o UpdateStorage) MarshalJSON() ([]byte, error) {
+func (o UpdateStorageInternal) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -627,11 +560,8 @@ func (o UpdateStorage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateStorage) ToMap() (map[string]interface{}, error) {
+func (o UpdateStorageInternal) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Options) {
-		toSerialize["options"] = o.Options
-	}
 	if !IsNil(o.InMaintenance) {
 		toSerialize["inMaintenance"] = o.InMaintenance
 	}
@@ -668,11 +598,8 @@ func (o UpdateStorage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.S3Port) {
 		toSerialize["s3Port"] = o.S3Port
 	}
-	if !IsNil(o.JobInfo) {
-		toSerialize["jobInfo"] = o.JobInfo
-	}
-	if !IsNil(o.Links) {
-		toSerialize["links"] = o.Links
+	if !IsNil(o.Options) {
+		toSerialize["options"] = o.Options
 	}
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
@@ -688,21 +615,20 @@ func (o UpdateStorage) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *UpdateStorage) UnmarshalJSON(data []byte) (err error) {
-	varUpdateStorage := _UpdateStorage{}
+func (o *UpdateStorageInternal) UnmarshalJSON(data []byte) (err error) {
+	varUpdateStorageInternal := _UpdateStorageInternal{}
 
-	err = json.Unmarshal(data, &varUpdateStorage)
+	err = json.Unmarshal(data, &varUpdateStorageInternal)
 
 	if err != nil {
 		return err
 	}
 
-	*o = UpdateStorage(varUpdateStorage)
+	*o = UpdateStorageInternal(varUpdateStorageInternal)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "options")
 		delete(additionalProperties, "inMaintenance")
 		delete(additionalProperties, "isExperimental")
 		delete(additionalProperties, "drivePriority")
@@ -715,8 +641,7 @@ func (o *UpdateStorage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "directorId")
 		delete(additionalProperties, "s3Hostname")
 		delete(additionalProperties, "s3Port")
-		delete(additionalProperties, "jobInfo")
-		delete(additionalProperties, "links")
+		delete(additionalProperties, "options")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")
 		o.AdditionalProperties = additionalProperties
@@ -725,38 +650,38 @@ func (o *UpdateStorage) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableUpdateStorage struct {
-	value *UpdateStorage
+type NullableUpdateStorageInternal struct {
+	value *UpdateStorageInternal
 	isSet bool
 }
 
-func (v NullableUpdateStorage) Get() *UpdateStorage {
+func (v NullableUpdateStorageInternal) Get() *UpdateStorageInternal {
 	return v.value
 }
 
-func (v *NullableUpdateStorage) Set(val *UpdateStorage) {
+func (v *NullableUpdateStorageInternal) Set(val *UpdateStorageInternal) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateStorage) IsSet() bool {
+func (v NullableUpdateStorageInternal) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateStorage) Unset() {
+func (v *NullableUpdateStorageInternal) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateStorage(val *UpdateStorage) *NullableUpdateStorage {
-	return &NullableUpdateStorage{value: val, isSet: true}
+func NewNullableUpdateStorageInternal(val *UpdateStorageInternal) *NullableUpdateStorageInternal {
+	return &NullableUpdateStorageInternal{value: val, isSet: true}
 }
 
-func (v NullableUpdateStorage) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateStorageInternal) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateStorage) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateStorageInternal) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

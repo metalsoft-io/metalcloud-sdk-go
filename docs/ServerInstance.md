@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The server instance ID. | 
-**Revision** | **float32** | Revision number | 
-**Label** | **string** | The server instance label. | 
-**CreatedTimestamp** | **string** | Timestamp of the Server Instance creation. | 
-**UpdatedTimestamp** | **string** | Timestamp of the latest update for the Server Instance. | 
+**Id** | **int32** | The Product Instance ID. | 
+**Revision** | **int32** | Revision number | 
+**Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
+**CreatedTimestamp** | **string** | Timestamp of the Product Instance creation. | 
+**UpdatedTimestamp** | **string** | Timestamp of the latest update of the Product Instance. | 
+**Subdomain** | Pointer to **string** | Subdomain of the Product Instance. | [optional] 
+**SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Product Instance. | [optional] 
+**DnsSubdomainId** | Pointer to **int32** | Id of the DNS subdomain for the Product Instance | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **int32** | Id of the permanent DNS subdomain for the Product Instance | [optional] 
 **InfrastructureId** | **int32** |  | 
 **GroupId** | **int32** |  | 
 **DriveIdBootable** | Pointer to **int32** |  | [optional] 
-**Subdomain** | Pointer to **string** | Subdomain of the Server Group. | [optional] 
-**SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Server Group. | [optional] 
-**DnsSubdomainId** | Pointer to **int32** | Id of the DNS subdomain for the Server Group. | [optional] 
-**DnsSubdomainPermanentId** | Pointer to **int32** | Id of the permanent DNS subdomain for the Server Group. | [optional] 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
 **ServerId** | Pointer to **int32** | The ID of the server assigned to the instance. | [optional] 
 **TemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
@@ -33,11 +33,11 @@ Name | Type | Description | Notes
 **SecretsOsAssetsTemplateTypeAdvanced** | Pointer to **map[string]interface{}** | Advanced secrets used when building the OS image. | [optional] 
 **VariablesMaterializedForOSAssets** | Pointer to **map[string]interface{}** | Variables used when building the OS image. | [optional] 
 **SecretsMaterializedForOSAssets** | Pointer to **map[string]interface{}** | Secrets used when building the OS image. | [optional] 
-**ClusterCustomInfo** | Pointer to **map[string]interface{}** |  | [optional] 
+**ClusterCustomInfo** | Pointer to [**ServerInstanceClusterCustomInfo**](ServerInstanceClusterCustomInfo.md) |  | [optional] 
 **OsInstallError** | Pointer to **string** | Last error message during OS install. | [optional] 
 **OsInstallImageUrl** | Pointer to **string** | URL where the OS image is available. | [optional] 
 **OsInstallImageBuildError** | Pointer to **string** | Last error message during OS image build. | [optional] 
-**OsInstallImageBuildInfo** | Pointer to **string** | Build info regarding the OS image. | [optional] 
+**OsInstallImageBuildInfo** | Pointer to [**ServerInstanceOsInstallImageBuildInfo**](ServerInstanceOsInstallImageBuildInfo.md) | Build info regarding the OS image. | [optional] 
 **OsReinstallRequired** | Pointer to **float32** | OS reinstall is required. | [optional] 
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
@@ -50,7 +50,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstance
 
-`func NewServerInstance(id int32, revision float32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance float32, ) *ServerInstance`
+`func NewServerInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance float32, ) *ServerInstance`
 
 NewServerInstance instantiates a new ServerInstance object
 This constructor will assign default values to properties that have it defined,
@@ -87,20 +87,20 @@ SetId sets Id field to given value.
 
 ### GetRevision
 
-`func (o *ServerInstance) GetRevision() float32`
+`func (o *ServerInstance) GetRevision() int32`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *ServerInstance) GetRevisionOk() (*float32, bool)`
+`func (o *ServerInstance) GetRevisionOk() (*int32, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *ServerInstance) SetRevision(v float32)`
+`func (o *ServerInstance) SetRevision(v int32)`
 
 SetRevision sets Revision field to given value.
 
@@ -164,71 +164,6 @@ and a boolean to check if the value has been set.
 
 SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
-
-### GetInfrastructureId
-
-`func (o *ServerInstance) GetInfrastructureId() int32`
-
-GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
-
-### GetInfrastructureIdOk
-
-`func (o *ServerInstance) GetInfrastructureIdOk() (*int32, bool)`
-
-GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInfrastructureId
-
-`func (o *ServerInstance) SetInfrastructureId(v int32)`
-
-SetInfrastructureId sets InfrastructureId field to given value.
-
-
-### GetGroupId
-
-`func (o *ServerInstance) GetGroupId() int32`
-
-GetGroupId returns the GroupId field if non-nil, zero value otherwise.
-
-### GetGroupIdOk
-
-`func (o *ServerInstance) GetGroupIdOk() (*int32, bool)`
-
-GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGroupId
-
-`func (o *ServerInstance) SetGroupId(v int32)`
-
-SetGroupId sets GroupId field to given value.
-
-
-### GetDriveIdBootable
-
-`func (o *ServerInstance) GetDriveIdBootable() int32`
-
-GetDriveIdBootable returns the DriveIdBootable field if non-nil, zero value otherwise.
-
-### GetDriveIdBootableOk
-
-`func (o *ServerInstance) GetDriveIdBootableOk() (*int32, bool)`
-
-GetDriveIdBootableOk returns a tuple with the DriveIdBootable field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDriveIdBootable
-
-`func (o *ServerInstance) SetDriveIdBootable(v int32)`
-
-SetDriveIdBootable sets DriveIdBootable field to given value.
-
-### HasDriveIdBootable
-
-`func (o *ServerInstance) HasDriveIdBootable() bool`
-
-HasDriveIdBootable returns a boolean if a field has been set.
 
 ### GetSubdomain
 
@@ -329,6 +264,71 @@ SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 `func (o *ServerInstance) HasDnsSubdomainPermanentId() bool`
 
 HasDnsSubdomainPermanentId returns a boolean if a field has been set.
+
+### GetInfrastructureId
+
+`func (o *ServerInstance) GetInfrastructureId() int32`
+
+GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
+
+### GetInfrastructureIdOk
+
+`func (o *ServerInstance) GetInfrastructureIdOk() (*int32, bool)`
+
+GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructureId
+
+`func (o *ServerInstance) SetInfrastructureId(v int32)`
+
+SetInfrastructureId sets InfrastructureId field to given value.
+
+
+### GetGroupId
+
+`func (o *ServerInstance) GetGroupId() int32`
+
+GetGroupId returns the GroupId field if non-nil, zero value otherwise.
+
+### GetGroupIdOk
+
+`func (o *ServerInstance) GetGroupIdOk() (*int32, bool)`
+
+GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupId
+
+`func (o *ServerInstance) SetGroupId(v int32)`
+
+SetGroupId sets GroupId field to given value.
+
+
+### GetDriveIdBootable
+
+`func (o *ServerInstance) GetDriveIdBootable() int32`
+
+GetDriveIdBootable returns the DriveIdBootable field if non-nil, zero value otherwise.
+
+### GetDriveIdBootableOk
+
+`func (o *ServerInstance) GetDriveIdBootableOk() (*int32, bool)`
+
+GetDriveIdBootableOk returns a tuple with the DriveIdBootable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriveIdBootable
+
+`func (o *ServerInstance) SetDriveIdBootable(v int32)`
+
+SetDriveIdBootable sets DriveIdBootable field to given value.
+
+### HasDriveIdBootable
+
+`func (o *ServerInstance) HasDriveIdBootable() bool`
+
+HasDriveIdBootable returns a boolean if a field has been set.
 
 ### GetServerTypeId
 
@@ -747,20 +747,20 @@ HasSecretsMaterializedForOSAssets returns a boolean if a field has been set.
 
 ### GetClusterCustomInfo
 
-`func (o *ServerInstance) GetClusterCustomInfo() map[string]interface{}`
+`func (o *ServerInstance) GetClusterCustomInfo() ServerInstanceClusterCustomInfo`
 
 GetClusterCustomInfo returns the ClusterCustomInfo field if non-nil, zero value otherwise.
 
 ### GetClusterCustomInfoOk
 
-`func (o *ServerInstance) GetClusterCustomInfoOk() (*map[string]interface{}, bool)`
+`func (o *ServerInstance) GetClusterCustomInfoOk() (*ServerInstanceClusterCustomInfo, bool)`
 
 GetClusterCustomInfoOk returns a tuple with the ClusterCustomInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClusterCustomInfo
 
-`func (o *ServerInstance) SetClusterCustomInfo(v map[string]interface{})`
+`func (o *ServerInstance) SetClusterCustomInfo(v ServerInstanceClusterCustomInfo)`
 
 SetClusterCustomInfo sets ClusterCustomInfo field to given value.
 
@@ -847,20 +847,20 @@ HasOsInstallImageBuildError returns a boolean if a field has been set.
 
 ### GetOsInstallImageBuildInfo
 
-`func (o *ServerInstance) GetOsInstallImageBuildInfo() string`
+`func (o *ServerInstance) GetOsInstallImageBuildInfo() ServerInstanceOsInstallImageBuildInfo`
 
 GetOsInstallImageBuildInfo returns the OsInstallImageBuildInfo field if non-nil, zero value otherwise.
 
 ### GetOsInstallImageBuildInfoOk
 
-`func (o *ServerInstance) GetOsInstallImageBuildInfoOk() (*string, bool)`
+`func (o *ServerInstance) GetOsInstallImageBuildInfoOk() (*ServerInstanceOsInstallImageBuildInfo, bool)`
 
 GetOsInstallImageBuildInfoOk returns a tuple with the OsInstallImageBuildInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOsInstallImageBuildInfo
 
-`func (o *ServerInstance) SetOsInstallImageBuildInfo(v string)`
+`func (o *ServerInstance) SetOsInstallImageBuildInfo(v ServerInstanceOsInstallImageBuildInfo)`
 
 SetOsInstallImageBuildInfo sets OsInstallImageBuildInfo field to given value.
 

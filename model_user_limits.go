@@ -105,7 +105,6 @@ type UserLimits struct {
 	EnableCustomRaidConfiguration *bool `json:"enableCustomRaidConfiguration,omitempty"`
 	EnableCustomSubnets *bool `json:"enableCustomSubnets,omitempty"`
 	ShowStackTrace *bool `json:"showStackTrace,omitempty"`
-	AllowedNetworkProfiles map[string]interface{} `json:"allowedNetworkProfiles,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -2848,38 +2847,6 @@ func (o *UserLimits) SetShowStackTrace(v bool) {
 	o.ShowStackTrace = &v
 }
 
-// GetAllowedNetworkProfiles returns the AllowedNetworkProfiles field value if set, zero value otherwise.
-func (o *UserLimits) GetAllowedNetworkProfiles() map[string]interface{} {
-	if o == nil || IsNil(o.AllowedNetworkProfiles) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.AllowedNetworkProfiles
-}
-
-// GetAllowedNetworkProfilesOk returns a tuple with the AllowedNetworkProfiles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserLimits) GetAllowedNetworkProfilesOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.AllowedNetworkProfiles) {
-		return map[string]interface{}{}, false
-	}
-	return o.AllowedNetworkProfiles, true
-}
-
-// HasAllowedNetworkProfiles returns a boolean if a field has been set.
-func (o *UserLimits) HasAllowedNetworkProfiles() bool {
-	if o != nil && !IsNil(o.AllowedNetworkProfiles) {
-		return true
-	}
-
-	return false
-}
-
-// SetAllowedNetworkProfiles gets a reference to the given map[string]interface{} and assigns it to the AllowedNetworkProfiles field.
-func (o *UserLimits) SetAllowedNetworkProfiles(v map[string]interface{}) {
-	o.AllowedNetworkProfiles = v
-}
-
 func (o UserLimits) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -3145,9 +3112,6 @@ func (o UserLimits) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ShowStackTrace) {
 		toSerialize["showStackTrace"] = o.ShowStackTrace
 	}
-	if !IsNil(o.AllowedNetworkProfiles) {
-		toSerialize["allowedNetworkProfiles"] = o.AllowedNetworkProfiles
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -3255,7 +3219,6 @@ func (o *UserLimits) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "enableCustomRaidConfiguration")
 		delete(additionalProperties, "enableCustomSubnets")
 		delete(additionalProperties, "showStackTrace")
-		delete(additionalProperties, "allowedNetworkProfiles")
 		o.AdditionalProperties = additionalProperties
 	}
 

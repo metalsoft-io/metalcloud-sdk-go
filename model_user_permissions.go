@@ -24,7 +24,7 @@ type UserPermissions struct {
 	// Admin password reveal permissions
 	AdminPasswordRevealPermissions *AdminPasswordRevealPermissions `json:"adminPasswordRevealPermissions,omitempty"`
 	// Special permissions
-	SpecialPermissions SpecialPermissions `json:"specialPermissions"`
+	SpecialPermissions *SpecialPermissions `json:"specialPermissions,omitempty"`
 	// Role permissions
 	RolePermissions []string `json:"rolePermissions"`
 	AdditionalProperties map[string]interface{}
@@ -36,9 +36,8 @@ type _UserPermissions UserPermissions
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserPermissions(specialPermissions SpecialPermissions, rolePermissions []string) *UserPermissions {
+func NewUserPermissions(rolePermissions []string) *UserPermissions {
 	this := UserPermissions{}
-	this.SpecialPermissions = specialPermissions
 	this.RolePermissions = rolePermissions
 	return &this
 }
@@ -83,28 +82,36 @@ func (o *UserPermissions) SetAdminPasswordRevealPermissions(v AdminPasswordRevea
 	o.AdminPasswordRevealPermissions = &v
 }
 
-// GetSpecialPermissions returns the SpecialPermissions field value
+// GetSpecialPermissions returns the SpecialPermissions field value if set, zero value otherwise.
 func (o *UserPermissions) GetSpecialPermissions() SpecialPermissions {
-	if o == nil {
+	if o == nil || IsNil(o.SpecialPermissions) {
 		var ret SpecialPermissions
 		return ret
 	}
-
-	return o.SpecialPermissions
+	return *o.SpecialPermissions
 }
 
-// GetSpecialPermissionsOk returns a tuple with the SpecialPermissions field value
+// GetSpecialPermissionsOk returns a tuple with the SpecialPermissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserPermissions) GetSpecialPermissionsOk() (*SpecialPermissions, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SpecialPermissions) {
 		return nil, false
 	}
-	return &o.SpecialPermissions, true
+	return o.SpecialPermissions, true
 }
 
-// SetSpecialPermissions sets field value
+// HasSpecialPermissions returns a boolean if a field has been set.
+func (o *UserPermissions) HasSpecialPermissions() bool {
+	if o != nil && !IsNil(o.SpecialPermissions) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpecialPermissions gets a reference to the given SpecialPermissions and assigns it to the SpecialPermissions field.
 func (o *UserPermissions) SetSpecialPermissions(v SpecialPermissions) {
-	o.SpecialPermissions = v
+	o.SpecialPermissions = &v
 }
 
 // GetRolePermissions returns the RolePermissions field value
@@ -144,7 +151,9 @@ func (o UserPermissions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AdminPasswordRevealPermissions) {
 		toSerialize["adminPasswordRevealPermissions"] = o.AdminPasswordRevealPermissions
 	}
-	toSerialize["specialPermissions"] = o.SpecialPermissions
+	if !IsNil(o.SpecialPermissions) {
+		toSerialize["specialPermissions"] = o.SpecialPermissions
+	}
 	toSerialize["rolePermissions"] = o.RolePermissions
 
 	for key, value := range o.AdditionalProperties {
@@ -159,7 +168,6 @@ func (o *UserPermissions) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"specialPermissions",
 		"rolePermissions",
 	}
 

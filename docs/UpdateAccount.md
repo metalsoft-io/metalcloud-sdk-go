@@ -5,18 +5,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ParentAccountId** | Pointer to **float32** | The ID of the parent account | [optional] 
-**Name** | **string** | The name of the account | 
+**Name** | Pointer to **string** | The name of the account | [optional] 
 **Code** | Pointer to **string** | The code of the account | [optional] 
 **FiscalNumber** | Pointer to **string** | The fiscal number of the account | [optional] 
 **Address** | Pointer to [**AccountAddress**](AccountAddress.md) |  | [optional] 
 **PrimaryContactId** | Pointer to **float32** | The user ID of the primary contact | [optional] 
 **SecondaryContactId** | Pointer to **float32** | The user ID of the secondary contact | [optional] 
+**IsArchived** | Pointer to **bool** | Whether the account is archived | [optional] 
 
 ## Methods
 
 ### NewUpdateAccount
 
-`func NewUpdateAccount(name string, ) *UpdateAccount`
+`func NewUpdateAccount() *UpdateAccount`
 
 NewUpdateAccount instantiates a new UpdateAccount object
 This constructor will assign default values to properties that have it defined,
@@ -75,6 +76,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *UpdateAccount) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetCode
 
@@ -200,6 +206,31 @@ SetSecondaryContactId sets SecondaryContactId field to given value.
 `func (o *UpdateAccount) HasSecondaryContactId() bool`
 
 HasSecondaryContactId returns a boolean if a field has been set.
+
+### GetIsArchived
+
+`func (o *UpdateAccount) GetIsArchived() bool`
+
+GetIsArchived returns the IsArchived field if non-nil, zero value otherwise.
+
+### GetIsArchivedOk
+
+`func (o *UpdateAccount) GetIsArchivedOk() (*bool, bool)`
+
+GetIsArchivedOk returns a tuple with the IsArchived field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsArchived
+
+`func (o *UpdateAccount) SetIsArchived(v bool)`
+
+SetIsArchived sets IsArchived field to given value.
+
+### HasIsArchived
+
+`func (o *UpdateAccount) HasIsArchived() bool`
+
+HasIsArchived returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

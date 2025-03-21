@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **string** | The server instance group label. Will be automatically generated if not provided. | [optional] 
+**Label** | Pointer to **string** | The Product Instance label. Will be automatically generated if not provided. | [optional] 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
 **InstanceCount** | Pointer to **int32** | The number of instances to be created on the InstanceArray. | [optional] [default to 1]

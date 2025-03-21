@@ -4,8 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | Account ID | 
-**Revision** | **float32** | Revision number | 
 **ParentAccountId** | Pointer to **float32** | The ID of the parent account | [optional] 
 **Name** | **string** | The name of the account | 
 **Code** | Pointer to **string** | The code of the account | [optional] 
@@ -13,15 +11,18 @@ Name | Type | Description | Notes
 **Address** | Pointer to [**AccountAddress**](AccountAddress.md) |  | [optional] 
 **PrimaryContactId** | Pointer to **float32** | The user ID of the primary contact | [optional] 
 **SecondaryContactId** | Pointer to **float32** | The user ID of the secondary contact | [optional] 
-**Archived** | Pointer to **float32** | Whether the account is archived | [optional] 
+**IsArchived** | Pointer to **bool** | Whether the account is archived | [optional] 
+**Id** | **float32** | Account ID | 
+**Revision** | **float32** | Revision number | 
 **Limits** | [**AccountLimits**](AccountLimits.md) |  | 
+**Config** | [**AccountConfig**](AccountConfig.md) | The new configuration of the account. | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewAccount
 
-`func NewAccount(id float32, revision float32, name string, limits AccountLimits, ) *Account`
+`func NewAccount(name string, id float32, revision float32, limits AccountLimits, config AccountConfig, ) *Account`
 
 NewAccount instantiates a new Account object
 This constructor will assign default values to properties that have it defined,
@@ -35,46 +36,6 @@ will change when the set of required properties is changed
 NewAccountWithDefaults instantiates a new Account object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *Account) GetId() float32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *Account) GetIdOk() (*float32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *Account) SetId(v float32)`
-
-SetId sets Id field to given value.
-
-
-### GetRevision
-
-`func (o *Account) GetRevision() float32`
-
-GetRevision returns the Revision field if non-nil, zero value otherwise.
-
-### GetRevisionOk
-
-`func (o *Account) GetRevisionOk() (*float32, bool)`
-
-GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRevision
-
-`func (o *Account) SetRevision(v float32)`
-
-SetRevision sets Revision field to given value.
-
 
 ### GetParentAccountId
 
@@ -246,30 +207,70 @@ SetSecondaryContactId sets SecondaryContactId field to given value.
 
 HasSecondaryContactId returns a boolean if a field has been set.
 
-### GetArchived
+### GetIsArchived
 
-`func (o *Account) GetArchived() float32`
+`func (o *Account) GetIsArchived() bool`
 
-GetArchived returns the Archived field if non-nil, zero value otherwise.
+GetIsArchived returns the IsArchived field if non-nil, zero value otherwise.
 
-### GetArchivedOk
+### GetIsArchivedOk
 
-`func (o *Account) GetArchivedOk() (*float32, bool)`
+`func (o *Account) GetIsArchivedOk() (*bool, bool)`
 
-GetArchivedOk returns a tuple with the Archived field if it's non-nil, zero value otherwise
+GetIsArchivedOk returns a tuple with the IsArchived field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetArchived
+### SetIsArchived
 
-`func (o *Account) SetArchived(v float32)`
+`func (o *Account) SetIsArchived(v bool)`
 
-SetArchived sets Archived field to given value.
+SetIsArchived sets IsArchived field to given value.
 
-### HasArchived
+### HasIsArchived
 
-`func (o *Account) HasArchived() bool`
+`func (o *Account) HasIsArchived() bool`
 
-HasArchived returns a boolean if a field has been set.
+HasIsArchived returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *Account) GetId() float32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Account) GetIdOk() (*float32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Account) SetId(v float32)`
+
+SetId sets Id field to given value.
+
+
+### GetRevision
+
+`func (o *Account) GetRevision() float32`
+
+GetRevision returns the Revision field if non-nil, zero value otherwise.
+
+### GetRevisionOk
+
+`func (o *Account) GetRevisionOk() (*float32, bool)`
+
+GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevision
+
+`func (o *Account) SetRevision(v float32)`
+
+SetRevision sets Revision field to given value.
+
 
 ### GetLimits
 
@@ -289,6 +290,26 @@ and a boolean to check if the value has been set.
 `func (o *Account) SetLimits(v AccountLimits)`
 
 SetLimits sets Limits field to given value.
+
+
+### GetConfig
+
+`func (o *Account) GetConfig() AccountConfig`
+
+GetConfig returns the Config field if non-nil, zero value otherwise.
+
+### GetConfigOk
+
+`func (o *Account) GetConfigOk() (*AccountConfig, bool)`
+
+GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfig
+
+`func (o *Account) SetConfig(v AccountConfig)`
+
+SetConfig sets Config field to given value.
 
 
 ### GetLinks

@@ -4,23 +4,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RedirectUrl** | Pointer to **string** | The redirect URL for the user | [optional] 
-**DisplayName** | Pointer to **string** | The new display name of the user | [optional] 
-**Email** | Pointer to **string** | The new login e-mail of the user | [optional] 
-**EmailStatus** | Pointer to **string** | The new e-mail status of the user | [optional] 
-**Language** | Pointer to **string** | The new language of the user | [optional] 
-**Brand** | Pointer to **string** | The new brand of the user | [optional] 
-**IsBrandManager** | Pointer to **bool** | The new brand manager status of the user | [optional] 
-**Delegates** | Pointer to [**[]UserDelegate**](UserDelegate.md) | The new user delegates of the user. | [optional] 
-**IsBlocked** | Pointer to **bool** | The new blocked status of the user | [optional] 
-**Suspension** | Pointer to [**UserSuspend**](UserSuspend.md) |  | [optional] 
-**AccessLevel** | Pointer to **string** | The new access level of the user | [optional] 
-**Promotions** | Pointer to [**[]UserPromotion**](UserPromotion.md) | The new promotions of the user. | [optional] 
-**ExperimentalTags** | Pointer to [**[]UserExperimentalTag**](UserExperimentalTag.md) | The new experimental tags of the user. | [optional] 
-**Permissions** | Pointer to [**UserResourcePermissions**](UserResourcePermissions.md) |  | [optional] 
-**IsTestAccount** | Pointer to **bool** | Whether the user account is a test one. | [optional] 
-**IsBillable** | Pointer to **bool** | Whether the user account is billable. | [optional] 
+**DisplayName** | Pointer to **string** | The display name of the user | [optional] 
+**EmailStatus** | Pointer to **string** | The email status of the user | [optional] 
+**Language** | Pointer to **string** | The language of the user | [optional] 
+**Brand** | Pointer to **string** | The brand of the user | [optional] [default to "default"]
+**IsBrandManager** | Pointer to **bool** | Whether the user is a brand manager | [optional] 
+**LastLoginTimestamp** | Pointer to **string** | The timestamp when the user logged in last | [optional] 
+**LastLoginType** | Pointer to **string** | The last login type of the user | [optional] [default to "md5"]
+**IsBlocked** | Pointer to **bool** | Whether the user is blocked | [optional] 
+**PasswordChangeRequired** | Pointer to **bool** | Whether the user must change password | [optional] 
+**AccessLevel** | Pointer to **string** | The access level of the user | [optional] 
+**IsBillable** | Pointer to **bool** | Whether the user is billable | [optional] 
+**IsTestingMode** | Pointer to **bool** | Whether the user is in testing mode | [optional] 
 **InfrastructureIdDefault** | Pointer to **float32** | The default infrastructure ID of the user | [optional] 
+**AuthenticatorMustChange** | Pointer to **bool** | Whether the user must change authenticator | [optional] 
+**AuthenticatorCreatedTimestamp** | Pointer to **string** | The timestamp when the authenticator was created | [optional] 
+**AuthenticatorEnabled** | Pointer to **bool** | Whether the user has an authenticator | [optional] 
+**PromotionTags** | Pointer to **[]string** | The promotion tags of the user | [optional] 
+**ExperimentalTags** | Pointer to **[]string** | The experimental tags of the user | [optional] 
+**ExternalIds** | Pointer to **map[string]interface{}** | The external IDs of the user | [optional] 
+**ExcludeFromReports** | Pointer to **bool** | Whether the user is excluded from reports | [optional] 
+**IsTestAccount** | Pointer to **bool** | Whether the user is a test account | [optional] 
+**IsArchived** | Pointer to **bool** | Whether the user is a archived | [optional] 
+**IsDatastorePublisher** | Pointer to **bool** | Whether the user is a datastore publisher | [optional] 
+**AccountId** | Pointer to **float32** | The account ID of the user | [optional] 
 
 ## Methods
 
@@ -40,31 +47,6 @@ will change when the set of required properties is changed
 NewUpdateUserWithDefaults instantiates a new UpdateUser object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetRedirectUrl
-
-`func (o *UpdateUser) GetRedirectUrl() string`
-
-GetRedirectUrl returns the RedirectUrl field if non-nil, zero value otherwise.
-
-### GetRedirectUrlOk
-
-`func (o *UpdateUser) GetRedirectUrlOk() (*string, bool)`
-
-GetRedirectUrlOk returns a tuple with the RedirectUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRedirectUrl
-
-`func (o *UpdateUser) SetRedirectUrl(v string)`
-
-SetRedirectUrl sets RedirectUrl field to given value.
-
-### HasRedirectUrl
-
-`func (o *UpdateUser) HasRedirectUrl() bool`
-
-HasRedirectUrl returns a boolean if a field has been set.
 
 ### GetDisplayName
 
@@ -90,31 +72,6 @@ SetDisplayName sets DisplayName field to given value.
 `func (o *UpdateUser) HasDisplayName() bool`
 
 HasDisplayName returns a boolean if a field has been set.
-
-### GetEmail
-
-`func (o *UpdateUser) GetEmail() string`
-
-GetEmail returns the Email field if non-nil, zero value otherwise.
-
-### GetEmailOk
-
-`func (o *UpdateUser) GetEmailOk() (*string, bool)`
-
-GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmail
-
-`func (o *UpdateUser) SetEmail(v string)`
-
-SetEmail sets Email field to given value.
-
-### HasEmail
-
-`func (o *UpdateUser) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
 
 ### GetEmailStatus
 
@@ -216,30 +173,55 @@ SetIsBrandManager sets IsBrandManager field to given value.
 
 HasIsBrandManager returns a boolean if a field has been set.
 
-### GetDelegates
+### GetLastLoginTimestamp
 
-`func (o *UpdateUser) GetDelegates() []UserDelegate`
+`func (o *UpdateUser) GetLastLoginTimestamp() string`
 
-GetDelegates returns the Delegates field if non-nil, zero value otherwise.
+GetLastLoginTimestamp returns the LastLoginTimestamp field if non-nil, zero value otherwise.
 
-### GetDelegatesOk
+### GetLastLoginTimestampOk
 
-`func (o *UpdateUser) GetDelegatesOk() (*[]UserDelegate, bool)`
+`func (o *UpdateUser) GetLastLoginTimestampOk() (*string, bool)`
 
-GetDelegatesOk returns a tuple with the Delegates field if it's non-nil, zero value otherwise
+GetLastLoginTimestampOk returns a tuple with the LastLoginTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDelegates
+### SetLastLoginTimestamp
 
-`func (o *UpdateUser) SetDelegates(v []UserDelegate)`
+`func (o *UpdateUser) SetLastLoginTimestamp(v string)`
 
-SetDelegates sets Delegates field to given value.
+SetLastLoginTimestamp sets LastLoginTimestamp field to given value.
 
-### HasDelegates
+### HasLastLoginTimestamp
 
-`func (o *UpdateUser) HasDelegates() bool`
+`func (o *UpdateUser) HasLastLoginTimestamp() bool`
 
-HasDelegates returns a boolean if a field has been set.
+HasLastLoginTimestamp returns a boolean if a field has been set.
+
+### GetLastLoginType
+
+`func (o *UpdateUser) GetLastLoginType() string`
+
+GetLastLoginType returns the LastLoginType field if non-nil, zero value otherwise.
+
+### GetLastLoginTypeOk
+
+`func (o *UpdateUser) GetLastLoginTypeOk() (*string, bool)`
+
+GetLastLoginTypeOk returns a tuple with the LastLoginType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastLoginType
+
+`func (o *UpdateUser) SetLastLoginType(v string)`
+
+SetLastLoginType sets LastLoginType field to given value.
+
+### HasLastLoginType
+
+`func (o *UpdateUser) HasLastLoginType() bool`
+
+HasLastLoginType returns a boolean if a field has been set.
 
 ### GetIsBlocked
 
@@ -266,30 +248,30 @@ SetIsBlocked sets IsBlocked field to given value.
 
 HasIsBlocked returns a boolean if a field has been set.
 
-### GetSuspension
+### GetPasswordChangeRequired
 
-`func (o *UpdateUser) GetSuspension() UserSuspend`
+`func (o *UpdateUser) GetPasswordChangeRequired() bool`
 
-GetSuspension returns the Suspension field if non-nil, zero value otherwise.
+GetPasswordChangeRequired returns the PasswordChangeRequired field if non-nil, zero value otherwise.
 
-### GetSuspensionOk
+### GetPasswordChangeRequiredOk
 
-`func (o *UpdateUser) GetSuspensionOk() (*UserSuspend, bool)`
+`func (o *UpdateUser) GetPasswordChangeRequiredOk() (*bool, bool)`
 
-GetSuspensionOk returns a tuple with the Suspension field if it's non-nil, zero value otherwise
+GetPasswordChangeRequiredOk returns a tuple with the PasswordChangeRequired field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSuspension
+### SetPasswordChangeRequired
 
-`func (o *UpdateUser) SetSuspension(v UserSuspend)`
+`func (o *UpdateUser) SetPasswordChangeRequired(v bool)`
 
-SetSuspension sets Suspension field to given value.
+SetPasswordChangeRequired sets PasswordChangeRequired field to given value.
 
-### HasSuspension
+### HasPasswordChangeRequired
 
-`func (o *UpdateUser) HasSuspension() bool`
+`func (o *UpdateUser) HasPasswordChangeRequired() bool`
 
-HasSuspension returns a boolean if a field has been set.
+HasPasswordChangeRequired returns a boolean if a field has been set.
 
 ### GetAccessLevel
 
@@ -316,47 +298,197 @@ SetAccessLevel sets AccessLevel field to given value.
 
 HasAccessLevel returns a boolean if a field has been set.
 
-### GetPromotions
+### GetIsBillable
 
-`func (o *UpdateUser) GetPromotions() []UserPromotion`
+`func (o *UpdateUser) GetIsBillable() bool`
 
-GetPromotions returns the Promotions field if non-nil, zero value otherwise.
+GetIsBillable returns the IsBillable field if non-nil, zero value otherwise.
 
-### GetPromotionsOk
+### GetIsBillableOk
 
-`func (o *UpdateUser) GetPromotionsOk() (*[]UserPromotion, bool)`
+`func (o *UpdateUser) GetIsBillableOk() (*bool, bool)`
 
-GetPromotionsOk returns a tuple with the Promotions field if it's non-nil, zero value otherwise
+GetIsBillableOk returns a tuple with the IsBillable field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPromotions
+### SetIsBillable
 
-`func (o *UpdateUser) SetPromotions(v []UserPromotion)`
+`func (o *UpdateUser) SetIsBillable(v bool)`
 
-SetPromotions sets Promotions field to given value.
+SetIsBillable sets IsBillable field to given value.
 
-### HasPromotions
+### HasIsBillable
 
-`func (o *UpdateUser) HasPromotions() bool`
+`func (o *UpdateUser) HasIsBillable() bool`
 
-HasPromotions returns a boolean if a field has been set.
+HasIsBillable returns a boolean if a field has been set.
+
+### GetIsTestingMode
+
+`func (o *UpdateUser) GetIsTestingMode() bool`
+
+GetIsTestingMode returns the IsTestingMode field if non-nil, zero value otherwise.
+
+### GetIsTestingModeOk
+
+`func (o *UpdateUser) GetIsTestingModeOk() (*bool, bool)`
+
+GetIsTestingModeOk returns a tuple with the IsTestingMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsTestingMode
+
+`func (o *UpdateUser) SetIsTestingMode(v bool)`
+
+SetIsTestingMode sets IsTestingMode field to given value.
+
+### HasIsTestingMode
+
+`func (o *UpdateUser) HasIsTestingMode() bool`
+
+HasIsTestingMode returns a boolean if a field has been set.
+
+### GetInfrastructureIdDefault
+
+`func (o *UpdateUser) GetInfrastructureIdDefault() float32`
+
+GetInfrastructureIdDefault returns the InfrastructureIdDefault field if non-nil, zero value otherwise.
+
+### GetInfrastructureIdDefaultOk
+
+`func (o *UpdateUser) GetInfrastructureIdDefaultOk() (*float32, bool)`
+
+GetInfrastructureIdDefaultOk returns a tuple with the InfrastructureIdDefault field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructureIdDefault
+
+`func (o *UpdateUser) SetInfrastructureIdDefault(v float32)`
+
+SetInfrastructureIdDefault sets InfrastructureIdDefault field to given value.
+
+### HasInfrastructureIdDefault
+
+`func (o *UpdateUser) HasInfrastructureIdDefault() bool`
+
+HasInfrastructureIdDefault returns a boolean if a field has been set.
+
+### GetAuthenticatorMustChange
+
+`func (o *UpdateUser) GetAuthenticatorMustChange() bool`
+
+GetAuthenticatorMustChange returns the AuthenticatorMustChange field if non-nil, zero value otherwise.
+
+### GetAuthenticatorMustChangeOk
+
+`func (o *UpdateUser) GetAuthenticatorMustChangeOk() (*bool, bool)`
+
+GetAuthenticatorMustChangeOk returns a tuple with the AuthenticatorMustChange field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticatorMustChange
+
+`func (o *UpdateUser) SetAuthenticatorMustChange(v bool)`
+
+SetAuthenticatorMustChange sets AuthenticatorMustChange field to given value.
+
+### HasAuthenticatorMustChange
+
+`func (o *UpdateUser) HasAuthenticatorMustChange() bool`
+
+HasAuthenticatorMustChange returns a boolean if a field has been set.
+
+### GetAuthenticatorCreatedTimestamp
+
+`func (o *UpdateUser) GetAuthenticatorCreatedTimestamp() string`
+
+GetAuthenticatorCreatedTimestamp returns the AuthenticatorCreatedTimestamp field if non-nil, zero value otherwise.
+
+### GetAuthenticatorCreatedTimestampOk
+
+`func (o *UpdateUser) GetAuthenticatorCreatedTimestampOk() (*string, bool)`
+
+GetAuthenticatorCreatedTimestampOk returns a tuple with the AuthenticatorCreatedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticatorCreatedTimestamp
+
+`func (o *UpdateUser) SetAuthenticatorCreatedTimestamp(v string)`
+
+SetAuthenticatorCreatedTimestamp sets AuthenticatorCreatedTimestamp field to given value.
+
+### HasAuthenticatorCreatedTimestamp
+
+`func (o *UpdateUser) HasAuthenticatorCreatedTimestamp() bool`
+
+HasAuthenticatorCreatedTimestamp returns a boolean if a field has been set.
+
+### GetAuthenticatorEnabled
+
+`func (o *UpdateUser) GetAuthenticatorEnabled() bool`
+
+GetAuthenticatorEnabled returns the AuthenticatorEnabled field if non-nil, zero value otherwise.
+
+### GetAuthenticatorEnabledOk
+
+`func (o *UpdateUser) GetAuthenticatorEnabledOk() (*bool, bool)`
+
+GetAuthenticatorEnabledOk returns a tuple with the AuthenticatorEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticatorEnabled
+
+`func (o *UpdateUser) SetAuthenticatorEnabled(v bool)`
+
+SetAuthenticatorEnabled sets AuthenticatorEnabled field to given value.
+
+### HasAuthenticatorEnabled
+
+`func (o *UpdateUser) HasAuthenticatorEnabled() bool`
+
+HasAuthenticatorEnabled returns a boolean if a field has been set.
+
+### GetPromotionTags
+
+`func (o *UpdateUser) GetPromotionTags() []string`
+
+GetPromotionTags returns the PromotionTags field if non-nil, zero value otherwise.
+
+### GetPromotionTagsOk
+
+`func (o *UpdateUser) GetPromotionTagsOk() (*[]string, bool)`
+
+GetPromotionTagsOk returns a tuple with the PromotionTags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPromotionTags
+
+`func (o *UpdateUser) SetPromotionTags(v []string)`
+
+SetPromotionTags sets PromotionTags field to given value.
+
+### HasPromotionTags
+
+`func (o *UpdateUser) HasPromotionTags() bool`
+
+HasPromotionTags returns a boolean if a field has been set.
 
 ### GetExperimentalTags
 
-`func (o *UpdateUser) GetExperimentalTags() []UserExperimentalTag`
+`func (o *UpdateUser) GetExperimentalTags() []string`
 
 GetExperimentalTags returns the ExperimentalTags field if non-nil, zero value otherwise.
 
 ### GetExperimentalTagsOk
 
-`func (o *UpdateUser) GetExperimentalTagsOk() (*[]UserExperimentalTag, bool)`
+`func (o *UpdateUser) GetExperimentalTagsOk() (*[]string, bool)`
 
 GetExperimentalTagsOk returns a tuple with the ExperimentalTags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExperimentalTags
 
-`func (o *UpdateUser) SetExperimentalTags(v []UserExperimentalTag)`
+`func (o *UpdateUser) SetExperimentalTags(v []string)`
 
 SetExperimentalTags sets ExperimentalTags field to given value.
 
@@ -366,30 +498,55 @@ SetExperimentalTags sets ExperimentalTags field to given value.
 
 HasExperimentalTags returns a boolean if a field has been set.
 
-### GetPermissions
+### GetExternalIds
 
-`func (o *UpdateUser) GetPermissions() UserResourcePermissions`
+`func (o *UpdateUser) GetExternalIds() map[string]interface{}`
 
-GetPermissions returns the Permissions field if non-nil, zero value otherwise.
+GetExternalIds returns the ExternalIds field if non-nil, zero value otherwise.
 
-### GetPermissionsOk
+### GetExternalIdsOk
 
-`func (o *UpdateUser) GetPermissionsOk() (*UserResourcePermissions, bool)`
+`func (o *UpdateUser) GetExternalIdsOk() (*map[string]interface{}, bool)`
 
-GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
+GetExternalIdsOk returns a tuple with the ExternalIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPermissions
+### SetExternalIds
 
-`func (o *UpdateUser) SetPermissions(v UserResourcePermissions)`
+`func (o *UpdateUser) SetExternalIds(v map[string]interface{})`
 
-SetPermissions sets Permissions field to given value.
+SetExternalIds sets ExternalIds field to given value.
 
-### HasPermissions
+### HasExternalIds
 
-`func (o *UpdateUser) HasPermissions() bool`
+`func (o *UpdateUser) HasExternalIds() bool`
 
-HasPermissions returns a boolean if a field has been set.
+HasExternalIds returns a boolean if a field has been set.
+
+### GetExcludeFromReports
+
+`func (o *UpdateUser) GetExcludeFromReports() bool`
+
+GetExcludeFromReports returns the ExcludeFromReports field if non-nil, zero value otherwise.
+
+### GetExcludeFromReportsOk
+
+`func (o *UpdateUser) GetExcludeFromReportsOk() (*bool, bool)`
+
+GetExcludeFromReportsOk returns a tuple with the ExcludeFromReports field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExcludeFromReports
+
+`func (o *UpdateUser) SetExcludeFromReports(v bool)`
+
+SetExcludeFromReports sets ExcludeFromReports field to given value.
+
+### HasExcludeFromReports
+
+`func (o *UpdateUser) HasExcludeFromReports() bool`
+
+HasExcludeFromReports returns a boolean if a field has been set.
 
 ### GetIsTestAccount
 
@@ -416,55 +573,80 @@ SetIsTestAccount sets IsTestAccount field to given value.
 
 HasIsTestAccount returns a boolean if a field has been set.
 
-### GetIsBillable
+### GetIsArchived
 
-`func (o *UpdateUser) GetIsBillable() bool`
+`func (o *UpdateUser) GetIsArchived() bool`
 
-GetIsBillable returns the IsBillable field if non-nil, zero value otherwise.
+GetIsArchived returns the IsArchived field if non-nil, zero value otherwise.
 
-### GetIsBillableOk
+### GetIsArchivedOk
 
-`func (o *UpdateUser) GetIsBillableOk() (*bool, bool)`
+`func (o *UpdateUser) GetIsArchivedOk() (*bool, bool)`
 
-GetIsBillableOk returns a tuple with the IsBillable field if it's non-nil, zero value otherwise
+GetIsArchivedOk returns a tuple with the IsArchived field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIsBillable
+### SetIsArchived
 
-`func (o *UpdateUser) SetIsBillable(v bool)`
+`func (o *UpdateUser) SetIsArchived(v bool)`
 
-SetIsBillable sets IsBillable field to given value.
+SetIsArchived sets IsArchived field to given value.
 
-### HasIsBillable
+### HasIsArchived
 
-`func (o *UpdateUser) HasIsBillable() bool`
+`func (o *UpdateUser) HasIsArchived() bool`
 
-HasIsBillable returns a boolean if a field has been set.
+HasIsArchived returns a boolean if a field has been set.
 
-### GetInfrastructureIdDefault
+### GetIsDatastorePublisher
 
-`func (o *UpdateUser) GetInfrastructureIdDefault() float32`
+`func (o *UpdateUser) GetIsDatastorePublisher() bool`
 
-GetInfrastructureIdDefault returns the InfrastructureIdDefault field if non-nil, zero value otherwise.
+GetIsDatastorePublisher returns the IsDatastorePublisher field if non-nil, zero value otherwise.
 
-### GetInfrastructureIdDefaultOk
+### GetIsDatastorePublisherOk
 
-`func (o *UpdateUser) GetInfrastructureIdDefaultOk() (*float32, bool)`
+`func (o *UpdateUser) GetIsDatastorePublisherOk() (*bool, bool)`
 
-GetInfrastructureIdDefaultOk returns a tuple with the InfrastructureIdDefault field if it's non-nil, zero value otherwise
+GetIsDatastorePublisherOk returns a tuple with the IsDatastorePublisher field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInfrastructureIdDefault
+### SetIsDatastorePublisher
 
-`func (o *UpdateUser) SetInfrastructureIdDefault(v float32)`
+`func (o *UpdateUser) SetIsDatastorePublisher(v bool)`
 
-SetInfrastructureIdDefault sets InfrastructureIdDefault field to given value.
+SetIsDatastorePublisher sets IsDatastorePublisher field to given value.
 
-### HasInfrastructureIdDefault
+### HasIsDatastorePublisher
 
-`func (o *UpdateUser) HasInfrastructureIdDefault() bool`
+`func (o *UpdateUser) HasIsDatastorePublisher() bool`
 
-HasInfrastructureIdDefault returns a boolean if a field has been set.
+HasIsDatastorePublisher returns a boolean if a field has been set.
+
+### GetAccountId
+
+`func (o *UpdateUser) GetAccountId() float32`
+
+GetAccountId returns the AccountId field if non-nil, zero value otherwise.
+
+### GetAccountIdOk
+
+`func (o *UpdateUser) GetAccountIdOk() (*float32, bool)`
+
+GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountId
+
+`func (o *UpdateUser) SetAccountId(v float32)`
+
+SetAccountId sets AccountId field to given value.
+
+### HasAccountId
+
+`func (o *UpdateUser) HasAccountId() bool`
+
+HasAccountId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

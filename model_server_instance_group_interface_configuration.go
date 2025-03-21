@@ -22,28 +22,28 @@ var _ MappedNullable = &ServerInstanceGroupInterfaceConfiguration{}
 // ServerInstanceGroupInterfaceConfiguration struct for ServerInstanceGroupInterfaceConfiguration
 type ServerInstanceGroupInterfaceConfiguration struct {
 	// Revision number
-	Revision float32 `json:"revision"`
-	// The server instance group interface label.
+	Revision int32 `json:"revision"`
+	// The Product Instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
-	// Subdomain of the Server Group.
-	Subdomain *string `json:"subdomain,omitempty"`
-	// Timestamp of the latest update for the server instance group interface.
+	// Timestamp of the latest update of the Product Instance.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
+	// Subdomain of the Product Instance.
+	Subdomain *string `json:"subdomain,omitempty"`
 	GroupId int32 `json:"groupId"`
 	// The index of the interface (0-based) on this server.
 	Index int32 `json:"index"`
 	// The ID of the network to which this interface is to be attached to.
 	NetworkId *int32 `json:"networkId,omitempty"`
+	// Id of the DNS subdomain for the Product Instance
+	DnsSubdomainChangeId *int32 `json:"dnsSubdomainChangeId,omitempty"`
+	// Id of the deployment for the Product Instance
+	InfrastructureDeployId *int32 `json:"infrastructureDeployId,omitempty"`
 	// Number of empty edits
 	EmptyEdit *int32 `json:"emptyEdit,omitempty"`
-	// Server instance group Interface deploy type
+	// Product Instance deploy type
 	DeployType string `json:"deployType"`
-	// Server instance group Interface deploy status
+	// Product Instance deploy status
 	DeployStatus string `json:"deployStatus"`
-	// Id of the DNS subdomain for the server instance group Interface.
-	DnsSubdomainChangeId *int32 `json:"dnsSubdomainChangeId,omitempty"`
-	// Id of the deployment for the server instance group Interface.
-	InfrastructureDeployId *int32 `json:"infrastructureDeployId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -53,7 +53,7 @@ type _ServerInstanceGroupInterfaceConfiguration ServerInstanceGroupInterfaceConf
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroupInterfaceConfiguration(revision float32, label string, updatedTimestamp string, groupId int32, index int32, deployType string, deployStatus string) *ServerInstanceGroupInterfaceConfiguration {
+func NewServerInstanceGroupInterfaceConfiguration(revision int32, label string, updatedTimestamp string, groupId int32, index int32, deployType string, deployStatus string) *ServerInstanceGroupInterfaceConfiguration {
 	this := ServerInstanceGroupInterfaceConfiguration{}
 	this.Revision = revision
 	this.Label = label
@@ -70,13 +70,17 @@ func NewServerInstanceGroupInterfaceConfiguration(revision float32, label string
 // but it doesn't guarantee that properties required by API are set
 func NewServerInstanceGroupInterfaceConfigurationWithDefaults() *ServerInstanceGroupInterfaceConfiguration {
 	this := ServerInstanceGroupInterfaceConfiguration{}
+	var deployType string = "create"
+	this.DeployType = deployType
+	var deployStatus string = "not_started"
+	this.DeployStatus = deployStatus
 	return &this
 }
 
 // GetRevision returns the Revision field value
-func (o *ServerInstanceGroupInterfaceConfiguration) GetRevision() float32 {
+func (o *ServerInstanceGroupInterfaceConfiguration) GetRevision() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -85,7 +89,7 @@ func (o *ServerInstanceGroupInterfaceConfiguration) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetRevisionOk() (*float32, bool) {
+func (o *ServerInstanceGroupInterfaceConfiguration) GetRevisionOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,7 +97,7 @@ func (o *ServerInstanceGroupInterfaceConfiguration) GetRevisionOk() (*float32, b
 }
 
 // SetRevision sets field value
-func (o *ServerInstanceGroupInterfaceConfiguration) SetRevision(v float32) {
+func (o *ServerInstanceGroupInterfaceConfiguration) SetRevision(v int32) {
 	o.Revision = v
 }
 
@@ -119,6 +123,30 @@ func (o *ServerInstanceGroupInterfaceConfiguration) GetLabelOk() (*string, bool)
 // SetLabel sets field value
 func (o *ServerInstanceGroupInterfaceConfiguration) SetLabel(v string) {
 	o.Label = v
+}
+
+// GetUpdatedTimestamp returns the UpdatedTimestamp field value
+func (o *ServerInstanceGroupInterfaceConfiguration) GetUpdatedTimestamp() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UpdatedTimestamp
+}
+
+// GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupInterfaceConfiguration) GetUpdatedTimestampOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdatedTimestamp, true
+}
+
+// SetUpdatedTimestamp sets field value
+func (o *ServerInstanceGroupInterfaceConfiguration) SetUpdatedTimestamp(v string) {
+	o.UpdatedTimestamp = v
 }
 
 // GetSubdomain returns the Subdomain field value if set, zero value otherwise.
@@ -151,30 +179,6 @@ func (o *ServerInstanceGroupInterfaceConfiguration) HasSubdomain() bool {
 // SetSubdomain gets a reference to the given string and assigns it to the Subdomain field.
 func (o *ServerInstanceGroupInterfaceConfiguration) SetSubdomain(v string) {
 	o.Subdomain = &v
-}
-
-// GetUpdatedTimestamp returns the UpdatedTimestamp field value
-func (o *ServerInstanceGroupInterfaceConfiguration) GetUpdatedTimestamp() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.UpdatedTimestamp
-}
-
-// GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field value
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetUpdatedTimestampOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UpdatedTimestamp, true
-}
-
-// SetUpdatedTimestamp sets field value
-func (o *ServerInstanceGroupInterfaceConfiguration) SetUpdatedTimestamp(v string) {
-	o.UpdatedTimestamp = v
 }
 
 // GetGroupId returns the GroupId field value
@@ -257,6 +261,70 @@ func (o *ServerInstanceGroupInterfaceConfiguration) SetNetworkId(v int32) {
 	o.NetworkId = &v
 }
 
+// GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
+func (o *ServerInstanceGroupInterfaceConfiguration) GetDnsSubdomainChangeId() int32 {
+	if o == nil || IsNil(o.DnsSubdomainChangeId) {
+		var ret int32
+		return ret
+	}
+	return *o.DnsSubdomainChangeId
+}
+
+// GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupInterfaceConfiguration) GetDnsSubdomainChangeIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.DnsSubdomainChangeId) {
+		return nil, false
+	}
+	return o.DnsSubdomainChangeId, true
+}
+
+// HasDnsSubdomainChangeId returns a boolean if a field has been set.
+func (o *ServerInstanceGroupInterfaceConfiguration) HasDnsSubdomainChangeId() bool {
+	if o != nil && !IsNil(o.DnsSubdomainChangeId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDnsSubdomainChangeId gets a reference to the given int32 and assigns it to the DnsSubdomainChangeId field.
+func (o *ServerInstanceGroupInterfaceConfiguration) SetDnsSubdomainChangeId(v int32) {
+	o.DnsSubdomainChangeId = &v
+}
+
+// GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
+func (o *ServerInstanceGroupInterfaceConfiguration) GetInfrastructureDeployId() int32 {
+	if o == nil || IsNil(o.InfrastructureDeployId) {
+		var ret int32
+		return ret
+	}
+	return *o.InfrastructureDeployId
+}
+
+// GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupInterfaceConfiguration) GetInfrastructureDeployIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.InfrastructureDeployId) {
+		return nil, false
+	}
+	return o.InfrastructureDeployId, true
+}
+
+// HasInfrastructureDeployId returns a boolean if a field has been set.
+func (o *ServerInstanceGroupInterfaceConfiguration) HasInfrastructureDeployId() bool {
+	if o != nil && !IsNil(o.InfrastructureDeployId) {
+		return true
+	}
+
+	return false
+}
+
+// SetInfrastructureDeployId gets a reference to the given int32 and assigns it to the InfrastructureDeployId field.
+func (o *ServerInstanceGroupInterfaceConfiguration) SetInfrastructureDeployId(v int32) {
+	o.InfrastructureDeployId = &v
+}
+
 // GetEmptyEdit returns the EmptyEdit field value if set, zero value otherwise.
 func (o *ServerInstanceGroupInterfaceConfiguration) GetEmptyEdit() int32 {
 	if o == nil || IsNil(o.EmptyEdit) {
@@ -337,70 +405,6 @@ func (o *ServerInstanceGroupInterfaceConfiguration) SetDeployStatus(v string) {
 	o.DeployStatus = v
 }
 
-// GetDnsSubdomainChangeId returns the DnsSubdomainChangeId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetDnsSubdomainChangeId() int32 {
-	if o == nil || IsNil(o.DnsSubdomainChangeId) {
-		var ret int32
-		return ret
-	}
-	return *o.DnsSubdomainChangeId
-}
-
-// GetDnsSubdomainChangeIdOk returns a tuple with the DnsSubdomainChangeId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetDnsSubdomainChangeIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.DnsSubdomainChangeId) {
-		return nil, false
-	}
-	return o.DnsSubdomainChangeId, true
-}
-
-// HasDnsSubdomainChangeId returns a boolean if a field has been set.
-func (o *ServerInstanceGroupInterfaceConfiguration) HasDnsSubdomainChangeId() bool {
-	if o != nil && !IsNil(o.DnsSubdomainChangeId) {
-		return true
-	}
-
-	return false
-}
-
-// SetDnsSubdomainChangeId gets a reference to the given int32 and assigns it to the DnsSubdomainChangeId field.
-func (o *ServerInstanceGroupInterfaceConfiguration) SetDnsSubdomainChangeId(v int32) {
-	o.DnsSubdomainChangeId = &v
-}
-
-// GetInfrastructureDeployId returns the InfrastructureDeployId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetInfrastructureDeployId() int32 {
-	if o == nil || IsNil(o.InfrastructureDeployId) {
-		var ret int32
-		return ret
-	}
-	return *o.InfrastructureDeployId
-}
-
-// GetInfrastructureDeployIdOk returns a tuple with the InfrastructureDeployId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupInterfaceConfiguration) GetInfrastructureDeployIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.InfrastructureDeployId) {
-		return nil, false
-	}
-	return o.InfrastructureDeployId, true
-}
-
-// HasInfrastructureDeployId returns a boolean if a field has been set.
-func (o *ServerInstanceGroupInterfaceConfiguration) HasInfrastructureDeployId() bool {
-	if o != nil && !IsNil(o.InfrastructureDeployId) {
-		return true
-	}
-
-	return false
-}
-
-// SetInfrastructureDeployId gets a reference to the given int32 and assigns it to the InfrastructureDeployId field.
-func (o *ServerInstanceGroupInterfaceConfiguration) SetInfrastructureDeployId(v int32) {
-	o.InfrastructureDeployId = &v
-}
-
 func (o ServerInstanceGroupInterfaceConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -413,26 +417,26 @@ func (o ServerInstanceGroupInterfaceConfiguration) ToMap() (map[string]interface
 	toSerialize := map[string]interface{}{}
 	toSerialize["revision"] = o.Revision
 	toSerialize["label"] = o.Label
+	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Subdomain) {
 		toSerialize["subdomain"] = o.Subdomain
 	}
-	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	toSerialize["groupId"] = o.GroupId
 	toSerialize["index"] = o.Index
 	if !IsNil(o.NetworkId) {
 		toSerialize["networkId"] = o.NetworkId
 	}
-	if !IsNil(o.EmptyEdit) {
-		toSerialize["emptyEdit"] = o.EmptyEdit
-	}
-	toSerialize["deployType"] = o.DeployType
-	toSerialize["deployStatus"] = o.DeployStatus
 	if !IsNil(o.DnsSubdomainChangeId) {
 		toSerialize["dnsSubdomainChangeId"] = o.DnsSubdomainChangeId
 	}
 	if !IsNil(o.InfrastructureDeployId) {
 		toSerialize["infrastructureDeployId"] = o.InfrastructureDeployId
 	}
+	if !IsNil(o.EmptyEdit) {
+		toSerialize["emptyEdit"] = o.EmptyEdit
+	}
+	toSerialize["deployType"] = o.DeployType
+	toSerialize["deployStatus"] = o.DeployStatus
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -484,16 +488,16 @@ func (o *ServerInstanceGroupInterfaceConfiguration) UnmarshalJSON(data []byte) (
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "label")
-		delete(additionalProperties, "subdomain")
 		delete(additionalProperties, "updatedTimestamp")
+		delete(additionalProperties, "subdomain")
 		delete(additionalProperties, "groupId")
 		delete(additionalProperties, "index")
 		delete(additionalProperties, "networkId")
+		delete(additionalProperties, "dnsSubdomainChangeId")
+		delete(additionalProperties, "infrastructureDeployId")
 		delete(additionalProperties, "emptyEdit")
 		delete(additionalProperties, "deployType")
 		delete(additionalProperties, "deployStatus")
-		delete(additionalProperties, "dnsSubdomainChangeId")
-		delete(additionalProperties, "infrastructureDeployId")
 		o.AdditionalProperties = additionalProperties
 	}
 

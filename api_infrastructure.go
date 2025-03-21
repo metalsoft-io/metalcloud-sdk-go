@@ -770,7 +770,7 @@ type InfrastructureAPIGetInfrastructureUsersRequest struct {
 	infrastructureId float32
 }
 
-func (r InfrastructureAPIGetInfrastructureUsersRequest) Execute() ([]UserInfo, *http.Response, error) {
+func (r InfrastructureAPIGetInfrastructureUsersRequest) Execute() (*UserPaginatedList, *http.Response, error) {
 	return r.ApiService.GetInfrastructureUsersExecute(r)
 }
 
@@ -792,13 +792,13 @@ func (a *InfrastructureAPIService) GetInfrastructureUsers(ctx context.Context, i
 }
 
 // Execute executes the request
-//  @return []UserInfo
-func (a *InfrastructureAPIService) GetInfrastructureUsersExecute(r InfrastructureAPIGetInfrastructureUsersRequest) ([]UserInfo, *http.Response, error) {
+//  @return UserPaginatedList
+func (a *InfrastructureAPIService) GetInfrastructureUsersExecute(r InfrastructureAPIGetInfrastructureUsersRequest) (*UserPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []UserInfo
+		localVarReturnValue  *UserPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InfrastructureAPIService.GetInfrastructureUsers")
@@ -1304,6 +1304,13 @@ type InfrastructureAPIRevertInfrastructureRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
 	infrastructureId float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r InfrastructureAPIRevertInfrastructureRequest) IfMatch(ifMatch string) InfrastructureAPIRevertInfrastructureRequest {
+	r.ifMatch = &ifMatch
+	return r
 }
 
 func (r InfrastructureAPIRevertInfrastructureRequest) Execute() (*http.Response, error) {
@@ -1363,6 +1370,9 @@ func (a *InfrastructureAPIService) RevertInfrastructureExecute(r InfrastructureA
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
