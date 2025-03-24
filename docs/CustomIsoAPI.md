@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCustomIso
 
-> DeleteCustomIso(ctx, customIsoId, bucketId, infrastructureId).Execute()
+> DeleteCustomIso(ctx, customIsoId).Execute()
 
 Delete Custom Iso
 
@@ -169,12 +169,10 @@ import (
 
 func main() {
 	customIsoId := float32(8.14) // float32 | 
-	bucketId := float32(8.14) // float32 | 
-	infrastructureId := float32(8.14) // float32 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CustomIsoAPI.DeleteCustomIso(context.Background(), customIsoId, bucketId, infrastructureId).Execute()
+	r, err := apiClient.CustomIsoAPI.DeleteCustomIso(context.Background(), customIsoId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomIsoAPI.DeleteCustomIso``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -189,8 +187,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **customIsoId** | **float32** |  | 
-**bucketId** | **float32** |  | 
-**infrastructureId** | **float32** |  | 
 
 ### Other Parameters
 
@@ -199,8 +195,6 @@ Other parameters are passed through a pointer to a apiDeleteCustomIsoRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
-
 
 
 ### Return type

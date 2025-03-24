@@ -10,6 +10,11 @@ Name | Type | Description | Notes
 **StorageDriver** | **string** | Storage driver | 
 **StorageTechnology** | **string** | Storage technology | 
 **StorageType** | **string** | Storage type | 
+**Status** | **string** | Storage status | 
+**TotalCapacity** | Pointer to **float32** | Total capacity in MB | [optional] 
+**UsableCapacity** | Pointer to **float32** | Usable capacity in MB | [optional] 
+**FreeCapacity** | Pointer to **float32** | Free capacity in MB | [optional] 
+**VirtualUsedCapacity** | Pointer to **float32** | Virtual used capacity in MB | [optional] 
 **Name** | **string** | Name of the storage | 
 **IscsiHost** | Pointer to **string** | ISCSI host | [optional] 
 **IscsiPort** | Pointer to **float32** | ISCSI port | [optional] 
@@ -39,7 +44,7 @@ Name | Type | Description | Notes
 
 ### NewStorage
 
-`func NewStorage(storageId float32, siteId float32, storageDriver string, storageTechnology string, storageType string, name string, managementHost string, username string, passwordEncrypted string, inMaintenance float32, subnetType string, ) *Storage`
+`func NewStorage(storageId float32, siteId float32, storageDriver string, storageTechnology string, storageType string, status string, name string, managementHost string, username string, passwordEncrypted string, inMaintenance float32, subnetType string, ) *Storage`
 
 NewStorage instantiates a new Storage object
 This constructor will assign default values to properties that have it defined,
@@ -178,6 +183,126 @@ and a boolean to check if the value has been set.
 
 SetStorageType sets StorageType field to given value.
 
+
+### GetStatus
+
+`func (o *Storage) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *Storage) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *Storage) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+
+### GetTotalCapacity
+
+`func (o *Storage) GetTotalCapacity() float32`
+
+GetTotalCapacity returns the TotalCapacity field if non-nil, zero value otherwise.
+
+### GetTotalCapacityOk
+
+`func (o *Storage) GetTotalCapacityOk() (*float32, bool)`
+
+GetTotalCapacityOk returns a tuple with the TotalCapacity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalCapacity
+
+`func (o *Storage) SetTotalCapacity(v float32)`
+
+SetTotalCapacity sets TotalCapacity field to given value.
+
+### HasTotalCapacity
+
+`func (o *Storage) HasTotalCapacity() bool`
+
+HasTotalCapacity returns a boolean if a field has been set.
+
+### GetUsableCapacity
+
+`func (o *Storage) GetUsableCapacity() float32`
+
+GetUsableCapacity returns the UsableCapacity field if non-nil, zero value otherwise.
+
+### GetUsableCapacityOk
+
+`func (o *Storage) GetUsableCapacityOk() (*float32, bool)`
+
+GetUsableCapacityOk returns a tuple with the UsableCapacity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUsableCapacity
+
+`func (o *Storage) SetUsableCapacity(v float32)`
+
+SetUsableCapacity sets UsableCapacity field to given value.
+
+### HasUsableCapacity
+
+`func (o *Storage) HasUsableCapacity() bool`
+
+HasUsableCapacity returns a boolean if a field has been set.
+
+### GetFreeCapacity
+
+`func (o *Storage) GetFreeCapacity() float32`
+
+GetFreeCapacity returns the FreeCapacity field if non-nil, zero value otherwise.
+
+### GetFreeCapacityOk
+
+`func (o *Storage) GetFreeCapacityOk() (*float32, bool)`
+
+GetFreeCapacityOk returns a tuple with the FreeCapacity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFreeCapacity
+
+`func (o *Storage) SetFreeCapacity(v float32)`
+
+SetFreeCapacity sets FreeCapacity field to given value.
+
+### HasFreeCapacity
+
+`func (o *Storage) HasFreeCapacity() bool`
+
+HasFreeCapacity returns a boolean if a field has been set.
+
+### GetVirtualUsedCapacity
+
+`func (o *Storage) GetVirtualUsedCapacity() float32`
+
+GetVirtualUsedCapacity returns the VirtualUsedCapacity field if non-nil, zero value otherwise.
+
+### GetVirtualUsedCapacityOk
+
+`func (o *Storage) GetVirtualUsedCapacityOk() (*float32, bool)`
+
+GetVirtualUsedCapacityOk returns a tuple with the VirtualUsedCapacity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVirtualUsedCapacity
+
+`func (o *Storage) SetVirtualUsedCapacity(v float32)`
+
+SetVirtualUsedCapacity sets VirtualUsedCapacity field to given value.
+
+### HasVirtualUsedCapacity
+
+`func (o *Storage) HasVirtualUsedCapacity() bool`
+
+HasVirtualUsedCapacity returns a boolean if a field has been set.
 
 ### GetName
 

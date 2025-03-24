@@ -130,6 +130,8 @@ type APIClient struct {
 
 	TemplateAssetAPI *TemplateAssetAPIService
 
+	UnmanagedServersAPI *UnmanagedServersAPIService
+
 	UserAPI *UserAPIService
 
 	VMAPI *VMAPIService
@@ -199,6 +201,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.StorageAPI = (*StorageAPIService)(&c.common)
 	c.SystemAPI = (*SystemAPIService)(&c.common)
 	c.TemplateAssetAPI = (*TemplateAssetAPIService)(&c.common)
+	c.UnmanagedServersAPI = (*UnmanagedServersAPIService)(&c.common)
 	c.UserAPI = (*UserAPIService)(&c.common)
 	c.VMAPI = (*VMAPIService)(&c.common)
 	c.VMInstanceAPI = (*VMInstanceAPIService)(&c.common)

@@ -170,8 +170,8 @@ Class | Method | HTTP request | Description
 *FirmwareCatalogAPI* | [**GetFirmwareCatalog**](docs/FirmwareCatalogAPI.md#getfirmwarecatalog) | **Get** /api/v2/firmware/catalog/{firmwareCatalogId} | Get Firmware Catalog
 *FirmwareCatalogAPI* | [**GetFirmwareCatalogs**](docs/FirmwareCatalogAPI.md#getfirmwarecatalogs) | **Get** /api/v2/firmware/catalog | Get Firmware Catalogs
 *FirmwareCatalogAPI* | [**UpdateFirmwareCatalog**](docs/FirmwareCatalogAPI.md#updatefirmwarecatalog) | **Put** /api/v2/firmware/catalog/{firmwareCatalogId} | Update Firmware Catalog
-*FirmwarePolicyAPI* | [**ApplyFirmwarePoliciesWithInstanceArrays**](docs/FirmwarePolicyAPI.md#applyfirmwarepolicieswithinstancearrays) | **Post** /api/v2/firmware/policies/actions/apply-with-instance-arrays | Applies all Firmware Policies linked to instance arrays
-*FirmwarePolicyAPI* | [**ApplyFirmwarePoliciesWithoutInstanceArrays**](docs/FirmwarePolicyAPI.md#applyfirmwarepolicieswithoutinstancearrays) | **Post** /api/v2/firmware/policies/actions/apply-without-instance-arrays | Applies all Firmware Policies not linked to instance arrays
+*FirmwarePolicyAPI* | [**ApplyFirmwarePoliciesWithServerInstanceGroups**](docs/FirmwarePolicyAPI.md#applyfirmwarepolicieswithserverinstancegroups) | **Post** /api/v2/firmware/policies/actions/apply-with-server-instance-groups | Applies all Firmware Policies linked to server instance groups
+*FirmwarePolicyAPI* | [**ApplyFirmwarePoliciesWithoutServerInstanceGroups**](docs/FirmwarePolicyAPI.md#applyfirmwarepolicieswithoutserverinstancegroups) | **Post** /api/v2/firmware/policies/actions/apply-without-server-instance-groups | Applies all Firmware Policies not linked to server instance groups
 *FirmwarePolicyAPI* | [**CreateFirmwarePolicy**](docs/FirmwarePolicyAPI.md#createfirmwarepolicy) | **Post** /api/v2/firmware/policies | Creates a Firmware Policy
 *FirmwarePolicyAPI* | [**DeleteFirmwarePolicy**](docs/FirmwarePolicyAPI.md#deletefirmwarepolicy) | **Delete** /api/v2/firmware/policies/{firmwarePolicyId} | Deletes a Firmware Policy
 *FirmwarePolicyAPI* | [**GenerateFirmwarePolicyAudit**](docs/FirmwarePolicyAPI.md#generatefirmwarepolicyaudit) | **Post** /api/v2/firmware/policies/{firmwarePolicyId}/actions/generate-audit | Returns the server components ids that match this policy
@@ -186,6 +186,8 @@ Class | Method | HTTP request | Description
 *InfrastructureAPI* | [**DeployInfrastructure**](docs/InfrastructureAPI.md#deployinfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/deploy | Deploys the specified infrastructure
 *InfrastructureAPI* | [**GetInfrastructure**](docs/InfrastructureAPI.md#getinfrastructure) | **Get** /api/v2/infrastructures/{infrastructureId} | Retrieves the specified infrastructure
 *InfrastructureAPI* | [**GetInfrastructureConfigInfo**](docs/InfrastructureAPI.md#getinfrastructureconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/config | Get configuration information about the specified Infrastructure
+*InfrastructureAPI* | [**GetInfrastructureResourceUtilizationDetailed**](docs/InfrastructureAPI.md#getinfrastructureresourceutilizationdetailed) | **Post** /api/v2/infrastructures/actions/get/resource-utilization-detailed | Gets detailed resource utilization for infrastructures
+*InfrastructureAPI* | [**GetInfrastructureStatistics**](docs/InfrastructureAPI.md#getinfrastructurestatistics) | **Get** /api/v2/infrastructures/{infrastructureId}/statistics | Retrieves statistics for the specified infrastructure
 *InfrastructureAPI* | [**GetInfrastructureUserLimits**](docs/InfrastructureAPI.md#getinfrastructureuserlimits) | **Get** /api/v2/infrastructures/{infrastructureId}/user-limits | Retrieves the specified infrastructure user limits
 *InfrastructureAPI* | [**GetInfrastructureUsers**](docs/InfrastructureAPI.md#getinfrastructureusers) | **Get** /api/v2/infrastructures/{infrastructureId}/users | Retrieves the specified infrastructure users
 *InfrastructureAPI* | [**GetInfrastructures**](docs/InfrastructureAPI.md#getinfrastructures) | **Get** /api/v2/infrastructures | Get all infrastructures
@@ -399,6 +401,8 @@ Class | Method | HTTP request | Description
 *TemplateAssetAPI* | [**GetTemplateAsset**](docs/TemplateAssetAPI.md#gettemplateasset) | **Get** /api/v2/template-assets/{templateAssetId} | Get details for an template asset
 *TemplateAssetAPI* | [**GetTemplateAssets**](docs/TemplateAssetAPI.md#gettemplateassets) | **Get** /api/v2/template-assets | Get a list of available template assets
 *TemplateAssetAPI* | [**UpdateTemplateAsset**](docs/TemplateAssetAPI.md#updatetemplateasset) | **Put** /api/v2/template-assets/{templateAssetId} | Update template asset
+*UnmanagedServersAPI* | [**ImportGenericEndpointServer**](docs/UnmanagedServersAPI.md#importgenericendpointserver) | **Post** /api/v2/servers/generic-endpoint/import | Import Generic Endpoint Server
+*UnmanagedServersAPI* | [**ImportUnmanagedServer**](docs/UnmanagedServersAPI.md#importunmanagedserver) | **Post** /api/v2/servers/unmanaged/import | Import Unmanaged Server
 *UserAPI* | [**ArchiveUser**](docs/UserAPI.md#archiveuser) | **Post** /api/v2/users/{userId}/actions/archive | Archive user
 *UserAPI* | [**ChangeUserAccount**](docs/UserAPI.md#changeuseraccount) | **Post** /api/v2/users/{userId}/actions/change-account | Change account for user
 *UserAPI* | [**CreateUserAuthorized**](docs/UserAPI.md#createuserauthorized) | **Post** /api/v2/users | Creates another user
@@ -613,6 +617,8 @@ Class | Method | HTTP request | Description
  - [InfrastructureDeployShutdownOptions](docs/InfrastructureDeployShutdownOptions.md)
  - [InfrastructureMeta](docs/InfrastructureMeta.md)
  - [InfrastructurePaginatedList](docs/InfrastructurePaginatedList.md)
+ - [InfrastructurePolicy](docs/InfrastructurePolicy.md)
+ - [InfrastructureResourceUtilizationResponse](docs/InfrastructureResourceUtilizationResponse.md)
  - [InstancesSetPowerState](docs/InstancesSetPowerState.md)
  - [IscsiBootServerInfo](docs/IscsiBootServerInfo.md)
  - [Job](docs/Job.md)
@@ -629,6 +635,7 @@ Class | Method | HTTP request | Description
  - [JobPaginatedList](docs/JobPaginatedList.md)
  - [JobRetryInfo](docs/JobRetryInfo.md)
  - [JobStatistics](docs/JobStatistics.md)
+ - [LicenseInstallments](docs/LicenseInstallments.md)
  - [Link](docs/Link.md)
  - [Location](docs/Location.md)
  - [LogicalNetworkDto](docs/LogicalNetworkDto.md)
@@ -685,6 +692,7 @@ Class | Method | HTTP request | Description
  - [ServerFirmwareUpgradePolicyAudit](docs/ServerFirmwareUpgradePolicyAudit.md)
  - [ServerFirmwareUpgradePolicyPaginatedList](docs/ServerFirmwareUpgradePolicyPaginatedList.md)
  - [ServerFirmwareUpgradePolicyRule](docs/ServerFirmwareUpgradePolicyRule.md)
+ - [ServerGenericEndpointImport](docs/ServerGenericEndpointImport.md)
  - [ServerGpuInfo](docs/ServerGpuInfo.md)
  - [ServerInstance](docs/ServerInstance.md)
  - [ServerInstanceClusterCustomInfo](docs/ServerInstanceClusterCustomInfo.md)
@@ -733,6 +741,8 @@ Class | Method | HTTP request | Description
  - [ServerTypeStatisticsBatchOptions](docs/ServerTypeStatisticsBatchOptions.md)
  - [ServerTypeUtilizationReport](docs/ServerTypeUtilizationReport.md)
  - [ServerTypeUtilizationReportGrouped](docs/ServerTypeUtilizationReportGrouped.md)
+ - [ServerUnmanagedImport](docs/ServerUnmanagedImport.md)
+ - [ServerUnmanagedImportInternalInterfaceDto](docs/ServerUnmanagedImportInternalInterfaceDto.md)
  - [ServerVNCInfo](docs/ServerVNCInfo.md)
  - [SharedDrive](docs/SharedDrive.md)
  - [SharedDriveConfiguration](docs/SharedDriveConfiguration.md)

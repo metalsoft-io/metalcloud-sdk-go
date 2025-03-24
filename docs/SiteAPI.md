@@ -599,7 +599,7 @@ import (
 
 func main() {
 	siteId := float32(8.14) // float32 | 
-	siteConfigUpdate := *openapiclient.NewSiteConfigUpdate(*openapiclient.NewLocation("Address_example", float32(41.882089), float32(-87.627831)), *openapiclient.NewRepo("RootUrl_example"), []string{"DNSServers_example"}, []string{"NTPServers_example"}, *openapiclient.NewNetworkDevicePolicy(false, false, false, false, float32(0)), *openapiclient.NewServerPolicy("RegisterCredentials_example", float32(1), map[string]interface{}(123), false, []string{"DhcpBmcMacAddressWhitelist_example"}, false, false, false, float32(0), float32(0), float32(0), map[string]interface{}(123)), *openapiclient.NewControllerPolicy([]string{"SubnetAllocation_example"})) // SiteConfigUpdate | The Site Config update object
+	siteConfigUpdate := *openapiclient.NewSiteConfigUpdate(*openapiclient.NewLocation("Address_example", float32(41.882089), float32(-87.627831)), *openapiclient.NewRepo("RootUrl_example"), []string{"DNSServers_example"}, []string{"NTPServers_example"}, *openapiclient.NewNetworkDevicePolicy(false, false, false, false, float32(0)), *openapiclient.NewServerPolicy("RegisterCredentials_example", float32(1), map[string]interface{}(123), false, []string{"DhcpBmcMacAddressWhitelist_example"}, false, false, false, float32(0), float32(0), float32(0), map[string]interface{}(123)), *openapiclient.NewControllerPolicy([]string{"SubnetAllocation_example"}), *openapiclient.NewInfrastructurePolicy(false)) // SiteConfigUpdate | The Site Config update object
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()

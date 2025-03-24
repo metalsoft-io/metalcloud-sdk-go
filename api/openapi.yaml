@@ -379,13 +379,6 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: userId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
         name: accountId
         required: true
         schema:
@@ -657,6 +650,8 @@ paths:
           description: Forbidden
         "404":
           description: Not found
+        "409":
+          description: Conflict
         "412":
           description: Precondition failed
         "428":
@@ -2019,20 +2014,6 @@ paths:
       - explode: false
         in: path
         name: customIsoId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: bucketId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: infrastructureId
         required: true
         schema:
           type: number
@@ -6685,10 +6666,10 @@ paths:
       summary: Returns the server components ids that match this policy
       tags:
       - Firmware Policy
-  /api/v2/firmware/policies/actions/apply-without-instance-arrays:
+  /api/v2/firmware/policies/actions/apply-without-server-instance-groups:
     post:
-      description: Applies all Firmware Policies not linked to instance arrays
-      operationId: applyFirmwarePoliciesWithoutInstanceArrays
+      description: Applies all Firmware Policies not linked to server instance groups
+      operationId: applyFirmwarePoliciesWithoutServerInstanceGroups
       parameters: []
       responses:
         "200":
@@ -6706,13 +6687,13 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Applies all Firmware Policies not linked to instance arrays
+      summary: Applies all Firmware Policies not linked to server instance groups
       tags:
       - Firmware Policy
-  /api/v2/firmware/policies/actions/apply-with-instance-arrays:
+  /api/v2/firmware/policies/actions/apply-with-server-instance-groups:
     post:
-      description: Applies all Firmware Policies linked to instance arrays
-      operationId: applyFirmwarePoliciesWithInstanceArrays
+      description: Applies all Firmware Policies linked to server instance groups
+      operationId: applyFirmwarePoliciesWithServerInstanceGroups
       parameters: []
       responses:
         "200":
@@ -6730,7 +6711,7 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Applies all Firmware Policies linked to instance arrays
+      summary: Applies all Firmware Policies linked to server instance groups
       tags:
       - Firmware Policy
   /api/v2/firmware/search/baseline:
@@ -7046,12 +7027,19 @@ paths:
         description: The infrastructure to create
         required: true
       responses:
-        "202":
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Infrastructure'
           description: Creates a new infrastructure
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
         "400":
           description: Bad request
         "401":
@@ -7119,6 +7107,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Infrastructure'
           description: Retrieved the specified infrastructure
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
         "400":
           description: Bad request
         "401":
@@ -7151,6 +7146,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/InfrastructureConfiguration'
           description: Returns the Infrastructure configuration information
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
         "401":
           description: Unauthorized
         "403":
@@ -7206,6 +7208,35 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Updates the specified infrastructure configuration
+      tags:
+      - Infrastructure
+  /api/v2/infrastructures/{infrastructureId}/statistics:
+    get:
+      description: Retrieves usage and performance statistics for the specified infrastructure
+      operationId: getInfrastructureStatistics
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          description: Retrieved the statistics for the specified infrastructure
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Retrieves statistics for the specified infrastructure
       tags:
       - Infrastructure
   /api/v2/infrastructures/{infrastructureId}/metadata:
@@ -7460,6 +7491,39 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Reverts the specified infrastructure
+      tags:
+      - Infrastructure
+  /api/v2/infrastructures/actions/get/resource-utilization-detailed:
+    post:
+      description: Gets detailed resource utilization for infrastructures
+      operationId: getInfrastructureResourceUtilizationDetailed
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureResourceUtilizationResponse'
+          description: Retrieved the detailed resource utilization for infrastructures
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Gets detailed resource utilization for infrastructures
       tags:
       - Infrastructure
   /api/v2/infrastructures/{infrastructureId}/server-instance-groups:
@@ -22894,6 +22958,8 @@ paths:
           description: Forbidden
         "404":
           description: User not found
+        "409":
+          description: Conflict
         "412":
           description: Precondition failed
         "428":
@@ -22995,6 +23061,8 @@ paths:
           description: Forbidden
         "404":
           description: Not found
+        "409":
+          description: Conflict
         "412":
           description: Precondition failed
         "428":
@@ -23045,6 +23113,8 @@ paths:
           description: Forbidden
         "404":
           description: Not found
+        "409":
+          description: Conflict
         "412":
           description: Precondition failed
         "428":
@@ -23095,6 +23165,8 @@ paths:
           description: Forbidden
         "404":
           description: Not found
+        "409":
+          description: Conflict
         "412":
           description: Precondition failed
         "428":
@@ -23190,6 +23262,8 @@ paths:
           description: Forbidden
         "404":
           description: Not found
+        "409":
+          description: Conflict
         "412":
           description: Precondition failed
         "428":
@@ -23396,6 +23470,8 @@ paths:
           description: Forbidden
         "404":
           description: User not found
+        "409":
+          description: Conflict
         "412":
           description: Precondition failed
         "428":
@@ -23434,6 +23510,8 @@ paths:
           description: Forbidden
         "404":
           description: User not found
+        "409":
+          description: Conflict
         "412":
           description: Precondition failed
         "428":
@@ -23544,6 +23622,8 @@ paths:
           description: Forbidden
         "404":
           description: User not found
+        "409":
+          description: Conflict
         "412":
           description: Precondition failed
         "428":
@@ -23594,6 +23674,8 @@ paths:
           description: Forbidden
         "404":
           description: User not found
+        "409":
+          description: Conflict
         "412":
           description: Precondition failed
         "428":
@@ -23654,6 +23736,72 @@ paths:
       summary: Change user email
       tags:
       - User
+  /api/v2/servers/generic-endpoint/import:
+    post:
+      description: Import a generic endpoint server and returns the server data
+      operationId: importGenericEndpointServer
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerGenericEndpointImport'
+        description: The server data to import
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Server'
+          description: Returns the imported server data
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Import Generic Endpoint Server
+      tags:
+      - Unmanaged Servers
+  /api/v2/servers/unmanaged/import:
+    post:
+      description: Import an unmanaged server and returns the server data
+      operationId: importUnmanagedServer
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerUnmanagedImport'
+        description: The unmanaged server data to import
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Server'
+          description: Returns the imported server data
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Import Unmanaged Server
+      tags:
+      - Unmanaged Servers
   /api/v2/vms/{vmId}:
     get:
       description: Retrieves the VM information
@@ -36072,6 +36220,81 @@ components:
       - allowDataLoss
       - shutdownOptions
       type: object
+    LicenseInstallments:
+      properties:
+        windowsServerStandard:
+          description: Windows Server Standard licenses
+          example: []
+          items:
+            type: object
+          type: array
+        mapr:
+          description: MapR licenses
+          example: []
+          items:
+            type: object
+          type: array
+        cloudera:
+          description: Cloudera licenses
+          example: []
+          items:
+            type: object
+          type: array
+        couchbase:
+          description: Couchbase licenses
+          example: []
+          items:
+            type: object
+          type: array
+      required:
+      - cloudera
+      - couchbase
+      - mapr
+      - windowsServerStandard
+      type: object
+    InfrastructureResourceUtilizationResponse:
+      example:
+        licenseInstallments: ""
+        detailedReport: "{}"
+        networkReport: "{}"
+        reservationInstallments: "{}"
+        infrastructures: "{}"
+        endTimestamp: 2000-01-23T04:56:07.000+00:00
+        startTimestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        detailedReport:
+          description: Detailed report of resource utilization
+          type: object
+        networkReport:
+          description: Network utilization report
+          type: object
+        reservationInstallments:
+          description: Reservation installments information
+          type: object
+        infrastructures:
+          description: Infrastructures information
+          type: object
+        startTimestamp:
+          description: Start timestamp of the utilization period
+          format: date-time
+          type: string
+        endTimestamp:
+          description: End timestamp of the utilization period
+          format: date-time
+          type: string
+        licenseInstallments:
+          allOf:
+          - $ref: '#/components/schemas/LicenseInstallments'
+          description: License installments information
+      required:
+      - detailedReport
+      - endTimestamp
+      - infrastructures
+      - licenseInstallments
+      - networkReport
+      - reservationInstallments
+      - startTimestamp
+      type: object
     GenericMeta:
       example:
         guiSettings:
@@ -40057,7 +40280,7 @@ components:
           status: active
           username: username
           quarantineVlan: 1.2315135367772556
-        createdTimestamp: 2025-03-21T08:10:28.607Z
+        createdTimestamp: 2025-03-24T07:00:57.997Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -40099,7 +40322,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-03-21T08:10:28.607Z
+        updatedTimestamp: 2025-03-24T07:00:57.998Z
         revision: "1"
       properties:
         siteId:
@@ -40126,12 +40349,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-03-21T08:10:28.607Z
+          example: 2025-03-24T07:00:57.997Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-03-21T08:10:28.607Z
+          example: 2025-03-24T07:00:57.998Z
           format: date-time
           type: string
         links:
@@ -40264,7 +40487,7 @@ components:
             status: active
             username: username
             quarantineVlan: 1.2315135367772556
-          createdTimestamp: 2025-03-21T08:10:28.607Z
+          createdTimestamp: 2025-03-24T07:00:57.997Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -40306,7 +40529,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-21T08:10:28.607Z
+          updatedTimestamp: 2025-03-24T07:00:57.998Z
           revision: "1"
         - networkEquipment:
           - bootstrapReadinessCheckInProgress: 7.061401241503109
@@ -40413,7 +40636,7 @@ components:
             status: active
             username: username
             quarantineVlan: 1.2315135367772556
-          createdTimestamp: 2025-03-21T08:10:28.607Z
+          createdTimestamp: 2025-03-24T07:00:57.997Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -40455,7 +40678,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-21T08:10:28.607Z
+          updatedTimestamp: 2025-03-24T07:00:57.998Z
           revision: "1"
         meta: ""
         links: ""
@@ -46324,10 +46547,20 @@ components:
       required:
       - subnetAllocation
       type: object
+    InfrastructurePolicy:
+      properties:
+        allowServerInstanceGroupFirmwarePolicies:
+          description: Flag to determine if updateable server components can be scheduled
+            for upgrade at deploy time
+          type: boolean
+      required:
+      - allowServerInstanceGroupFirmwarePolicies
+      type: object
     SiteConfig:
       example:
         networkDevicePolicy: ""
         serverPolicy: ""
+        infrastructurePolicy: ""
         repo: ""
         controllerPolicy: ""
         NTPServers:
@@ -46368,10 +46601,15 @@ components:
           allOf:
           - $ref: '#/components/schemas/ControllerPolicy'
           description: Controller policies
+        infrastructurePolicy:
+          allOf:
+          - $ref: '#/components/schemas/InfrastructurePolicy'
+          description: Infrastructure policies
       required:
       - DNSServers
       - NTPServers
       - controllerPolicy
+      - infrastructurePolicy
       - location
       - networkDevicePolicy
       - repo
@@ -46381,6 +46619,7 @@ components:
       example:
         networkDevicePolicy: ""
         serverPolicy: ""
+        infrastructurePolicy: ""
         repo: ""
         controllerPolicy: ""
         NTPServers:
@@ -46421,10 +46660,15 @@ components:
           allOf:
           - $ref: '#/components/schemas/ControllerPolicy'
           description: Controller policies
+        infrastructurePolicy:
+          allOf:
+          - $ref: '#/components/schemas/InfrastructurePolicy'
+          description: Infrastructure policies
       required:
       - DNSServers
       - NTPServers
       - controllerPolicy
+      - infrastructurePolicy
       - location
       - networkDevicePolicy
       - repo
@@ -46760,7 +47004,7 @@ components:
       type: object
     Storage:
       example:
-        inMaintenance: 5.637376656633329
+        inMaintenance: 3.616076749251911
         storageTechnology: block
         managementHost: managementHost
         passwordEncrypted: passwordEncrypted
@@ -46768,15 +47012,16 @@ components:
           jobId: 0.8008281904610115
           jobGroupId: 6.027456183070403
         storageDriver: dummy_driver
+        totalCapacity: 5.962133916683182
         targetIQN: targetIQN
         options: ""
-        drivePriority: 7.061401241503109
+        drivePriority: 4.145608029883936
         links:
         - rel: self
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
-        iscsiPort: 5.962133916683182
+        iscsiPort: 9.301444243932576
         portGroupPhysicalPorts: "{}"
         storageId: 0.8008281904610115
         alternateSanIPs:
@@ -46787,17 +47032,21 @@ components:
         s3Hostname: s3Hostname
         userId: 6.027456183070403
         arrayId: arrayId
-        sharedDrivePriority: 9.301444243932576
+        freeCapacity: 2.3021358869347655
+        sharedDrivePriority: 7.386281948385884
         tags:
         - tags
         - tags
+        usableCapacity: 5.637376656633329
+        virtualUsedCapacity: 7.061401241503109
         defaultIoLimitPolicy: defaultIoLimitPolicy
-        isExperimental: 2.3021358869347655
+        isExperimental: 2.027123023002322
         s3Port: s3Port
         name: name
         siteId: 1.4658129805029452
         storageType: iscsi_ssd
         subnetType: ipv4
+        status: active
         iscsiHost: iscsiHost
         username: username
       properties:
@@ -46838,6 +47087,26 @@ components:
           - iscsi_hdd
           - dummy
           type: string
+        status:
+          description: Storage status
+          enum:
+          - active
+          - deleted
+          - pending
+          - ready
+          type: string
+        totalCapacity:
+          description: Total capacity in MB
+          type: number
+        usableCapacity:
+          description: Usable capacity in MB
+          type: number
+        freeCapacity:
+          description: Free capacity in MB
+          type: number
+        virtualUsedCapacity:
+          description: Virtual used capacity in MB
+          type: number
         name:
           description: Name of the storage
           type: string
@@ -46925,6 +47194,7 @@ components:
       - name
       - passwordEncrypted
       - siteId
+      - status
       - storageDriver
       - storageId
       - storageTechnology
@@ -46935,7 +47205,7 @@ components:
     StoragePaginatedList:
       example:
         data:
-        - inMaintenance: 5.637376656633329
+        - inMaintenance: 3.616076749251911
           storageTechnology: block
           managementHost: managementHost
           passwordEncrypted: passwordEncrypted
@@ -46943,15 +47213,16 @@ components:
             jobId: 0.8008281904610115
             jobGroupId: 6.027456183070403
           storageDriver: dummy_driver
+          totalCapacity: 5.962133916683182
           targetIQN: targetIQN
           options: ""
-          drivePriority: 7.061401241503109
+          drivePriority: 4.145608029883936
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
-          iscsiPort: 5.962133916683182
+          iscsiPort: 9.301444243932576
           portGroupPhysicalPorts: "{}"
           storageId: 0.8008281904610115
           alternateSanIPs:
@@ -46962,20 +47233,24 @@ components:
           s3Hostname: s3Hostname
           userId: 6.027456183070403
           arrayId: arrayId
-          sharedDrivePriority: 9.301444243932576
+          freeCapacity: 2.3021358869347655
+          sharedDrivePriority: 7.386281948385884
           tags:
           - tags
           - tags
+          usableCapacity: 5.637376656633329
+          virtualUsedCapacity: 7.061401241503109
           defaultIoLimitPolicy: defaultIoLimitPolicy
-          isExperimental: 2.3021358869347655
+          isExperimental: 2.027123023002322
           s3Port: s3Port
           name: name
           siteId: 1.4658129805029452
           storageType: iscsi_ssd
           subnetType: ipv4
+          status: active
           iscsiHost: iscsiHost
           username: username
-        - inMaintenance: 5.637376656633329
+        - inMaintenance: 3.616076749251911
           storageTechnology: block
           managementHost: managementHost
           passwordEncrypted: passwordEncrypted
@@ -46983,15 +47258,16 @@ components:
             jobId: 0.8008281904610115
             jobGroupId: 6.027456183070403
           storageDriver: dummy_driver
+          totalCapacity: 5.962133916683182
           targetIQN: targetIQN
           options: ""
-          drivePriority: 7.061401241503109
+          drivePriority: 4.145608029883936
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
-          iscsiPort: 5.962133916683182
+          iscsiPort: 9.301444243932576
           portGroupPhysicalPorts: "{}"
           storageId: 0.8008281904610115
           alternateSanIPs:
@@ -47002,17 +47278,21 @@ components:
           s3Hostname: s3Hostname
           userId: 6.027456183070403
           arrayId: arrayId
-          sharedDrivePriority: 9.301444243932576
+          freeCapacity: 2.3021358869347655
+          sharedDrivePriority: 7.386281948385884
           tags:
           - tags
           - tags
+          usableCapacity: 5.637376656633329
+          virtualUsedCapacity: 7.061401241503109
           defaultIoLimitPolicy: defaultIoLimitPolicy
-          isExperimental: 2.3021358869347655
+          isExperimental: 2.027123023002322
           s3Port: s3Port
           name: name
           siteId: 1.4658129805029452
           storageType: iscsi_ssd
           subnetType: ipv4
+          status: active
           iscsiHost: iscsiHost
           username: username
         meta: ""
@@ -47072,7 +47352,7 @@ components:
       type: object
     CreateStorage:
       example:
-        inMaintenance: 5.962133916683182
+        inMaintenance: 9.301444243932576
         storageTechnology: block
         managementHost: managementHost
         passwordEncrypted: passwordEncrypted
@@ -47081,15 +47361,16 @@ components:
           jobGroupId: 6.027456183070403
         password: password
         storageDriver: dummy_driver
+        totalCapacity: 1.4658129805029452
         targetIQN: targetIQN
         options: ""
-        drivePriority: 2.3021358869347655
+        drivePriority: 2.027123023002322
         links:
         - rel: self
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
-        iscsiPort: 1.4658129805029452
+        iscsiPort: 7.061401241503109
         portGroupPhysicalPorts: "{}"
         alternateSanIPs:
         - alternateSanIPs
@@ -47099,17 +47380,21 @@ components:
         s3Hostname: s3Hostname
         userId: 0.8008281904610115
         arrayId: arrayId
-        sharedDrivePriority: 7.061401241503109
+        freeCapacity: 5.637376656633329
+        sharedDrivePriority: 4.145608029883936
         tags:
         - tags
         - tags
+        usableCapacity: 5.962133916683182
+        virtualUsedCapacity: 2.3021358869347655
         defaultIoLimitPolicy: defaultIoLimitPolicy
-        isExperimental: 5.637376656633329
+        isExperimental: 3.616076749251911
         s3Port: s3Port
         name: name
         siteId: 6.027456183070403
         storageType: iscsi_ssd
         subnetType: ipv4
+        status: active
         iscsiHost: iscsiHost
         username: username
       properties:
@@ -47147,6 +47432,26 @@ components:
           - iscsi_hdd
           - dummy
           type: string
+        status:
+          description: Storage status
+          enum:
+          - active
+          - deleted
+          - pending
+          - ready
+          type: string
+        totalCapacity:
+          description: Total capacity in MB
+          type: number
+        usableCapacity:
+          description: Usable capacity in MB
+          type: number
+        freeCapacity:
+          description: Free capacity in MB
+          type: number
+        virtualUsedCapacity:
+          description: Virtual used capacity in MB
+          type: number
         name:
           description: Name of the storage
           type: string
@@ -47238,6 +47543,7 @@ components:
       - password
       - passwordEncrypted
       - siteId
+      - status
       - storageDriver
       - storageTechnology
       - storageType
@@ -47263,22 +47569,47 @@ components:
       example:
         portGroupAllocationOrder: "{}"
         directorId: directorId
-        inMaintenance: 0.8008281904610115
+        inMaintenance: 5.637376656633329
         s3Hostname: s3Hostname
         arrayId: arrayId
-        sharedDrivePriority: 5.962133916683182
+        freeCapacity: 1.4658129805029452
+        sharedDrivePriority: 9.301444243932576
         tags:
         - tags
         - tags
+        usableCapacity: 6.027456183070403
+        virtualUsedCapacity: 5.962133916683182
         defaultIoLimitPolicy: defaultIoLimitPolicy
         password: password
-        isExperimental: 6.027456183070403
+        isExperimental: 2.3021358869347655
         s3Port: s3Port
+        totalCapacity: 0.8008281904610115
         options: ""
-        drivePriority: 1.4658129805029452
+        drivePriority: 7.061401241503109
         portGroupPhysicalPorts: "{}"
+        status: active
         username: username
       properties:
+        status:
+          description: Storage status
+          enum:
+          - active
+          - deleted
+          - pending
+          - ready
+          type: string
+        totalCapacity:
+          description: Total capacity in MB
+          type: number
+        usableCapacity:
+          description: Usable capacity in MB
+          type: number
+        freeCapacity:
+          description: Free capacity in MB
+          type: number
+        virtualUsedCapacity:
+          description: Virtual used capacity in MB
+          type: number
         inMaintenance:
           description: Specifies if the storage is in maintenance
           type: number
@@ -48727,6 +49058,143 @@ components:
           type: string
       required:
       - email
+      type: object
+    ServerUnmanagedImportInternalInterfaceDto:
+      example:
+        serverInterfaceMacAddress: serverInterfaceMacAddress
+        identifierString: identifierString
+        networkEquipmentInterfaceIdentifierString: networkEquipmentInterfaceIdentifierString
+      properties:
+        serverInterfaceMacAddress:
+          description: The MAC address of the server interface.
+          type: string
+        identifierString:
+          description: The identifier string of the server interface.
+          type: string
+        networkEquipmentInterfaceIdentifierString:
+          description: The network equipment interface identifier string of the server
+            interface.
+          type: string
+      required:
+      - identifierString
+      - networkEquipmentInterfaceIdentifierString
+      - serverInterfaceMacAddress
+      type: object
+    ServerGenericEndpointImport:
+      example:
+        managementAddress: managementAddress
+        serverTypeId: 6.027456183070403
+        hostname: hostname
+        serverIpmiUsername: serverIpmiUsername
+        serverUUID: serverUUID
+        serverInterfaces:
+        - serverInterfaceMacAddress: serverInterfaceMacAddress
+          identifierString: identifierString
+          networkEquipmentInterfaceIdentifierString: networkEquipmentInterfaceIdentifierString
+        - serverInterfaceMacAddress: serverInterfaceMacAddress
+          identifierString: identifierString
+          networkEquipmentInterfaceIdentifierString: networkEquipmentInterfaceIdentifierString
+        serverSupportsOobProvisioning: true
+        serverSerialNumber: serverSerialNumber
+        siteId: 0.8008281904610115
+        serverIpmiPassword: serverIpmiPassword
+      properties:
+        managementAddress:
+          description: The management address of the server.
+          type: string
+        siteId:
+          description: The site id where the server is located.
+          type: number
+        serverTypeId:
+          description: The server type id.
+          type: number
+        serverSupportsOobProvisioning:
+          description: Flag to indicate if the server supports SOL.
+          type: boolean
+        serverInterfaces:
+          description: The interfaces of the server.
+          items:
+            $ref: '#/components/schemas/ServerUnmanagedImportInternalInterfaceDto'
+          type: array
+        serverSerialNumber:
+          description: The server Serial Number.
+          type: string
+        serverUUID:
+          description: The server UUID.
+          type: string
+        hostname:
+          description: The server hostname.
+          type: string
+        serverIpmiUsername:
+          description: The server IPMI username.
+          type: string
+        serverIpmiPassword:
+          description: The server IPMI password.
+          type: string
+      required:
+      - managementAddress
+      - serverInterfaces
+      - serverSupportsOobProvisioning
+      - serverTypeId
+      - siteId
+      type: object
+    ServerUnmanagedImport:
+      example:
+        managementAddress: managementAddress
+        serverTypeId: 6.027456183070403
+        hostname: hostname
+        serverIpmiUsername: serverIpmiUsername
+        serverUUID: serverUUID
+        serverInterfaces:
+        - serverInterfaceMacAddress: serverInterfaceMacAddress
+          identifierString: identifierString
+          networkEquipmentInterfaceIdentifierString: networkEquipmentInterfaceIdentifierString
+        - serverInterfaceMacAddress: serverInterfaceMacAddress
+          identifierString: identifierString
+          networkEquipmentInterfaceIdentifierString: networkEquipmentInterfaceIdentifierString
+        serverSupportsOobProvisioning: true
+        serverSerialNumber: serverSerialNumber
+        siteId: 0.8008281904610115
+        serverIpmiPassword: serverIpmiPassword
+      properties:
+        managementAddress:
+          description: The management address of the server.
+          type: string
+        siteId:
+          description: The site id where the server is located.
+          type: number
+        serverTypeId:
+          description: The server type id.
+          type: number
+        serverSupportsOobProvisioning:
+          description: Flag to indicate if the server supports SOL.
+          type: boolean
+        serverInterfaces:
+          description: The interfaces of the server.
+          items:
+            $ref: '#/components/schemas/ServerUnmanagedImportInternalInterfaceDto'
+          type: array
+        serverSerialNumber:
+          description: The server Serial Number.
+          type: string
+        serverUUID:
+          description: The server UUID.
+          type: string
+        hostname:
+          description: The server hostname.
+          type: string
+        serverIpmiUsername:
+          description: The server IPMI username.
+          type: string
+        serverIpmiPassword:
+          description: The server IPMI password.
+          type: string
+      required:
+      - managementAddress
+      - serverInterfaces
+      - serverSupportsOobProvisioning
+      - serverTypeId
+      - siteId
       type: object
     VMDisk:
       example:

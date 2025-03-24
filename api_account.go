@@ -28,7 +28,6 @@ type AccountAPIService service
 type AccountAPIAccountControllerGetUserConfigurationRequest struct {
 	ctx context.Context
 	ApiService *AccountAPIService
-	userId float32
 	accountId float32
 }
 
@@ -40,15 +39,13 @@ func (r AccountAPIAccountControllerGetUserConfigurationRequest) Execute() (*Acco
 AccountControllerGetUserConfiguration Get account configuration by ID
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userId
  @param accountId
  @return AccountAPIAccountControllerGetUserConfigurationRequest
 */
-func (a *AccountAPIService) AccountControllerGetUserConfiguration(ctx context.Context, userId float32, accountId float32) AccountAPIAccountControllerGetUserConfigurationRequest {
+func (a *AccountAPIService) AccountControllerGetUserConfiguration(ctx context.Context, accountId float32) AccountAPIAccountControllerGetUserConfigurationRequest {
 	return AccountAPIAccountControllerGetUserConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
-		userId: userId,
 		accountId: accountId,
 	}
 }
@@ -69,7 +66,6 @@ func (a *AccountAPIService) AccountControllerGetUserConfigurationExecute(r Accou
 	}
 
 	localVarPath := localBasePath + "/api/v2/accounts/{accountId}/config"
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"accountId"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

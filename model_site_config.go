@@ -35,6 +35,8 @@ type SiteConfig struct {
 	ServerPolicy ServerPolicy `json:"serverPolicy"`
 	// Controller policies
 	ControllerPolicy ControllerPolicy `json:"controllerPolicy"`
+	// Infrastructure policies
+	InfrastructurePolicy InfrastructurePolicy `json:"infrastructurePolicy"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,7 +46,7 @@ type _SiteConfig SiteConfig
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSiteConfig(location Location, repo Repo, dNSServers []string, nTPServers []string, networkDevicePolicy NetworkDevicePolicy, serverPolicy ServerPolicy, controllerPolicy ControllerPolicy) *SiteConfig {
+func NewSiteConfig(location Location, repo Repo, dNSServers []string, nTPServers []string, networkDevicePolicy NetworkDevicePolicy, serverPolicy ServerPolicy, controllerPolicy ControllerPolicy, infrastructurePolicy InfrastructurePolicy) *SiteConfig {
 	this := SiteConfig{}
 	this.Location = location
 	this.Repo = repo
@@ -53,6 +55,7 @@ func NewSiteConfig(location Location, repo Repo, dNSServers []string, nTPServers
 	this.NetworkDevicePolicy = networkDevicePolicy
 	this.ServerPolicy = serverPolicy
 	this.ControllerPolicy = controllerPolicy
+	this.InfrastructurePolicy = infrastructurePolicy
 	return &this
 }
 
@@ -232,6 +235,30 @@ func (o *SiteConfig) SetControllerPolicy(v ControllerPolicy) {
 	o.ControllerPolicy = v
 }
 
+// GetInfrastructurePolicy returns the InfrastructurePolicy field value
+func (o *SiteConfig) GetInfrastructurePolicy() InfrastructurePolicy {
+	if o == nil {
+		var ret InfrastructurePolicy
+		return ret
+	}
+
+	return o.InfrastructurePolicy
+}
+
+// GetInfrastructurePolicyOk returns a tuple with the InfrastructurePolicy field value
+// and a boolean to check if the value has been set.
+func (o *SiteConfig) GetInfrastructurePolicyOk() (*InfrastructurePolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InfrastructurePolicy, true
+}
+
+// SetInfrastructurePolicy sets field value
+func (o *SiteConfig) SetInfrastructurePolicy(v InfrastructurePolicy) {
+	o.InfrastructurePolicy = v
+}
+
 func (o SiteConfig) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -249,6 +276,7 @@ func (o SiteConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize["networkDevicePolicy"] = o.NetworkDevicePolicy
 	toSerialize["serverPolicy"] = o.ServerPolicy
 	toSerialize["controllerPolicy"] = o.ControllerPolicy
+	toSerialize["infrastructurePolicy"] = o.InfrastructurePolicy
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -269,6 +297,7 @@ func (o *SiteConfig) UnmarshalJSON(data []byte) (err error) {
 		"networkDevicePolicy",
 		"serverPolicy",
 		"controllerPolicy",
+		"infrastructurePolicy",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -305,6 +334,7 @@ func (o *SiteConfig) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkDevicePolicy")
 		delete(additionalProperties, "serverPolicy")
 		delete(additionalProperties, "controllerPolicy")
+		delete(additionalProperties, "infrastructurePolicy")
 		o.AdditionalProperties = additionalProperties
 	}
 

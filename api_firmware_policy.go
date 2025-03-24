@@ -25,25 +25,25 @@ import (
 // FirmwarePolicyAPIService FirmwarePolicyAPI service
 type FirmwarePolicyAPIService service
 
-type FirmwarePolicyAPIApplyFirmwarePoliciesWithInstanceArraysRequest struct {
+type FirmwarePolicyAPIApplyFirmwarePoliciesWithServerInstanceGroupsRequest struct {
 	ctx context.Context
 	ApiService *FirmwarePolicyAPIService
 }
 
-func (r FirmwarePolicyAPIApplyFirmwarePoliciesWithInstanceArraysRequest) Execute() (*ServerFirmwareUpgradePolicyApplyResult, *http.Response, error) {
-	return r.ApiService.ApplyFirmwarePoliciesWithInstanceArraysExecute(r)
+func (r FirmwarePolicyAPIApplyFirmwarePoliciesWithServerInstanceGroupsRequest) Execute() (*ServerFirmwareUpgradePolicyApplyResult, *http.Response, error) {
+	return r.ApiService.ApplyFirmwarePoliciesWithServerInstanceGroupsExecute(r)
 }
 
 /*
-ApplyFirmwarePoliciesWithInstanceArrays Applies all Firmware Policies linked to instance arrays
+ApplyFirmwarePoliciesWithServerInstanceGroups Applies all Firmware Policies linked to server instance groups
 
-Applies all Firmware Policies linked to instance arrays
+Applies all Firmware Policies linked to server instance groups
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return FirmwarePolicyAPIApplyFirmwarePoliciesWithInstanceArraysRequest
+ @return FirmwarePolicyAPIApplyFirmwarePoliciesWithServerInstanceGroupsRequest
 */
-func (a *FirmwarePolicyAPIService) ApplyFirmwarePoliciesWithInstanceArrays(ctx context.Context) FirmwarePolicyAPIApplyFirmwarePoliciesWithInstanceArraysRequest {
-	return FirmwarePolicyAPIApplyFirmwarePoliciesWithInstanceArraysRequest{
+func (a *FirmwarePolicyAPIService) ApplyFirmwarePoliciesWithServerInstanceGroups(ctx context.Context) FirmwarePolicyAPIApplyFirmwarePoliciesWithServerInstanceGroupsRequest {
+	return FirmwarePolicyAPIApplyFirmwarePoliciesWithServerInstanceGroupsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -51,7 +51,7 @@ func (a *FirmwarePolicyAPIService) ApplyFirmwarePoliciesWithInstanceArrays(ctx c
 
 // Execute executes the request
 //  @return ServerFirmwareUpgradePolicyApplyResult
-func (a *FirmwarePolicyAPIService) ApplyFirmwarePoliciesWithInstanceArraysExecute(r FirmwarePolicyAPIApplyFirmwarePoliciesWithInstanceArraysRequest) (*ServerFirmwareUpgradePolicyApplyResult, *http.Response, error) {
+func (a *FirmwarePolicyAPIService) ApplyFirmwarePoliciesWithServerInstanceGroupsExecute(r FirmwarePolicyAPIApplyFirmwarePoliciesWithServerInstanceGroupsRequest) (*ServerFirmwareUpgradePolicyApplyResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -59,12 +59,12 @@ func (a *FirmwarePolicyAPIService) ApplyFirmwarePoliciesWithInstanceArraysExecut
 		localVarReturnValue  *ServerFirmwareUpgradePolicyApplyResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwarePolicyAPIService.ApplyFirmwarePoliciesWithInstanceArrays")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwarePolicyAPIService.ApplyFirmwarePoliciesWithServerInstanceGroups")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/firmware/policies/actions/apply-with-instance-arrays"
+	localVarPath := localBasePath + "/api/v2/firmware/policies/actions/apply-with-server-instance-groups"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -124,25 +124,25 @@ func (a *FirmwarePolicyAPIService) ApplyFirmwarePoliciesWithInstanceArraysExecut
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type FirmwarePolicyAPIApplyFirmwarePoliciesWithoutInstanceArraysRequest struct {
+type FirmwarePolicyAPIApplyFirmwarePoliciesWithoutServerInstanceGroupsRequest struct {
 	ctx context.Context
 	ApiService *FirmwarePolicyAPIService
 }
 
-func (r FirmwarePolicyAPIApplyFirmwarePoliciesWithoutInstanceArraysRequest) Execute() (*ServerFirmwareUpgradePolicyApplyResult, *http.Response, error) {
-	return r.ApiService.ApplyFirmwarePoliciesWithoutInstanceArraysExecute(r)
+func (r FirmwarePolicyAPIApplyFirmwarePoliciesWithoutServerInstanceGroupsRequest) Execute() (*ServerFirmwareUpgradePolicyApplyResult, *http.Response, error) {
+	return r.ApiService.ApplyFirmwarePoliciesWithoutServerInstanceGroupsExecute(r)
 }
 
 /*
-ApplyFirmwarePoliciesWithoutInstanceArrays Applies all Firmware Policies not linked to instance arrays
+ApplyFirmwarePoliciesWithoutServerInstanceGroups Applies all Firmware Policies not linked to server instance groups
 
-Applies all Firmware Policies not linked to instance arrays
+Applies all Firmware Policies not linked to server instance groups
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return FirmwarePolicyAPIApplyFirmwarePoliciesWithoutInstanceArraysRequest
+ @return FirmwarePolicyAPIApplyFirmwarePoliciesWithoutServerInstanceGroupsRequest
 */
-func (a *FirmwarePolicyAPIService) ApplyFirmwarePoliciesWithoutInstanceArrays(ctx context.Context) FirmwarePolicyAPIApplyFirmwarePoliciesWithoutInstanceArraysRequest {
-	return FirmwarePolicyAPIApplyFirmwarePoliciesWithoutInstanceArraysRequest{
+func (a *FirmwarePolicyAPIService) ApplyFirmwarePoliciesWithoutServerInstanceGroups(ctx context.Context) FirmwarePolicyAPIApplyFirmwarePoliciesWithoutServerInstanceGroupsRequest {
+	return FirmwarePolicyAPIApplyFirmwarePoliciesWithoutServerInstanceGroupsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -150,7 +150,7 @@ func (a *FirmwarePolicyAPIService) ApplyFirmwarePoliciesWithoutInstanceArrays(ct
 
 // Execute executes the request
 //  @return ServerFirmwareUpgradePolicyApplyResult
-func (a *FirmwarePolicyAPIService) ApplyFirmwarePoliciesWithoutInstanceArraysExecute(r FirmwarePolicyAPIApplyFirmwarePoliciesWithoutInstanceArraysRequest) (*ServerFirmwareUpgradePolicyApplyResult, *http.Response, error) {
+func (a *FirmwarePolicyAPIService) ApplyFirmwarePoliciesWithoutServerInstanceGroupsExecute(r FirmwarePolicyAPIApplyFirmwarePoliciesWithoutServerInstanceGroupsRequest) (*ServerFirmwareUpgradePolicyApplyResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -158,12 +158,12 @@ func (a *FirmwarePolicyAPIService) ApplyFirmwarePoliciesWithoutInstanceArraysExe
 		localVarReturnValue  *ServerFirmwareUpgradePolicyApplyResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwarePolicyAPIService.ApplyFirmwarePoliciesWithoutInstanceArrays")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwarePolicyAPIService.ApplyFirmwarePoliciesWithoutServerInstanceGroups")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/firmware/policies/actions/apply-without-instance-arrays"
+	localVarPath := localBasePath + "/api/v2/firmware/policies/actions/apply-without-server-instance-groups"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

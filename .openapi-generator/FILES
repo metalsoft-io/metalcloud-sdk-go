@@ -41,6 +41,7 @@ api_site.go
 api_storage.go
 api_system.go
 api_template_asset.go
+api_unmanaged_servers.go
 api_user.go
 api_vm.go
 api_vm_instance.go
@@ -206,6 +207,8 @@ docs/InfrastructureDeployOptions.md
 docs/InfrastructureDeployShutdownOptions.md
 docs/InfrastructureMeta.md
 docs/InfrastructurePaginatedList.md
+docs/InfrastructurePolicy.md
+docs/InfrastructureResourceUtilizationResponse.md
 docs/InstancesSetPowerState.md
 docs/IscsiBootServerInfo.md
 docs/Job.md
@@ -223,6 +226,7 @@ docs/JobInfo.md
 docs/JobPaginatedList.md
 docs/JobRetryInfo.md
 docs/JobStatistics.md
+docs/LicenseInstallments.md
 docs/Link.md
 docs/Location.md
 docs/LogicalNetworkDto.md
@@ -291,6 +295,7 @@ docs/ServerFirmwareUpgradePolicyApplyResult.md
 docs/ServerFirmwareUpgradePolicyAudit.md
 docs/ServerFirmwareUpgradePolicyPaginatedList.md
 docs/ServerFirmwareUpgradePolicyRule.md
+docs/ServerGenericEndpointImport.md
 docs/ServerGpuInfo.md
 docs/ServerInstance.md
 docs/ServerInstanceAPI.md
@@ -343,6 +348,8 @@ docs/ServerTypeStatisticsBatch.md
 docs/ServerTypeStatisticsBatchOptions.md
 docs/ServerTypeUtilizationReport.md
 docs/ServerTypeUtilizationReportGrouped.md
+docs/ServerUnmanagedImport.md
+docs/ServerUnmanagedImportInternalInterfaceDto.md
 docs/ServerVNCInfo.md
 docs/SharedDrive.md
 docs/SharedDriveAPI.md
@@ -374,6 +381,7 @@ docs/TemplateAssetAPI.md
 docs/TemplateAssetCreate.md
 docs/TemplateAssetFile.md
 docs/TemplateAssetPaginatedList.md
+docs/UnmanagedServersAPI.md
 docs/UpdateAccount.md
 docs/UpdateBucket.md
 docs/UpdateBucketMeta.md
@@ -599,6 +607,8 @@ model_infrastructure_deploy_options.go
 model_infrastructure_deploy_shutdown_options.go
 model_infrastructure_meta.go
 model_infrastructure_paginated_list.go
+model_infrastructure_policy.go
+model_infrastructure_resource_utilization_response.go
 model_instances_set_power_state.go
 model_iscsi_boot_server_info.go
 model_job.go
@@ -615,6 +625,7 @@ model_job_info.go
 model_job_paginated_list.go
 model_job_retry_info.go
 model_job_statistics.go
+model_license_installments.go
 model_link.go
 model_location.go
 model_logical_network_dto.go
@@ -671,6 +682,7 @@ model_server_firmware_upgrade_policy_apply_result.go
 model_server_firmware_upgrade_policy_audit.go
 model_server_firmware_upgrade_policy_paginated_list.go
 model_server_firmware_upgrade_policy_rule.go
+model_server_generic_endpoint_import.go
 model_server_gpu_info.go
 model_server_instance.go
 model_server_instance_cluster_custom_info.go
@@ -719,6 +731,8 @@ model_server_type_statistics_batch.go
 model_server_type_statistics_batch_options.go
 model_server_type_utilization_report.go
 model_server_type_utilization_report_grouped.go
+model_server_unmanaged_import.go
+model_server_unmanaged_import_internal_interface_dto.go
 model_server_vnc_info.go
 model_shared_drive.go
 model_shared_drive_configuration.go
@@ -865,6 +879,7 @@ test/api_site_test.go
 test/api_storage_test.go
 test/api_system_test.go
 test/api_template_asset_test.go
+test/api_unmanaged_servers_test.go
 test/api_user_test.go
 test/api_vm_instance_group_test.go
 test/api_vm_instance_test.go

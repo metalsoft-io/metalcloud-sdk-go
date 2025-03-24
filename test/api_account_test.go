@@ -26,10 +26,9 @@ func Test_sdk_AccountAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var userId float32
 		var accountId float32
 
-		resp, httpRes, err := apiClient.AccountAPI.AccountControllerGetUserConfiguration(context.Background(), userId, accountId).Execute()
+		resp, httpRes, err := apiClient.AccountAPI.AccountControllerGetUserConfiguration(context.Background(), accountId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

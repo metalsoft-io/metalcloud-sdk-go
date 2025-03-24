@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## AccountControllerGetUserConfiguration
 
-> AccountConfig AccountControllerGetUserConfiguration(ctx, userId, accountId).Execute()
+> AccountConfig AccountControllerGetUserConfiguration(ctx, accountId).Execute()
 
 Get account configuration by ID
 
@@ -36,12 +36,11 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
 	accountId := float32(8.14) // float32 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountAPI.AccountControllerGetUserConfiguration(context.Background(), userId, accountId).Execute()
+	resp, r, err := apiClient.AccountAPI.AccountControllerGetUserConfiguration(context.Background(), accountId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.AccountControllerGetUserConfiguration``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,7 +56,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
 **accountId** | **float32** |  | 
 
 ### Other Parameters
@@ -67,7 +65,6 @@ Other parameters are passed through a pointer to a apiAccountControllerGetUserCo
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
 ### Return type

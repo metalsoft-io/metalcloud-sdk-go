@@ -11,12 +11,13 @@ Name | Type | Description | Notes
 **NetworkDevicePolicy** | [**NetworkDevicePolicy**](NetworkDevicePolicy.md) | Network device policies | 
 **ServerPolicy** | [**ServerPolicy**](ServerPolicy.md) | Server policies | 
 **ControllerPolicy** | [**ControllerPolicy**](ControllerPolicy.md) | Controller policies | 
+**InfrastructurePolicy** | [**InfrastructurePolicy**](InfrastructurePolicy.md) | Infrastructure policies | 
 
 ## Methods
 
 ### NewSiteConfigUpdate
 
-`func NewSiteConfigUpdate(location Location, repo Repo, dNSServers []string, nTPServers []string, networkDevicePolicy NetworkDevicePolicy, serverPolicy ServerPolicy, controllerPolicy ControllerPolicy, ) *SiteConfigUpdate`
+`func NewSiteConfigUpdate(location Location, repo Repo, dNSServers []string, nTPServers []string, networkDevicePolicy NetworkDevicePolicy, serverPolicy ServerPolicy, controllerPolicy ControllerPolicy, infrastructurePolicy InfrastructurePolicy, ) *SiteConfigUpdate`
 
 NewSiteConfigUpdate instantiates a new SiteConfigUpdate object
 This constructor will assign default values to properties that have it defined,
@@ -169,6 +170,26 @@ and a boolean to check if the value has been set.
 `func (o *SiteConfigUpdate) SetControllerPolicy(v ControllerPolicy)`
 
 SetControllerPolicy sets ControllerPolicy field to given value.
+
+
+### GetInfrastructurePolicy
+
+`func (o *SiteConfigUpdate) GetInfrastructurePolicy() InfrastructurePolicy`
+
+GetInfrastructurePolicy returns the InfrastructurePolicy field if non-nil, zero value otherwise.
+
+### GetInfrastructurePolicyOk
+
+`func (o *SiteConfigUpdate) GetInfrastructurePolicyOk() (*InfrastructurePolicy, bool)`
+
+GetInfrastructurePolicyOk returns a tuple with the InfrastructurePolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructurePolicy
+
+`func (o *SiteConfigUpdate) SetInfrastructurePolicy(v InfrastructurePolicy)`
+
+SetInfrastructurePolicy sets InfrastructurePolicy field to given value.
 
 
 

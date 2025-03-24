@@ -20,6 +20,16 @@ var _ MappedNullable = &UpdateStorageInternal{}
 
 // UpdateStorageInternal struct for UpdateStorageInternal
 type UpdateStorageInternal struct {
+	// Storage status
+	Status *string `json:"status,omitempty"`
+	// Total capacity in MB
+	TotalCapacity *float32 `json:"totalCapacity,omitempty"`
+	// Usable capacity in MB
+	UsableCapacity *float32 `json:"usableCapacity,omitempty"`
+	// Free capacity in MB
+	FreeCapacity *float32 `json:"freeCapacity,omitempty"`
+	// Virtual used capacity in MB
+	VirtualUsedCapacity *float32 `json:"virtualUsedCapacity,omitempty"`
 	// Specifies if the storage is in maintenance
 	InMaintenance *float32 `json:"inMaintenance,omitempty"`
 	// Specifies if the storage is experimental
@@ -70,6 +80,166 @@ func NewUpdateStorageInternal() *UpdateStorageInternal {
 func NewUpdateStorageInternalWithDefaults() *UpdateStorageInternal {
 	this := UpdateStorageInternal{}
 	return &this
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *UpdateStorageInternal) GetStatus() string {
+	if o == nil || IsNil(o.Status) {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageInternal) GetStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *UpdateStorageInternal) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *UpdateStorageInternal) SetStatus(v string) {
+	o.Status = &v
+}
+
+// GetTotalCapacity returns the TotalCapacity field value if set, zero value otherwise.
+func (o *UpdateStorageInternal) GetTotalCapacity() float32 {
+	if o == nil || IsNil(o.TotalCapacity) {
+		var ret float32
+		return ret
+	}
+	return *o.TotalCapacity
+}
+
+// GetTotalCapacityOk returns a tuple with the TotalCapacity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageInternal) GetTotalCapacityOk() (*float32, bool) {
+	if o == nil || IsNil(o.TotalCapacity) {
+		return nil, false
+	}
+	return o.TotalCapacity, true
+}
+
+// HasTotalCapacity returns a boolean if a field has been set.
+func (o *UpdateStorageInternal) HasTotalCapacity() bool {
+	if o != nil && !IsNil(o.TotalCapacity) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalCapacity gets a reference to the given float32 and assigns it to the TotalCapacity field.
+func (o *UpdateStorageInternal) SetTotalCapacity(v float32) {
+	o.TotalCapacity = &v
+}
+
+// GetUsableCapacity returns the UsableCapacity field value if set, zero value otherwise.
+func (o *UpdateStorageInternal) GetUsableCapacity() float32 {
+	if o == nil || IsNil(o.UsableCapacity) {
+		var ret float32
+		return ret
+	}
+	return *o.UsableCapacity
+}
+
+// GetUsableCapacityOk returns a tuple with the UsableCapacity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageInternal) GetUsableCapacityOk() (*float32, bool) {
+	if o == nil || IsNil(o.UsableCapacity) {
+		return nil, false
+	}
+	return o.UsableCapacity, true
+}
+
+// HasUsableCapacity returns a boolean if a field has been set.
+func (o *UpdateStorageInternal) HasUsableCapacity() bool {
+	if o != nil && !IsNil(o.UsableCapacity) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsableCapacity gets a reference to the given float32 and assigns it to the UsableCapacity field.
+func (o *UpdateStorageInternal) SetUsableCapacity(v float32) {
+	o.UsableCapacity = &v
+}
+
+// GetFreeCapacity returns the FreeCapacity field value if set, zero value otherwise.
+func (o *UpdateStorageInternal) GetFreeCapacity() float32 {
+	if o == nil || IsNil(o.FreeCapacity) {
+		var ret float32
+		return ret
+	}
+	return *o.FreeCapacity
+}
+
+// GetFreeCapacityOk returns a tuple with the FreeCapacity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageInternal) GetFreeCapacityOk() (*float32, bool) {
+	if o == nil || IsNil(o.FreeCapacity) {
+		return nil, false
+	}
+	return o.FreeCapacity, true
+}
+
+// HasFreeCapacity returns a boolean if a field has been set.
+func (o *UpdateStorageInternal) HasFreeCapacity() bool {
+	if o != nil && !IsNil(o.FreeCapacity) {
+		return true
+	}
+
+	return false
+}
+
+// SetFreeCapacity gets a reference to the given float32 and assigns it to the FreeCapacity field.
+func (o *UpdateStorageInternal) SetFreeCapacity(v float32) {
+	o.FreeCapacity = &v
+}
+
+// GetVirtualUsedCapacity returns the VirtualUsedCapacity field value if set, zero value otherwise.
+func (o *UpdateStorageInternal) GetVirtualUsedCapacity() float32 {
+	if o == nil || IsNil(o.VirtualUsedCapacity) {
+		var ret float32
+		return ret
+	}
+	return *o.VirtualUsedCapacity
+}
+
+// GetVirtualUsedCapacityOk returns a tuple with the VirtualUsedCapacity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageInternal) GetVirtualUsedCapacityOk() (*float32, bool) {
+	if o == nil || IsNil(o.VirtualUsedCapacity) {
+		return nil, false
+	}
+	return o.VirtualUsedCapacity, true
+}
+
+// HasVirtualUsedCapacity returns a boolean if a field has been set.
+func (o *UpdateStorageInternal) HasVirtualUsedCapacity() bool {
+	if o != nil && !IsNil(o.VirtualUsedCapacity) {
+		return true
+	}
+
+	return false
+}
+
+// SetVirtualUsedCapacity gets a reference to the given float32 and assigns it to the VirtualUsedCapacity field.
+func (o *UpdateStorageInternal) SetVirtualUsedCapacity(v float32) {
+	o.VirtualUsedCapacity = &v
 }
 
 // GetInMaintenance returns the InMaintenance field value if set, zero value otherwise.
@@ -562,6 +732,21 @@ func (o UpdateStorageInternal) MarshalJSON() ([]byte, error) {
 
 func (o UpdateStorageInternal) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.TotalCapacity) {
+		toSerialize["totalCapacity"] = o.TotalCapacity
+	}
+	if !IsNil(o.UsableCapacity) {
+		toSerialize["usableCapacity"] = o.UsableCapacity
+	}
+	if !IsNil(o.FreeCapacity) {
+		toSerialize["freeCapacity"] = o.FreeCapacity
+	}
+	if !IsNil(o.VirtualUsedCapacity) {
+		toSerialize["virtualUsedCapacity"] = o.VirtualUsedCapacity
+	}
 	if !IsNil(o.InMaintenance) {
 		toSerialize["inMaintenance"] = o.InMaintenance
 	}
@@ -629,6 +814,11 @@ func (o *UpdateStorageInternal) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "totalCapacity")
+		delete(additionalProperties, "usableCapacity")
+		delete(additionalProperties, "freeCapacity")
+		delete(additionalProperties, "virtualUsedCapacity")
 		delete(additionalProperties, "inMaintenance")
 		delete(additionalProperties, "isExperimental")
 		delete(additionalProperties, "drivePriority")

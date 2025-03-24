@@ -243,8 +243,6 @@ type CustomIsoAPIDeleteCustomIsoRequest struct {
 	ctx context.Context
 	ApiService *CustomIsoAPIService
 	customIsoId float32
-	bucketId float32
-	infrastructureId float32
 }
 
 func (r CustomIsoAPIDeleteCustomIsoRequest) Execute() (*http.Response, error) {
@@ -256,17 +254,13 @@ DeleteCustomIso Delete Custom Iso
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param customIsoId
- @param bucketId
- @param infrastructureId
  @return CustomIsoAPIDeleteCustomIsoRequest
 */
-func (a *CustomIsoAPIService) DeleteCustomIso(ctx context.Context, customIsoId float32, bucketId float32, infrastructureId float32) CustomIsoAPIDeleteCustomIsoRequest {
+func (a *CustomIsoAPIService) DeleteCustomIso(ctx context.Context, customIsoId float32) CustomIsoAPIDeleteCustomIsoRequest {
 	return CustomIsoAPIDeleteCustomIsoRequest{
 		ApiService: a,
 		ctx: ctx,
 		customIsoId: customIsoId,
-		bucketId: bucketId,
-		infrastructureId: infrastructureId,
 	}
 }
 
@@ -285,8 +279,6 @@ func (a *CustomIsoAPIService) DeleteCustomIsoExecute(r CustomIsoAPIDeleteCustomI
 
 	localVarPath := localBasePath + "/api/v2/custom-isos/{customIsoId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"customIsoId"+"}", url.PathEscape(parameterValueToString(r.customIsoId, "customIsoId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"bucketId"+"}", url.PathEscape(parameterValueToString(r.bucketId, "bucketId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

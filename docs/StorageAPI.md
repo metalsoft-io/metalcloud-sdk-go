@@ -44,7 +44,7 @@ import (
 )
 
 func main() {
-	createStorage := *openapiclient.NewCreateStorage(float32(123), "StorageDriver_example", "StorageTechnology_example", "StorageType_example", "Name_example", "ManagementHost_example", "Username_example", "PasswordEncrypted_example", float32(123), "SubnetType_example", "Password_example") // CreateStorage | The Storage create object
+	createStorage := *openapiclient.NewCreateStorage(float32(123), "StorageDriver_example", "StorageTechnology_example", "StorageType_example", "Status_example", "Name_example", "ManagementHost_example", "Username_example", "PasswordEncrypted_example", float32(123), "SubnetType_example", "Password_example") // CreateStorage | The Storage create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

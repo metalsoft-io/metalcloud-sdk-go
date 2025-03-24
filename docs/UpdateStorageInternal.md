@@ -4,6 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Status** | Pointer to **string** | Storage status | [optional] 
+**TotalCapacity** | Pointer to **float32** | Total capacity in MB | [optional] 
+**UsableCapacity** | Pointer to **float32** | Usable capacity in MB | [optional] 
+**FreeCapacity** | Pointer to **float32** | Free capacity in MB | [optional] 
+**VirtualUsedCapacity** | Pointer to **float32** | Virtual used capacity in MB | [optional] 
 **InMaintenance** | Pointer to **float32** | Specifies if the storage is in maintenance | [optional] 
 **IsExperimental** | Pointer to **float32** | Specifies if the storage is experimental | [optional] 
 **DrivePriority** | Pointer to **float32** | Specifies the drive priority | [optional] 
@@ -38,6 +43,131 @@ will change when the set of required properties is changed
 NewUpdateStorageInternalWithDefaults instantiates a new UpdateStorageInternal object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetStatus
+
+`func (o *UpdateStorageInternal) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *UpdateStorageInternal) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *UpdateStorageInternal) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *UpdateStorageInternal) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
+### GetTotalCapacity
+
+`func (o *UpdateStorageInternal) GetTotalCapacity() float32`
+
+GetTotalCapacity returns the TotalCapacity field if non-nil, zero value otherwise.
+
+### GetTotalCapacityOk
+
+`func (o *UpdateStorageInternal) GetTotalCapacityOk() (*float32, bool)`
+
+GetTotalCapacityOk returns a tuple with the TotalCapacity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalCapacity
+
+`func (o *UpdateStorageInternal) SetTotalCapacity(v float32)`
+
+SetTotalCapacity sets TotalCapacity field to given value.
+
+### HasTotalCapacity
+
+`func (o *UpdateStorageInternal) HasTotalCapacity() bool`
+
+HasTotalCapacity returns a boolean if a field has been set.
+
+### GetUsableCapacity
+
+`func (o *UpdateStorageInternal) GetUsableCapacity() float32`
+
+GetUsableCapacity returns the UsableCapacity field if non-nil, zero value otherwise.
+
+### GetUsableCapacityOk
+
+`func (o *UpdateStorageInternal) GetUsableCapacityOk() (*float32, bool)`
+
+GetUsableCapacityOk returns a tuple with the UsableCapacity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUsableCapacity
+
+`func (o *UpdateStorageInternal) SetUsableCapacity(v float32)`
+
+SetUsableCapacity sets UsableCapacity field to given value.
+
+### HasUsableCapacity
+
+`func (o *UpdateStorageInternal) HasUsableCapacity() bool`
+
+HasUsableCapacity returns a boolean if a field has been set.
+
+### GetFreeCapacity
+
+`func (o *UpdateStorageInternal) GetFreeCapacity() float32`
+
+GetFreeCapacity returns the FreeCapacity field if non-nil, zero value otherwise.
+
+### GetFreeCapacityOk
+
+`func (o *UpdateStorageInternal) GetFreeCapacityOk() (*float32, bool)`
+
+GetFreeCapacityOk returns a tuple with the FreeCapacity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFreeCapacity
+
+`func (o *UpdateStorageInternal) SetFreeCapacity(v float32)`
+
+SetFreeCapacity sets FreeCapacity field to given value.
+
+### HasFreeCapacity
+
+`func (o *UpdateStorageInternal) HasFreeCapacity() bool`
+
+HasFreeCapacity returns a boolean if a field has been set.
+
+### GetVirtualUsedCapacity
+
+`func (o *UpdateStorageInternal) GetVirtualUsedCapacity() float32`
+
+GetVirtualUsedCapacity returns the VirtualUsedCapacity field if non-nil, zero value otherwise.
+
+### GetVirtualUsedCapacityOk
+
+`func (o *UpdateStorageInternal) GetVirtualUsedCapacityOk() (*float32, bool)`
+
+GetVirtualUsedCapacityOk returns a tuple with the VirtualUsedCapacity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVirtualUsedCapacity
+
+`func (o *UpdateStorageInternal) SetVirtualUsedCapacity(v float32)`
+
+SetVirtualUsedCapacity sets VirtualUsedCapacity field to given value.
+
+### HasVirtualUsedCapacity
+
+`func (o *UpdateStorageInternal) HasVirtualUsedCapacity() bool`
+
+HasVirtualUsedCapacity returns a boolean if a field has been set.
 
 ### GetInMaintenance
 

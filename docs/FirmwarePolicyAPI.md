@@ -4,8 +4,8 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ApplyFirmwarePoliciesWithInstanceArrays**](FirmwarePolicyAPI.md#ApplyFirmwarePoliciesWithInstanceArrays) | **Post** /api/v2/firmware/policies/actions/apply-with-instance-arrays | Applies all Firmware Policies linked to instance arrays
-[**ApplyFirmwarePoliciesWithoutInstanceArrays**](FirmwarePolicyAPI.md#ApplyFirmwarePoliciesWithoutInstanceArrays) | **Post** /api/v2/firmware/policies/actions/apply-without-instance-arrays | Applies all Firmware Policies not linked to instance arrays
+[**ApplyFirmwarePoliciesWithServerInstanceGroups**](FirmwarePolicyAPI.md#ApplyFirmwarePoliciesWithServerInstanceGroups) | **Post** /api/v2/firmware/policies/actions/apply-with-server-instance-groups | Applies all Firmware Policies linked to server instance groups
+[**ApplyFirmwarePoliciesWithoutServerInstanceGroups**](FirmwarePolicyAPI.md#ApplyFirmwarePoliciesWithoutServerInstanceGroups) | **Post** /api/v2/firmware/policies/actions/apply-without-server-instance-groups | Applies all Firmware Policies not linked to server instance groups
 [**CreateFirmwarePolicy**](FirmwarePolicyAPI.md#CreateFirmwarePolicy) | **Post** /api/v2/firmware/policies | Creates a Firmware Policy
 [**DeleteFirmwarePolicy**](FirmwarePolicyAPI.md#DeleteFirmwarePolicy) | **Delete** /api/v2/firmware/policies/{firmwarePolicyId} | Deletes a Firmware Policy
 [**GenerateFirmwarePolicyAudit**](FirmwarePolicyAPI.md#GenerateFirmwarePolicyAudit) | **Post** /api/v2/firmware/policies/{firmwarePolicyId}/actions/generate-audit | Returns the server components ids that match this policy
@@ -17,11 +17,11 @@ Method | HTTP request | Description
 
 
 
-## ApplyFirmwarePoliciesWithInstanceArrays
+## ApplyFirmwarePoliciesWithServerInstanceGroups
 
-> ServerFirmwareUpgradePolicyApplyResult ApplyFirmwarePoliciesWithInstanceArrays(ctx).Execute()
+> ServerFirmwareUpgradePolicyApplyResult ApplyFirmwarePoliciesWithServerInstanceGroups(ctx).Execute()
 
-Applies all Firmware Policies linked to instance arrays
+Applies all Firmware Policies linked to server instance groups
 
 
 
@@ -41,13 +41,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirmwarePolicyAPI.ApplyFirmwarePoliciesWithInstanceArrays(context.Background()).Execute()
+	resp, r, err := apiClient.FirmwarePolicyAPI.ApplyFirmwarePoliciesWithServerInstanceGroups(context.Background()).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirmwarePolicyAPI.ApplyFirmwarePoliciesWithInstanceArrays``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `FirmwarePolicyAPI.ApplyFirmwarePoliciesWithServerInstanceGroups``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApplyFirmwarePoliciesWithInstanceArrays`: ServerFirmwareUpgradePolicyApplyResult
-	fmt.Fprintf(os.Stdout, "Response from `FirmwarePolicyAPI.ApplyFirmwarePoliciesWithInstanceArrays`: %v\n", resp)
+	// response from `ApplyFirmwarePoliciesWithServerInstanceGroups`: ServerFirmwareUpgradePolicyApplyResult
+	fmt.Fprintf(os.Stdout, "Response from `FirmwarePolicyAPI.ApplyFirmwarePoliciesWithServerInstanceGroups`: %v\n", resp)
 }
 ```
 
@@ -57,7 +57,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApplyFirmwarePoliciesWithInstanceArraysRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiApplyFirmwarePoliciesWithServerInstanceGroupsRequest struct via the builder pattern
 
 
 ### Return type
@@ -78,11 +78,11 @@ Other parameters are passed through a pointer to a apiApplyFirmwarePoliciesWithI
 [[Back to README]](../README.md)
 
 
-## ApplyFirmwarePoliciesWithoutInstanceArrays
+## ApplyFirmwarePoliciesWithoutServerInstanceGroups
 
-> ServerFirmwareUpgradePolicyApplyResult ApplyFirmwarePoliciesWithoutInstanceArrays(ctx).Execute()
+> ServerFirmwareUpgradePolicyApplyResult ApplyFirmwarePoliciesWithoutServerInstanceGroups(ctx).Execute()
 
-Applies all Firmware Policies not linked to instance arrays
+Applies all Firmware Policies not linked to server instance groups
 
 
 
@@ -102,13 +102,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirmwarePolicyAPI.ApplyFirmwarePoliciesWithoutInstanceArrays(context.Background()).Execute()
+	resp, r, err := apiClient.FirmwarePolicyAPI.ApplyFirmwarePoliciesWithoutServerInstanceGroups(context.Background()).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirmwarePolicyAPI.ApplyFirmwarePoliciesWithoutInstanceArrays``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `FirmwarePolicyAPI.ApplyFirmwarePoliciesWithoutServerInstanceGroups``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApplyFirmwarePoliciesWithoutInstanceArrays`: ServerFirmwareUpgradePolicyApplyResult
-	fmt.Fprintf(os.Stdout, "Response from `FirmwarePolicyAPI.ApplyFirmwarePoliciesWithoutInstanceArrays`: %v\n", resp)
+	// response from `ApplyFirmwarePoliciesWithoutServerInstanceGroups`: ServerFirmwareUpgradePolicyApplyResult
+	fmt.Fprintf(os.Stdout, "Response from `FirmwarePolicyAPI.ApplyFirmwarePoliciesWithoutServerInstanceGroups`: %v\n", resp)
 }
 ```
 
@@ -118,7 +118,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApplyFirmwarePoliciesWithoutInstanceArraysRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiApplyFirmwarePoliciesWithoutServerInstanceGroupsRequest struct via the builder pattern
 
 
 ### Return type

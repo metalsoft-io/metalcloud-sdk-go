@@ -54,10 +54,8 @@ func Test_sdk_CustomIsoAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var customIsoId float32
-		var bucketId float32
-		var infrastructureId float32
 
-		httpRes, err := apiClient.CustomIsoAPI.DeleteCustomIso(context.Background(), customIsoId, bucketId, infrastructureId).Execute()
+		httpRes, err := apiClient.CustomIsoAPI.DeleteCustomIso(context.Background(), customIsoId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

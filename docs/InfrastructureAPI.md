@@ -10,6 +10,8 @@ Method | HTTP request | Description
 [**DeployInfrastructure**](InfrastructureAPI.md#DeployInfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/deploy | Deploys the specified infrastructure
 [**GetInfrastructure**](InfrastructureAPI.md#GetInfrastructure) | **Get** /api/v2/infrastructures/{infrastructureId} | Retrieves the specified infrastructure
 [**GetInfrastructureConfigInfo**](InfrastructureAPI.md#GetInfrastructureConfigInfo) | **Get** /api/v2/infrastructures/{infrastructureId}/config | Get configuration information about the specified Infrastructure
+[**GetInfrastructureResourceUtilizationDetailed**](InfrastructureAPI.md#GetInfrastructureResourceUtilizationDetailed) | **Post** /api/v2/infrastructures/actions/get/resource-utilization-detailed | Gets detailed resource utilization for infrastructures
+[**GetInfrastructureStatistics**](InfrastructureAPI.md#GetInfrastructureStatistics) | **Get** /api/v2/infrastructures/{infrastructureId}/statistics | Retrieves statistics for the specified infrastructure
 [**GetInfrastructureUserLimits**](InfrastructureAPI.md#GetInfrastructureUserLimits) | **Get** /api/v2/infrastructures/{infrastructureId}/user-limits | Retrieves the specified infrastructure user limits
 [**GetInfrastructureUsers**](InfrastructureAPI.md#GetInfrastructureUsers) | **Get** /api/v2/infrastructures/{infrastructureId}/users | Retrieves the specified infrastructure users
 [**GetInfrastructures**](InfrastructureAPI.md#GetInfrastructures) | **Get** /api/v2/infrastructures | Get all infrastructures
@@ -430,6 +432,144 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetInfrastructureResourceUtilizationDetailed
+
+> InfrastructureResourceUtilizationResponse GetInfrastructureResourceUtilizationDetailed(ctx, infrastructureId).Execute()
+
+Gets detailed resource utilization for infrastructures
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfrastructureAPI.GetInfrastructureResourceUtilizationDetailed(context.Background(), infrastructureId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.GetInfrastructureResourceUtilizationDetailed``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInfrastructureResourceUtilizationDetailed`: InfrastructureResourceUtilizationResponse
+	fmt.Fprintf(os.Stdout, "Response from `InfrastructureAPI.GetInfrastructureResourceUtilizationDetailed`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetInfrastructureResourceUtilizationDetailedRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**InfrastructureResourceUtilizationResponse**](InfrastructureResourceUtilizationResponse.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetInfrastructureStatistics
+
+> GetInfrastructureStatistics(ctx, infrastructureId).Execute()
+
+Retrieves statistics for the specified infrastructure
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.InfrastructureAPI.GetInfrastructureStatistics(context.Background(), infrastructureId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.GetInfrastructureStatistics``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetInfrastructureStatisticsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
