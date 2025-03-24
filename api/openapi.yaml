@@ -40280,7 +40280,7 @@ components:
           status: active
           username: username
           quarantineVlan: 1.2315135367772556
-        createdTimestamp: 2025-03-24T07:00:57.997Z
+        createdTimestamp: 2025-03-24T09:53:12.023Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -40322,7 +40322,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-03-24T07:00:57.998Z
+        updatedTimestamp: 2025-03-24T09:53:12.023Z
         revision: "1"
       properties:
         siteId:
@@ -40349,12 +40349,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-03-24T07:00:57.997Z
+          example: 2025-03-24T09:53:12.023Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-03-24T07:00:57.998Z
+          example: 2025-03-24T09:53:12.023Z
           format: date-time
           type: string
         links:
@@ -40487,7 +40487,7 @@ components:
             status: active
             username: username
             quarantineVlan: 1.2315135367772556
-          createdTimestamp: 2025-03-24T07:00:57.997Z
+          createdTimestamp: 2025-03-24T09:53:12.023Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -40529,7 +40529,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-24T07:00:57.998Z
+          updatedTimestamp: 2025-03-24T09:53:12.023Z
           revision: "1"
         - networkEquipment:
           - bootstrapReadinessCheckInProgress: 7.061401241503109
@@ -40636,7 +40636,7 @@ components:
             status: active
             username: username
             quarantineVlan: 1.2315135367772556
-          createdTimestamp: 2025-03-24T07:00:57.997Z
+          createdTimestamp: 2025-03-24T09:53:12.023Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -40678,7 +40678,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-24T07:00:57.998Z
+          updatedTimestamp: 2025-03-24T09:53:12.023Z
           revision: "1"
         meta: ""
         links: ""
@@ -41156,13 +41156,11 @@ components:
         createdAt:
           description: The date and time the OS template was created
           example: 2024-01-01T00:00:00Z
-          format: date-time
           readOnly: true
           type: string
         modifiedAt:
           description: The date and time the OS template was last modified
           example: 2024-01-01T00:00:00Z
-          format: date-time
           readOnly: true
           type: string
         links:
@@ -41175,7 +41173,6 @@ components:
       - createdBy
       - device
       - id
-      - imageBuild
       - install
       - name
       - os

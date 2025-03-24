@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | The OS template label. It must be unique | [optional] 
 **Device** | [**OSTemplateDevice**](OSTemplateDevice.md) |  | 
 **Install** | [**OSTemplateInstall**](OSTemplateInstall.md) |  | 
-**ImageBuild** | [**OSTemplateImageBuild**](OSTemplateImageBuild.md) |  | 
+**ImageBuild** | Pointer to [**OSTemplateImageBuild**](OSTemplateImageBuild.md) |  | [optional] 
 **Os** | [**OSTemplateOs**](OSTemplateOs.md) |  | 
 **Visibility** | **string** | The visibility of the OS template.                     If the visibility is PUBLIC any user can use the OS template in deployments                     If the visibility is PRIVATE the OS template can be used in deployments only                     by the user who created and/or updated the template | [default to "private"]
 **Status** | **string** | The status, let the user to decide with templates to delete and when,                     and how much to keep them in the history (archived status). Also, it allows the user to                     resurrect the archived templates if needed.                     Status: READY                         - is the initial status of the template                         - the OS template is ready for deployment                         - the OS template can be deleted, use in deployments and updated                     Status: ACTIVE                         - the OS template is part of at least one ongoing deployment                         - can&#39;t be deleted (the template service will have validation for this)                         - the status can&#39;t be changed to ARCHIVED (the template service will have validation for this)                     Status: USED                         - the OS Template is part of at least one finished deployment, that is not deleted                         - can&#39;t be deleted (the template service will have validation for this)                         - can be updated, deploy or ARCHIVED                     Status: ARCHIVED                         - the OS Template is kept in the system for historical reasons                         - can&#39;t be deleted (the template service will have validation for this)                         - can&#39;t be updated or deployed                         - the status can be changed to READY or USED, if it needs to be used again or deleted | [default to "ready"]
@@ -19,15 +19,15 @@ Name | Type | Description | Notes
 **Revision** | **int32** | The revision number of the OS template | [readonly] 
 **CreatedBy** | **int32** | The user ID of the user who created the OS template | 
 **ModifiedBy** | Pointer to **int32** | The user ID of the user who last modified the OS template | [optional] 
-**CreatedAt** | **time.Time** | The date and time the OS template was created | [readonly] 
-**ModifiedAt** | Pointer to **time.Time** | The date and time the OS template was last modified | [optional] [readonly] 
+**CreatedAt** | **string** | The date and time the OS template was created | [readonly] 
+**ModifiedAt** | Pointer to **string** | The date and time the OS template was last modified | [optional] [readonly] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewOSTemplate
 
-`func NewOSTemplate(id int32, name string, device OSTemplateDevice, install OSTemplateInstall, imageBuild OSTemplateImageBuild, os OSTemplateOs, visibility string, status string, revision int32, createdBy int32, createdAt time.Time, ) *OSTemplate`
+`func NewOSTemplate(id int32, name string, device OSTemplateDevice, install OSTemplateInstall, os OSTemplateOs, visibility string, status string, revision int32, createdBy int32, createdAt string, ) *OSTemplate`
 
 NewOSTemplate instantiates a new OSTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -191,6 +191,11 @@ and a boolean to check if the value has been set.
 
 SetImageBuild sets ImageBuild field to given value.
 
+### HasImageBuild
+
+`func (o *OSTemplate) HasImageBuild() bool`
+
+HasImageBuild returns a boolean if a field has been set.
 
 ### GetOs
 
@@ -369,40 +374,40 @@ HasModifiedBy returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
-`func (o *OSTemplate) GetCreatedAt() time.Time`
+`func (o *OSTemplate) GetCreatedAt() string`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *OSTemplate) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *OSTemplate) GetCreatedAtOk() (*string, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *OSTemplate) SetCreatedAt(v time.Time)`
+`func (o *OSTemplate) SetCreatedAt(v string)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetModifiedAt
 
-`func (o *OSTemplate) GetModifiedAt() time.Time`
+`func (o *OSTemplate) GetModifiedAt() string`
 
 GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
 
 ### GetModifiedAtOk
 
-`func (o *OSTemplate) GetModifiedAtOk() (*time.Time, bool)`
+`func (o *OSTemplate) GetModifiedAtOk() (*string, bool)`
 
 GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModifiedAt
 
-`func (o *OSTemplate) SetModifiedAt(v time.Time)`
+`func (o *OSTemplate) SetModifiedAt(v string)`
 
 SetModifiedAt sets ModifiedAt field to given value.
 

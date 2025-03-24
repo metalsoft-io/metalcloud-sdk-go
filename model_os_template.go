@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"time"
 	"fmt"
 )
 
@@ -32,7 +31,7 @@ type OSTemplate struct {
 	Label *string `json:"label,omitempty"`
 	Device OSTemplateDevice `json:"device"`
 	Install OSTemplateInstall `json:"install"`
-	ImageBuild OSTemplateImageBuild `json:"imageBuild"`
+	ImageBuild *OSTemplateImageBuild `json:"imageBuild,omitempty"`
 	Os OSTemplateOs `json:"os"`
 	// The visibility of the OS template.                     If the visibility is PUBLIC any user can use the OS template in deployments                     If the visibility is PRIVATE the OS template can be used in deployments only                     by the user who created and/or updated the template
 	Visibility string `json:"visibility"`
@@ -49,9 +48,9 @@ type OSTemplate struct {
 	// The user ID of the user who last modified the OS template
 	ModifiedBy *int32 `json:"modifiedBy,omitempty"`
 	// The date and time the OS template was created
-	CreatedAt time.Time `json:"createdAt"`
+	CreatedAt string `json:"createdAt"`
 	// The date and time the OS template was last modified
-	ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
+	ModifiedAt *string `json:"modifiedAt,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -63,13 +62,12 @@ type _OSTemplate OSTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOSTemplate(id int32, name string, device OSTemplateDevice, install OSTemplateInstall, imageBuild OSTemplateImageBuild, os OSTemplateOs, visibility string, status string, revision int32, createdBy int32, createdAt time.Time) *OSTemplate {
+func NewOSTemplate(id int32, name string, device OSTemplateDevice, install OSTemplateInstall, os OSTemplateOs, visibility string, status string, revision int32, createdBy int32, createdAt string) *OSTemplate {
 	this := OSTemplate{}
 	this.Id = id
 	this.Name = name
 	this.Device = device
 	this.Install = install
-	this.ImageBuild = imageBuild
 	this.Os = os
 	this.Visibility = visibility
 	this.Status = status
@@ -251,28 +249,36 @@ func (o *OSTemplate) SetInstall(v OSTemplateInstall) {
 	o.Install = v
 }
 
-// GetImageBuild returns the ImageBuild field value
+// GetImageBuild returns the ImageBuild field value if set, zero value otherwise.
 func (o *OSTemplate) GetImageBuild() OSTemplateImageBuild {
-	if o == nil {
+	if o == nil || IsNil(o.ImageBuild) {
 		var ret OSTemplateImageBuild
 		return ret
 	}
-
-	return o.ImageBuild
+	return *o.ImageBuild
 }
 
-// GetImageBuildOk returns a tuple with the ImageBuild field value
+// GetImageBuildOk returns a tuple with the ImageBuild field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OSTemplate) GetImageBuildOk() (*OSTemplateImageBuild, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ImageBuild) {
 		return nil, false
 	}
-	return &o.ImageBuild, true
+	return o.ImageBuild, true
 }
 
-// SetImageBuild sets field value
+// HasImageBuild returns a boolean if a field has been set.
+func (o *OSTemplate) HasImageBuild() bool {
+	if o != nil && !IsNil(o.ImageBuild) {
+		return true
+	}
+
+	return false
+}
+
+// SetImageBuild gets a reference to the given OSTemplateImageBuild and assigns it to the ImageBuild field.
 func (o *OSTemplate) SetImageBuild(v OSTemplateImageBuild) {
-	o.ImageBuild = v
+	o.ImageBuild = &v
 }
 
 // GetOs returns the Os field value
@@ -492,9 +498,9 @@ func (o *OSTemplate) SetModifiedBy(v int32) {
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *OSTemplate) GetCreatedAt() time.Time {
+func (o *OSTemplate) GetCreatedAt() string {
 	if o == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 
@@ -503,7 +509,7 @@ func (o *OSTemplate) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *OSTemplate) GetCreatedAtOk() (*time.Time, bool) {
+func (o *OSTemplate) GetCreatedAtOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -511,14 +517,14 @@ func (o *OSTemplate) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // SetCreatedAt sets field value
-func (o *OSTemplate) SetCreatedAt(v time.Time) {
+func (o *OSTemplate) SetCreatedAt(v string) {
 	o.CreatedAt = v
 }
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
-func (o *OSTemplate) GetModifiedAt() time.Time {
+func (o *OSTemplate) GetModifiedAt() string {
 	if o == nil || IsNil(o.ModifiedAt) {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.ModifiedAt
@@ -526,7 +532,7 @@ func (o *OSTemplate) GetModifiedAt() time.Time {
 
 // GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OSTemplate) GetModifiedAtOk() (*time.Time, bool) {
+func (o *OSTemplate) GetModifiedAtOk() (*string, bool) {
 	if o == nil || IsNil(o.ModifiedAt) {
 		return nil, false
 	}
@@ -542,8 +548,8 @@ func (o *OSTemplate) HasModifiedAt() bool {
 	return false
 }
 
-// SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
-func (o *OSTemplate) SetModifiedAt(v time.Time) {
+// SetModifiedAt gets a reference to the given string and assigns it to the ModifiedAt field.
+func (o *OSTemplate) SetModifiedAt(v string) {
 	o.ModifiedAt = &v
 }
 
@@ -599,7 +605,9 @@ func (o OSTemplate) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["device"] = o.Device
 	toSerialize["install"] = o.Install
-	toSerialize["imageBuild"] = o.ImageBuild
+	if !IsNil(o.ImageBuild) {
+		toSerialize["imageBuild"] = o.ImageBuild
+	}
 	toSerialize["os"] = o.Os
 	toSerialize["visibility"] = o.Visibility
 	toSerialize["status"] = o.Status
@@ -638,7 +646,6 @@ func (o *OSTemplate) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"device",
 		"install",
-		"imageBuild",
 		"os",
 		"visibility",
 		"status",
