@@ -159,6 +159,20 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test UserAPIService UserControllerGetUserApiKey", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerGetUserApiKey(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test UserAPIService UserControllerGetUserChildDelegates", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -222,6 +236,34 @@ func Test_sdk_UserAPIService(t *testing.T) {
 		var userId float32
 
 		resp, httpRes, err := apiClient.UserAPI.UserControllerGetUserSuspendReasons(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerRegenerateJwtSalt", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerRegenerateJwtSalt(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerRegenerateUserApiKey", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerRegenerateUserApiKey(context.Background(), userId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

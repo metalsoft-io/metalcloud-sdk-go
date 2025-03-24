@@ -14,11 +14,14 @@ Method | HTTP request | Description
 [**UpdateUserConfig**](UserAPI.md#UpdateUserConfig) | **Patch** /api/v2/users/{userId}/config | Update user configuration
 [**UpdateUserLimits**](UserAPI.md#UpdateUserLimits) | **Patch** /api/v2/users/{userId}/actions/change-limits | Update user limits
 [**UserControllerAddDelegate**](UserAPI.md#UserControllerAddDelegate) | **Post** /api/v2/users/{userId}/actions/add-delegate/{delegateId} | Add a delegate to a user
+[**UserControllerGetUserApiKey**](UserAPI.md#UserControllerGetUserApiKey) | **Get** /api/v2/users/{userId}/api-key | Get user API key
 [**UserControllerGetUserChildDelegates**](UserAPI.md#UserControllerGetUserChildDelegates) | **Get** /api/v2/users/{userId}/child-delegates | Get user child delegates by ID
 [**UserControllerGetUserConfiguration**](UserAPI.md#UserControllerGetUserConfiguration) | **Get** /api/v2/users/{userId}/config | Get user configuration by ID
 [**UserControllerGetUserParentDelegates**](UserAPI.md#UserControllerGetUserParentDelegates) | **Get** /api/v2/users/{userId}/parent-delegates | Get user parent delegates by ID
 [**UserControllerGetUserPermissions**](UserAPI.md#UserControllerGetUserPermissions) | **Get** /api/v2/users/{userId}/permissions | Get user resource permissions by ID
 [**UserControllerGetUserSuspendReasons**](UserAPI.md#UserControllerGetUserSuspendReasons) | **Get** /api/v2/users/{userId}/suspend-reasons | Get user suspend reasons by ID
+[**UserControllerRegenerateJwtSalt**](UserAPI.md#UserControllerRegenerateJwtSalt) | **Post** /api/v2/users/{userId}/actions/regenerate-jwt-salt | Regenerate user JWT salt. Also logs out all user sessions.
+[**UserControllerRegenerateUserApiKey**](UserAPI.md#UserControllerRegenerateUserApiKey) | **Post** /api/v2/users/{userId}/actions/regenerate-api-key | Regenerate user API key
 [**UserControllerRemoveDelegate**](UserAPI.md#UserControllerRemoveDelegate) | **Post** /api/v2/users/{userId}/actions/remove-delegate/{delegateId} | Remove a delegate from a user
 [**UserControllerSuspendUser**](UserAPI.md#UserControllerSuspendUser) | **Post** /api/v2/users/{userId}/actions/suspend | Suspend a user
 [**UserControllerUnsuspendUser**](UserAPI.md#UserControllerUnsuspendUser) | **Post** /api/v2/users/{userId}/actions/unsuspend | Unsuspend a user
@@ -760,6 +763,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UserControllerGetUserApiKey
+
+> UserApiKey UserControllerGetUserApiKey(ctx, userId).Execute()
+
+Get user API key
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerGetUserApiKey(context.Background(), userId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerGetUserApiKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerGetUserApiKey`: UserApiKey
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerGetUserApiKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerGetUserApiKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**UserApiKey**](UserApiKey.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UserControllerGetUserChildDelegates
 
 > UserList UserControllerGetUserChildDelegates(ctx, userId).Recursion(recursion).Execute()
@@ -1089,6 +1160,146 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserSuspendReasonList**](UserSuspendReasonList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerRegenerateJwtSalt
+
+> User UserControllerRegenerateJwtSalt(ctx, userId).IfMatch(ifMatch).Execute()
+
+Regenerate user JWT salt. Also logs out all user sessions.
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerRegenerateJwtSalt(context.Background(), userId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerRegenerateJwtSalt``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerRegenerateJwtSalt`: User
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerRegenerateJwtSalt`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerRegenerateJwtSaltRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerRegenerateUserApiKey
+
+> User UserControllerRegenerateUserApiKey(ctx, userId).IfMatch(ifMatch).Execute()
+
+Regenerate user API key
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerRegenerateUserApiKey(context.Background(), userId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerRegenerateUserApiKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerRegenerateUserApiKey`: User
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerRegenerateUserApiKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerRegenerateUserApiKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**User**](User.md)
 
 ### Authorization
 

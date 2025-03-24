@@ -23736,6 +23736,120 @@ paths:
       summary: Change user email
       tags:
       - User
+  /api/v2/users/{userId}/api-key:
+    get:
+      operationId: UserController_getUserApiKey
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserApiKey'
+          description: The API key of the user
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get user API key
+      tags:
+      - User
+  /api/v2/users/{userId}/actions/regenerate-api-key:
+    post:
+      operationId: UserController_regenerateUserApiKey
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: The API key has been successfully regenerated.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Regenerate user API key
+      tags:
+      - User
+  /api/v2/users/{userId}/actions/regenerate-jwt-salt:
+    post:
+      operationId: UserController_regenerateJwtSalt
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: The JWT salt has been successfully regenerated.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Regenerate user JWT salt. Also logs out all user sessions.
+      tags:
+      - User
   /api/v2/servers/generic-endpoint/import:
     post:
       description: Import a generic endpoint server and returns the server data
@@ -37247,12 +37361,12 @@ components:
     ServerInstanceConfiguration:
       example:
         serverTypeId: 5
-        emptyEdit: 7
+        emptyEdit: 1
         raidProfile: ""
-        groupId: 4
+        groupId: 7
         iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
         controlPanelUrl: controlPanelUrl
-        driveIdBootable: 7
+        driveIdBootable: 1
         label: label
         templateId: 1
         updatedTimestamp: updatedTimestamp
@@ -37262,9 +37376,9 @@ components:
         revision: 1
         iscsiInitiatorUsername: iscsiInitiatorUsername
         iscsiInitiatorIqn: iscsiInitiatorIqn
-        dnsSubdomainChangeId: 1
+        dnsSubdomainChangeId: 6
         subdomain: subdomain
-        infrastructureDeployId: 6
+        infrastructureDeployId: 7
         instanceWanMlagId: 1
         deployStatus: not_started
       properties:
@@ -37365,8 +37479,8 @@ components:
         raidProfile: ""
         groupId: 5
         preferredServerIds:
-        - preferredServerIds
-        - preferredServerIds
+        - 9.301444243932576
+        - 9.301444243932576
         templateId: 1
         updatedTimestamp: updatedTimestamp
         serverId: 2
@@ -37391,14 +37505,14 @@ components:
         subdomainPermanent: subdomainPermanent
         secretsOsAssetsTemplateTypeAdvanced: "{}"
         revision: 1
-        isVmInstance: 9.301444243932576
+        isVmInstance: 3
         tags:
         - tags
         - tags
         clusterCustomInfo:
           initialPasswordEncrypted: initialPasswordEncrypted
-        vmInstanceId: 3.616076749251911
-        osReinstallRequired: 2.027123023002322
+        vmInstanceId: 2
+        osReinstallRequired: 4
         iscsiInitiatorUsername: iscsiInitiatorUsername
         infrastructureId: 1
         meta:
@@ -37414,12 +37528,12 @@ components:
         secretsMaterializedForOSAssets: "{}"
         config:
           serverTypeId: 5
-          emptyEdit: 7
+          emptyEdit: 1
           raidProfile: ""
-          groupId: 4
+          groupId: 7
           iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
           controlPanelUrl: controlPanelUrl
-          driveIdBootable: 7
+          driveIdBootable: 1
           label: label
           templateId: 1
           updatedTimestamp: updatedTimestamp
@@ -37429,9 +37543,9 @@ components:
           revision: 1
           iscsiInitiatorUsername: iscsiInitiatorUsername
           iscsiInitiatorIqn: iscsiInitiatorIqn
-          dnsSubdomainChangeId: 1
+          dnsSubdomainChangeId: 6
           subdomain: subdomain
-          infrastructureDeployId: 6
+          infrastructureDeployId: 7
           instanceWanMlagId: 1
           deployStatus: not_started
       properties:
@@ -37491,7 +37605,7 @@ components:
           type: object
         preferredServerIds:
           items:
-            type: string
+            type: number
           type: array
         raidProfile:
           allOf:
@@ -37509,10 +37623,10 @@ components:
           type: string
         isVmInstance:
           description: Flag to indicate if this is a VM instance
-          type: number
+          type: integer
         vmInstanceId:
           description: The id of the linked VM instance
-          type: number
+          type: integer
         meta:
           $ref: '#/components/schemas/GenericGUISettings'
         tags:
@@ -37551,7 +37665,7 @@ components:
           description: Build info regarding the OS image.
         osReinstallRequired:
           description: OS reinstall is required.
-          type: number
+          type: integer
         iscsiInitiatorIqn:
           description: iSCSI Initiator IQN for the Instance Interface.
           type: string
@@ -37592,8 +37706,8 @@ components:
           raidProfile: ""
           groupId: 5
           preferredServerIds:
-          - preferredServerIds
-          - preferredServerIds
+          - 9.301444243932576
+          - 9.301444243932576
           templateId: 1
           updatedTimestamp: updatedTimestamp
           serverId: 2
@@ -37618,14 +37732,14 @@ components:
           subdomainPermanent: subdomainPermanent
           secretsOsAssetsTemplateTypeAdvanced: "{}"
           revision: 1
-          isVmInstance: 9.301444243932576
+          isVmInstance: 3
           tags:
           - tags
           - tags
           clusterCustomInfo:
             initialPasswordEncrypted: initialPasswordEncrypted
-          vmInstanceId: 3.616076749251911
-          osReinstallRequired: 2.027123023002322
+          vmInstanceId: 2
+          osReinstallRequired: 4
           iscsiInitiatorUsername: iscsiInitiatorUsername
           infrastructureId: 1
           meta:
@@ -37641,12 +37755,12 @@ components:
           secretsMaterializedForOSAssets: "{}"
           config:
             serverTypeId: 5
-            emptyEdit: 7
+            emptyEdit: 1
             raidProfile: ""
-            groupId: 4
+            groupId: 7
             iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
             controlPanelUrl: controlPanelUrl
-            driveIdBootable: 7
+            driveIdBootable: 1
             label: label
             templateId: 1
             updatedTimestamp: updatedTimestamp
@@ -37656,9 +37770,9 @@ components:
             revision: 1
             iscsiInitiatorUsername: iscsiInitiatorUsername
             iscsiInitiatorIqn: iscsiInitiatorIqn
-            dnsSubdomainChangeId: 1
+            dnsSubdomainChangeId: 6
             subdomain: subdomain
-            infrastructureDeployId: 6
+            infrastructureDeployId: 7
             instanceWanMlagId: 1
             deployStatus: not_started
         - serverTypeId: 5
@@ -37668,8 +37782,8 @@ components:
           raidProfile: ""
           groupId: 5
           preferredServerIds:
-          - preferredServerIds
-          - preferredServerIds
+          - 9.301444243932576
+          - 9.301444243932576
           templateId: 1
           updatedTimestamp: updatedTimestamp
           serverId: 2
@@ -37694,14 +37808,14 @@ components:
           subdomainPermanent: subdomainPermanent
           secretsOsAssetsTemplateTypeAdvanced: "{}"
           revision: 1
-          isVmInstance: 9.301444243932576
+          isVmInstance: 3
           tags:
           - tags
           - tags
           clusterCustomInfo:
             initialPasswordEncrypted: initialPasswordEncrypted
-          vmInstanceId: 3.616076749251911
-          osReinstallRequired: 2.027123023002322
+          vmInstanceId: 2
+          osReinstallRequired: 4
           iscsiInitiatorUsername: iscsiInitiatorUsername
           infrastructureId: 1
           meta:
@@ -37717,12 +37831,12 @@ components:
           secretsMaterializedForOSAssets: "{}"
           config:
             serverTypeId: 5
-            emptyEdit: 7
+            emptyEdit: 1
             raidProfile: ""
-            groupId: 4
+            groupId: 7
             iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
             controlPanelUrl: controlPanelUrl
-            driveIdBootable: 7
+            driveIdBootable: 1
             label: label
             templateId: 1
             updatedTimestamp: updatedTimestamp
@@ -37732,9 +37846,9 @@ components:
             revision: 1
             iscsiInitiatorUsername: iscsiInitiatorUsername
             iscsiInitiatorIqn: iscsiInitiatorIqn
-            dnsSubdomainChangeId: 1
+            dnsSubdomainChangeId: 6
             subdomain: subdomain
-            infrastructureDeployId: 6
+            infrastructureDeployId: 7
             instanceWanMlagId: 1
             deployStatus: not_started
         meta: ""
@@ -38889,9 +39003,9 @@ components:
       type: string
     NetworkDevice:
       example:
-        bootstrapReadinessCheckInProgress: 7.061401241503109
+        bootstrapReadinessCheckInProgress: 9.301444243932576
         country: country
-        mlagDomainId: 7.386281948385884
+        mlagDomainId: 1.2315135367772556
         city: city
         datacenterRack: datacenterRack
         description: description
@@ -38900,7 +39014,7 @@ components:
         datacenterRoom: datacenterRoom
         vtepAddressIpv6: vtepAddressIpv6
         managementMacAddress: managementMacAddress
-        isGateway: 1.4894159098541704
+        isGateway: true
         identifierString: identifierString
         rackPositionUpperUnit: 6.027456183070403
         links:
@@ -38909,38 +39023,38 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: id
-        bootstrapSkipInitialConfiguration: 2.027123023002322
+        bootstrapSkipInitialConfiguration: 4.145608029883936
         bootstrapReadinessCheckResult: "{}"
-        defaultMtu: 1.0246457001441578
+        defaultMtu: 1.4894159098541704
         managementAddress: managementAddress
         bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
         serialNumber: serialNumber
-        subnetOobIndex: 3.616076749251911
+        subnetOobIndex: 2.027123023002322
         managementAddressMask: managementAddressMask
         chassisIdentifier: chassisIdentifier
-        readyForInitialConfiguration: 2.3021358869347655
+        readyForInitialConfiguration: 7.061401241503109
         loopbackAddressIpv6: loopbackAddressIpv6
         managementAddressGateway: managementAddressGateway
         revision: 1
         tags: tags
         requiresOsInstall: true
-        syslogEnabled: true
+        syslogEnabled: 5.637376656633329
         managementPort: 5.962133916683182
         driver: sonic_enterprise
         managementPassword: password
-        subnetOobId: 9.301444243932576
+        subnetOobId: 3.616076749251911
         loopbackAddressIpv4: loopbackAddressIpv4
         mlagSystemMac: mlagSystemMac
         siteId: 0.8008281904610115
-        orderIndex: 5.637376656633329
+        orderIndex: 2.3021358869347655
         variablesMaterializedForOSAssets: "{}"
         rackPositionLowerUnit: 1.4658129805029452
         position: leaf
         secretsMaterializedForOSAssets: "{}"
-        asn: 4.145608029883936
+        asn: 7.386281948385884
         status: active
         username: username
-        quarantineVlan: 1.2315135367772556
+        quarantineVlan: 1.0246457001441578
       properties:
         id:
           description: Unique identifier for the network device.
@@ -39007,7 +39121,7 @@ components:
           type: number
         syslogEnabled:
           description: Is the network device syslog enabled
-          type: boolean
+          type: number
         username:
           description: Username used to connect to the network device
           type: string
@@ -39097,7 +39211,7 @@ components:
           type: object
         isGateway:
           description: Whether the network device is a gateway
-          type: number
+          type: boolean
         links:
           description: Reference links
           items:
@@ -39121,8 +39235,6 @@ components:
       - id
       - identifierString
       - isGateway
-      - links
-      - loopbackAddressIpv4
       - loopbackAddressIpv6
       - managementAddress
       - managementAddressGateway
@@ -39150,15 +39262,14 @@ components:
       - tags
       - username
       - variablesMaterializedForOSAssets
-      - vtepAddressIpv4
       - vtepAddressIpv6
       type: object
     NetworkDevicePaginatedList:
       example:
         data:
-        - bootstrapReadinessCheckInProgress: 7.061401241503109
+        - bootstrapReadinessCheckInProgress: 9.301444243932576
           country: country
-          mlagDomainId: 7.386281948385884
+          mlagDomainId: 1.2315135367772556
           city: city
           datacenterRack: datacenterRack
           description: description
@@ -39167,7 +39278,7 @@ components:
           datacenterRoom: datacenterRoom
           vtepAddressIpv6: vtepAddressIpv6
           managementMacAddress: managementMacAddress
-          isGateway: 1.4894159098541704
+          isGateway: true
           identifierString: identifierString
           rackPositionUpperUnit: 6.027456183070403
           links:
@@ -39176,41 +39287,41 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: id
-          bootstrapSkipInitialConfiguration: 2.027123023002322
+          bootstrapSkipInitialConfiguration: 4.145608029883936
           bootstrapReadinessCheckResult: "{}"
-          defaultMtu: 1.0246457001441578
+          defaultMtu: 1.4894159098541704
           managementAddress: managementAddress
           bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
           serialNumber: serialNumber
-          subnetOobIndex: 3.616076749251911
+          subnetOobIndex: 2.027123023002322
           managementAddressMask: managementAddressMask
           chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 2.3021358869347655
+          readyForInitialConfiguration: 7.061401241503109
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
           tags: tags
           requiresOsInstall: true
-          syslogEnabled: true
+          syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
           driver: sonic_enterprise
           managementPassword: password
-          subnetOobId: 9.301444243932576
+          subnetOobId: 3.616076749251911
           loopbackAddressIpv4: loopbackAddressIpv4
           mlagSystemMac: mlagSystemMac
           siteId: 0.8008281904610115
-          orderIndex: 5.637376656633329
+          orderIndex: 2.3021358869347655
           variablesMaterializedForOSAssets: "{}"
           rackPositionLowerUnit: 1.4658129805029452
           position: leaf
           secretsMaterializedForOSAssets: "{}"
-          asn: 4.145608029883936
+          asn: 7.386281948385884
           status: active
           username: username
-          quarantineVlan: 1.2315135367772556
-        - bootstrapReadinessCheckInProgress: 7.061401241503109
+          quarantineVlan: 1.0246457001441578
+        - bootstrapReadinessCheckInProgress: 9.301444243932576
           country: country
-          mlagDomainId: 7.386281948385884
+          mlagDomainId: 1.2315135367772556
           city: city
           datacenterRack: datacenterRack
           description: description
@@ -39219,7 +39330,7 @@ components:
           datacenterRoom: datacenterRoom
           vtepAddressIpv6: vtepAddressIpv6
           managementMacAddress: managementMacAddress
-          isGateway: 1.4894159098541704
+          isGateway: true
           identifierString: identifierString
           rackPositionUpperUnit: 6.027456183070403
           links:
@@ -39228,38 +39339,38 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: id
-          bootstrapSkipInitialConfiguration: 2.027123023002322
+          bootstrapSkipInitialConfiguration: 4.145608029883936
           bootstrapReadinessCheckResult: "{}"
-          defaultMtu: 1.0246457001441578
+          defaultMtu: 1.4894159098541704
           managementAddress: managementAddress
           bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
           serialNumber: serialNumber
-          subnetOobIndex: 3.616076749251911
+          subnetOobIndex: 2.027123023002322
           managementAddressMask: managementAddressMask
           chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 2.3021358869347655
+          readyForInitialConfiguration: 7.061401241503109
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
           tags: tags
           requiresOsInstall: true
-          syslogEnabled: true
+          syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
           driver: sonic_enterprise
           managementPassword: password
-          subnetOobId: 9.301444243932576
+          subnetOobId: 3.616076749251911
           loopbackAddressIpv4: loopbackAddressIpv4
           mlagSystemMac: mlagSystemMac
           siteId: 0.8008281904610115
-          orderIndex: 5.637376656633329
+          orderIndex: 2.3021358869347655
           variablesMaterializedForOSAssets: "{}"
           rackPositionLowerUnit: 1.4658129805029452
           position: leaf
           secretsMaterializedForOSAssets: "{}"
-          asn: 4.145608029883936
+          asn: 7.386281948385884
           status: active
           username: username
-          quarantineVlan: 1.2315135367772556
+          quarantineVlan: 1.0246457001441578
         meta: ""
         links: ""
       properties:
@@ -40176,9 +40287,9 @@ components:
     NetworkFabric:
       example:
         networkEquipment:
-        - bootstrapReadinessCheckInProgress: 7.061401241503109
+        - bootstrapReadinessCheckInProgress: 9.301444243932576
           country: country
-          mlagDomainId: 7.386281948385884
+          mlagDomainId: 1.2315135367772556
           city: city
           datacenterRack: datacenterRack
           description: description
@@ -40187,7 +40298,7 @@ components:
           datacenterRoom: datacenterRoom
           vtepAddressIpv6: vtepAddressIpv6
           managementMacAddress: managementMacAddress
-          isGateway: 1.4894159098541704
+          isGateway: true
           identifierString: identifierString
           rackPositionUpperUnit: 6.027456183070403
           links:
@@ -40196,41 +40307,41 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: id
-          bootstrapSkipInitialConfiguration: 2.027123023002322
+          bootstrapSkipInitialConfiguration: 4.145608029883936
           bootstrapReadinessCheckResult: "{}"
-          defaultMtu: 1.0246457001441578
+          defaultMtu: 1.4894159098541704
           managementAddress: managementAddress
           bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
           serialNumber: serialNumber
-          subnetOobIndex: 3.616076749251911
+          subnetOobIndex: 2.027123023002322
           managementAddressMask: managementAddressMask
           chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 2.3021358869347655
+          readyForInitialConfiguration: 7.061401241503109
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
           tags: tags
           requiresOsInstall: true
-          syslogEnabled: true
+          syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
           driver: sonic_enterprise
           managementPassword: password
-          subnetOobId: 9.301444243932576
+          subnetOobId: 3.616076749251911
           loopbackAddressIpv4: loopbackAddressIpv4
           mlagSystemMac: mlagSystemMac
           siteId: 0.8008281904610115
-          orderIndex: 5.637376656633329
+          orderIndex: 2.3021358869347655
           variablesMaterializedForOSAssets: "{}"
           rackPositionLowerUnit: 1.4658129805029452
           position: leaf
           secretsMaterializedForOSAssets: "{}"
-          asn: 4.145608029883936
+          asn: 7.386281948385884
           status: active
           username: username
-          quarantineVlan: 1.2315135367772556
-        - bootstrapReadinessCheckInProgress: 7.061401241503109
+          quarantineVlan: 1.0246457001441578
+        - bootstrapReadinessCheckInProgress: 9.301444243932576
           country: country
-          mlagDomainId: 7.386281948385884
+          mlagDomainId: 1.2315135367772556
           city: city
           datacenterRack: datacenterRack
           description: description
@@ -40239,7 +40350,7 @@ components:
           datacenterRoom: datacenterRoom
           vtepAddressIpv6: vtepAddressIpv6
           managementMacAddress: managementMacAddress
-          isGateway: 1.4894159098541704
+          isGateway: true
           identifierString: identifierString
           rackPositionUpperUnit: 6.027456183070403
           links:
@@ -40248,39 +40359,39 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: id
-          bootstrapSkipInitialConfiguration: 2.027123023002322
+          bootstrapSkipInitialConfiguration: 4.145608029883936
           bootstrapReadinessCheckResult: "{}"
-          defaultMtu: 1.0246457001441578
+          defaultMtu: 1.4894159098541704
           managementAddress: managementAddress
           bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
           serialNumber: serialNumber
-          subnetOobIndex: 3.616076749251911
+          subnetOobIndex: 2.027123023002322
           managementAddressMask: managementAddressMask
           chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 2.3021358869347655
+          readyForInitialConfiguration: 7.061401241503109
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
           tags: tags
           requiresOsInstall: true
-          syslogEnabled: true
+          syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
           driver: sonic_enterprise
           managementPassword: password
-          subnetOobId: 9.301444243932576
+          subnetOobId: 3.616076749251911
           loopbackAddressIpv4: loopbackAddressIpv4
           mlagSystemMac: mlagSystemMac
           siteId: 0.8008281904610115
-          orderIndex: 5.637376656633329
+          orderIndex: 2.3021358869347655
           variablesMaterializedForOSAssets: "{}"
           rackPositionLowerUnit: 1.4658129805029452
           position: leaf
           secretsMaterializedForOSAssets: "{}"
-          asn: 4.145608029883936
+          asn: 7.386281948385884
           status: active
           username: username
-          quarantineVlan: 1.2315135367772556
-        createdTimestamp: 2025-03-24T09:53:12.023Z
+          quarantineVlan: 1.0246457001441578
+        createdTimestamp: 2025-03-24T16:59:34.077Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -40322,7 +40433,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-03-24T09:53:12.023Z
+        updatedTimestamp: 2025-03-24T16:59:34.077Z
         revision: "1"
       properties:
         siteId:
@@ -40349,12 +40460,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-03-24T09:53:12.023Z
+          example: 2025-03-24T16:59:34.077Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-03-24T09:53:12.023Z
+          example: 2025-03-24T16:59:34.077Z
           format: date-time
           type: string
         links:
@@ -40383,9 +40494,9 @@ components:
       example:
         data:
         - networkEquipment:
-          - bootstrapReadinessCheckInProgress: 7.061401241503109
+          - bootstrapReadinessCheckInProgress: 9.301444243932576
             country: country
-            mlagDomainId: 7.386281948385884
+            mlagDomainId: 1.2315135367772556
             city: city
             datacenterRack: datacenterRack
             description: description
@@ -40394,7 +40505,7 @@ components:
             datacenterRoom: datacenterRoom
             vtepAddressIpv6: vtepAddressIpv6
             managementMacAddress: managementMacAddress
-            isGateway: 1.4894159098541704
+            isGateway: true
             identifierString: identifierString
             rackPositionUpperUnit: 6.027456183070403
             links:
@@ -40403,41 +40514,41 @@ components:
             - rel: self
               href: /api/v2/path/to/resource
             id: id
-            bootstrapSkipInitialConfiguration: 2.027123023002322
+            bootstrapSkipInitialConfiguration: 4.145608029883936
             bootstrapReadinessCheckResult: "{}"
-            defaultMtu: 1.0246457001441578
+            defaultMtu: 1.4894159098541704
             managementAddress: managementAddress
             bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
             serialNumber: serialNumber
-            subnetOobIndex: 3.616076749251911
+            subnetOobIndex: 2.027123023002322
             managementAddressMask: managementAddressMask
             chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 2.3021358869347655
+            readyForInitialConfiguration: 7.061401241503109
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
             tags: tags
             requiresOsInstall: true
-            syslogEnabled: true
+            syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
             driver: sonic_enterprise
             managementPassword: password
-            subnetOobId: 9.301444243932576
+            subnetOobId: 3.616076749251911
             loopbackAddressIpv4: loopbackAddressIpv4
             mlagSystemMac: mlagSystemMac
             siteId: 0.8008281904610115
-            orderIndex: 5.637376656633329
+            orderIndex: 2.3021358869347655
             variablesMaterializedForOSAssets: "{}"
             rackPositionLowerUnit: 1.4658129805029452
             position: leaf
             secretsMaterializedForOSAssets: "{}"
-            asn: 4.145608029883936
+            asn: 7.386281948385884
             status: active
             username: username
-            quarantineVlan: 1.2315135367772556
-          - bootstrapReadinessCheckInProgress: 7.061401241503109
+            quarantineVlan: 1.0246457001441578
+          - bootstrapReadinessCheckInProgress: 9.301444243932576
             country: country
-            mlagDomainId: 7.386281948385884
+            mlagDomainId: 1.2315135367772556
             city: city
             datacenterRack: datacenterRack
             description: description
@@ -40446,7 +40557,7 @@ components:
             datacenterRoom: datacenterRoom
             vtepAddressIpv6: vtepAddressIpv6
             managementMacAddress: managementMacAddress
-            isGateway: 1.4894159098541704
+            isGateway: true
             identifierString: identifierString
             rackPositionUpperUnit: 6.027456183070403
             links:
@@ -40455,39 +40566,39 @@ components:
             - rel: self
               href: /api/v2/path/to/resource
             id: id
-            bootstrapSkipInitialConfiguration: 2.027123023002322
+            bootstrapSkipInitialConfiguration: 4.145608029883936
             bootstrapReadinessCheckResult: "{}"
-            defaultMtu: 1.0246457001441578
+            defaultMtu: 1.4894159098541704
             managementAddress: managementAddress
             bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
             serialNumber: serialNumber
-            subnetOobIndex: 3.616076749251911
+            subnetOobIndex: 2.027123023002322
             managementAddressMask: managementAddressMask
             chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 2.3021358869347655
+            readyForInitialConfiguration: 7.061401241503109
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
             tags: tags
             requiresOsInstall: true
-            syslogEnabled: true
+            syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
             driver: sonic_enterprise
             managementPassword: password
-            subnetOobId: 9.301444243932576
+            subnetOobId: 3.616076749251911
             loopbackAddressIpv4: loopbackAddressIpv4
             mlagSystemMac: mlagSystemMac
             siteId: 0.8008281904610115
-            orderIndex: 5.637376656633329
+            orderIndex: 2.3021358869347655
             variablesMaterializedForOSAssets: "{}"
             rackPositionLowerUnit: 1.4658129805029452
             position: leaf
             secretsMaterializedForOSAssets: "{}"
-            asn: 4.145608029883936
+            asn: 7.386281948385884
             status: active
             username: username
-            quarantineVlan: 1.2315135367772556
-          createdTimestamp: 2025-03-24T09:53:12.023Z
+            quarantineVlan: 1.0246457001441578
+          createdTimestamp: 2025-03-24T16:59:34.077Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -40529,12 +40640,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-24T09:53:12.023Z
+          updatedTimestamp: 2025-03-24T16:59:34.077Z
           revision: "1"
         - networkEquipment:
-          - bootstrapReadinessCheckInProgress: 7.061401241503109
+          - bootstrapReadinessCheckInProgress: 9.301444243932576
             country: country
-            mlagDomainId: 7.386281948385884
+            mlagDomainId: 1.2315135367772556
             city: city
             datacenterRack: datacenterRack
             description: description
@@ -40543,7 +40654,7 @@ components:
             datacenterRoom: datacenterRoom
             vtepAddressIpv6: vtepAddressIpv6
             managementMacAddress: managementMacAddress
-            isGateway: 1.4894159098541704
+            isGateway: true
             identifierString: identifierString
             rackPositionUpperUnit: 6.027456183070403
             links:
@@ -40552,41 +40663,41 @@ components:
             - rel: self
               href: /api/v2/path/to/resource
             id: id
-            bootstrapSkipInitialConfiguration: 2.027123023002322
+            bootstrapSkipInitialConfiguration: 4.145608029883936
             bootstrapReadinessCheckResult: "{}"
-            defaultMtu: 1.0246457001441578
+            defaultMtu: 1.4894159098541704
             managementAddress: managementAddress
             bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
             serialNumber: serialNumber
-            subnetOobIndex: 3.616076749251911
+            subnetOobIndex: 2.027123023002322
             managementAddressMask: managementAddressMask
             chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 2.3021358869347655
+            readyForInitialConfiguration: 7.061401241503109
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
             tags: tags
             requiresOsInstall: true
-            syslogEnabled: true
+            syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
             driver: sonic_enterprise
             managementPassword: password
-            subnetOobId: 9.301444243932576
+            subnetOobId: 3.616076749251911
             loopbackAddressIpv4: loopbackAddressIpv4
             mlagSystemMac: mlagSystemMac
             siteId: 0.8008281904610115
-            orderIndex: 5.637376656633329
+            orderIndex: 2.3021358869347655
             variablesMaterializedForOSAssets: "{}"
             rackPositionLowerUnit: 1.4658129805029452
             position: leaf
             secretsMaterializedForOSAssets: "{}"
-            asn: 4.145608029883936
+            asn: 7.386281948385884
             status: active
             username: username
-            quarantineVlan: 1.2315135367772556
-          - bootstrapReadinessCheckInProgress: 7.061401241503109
+            quarantineVlan: 1.0246457001441578
+          - bootstrapReadinessCheckInProgress: 9.301444243932576
             country: country
-            mlagDomainId: 7.386281948385884
+            mlagDomainId: 1.2315135367772556
             city: city
             datacenterRack: datacenterRack
             description: description
@@ -40595,7 +40706,7 @@ components:
             datacenterRoom: datacenterRoom
             vtepAddressIpv6: vtepAddressIpv6
             managementMacAddress: managementMacAddress
-            isGateway: 1.4894159098541704
+            isGateway: true
             identifierString: identifierString
             rackPositionUpperUnit: 6.027456183070403
             links:
@@ -40604,39 +40715,39 @@ components:
             - rel: self
               href: /api/v2/path/to/resource
             id: id
-            bootstrapSkipInitialConfiguration: 2.027123023002322
+            bootstrapSkipInitialConfiguration: 4.145608029883936
             bootstrapReadinessCheckResult: "{}"
-            defaultMtu: 1.0246457001441578
+            defaultMtu: 1.4894159098541704
             managementAddress: managementAddress
             bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
             serialNumber: serialNumber
-            subnetOobIndex: 3.616076749251911
+            subnetOobIndex: 2.027123023002322
             managementAddressMask: managementAddressMask
             chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 2.3021358869347655
+            readyForInitialConfiguration: 7.061401241503109
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
             tags: tags
             requiresOsInstall: true
-            syslogEnabled: true
+            syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
             driver: sonic_enterprise
             managementPassword: password
-            subnetOobId: 9.301444243932576
+            subnetOobId: 3.616076749251911
             loopbackAddressIpv4: loopbackAddressIpv4
             mlagSystemMac: mlagSystemMac
             siteId: 0.8008281904610115
-            orderIndex: 5.637376656633329
+            orderIndex: 2.3021358869347655
             variablesMaterializedForOSAssets: "{}"
             rackPositionLowerUnit: 1.4658129805029452
             position: leaf
             secretsMaterializedForOSAssets: "{}"
-            asn: 4.145608029883936
+            asn: 7.386281948385884
             status: active
             username: username
-            quarantineVlan: 1.2315135367772556
-          createdTimestamp: 2025-03-24T09:53:12.023Z
+            quarantineVlan: 1.0246457001441578
+          createdTimestamp: 2025-03-24T16:59:34.077Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -40678,7 +40789,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-24T09:53:12.023Z
+          updatedTimestamp: 2025-03-24T16:59:34.077Z
           revision: "1"
         meta: ""
         links: ""
@@ -43251,20 +43362,14 @@ components:
     ServerInstanceUpdate:
       example:
         serverTypeId: 5
-        groupId: 0
         label: server-instance-123
         templateId: 1
-        tags:
-        - tags
-        - tags
       properties:
         label:
           description: The server instance label.
           example: server-instance-123
           maxLength: 63
           type: string
-        groupId:
-          type: integer
         serverTypeId:
           description: The server type ID.
           example: 5
@@ -43275,10 +43380,6 @@ components:
             continue as normal. '
           example: 1
           type: integer
-        tags:
-          items:
-            type: string
-          type: array
       type: object
     ServerInstanceStatistics:
       example:
@@ -49055,6 +49156,17 @@ components:
           type: string
       required:
       - email
+      type: object
+    UserApiKey:
+      example:
+        apiKey: 1:qJjpByjLYz7Rgwpv0wN61KlZxL8qgdZ2uJwLw3PWyrVQc4EDTtCs20xe9zFLLU1
+      properties:
+        apiKey:
+          description: The user API key
+          example: 1:qJjpByjLYz7Rgwpv0wN61KlZxL8qgdZ2uJwLw3PWyrVQc4EDTtCs20xe9zFLLU1
+          type: string
+      required:
+      - apiKey
       type: object
     ServerUnmanagedImportInternalInterfaceDto:
       example:

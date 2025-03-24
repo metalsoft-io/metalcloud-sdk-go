@@ -50,15 +50,15 @@ type ServerInstance struct {
 	TemplateId *int32 `json:"templateId,omitempty"`
 	InstanceWanMlagId *int32 `json:"instanceWanMlagId,omitempty"`
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
-	PreferredServerIds []string `json:"preferredServerIds,omitempty"`
+	PreferredServerIds []float32 `json:"preferredServerIds,omitempty"`
 	// RAID profile for the Instance Interface.
 	RaidProfile *ServerInstanceStorageProfile `json:"raidProfile,omitempty"`
 	// Current status of the server instance.
 	ServiceStatus string `json:"serviceStatus"`
 	// Flag to indicate if this is a VM instance
-	IsVmInstance float32 `json:"isVmInstance"`
+	IsVmInstance int32 `json:"isVmInstance"`
 	// The id of the linked VM instance
-	VmInstanceId *float32 `json:"vmInstanceId,omitempty"`
+	VmInstanceId *int32 `json:"vmInstanceId,omitempty"`
 	Meta *GenericGUISettings `json:"meta,omitempty"`
 	Tags []string `json:"tags,omitempty"`
 	// Operating system information of the Instance.
@@ -81,7 +81,7 @@ type ServerInstance struct {
 	// Build info regarding the OS image.
 	OsInstallImageBuildInfo *ServerInstanceOsInstallImageBuildInfo `json:"osInstallImageBuildInfo,omitempty"`
 	// OS reinstall is required.
-	OsReinstallRequired *float32 `json:"osReinstallRequired,omitempty"`
+	OsReinstallRequired *int32 `json:"osReinstallRequired,omitempty"`
 	// iSCSI Initiator IQN for the Instance Interface.
 	IscsiInitiatorIqn *string `json:"iscsiInitiatorIqn,omitempty"`
 	// iSCSI Initiator Username for the Instance Interface.
@@ -102,7 +102,7 @@ type _ServerInstance ServerInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance float32) *ServerInstance {
+func NewServerInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance int32) *ServerInstance {
 	this := ServerInstance{}
 	this.Id = id
 	this.Revision = revision
@@ -613,9 +613,9 @@ func (o *ServerInstance) SetCustomVariables(v map[string]interface{}) {
 }
 
 // GetPreferredServerIds returns the PreferredServerIds field value if set, zero value otherwise.
-func (o *ServerInstance) GetPreferredServerIds() []string {
+func (o *ServerInstance) GetPreferredServerIds() []float32 {
 	if o == nil || IsNil(o.PreferredServerIds) {
-		var ret []string
+		var ret []float32
 		return ret
 	}
 	return o.PreferredServerIds
@@ -623,7 +623,7 @@ func (o *ServerInstance) GetPreferredServerIds() []string {
 
 // GetPreferredServerIdsOk returns a tuple with the PreferredServerIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstance) GetPreferredServerIdsOk() ([]string, bool) {
+func (o *ServerInstance) GetPreferredServerIdsOk() ([]float32, bool) {
 	if o == nil || IsNil(o.PreferredServerIds) {
 		return nil, false
 	}
@@ -639,8 +639,8 @@ func (o *ServerInstance) HasPreferredServerIds() bool {
 	return false
 }
 
-// SetPreferredServerIds gets a reference to the given []string and assigns it to the PreferredServerIds field.
-func (o *ServerInstance) SetPreferredServerIds(v []string) {
+// SetPreferredServerIds gets a reference to the given []float32 and assigns it to the PreferredServerIds field.
+func (o *ServerInstance) SetPreferredServerIds(v []float32) {
 	o.PreferredServerIds = v
 }
 
@@ -701,9 +701,9 @@ func (o *ServerInstance) SetServiceStatus(v string) {
 }
 
 // GetIsVmInstance returns the IsVmInstance field value
-func (o *ServerInstance) GetIsVmInstance() float32 {
+func (o *ServerInstance) GetIsVmInstance() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -712,7 +712,7 @@ func (o *ServerInstance) GetIsVmInstance() float32 {
 
 // GetIsVmInstanceOk returns a tuple with the IsVmInstance field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstance) GetIsVmInstanceOk() (*float32, bool) {
+func (o *ServerInstance) GetIsVmInstanceOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -720,14 +720,14 @@ func (o *ServerInstance) GetIsVmInstanceOk() (*float32, bool) {
 }
 
 // SetIsVmInstance sets field value
-func (o *ServerInstance) SetIsVmInstance(v float32) {
+func (o *ServerInstance) SetIsVmInstance(v int32) {
 	o.IsVmInstance = v
 }
 
 // GetVmInstanceId returns the VmInstanceId field value if set, zero value otherwise.
-func (o *ServerInstance) GetVmInstanceId() float32 {
+func (o *ServerInstance) GetVmInstanceId() int32 {
 	if o == nil || IsNil(o.VmInstanceId) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.VmInstanceId
@@ -735,7 +735,7 @@ func (o *ServerInstance) GetVmInstanceId() float32 {
 
 // GetVmInstanceIdOk returns a tuple with the VmInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstance) GetVmInstanceIdOk() (*float32, bool) {
+func (o *ServerInstance) GetVmInstanceIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.VmInstanceId) {
 		return nil, false
 	}
@@ -751,8 +751,8 @@ func (o *ServerInstance) HasVmInstanceId() bool {
 	return false
 }
 
-// SetVmInstanceId gets a reference to the given float32 and assigns it to the VmInstanceId field.
-func (o *ServerInstance) SetVmInstanceId(v float32) {
+// SetVmInstanceId gets a reference to the given int32 and assigns it to the VmInstanceId field.
+func (o *ServerInstance) SetVmInstanceId(v int32) {
 	o.VmInstanceId = &v
 }
 
@@ -1141,9 +1141,9 @@ func (o *ServerInstance) SetOsInstallImageBuildInfo(v ServerInstanceOsInstallIma
 }
 
 // GetOsReinstallRequired returns the OsReinstallRequired field value if set, zero value otherwise.
-func (o *ServerInstance) GetOsReinstallRequired() float32 {
+func (o *ServerInstance) GetOsReinstallRequired() int32 {
 	if o == nil || IsNil(o.OsReinstallRequired) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.OsReinstallRequired
@@ -1151,7 +1151,7 @@ func (o *ServerInstance) GetOsReinstallRequired() float32 {
 
 // GetOsReinstallRequiredOk returns a tuple with the OsReinstallRequired field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstance) GetOsReinstallRequiredOk() (*float32, bool) {
+func (o *ServerInstance) GetOsReinstallRequiredOk() (*int32, bool) {
 	if o == nil || IsNil(o.OsReinstallRequired) {
 		return nil, false
 	}
@@ -1167,8 +1167,8 @@ func (o *ServerInstance) HasOsReinstallRequired() bool {
 	return false
 }
 
-// SetOsReinstallRequired gets a reference to the given float32 and assigns it to the OsReinstallRequired field.
-func (o *ServerInstance) SetOsReinstallRequired(v float32) {
+// SetOsReinstallRequired gets a reference to the given int32 and assigns it to the OsReinstallRequired field.
+func (o *ServerInstance) SetOsReinstallRequired(v int32) {
 	o.OsReinstallRequired = &v
 }
 

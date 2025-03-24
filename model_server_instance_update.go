@@ -22,12 +22,10 @@ var _ MappedNullable = &ServerInstanceUpdate{}
 type ServerInstanceUpdate struct {
 	// The server instance label.
 	Label *string `json:"label,omitempty"`
-	GroupId *int32 `json:"groupId,omitempty"`
 	// The server type ID.
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
 	// The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal. 
 	TemplateId *int32 `json:"templateId,omitempty"`
-	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -80,38 +78,6 @@ func (o *ServerInstanceUpdate) HasLabel() bool {
 // SetLabel gets a reference to the given string and assigns it to the Label field.
 func (o *ServerInstanceUpdate) SetLabel(v string) {
 	o.Label = &v
-}
-
-// GetGroupId returns the GroupId field value if set, zero value otherwise.
-func (o *ServerInstanceUpdate) GetGroupId() int32 {
-	if o == nil || IsNil(o.GroupId) {
-		var ret int32
-		return ret
-	}
-	return *o.GroupId
-}
-
-// GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceUpdate) GetGroupIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.GroupId) {
-		return nil, false
-	}
-	return o.GroupId, true
-}
-
-// HasGroupId returns a boolean if a field has been set.
-func (o *ServerInstanceUpdate) HasGroupId() bool {
-	if o != nil && !IsNil(o.GroupId) {
-		return true
-	}
-
-	return false
-}
-
-// SetGroupId gets a reference to the given int32 and assigns it to the GroupId field.
-func (o *ServerInstanceUpdate) SetGroupId(v int32) {
-	o.GroupId = &v
 }
 
 // GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
@@ -178,38 +144,6 @@ func (o *ServerInstanceUpdate) SetTemplateId(v int32) {
 	o.TemplateId = &v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *ServerInstanceUpdate) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceUpdate) GetTagsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *ServerInstanceUpdate) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *ServerInstanceUpdate) SetTags(v []string) {
-	o.Tags = v
-}
-
 func (o ServerInstanceUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -223,17 +157,11 @@ func (o ServerInstanceUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
-	if !IsNil(o.GroupId) {
-		toSerialize["groupId"] = o.GroupId
-	}
 	if !IsNil(o.ServerTypeId) {
 		toSerialize["serverTypeId"] = o.ServerTypeId
 	}
 	if !IsNil(o.TemplateId) {
 		toSerialize["templateId"] = o.TemplateId
-	}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -258,10 +186,8 @@ func (o *ServerInstanceUpdate) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
-		delete(additionalProperties, "groupId")
 		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "templateId")
-		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 

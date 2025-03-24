@@ -58,7 +58,7 @@ type NetworkDevice struct {
 	// Management port of the network device
 	ManagementPort float32 `json:"managementPort"`
 	// Is the network device syslog enabled
-	SyslogEnabled bool `json:"syslogEnabled"`
+	SyslogEnabled float32 `json:"syslogEnabled"`
 	// Username used to connect to the network device
 	Username string `json:"username"`
 	// Password used to connect to the network device
@@ -90,13 +90,13 @@ type NetworkDevice struct {
 	// Expected partner hostname during bootstrap
 	BootstrapExpectedPartnerHostname string `json:"bootstrapExpectedPartnerHostname"`
 	// Loopback IPv4 address
-	LoopbackAddressIpv4 string `json:"loopbackAddressIpv4"`
+	LoopbackAddressIpv4 *string `json:"loopbackAddressIpv4,omitempty"`
 	// Loopback IPv6 address
 	LoopbackAddressIpv6 string `json:"loopbackAddressIpv6"`
 	// ASN of the network device
 	Asn float32 `json:"asn"`
 	// VTEP IPv4 address
-	VtepAddressIpv4 string `json:"vtepAddressIpv4"`
+	VtepAddressIpv4 *string `json:"vtepAddressIpv4,omitempty"`
 	// VTEP IPv6 address
 	VtepAddressIpv6 string `json:"vtepAddressIpv6"`
 	// MLAG system MAC address
@@ -114,9 +114,9 @@ type NetworkDevice struct {
 	// Bootstrap readiness check result
 	BootstrapReadinessCheckResult map[string]interface{} `json:"bootstrapReadinessCheckResult"`
 	// Whether the network device is a gateway
-	IsGateway float32 `json:"isGateway"`
+	IsGateway bool `json:"isGateway"`
 	// Reference links
-	Links []Link `json:"links"`
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -126,7 +126,7 @@ type _NetworkDevice NetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressMask string, managementAddressGateway string, managementPort float32, syslogEnabled bool, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv4 string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv4 string, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, defaultMtu float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway float32, links []Link) *NetworkDevice {
+func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressMask string, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, defaultMtu float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
 	this := NetworkDevice{}
 	this.Id = id
 	this.Revision = revision
@@ -162,10 +162,8 @@ func NewNetworkDevice(id string, revision float32, status string, siteId float32
 	this.RequiresOsInstall = requiresOsInstall
 	this.BootstrapSkipInitialConfiguration = bootstrapSkipInitialConfiguration
 	this.BootstrapExpectedPartnerHostname = bootstrapExpectedPartnerHostname
-	this.LoopbackAddressIpv4 = loopbackAddressIpv4
 	this.LoopbackAddressIpv6 = loopbackAddressIpv6
 	this.Asn = asn
-	this.VtepAddressIpv4 = vtepAddressIpv4
 	this.VtepAddressIpv6 = vtepAddressIpv6
 	this.MlagSystemMac = mlagSystemMac
 	this.MlagDomainId = mlagDomainId
@@ -175,7 +173,6 @@ func NewNetworkDevice(id string, revision float32, status string, siteId float32
 	this.SecretsMaterializedForOSAssets = secretsMaterializedForOSAssets
 	this.BootstrapReadinessCheckResult = bootstrapReadinessCheckResult
 	this.IsGateway = isGateway
-	this.Links = links
 	return &this
 }
 
@@ -620,9 +617,9 @@ func (o *NetworkDevice) SetManagementPort(v float32) {
 }
 
 // GetSyslogEnabled returns the SyslogEnabled field value
-func (o *NetworkDevice) GetSyslogEnabled() bool {
+func (o *NetworkDevice) GetSyslogEnabled() float32 {
 	if o == nil {
-		var ret bool
+		var ret float32
 		return ret
 	}
 
@@ -631,7 +628,7 @@ func (o *NetworkDevice) GetSyslogEnabled() bool {
 
 // GetSyslogEnabledOk returns a tuple with the SyslogEnabled field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetSyslogEnabledOk() (*bool, bool) {
+func (o *NetworkDevice) GetSyslogEnabledOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -639,7 +636,7 @@ func (o *NetworkDevice) GetSyslogEnabledOk() (*bool, bool) {
 }
 
 // SetSyslogEnabled sets field value
-func (o *NetworkDevice) SetSyslogEnabled(v bool) {
+func (o *NetworkDevice) SetSyslogEnabled(v float32) {
 	o.SyslogEnabled = v
 }
 
@@ -1003,28 +1000,36 @@ func (o *NetworkDevice) SetBootstrapExpectedPartnerHostname(v string) {
 	o.BootstrapExpectedPartnerHostname = v
 }
 
-// GetLoopbackAddressIpv4 returns the LoopbackAddressIpv4 field value
+// GetLoopbackAddressIpv4 returns the LoopbackAddressIpv4 field value if set, zero value otherwise.
 func (o *NetworkDevice) GetLoopbackAddressIpv4() string {
-	if o == nil {
+	if o == nil || IsNil(o.LoopbackAddressIpv4) {
 		var ret string
 		return ret
 	}
-
-	return o.LoopbackAddressIpv4
+	return *o.LoopbackAddressIpv4
 }
 
-// GetLoopbackAddressIpv4Ok returns a tuple with the LoopbackAddressIpv4 field value
+// GetLoopbackAddressIpv4Ok returns a tuple with the LoopbackAddressIpv4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetLoopbackAddressIpv4Ok() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LoopbackAddressIpv4) {
 		return nil, false
 	}
-	return &o.LoopbackAddressIpv4, true
+	return o.LoopbackAddressIpv4, true
 }
 
-// SetLoopbackAddressIpv4 sets field value
+// HasLoopbackAddressIpv4 returns a boolean if a field has been set.
+func (o *NetworkDevice) HasLoopbackAddressIpv4() bool {
+	if o != nil && !IsNil(o.LoopbackAddressIpv4) {
+		return true
+	}
+
+	return false
+}
+
+// SetLoopbackAddressIpv4 gets a reference to the given string and assigns it to the LoopbackAddressIpv4 field.
 func (o *NetworkDevice) SetLoopbackAddressIpv4(v string) {
-	o.LoopbackAddressIpv4 = v
+	o.LoopbackAddressIpv4 = &v
 }
 
 // GetLoopbackAddressIpv6 returns the LoopbackAddressIpv6 field value
@@ -1075,28 +1080,36 @@ func (o *NetworkDevice) SetAsn(v float32) {
 	o.Asn = v
 }
 
-// GetVtepAddressIpv4 returns the VtepAddressIpv4 field value
+// GetVtepAddressIpv4 returns the VtepAddressIpv4 field value if set, zero value otherwise.
 func (o *NetworkDevice) GetVtepAddressIpv4() string {
-	if o == nil {
+	if o == nil || IsNil(o.VtepAddressIpv4) {
 		var ret string
 		return ret
 	}
-
-	return o.VtepAddressIpv4
+	return *o.VtepAddressIpv4
 }
 
-// GetVtepAddressIpv4Ok returns a tuple with the VtepAddressIpv4 field value
+// GetVtepAddressIpv4Ok returns a tuple with the VtepAddressIpv4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetVtepAddressIpv4Ok() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.VtepAddressIpv4) {
 		return nil, false
 	}
-	return &o.VtepAddressIpv4, true
+	return o.VtepAddressIpv4, true
 }
 
-// SetVtepAddressIpv4 sets field value
+// HasVtepAddressIpv4 returns a boolean if a field has been set.
+func (o *NetworkDevice) HasVtepAddressIpv4() bool {
+	if o != nil && !IsNil(o.VtepAddressIpv4) {
+		return true
+	}
+
+	return false
+}
+
+// SetVtepAddressIpv4 gets a reference to the given string and assigns it to the VtepAddressIpv4 field.
 func (o *NetworkDevice) SetVtepAddressIpv4(v string) {
-	o.VtepAddressIpv4 = v
+	o.VtepAddressIpv4 = &v
 }
 
 // GetVtepAddressIpv6 returns the VtepAddressIpv6 field value
@@ -1292,9 +1305,9 @@ func (o *NetworkDevice) SetBootstrapReadinessCheckResult(v map[string]interface{
 }
 
 // GetIsGateway returns the IsGateway field value
-func (o *NetworkDevice) GetIsGateway() float32 {
+func (o *NetworkDevice) GetIsGateway() bool {
 	if o == nil {
-		var ret float32
+		var ret bool
 		return ret
 	}
 
@@ -1303,7 +1316,7 @@ func (o *NetworkDevice) GetIsGateway() float32 {
 
 // GetIsGatewayOk returns a tuple with the IsGateway field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetIsGatewayOk() (*float32, bool) {
+func (o *NetworkDevice) GetIsGatewayOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -1311,30 +1324,38 @@ func (o *NetworkDevice) GetIsGatewayOk() (*float32, bool) {
 }
 
 // SetIsGateway sets field value
-func (o *NetworkDevice) SetIsGateway(v float32) {
+func (o *NetworkDevice) SetIsGateway(v bool) {
 	o.IsGateway = v
 }
 
-// GetLinks returns the Links field value
+// GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NetworkDevice) GetLinks() []Link {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NetworkDevice) GetLinksOk() ([]Link, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
+// HasLinks returns a boolean if a field has been set.
+func (o *NetworkDevice) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
 func (o *NetworkDevice) SetLinks(v []Link) {
 	o.Links = v
 }
@@ -1383,10 +1404,14 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["requiresOsInstall"] = o.RequiresOsInstall
 	toSerialize["bootstrapSkipInitialConfiguration"] = o.BootstrapSkipInitialConfiguration
 	toSerialize["bootstrapExpectedPartnerHostname"] = o.BootstrapExpectedPartnerHostname
-	toSerialize["loopbackAddressIpv4"] = o.LoopbackAddressIpv4
+	if !IsNil(o.LoopbackAddressIpv4) {
+		toSerialize["loopbackAddressIpv4"] = o.LoopbackAddressIpv4
+	}
 	toSerialize["loopbackAddressIpv6"] = o.LoopbackAddressIpv6
 	toSerialize["asn"] = o.Asn
-	toSerialize["vtepAddressIpv4"] = o.VtepAddressIpv4
+	if !IsNil(o.VtepAddressIpv4) {
+		toSerialize["vtepAddressIpv4"] = o.VtepAddressIpv4
+	}
 	toSerialize["vtepAddressIpv6"] = o.VtepAddressIpv6
 	toSerialize["mlagSystemMac"] = o.MlagSystemMac
 	toSerialize["mlagDomainId"] = o.MlagDomainId
@@ -1396,7 +1421,9 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["secretsMaterializedForOSAssets"] = o.SecretsMaterializedForOSAssets
 	toSerialize["bootstrapReadinessCheckResult"] = o.BootstrapReadinessCheckResult
 	toSerialize["isGateway"] = o.IsGateway
-	toSerialize["links"] = o.Links
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1444,10 +1471,8 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		"requiresOsInstall",
 		"bootstrapSkipInitialConfiguration",
 		"bootstrapExpectedPartnerHostname",
-		"loopbackAddressIpv4",
 		"loopbackAddressIpv6",
 		"asn",
-		"vtepAddressIpv4",
 		"vtepAddressIpv6",
 		"mlagSystemMac",
 		"mlagDomainId",
@@ -1457,7 +1482,6 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		"secretsMaterializedForOSAssets",
 		"bootstrapReadinessCheckResult",
 		"isGateway",
-		"links",
 	}
 
 	allProperties := make(map[string]interface{})

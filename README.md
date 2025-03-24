@@ -413,11 +413,14 @@ Class | Method | HTTP request | Description
 *UserAPI* | [**UpdateUserConfig**](docs/UserAPI.md#updateuserconfig) | **Patch** /api/v2/users/{userId}/config | Update user configuration
 *UserAPI* | [**UpdateUserLimits**](docs/UserAPI.md#updateuserlimits) | **Patch** /api/v2/users/{userId}/actions/change-limits | Update user limits
 *UserAPI* | [**UserControllerAddDelegate**](docs/UserAPI.md#usercontrolleradddelegate) | **Post** /api/v2/users/{userId}/actions/add-delegate/{delegateId} | Add a delegate to a user
+*UserAPI* | [**UserControllerGetUserApiKey**](docs/UserAPI.md#usercontrollergetuserapikey) | **Get** /api/v2/users/{userId}/api-key | Get user API key
 *UserAPI* | [**UserControllerGetUserChildDelegates**](docs/UserAPI.md#usercontrollergetuserchilddelegates) | **Get** /api/v2/users/{userId}/child-delegates | Get user child delegates by ID
 *UserAPI* | [**UserControllerGetUserConfiguration**](docs/UserAPI.md#usercontrollergetuserconfiguration) | **Get** /api/v2/users/{userId}/config | Get user configuration by ID
 *UserAPI* | [**UserControllerGetUserParentDelegates**](docs/UserAPI.md#usercontrollergetuserparentdelegates) | **Get** /api/v2/users/{userId}/parent-delegates | Get user parent delegates by ID
 *UserAPI* | [**UserControllerGetUserPermissions**](docs/UserAPI.md#usercontrollergetuserpermissions) | **Get** /api/v2/users/{userId}/permissions | Get user resource permissions by ID
 *UserAPI* | [**UserControllerGetUserSuspendReasons**](docs/UserAPI.md#usercontrollergetusersuspendreasons) | **Get** /api/v2/users/{userId}/suspend-reasons | Get user suspend reasons by ID
+*UserAPI* | [**UserControllerRegenerateJwtSalt**](docs/UserAPI.md#usercontrollerregeneratejwtsalt) | **Post** /api/v2/users/{userId}/actions/regenerate-jwt-salt | Regenerate user JWT salt. Also logs out all user sessions.
+*UserAPI* | [**UserControllerRegenerateUserApiKey**](docs/UserAPI.md#usercontrollerregenerateuserapikey) | **Post** /api/v2/users/{userId}/actions/regenerate-api-key | Regenerate user API key
 *UserAPI* | [**UserControllerRemoveDelegate**](docs/UserAPI.md#usercontrollerremovedelegate) | **Post** /api/v2/users/{userId}/actions/remove-delegate/{delegateId} | Remove a delegate from a user
 *UserAPI* | [**UserControllerSuspendUser**](docs/UserAPI.md#usercontrollersuspenduser) | **Post** /api/v2/users/{userId}/actions/suspend | Suspend a user
 *UserAPI* | [**UserControllerUnsuspendUser**](docs/UserAPI.md#usercontrollerunsuspenduser) | **Post** /api/v2/users/{userId}/actions/unsuspend | Unsuspend a user
@@ -815,6 +818,7 @@ Class | Method | HTTP request | Description
  - [UpdateVMPoolHostInterface](docs/UpdateVMPoolHostInterface.md)
  - [UpdateVMType](docs/UpdateVMType.md)
  - [User](docs/User.md)
+ - [UserApiKey](docs/UserApiKey.md)
  - [UserConfiguration](docs/UserConfiguration.md)
  - [UserInfo](docs/UserInfo.md)
  - [UserLimits](docs/UserLimits.md)

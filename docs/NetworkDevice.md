@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **ManagementAddressMask** | **string** | Management address mask | 
 **ManagementAddressGateway** | **string** | Management gateway address | 
 **ManagementPort** | **float32** | Management port of the network device | 
-**SyslogEnabled** | **bool** | Is the network device syslog enabled | 
+**SyslogEnabled** | **float32** | Is the network device syslog enabled | 
 **Username** | **string** | Username used to connect to the network device | 
 **ManagementPassword** | **string** | Password used to connect to the network device | 
 **ManagementMacAddress** | **string** | MAC address of the management interface | 
@@ -38,10 +38,10 @@ Name | Type | Description | Notes
 **RequiresOsInstall** | **bool** | Whether the device requires OS installation | 
 **BootstrapSkipInitialConfiguration** | **float32** | Whether to skip initial configuration during bootstrap | 
 **BootstrapExpectedPartnerHostname** | **string** | Expected partner hostname during bootstrap | 
-**LoopbackAddressIpv4** | **string** | Loopback IPv4 address | 
+**LoopbackAddressIpv4** | Pointer to **string** | Loopback IPv4 address | [optional] 
 **LoopbackAddressIpv6** | **string** | Loopback IPv6 address | 
 **Asn** | **float32** | ASN of the network device | 
-**VtepAddressIpv4** | **string** | VTEP IPv4 address | 
+**VtepAddressIpv4** | Pointer to **string** | VTEP IPv4 address | [optional] 
 **VtepAddressIpv6** | **string** | VTEP IPv6 address | 
 **MlagSystemMac** | **string** | MLAG system MAC address | 
 **MlagDomainId** | **float32** | MLAG domain ID | 
@@ -50,14 +50,14 @@ Name | Type | Description | Notes
 **VariablesMaterializedForOSAssets** | **map[string]interface{}** | Variables materialized for OS assets | 
 **SecretsMaterializedForOSAssets** | **map[string]interface{}** | Secrets materialized for OS assets | 
 **BootstrapReadinessCheckResult** | **map[string]interface{}** | Bootstrap readiness check result | 
-**IsGateway** | **float32** | Whether the network device is a gateway | 
-**Links** | [**[]Link**](Link.md) | Reference links | 
+**IsGateway** | **bool** | Whether the network device is a gateway | 
+**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewNetworkDevice
 
-`func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressMask string, managementAddressGateway string, managementPort float32, syslogEnabled bool, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv4 string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv4 string, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, defaultMtu float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway float32, links []Link, ) *NetworkDevice`
+`func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressMask string, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, defaultMtu float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
 
 NewNetworkDevice instantiates a new NetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -434,20 +434,20 @@ SetManagementPort sets ManagementPort field to given value.
 
 ### GetSyslogEnabled
 
-`func (o *NetworkDevice) GetSyslogEnabled() bool`
+`func (o *NetworkDevice) GetSyslogEnabled() float32`
 
 GetSyslogEnabled returns the SyslogEnabled field if non-nil, zero value otherwise.
 
 ### GetSyslogEnabledOk
 
-`func (o *NetworkDevice) GetSyslogEnabledOk() (*bool, bool)`
+`func (o *NetworkDevice) GetSyslogEnabledOk() (*float32, bool)`
 
 GetSyslogEnabledOk returns a tuple with the SyslogEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSyslogEnabled
 
-`func (o *NetworkDevice) SetSyslogEnabled(v bool)`
+`func (o *NetworkDevice) SetSyslogEnabled(v float32)`
 
 SetSyslogEnabled sets SyslogEnabled field to given value.
 
@@ -771,6 +771,11 @@ and a boolean to check if the value has been set.
 
 SetLoopbackAddressIpv4 sets LoopbackAddressIpv4 field to given value.
 
+### HasLoopbackAddressIpv4
+
+`func (o *NetworkDevice) HasLoopbackAddressIpv4() bool`
+
+HasLoopbackAddressIpv4 returns a boolean if a field has been set.
 
 ### GetLoopbackAddressIpv6
 
@@ -831,6 +836,11 @@ and a boolean to check if the value has been set.
 
 SetVtepAddressIpv4 sets VtepAddressIpv4 field to given value.
 
+### HasVtepAddressIpv4
+
+`func (o *NetworkDevice) HasVtepAddressIpv4() bool`
+
+HasVtepAddressIpv4 returns a boolean if a field has been set.
 
 ### GetVtepAddressIpv6
 
@@ -994,20 +1004,20 @@ SetBootstrapReadinessCheckResult sets BootstrapReadinessCheckResult field to giv
 
 ### GetIsGateway
 
-`func (o *NetworkDevice) GetIsGateway() float32`
+`func (o *NetworkDevice) GetIsGateway() bool`
 
 GetIsGateway returns the IsGateway field if non-nil, zero value otherwise.
 
 ### GetIsGatewayOk
 
-`func (o *NetworkDevice) GetIsGatewayOk() (*float32, bool)`
+`func (o *NetworkDevice) GetIsGatewayOk() (*bool, bool)`
 
 GetIsGatewayOk returns a tuple with the IsGateway field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIsGateway
 
-`func (o *NetworkDevice) SetIsGateway(v float32)`
+`func (o *NetworkDevice) SetIsGateway(v bool)`
 
 SetIsGateway sets IsGateway field to given value.
 
@@ -1031,6 +1041,11 @@ and a boolean to check if the value has been set.
 
 SetLinks sets Links field to given value.
 
+### HasLinks
+
+`func (o *NetworkDevice) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

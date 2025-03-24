@@ -21,11 +21,11 @@ Name | Type | Description | Notes
 **TemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
 **InstanceWanMlagId** | Pointer to **int32** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
-**PreferredServerIds** | Pointer to **[]string** |  | [optional] 
+**PreferredServerIds** | Pointer to **[]float32** |  | [optional] 
 **RaidProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | RAID profile for the Instance Interface. | [optional] 
 **ServiceStatus** | **string** | Current status of the server instance. | 
-**IsVmInstance** | **float32** | Flag to indicate if this is a VM instance | 
-**VmInstanceId** | Pointer to **float32** | The id of the linked VM instance | [optional] 
+**IsVmInstance** | **int32** | Flag to indicate if this is a VM instance | 
+**VmInstanceId** | Pointer to **int32** | The id of the linked VM instance | [optional] 
 **Meta** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **OperatingSystemInfo** | Pointer to **map[string]interface{}** | Operating system information of the Instance. | [optional] 
@@ -38,7 +38,7 @@ Name | Type | Description | Notes
 **OsInstallImageUrl** | Pointer to **string** | URL where the OS image is available. | [optional] 
 **OsInstallImageBuildError** | Pointer to **string** | Last error message during OS image build. | [optional] 
 **OsInstallImageBuildInfo** | Pointer to [**ServerInstanceOsInstallImageBuildInfo**](ServerInstanceOsInstallImageBuildInfo.md) | Build info regarding the OS image. | [optional] 
-**OsReinstallRequired** | Pointer to **float32** | OS reinstall is required. | [optional] 
+**OsReinstallRequired** | Pointer to **int32** | OS reinstall is required. | [optional] 
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
 **IscsiInitiatorPasswordEncrypted** | Pointer to **string** | iSCSI Initiator Password for the Instance Interface. | [optional] 
@@ -50,7 +50,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstance
 
-`func NewServerInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance float32, ) *ServerInstance`
+`func NewServerInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance int32, ) *ServerInstance`
 
 NewServerInstance instantiates a new ServerInstance object
 This constructor will assign default values to properties that have it defined,
@@ -457,20 +457,20 @@ HasCustomVariables returns a boolean if a field has been set.
 
 ### GetPreferredServerIds
 
-`func (o *ServerInstance) GetPreferredServerIds() []string`
+`func (o *ServerInstance) GetPreferredServerIds() []float32`
 
 GetPreferredServerIds returns the PreferredServerIds field if non-nil, zero value otherwise.
 
 ### GetPreferredServerIdsOk
 
-`func (o *ServerInstance) GetPreferredServerIdsOk() (*[]string, bool)`
+`func (o *ServerInstance) GetPreferredServerIdsOk() (*[]float32, bool)`
 
 GetPreferredServerIdsOk returns a tuple with the PreferredServerIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPreferredServerIds
 
-`func (o *ServerInstance) SetPreferredServerIds(v []string)`
+`func (o *ServerInstance) SetPreferredServerIds(v []float32)`
 
 SetPreferredServerIds sets PreferredServerIds field to given value.
 
@@ -527,40 +527,40 @@ SetServiceStatus sets ServiceStatus field to given value.
 
 ### GetIsVmInstance
 
-`func (o *ServerInstance) GetIsVmInstance() float32`
+`func (o *ServerInstance) GetIsVmInstance() int32`
 
 GetIsVmInstance returns the IsVmInstance field if non-nil, zero value otherwise.
 
 ### GetIsVmInstanceOk
 
-`func (o *ServerInstance) GetIsVmInstanceOk() (*float32, bool)`
+`func (o *ServerInstance) GetIsVmInstanceOk() (*int32, bool)`
 
 GetIsVmInstanceOk returns a tuple with the IsVmInstance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIsVmInstance
 
-`func (o *ServerInstance) SetIsVmInstance(v float32)`
+`func (o *ServerInstance) SetIsVmInstance(v int32)`
 
 SetIsVmInstance sets IsVmInstance field to given value.
 
 
 ### GetVmInstanceId
 
-`func (o *ServerInstance) GetVmInstanceId() float32`
+`func (o *ServerInstance) GetVmInstanceId() int32`
 
 GetVmInstanceId returns the VmInstanceId field if non-nil, zero value otherwise.
 
 ### GetVmInstanceIdOk
 
-`func (o *ServerInstance) GetVmInstanceIdOk() (*float32, bool)`
+`func (o *ServerInstance) GetVmInstanceIdOk() (*int32, bool)`
 
 GetVmInstanceIdOk returns a tuple with the VmInstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmInstanceId
 
-`func (o *ServerInstance) SetVmInstanceId(v float32)`
+`func (o *ServerInstance) SetVmInstanceId(v int32)`
 
 SetVmInstanceId sets VmInstanceId field to given value.
 
@@ -872,20 +872,20 @@ HasOsInstallImageBuildInfo returns a boolean if a field has been set.
 
 ### GetOsReinstallRequired
 
-`func (o *ServerInstance) GetOsReinstallRequired() float32`
+`func (o *ServerInstance) GetOsReinstallRequired() int32`
 
 GetOsReinstallRequired returns the OsReinstallRequired field if non-nil, zero value otherwise.
 
 ### GetOsReinstallRequiredOk
 
-`func (o *ServerInstance) GetOsReinstallRequiredOk() (*float32, bool)`
+`func (o *ServerInstance) GetOsReinstallRequiredOk() (*int32, bool)`
 
 GetOsReinstallRequiredOk returns a tuple with the OsReinstallRequired field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOsReinstallRequired
 
-`func (o *ServerInstance) SetOsReinstallRequired(v float32)`
+`func (o *ServerInstance) SetOsReinstallRequired(v int32)`
 
 SetOsReinstallRequired sets OsReinstallRequired field to given value.
 

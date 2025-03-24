@@ -429,6 +429,7 @@ docs/UpdateVMPoolHostInterface.md
 docs/UpdateVMType.md
 docs/User.md
 docs/UserAPI.md
+docs/UserApiKey.md
 docs/UserConfiguration.md
 docs/UserInfo.md
 docs/UserLimits.md
@@ -805,6 +806,7 @@ model_update_vm_pool.go
 model_update_vm_pool_host_interface.go
 model_update_vm_type.go
 model_user.go
+model_user_api_key.go
 model_user_configuration.go
 model_user_info.go
 model_user_limits.go
