@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **UpdatedTimestamp** | **string** | Timestamp of the latest update for the Infrastructure. | 
 **Id** | **float32** | Infrastructure Id | 
 **Revision** | **float32** | Revision of the Infrastructure | 
-**ServiceStatus** | **string** | Service status of the Infrastructure | 
+**ServiceStatus** | [**GenericServiceStatus**](GenericServiceStatus.md) | Service status of the Infrastructure | 
 **DatacenterName** | **string** | Datacenter name where the Infrastructure is located. | 
 **SiteId** | **float32** | The ID of the site where the Infrastructure is located. | 
 **CreatedTimestamp** | **string** | Timestamp of the Infrastructure creation. | 
@@ -42,7 +42,7 @@ Name | Type | Description | Notes
 
 ### NewInfrastructure
 
-`func NewInfrastructure(label string, updatedTimestamp string, id float32, revision float32, serviceStatus string, datacenterName string, siteId float32, createdTimestamp string, designIsLocked float32, config InfrastructureConfig, ) *Infrastructure`
+`func NewInfrastructure(label string, updatedTimestamp string, id float32, revision float32, serviceStatus GenericServiceStatus, datacenterName string, siteId float32, createdTimestamp string, designIsLocked float32, config InfrastructureConfig, ) *Infrastructure`
 
 NewInfrastructure instantiates a new Infrastructure object
 This constructor will assign default values to properties that have it defined,
@@ -564,20 +564,20 @@ SetRevision sets Revision field to given value.
 
 ### GetServiceStatus
 
-`func (o *Infrastructure) GetServiceStatus() string`
+`func (o *Infrastructure) GetServiceStatus() GenericServiceStatus`
 
 GetServiceStatus returns the ServiceStatus field if non-nil, zero value otherwise.
 
 ### GetServiceStatusOk
 
-`func (o *Infrastructure) GetServiceStatusOk() (*string, bool)`
+`func (o *Infrastructure) GetServiceStatusOk() (*GenericServiceStatus, bool)`
 
 GetServiceStatusOk returns a tuple with the ServiceStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServiceStatus
 
-`func (o *Infrastructure) SetServiceStatus(v string)`
+`func (o *Infrastructure) SetServiceStatus(v GenericServiceStatus)`
 
 SetServiceStatus sets ServiceStatus field to given value.
 

@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**DeleteFirmwareBinary**](FirmwareBinaryAPI.md#DeleteFirmwareBinary) | **Delete** /api/v2/firmware/binary/{firmwareBinaryId} | Delete Firmware Binary
 [**GetFirmwareBinaries**](FirmwareBinaryAPI.md#GetFirmwareBinaries) | **Get** /api/v2/firmware/binary | Get Firmware Binaries
 [**GetFirmwareBinary**](FirmwareBinaryAPI.md#GetFirmwareBinary) | **Get** /api/v2/firmware/binary/{firmwareBinaryId} | Get Firmware Binary
-[**UpdateFirmwareBinary**](FirmwareBinaryAPI.md#UpdateFirmwareBinary) | **Put** /api/v2/firmware/binary/{firmwareBinaryId} | Update Firmware Binary
 
 
 
@@ -303,78 +302,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UpdateFirmwareBinary
-
-> FirmwareBinary UpdateFirmwareBinary(ctx, firmwareBinaryId).UpdateFirmwareBinary(updateFirmwareBinary).Execute()
-
-Update Firmware Binary
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	firmwareBinaryId := float32(8.14) // float32 | The firmware binary id
-	updateFirmwareBinary := *openapiclient.NewUpdateFirmwareBinary(float32(46), "https://downloads.dell.com/xxxxx", "Test", true, openapiclient.FirmwareBinaryUpdateSeverity("critical"), []map[string]interface{}{map[string]interface{}(123)}, []map[string]interface{}{map[string]interface{}(123)}) // UpdateFirmwareBinary | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirmwareBinaryAPI.UpdateFirmwareBinary(context.Background(), firmwareBinaryId).UpdateFirmwareBinary(updateFirmwareBinary).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBinaryAPI.UpdateFirmwareBinary``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateFirmwareBinary`: FirmwareBinary
-	fmt.Fprintf(os.Stdout, "Response from `FirmwareBinaryAPI.UpdateFirmwareBinary`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firmwareBinaryId** | **float32** | The firmware binary id | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateFirmwareBinaryRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **updateFirmwareBinary** | [**UpdateFirmwareBinary**](UpdateFirmwareBinary.md) |  | 
-
-### Return type
-
-[**FirmwareBinary**](FirmwareBinary.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

@@ -197,6 +197,7 @@ docs/FirmwareVendorType.md
 docs/GenerateFirmwareUpgradeAudit.md
 docs/GenericGUISettings.md
 docs/GenericMeta.md
+docs/GenericServiceStatus.md
 docs/GlobalFirmwareUpgradeConfiguration.md
 docs/Infrastructure.md
 docs/InfrastructureAPI.md
@@ -394,7 +395,6 @@ docs/UpdateExtensionInstance.md
 docs/UpdateFileShare.md
 docs/UpdateFileShareMeta.md
 docs/UpdateFirmwareBaseline.md
-docs/UpdateFirmwareBinary.md
 docs/UpdateFirmwareCatalog.md
 docs/UpdateGlobalFirmwareUpgradeConfiguration.md
 docs/UpdateGroupDrive.md
@@ -599,6 +599,7 @@ model_firmware_vendor_type.go
 model_generate_firmware_upgrade_audit.go
 model_generic_gui_settings.go
 model_generic_meta.go
+model_generic_service_status.go
 model_global_firmware_upgrade_configuration.go
 model_infrastructure.go
 model_infrastructure_config.go
@@ -772,7 +773,6 @@ model_update_extension_instance.go
 model_update_file_share.go
 model_update_file_share_meta.go
 model_update_firmware_baseline.go
-model_update_firmware_binary.go
 model_update_firmware_catalog.go
 model_update_global_firmware_upgrade_configuration.go
 model_update_group_drive.go

@@ -5587,45 +5587,6 @@ paths:
       summary: Get Firmware Binary
       tags:
       - Firmware Binary
-    put:
-      description: Updates a firmware binary
-      operationId: updateFirmwareBinary
-      parameters:
-      - description: The firmware binary id
-        explode: false
-        in: path
-        name: firmwareBinaryId
-        required: true
-        schema:
-          type: number
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateFirmwareBinary'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FirmwareBinary'
-          description: The firmware binary
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not found
-        "409":
-          description: Conflict
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Update Firmware Binary
-      tags:
-      - Firmware Binary
   /api/v2/firmware/catalog:
     get:
       description: Returns a list of firmware catalogs
@@ -34716,109 +34677,6 @@ components:
       - vendorSupportedDevices
       - vendorSupportedSystems
       type: object
-    UpdateFirmwareBinary:
-      example:
-        rebootRequired: true
-        vendorSupportedDevices:
-        - id: "123121"
-          model: R240
-        - id: "123122"
-          model: R740
-        packageId: ID_12
-        externalId: R740-1.0.0
-        packageVersion: 1.0.0
-        catalogId: 46
-        vendorSupportedSystems:
-        - id: PowerEdge
-        - id: ThinkSystem
-        - id: ProLiant
-        vendorInfoUrl: https://www.dell.com/support/home/en-us/drivers/driversdetails?driverid=xxxxx
-        vendor:
-          releaseDateTime: "1231"
-        vendorDownloadUrl: https://downloads.dell.com/xxxxx
-        name: Test
-        updateSeverity: critical
-        cacheDownloadUrl: https://downloads.dell.com/xxxxx
-        vendorReleaseTimestamp: 2020-01-01
-      properties:
-        catalogId:
-          example: 46
-          title: Catalog id
-          type: number
-        externalId:
-          example: R740-1.0.0
-          title: External id
-          type: string
-        vendorInfoUrl:
-          example: https://www.dell.com/support/home/en-us/drivers/driversdetails?driverid=xxxxx
-          title: Vendor info url
-          type: string
-        vendorDownloadUrl:
-          example: https://downloads.dell.com/xxxxx
-          title: Vendor download url
-          type: string
-        cacheDownloadUrl:
-          example: https://downloads.dell.com/xxxxx
-          title: Cache download url
-          type: string
-        name:
-          example: Test
-          title: Firmware binary name
-          type: string
-        packageId:
-          example: ID_12
-          title: Firmware binary package id
-          type: string
-        packageVersion:
-          example: 1.0.0
-          title: Firmware binary package version
-          type: string
-        rebootRequired:
-          example: true
-          title: Firmware binary reboot required
-          type: boolean
-        updateSeverity:
-          allOf:
-          - $ref: '#/components/schemas/FirmwareBinaryUpdateSeverity'
-          example: critical
-          title: Firmware binary update severity
-        vendorSupportedDevices:
-          example:
-          - id: "123121"
-            model: R240
-          - id: "123122"
-            model: R740
-          items:
-            $ref: '#/components/schemas/VendorSupportedDevice'
-          title: Firmware binary vendor supported devices
-          type: array
-        vendorSupportedSystems:
-          example:
-          - id: PowerEdge
-          - id: ThinkSystem
-          - id: ProLiant
-          items:
-            $ref: '#/components/schemas/ServerFirmwareBinaryVendorSupportedSystems'
-          title: Firmware binary vendor supported systems
-          type: array
-        vendorReleaseTimestamp:
-          example: 2020-01-01
-          title: Firmware binary vendor release date
-          type: string
-        vendor:
-          example:
-            releaseDateTime: "1231"
-          title: Firmware binary vendor
-          type: object
-      required:
-      - catalogId
-      - name
-      - rebootRequired
-      - updateSeverity
-      - vendorDownloadUrl
-      - vendorSupportedDevices
-      - vendorSupportedSystems
-      type: object
     FirmwareCatalog:
       example:
         vendorUrl: https://vendor.example.com/catalog
@@ -35595,6 +35453,14 @@ components:
       - baselineFilter
       - vendor
       type: object
+    GenericServiceStatus:
+      enum:
+      - ordered
+      - active
+      - deleted
+      - stopped
+      - suspended
+      type: string
     InfrastructureConfig:
       properties:
         revision:
@@ -35777,7 +35643,7 @@ components:
         customVariables: "{}"
         ipv4UnusedIpAddresses: 2.3021358869347655
         dnsSubdomainPermanentId: 1.2315135367772556
-        serviceStatus: ordered
+        serviceStatus: ""
         isApiPrivate: 7.061401241503109
         links:
         - rel: self
@@ -35881,14 +35747,9 @@ components:
           description: Revision of the Infrastructure
           type: number
         serviceStatus:
+          allOf:
+          - $ref: '#/components/schemas/GenericServiceStatus'
           description: Service status of the Infrastructure
-          enum:
-          - ordered
-          - active
-          - deleted
-          - stopped
-          - suspended
-          type: string
         datacenterName:
           description: Datacenter name where the Infrastructure is located.
           type: string
@@ -35948,7 +35809,7 @@ components:
           customVariables: "{}"
           ipv4UnusedIpAddresses: 2.3021358869347655
           dnsSubdomainPermanentId: 1.2315135367772556
-          serviceStatus: ordered
+          serviceStatus: ""
           isApiPrivate: 7.061401241503109
           links:
           - rel: self
@@ -35990,7 +35851,7 @@ components:
           customVariables: "{}"
           ipv4UnusedIpAddresses: 2.3021358869347655
           dnsSubdomainPermanentId: 1.2315135367772556
-          serviceStatus: ordered
+          serviceStatus: ""
           isApiPrivate: 7.061401241503109
           links:
           - rel: self
@@ -40391,7 +40252,7 @@ components:
           status: active
           username: username
           quarantineVlan: 1.0246457001441578
-        createdTimestamp: 2025-03-24T16:59:34.077Z
+        createdTimestamp: 2025-03-25T13:43:10.472Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -40433,7 +40294,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-03-24T16:59:34.077Z
+        updatedTimestamp: 2025-03-25T13:43:10.472Z
         revision: "1"
       properties:
         siteId:
@@ -40460,12 +40321,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-03-24T16:59:34.077Z
+          example: 2025-03-25T13:43:10.472Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-03-24T16:59:34.077Z
+          example: 2025-03-25T13:43:10.472Z
           format: date-time
           type: string
         links:
@@ -40598,7 +40459,7 @@ components:
             status: active
             username: username
             quarantineVlan: 1.0246457001441578
-          createdTimestamp: 2025-03-24T16:59:34.077Z
+          createdTimestamp: 2025-03-25T13:43:10.472Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -40640,7 +40501,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-24T16:59:34.077Z
+          updatedTimestamp: 2025-03-25T13:43:10.472Z
           revision: "1"
         - networkEquipment:
           - bootstrapReadinessCheckInProgress: 9.301444243932576
@@ -40747,7 +40608,7 @@ components:
             status: active
             username: username
             quarantineVlan: 1.0246457001441578
-          createdTimestamp: 2025-03-24T16:59:34.077Z
+          createdTimestamp: 2025-03-25T13:43:10.472Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -40789,7 +40650,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-24T16:59:34.077Z
+          updatedTimestamp: 2025-03-25T13:43:10.472Z
           revision: "1"
         meta: ""
         links: ""

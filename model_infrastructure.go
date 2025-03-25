@@ -63,7 +63,7 @@ type Infrastructure struct {
 	// Revision of the Infrastructure
 	Revision float32 `json:"revision"`
 	// Service status of the Infrastructure
-	ServiceStatus string `json:"serviceStatus"`
+	ServiceStatus GenericServiceStatus `json:"serviceStatus"`
 	// Datacenter name where the Infrastructure is located.
 	DatacenterName string `json:"datacenterName"`
 	// The ID of the site where the Infrastructure is located.
@@ -94,7 +94,7 @@ type _Infrastructure Infrastructure
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfrastructure(label string, updatedTimestamp string, id float32, revision float32, serviceStatus string, datacenterName string, siteId float32, createdTimestamp string, designIsLocked float32, config InfrastructureConfig) *Infrastructure {
+func NewInfrastructure(label string, updatedTimestamp string, id float32, revision float32, serviceStatus GenericServiceStatus, datacenterName string, siteId float32, createdTimestamp string, designIsLocked float32, config InfrastructureConfig) *Infrastructure {
 	this := Infrastructure{}
 	this.Label = label
 	this.UpdatedTimestamp = updatedTimestamp
@@ -758,9 +758,9 @@ func (o *Infrastructure) SetRevision(v float32) {
 }
 
 // GetServiceStatus returns the ServiceStatus field value
-func (o *Infrastructure) GetServiceStatus() string {
+func (o *Infrastructure) GetServiceStatus() GenericServiceStatus {
 	if o == nil {
-		var ret string
+		var ret GenericServiceStatus
 		return ret
 	}
 
@@ -769,7 +769,7 @@ func (o *Infrastructure) GetServiceStatus() string {
 
 // GetServiceStatusOk returns a tuple with the ServiceStatus field value
 // and a boolean to check if the value has been set.
-func (o *Infrastructure) GetServiceStatusOk() (*string, bool) {
+func (o *Infrastructure) GetServiceStatusOk() (*GenericServiceStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -777,7 +777,7 @@ func (o *Infrastructure) GetServiceStatusOk() (*string, bool) {
 }
 
 // SetServiceStatus sets field value
-func (o *Infrastructure) SetServiceStatus(v string) {
+func (o *Infrastructure) SetServiceStatus(v GenericServiceStatus) {
 	o.ServiceStatus = v
 }
 

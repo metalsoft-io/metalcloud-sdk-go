@@ -73,18 +73,4 @@ func Test_sdk_FirmwareBinaryAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test FirmwareBinaryAPIService UpdateFirmwareBinary", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var firmwareBinaryId float32
-
-		resp, httpRes, err := apiClient.FirmwareBinaryAPI.UpdateFirmwareBinary(context.Background(), firmwareBinaryId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 }

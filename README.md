@@ -164,7 +164,6 @@ Class | Method | HTTP request | Description
 *FirmwareBinaryAPI* | [**DeleteFirmwareBinary**](docs/FirmwareBinaryAPI.md#deletefirmwarebinary) | **Delete** /api/v2/firmware/binary/{firmwareBinaryId} | Delete Firmware Binary
 *FirmwareBinaryAPI* | [**GetFirmwareBinaries**](docs/FirmwareBinaryAPI.md#getfirmwarebinaries) | **Get** /api/v2/firmware/binary | Get Firmware Binaries
 *FirmwareBinaryAPI* | [**GetFirmwareBinary**](docs/FirmwareBinaryAPI.md#getfirmwarebinary) | **Get** /api/v2/firmware/binary/{firmwareBinaryId} | Get Firmware Binary
-*FirmwareBinaryAPI* | [**UpdateFirmwareBinary**](docs/FirmwareBinaryAPI.md#updatefirmwarebinary) | **Put** /api/v2/firmware/binary/{firmwareBinaryId} | Update Firmware Binary
 *FirmwareCatalogAPI* | [**CreateFirmwareCatalogs**](docs/FirmwareCatalogAPI.md#createfirmwarecatalogs) | **Post** /api/v2/firmware/catalog | Create Firmware Catalog
 *FirmwareCatalogAPI* | [**DeleteFirmwareCatalog**](docs/FirmwareCatalogAPI.md#deletefirmwarecatalog) | **Delete** /api/v2/firmware/catalog/{firmwareCatalogId} | Delete Firmware Catalog
 *FirmwareCatalogAPI* | [**GetFirmwareCatalog**](docs/FirmwareCatalogAPI.md#getfirmwarecatalog) | **Get** /api/v2/firmware/catalog/{firmwareCatalogId} | Get Firmware Catalog
@@ -611,6 +610,7 @@ Class | Method | HTTP request | Description
  - [GenerateFirmwareUpgradeAudit](docs/GenerateFirmwareUpgradeAudit.md)
  - [GenericGUISettings](docs/GenericGUISettings.md)
  - [GenericMeta](docs/GenericMeta.md)
+ - [GenericServiceStatus](docs/GenericServiceStatus.md)
  - [GlobalFirmwareUpgradeConfiguration](docs/GlobalFirmwareUpgradeConfiguration.md)
  - [Infrastructure](docs/Infrastructure.md)
  - [InfrastructureConfig](docs/InfrastructureConfig.md)
@@ -784,7 +784,6 @@ Class | Method | HTTP request | Description
  - [UpdateFileShare](docs/UpdateFileShare.md)
  - [UpdateFileShareMeta](docs/UpdateFileShareMeta.md)
  - [UpdateFirmwareBaseline](docs/UpdateFirmwareBaseline.md)
- - [UpdateFirmwareBinary](docs/UpdateFirmwareBinary.md)
  - [UpdateFirmwareCatalog](docs/UpdateFirmwareCatalog.md)
  - [UpdateGlobalFirmwareUpgradeConfiguration](docs/UpdateGlobalFirmwareUpgradeConfiguration.md)
  - [UpdateGroupDrive](docs/UpdateGroupDrive.md)
