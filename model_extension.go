@@ -35,6 +35,8 @@ type Extension struct {
 	Description string `json:"description"`
 	// Extension status
 	Status string `json:"status"`
+	// Extension kind
+	Kind string `json:"kind"`
 	Definition ExtensionDefinition `json:"definition"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
@@ -47,7 +49,7 @@ type _Extension Extension
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtension(id float32, revision float32, slug string, name string, description string, status string, definition ExtensionDefinition) *Extension {
+func NewExtension(id float32, revision float32, slug string, name string, description string, status string, kind string, definition ExtensionDefinition) *Extension {
 	this := Extension{}
 	this.Id = id
 	this.Revision = revision
@@ -55,6 +57,7 @@ func NewExtension(id float32, revision float32, slug string, name string, descri
 	this.Name = name
 	this.Description = description
 	this.Status = status
+	this.Kind = kind
 	this.Definition = definition
 	return &this
 }
@@ -243,6 +246,30 @@ func (o *Extension) SetStatus(v string) {
 	o.Status = v
 }
 
+// GetKind returns the Kind field value
+func (o *Extension) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *Extension) GetKindOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *Extension) SetKind(v string) {
+	o.Kind = v
+}
+
 // GetDefinition returns the Definition field value
 func (o *Extension) GetDefinition() ExtensionDefinition {
 	if o == nil {
@@ -318,6 +345,7 @@ func (o Extension) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["description"] = o.Description
 	toSerialize["status"] = o.Status
+	toSerialize["kind"] = o.Kind
 	toSerialize["definition"] = o.Definition
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -341,6 +369,7 @@ func (o *Extension) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"description",
 		"status",
+		"kind",
 		"definition",
 	}
 
@@ -378,6 +407,7 @@ func (o *Extension) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "kind")
 		delete(additionalProperties, "definition")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

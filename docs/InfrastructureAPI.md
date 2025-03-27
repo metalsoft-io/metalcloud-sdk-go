@@ -510,7 +510,7 @@ Name | Type | Description  | Notes
 
 ## GetInfrastructureStatistics
 
-> GetInfrastructureStatistics(ctx, infrastructureId).Execute()
+> JobGroupStatistics GetInfrastructureStatistics(ctx, infrastructureId).Execute()
 
 Retrieves statistics for the specified infrastructure
 
@@ -533,11 +533,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.InfrastructureAPI.GetInfrastructureStatistics(context.Background(), infrastructureId).Execute()
+	resp, r, err := apiClient.InfrastructureAPI.GetInfrastructureStatistics(context.Background(), infrastructureId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.GetInfrastructureStatistics``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `GetInfrastructureStatistics`: JobGroupStatistics
+	fmt.Fprintf(os.Stdout, "Response from `InfrastructureAPI.GetInfrastructureStatistics`: %v\n", resp)
 }
 ```
 
@@ -560,7 +562,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**JobGroupStatistics**](JobGroupStatistics.md)
 
 ### Authorization
 
@@ -569,7 +571,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

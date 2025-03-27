@@ -244,13 +244,23 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**RemoveNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#removenetworkdevicedefaults) | **Delete** /api/v2/network-devices/defaults | Remove network device defaults
 *NetworkDeviceAPI* | [**ResetNetworkDevice**](docs/NetworkDeviceAPI.md#resetnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
 *NetworkDeviceAPI* | [**SetNetworkDevicePortStatus**](docs/NetworkDeviceAPI.md#setnetworkdeviceportstatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
-*NetworkFabricAPI* | [**AddNetworkEquipmentsToFabric**](docs/NetworkFabricAPI.md#addnetworkequipmentstofabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/network-equipment | Add a list of network equipments to a fabric
+*NetworkEndpointGroupAPI* | [**AddLogicalNetworksToNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#addlogicalnetworkstonetworkendpointgroup) | **Post** /api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks | Add a list of logical networks to a network endpoint group
+*NetworkEndpointGroupAPI* | [**CreateNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#createnetworkendpointgroup) | **Post** /api/v2/network-endpoint-groups | Create a new network endpoint group
+*NetworkEndpointGroupAPI* | [**DeleteNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#deletenetworkendpointgroup) | **Delete** /api/v2/network-endpoint-groups/{networkEndpointGroupId} | Delete a network endpoint group
+*NetworkEndpointGroupAPI* | [**GetNetworkEndpointGroupById**](docs/NetworkEndpointGroupAPI.md#getnetworkendpointgroupbyid) | **Get** /api/v2/network-endpoint-groups/{networkEndpointGroupId} | Get a network endpoint group by ID
+*NetworkEndpointGroupAPI* | [**GetNetworkEndpointGroupLogicalNetwork**](docs/NetworkEndpointGroupAPI.md#getnetworkendpointgrouplogicalnetwork) | **Get** /api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks/{logicalNetworkId} | Get a logical network by its ID
+*NetworkEndpointGroupAPI* | [**GetNetworkEndpointGroupLogicalNetworks**](docs/NetworkEndpointGroupAPI.md#getnetworkendpointgrouplogicalnetworks) | **Get** /api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks | Get a network endpoint group with its logical networks
+*NetworkEndpointGroupAPI* | [**GetNetworkEndpointGroups**](docs/NetworkEndpointGroupAPI.md#getnetworkendpointgroups) | **Get** /api/v2/network-endpoint-groups | List all network endpoint groups
+*NetworkEndpointGroupAPI* | [**RemoveLogicalNetworkFromNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#removelogicalnetworkfromnetworkendpointgroup) | **Delete** /api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks/{logicalNetworkId} | Remove a logical network from a network endpoint group
+*NetworkEndpointGroupAPI* | [**UpdateNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#updatenetworkendpointgroup) | **Patch** /api/v2/network-endpoint-groups/{networkEndpointGroupId} | Update a network endpoint group
+*NetworkEndpointGroupAPI* | [**UpdateNetworkEndpointGroupLogicalNetwork**](docs/NetworkEndpointGroupAPI.md#updatenetworkendpointgrouplogicalnetwork) | **Patch** /api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks/{logicalNetworkId} | Update a logical network in a network endpoint group
+*NetworkFabricAPI* | [**AddNetworkDevicesToFabric**](docs/NetworkFabricAPI.md#addnetworkdevicestofabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/network-devices | Add a list of network devices to a fabric
 *NetworkFabricAPI* | [**CreateNetworkFabric**](docs/NetworkFabricAPI.md#createnetworkfabric) | **Post** /api/v2/network-fabrics | Create a new network fabric
 *NetworkFabricAPI* | [**DeleteNetworkFabric**](docs/NetworkFabricAPI.md#deletenetworkfabric) | **Delete** /api/v2/network-fabrics/{networkFabricId} | Delete a network fabric
-*NetworkFabricAPI* | [**GetFabricAndNetworkEquipment**](docs/NetworkFabricAPI.md#getfabricandnetworkequipment) | **Get** /api/v2/network-fabrics/{networkFabricId}/network-equipment | Get fabric and network equipment associated with the fabric
+*NetworkFabricAPI* | [**GetFabricAndNetworkDevices**](docs/NetworkFabricAPI.md#getfabricandnetworkdevices) | **Get** /api/v2/network-fabrics/{networkFabricId}/network-devices | Get fabric and network devices associated with the fabric
 *NetworkFabricAPI* | [**GetNetworkFabricById**](docs/NetworkFabricAPI.md#getnetworkfabricbyid) | **Get** /api/v2/network-fabrics/{networkFabricId} | Get a network fabric by ID
 *NetworkFabricAPI* | [**GetNetworkFabrics**](docs/NetworkFabricAPI.md#getnetworkfabrics) | **Get** /api/v2/network-fabrics | List all network fabrics
-*NetworkFabricAPI* | [**RemoveNetworkEquipmentFromFabric**](docs/NetworkFabricAPI.md#removenetworkequipmentfromfabric) | **Delete** /api/v2/network-fabrics/{networkFabricId}/network-equipment/{networkEquipmentId} | Remove a network equipment from a fabric
+*NetworkFabricAPI* | [**RemoveNetworkDeviceFromFabric**](docs/NetworkFabricAPI.md#removenetworkdevicefromfabric) | **Delete** /api/v2/network-fabrics/{networkFabricId}/network-devices/{networkDeviceId} | Remove a network device from a fabric
 *NetworkFabricAPI* | [**UpdateNetworkFabric**](docs/NetworkFabricAPI.md#updatenetworkfabric) | **Patch** /api/v2/network-fabrics/{networkFabricId} | Update a network fabric
 *OSTemplateAPI* | [**CreateOSTemplate**](docs/OSTemplateAPI.md#createostemplate) | **Post** /api/v2/os-templates | Create OS template
 *OSTemplateAPI* | [**DeleteOSTemplate**](docs/OSTemplateAPI.md#deleteostemplate) | **Delete** /api/v2/os-templates/{osTemplateId} | Delete OS template
@@ -258,21 +268,6 @@ Class | Method | HTTP request | Description
 *OSTemplateAPI* | [**GetOSTemplateCredentials**](docs/OSTemplateAPI.md#getostemplatecredentials) | **Get** /api/v2/os-templates/{osTemplateId}/credentials | Get OS template credentials
 *OSTemplateAPI* | [**GetOSTemplates**](docs/OSTemplateAPI.md#getostemplates) | **Get** /api/v2/os-templates | Get a list of available OS templates
 *OSTemplateAPI* | [**UpdateOSTemplate**](docs/OSTemplateAPI.md#updateostemplate) | **Put** /api/v2/os-templates/{osTemplateId} | Update OS template
-*ResourcePoolAPI* | [**AddResourcePoolUser**](docs/ResourcePoolAPI.md#addresourcepooluser) | **Post** /api/v2/resource-pools/user/{userId}/pool/{resourcePoolId} | Add a user to a Resource Pool
-*ResourcePoolAPI* | [**AddServerToResourcePool**](docs/ResourcePoolAPI.md#addservertoresourcepool) | **Put** /api/v2/resource-pools/{resourcePoolId}/server/{serverId} | Add a server to a Resource Pool
-*ResourcePoolAPI* | [**AddSubnetPoolToResourcePool**](docs/ResourcePoolAPI.md#addsubnetpooltoresourcepool) | **Put** /api/v2/resource-pools/{resourcePoolId}/subnet-pool/{subnetPoolId} | Add a subnet pool to a resource pool
-*ResourcePoolAPI* | [**CreateResourcePool**](docs/ResourcePoolAPI.md#createresourcepool) | **Post** /api/v2/resource-pools | Creates a Resource Pool
-*ResourcePoolAPI* | [**DeleteResourcePool**](docs/ResourcePoolAPI.md#deleteresourcepool) | **Delete** /api/v2/resource-pools/{resourcePoolId} | Deletes a Resource Pool
-*ResourcePoolAPI* | [**GetResourcePool**](docs/ResourcePoolAPI.md#getresourcepool) | **Get** /api/v2/resource-pools/{resourcePoolId} | Get Resource Pool information
-*ResourcePoolAPI* | [**GetResourcePoolServers**](docs/ResourcePoolAPI.md#getresourcepoolservers) | **Get** /api/v2/resource-pools/{resourcePoolId}/servers | Get all servers that are part of a Resource Pool
-*ResourcePoolAPI* | [**GetResourcePoolSubnetPools**](docs/ResourcePoolAPI.md#getresourcepoolsubnetpools) | **Get** /api/v2/resource-pools/{resourcePoolId}/subnet-pools | Get all subnet pools that are part of a resource pool
-*ResourcePoolAPI* | [**GetResourcePoolUsers**](docs/ResourcePoolAPI.md#getresourcepoolusers) | **Get** /api/v2/resource-pools/{resourcePoolId}/users | Get all users that have access to a Resource Pool
-*ResourcePoolAPI* | [**GetResourcePools**](docs/ResourcePoolAPI.md#getresourcepools) | **Get** /api/v2/resource-pools | Get all Resource Pools
-*ResourcePoolAPI* | [**GetUserResourcePools**](docs/ResourcePoolAPI.md#getuserresourcepools) | **Get** /api/v2/resource-pools/user/{userId} | Get all Resource Pools that a user has access to
-*ResourcePoolAPI* | [**RemoveResourcePoolUser**](docs/ResourcePoolAPI.md#removeresourcepooluser) | **Delete** /api/v2/resource-pools/user/{userId}/pool/{resourcePoolId} | Remove a user from a Resource Pool
-*ResourcePoolAPI* | [**RemoveServerFromResourcePool**](docs/ResourcePoolAPI.md#removeserverfromresourcepool) | **Delete** /api/v2/resource-pools/{resourcePoolId}/server/{serverId} | Remove a server from a Resource Pool
-*ResourcePoolAPI* | [**RemoveSubnetPoolFromResourcePool**](docs/ResourcePoolAPI.md#removesubnetpoolfromresourcepool) | **Delete** /api/v2/resource-pools/{resourcePoolId}/subnet-pool/{subnetPoolId} | Remove a subnet from a resource pool
-*ResourcePoolAPI* | [**UpdateResourcePool**](docs/ResourcePoolAPI.md#updateresourcepool) | **Put** /api/v2/resource-pools/{resourcePoolId} | Updates Resource Pool information
 *SecurityAPI* | [**GetProviders**](docs/SecurityAPI.md#getproviders) | **Get** /api/v2/authentication/providers | Get available authentication providers
 *SecurityAPI* | [**UpdateProvider**](docs/SecurityAPI.md#updateprovider) | **Patch** /api/v2/authentication/providers/{name} | Updates authentication provider
 *ServerAPI* | [**ArchiveServer**](docs/ServerAPI.md#archiveserver) | **Post** /api/v2/servers/{serverId}/actions/archive | Archives a Server
@@ -328,6 +323,7 @@ Class | Method | HTTP request | Description
 *ServerInstanceAPI* | [**GetServerInstanceInterface**](docs/ServerInstanceAPI.md#getserverinstanceinterface) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId} | Get Server Instance Interface details
 *ServerInstanceAPI* | [**GetServerInstanceInterfaces**](docs/ServerInstanceAPI.md#getserverinstanceinterfaces) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces | Get Server Instance Interfaces
 *ServerInstanceAPI* | [**GetServerInstanceStatistics**](docs/ServerInstanceAPI.md#getserverinstancestatistics) | **Get** /api/v2/server-instances/statistics | Get Server Instance counters
+*ServerInstanceAPI* | [**GetServerInstanceVariables**](docs/ServerInstanceAPI.md#getserverinstancevariables) | **Get** /api/v2/server-instances/{serverInstanceId}/variables | Get server instance variables
 *ServerInstanceAPI* | [**GetServerInstances**](docs/ServerInstanceAPI.md#getserverinstances) | **Get** /api/v2/server-instances | List Server Instances
 *ServerInstanceAPI* | [**ReinstallServerInstanceOS**](docs/ServerInstanceAPI.md#reinstallserverinstanceos) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/reinstall-os | Manage the flag to reinstall the operating system on the server
 *ServerInstanceAPI* | [**ResetServerInstance**](docs/ServerInstanceAPI.md#resetserverinstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/reset | Reset a deployed server
@@ -394,6 +390,11 @@ Class | Method | HTTP request | Description
 *StorageAPI* | [**GetStorages**](docs/StorageAPI.md#getstorages) | **Get** /api/v2/storages | Get a list of Storages
 *StorageAPI* | [**UpdateStorage**](docs/StorageAPI.md#updatestorage) | **Patch** /api/v2/storages/{storageId} | Updates a Storage
 *StorageAPI* | [**UpdateStorageNetworkDeviceConfiguration**](docs/StorageAPI.md#updatestoragenetworkdeviceconfiguration) | **Patch** /api/v2/storages/{storageId}/network-device-configurations/{storageNetworkDeviceConfigurationId} | Updates a Storage Network Device Configuration
+*SubnetAPI* | [**CreateSubnet**](docs/SubnetAPI.md#createsubnet) | **Post** /api/v2/subnets/subnets | Create a subnet.
+*SubnetAPI* | [**DeleteSubnet**](docs/SubnetAPI.md#deletesubnet) | **Delete** /api/v2/subnets/{subnetId} | Delete Subnet
+*SubnetAPI* | [**GetSubnet**](docs/SubnetAPI.md#getsubnet) | **Get** /api/v2/subnets/{subnetId} | Retrieves the Subnet information
+*SubnetAPI* | [**GetSubnets**](docs/SubnetAPI.md#getsubnets) | **Get** /api/v2/subnets | List all Subnets
+*SubnetAPI* | [**UpdateSubnet**](docs/SubnetAPI.md#updatesubnet) | **Patch** /api/v2/subnets/{subnetId}/config | Updates Subnet
 *SystemAPI* | [**GetVersion**](docs/SystemAPI.md#getversion) | **Get** /api/v2/version | Get MetalSoft system version
 *TemplateAssetAPI* | [**CreateTemplateAsset**](docs/TemplateAssetAPI.md#createtemplateasset) | **Post** /api/v2/template-assets | Create template asset
 *TemplateAssetAPI* | [**DeleteTemplateAsset**](docs/TemplateAssetAPI.md#deletetemplateasset) | **Delete** /api/v2/template-assets/{templateAssetId} | Delete template asset
@@ -441,6 +442,7 @@ Class | Method | HTTP request | Description
 *VMInstanceAPI* | [**GetInfrastructureVMInstances**](docs/VMInstanceAPI.md#getinfrastructurevminstances) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances | Get all VM Instances on the infrastructure
 *VMInstanceAPI* | [**GetVMInstanceConfigInfo**](docs/VMInstanceAPI.md#getvminstanceconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/config | Get configuration information about the specified VM Instance
 *VMInstanceAPI* | [**GetVMInstancePowerStatus**](docs/VMInstanceAPI.md#getvminstancepowerstatus) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/power-status | Retrieves the power status of the VM Instance
+*VMInstanceAPI* | [**GetVmInstanceVariables**](docs/VMInstanceAPI.md#getvminstancevariables) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/variables | Get VM instance variables
 *VMInstanceAPI* | [**PatchVMInstanceMeta**](docs/VMInstanceAPI.md#patchvminstancemeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/meta | Updates the meta of a VM Instance
 *VMInstanceAPI* | [**RebootVMInstance**](docs/VMInstanceAPI.md#rebootvminstance) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/reboot | Reboots the VM Instance
 *VMInstanceAPI* | [**ShutdownVMInstance**](docs/VMInstanceAPI.md#shutdownvminstance) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/shutdown | Shuts down the VM Instance
@@ -512,6 +514,7 @@ Class | Method | HTTP request | Description
  - [BucketExtendedInfo](docs/BucketExtendedInfo.md)
  - [BucketMeta](docs/BucketMeta.md)
  - [BucketPaginatedList](docs/BucketPaginatedList.md)
+ - [BucketVariables](docs/BucketVariables.md)
  - [CatalogUpdateType](docs/CatalogUpdateType.md)
  - [ChangeUserAccount](docs/ChangeUserAccount.md)
  - [ChangeUserEmail](docs/ChangeUserEmail.md)
@@ -532,8 +535,9 @@ Class | Method | HTTP request | Description
  - [CreateNetwork](docs/CreateNetwork.md)
  - [CreateNetworkDevice](docs/CreateNetworkDevice.md)
  - [CreateNetworkDeviceDefaults](docs/CreateNetworkDeviceDefaults.md)
+ - [CreateNetworkEndpointGroup](docs/CreateNetworkEndpointGroup.md)
+ - [CreateNetworkEndpointGroupLogicalNetwork](docs/CreateNetworkEndpointGroupLogicalNetwork.md)
  - [CreateNetworkFabric](docs/CreateNetworkFabric.md)
- - [CreateResourcePool](docs/CreateResourcePool.md)
  - [CreateServerCleanupPolicy](docs/CreateServerCleanupPolicy.md)
  - [CreateServerDefaultCredentials](docs/CreateServerDefaultCredentials.md)
  - [CreateServerFirmwareUpgradePolicy](docs/CreateServerFirmwareUpgradePolicy.md)
@@ -541,6 +545,7 @@ Class | Method | HTTP request | Description
  - [CreateSharedDrive](docs/CreateSharedDrive.md)
  - [CreateStorage](docs/CreateStorage.md)
  - [CreateStorageNetworkDeviceConfiguration](docs/CreateStorageNetworkDeviceConfiguration.md)
+ - [CreateSubnetDto](docs/CreateSubnetDto.md)
  - [CreateUser](docs/CreateUser.md)
  - [CreateVMInstance](docs/CreateVMInstance.md)
  - [CreateVMInstanceGroup](docs/CreateVMInstanceGroup.md)
@@ -560,6 +565,7 @@ Class | Method | HTTP request | Description
  - [DriveList](docs/DriveList.md)
  - [DriveMeta](docs/DriveMeta.md)
  - [DrivePaginatedList](docs/DrivePaginatedList.md)
+ - [DriveVariables](docs/DriveVariables.md)
  - [EthernetFabric](docs/EthernetFabric.md)
  - [Event](docs/Event.md)
  - [EventPaginatedList](docs/EventPaginatedList.md)
@@ -598,6 +604,7 @@ Class | Method | HTTP request | Description
  - [FileShareHostsModifyBulk](docs/FileShareHostsModifyBulk.md)
  - [FileShareMeta](docs/FileShareMeta.md)
  - [FileSharePaginatedList](docs/FileSharePaginatedList.md)
+ - [FileShareVariables](docs/FileShareVariables.md)
  - [FirmwareBaseline](docs/FirmwareBaseline.md)
  - [FirmwareBaselinePaginatedList](docs/FirmwareBaselinePaginatedList.md)
  - [FirmwareBinary](docs/FirmwareBinary.md)
@@ -622,6 +629,7 @@ Class | Method | HTTP request | Description
  - [InfrastructurePaginatedList](docs/InfrastructurePaginatedList.md)
  - [InfrastructurePolicy](docs/InfrastructurePolicy.md)
  - [InfrastructureResourceUtilizationResponse](docs/InfrastructureResourceUtilizationResponse.md)
+ - [InfrastructureVariables](docs/InfrastructureVariables.md)
  - [InstancesSetPowerState](docs/InstancesSetPowerState.md)
  - [IscsiBootServerInfo](docs/IscsiBootServerInfo.md)
  - [Job](docs/Job.md)
@@ -651,7 +659,11 @@ Class | Method | HTTP request | Description
  - [NetworkDevicePolicy](docs/NetworkDevicePolicy.md)
  - [NetworkDevicePortStatus](docs/NetworkDevicePortStatus.md)
  - [NetworkDeviceStatus](docs/NetworkDeviceStatus.md)
- - [NetworkEquipmentToFabric](docs/NetworkEquipmentToFabric.md)
+ - [NetworkDevicesToFabric](docs/NetworkDevicesToFabric.md)
+ - [NetworkEndpointGroup](docs/NetworkEndpointGroup.md)
+ - [NetworkEndpointGroupLogicalNetworkDto](docs/NetworkEndpointGroupLogicalNetworkDto.md)
+ - [NetworkEndpointGroupLogicalNetworksList](docs/NetworkEndpointGroupLogicalNetworksList.md)
+ - [NetworkEndpointGroupPaginatedList](docs/NetworkEndpointGroupPaginatedList.md)
  - [NetworkFabric](docs/NetworkFabric.md)
  - [NetworkFabricFabricConfiguration](docs/NetworkFabricFabricConfiguration.md)
  - [NetworkFabricPaginatedList](docs/NetworkFabricPaginatedList.md)
@@ -667,15 +679,14 @@ Class | Method | HTTP request | Description
  - [PaginatedResponseLinks](docs/PaginatedResponseLinks.md)
  - [PaginatedResponseMeta](docs/PaginatedResponseMeta.md)
  - [ReRegisterServerResponse](docs/ReRegisterServerResponse.md)
+ - [RedundancyConfig](docs/RedundancyConfig.md)
+ - [RedundancyImplementation](docs/RedundancyImplementation.md)
  - [RegisterServer](docs/RegisterServer.md)
  - [RegisterServerResponse](docs/RegisterServerResponse.md)
  - [RegisterStorageResponse](docs/RegisterStorageResponse.md)
  - [RemoteConsoleInfo](docs/RemoteConsoleInfo.md)
  - [Repo](docs/Repo.md)
- - [ResourcePool](docs/ResourcePool.md)
- - [ResourcePoolPaginatedList](docs/ResourcePoolPaginatedList.md)
- - [ResourcePoolStatistics](docs/ResourcePoolStatistics.md)
- - [ResourcePoolWithStats](docs/ResourcePoolWithStats.md)
+ - [SSHPublicKey](docs/SSHPublicKey.md)
  - [ScheduleFirmwareUpgrade](docs/ScheduleFirmwareUpgrade.md)
  - [SearchFirmwareBinary](docs/SearchFirmwareBinary.md)
  - [Server](docs/Server.md)
@@ -700,6 +711,7 @@ Class | Method | HTTP request | Description
  - [ServerInstance](docs/ServerInstance.md)
  - [ServerInstanceClusterCustomInfo](docs/ServerInstanceClusterCustomInfo.md)
  - [ServerInstanceConfiguration](docs/ServerInstanceConfiguration.md)
+ - [ServerInstanceContextVariables](docs/ServerInstanceContextVariables.md)
  - [ServerInstanceCreate](docs/ServerInstanceCreate.md)
  - [ServerInstanceGroup](docs/ServerInstanceGroup.md)
  - [ServerInstanceGroupConfiguration](docs/ServerInstanceGroupConfiguration.md)
@@ -709,6 +721,7 @@ Class | Method | HTTP request | Description
  - [ServerInstanceGroupInterfacePaginatedList](docs/ServerInstanceGroupInterfacePaginatedList.md)
  - [ServerInstanceGroupPaginatedList](docs/ServerInstanceGroupPaginatedList.md)
  - [ServerInstanceGroupUpdate](docs/ServerInstanceGroupUpdate.md)
+ - [ServerInstanceGroupVariables](docs/ServerInstanceGroupVariables.md)
  - [ServerInstanceInterface](docs/ServerInstanceInterface.md)
  - [ServerInstanceInterfaceConfiguration](docs/ServerInstanceInterfaceConfiguration.md)
  - [ServerInstanceInterfacePaginatedList](docs/ServerInstanceInterfacePaginatedList.md)
@@ -730,6 +743,7 @@ Class | Method | HTTP request | Description
  - [ServerInstanceStorageProfileController](docs/ServerInstanceStorageProfileController.md)
  - [ServerInstanceStorageProfileControllerVolume](docs/ServerInstanceStorageProfileControllerVolume.md)
  - [ServerInstanceUpdate](docs/ServerInstanceUpdate.md)
+ - [ServerInstanceVariables](docs/ServerInstanceVariables.md)
  - [ServerInterface](docs/ServerInterface.md)
  - [ServerMetricsInfo](docs/ServerMetricsInfo.md)
  - [ServerPaginatedList](docs/ServerPaginatedList.md)
@@ -747,6 +761,7 @@ Class | Method | HTTP request | Description
  - [ServerUnmanagedImport](docs/ServerUnmanagedImport.md)
  - [ServerUnmanagedImportInternalInterfaceDto](docs/ServerUnmanagedImportInternalInterfaceDto.md)
  - [ServerVNCInfo](docs/ServerVNCInfo.md)
+ - [ServerVariables](docs/ServerVariables.md)
  - [SharedDrive](docs/SharedDrive.md)
  - [SharedDriveConfiguration](docs/SharedDriveConfiguration.md)
  - [SharedDriveHostBulkOperation](docs/SharedDriveHostBulkOperation.md)
@@ -754,19 +769,24 @@ Class | Method | HTTP request | Description
  - [SharedDriveHostsModifyBulk](docs/SharedDriveHostsModifyBulk.md)
  - [SharedDriveMeta](docs/SharedDriveMeta.md)
  - [SharedDrivePaginatedList](docs/SharedDrivePaginatedList.md)
+ - [SharedDriveVariables](docs/SharedDriveVariables.md)
  - [Site](docs/Site.md)
  - [SiteConfig](docs/SiteConfig.md)
  - [SiteConfigUpdate](docs/SiteConfigUpdate.md)
+ - [SiteConfigVariables](docs/SiteConfigVariables.md)
  - [SiteControllerSeenAliveStatus](docs/SiteControllerSeenAliveStatus.md)
  - [SiteCreate](docs/SiteCreate.md)
  - [SitePaginatedList](docs/SitePaginatedList.md)
  - [SiteStatistics](docs/SiteStatistics.md)
  - [SiteUpdate](docs/SiteUpdate.md)
+ - [SiteVariables](docs/SiteVariables.md)
  - [SpecialPermissions](docs/SpecialPermissions.md)
  - [Storage](docs/Storage.md)
  - [StorageNetworkDeviceConfiguration](docs/StorageNetworkDeviceConfiguration.md)
  - [StorageOptions](docs/StorageOptions.md)
  - [StoragePaginatedList](docs/StoragePaginatedList.md)
+ - [Subnet](docs/Subnet.md)
+ - [SubnetPaginatedList](docs/SubnetPaginatedList.md)
  - [SwitchPosition](docs/SwitchPosition.md)
  - [TemplateAsset](docs/TemplateAsset.md)
  - [TemplateAssetCreate](docs/TemplateAssetCreate.md)
@@ -792,8 +812,9 @@ Class | Method | HTTP request | Description
  - [UpdateLogicalNetworkDto](docs/UpdateLogicalNetworkDto.md)
  - [UpdateLogicalNetworkProfileDto](docs/UpdateLogicalNetworkProfileDto.md)
  - [UpdateNetworkDevice](docs/UpdateNetworkDevice.md)
+ - [UpdateNetworkEndpointGroup](docs/UpdateNetworkEndpointGroup.md)
+ - [UpdateNetworkEndpointGroupLogicalNetworkDto](docs/UpdateNetworkEndpointGroupLogicalNetworkDto.md)
  - [UpdateNetworkFabric](docs/UpdateNetworkFabric.md)
- - [UpdateResourcePool](docs/UpdateResourcePool.md)
  - [UpdateServer](docs/UpdateServer.md)
  - [UpdateServerCleanupPolicy](docs/UpdateServerCleanupPolicy.md)
  - [UpdateServerComponent](docs/UpdateServerComponent.md)
@@ -806,6 +827,7 @@ Class | Method | HTTP request | Description
  - [UpdateStorageInternal](docs/UpdateStorageInternal.md)
  - [UpdateStorageNetworkDeviceConfiguration](docs/UpdateStorageNetworkDeviceConfiguration.md)
  - [UpdateStorageOptions](docs/UpdateStorageOptions.md)
+ - [UpdateSubnet](docs/UpdateSubnet.md)
  - [UpdateUser](docs/UpdateUser.md)
  - [UpdateUserPermissionsDto](docs/UpdateUserPermissionsDto.md)
  - [UpdateVM](docs/UpdateVM.md)
@@ -851,6 +873,7 @@ Class | Method | HTTP request | Description
  - [VMType](docs/VMType.md)
  - [VMTypePaginatedList](docs/VMTypePaginatedList.md)
  - [Version](docs/Version.md)
+ - [VmInstanceContextVariables](docs/VmInstanceContextVariables.md)
 
 
 ## Documentation For Authorization

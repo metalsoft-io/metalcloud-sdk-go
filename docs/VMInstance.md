@@ -23,7 +23,6 @@ Name | Type | Description | Notes
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the VM Instance. | [optional] 
 **DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the VM Instance. | [optional] 
 **DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the VM Instance. | [optional] 
-**VariablesRenderedTemplateAssets** | Pointer to **map[string]interface{}** | Variables object used when building the OS image. | [optional] 
 **UniqueIndex** | Pointer to **float32** | Unique index of the VM Instance. | [optional] 
 **CreatedTimestamp** | **string** | Timestamp of the VM Instance creation. | 
 **Config** | [**VMInstanceConfiguration**](VMInstanceConfiguration.md) | The current changes to be deployed for the VM Instance. | 
@@ -468,31 +467,6 @@ SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 `func (o *VMInstance) HasDnsSubdomainPermanentId() bool`
 
 HasDnsSubdomainPermanentId returns a boolean if a field has been set.
-
-### GetVariablesRenderedTemplateAssets
-
-`func (o *VMInstance) GetVariablesRenderedTemplateAssets() map[string]interface{}`
-
-GetVariablesRenderedTemplateAssets returns the VariablesRenderedTemplateAssets field if non-nil, zero value otherwise.
-
-### GetVariablesRenderedTemplateAssetsOk
-
-`func (o *VMInstance) GetVariablesRenderedTemplateAssetsOk() (*map[string]interface{}, bool)`
-
-GetVariablesRenderedTemplateAssetsOk returns a tuple with the VariablesRenderedTemplateAssets field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVariablesRenderedTemplateAssets
-
-`func (o *VMInstance) SetVariablesRenderedTemplateAssets(v map[string]interface{})`
-
-SetVariablesRenderedTemplateAssets sets VariablesRenderedTemplateAssets field to given value.
-
-### HasVariablesRenderedTemplateAssets
-
-`func (o *VMInstance) HasVariablesRenderedTemplateAssets() bool`
-
-HasVariablesRenderedTemplateAssets returns a boolean if a field has been set.
 
 ### GetUniqueIndex
 

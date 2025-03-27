@@ -7,13 +7,14 @@ Name | Type | Description | Notes
 **Name** | **string** | The extension name | 
 **Label** | Pointer to **string** | The extension unique label | [optional] 
 **Description** | **string** | The extension description | 
+**Kind** | **string** | Extension kind | 
 **Definition** | [**ExtensionDefinition**](ExtensionDefinition.md) |  | 
 
 ## Methods
 
 ### NewCreateExtension
 
-`func NewCreateExtension(name string, description string, definition ExtensionDefinition, ) *CreateExtension`
+`func NewCreateExtension(name string, description string, kind string, definition ExtensionDefinition, ) *CreateExtension`
 
 NewCreateExtension instantiates a new CreateExtension object
 This constructor will assign default values to properties that have it defined,
@@ -91,6 +92,26 @@ and a boolean to check if the value has been set.
 `func (o *CreateExtension) SetDescription(v string)`
 
 SetDescription sets Description field to given value.
+
+
+### GetKind
+
+`func (o *CreateExtension) GetKind() string`
+
+GetKind returns the Kind field if non-nil, zero value otherwise.
+
+### GetKindOk
+
+`func (o *CreateExtension) GetKindOk() (*string, bool)`
+
+GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKind
+
+`func (o *CreateExtension) SetKind(v string)`
+
+SetKind sets Kind field to given value.
 
 
 ### GetDefinition

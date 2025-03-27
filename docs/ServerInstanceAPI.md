@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**GetServerInstanceInterface**](ServerInstanceAPI.md#GetServerInstanceInterface) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId} | Get Server Instance Interface details
 [**GetServerInstanceInterfaces**](ServerInstanceAPI.md#GetServerInstanceInterfaces) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces | Get Server Instance Interfaces
 [**GetServerInstanceStatistics**](ServerInstanceAPI.md#GetServerInstanceStatistics) | **Get** /api/v2/server-instances/statistics | Get Server Instance counters
+[**GetServerInstanceVariables**](ServerInstanceAPI.md#GetServerInstanceVariables) | **Get** /api/v2/server-instances/{serverInstanceId}/variables | Get server instance variables
 [**GetServerInstances**](ServerInstanceAPI.md#GetServerInstances) | **Get** /api/v2/server-instances | List Server Instances
 [**ReinstallServerInstanceOS**](ServerInstanceAPI.md#ReinstallServerInstanceOS) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/reinstall-os | Manage the flag to reinstall the operating system on the server
 [**ResetServerInstance**](ServerInstanceAPI.md#ResetServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/reset | Reset a deployed server
@@ -617,7 +618,7 @@ Name | Type | Description  | Notes
 
 ## GetServerInstanceCredentials
 
-> string GetServerInstanceCredentials(ctx, serverInstanceId).Execute()
+> SSHPublicKey GetServerInstanceCredentials(ctx, serverInstanceId).Execute()
 
 Get Server Instance credentials
 
@@ -645,7 +646,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetServerInstanceCredentials``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetServerInstanceCredentials`: string
+	// response from `GetServerInstanceCredentials`: SSHPublicKey
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.GetServerInstanceCredentials`: %v\n", resp)
 }
 ```
@@ -669,7 +670,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**string**
+[**SSHPublicKey**](SSHPublicKey.md)
 
 ### Authorization
 
@@ -962,6 +963,74 @@ Other parameters are passed through a pointer to a apiGetServerInstanceStatistic
 ### Return type
 
 [**ServerInstanceStatistics**](ServerInstanceStatistics.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServerInstanceVariables
+
+> ServerInstanceContextVariables GetServerInstanceVariables(ctx, serverInstanceId).Execute()
+
+Get server instance variables
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceAPI.GetServerInstanceVariables(context.Background(), serverInstanceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetServerInstanceVariables``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerInstanceVariables`: ServerInstanceContextVariables
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.GetServerInstanceVariables`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerInstanceVariablesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**ServerInstanceContextVariables**](ServerInstanceContextVariables.md)
 
 ### Authorization
 

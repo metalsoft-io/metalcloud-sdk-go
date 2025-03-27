@@ -770,7 +770,7 @@ type InfrastructureAPIGetInfrastructureStatisticsRequest struct {
 	infrastructureId float32
 }
 
-func (r InfrastructureAPIGetInfrastructureStatisticsRequest) Execute() (*http.Response, error) {
+func (r InfrastructureAPIGetInfrastructureStatisticsRequest) Execute() (*JobGroupStatistics, *http.Response, error) {
 	return r.ApiService.GetInfrastructureStatisticsExecute(r)
 }
 
@@ -792,16 +792,18 @@ func (a *InfrastructureAPIService) GetInfrastructureStatistics(ctx context.Conte
 }
 
 // Execute executes the request
-func (a *InfrastructureAPIService) GetInfrastructureStatisticsExecute(r InfrastructureAPIGetInfrastructureStatisticsRequest) (*http.Response, error) {
+//  @return JobGroupStatistics
+func (a *InfrastructureAPIService) GetInfrastructureStatisticsExecute(r InfrastructureAPIGetInfrastructureStatisticsRequest) (*JobGroupStatistics, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *JobGroupStatistics
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InfrastructureAPIService.GetInfrastructureStatistics")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/statistics"
@@ -821,7 +823,7 @@ func (a *InfrastructureAPIService) GetInfrastructureStatisticsExecute(r Infrastr
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -830,19 +832,19 @@ func (a *InfrastructureAPIService) GetInfrastructureStatisticsExecute(r Infrastr
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -850,10 +852,19 @@ func (a *InfrastructureAPIService) GetInfrastructureStatisticsExecute(r Infrastr
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type InfrastructureAPIGetInfrastructureUserLimitsRequest struct {

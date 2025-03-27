@@ -29,10 +29,6 @@ Name | Type | Description | Notes
 **Meta** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **OperatingSystemInfo** | Pointer to **map[string]interface{}** | Operating system information of the Instance. | [optional] 
-**VariablesOsAssetsTemplateTypeAdvanced** | Pointer to **map[string]interface{}** | Advanced variables used when building the OS image. | [optional] 
-**SecretsOsAssetsTemplateTypeAdvanced** | Pointer to **map[string]interface{}** | Advanced secrets used when building the OS image. | [optional] 
-**VariablesMaterializedForOSAssets** | Pointer to **map[string]interface{}** | Variables used when building the OS image. | [optional] 
-**SecretsMaterializedForOSAssets** | Pointer to **map[string]interface{}** | Secrets used when building the OS image. | [optional] 
 **ClusterCustomInfo** | Pointer to [**ServerInstanceClusterCustomInfo**](ServerInstanceClusterCustomInfo.md) |  | [optional] 
 **OsInstallError** | Pointer to **string** | Last error message during OS install. | [optional] 
 **OsInstallImageUrl** | Pointer to **string** | URL where the OS image is available. | [optional] 
@@ -644,106 +640,6 @@ SetOperatingSystemInfo sets OperatingSystemInfo field to given value.
 `func (o *ServerInstance) HasOperatingSystemInfo() bool`
 
 HasOperatingSystemInfo returns a boolean if a field has been set.
-
-### GetVariablesOsAssetsTemplateTypeAdvanced
-
-`func (o *ServerInstance) GetVariablesOsAssetsTemplateTypeAdvanced() map[string]interface{}`
-
-GetVariablesOsAssetsTemplateTypeAdvanced returns the VariablesOsAssetsTemplateTypeAdvanced field if non-nil, zero value otherwise.
-
-### GetVariablesOsAssetsTemplateTypeAdvancedOk
-
-`func (o *ServerInstance) GetVariablesOsAssetsTemplateTypeAdvancedOk() (*map[string]interface{}, bool)`
-
-GetVariablesOsAssetsTemplateTypeAdvancedOk returns a tuple with the VariablesOsAssetsTemplateTypeAdvanced field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVariablesOsAssetsTemplateTypeAdvanced
-
-`func (o *ServerInstance) SetVariablesOsAssetsTemplateTypeAdvanced(v map[string]interface{})`
-
-SetVariablesOsAssetsTemplateTypeAdvanced sets VariablesOsAssetsTemplateTypeAdvanced field to given value.
-
-### HasVariablesOsAssetsTemplateTypeAdvanced
-
-`func (o *ServerInstance) HasVariablesOsAssetsTemplateTypeAdvanced() bool`
-
-HasVariablesOsAssetsTemplateTypeAdvanced returns a boolean if a field has been set.
-
-### GetSecretsOsAssetsTemplateTypeAdvanced
-
-`func (o *ServerInstance) GetSecretsOsAssetsTemplateTypeAdvanced() map[string]interface{}`
-
-GetSecretsOsAssetsTemplateTypeAdvanced returns the SecretsOsAssetsTemplateTypeAdvanced field if non-nil, zero value otherwise.
-
-### GetSecretsOsAssetsTemplateTypeAdvancedOk
-
-`func (o *ServerInstance) GetSecretsOsAssetsTemplateTypeAdvancedOk() (*map[string]interface{}, bool)`
-
-GetSecretsOsAssetsTemplateTypeAdvancedOk returns a tuple with the SecretsOsAssetsTemplateTypeAdvanced field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSecretsOsAssetsTemplateTypeAdvanced
-
-`func (o *ServerInstance) SetSecretsOsAssetsTemplateTypeAdvanced(v map[string]interface{})`
-
-SetSecretsOsAssetsTemplateTypeAdvanced sets SecretsOsAssetsTemplateTypeAdvanced field to given value.
-
-### HasSecretsOsAssetsTemplateTypeAdvanced
-
-`func (o *ServerInstance) HasSecretsOsAssetsTemplateTypeAdvanced() bool`
-
-HasSecretsOsAssetsTemplateTypeAdvanced returns a boolean if a field has been set.
-
-### GetVariablesMaterializedForOSAssets
-
-`func (o *ServerInstance) GetVariablesMaterializedForOSAssets() map[string]interface{}`
-
-GetVariablesMaterializedForOSAssets returns the VariablesMaterializedForOSAssets field if non-nil, zero value otherwise.
-
-### GetVariablesMaterializedForOSAssetsOk
-
-`func (o *ServerInstance) GetVariablesMaterializedForOSAssetsOk() (*map[string]interface{}, bool)`
-
-GetVariablesMaterializedForOSAssetsOk returns a tuple with the VariablesMaterializedForOSAssets field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVariablesMaterializedForOSAssets
-
-`func (o *ServerInstance) SetVariablesMaterializedForOSAssets(v map[string]interface{})`
-
-SetVariablesMaterializedForOSAssets sets VariablesMaterializedForOSAssets field to given value.
-
-### HasVariablesMaterializedForOSAssets
-
-`func (o *ServerInstance) HasVariablesMaterializedForOSAssets() bool`
-
-HasVariablesMaterializedForOSAssets returns a boolean if a field has been set.
-
-### GetSecretsMaterializedForOSAssets
-
-`func (o *ServerInstance) GetSecretsMaterializedForOSAssets() map[string]interface{}`
-
-GetSecretsMaterializedForOSAssets returns the SecretsMaterializedForOSAssets field if non-nil, zero value otherwise.
-
-### GetSecretsMaterializedForOSAssetsOk
-
-`func (o *ServerInstance) GetSecretsMaterializedForOSAssetsOk() (*map[string]interface{}, bool)`
-
-GetSecretsMaterializedForOSAssetsOk returns a tuple with the SecretsMaterializedForOSAssets field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSecretsMaterializedForOSAssets
-
-`func (o *ServerInstance) SetSecretsMaterializedForOSAssets(v map[string]interface{})`
-
-SetSecretsMaterializedForOSAssets sets SecretsMaterializedForOSAssets field to given value.
-
-### HasSecretsMaterializedForOSAssets
-
-`func (o *ServerInstance) HasSecretsMaterializedForOSAssets() bool`
-
-HasSecretsMaterializedForOSAssets returns a boolean if a field has been set.
 
 ### GetClusterCustomInfo
 

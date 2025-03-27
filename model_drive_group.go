@@ -30,7 +30,6 @@ type DriveGroup struct {
 	// Default disk size in MB for new Drives in the Drive Group
 	DriveSizeMbDefault float32 `json:"driveSizeMbDefault"`
 	ServerInstanceGroupId *float32 `json:"serverInstanceGroupId,omitempty"`
-	ContainerArrayId *float32 `json:"containerArrayId,omitempty"`
 	// Flag to determine whether the Drive Group should be expanded with a Server Instance Group by adding one drive for each instance
 	ExpandWithServerInstanceGroup float32 `json:"expandWithServerInstanceGroup"`
 	// The IO limit policy of the Drive Group.
@@ -236,38 +235,6 @@ func (o *DriveGroup) HasServerInstanceGroupId() bool {
 // SetServerInstanceGroupId gets a reference to the given float32 and assigns it to the ServerInstanceGroupId field.
 func (o *DriveGroup) SetServerInstanceGroupId(v float32) {
 	o.ServerInstanceGroupId = &v
-}
-
-// GetContainerArrayId returns the ContainerArrayId field value if set, zero value otherwise.
-func (o *DriveGroup) GetContainerArrayId() float32 {
-	if o == nil || IsNil(o.ContainerArrayId) {
-		var ret float32
-		return ret
-	}
-	return *o.ContainerArrayId
-}
-
-// GetContainerArrayIdOk returns a tuple with the ContainerArrayId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DriveGroup) GetContainerArrayIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.ContainerArrayId) {
-		return nil, false
-	}
-	return o.ContainerArrayId, true
-}
-
-// HasContainerArrayId returns a boolean if a field has been set.
-func (o *DriveGroup) HasContainerArrayId() bool {
-	if o != nil && !IsNil(o.ContainerArrayId) {
-		return true
-	}
-
-	return false
-}
-
-// SetContainerArrayId gets a reference to the given float32 and assigns it to the ContainerArrayId field.
-func (o *DriveGroup) SetContainerArrayId(v float32) {
-	o.ContainerArrayId = &v
 }
 
 // GetExpandWithServerInstanceGroup returns the ExpandWithServerInstanceGroup field value
@@ -785,9 +752,6 @@ func (o DriveGroup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServerInstanceGroupId) {
 		toSerialize["serverInstanceGroupId"] = o.ServerInstanceGroupId
 	}
-	if !IsNil(o.ContainerArrayId) {
-		toSerialize["containerArrayId"] = o.ContainerArrayId
-	}
 	toSerialize["expandWithServerInstanceGroup"] = o.ExpandWithServerInstanceGroup
 	if !IsNil(o.IoLimitPolicy) {
 		toSerialize["ioLimitPolicy"] = o.IoLimitPolicy
@@ -882,7 +846,6 @@ func (o *DriveGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "templateId")
 		delete(additionalProperties, "driveSizeMbDefault")
 		delete(additionalProperties, "serverInstanceGroupId")
-		delete(additionalProperties, "containerArrayId")
 		delete(additionalProperties, "expandWithServerInstanceGroup")
 		delete(additionalProperties, "ioLimitPolicy")
 		delete(additionalProperties, "storageType")

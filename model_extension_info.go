@@ -32,6 +32,8 @@ type ExtensionInfo struct {
 	Description *string `json:"description,omitempty"`
 	// Extension status
 	Status *string `json:"status,omitempty"`
+	// Extension kind
+	Kind *string `json:"kind,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	// Icon of the extension.
@@ -250,6 +252,38 @@ func (o *ExtensionInfo) SetStatus(v string) {
 	o.Status = &v
 }
 
+// GetKind returns the Kind field value if set, zero value otherwise.
+func (o *ExtensionInfo) GetKind() string {
+	if o == nil || IsNil(o.Kind) {
+		var ret string
+		return ret
+	}
+	return *o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInfo) GetKindOk() (*string, bool) {
+	if o == nil || IsNil(o.Kind) {
+		return nil, false
+	}
+	return o.Kind, true
+}
+
+// HasKind returns a boolean if a field has been set.
+func (o *ExtensionInfo) HasKind() bool {
+	if o != nil && !IsNil(o.Kind) {
+		return true
+	}
+
+	return false
+}
+
+// SetKind gets a reference to the given string and assigns it to the Kind field.
+func (o *ExtensionInfo) SetKind(v string) {
+	o.Kind = &v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ExtensionInfo) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -342,6 +376,9 @@ func (o ExtensionInfo) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+	if !IsNil(o.Kind) {
+		toSerialize["kind"] = o.Kind
+	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -376,6 +413,7 @@ func (o *ExtensionInfo) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "kind")
 		delete(additionalProperties, "links")
 		delete(additionalProperties, "icon")
 		o.AdditionalProperties = additionalProperties

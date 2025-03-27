@@ -122,9 +122,10 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		var infrastructureId float32
 
-		httpRes, err := apiClient.InfrastructureAPI.GetInfrastructureStatistics(context.Background(), infrastructureId).Execute()
+		resp, httpRes, err := apiClient.InfrastructureAPI.GetInfrastructureStatistics(context.Background(), infrastructureId).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

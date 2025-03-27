@@ -4,22 +4,22 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddNetworkEquipmentsToFabric**](NetworkFabricAPI.md#AddNetworkEquipmentsToFabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/network-equipment | Add a list of network equipments to a fabric
+[**AddNetworkDevicesToFabric**](NetworkFabricAPI.md#AddNetworkDevicesToFabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/network-devices | Add a list of network devices to a fabric
 [**CreateNetworkFabric**](NetworkFabricAPI.md#CreateNetworkFabric) | **Post** /api/v2/network-fabrics | Create a new network fabric
 [**DeleteNetworkFabric**](NetworkFabricAPI.md#DeleteNetworkFabric) | **Delete** /api/v2/network-fabrics/{networkFabricId} | Delete a network fabric
-[**GetFabricAndNetworkEquipment**](NetworkFabricAPI.md#GetFabricAndNetworkEquipment) | **Get** /api/v2/network-fabrics/{networkFabricId}/network-equipment | Get fabric and network equipment associated with the fabric
+[**GetFabricAndNetworkDevices**](NetworkFabricAPI.md#GetFabricAndNetworkDevices) | **Get** /api/v2/network-fabrics/{networkFabricId}/network-devices | Get fabric and network devices associated with the fabric
 [**GetNetworkFabricById**](NetworkFabricAPI.md#GetNetworkFabricById) | **Get** /api/v2/network-fabrics/{networkFabricId} | Get a network fabric by ID
 [**GetNetworkFabrics**](NetworkFabricAPI.md#GetNetworkFabrics) | **Get** /api/v2/network-fabrics | List all network fabrics
-[**RemoveNetworkEquipmentFromFabric**](NetworkFabricAPI.md#RemoveNetworkEquipmentFromFabric) | **Delete** /api/v2/network-fabrics/{networkFabricId}/network-equipment/{networkEquipmentId} | Remove a network equipment from a fabric
+[**RemoveNetworkDeviceFromFabric**](NetworkFabricAPI.md#RemoveNetworkDeviceFromFabric) | **Delete** /api/v2/network-fabrics/{networkFabricId}/network-devices/{networkDeviceId} | Remove a network device from a fabric
 [**UpdateNetworkFabric**](NetworkFabricAPI.md#UpdateNetworkFabric) | **Patch** /api/v2/network-fabrics/{networkFabricId} | Update a network fabric
 
 
 
-## AddNetworkEquipmentsToFabric
+## AddNetworkDevicesToFabric
 
-> NetworkFabric AddNetworkEquipmentsToFabric(ctx, networkFabricId).NetworkEquipmentToFabric(networkEquipmentToFabric).Execute()
+> NetworkFabric AddNetworkDevicesToFabric(ctx, networkFabricId).NetworkDevicesToFabric(networkDevicesToFabric).Execute()
 
-Add a list of network equipments to a fabric
+Add a list of network devices to a fabric
 
 ### Example
 
@@ -35,17 +35,17 @@ import (
 
 func main() {
 	networkFabricId := int32(56) // int32 | The ID of the fabric
-	networkEquipmentToFabric := *openapiclient.NewNetworkEquipmentToFabric([]float32{float32(123)}) // NetworkEquipmentToFabric | The network equipment list containing the IDs of the network equipments to add to the fabric
+	networkDevicesToFabric := *openapiclient.NewNetworkDevicesToFabric([]float32{float32(123)}) // NetworkDevicesToFabric | The network device list containing the IDs of the network devices to add to the fabric
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkFabricAPI.AddNetworkEquipmentsToFabric(context.Background(), networkFabricId).NetworkEquipmentToFabric(networkEquipmentToFabric).Execute()
+	resp, r, err := apiClient.NetworkFabricAPI.AddNetworkDevicesToFabric(context.Background(), networkFabricId).NetworkDevicesToFabric(networkDevicesToFabric).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.AddNetworkEquipmentsToFabric``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.AddNetworkDevicesToFabric``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AddNetworkEquipmentsToFabric`: NetworkFabric
-	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricAPI.AddNetworkEquipmentsToFabric`: %v\n", resp)
+	// response from `AddNetworkDevicesToFabric`: NetworkFabric
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricAPI.AddNetworkDevicesToFabric`: %v\n", resp)
 }
 ```
 
@@ -59,13 +59,13 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAddNetworkEquipmentsToFabricRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAddNetworkDevicesToFabricRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **networkEquipmentToFabric** | [**NetworkEquipmentToFabric**](NetworkEquipmentToFabric.md) | The network equipment list containing the IDs of the network equipments to add to the fabric | 
+ **networkDevicesToFabric** | [**NetworkDevicesToFabric**](NetworkDevicesToFabric.md) | The network device list containing the IDs of the network devices to add to the fabric | 
 
 ### Return type
 
@@ -215,11 +215,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetFabricAndNetworkEquipment
+## GetFabricAndNetworkDevices
 
-> NetworkFabric GetFabricAndNetworkEquipment(ctx, networkFabricId).Execute()
+> NetworkFabric GetFabricAndNetworkDevices(ctx, networkFabricId).Execute()
 
-Get fabric and network equipment associated with the fabric
+Get fabric and network devices associated with the fabric
 
 ### Example
 
@@ -238,13 +238,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkFabricAPI.GetFabricAndNetworkEquipment(context.Background(), networkFabricId).Execute()
+	resp, r, err := apiClient.NetworkFabricAPI.GetFabricAndNetworkDevices(context.Background(), networkFabricId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.GetFabricAndNetworkEquipment``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.GetFabricAndNetworkDevices``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetFabricAndNetworkEquipment`: NetworkFabric
-	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricAPI.GetFabricAndNetworkEquipment`: %v\n", resp)
+	// response from `GetFabricAndNetworkDevices`: NetworkFabric
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricAPI.GetFabricAndNetworkDevices`: %v\n", resp)
 }
 ```
 
@@ -258,7 +258,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetFabricAndNetworkEquipmentRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetFabricAndNetworkDevicesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -433,11 +433,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## RemoveNetworkEquipmentFromFabric
+## RemoveNetworkDeviceFromFabric
 
-> NetworkFabric RemoveNetworkEquipmentFromFabric(ctx, networkFabricId, networkEquipmentId).Execute()
+> NetworkFabric RemoveNetworkDeviceFromFabric(ctx, networkFabricId, networkDeviceId).Execute()
 
-Remove a network equipment from a fabric
+Remove a network device from a fabric
 
 ### Example
 
@@ -452,18 +452,18 @@ import (
 )
 
 func main() {
-	networkFabricId := int32(56) // int32 | The ID of the fabric to remove the network equipment from
-	networkEquipmentId := int32(56) // int32 | The ID of the network equipment to remove from the fabric
+	networkFabricId := int32(56) // int32 | The ID of the fabric to remove the network device from
+	networkDeviceId := int32(56) // int32 | The ID of the network device to remove from the fabric
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkFabricAPI.RemoveNetworkEquipmentFromFabric(context.Background(), networkFabricId, networkEquipmentId).Execute()
+	resp, r, err := apiClient.NetworkFabricAPI.RemoveNetworkDeviceFromFabric(context.Background(), networkFabricId, networkDeviceId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.RemoveNetworkEquipmentFromFabric``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.RemoveNetworkDeviceFromFabric``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemoveNetworkEquipmentFromFabric`: NetworkFabric
-	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricAPI.RemoveNetworkEquipmentFromFabric`: %v\n", resp)
+	// response from `RemoveNetworkDeviceFromFabric`: NetworkFabric
+	fmt.Fprintf(os.Stdout, "Response from `NetworkFabricAPI.RemoveNetworkDeviceFromFabric`: %v\n", resp)
 }
 ```
 
@@ -473,12 +473,12 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkFabricId** | **int32** | The ID of the fabric to remove the network equipment from | 
-**networkEquipmentId** | **int32** | The ID of the network equipment to remove from the fabric | 
+**networkFabricId** | **int32** | The ID of the fabric to remove the network device from | 
+**networkDeviceId** | **int32** | The ID of the network device to remove from the fabric | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRemoveNetworkEquipmentFromFabricRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRemoveNetworkDeviceFromFabricRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

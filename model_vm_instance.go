@@ -59,8 +59,6 @@ type VMInstance struct {
 	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the VM Instance.
 	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
-	// Variables object used when building the OS image.
-	VariablesRenderedTemplateAssets map[string]interface{} `json:"variablesRenderedTemplateAssets,omitempty"`
 	// Unique index of the VM Instance.
 	UniqueIndex *float32 `json:"uniqueIndex,omitempty"`
 	// Timestamp of the VM Instance creation.
@@ -628,38 +626,6 @@ func (o *VMInstance) SetDnsSubdomainPermanentId(v float32) {
 	o.DnsSubdomainPermanentId = &v
 }
 
-// GetVariablesRenderedTemplateAssets returns the VariablesRenderedTemplateAssets field value if set, zero value otherwise.
-func (o *VMInstance) GetVariablesRenderedTemplateAssets() map[string]interface{} {
-	if o == nil || IsNil(o.VariablesRenderedTemplateAssets) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.VariablesRenderedTemplateAssets
-}
-
-// GetVariablesRenderedTemplateAssetsOk returns a tuple with the VariablesRenderedTemplateAssets field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VMInstance) GetVariablesRenderedTemplateAssetsOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.VariablesRenderedTemplateAssets) {
-		return map[string]interface{}{}, false
-	}
-	return o.VariablesRenderedTemplateAssets, true
-}
-
-// HasVariablesRenderedTemplateAssets returns a boolean if a field has been set.
-func (o *VMInstance) HasVariablesRenderedTemplateAssets() bool {
-	if o != nil && !IsNil(o.VariablesRenderedTemplateAssets) {
-		return true
-	}
-
-	return false
-}
-
-// SetVariablesRenderedTemplateAssets gets a reference to the given map[string]interface{} and assigns it to the VariablesRenderedTemplateAssets field.
-func (o *VMInstance) SetVariablesRenderedTemplateAssets(v map[string]interface{}) {
-	o.VariablesRenderedTemplateAssets = v
-}
-
 // GetUniqueIndex returns the UniqueIndex field value if set, zero value otherwise.
 func (o *VMInstance) GetUniqueIndex() float32 {
 	if o == nil || IsNil(o.UniqueIndex) {
@@ -833,9 +799,6 @@ func (o VMInstance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DnsSubdomainPermanentId) {
 		toSerialize["dnsSubdomainPermanentId"] = o.DnsSubdomainPermanentId
 	}
-	if !IsNil(o.VariablesRenderedTemplateAssets) {
-		toSerialize["variablesRenderedTemplateAssets"] = o.VariablesRenderedTemplateAssets
-	}
 	if !IsNil(o.UniqueIndex) {
 		toSerialize["uniqueIndex"] = o.UniqueIndex
 	}
@@ -919,7 +882,6 @@ func (o *VMInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "dnsSubdomainPermanentId")
-		delete(additionalProperties, "variablesRenderedTemplateAssets")
 		delete(additionalProperties, "uniqueIndex")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "config")

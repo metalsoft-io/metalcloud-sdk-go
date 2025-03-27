@@ -637,7 +637,7 @@ import (
 
 func main() {
 	accountId := float32(8.14) // float32 | 
-	updateAccount := *openapiclient.NewUpdateAccount() // UpdateAccount | The account updates
+	updateAccount := *openapiclient.NewUpdateAccount("Name_example") // UpdateAccount | The account updates
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()

@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **TemplateId** | Pointer to **float32** | Template Id | [optional] 
 **DriveSizeMbDefault** | **float32** | Default disk size in MB for new Drives in the Drive Group | 
 **ServerInstanceGroupId** | Pointer to **float32** |  | [optional] 
-**ContainerArrayId** | Pointer to **float32** |  | [optional] 
 **ExpandWithServerInstanceGroup** | **float32** | Flag to determine whether the Drive Group should be expanded with a Server Instance Group by adding one drive for each instance | 
 **IoLimitPolicy** | Pointer to **string** | The IO limit policy of the Drive Group. | [optional] 
 **StorageType** | **string** | Service status of the Drive Group | [default to "iscsi_ssd"]
@@ -157,31 +156,6 @@ SetServerInstanceGroupId sets ServerInstanceGroupId field to given value.
 `func (o *DriveGroup) HasServerInstanceGroupId() bool`
 
 HasServerInstanceGroupId returns a boolean if a field has been set.
-
-### GetContainerArrayId
-
-`func (o *DriveGroup) GetContainerArrayId() float32`
-
-GetContainerArrayId returns the ContainerArrayId field if non-nil, zero value otherwise.
-
-### GetContainerArrayIdOk
-
-`func (o *DriveGroup) GetContainerArrayIdOk() (*float32, bool)`
-
-GetContainerArrayIdOk returns a tuple with the ContainerArrayId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContainerArrayId
-
-`func (o *DriveGroup) SetContainerArrayId(v float32)`
-
-SetContainerArrayId sets ContainerArrayId field to given value.
-
-### HasContainerArrayId
-
-`func (o *DriveGroup) HasContainerArrayId() bool`
-
-HasContainerArrayId returns a boolean if a field has been set.
 
 ### GetExpandWithServerInstanceGroup
 

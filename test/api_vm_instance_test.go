@@ -125,6 +125,21 @@ func Test_sdk_VMInstanceAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test VMInstanceAPIService GetVmInstanceVariables", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId int32
+		var vmInstanceId int32
+
+		resp, httpRes, err := apiClient.VMInstanceAPI.GetVmInstanceVariables(context.Background(), infrastructureId, vmInstanceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test VMInstanceAPIService PatchVMInstanceMeta", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

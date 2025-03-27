@@ -27,6 +27,8 @@ type CreateExtension struct {
 	Label *string `json:"label,omitempty" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
 	// The extension description
 	Description string `json:"description"`
+	// Extension kind
+	Kind string `json:"kind"`
 	Definition ExtensionDefinition `json:"definition"`
 	AdditionalProperties map[string]interface{}
 }
@@ -37,10 +39,11 @@ type _CreateExtension CreateExtension
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateExtension(name string, description string, definition ExtensionDefinition) *CreateExtension {
+func NewCreateExtension(name string, description string, kind string, definition ExtensionDefinition) *CreateExtension {
 	this := CreateExtension{}
 	this.Name = name
 	this.Description = description
+	this.Kind = kind
 	this.Definition = definition
 	return &this
 }
@@ -133,6 +136,30 @@ func (o *CreateExtension) SetDescription(v string) {
 	o.Description = v
 }
 
+// GetKind returns the Kind field value
+func (o *CreateExtension) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *CreateExtension) GetKindOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *CreateExtension) SetKind(v string) {
+	o.Kind = v
+}
+
 // GetDefinition returns the Definition field value
 func (o *CreateExtension) GetDefinition() ExtensionDefinition {
 	if o == nil {
@@ -172,6 +199,7 @@ func (o CreateExtension) ToMap() (map[string]interface{}, error) {
 		toSerialize["label"] = o.Label
 	}
 	toSerialize["description"] = o.Description
+	toSerialize["kind"] = o.Kind
 	toSerialize["definition"] = o.Definition
 
 	for key, value := range o.AdditionalProperties {
@@ -188,6 +216,7 @@ func (o *CreateExtension) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"name",
 		"description",
+		"kind",
 		"definition",
 	}
 
@@ -221,6 +250,7 @@ func (o *CreateExtension) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "kind")
 		delete(additionalProperties, "definition")
 		o.AdditionalProperties = additionalProperties
 	}

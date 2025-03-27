@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UpdateAccount type satisfies the MappedNullable interface at compile time
@@ -23,7 +24,7 @@ type UpdateAccount struct {
 	// The ID of the parent account
 	ParentAccountId *float32 `json:"parentAccountId,omitempty"`
 	// The name of the account
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// The code of the account
 	Code *string `json:"code,omitempty"`
 	// The fiscal number of the account
@@ -33,8 +34,6 @@ type UpdateAccount struct {
 	PrimaryContactId *float32 `json:"primaryContactId,omitempty"`
 	// The user ID of the secondary contact
 	SecondaryContactId *float32 `json:"secondaryContactId,omitempty"`
-	// Whether the account is archived
-	IsArchived *bool `json:"isArchived,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,8 +43,9 @@ type _UpdateAccount UpdateAccount
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateAccount() *UpdateAccount {
+func NewUpdateAccount(name string) *UpdateAccount {
 	this := UpdateAccount{}
+	this.Name = name
 	return &this
 }
 
@@ -89,36 +89,28 @@ func (o *UpdateAccount) SetParentAccountId(v float32) {
 	o.ParentAccountId = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *UpdateAccount) GetName() string {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *UpdateAccount) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *UpdateAccount) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *UpdateAccount) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
@@ -281,38 +273,6 @@ func (o *UpdateAccount) SetSecondaryContactId(v float32) {
 	o.SecondaryContactId = &v
 }
 
-// GetIsArchived returns the IsArchived field value if set, zero value otherwise.
-func (o *UpdateAccount) GetIsArchived() bool {
-	if o == nil || IsNil(o.IsArchived) {
-		var ret bool
-		return ret
-	}
-	return *o.IsArchived
-}
-
-// GetIsArchivedOk returns a tuple with the IsArchived field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateAccount) GetIsArchivedOk() (*bool, bool) {
-	if o == nil || IsNil(o.IsArchived) {
-		return nil, false
-	}
-	return o.IsArchived, true
-}
-
-// HasIsArchived returns a boolean if a field has been set.
-func (o *UpdateAccount) HasIsArchived() bool {
-	if o != nil && !IsNil(o.IsArchived) {
-		return true
-	}
-
-	return false
-}
-
-// SetIsArchived gets a reference to the given bool and assigns it to the IsArchived field.
-func (o *UpdateAccount) SetIsArchived(v bool) {
-	o.IsArchived = &v
-}
-
 func (o UpdateAccount) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -326,9 +286,7 @@ func (o UpdateAccount) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ParentAccountId) {
 		toSerialize["parentAccountId"] = o.ParentAccountId
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
@@ -344,9 +302,6 @@ func (o UpdateAccount) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SecondaryContactId) {
 		toSerialize["secondaryContactId"] = o.SecondaryContactId
 	}
-	if !IsNil(o.IsArchived) {
-		toSerialize["isArchived"] = o.IsArchived
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -356,6 +311,27 @@ func (o UpdateAccount) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *UpdateAccount) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varUpdateAccount := _UpdateAccount{}
 
 	err = json.Unmarshal(data, &varUpdateAccount)
@@ -376,7 +352,6 @@ func (o *UpdateAccount) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "address")
 		delete(additionalProperties, "primaryContactId")
 		delete(additionalProperties, "secondaryContactId")
-		delete(additionalProperties, "isArchived")
 		o.AdditionalProperties = additionalProperties
 	}
 

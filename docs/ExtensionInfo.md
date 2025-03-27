@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | The extension unique label | [optional] 
 **Description** | Pointer to **string** | The extension description | [optional] 
 **Status** | Pointer to **string** | Extension status | [optional] 
+**Kind** | Pointer to **string** | Extension kind | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 **Icon** | Pointer to **string** | Icon of the extension. | [optional] 
 
@@ -181,6 +182,31 @@ SetStatus sets Status field to given value.
 `func (o *ExtensionInfo) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
+
+### GetKind
+
+`func (o *ExtensionInfo) GetKind() string`
+
+GetKind returns the Kind field if non-nil, zero value otherwise.
+
+### GetKindOk
+
+`func (o *ExtensionInfo) GetKindOk() (*string, bool)`
+
+GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKind
+
+`func (o *ExtensionInfo) SetKind(v string)`
+
+SetKind sets Kind field to given value.
+
+### HasKind
+
+`func (o *ExtensionInfo) HasKind() bool`
+
+HasKind returns a boolean if a field has been set.
 
 ### GetLinks
 

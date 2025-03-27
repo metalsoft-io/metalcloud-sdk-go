@@ -22,13 +22,13 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test NetworkFabricAPIService AddNetworkEquipmentsToFabric", func(t *testing.T) {
+	t.Run("Test NetworkFabricAPIService AddNetworkDevicesToFabric", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var networkFabricId int32
 
-		resp, httpRes, err := apiClient.NetworkFabricAPI.AddNetworkEquipmentsToFabric(context.Background(), networkFabricId).Execute()
+		resp, httpRes, err := apiClient.NetworkFabricAPI.AddNetworkDevicesToFabric(context.Background(), networkFabricId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -61,13 +61,13 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test NetworkFabricAPIService GetFabricAndNetworkEquipment", func(t *testing.T) {
+	t.Run("Test NetworkFabricAPIService GetFabricAndNetworkDevices", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var networkFabricId int32
 
-		resp, httpRes, err := apiClient.NetworkFabricAPI.GetFabricAndNetworkEquipment(context.Background(), networkFabricId).Execute()
+		resp, httpRes, err := apiClient.NetworkFabricAPI.GetFabricAndNetworkDevices(context.Background(), networkFabricId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -101,14 +101,14 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test NetworkFabricAPIService RemoveNetworkEquipmentFromFabric", func(t *testing.T) {
+	t.Run("Test NetworkFabricAPIService RemoveNetworkDeviceFromFabric", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var networkFabricId int32
-		var networkEquipmentId int32
+		var networkDeviceId int32
 
-		resp, httpRes, err := apiClient.NetworkFabricAPI.RemoveNetworkEquipmentFromFabric(context.Background(), networkFabricId, networkEquipmentId).Execute()
+		resp, httpRes, err := apiClient.NetworkFabricAPI.RemoveNetworkDeviceFromFabric(context.Background(), networkFabricId, networkDeviceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

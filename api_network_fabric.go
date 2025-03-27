@@ -25,32 +25,32 @@ import (
 // NetworkFabricAPIService NetworkFabricAPI service
 type NetworkFabricAPIService service
 
-type NetworkFabricAPIAddNetworkEquipmentsToFabricRequest struct {
+type NetworkFabricAPIAddNetworkDevicesToFabricRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
 	networkFabricId int32
-	networkEquipmentToFabric *NetworkEquipmentToFabric
+	networkDevicesToFabric *NetworkDevicesToFabric
 }
 
-// The network equipment list containing the IDs of the network equipments to add to the fabric
-func (r NetworkFabricAPIAddNetworkEquipmentsToFabricRequest) NetworkEquipmentToFabric(networkEquipmentToFabric NetworkEquipmentToFabric) NetworkFabricAPIAddNetworkEquipmentsToFabricRequest {
-	r.networkEquipmentToFabric = &networkEquipmentToFabric
+// The network device list containing the IDs of the network devices to add to the fabric
+func (r NetworkFabricAPIAddNetworkDevicesToFabricRequest) NetworkDevicesToFabric(networkDevicesToFabric NetworkDevicesToFabric) NetworkFabricAPIAddNetworkDevicesToFabricRequest {
+	r.networkDevicesToFabric = &networkDevicesToFabric
 	return r
 }
 
-func (r NetworkFabricAPIAddNetworkEquipmentsToFabricRequest) Execute() (*NetworkFabric, *http.Response, error) {
-	return r.ApiService.AddNetworkEquipmentsToFabricExecute(r)
+func (r NetworkFabricAPIAddNetworkDevicesToFabricRequest) Execute() (*NetworkFabric, *http.Response, error) {
+	return r.ApiService.AddNetworkDevicesToFabricExecute(r)
 }
 
 /*
-AddNetworkEquipmentsToFabric Add a list of network equipments to a fabric
+AddNetworkDevicesToFabric Add a list of network devices to a fabric
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param networkFabricId The ID of the fabric
- @return NetworkFabricAPIAddNetworkEquipmentsToFabricRequest
+ @return NetworkFabricAPIAddNetworkDevicesToFabricRequest
 */
-func (a *NetworkFabricAPIService) AddNetworkEquipmentsToFabric(ctx context.Context, networkFabricId int32) NetworkFabricAPIAddNetworkEquipmentsToFabricRequest {
-	return NetworkFabricAPIAddNetworkEquipmentsToFabricRequest{
+func (a *NetworkFabricAPIService) AddNetworkDevicesToFabric(ctx context.Context, networkFabricId int32) NetworkFabricAPIAddNetworkDevicesToFabricRequest {
+	return NetworkFabricAPIAddNetworkDevicesToFabricRequest{
 		ApiService: a,
 		ctx: ctx,
 		networkFabricId: networkFabricId,
@@ -59,7 +59,7 @@ func (a *NetworkFabricAPIService) AddNetworkEquipmentsToFabric(ctx context.Conte
 
 // Execute executes the request
 //  @return NetworkFabric
-func (a *NetworkFabricAPIService) AddNetworkEquipmentsToFabricExecute(r NetworkFabricAPIAddNetworkEquipmentsToFabricRequest) (*NetworkFabric, *http.Response, error) {
+func (a *NetworkFabricAPIService) AddNetworkDevicesToFabricExecute(r NetworkFabricAPIAddNetworkDevicesToFabricRequest) (*NetworkFabric, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -67,19 +67,19 @@ func (a *NetworkFabricAPIService) AddNetworkEquipmentsToFabricExecute(r NetworkF
 		localVarReturnValue  *NetworkFabric
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.AddNetworkEquipmentsToFabric")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.AddNetworkDevicesToFabric")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/network-equipment"
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/network-devices"
 	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.networkEquipmentToFabric == nil {
-		return localVarReturnValue, nil, reportError("networkEquipmentToFabric is required and must be specified")
+	if r.networkDevicesToFabric == nil {
+		return localVarReturnValue, nil, reportError("networkDevicesToFabric is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -100,7 +100,7 @@ func (a *NetworkFabricAPIService) AddNetworkEquipmentsToFabricExecute(r NetworkF
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.networkEquipmentToFabric
+	localVarPostBody = r.networkDevicesToFabric
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -337,25 +337,25 @@ func (a *NetworkFabricAPIService) DeleteNetworkFabricExecute(r NetworkFabricAPID
 	return localVarHTTPResponse, nil
 }
 
-type NetworkFabricAPIGetFabricAndNetworkEquipmentRequest struct {
+type NetworkFabricAPIGetFabricAndNetworkDevicesRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
 	networkFabricId int32
 }
 
-func (r NetworkFabricAPIGetFabricAndNetworkEquipmentRequest) Execute() (*NetworkFabric, *http.Response, error) {
-	return r.ApiService.GetFabricAndNetworkEquipmentExecute(r)
+func (r NetworkFabricAPIGetFabricAndNetworkDevicesRequest) Execute() (*NetworkFabric, *http.Response, error) {
+	return r.ApiService.GetFabricAndNetworkDevicesExecute(r)
 }
 
 /*
-GetFabricAndNetworkEquipment Get fabric and network equipment associated with the fabric
+GetFabricAndNetworkDevices Get fabric and network devices associated with the fabric
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param networkFabricId The ID of the fabric
- @return NetworkFabricAPIGetFabricAndNetworkEquipmentRequest
+ @return NetworkFabricAPIGetFabricAndNetworkDevicesRequest
 */
-func (a *NetworkFabricAPIService) GetFabricAndNetworkEquipment(ctx context.Context, networkFabricId int32) NetworkFabricAPIGetFabricAndNetworkEquipmentRequest {
-	return NetworkFabricAPIGetFabricAndNetworkEquipmentRequest{
+func (a *NetworkFabricAPIService) GetFabricAndNetworkDevices(ctx context.Context, networkFabricId int32) NetworkFabricAPIGetFabricAndNetworkDevicesRequest {
+	return NetworkFabricAPIGetFabricAndNetworkDevicesRequest{
 		ApiService: a,
 		ctx: ctx,
 		networkFabricId: networkFabricId,
@@ -364,7 +364,7 @@ func (a *NetworkFabricAPIService) GetFabricAndNetworkEquipment(ctx context.Conte
 
 // Execute executes the request
 //  @return NetworkFabric
-func (a *NetworkFabricAPIService) GetFabricAndNetworkEquipmentExecute(r NetworkFabricAPIGetFabricAndNetworkEquipmentRequest) (*NetworkFabric, *http.Response, error) {
+func (a *NetworkFabricAPIService) GetFabricAndNetworkDevicesExecute(r NetworkFabricAPIGetFabricAndNetworkDevicesRequest) (*NetworkFabric, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -372,12 +372,12 @@ func (a *NetworkFabricAPIService) GetFabricAndNetworkEquipmentExecute(r NetworkF
 		localVarReturnValue  *NetworkFabric
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.GetFabricAndNetworkEquipment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.GetFabricAndNetworkDevices")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/network-equipment"
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/network-devices"
 	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -792,37 +792,37 @@ func (a *NetworkFabricAPIService) GetNetworkFabricsExecute(r NetworkFabricAPIGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type NetworkFabricAPIRemoveNetworkEquipmentFromFabricRequest struct {
+type NetworkFabricAPIRemoveNetworkDeviceFromFabricRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
 	networkFabricId int32
-	networkEquipmentId int32
+	networkDeviceId int32
 }
 
-func (r NetworkFabricAPIRemoveNetworkEquipmentFromFabricRequest) Execute() (*NetworkFabric, *http.Response, error) {
-	return r.ApiService.RemoveNetworkEquipmentFromFabricExecute(r)
+func (r NetworkFabricAPIRemoveNetworkDeviceFromFabricRequest) Execute() (*NetworkFabric, *http.Response, error) {
+	return r.ApiService.RemoveNetworkDeviceFromFabricExecute(r)
 }
 
 /*
-RemoveNetworkEquipmentFromFabric Remove a network equipment from a fabric
+RemoveNetworkDeviceFromFabric Remove a network device from a fabric
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkFabricId The ID of the fabric to remove the network equipment from
- @param networkEquipmentId The ID of the network equipment to remove from the fabric
- @return NetworkFabricAPIRemoveNetworkEquipmentFromFabricRequest
+ @param networkFabricId The ID of the fabric to remove the network device from
+ @param networkDeviceId The ID of the network device to remove from the fabric
+ @return NetworkFabricAPIRemoveNetworkDeviceFromFabricRequest
 */
-func (a *NetworkFabricAPIService) RemoveNetworkEquipmentFromFabric(ctx context.Context, networkFabricId int32, networkEquipmentId int32) NetworkFabricAPIRemoveNetworkEquipmentFromFabricRequest {
-	return NetworkFabricAPIRemoveNetworkEquipmentFromFabricRequest{
+func (a *NetworkFabricAPIService) RemoveNetworkDeviceFromFabric(ctx context.Context, networkFabricId int32, networkDeviceId int32) NetworkFabricAPIRemoveNetworkDeviceFromFabricRequest {
+	return NetworkFabricAPIRemoveNetworkDeviceFromFabricRequest{
 		ApiService: a,
 		ctx: ctx,
 		networkFabricId: networkFabricId,
-		networkEquipmentId: networkEquipmentId,
+		networkDeviceId: networkDeviceId,
 	}
 }
 
 // Execute executes the request
 //  @return NetworkFabric
-func (a *NetworkFabricAPIService) RemoveNetworkEquipmentFromFabricExecute(r NetworkFabricAPIRemoveNetworkEquipmentFromFabricRequest) (*NetworkFabric, *http.Response, error) {
+func (a *NetworkFabricAPIService) RemoveNetworkDeviceFromFabricExecute(r NetworkFabricAPIRemoveNetworkDeviceFromFabricRequest) (*NetworkFabric, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -830,14 +830,14 @@ func (a *NetworkFabricAPIService) RemoveNetworkEquipmentFromFabricExecute(r Netw
 		localVarReturnValue  *NetworkFabric
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.RemoveNetworkEquipmentFromFabric")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkFabricAPIService.RemoveNetworkDeviceFromFabric")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/network-equipment/{networkEquipmentId}"
+	localVarPath := localBasePath + "/api/v2/network-fabrics/{networkFabricId}/network-devices/{networkDeviceId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"networkFabricId"+"}", url.PathEscape(parameterValueToString(r.networkFabricId, "networkFabricId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"networkEquipmentId"+"}", url.PathEscape(parameterValueToString(r.networkEquipmentId, "networkEquipmentId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

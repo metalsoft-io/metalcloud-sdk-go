@@ -96,11 +96,11 @@ type APIClient struct {
 
 	NetworkDeviceAPI *NetworkDeviceAPIService
 
+	NetworkEndpointGroupAPI *NetworkEndpointGroupAPIService
+
 	NetworkFabricAPI *NetworkFabricAPIService
 
 	OSTemplateAPI *OSTemplateAPIService
-
-	ResourcePoolAPI *ResourcePoolAPIService
 
 	SecurityAPI *SecurityAPIService
 
@@ -125,6 +125,8 @@ type APIClient struct {
 	SiteAPI *SiteAPIService
 
 	StorageAPI *StorageAPIService
+
+	SubnetAPI *SubnetAPIService
 
 	SystemAPI *SystemAPIService
 
@@ -184,9 +186,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LogicalNetworksAPI = (*LogicalNetworksAPIService)(&c.common)
 	c.NetworkAPI = (*NetworkAPIService)(&c.common)
 	c.NetworkDeviceAPI = (*NetworkDeviceAPIService)(&c.common)
+	c.NetworkEndpointGroupAPI = (*NetworkEndpointGroupAPIService)(&c.common)
 	c.NetworkFabricAPI = (*NetworkFabricAPIService)(&c.common)
 	c.OSTemplateAPI = (*OSTemplateAPIService)(&c.common)
-	c.ResourcePoolAPI = (*ResourcePoolAPIService)(&c.common)
 	c.SecurityAPI = (*SecurityAPIService)(&c.common)
 	c.ServerAPI = (*ServerAPIService)(&c.common)
 	c.ServerCleanupPolicyAPI = (*ServerCleanupPolicyAPIService)(&c.common)
@@ -199,6 +201,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SharedDriveAPI = (*SharedDriveAPIService)(&c.common)
 	c.SiteAPI = (*SiteAPIService)(&c.common)
 	c.StorageAPI = (*StorageAPIService)(&c.common)
+	c.SubnetAPI = (*SubnetAPIService)(&c.common)
 	c.SystemAPI = (*SystemAPIService)(&c.common)
 	c.TemplateAssetAPI = (*TemplateAssetAPIService)(&c.common)
 	c.UnmanagedServersAPI = (*UnmanagedServersAPIService)(&c.common)
