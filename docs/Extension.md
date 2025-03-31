@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **float32** | The extension ID | 
 **Revision** | **float32** | Revision number | 
-**Slug** | **string** | The extension unique slug | 
+**Slug** | Pointer to **string** | The extension unique slug | [optional] 
 **Name** | **string** | The extension name | 
 **Label** | Pointer to **string** | The extension unique label | [optional] 
 **Description** | **string** | The extension description | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewExtension
 
-`func NewExtension(id float32, revision float32, slug string, name string, description string, status string, kind string, definition ExtensionDefinition, ) *Extension`
+`func NewExtension(id float32, revision float32, name string, description string, status string, kind string, definition ExtensionDefinition, ) *Extension`
 
 NewExtension instantiates a new Extension object
 This constructor will assign default values to properties that have it defined,
@@ -93,6 +93,11 @@ and a boolean to check if the value has been set.
 
 SetSlug sets Slug field to given value.
 
+### HasSlug
+
+`func (o *Extension) HasSlug() bool`
+
+HasSlug returns a boolean if a field has been set.
 
 ### GetName
 

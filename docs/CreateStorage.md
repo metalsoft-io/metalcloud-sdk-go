@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **StorageDriver** | **string** | Storage driver | 
 **StorageTechnology** | **string** | Storage technology | 
 **StorageType** | **string** | Storage type | 
-**Status** | **string** | Storage status | 
 **TotalCapacity** | Pointer to **float32** | Total capacity in MB | [optional] 
 **UsableCapacity** | Pointer to **float32** | Usable capacity in MB | [optional] 
 **FreeCapacity** | Pointer to **float32** | Free capacity in MB | [optional] 
@@ -19,8 +18,7 @@ Name | Type | Description | Notes
 **IscsiPort** | Pointer to **float32** | ISCSI port | [optional] 
 **ManagementHost** | **string** | Management host | 
 **Username** | **string** | Username | 
-**PasswordEncrypted** | **string** | Password encrypted | 
-**InMaintenance** | **float32** | Specifies if the storage is in maintenance | 
+**InMaintenance** | Pointer to **float32** | Specifies if the storage is in maintenance | [optional] 
 **TargetIQN** | Pointer to **string** | Target IQN | [optional] 
 **IsExperimental** | Pointer to **float32** | Specifies if the storage is experimental | [optional] 
 **DrivePriority** | Pointer to **float32** | Specifies the drive priority | [optional] 
@@ -35,8 +33,6 @@ Name | Type | Description | Notes
 **DirectorId** | Pointer to **string** | Director id | [optional] 
 **S3Hostname** | Pointer to **string** | S3 hostname | [optional] 
 **S3Port** | Pointer to **string** | S3 port | [optional] 
-**JobInfo** | Pointer to [**JobInfo**](JobInfo.md) |  | [optional] 
-**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 **Options** | Pointer to [**UpdateStorageOptions**](UpdateStorageOptions.md) | Options for the storage | [optional] 
 **Password** | **string** | The password to use. | 
 
@@ -44,7 +40,7 @@ Name | Type | Description | Notes
 
 ### NewCreateStorage
 
-`func NewCreateStorage(siteId float32, storageDriver string, storageTechnology string, storageType string, status string, name string, managementHost string, username string, passwordEncrypted string, inMaintenance float32, subnetType string, password string, ) *CreateStorage`
+`func NewCreateStorage(siteId float32, storageDriver string, storageTechnology string, storageType string, name string, managementHost string, username string, subnetType string, password string, ) *CreateStorage`
 
 NewCreateStorage instantiates a new CreateStorage object
 This constructor will assign default values to properties that have it defined,
@@ -162,26 +158,6 @@ and a boolean to check if the value has been set.
 `func (o *CreateStorage) SetStorageType(v string)`
 
 SetStorageType sets StorageType field to given value.
-
-
-### GetStatus
-
-`func (o *CreateStorage) GetStatus() string`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *CreateStorage) GetStatusOk() (*string, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *CreateStorage) SetStatus(v string)`
-
-SetStatus sets Status field to given value.
 
 
 ### GetTotalCapacity
@@ -394,26 +370,6 @@ and a boolean to check if the value has been set.
 SetUsername sets Username field to given value.
 
 
-### GetPasswordEncrypted
-
-`func (o *CreateStorage) GetPasswordEncrypted() string`
-
-GetPasswordEncrypted returns the PasswordEncrypted field if non-nil, zero value otherwise.
-
-### GetPasswordEncryptedOk
-
-`func (o *CreateStorage) GetPasswordEncryptedOk() (*string, bool)`
-
-GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPasswordEncrypted
-
-`func (o *CreateStorage) SetPasswordEncrypted(v string)`
-
-SetPasswordEncrypted sets PasswordEncrypted field to given value.
-
-
 ### GetInMaintenance
 
 `func (o *CreateStorage) GetInMaintenance() float32`
@@ -433,6 +389,11 @@ and a boolean to check if the value has been set.
 
 SetInMaintenance sets InMaintenance field to given value.
 
+### HasInMaintenance
+
+`func (o *CreateStorage) HasInMaintenance() bool`
+
+HasInMaintenance returns a boolean if a field has been set.
 
 ### GetTargetIQN
 
@@ -778,56 +739,6 @@ SetS3Port sets S3Port field to given value.
 `func (o *CreateStorage) HasS3Port() bool`
 
 HasS3Port returns a boolean if a field has been set.
-
-### GetJobInfo
-
-`func (o *CreateStorage) GetJobInfo() JobInfo`
-
-GetJobInfo returns the JobInfo field if non-nil, zero value otherwise.
-
-### GetJobInfoOk
-
-`func (o *CreateStorage) GetJobInfoOk() (*JobInfo, bool)`
-
-GetJobInfoOk returns a tuple with the JobInfo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetJobInfo
-
-`func (o *CreateStorage) SetJobInfo(v JobInfo)`
-
-SetJobInfo sets JobInfo field to given value.
-
-### HasJobInfo
-
-`func (o *CreateStorage) HasJobInfo() bool`
-
-HasJobInfo returns a boolean if a field has been set.
-
-### GetLinks
-
-`func (o *CreateStorage) GetLinks() []Link`
-
-GetLinks returns the Links field if non-nil, zero value otherwise.
-
-### GetLinksOk
-
-`func (o *CreateStorage) GetLinksOk() (*[]Link, bool)`
-
-GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLinks
-
-`func (o *CreateStorage) SetLinks(v []Link)`
-
-SetLinks sets Links field to given value.
-
-### HasLinks
-
-`func (o *CreateStorage) HasLinks() bool`
-
-HasLinks returns a boolean if a field has been set.
 
 ### GetOptions
 

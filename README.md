@@ -93,6 +93,7 @@ Class | Method | HTTP request | Description
 *AuthenticationAPI* | [**GetAuthenticationProvider**](docs/AuthenticationAPI.md#getauthenticationprovider) | **Get** /api/v2/authentication-provider | Retrieve authentication provider for an email
 *AuthenticationAPI* | [**GetAuthenticationProviders**](docs/AuthenticationAPI.md#getauthenticationproviders) | **Get** /api/v2/authentication-providers | Retrieve all authentication providers
 *AuthenticationAPI* | [**GetCurrentUser**](docs/AuthenticationAPI.md#getcurrentuser) | **Get** /api/v2/user | Get current user
+*AuthenticationAPI* | [**GetPublicSignupDisabled**](docs/AuthenticationAPI.md#getpublicsignupdisabled) | **Get** /api/v2/public-signup-disabled | Check if public signup is disabled
 *AuthenticationAPI* | [**Login**](docs/AuthenticationAPI.md#login) | **Post** /api/v2/login | User login
 *AuthenticationAPI* | [**Logout**](docs/AuthenticationAPI.md#logout) | **Post** /api/v2/logout | Logout user
 *AuthenticationAPI* | [**SignUp**](docs/AuthenticationAPI.md#signup) | **Post** /api/v2/sign-up | Sign up
@@ -183,6 +184,7 @@ Class | Method | HTTP request | Description
 *InfrastructureAPI* | [**CreateInfrastructure**](docs/InfrastructureAPI.md#createinfrastructure) | **Post** /api/v2/infrastructures | Creates a new infrastructure
 *InfrastructureAPI* | [**DeleteInfrastructure**](docs/InfrastructureAPI.md#deleteinfrastructure) | **Delete** /api/v2/infrastructures/{infrastructureId} | Deletes the specified infrastructure
 *InfrastructureAPI* | [**DeployInfrastructure**](docs/InfrastructureAPI.md#deployinfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/deploy | Deploys the specified infrastructure
+*InfrastructureAPI* | [**GetAllInfrastructureStatistics**](docs/InfrastructureAPI.md#getallinfrastructurestatistics) | **Get** /api/v2/infrastructures/statistics | Retrieves statistics for all infrastructures
 *InfrastructureAPI* | [**GetInfrastructure**](docs/InfrastructureAPI.md#getinfrastructure) | **Get** /api/v2/infrastructures/{infrastructureId} | Retrieves the specified infrastructure
 *InfrastructureAPI* | [**GetInfrastructureConfigInfo**](docs/InfrastructureAPI.md#getinfrastructureconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/config | Get configuration information about the specified Infrastructure
 *InfrastructureAPI* | [**GetInfrastructureResourceUtilizationDetailed**](docs/InfrastructureAPI.md#getinfrastructureresourceutilizationdetailed) | **Post** /api/v2/infrastructures/actions/get/resource-utilization-detailed | Gets detailed resource utilization for infrastructures
@@ -226,6 +228,7 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**DiscoverNetworkDevice**](docs/NetworkDeviceAPI.md#discovernetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/discover | Discover network device interfaces, hardware and software configuration
 *NetworkDeviceAPI* | [**EnableNetworkDeviceSyslog**](docs/NetworkDeviceAPI.md#enablenetworkdevicesyslog) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/syslog-subscribe | Enables remote syslog for a network device
 *NetworkDeviceAPI* | [**GetNetworkDevice**](docs/NetworkDeviceAPI.md#getnetworkdevice) | **Get** /api/v2/network-devices/{networkDeviceId} | Get Network Device
+*NetworkDeviceAPI* | [**GetNetworkDeviceCredentials**](docs/NetworkDeviceAPI.md#getnetworkdevicecredentials) | **Get** /api/v2/network-devices/{networkDeviceId}/credentials | Get Network Device credentials
 *NetworkDeviceAPI* | [**GetNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#getnetworkdevicedefaults) | **Get** /api/v2/network-devices/defaults/{datacenterName} | Get network device defaults for a datacenter
 *NetworkDeviceAPI* | [**GetNetworkDeviceInventoryPorts**](docs/NetworkDeviceAPI.md#getnetworkdeviceinventoryports) | **Get** /api/v2/network-devices/{networkDeviceId}/ports | Get all ports for network device from the inventory (cached)
 *NetworkDeviceAPI* | [**GetNetworkDevicePorts**](docs/NetworkDeviceAPI.md#getnetworkdeviceports) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
@@ -243,6 +246,7 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**ReProvisionNetworkEquipment**](docs/NetworkDeviceAPI.md#reprovisionnetworkequipment) | **Post** /api/v2/network-devices/re-provision | Re-provision network equipment
 *NetworkDeviceAPI* | [**RemoveNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#removenetworkdevicedefaults) | **Delete** /api/v2/network-devices/defaults | Remove network device defaults
 *NetworkDeviceAPI* | [**ResetNetworkDevice**](docs/NetworkDeviceAPI.md#resetnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
+*NetworkDeviceAPI* | [**RunExtensionOnNetworkDevice**](docs/NetworkDeviceAPI.md#runextensiononnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
 *NetworkDeviceAPI* | [**SetNetworkDevicePortStatus**](docs/NetworkDeviceAPI.md#setnetworkdeviceportstatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
 *NetworkEndpointGroupAPI* | [**AddLogicalNetworksToNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#addlogicalnetworkstonetworkendpointgroup) | **Post** /api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks | Add a list of logical networks to a network endpoint group
 *NetworkEndpointGroupAPI* | [**CreateNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#createnetworkendpointgroup) | **Post** /api/v2/network-endpoint-groups | Create a new network endpoint group
@@ -254,10 +258,11 @@ Class | Method | HTTP request | Description
 *NetworkEndpointGroupAPI* | [**RemoveLogicalNetworkFromNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#removelogicalnetworkfromnetworkendpointgroup) | **Delete** /api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks/{logicalNetworkId} | Remove a logical network from a network endpoint group
 *NetworkEndpointGroupAPI* | [**UpdateNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#updatenetworkendpointgroup) | **Patch** /api/v2/network-endpoint-groups/{networkEndpointGroupId} | Update a network endpoint group
 *NetworkEndpointGroupAPI* | [**UpdateNetworkEndpointGroupLogicalNetwork**](docs/NetworkEndpointGroupAPI.md#updatenetworkendpointgrouplogicalnetwork) | **Patch** /api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks/{logicalNetworkId} | Update a logical network in a network endpoint group
+*NetworkFabricAPI* | [**ActivateNetworkFabric**](docs/NetworkFabricAPI.md#activatenetworkfabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/actions/activate | Activate a network fabric
 *NetworkFabricAPI* | [**AddNetworkDevicesToFabric**](docs/NetworkFabricAPI.md#addnetworkdevicestofabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/network-devices | Add a list of network devices to a fabric
 *NetworkFabricAPI* | [**CreateNetworkFabric**](docs/NetworkFabricAPI.md#createnetworkfabric) | **Post** /api/v2/network-fabrics | Create a new network fabric
 *NetworkFabricAPI* | [**DeleteNetworkFabric**](docs/NetworkFabricAPI.md#deletenetworkfabric) | **Delete** /api/v2/network-fabrics/{networkFabricId} | Delete a network fabric
-*NetworkFabricAPI* | [**GetFabricAndNetworkDevices**](docs/NetworkFabricAPI.md#getfabricandnetworkdevices) | **Get** /api/v2/network-fabrics/{networkFabricId}/network-devices | Get fabric and network devices associated with the fabric
+*NetworkFabricAPI* | [**GetFabricNetworkDevices**](docs/NetworkFabricAPI.md#getfabricnetworkdevices) | **Get** /api/v2/network-fabrics/{networkFabricId}/network-devices | Get paginated Network Devices
 *NetworkFabricAPI* | [**GetNetworkFabricById**](docs/NetworkFabricAPI.md#getnetworkfabricbyid) | **Get** /api/v2/network-fabrics/{networkFabricId} | Get a network fabric by ID
 *NetworkFabricAPI* | [**GetNetworkFabrics**](docs/NetworkFabricAPI.md#getnetworkfabrics) | **Get** /api/v2/network-fabrics | List all network fabrics
 *NetworkFabricAPI* | [**RemoveNetworkDeviceFromFabric**](docs/NetworkFabricAPI.md#removenetworkdevicefromfabric) | **Delete** /api/v2/network-fabrics/{networkFabricId}/network-devices/{networkDeviceId} | Remove a network device from a fabric
@@ -268,6 +273,21 @@ Class | Method | HTTP request | Description
 *OSTemplateAPI* | [**GetOSTemplateCredentials**](docs/OSTemplateAPI.md#getostemplatecredentials) | **Get** /api/v2/os-templates/{osTemplateId}/credentials | Get OS template credentials
 *OSTemplateAPI* | [**GetOSTemplates**](docs/OSTemplateAPI.md#getostemplates) | **Get** /api/v2/os-templates | Get a list of available OS templates
 *OSTemplateAPI* | [**UpdateOSTemplate**](docs/OSTemplateAPI.md#updateostemplate) | **Put** /api/v2/os-templates/{osTemplateId} | Update OS template
+*ResourcePoolAPI* | [**AddResourcePoolUser**](docs/ResourcePoolAPI.md#addresourcepooluser) | **Post** /api/v2/resource-pools/user/{userId}/pool/{resourcePoolId} | Add a user to a Resource Pool
+*ResourcePoolAPI* | [**AddServerToResourcePool**](docs/ResourcePoolAPI.md#addservertoresourcepool) | **Put** /api/v2/resource-pools/{resourcePoolId}/server/{serverId} | Add a server to a Resource Pool
+*ResourcePoolAPI* | [**AddSubnetPoolToResourcePool**](docs/ResourcePoolAPI.md#addsubnetpooltoresourcepool) | **Put** /api/v2/resource-pools/{resourcePoolId}/subnet-pool/{subnetPoolId} | Add a subnet pool to a resource pool
+*ResourcePoolAPI* | [**CreateResourcePool**](docs/ResourcePoolAPI.md#createresourcepool) | **Post** /api/v2/resource-pools | Creates a Resource Pool
+*ResourcePoolAPI* | [**DeleteResourcePool**](docs/ResourcePoolAPI.md#deleteresourcepool) | **Delete** /api/v2/resource-pools/{resourcePoolId} | Deletes a Resource Pool
+*ResourcePoolAPI* | [**GetResourcePool**](docs/ResourcePoolAPI.md#getresourcepool) | **Get** /api/v2/resource-pools/{resourcePoolId} | Get Resource Pool information
+*ResourcePoolAPI* | [**GetResourcePoolServers**](docs/ResourcePoolAPI.md#getresourcepoolservers) | **Get** /api/v2/resource-pools/{resourcePoolId}/servers | Get all servers that are part of a Resource Pool
+*ResourcePoolAPI* | [**GetResourcePoolSubnetPools**](docs/ResourcePoolAPI.md#getresourcepoolsubnetpools) | **Get** /api/v2/resource-pools/{resourcePoolId}/subnet-pools | Get all subnet pools that are part of a resource pool
+*ResourcePoolAPI* | [**GetResourcePoolUsers**](docs/ResourcePoolAPI.md#getresourcepoolusers) | **Get** /api/v2/resource-pools/{resourcePoolId}/users | Get all users that have access to a Resource Pool
+*ResourcePoolAPI* | [**GetResourcePools**](docs/ResourcePoolAPI.md#getresourcepools) | **Get** /api/v2/resource-pools | Get all Resource Pools
+*ResourcePoolAPI* | [**GetUserResourcePools**](docs/ResourcePoolAPI.md#getuserresourcepools) | **Get** /api/v2/resource-pools/user/{userId} | Get all Resource Pools that a user has access to
+*ResourcePoolAPI* | [**RemoveResourcePoolUser**](docs/ResourcePoolAPI.md#removeresourcepooluser) | **Delete** /api/v2/resource-pools/user/{userId}/pool/{resourcePoolId} | Remove a user from a Resource Pool
+*ResourcePoolAPI* | [**RemoveServerFromResourcePool**](docs/ResourcePoolAPI.md#removeserverfromresourcepool) | **Delete** /api/v2/resource-pools/{resourcePoolId}/server/{serverId} | Remove a server from a Resource Pool
+*ResourcePoolAPI* | [**RemoveSubnetPoolFromResourcePool**](docs/ResourcePoolAPI.md#removesubnetpoolfromresourcepool) | **Delete** /api/v2/resource-pools/{resourcePoolId}/subnet-pool/{subnetPoolId} | Remove a subnet from a resource pool
+*ResourcePoolAPI* | [**UpdateResourcePool**](docs/ResourcePoolAPI.md#updateresourcepool) | **Put** /api/v2/resource-pools/{resourcePoolId} | Updates Resource Pool information
 *SecurityAPI* | [**GetProviders**](docs/SecurityAPI.md#getproviders) | **Get** /api/v2/authentication/providers | Get available authentication providers
 *SecurityAPI* | [**UpdateProvider**](docs/SecurityAPI.md#updateprovider) | **Patch** /api/v2/authentication/providers/{name} | Updates authentication provider
 *ServerAPI* | [**ArchiveServer**](docs/ServerAPI.md#archiveserver) | **Post** /api/v2/servers/{serverId}/actions/archive | Archives a Server
@@ -413,11 +433,15 @@ Class | Method | HTTP request | Description
 *UserAPI* | [**UpdateUserConfig**](docs/UserAPI.md#updateuserconfig) | **Patch** /api/v2/users/{userId}/config | Update user configuration
 *UserAPI* | [**UpdateUserLimits**](docs/UserAPI.md#updateuserlimits) | **Patch** /api/v2/users/{userId}/actions/change-limits | Update user limits
 *UserAPI* | [**UserControllerAddDelegate**](docs/UserAPI.md#usercontrolleradddelegate) | **Post** /api/v2/users/{userId}/actions/add-delegate/{delegateId} | Add a delegate to a user
+*UserAPI* | [**UserControllerAddUserSshKey**](docs/UserAPI.md#usercontrolleraddusersshkey) | **Post** /api/v2/users/{userId}/ssh-keys | Add SSH key for user
+*UserAPI* | [**UserControllerDeleteUserSshKey**](docs/UserAPI.md#usercontrollerdeleteusersshkey) | **Delete** /api/v2/users/{userId}/ssh-keys/{keyId} | Delete SSH key for user
 *UserAPI* | [**UserControllerGetUserApiKey**](docs/UserAPI.md#usercontrollergetuserapikey) | **Get** /api/v2/users/{userId}/api-key | Get user API key
 *UserAPI* | [**UserControllerGetUserChildDelegates**](docs/UserAPI.md#usercontrollergetuserchilddelegates) | **Get** /api/v2/users/{userId}/child-delegates | Get user child delegates by ID
 *UserAPI* | [**UserControllerGetUserConfiguration**](docs/UserAPI.md#usercontrollergetuserconfiguration) | **Get** /api/v2/users/{userId}/config | Get user configuration by ID
 *UserAPI* | [**UserControllerGetUserParentDelegates**](docs/UserAPI.md#usercontrollergetuserparentdelegates) | **Get** /api/v2/users/{userId}/parent-delegates | Get user parent delegates by ID
 *UserAPI* | [**UserControllerGetUserPermissions**](docs/UserAPI.md#usercontrollergetuserpermissions) | **Get** /api/v2/users/{userId}/permissions | Get user resource permissions by ID
+*UserAPI* | [**UserControllerGetUserSshKey**](docs/UserAPI.md#usercontrollergetusersshkey) | **Get** /api/v2/users/{userId}/ssh-keys/{keyId} | Get specific SSH key
+*UserAPI* | [**UserControllerGetUserSshKeys**](docs/UserAPI.md#usercontrollergetusersshkeys) | **Get** /api/v2/users/{userId}/ssh-keys | Get user SSH keys
 *UserAPI* | [**UserControllerGetUserSuspendReasons**](docs/UserAPI.md#usercontrollergetusersuspendreasons) | **Get** /api/v2/users/{userId}/suspend-reasons | Get user suspend reasons by ID
 *UserAPI* | [**UserControllerRegenerateJwtSalt**](docs/UserAPI.md#usercontrollerregeneratejwtsalt) | **Post** /api/v2/users/{userId}/actions/regenerate-jwt-salt | Regenerate user JWT salt. Also logs out all user sessions.
 *UserAPI* | [**UserControllerRegenerateUserApiKey**](docs/UserAPI.md#usercontrollerregenerateuserapikey) | **Post** /api/v2/users/{userId}/actions/regenerate-api-key | Regenerate user API key
@@ -538,6 +562,7 @@ Class | Method | HTTP request | Description
  - [CreateNetworkEndpointGroup](docs/CreateNetworkEndpointGroup.md)
  - [CreateNetworkEndpointGroupLogicalNetwork](docs/CreateNetworkEndpointGroupLogicalNetwork.md)
  - [CreateNetworkFabric](docs/CreateNetworkFabric.md)
+ - [CreateResourcePool](docs/CreateResourcePool.md)
  - [CreateServerCleanupPolicy](docs/CreateServerCleanupPolicy.md)
  - [CreateServerDefaultCredentials](docs/CreateServerDefaultCredentials.md)
  - [CreateServerFirmwareUpgradePolicy](docs/CreateServerFirmwareUpgradePolicy.md)
@@ -547,6 +572,7 @@ Class | Method | HTTP request | Description
  - [CreateStorageNetworkDeviceConfiguration](docs/CreateStorageNetworkDeviceConfiguration.md)
  - [CreateSubnetDto](docs/CreateSubnetDto.md)
  - [CreateUser](docs/CreateUser.md)
+ - [CreateUserSSHKeyDto](docs/CreateUserSSHKeyDto.md)
  - [CreateVMInstance](docs/CreateVMInstance.md)
  - [CreateVMInstanceGroup](docs/CreateVMInstanceGroup.md)
  - [CreateVMInstanceGroupInterface](docs/CreateVMInstanceGroupInterface.md)
@@ -574,6 +600,7 @@ Class | Method | HTTP request | Description
  - [ExtensionAsset](docs/ExtensionAsset.md)
  - [ExtensionDefinition](docs/ExtensionDefinition.md)
  - [ExtensionDependency](docs/ExtensionDependency.md)
+ - [ExtensionExecutionInfo](docs/ExtensionExecutionInfo.md)
  - [ExtensionInfo](docs/ExtensionInfo.md)
  - [ExtensionInfrastructure](docs/ExtensionInfrastructure.md)
  - [ExtensionInput](docs/ExtensionInput.md)
@@ -618,18 +645,22 @@ Class | Method | HTTP request | Description
  - [GenericGUISettings](docs/GenericGUISettings.md)
  - [GenericMeta](docs/GenericMeta.md)
  - [GenericServiceStatus](docs/GenericServiceStatus.md)
+ - [GetResourceUtilizationDetailed](docs/GetResourceUtilizationDetailed.md)
  - [GlobalFirmwareUpgradeConfiguration](docs/GlobalFirmwareUpgradeConfiguration.md)
  - [Infrastructure](docs/Infrastructure.md)
  - [InfrastructureConfig](docs/InfrastructureConfig.md)
  - [InfrastructureConfiguration](docs/InfrastructureConfiguration.md)
  - [InfrastructureCreate](docs/InfrastructureCreate.md)
+ - [InfrastructureDeployOngoingStatusCountDto](docs/InfrastructureDeployOngoingStatusCountDto.md)
  - [InfrastructureDeployOptions](docs/InfrastructureDeployOptions.md)
  - [InfrastructureDeployShutdownOptions](docs/InfrastructureDeployShutdownOptions.md)
  - [InfrastructureMeta](docs/InfrastructureMeta.md)
  - [InfrastructurePaginatedList](docs/InfrastructurePaginatedList.md)
  - [InfrastructurePolicy](docs/InfrastructurePolicy.md)
  - [InfrastructureResourceUtilizationResponse](docs/InfrastructureResourceUtilizationResponse.md)
+ - [InfrastructureServiceStatusDto](docs/InfrastructureServiceStatusDto.md)
  - [InfrastructureVariables](docs/InfrastructureVariables.md)
+ - [InfrastructuresStatistics](docs/InfrastructuresStatistics.md)
  - [InstancesSetPowerState](docs/InstancesSetPowerState.md)
  - [IscsiBootServerInfo](docs/IscsiBootServerInfo.md)
  - [Job](docs/Job.md)
@@ -678,6 +709,7 @@ Class | Method | HTTP request | Description
  - [OSTemplateUpdate](docs/OSTemplateUpdate.md)
  - [PaginatedResponseLinks](docs/PaginatedResponseLinks.md)
  - [PaginatedResponseMeta](docs/PaginatedResponseMeta.md)
+ - [PublicSignupDisabled](docs/PublicSignupDisabled.md)
  - [ReRegisterServerResponse](docs/ReRegisterServerResponse.md)
  - [RedundancyConfig](docs/RedundancyConfig.md)
  - [RedundancyImplementation](docs/RedundancyImplementation.md)
@@ -686,6 +718,11 @@ Class | Method | HTTP request | Description
  - [RegisterStorageResponse](docs/RegisterStorageResponse.md)
  - [RemoteConsoleInfo](docs/RemoteConsoleInfo.md)
  - [Repo](docs/Repo.md)
+ - [ResourcePool](docs/ResourcePool.md)
+ - [ResourcePoolPaginatedList](docs/ResourcePoolPaginatedList.md)
+ - [ResourcePoolStatistics](docs/ResourcePoolStatistics.md)
+ - [ResourcePoolWithStats](docs/ResourcePoolWithStats.md)
+ - [RunExtensionOnPhysicalDevice](docs/RunExtensionOnPhysicalDevice.md)
  - [SSHPublicKey](docs/SSHPublicKey.md)
  - [ScheduleFirmwareUpgrade](docs/ScheduleFirmwareUpgrade.md)
  - [SearchFirmwareBinary](docs/SearchFirmwareBinary.md)
@@ -815,6 +852,7 @@ Class | Method | HTTP request | Description
  - [UpdateNetworkEndpointGroup](docs/UpdateNetworkEndpointGroup.md)
  - [UpdateNetworkEndpointGroupLogicalNetworkDto](docs/UpdateNetworkEndpointGroupLogicalNetworkDto.md)
  - [UpdateNetworkFabric](docs/UpdateNetworkFabric.md)
+ - [UpdateResourcePool](docs/UpdateResourcePool.md)
  - [UpdateServer](docs/UpdateServer.md)
  - [UpdateServerCleanupPolicy](docs/UpdateServerCleanupPolicy.md)
  - [UpdateServerComponent](docs/UpdateServerComponent.md)
@@ -847,6 +885,8 @@ Class | Method | HTTP request | Description
  - [UserMeta](docs/UserMeta.md)
  - [UserPaginatedList](docs/UserPaginatedList.md)
  - [UserPermissions](docs/UserPermissions.md)
+ - [UserSSHKeys](docs/UserSSHKeys.md)
+ - [UserSSHKeysList](docs/UserSSHKeysList.md)
  - [UserSuspend](docs/UserSuspend.md)
  - [UserSuspendReason](docs/UserSuspendReason.md)
  - [UserSuspendReasonList](docs/UserSuspendReasonList.md)

@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**GetAuthenticationProvider**](AuthenticationAPI.md#GetAuthenticationProvider) | **Get** /api/v2/authentication-provider | Retrieve authentication provider for an email
 [**GetAuthenticationProviders**](AuthenticationAPI.md#GetAuthenticationProviders) | **Get** /api/v2/authentication-providers | Retrieve all authentication providers
 [**GetCurrentUser**](AuthenticationAPI.md#GetCurrentUser) | **Get** /api/v2/user | Get current user
+[**GetPublicSignupDisabled**](AuthenticationAPI.md#GetPublicSignupDisabled) | **Get** /api/v2/public-signup-disabled | Check if public signup is disabled
 [**Login**](AuthenticationAPI.md#Login) | **Post** /api/v2/login | User login
 [**Logout**](AuthenticationAPI.md#Logout) | **Post** /api/v2/logout | Logout user
 [**SignUp**](AuthenticationAPI.md#SignUp) | **Post** /api/v2/sign-up | Sign up
@@ -191,6 +192,67 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**User**](User.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPublicSignupDisabled
+
+> PublicSignupDisabled GetPublicSignupDisabled(ctx).Execute()
+
+Check if public signup is disabled
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.GetPublicSignupDisabled(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.GetPublicSignupDisabled``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPublicSignupDisabled`: PublicSignupDisabled
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.GetPublicSignupDisabled`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPublicSignupDisabledRequest struct via the builder pattern
+
+
+### Return type
+
+[**PublicSignupDisabled**](PublicSignupDisabled.md)
 
 ### Authorization
 

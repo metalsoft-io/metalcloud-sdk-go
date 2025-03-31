@@ -14,11 +14,15 @@ Method | HTTP request | Description
 [**UpdateUserConfig**](UserAPI.md#UpdateUserConfig) | **Patch** /api/v2/users/{userId}/config | Update user configuration
 [**UpdateUserLimits**](UserAPI.md#UpdateUserLimits) | **Patch** /api/v2/users/{userId}/actions/change-limits | Update user limits
 [**UserControllerAddDelegate**](UserAPI.md#UserControllerAddDelegate) | **Post** /api/v2/users/{userId}/actions/add-delegate/{delegateId} | Add a delegate to a user
+[**UserControllerAddUserSshKey**](UserAPI.md#UserControllerAddUserSshKey) | **Post** /api/v2/users/{userId}/ssh-keys | Add SSH key for user
+[**UserControllerDeleteUserSshKey**](UserAPI.md#UserControllerDeleteUserSshKey) | **Delete** /api/v2/users/{userId}/ssh-keys/{keyId} | Delete SSH key for user
 [**UserControllerGetUserApiKey**](UserAPI.md#UserControllerGetUserApiKey) | **Get** /api/v2/users/{userId}/api-key | Get user API key
 [**UserControllerGetUserChildDelegates**](UserAPI.md#UserControllerGetUserChildDelegates) | **Get** /api/v2/users/{userId}/child-delegates | Get user child delegates by ID
 [**UserControllerGetUserConfiguration**](UserAPI.md#UserControllerGetUserConfiguration) | **Get** /api/v2/users/{userId}/config | Get user configuration by ID
 [**UserControllerGetUserParentDelegates**](UserAPI.md#UserControllerGetUserParentDelegates) | **Get** /api/v2/users/{userId}/parent-delegates | Get user parent delegates by ID
 [**UserControllerGetUserPermissions**](UserAPI.md#UserControllerGetUserPermissions) | **Get** /api/v2/users/{userId}/permissions | Get user resource permissions by ID
+[**UserControllerGetUserSshKey**](UserAPI.md#UserControllerGetUserSshKey) | **Get** /api/v2/users/{userId}/ssh-keys/{keyId} | Get specific SSH key
+[**UserControllerGetUserSshKeys**](UserAPI.md#UserControllerGetUserSshKeys) | **Get** /api/v2/users/{userId}/ssh-keys | Get user SSH keys
 [**UserControllerGetUserSuspendReasons**](UserAPI.md#UserControllerGetUserSuspendReasons) | **Get** /api/v2/users/{userId}/suspend-reasons | Get user suspend reasons by ID
 [**UserControllerRegenerateJwtSalt**](UserAPI.md#UserControllerRegenerateJwtSalt) | **Post** /api/v2/users/{userId}/actions/regenerate-jwt-salt | Regenerate user JWT salt. Also logs out all user sessions.
 [**UserControllerRegenerateUserApiKey**](UserAPI.md#UserControllerRegenerateUserApiKey) | **Post** /api/v2/users/{userId}/actions/regenerate-api-key | Regenerate user API key
@@ -763,6 +767,145 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UserControllerAddUserSshKey
+
+> UserSSHKeys UserControllerAddUserSshKey(ctx, userId).CreateUserSSHKeyDto(createUserSSHKeyDto).Execute()
+
+Add SSH key for user
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	createUserSSHKeyDto := *openapiclient.NewCreateUserSSHKeyDto("SshKey_example") // CreateUserSSHKeyDto | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerAddUserSshKey(context.Background(), userId).CreateUserSSHKeyDto(createUserSSHKeyDto).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerAddUserSshKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerAddUserSshKey`: UserSSHKeys
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerAddUserSshKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerAddUserSshKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createUserSSHKeyDto** | [**CreateUserSSHKeyDto**](CreateUserSSHKeyDto.md) |  | 
+
+### Return type
+
+[**UserSSHKeys**](UserSSHKeys.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerDeleteUserSshKey
+
+> UserControllerDeleteUserSshKey(ctx, userId, keyId).Execute()
+
+Delete SSH key for user
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	keyId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.UserAPI.UserControllerDeleteUserSshKey(context.Background(), userId, keyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerDeleteUserSshKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+**keyId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerDeleteUserSshKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UserControllerGetUserApiKey
 
 > UserApiKey UserControllerGetUserApiKey(ctx, userId).Execute()
@@ -1092,6 +1235,145 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserPermissions**](UserPermissions.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerGetUserSshKey
+
+> UserSSHKeys UserControllerGetUserSshKey(ctx, userId, keyId).Execute()
+
+Get specific SSH key
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	keyId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerGetUserSshKey(context.Background(), userId, keyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerGetUserSshKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerGetUserSshKey`: UserSSHKeys
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerGetUserSshKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+**keyId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerGetUserSshKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**UserSSHKeys**](UserSSHKeys.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerGetUserSshKeys
+
+> UserSSHKeysList UserControllerGetUserSshKeys(ctx, userId).Execute()
+
+Get user SSH keys
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerGetUserSshKeys(context.Background(), userId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerGetUserSshKeys``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerGetUserSshKeys`: UserSSHKeysList
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerGetUserSshKeys`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerGetUserSshKeysRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**UserSSHKeysList**](UserSSHKeysList.md)
 
 ### Authorization
 

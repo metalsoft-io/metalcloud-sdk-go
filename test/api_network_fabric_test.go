@@ -22,6 +22,20 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test NetworkFabricAPIService ActivateNetworkFabric", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.ActivateNetworkFabric(context.Background(), networkFabricId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkFabricAPIService AddNetworkDevicesToFabric", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -61,13 +75,13 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test NetworkFabricAPIService GetFabricAndNetworkDevices", func(t *testing.T) {
+	t.Run("Test NetworkFabricAPIService GetFabricNetworkDevices", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var networkFabricId int32
 
-		resp, httpRes, err := apiClient.NetworkFabricAPI.GetFabricAndNetworkDevices(context.Background(), networkFabricId).Execute()
+		resp, httpRes, err := apiClient.NetworkFabricAPI.GetFabricNetworkDevices(context.Background(), networkFabricId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

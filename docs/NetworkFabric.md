@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 **Id** | **string** | The network fabric ID. | 
+**Status** | Pointer to **string** | The status of the network fabric, by default it is in draft mode. | [optional] 
 **NetworkEquipment** | Pointer to [**[]NetworkDevice**](NetworkDevice.md) | The network equipments in the fabric | [optional] 
 
 ## Methods
@@ -228,6 +229,31 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+
+### GetStatus
+
+`func (o *NetworkFabric) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *NetworkFabric) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *NetworkFabric) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *NetworkFabric) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetNetworkEquipment
 

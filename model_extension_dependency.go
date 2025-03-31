@@ -24,7 +24,7 @@ type ExtensionDependency struct {
 	// Metalsoft Controller version required by the extension.
 	ControllerVersion string `json:"controllerVersion"`
 	// List of OS templates required by the extension.
-	OsTemplates []string `json:"osTemplates"`
+	OsTemplates []string `json:"osTemplates,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +34,9 @@ type _ExtensionDependency ExtensionDependency
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionDependency(controllerVersion string, osTemplates []string) *ExtensionDependency {
+func NewExtensionDependency(controllerVersion string) *ExtensionDependency {
 	this := ExtensionDependency{}
 	this.ControllerVersion = controllerVersion
-	this.OsTemplates = osTemplates
 	return &this
 }
 
@@ -73,26 +72,34 @@ func (o *ExtensionDependency) SetControllerVersion(v string) {
 	o.ControllerVersion = v
 }
 
-// GetOsTemplates returns the OsTemplates field value
+// GetOsTemplates returns the OsTemplates field value if set, zero value otherwise.
 func (o *ExtensionDependency) GetOsTemplates() []string {
-	if o == nil {
+	if o == nil || IsNil(o.OsTemplates) {
 		var ret []string
 		return ret
 	}
-
 	return o.OsTemplates
 }
 
-// GetOsTemplatesOk returns a tuple with the OsTemplates field value
+// GetOsTemplatesOk returns a tuple with the OsTemplates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExtensionDependency) GetOsTemplatesOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OsTemplates) {
 		return nil, false
 	}
 	return o.OsTemplates, true
 }
 
-// SetOsTemplates sets field value
+// HasOsTemplates returns a boolean if a field has been set.
+func (o *ExtensionDependency) HasOsTemplates() bool {
+	if o != nil && !IsNil(o.OsTemplates) {
+		return true
+	}
+
+	return false
+}
+
+// SetOsTemplates gets a reference to the given []string and assigns it to the OsTemplates field.
 func (o *ExtensionDependency) SetOsTemplates(v []string) {
 	o.OsTemplates = v
 }
@@ -108,7 +115,9 @@ func (o ExtensionDependency) MarshalJSON() ([]byte, error) {
 func (o ExtensionDependency) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["controllerVersion"] = o.ControllerVersion
-	toSerialize["osTemplates"] = o.OsTemplates
+	if !IsNil(o.OsTemplates) {
+		toSerialize["osTemplates"] = o.OsTemplates
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -123,7 +132,6 @@ func (o *ExtensionDependency) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"controllerVersion",
-		"osTemplates",
 	}
 
 	allProperties := make(map[string]interface{})

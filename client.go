@@ -102,6 +102,8 @@ type APIClient struct {
 
 	OSTemplateAPI *OSTemplateAPIService
 
+	ResourcePoolAPI *ResourcePoolAPIService
+
 	SecurityAPI *SecurityAPIService
 
 	ServerAPI *ServerAPIService
@@ -189,6 +191,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.NetworkEndpointGroupAPI = (*NetworkEndpointGroupAPIService)(&c.common)
 	c.NetworkFabricAPI = (*NetworkFabricAPIService)(&c.common)
 	c.OSTemplateAPI = (*OSTemplateAPIService)(&c.common)
+	c.ResourcePoolAPI = (*ResourcePoolAPIService)(&c.common)
 	c.SecurityAPI = (*SecurityAPIService)(&c.common)
 	c.ServerAPI = (*ServerAPIService)(&c.common)
 	c.ServerCleanupPolicyAPI = (*ServerCleanupPolicyAPIService)(&c.common)

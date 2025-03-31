@@ -74,6 +74,18 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test InfrastructureAPIService GetAllInfrastructureStatistics", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.InfrastructureAPI.GetAllInfrastructureStatistics(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test InfrastructureAPIService GetInfrastructure", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

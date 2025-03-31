@@ -27,6 +27,8 @@ type Storage struct {
 	UserId *float32 `json:"userId,omitempty"`
 	// Id of the site
 	SiteId float32 `json:"siteId"`
+	// The name of the datacenter where the storage is located.
+	DatacenterName string `json:"datacenterName"`
 	// Storage driver
 	StorageDriver string `json:"storageDriver"`
 	// Storage technology
@@ -54,11 +56,11 @@ type Storage struct {
 	// Username
 	Username string `json:"username"`
 	// Password encrypted
-	PasswordEncrypted string `json:"passwordEncrypted"`
+	PasswordEncrypted *string `json:"passwordEncrypted,omitempty"`
 	// Options for the storage
 	Options *StorageOptions `json:"options,omitempty"`
 	// Specifies if the storage is in maintenance
-	InMaintenance float32 `json:"inMaintenance"`
+	InMaintenance *float32 `json:"inMaintenance,omitempty"`
 	// Target IQN
 	TargetIQN *string `json:"targetIQN,omitempty"`
 	// Specifies if the storage is experimental
@@ -88,6 +90,8 @@ type Storage struct {
 	// S3 port
 	S3Port *string `json:"s3Port,omitempty"`
 	JobInfo *JobInfo `json:"jobInfo,omitempty"`
+	// The extension execution info of the storage.
+	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -99,10 +103,11 @@ type _Storage Storage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorage(storageId float32, siteId float32, storageDriver string, storageTechnology string, storageType string, status string, name string, managementHost string, username string, passwordEncrypted string, inMaintenance float32, subnetType string) *Storage {
+func NewStorage(storageId float32, siteId float32, datacenterName string, storageDriver string, storageTechnology string, storageType string, status string, name string, managementHost string, username string, subnetType string) *Storage {
 	this := Storage{}
 	this.StorageId = storageId
 	this.SiteId = siteId
+	this.DatacenterName = datacenterName
 	this.StorageDriver = storageDriver
 	this.StorageTechnology = storageTechnology
 	this.StorageType = storageType
@@ -110,8 +115,6 @@ func NewStorage(storageId float32, siteId float32, storageDriver string, storage
 	this.Name = name
 	this.ManagementHost = managementHost
 	this.Username = username
-	this.PasswordEncrypted = passwordEncrypted
-	this.InMaintenance = inMaintenance
 	this.SubnetType = subnetType
 	return &this
 }
@@ -202,6 +205,30 @@ func (o *Storage) GetSiteIdOk() (*float32, bool) {
 // SetSiteId sets field value
 func (o *Storage) SetSiteId(v float32) {
 	o.SiteId = v
+}
+
+// GetDatacenterName returns the DatacenterName field value
+func (o *Storage) GetDatacenterName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DatacenterName
+}
+
+// GetDatacenterNameOk returns a tuple with the DatacenterName field value
+// and a boolean to check if the value has been set.
+func (o *Storage) GetDatacenterNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DatacenterName, true
+}
+
+// SetDatacenterName sets field value
+func (o *Storage) SetDatacenterName(v string) {
+	o.DatacenterName = v
 }
 
 // GetStorageDriver returns the StorageDriver field value
@@ -564,28 +591,36 @@ func (o *Storage) SetUsername(v string) {
 	o.Username = v
 }
 
-// GetPasswordEncrypted returns the PasswordEncrypted field value
+// GetPasswordEncrypted returns the PasswordEncrypted field value if set, zero value otherwise.
 func (o *Storage) GetPasswordEncrypted() string {
-	if o == nil {
+	if o == nil || IsNil(o.PasswordEncrypted) {
 		var ret string
 		return ret
 	}
-
-	return o.PasswordEncrypted
+	return *o.PasswordEncrypted
 }
 
-// GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field value
+// GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Storage) GetPasswordEncryptedOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PasswordEncrypted) {
 		return nil, false
 	}
-	return &o.PasswordEncrypted, true
+	return o.PasswordEncrypted, true
 }
 
-// SetPasswordEncrypted sets field value
+// HasPasswordEncrypted returns a boolean if a field has been set.
+func (o *Storage) HasPasswordEncrypted() bool {
+	if o != nil && !IsNil(o.PasswordEncrypted) {
+		return true
+	}
+
+	return false
+}
+
+// SetPasswordEncrypted gets a reference to the given string and assigns it to the PasswordEncrypted field.
 func (o *Storage) SetPasswordEncrypted(v string) {
-	o.PasswordEncrypted = v
+	o.PasswordEncrypted = &v
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
@@ -620,28 +655,36 @@ func (o *Storage) SetOptions(v StorageOptions) {
 	o.Options = &v
 }
 
-// GetInMaintenance returns the InMaintenance field value
+// GetInMaintenance returns the InMaintenance field value if set, zero value otherwise.
 func (o *Storage) GetInMaintenance() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.InMaintenance) {
 		var ret float32
 		return ret
 	}
-
-	return o.InMaintenance
+	return *o.InMaintenance
 }
 
-// GetInMaintenanceOk returns a tuple with the InMaintenance field value
+// GetInMaintenanceOk returns a tuple with the InMaintenance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Storage) GetInMaintenanceOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InMaintenance) {
 		return nil, false
 	}
-	return &o.InMaintenance, true
+	return o.InMaintenance, true
 }
 
-// SetInMaintenance sets field value
+// HasInMaintenance returns a boolean if a field has been set.
+func (o *Storage) HasInMaintenance() bool {
+	if o != nil && !IsNil(o.InMaintenance) {
+		return true
+	}
+
+	return false
+}
+
+// SetInMaintenance gets a reference to the given float32 and assigns it to the InMaintenance field.
 func (o *Storage) SetInMaintenance(v float32) {
-	o.InMaintenance = v
+	o.InMaintenance = &v
 }
 
 // GetTargetIQN returns the TargetIQN field value if set, zero value otherwise.
@@ -1116,6 +1159,38 @@ func (o *Storage) SetJobInfo(v JobInfo) {
 	o.JobInfo = &v
 }
 
+// GetExtensionInfo returns the ExtensionInfo field value if set, zero value otherwise.
+func (o *Storage) GetExtensionInfo() ExtensionExecutionInfo {
+	if o == nil || IsNil(o.ExtensionInfo) {
+		var ret ExtensionExecutionInfo
+		return ret
+	}
+	return *o.ExtensionInfo
+}
+
+// GetExtensionInfoOk returns a tuple with the ExtensionInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Storage) GetExtensionInfoOk() (*ExtensionExecutionInfo, bool) {
+	if o == nil || IsNil(o.ExtensionInfo) {
+		return nil, false
+	}
+	return o.ExtensionInfo, true
+}
+
+// HasExtensionInfo returns a boolean if a field has been set.
+func (o *Storage) HasExtensionInfo() bool {
+	if o != nil && !IsNil(o.ExtensionInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensionInfo gets a reference to the given ExtensionExecutionInfo and assigns it to the ExtensionInfo field.
+func (o *Storage) SetExtensionInfo(v ExtensionExecutionInfo) {
+	o.ExtensionInfo = &v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *Storage) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -1163,6 +1238,7 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 		toSerialize["userId"] = o.UserId
 	}
 	toSerialize["siteId"] = o.SiteId
+	toSerialize["datacenterName"] = o.DatacenterName
 	toSerialize["storageDriver"] = o.StorageDriver
 	toSerialize["storageTechnology"] = o.StorageTechnology
 	toSerialize["storageType"] = o.StorageType
@@ -1188,11 +1264,15 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["managementHost"] = o.ManagementHost
 	toSerialize["username"] = o.Username
-	toSerialize["passwordEncrypted"] = o.PasswordEncrypted
+	if !IsNil(o.PasswordEncrypted) {
+		toSerialize["passwordEncrypted"] = o.PasswordEncrypted
+	}
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
-	toSerialize["inMaintenance"] = o.InMaintenance
+	if !IsNil(o.InMaintenance) {
+		toSerialize["inMaintenance"] = o.InMaintenance
+	}
 	if !IsNil(o.TargetIQN) {
 		toSerialize["targetIQN"] = o.TargetIQN
 	}
@@ -1236,6 +1316,9 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.JobInfo) {
 		toSerialize["jobInfo"] = o.JobInfo
 	}
+	if !IsNil(o.ExtensionInfo) {
+		toSerialize["extensionInfo"] = o.ExtensionInfo
+	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -1254,6 +1337,7 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"storageId",
 		"siteId",
+		"datacenterName",
 		"storageDriver",
 		"storageTechnology",
 		"storageType",
@@ -1261,8 +1345,6 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"managementHost",
 		"username",
-		"passwordEncrypted",
-		"inMaintenance",
 		"subnetType",
 	}
 
@@ -1296,6 +1378,7 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "storageId")
 		delete(additionalProperties, "userId")
 		delete(additionalProperties, "siteId")
+		delete(additionalProperties, "datacenterName")
 		delete(additionalProperties, "storageDriver")
 		delete(additionalProperties, "storageTechnology")
 		delete(additionalProperties, "storageType")
@@ -1327,6 +1410,7 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "s3Hostname")
 		delete(additionalProperties, "s3Port")
 		delete(additionalProperties, "jobInfo")
+		delete(additionalProperties, "extensionInfo")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

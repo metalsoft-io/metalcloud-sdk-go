@@ -1080,6 +1080,25 @@ paths:
       summary: Sign up
       tags:
       - Authentication
+  /api/v2/public-signup-disabled:
+    get:
+      description: Returns whether public signup is disabled.
+      operationId: getPublicSignupDisabled
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicSignupDisabled'
+          description: Returned public signup disabled
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      summary: Check if public signup is disabled
+      tags:
+      - Authentication
   /api/v2/buckets/{bucketId}:
     get:
       description: Returns Bucket information
@@ -7380,6 +7399,32 @@ paths:
       summary: Creates a new infrastructure
       tags:
       - Infrastructure
+  /api/v2/infrastructures/statistics:
+    get:
+      description: Retrieves statistics for all infrastructures
+      operationId: getAllInfrastructureStatistics
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructuresStatistics'
+          description: Retrieved the statistics for all infrastructures
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Retrieves statistics for all infrastructures
+      tags:
+      - Infrastructure
   /api/v2/infrastructures/{infrastructureId}:
     delete:
       description: Deletes the specified infrastructure
@@ -7837,6 +7882,12 @@ paths:
         schema:
           type: number
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetResourceUtilizationDetailed'
+        required: true
       responses:
         "200":
           content:
@@ -11309,6 +11360,35 @@ paths:
       summary: Gets the specified network from the infrastructure
       tags:
       - Network
+  /api/v2/network-devices/{networkDeviceId}/credentials:
+    get:
+      description: Returns Network Device credentials
+      operationId: getNetworkDeviceCredentials
+      parameters:
+      - explode: false
+        in: path
+        name: networkDeviceId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          description: Returns Network Device credentials
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get Network Device credentials
+      tags:
+      - Network Device
   /api/v2/network-devices:
     get:
       operationId: getNetworkDevices
@@ -11950,6 +12030,57 @@ paths:
       summary: Re-provision network equipment
       tags:
       - Network Device
+  /api/v2/network-devices/{networkDeviceId}/actions/run-extension:
+    post:
+      operationId: runExtensionOnNetworkDevice
+      parameters:
+      - explode: false
+        in: path
+        name: networkDeviceId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunExtensionOnPhysicalDevice'
+        description: The extension information
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobInfo'
+          description: Reference to the job created to run the extension
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Runs an extension of type action on the network device
+      tags:
+      - Network Device
   /api/v2/network-devices/network-devices/{networkDeviceId}/tags:
     get:
       operationId: NetworkDeviceController_getTagsForNetworkDevice
@@ -12543,6 +12674,37 @@ paths:
           type: array
         style: form
       - description: |-
+          Filter by status query param.
+                    <p>
+                       <b>Format: </b> filter.status={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.status=$not:$like:John Doe&filter.status=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.status
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
           Filter by siteId query param.
                     <p>
                        <b>Format: </b> filter.siteId={$not}:OPERATION:VALUE
@@ -12643,11 +12805,12 @@ paths:
           type: string
         style: form
       - description: "List of fields to search by term to filter result values\n \
-          \       <p>\n             <b>Example: </b> name,description,siteId,fabricConfiguration.fabricType\n\
+          \       <p>\n             <b>Example: </b> name,description,status,siteId,fabricConfiguration.fabricType\n\
           \          </p>\n        <p>\n             <b>Default Value: </b> By default\
           \ all fields mentioned below will be used to search by term\n          </p>\n\
           \        <h4>Available Fields</h4><ul><li>name</li>\n<li>description</li>\n\
-          <li>siteId</li>\n<li>fabricConfiguration.fabricType</li></ul>\n        "
+          <li>status</li>\n<li>siteId</li>\n<li>fabricConfiguration.fabricType</li></ul>\n\
+          \        "
         explode: true
         in: query
         name: searchBy
@@ -13151,6 +13314,37 @@ paths:
           type: array
         style: form
       - description: |-
+          Filter by status query param.
+                    <p>
+                       <b>Format: </b> filter.status={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.status=$not:$like:John Doe&filter.status=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.status
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
           Filter by siteId query param.
                     <p>
                        <b>Format: </b> filter.siteId={$not}:OPERATION:VALUE
@@ -13251,11 +13445,12 @@ paths:
           type: string
         style: form
       - description: "List of fields to search by term to filter result values\n \
-          \       <p>\n             <b>Example: </b> name,description,siteId,fabricConfiguration.fabricType\n\
+          \       <p>\n             <b>Example: </b> name,description,status,siteId,fabricConfiguration.fabricType\n\
           \          </p>\n        <p>\n             <b>Default Value: </b> By default\
           \ all fields mentioned below will be used to search by term\n          </p>\n\
           \        <h4>Available Fields</h4><ul><li>name</li>\n<li>description</li>\n\
-          <li>siteId</li>\n<li>fabricConfiguration.fabricType</li></ul>\n        "
+          <li>status</li>\n<li>siteId</li>\n<li>fabricConfiguration.fabricType</li></ul>\n\
+          \        "
         explode: true
         in: query
         name: searchBy
@@ -13433,9 +13628,54 @@ paths:
       summary: Update a network fabric
       tags:
       - Network Fabric
+  /api/v2/network-fabrics/{networkFabricId}/actions/activate:
+    post:
+      operationId: activateNetworkFabric
+      parameters:
+      - description: The ID of the network fabric to activate
+        explode: false
+        in: path
+        name: networkFabricId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkFabric'
+          description: Network fabric was successfully activated
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Network fabric not found
+        "409":
+          description: Network fabric with the same name already exists
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Activate a network fabric
+      tags:
+      - Network Fabric
   /api/v2/network-fabrics/{networkFabricId}/network-devices:
     get:
-      operationId: getFabricAndNetworkDevices
+      operationId: getFabricNetworkDevices
       parameters:
       - description: The ID of the fabric
         explode: false
@@ -13445,13 +13685,367 @@ paths:
         schema:
           type: integer
         style: simple
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by switchId query param.
+                    <p>
+                       <b>Format: </b> filter.switchId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.switchId=$not:$like:John Doe&filter.switchId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.switchId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by status query param.
+                    <p>
+                       <b>Format: </b> filter.status={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.status=$not:$like:John Doe&filter.status=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.status
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by datacenterName query param.
+                    <p>
+                       <b>Format: </b> filter.datacenterName={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.datacenterName=$not:$like:John Doe&filter.datacenterName=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.datacenterName
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by chassisIdentifier query param.
+                    <p>
+                       <b>Format: </b> filter.chassisIdentifier={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.chassisIdentifier=$not:$like:John Doe&filter.chassisIdentifier=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.chassisIdentifier
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by managementAddress query param.
+                    <p>
+                       <b>Format: </b> filter.managementAddress={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.managementAddress=$not:$like:John Doe&filter.managementAddress=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.managementAddress
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by managementPort query param.
+                    <p>
+                       <b>Format: </b> filter.managementPort={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.managementPort=$not:$like:John Doe&filter.managementPort=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.managementPort
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by provisionerType query param.
+                    <p>
+                       <b>Format: </b> filter.provisionerType={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.provisionerType=$not:$like:John Doe&filter.provisionerType=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.provisionerType
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by position query param.
+                    <p>
+                       <b>Format: </b> filter.position={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.position=$not:$like:John Doe&filter.position=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.position
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by identifierString query param.
+                    <p>
+                       <b>Format: </b> filter.identifierString={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.identifierString=$not:$like:John Doe&filter.identifierString=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.identifierString
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> id:ASC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>status</li>\n\
+          <li>siteId</li>\n<li>status</li>\n<li>position</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - status:ASC
+            - status:DESC
+            - siteId:ASC
+            - siteId:DESC
+            - status:ASC
+            - status:DESC
+            - position:ASC
+            - position:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> id,status,siteId,managementAddress,position\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
+          \ all fields mentioned below will be used to search by term\n          </p>\n\
+          \        <h4>Available Fields</h4><ul><li>id</li>\n<li>status</li>\n<li>siteId</li>\n\
+          <li>managementAddress</li>\n<li>position</li></ul>\n        "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NetworkFabric'
-          description: Returns a Network Fabric with the associated network devices
+                $ref: '#/components/schemas/NetworkDevicePaginatedList'
+          description: Returns paginated Network Devices associated to the fabric.
         "401":
           description: Unauthorized
         "403":
@@ -13461,7 +14055,7 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Get fabric and network devices associated with the fabric
+      summary: Get paginated Network Devices
       tags:
       - Network Fabric
     post:
@@ -14021,6 +14615,718 @@ paths:
       summary: Updates authentication provider
       tags:
       - Security
+  /api/v2/resource-pools:
+    get:
+      description: Returns list of all Resource Pools
+      operationId: getResourcePools
+      parameters:
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by resourcePoolId query param.
+                    <p>
+                       <b>Format: </b> filter.resourcePoolId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.resourcePoolId=$not:$like:John Doe&filter.resourcePoolId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.resourcePoolId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by resourcePoolLabel query param.
+                    <p>
+                       <b>Format: </b> filter.resourcePoolLabel={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.resourcePoolLabel=$not:$like:John Doe&filter.resourcePoolLabel=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.resourcePoolLabel
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by resourcePoolDescription query param.
+                    <p>
+                       <b>Format: </b> filter.resourcePoolDescription={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.resourcePoolDescription=$not:$like:John Doe&filter.resourcePoolDescription=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.resourcePoolDescription
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by resourcePoolCreatedTimestamp query param.
+                    <p>
+                       <b>Format: </b> filter.resourcePoolCreatedTimestamp={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.resourcePoolCreatedTimestamp=$not:$like:John Doe&filter.resourcePoolCreatedTimestamp=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.resourcePoolCreatedTimestamp
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by resourcePoolUpdatedTimestamp query param.
+                    <p>
+                       <b>Format: </b> filter.resourcePoolUpdatedTimestamp={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.resourcePoolUpdatedTimestamp=$not:$like:John Doe&filter.resourcePoolUpdatedTimestamp=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.resourcePoolUpdatedTimestamp
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> resourcePoolId:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>resourcePoolId</li>\n\
+          <li>resourcePoolLabel</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - resourcePoolId:ASC
+            - resourcePoolId:DESC
+            - resourcePoolLabel:ASC
+            - resourcePoolLabel:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> resourcePoolLabel,resourcePoolDescription\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
+          \ all fields mentioned below will be used to search by term\n          </p>\n\
+          \        <h4>Available Fields</h4><ul><li>resourcePoolLabel</li>\n<li>resourcePoolDescription</li></ul>\n\
+          \        "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcePoolPaginatedList'
+          description: Returns list of all Resource Pools
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all Resource Pools
+      tags:
+      - Resource Pool
+    post:
+      description: Creates a Resource Pool
+      operationId: createResourcePool
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateResourcePool'
+        description: The Resource Pool create object
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcePool'
+          description: The Resource Pool successfully created
+          headers:
+            Location:
+              description: New Resource Pool link
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "409":
+          description: Duplicate resource pool
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Creates a Resource Pool
+      tags:
+      - Resource Pool
+  /api/v2/resource-pools/{resourcePoolId}:
+    delete:
+      description: Deletes a Resource Pool
+      operationId: deleteResourcePool
+      parameters:
+      - explode: false
+        in: path
+        name: resourcePoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: The Resource Pool was successfully deleted
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Deletes a Resource Pool
+      tags:
+      - Resource Pool
+    get:
+      description: Returns Resource Pool information
+      operationId: getResourcePool
+      parameters:
+      - explode: false
+        in: path
+        name: resourcePoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcePool'
+          description: Returns Resource Pool information
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get Resource Pool information
+      tags:
+      - Resource Pool
+    put:
+      description: Updates Resource Pool information
+      operationId: updateResourcePool
+      parameters:
+      - explode: false
+        in: path
+        name: resourcePoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateResourcePool'
+        description: The Resource Pool update object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcePool'
+          description: The Resource Pool was successfully updated
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Updates Resource Pool information
+      tags:
+      - Resource Pool
+  /api/v2/resource-pools/{resourcePoolId}/servers:
+    get:
+      description: Returns list of all servers that are part of a Resource Pool
+      operationId: getResourcePoolServers
+      parameters:
+      - explode: false
+        in: path
+        name: resourcePoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: number
+                type: array
+          description: Returns list of all servers that are part of a Resource Pool
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all servers that are part of a Resource Pool
+      tags:
+      - Resource Pool
+  /api/v2/resource-pools/{resourcePoolId}/server/{serverId}:
+    delete:
+      description: Remove a server from a Resource Pool
+      operationId: removeServerFromResourcePool
+      parameters:
+      - explode: false
+        in: path
+        name: resourcePoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: serverId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: The server was successfully removed from the Resource Pool
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Remove a server from a Resource Pool
+      tags:
+      - Resource Pool
+    put:
+      description: Add a server to a Resource Pool
+      operationId: addServerToResourcePool
+      parameters:
+      - explode: false
+        in: path
+        name: resourcePoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: serverId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "201":
+          description: The server was successfully added to the Resource Pool
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Add a server to a Resource Pool
+      tags:
+      - Resource Pool
+  /api/v2/resource-pools/{resourcePoolId}/subnet-pools:
+    get:
+      description: Returns list of all subnet pools that are part of a resource pool
+      operationId: getResourcePoolSubnetPools
+      parameters:
+      - explode: false
+        in: path
+        name: resourcePoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: number
+                type: array
+          description: Returns list of all subnet pools that are part of a resource
+            pool
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all subnet pools that are part of a resource pool
+      tags:
+      - Resource Pool
+  /api/v2/resource-pools/{resourcePoolId}/subnet-pool/{subnetPoolId}:
+    delete:
+      description: Remove a subnet from a resource pool
+      operationId: removeSubnetPoolFromResourcePool
+      parameters:
+      - explode: false
+        in: path
+        name: resourcePoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: subnetPoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: The subnet pool was successfully removed from the resource
+            pool
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Remove a subnet from a resource pool
+      tags:
+      - Resource Pool
+    put:
+      description: Add a subnet pool to a resource pool
+      operationId: addSubnetPoolToResourcePool
+      parameters:
+      - explode: false
+        in: path
+        name: resourcePoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: subnetPoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "201":
+          description: The subnet was successfully added to the resource pool
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Add a subnet pool to a resource pool
+      tags:
+      - Resource Pool
+  /api/v2/resource-pools/{resourcePoolId}/users:
+    get:
+      description: Returns list of all users that have access to a Resource Pool
+      operationId: getResourcePoolUsers
+      parameters:
+      - explode: false
+        in: path
+        name: resourcePoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: object
+                type: array
+          description: Returns list of all users that have access to a Resource Pool
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all users that have access to a Resource Pool
+      tags:
+      - Resource Pool
+  /api/v2/resource-pools/user/{userId}:
+    get:
+      description: Returns list of all Resource Pools that a user has access to
+      operationId: getUserResourcePools
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: object
+                type: array
+          description: Returns list of all Resource Pools that a user has access to
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all Resource Pools that a user has access to
+      tags:
+      - Resource Pool
+  /api/v2/resource-pools/user/{userId}/pool/{resourcePoolId}:
+    delete:
+      description: Remove a user from a Resource Pool
+      operationId: removeResourcePoolUser
+      parameters:
+      - explode: false
+        in: path
+        name: resourcePoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: The user was successfully removed from the Resource Pool
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Remove a user from a Resource Pool
+      tags:
+      - Resource Pool
+    post:
+      description: Add a user to a Resource Pool
+      operationId: addResourcePoolUser
+      parameters:
+      - explode: false
+        in: path
+        name: resourcePoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "201":
+          description: The user was successfully added to the Resource Pool
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Add a user to a Resource Pool
+      tags:
+      - Resource Pool
   /api/v2/servers/cleanup-policies:
     get:
       description: Returns a list of Server Cleanup Policies
@@ -24013,6 +25319,144 @@ paths:
       summary: Regenerate user JWT salt. Also logs out all user sessions.
       tags:
       - User
+  /api/v2/users/{userId}/ssh-keys:
+    get:
+      operationId: UserController_getUserSshKeys
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSSHKeysList'
+          description: The SSH keys of the user
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get user SSH keys
+      tags:
+      - User
+    post:
+      operationId: UserController_addUserSshKey
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserSSHKeyDto'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSSHKeys'
+          description: The SSH key has been successfully added.
+        "400":
+          description: Invalid SSH key
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: SSH key already exists
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Add SSH key for user
+      tags:
+      - User
+  /api/v2/users/{userId}/ssh-keys/{keyId}:
+    delete:
+      operationId: UserController_deleteUserSshKey
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: keyId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: SSH key successfully deleted
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User or SSH key not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete SSH key for user
+      tags:
+      - User
+    get:
+      operationId: UserController_getUserSshKey
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: keyId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSSHKeys'
+          description: The SSH key with the specified ID
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User or SSH key not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get specific SSH key
+      tags:
+      - User
   /api/v2/vms/{vmId}:
     get:
       description: Retrieves the VM information
@@ -29143,6 +30587,17 @@ components:
       - displayName
       - email
       type: object
+    PublicSignupDisabled:
+      example:
+        isPublicSignupDisabled: false
+      properties:
+        isPublicSignupDisabled:
+          default: false
+          description: Flag to indicate if public signup is disabled
+          type: boolean
+      required:
+      - isPublicSignupDisabled
+      type: object
     BucketConfiguration:
       example:
         sizeGB: 6.027456183070403
@@ -31513,7 +32968,6 @@ components:
           type: array
       required:
       - controllerVersion
-      - osTemplates
       type: object
     ExtensionInput:
       example:
@@ -32557,6 +34011,47 @@ components:
         extensionType: extensionType
         name: name
         extensionVersion: extensionVersion
+        tasks:
+        - taskType: ExtensionTaskAnsible
+          options:
+            executionTimeout: 0
+            executionTimeoutTick: 0
+            asset: asset
+            version: version
+            playbook: playbook
+          label: label
+        - taskType: ExtensionTaskAnsible
+          options:
+            executionTimeout: 0
+            executionTimeoutTick: 0
+            asset: asset
+            version: version
+            playbook: playbook
+          label: label
+        - taskType: ExtensionTaskAnsible
+          options:
+            executionTimeout: 0
+            executionTimeoutTick: 0
+            asset: asset
+            version: version
+            playbook: playbook
+          label: label
+        - taskType: ExtensionTaskAnsible
+          options:
+            executionTimeout: 0
+            executionTimeoutTick: 0
+            asset: asset
+            version: version
+            playbook: playbook
+          label: label
+        - taskType: ExtensionTaskAnsible
+          options:
+            executionTimeout: 0
+            executionTimeoutTick: 0
+            asset: asset
+            version: version
+            playbook: playbook
+          label: label
       properties:
         kind:
           description: The kind of extension.
@@ -32621,13 +34116,18 @@ components:
           $ref: '#/components/schemas/ExtensionActions'
         onDelete:
           $ref: '#/components/schemas/ExtensionActions'
+        tasks:
+          description: Tasks. Only for extensions of kind action
+          items:
+            $ref: '#/components/schemas/ExtensionTask'
+          maxItems: 12
+          type: array
       required:
       - assets
       - dependencies
       - extensionType
       - extensionVersion
       - icon
-      - infrastructure
       - inputs
       - kind
       - label
@@ -33377,6 +34877,47 @@ components:
           extensionType: extensionType
           name: name
           extensionVersion: extensionVersion
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -33446,7 +34987,6 @@ components:
       - kind
       - name
       - revision
-      - slug
       - status
       type: object
     CreateExtension:
@@ -33982,6 +35522,47 @@ components:
           extensionType: extensionType
           name: name
           extensionVersion: extensionVersion
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
         label: incus-6x
       properties:
         name:
@@ -34548,6 +36129,47 @@ components:
           extensionType: extensionType
           name: name
           extensionVersion: extensionVersion
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
         label: incus-6x
       properties:
         name:
@@ -36562,6 +38184,30 @@ components:
       - infrastructure
       - instanceId
       type: object
+    ExtensionExecutionInfo:
+      properties:
+        ansibleBundlePath:
+          description: The path towards the ansible bundle
+          type: string
+        ansibleBundleFileName:
+          description: The name of the ansible bundle file
+          type: string
+        ansibleBundleToken:
+          description: The ansible bundle token
+          type: string
+        successMessage:
+          description: The success message of the ansible bundle
+          type: string
+        successMessageTimestamp:
+          description: Success timestamp
+          type: string
+        errorMessage:
+          description: The error message of the ansible bundle
+          type: string
+        errorMessageTimestamp:
+          description: Error timestamp
+          type: string
+      type: object
     Server:
       example:
         datacenterName: datacenterName
@@ -36589,6 +38235,7 @@ components:
         vncPasswordEncrypted: vncPasswordEncrypted
         vncPort: 6.84685269835264
         serialNumber: serialNumber
+        extensionInfo: ""
         submodel: submodel
         registeredTimestamp: registeredTimestamp
         isBasicCampusEndpoint: 7.457744773683766
@@ -37004,6 +38651,10 @@ components:
           allOf:
           - $ref: '#/components/schemas/ServerAllocationInfo'
           description: The server instance.
+        extensionInfo:
+          allOf:
+          - $ref: '#/components/schemas/ExtensionExecutionInfo'
+          description: The extension execution info of the server.
         links:
           description: Reference links
           items:
@@ -37481,6 +39132,80 @@ components:
       - links
       - meta
       type: object
+    InfrastructureServiceStatusDto:
+      properties:
+        active:
+          description: Count of active infrastructures
+          example: 44
+          type: number
+        ordered:
+          description: Count of ordered infrastructures
+          example: 79
+          type: number
+        deleted:
+          description: Count of deleted infrastructures
+          example: 51
+          type: number
+      required:
+      - active
+      - deleted
+      - ordered
+      type: object
+    InfrastructureDeployOngoingStatusCountDto:
+      properties:
+        thrownErrorRetrying:
+          description: Count of infrastructures with thrown error retrying status
+          example: 0
+          type: number
+        thrownError:
+          description: Count of infrastructures with thrown error status
+          example: 3
+          type: number
+      required:
+      - thrownError
+      - thrownErrorRetrying
+      type: object
+    InfrastructuresStatistics:
+      example:
+        ongoingInfrastructureCount: 3
+        infrastructureServiceStatus: ""
+        infrastructureCountEmptyWithSubnets: 3
+        infrastructureCount: 174
+        infrastructureDeployOngoingStatusCount: ""
+        infrastructureCountEmpty: 34
+      properties:
+        infrastructureServiceStatus:
+          allOf:
+          - $ref: '#/components/schemas/InfrastructureServiceStatusDto'
+          description: Infrastructure service status counts
+        infrastructureDeployOngoingStatusCount:
+          allOf:
+          - $ref: '#/components/schemas/InfrastructureDeployOngoingStatusCountDto'
+          description: Infrastructure deploy ongoing status counts
+        infrastructureCount:
+          description: Total count of infrastructures
+          example: 174
+          type: number
+        ongoingInfrastructureCount:
+          description: Count of ongoing infrastructures
+          example: 3
+          type: number
+        infrastructureCountEmpty:
+          description: Count of empty infrastructures
+          example: 34
+          type: number
+        infrastructureCountEmptyWithSubnets:
+          description: Count of empty infrastructures with subnets
+          example: 3
+          type: number
+      required:
+      - infrastructureCount
+      - infrastructureCountEmpty
+      - infrastructureCountEmptyWithSubnets
+      - infrastructureDeployOngoingStatusCount
+      - infrastructureServiceStatus
+      - ongoingInfrastructureCount
+      type: object
     InfrastructureCreate:
       example:
         meta:
@@ -37812,6 +39537,44 @@ components:
       required:
       - allowDataLoss
       - shutdownOptions
+      type: object
+    GetResourceUtilizationDetailed:
+      example:
+        userIdOwner: 0.8008281904610115
+        infrastructureIds:
+        - 6.027456183070403
+        - 6.027456183070403
+        siteIds:
+        - 1.4658129805029452
+        - 1.4658129805029452
+        endTimestamp: 2000-01-23T04:56:07.000+00:00
+        startTimestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        userIdOwner:
+          description: User ID of the owner
+          type: number
+        startTimestamp:
+          description: Start timestamp for the resource utilization
+          format: date-time
+          type: string
+        endTimestamp:
+          description: End timestamp for the resource utilization
+          format: date-time
+          type: string
+        infrastructureIds:
+          description: List of infrastructure IDs
+          items:
+            type: number
+          type: array
+        siteIds:
+          description: List of site IDs
+          items:
+            type: number
+          type: array
+      required:
+      - endTimestamp
+      - startTimestamp
+      - userIdOwner
       type: object
     LicenseInstallments:
       properties:
@@ -40416,55 +42179,56 @@ components:
         bootstrapReadinessCheckInProgress: 9.301444243932576
         country: country
         mlagDomainId: 1.2315135367772556
-        city: city
-        datacenterRack: datacenterRack
-        description: description
         vtepAddressIpv4: vtepAddressIpv4
         datacenterMeta: datacenterMeta
-        datacenterRoom: datacenterRoom
         vtepAddressIpv6: vtepAddressIpv6
         managementMacAddress: managementMacAddress
         isGateway: true
         identifierString: identifierString
-        rackPositionUpperUnit: 6.027456183070403
         links:
         - rel: self
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
         id: id
-        bootstrapSkipInitialConfiguration: 4.145608029883936
         bootstrapReadinessCheckResult: "{}"
-        defaultMtu: 1.4894159098541704
-        managementAddress: managementAddress
         bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
         serialNumber: serialNumber
-        subnetOobIndex: 2.027123023002322
-        managementAddressMask: managementAddressMask
-        chassisIdentifier: chassisIdentifier
-        readyForInitialConfiguration: 7.061401241503109
+        extensionInfo: ""
         loopbackAddressIpv6: loopbackAddressIpv6
         managementAddressGateway: managementAddressGateway
         revision: 1
         tags: tags
         requiresOsInstall: true
-        syslogEnabled: 5.637376656633329
-        managementPort: 5.962133916683182
         driver: sonic_enterprise
-        managementPassword: password
-        subnetOobId: 3.616076749251911
         loopbackAddressIpv4: loopbackAddressIpv4
         mlagSystemMac: mlagSystemMac
-        siteId: 0.8008281904610115
-        orderIndex: 2.3021358869347655
-        variablesMaterializedForOSAssets: "{}"
         rackPositionLowerUnit: 1.4658129805029452
         position: leaf
         secretsMaterializedForOSAssets: "{}"
-        asn: 7.386281948385884
         status: active
-        username: username
         quarantineVlan: 1.0246457001441578
+        city: city
+        datacenterRack: datacenterRack
+        description: description
+        datacenterRoom: datacenterRoom
+        rackPositionUpperUnit: 6.027456183070403
+        bootstrapSkipInitialConfiguration: 4.145608029883936
+        defaultMtu: 1.4894159098541704
+        managementAddress: managementAddress
+        subnetOobIndex: 2.027123023002322
+        managementAddressMask: managementAddressMask
+        chassisIdentifier: chassisIdentifier
+        readyForInitialConfiguration: 7.061401241503109
+        syslogEnabled: 5.637376656633329
+        managementPort: 5.962133916683182
+        managementPassword: password
+        subnetOobId: 3.616076749251911
+        siteId: 0.8008281904610115
+        orderIndex: 2.3021358869347655
+        variablesMaterializedForOSAssets: "{}"
+        asn: 7.386281948385884
+        username: username
       properties:
         id:
           description: Unique identifier for the network device.
@@ -40622,6 +42386,10 @@ components:
         isGateway:
           description: Whether the network device is a gateway
           type: boolean
+        extensionInfo:
+          allOf:
+          - $ref: '#/components/schemas/ExtensionExecutionInfo'
+          description: The extension execution info of the network device.
         links:
           description: Reference links
           items:
@@ -40680,107 +42448,109 @@ components:
         - bootstrapReadinessCheckInProgress: 9.301444243932576
           country: country
           mlagDomainId: 1.2315135367772556
-          city: city
-          datacenterRack: datacenterRack
-          description: description
           vtepAddressIpv4: vtepAddressIpv4
           datacenterMeta: datacenterMeta
-          datacenterRoom: datacenterRoom
           vtepAddressIpv6: vtepAddressIpv6
           managementMacAddress: managementMacAddress
           isGateway: true
           identifierString: identifierString
-          rackPositionUpperUnit: 6.027456183070403
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: id
-          bootstrapSkipInitialConfiguration: 4.145608029883936
           bootstrapReadinessCheckResult: "{}"
-          defaultMtu: 1.4894159098541704
-          managementAddress: managementAddress
           bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
           serialNumber: serialNumber
-          subnetOobIndex: 2.027123023002322
-          managementAddressMask: managementAddressMask
-          chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 7.061401241503109
+          extensionInfo: ""
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
           tags: tags
           requiresOsInstall: true
-          syslogEnabled: 5.637376656633329
-          managementPort: 5.962133916683182
           driver: sonic_enterprise
-          managementPassword: password
-          subnetOobId: 3.616076749251911
           loopbackAddressIpv4: loopbackAddressIpv4
           mlagSystemMac: mlagSystemMac
-          siteId: 0.8008281904610115
-          orderIndex: 2.3021358869347655
-          variablesMaterializedForOSAssets: "{}"
           rackPositionLowerUnit: 1.4658129805029452
           position: leaf
           secretsMaterializedForOSAssets: "{}"
-          asn: 7.386281948385884
           status: active
-          username: username
           quarantineVlan: 1.0246457001441578
+          city: city
+          datacenterRack: datacenterRack
+          description: description
+          datacenterRoom: datacenterRoom
+          rackPositionUpperUnit: 6.027456183070403
+          bootstrapSkipInitialConfiguration: 4.145608029883936
+          defaultMtu: 1.4894159098541704
+          managementAddress: managementAddress
+          subnetOobIndex: 2.027123023002322
+          managementAddressMask: managementAddressMask
+          chassisIdentifier: chassisIdentifier
+          readyForInitialConfiguration: 7.061401241503109
+          syslogEnabled: 5.637376656633329
+          managementPort: 5.962133916683182
+          managementPassword: password
+          subnetOobId: 3.616076749251911
+          siteId: 0.8008281904610115
+          orderIndex: 2.3021358869347655
+          variablesMaterializedForOSAssets: "{}"
+          asn: 7.386281948385884
+          username: username
         - bootstrapReadinessCheckInProgress: 9.301444243932576
           country: country
           mlagDomainId: 1.2315135367772556
-          city: city
-          datacenterRack: datacenterRack
-          description: description
           vtepAddressIpv4: vtepAddressIpv4
           datacenterMeta: datacenterMeta
-          datacenterRoom: datacenterRoom
           vtepAddressIpv6: vtepAddressIpv6
           managementMacAddress: managementMacAddress
           isGateway: true
           identifierString: identifierString
-          rackPositionUpperUnit: 6.027456183070403
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: id
-          bootstrapSkipInitialConfiguration: 4.145608029883936
           bootstrapReadinessCheckResult: "{}"
-          defaultMtu: 1.4894159098541704
-          managementAddress: managementAddress
           bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
           serialNumber: serialNumber
-          subnetOobIndex: 2.027123023002322
-          managementAddressMask: managementAddressMask
-          chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 7.061401241503109
+          extensionInfo: ""
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
           tags: tags
           requiresOsInstall: true
-          syslogEnabled: 5.637376656633329
-          managementPort: 5.962133916683182
           driver: sonic_enterprise
-          managementPassword: password
-          subnetOobId: 3.616076749251911
           loopbackAddressIpv4: loopbackAddressIpv4
           mlagSystemMac: mlagSystemMac
-          siteId: 0.8008281904610115
-          orderIndex: 2.3021358869347655
-          variablesMaterializedForOSAssets: "{}"
           rackPositionLowerUnit: 1.4658129805029452
           position: leaf
           secretsMaterializedForOSAssets: "{}"
-          asn: 7.386281948385884
           status: active
-          username: username
           quarantineVlan: 1.0246457001441578
+          city: city
+          datacenterRack: datacenterRack
+          description: description
+          datacenterRoom: datacenterRoom
+          rackPositionUpperUnit: 6.027456183070403
+          bootstrapSkipInitialConfiguration: 4.145608029883936
+          defaultMtu: 1.4894159098541704
+          managementAddress: managementAddress
+          subnetOobIndex: 2.027123023002322
+          managementAddressMask: managementAddressMask
+          chassisIdentifier: chassisIdentifier
+          readyForInitialConfiguration: 7.061401241503109
+          syslogEnabled: 5.637376656633329
+          managementPort: 5.962133916683182
+          managementPassword: password
+          subnetOobId: 3.616076749251911
+          siteId: 0.8008281904610115
+          orderIndex: 2.3021358869347655
+          variablesMaterializedForOSAssets: "{}"
+          asn: 7.386281948385884
+          username: username
         meta: ""
         links: ""
       properties:
@@ -41258,6 +43028,22 @@ components:
     NetworkEquipmentReprovision:
       properties: {}
       type: object
+    RunExtensionOnPhysicalDevice:
+      example:
+        inputArguments: "{}"
+        extensionId: 10
+      properties:
+        extensionId:
+          description: The physical device ID
+          example: 10
+          type: number
+        inputArguments:
+          description: Input arguments
+          type: object
+      required:
+      - extensionId
+      - inputArguments
+      type: object
     NetworkDeviceDefaults:
       example: {}
       properties: {}
@@ -41427,7 +43213,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-03-27T15:35:18.019Z
+        createdTimestamp: 2025-03-31T17:46:58.09Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -41436,7 +43222,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-03-27T15:35:18.02Z
+        updatedTimestamp: 2025-03-31T17:46:58.09Z
         revision: "1"
       properties:
         siteId:
@@ -41453,12 +43239,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-03-27T15:35:18.019Z
+          example: 2025-03-31T17:46:58.09Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-03-27T15:35:18.02Z
+          example: 2025-03-31T17:46:58.09Z
           format: date-time
           type: string
         links:
@@ -41480,7 +43266,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-03-27T15:35:18.019Z
+        - createdTimestamp: 2025-03-31T17:46:58.09Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -41489,9 +43275,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-27T15:35:18.02Z
+          updatedTimestamp: 2025-03-31T17:46:58.09Z
           revision: "1"
-        - createdTimestamp: 2025-03-27T15:35:18.019Z
+        - createdTimestamp: 2025-03-31T17:46:58.09Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -41500,7 +43286,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-27T15:35:18.02Z
+          updatedTimestamp: 2025-03-31T17:46:58.09Z
           revision: "1"
         meta: ""
         links: ""
@@ -42034,108 +43820,110 @@ components:
         - bootstrapReadinessCheckInProgress: 9.301444243932576
           country: country
           mlagDomainId: 1.2315135367772556
-          city: city
-          datacenterRack: datacenterRack
-          description: description
           vtepAddressIpv4: vtepAddressIpv4
           datacenterMeta: datacenterMeta
-          datacenterRoom: datacenterRoom
           vtepAddressIpv6: vtepAddressIpv6
           managementMacAddress: managementMacAddress
           isGateway: true
           identifierString: identifierString
-          rackPositionUpperUnit: 6.027456183070403
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: id
-          bootstrapSkipInitialConfiguration: 4.145608029883936
           bootstrapReadinessCheckResult: "{}"
-          defaultMtu: 1.4894159098541704
-          managementAddress: managementAddress
           bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
           serialNumber: serialNumber
-          subnetOobIndex: 2.027123023002322
-          managementAddressMask: managementAddressMask
-          chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 7.061401241503109
+          extensionInfo: ""
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
           tags: tags
           requiresOsInstall: true
-          syslogEnabled: 5.637376656633329
-          managementPort: 5.962133916683182
           driver: sonic_enterprise
-          managementPassword: password
-          subnetOobId: 3.616076749251911
           loopbackAddressIpv4: loopbackAddressIpv4
           mlagSystemMac: mlagSystemMac
-          siteId: 0.8008281904610115
-          orderIndex: 2.3021358869347655
-          variablesMaterializedForOSAssets: "{}"
           rackPositionLowerUnit: 1.4658129805029452
           position: leaf
           secretsMaterializedForOSAssets: "{}"
-          asn: 7.386281948385884
           status: active
-          username: username
           quarantineVlan: 1.0246457001441578
+          city: city
+          datacenterRack: datacenterRack
+          description: description
+          datacenterRoom: datacenterRoom
+          rackPositionUpperUnit: 6.027456183070403
+          bootstrapSkipInitialConfiguration: 4.145608029883936
+          defaultMtu: 1.4894159098541704
+          managementAddress: managementAddress
+          subnetOobIndex: 2.027123023002322
+          managementAddressMask: managementAddressMask
+          chassisIdentifier: chassisIdentifier
+          readyForInitialConfiguration: 7.061401241503109
+          syslogEnabled: 5.637376656633329
+          managementPort: 5.962133916683182
+          managementPassword: password
+          subnetOobId: 3.616076749251911
+          siteId: 0.8008281904610115
+          orderIndex: 2.3021358869347655
+          variablesMaterializedForOSAssets: "{}"
+          asn: 7.386281948385884
+          username: username
         - bootstrapReadinessCheckInProgress: 9.301444243932576
           country: country
           mlagDomainId: 1.2315135367772556
-          city: city
-          datacenterRack: datacenterRack
-          description: description
           vtepAddressIpv4: vtepAddressIpv4
           datacenterMeta: datacenterMeta
-          datacenterRoom: datacenterRoom
           vtepAddressIpv6: vtepAddressIpv6
           managementMacAddress: managementMacAddress
           isGateway: true
           identifierString: identifierString
-          rackPositionUpperUnit: 6.027456183070403
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: id
-          bootstrapSkipInitialConfiguration: 4.145608029883936
           bootstrapReadinessCheckResult: "{}"
-          defaultMtu: 1.4894159098541704
-          managementAddress: managementAddress
           bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
           serialNumber: serialNumber
-          subnetOobIndex: 2.027123023002322
-          managementAddressMask: managementAddressMask
-          chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 7.061401241503109
+          extensionInfo: ""
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
           tags: tags
           requiresOsInstall: true
-          syslogEnabled: 5.637376656633329
-          managementPort: 5.962133916683182
           driver: sonic_enterprise
-          managementPassword: password
-          subnetOobId: 3.616076749251911
           loopbackAddressIpv4: loopbackAddressIpv4
           mlagSystemMac: mlagSystemMac
-          siteId: 0.8008281904610115
-          orderIndex: 2.3021358869347655
-          variablesMaterializedForOSAssets: "{}"
           rackPositionLowerUnit: 1.4658129805029452
           position: leaf
           secretsMaterializedForOSAssets: "{}"
-          asn: 7.386281948385884
           status: active
-          username: username
           quarantineVlan: 1.0246457001441578
-        createdTimestamp: 2025-03-27T15:35:18.029Z
+          city: city
+          datacenterRack: datacenterRack
+          description: description
+          datacenterRoom: datacenterRoom
+          rackPositionUpperUnit: 6.027456183070403
+          bootstrapSkipInitialConfiguration: 4.145608029883936
+          defaultMtu: 1.4894159098541704
+          managementAddress: managementAddress
+          subnetOobIndex: 2.027123023002322
+          managementAddressMask: managementAddressMask
+          chassisIdentifier: chassisIdentifier
+          readyForInitialConfiguration: 7.061401241503109
+          syslogEnabled: 5.637376656633329
+          managementPort: 5.962133916683182
+          managementPassword: password
+          subnetOobId: 3.616076749251911
+          siteId: 0.8008281904610115
+          orderIndex: 2.3021358869347655
+          variablesMaterializedForOSAssets: "{}"
+          asn: 7.386281948385884
+          username: username
+        createdTimestamp: 2025-03-31T17:46:58.092Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -42177,8 +43965,9 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-03-27T15:35:18.029Z
+        updatedTimestamp: 2025-03-31T17:46:58.092Z
         revision: "1"
+        status: draft
       properties:
         siteId:
           description: The ID of the site where the entity is located.
@@ -42204,12 +43993,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-03-27T15:35:18.029Z
+          example: 2025-03-31T17:46:58.092Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-03-27T15:35:18.029Z
+          example: 2025-03-31T17:46:58.092Z
           format: date-time
           type: string
         links:
@@ -42220,6 +44009,14 @@ components:
         id:
           description: The network fabric ID.
           example: "1"
+          type: string
+        status:
+          description: "The status of the network fabric, by default it is in draft\
+            \ mode."
+          enum:
+          - draft
+          - active
+          example: draft
           type: string
         networkEquipment:
           description: The network equipments in the fabric
@@ -42241,108 +44038,110 @@ components:
           - bootstrapReadinessCheckInProgress: 9.301444243932576
             country: country
             mlagDomainId: 1.2315135367772556
-            city: city
-            datacenterRack: datacenterRack
-            description: description
             vtepAddressIpv4: vtepAddressIpv4
             datacenterMeta: datacenterMeta
-            datacenterRoom: datacenterRoom
             vtepAddressIpv6: vtepAddressIpv6
             managementMacAddress: managementMacAddress
             isGateway: true
             identifierString: identifierString
-            rackPositionUpperUnit: 6.027456183070403
             links:
             - rel: self
               href: /api/v2/path/to/resource
             - rel: self
               href: /api/v2/path/to/resource
             id: id
-            bootstrapSkipInitialConfiguration: 4.145608029883936
             bootstrapReadinessCheckResult: "{}"
-            defaultMtu: 1.4894159098541704
-            managementAddress: managementAddress
             bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
             serialNumber: serialNumber
-            subnetOobIndex: 2.027123023002322
-            managementAddressMask: managementAddressMask
-            chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 7.061401241503109
+            extensionInfo: ""
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
             tags: tags
             requiresOsInstall: true
-            syslogEnabled: 5.637376656633329
-            managementPort: 5.962133916683182
             driver: sonic_enterprise
-            managementPassword: password
-            subnetOobId: 3.616076749251911
             loopbackAddressIpv4: loopbackAddressIpv4
             mlagSystemMac: mlagSystemMac
-            siteId: 0.8008281904610115
-            orderIndex: 2.3021358869347655
-            variablesMaterializedForOSAssets: "{}"
             rackPositionLowerUnit: 1.4658129805029452
             position: leaf
             secretsMaterializedForOSAssets: "{}"
-            asn: 7.386281948385884
             status: active
-            username: username
             quarantineVlan: 1.0246457001441578
+            city: city
+            datacenterRack: datacenterRack
+            description: description
+            datacenterRoom: datacenterRoom
+            rackPositionUpperUnit: 6.027456183070403
+            bootstrapSkipInitialConfiguration: 4.145608029883936
+            defaultMtu: 1.4894159098541704
+            managementAddress: managementAddress
+            subnetOobIndex: 2.027123023002322
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
+            syslogEnabled: 5.637376656633329
+            managementPort: 5.962133916683182
+            managementPassword: password
+            subnetOobId: 3.616076749251911
+            siteId: 0.8008281904610115
+            orderIndex: 2.3021358869347655
+            variablesMaterializedForOSAssets: "{}"
+            asn: 7.386281948385884
+            username: username
           - bootstrapReadinessCheckInProgress: 9.301444243932576
             country: country
             mlagDomainId: 1.2315135367772556
-            city: city
-            datacenterRack: datacenterRack
-            description: description
             vtepAddressIpv4: vtepAddressIpv4
             datacenterMeta: datacenterMeta
-            datacenterRoom: datacenterRoom
             vtepAddressIpv6: vtepAddressIpv6
             managementMacAddress: managementMacAddress
             isGateway: true
             identifierString: identifierString
-            rackPositionUpperUnit: 6.027456183070403
             links:
             - rel: self
               href: /api/v2/path/to/resource
             - rel: self
               href: /api/v2/path/to/resource
             id: id
-            bootstrapSkipInitialConfiguration: 4.145608029883936
             bootstrapReadinessCheckResult: "{}"
-            defaultMtu: 1.4894159098541704
-            managementAddress: managementAddress
             bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
             serialNumber: serialNumber
-            subnetOobIndex: 2.027123023002322
-            managementAddressMask: managementAddressMask
-            chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 7.061401241503109
+            extensionInfo: ""
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
             tags: tags
             requiresOsInstall: true
-            syslogEnabled: 5.637376656633329
-            managementPort: 5.962133916683182
             driver: sonic_enterprise
-            managementPassword: password
-            subnetOobId: 3.616076749251911
             loopbackAddressIpv4: loopbackAddressIpv4
             mlagSystemMac: mlagSystemMac
-            siteId: 0.8008281904610115
-            orderIndex: 2.3021358869347655
-            variablesMaterializedForOSAssets: "{}"
             rackPositionLowerUnit: 1.4658129805029452
             position: leaf
             secretsMaterializedForOSAssets: "{}"
-            asn: 7.386281948385884
             status: active
-            username: username
             quarantineVlan: 1.0246457001441578
-          createdTimestamp: 2025-03-27T15:35:18.029Z
+            city: city
+            datacenterRack: datacenterRack
+            description: description
+            datacenterRoom: datacenterRoom
+            rackPositionUpperUnit: 6.027456183070403
+            bootstrapSkipInitialConfiguration: 4.145608029883936
+            defaultMtu: 1.4894159098541704
+            managementAddress: managementAddress
+            subnetOobIndex: 2.027123023002322
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
+            syslogEnabled: 5.637376656633329
+            managementPort: 5.962133916683182
+            managementPassword: password
+            subnetOobId: 3.616076749251911
+            siteId: 0.8008281904610115
+            orderIndex: 2.3021358869347655
+            variablesMaterializedForOSAssets: "{}"
+            asn: 7.386281948385884
+            username: username
+          createdTimestamp: 2025-03-31T17:46:58.092Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -42384,114 +44183,117 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-27T15:35:18.029Z
+          updatedTimestamp: 2025-03-31T17:46:58.092Z
           revision: "1"
+          status: draft
         - networkEquipment:
           - bootstrapReadinessCheckInProgress: 9.301444243932576
             country: country
             mlagDomainId: 1.2315135367772556
-            city: city
-            datacenterRack: datacenterRack
-            description: description
             vtepAddressIpv4: vtepAddressIpv4
             datacenterMeta: datacenterMeta
-            datacenterRoom: datacenterRoom
             vtepAddressIpv6: vtepAddressIpv6
             managementMacAddress: managementMacAddress
             isGateway: true
             identifierString: identifierString
-            rackPositionUpperUnit: 6.027456183070403
             links:
             - rel: self
               href: /api/v2/path/to/resource
             - rel: self
               href: /api/v2/path/to/resource
             id: id
-            bootstrapSkipInitialConfiguration: 4.145608029883936
             bootstrapReadinessCheckResult: "{}"
-            defaultMtu: 1.4894159098541704
-            managementAddress: managementAddress
             bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
             serialNumber: serialNumber
-            subnetOobIndex: 2.027123023002322
-            managementAddressMask: managementAddressMask
-            chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 7.061401241503109
+            extensionInfo: ""
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
             tags: tags
             requiresOsInstall: true
-            syslogEnabled: 5.637376656633329
-            managementPort: 5.962133916683182
             driver: sonic_enterprise
-            managementPassword: password
-            subnetOobId: 3.616076749251911
             loopbackAddressIpv4: loopbackAddressIpv4
             mlagSystemMac: mlagSystemMac
-            siteId: 0.8008281904610115
-            orderIndex: 2.3021358869347655
-            variablesMaterializedForOSAssets: "{}"
             rackPositionLowerUnit: 1.4658129805029452
             position: leaf
             secretsMaterializedForOSAssets: "{}"
-            asn: 7.386281948385884
             status: active
-            username: username
             quarantineVlan: 1.0246457001441578
+            city: city
+            datacenterRack: datacenterRack
+            description: description
+            datacenterRoom: datacenterRoom
+            rackPositionUpperUnit: 6.027456183070403
+            bootstrapSkipInitialConfiguration: 4.145608029883936
+            defaultMtu: 1.4894159098541704
+            managementAddress: managementAddress
+            subnetOobIndex: 2.027123023002322
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
+            syslogEnabled: 5.637376656633329
+            managementPort: 5.962133916683182
+            managementPassword: password
+            subnetOobId: 3.616076749251911
+            siteId: 0.8008281904610115
+            orderIndex: 2.3021358869347655
+            variablesMaterializedForOSAssets: "{}"
+            asn: 7.386281948385884
+            username: username
           - bootstrapReadinessCheckInProgress: 9.301444243932576
             country: country
             mlagDomainId: 1.2315135367772556
-            city: city
-            datacenterRack: datacenterRack
-            description: description
             vtepAddressIpv4: vtepAddressIpv4
             datacenterMeta: datacenterMeta
-            datacenterRoom: datacenterRoom
             vtepAddressIpv6: vtepAddressIpv6
             managementMacAddress: managementMacAddress
             isGateway: true
             identifierString: identifierString
-            rackPositionUpperUnit: 6.027456183070403
             links:
             - rel: self
               href: /api/v2/path/to/resource
             - rel: self
               href: /api/v2/path/to/resource
             id: id
-            bootstrapSkipInitialConfiguration: 4.145608029883936
             bootstrapReadinessCheckResult: "{}"
-            defaultMtu: 1.4894159098541704
-            managementAddress: managementAddress
             bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
             serialNumber: serialNumber
-            subnetOobIndex: 2.027123023002322
-            managementAddressMask: managementAddressMask
-            chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 7.061401241503109
+            extensionInfo: ""
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
             tags: tags
             requiresOsInstall: true
-            syslogEnabled: 5.637376656633329
-            managementPort: 5.962133916683182
             driver: sonic_enterprise
-            managementPassword: password
-            subnetOobId: 3.616076749251911
             loopbackAddressIpv4: loopbackAddressIpv4
             mlagSystemMac: mlagSystemMac
-            siteId: 0.8008281904610115
-            orderIndex: 2.3021358869347655
-            variablesMaterializedForOSAssets: "{}"
             rackPositionLowerUnit: 1.4658129805029452
             position: leaf
             secretsMaterializedForOSAssets: "{}"
-            asn: 7.386281948385884
             status: active
-            username: username
             quarantineVlan: 1.0246457001441578
-          createdTimestamp: 2025-03-27T15:35:18.029Z
+            city: city
+            datacenterRack: datacenterRack
+            description: description
+            datacenterRoom: datacenterRoom
+            rackPositionUpperUnit: 6.027456183070403
+            bootstrapSkipInitialConfiguration: 4.145608029883936
+            defaultMtu: 1.4894159098541704
+            managementAddress: managementAddress
+            subnetOobIndex: 2.027123023002322
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
+            syslogEnabled: 5.637376656633329
+            managementPort: 5.962133916683182
+            managementPassword: password
+            subnetOobId: 3.616076749251911
+            siteId: 0.8008281904610115
+            orderIndex: 2.3021358869347655
+            variablesMaterializedForOSAssets: "{}"
+            asn: 7.386281948385884
+            username: username
+          createdTimestamp: 2025-03-31T17:46:58.092Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -42533,8 +44335,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-27T15:35:18.029Z
+          updatedTimestamp: 2025-03-31T17:46:58.092Z
           revision: "1"
+          status: draft
         meta: ""
         links: ""
       properties:
@@ -43374,6 +45177,174 @@ components:
       required:
       - domains
       - enabled
+      type: object
+    ResourcePoolStatistics:
+      example:
+        servers: 1.4658129805029452
+        subnetPools: 5.962133916683182
+        users: 6.027456183070403
+      properties:
+        users:
+          description: Number of users in the Resource Pool
+          type: number
+        servers:
+          description: Number of servers in the Resource Pool
+          type: number
+        subnetPools:
+          description: Number of subnet pools in the Resource Pool
+          type: number
+      required:
+      - servers
+      - subnetPools
+      - users
+      type: object
+    ResourcePoolWithStats:
+      example:
+        resourcePoolCreatedTimestamp: resourcePoolCreatedTimestamp
+        resourcePoolUpdatedTimestamp: resourcePoolUpdatedTimestamp
+        resourcePoolId: 0.8008281904610115
+        resourcePoolDescription: resourcePoolDescription
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        resourcePoolLabel: resourcePoolLabel
+        statistics:
+          servers: 1.4658129805029452
+          subnetPools: 5.962133916683182
+          users: 6.027456183070403
+      properties:
+        resourcePoolId:
+          description: Resource Pool ID
+          type: number
+        resourcePoolLabel:
+          description: Label of the Resource Pool
+          type: string
+        resourcePoolDescription:
+          description: Description of the Resource Pool
+          type: string
+        resourcePoolCreatedTimestamp:
+          description: Resource Pool Created Timestamp
+          type: string
+        resourcePoolUpdatedTimestamp:
+          description: Resource Pool Updated Timestamp
+          type: string
+        statistics:
+          $ref: '#/components/schemas/ResourcePoolStatistics'
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - resourcePoolCreatedTimestamp
+      - resourcePoolDescription
+      - resourcePoolId
+      - resourcePoolLabel
+      - resourcePoolUpdatedTimestamp
+      - statistics
+      type: object
+    ResourcePoolPaginatedList:
+      example:
+        data:
+        - resourcePoolCreatedTimestamp: resourcePoolCreatedTimestamp
+          resourcePoolUpdatedTimestamp: resourcePoolUpdatedTimestamp
+          resourcePoolId: 0.8008281904610115
+          resourcePoolDescription: resourcePoolDescription
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          resourcePoolLabel: resourcePoolLabel
+          statistics:
+            servers: 1.4658129805029452
+            subnetPools: 5.962133916683182
+            users: 6.027456183070403
+        - resourcePoolCreatedTimestamp: resourcePoolCreatedTimestamp
+          resourcePoolUpdatedTimestamp: resourcePoolUpdatedTimestamp
+          resourcePoolId: 0.8008281904610115
+          resourcePoolDescription: resourcePoolDescription
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          resourcePoolLabel: resourcePoolLabel
+          statistics:
+            servers: 1.4658129805029452
+            subnetPools: 5.962133916683182
+            users: 6.027456183070403
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ResourcePoolWithStats'
+          title: List of resource pool with stats
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
+    ResourcePool:
+      example:
+        resourcePoolId: 0.8008281904610115
+        resourcePoolDescription: resourcePoolDescription
+        resourcePoolLabel: resourcePoolLabel
+      properties:
+        resourcePoolId:
+          description: Resource Pool ID
+          type: number
+        resourcePoolLabel:
+          description: Label of the Resource Pool
+          type: string
+        resourcePoolDescription:
+          description: Description of the Resource Pool
+          type: string
+      required:
+      - resourcePoolDescription
+      - resourcePoolId
+      - resourcePoolLabel
+      type: object
+    CreateResourcePool:
+      example:
+        resourcePoolDescription: resourcePoolDescription
+        resourcePoolLabel: resourcePoolLabel
+      properties:
+        resourcePoolLabel:
+          description: Label of the Resource Pool
+          type: string
+        resourcePoolDescription:
+          description: Description of the Resource Pool
+          type: string
+      required:
+      - resourcePoolDescription
+      - resourcePoolLabel
+      type: object
+    UpdateResourcePool:
+      example:
+        resourcePoolDescription: resourcePoolDescription
+        resourcePoolLabel: resourcePoolLabel
+      properties:
+        resourcePoolLabel:
+          description: Label of the Resource Pool
+          type: string
+        resourcePoolDescription:
+          description: Description of the Resource Pool
+          type: string
       type: object
     ServerCleanupPolicy:
       example:
@@ -45958,6 +47929,10 @@ components:
           allOf:
           - $ref: '#/components/schemas/ServerAllocationInfo'
           description: The server instance.
+        extensionInfo:
+          allOf:
+          - $ref: '#/components/schemas/ExtensionExecutionInfo'
+          description: The extension execution info of the server.
       required:
       - administrationState
       - bdkDebug
@@ -47378,6 +49353,7 @@ components:
           vncPasswordEncrypted: vncPasswordEncrypted
           vncPort: 6.84685269835264
           serialNumber: serialNumber
+          extensionInfo: ""
           submodel: submodel
           registeredTimestamp: registeredTimestamp
           isBasicCampusEndpoint: 7.457744773683766
@@ -47547,6 +49523,7 @@ components:
           vncPasswordEncrypted: vncPasswordEncrypted
           vncPort: 6.84685269835264
           serialNumber: serialNumber
+          extensionInfo: ""
           submodel: submodel
           registeredTimestamp: registeredTimestamp
           isBasicCampusEndpoint: 7.457744773683766
@@ -49554,6 +51531,7 @@ components:
       type: object
     Storage:
       example:
+        datacenterName: datacenterName
         inMaintenance: 3.616076749251911
         storageTechnology: block
         managementHost: managementHost
@@ -49579,6 +51557,7 @@ components:
         - alternateSanIPs
         portGroupAllocationOrder: "{}"
         directorId: directorId
+        extensionInfo: ""
         s3Hostname: s3Hostname
         userId: 6.027456183070403
         arrayId: arrayId
@@ -49609,6 +51588,9 @@ components:
         siteId:
           description: Id of the site
           type: number
+        datacenterName:
+          description: The name of the datacenter where the storage is located.
+          type: string
         storageDriver:
           description: Storage driver
           enum:
@@ -49733,16 +51715,19 @@ components:
           type: string
         jobInfo:
           $ref: '#/components/schemas/JobInfo'
+        extensionInfo:
+          allOf:
+          - $ref: '#/components/schemas/ExtensionExecutionInfo'
+          description: The extension execution info of the storage.
         links:
           description: Reference links
           items:
             $ref: '#/components/schemas/Link'
           type: array
       required:
-      - inMaintenance
+      - datacenterName
       - managementHost
       - name
-      - passwordEncrypted
       - siteId
       - status
       - storageDriver
@@ -49755,7 +51740,8 @@ components:
     StoragePaginatedList:
       example:
         data:
-        - inMaintenance: 3.616076749251911
+        - datacenterName: datacenterName
+          inMaintenance: 3.616076749251911
           storageTechnology: block
           managementHost: managementHost
           passwordEncrypted: passwordEncrypted
@@ -49780,6 +51766,7 @@ components:
           - alternateSanIPs
           portGroupAllocationOrder: "{}"
           directorId: directorId
+          extensionInfo: ""
           s3Hostname: s3Hostname
           userId: 6.027456183070403
           arrayId: arrayId
@@ -49800,7 +51787,8 @@ components:
           status: active
           iscsiHost: iscsiHost
           username: username
-        - inMaintenance: 3.616076749251911
+        - datacenterName: datacenterName
+          inMaintenance: 3.616076749251911
           storageTechnology: block
           managementHost: managementHost
           passwordEncrypted: passwordEncrypted
@@ -49825,6 +51813,7 @@ components:
           - alternateSanIPs
           portGroupAllocationOrder: "{}"
           directorId: directorId
+          extensionInfo: ""
           s3Hostname: s3Hostname
           userId: 6.027456183070403
           arrayId: arrayId
@@ -49905,21 +51894,12 @@ components:
         inMaintenance: 9.301444243932576
         storageTechnology: block
         managementHost: managementHost
-        passwordEncrypted: passwordEncrypted
-        jobInfo:
-          jobId: 0.8008281904610115
-          jobGroupId: 6.027456183070403
         password: password
         storageDriver: dummy_driver
         totalCapacity: 1.4658129805029452
         targetIQN: targetIQN
         options: ""
         drivePriority: 2.027123023002322
-        links:
-        - rel: self
-          href: /api/v2/path/to/resource
-        - rel: self
-          href: /api/v2/path/to/resource
         iscsiPort: 7.061401241503109
         portGroupPhysicalPorts: "{}"
         alternateSanIPs:
@@ -49944,7 +51924,6 @@ components:
         siteId: 6.027456183070403
         storageType: iscsi_ssd
         subnetType: ipv4
-        status: active
         iscsiHost: iscsiHost
         username: username
       properties:
@@ -49982,14 +51961,6 @@ components:
           - iscsi_hdd
           - dummy
           type: string
-        status:
-          description: Storage status
-          enum:
-          - active
-          - deleted
-          - pending
-          - ready
-          type: string
         totalCapacity:
           description: Total capacity in MB
           type: number
@@ -50016,9 +51987,6 @@ components:
           type: string
         username:
           description: Username
-          type: string
-        passwordEncrypted:
-          description: Password encrypted
           type: string
         inMaintenance:
           description: Specifies if the storage is in maintenance
@@ -50072,13 +52040,6 @@ components:
         s3Port:
           description: S3 port
           type: string
-        jobInfo:
-          $ref: '#/components/schemas/JobInfo'
-        links:
-          description: Reference links
-          items:
-            $ref: '#/components/schemas/Link'
-          type: array
         options:
           allOf:
           - $ref: '#/components/schemas/UpdateStorageOptions'
@@ -50087,13 +52048,10 @@ components:
           description: The password to use.
           type: string
       required:
-      - inMaintenance
       - managementHost
       - name
       - password
-      - passwordEncrypted
       - siteId
-      - status
       - storageDriver
       - storageTechnology
       - storageType
@@ -50118,7 +52076,9 @@ components:
     UpdateStorageInternal:
       example:
         portGroupAllocationOrder: "{}"
+        datacenterName: datacenterName
         directorId: directorId
+        extensionInfo: ""
         inMaintenance: 5.637376656633329
         s3Hostname: s3Hostname
         arrayId: arrayId
@@ -50140,6 +52100,9 @@ components:
         status: active
         username: username
       properties:
+        datacenterName:
+          description: The name of the datacenter where the storage is located.
+          type: string
         status:
           description: Storage status
           enum:
@@ -50198,6 +52161,10 @@ components:
         s3Port:
           description: S3 port
           type: string
+        extensionInfo:
+          allOf:
+          - $ref: '#/components/schemas/ExtensionExecutionInfo'
+          description: The extension execution info of the storage.
         options:
           allOf:
           - $ref: '#/components/schemas/StorageOptions'
@@ -51334,6 +53301,83 @@ components:
           type: string
       required:
       - apiKey
+      type: object
+    UserSSHKeys:
+      example:
+        sshKey: sshKey
+        createdTimestamp: 2000-01-23T04:56:07.000+00:00
+        id: 0.8008281904610115
+        userId: 6.027456183070403
+        status: active
+      properties:
+        id:
+          description: The ID of the User SSH key
+          type: number
+        userId:
+          description: The ID of the user
+          type: number
+        sshKey:
+          description: The SSH key of the user
+          type: string
+        createdTimestamp:
+          description: The timestamp when the User SSH key was created
+          format: date-time
+          type: string
+        status:
+          description: The status of the User SSH key
+          enum:
+          - active
+          - deleted
+          example: active
+          type: string
+      required:
+      - createdTimestamp
+      - id
+      - sshKey
+      - status
+      - userId
+      type: object
+    UserSSHKeysList:
+      example:
+        data:
+        - sshKey: sshKey
+          createdTimestamp: 2000-01-23T04:56:07.000+00:00
+          id: 0.8008281904610115
+          userId: 6.027456183070403
+          status: active
+        - sshKey: sshKey
+          createdTimestamp: 2000-01-23T04:56:07.000+00:00
+          id: 0.8008281904610115
+          userId: 6.027456183070403
+          status: active
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/UserSSHKeys'
+          title: List of user ssh keyss
+          type: array
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - data
+      type: object
+    CreateUserSSHKeyDto:
+      example:
+        sshKey: sshKey
+      properties:
+        sshKey:
+          description: The SSH key of the user
+          type: string
+      required:
+      - sshKey
       type: object
     VMDisk:
       example:
@@ -53299,7 +55343,11 @@ components:
         cpuCores: 2
         displayName: displayName
         name: name
-        links: "{}"
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
         id: 1
         label: label
         ramGB: 2
@@ -53344,12 +55392,13 @@ components:
           example: 0
           type: number
         links:
-          description: Links to other resources
-          type: object
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
       required:
       - cpuCores
       - id
-      - links
       - name
       - ramGB
       type: object
@@ -53361,7 +55410,11 @@ components:
           cpuCores: 2
           displayName: displayName
           name: name
-          links: "{}"
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
           id: 1
           label: label
           ramGB: 2
@@ -53373,7 +55426,11 @@ components:
           cpuCores: 2
           displayName: displayName
           name: name
-          links: "{}"
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
           id: 1
           label: label
           ramGB: 2

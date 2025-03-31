@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **StorageId** | **float32** | Id of the Storage | 
 **UserId** | Pointer to **float32** | Id of the owner | [optional] 
 **SiteId** | **float32** | Id of the site | 
+**DatacenterName** | **string** | The name of the datacenter where the storage is located. | 
 **StorageDriver** | **string** | Storage driver | 
 **StorageTechnology** | **string** | Storage technology | 
 **StorageType** | **string** | Storage type | 
@@ -20,9 +21,9 @@ Name | Type | Description | Notes
 **IscsiPort** | Pointer to **float32** | ISCSI port | [optional] 
 **ManagementHost** | **string** | Management host | 
 **Username** | **string** | Username | 
-**PasswordEncrypted** | **string** | Password encrypted | 
+**PasswordEncrypted** | Pointer to **string** | Password encrypted | [optional] 
 **Options** | Pointer to [**StorageOptions**](StorageOptions.md) | Options for the storage | [optional] 
-**InMaintenance** | **float32** | Specifies if the storage is in maintenance | 
+**InMaintenance** | Pointer to **float32** | Specifies if the storage is in maintenance | [optional] 
 **TargetIQN** | Pointer to **string** | Target IQN | [optional] 
 **IsExperimental** | Pointer to **float32** | Specifies if the storage is experimental | [optional] 
 **DrivePriority** | Pointer to **float32** | Specifies the drive priority | [optional] 
@@ -38,13 +39,14 @@ Name | Type | Description | Notes
 **S3Hostname** | Pointer to **string** | S3 hostname | [optional] 
 **S3Port** | Pointer to **string** | S3 port | [optional] 
 **JobInfo** | Pointer to [**JobInfo**](JobInfo.md) |  | [optional] 
+**ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the storage. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewStorage
 
-`func NewStorage(storageId float32, siteId float32, storageDriver string, storageTechnology string, storageType string, status string, name string, managementHost string, username string, passwordEncrypted string, inMaintenance float32, subnetType string, ) *Storage`
+`func NewStorage(storageId float32, siteId float32, datacenterName string, storageDriver string, storageTechnology string, storageType string, status string, name string, managementHost string, username string, subnetType string, ) *Storage`
 
 NewStorage instantiates a new Storage object
 This constructor will assign default values to properties that have it defined,
@@ -122,6 +124,26 @@ and a boolean to check if the value has been set.
 `func (o *Storage) SetSiteId(v float32)`
 
 SetSiteId sets SiteId field to given value.
+
+
+### GetDatacenterName
+
+`func (o *Storage) GetDatacenterName() string`
+
+GetDatacenterName returns the DatacenterName field if non-nil, zero value otherwise.
+
+### GetDatacenterNameOk
+
+`func (o *Storage) GetDatacenterNameOk() (*string, bool)`
+
+GetDatacenterNameOk returns a tuple with the DatacenterName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDatacenterName
+
+`func (o *Storage) SetDatacenterName(v string)`
+
+SetDatacenterName sets DatacenterName field to given value.
 
 
 ### GetStorageDriver
@@ -433,6 +455,11 @@ and a boolean to check if the value has been set.
 
 SetPasswordEncrypted sets PasswordEncrypted field to given value.
 
+### HasPasswordEncrypted
+
+`func (o *Storage) HasPasswordEncrypted() bool`
+
+HasPasswordEncrypted returns a boolean if a field has been set.
 
 ### GetOptions
 
@@ -478,6 +505,11 @@ and a boolean to check if the value has been set.
 
 SetInMaintenance sets InMaintenance field to given value.
 
+### HasInMaintenance
+
+`func (o *Storage) HasInMaintenance() bool`
+
+HasInMaintenance returns a boolean if a field has been set.
 
 ### GetTargetIQN
 
@@ -848,6 +880,31 @@ SetJobInfo sets JobInfo field to given value.
 `func (o *Storage) HasJobInfo() bool`
 
 HasJobInfo returns a boolean if a field has been set.
+
+### GetExtensionInfo
+
+`func (o *Storage) GetExtensionInfo() ExtensionExecutionInfo`
+
+GetExtensionInfo returns the ExtensionInfo field if non-nil, zero value otherwise.
+
+### GetExtensionInfoOk
+
+`func (o *Storage) GetExtensionInfoOk() (*ExtensionExecutionInfo, bool)`
+
+GetExtensionInfoOk returns a tuple with the ExtensionInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtensionInfo
+
+`func (o *Storage) SetExtensionInfo(v ExtensionExecutionInfo)`
+
+SetExtensionInfo sets ExtensionInfo field to given value.
+
+### HasExtensionInfo
+
+`func (o *Storage) HasExtensionInfo() bool`
+
+HasExtensionInfo returns a boolean if a field has been set.
 
 ### GetLinks
 

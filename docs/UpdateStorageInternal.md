@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DatacenterName** | Pointer to **string** | The name of the datacenter where the storage is located. | [optional] 
 **Status** | Pointer to **string** | Storage status | [optional] 
 **TotalCapacity** | Pointer to **float32** | Total capacity in MB | [optional] 
 **UsableCapacity** | Pointer to **float32** | Usable capacity in MB | [optional] 
@@ -21,6 +22,7 @@ Name | Type | Description | Notes
 **DirectorId** | Pointer to **string** | Director id | [optional] 
 **S3Hostname** | Pointer to **string** | S3 hostname | [optional] 
 **S3Port** | Pointer to **string** | S3 port | [optional] 
+**ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the storage. | [optional] 
 **Options** | Pointer to [**StorageOptions**](StorageOptions.md) | Options for the storage | [optional] 
 **Username** | Pointer to **string** | Username | [optional] 
 **Password** | Pointer to **string** | The password to use. | [optional] 
@@ -43,6 +45,31 @@ will change when the set of required properties is changed
 NewUpdateStorageInternalWithDefaults instantiates a new UpdateStorageInternal object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDatacenterName
+
+`func (o *UpdateStorageInternal) GetDatacenterName() string`
+
+GetDatacenterName returns the DatacenterName field if non-nil, zero value otherwise.
+
+### GetDatacenterNameOk
+
+`func (o *UpdateStorageInternal) GetDatacenterNameOk() (*string, bool)`
+
+GetDatacenterNameOk returns a tuple with the DatacenterName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDatacenterName
+
+`func (o *UpdateStorageInternal) SetDatacenterName(v string)`
+
+SetDatacenterName sets DatacenterName field to given value.
+
+### HasDatacenterName
+
+`func (o *UpdateStorageInternal) HasDatacenterName() bool`
+
+HasDatacenterName returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -468,6 +495,31 @@ SetS3Port sets S3Port field to given value.
 `func (o *UpdateStorageInternal) HasS3Port() bool`
 
 HasS3Port returns a boolean if a field has been set.
+
+### GetExtensionInfo
+
+`func (o *UpdateStorageInternal) GetExtensionInfo() ExtensionExecutionInfo`
+
+GetExtensionInfo returns the ExtensionInfo field if non-nil, zero value otherwise.
+
+### GetExtensionInfoOk
+
+`func (o *UpdateStorageInternal) GetExtensionInfoOk() (*ExtensionExecutionInfo, bool)`
+
+GetExtensionInfoOk returns a tuple with the ExtensionInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtensionInfo
+
+`func (o *UpdateStorageInternal) SetExtensionInfo(v ExtensionExecutionInfo)`
+
+SetExtensionInfo sets ExtensionInfo field to given value.
+
+### HasExtensionInfo
+
+`func (o *UpdateStorageInternal) HasExtensionInfo() bool`
+
+HasExtensionInfo returns a boolean if a field has been set.
 
 ### GetOptions
 

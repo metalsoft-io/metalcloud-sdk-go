@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**CreateInfrastructure**](InfrastructureAPI.md#CreateInfrastructure) | **Post** /api/v2/infrastructures | Creates a new infrastructure
 [**DeleteInfrastructure**](InfrastructureAPI.md#DeleteInfrastructure) | **Delete** /api/v2/infrastructures/{infrastructureId} | Deletes the specified infrastructure
 [**DeployInfrastructure**](InfrastructureAPI.md#DeployInfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/deploy | Deploys the specified infrastructure
+[**GetAllInfrastructureStatistics**](InfrastructureAPI.md#GetAllInfrastructureStatistics) | **Get** /api/v2/infrastructures/statistics | Retrieves statistics for all infrastructures
 [**GetInfrastructure**](InfrastructureAPI.md#GetInfrastructure) | **Get** /api/v2/infrastructures/{infrastructureId} | Retrieves the specified infrastructure
 [**GetInfrastructureConfigInfo**](InfrastructureAPI.md#GetInfrastructureConfigInfo) | **Get** /api/v2/infrastructures/{infrastructureId}/config | Get configuration information about the specified Infrastructure
 [**GetInfrastructureResourceUtilizationDetailed**](InfrastructureAPI.md#GetInfrastructureResourceUtilizationDetailed) | **Post** /api/v2/infrastructures/actions/get/resource-utilization-detailed | Gets detailed resource utilization for infrastructures
@@ -300,6 +301,67 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetAllInfrastructureStatistics
+
+> InfrastructuresStatistics GetAllInfrastructureStatistics(ctx).Execute()
+
+Retrieves statistics for all infrastructures
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfrastructureAPI.GetAllInfrastructureStatistics(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.GetAllInfrastructureStatistics``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAllInfrastructureStatistics`: InfrastructuresStatistics
+	fmt.Fprintf(os.Stdout, "Response from `InfrastructureAPI.GetAllInfrastructureStatistics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllInfrastructureStatisticsRequest struct via the builder pattern
+
+
+### Return type
+
+[**InfrastructuresStatistics**](InfrastructuresStatistics.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetInfrastructure
 
 > Infrastructure GetInfrastructure(ctx, infrastructureId).Execute()
@@ -440,7 +502,7 @@ Name | Type | Description  | Notes
 
 ## GetInfrastructureResourceUtilizationDetailed
 
-> InfrastructureResourceUtilizationResponse GetInfrastructureResourceUtilizationDetailed(ctx, infrastructureId).Execute()
+> InfrastructureResourceUtilizationResponse GetInfrastructureResourceUtilizationDetailed(ctx, infrastructureId).GetResourceUtilizationDetailed(getResourceUtilizationDetailed).Execute()
 
 Gets detailed resource utilization for infrastructures
 
@@ -455,15 +517,17 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
 )
 
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
+	getResourceUtilizationDetailed := *openapiclient.NewGetResourceUtilizationDetailed(float32(123), time.Now(), time.Now()) // GetResourceUtilizationDetailed | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.InfrastructureAPI.GetInfrastructureResourceUtilizationDetailed(context.Background(), infrastructureId).Execute()
+	resp, r, err := apiClient.InfrastructureAPI.GetInfrastructureResourceUtilizationDetailed(context.Background(), infrastructureId).GetResourceUtilizationDetailed(getResourceUtilizationDetailed).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.GetInfrastructureResourceUtilizationDetailed``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -489,6 +553,7 @@ Other parameters are passed through a pointer to a apiGetInfrastructureResourceU
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **getResourceUtilizationDetailed** | [**GetResourceUtilizationDetailed**](GetResourceUtilizationDetailed.md) |  | 
 
 ### Return type
 
@@ -500,7 +565,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

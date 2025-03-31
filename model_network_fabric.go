@@ -39,6 +39,8 @@ type NetworkFabric struct {
 	Links []Link `json:"links,omitempty"`
 	// The network fabric ID.
 	Id string `json:"id"`
+	// The status of the network fabric, by default it is in draft mode.
+	Status *string `json:"status,omitempty"`
 	// The network equipments in the fabric
 	NetworkEquipment []NetworkDevice `json:"networkEquipment,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -309,6 +311,38 @@ func (o *NetworkFabric) SetId(v string) {
 	o.Id = v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *NetworkFabric) GetStatus() string {
+	if o == nil || IsNil(o.Status) {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabric) GetStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *NetworkFabric) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *NetworkFabric) SetStatus(v string) {
+	o.Status = &v
+}
+
 // GetNetworkEquipment returns the NetworkEquipment field value if set, zero value otherwise.
 func (o *NetworkFabric) GetNetworkEquipment() []NetworkDevice {
 	if o == nil || IsNil(o.NetworkEquipment) {
@@ -366,6 +400,9 @@ func (o NetworkFabric) ToMap() (map[string]interface{}, error) {
 		toSerialize["links"] = o.Links
 	}
 	toSerialize["id"] = o.Id
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
 	if !IsNil(o.NetworkEquipment) {
 		toSerialize["networkEquipment"] = o.NetworkEquipment
 	}
@@ -426,6 +463,7 @@ func (o *NetworkFabric) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "links")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "status")
 		delete(additionalProperties, "networkEquipment")
 		o.AdditionalProperties = additionalProperties
 	}

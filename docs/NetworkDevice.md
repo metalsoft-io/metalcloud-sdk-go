@@ -51,6 +51,7 @@ Name | Type | Description | Notes
 **SecretsMaterializedForOSAssets** | **map[string]interface{}** | Secrets materialized for OS assets | 
 **BootstrapReadinessCheckResult** | **map[string]interface{}** | Bootstrap readiness check result | 
 **IsGateway** | **bool** | Whether the network device is a gateway | 
+**ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the network device. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
@@ -1021,6 +1022,31 @@ and a boolean to check if the value has been set.
 
 SetIsGateway sets IsGateway field to given value.
 
+
+### GetExtensionInfo
+
+`func (o *NetworkDevice) GetExtensionInfo() ExtensionExecutionInfo`
+
+GetExtensionInfo returns the ExtensionInfo field if non-nil, zero value otherwise.
+
+### GetExtensionInfoOk
+
+`func (o *NetworkDevice) GetExtensionInfoOk() (*ExtensionExecutionInfo, bool)`
+
+GetExtensionInfoOk returns a tuple with the ExtensionInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtensionInfo
+
+`func (o *NetworkDevice) SetExtensionInfo(v ExtensionExecutionInfo)`
+
+SetExtensionInfo sets ExtensionInfo field to given value.
+
+### HasExtensionInfo
+
+`func (o *NetworkDevice) HasExtensionInfo() bool`
+
+HasExtensionInfo returns a boolean if a field has been set.
 
 ### GetLinks
 

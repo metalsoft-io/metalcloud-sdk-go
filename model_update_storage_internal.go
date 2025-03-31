@@ -20,6 +20,8 @@ var _ MappedNullable = &UpdateStorageInternal{}
 
 // UpdateStorageInternal struct for UpdateStorageInternal
 type UpdateStorageInternal struct {
+	// The name of the datacenter where the storage is located.
+	DatacenterName *string `json:"datacenterName,omitempty"`
 	// Storage status
 	Status *string `json:"status,omitempty"`
 	// Total capacity in MB
@@ -54,6 +56,8 @@ type UpdateStorageInternal struct {
 	S3Hostname *string `json:"s3Hostname,omitempty"`
 	// S3 port
 	S3Port *string `json:"s3Port,omitempty"`
+	// The extension execution info of the storage.
+	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
 	// Options for the storage
 	Options *StorageOptions `json:"options,omitempty"`
 	// Username
@@ -80,6 +84,38 @@ func NewUpdateStorageInternal() *UpdateStorageInternal {
 func NewUpdateStorageInternalWithDefaults() *UpdateStorageInternal {
 	this := UpdateStorageInternal{}
 	return &this
+}
+
+// GetDatacenterName returns the DatacenterName field value if set, zero value otherwise.
+func (o *UpdateStorageInternal) GetDatacenterName() string {
+	if o == nil || IsNil(o.DatacenterName) {
+		var ret string
+		return ret
+	}
+	return *o.DatacenterName
+}
+
+// GetDatacenterNameOk returns a tuple with the DatacenterName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageInternal) GetDatacenterNameOk() (*string, bool) {
+	if o == nil || IsNil(o.DatacenterName) {
+		return nil, false
+	}
+	return o.DatacenterName, true
+}
+
+// HasDatacenterName returns a boolean if a field has been set.
+func (o *UpdateStorageInternal) HasDatacenterName() bool {
+	if o != nil && !IsNil(o.DatacenterName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDatacenterName gets a reference to the given string and assigns it to the DatacenterName field.
+func (o *UpdateStorageInternal) SetDatacenterName(v string) {
+	o.DatacenterName = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -626,6 +662,38 @@ func (o *UpdateStorageInternal) SetS3Port(v string) {
 	o.S3Port = &v
 }
 
+// GetExtensionInfo returns the ExtensionInfo field value if set, zero value otherwise.
+func (o *UpdateStorageInternal) GetExtensionInfo() ExtensionExecutionInfo {
+	if o == nil || IsNil(o.ExtensionInfo) {
+		var ret ExtensionExecutionInfo
+		return ret
+	}
+	return *o.ExtensionInfo
+}
+
+// GetExtensionInfoOk returns a tuple with the ExtensionInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageInternal) GetExtensionInfoOk() (*ExtensionExecutionInfo, bool) {
+	if o == nil || IsNil(o.ExtensionInfo) {
+		return nil, false
+	}
+	return o.ExtensionInfo, true
+}
+
+// HasExtensionInfo returns a boolean if a field has been set.
+func (o *UpdateStorageInternal) HasExtensionInfo() bool {
+	if o != nil && !IsNil(o.ExtensionInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensionInfo gets a reference to the given ExtensionExecutionInfo and assigns it to the ExtensionInfo field.
+func (o *UpdateStorageInternal) SetExtensionInfo(v ExtensionExecutionInfo) {
+	o.ExtensionInfo = &v
+}
+
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *UpdateStorageInternal) GetOptions() StorageOptions {
 	if o == nil || IsNil(o.Options) {
@@ -732,6 +800,9 @@ func (o UpdateStorageInternal) MarshalJSON() ([]byte, error) {
 
 func (o UpdateStorageInternal) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DatacenterName) {
+		toSerialize["datacenterName"] = o.DatacenterName
+	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
@@ -783,6 +854,9 @@ func (o UpdateStorageInternal) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.S3Port) {
 		toSerialize["s3Port"] = o.S3Port
 	}
+	if !IsNil(o.ExtensionInfo) {
+		toSerialize["extensionInfo"] = o.ExtensionInfo
+	}
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
@@ -814,6 +888,7 @@ func (o *UpdateStorageInternal) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "datacenterName")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "totalCapacity")
 		delete(additionalProperties, "usableCapacity")
@@ -831,6 +906,7 @@ func (o *UpdateStorageInternal) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "directorId")
 		delete(additionalProperties, "s3Hostname")
 		delete(additionalProperties, "s3Port")
+		delete(additionalProperties, "extensionInfo")
 		delete(additionalProperties, "options")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")

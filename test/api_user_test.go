@@ -159,6 +159,34 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test UserAPIService UserControllerAddUserSshKey", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerAddUserSshKey(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerDeleteUserSshKey", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+		var keyId float32
+
+		httpRes, err := apiClient.UserAPI.UserControllerDeleteUserSshKey(context.Background(), userId, keyId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test UserAPIService UserControllerGetUserApiKey", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -222,6 +250,35 @@ func Test_sdk_UserAPIService(t *testing.T) {
 		var userId float32
 
 		resp, httpRes, err := apiClient.UserAPI.UserControllerGetUserPermissions(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerGetUserSshKey", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+		var keyId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerGetUserSshKey(context.Background(), userId, keyId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerGetUserSshKeys", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerGetUserSshKeys(context.Background(), userId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

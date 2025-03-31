@@ -75,6 +75,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** | Tags for the Server. | [optional] 
 **ResourcePoolId** | Pointer to **float32** | Resource Pool ID | [optional] 
 **AllocationInfo** | Pointer to [**ServerAllocationInfo**](ServerAllocationInfo.md) | The server instance. | [optional] 
+**ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the server. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
@@ -1795,6 +1796,31 @@ SetAllocationInfo sets AllocationInfo field to given value.
 `func (o *Server) HasAllocationInfo() bool`
 
 HasAllocationInfo returns a boolean if a field has been set.
+
+### GetExtensionInfo
+
+`func (o *Server) GetExtensionInfo() ExtensionExecutionInfo`
+
+GetExtensionInfo returns the ExtensionInfo field if non-nil, zero value otherwise.
+
+### GetExtensionInfoOk
+
+`func (o *Server) GetExtensionInfoOk() (*ExtensionExecutionInfo, bool)`
+
+GetExtensionInfoOk returns a tuple with the ExtensionInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtensionInfo
+
+`func (o *Server) SetExtensionInfo(v ExtensionExecutionInfo)`
+
+SetExtensionInfo sets ExtensionInfo field to given value.
+
+### HasExtensionInfo
+
+`func (o *Server) HasExtensionInfo() bool`
+
+HasExtensionInfo returns a boolean if a field has been set.
 
 ### GetLinks
 

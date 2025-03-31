@@ -27,6 +27,7 @@ api_network_device.go
 api_network_endpoint_group.go
 api_network_fabric.go
 api_os_template.go
+api_resource_pool.go
 api_security.go
 api_server.go
 api_server_cleanup_policy.go
@@ -112,6 +113,7 @@ docs/CreateNetworkDeviceDefaults.md
 docs/CreateNetworkEndpointGroup.md
 docs/CreateNetworkEndpointGroupLogicalNetwork.md
 docs/CreateNetworkFabric.md
+docs/CreateResourcePool.md
 docs/CreateServerCleanupPolicy.md
 docs/CreateServerDefaultCredentials.md
 docs/CreateServerFirmwareUpgradePolicy.md
@@ -121,6 +123,7 @@ docs/CreateStorage.md
 docs/CreateStorageNetworkDeviceConfiguration.md
 docs/CreateSubnetDto.md
 docs/CreateUser.md
+docs/CreateUserSSHKeyDto.md
 docs/CreateVMInstance.md
 docs/CreateVMInstanceGroup.md
 docs/CreateVMInstanceGroupInterface.md
@@ -153,6 +156,7 @@ docs/ExtensionActions.md
 docs/ExtensionAsset.md
 docs/ExtensionDefinition.md
 docs/ExtensionDependency.md
+docs/ExtensionExecutionInfo.md
 docs/ExtensionInfo.md
 docs/ExtensionInfrastructure.md
 docs/ExtensionInput.md
@@ -204,19 +208,23 @@ docs/GenerateFirmwareUpgradeAudit.md
 docs/GenericGUISettings.md
 docs/GenericMeta.md
 docs/GenericServiceStatus.md
+docs/GetResourceUtilizationDetailed.md
 docs/GlobalFirmwareUpgradeConfiguration.md
 docs/Infrastructure.md
 docs/InfrastructureAPI.md
 docs/InfrastructureConfig.md
 docs/InfrastructureConfiguration.md
 docs/InfrastructureCreate.md
+docs/InfrastructureDeployOngoingStatusCountDto.md
 docs/InfrastructureDeployOptions.md
 docs/InfrastructureDeployShutdownOptions.md
 docs/InfrastructureMeta.md
 docs/InfrastructurePaginatedList.md
 docs/InfrastructurePolicy.md
 docs/InfrastructureResourceUtilizationResponse.md
+docs/InfrastructureServiceStatusDto.md
 docs/InfrastructureVariables.md
+docs/InfrastructuresStatistics.md
 docs/InstancesSetPowerState.md
 docs/IscsiBootServerInfo.md
 docs/Job.md
@@ -273,6 +281,7 @@ docs/OSTemplatePaginatedList.md
 docs/OSTemplateUpdate.md
 docs/PaginatedResponseLinks.md
 docs/PaginatedResponseMeta.md
+docs/PublicSignupDisabled.md
 docs/ReRegisterServerResponse.md
 docs/RedundancyConfig.md
 docs/RedundancyImplementation.md
@@ -281,6 +290,12 @@ docs/RegisterServerResponse.md
 docs/RegisterStorageResponse.md
 docs/RemoteConsoleInfo.md
 docs/Repo.md
+docs/ResourcePool.md
+docs/ResourcePoolAPI.md
+docs/ResourcePoolPaginatedList.md
+docs/ResourcePoolStatistics.md
+docs/ResourcePoolWithStats.md
+docs/RunExtensionOnPhysicalDevice.md
 docs/SSHPublicKey.md
 docs/ScheduleFirmwareUpgrade.md
 docs/SearchFirmwareBinary.md
@@ -426,6 +441,7 @@ docs/UpdateNetworkDevice.md
 docs/UpdateNetworkEndpointGroup.md
 docs/UpdateNetworkEndpointGroupLogicalNetworkDto.md
 docs/UpdateNetworkFabric.md
+docs/UpdateResourcePool.md
 docs/UpdateServer.md
 docs/UpdateServerCleanupPolicy.md
 docs/UpdateServerComponent.md
@@ -459,6 +475,8 @@ docs/UserList.md
 docs/UserMeta.md
 docs/UserPaginatedList.md
 docs/UserPermissions.md
+docs/UserSSHKeys.md
+docs/UserSSHKeysList.md
 docs/UserSuspend.md
 docs/UserSuspendReason.md
 docs/UserSuspendReasonList.md
@@ -548,6 +566,7 @@ model_create_network_device_defaults.go
 model_create_network_endpoint_group.go
 model_create_network_endpoint_group_logical_network.go
 model_create_network_fabric.go
+model_create_resource_pool.go
 model_create_server_cleanup_policy.go
 model_create_server_default_credentials.go
 model_create_server_firmware_upgrade_policy.go
@@ -557,6 +576,7 @@ model_create_storage.go
 model_create_storage_network_device_configuration.go
 model_create_subnet_dto.go
 model_create_user.go
+model_create_user_ssh_key_dto.go
 model_create_vm_instance.go
 model_create_vm_instance_group.go
 model_create_vm_instance_group_interface.go
@@ -584,6 +604,7 @@ model_extension_actions.go
 model_extension_asset.go
 model_extension_definition.go
 model_extension_dependency.go
+model_extension_execution_info.go
 model_extension_info.go
 model_extension_infrastructure.go
 model_extension_input.go
@@ -628,18 +649,22 @@ model_generate_firmware_upgrade_audit.go
 model_generic_gui_settings.go
 model_generic_meta.go
 model_generic_service_status.go
+model_get_resource_utilization_detailed.go
 model_global_firmware_upgrade_configuration.go
 model_infrastructure.go
 model_infrastructure_config.go
 model_infrastructure_configuration.go
 model_infrastructure_create.go
+model_infrastructure_deploy_ongoing_status_count_dto.go
 model_infrastructure_deploy_options.go
 model_infrastructure_deploy_shutdown_options.go
 model_infrastructure_meta.go
 model_infrastructure_paginated_list.go
 model_infrastructure_policy.go
 model_infrastructure_resource_utilization_response.go
+model_infrastructure_service_status_dto.go
 model_infrastructure_variables.go
+model_infrastructures_statistics.go
 model_instances_set_power_state.go
 model_iscsi_boot_server_info.go
 model_job.go
@@ -688,6 +713,7 @@ model_os_template_paginated_list.go
 model_os_template_update.go
 model_paginated_response_links.go
 model_paginated_response_meta.go
+model_public_signup_disabled.go
 model_re_register_server_response.go
 model_redundancy_config.go
 model_redundancy_implementation.go
@@ -696,6 +722,11 @@ model_register_server_response.go
 model_register_storage_response.go
 model_remote_console_info.go
 model_repo.go
+model_resource_pool.go
+model_resource_pool_paginated_list.go
+model_resource_pool_statistics.go
+model_resource_pool_with_stats.go
+model_run_extension_on_physical_device.go
 model_schedule_firmware_upgrade.go
 model_search_firmware_binary.go
 model_server.go
@@ -825,6 +856,7 @@ model_update_network_device.go
 model_update_network_endpoint_group.go
 model_update_network_endpoint_group_logical_network_dto.go
 model_update_network_fabric.go
+model_update_resource_pool.go
 model_update_server.go
 model_update_server_cleanup_policy.go
 model_update_server_component.go
@@ -857,6 +889,8 @@ model_user_list.go
 model_user_meta.go
 model_user_paginated_list.go
 model_user_permissions.go
+model_user_ssh_keys.go
+model_user_ssh_keys_list.go
 model_user_suspend.go
 model_user_suspend_reason.go
 model_user_suspend_reason_list.go
@@ -911,6 +945,7 @@ test/api_network_endpoint_group_test.go
 test/api_network_fabric_test.go
 test/api_network_test.go
 test/api_os_template_test.go
+test/api_resource_pool_test.go
 test/api_security_test.go
 test/api_server_cleanup_policy_test.go
 test/api_server_default_credentials_test.go

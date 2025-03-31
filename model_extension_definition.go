@@ -44,12 +44,14 @@ type ExtensionDefinition struct {
 	Inputs []ExtensionInput `json:"inputs"`
 	// List of outputs for the platform service.
 	Outputs []ExtensionOutput `json:"outputs"`
-	Infrastructure ExtensionInfrastructure `json:"infrastructure"`
+	Infrastructure *ExtensionInfrastructure `json:"infrastructure,omitempty"`
 	// List of assets for the platform service.
 	Assets []ExtensionAsset `json:"assets"`
 	OnCreate *ExtensionActions `json:"onCreate,omitempty"`
 	OnEdit *ExtensionActions `json:"onEdit,omitempty"`
 	OnDelete *ExtensionActions `json:"onDelete,omitempty"`
+	// Tasks. Only for extensions of kind action
+	Tasks []ExtensionTask `json:"tasks,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -59,7 +61,7 @@ type _ExtensionDefinition ExtensionDefinition
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionDefinition(kind string, schemaVersion string, name string, label string, extensionType string, vendor string, extensionVersion string, icon string, dependencies ExtensionDependency, inputs []ExtensionInput, outputs []ExtensionOutput, infrastructure ExtensionInfrastructure, assets []ExtensionAsset) *ExtensionDefinition {
+func NewExtensionDefinition(kind string, schemaVersion string, name string, label string, extensionType string, vendor string, extensionVersion string, icon string, dependencies ExtensionDependency, inputs []ExtensionInput, outputs []ExtensionOutput, assets []ExtensionAsset) *ExtensionDefinition {
 	this := ExtensionDefinition{}
 	this.Kind = kind
 	this.SchemaVersion = schemaVersion
@@ -72,7 +74,6 @@ func NewExtensionDefinition(kind string, schemaVersion string, name string, labe
 	this.Dependencies = dependencies
 	this.Inputs = inputs
 	this.Outputs = outputs
-	this.Infrastructure = infrastructure
 	this.Assets = assets
 	return &this
 }
@@ -381,28 +382,36 @@ func (o *ExtensionDefinition) SetOutputs(v []ExtensionOutput) {
 	o.Outputs = v
 }
 
-// GetInfrastructure returns the Infrastructure field value
+// GetInfrastructure returns the Infrastructure field value if set, zero value otherwise.
 func (o *ExtensionDefinition) GetInfrastructure() ExtensionInfrastructure {
-	if o == nil {
+	if o == nil || IsNil(o.Infrastructure) {
 		var ret ExtensionInfrastructure
 		return ret
 	}
-
-	return o.Infrastructure
+	return *o.Infrastructure
 }
 
-// GetInfrastructureOk returns a tuple with the Infrastructure field value
+// GetInfrastructureOk returns a tuple with the Infrastructure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExtensionDefinition) GetInfrastructureOk() (*ExtensionInfrastructure, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Infrastructure) {
 		return nil, false
 	}
-	return &o.Infrastructure, true
+	return o.Infrastructure, true
 }
 
-// SetInfrastructure sets field value
+// HasInfrastructure returns a boolean if a field has been set.
+func (o *ExtensionDefinition) HasInfrastructure() bool {
+	if o != nil && !IsNil(o.Infrastructure) {
+		return true
+	}
+
+	return false
+}
+
+// SetInfrastructure gets a reference to the given ExtensionInfrastructure and assigns it to the Infrastructure field.
 func (o *ExtensionDefinition) SetInfrastructure(v ExtensionInfrastructure) {
-	o.Infrastructure = v
+	o.Infrastructure = &v
 }
 
 // GetAssets returns the Assets field value
@@ -525,6 +534,38 @@ func (o *ExtensionDefinition) SetOnDelete(v ExtensionActions) {
 	o.OnDelete = &v
 }
 
+// GetTasks returns the Tasks field value if set, zero value otherwise.
+func (o *ExtensionDefinition) GetTasks() []ExtensionTask {
+	if o == nil || IsNil(o.Tasks) {
+		var ret []ExtensionTask
+		return ret
+	}
+	return o.Tasks
+}
+
+// GetTasksOk returns a tuple with the Tasks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionDefinition) GetTasksOk() ([]ExtensionTask, bool) {
+	if o == nil || IsNil(o.Tasks) {
+		return nil, false
+	}
+	return o.Tasks, true
+}
+
+// HasTasks returns a boolean if a field has been set.
+func (o *ExtensionDefinition) HasTasks() bool {
+	if o != nil && !IsNil(o.Tasks) {
+		return true
+	}
+
+	return false
+}
+
+// SetTasks gets a reference to the given []ExtensionTask and assigns it to the Tasks field.
+func (o *ExtensionDefinition) SetTasks(v []ExtensionTask) {
+	o.Tasks = v
+}
+
 func (o ExtensionDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -549,7 +590,9 @@ func (o ExtensionDefinition) ToMap() (map[string]interface{}, error) {
 	toSerialize["dependencies"] = o.Dependencies
 	toSerialize["inputs"] = o.Inputs
 	toSerialize["outputs"] = o.Outputs
-	toSerialize["infrastructure"] = o.Infrastructure
+	if !IsNil(o.Infrastructure) {
+		toSerialize["infrastructure"] = o.Infrastructure
+	}
 	toSerialize["assets"] = o.Assets
 	if !IsNil(o.OnCreate) {
 		toSerialize["onCreate"] = o.OnCreate
@@ -559,6 +602,9 @@ func (o ExtensionDefinition) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.OnDelete) {
 		toSerialize["onDelete"] = o.OnDelete
+	}
+	if !IsNil(o.Tasks) {
+		toSerialize["tasks"] = o.Tasks
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -584,7 +630,6 @@ func (o *ExtensionDefinition) UnmarshalJSON(data []byte) (err error) {
 		"dependencies",
 		"inputs",
 		"outputs",
-		"infrastructure",
 		"assets",
 	}
 
@@ -632,6 +677,7 @@ func (o *ExtensionDefinition) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "onCreate")
 		delete(additionalProperties, "onEdit")
 		delete(additionalProperties, "onDelete")
+		delete(additionalProperties, "tasks")
 		o.AdditionalProperties = additionalProperties
 	}
 

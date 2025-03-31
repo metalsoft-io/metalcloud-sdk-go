@@ -162,6 +162,8 @@ type ServerVariables struct {
 	ResourcePoolId *float32 `json:"resourcePoolId,omitempty"`
 	// The server instance.
 	AllocationInfo *ServerAllocationInfo `json:"allocationInfo,omitempty"`
+	// The extension execution info of the server.
+	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -2351,6 +2353,38 @@ func (o *ServerVariables) SetAllocationInfo(v ServerAllocationInfo) {
 	o.AllocationInfo = &v
 }
 
+// GetExtensionInfo returns the ExtensionInfo field value if set, zero value otherwise.
+func (o *ServerVariables) GetExtensionInfo() ExtensionExecutionInfo {
+	if o == nil || IsNil(o.ExtensionInfo) {
+		var ret ExtensionExecutionInfo
+		return ret
+	}
+	return *o.ExtensionInfo
+}
+
+// GetExtensionInfoOk returns a tuple with the ExtensionInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerVariables) GetExtensionInfoOk() (*ExtensionExecutionInfo, bool) {
+	if o == nil || IsNil(o.ExtensionInfo) {
+		return nil, false
+	}
+	return o.ExtensionInfo, true
+}
+
+// HasExtensionInfo returns a boolean if a field has been set.
+func (o *ServerVariables) HasExtensionInfo() bool {
+	if o != nil && !IsNil(o.ExtensionInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensionInfo gets a reference to the given ExtensionExecutionInfo and assigns it to the ExtensionInfo field.
+func (o *ServerVariables) SetExtensionInfo(v ExtensionExecutionInfo) {
+	o.ExtensionInfo = &v
+}
+
 func (o ServerVariables) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -2544,6 +2578,9 @@ func (o ServerVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AllocationInfo) {
 		toSerialize["allocationInfo"] = o.AllocationInfo
 	}
+	if !IsNil(o.ExtensionInfo) {
+		toSerialize["extensionInfo"] = o.ExtensionInfo
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -2672,6 +2709,7 @@ func (o *ServerVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "resourcePoolId")
 		delete(additionalProperties, "allocationInfo")
+		delete(additionalProperties, "extensionInfo")
 		o.AdditionalProperties = additionalProperties
 	}
 

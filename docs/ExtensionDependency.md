@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ControllerVersion** | **string** | Metalsoft Controller version required by the extension. | 
-**OsTemplates** | **[]string** | List of OS templates required by the extension. | 
+**OsTemplates** | Pointer to **[]string** | List of OS templates required by the extension. | [optional] 
 
 ## Methods
 
 ### NewExtensionDependency
 
-`func NewExtensionDependency(controllerVersion string, osTemplates []string, ) *ExtensionDependency`
+`func NewExtensionDependency(controllerVersion string, ) *ExtensionDependency`
 
 NewExtensionDependency instantiates a new ExtensionDependency object
 This constructor will assign default values to properties that have it defined,
@@ -65,6 +65,11 @@ and a boolean to check if the value has been set.
 
 SetOsTemplates sets OsTemplates field to given value.
 
+### HasOsTemplates
+
+`func (o *ExtensionDependency) HasOsTemplates() bool`
+
+HasOsTemplates returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

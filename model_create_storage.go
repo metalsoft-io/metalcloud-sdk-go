@@ -31,8 +31,6 @@ type CreateStorage struct {
 	StorageTechnology string `json:"storageTechnology"`
 	// Storage type
 	StorageType string `json:"storageType"`
-	// Storage status
-	Status string `json:"status"`
 	// Total capacity in MB
 	TotalCapacity *float32 `json:"totalCapacity,omitempty"`
 	// Usable capacity in MB
@@ -51,10 +49,8 @@ type CreateStorage struct {
 	ManagementHost string `json:"managementHost"`
 	// Username
 	Username string `json:"username"`
-	// Password encrypted
-	PasswordEncrypted string `json:"passwordEncrypted"`
 	// Specifies if the storage is in maintenance
-	InMaintenance float32 `json:"inMaintenance"`
+	InMaintenance *float32 `json:"inMaintenance,omitempty"`
 	// Target IQN
 	TargetIQN *string `json:"targetIQN,omitempty"`
 	// Specifies if the storage is experimental
@@ -83,9 +79,6 @@ type CreateStorage struct {
 	S3Hostname *string `json:"s3Hostname,omitempty"`
 	// S3 port
 	S3Port *string `json:"s3Port,omitempty"`
-	JobInfo *JobInfo `json:"jobInfo,omitempty"`
-	// Reference links
-	Links []Link `json:"links,omitempty"`
 	// Options for the storage
 	Options *UpdateStorageOptions `json:"options,omitempty"`
 	// The password to use.
@@ -99,18 +92,15 @@ type _CreateStorage CreateStorage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateStorage(siteId float32, storageDriver string, storageTechnology string, storageType string, status string, name string, managementHost string, username string, passwordEncrypted string, inMaintenance float32, subnetType string, password string) *CreateStorage {
+func NewCreateStorage(siteId float32, storageDriver string, storageTechnology string, storageType string, name string, managementHost string, username string, subnetType string, password string) *CreateStorage {
 	this := CreateStorage{}
 	this.SiteId = siteId
 	this.StorageDriver = storageDriver
 	this.StorageTechnology = storageTechnology
 	this.StorageType = storageType
-	this.Status = status
 	this.Name = name
 	this.ManagementHost = managementHost
 	this.Username = username
-	this.PasswordEncrypted = passwordEncrypted
-	this.InMaintenance = inMaintenance
 	this.SubnetType = subnetType
 	this.Password = password
 	return &this
@@ -250,30 +240,6 @@ func (o *CreateStorage) GetStorageTypeOk() (*string, bool) {
 // SetStorageType sets field value
 func (o *CreateStorage) SetStorageType(v string) {
 	o.StorageType = v
-}
-
-// GetStatus returns the Status field value
-func (o *CreateStorage) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *CreateStorage) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *CreateStorage) SetStatus(v string) {
-	o.Status = v
 }
 
 // GetTotalCapacity returns the TotalCapacity field value if set, zero value otherwise.
@@ -540,52 +506,36 @@ func (o *CreateStorage) SetUsername(v string) {
 	o.Username = v
 }
 
-// GetPasswordEncrypted returns the PasswordEncrypted field value
-func (o *CreateStorage) GetPasswordEncrypted() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PasswordEncrypted
-}
-
-// GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field value
-// and a boolean to check if the value has been set.
-func (o *CreateStorage) GetPasswordEncryptedOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.PasswordEncrypted, true
-}
-
-// SetPasswordEncrypted sets field value
-func (o *CreateStorage) SetPasswordEncrypted(v string) {
-	o.PasswordEncrypted = v
-}
-
-// GetInMaintenance returns the InMaintenance field value
+// GetInMaintenance returns the InMaintenance field value if set, zero value otherwise.
 func (o *CreateStorage) GetInMaintenance() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.InMaintenance) {
 		var ret float32
 		return ret
 	}
-
-	return o.InMaintenance
+	return *o.InMaintenance
 }
 
-// GetInMaintenanceOk returns a tuple with the InMaintenance field value
+// GetInMaintenanceOk returns a tuple with the InMaintenance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateStorage) GetInMaintenanceOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InMaintenance) {
 		return nil, false
 	}
-	return &o.InMaintenance, true
+	return o.InMaintenance, true
 }
 
-// SetInMaintenance sets field value
+// HasInMaintenance returns a boolean if a field has been set.
+func (o *CreateStorage) HasInMaintenance() bool {
+	if o != nil && !IsNil(o.InMaintenance) {
+		return true
+	}
+
+	return false
+}
+
+// SetInMaintenance gets a reference to the given float32 and assigns it to the InMaintenance field.
 func (o *CreateStorage) SetInMaintenance(v float32) {
-	o.InMaintenance = v
+	o.InMaintenance = &v
 }
 
 // GetTargetIQN returns the TargetIQN field value if set, zero value otherwise.
@@ -1028,70 +978,6 @@ func (o *CreateStorage) SetS3Port(v string) {
 	o.S3Port = &v
 }
 
-// GetJobInfo returns the JobInfo field value if set, zero value otherwise.
-func (o *CreateStorage) GetJobInfo() JobInfo {
-	if o == nil || IsNil(o.JobInfo) {
-		var ret JobInfo
-		return ret
-	}
-	return *o.JobInfo
-}
-
-// GetJobInfoOk returns a tuple with the JobInfo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateStorage) GetJobInfoOk() (*JobInfo, bool) {
-	if o == nil || IsNil(o.JobInfo) {
-		return nil, false
-	}
-	return o.JobInfo, true
-}
-
-// HasJobInfo returns a boolean if a field has been set.
-func (o *CreateStorage) HasJobInfo() bool {
-	if o != nil && !IsNil(o.JobInfo) {
-		return true
-	}
-
-	return false
-}
-
-// SetJobInfo gets a reference to the given JobInfo and assigns it to the JobInfo field.
-func (o *CreateStorage) SetJobInfo(v JobInfo) {
-	o.JobInfo = &v
-}
-
-// GetLinks returns the Links field value if set, zero value otherwise.
-func (o *CreateStorage) GetLinks() []Link {
-	if o == nil || IsNil(o.Links) {
-		var ret []Link
-		return ret
-	}
-	return o.Links
-}
-
-// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateStorage) GetLinksOk() ([]Link, bool) {
-	if o == nil || IsNil(o.Links) {
-		return nil, false
-	}
-	return o.Links, true
-}
-
-// HasLinks returns a boolean if a field has been set.
-func (o *CreateStorage) HasLinks() bool {
-	if o != nil && !IsNil(o.Links) {
-		return true
-	}
-
-	return false
-}
-
-// SetLinks gets a reference to the given []Link and assigns it to the Links field.
-func (o *CreateStorage) SetLinks(v []Link) {
-	o.Links = v
-}
-
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *CreateStorage) GetOptions() UpdateStorageOptions {
 	if o == nil || IsNil(o.Options) {
@@ -1165,7 +1051,6 @@ func (o CreateStorage) ToMap() (map[string]interface{}, error) {
 	toSerialize["storageDriver"] = o.StorageDriver
 	toSerialize["storageTechnology"] = o.StorageTechnology
 	toSerialize["storageType"] = o.StorageType
-	toSerialize["status"] = o.Status
 	if !IsNil(o.TotalCapacity) {
 		toSerialize["totalCapacity"] = o.TotalCapacity
 	}
@@ -1187,8 +1072,9 @@ func (o CreateStorage) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["managementHost"] = o.ManagementHost
 	toSerialize["username"] = o.Username
-	toSerialize["passwordEncrypted"] = o.PasswordEncrypted
-	toSerialize["inMaintenance"] = o.InMaintenance
+	if !IsNil(o.InMaintenance) {
+		toSerialize["inMaintenance"] = o.InMaintenance
+	}
 	if !IsNil(o.TargetIQN) {
 		toSerialize["targetIQN"] = o.TargetIQN
 	}
@@ -1229,12 +1115,6 @@ func (o CreateStorage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.S3Port) {
 		toSerialize["s3Port"] = o.S3Port
 	}
-	if !IsNil(o.JobInfo) {
-		toSerialize["jobInfo"] = o.JobInfo
-	}
-	if !IsNil(o.Links) {
-		toSerialize["links"] = o.Links
-	}
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
@@ -1256,12 +1136,9 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 		"storageDriver",
 		"storageTechnology",
 		"storageType",
-		"status",
 		"name",
 		"managementHost",
 		"username",
-		"passwordEncrypted",
-		"inMaintenance",
 		"subnetType",
 		"password",
 	}
@@ -1298,7 +1175,6 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "storageDriver")
 		delete(additionalProperties, "storageTechnology")
 		delete(additionalProperties, "storageType")
-		delete(additionalProperties, "status")
 		delete(additionalProperties, "totalCapacity")
 		delete(additionalProperties, "usableCapacity")
 		delete(additionalProperties, "freeCapacity")
@@ -1308,7 +1184,6 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "iscsiPort")
 		delete(additionalProperties, "managementHost")
 		delete(additionalProperties, "username")
-		delete(additionalProperties, "passwordEncrypted")
 		delete(additionalProperties, "inMaintenance")
 		delete(additionalProperties, "targetIQN")
 		delete(additionalProperties, "isExperimental")
@@ -1324,8 +1199,6 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "directorId")
 		delete(additionalProperties, "s3Hostname")
 		delete(additionalProperties, "s3Port")
-		delete(additionalProperties, "jobInfo")
-		delete(additionalProperties, "links")
 		delete(additionalProperties, "options")
 		delete(additionalProperties, "password")
 		o.AdditionalProperties = additionalProperties

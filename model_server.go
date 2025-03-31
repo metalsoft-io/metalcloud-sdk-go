@@ -162,6 +162,8 @@ type Server struct {
 	ResourcePoolId *float32 `json:"resourcePoolId,omitempty"`
 	// The server instance.
 	AllocationInfo *ServerAllocationInfo `json:"allocationInfo,omitempty"`
+	// The extension execution info of the server.
+	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -2353,6 +2355,38 @@ func (o *Server) SetAllocationInfo(v ServerAllocationInfo) {
 	o.AllocationInfo = &v
 }
 
+// GetExtensionInfo returns the ExtensionInfo field value if set, zero value otherwise.
+func (o *Server) GetExtensionInfo() ExtensionExecutionInfo {
+	if o == nil || IsNil(o.ExtensionInfo) {
+		var ret ExtensionExecutionInfo
+		return ret
+	}
+	return *o.ExtensionInfo
+}
+
+// GetExtensionInfoOk returns a tuple with the ExtensionInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Server) GetExtensionInfoOk() (*ExtensionExecutionInfo, bool) {
+	if o == nil || IsNil(o.ExtensionInfo) {
+		return nil, false
+	}
+	return o.ExtensionInfo, true
+}
+
+// HasExtensionInfo returns a boolean if a field has been set.
+func (o *Server) HasExtensionInfo() bool {
+	if o != nil && !IsNil(o.ExtensionInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensionInfo gets a reference to the given ExtensionExecutionInfo and assigns it to the ExtensionInfo field.
+func (o *Server) SetExtensionInfo(v ExtensionExecutionInfo) {
+	o.ExtensionInfo = &v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *Server) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -2578,6 +2612,9 @@ func (o Server) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AllocationInfo) {
 		toSerialize["allocationInfo"] = o.AllocationInfo
 	}
+	if !IsNil(o.ExtensionInfo) {
+		toSerialize["extensionInfo"] = o.ExtensionInfo
+	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -2709,6 +2746,7 @@ func (o *Server) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "resourcePoolId")
 		delete(additionalProperties, "allocationInfo")
+		delete(additionalProperties, "extensionInfo")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -26,7 +26,7 @@ type Extension struct {
 	// Revision number
 	Revision float32 `json:"revision"`
 	// The extension unique slug
-	Slug string `json:"slug"`
+	Slug *string `json:"slug,omitempty"`
 	// The extension name
 	Name string `json:"name"`
 	// The extension unique label
@@ -49,11 +49,10 @@ type _Extension Extension
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtension(id float32, revision float32, slug string, name string, description string, status string, kind string, definition ExtensionDefinition) *Extension {
+func NewExtension(id float32, revision float32, name string, description string, status string, kind string, definition ExtensionDefinition) *Extension {
 	this := Extension{}
 	this.Id = id
 	this.Revision = revision
-	this.Slug = slug
 	this.Name = name
 	this.Description = description
 	this.Status = status
@@ -118,28 +117,36 @@ func (o *Extension) SetRevision(v float32) {
 	o.Revision = v
 }
 
-// GetSlug returns the Slug field value
+// GetSlug returns the Slug field value if set, zero value otherwise.
 func (o *Extension) GetSlug() string {
-	if o == nil {
+	if o == nil || IsNil(o.Slug) {
 		var ret string
 		return ret
 	}
-
-	return o.Slug
+	return *o.Slug
 }
 
-// GetSlugOk returns a tuple with the Slug field value
+// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Extension) GetSlugOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Slug) {
 		return nil, false
 	}
-	return &o.Slug, true
+	return o.Slug, true
 }
 
-// SetSlug sets field value
+// HasSlug returns a boolean if a field has been set.
+func (o *Extension) HasSlug() bool {
+	if o != nil && !IsNil(o.Slug) {
+		return true
+	}
+
+	return false
+}
+
+// SetSlug gets a reference to the given string and assigns it to the Slug field.
 func (o *Extension) SetSlug(v string) {
-	o.Slug = v
+	o.Slug = &v
 }
 
 // GetName returns the Name field value
@@ -338,7 +345,9 @@ func (o Extension) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
-	toSerialize["slug"] = o.Slug
+	if !IsNil(o.Slug) {
+		toSerialize["slug"] = o.Slug
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
@@ -365,7 +374,6 @@ func (o *Extension) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"revision",
-		"slug",
 		"name",
 		"description",
 		"status",

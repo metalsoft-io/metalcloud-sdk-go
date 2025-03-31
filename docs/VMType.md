@@ -13,13 +13,13 @@ Name | Type | Description | Notes
 **IsExperimental** | Pointer to **float32** | Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0. | [optional] 
 **Tags** | Pointer to **[]string** | Tags for the VM Type. | [optional] 
 **ForUnmanagedVMsOnly** | Pointer to **float32** | Flag to indicate if the VM Pool is for unmanaged VMs only. 1 for true, 0 for false. Default is 0. | [optional] 
-**Links** | **map[string]interface{}** | Links to other resources | 
+**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewVMType
 
-`func NewVMType(id float32, name string, cpuCores float32, ramGB float32, links map[string]interface{}, ) *VMType`
+`func NewVMType(id float32, name string, cpuCores float32, ramGB float32, ) *VMType`
 
 NewVMType instantiates a new VMType object
 This constructor will assign default values to properties that have it defined,
@@ -241,23 +241,28 @@ HasForUnmanagedVMsOnly returns a boolean if a field has been set.
 
 ### GetLinks
 
-`func (o *VMType) GetLinks() map[string]interface{}`
+`func (o *VMType) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *VMType) GetLinksOk() (*map[string]interface{}, bool)`
+`func (o *VMType) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *VMType) SetLinks(v map[string]interface{})`
+`func (o *VMType) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 
+### HasLinks
+
+`func (o *VMType) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

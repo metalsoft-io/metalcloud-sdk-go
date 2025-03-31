@@ -115,6 +115,8 @@ type NetworkDevice struct {
 	BootstrapReadinessCheckResult map[string]interface{} `json:"bootstrapReadinessCheckResult"`
 	// Whether the network device is a gateway
 	IsGateway bool `json:"isGateway"`
+	// The extension execution info of the network device.
+	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -1328,6 +1330,38 @@ func (o *NetworkDevice) SetIsGateway(v bool) {
 	o.IsGateway = v
 }
 
+// GetExtensionInfo returns the ExtensionInfo field value if set, zero value otherwise.
+func (o *NetworkDevice) GetExtensionInfo() ExtensionExecutionInfo {
+	if o == nil || IsNil(o.ExtensionInfo) {
+		var ret ExtensionExecutionInfo
+		return ret
+	}
+	return *o.ExtensionInfo
+}
+
+// GetExtensionInfoOk returns a tuple with the ExtensionInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkDevice) GetExtensionInfoOk() (*ExtensionExecutionInfo, bool) {
+	if o == nil || IsNil(o.ExtensionInfo) {
+		return nil, false
+	}
+	return o.ExtensionInfo, true
+}
+
+// HasExtensionInfo returns a boolean if a field has been set.
+func (o *NetworkDevice) HasExtensionInfo() bool {
+	if o != nil && !IsNil(o.ExtensionInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensionInfo gets a reference to the given ExtensionExecutionInfo and assigns it to the ExtensionInfo field.
+func (o *NetworkDevice) SetExtensionInfo(v ExtensionExecutionInfo) {
+	o.ExtensionInfo = &v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *NetworkDevice) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -1421,6 +1455,9 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["secretsMaterializedForOSAssets"] = o.SecretsMaterializedForOSAssets
 	toSerialize["bootstrapReadinessCheckResult"] = o.BootstrapReadinessCheckResult
 	toSerialize["isGateway"] = o.IsGateway
+	if !IsNil(o.ExtensionInfo) {
+		toSerialize["extensionInfo"] = o.ExtensionInfo
+	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -1558,6 +1595,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "secretsMaterializedForOSAssets")
 		delete(additionalProperties, "bootstrapReadinessCheckResult")
 		delete(additionalProperties, "isGateway")
+		delete(additionalProperties, "extensionInfo")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

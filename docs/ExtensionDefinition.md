@@ -16,17 +16,18 @@ Name | Type | Description | Notes
 **Dependencies** | [**ExtensionDependency**](ExtensionDependency.md) |  | 
 **Inputs** | [**[]ExtensionInput**](ExtensionInput.md) | List of inputs for the platform service. | 
 **Outputs** | [**[]ExtensionOutput**](ExtensionOutput.md) | List of outputs for the platform service. | 
-**Infrastructure** | [**ExtensionInfrastructure**](ExtensionInfrastructure.md) |  | 
+**Infrastructure** | Pointer to [**ExtensionInfrastructure**](ExtensionInfrastructure.md) |  | [optional] 
 **Assets** | [**[]ExtensionAsset**](ExtensionAsset.md) | List of assets for the platform service. | 
 **OnCreate** | Pointer to [**ExtensionActions**](ExtensionActions.md) |  | [optional] 
 **OnEdit** | Pointer to [**ExtensionActions**](ExtensionActions.md) |  | [optional] 
 **OnDelete** | Pointer to [**ExtensionActions**](ExtensionActions.md) |  | [optional] 
+**Tasks** | Pointer to [**[]ExtensionTask**](ExtensionTask.md) | Tasks. Only for extensions of kind action | [optional] 
 
 ## Methods
 
 ### NewExtensionDefinition
 
-`func NewExtensionDefinition(kind string, schemaVersion string, name string, label string, extensionType string, vendor string, extensionVersion string, icon string, dependencies ExtensionDependency, inputs []ExtensionInput, outputs []ExtensionOutput, infrastructure ExtensionInfrastructure, assets []ExtensionAsset, ) *ExtensionDefinition`
+`func NewExtensionDefinition(kind string, schemaVersion string, name string, label string, extensionType string, vendor string, extensionVersion string, icon string, dependencies ExtensionDependency, inputs []ExtensionInput, outputs []ExtensionOutput, assets []ExtensionAsset, ) *ExtensionDefinition`
 
 NewExtensionDefinition instantiates a new ExtensionDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -305,6 +306,11 @@ and a boolean to check if the value has been set.
 
 SetInfrastructure sets Infrastructure field to given value.
 
+### HasInfrastructure
+
+`func (o *ExtensionDefinition) HasInfrastructure() bool`
+
+HasInfrastructure returns a boolean if a field has been set.
 
 ### GetAssets
 
@@ -400,6 +406,31 @@ SetOnDelete sets OnDelete field to given value.
 `func (o *ExtensionDefinition) HasOnDelete() bool`
 
 HasOnDelete returns a boolean if a field has been set.
+
+### GetTasks
+
+`func (o *ExtensionDefinition) GetTasks() []ExtensionTask`
+
+GetTasks returns the Tasks field if non-nil, zero value otherwise.
+
+### GetTasksOk
+
+`func (o *ExtensionDefinition) GetTasksOk() (*[]ExtensionTask, bool)`
+
+GetTasksOk returns a tuple with the Tasks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTasks
+
+`func (o *ExtensionDefinition) SetTasks(v []ExtensionTask)`
+
+SetTasks sets Tasks field to given value.
+
+### HasTasks
+
+`func (o *ExtensionDefinition) HasTasks() bool`
+
+HasTasks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
