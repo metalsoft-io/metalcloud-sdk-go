@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Host** | **string** | The host of the server. | 
-**Username** | **string** | The username of the server. | 
-**Password** | **string** | The password of the server. | 
+**Username** | Pointer to **string** | The username of the server. | [optional] 
+**Password** | Pointer to **string** | The password of the server. | [optional] 
+**Host** | Pointer to **string** | The host of the server. | [optional] 
 **UpdateOnServer** | **bool** | Flag to indicate if the credentials should be updated on the server as well. | 
 
 ## Methods
 
 ### NewUpdateServerIpmiCredentials
 
-`func NewUpdateServerIpmiCredentials(host string, username string, password string, updateOnServer bool, ) *UpdateServerIpmiCredentials`
+`func NewUpdateServerIpmiCredentials(updateOnServer bool, ) *UpdateServerIpmiCredentials`
 
 NewUpdateServerIpmiCredentials instantiates a new UpdateServerIpmiCredentials object
 This constructor will assign default values to properties that have it defined,
@@ -27,26 +27,6 @@ will change when the set of required properties is changed
 NewUpdateServerIpmiCredentialsWithDefaults instantiates a new UpdateServerIpmiCredentials object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetHost
-
-`func (o *UpdateServerIpmiCredentials) GetHost() string`
-
-GetHost returns the Host field if non-nil, zero value otherwise.
-
-### GetHostOk
-
-`func (o *UpdateServerIpmiCredentials) GetHostOk() (*string, bool)`
-
-GetHostOk returns a tuple with the Host field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHost
-
-`func (o *UpdateServerIpmiCredentials) SetHost(v string)`
-
-SetHost sets Host field to given value.
-
 
 ### GetUsername
 
@@ -67,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
+### HasUsername
+
+`func (o *UpdateServerIpmiCredentials) HasUsername() bool`
+
+HasUsername returns a boolean if a field has been set.
 
 ### GetPassword
 
@@ -87,6 +72,36 @@ and a boolean to check if the value has been set.
 
 SetPassword sets Password field to given value.
 
+### HasPassword
+
+`func (o *UpdateServerIpmiCredentials) HasPassword() bool`
+
+HasPassword returns a boolean if a field has been set.
+
+### GetHost
+
+`func (o *UpdateServerIpmiCredentials) GetHost() string`
+
+GetHost returns the Host field if non-nil, zero value otherwise.
+
+### GetHostOk
+
+`func (o *UpdateServerIpmiCredentials) GetHostOk() (*string, bool)`
+
+GetHostOk returns a tuple with the Host field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHost
+
+`func (o *UpdateServerIpmiCredentials) SetHost(v string)`
+
+SetHost sets Host field to given value.
+
+### HasHost
+
+`func (o *UpdateServerIpmiCredentials) HasHost() bool`
+
+HasHost returns a boolean if a field has been set.
 
 ### GetUpdateOnServer
 

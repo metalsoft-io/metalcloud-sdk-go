@@ -4,21 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Datacenter** | **string** | The site where the server is located. | 
-**Host** | **string** | The host of the server. | 
-**Username** | **string** | The username of the server. | 
-**Password** | **string** | The password of the server. | 
-**Vendor** | Pointer to **string** | The vendor of the server. | [optional] 
-**Model** | Pointer to **string** | The model of the server. | [optional] 
+**Username** | Pointer to **string** | The username of the server. | [optional] 
+**Password** | Pointer to **string** | The password of the server. | [optional] 
 **VncPassword** | Pointer to **NullableString** | The VNC password of the server. | [optional] 
-**VncPort** | Pointer to **NullableFloat32** | The VNC port of the server. | [optional] 
 **SnmpPassword** | Pointer to **NullableString** | The SNMP password of the server. | [optional] 
 
 ## Methods
 
 ### NewServerCredentials
 
-`func NewServerCredentials(datacenter string, host string, username string, password string, ) *ServerCredentials`
+`func NewServerCredentials() *ServerCredentials`
 
 NewServerCredentials instantiates a new ServerCredentials object
 This constructor will assign default values to properties that have it defined,
@@ -32,46 +27,6 @@ will change when the set of required properties is changed
 NewServerCredentialsWithDefaults instantiates a new ServerCredentials object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetDatacenter
-
-`func (o *ServerCredentials) GetDatacenter() string`
-
-GetDatacenter returns the Datacenter field if non-nil, zero value otherwise.
-
-### GetDatacenterOk
-
-`func (o *ServerCredentials) GetDatacenterOk() (*string, bool)`
-
-GetDatacenterOk returns a tuple with the Datacenter field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDatacenter
-
-`func (o *ServerCredentials) SetDatacenter(v string)`
-
-SetDatacenter sets Datacenter field to given value.
-
-
-### GetHost
-
-`func (o *ServerCredentials) GetHost() string`
-
-GetHost returns the Host field if non-nil, zero value otherwise.
-
-### GetHostOk
-
-`func (o *ServerCredentials) GetHostOk() (*string, bool)`
-
-GetHostOk returns a tuple with the Host field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHost
-
-`func (o *ServerCredentials) SetHost(v string)`
-
-SetHost sets Host field to given value.
-
 
 ### GetUsername
 
@@ -92,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
+### HasUsername
+
+`func (o *ServerCredentials) HasUsername() bool`
+
+HasUsername returns a boolean if a field has been set.
 
 ### GetPassword
 
@@ -112,56 +72,11 @@ and a boolean to check if the value has been set.
 
 SetPassword sets Password field to given value.
 
+### HasPassword
 
-### GetVendor
+`func (o *ServerCredentials) HasPassword() bool`
 
-`func (o *ServerCredentials) GetVendor() string`
-
-GetVendor returns the Vendor field if non-nil, zero value otherwise.
-
-### GetVendorOk
-
-`func (o *ServerCredentials) GetVendorOk() (*string, bool)`
-
-GetVendorOk returns a tuple with the Vendor field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVendor
-
-`func (o *ServerCredentials) SetVendor(v string)`
-
-SetVendor sets Vendor field to given value.
-
-### HasVendor
-
-`func (o *ServerCredentials) HasVendor() bool`
-
-HasVendor returns a boolean if a field has been set.
-
-### GetModel
-
-`func (o *ServerCredentials) GetModel() string`
-
-GetModel returns the Model field if non-nil, zero value otherwise.
-
-### GetModelOk
-
-`func (o *ServerCredentials) GetModelOk() (*string, bool)`
-
-GetModelOk returns a tuple with the Model field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModel
-
-`func (o *ServerCredentials) SetModel(v string)`
-
-SetModel sets Model field to given value.
-
-### HasModel
-
-`func (o *ServerCredentials) HasModel() bool`
-
-HasModel returns a boolean if a field has been set.
+HasPassword returns a boolean if a field has been set.
 
 ### GetVncPassword
 
@@ -198,41 +113,6 @@ HasVncPassword returns a boolean if a field has been set.
 `func (o *ServerCredentials) UnsetVncPassword()`
 
 UnsetVncPassword ensures that no value is present for VncPassword, not even an explicit nil
-### GetVncPort
-
-`func (o *ServerCredentials) GetVncPort() float32`
-
-GetVncPort returns the VncPort field if non-nil, zero value otherwise.
-
-### GetVncPortOk
-
-`func (o *ServerCredentials) GetVncPortOk() (*float32, bool)`
-
-GetVncPortOk returns a tuple with the VncPort field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVncPort
-
-`func (o *ServerCredentials) SetVncPort(v float32)`
-
-SetVncPort sets VncPort field to given value.
-
-### HasVncPort
-
-`func (o *ServerCredentials) HasVncPort() bool`
-
-HasVncPort returns a boolean if a field has been set.
-
-### SetVncPortNil
-
-`func (o *ServerCredentials) SetVncPortNil(b bool)`
-
- SetVncPortNil sets the value for VncPort to be an explicit nil
-
-### UnsetVncPort
-`func (o *ServerCredentials) UnsetVncPort()`
-
-UnsetVncPort ensures that no value is present for VncPort, not even an explicit nil
 ### GetSnmpPassword
 
 `func (o *ServerCredentials) GetSnmpPassword() string`

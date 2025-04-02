@@ -50,9 +50,9 @@ type CreateNetworkDevice struct {
 	// The port number used for management connections
 	ManagementPort NullableInt32 `json:"managementPort,omitempty"`
 	// The username used for management authentication
-	Username NullableString `json:"username,omitempty"`
+	Username NullableString `json:"username"`
 	// The password used for management authentication
-	ManagementPassword NullableString `json:"managementPassword,omitempty"`
+	ManagementPassword NullableString `json:"managementPassword"`
 	// The gateway IP address for the management network
 	ManagementAddressGateway NullableString `json:"managementAddressGateway,omitempty"`
 	// The subnet mask for the management network
@@ -102,10 +102,12 @@ type _CreateNetworkDevice CreateNetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateNetworkDevice(driver NetworkDeviceDriver, position string) *CreateNetworkDevice {
+func NewCreateNetworkDevice(driver NetworkDeviceDriver, position string, username NullableString, managementPassword NullableString) *CreateNetworkDevice {
 	this := CreateNetworkDevice{}
 	this.Driver = driver
 	this.Position = position
+	this.Username = username
+	this.ManagementPassword = managementPassword
 	return &this
 }
 
@@ -589,16 +591,18 @@ func (o *CreateNetworkDevice) UnsetManagementPort() {
 	o.ManagementPort.Unset()
 }
 
-// GetUsername returns the Username field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetUsername returns the Username field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *CreateNetworkDevice) GetUsername() string {
-	if o == nil || IsNil(o.Username.Get()) {
+	if o == nil || o.Username.Get() == nil {
 		var ret string
 		return ret
 	}
+
 	return *o.Username.Get()
 }
 
-// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
+// GetUsernameOk returns a tuple with the Username field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateNetworkDevice) GetUsernameOk() (*string, bool) {
@@ -608,39 +612,23 @@ func (o *CreateNetworkDevice) GetUsernameOk() (*string, bool) {
 	return o.Username.Get(), o.Username.IsSet()
 }
 
-// HasUsername returns a boolean if a field has been set.
-func (o *CreateNetworkDevice) HasUsername() bool {
-	if o != nil && o.Username.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetUsername gets a reference to the given NullableString and assigns it to the Username field.
+// SetUsername sets field value
 func (o *CreateNetworkDevice) SetUsername(v string) {
 	o.Username.Set(&v)
 }
-// SetUsernameNil sets the value for Username to be an explicit nil
-func (o *CreateNetworkDevice) SetUsernameNil() {
-	o.Username.Set(nil)
-}
 
-// UnsetUsername ensures that no value is present for Username, not even an explicit nil
-func (o *CreateNetworkDevice) UnsetUsername() {
-	o.Username.Unset()
-}
-
-// GetManagementPassword returns the ManagementPassword field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetManagementPassword returns the ManagementPassword field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *CreateNetworkDevice) GetManagementPassword() string {
-	if o == nil || IsNil(o.ManagementPassword.Get()) {
+	if o == nil || o.ManagementPassword.Get() == nil {
 		var ret string
 		return ret
 	}
+
 	return *o.ManagementPassword.Get()
 }
 
-// GetManagementPasswordOk returns a tuple with the ManagementPassword field value if set, nil otherwise
+// GetManagementPasswordOk returns a tuple with the ManagementPassword field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateNetworkDevice) GetManagementPasswordOk() (*string, bool) {
@@ -650,27 +638,9 @@ func (o *CreateNetworkDevice) GetManagementPasswordOk() (*string, bool) {
 	return o.ManagementPassword.Get(), o.ManagementPassword.IsSet()
 }
 
-// HasManagementPassword returns a boolean if a field has been set.
-func (o *CreateNetworkDevice) HasManagementPassword() bool {
-	if o != nil && o.ManagementPassword.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetManagementPassword gets a reference to the given NullableString and assigns it to the ManagementPassword field.
+// SetManagementPassword sets field value
 func (o *CreateNetworkDevice) SetManagementPassword(v string) {
 	o.ManagementPassword.Set(&v)
-}
-// SetManagementPasswordNil sets the value for ManagementPassword to be an explicit nil
-func (o *CreateNetworkDevice) SetManagementPasswordNil() {
-	o.ManagementPassword.Set(nil)
-}
-
-// UnsetManagementPassword ensures that no value is present for ManagementPassword, not even an explicit nil
-func (o *CreateNetworkDevice) UnsetManagementPassword() {
-	o.ManagementPassword.Unset()
 }
 
 // GetManagementAddressGateway returns the ManagementAddressGateway field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1522,12 +1492,8 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if o.ManagementPort.IsSet() {
 		toSerialize["managementPort"] = o.ManagementPort.Get()
 	}
-	if o.Username.IsSet() {
-		toSerialize["username"] = o.Username.Get()
-	}
-	if o.ManagementPassword.IsSet() {
-		toSerialize["managementPassword"] = o.ManagementPassword.Get()
-	}
+	toSerialize["username"] = o.Username.Get()
+	toSerialize["managementPassword"] = o.ManagementPassword.Get()
 	if o.ManagementAddressGateway.IsSet() {
 		toSerialize["managementAddressGateway"] = o.ManagementAddressGateway.Get()
 	}
@@ -1603,6 +1569,8 @@ func (o *CreateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"driver",
 		"position",
+		"username",
+		"managementPassword",
 	}
 
 	allProperties := make(map[string]interface{})

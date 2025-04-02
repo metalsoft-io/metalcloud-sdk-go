@@ -23,9 +23,9 @@ Name | Type | Description | Notes
 **S3Hostname** | Pointer to **string** | S3 hostname | [optional] 
 **S3Port** | Pointer to **string** | S3 port | [optional] 
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the storage. | [optional] 
-**Options** | Pointer to [**StorageOptions**](StorageOptions.md) | Options for the storage | [optional] 
 **Username** | Pointer to **string** | Username | [optional] 
 **Password** | Pointer to **string** | The password to use. | [optional] 
+**Options** | Pointer to [**StorageOptions**](StorageOptions.md) | Options for the storage | [optional] 
 
 ## Methods
 
@@ -521,31 +521,6 @@ SetExtensionInfo sets ExtensionInfo field to given value.
 
 HasExtensionInfo returns a boolean if a field has been set.
 
-### GetOptions
-
-`func (o *UpdateStorageInternal) GetOptions() StorageOptions`
-
-GetOptions returns the Options field if non-nil, zero value otherwise.
-
-### GetOptionsOk
-
-`func (o *UpdateStorageInternal) GetOptionsOk() (*StorageOptions, bool)`
-
-GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOptions
-
-`func (o *UpdateStorageInternal) SetOptions(v StorageOptions)`
-
-SetOptions sets Options field to given value.
-
-### HasOptions
-
-`func (o *UpdateStorageInternal) HasOptions() bool`
-
-HasOptions returns a boolean if a field has been set.
-
 ### GetUsername
 
 `func (o *UpdateStorageInternal) GetUsername() string`
@@ -595,6 +570,31 @@ SetPassword sets Password field to given value.
 `func (o *UpdateStorageInternal) HasPassword() bool`
 
 HasPassword returns a boolean if a field has been set.
+
+### GetOptions
+
+`func (o *UpdateStorageInternal) GetOptions() StorageOptions`
+
+GetOptions returns the Options field if non-nil, zero value otherwise.
+
+### GetOptionsOk
+
+`func (o *UpdateStorageInternal) GetOptionsOk() (*StorageOptions, bool)`
+
+GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOptions
+
+`func (o *UpdateStorageInternal) SetOptions(v StorageOptions)`
+
+SetOptions sets Options field to given value.
+
+### HasOptions
+
+`func (o *UpdateStorageInternal) HasOptions() bool`
+
+HasOptions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

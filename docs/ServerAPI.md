@@ -1268,7 +1268,7 @@ import (
 
 func main() {
 	serverId := float32(8.14) // float32 | 
-	updateServerIpmiCredentials := *openapiclient.NewUpdateServerIpmiCredentials("Host_example", "Username_example", "Password_example", false) // UpdateServerIpmiCredentials | The Server Ipmi credentials object
+	updateServerIpmiCredentials := *openapiclient.NewUpdateServerIpmiCredentials(false) // UpdateServerIpmiCredentials | The Server Ipmi credentials object
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateSubnet**](SubnetAPI.md#CreateSubnet) | **Post** /api/v2/subnets/subnets | Create a subnet.
+[**CreateSubnet**](SubnetAPI.md#CreateSubnet) | **Post** /api/v2/subnets | Create a subnet.
 [**DeleteSubnet**](SubnetAPI.md#DeleteSubnet) | **Delete** /api/v2/subnets/{subnetId} | Delete Subnet
 [**GetSubnet**](SubnetAPI.md#GetSubnet) | **Get** /api/v2/subnets/{subnetId} | Retrieves the Subnet information
 [**GetSubnets**](SubnetAPI.md#GetSubnets) | **Get** /api/v2/subnets | List all Subnets

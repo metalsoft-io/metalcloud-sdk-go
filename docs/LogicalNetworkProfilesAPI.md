@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateLogicalNetworkProfile
 
-> LogicalNetworkProfileDto CreateLogicalNetworkProfile(ctx).CreateLogicalNetworkProfileDto(createLogicalNetworkProfileDto).Execute()
+> LogicalNetworkProfile CreateLogicalNetworkProfile(ctx).CreateLogicalNetworkProfile(createLogicalNetworkProfile).Execute()
 
 Create a new logical network profile
 
@@ -33,16 +33,16 @@ import (
 )
 
 func main() {
-	createLogicalNetworkProfileDto := *openapiclient.NewCreateLogicalNetworkProfileDto("LogicalNetworkType_example") // CreateLogicalNetworkProfileDto | The Logical Network Profile create object
+	createLogicalNetworkProfile := *openapiclient.NewCreateLogicalNetworkProfile("LogicalNetworkType_example") // CreateLogicalNetworkProfile | The Logical Network Profile create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkProfilesAPI.CreateLogicalNetworkProfile(context.Background()).CreateLogicalNetworkProfileDto(createLogicalNetworkProfileDto).Execute()
+	resp, r, err := apiClient.LogicalNetworkProfilesAPI.CreateLogicalNetworkProfile(context.Background()).CreateLogicalNetworkProfile(createLogicalNetworkProfile).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkProfilesAPI.CreateLogicalNetworkProfile``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetworkProfile`: LogicalNetworkProfileDto
+	// response from `CreateLogicalNetworkProfile`: LogicalNetworkProfile
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkProfilesAPI.CreateLogicalNetworkProfile`: %v\n", resp)
 }
 ```
@@ -58,11 +58,11 @@ Other parameters are passed through a pointer to a apiCreateLogicalNetworkProfil
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createLogicalNetworkProfileDto** | [**CreateLogicalNetworkProfileDto**](CreateLogicalNetworkProfileDto.md) | The Logical Network Profile create object | 
+ **createLogicalNetworkProfile** | [**CreateLogicalNetworkProfile**](CreateLogicalNetworkProfile.md) | The Logical Network Profile create object | 
 
 ### Return type
 
-[**LogicalNetworkProfileDto**](LogicalNetworkProfileDto.md)
+[**LogicalNetworkProfile**](LogicalNetworkProfile.md)
 
 ### Authorization
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## GetAllLogicalNetworkProfiles
 
-> map[string]interface{} GetAllLogicalNetworkProfiles(ctx).Page(page).Limit(limit).FilterId(filterId).FilterLabel(filterLabel).FilterName(filterName).FilterDescription(filterDescription).FilterLogicalNetworkType(filterLogicalNetworkType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> LogicalNetworkProfilePaginatedList GetAllLogicalNetworkProfiles(ctx).Page(page).Limit(limit).FilterId(filterId).FilterLabel(filterLabel).FilterName(filterName).FilterDescription(filterDescription).FilterLogicalNetworkType(filterLogicalNetworkType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get all logical network profiles
 
@@ -185,7 +185,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkProfilesAPI.GetAllLogicalNetworkProfiles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetAllLogicalNetworkProfiles`: map[string]interface{}
+	// response from `GetAllLogicalNetworkProfiles`: LogicalNetworkProfilePaginatedList
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkProfilesAPI.GetAllLogicalNetworkProfiles`: %v\n", resp)
 }
 ```
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**LogicalNetworkProfilePaginatedList**](LogicalNetworkProfilePaginatedList.md)
 
 ### Authorization
 
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworkProfileById
 
-> LogicalNetworkProfileDto GetLogicalNetworkProfileById(ctx, logicalNetworkProfileId).Execute()
+> LogicalNetworkProfile GetLogicalNetworkProfileById(ctx, logicalNetworkProfileId).Execute()
 
 Get a logical network profile by ID
 
@@ -260,7 +260,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkProfilesAPI.GetLogicalNetworkProfileById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkProfileById`: LogicalNetworkProfileDto
+	// response from `GetLogicalNetworkProfileById`: LogicalNetworkProfile
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkProfilesAPI.GetLogicalNetworkProfileById`: %v\n", resp)
 }
 ```
@@ -284,7 +284,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogicalNetworkProfileDto**](LogicalNetworkProfileDto.md)
+[**LogicalNetworkProfile**](LogicalNetworkProfile.md)
 
 ### Authorization
 
@@ -302,7 +302,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLogicalNetworkProfile
 
-> LogicalNetworkProfileDto UpdateLogicalNetworkProfile(ctx, logicalNetworkProfileId).UpdateLogicalNetworkProfileDto(updateLogicalNetworkProfileDto).Execute()
+> LogicalNetworkProfile UpdateLogicalNetworkProfile(ctx, logicalNetworkProfileId).UpdateLogicalNetworkProfile(updateLogicalNetworkProfile).Execute()
 
 Update a logical network profile
 
@@ -322,16 +322,16 @@ import (
 
 func main() {
 	logicalNetworkProfileId := float32(8.14) // float32 | 
-	updateLogicalNetworkProfileDto := *openapiclient.NewUpdateLogicalNetworkProfileDto() // UpdateLogicalNetworkProfileDto | The Logical Network Profile update object
+	updateLogicalNetworkProfile := *openapiclient.NewUpdateLogicalNetworkProfile() // UpdateLogicalNetworkProfile | The Logical Network Profile update object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkProfilesAPI.UpdateLogicalNetworkProfile(context.Background(), logicalNetworkProfileId).UpdateLogicalNetworkProfileDto(updateLogicalNetworkProfileDto).Execute()
+	resp, r, err := apiClient.LogicalNetworkProfilesAPI.UpdateLogicalNetworkProfile(context.Background(), logicalNetworkProfileId).UpdateLogicalNetworkProfile(updateLogicalNetworkProfile).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkProfilesAPI.UpdateLogicalNetworkProfile``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateLogicalNetworkProfile`: LogicalNetworkProfileDto
+	// response from `UpdateLogicalNetworkProfile`: LogicalNetworkProfile
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkProfilesAPI.UpdateLogicalNetworkProfile`: %v\n", resp)
 }
 ```
@@ -352,11 +352,11 @@ Other parameters are passed through a pointer to a apiUpdateLogicalNetworkProfil
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateLogicalNetworkProfileDto** | [**UpdateLogicalNetworkProfileDto**](UpdateLogicalNetworkProfileDto.md) | The Logical Network Profile update object | 
+ **updateLogicalNetworkProfile** | [**UpdateLogicalNetworkProfile**](UpdateLogicalNetworkProfile.md) | The Logical Network Profile update object | 
 
 ### Return type
 
-[**LogicalNetworkProfileDto**](LogicalNetworkProfileDto.md)
+[**LogicalNetworkProfile**](LogicalNetworkProfile.md)
 
 ### Authorization
 

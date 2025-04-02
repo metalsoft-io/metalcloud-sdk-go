@@ -18,8 +18,8 @@ Name | Type | Description | Notes
 **QuarantineVlan** | Pointer to **int32** | The VLAN ID for the quarantine network | [optional] 
 **ManagementAddress** | Pointer to **NullableString** | The IP address used to manage the network device | [optional] 
 **ManagementPort** | Pointer to **NullableInt32** | The port number used for management connections | [optional] 
-**Username** | Pointer to **NullableString** | The username used for management authentication | [optional] 
-**ManagementPassword** | Pointer to **NullableString** | The password used for management authentication | [optional] 
+**Username** | **NullableString** | The username used for management authentication | 
+**ManagementPassword** | **NullableString** | The password used for management authentication | 
 **ManagementAddressGateway** | Pointer to **NullableString** | The gateway IP address for the management network | [optional] 
 **ManagementAddressMask** | Pointer to **NullableString** | The subnet mask for the management network | [optional] 
 **ManagementMAC** | Pointer to **NullableString** | The MAC address of the management interface | [optional] 
@@ -45,7 +45,7 @@ Name | Type | Description | Notes
 
 ### NewCreateNetworkDevice
 
-`func NewCreateNetworkDevice(driver NetworkDeviceDriver, position string, ) *CreateNetworkDevice`
+`func NewCreateNetworkDevice(driver NetworkDeviceDriver, position string, username NullableString, managementPassword NullableString, ) *CreateNetworkDevice`
 
 NewCreateNetworkDevice instantiates a new CreateNetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -459,11 +459,6 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
-### HasUsername
-
-`func (o *CreateNetworkDevice) HasUsername() bool`
-
-HasUsername returns a boolean if a field has been set.
 
 ### SetUsernameNil
 
@@ -494,11 +489,6 @@ and a boolean to check if the value has been set.
 
 SetManagementPassword sets ManagementPassword field to given value.
 
-### HasManagementPassword
-
-`func (o *CreateNetworkDevice) HasManagementPassword() bool`
-
-HasManagementPassword returns a boolean if a field has been set.
 
 ### SetManagementPasswordNil
 

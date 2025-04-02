@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**ExecuteStorageAction**](StorageAPI.md#ExecuteStorageAction) | **Post** /api/v2/storages/{storageId}/actions/update-cache | Execute a Storage action
 [**GetStorage**](StorageAPI.md#GetStorage) | **Get** /api/v2/storages/{storageId} | Retrieves a Storage
 [**GetStorageBuckets**](StorageAPI.md#GetStorageBuckets) | **Get** /api/v2/storages/{storageId}/buckets | Get all Buckets linked to the specified storage
+[**GetStorageCredentials**](StorageAPI.md#GetStorageCredentials) | **Get** /api/v2/storages/{storageId}/credentials | Get Storage credentials
 [**GetStorageDrives**](StorageAPI.md#GetStorageDrives) | **Get** /api/v2/storages/{storageId}/drives | Get all Drives linked to the specified storage
 [**GetStorageFileShares**](StorageAPI.md#GetStorageFileShares) | **Get** /api/v2/storages/{storageId}/file-shares | Get all File Shares linked to the specified storage
 [**GetStorageIscsiBootServers**](StorageAPI.md#GetStorageIscsiBootServers) | **Get** /api/v2/storages/{storageId}/iscsi-boot-servers | Returns information about servers which are setup to boot from iSCSI block devices
@@ -517,6 +518,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BucketPaginatedList**](BucketPaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetStorageCredentials
+
+> StorageCredentials GetStorageCredentials(ctx, storageId).Execute()
+
+Get Storage credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	storageId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StorageAPI.GetStorageCredentials(context.Background(), storageId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStorageCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetStorageCredentials`: StorageCredentials
+	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.GetStorageCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**storageId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetStorageCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**StorageCredentials**](StorageCredentials.md)
 
 ### Authorization
 

@@ -95,6 +95,7 @@ Class | Method | HTTP request | Description
 *AuthenticationAPI* | [**GetCurrentUser**](docs/AuthenticationAPI.md#getcurrentuser) | **Get** /api/v2/user | Get current user
 *AuthenticationAPI* | [**GetPublicSignupDisabled**](docs/AuthenticationAPI.md#getpublicsignupdisabled) | **Get** /api/v2/public-signup-disabled | Check if public signup is disabled
 *AuthenticationAPI* | [**Login**](docs/AuthenticationAPI.md#login) | **Post** /api/v2/login | User login
+*AuthenticationAPI* | [**Login2FA**](docs/AuthenticationAPI.md#login2fa) | **Post** /api/v2/login-2fa | User login with 2FA
 *AuthenticationAPI* | [**Logout**](docs/AuthenticationAPI.md#logout) | **Post** /api/v2/logout | Logout user
 *AuthenticationAPI* | [**SignUp**](docs/AuthenticationAPI.md#signup) | **Post** /api/v2/sign-up | Sign up
 *BucketAPI* | [**CreateInfrastructureBucket**](docs/BucketAPI.md#createinfrastructurebucket) | **Post** /api/v2/infrastructures/{infrastructureId}/buckets | Creates a Bucket
@@ -288,6 +289,11 @@ Class | Method | HTTP request | Description
 *ResourcePoolAPI* | [**RemoveServerFromResourcePool**](docs/ResourcePoolAPI.md#removeserverfromresourcepool) | **Delete** /api/v2/resource-pools/{resourcePoolId}/server/{serverId} | Remove a server from a Resource Pool
 *ResourcePoolAPI* | [**RemoveSubnetPoolFromResourcePool**](docs/ResourcePoolAPI.md#removesubnetpoolfromresourcepool) | **Delete** /api/v2/resource-pools/{resourcePoolId}/subnet-pool/{subnetPoolId} | Remove a subnet from a resource pool
 *ResourcePoolAPI* | [**UpdateResourcePool**](docs/ResourcePoolAPI.md#updateresourcepool) | **Put** /api/v2/resource-pools/{resourcePoolId} | Updates Resource Pool information
+*SecretsAPI* | [**CreateSecret**](docs/SecretsAPI.md#createsecret) | **Post** /api/v2/secrets | Create a new secret
+*SecretsAPI* | [**DeleteSecret**](docs/SecretsAPI.md#deletesecret) | **Delete** /api/v2/secrets/{id} | Delete a secret by ID
+*SecretsAPI* | [**GetSecret**](docs/SecretsAPI.md#getsecret) | **Get** /api/v2/secrets/{id} | Get secret by ID
+*SecretsAPI* | [**GetSecrets**](docs/SecretsAPI.md#getsecrets) | **Get** /api/v2/secrets | Get all secrets
+*SecretsAPI* | [**UpdateSecret**](docs/SecretsAPI.md#updatesecret) | **Post** /api/v2/secrets/{id} | Update secret by ID
 *SecurityAPI* | [**GetProviders**](docs/SecurityAPI.md#getproviders) | **Get** /api/v2/authentication/providers | Get available authentication providers
 *SecurityAPI* | [**UpdateProvider**](docs/SecurityAPI.md#updateprovider) | **Patch** /api/v2/authentication/providers/{name} | Updates authentication provider
 *ServerAPI* | [**ArchiveServer**](docs/ServerAPI.md#archiveserver) | **Post** /api/v2/servers/{serverId}/actions/archive | Archives a Server
@@ -401,6 +407,7 @@ Class | Method | HTTP request | Description
 *StorageAPI* | [**ExecuteStorageAction**](docs/StorageAPI.md#executestorageaction) | **Post** /api/v2/storages/{storageId}/actions/update-cache | Execute a Storage action
 *StorageAPI* | [**GetStorage**](docs/StorageAPI.md#getstorage) | **Get** /api/v2/storages/{storageId} | Retrieves a Storage
 *StorageAPI* | [**GetStorageBuckets**](docs/StorageAPI.md#getstoragebuckets) | **Get** /api/v2/storages/{storageId}/buckets | Get all Buckets linked to the specified storage
+*StorageAPI* | [**GetStorageCredentials**](docs/StorageAPI.md#getstoragecredentials) | **Get** /api/v2/storages/{storageId}/credentials | Get Storage credentials
 *StorageAPI* | [**GetStorageDrives**](docs/StorageAPI.md#getstoragedrives) | **Get** /api/v2/storages/{storageId}/drives | Get all Drives linked to the specified storage
 *StorageAPI* | [**GetStorageFileShares**](docs/StorageAPI.md#getstoragefileshares) | **Get** /api/v2/storages/{storageId}/file-shares | Get all File Shares linked to the specified storage
 *StorageAPI* | [**GetStorageIscsiBootServers**](docs/StorageAPI.md#getstorageiscsibootservers) | **Get** /api/v2/storages/{storageId}/iscsi-boot-servers | Returns information about servers which are setup to boot from iSCSI block devices
@@ -410,7 +417,7 @@ Class | Method | HTTP request | Description
 *StorageAPI* | [**GetStorages**](docs/StorageAPI.md#getstorages) | **Get** /api/v2/storages | Get a list of Storages
 *StorageAPI* | [**UpdateStorage**](docs/StorageAPI.md#updatestorage) | **Patch** /api/v2/storages/{storageId} | Updates a Storage
 *StorageAPI* | [**UpdateStorageNetworkDeviceConfiguration**](docs/StorageAPI.md#updatestoragenetworkdeviceconfiguration) | **Patch** /api/v2/storages/{storageId}/network-device-configurations/{storageNetworkDeviceConfigurationId} | Updates a Storage Network Device Configuration
-*SubnetAPI* | [**CreateSubnet**](docs/SubnetAPI.md#createsubnet) | **Post** /api/v2/subnets/subnets | Create a subnet.
+*SubnetAPI* | [**CreateSubnet**](docs/SubnetAPI.md#createsubnet) | **Post** /api/v2/subnets | Create a subnet.
 *SubnetAPI* | [**DeleteSubnet**](docs/SubnetAPI.md#deletesubnet) | **Delete** /api/v2/subnets/{subnetId} | Delete Subnet
 *SubnetAPI* | [**GetSubnet**](docs/SubnetAPI.md#getsubnet) | **Get** /api/v2/subnets/{subnetId} | Retrieves the Subnet information
 *SubnetAPI* | [**GetSubnets**](docs/SubnetAPI.md#getsubnets) | **Get** /api/v2/subnets | List all Subnets
@@ -435,6 +442,9 @@ Class | Method | HTTP request | Description
 *UserAPI* | [**UserControllerAddDelegate**](docs/UserAPI.md#usercontrolleradddelegate) | **Post** /api/v2/users/{userId}/actions/add-delegate/{delegateId} | Add a delegate to a user
 *UserAPI* | [**UserControllerAddUserSshKey**](docs/UserAPI.md#usercontrolleraddusersshkey) | **Post** /api/v2/users/{userId}/ssh-keys | Add SSH key for user
 *UserAPI* | [**UserControllerDeleteUserSshKey**](docs/UserAPI.md#usercontrollerdeleteusersshkey) | **Delete** /api/v2/users/{userId}/ssh-keys/{keyId} | Delete SSH key for user
+*UserAPI* | [**UserControllerDisableTwoFactorAuthentication**](docs/UserAPI.md#usercontrollerdisabletwofactorauthentication) | **Post** /api/v2/users/{userId}/actions/2fa-disable | Disable 2FA
+*UserAPI* | [**UserControllerEnableTwoFactorAuthentication**](docs/UserAPI.md#usercontrollerenabletwofactorauthentication) | **Post** /api/v2/users/{userId}/actions/2fa-enable | Enable 2FA
+*UserAPI* | [**UserControllerGenerateTwoFactorAuthenticationSecret**](docs/UserAPI.md#usercontrollergeneratetwofactorauthenticationsecret) | **Post** /api/v2/users/{userId}/actions/2fa-generate | Generate 2FA secret
 *UserAPI* | [**UserControllerGetUserApiKey**](docs/UserAPI.md#usercontrollergetuserapikey) | **Get** /api/v2/users/{userId}/api-key | Get user API key
 *UserAPI* | [**UserControllerGetUserChildDelegates**](docs/UserAPI.md#usercontrollergetuserchilddelegates) | **Get** /api/v2/users/{userId}/child-delegates | Get user child delegates by ID
 *UserAPI* | [**UserControllerGetUserConfiguration**](docs/UserAPI.md#usercontrollergetuserconfiguration) | **Get** /api/v2/users/{userId}/config | Get user configuration by ID
@@ -492,6 +502,7 @@ Class | Method | HTTP request | Description
 *VMPoolAPI* | [**GetVMPoolClusterHostInterfaces**](docs/VMPoolAPI.md#getvmpoolclusterhostinterfaces) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces | Retrieves a list of VM Cluster Host Interfaces
 *VMPoolAPI* | [**GetVMPoolClusterHostVMs**](docs/VMPoolAPI.md#getvmpoolclusterhostvms) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/vms | Retrieves a list of VM Cluster Host VMs
 *VMPoolAPI* | [**GetVMPoolClusterHosts**](docs/VMPoolAPI.md#getvmpoolclusterhosts) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts | Get list of VM Cluster Hosts linked to the VM Pool
+*VMPoolAPI* | [**GetVMPoolCredentials**](docs/VMPoolAPI.md#getvmpoolcredentials) | **Get** /api/v2/vm-pools/{vmPoolId}/credentials | Get VM Pool credentials
 *VMPoolAPI* | [**GetVMPoolVMs**](docs/VMPoolAPI.md#getvmpoolvms) | **Get** /api/v2/vm-pools/{vmPoolId}/vms | Returns all VMs linked to the VM Pool
 *VMPoolAPI* | [**GetVMPools**](docs/VMPoolAPI.md#getvmpools) | **Get** /api/v2/vm-pools | Get all VM Pools
 *VMPoolAPI* | [**UpdateVMPool**](docs/VMPoolAPI.md#updatevmpool) | **Patch** /api/v2/vm-pools/{vmPoolId} | Updates VM Pool information
@@ -502,6 +513,11 @@ Class | Method | HTTP request | Description
 *VMTypeAPI* | [**GetVMTypes**](docs/VMTypeAPI.md#getvmtypes) | **Get** /api/v2/vm-types | Get all VM Types
 *VMTypeAPI* | [**GetVMsByVMType**](docs/VMTypeAPI.md#getvmsbyvmtype) | **Get** /api/v2/vm-types/{vmTypeId}/vms | Returns all VMs linked to the VM Type
 *VMTypeAPI* | [**UpdateVMType**](docs/VMTypeAPI.md#updatevmtype) | **Patch** /api/v2/vm-types/{vmTypeId} | Updates VM Type information
+*VariablesAPI* | [**CreateVariable**](docs/VariablesAPI.md#createvariable) | **Post** /api/v2/variables | Create a new variable
+*VariablesAPI* | [**DeleteVariable**](docs/VariablesAPI.md#deletevariable) | **Delete** /api/v2/variables/{id} | Delete a variable by ID
+*VariablesAPI* | [**GetVariable**](docs/VariablesAPI.md#getvariable) | **Get** /api/v2/variables/{id} | Get a variable by ID
+*VariablesAPI* | [**GetVariables**](docs/VariablesAPI.md#getvariables) | **Get** /api/v2/variables | Get all variables
+*VariablesAPI* | [**UpdateVariable**](docs/VariablesAPI.md#updatevariable) | **Put** /api/v2/variables/{id} | Update a variable by ID
 
 
 ## Documentation For Models
@@ -554,8 +570,8 @@ Class | Method | HTTP request | Description
  - [CreateFirmwareBinary](docs/CreateFirmwareBinary.md)
  - [CreateFirmwareCatalog](docs/CreateFirmwareCatalog.md)
  - [CreateGroupDrive](docs/CreateGroupDrive.md)
- - [CreateLogicalNetworkDto](docs/CreateLogicalNetworkDto.md)
- - [CreateLogicalNetworkProfileDto](docs/CreateLogicalNetworkProfileDto.md)
+ - [CreateLogicalNetwork](docs/CreateLogicalNetwork.md)
+ - [CreateLogicalNetworkProfile](docs/CreateLogicalNetworkProfile.md)
  - [CreateNetwork](docs/CreateNetwork.md)
  - [CreateNetworkDevice](docs/CreateNetworkDevice.md)
  - [CreateNetworkDeviceDefaults](docs/CreateNetworkDeviceDefaults.md)
@@ -563,6 +579,7 @@ Class | Method | HTTP request | Description
  - [CreateNetworkEndpointGroupLogicalNetwork](docs/CreateNetworkEndpointGroupLogicalNetwork.md)
  - [CreateNetworkFabric](docs/CreateNetworkFabric.md)
  - [CreateResourcePool](docs/CreateResourcePool.md)
+ - [CreateSecret](docs/CreateSecret.md)
  - [CreateServerCleanupPolicy](docs/CreateServerCleanupPolicy.md)
  - [CreateServerDefaultCredentials](docs/CreateServerDefaultCredentials.md)
  - [CreateServerFirmwareUpgradePolicy](docs/CreateServerFirmwareUpgradePolicy.md)
@@ -578,6 +595,7 @@ Class | Method | HTTP request | Description
  - [CreateVMInstanceGroupInterface](docs/CreateVMInstanceGroupInterface.md)
  - [CreateVMPool](docs/CreateVMPool.md)
  - [CreateVMType](docs/CreateVMType.md)
+ - [CreateVariable](docs/CreateVariable.md)
  - [CustomIso](docs/CustomIso.md)
  - [CustomIsoPaginatedList](docs/CustomIsoPaginatedList.md)
  - [CustomVariable](docs/CustomVariable.md)
@@ -680,8 +698,10 @@ Class | Method | HTTP request | Description
  - [LicenseInstallments](docs/LicenseInstallments.md)
  - [Link](docs/Link.md)
  - [Location](docs/Location.md)
- - [LogicalNetworkDto](docs/LogicalNetworkDto.md)
- - [LogicalNetworkProfileDto](docs/LogicalNetworkProfileDto.md)
+ - [LogicalNetwork](docs/LogicalNetwork.md)
+ - [LogicalNetworkPaginatedList](docs/LogicalNetworkPaginatedList.md)
+ - [LogicalNetworkProfile](docs/LogicalNetworkProfile.md)
+ - [LogicalNetworkProfilePaginatedList](docs/LogicalNetworkProfilePaginatedList.md)
  - [Network](docs/Network.md)
  - [NetworkDevice](docs/NetworkDevice.md)
  - [NetworkDeviceControllerUpdateTagsForNetworkDeviceRequest](docs/NetworkDeviceControllerUpdateTagsForNetworkDeviceRequest.md)
@@ -726,6 +746,9 @@ Class | Method | HTTP request | Description
  - [SSHPublicKey](docs/SSHPublicKey.md)
  - [ScheduleFirmwareUpgrade](docs/ScheduleFirmwareUpgrade.md)
  - [SearchFirmwareBinary](docs/SearchFirmwareBinary.md)
+ - [Secret](docs/Secret.md)
+ - [SecretPaginatedList](docs/SecretPaginatedList.md)
+ - [SecretUsageType](docs/SecretUsageType.md)
  - [Server](docs/Server.md)
  - [ServerAllocationInfo](docs/ServerAllocationInfo.md)
  - [ServerCapabilities](docs/ServerCapabilities.md)
@@ -819,6 +842,7 @@ Class | Method | HTTP request | Description
  - [SiteVariables](docs/SiteVariables.md)
  - [SpecialPermissions](docs/SpecialPermissions.md)
  - [Storage](docs/Storage.md)
+ - [StorageCredentials](docs/StorageCredentials.md)
  - [StorageNetworkDeviceConfiguration](docs/StorageNetworkDeviceConfiguration.md)
  - [StorageOptions](docs/StorageOptions.md)
  - [StoragePaginatedList](docs/StoragePaginatedList.md)
@@ -829,6 +853,8 @@ Class | Method | HTTP request | Description
  - [TemplateAssetCreate](docs/TemplateAssetCreate.md)
  - [TemplateAssetFile](docs/TemplateAssetFile.md)
  - [TemplateAssetPaginatedList](docs/TemplateAssetPaginatedList.md)
+ - [TwoFactorAuthenticationSecret](docs/TwoFactorAuthenticationSecret.md)
+ - [TwoFactorAuthenticationToken](docs/TwoFactorAuthenticationToken.md)
  - [UpdateAccount](docs/UpdateAccount.md)
  - [UpdateBucket](docs/UpdateBucket.md)
  - [UpdateBucketMeta](docs/UpdateBucketMeta.md)
@@ -846,13 +872,14 @@ Class | Method | HTTP request | Description
  - [UpdateGroupDrive](docs/UpdateGroupDrive.md)
  - [UpdateInfrastructure](docs/UpdateInfrastructure.md)
  - [UpdateInfrastructureMeta](docs/UpdateInfrastructureMeta.md)
- - [UpdateLogicalNetworkDto](docs/UpdateLogicalNetworkDto.md)
- - [UpdateLogicalNetworkProfileDto](docs/UpdateLogicalNetworkProfileDto.md)
+ - [UpdateLogicalNetwork](docs/UpdateLogicalNetwork.md)
+ - [UpdateLogicalNetworkProfile](docs/UpdateLogicalNetworkProfile.md)
  - [UpdateNetworkDevice](docs/UpdateNetworkDevice.md)
  - [UpdateNetworkEndpointGroup](docs/UpdateNetworkEndpointGroup.md)
  - [UpdateNetworkEndpointGroupLogicalNetworkDto](docs/UpdateNetworkEndpointGroupLogicalNetworkDto.md)
  - [UpdateNetworkFabric](docs/UpdateNetworkFabric.md)
  - [UpdateResourcePool](docs/UpdateResourcePool.md)
+ - [UpdateSecret](docs/UpdateSecret.md)
  - [UpdateServer](docs/UpdateServer.md)
  - [UpdateServerCleanupPolicy](docs/UpdateServerCleanupPolicy.md)
  - [UpdateServerComponent](docs/UpdateServerComponent.md)
@@ -876,6 +903,7 @@ Class | Method | HTTP request | Description
  - [UpdateVMPool](docs/UpdateVMPool.md)
  - [UpdateVMPoolHostInterface](docs/UpdateVMPoolHostInterface.md)
  - [UpdateVMType](docs/UpdateVMType.md)
+ - [UpdateVariable](docs/UpdateVariable.md)
  - [User](docs/User.md)
  - [UserApiKey](docs/UserApiKey.md)
  - [UserConfiguration](docs/UserConfiguration.md)
@@ -912,6 +940,9 @@ Class | Method | HTTP request | Description
  - [VMPoolPaginatedList](docs/VMPoolPaginatedList.md)
  - [VMType](docs/VMType.md)
  - [VMTypePaginatedList](docs/VMTypePaginatedList.md)
+ - [Variable](docs/Variable.md)
+ - [VariablePaginatedList](docs/VariablePaginatedList.md)
+ - [VariableUsageType](docs/VariableUsageType.md)
  - [Version](docs/Version.md)
  - [VmInstanceContextVariables](docs/VmInstanceContextVariables.md)
 

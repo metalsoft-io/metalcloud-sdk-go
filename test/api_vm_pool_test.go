@@ -136,6 +136,20 @@ func Test_sdk_VMPoolAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test VMPoolAPIService GetVMPoolCredentials", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var vmPoolId float32
+
+		resp, httpRes, err := apiClient.VMPoolAPI.GetVMPoolCredentials(context.Background(), vmPoolId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test VMPoolAPIService GetVMPoolVMs", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

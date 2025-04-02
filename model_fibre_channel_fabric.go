@@ -34,7 +34,7 @@ type FibreChannelFabric struct {
 	// VSAN ID for the Fibre Channel fabric
 	VsanId *int32 `json:"vsanId,omitempty"`
 	// Fabric topology type
-	TopologyType *string `json:"topologyType,omitempty"`
+	TopologyType string `json:"topologyType"`
 	// Maximum transmission unit (MTU) size in bytes
 	Mtu *float32 `json:"mtu,omitempty"`
 	// Zoning configuration for the fabric
@@ -56,9 +56,10 @@ type _FibreChannelFabric FibreChannelFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFibreChannelFabric(fabricType string) *FibreChannelFabric {
+func NewFibreChannelFabric(fabricType string, topologyType string) *FibreChannelFabric {
 	this := FibreChannelFabric{}
 	this.FabricType = fabricType
+	this.TopologyType = topologyType
 	return &this
 }
 
@@ -254,36 +255,28 @@ func (o *FibreChannelFabric) SetVsanId(v int32) {
 	o.VsanId = &v
 }
 
-// GetTopologyType returns the TopologyType field value if set, zero value otherwise.
+// GetTopologyType returns the TopologyType field value
 func (o *FibreChannelFabric) GetTopologyType() string {
-	if o == nil || IsNil(o.TopologyType) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.TopologyType
+
+	return o.TopologyType
 }
 
-// GetTopologyTypeOk returns a tuple with the TopologyType field value if set, nil otherwise
+// GetTopologyTypeOk returns a tuple with the TopologyType field value
 // and a boolean to check if the value has been set.
 func (o *FibreChannelFabric) GetTopologyTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.TopologyType) {
+	if o == nil {
 		return nil, false
 	}
-	return o.TopologyType, true
+	return &o.TopologyType, true
 }
 
-// HasTopologyType returns a boolean if a field has been set.
-func (o *FibreChannelFabric) HasTopologyType() bool {
-	if o != nil && !IsNil(o.TopologyType) {
-		return true
-	}
-
-	return false
-}
-
-// SetTopologyType gets a reference to the given string and assigns it to the TopologyType field.
+// SetTopologyType sets field value
 func (o *FibreChannelFabric) SetTopologyType(v string) {
-	o.TopologyType = &v
+	o.TopologyType = v
 }
 
 // GetMtu returns the Mtu field value if set, zero value otherwise.
@@ -504,9 +497,7 @@ func (o FibreChannelFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VsanId) {
 		toSerialize["vsanId"] = o.VsanId
 	}
-	if !IsNil(o.TopologyType) {
-		toSerialize["topologyType"] = o.TopologyType
-	}
+	toSerialize["topologyType"] = o.TopologyType
 	if !IsNil(o.Mtu) {
 		toSerialize["mtu"] = o.Mtu
 	}
@@ -539,6 +530,7 @@ func (o *FibreChannelFabric) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"fabricType",
+		"topologyType",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
 **ZeroTouchEnabled** | Pointer to **bool** | Enables zero-touch provisioning for automatic device configuration. | [optional] 
-**AllocateDefaultVlan** | Pointer to **bool** | Indicates whether to automatically allocate a default VLAN. | [optional] 
 **AsnRanges** | Pointer to **[]string** | ASN ranges in the format \&quot;start-end\&quot;, where each range is an ordered pair with values between 1 and 4294967295. | [optional] 
 **DefaultVlan** | Pointer to **int32** | Default VLAN ID. Must be a number between 1 and 4096. | [optional] 
 **ExtraInternalIPsPerSubnet** | Pointer to **int32** | Extra internal IPs allocated per subnet; valid range is between 1 and 1000. | [optional] 
@@ -162,31 +161,6 @@ SetZeroTouchEnabled sets ZeroTouchEnabled field to given value.
 `func (o *EthernetFabric) HasZeroTouchEnabled() bool`
 
 HasZeroTouchEnabled returns a boolean if a field has been set.
-
-### GetAllocateDefaultVlan
-
-`func (o *EthernetFabric) GetAllocateDefaultVlan() bool`
-
-GetAllocateDefaultVlan returns the AllocateDefaultVlan field if non-nil, zero value otherwise.
-
-### GetAllocateDefaultVlanOk
-
-`func (o *EthernetFabric) GetAllocateDefaultVlanOk() (*bool, bool)`
-
-GetAllocateDefaultVlanOk returns a tuple with the AllocateDefaultVlan field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAllocateDefaultVlan
-
-`func (o *EthernetFabric) SetAllocateDefaultVlan(v bool)`
-
-SetAllocateDefaultVlan sets AllocateDefaultVlan field to given value.
-
-### HasAllocateDefaultVlan
-
-`func (o *EthernetFabric) HasAllocateDefaultVlan() bool`
-
-HasAllocateDefaultVlan returns a boolean if a field has been set.
 
 ### GetAsnRanges
 

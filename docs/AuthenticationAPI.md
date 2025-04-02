@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**GetCurrentUser**](AuthenticationAPI.md#GetCurrentUser) | **Get** /api/v2/user | Get current user
 [**GetPublicSignupDisabled**](AuthenticationAPI.md#GetPublicSignupDisabled) | **Get** /api/v2/public-signup-disabled | Check if public signup is disabled
 [**Login**](AuthenticationAPI.md#Login) | **Post** /api/v2/login | User login
+[**Login2FA**](AuthenticationAPI.md#Login2FA) | **Post** /api/v2/login-2fa | User login with 2FA
 [**Logout**](AuthenticationAPI.md#Logout) | **Post** /api/v2/logout | Logout user
 [**SignUp**](AuthenticationAPI.md#SignUp) | **Post** /api/v2/sign-up | Sign up
 
@@ -289,7 +290,7 @@ import (
 )
 
 func main() {
-	authenticationRequest := *openapiclient.NewAuthenticationRequest("Provider_example", openapiclient.AuthenticationRequest_properties{AuthenticationRequestPropertiesLdap: openapiclient.NewAuthenticationRequestPropertiesLdap(map[string]interface{}(123))}) // AuthenticationRequest | 
+	authenticationRequest := *openapiclient.NewAuthenticationRequest("Provider_example", openapiclient.AuthenticationRequest_properties{AuthenticationRequestPropertiesLdap: openapiclient.NewAuthenticationRequestPropertiesLdap(map[string]interface{}(123))}) // AuthenticationRequest | The authentication request
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -314,7 +315,73 @@ Other parameters are passed through a pointer to a apiLoginRequest struct via th
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authenticationRequest** | [**AuthenticationRequest**](AuthenticationRequest.md) |  | 
+ **authenticationRequest** | [**AuthenticationRequest**](AuthenticationRequest.md) | The authentication request | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## Login2FA
+
+> User Login2FA(ctx).TwoFactorAuthenticationToken(twoFactorAuthenticationToken).Execute()
+
+User login with 2FA
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	twoFactorAuthenticationToken := *openapiclient.NewTwoFactorAuthenticationToken("Token_example") // TwoFactorAuthenticationToken | The 2FA token request
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.Login2FA(context.Background()).TwoFactorAuthenticationToken(twoFactorAuthenticationToken).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.Login2FA``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `Login2FA`: User
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.Login2FA`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiLogin2FARequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **twoFactorAuthenticationToken** | [**TwoFactorAuthenticationToken**](TwoFactorAuthenticationToken.md) | The 2FA token request | 
 
 ### Return type
 

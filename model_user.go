@@ -51,8 +51,6 @@ type User struct {
 	AuthenticatorMustChange bool `json:"authenticatorMustChange"`
 	// The timestamp when the authenticator was created
 	AuthenticatorCreatedTimestamp string `json:"authenticatorCreatedTimestamp"`
-	// Whether the user has an authenticator
-	AuthenticatorEnabled bool `json:"authenticatorEnabled"`
 	// The promotion tags of the user
 	PromotionTags []string `json:"promotionTags,omitempty"`
 	// The experimental tags of the user
@@ -92,6 +90,8 @@ type User struct {
 	ChildDelegates []string `json:"childDelegates,omitempty"`
 	// Whether the user is suspended
 	IsSuspended bool `json:"isSuspended"`
+	// Whether the user has an authenticator
+	AuthenticatorEnabled bool `json:"authenticatorEnabled"`
 	// The new configuration of the user.
 	Config UserConfiguration `json:"config"`
 	// Meta information of the user.
@@ -107,7 +107,7 @@ type _User User
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, authenticatorEnabled bool, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, provider string, isSuspended bool, config UserConfiguration, meta UserMeta) *User {
+func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, provider string, isSuspended bool, authenticatorEnabled bool, config UserConfiguration, meta UserMeta) *User {
 	this := User{}
 	this.DisplayName = displayName
 	this.EmailStatus = emailStatus
@@ -123,7 +123,6 @@ func NewUser(displayName string, emailStatus string, language string, brand stri
 	this.IsTestingMode = isTestingMode
 	this.AuthenticatorMustChange = authenticatorMustChange
 	this.AuthenticatorCreatedTimestamp = authenticatorCreatedTimestamp
-	this.AuthenticatorEnabled = authenticatorEnabled
 	this.ExcludeFromReports = excludeFromReports
 	this.IsTestAccount = isTestAccount
 	this.IsArchived = isArchived
@@ -136,6 +135,7 @@ func NewUser(displayName string, emailStatus string, language string, brand stri
 	this.PlanType = planType
 	this.Provider = provider
 	this.IsSuspended = isSuspended
+	this.AuthenticatorEnabled = authenticatorEnabled
 	this.Config = config
 	this.Meta = meta
 	return &this
@@ -523,30 +523,6 @@ func (o *User) GetAuthenticatorCreatedTimestampOk() (*string, bool) {
 // SetAuthenticatorCreatedTimestamp sets field value
 func (o *User) SetAuthenticatorCreatedTimestamp(v string) {
 	o.AuthenticatorCreatedTimestamp = v
-}
-
-// GetAuthenticatorEnabled returns the AuthenticatorEnabled field value
-func (o *User) GetAuthenticatorEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.AuthenticatorEnabled
-}
-
-// GetAuthenticatorEnabledOk returns a tuple with the AuthenticatorEnabled field value
-// and a boolean to check if the value has been set.
-func (o *User) GetAuthenticatorEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthenticatorEnabled, true
-}
-
-// SetAuthenticatorEnabled sets field value
-func (o *User) SetAuthenticatorEnabled(v bool) {
-	o.AuthenticatorEnabled = v
 }
 
 // GetPromotionTags returns the PromotionTags field value if set, zero value otherwise.
@@ -1093,6 +1069,30 @@ func (o *User) SetIsSuspended(v bool) {
 	o.IsSuspended = v
 }
 
+// GetAuthenticatorEnabled returns the AuthenticatorEnabled field value
+func (o *User) GetAuthenticatorEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.AuthenticatorEnabled
+}
+
+// GetAuthenticatorEnabledOk returns a tuple with the AuthenticatorEnabled field value
+// and a boolean to check if the value has been set.
+func (o *User) GetAuthenticatorEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthenticatorEnabled, true
+}
+
+// SetAuthenticatorEnabled sets field value
+func (o *User) SetAuthenticatorEnabled(v bool) {
+	o.AuthenticatorEnabled = v
+}
+
 // GetConfig returns the Config field value
 func (o *User) GetConfig() UserConfiguration {
 	if o == nil {
@@ -1200,7 +1200,6 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["authenticatorMustChange"] = o.AuthenticatorMustChange
 	toSerialize["authenticatorCreatedTimestamp"] = o.AuthenticatorCreatedTimestamp
-	toSerialize["authenticatorEnabled"] = o.AuthenticatorEnabled
 	if !IsNil(o.PromotionTags) {
 		toSerialize["promotionTags"] = o.PromotionTags
 	}
@@ -1237,6 +1236,7 @@ func (o User) ToMap() (map[string]interface{}, error) {
 		toSerialize["childDelegates"] = o.ChildDelegates
 	}
 	toSerialize["isSuspended"] = o.IsSuspended
+	toSerialize["authenticatorEnabled"] = o.AuthenticatorEnabled
 	toSerialize["config"] = o.Config
 	toSerialize["meta"] = o.Meta
 	if !IsNil(o.Links) {
@@ -1269,7 +1269,6 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 		"isTestingMode",
 		"authenticatorMustChange",
 		"authenticatorCreatedTimestamp",
-		"authenticatorEnabled",
 		"excludeFromReports",
 		"isTestAccount",
 		"isArchived",
@@ -1282,6 +1281,7 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 		"planType",
 		"provider",
 		"isSuspended",
+		"authenticatorEnabled",
 		"config",
 		"meta",
 	}
@@ -1328,7 +1328,6 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "infrastructureIdDefault")
 		delete(additionalProperties, "authenticatorMustChange")
 		delete(additionalProperties, "authenticatorCreatedTimestamp")
-		delete(additionalProperties, "authenticatorEnabled")
 		delete(additionalProperties, "promotionTags")
 		delete(additionalProperties, "experimentalTags")
 		delete(additionalProperties, "externalIds")
@@ -1349,6 +1348,7 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "parentDelegates")
 		delete(additionalProperties, "childDelegates")
 		delete(additionalProperties, "isSuspended")
+		delete(additionalProperties, "authenticatorEnabled")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "meta")
 		delete(additionalProperties, "links")

@@ -907,6 +907,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AuthenticationRequest'
+        description: The authentication request
         required: true
       responses:
         "200":
@@ -929,6 +930,44 @@ paths:
         "403":
           description: Forbidden
       summary: User login
+      tags:
+      - Authentication
+  /api/v2/login-2fa:
+    post:
+      description: Authenticates the user credentials and establishes a session with
+        2FA.
+      operationId: login2FA
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorAuthenticationToken'
+        description: The 2FA token request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Returns a user
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Invalid authentication request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+      summary: User login with 2FA
       tags:
       - Authentication
   /api/v2/logout:
@@ -10622,7 +10661,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Paginated'
+                $ref: '#/components/schemas/LogicalNetworkProfilePaginatedList'
           description: Returns list of all Logical Network Profiles
         "401":
           description: Unauthorized
@@ -10642,7 +10681,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateLogicalNetworkProfileDto'
+              $ref: '#/components/schemas/CreateLogicalNetworkProfile'
         description: The Logical Network Profile create object
         required: true
       responses:
@@ -10650,7 +10689,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LogicalNetworkProfileDto'
+                $ref: '#/components/schemas/LogicalNetworkProfile'
           description: The Logical Network Profile successfully created
         "401":
           description: Unauthorized
@@ -10707,7 +10746,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LogicalNetworkProfileDto'
+                $ref: '#/components/schemas/LogicalNetworkProfile'
           description: Returns a logical network profile by ID
         "401":
           description: Unauthorized
@@ -10736,7 +10775,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateLogicalNetworkProfileDto'
+              $ref: '#/components/schemas/UpdateLogicalNetworkProfile'
         description: The Logical Network Profile update object
         required: true
       responses:
@@ -10744,7 +10783,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LogicalNetworkProfileDto'
+                $ref: '#/components/schemas/LogicalNetworkProfile'
           description: The Logical Network Profile was successfully updated
         "401":
           description: Unauthorized
@@ -11060,7 +11099,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Paginated'
+                $ref: '#/components/schemas/LogicalNetworkPaginatedList'
           description: Returns list of all Logical Networks
         "401":
           description: Unauthorized
@@ -11080,7 +11119,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateLogicalNetworkDto'
+              $ref: '#/components/schemas/CreateLogicalNetwork'
         description: The Logical Network create object
         required: true
       responses:
@@ -11088,7 +11127,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LogicalNetworkDto'
+                $ref: '#/components/schemas/LogicalNetwork'
           description: The Logical Network successfully created
         "401":
           description: Unauthorized
@@ -11145,7 +11184,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LogicalNetworkDto'
+                $ref: '#/components/schemas/LogicalNetwork'
           description: Returns a logical network by ID
         "401":
           description: Unauthorized
@@ -11174,7 +11213,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateLogicalNetworkDto'
+              $ref: '#/components/schemas/UpdateLogicalNetwork'
         description: The Logical Network update object
         required: true
       responses:
@@ -11182,7 +11221,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LogicalNetworkDto'
+                $ref: '#/components/schemas/LogicalNetwork'
           description: The Logical Network was successfully updated
         "401":
           description: Unauthorized
@@ -22064,6 +22103,39 @@ paths:
       summary: Updates a Storage
       tags:
       - Storage
+  /api/v2/storages/{storageId}/credentials:
+    get:
+      description: Returns Storage credentials
+      operationId: getStorageCredentials
+      parameters:
+      - explode: false
+        in: path
+        name: storageId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageCredentials'
+          description: Returns Storage credentials
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get Storage credentials
+      tags:
+      - Storage
   /api/v2/storages/{storageId}/iscsi-boot-servers:
     get:
       description: Returns information about servers which are setup to boot from
@@ -23497,6 +23569,48 @@ paths:
       summary: List all Subnets
       tags:
       - Subnet
+    post:
+      operationId: createSubnet
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubnetDto'
+        description: The Subnet to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSubnetDto'
+          description: The details of created subnet
+          headers:
+            Location:
+              description: New Subnet link
+              explode: false
+              schema:
+                type: string
+              style: simple
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a subnet.
+      tags:
+      - Subnet
   /api/v2/subnets/{subnetId}:
     delete:
       description: Delete Subnet
@@ -23577,49 +23691,6 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Retrieves the Subnet information
-      tags:
-      - Subnet
-  /api/v2/subnets/subnets:
-    post:
-      operationId: createSubnet
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateSubnetDto'
-        description: The Subnet to create
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateSubnetDto'
-          description: The details of created subnet
-          headers:
-            Location:
-              description: New Subnet link
-              explode: false
-              schema:
-                type: string
-              style: simple
-            ETag:
-              description: Entity tag
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Create a subnet.
       tags:
       - Subnet
   /api/v2/subnets/{subnetId}/config:
@@ -25455,6 +25526,124 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Get specific SSH key
+      tags:
+      - User
+  /api/v2/users/{userId}/actions/2fa-generate:
+    post:
+      operationId: UserController_generateTwoFactorAuthenticationSecret
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwoFactorAuthenticationSecret'
+          description: 2FA secret generated successfully
+        "400":
+          description: Invalid user ID
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Generate 2FA secret
+      tags:
+      - User
+  /api/v2/users/{userId}/actions/2fa-enable:
+    post:
+      operationId: UserController_enableTwoFactorAuthentication
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorAuthenticationToken'
+        required: true
+      responses:
+        "200":
+          description: 2FA enabled successfully
+        "400":
+          description: Invalid user ID or token
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: 2FA already enabled
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Enable 2FA
+      tags:
+      - User
+  /api/v2/users/{userId}/actions/2fa-disable:
+    post:
+      operationId: UserController_disableTwoFactorAuthentication
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: 2FA disabled successfully
+        "400":
+          description: Invalid user ID
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: 2FA already disabled
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Disable 2FA
       tags:
       - User
   /api/v2/vms/{vmId}:
@@ -27712,6 +27901,39 @@ paths:
       summary: Updates VM Pool information
       tags:
       - VM Pool
+  /api/v2/vm-pools/{vmPoolId}/credentials:
+    get:
+      description: Returns VM Pool credentials
+      operationId: getVMPoolCredentials
+      parameters:
+      - explode: false
+        in: path
+        name: vmPoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VMPoolCredentials'
+          description: Returns VM Pool credentials
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get VM Pool credentials
+      tags:
+      - VM Pool
   /api/v2/vm-pools/{vmPoolId}/vms:
     get:
       description: Returns all VMs linked to the VM Pool
@@ -29045,6 +29267,529 @@ paths:
       summary: Returns all VMs linked to the VM Type
       tags:
       - VM Type
+  /api/v2/variables:
+    get:
+      description: Returns a list of all variables
+      operationId: getVariables
+      parameters:
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by name query param.
+                    <p>
+                       <b>Format: </b> filter.name={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.name=$not:$like:John Doe&filter.name=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.name
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by value query param.
+                    <p>
+                       <b>Format: </b> filter.value={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.value=$not:$like:John Doe&filter.value=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.value
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by userIdOwner query param.
+                    <p>
+                       <b>Format: </b> filter.userIdOwner={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.userIdOwner=$not:$like:John Doe&filter.userIdOwner=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.userIdOwner
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> updatedTimestamp:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>name</li>\n\
+          <li>createdTimestamp</li>\n<li>updatedTimestamp</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - name:ASC
+            - name:DESC
+            - createdTimestamp:ASC
+            - createdTimestamp:DESC
+            - updatedTimestamp:ASC
+            - updatedTimestamp:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> name,value\n          </p>\n\
+          \        <p>\n             <b>Default Value: </b> By default all fields\
+          \ mentioned below will be used to search by term\n          </p>\n     \
+          \   <h4>Available Fields</h4><ul><li>name</li>\n<li>value</li></ul>\n  \
+          \      "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VariablePaginatedList'
+          description: Returns a list of all variables
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all variables
+      tags:
+      - Variables
+    post:
+      description: Creates a new variable
+      operationId: createVariable
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVariable'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Variable'
+          description: The created variable
+          headers:
+            Location:
+              description: New Variable link
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a new variable
+      tags:
+      - Variables
+  /api/v2/variables/{id}:
+    delete:
+      description: Deletes a variable by ID
+      operationId: deleteVariable
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: Variable deleted
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete a variable by ID
+      tags:
+      - Variables
+    get:
+      description: Returns a variable by ID
+      operationId: getVariable
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Variable'
+          description: Returns a variable by ID
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get a variable by ID
+      tags:
+      - Variables
+    put:
+      description: Updates a variable by ID
+      operationId: updateVariable
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateVariable'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Variable'
+          description: The updated variable
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update a variable by ID
+      tags:
+      - Variables
+  /api/v2/secrets:
+    get:
+      description: Returns a list of all secrets
+      operationId: getSecrets
+      parameters:
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by name query param.
+                    <p>
+                       <b>Format: </b> filter.name={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.name=$not:$like:John Doe&filter.name=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.name
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by userIdOwner query param.
+                    <p>
+                       <b>Format: </b> filter.userIdOwner={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.userIdOwner=$not:$like:John Doe&filter.userIdOwner=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.userIdOwner
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> updatedTimestamp:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>name</li>\n\
+          <li>createdTimestamp</li>\n<li>updatedTimestamp</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - name:ASC
+            - name:DESC
+            - createdTimestamp:ASC
+            - createdTimestamp:DESC
+            - updatedTimestamp:ASC
+            - updatedTimestamp:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> name\n          </p>\n      \
+          \  <p>\n             <b>Default Value: </b> By default all fields mentioned\
+          \ below will be used to search by term\n          </p>\n        <h4>Available\
+          \ Fields</h4><ul><li>name</li></ul>\n        "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecretPaginatedList'
+          description: Returns a list of all secrets
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all secrets
+      tags:
+      - Secrets
+    post:
+      description: Creates a new secret
+      operationId: createSecret
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSecret'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Secret'
+          description: The created secret
+          headers:
+            Location:
+              description: New Secret link
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a new secret
+      tags:
+      - Secrets
+  /api/v2/secrets/{id}:
+    delete:
+      description: Deletes a secret by ID
+      operationId: deleteSecret
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: Secret deleted
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete a secret by ID
+      tags:
+      - Secrets
+    get:
+      description: Returns a secret by ID
+      operationId: getSecret
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Secret'
+          description: Returns secret by ID
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get secret by ID
+      tags:
+      - Secrets
+    post:
+      description: Updates a secret by ID
+      operationId: updateSecret
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSecret'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Secret'
+          description: The updated secret
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update secret by ID
+      tags:
+      - Secrets
 components:
   schemas:
     PaginatedResponseLinks:
@@ -29995,35 +30740,34 @@ components:
       type: object
     UserConfiguration:
       example:
+        experimentalTags:
+        - storage_pools
+        - storage_pools
         isTestingMode: true
         authenticatorCreatedTimestamp: authenticatorCreatedTimestamp
         passwordChangeRequired: true
         promotionTags:
         - promotionTags
         - promotionTags
+        accessLevel: accessLevel
         displayName: displayName
         isArchived: true
         isBlocked: true
+        externalIds: "{}"
         language: en
         infrastructureIdDefault: 6.027456183070403
         authenticatorMustChange: true
+        revision: 0.8008281904610115
+        isBillable: true
+        lastLoginTimestamp: lastLoginTimestamp
         isTestAccount: true
+        excludeFromReports: true
+        accountId: 1.4658129805029452
+        emailStatus: not_verified
         isBrandManager: true
         isDatastorePublisher: true
         brand: default
         lastLoginType: md5
-        experimentalTags:
-        - storage_pools
-        - storage_pools
-        accessLevel: accessLevel
-        externalIds: "{}"
-        revision: 0.8008281904610115
-        isBillable: true
-        lastLoginTimestamp: lastLoginTimestamp
-        excludeFromReports: true
-        accountId: 1.4658129805029452
-        emailStatus: not_verified
-        authenticatorEnabled: true
       properties:
         revision:
           description: Revision of the user configuration
@@ -30085,9 +30829,6 @@ components:
         authenticatorCreatedTimestamp:
           description: The timestamp when the authenticator was created
           type: string
-        authenticatorEnabled:
-          description: Whether the user has an authenticator
-          type: boolean
         promotionTags:
           description: The promotion tags of the user
           items:
@@ -30124,7 +30865,6 @@ components:
       required:
       - accessLevel
       - authenticatorCreatedTimestamp
-      - authenticatorEnabled
       - authenticatorMustChange
       - brand
       - displayName
@@ -30377,9 +31117,6 @@ components:
         authenticatorCreatedTimestamp:
           description: The timestamp when the authenticator was created
           type: string
-        authenticatorEnabled:
-          description: Whether the user has an authenticator
-          type: boolean
         promotionTags:
           description: The promotion tags of the user
           items:
@@ -30461,6 +31198,9 @@ components:
         isSuspended:
           description: Whether the user is suspended
           type: boolean
+        authenticatorEnabled:
+          description: Whether the user has an authenticator
+          type: boolean
         config:
           allOf:
           - $ref: '#/components/schemas/UserConfiguration'
@@ -30504,6 +31244,16 @@ components:
       - planType
       - provider
       - revision
+      type: object
+    TwoFactorAuthenticationToken:
+      example:
+        token: token
+      properties:
+        token:
+          description: The 2FA token
+          type: string
+      required:
+      - token
       type: object
     AuthenticationUserProvider:
       example:
@@ -41857,7 +42607,7 @@ components:
       - links
       - meta
       type: object
-    LogicalNetworkProfileDto:
+    LogicalNetworkProfile:
       example:
         logicalNetworkType: vlan
         name: name
@@ -41897,10 +42647,47 @@ components:
       - logicalNetworkType
       - revision
       type: object
-    Paginated:
-      properties: {}
+    LogicalNetworkProfilePaginatedList:
+      example:
+        data:
+        - logicalNetworkType: vlan
+          name: name
+          description: description
+          annotations: "{}"
+          id: 0.8008281904610115
+          label: label
+          revision: 6.027456183070403
+        - logicalNetworkType: vlan
+          name: name
+          description: description
+          annotations: "{}"
+          id: 0.8008281904610115
+          label: label
+          revision: 6.027456183070403
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/LogicalNetworkProfile'
+          title: List of logical network profile's
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
       type: object
-    CreateLogicalNetworkProfileDto:
+    CreateLogicalNetworkProfile:
       example:
         logicalNetworkType: vlan
         name: name
@@ -41930,7 +42717,7 @@ components:
       required:
       - logicalNetworkType
       type: object
-    UpdateLogicalNetworkProfileDto:
+    UpdateLogicalNetworkProfile:
       example:
         logicalNetworkType: vlan
         name: name
@@ -41958,7 +42745,7 @@ components:
           - legacy_vlan_bundle
           type: string
       type: object
-    LogicalNetworkDto:
+    LogicalNetwork:
       example:
         infrastructureId: 5.962133916683182
         logicalNetworkType: vlan
@@ -42007,7 +42794,51 @@ components:
       - logicalNetworkType
       - revision
       type: object
-    CreateLogicalNetworkDto:
+    LogicalNetworkPaginatedList:
+      example:
+        data:
+        - infrastructureId: 5.962133916683182
+          logicalNetworkType: vlan
+          fabricId: 1.4658129805029452
+          name: name
+          description: description
+          annotations: "{}"
+          id: 0.8008281904610115
+          label: label
+          revision: 6.027456183070403
+        - infrastructureId: 5.962133916683182
+          logicalNetworkType: vlan
+          fabricId: 1.4658129805029452
+          name: name
+          description: description
+          annotations: "{}"
+          id: 0.8008281904610115
+          label: label
+          revision: 6.027456183070403
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/LogicalNetwork'
+          title: List of logical network's
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
+    CreateLogicalNetwork:
       example:
         infrastructureId: 6.027456183070403
         logicalNetworkType: vlan
@@ -42046,7 +42877,7 @@ components:
       - fabricId
       - logicalNetworkType
       type: object
-    UpdateLogicalNetworkDto:
+    UpdateLogicalNetwork:
       example:
         infrastructureId: 6.027456183070403
         logicalNetworkType: vlan
@@ -42800,7 +43631,9 @@ components:
           type: boolean
       required:
       - driver
+      - managementPassword
       - position
+      - username
       type: object
     UpdateNetworkDevice:
       example:
@@ -43213,7 +44046,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-03-31T17:46:58.09Z
+        createdTimestamp: 2025-04-02T06:42:42.017Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -43222,7 +44055,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-03-31T17:46:58.09Z
+        updatedTimestamp: 2025-04-02T06:42:42.017Z
         revision: "1"
       properties:
         siteId:
@@ -43239,12 +44072,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-03-31T17:46:58.09Z
+          example: 2025-04-02T06:42:42.017Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-03-31T17:46:58.09Z
+          example: 2025-04-02T06:42:42.017Z
           format: date-time
           type: string
         links:
@@ -43266,7 +44099,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-03-31T17:46:58.09Z
+        - createdTimestamp: 2025-04-02T06:42:42.017Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -43275,9 +44108,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-31T17:46:58.09Z
+          updatedTimestamp: 2025-04-02T06:42:42.017Z
           revision: "1"
-        - createdTimestamp: 2025-03-31T17:46:58.09Z
+        - createdTimestamp: 2025-04-02T06:42:42.017Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -43286,7 +44119,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-31T17:46:58.09Z
+          updatedTimestamp: 2025-04-02T06:42:42.017Z
           revision: "1"
         meta: ""
         links: ""
@@ -43608,7 +44441,6 @@ components:
         reservedVlans:
         - 2000-2100
         - 2200-2300
-        allocateDefaultVlan: true
         defaultNetworkProfileId: 101
       properties:
         fabricType:
@@ -43636,10 +44468,6 @@ components:
         zeroTouchEnabled:
           description: Enables zero-touch provisioning for automatic device configuration.
           example: false
-          type: boolean
-        allocateDefaultVlan:
-          description: Indicates whether to automatically allocate a default VLAN.
-          example: true
           type: boolean
         asnRanges:
           description: "ASN ranges in the format \"start-end\", where each range is\
@@ -43813,6 +44641,7 @@ components:
           type: object
       required:
       - fabricType
+      - topologyType
       type: object
     NetworkFabric:
       example:
@@ -43923,7 +44752,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-03-31T17:46:58.092Z
+        createdTimestamp: 2025-04-02T06:42:42.032Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -43957,7 +44786,6 @@ components:
           reservedVlans:
           - 2000-2100
           - 2200-2300
-          allocateDefaultVlan: true
           defaultNetworkProfileId: 101
         links:
         - rel: self
@@ -43965,7 +44793,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-03-31T17:46:58.092Z
+        updatedTimestamp: 2025-04-02T06:42:42.032Z
         revision: "1"
         status: draft
       properties:
@@ -43993,12 +44821,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-03-31T17:46:58.092Z
+          example: 2025-04-02T06:42:42.032Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-03-31T17:46:58.092Z
+          example: 2025-04-02T06:42:42.032Z
           format: date-time
           type: string
         links:
@@ -44141,7 +44969,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-03-31T17:46:58.092Z
+          createdTimestamp: 2025-04-02T06:42:42.032Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -44175,7 +45003,6 @@ components:
             reservedVlans:
             - 2000-2100
             - 2200-2300
-            allocateDefaultVlan: true
             defaultNetworkProfileId: 101
           links:
           - rel: self
@@ -44183,7 +45010,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-31T17:46:58.092Z
+          updatedTimestamp: 2025-04-02T06:42:42.032Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -44293,7 +45120,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-03-31T17:46:58.092Z
+          createdTimestamp: 2025-04-02T06:42:42.032Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -44327,7 +45154,6 @@ components:
             reservedVlans:
             - 2000-2100
             - 2200-2300
-            allocateDefaultVlan: true
             defaultNetworkProfileId: 101
           links:
           - rel: self
@@ -44335,7 +45161,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-03-31T17:46:58.092Z
+          updatedTimestamp: 2025-04-02T06:42:42.032Z
           revision: "1"
           status: draft
         meta: ""
@@ -44396,7 +45222,6 @@ components:
           reservedVlans:
           - 2000-2100
           - 2200-2300
-          allocateDefaultVlan: true
           defaultNetworkProfileId: 101
       properties:
         siteId:
@@ -44456,7 +45281,6 @@ components:
           reservedVlans:
           - 2000-2100
           - 2200-2300
-          allocateDefaultVlan: true
           defaultNetworkProfileId: 101
       properties:
         siteId:
@@ -49849,51 +50673,25 @@ components:
       type: object
     ServerCredentials:
       example:
-        vncPort: 0.8008281904610115
         password: password
         vncPassword: vncPassword
         snmpPassword: snmpPassword
-        vendor: vendor
-        host: host
-        datacenter: datacenter
-        model: model
         username: username
       properties:
-        datacenter:
-          description: The site where the server is located.
-          type: string
-        host:
-          description: The host of the server.
-          type: string
         username:
           description: The username of the server.
           type: string
         password:
           description: The password of the server.
           type: string
-        vendor:
-          description: The vendor of the server.
-          type: string
-        model:
-          description: The model of the server.
-          type: string
         vncPassword:
           description: The VNC password of the server.
           nullable: true
           type: string
-        vncPort:
-          description: The VNC port of the server.
-          nullable: true
-          type: number
         snmpPassword:
           description: The SNMP password of the server.
           nullable: true
           type: string
-      required:
-      - datacenter
-      - host
-      - password
-      - username
       type: object
     UpdateServerIpmiCredentials:
       example:
@@ -49902,24 +50700,21 @@ components:
         username: username
         updateOnServer: true
       properties:
-        host:
-          description: The host of the server.
-          type: string
         username:
           description: The username of the server.
           type: string
         password:
           description: The password of the server.
           type: string
+        host:
+          description: The host of the server.
+          type: string
         updateOnServer:
           description: Flag to indicate if the credentials should be updated on the
             server as well.
           type: boolean
       required:
-      - host
-      - password
       - updateOnServer
-      - username
       type: object
     ServerVNCInfo:
       example:
@@ -52165,16 +52960,31 @@ components:
           allOf:
           - $ref: '#/components/schemas/ExtensionExecutionInfo'
           description: The extension execution info of the storage.
-        options:
-          allOf:
-          - $ref: '#/components/schemas/StorageOptions'
-          description: Options for the storage
         username:
           description: Username
           type: string
         password:
           description: The password to use.
           type: string
+        options:
+          allOf:
+          - $ref: '#/components/schemas/StorageOptions'
+          description: Options for the storage
+      type: object
+    StorageCredentials:
+      example:
+        password: password
+        username: username
+      properties:
+        username:
+          description: The username to use.
+          type: string
+        password:
+          description: The password to use.
+          type: string
+      required:
+      - password
+      - username
       type: object
     IscsiBootServerInfo:
       example:
@@ -52984,7 +53794,6 @@ components:
         excludeFromReports: true
         accountId: 6.027456183070403
         emailStatus: not_verified
-        authenticatorEnabled: true
         isBrandManager: true
         isDatastorePublisher: true
         brand: default
@@ -53047,9 +53856,6 @@ components:
         authenticatorCreatedTimestamp:
           description: The timestamp when the authenticator was created
           type: string
-        authenticatorEnabled:
-          description: Whether the user has an authenticator
-          type: boolean
         promotionTags:
           description: The promotion tags of the user
           items:
@@ -53372,12 +54178,32 @@ components:
     CreateUserSSHKeyDto:
       example:
         sshKey: sshKey
+        validateKey: false
       properties:
         sshKey:
           description: The SSH key of the user
           type: string
+        validateKey:
+          default: false
+          description: Whether the SSH key needs to be validated or not
+          type: boolean
       required:
       - sshKey
+      type: object
+    TwoFactorAuthenticationSecret:
+      example:
+        qrCode: qrCode
+        secret2FA: secret2FA
+      properties:
+        qrCode:
+          description: The QR code for the 2FA secret
+          type: string
+        secret2FA:
+          description: The 2FA secret
+          type: string
+      required:
+      - qrCode
+      - secret2FA
       type: object
     VMDisk:
       example:
@@ -54993,6 +55819,9 @@ components:
           description: Private key of the VM Pool
           type: string
       type: object
+    VMPoolCredentials:
+      properties: {}
+      type: object
     VMPaginatedList:
       example:
         data:
@@ -55541,6 +56370,292 @@ components:
             \ 1 for true, 0 for false. Default is 0."
           example: 0
           type: number
+      type: object
+    VariableUsageType:
+      enum:
+      - HTTPRequest
+      - JavaScript
+      - APICall
+      - AnsibleBundle
+      - SSHExec
+      - Copy
+      - OSAsset
+      type: string
+    Variable:
+      example:
+        usage: ""
+        createdTimestamp: createdTimestamp
+        userIdOwner: 0.8008281904610115
+        name: variable_name
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        id: 1
+        value: "{}"
+        updatedTimestamp: updatedTimestamp
+      properties:
+        id:
+          description: The variable ID.
+          example: 1
+          type: integer
+        userIdOwner:
+          description: ID of owner user.
+          type: number
+        name:
+          description: The variable name.
+          example: variable_name
+          type: string
+        value:
+          description: The variable value.
+          type: object
+        usage:
+          allOf:
+          - $ref: '#/components/schemas/VariableUsageType'
+          description: Variable usage type.
+        createdTimestamp:
+          description: Timestamp of creation.
+          type: string
+        updatedTimestamp:
+          description: Timestamp of last update.
+          type: string
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - createdTimestamp
+      - id
+      - name
+      - updatedTimestamp
+      - userIdOwner
+      - value
+      type: object
+    VariablePaginatedList:
+      example:
+        data:
+        - usage: ""
+          createdTimestamp: createdTimestamp
+          userIdOwner: 0.8008281904610115
+          name: variable_name
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 1
+          value: "{}"
+          updatedTimestamp: updatedTimestamp
+        - usage: ""
+          createdTimestamp: createdTimestamp
+          userIdOwner: 0.8008281904610115
+          name: variable_name
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 1
+          value: "{}"
+          updatedTimestamp: updatedTimestamp
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Variable'
+          title: List of variable's
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
+    CreateVariable:
+      example:
+        usage: ""
+        name: variable_name
+        value: "{}"
+      properties:
+        name:
+          description: The variable name.
+          example: variable_name
+          type: string
+        value:
+          description: The variable value.
+          type: object
+        usage:
+          allOf:
+          - $ref: '#/components/schemas/VariableUsageType'
+          description: Variable usage type.
+      required:
+      - name
+      - value
+      type: object
+    UpdateVariable:
+      example:
+        value: "{}"
+      properties:
+        value:
+          description: The variable value.
+          type: object
+      required:
+      - value
+      type: object
+    SecretUsageType:
+      enum:
+      - HTTPRequestSecret
+      - JavaScriptSecret
+      - APICallSecret
+      - AnsibleBundleSecret
+      - SSHExecSecret
+      - CopySecret
+      - OSAssetSecret
+      type: string
+    Secret:
+      example:
+        valueEncrypted: valueEncrypted
+        usage: ""
+        createdTimestamp: createdTimestamp
+        userIdOwner: 0.8008281904610115
+        name: variable_name
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        id: 1
+        updatedTimestamp: updatedTimestamp
+      properties:
+        id:
+          description: The secret ID.
+          example: 1
+          type: integer
+        userIdOwner:
+          description: ID of owner user.
+          type: number
+        name:
+          description: The secret name.
+          example: variable_name
+          type: string
+        valueEncrypted:
+          description: The secret value encrypted.
+          type: string
+        usage:
+          allOf:
+          - $ref: '#/components/schemas/SecretUsageType'
+          description: Secret usage type.
+        createdTimestamp:
+          description: Timestamp of creation.
+          type: string
+        updatedTimestamp:
+          description: Timestamp of last update.
+          type: string
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - createdTimestamp
+      - id
+      - name
+      - updatedTimestamp
+      - userIdOwner
+      - valueEncrypted
+      type: object
+    SecretPaginatedList:
+      example:
+        data:
+        - valueEncrypted: valueEncrypted
+          usage: ""
+          createdTimestamp: createdTimestamp
+          userIdOwner: 0.8008281904610115
+          name: variable_name
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 1
+          updatedTimestamp: updatedTimestamp
+        - valueEncrypted: valueEncrypted
+          usage: ""
+          createdTimestamp: createdTimestamp
+          userIdOwner: 0.8008281904610115
+          name: variable_name
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 1
+          updatedTimestamp: updatedTimestamp
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Secret'
+          title: List of secret's
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
+    CreateSecret:
+      example:
+        usage: ""
+        name: variable_name
+        value: value
+      properties:
+        name:
+          description: The secret name.
+          example: variable_name
+          type: string
+        usage:
+          allOf:
+          - $ref: '#/components/schemas/SecretUsageType'
+          description: Secret usage type.
+        value:
+          description: The secret value.
+          type: string
+      required:
+      - name
+      - value
+      type: object
+    UpdateSecret:
+      example:
+        value: value
+      properties:
+        value:
+          description: The secret value.
+          type: string
+      required:
+      - value
       type: object
     NetworkDeviceController_updateTagsForNetworkDevice_request:
       properties:

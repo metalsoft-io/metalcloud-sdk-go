@@ -31,8 +31,6 @@ type EthernetFabric struct {
 	SyslogMonitoringEnabled *bool `json:"syslogMonitoringEnabled,omitempty"`
 	// Enables zero-touch provisioning for automatic device configuration.
 	ZeroTouchEnabled *bool `json:"zeroTouchEnabled,omitempty"`
-	// Indicates whether to automatically allocate a default VLAN.
-	AllocateDefaultVlan *bool `json:"allocateDefaultVlan,omitempty"`
 	// ASN ranges in the format \"start-end\", where each range is an ordered pair with values between 1 and 4294967295.
 	AsnRanges []string `json:"asnRanges,omitempty"`
 	// Default VLAN ID. Must be a number between 1 and 4096.
@@ -232,38 +230,6 @@ func (o *EthernetFabric) HasZeroTouchEnabled() bool {
 // SetZeroTouchEnabled gets a reference to the given bool and assigns it to the ZeroTouchEnabled field.
 func (o *EthernetFabric) SetZeroTouchEnabled(v bool) {
 	o.ZeroTouchEnabled = &v
-}
-
-// GetAllocateDefaultVlan returns the AllocateDefaultVlan field value if set, zero value otherwise.
-func (o *EthernetFabric) GetAllocateDefaultVlan() bool {
-	if o == nil || IsNil(o.AllocateDefaultVlan) {
-		var ret bool
-		return ret
-	}
-	return *o.AllocateDefaultVlan
-}
-
-// GetAllocateDefaultVlanOk returns a tuple with the AllocateDefaultVlan field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetAllocateDefaultVlanOk() (*bool, bool) {
-	if o == nil || IsNil(o.AllocateDefaultVlan) {
-		return nil, false
-	}
-	return o.AllocateDefaultVlan, true
-}
-
-// HasAllocateDefaultVlan returns a boolean if a field has been set.
-func (o *EthernetFabric) HasAllocateDefaultVlan() bool {
-	if o != nil && !IsNil(o.AllocateDefaultVlan) {
-		return true
-	}
-
-	return false
-}
-
-// SetAllocateDefaultVlan gets a reference to the given bool and assigns it to the AllocateDefaultVlan field.
-func (o *EthernetFabric) SetAllocateDefaultVlan(v bool) {
-	o.AllocateDefaultVlan = &v
 }
 
 // GetAsnRanges returns the AsnRanges field value if set, zero value otherwise.
@@ -705,9 +671,6 @@ func (o EthernetFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ZeroTouchEnabled) {
 		toSerialize["zeroTouchEnabled"] = o.ZeroTouchEnabled
 	}
-	if !IsNil(o.AllocateDefaultVlan) {
-		toSerialize["allocateDefaultVlan"] = o.AllocateDefaultVlan
-	}
 	if !IsNil(o.AsnRanges) {
 		toSerialize["asnRanges"] = o.AsnRanges
 	}
@@ -795,7 +758,6 @@ func (o *EthernetFabric) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "gnmiMonitoringEnabled")
 		delete(additionalProperties, "syslogMonitoringEnabled")
 		delete(additionalProperties, "zeroTouchEnabled")
-		delete(additionalProperties, "allocateDefaultVlan")
 		delete(additionalProperties, "asnRanges")
 		delete(additionalProperties, "defaultVlan")
 		delete(additionalProperties, "extraInternalIPsPerSubnet")

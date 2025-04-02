@@ -20,7 +20,6 @@ Name | Type | Description | Notes
 **InfrastructureIdDefault** | Pointer to **float32** | The default infrastructure ID of the user | [optional] 
 **AuthenticatorMustChange** | **bool** | Whether the user must change authenticator | 
 **AuthenticatorCreatedTimestamp** | **string** | The timestamp when the authenticator was created | 
-**AuthenticatorEnabled** | **bool** | Whether the user has an authenticator | 
 **PromotionTags** | Pointer to **[]string** | The promotion tags of the user | [optional] 
 **ExperimentalTags** | Pointer to **[]string** | The experimental tags of the user | [optional] 
 **ExternalIds** | Pointer to **map[string]interface{}** | The external IDs of the user | [optional] 
@@ -34,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewUserConfiguration
 
-`func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, authenticatorEnabled bool, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, ) *UserConfiguration`
+`func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, ) *UserConfiguration`
 
 NewUserConfiguration instantiates a new UserConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -372,26 +371,6 @@ and a boolean to check if the value has been set.
 `func (o *UserConfiguration) SetAuthenticatorCreatedTimestamp(v string)`
 
 SetAuthenticatorCreatedTimestamp sets AuthenticatorCreatedTimestamp field to given value.
-
-
-### GetAuthenticatorEnabled
-
-`func (o *UserConfiguration) GetAuthenticatorEnabled() bool`
-
-GetAuthenticatorEnabled returns the AuthenticatorEnabled field if non-nil, zero value otherwise.
-
-### GetAuthenticatorEnabledOk
-
-`func (o *UserConfiguration) GetAuthenticatorEnabledOk() (*bool, bool)`
-
-GetAuthenticatorEnabledOk returns a tuple with the AuthenticatorEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthenticatorEnabled
-
-`func (o *UserConfiguration) SetAuthenticatorEnabled(v bool)`
-
-SetAuthenticatorEnabled sets AuthenticatorEnabled field to given value.
 
 
 ### GetPromotionTags

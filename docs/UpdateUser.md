@@ -19,7 +19,6 @@ Name | Type | Description | Notes
 **InfrastructureIdDefault** | Pointer to **float32** | The default infrastructure ID of the user | [optional] 
 **AuthenticatorMustChange** | Pointer to **bool** | Whether the user must change authenticator | [optional] 
 **AuthenticatorCreatedTimestamp** | Pointer to **string** | The timestamp when the authenticator was created | [optional] 
-**AuthenticatorEnabled** | Pointer to **bool** | Whether the user has an authenticator | [optional] 
 **PromotionTags** | Pointer to **[]string** | The promotion tags of the user | [optional] 
 **ExperimentalTags** | Pointer to **[]string** | The experimental tags of the user | [optional] 
 **ExternalIds** | Pointer to **map[string]interface{}** | The external IDs of the user | [optional] 
@@ -422,31 +421,6 @@ SetAuthenticatorCreatedTimestamp sets AuthenticatorCreatedTimestamp field to giv
 `func (o *UpdateUser) HasAuthenticatorCreatedTimestamp() bool`
 
 HasAuthenticatorCreatedTimestamp returns a boolean if a field has been set.
-
-### GetAuthenticatorEnabled
-
-`func (o *UpdateUser) GetAuthenticatorEnabled() bool`
-
-GetAuthenticatorEnabled returns the AuthenticatorEnabled field if non-nil, zero value otherwise.
-
-### GetAuthenticatorEnabledOk
-
-`func (o *UpdateUser) GetAuthenticatorEnabledOk() (*bool, bool)`
-
-GetAuthenticatorEnabledOk returns a tuple with the AuthenticatorEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthenticatorEnabled
-
-`func (o *UpdateUser) SetAuthenticatorEnabled(v bool)`
-
-SetAuthenticatorEnabled sets AuthenticatorEnabled field to given value.
-
-### HasAuthenticatorEnabled
-
-`func (o *UpdateUser) HasAuthenticatorEnabled() bool`
-
-HasAuthenticatorEnabled returns a boolean if a field has been set.
 
 ### GetPromotionTags
 

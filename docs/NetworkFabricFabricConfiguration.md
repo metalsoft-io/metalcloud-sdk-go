@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
 **ZeroTouchEnabled** | Pointer to **bool** | Enables zero-touch provisioning for automatic device configuration. | [optional] 
-**AllocateDefaultVlan** | Pointer to **bool** | Indicates whether to automatically allocate a default VLAN. | [optional] 
 **AsnRanges** | Pointer to **[]string** | ASN ranges in the format \&quot;start-end\&quot;, where each range is an ordered pair with values between 1 and 4294967295. | [optional] 
 **DefaultVlan** | Pointer to **int32** | Default VLAN ID. Must be a number between 1 and 4096. | [optional] 
 **ExtraInternalIPsPerSubnet** | Pointer to **int32** | Extra internal IPs allocated per subnet; valid range is between 1 and 1000. | [optional] 
@@ -24,7 +23,7 @@ Name | Type | Description | Notes
 **VniPrefix** | Pointer to **int32** | The VNI prefix for the EVPN VXLAN fabric. | [optional] 
 **VrfVlanRanges** | Pointer to **[]string** | VLAN ranges to be associated with VRF instances. Each value must be an ordered pair specified in the \&quot;start-end\&quot; format. | [optional] 
 **VsanId** | Pointer to **int32** | VSAN ID for the Fibre Channel fabric | [optional] 
-**TopologyType** | Pointer to **string** | Fabric topology type | [optional] 
+**TopologyType** | **string** | Fabric topology type | 
 **Mtu** | Pointer to **float32** | Maximum transmission unit (MTU) size in bytes | [optional] 
 **ZoningConfiguration** | Pointer to **map[string]interface{}** | Zoning configuration for the fabric | [optional] 
 **InteropMode** | Pointer to **string** | Interoperability mode for multi-vendor environments | [optional] 
@@ -36,7 +35,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabricFabricConfiguration
 
-`func NewNetworkFabricFabricConfiguration(fabricType string, ) *NetworkFabricFabricConfiguration`
+`func NewNetworkFabricFabricConfiguration(fabricType string, topologyType string, ) *NetworkFabricFabricConfiguration`
 
 NewNetworkFabricFabricConfiguration instantiates a new NetworkFabricFabricConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -170,31 +169,6 @@ SetZeroTouchEnabled sets ZeroTouchEnabled field to given value.
 `func (o *NetworkFabricFabricConfiguration) HasZeroTouchEnabled() bool`
 
 HasZeroTouchEnabled returns a boolean if a field has been set.
-
-### GetAllocateDefaultVlan
-
-`func (o *NetworkFabricFabricConfiguration) GetAllocateDefaultVlan() bool`
-
-GetAllocateDefaultVlan returns the AllocateDefaultVlan field if non-nil, zero value otherwise.
-
-### GetAllocateDefaultVlanOk
-
-`func (o *NetworkFabricFabricConfiguration) GetAllocateDefaultVlanOk() (*bool, bool)`
-
-GetAllocateDefaultVlanOk returns a tuple with the AllocateDefaultVlan field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAllocateDefaultVlan
-
-`func (o *NetworkFabricFabricConfiguration) SetAllocateDefaultVlan(v bool)`
-
-SetAllocateDefaultVlan sets AllocateDefaultVlan field to given value.
-
-### HasAllocateDefaultVlan
-
-`func (o *NetworkFabricFabricConfiguration) HasAllocateDefaultVlan() bool`
-
-HasAllocateDefaultVlan returns a boolean if a field has been set.
 
 ### GetAsnRanges
 
@@ -565,11 +539,6 @@ and a boolean to check if the value has been set.
 
 SetTopologyType sets TopologyType field to given value.
 
-### HasTopologyType
-
-`func (o *NetworkFabricFabricConfiguration) HasTopologyType() bool`
-
-HasTopologyType returns a boolean if a field has been set.
 
 ### GetMtu
 

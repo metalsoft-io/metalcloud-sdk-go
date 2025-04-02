@@ -115,6 +115,20 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test StorageAPIService GetStorageCredentials", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var storageId float32
+
+		resp, httpRes, err := apiClient.StorageAPI.GetStorageCredentials(context.Background(), storageId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test StorageAPIService GetStorageDrives", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

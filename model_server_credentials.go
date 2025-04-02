@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ServerCredentials type satisfies the MappedNullable interface at compile time
@@ -21,22 +20,12 @@ var _ MappedNullable = &ServerCredentials{}
 
 // ServerCredentials struct for ServerCredentials
 type ServerCredentials struct {
-	// The site where the server is located.
-	Datacenter string `json:"datacenter"`
-	// The host of the server.
-	Host string `json:"host"`
 	// The username of the server.
-	Username string `json:"username"`
+	Username *string `json:"username,omitempty"`
 	// The password of the server.
-	Password string `json:"password"`
-	// The vendor of the server.
-	Vendor *string `json:"vendor,omitempty"`
-	// The model of the server.
-	Model *string `json:"model,omitempty"`
+	Password *string `json:"password,omitempty"`
 	// The VNC password of the server.
 	VncPassword NullableString `json:"vncPassword,omitempty"`
-	// The VNC port of the server.
-	VncPort NullableFloat32 `json:"vncPort,omitempty"`
 	// The SNMP password of the server.
 	SnmpPassword NullableString `json:"snmpPassword,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -48,12 +37,8 @@ type _ServerCredentials ServerCredentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerCredentials(datacenter string, host string, username string, password string) *ServerCredentials {
+func NewServerCredentials() *ServerCredentials {
 	this := ServerCredentials{}
-	this.Datacenter = datacenter
-	this.Host = host
-	this.Username = username
-	this.Password = password
 	return &this
 }
 
@@ -65,164 +50,68 @@ func NewServerCredentialsWithDefaults() *ServerCredentials {
 	return &this
 }
 
-// GetDatacenter returns the Datacenter field value
-func (o *ServerCredentials) GetDatacenter() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Datacenter
-}
-
-// GetDatacenterOk returns a tuple with the Datacenter field value
-// and a boolean to check if the value has been set.
-func (o *ServerCredentials) GetDatacenterOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Datacenter, true
-}
-
-// SetDatacenter sets field value
-func (o *ServerCredentials) SetDatacenter(v string) {
-	o.Datacenter = v
-}
-
-// GetHost returns the Host field value
-func (o *ServerCredentials) GetHost() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Host
-}
-
-// GetHostOk returns a tuple with the Host field value
-// and a boolean to check if the value has been set.
-func (o *ServerCredentials) GetHostOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Host, true
-}
-
-// SetHost sets field value
-func (o *ServerCredentials) SetHost(v string) {
-	o.Host = v
-}
-
-// GetUsername returns the Username field value
+// GetUsername returns the Username field value if set, zero value otherwise.
 func (o *ServerCredentials) GetUsername() string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
-
-	return o.Username
+	return *o.Username
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerCredentials) GetUsernameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
-	return &o.Username, true
+	return o.Username, true
 }
 
-// SetUsername sets field value
+// HasUsername returns a boolean if a field has been set.
+func (o *ServerCredentials) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *ServerCredentials) SetUsername(v string) {
-	o.Username = v
+	o.Username = &v
 }
 
-// GetPassword returns the Password field value
+// GetPassword returns the Password field value if set, zero value otherwise.
 func (o *ServerCredentials) GetPassword() string {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
-
-	return o.Password
+	return *o.Password
 }
 
-// GetPasswordOk returns a tuple with the Password field value
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerCredentials) GetPasswordOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
-	return &o.Password, true
+	return o.Password, true
 }
 
-// SetPassword sets field value
+// HasPassword returns a boolean if a field has been set.
+func (o *ServerCredentials) HasPassword() bool {
+	if o != nil && !IsNil(o.Password) {
+		return true
+	}
+
+	return false
+}
+
+// SetPassword gets a reference to the given string and assigns it to the Password field.
 func (o *ServerCredentials) SetPassword(v string) {
-	o.Password = v
-}
-
-// GetVendor returns the Vendor field value if set, zero value otherwise.
-func (o *ServerCredentials) GetVendor() string {
-	if o == nil || IsNil(o.Vendor) {
-		var ret string
-		return ret
-	}
-	return *o.Vendor
-}
-
-// GetVendorOk returns a tuple with the Vendor field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerCredentials) GetVendorOk() (*string, bool) {
-	if o == nil || IsNil(o.Vendor) {
-		return nil, false
-	}
-	return o.Vendor, true
-}
-
-// HasVendor returns a boolean if a field has been set.
-func (o *ServerCredentials) HasVendor() bool {
-	if o != nil && !IsNil(o.Vendor) {
-		return true
-	}
-
-	return false
-}
-
-// SetVendor gets a reference to the given string and assigns it to the Vendor field.
-func (o *ServerCredentials) SetVendor(v string) {
-	o.Vendor = &v
-}
-
-// GetModel returns the Model field value if set, zero value otherwise.
-func (o *ServerCredentials) GetModel() string {
-	if o == nil || IsNil(o.Model) {
-		var ret string
-		return ret
-	}
-	return *o.Model
-}
-
-// GetModelOk returns a tuple with the Model field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerCredentials) GetModelOk() (*string, bool) {
-	if o == nil || IsNil(o.Model) {
-		return nil, false
-	}
-	return o.Model, true
-}
-
-// HasModel returns a boolean if a field has been set.
-func (o *ServerCredentials) HasModel() bool {
-	if o != nil && !IsNil(o.Model) {
-		return true
-	}
-
-	return false
-}
-
-// SetModel gets a reference to the given string and assigns it to the Model field.
-func (o *ServerCredentials) SetModel(v string) {
-	o.Model = &v
+	o.Password = &v
 }
 
 // GetVncPassword returns the VncPassword field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -265,48 +154,6 @@ func (o *ServerCredentials) SetVncPasswordNil() {
 // UnsetVncPassword ensures that no value is present for VncPassword, not even an explicit nil
 func (o *ServerCredentials) UnsetVncPassword() {
 	o.VncPassword.Unset()
-}
-
-// GetVncPort returns the VncPort field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ServerCredentials) GetVncPort() float32 {
-	if o == nil || IsNil(o.VncPort.Get()) {
-		var ret float32
-		return ret
-	}
-	return *o.VncPort.Get()
-}
-
-// GetVncPortOk returns a tuple with the VncPort field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ServerCredentials) GetVncPortOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VncPort.Get(), o.VncPort.IsSet()
-}
-
-// HasVncPort returns a boolean if a field has been set.
-func (o *ServerCredentials) HasVncPort() bool {
-	if o != nil && o.VncPort.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVncPort gets a reference to the given NullableFloat32 and assigns it to the VncPort field.
-func (o *ServerCredentials) SetVncPort(v float32) {
-	o.VncPort.Set(&v)
-}
-// SetVncPortNil sets the value for VncPort to be an explicit nil
-func (o *ServerCredentials) SetVncPortNil() {
-	o.VncPort.Set(nil)
-}
-
-// UnsetVncPort ensures that no value is present for VncPort, not even an explicit nil
-func (o *ServerCredentials) UnsetVncPort() {
-	o.VncPort.Unset()
 }
 
 // GetSnmpPassword returns the SnmpPassword field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -361,21 +208,14 @@ func (o ServerCredentials) MarshalJSON() ([]byte, error) {
 
 func (o ServerCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["datacenter"] = o.Datacenter
-	toSerialize["host"] = o.Host
-	toSerialize["username"] = o.Username
-	toSerialize["password"] = o.Password
-	if !IsNil(o.Vendor) {
-		toSerialize["vendor"] = o.Vendor
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
 	}
-	if !IsNil(o.Model) {
-		toSerialize["model"] = o.Model
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
 	}
 	if o.VncPassword.IsSet() {
 		toSerialize["vncPassword"] = o.VncPassword.Get()
-	}
-	if o.VncPort.IsSet() {
-		toSerialize["vncPort"] = o.VncPort.Get()
 	}
 	if o.SnmpPassword.IsSet() {
 		toSerialize["snmpPassword"] = o.SnmpPassword.Get()
@@ -389,30 +229,6 @@ func (o ServerCredentials) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ServerCredentials) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"datacenter",
-		"host",
-		"username",
-		"password",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varServerCredentials := _ServerCredentials{}
 
 	err = json.Unmarshal(data, &varServerCredentials)
@@ -426,14 +242,9 @@ func (o *ServerCredentials) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "datacenter")
-		delete(additionalProperties, "host")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")
-		delete(additionalProperties, "vendor")
-		delete(additionalProperties, "model")
 		delete(additionalProperties, "vncPassword")
-		delete(additionalProperties, "vncPort")
 		delete(additionalProperties, "snmpPassword")
 		o.AdditionalProperties = additionalProperties
 	}

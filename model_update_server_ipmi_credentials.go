@@ -21,12 +21,12 @@ var _ MappedNullable = &UpdateServerIpmiCredentials{}
 
 // UpdateServerIpmiCredentials struct for UpdateServerIpmiCredentials
 type UpdateServerIpmiCredentials struct {
-	// The host of the server.
-	Host string `json:"host"`
 	// The username of the server.
-	Username string `json:"username"`
+	Username *string `json:"username,omitempty"`
 	// The password of the server.
-	Password string `json:"password"`
+	Password *string `json:"password,omitempty"`
+	// The host of the server.
+	Host *string `json:"host,omitempty"`
 	// Flag to indicate if the credentials should be updated on the server as well.
 	UpdateOnServer bool `json:"updateOnServer"`
 	AdditionalProperties map[string]interface{}
@@ -38,11 +38,8 @@ type _UpdateServerIpmiCredentials UpdateServerIpmiCredentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateServerIpmiCredentials(host string, username string, password string, updateOnServer bool) *UpdateServerIpmiCredentials {
+func NewUpdateServerIpmiCredentials(updateOnServer bool) *UpdateServerIpmiCredentials {
 	this := UpdateServerIpmiCredentials{}
-	this.Host = host
-	this.Username = username
-	this.Password = password
 	this.UpdateOnServer = updateOnServer
 	return &this
 }
@@ -55,76 +52,100 @@ func NewUpdateServerIpmiCredentialsWithDefaults() *UpdateServerIpmiCredentials {
 	return &this
 }
 
-// GetHost returns the Host field value
-func (o *UpdateServerIpmiCredentials) GetHost() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Host
-}
-
-// GetHostOk returns a tuple with the Host field value
-// and a boolean to check if the value has been set.
-func (o *UpdateServerIpmiCredentials) GetHostOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Host, true
-}
-
-// SetHost sets field value
-func (o *UpdateServerIpmiCredentials) SetHost(v string) {
-	o.Host = v
-}
-
-// GetUsername returns the Username field value
+// GetUsername returns the Username field value if set, zero value otherwise.
 func (o *UpdateServerIpmiCredentials) GetUsername() string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
-
-	return o.Username
+	return *o.Username
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateServerIpmiCredentials) GetUsernameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
-	return &o.Username, true
+	return o.Username, true
 }
 
-// SetUsername sets field value
+// HasUsername returns a boolean if a field has been set.
+func (o *UpdateServerIpmiCredentials) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *UpdateServerIpmiCredentials) SetUsername(v string) {
-	o.Username = v
+	o.Username = &v
 }
 
-// GetPassword returns the Password field value
+// GetPassword returns the Password field value if set, zero value otherwise.
 func (o *UpdateServerIpmiCredentials) GetPassword() string {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
-
-	return o.Password
+	return *o.Password
 }
 
-// GetPasswordOk returns a tuple with the Password field value
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateServerIpmiCredentials) GetPasswordOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
-	return &o.Password, true
+	return o.Password, true
 }
 
-// SetPassword sets field value
+// HasPassword returns a boolean if a field has been set.
+func (o *UpdateServerIpmiCredentials) HasPassword() bool {
+	if o != nil && !IsNil(o.Password) {
+		return true
+	}
+
+	return false
+}
+
+// SetPassword gets a reference to the given string and assigns it to the Password field.
 func (o *UpdateServerIpmiCredentials) SetPassword(v string) {
-	o.Password = v
+	o.Password = &v
+}
+
+// GetHost returns the Host field value if set, zero value otherwise.
+func (o *UpdateServerIpmiCredentials) GetHost() string {
+	if o == nil || IsNil(o.Host) {
+		var ret string
+		return ret
+	}
+	return *o.Host
+}
+
+// GetHostOk returns a tuple with the Host field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateServerIpmiCredentials) GetHostOk() (*string, bool) {
+	if o == nil || IsNil(o.Host) {
+		return nil, false
+	}
+	return o.Host, true
+}
+
+// HasHost returns a boolean if a field has been set.
+func (o *UpdateServerIpmiCredentials) HasHost() bool {
+	if o != nil && !IsNil(o.Host) {
+		return true
+	}
+
+	return false
+}
+
+// SetHost gets a reference to the given string and assigns it to the Host field.
+func (o *UpdateServerIpmiCredentials) SetHost(v string) {
+	o.Host = &v
 }
 
 // GetUpdateOnServer returns the UpdateOnServer field value
@@ -161,9 +182,15 @@ func (o UpdateServerIpmiCredentials) MarshalJSON() ([]byte, error) {
 
 func (o UpdateServerIpmiCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["host"] = o.Host
-	toSerialize["username"] = o.Username
-	toSerialize["password"] = o.Password
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.Host) {
+		toSerialize["host"] = o.Host
+	}
 	toSerialize["updateOnServer"] = o.UpdateOnServer
 
 	for key, value := range o.AdditionalProperties {
@@ -178,9 +205,6 @@ func (o *UpdateServerIpmiCredentials) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"host",
-		"username",
-		"password",
 		"updateOnServer",
 	}
 
@@ -211,9 +235,9 @@ func (o *UpdateServerIpmiCredentials) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "host")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "host")
 		delete(additionalProperties, "updateOnServer")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -19,7 +19,6 @@ Name | Type | Description | Notes
 **InfrastructureIdDefault** | Pointer to **float32** | The default infrastructure ID of the user | [optional] 
 **AuthenticatorMustChange** | **bool** | Whether the user must change authenticator | 
 **AuthenticatorCreatedTimestamp** | **string** | The timestamp when the authenticator was created | 
-**AuthenticatorEnabled** | **bool** | Whether the user has an authenticator | 
 **PromotionTags** | Pointer to **[]string** | The promotion tags of the user | [optional] 
 **ExperimentalTags** | Pointer to **[]string** | The experimental tags of the user | [optional] 
 **ExternalIds** | Pointer to **map[string]interface{}** | The external IDs of the user | [optional] 
@@ -40,6 +39,7 @@ Name | Type | Description | Notes
 **ParentDelegates** | Pointer to **[]string** | The email addresses of the parent delegate users | [optional] 
 **ChildDelegates** | Pointer to **[]string** | The email addresses of the child delegate users | [optional] 
 **IsSuspended** | **bool** | Whether the user is suspended | 
+**AuthenticatorEnabled** | **bool** | Whether the user has an authenticator | 
 **Config** | [**UserConfiguration**](UserConfiguration.md) | The new configuration of the user. | 
 **Meta** | [**UserMeta**](UserMeta.md) | Meta information of the user. | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -48,7 +48,7 @@ Name | Type | Description | Notes
 
 ### NewUser
 
-`func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, authenticatorEnabled bool, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, provider string, isSuspended bool, config UserConfiguration, meta UserMeta, ) *User`
+`func NewUser(displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool, id float32, revision float32, email string, franchise string, createdTimestamp string, planType string, provider string, isSuspended bool, authenticatorEnabled bool, config UserConfiguration, meta UserMeta, ) *User`
 
 NewUser instantiates a new User object
 This constructor will assign default values to properties that have it defined,
@@ -366,26 +366,6 @@ and a boolean to check if the value has been set.
 `func (o *User) SetAuthenticatorCreatedTimestamp(v string)`
 
 SetAuthenticatorCreatedTimestamp sets AuthenticatorCreatedTimestamp field to given value.
-
-
-### GetAuthenticatorEnabled
-
-`func (o *User) GetAuthenticatorEnabled() bool`
-
-GetAuthenticatorEnabled returns the AuthenticatorEnabled field if non-nil, zero value otherwise.
-
-### GetAuthenticatorEnabledOk
-
-`func (o *User) GetAuthenticatorEnabledOk() (*bool, bool)`
-
-GetAuthenticatorEnabledOk returns a tuple with the AuthenticatorEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthenticatorEnabled
-
-`func (o *User) SetAuthenticatorEnabled(v bool)`
-
-SetAuthenticatorEnabled sets AuthenticatorEnabled field to given value.
 
 
 ### GetPromotionTags
@@ -826,6 +806,26 @@ and a boolean to check if the value has been set.
 `func (o *User) SetIsSuspended(v bool)`
 
 SetIsSuspended sets IsSuspended field to given value.
+
+
+### GetAuthenticatorEnabled
+
+`func (o *User) GetAuthenticatorEnabled() bool`
+
+GetAuthenticatorEnabled returns the AuthenticatorEnabled field if non-nil, zero value otherwise.
+
+### GetAuthenticatorEnabledOk
+
+`func (o *User) GetAuthenticatorEnabledOk() (*bool, bool)`
+
+GetAuthenticatorEnabledOk returns a tuple with the AuthenticatorEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticatorEnabled
+
+`func (o *User) SetAuthenticatorEnabled(v bool)`
+
+SetAuthenticatorEnabled sets AuthenticatorEnabled field to given value.
 
 
 ### GetConfig

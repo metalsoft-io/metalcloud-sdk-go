@@ -53,8 +53,6 @@ type UserConfiguration struct {
 	AuthenticatorMustChange bool `json:"authenticatorMustChange"`
 	// The timestamp when the authenticator was created
 	AuthenticatorCreatedTimestamp string `json:"authenticatorCreatedTimestamp"`
-	// Whether the user has an authenticator
-	AuthenticatorEnabled bool `json:"authenticatorEnabled"`
 	// The promotion tags of the user
 	PromotionTags []string `json:"promotionTags,omitempty"`
 	// The experimental tags of the user
@@ -80,7 +78,7 @@ type _UserConfiguration UserConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, authenticatorEnabled bool, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool) *UserConfiguration {
+func NewUserConfiguration(revision float32, displayName string, emailStatus string, language string, brand string, isBrandManager bool, lastLoginTimestamp string, lastLoginType string, isBlocked bool, passwordChangeRequired bool, accessLevel string, isBillable bool, isTestingMode bool, authenticatorMustChange bool, authenticatorCreatedTimestamp string, excludeFromReports bool, isTestAccount bool, isArchived bool, isDatastorePublisher bool) *UserConfiguration {
 	this := UserConfiguration{}
 	this.Revision = revision
 	this.DisplayName = displayName
@@ -97,7 +95,6 @@ func NewUserConfiguration(revision float32, displayName string, emailStatus stri
 	this.IsTestingMode = isTestingMode
 	this.AuthenticatorMustChange = authenticatorMustChange
 	this.AuthenticatorCreatedTimestamp = authenticatorCreatedTimestamp
-	this.AuthenticatorEnabled = authenticatorEnabled
 	this.ExcludeFromReports = excludeFromReports
 	this.IsTestAccount = isTestAccount
 	this.IsArchived = isArchived
@@ -509,30 +506,6 @@ func (o *UserConfiguration) SetAuthenticatorCreatedTimestamp(v string) {
 	o.AuthenticatorCreatedTimestamp = v
 }
 
-// GetAuthenticatorEnabled returns the AuthenticatorEnabled field value
-func (o *UserConfiguration) GetAuthenticatorEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.AuthenticatorEnabled
-}
-
-// GetAuthenticatorEnabledOk returns a tuple with the AuthenticatorEnabled field value
-// and a boolean to check if the value has been set.
-func (o *UserConfiguration) GetAuthenticatorEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthenticatorEnabled, true
-}
-
-// SetAuthenticatorEnabled sets field value
-func (o *UserConfiguration) SetAuthenticatorEnabled(v bool) {
-	o.AuthenticatorEnabled = v
-}
-
 // GetPromotionTags returns the PromotionTags field value if set, zero value otherwise.
 func (o *UserConfiguration) GetPromotionTags() []string {
 	if o == nil || IsNil(o.PromotionTags) {
@@ -785,7 +758,6 @@ func (o UserConfiguration) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["authenticatorMustChange"] = o.AuthenticatorMustChange
 	toSerialize["authenticatorCreatedTimestamp"] = o.AuthenticatorCreatedTimestamp
-	toSerialize["authenticatorEnabled"] = o.AuthenticatorEnabled
 	if !IsNil(o.PromotionTags) {
 		toSerialize["promotionTags"] = o.PromotionTags
 	}
@@ -830,7 +802,6 @@ func (o *UserConfiguration) UnmarshalJSON(data []byte) (err error) {
 		"isTestingMode",
 		"authenticatorMustChange",
 		"authenticatorCreatedTimestamp",
-		"authenticatorEnabled",
 		"excludeFromReports",
 		"isTestAccount",
 		"isArchived",
@@ -880,7 +851,6 @@ func (o *UserConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "infrastructureIdDefault")
 		delete(additionalProperties, "authenticatorMustChange")
 		delete(additionalProperties, "authenticatorCreatedTimestamp")
-		delete(additionalProperties, "authenticatorEnabled")
 		delete(additionalProperties, "promotionTags")
 		delete(additionalProperties, "experimentalTags")
 		delete(additionalProperties, "externalIds")

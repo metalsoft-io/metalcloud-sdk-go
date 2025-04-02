@@ -936,6 +936,109 @@ func (a *StorageAPIService) GetStorageBucketsExecute(r StorageAPIGetStorageBucke
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type StorageAPIGetStorageCredentialsRequest struct {
+	ctx context.Context
+	ApiService *StorageAPIService
+	storageId float32
+}
+
+func (r StorageAPIGetStorageCredentialsRequest) Execute() (*StorageCredentials, *http.Response, error) {
+	return r.ApiService.GetStorageCredentialsExecute(r)
+}
+
+/*
+GetStorageCredentials Get Storage credentials
+
+Returns Storage credentials
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param storageId
+ @return StorageAPIGetStorageCredentialsRequest
+*/
+func (a *StorageAPIService) GetStorageCredentials(ctx context.Context, storageId float32) StorageAPIGetStorageCredentialsRequest {
+	return StorageAPIGetStorageCredentialsRequest{
+		ApiService: a,
+		ctx: ctx,
+		storageId: storageId,
+	}
+}
+
+// Execute executes the request
+//  @return StorageCredentials
+func (a *StorageAPIService) GetStorageCredentialsExecute(r StorageAPIGetStorageCredentialsRequest) (*StorageCredentials, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *StorageCredentials
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStorageCredentials")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/storages/{storageId}/credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"storageId"+"}", url.PathEscape(parameterValueToString(r.storageId, "storageId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type StorageAPIGetStorageDrivesRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService

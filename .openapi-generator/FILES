@@ -28,6 +28,7 @@ api_network_endpoint_group.go
 api_network_fabric.go
 api_os_template.go
 api_resource_pool.go
+api_secrets.go
 api_security.go
 api_server.go
 api_server_cleanup_policy.go
@@ -45,6 +46,7 @@ api_system.go
 api_template_asset.go
 api_unmanaged_servers.go
 api_user.go
+api_variables.go
 api_vm.go
 api_vm_instance.go
 api_vm_instance_group.go
@@ -105,8 +107,8 @@ docs/CreateFirmwareBaseline.md
 docs/CreateFirmwareBinary.md
 docs/CreateFirmwareCatalog.md
 docs/CreateGroupDrive.md
-docs/CreateLogicalNetworkDto.md
-docs/CreateLogicalNetworkProfileDto.md
+docs/CreateLogicalNetwork.md
+docs/CreateLogicalNetworkProfile.md
 docs/CreateNetwork.md
 docs/CreateNetworkDevice.md
 docs/CreateNetworkDeviceDefaults.md
@@ -114,6 +116,7 @@ docs/CreateNetworkEndpointGroup.md
 docs/CreateNetworkEndpointGroupLogicalNetwork.md
 docs/CreateNetworkFabric.md
 docs/CreateResourcePool.md
+docs/CreateSecret.md
 docs/CreateServerCleanupPolicy.md
 docs/CreateServerDefaultCredentials.md
 docs/CreateServerFirmwareUpgradePolicy.md
@@ -129,6 +132,7 @@ docs/CreateVMInstanceGroup.md
 docs/CreateVMInstanceGroupInterface.md
 docs/CreateVMPool.md
 docs/CreateVMType.md
+docs/CreateVariable.md
 docs/CustomIso.md
 docs/CustomIsoAPI.md
 docs/CustomIsoPaginatedList.md
@@ -245,8 +249,10 @@ docs/JobStatistics.md
 docs/LicenseInstallments.md
 docs/Link.md
 docs/Location.md
-docs/LogicalNetworkDto.md
-docs/LogicalNetworkProfileDto.md
+docs/LogicalNetwork.md
+docs/LogicalNetworkPaginatedList.md
+docs/LogicalNetworkProfile.md
+docs/LogicalNetworkProfilePaginatedList.md
 docs/LogicalNetworkProfilesAPI.md
 docs/LogicalNetworksAPI.md
 docs/Network.md
@@ -299,6 +305,10 @@ docs/RunExtensionOnPhysicalDevice.md
 docs/SSHPublicKey.md
 docs/ScheduleFirmwareUpgrade.md
 docs/SearchFirmwareBinary.md
+docs/Secret.md
+docs/SecretPaginatedList.md
+docs/SecretUsageType.md
+docs/SecretsAPI.md
 docs/SecurityAPI.md
 docs/Server.md
 docs/ServerAPI.md
@@ -404,6 +414,7 @@ docs/SiteVariables.md
 docs/SpecialPermissions.md
 docs/Storage.md
 docs/StorageAPI.md
+docs/StorageCredentials.md
 docs/StorageNetworkDeviceConfiguration.md
 docs/StorageOptions.md
 docs/StoragePaginatedList.md
@@ -417,6 +428,8 @@ docs/TemplateAssetAPI.md
 docs/TemplateAssetCreate.md
 docs/TemplateAssetFile.md
 docs/TemplateAssetPaginatedList.md
+docs/TwoFactorAuthenticationSecret.md
+docs/TwoFactorAuthenticationToken.md
 docs/UnmanagedServersAPI.md
 docs/UpdateAccount.md
 docs/UpdateBucket.md
@@ -435,13 +448,14 @@ docs/UpdateGlobalFirmwareUpgradeConfiguration.md
 docs/UpdateGroupDrive.md
 docs/UpdateInfrastructure.md
 docs/UpdateInfrastructureMeta.md
-docs/UpdateLogicalNetworkDto.md
-docs/UpdateLogicalNetworkProfileDto.md
+docs/UpdateLogicalNetwork.md
+docs/UpdateLogicalNetworkProfile.md
 docs/UpdateNetworkDevice.md
 docs/UpdateNetworkEndpointGroup.md
 docs/UpdateNetworkEndpointGroupLogicalNetworkDto.md
 docs/UpdateNetworkFabric.md
 docs/UpdateResourcePool.md
+docs/UpdateSecret.md
 docs/UpdateServer.md
 docs/UpdateServerCleanupPolicy.md
 docs/UpdateServerComponent.md
@@ -465,6 +479,7 @@ docs/UpdateVMInstanceMeta.md
 docs/UpdateVMPool.md
 docs/UpdateVMPoolHostInterface.md
 docs/UpdateVMType.md
+docs/UpdateVariable.md
 docs/User.md
 docs/UserAPI.md
 docs/UserApiKey.md
@@ -507,6 +522,10 @@ docs/VMPoolPaginatedList.md
 docs/VMType.md
 docs/VMTypeAPI.md
 docs/VMTypePaginatedList.md
+docs/Variable.md
+docs/VariablePaginatedList.md
+docs/VariableUsageType.md
+docs/VariablesAPI.md
 docs/Version.md
 docs/VmInstanceContextVariables.md
 git_push.sh
@@ -558,8 +577,8 @@ model_create_firmware_baseline.go
 model_create_firmware_binary.go
 model_create_firmware_catalog.go
 model_create_group_drive.go
-model_create_logical_network_dto.go
-model_create_logical_network_profile_dto.go
+model_create_logical_network.go
+model_create_logical_network_profile.go
 model_create_network.go
 model_create_network_device.go
 model_create_network_device_defaults.go
@@ -567,6 +586,7 @@ model_create_network_endpoint_group.go
 model_create_network_endpoint_group_logical_network.go
 model_create_network_fabric.go
 model_create_resource_pool.go
+model_create_secret.go
 model_create_server_cleanup_policy.go
 model_create_server_default_credentials.go
 model_create_server_firmware_upgrade_policy.go
@@ -577,6 +597,7 @@ model_create_storage_network_device_configuration.go
 model_create_subnet_dto.go
 model_create_user.go
 model_create_user_ssh_key_dto.go
+model_create_variable.go
 model_create_vm_instance.go
 model_create_vm_instance_group.go
 model_create_vm_instance_group_interface.go
@@ -684,8 +705,10 @@ model_job_statistics.go
 model_license_installments.go
 model_link.go
 model_location.go
-model_logical_network_dto.go
-model_logical_network_profile_dto.go
+model_logical_network.go
+model_logical_network_paginated_list.go
+model_logical_network_profile.go
+model_logical_network_profile_paginated_list.go
 model_network.go
 model_network_device.go
 model_network_device_controller_update_tags_for_network_device_request.go
@@ -729,6 +752,9 @@ model_resource_pool_with_stats.go
 model_run_extension_on_physical_device.go
 model_schedule_firmware_upgrade.go
 model_search_firmware_binary.go
+model_secret.go
+model_secret_paginated_list.go
+model_secret_usage_type.go
 model_server.go
 model_server_allocation_info.go
 model_server_capabilities.go
@@ -823,6 +849,7 @@ model_site_variables.go
 model_special_permissions.go
 model_ssh_public_key.go
 model_storage.go
+model_storage_credentials.go
 model_storage_network_device_configuration.go
 model_storage_options.go
 model_storage_paginated_list.go
@@ -833,6 +860,8 @@ model_template_asset.go
 model_template_asset_create.go
 model_template_asset_file.go
 model_template_asset_paginated_list.go
+model_two_factor_authentication_secret.go
+model_two_factor_authentication_token.go
 model_update_account.go
 model_update_bucket.go
 model_update_bucket_meta.go
@@ -850,13 +879,14 @@ model_update_global_firmware_upgrade_configuration.go
 model_update_group_drive.go
 model_update_infrastructure.go
 model_update_infrastructure_meta.go
-model_update_logical_network_dto.go
-model_update_logical_network_profile_dto.go
+model_update_logical_network.go
+model_update_logical_network_profile.go
 model_update_network_device.go
 model_update_network_endpoint_group.go
 model_update_network_endpoint_group_logical_network_dto.go
 model_update_network_fabric.go
 model_update_resource_pool.go
+model_update_secret.go
 model_update_server.go
 model_update_server_cleanup_policy.go
 model_update_server_component.go
@@ -872,6 +902,7 @@ model_update_storage_options.go
 model_update_subnet.go
 model_update_user.go
 model_update_user_permissions_dto.go
+model_update_variable.go
 model_update_vm.go
 model_update_vm_instance.go
 model_update_vm_instance_group.go
@@ -895,6 +926,9 @@ model_user_suspend.go
 model_user_suspend_reason.go
 model_user_suspend_reason_list.go
 model_user_update_password.go
+model_variable.go
+model_variable_paginated_list.go
+model_variable_usage_type.go
 model_version.go
 model_vm.go
 model_vm_disk.go
@@ -946,6 +980,7 @@ test/api_network_fabric_test.go
 test/api_network_test.go
 test/api_os_template_test.go
 test/api_resource_pool_test.go
+test/api_secrets_test.go
 test/api_security_test.go
 test/api_server_cleanup_policy_test.go
 test/api_server_default_credentials_test.go
@@ -963,6 +998,7 @@ test/api_system_test.go
 test/api_template_asset_test.go
 test/api_unmanaged_servers_test.go
 test/api_user_test.go
+test/api_variables_test.go
 test/api_vm_instance_group_test.go
 test/api_vm_instance_test.go
 test/api_vm_pool_test.go

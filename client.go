@@ -104,6 +104,8 @@ type APIClient struct {
 
 	ResourcePoolAPI *ResourcePoolAPIService
 
+	SecretsAPI *SecretsAPIService
+
 	SecurityAPI *SecurityAPIService
 
 	ServerAPI *ServerAPIService
@@ -147,6 +149,8 @@ type APIClient struct {
 	VMPoolAPI *VMPoolAPIService
 
 	VMTypeAPI *VMTypeAPIService
+
+	VariablesAPI *VariablesAPIService
 }
 
 type service struct {
@@ -192,6 +196,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.NetworkFabricAPI = (*NetworkFabricAPIService)(&c.common)
 	c.OSTemplateAPI = (*OSTemplateAPIService)(&c.common)
 	c.ResourcePoolAPI = (*ResourcePoolAPIService)(&c.common)
+	c.SecretsAPI = (*SecretsAPIService)(&c.common)
 	c.SecurityAPI = (*SecurityAPIService)(&c.common)
 	c.ServerAPI = (*ServerAPIService)(&c.common)
 	c.ServerCleanupPolicyAPI = (*ServerCleanupPolicyAPIService)(&c.common)
@@ -214,6 +219,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.VMInstanceGroupAPI = (*VMInstanceGroupAPIService)(&c.common)
 	c.VMPoolAPI = (*VMPoolAPIService)(&c.common)
 	c.VMTypeAPI = (*VMTypeAPIService)(&c.common)
+	c.VariablesAPI = (*VariablesAPIService)(&c.common)
 
 	return c
 }

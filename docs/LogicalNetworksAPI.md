@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateLogicalNetwork
 
-> LogicalNetworkDto CreateLogicalNetwork(ctx).CreateLogicalNetworkDto(createLogicalNetworkDto).Execute()
+> LogicalNetwork CreateLogicalNetwork(ctx).CreateLogicalNetwork(createLogicalNetwork).Execute()
 
 Create a new logical network
 
@@ -33,16 +33,16 @@ import (
 )
 
 func main() {
-	createLogicalNetworkDto := *openapiclient.NewCreateLogicalNetworkDto(float32(123), "LogicalNetworkType_example") // CreateLogicalNetworkDto | The Logical Network create object
+	createLogicalNetwork := *openapiclient.NewCreateLogicalNetwork(float32(123), "LogicalNetworkType_example") // CreateLogicalNetwork | The Logical Network create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworksAPI.CreateLogicalNetwork(context.Background()).CreateLogicalNetworkDto(createLogicalNetworkDto).Execute()
+	resp, r, err := apiClient.LogicalNetworksAPI.CreateLogicalNetwork(context.Background()).CreateLogicalNetwork(createLogicalNetwork).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworksAPI.CreateLogicalNetwork``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetwork`: LogicalNetworkDto
+	// response from `CreateLogicalNetwork`: LogicalNetwork
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworksAPI.CreateLogicalNetwork`: %v\n", resp)
 }
 ```
@@ -58,11 +58,11 @@ Other parameters are passed through a pointer to a apiCreateLogicalNetworkReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createLogicalNetworkDto** | [**CreateLogicalNetworkDto**](CreateLogicalNetworkDto.md) | The Logical Network create object | 
+ **createLogicalNetwork** | [**CreateLogicalNetwork**](CreateLogicalNetwork.md) | The Logical Network create object | 
 
 ### Return type
 
-[**LogicalNetworkDto**](LogicalNetworkDto.md)
+[**LogicalNetwork**](LogicalNetwork.md)
 
 ### Authorization
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## GetAllLogicalNetworks
 
-> map[string]interface{} GetAllLogicalNetworks(ctx).Page(page).Limit(limit).FilterId(filterId).FilterLabel(filterLabel).FilterName(filterName).FilterDescription(filterDescription).FilterFabricId(filterFabricId).FilterInfrastructureId(filterInfrastructureId).FilterLogicalNetworkType(filterLogicalNetworkType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> LogicalNetworkPaginatedList GetAllLogicalNetworks(ctx).Page(page).Limit(limit).FilterId(filterId).FilterLabel(filterLabel).FilterName(filterName).FilterDescription(filterDescription).FilterFabricId(filterFabricId).FilterInfrastructureId(filterInfrastructureId).FilterLogicalNetworkType(filterLogicalNetworkType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get all logical networks
 
@@ -187,7 +187,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworksAPI.GetAllLogicalNetworks``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetAllLogicalNetworks`: map[string]interface{}
+	// response from `GetAllLogicalNetworks`: LogicalNetworkPaginatedList
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworksAPI.GetAllLogicalNetworks`: %v\n", resp)
 }
 ```
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**LogicalNetworkPaginatedList**](LogicalNetworkPaginatedList.md)
 
 ### Authorization
 
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworkById
 
-> LogicalNetworkDto GetLogicalNetworkById(ctx, logicalNetworkId).Execute()
+> LogicalNetwork GetLogicalNetworkById(ctx, logicalNetworkId).Execute()
 
 Get a logical network by ID
 
@@ -264,7 +264,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworksAPI.GetLogicalNetworkById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkById`: LogicalNetworkDto
+	// response from `GetLogicalNetworkById`: LogicalNetwork
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworksAPI.GetLogicalNetworkById`: %v\n", resp)
 }
 ```
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogicalNetworkDto**](LogicalNetworkDto.md)
+[**LogicalNetwork**](LogicalNetwork.md)
 
 ### Authorization
 
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLogicalNetwork
 
-> LogicalNetworkDto UpdateLogicalNetwork(ctx, logicalNetworkId).UpdateLogicalNetworkDto(updateLogicalNetworkDto).Execute()
+> LogicalNetwork UpdateLogicalNetwork(ctx, logicalNetworkId).UpdateLogicalNetwork(updateLogicalNetwork).Execute()
 
 Update a logical network
 
@@ -326,16 +326,16 @@ import (
 
 func main() {
 	logicalNetworkId := float32(8.14) // float32 | 
-	updateLogicalNetworkDto := *openapiclient.NewUpdateLogicalNetworkDto() // UpdateLogicalNetworkDto | The Logical Network update object
+	updateLogicalNetwork := *openapiclient.NewUpdateLogicalNetwork() // UpdateLogicalNetwork | The Logical Network update object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworksAPI.UpdateLogicalNetwork(context.Background(), logicalNetworkId).UpdateLogicalNetworkDto(updateLogicalNetworkDto).Execute()
+	resp, r, err := apiClient.LogicalNetworksAPI.UpdateLogicalNetwork(context.Background(), logicalNetworkId).UpdateLogicalNetwork(updateLogicalNetwork).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworksAPI.UpdateLogicalNetwork``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateLogicalNetwork`: LogicalNetworkDto
+	// response from `UpdateLogicalNetwork`: LogicalNetwork
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworksAPI.UpdateLogicalNetwork`: %v\n", resp)
 }
 ```
@@ -356,11 +356,11 @@ Other parameters are passed through a pointer to a apiUpdateLogicalNetworkReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateLogicalNetworkDto** | [**UpdateLogicalNetworkDto**](UpdateLogicalNetworkDto.md) | The Logical Network update object | 
+ **updateLogicalNetwork** | [**UpdateLogicalNetwork**](UpdateLogicalNetwork.md) | The Logical Network update object | 
 
 ### Return type
 
-[**LogicalNetworkDto**](LogicalNetworkDto.md)
+[**LogicalNetwork**](LogicalNetwork.md)
 
 ### Authorization
 

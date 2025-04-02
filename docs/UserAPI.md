@@ -16,6 +16,9 @@ Method | HTTP request | Description
 [**UserControllerAddDelegate**](UserAPI.md#UserControllerAddDelegate) | **Post** /api/v2/users/{userId}/actions/add-delegate/{delegateId} | Add a delegate to a user
 [**UserControllerAddUserSshKey**](UserAPI.md#UserControllerAddUserSshKey) | **Post** /api/v2/users/{userId}/ssh-keys | Add SSH key for user
 [**UserControllerDeleteUserSshKey**](UserAPI.md#UserControllerDeleteUserSshKey) | **Delete** /api/v2/users/{userId}/ssh-keys/{keyId} | Delete SSH key for user
+[**UserControllerDisableTwoFactorAuthentication**](UserAPI.md#UserControllerDisableTwoFactorAuthentication) | **Post** /api/v2/users/{userId}/actions/2fa-disable | Disable 2FA
+[**UserControllerEnableTwoFactorAuthentication**](UserAPI.md#UserControllerEnableTwoFactorAuthentication) | **Post** /api/v2/users/{userId}/actions/2fa-enable | Enable 2FA
+[**UserControllerGenerateTwoFactorAuthenticationSecret**](UserAPI.md#UserControllerGenerateTwoFactorAuthenticationSecret) | **Post** /api/v2/users/{userId}/actions/2fa-generate | Generate 2FA secret
 [**UserControllerGetUserApiKey**](UserAPI.md#UserControllerGetUserApiKey) | **Get** /api/v2/users/{userId}/api-key | Get user API key
 [**UserControllerGetUserChildDelegates**](UserAPI.md#UserControllerGetUserChildDelegates) | **Get** /api/v2/users/{userId}/child-delegates | Get user child delegates by ID
 [**UserControllerGetUserConfiguration**](UserAPI.md#UserControllerGetUserConfiguration) | **Get** /api/v2/users/{userId}/config | Get user configuration by ID
@@ -900,6 +903,212 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerDisableTwoFactorAuthentication
+
+> UserControllerDisableTwoFactorAuthentication(ctx, userId).IfMatch(ifMatch).Execute()
+
+Disable 2FA
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.UserAPI.UserControllerDisableTwoFactorAuthentication(context.Background(), userId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerDisableTwoFactorAuthentication``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerDisableTwoFactorAuthenticationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerEnableTwoFactorAuthentication
+
+> UserControllerEnableTwoFactorAuthentication(ctx, userId).TwoFactorAuthenticationToken(twoFactorAuthenticationToken).IfMatch(ifMatch).Execute()
+
+Enable 2FA
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	twoFactorAuthenticationToken := *openapiclient.NewTwoFactorAuthenticationToken("Token_example") // TwoFactorAuthenticationToken | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.UserAPI.UserControllerEnableTwoFactorAuthentication(context.Background(), userId).TwoFactorAuthenticationToken(twoFactorAuthenticationToken).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerEnableTwoFactorAuthentication``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerEnableTwoFactorAuthenticationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **twoFactorAuthenticationToken** | [**TwoFactorAuthenticationToken**](TwoFactorAuthenticationToken.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerGenerateTwoFactorAuthenticationSecret
+
+> TwoFactorAuthenticationSecret UserControllerGenerateTwoFactorAuthenticationSecret(ctx, userId).Execute()
+
+Generate 2FA secret
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.UserControllerGenerateTwoFactorAuthenticationSecret(context.Background(), userId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerGenerateTwoFactorAuthenticationSecret``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserControllerGenerateTwoFactorAuthenticationSecret`: TwoFactorAuthenticationSecret
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.UserControllerGenerateTwoFactorAuthenticationSecret`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerGenerateTwoFactorAuthenticationSecretRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**TwoFactorAuthenticationSecret**](TwoFactorAuthenticationSecret.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

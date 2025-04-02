@@ -50,8 +50,6 @@ type UpdateUser struct {
 	AuthenticatorMustChange *bool `json:"authenticatorMustChange,omitempty"`
 	// The timestamp when the authenticator was created
 	AuthenticatorCreatedTimestamp *string `json:"authenticatorCreatedTimestamp,omitempty"`
-	// Whether the user has an authenticator
-	AuthenticatorEnabled *bool `json:"authenticatorEnabled,omitempty"`
 	// The promotion tags of the user
 	PromotionTags []string `json:"promotionTags,omitempty"`
 	// The experimental tags of the user
@@ -578,38 +576,6 @@ func (o *UpdateUser) SetAuthenticatorCreatedTimestamp(v string) {
 	o.AuthenticatorCreatedTimestamp = &v
 }
 
-// GetAuthenticatorEnabled returns the AuthenticatorEnabled field value if set, zero value otherwise.
-func (o *UpdateUser) GetAuthenticatorEnabled() bool {
-	if o == nil || IsNil(o.AuthenticatorEnabled) {
-		var ret bool
-		return ret
-	}
-	return *o.AuthenticatorEnabled
-}
-
-// GetAuthenticatorEnabledOk returns a tuple with the AuthenticatorEnabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateUser) GetAuthenticatorEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.AuthenticatorEnabled) {
-		return nil, false
-	}
-	return o.AuthenticatorEnabled, true
-}
-
-// HasAuthenticatorEnabled returns a boolean if a field has been set.
-func (o *UpdateUser) HasAuthenticatorEnabled() bool {
-	if o != nil && !IsNil(o.AuthenticatorEnabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthenticatorEnabled gets a reference to the given bool and assigns it to the AuthenticatorEnabled field.
-func (o *UpdateUser) SetAuthenticatorEnabled(v bool) {
-	o.AuthenticatorEnabled = &v
-}
-
 // GetPromotionTags returns the PromotionTags field value if set, zero value otherwise.
 func (o *UpdateUser) GetPromotionTags() []string {
 	if o == nil || IsNil(o.PromotionTags) {
@@ -921,9 +887,6 @@ func (o UpdateUser) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AuthenticatorCreatedTimestamp) {
 		toSerialize["authenticatorCreatedTimestamp"] = o.AuthenticatorCreatedTimestamp
 	}
-	if !IsNil(o.AuthenticatorEnabled) {
-		toSerialize["authenticatorEnabled"] = o.AuthenticatorEnabled
-	}
 	if !IsNil(o.PromotionTags) {
 		toSerialize["promotionTags"] = o.PromotionTags
 	}
@@ -985,7 +948,6 @@ func (o *UpdateUser) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "infrastructureIdDefault")
 		delete(additionalProperties, "authenticatorMustChange")
 		delete(additionalProperties, "authenticatorCreatedTimestamp")
-		delete(additionalProperties, "authenticatorEnabled")
 		delete(additionalProperties, "promotionTags")
 		delete(additionalProperties, "experimentalTags")
 		delete(additionalProperties, "externalIds")

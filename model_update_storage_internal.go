@@ -58,12 +58,12 @@ type UpdateStorageInternal struct {
 	S3Port *string `json:"s3Port,omitempty"`
 	// The extension execution info of the storage.
 	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
-	// Options for the storage
-	Options *StorageOptions `json:"options,omitempty"`
 	// Username
 	Username *string `json:"username,omitempty"`
 	// The password to use.
 	Password *string `json:"password,omitempty"`
+	// Options for the storage
+	Options *StorageOptions `json:"options,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -694,38 +694,6 @@ func (o *UpdateStorageInternal) SetExtensionInfo(v ExtensionExecutionInfo) {
 	o.ExtensionInfo = &v
 }
 
-// GetOptions returns the Options field value if set, zero value otherwise.
-func (o *UpdateStorageInternal) GetOptions() StorageOptions {
-	if o == nil || IsNil(o.Options) {
-		var ret StorageOptions
-		return ret
-	}
-	return *o.Options
-}
-
-// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateStorageInternal) GetOptionsOk() (*StorageOptions, bool) {
-	if o == nil || IsNil(o.Options) {
-		return nil, false
-	}
-	return o.Options, true
-}
-
-// HasOptions returns a boolean if a field has been set.
-func (o *UpdateStorageInternal) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
-		return true
-	}
-
-	return false
-}
-
-// SetOptions gets a reference to the given StorageOptions and assigns it to the Options field.
-func (o *UpdateStorageInternal) SetOptions(v StorageOptions) {
-	o.Options = &v
-}
-
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *UpdateStorageInternal) GetUsername() string {
 	if o == nil || IsNil(o.Username) {
@@ -788,6 +756,38 @@ func (o *UpdateStorageInternal) HasPassword() bool {
 // SetPassword gets a reference to the given string and assigns it to the Password field.
 func (o *UpdateStorageInternal) SetPassword(v string) {
 	o.Password = &v
+}
+
+// GetOptions returns the Options field value if set, zero value otherwise.
+func (o *UpdateStorageInternal) GetOptions() StorageOptions {
+	if o == nil || IsNil(o.Options) {
+		var ret StorageOptions
+		return ret
+	}
+	return *o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageInternal) GetOptionsOk() (*StorageOptions, bool) {
+	if o == nil || IsNil(o.Options) {
+		return nil, false
+	}
+	return o.Options, true
+}
+
+// HasOptions returns a boolean if a field has been set.
+func (o *UpdateStorageInternal) HasOptions() bool {
+	if o != nil && !IsNil(o.Options) {
+		return true
+	}
+
+	return false
+}
+
+// SetOptions gets a reference to the given StorageOptions and assigns it to the Options field.
+func (o *UpdateStorageInternal) SetOptions(v StorageOptions) {
+	o.Options = &v
 }
 
 func (o UpdateStorageInternal) MarshalJSON() ([]byte, error) {
@@ -857,14 +857,14 @@ func (o UpdateStorageInternal) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExtensionInfo) {
 		toSerialize["extensionInfo"] = o.ExtensionInfo
 	}
-	if !IsNil(o.Options) {
-		toSerialize["options"] = o.Options
-	}
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
 	if !IsNil(o.Password) {
 		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.Options) {
+		toSerialize["options"] = o.Options
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -907,9 +907,9 @@ func (o *UpdateStorageInternal) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "s3Hostname")
 		delete(additionalProperties, "s3Port")
 		delete(additionalProperties, "extensionInfo")
-		delete(additionalProperties, "options")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "options")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -28,16 +28,16 @@ type LogicalNetworksAPIService service
 type LogicalNetworksAPICreateLogicalNetworkRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworksAPIService
-	createLogicalNetworkDto *CreateLogicalNetworkDto
+	createLogicalNetwork *CreateLogicalNetwork
 }
 
 // The Logical Network create object
-func (r LogicalNetworksAPICreateLogicalNetworkRequest) CreateLogicalNetworkDto(createLogicalNetworkDto CreateLogicalNetworkDto) LogicalNetworksAPICreateLogicalNetworkRequest {
-	r.createLogicalNetworkDto = &createLogicalNetworkDto
+func (r LogicalNetworksAPICreateLogicalNetworkRequest) CreateLogicalNetwork(createLogicalNetwork CreateLogicalNetwork) LogicalNetworksAPICreateLogicalNetworkRequest {
+	r.createLogicalNetwork = &createLogicalNetwork
 	return r
 }
 
-func (r LogicalNetworksAPICreateLogicalNetworkRequest) Execute() (*LogicalNetworkDto, *http.Response, error) {
+func (r LogicalNetworksAPICreateLogicalNetworkRequest) Execute() (*LogicalNetwork, *http.Response, error) {
 	return r.ApiService.CreateLogicalNetworkExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *LogicalNetworksAPIService) CreateLogicalNetwork(ctx context.Context) Lo
 }
 
 // Execute executes the request
-//  @return LogicalNetworkDto
-func (a *LogicalNetworksAPIService) CreateLogicalNetworkExecute(r LogicalNetworksAPICreateLogicalNetworkRequest) (*LogicalNetworkDto, *http.Response, error) {
+//  @return LogicalNetwork
+func (a *LogicalNetworksAPIService) CreateLogicalNetworkExecute(r LogicalNetworksAPICreateLogicalNetworkRequest) (*LogicalNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *LogicalNetworkDto
+		localVarReturnValue  *LogicalNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworksAPIService.CreateLogicalNetwork")
@@ -76,8 +76,8 @@ func (a *LogicalNetworksAPIService) CreateLogicalNetworkExecute(r LogicalNetwork
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createLogicalNetworkDto == nil {
-		return localVarReturnValue, nil, reportError("createLogicalNetworkDto is required and must be specified")
+	if r.createLogicalNetwork == nil {
+		return localVarReturnValue, nil, reportError("createLogicalNetwork is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -98,7 +98,7 @@ func (a *LogicalNetworksAPIService) CreateLogicalNetworkExecute(r LogicalNetwork
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createLogicalNetworkDto
+	localVarPostBody = r.createLogicalNetwork
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -317,7 +317,7 @@ func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) SearchBy(searchBy []stri
 	return r
 }
 
-func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r LogicalNetworksAPIGetAllLogicalNetworksRequest) Execute() (*LogicalNetworkPaginatedList, *http.Response, error) {
 	return r.ApiService.GetAllLogicalNetworksExecute(r)
 }
 
@@ -337,13 +337,13 @@ func (a *LogicalNetworksAPIService) GetAllLogicalNetworks(ctx context.Context) L
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *LogicalNetworksAPIService) GetAllLogicalNetworksExecute(r LogicalNetworksAPIGetAllLogicalNetworksRequest) (map[string]interface{}, *http.Response, error) {
+//  @return LogicalNetworkPaginatedList
+func (a *LogicalNetworksAPIService) GetAllLogicalNetworksExecute(r LogicalNetworksAPIGetAllLogicalNetworksRequest) (*LogicalNetworkPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *LogicalNetworkPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworksAPIService.GetAllLogicalNetworks")
@@ -525,7 +525,7 @@ type LogicalNetworksAPIGetLogicalNetworkByIdRequest struct {
 	logicalNetworkId float32
 }
 
-func (r LogicalNetworksAPIGetLogicalNetworkByIdRequest) Execute() (*LogicalNetworkDto, *http.Response, error) {
+func (r LogicalNetworksAPIGetLogicalNetworkByIdRequest) Execute() (*LogicalNetwork, *http.Response, error) {
 	return r.ApiService.GetLogicalNetworkByIdExecute(r)
 }
 
@@ -547,13 +547,13 @@ func (a *LogicalNetworksAPIService) GetLogicalNetworkById(ctx context.Context, l
 }
 
 // Execute executes the request
-//  @return LogicalNetworkDto
-func (a *LogicalNetworksAPIService) GetLogicalNetworkByIdExecute(r LogicalNetworksAPIGetLogicalNetworkByIdRequest) (*LogicalNetworkDto, *http.Response, error) {
+//  @return LogicalNetwork
+func (a *LogicalNetworksAPIService) GetLogicalNetworkByIdExecute(r LogicalNetworksAPIGetLogicalNetworkByIdRequest) (*LogicalNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *LogicalNetworkDto
+		localVarReturnValue  *LogicalNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworksAPIService.GetLogicalNetworkById")
@@ -626,16 +626,16 @@ type LogicalNetworksAPIUpdateLogicalNetworkRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworksAPIService
 	logicalNetworkId float32
-	updateLogicalNetworkDto *UpdateLogicalNetworkDto
+	updateLogicalNetwork *UpdateLogicalNetwork
 }
 
 // The Logical Network update object
-func (r LogicalNetworksAPIUpdateLogicalNetworkRequest) UpdateLogicalNetworkDto(updateLogicalNetworkDto UpdateLogicalNetworkDto) LogicalNetworksAPIUpdateLogicalNetworkRequest {
-	r.updateLogicalNetworkDto = &updateLogicalNetworkDto
+func (r LogicalNetworksAPIUpdateLogicalNetworkRequest) UpdateLogicalNetwork(updateLogicalNetwork UpdateLogicalNetwork) LogicalNetworksAPIUpdateLogicalNetworkRequest {
+	r.updateLogicalNetwork = &updateLogicalNetwork
 	return r
 }
 
-func (r LogicalNetworksAPIUpdateLogicalNetworkRequest) Execute() (*LogicalNetworkDto, *http.Response, error) {
+func (r LogicalNetworksAPIUpdateLogicalNetworkRequest) Execute() (*LogicalNetwork, *http.Response, error) {
 	return r.ApiService.UpdateLogicalNetworkExecute(r)
 }
 
@@ -657,13 +657,13 @@ func (a *LogicalNetworksAPIService) UpdateLogicalNetwork(ctx context.Context, lo
 }
 
 // Execute executes the request
-//  @return LogicalNetworkDto
-func (a *LogicalNetworksAPIService) UpdateLogicalNetworkExecute(r LogicalNetworksAPIUpdateLogicalNetworkRequest) (*LogicalNetworkDto, *http.Response, error) {
+//  @return LogicalNetwork
+func (a *LogicalNetworksAPIService) UpdateLogicalNetworkExecute(r LogicalNetworksAPIUpdateLogicalNetworkRequest) (*LogicalNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *LogicalNetworkDto
+		localVarReturnValue  *LogicalNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworksAPIService.UpdateLogicalNetwork")
@@ -677,8 +677,8 @@ func (a *LogicalNetworksAPIService) UpdateLogicalNetworkExecute(r LogicalNetwork
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateLogicalNetworkDto == nil {
-		return localVarReturnValue, nil, reportError("updateLogicalNetworkDto is required and must be specified")
+	if r.updateLogicalNetwork == nil {
+		return localVarReturnValue, nil, reportError("updateLogicalNetwork is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -699,7 +699,7 @@ func (a *LogicalNetworksAPIService) UpdateLogicalNetworkExecute(r LogicalNetwork
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateLogicalNetworkDto
+	localVarPostBody = r.updateLogicalNetwork
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

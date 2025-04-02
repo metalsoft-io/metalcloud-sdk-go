@@ -445,6 +445,7 @@ type AuthenticationAPILoginRequest struct {
 	authenticationRequest *AuthenticationRequest
 }
 
+// The authentication request
 func (r AuthenticationAPILoginRequest) AuthenticationRequest(authenticationRequest AuthenticationRequest) AuthenticationAPILoginRequest {
 	r.authenticationRequest = &authenticationRequest
 	return r
@@ -512,6 +513,117 @@ func (a *AuthenticationAPIService) LoginExecute(r AuthenticationAPILoginRequest)
 	}
 	// body params
 	localVarPostBody = r.authenticationRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type AuthenticationAPILogin2FARequest struct {
+	ctx context.Context
+	ApiService *AuthenticationAPIService
+	twoFactorAuthenticationToken *TwoFactorAuthenticationToken
+}
+
+// The 2FA token request
+func (r AuthenticationAPILogin2FARequest) TwoFactorAuthenticationToken(twoFactorAuthenticationToken TwoFactorAuthenticationToken) AuthenticationAPILogin2FARequest {
+	r.twoFactorAuthenticationToken = &twoFactorAuthenticationToken
+	return r
+}
+
+func (r AuthenticationAPILogin2FARequest) Execute() (*User, *http.Response, error) {
+	return r.ApiService.Login2FAExecute(r)
+}
+
+/*
+Login2FA User login with 2FA
+
+Authenticates the user credentials and establishes a session with 2FA.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return AuthenticationAPILogin2FARequest
+*/
+func (a *AuthenticationAPIService) Login2FA(ctx context.Context) AuthenticationAPILogin2FARequest {
+	return AuthenticationAPILogin2FARequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return User
+func (a *AuthenticationAPIService) Login2FAExecute(r AuthenticationAPILogin2FARequest) (*User, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *User
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.Login2FA")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/login-2fa"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.twoFactorAuthenticationToken == nil {
+		return localVarReturnValue, nil, reportError("twoFactorAuthenticationToken is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.twoFactorAuthenticationToken
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

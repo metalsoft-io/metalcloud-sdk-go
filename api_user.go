@@ -1537,6 +1537,318 @@ func (a *UserAPIService) UserControllerDeleteUserSshKeyExecute(r UserAPIUserCont
 	return localVarHTTPResponse, nil
 }
 
+type UserAPIUserControllerDisableTwoFactorAuthenticationRequest struct {
+	ctx context.Context
+	ApiService *UserAPIService
+	userId float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r UserAPIUserControllerDisableTwoFactorAuthenticationRequest) IfMatch(ifMatch string) UserAPIUserControllerDisableTwoFactorAuthenticationRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r UserAPIUserControllerDisableTwoFactorAuthenticationRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UserControllerDisableTwoFactorAuthenticationExecute(r)
+}
+
+/*
+UserControllerDisableTwoFactorAuthentication Disable 2FA
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId
+ @return UserAPIUserControllerDisableTwoFactorAuthenticationRequest
+*/
+func (a *UserAPIService) UserControllerDisableTwoFactorAuthentication(ctx context.Context, userId float32) UserAPIUserControllerDisableTwoFactorAuthenticationRequest {
+	return UserAPIUserControllerDisableTwoFactorAuthenticationRequest{
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
+	}
+}
+
+// Execute executes the request
+func (a *UserAPIService) UserControllerDisableTwoFactorAuthenticationExecute(r UserAPIUserControllerDisableTwoFactorAuthenticationRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserAPIService.UserControllerDisableTwoFactorAuthentication")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/users/{userId}/actions/2fa-disable"
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type UserAPIUserControllerEnableTwoFactorAuthenticationRequest struct {
+	ctx context.Context
+	ApiService *UserAPIService
+	userId float32
+	twoFactorAuthenticationToken *TwoFactorAuthenticationToken
+	ifMatch *string
+}
+
+func (r UserAPIUserControllerEnableTwoFactorAuthenticationRequest) TwoFactorAuthenticationToken(twoFactorAuthenticationToken TwoFactorAuthenticationToken) UserAPIUserControllerEnableTwoFactorAuthenticationRequest {
+	r.twoFactorAuthenticationToken = &twoFactorAuthenticationToken
+	return r
+}
+
+// Entity tag
+func (r UserAPIUserControllerEnableTwoFactorAuthenticationRequest) IfMatch(ifMatch string) UserAPIUserControllerEnableTwoFactorAuthenticationRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r UserAPIUserControllerEnableTwoFactorAuthenticationRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UserControllerEnableTwoFactorAuthenticationExecute(r)
+}
+
+/*
+UserControllerEnableTwoFactorAuthentication Enable 2FA
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId
+ @return UserAPIUserControllerEnableTwoFactorAuthenticationRequest
+*/
+func (a *UserAPIService) UserControllerEnableTwoFactorAuthentication(ctx context.Context, userId float32) UserAPIUserControllerEnableTwoFactorAuthenticationRequest {
+	return UserAPIUserControllerEnableTwoFactorAuthenticationRequest{
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
+	}
+}
+
+// Execute executes the request
+func (a *UserAPIService) UserControllerEnableTwoFactorAuthenticationExecute(r UserAPIUserControllerEnableTwoFactorAuthenticationRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserAPIService.UserControllerEnableTwoFactorAuthentication")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/users/{userId}/actions/2fa-enable"
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.twoFactorAuthenticationToken == nil {
+		return nil, reportError("twoFactorAuthenticationToken is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.twoFactorAuthenticationToken
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type UserAPIUserControllerGenerateTwoFactorAuthenticationSecretRequest struct {
+	ctx context.Context
+	ApiService *UserAPIService
+	userId float32
+}
+
+func (r UserAPIUserControllerGenerateTwoFactorAuthenticationSecretRequest) Execute() (*TwoFactorAuthenticationSecret, *http.Response, error) {
+	return r.ApiService.UserControllerGenerateTwoFactorAuthenticationSecretExecute(r)
+}
+
+/*
+UserControllerGenerateTwoFactorAuthenticationSecret Generate 2FA secret
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId
+ @return UserAPIUserControllerGenerateTwoFactorAuthenticationSecretRequest
+*/
+func (a *UserAPIService) UserControllerGenerateTwoFactorAuthenticationSecret(ctx context.Context, userId float32) UserAPIUserControllerGenerateTwoFactorAuthenticationSecretRequest {
+	return UserAPIUserControllerGenerateTwoFactorAuthenticationSecretRequest{
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
+	}
+}
+
+// Execute executes the request
+//  @return TwoFactorAuthenticationSecret
+func (a *UserAPIService) UserControllerGenerateTwoFactorAuthenticationSecretExecute(r UserAPIUserControllerGenerateTwoFactorAuthenticationSecretRequest) (*TwoFactorAuthenticationSecret, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TwoFactorAuthenticationSecret
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserAPIService.UserControllerGenerateTwoFactorAuthenticationSecret")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/users/{userId}/actions/2fa-generate"
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type UserAPIUserControllerGetUserApiKeyRequest struct {
 	ctx context.Context
 	ApiService *UserAPIService

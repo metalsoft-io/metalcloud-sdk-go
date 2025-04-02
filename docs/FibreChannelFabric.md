@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
 **ZeroTouchEnabled** | Pointer to **bool** | Enables zero-touch provisioning for automatic device configuration. | [optional] 
 **VsanId** | Pointer to **int32** | VSAN ID for the Fibre Channel fabric | [optional] 
-**TopologyType** | Pointer to **string** | Fabric topology type | [optional] 
+**TopologyType** | **string** | Fabric topology type | 
 **Mtu** | Pointer to **float32** | Maximum transmission unit (MTU) size in bytes | [optional] 
 **ZoningConfiguration** | Pointer to **map[string]interface{}** | Zoning configuration for the fabric | [optional] 
 **InteropMode** | Pointer to **string** | Interoperability mode for multi-vendor environments | [optional] 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewFibreChannelFabric
 
-`func NewFibreChannelFabric(fabricType string, ) *FibreChannelFabric`
+`func NewFibreChannelFabric(fabricType string, topologyType string, ) *FibreChannelFabric`
 
 NewFibreChannelFabric instantiates a new FibreChannelFabric object
 This constructor will assign default values to properties that have it defined,
@@ -201,11 +201,6 @@ and a boolean to check if the value has been set.
 
 SetTopologyType sets TopologyType field to given value.
 
-### HasTopologyType
-
-`func (o *FibreChannelFabric) HasTopologyType() bool`
-
-HasTopologyType returns a boolean if a field has been set.
 
 ### GetMtu
 

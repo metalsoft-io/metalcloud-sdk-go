@@ -187,6 +187,46 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test UserAPIService UserControllerDisableTwoFactorAuthentication", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		httpRes, err := apiClient.UserAPI.UserControllerDisableTwoFactorAuthentication(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerEnableTwoFactorAuthentication", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		httpRes, err := apiClient.UserAPI.UserControllerEnableTwoFactorAuthentication(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerGenerateTwoFactorAuthenticationSecret", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId float32
+
+		resp, httpRes, err := apiClient.UserAPI.UserControllerGenerateTwoFactorAuthenticationSecret(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test UserAPIService UserControllerGetUserApiKey", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
