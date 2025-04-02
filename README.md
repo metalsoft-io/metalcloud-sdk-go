@@ -293,7 +293,7 @@ Class | Method | HTTP request | Description
 *SecretsAPI* | [**DeleteSecret**](docs/SecretsAPI.md#deletesecret) | **Delete** /api/v2/secrets/{id} | Delete a secret by ID
 *SecretsAPI* | [**GetSecret**](docs/SecretsAPI.md#getsecret) | **Get** /api/v2/secrets/{id} | Get secret by ID
 *SecretsAPI* | [**GetSecrets**](docs/SecretsAPI.md#getsecrets) | **Get** /api/v2/secrets | Get all secrets
-*SecretsAPI* | [**UpdateSecret**](docs/SecretsAPI.md#updatesecret) | **Post** /api/v2/secrets/{id} | Update secret by ID
+*SecretsAPI* | [**UpdateSecret**](docs/SecretsAPI.md#updatesecret) | **Put** /api/v2/secrets/{id} | Update secret by ID
 *SecurityAPI* | [**GetProviders**](docs/SecurityAPI.md#getproviders) | **Get** /api/v2/authentication/providers | Get available authentication providers
 *SecurityAPI* | [**UpdateProvider**](docs/SecurityAPI.md#updateprovider) | **Patch** /api/v2/authentication/providers/{name} | Updates authentication provider
 *ServerAPI* | [**ArchiveServer**](docs/ServerAPI.md#archiveserver) | **Post** /api/v2/servers/{serverId}/actions/archive | Archives a Server

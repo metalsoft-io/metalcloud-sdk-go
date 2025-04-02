@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**DeleteSecret**](SecretsAPI.md#DeleteSecret) | **Delete** /api/v2/secrets/{id} | Delete a secret by ID
 [**GetSecret**](SecretsAPI.md#GetSecret) | **Get** /api/v2/secrets/{id} | Get secret by ID
 [**GetSecrets**](SecretsAPI.md#GetSecrets) | **Get** /api/v2/secrets | Get all secrets
-[**UpdateSecret**](SecretsAPI.md#UpdateSecret) | **Post** /api/v2/secrets/{id} | Update secret by ID
+[**UpdateSecret**](SecretsAPI.md#UpdateSecret) | **Put** /api/v2/secrets/{id} | Update secret by ID
 
 
 

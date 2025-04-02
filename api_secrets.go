@@ -568,7 +568,7 @@ func (a *SecretsAPIService) UpdateSecret(ctx context.Context, id float32) Secret
 //  @return Secret
 func (a *SecretsAPIService) UpdateSecretExecute(r SecretsAPIUpdateSecretRequest) (*Secret, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *Secret
