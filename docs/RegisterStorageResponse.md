@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **StorageId** | **float32** | Id of the Storage | 
-**JobInfo** | Pointer to [**JobInfo**](JobInfo.md) |  | [optional] 
+**JobInfo** | Pointer to [**JobInfo**](JobInfo.md) | Job info | [optional] 
 
 ## Methods
 

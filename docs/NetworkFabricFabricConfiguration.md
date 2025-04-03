@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FabricType** | **string** | The type of network fabric | 
+**FabricType** | [**FabricType**](FabricType.md) | The type of network fabric | 
 **DefaultNetworkProfileId** | Pointer to **int32** | Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile. | [optional] 
 **GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **VniPrefix** | Pointer to **int32** | The VNI prefix for the EVPN VXLAN fabric. | [optional] 
 **VrfVlanRanges** | Pointer to **[]string** | VLAN ranges to be associated with VRF instances. Each value must be an ordered pair specified in the \&quot;start-end\&quot; format. | [optional] 
 **VsanId** | Pointer to **int32** | VSAN ID for the Fibre Channel fabric | [optional] 
-**TopologyType** | **string** | Fabric topology type | 
+**TopologyType** | [**FabricTopologyType**](FabricTopologyType.md) | Fabric topology type | 
 **Mtu** | Pointer to **float32** | Maximum transmission unit (MTU) size in bytes | [optional] 
 **ZoningConfiguration** | Pointer to **map[string]interface{}** | Zoning configuration for the fabric | [optional] 
 **InteropMode** | Pointer to **string** | Interoperability mode for multi-vendor environments | [optional] 
@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkFabricFabricConfiguration
 
-`func NewNetworkFabricFabricConfiguration(fabricType string, topologyType string, ) *NetworkFabricFabricConfiguration`
+`func NewNetworkFabricFabricConfiguration(fabricType FabricType, topologyType FabricTopologyType, ) *NetworkFabricFabricConfiguration`
 
 NewNetworkFabricFabricConfiguration instantiates a new NetworkFabricFabricConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -52,20 +52,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetFabricType
 
-`func (o *NetworkFabricFabricConfiguration) GetFabricType() string`
+`func (o *NetworkFabricFabricConfiguration) GetFabricType() FabricType`
 
 GetFabricType returns the FabricType field if non-nil, zero value otherwise.
 
 ### GetFabricTypeOk
 
-`func (o *NetworkFabricFabricConfiguration) GetFabricTypeOk() (*string, bool)`
+`func (o *NetworkFabricFabricConfiguration) GetFabricTypeOk() (*FabricType, bool)`
 
 GetFabricTypeOk returns a tuple with the FabricType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFabricType
 
-`func (o *NetworkFabricFabricConfiguration) SetFabricType(v string)`
+`func (o *NetworkFabricFabricConfiguration) SetFabricType(v FabricType)`
 
 SetFabricType sets FabricType field to given value.
 
@@ -522,20 +522,20 @@ HasVsanId returns a boolean if a field has been set.
 
 ### GetTopologyType
 
-`func (o *NetworkFabricFabricConfiguration) GetTopologyType() string`
+`func (o *NetworkFabricFabricConfiguration) GetTopologyType() FabricTopologyType`
 
 GetTopologyType returns the TopologyType field if non-nil, zero value otherwise.
 
 ### GetTopologyTypeOk
 
-`func (o *NetworkFabricFabricConfiguration) GetTopologyTypeOk() (*string, bool)`
+`func (o *NetworkFabricFabricConfiguration) GetTopologyTypeOk() (*FabricTopologyType, bool)`
 
 GetTopologyTypeOk returns a tuple with the TopologyType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTopologyType
 
-`func (o *NetworkFabricFabricConfiguration) SetTopologyType(v string)`
+`func (o *NetworkFabricFabricConfiguration) SetTopologyType(v FabricTopologyType)`
 
 SetTopologyType sets TopologyType field to given value.
 

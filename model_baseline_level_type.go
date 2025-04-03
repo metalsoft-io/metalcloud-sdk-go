@@ -21,9 +21,9 @@ type BaselineLevelType string
 
 // List of BaselineLevelType
 const (
-	DATACENTER BaselineLevelType = "datacenter"
-	SERVER_TYPE BaselineLevelType = "serverType"
-	OS_TEMPLATE BaselineLevelType = "osTemplate"
+	BASELINELEVELTYPE_DATACENTER BaselineLevelType = "datacenter"
+	BASELINELEVELTYPE_SERVER_TYPE BaselineLevelType = "serverType"
+	BASELINELEVELTYPE_OS_TEMPLATE BaselineLevelType = "osTemplate"
 )
 
 // All allowed values of BaselineLevelType enum

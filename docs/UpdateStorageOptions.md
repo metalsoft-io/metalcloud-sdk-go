@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EnableDataReduction** | Pointer to **float32** | Enable data reduction | [optional] 
 **EnableAdvancedDeduplication** | Pointer to **float32** | Enable advanced deduplication | [optional] 
-**VolumeName** | **string** | Volume name | 
+**VolumeName** | Pointer to **string** | Volume name | [optional] 
 **ArrayId** | Pointer to **string** | Array id to use (for certain storage drivers) | [optional] 
 **DirectorId** | Pointer to **string** | Director id to use (for certain storage drivers) | [optional] 
 **S3Hostname** | Pointer to **string** | S3 Hostname to use (for certain storage drivers) | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewUpdateStorageOptions
 
-`func NewUpdateStorageOptions(volumeName string, ) *UpdateStorageOptions`
+`func NewUpdateStorageOptions() *UpdateStorageOptions`
 
 NewUpdateStorageOptions instantiates a new UpdateStorageOptions object
 This constructor will assign default values to properties that have it defined,
@@ -101,6 +101,11 @@ and a boolean to check if the value has been set.
 
 SetVolumeName sets VolumeName field to given value.
 
+### HasVolumeName
+
+`func (o *UpdateStorageOptions) HasVolumeName() bool`
+
+HasVolumeName returns a boolean if a field has been set.
 
 ### GetArrayId
 

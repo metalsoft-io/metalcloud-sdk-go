@@ -21,13 +21,13 @@ type VariableUsageType string
 
 // List of VariableUsageType
 const (
-	HTTP_REQUEST VariableUsageType = "HTTPRequest"
-	JAVA_SCRIPT VariableUsageType = "JavaScript"
-	API_CALL VariableUsageType = "APICall"
-	ANSIBLE_BUNDLE VariableUsageType = "AnsibleBundle"
-	SSH_EXEC VariableUsageType = "SSHExec"
-	COPY VariableUsageType = "Copy"
-	OS_ASSET VariableUsageType = "OSAsset"
+	VARIABLEUSAGETYPE_HTTP_REQUEST VariableUsageType = "HTTPRequest"
+	VARIABLEUSAGETYPE_JAVA_SCRIPT VariableUsageType = "JavaScript"
+	VARIABLEUSAGETYPE_API_CALL VariableUsageType = "APICall"
+	VARIABLEUSAGETYPE_ANSIBLE_BUNDLE VariableUsageType = "AnsibleBundle"
+	VARIABLEUSAGETYPE_SSH_EXEC VariableUsageType = "SSHExec"
+	VARIABLEUSAGETYPE_COPY VariableUsageType = "Copy"
+	VARIABLEUSAGETYPE_OS_ASSET VariableUsageType = "OSAsset"
 )
 
 // All allowed values of VariableUsageType enum

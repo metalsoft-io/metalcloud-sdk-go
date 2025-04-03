@@ -21,13 +21,13 @@ type SecretUsageType string
 
 // List of SecretUsageType
 const (
-	HTTP_REQUEST_SECRET SecretUsageType = "HTTPRequestSecret"
-	JAVA_SCRIPT_SECRET SecretUsageType = "JavaScriptSecret"
-	API_CALL_SECRET SecretUsageType = "APICallSecret"
-	ANSIBLE_BUNDLE_SECRET SecretUsageType = "AnsibleBundleSecret"
-	SSH_EXEC_SECRET SecretUsageType = "SSHExecSecret"
-	COPY_SECRET SecretUsageType = "CopySecret"
-	OS_ASSET_SECRET SecretUsageType = "OSAssetSecret"
+	SECRETUSAGETYPE_HTTP_REQUEST_SECRET SecretUsageType = "HTTPRequestSecret"
+	SECRETUSAGETYPE_JAVA_SCRIPT_SECRET SecretUsageType = "JavaScriptSecret"
+	SECRETUSAGETYPE_API_CALL_SECRET SecretUsageType = "APICallSecret"
+	SECRETUSAGETYPE_ANSIBLE_BUNDLE_SECRET SecretUsageType = "AnsibleBundleSecret"
+	SECRETUSAGETYPE_SSH_EXEC_SECRET SecretUsageType = "SSHExecSecret"
+	SECRETUSAGETYPE_COPY_SECRET SecretUsageType = "CopySecret"
+	SECRETUSAGETYPE_OS_ASSET_SECRET SecretUsageType = "OSAssetSecret"
 )
 
 // All allowed values of SecretUsageType enum

@@ -27,7 +27,6 @@ type DriveConfiguration struct {
 	Label string `json:"label"`
 	// Drive Array Id
 	GroupId float32 `json:"groupId"`
-	ContainerId *float32 `json:"containerId,omitempty"`
 	InstanceId *float32 `json:"instanceId,omitempty"`
 	// Id of the storage pool the Drive is assigned to
 	StoragePoolId *float32 `json:"storagePoolId,omitempty"`
@@ -169,38 +168,6 @@ func (o *DriveConfiguration) GetGroupIdOk() (*float32, bool) {
 // SetGroupId sets field value
 func (o *DriveConfiguration) SetGroupId(v float32) {
 	o.GroupId = v
-}
-
-// GetContainerId returns the ContainerId field value if set, zero value otherwise.
-func (o *DriveConfiguration) GetContainerId() float32 {
-	if o == nil || IsNil(o.ContainerId) {
-		var ret float32
-		return ret
-	}
-	return *o.ContainerId
-}
-
-// GetContainerIdOk returns a tuple with the ContainerId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DriveConfiguration) GetContainerIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.ContainerId) {
-		return nil, false
-	}
-	return o.ContainerId, true
-}
-
-// HasContainerId returns a boolean if a field has been set.
-func (o *DriveConfiguration) HasContainerId() bool {
-	if o != nil && !IsNil(o.ContainerId) {
-		return true
-	}
-
-	return false
-}
-
-// SetContainerId gets a reference to the given float32 and assigns it to the ContainerId field.
-func (o *DriveConfiguration) SetContainerId(v float32) {
-	o.ContainerId = &v
 }
 
 // GetInstanceId returns the InstanceId field value if set, zero value otherwise.
@@ -752,9 +719,6 @@ func (o DriveConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize["revision"] = o.Revision
 	toSerialize["label"] = o.Label
 	toSerialize["groupId"] = o.GroupId
-	if !IsNil(o.ContainerId) {
-		toSerialize["containerId"] = o.ContainerId
-	}
 	if !IsNil(o.InstanceId) {
 		toSerialize["instanceId"] = o.InstanceId
 	}
@@ -852,7 +816,6 @@ func (o *DriveConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "groupId")
-		delete(additionalProperties, "containerId")
 		delete(additionalProperties, "instanceId")
 		delete(additionalProperties, "storagePoolId")
 		delete(additionalProperties, "sizeMb")

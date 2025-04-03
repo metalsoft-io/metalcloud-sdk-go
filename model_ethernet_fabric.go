@@ -22,7 +22,7 @@ var _ MappedNullable = &EthernetFabric{}
 // EthernetFabric struct for EthernetFabric
 type EthernetFabric struct {
 	// The type of network fabric
-	FabricType string `json:"fabricType"`
+	FabricType FabricType `json:"fabricType"`
 	// Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile.
 	DefaultNetworkProfileId *int32 `json:"defaultNetworkProfileId,omitempty"`
 	// Enables gNMI monitoring for telemetry data collection using the gNMI protocol.
@@ -66,7 +66,7 @@ type _EthernetFabric EthernetFabric
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEthernetFabric(fabricType string) *EthernetFabric {
+func NewEthernetFabric(fabricType FabricType) *EthernetFabric {
 	this := EthernetFabric{}
 	this.FabricType = fabricType
 	return &this
@@ -81,9 +81,9 @@ func NewEthernetFabricWithDefaults() *EthernetFabric {
 }
 
 // GetFabricType returns the FabricType field value
-func (o *EthernetFabric) GetFabricType() string {
+func (o *EthernetFabric) GetFabricType() FabricType {
 	if o == nil {
-		var ret string
+		var ret FabricType
 		return ret
 	}
 
@@ -92,7 +92,7 @@ func (o *EthernetFabric) GetFabricType() string {
 
 // GetFabricTypeOk returns a tuple with the FabricType field value
 // and a boolean to check if the value has been set.
-func (o *EthernetFabric) GetFabricTypeOk() (*string, bool) {
+func (o *EthernetFabric) GetFabricTypeOk() (*FabricType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *EthernetFabric) GetFabricTypeOk() (*string, bool) {
 }
 
 // SetFabricType sets field value
-func (o *EthernetFabric) SetFabricType(v string) {
+func (o *EthernetFabric) SetFabricType(v FabricType) {
 	o.FabricType = v
 }
 

@@ -21,9 +21,9 @@ type FirmwareVendorType string
 
 // List of FirmwareVendorType
 const (
-	DELL FirmwareVendorType = "dell"
-	LENOVO FirmwareVendorType = "lenovo"
-	HP FirmwareVendorType = "hp"
+	FIRMWAREVENDORTYPE_DELL FirmwareVendorType = "dell"
+	FIRMWAREVENDORTYPE_LENOVO FirmwareVendorType = "lenovo"
+	FIRMWAREVENDORTYPE_HP FirmwareVendorType = "hp"
 )
 
 // All allowed values of FirmwareVendorType enum

@@ -79,7 +79,6 @@ docs/AuthenticationRequestPropertiesLdap.md
 docs/AuthenticationRequestPropertiesMySql.md
 docs/AuthenticationRequestPropertiesSaml.md
 docs/AuthenticationUserProvider.md
-docs/BaseFabricDto.md
 docs/BaselineFilter.md
 docs/BaselineLevelType.md
 docs/BatchServerFirmwareUpgrade.md
@@ -183,6 +182,9 @@ docs/ExtensionTaskAnsible.md
 docs/ExtensionTaskOptions.md
 docs/ExtensionTaskWebhook.md
 docs/ExtensionVariable.md
+docs/FabricStatus.md
+docs/FabricTopologyType.md
+docs/FabricType.md
 docs/FibreChannelFabric.md
 docs/FileShare.md
 docs/FileShareAPI.md
@@ -551,7 +553,6 @@ model_authentication_request_properties_ldap.go
 model_authentication_request_properties_my_sql.go
 model_authentication_request_properties_saml.go
 model_authentication_user_provider.go
-model_base_fabric_dto.go
 model_baseline_filter.go
 model_baseline_level_type.go
 model_batch_server_firmware_upgrade.go
@@ -647,6 +648,9 @@ model_extension_task_ansible.go
 model_extension_task_options.go
 model_extension_task_webhook.go
 model_extension_variable.go
+model_fabric_status.go
+model_fabric_topology_type.go
+model_fabric_type.go
 model_fibre_channel_fabric.go
 model_file_share.go
 model_file_share_configuration.go

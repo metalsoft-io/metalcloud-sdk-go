@@ -21,10 +21,10 @@ type FirmwareBinaryUpdateSeverity string
 
 // List of FirmwareBinaryUpdateSeverity
 const (
-	CRITICAL FirmwareBinaryUpdateSeverity = "critical"
-	RECOMMENDED FirmwareBinaryUpdateSeverity = "recommended"
-	OPTIONAL FirmwareBinaryUpdateSeverity = "optional"
-	UNKNOWN FirmwareBinaryUpdateSeverity = "unknown"
+	FIRMWAREBINARYUPDATESEVERITY_CRITICAL FirmwareBinaryUpdateSeverity = "critical"
+	FIRMWAREBINARYUPDATESEVERITY_RECOMMENDED FirmwareBinaryUpdateSeverity = "recommended"
+	FIRMWAREBINARYUPDATESEVERITY_OPTIONAL FirmwareBinaryUpdateSeverity = "optional"
+	FIRMWAREBINARYUPDATESEVERITY_UNKNOWN FirmwareBinaryUpdateSeverity = "unknown"
 )
 
 // All allowed values of FirmwareBinaryUpdateSeverity enum

@@ -40,7 +40,7 @@ type NetworkFabric struct {
 	// The network fabric ID.
 	Id string `json:"id"`
 	// The status of the network fabric, by default it is in draft mode.
-	Status *string `json:"status,omitempty"`
+	Status *FabricStatus `json:"status,omitempty"`
 	// The network equipments in the fabric
 	NetworkEquipment []NetworkDevice `json:"networkEquipment,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -312,9 +312,9 @@ func (o *NetworkFabric) SetId(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *NetworkFabric) GetStatus() string {
+func (o *NetworkFabric) GetStatus() FabricStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret FabricStatus
 		return ret
 	}
 	return *o.Status
@@ -322,7 +322,7 @@ func (o *NetworkFabric) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkFabric) GetStatusOk() (*string, bool) {
+func (o *NetworkFabric) GetStatusOk() (*FabricStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -338,8 +338,8 @@ func (o *NetworkFabric) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *NetworkFabric) SetStatus(v string) {
+// SetStatus gets a reference to the given FabricStatus and assigns it to the Status field.
+func (o *NetworkFabric) SetStatus(v FabricStatus) {
 	o.Status = &v
 }
 

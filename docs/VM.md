@@ -27,8 +27,6 @@ Name | Type | Description | Notes
 **CreatedTimestamp** | **string** | Timestamp when the VM was created | 
 **AllocationTimestamp** | **string** | Timestamp when the VM was allocated | 
 **Tags** | Pointer to **[]string** | Tags for the VM. This is a JSON object. | [optional] 
-**VncPort** | Pointer to **float32** | The port number for the VNC server. | [optional] 
-**VncPassword** | **string** | The password for the VNC server. | 
 **Disks** | [**[]VMDisk**](VMDisk.md) | The disks of the VM. | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -36,7 +34,7 @@ Name | Type | Description | Notes
 
 ### NewVM
 
-`func NewVM(id float32, name string, siteId float32, datacenterName string, infrastructureId float32, userId float32, userEmail string, instanceId float32, vmInstanceId float32, host string, hosts []string, cpuCores float32, ramGB float32, diskSizeGB float32, typeId float32, poolId float32, administrationState string, powerState string, powerStateLastUpdatedTimestamp string, createdTimestamp string, allocationTimestamp string, vncPassword string, disks []VMDisk, ) *VM`
+`func NewVM(id float32, name string, siteId float32, datacenterName string, infrastructureId float32, userId float32, userEmail string, instanceId float32, vmInstanceId float32, host string, hosts []string, cpuCores float32, ramGB float32, diskSizeGB float32, typeId float32, poolId float32, administrationState string, powerState string, powerStateLastUpdatedTimestamp string, createdTimestamp string, allocationTimestamp string, disks []VMDisk, ) *VM`
 
 NewVM instantiates a new VM object
 This constructor will assign default values to properties that have it defined,
@@ -520,51 +518,6 @@ SetTags sets Tags field to given value.
 `func (o *VM) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
-
-### GetVncPort
-
-`func (o *VM) GetVncPort() float32`
-
-GetVncPort returns the VncPort field if non-nil, zero value otherwise.
-
-### GetVncPortOk
-
-`func (o *VM) GetVncPortOk() (*float32, bool)`
-
-GetVncPortOk returns a tuple with the VncPort field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVncPort
-
-`func (o *VM) SetVncPort(v float32)`
-
-SetVncPort sets VncPort field to given value.
-
-### HasVncPort
-
-`func (o *VM) HasVncPort() bool`
-
-HasVncPort returns a boolean if a field has been set.
-
-### GetVncPassword
-
-`func (o *VM) GetVncPassword() string`
-
-GetVncPassword returns the VncPassword field if non-nil, zero value otherwise.
-
-### GetVncPasswordOk
-
-`func (o *VM) GetVncPasswordOk() (*string, bool)`
-
-GetVncPasswordOk returns a tuple with the VncPassword field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVncPassword
-
-`func (o *VM) SetVncPassword(v string)`
-
-SetVncPassword sets VncPassword field to given value.
-
 
 ### GetDisks
 

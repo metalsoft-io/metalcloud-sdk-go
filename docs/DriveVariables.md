@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the Drive. | 
 **GroupId** | **float32** | Drive Array Id | 
-**ContainerId** | Pointer to **float32** |  | [optional] 
 **InstanceId** | Pointer to **float32** |  | [optional] 
 **StoragePoolId** | Pointer to **float32** | Id of the storage pool the Drive is assigned to | [optional] 
 **SizeMb** | **float32** | Disk size in MB for Drive | 
@@ -29,7 +28,7 @@ Name | Type | Description | Notes
 **StorageRealSizeWithSnapshotsCachedMb** | Pointer to **float32** | Cached information of the real size of the storage (including snapshots) in MB. | [optional] 
 **StorageVirtualSizeCachedMb** | Pointer to **float32** | Cached information of the virtual size of the storage in MB. | [optional] 
 **StorageUpdatedTimestamp** | **string** | Timestamp of the latest update of cached information for the Drive. | 
-**Targets** | Pointer to **map[string]interface{}** | Targets of the Drive. | [optional] 
+**Targets** | Pointer to **[]map[string]interface{}** | Targets of the Drive. | [optional] 
 **ClusterCustomInfo** | Pointer to **map[string]interface{}** | Custom information of the Drive. | [optional] 
 **SshKeyPairInternalEncrypted** | Pointer to **map[string]interface{}** | Pair of SSH Keys to use on the Drive. | [optional] 
 **Wwn** | Pointer to **string** |  | [optional] 
@@ -99,31 +98,6 @@ and a boolean to check if the value has been set.
 
 SetGroupId sets GroupId field to given value.
 
-
-### GetContainerId
-
-`func (o *DriveVariables) GetContainerId() float32`
-
-GetContainerId returns the ContainerId field if non-nil, zero value otherwise.
-
-### GetContainerIdOk
-
-`func (o *DriveVariables) GetContainerIdOk() (*float32, bool)`
-
-GetContainerIdOk returns a tuple with the ContainerId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContainerId
-
-`func (o *DriveVariables) SetContainerId(v float32)`
-
-SetContainerId sets ContainerId field to given value.
-
-### HasContainerId
-
-`func (o *DriveVariables) HasContainerId() bool`
-
-HasContainerId returns a boolean if a field has been set.
 
 ### GetInstanceId
 
@@ -637,20 +611,20 @@ SetStorageUpdatedTimestamp sets StorageUpdatedTimestamp field to given value.
 
 ### GetTargets
 
-`func (o *DriveVariables) GetTargets() map[string]interface{}`
+`func (o *DriveVariables) GetTargets() []map[string]interface{}`
 
 GetTargets returns the Targets field if non-nil, zero value otherwise.
 
 ### GetTargetsOk
 
-`func (o *DriveVariables) GetTargetsOk() (*map[string]interface{}, bool)`
+`func (o *DriveVariables) GetTargetsOk() (*[]map[string]interface{}, bool)`
 
 GetTargetsOk returns a tuple with the Targets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTargets
 
-`func (o *DriveVariables) SetTargets(v map[string]interface{})`
+`func (o *DriveVariables) SetTargets(v []map[string]interface{})`
 
 SetTargets sets Targets field to given value.
 

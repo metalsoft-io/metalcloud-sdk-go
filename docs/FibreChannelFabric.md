@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FabricType** | **string** | The type of network fabric | 
+**FabricType** | [**FabricType**](FabricType.md) | The type of network fabric | 
 **DefaultNetworkProfileId** | Pointer to **int32** | Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile. | [optional] 
 **GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
 **ZeroTouchEnabled** | Pointer to **bool** | Enables zero-touch provisioning for automatic device configuration. | [optional] 
 **VsanId** | Pointer to **int32** | VSAN ID for the Fibre Channel fabric | [optional] 
-**TopologyType** | **string** | Fabric topology type | 
+**TopologyType** | [**FabricTopologyType**](FabricTopologyType.md) | Fabric topology type | 
 **Mtu** | Pointer to **float32** | Maximum transmission unit (MTU) size in bytes | [optional] 
 **ZoningConfiguration** | Pointer to **map[string]interface{}** | Zoning configuration for the fabric | [optional] 
 **InteropMode** | Pointer to **string** | Interoperability mode for multi-vendor environments | [optional] 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewFibreChannelFabric
 
-`func NewFibreChannelFabric(fabricType string, topologyType string, ) *FibreChannelFabric`
+`func NewFibreChannelFabric(fabricType FabricType, topologyType FabricTopologyType, ) *FibreChannelFabric`
 
 NewFibreChannelFabric instantiates a new FibreChannelFabric object
 This constructor will assign default values to properties that have it defined,
@@ -39,20 +39,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetFabricType
 
-`func (o *FibreChannelFabric) GetFabricType() string`
+`func (o *FibreChannelFabric) GetFabricType() FabricType`
 
 GetFabricType returns the FabricType field if non-nil, zero value otherwise.
 
 ### GetFabricTypeOk
 
-`func (o *FibreChannelFabric) GetFabricTypeOk() (*string, bool)`
+`func (o *FibreChannelFabric) GetFabricTypeOk() (*FabricType, bool)`
 
 GetFabricTypeOk returns a tuple with the FabricType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFabricType
 
-`func (o *FibreChannelFabric) SetFabricType(v string)`
+`func (o *FibreChannelFabric) SetFabricType(v FabricType)`
 
 SetFabricType sets FabricType field to given value.
 
@@ -184,20 +184,20 @@ HasVsanId returns a boolean if a field has been set.
 
 ### GetTopologyType
 
-`func (o *FibreChannelFabric) GetTopologyType() string`
+`func (o *FibreChannelFabric) GetTopologyType() FabricTopologyType`
 
 GetTopologyType returns the TopologyType field if non-nil, zero value otherwise.
 
 ### GetTopologyTypeOk
 
-`func (o *FibreChannelFabric) GetTopologyTypeOk() (*string, bool)`
+`func (o *FibreChannelFabric) GetTopologyTypeOk() (*FabricTopologyType, bool)`
 
 GetTopologyTypeOk returns a tuple with the TopologyType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTopologyType
 
-`func (o *FibreChannelFabric) SetTopologyType(v string)`
+`func (o *FibreChannelFabric) SetTopologyType(v FabricTopologyType)`
 
 SetTopologyType sets TopologyType field to given value.
 

@@ -34,11 +34,7 @@ Name | Type | Description | Notes
 **PortGroupPhysicalPorts** | Pointer to **map[string]interface{}** | Port group physical ports | [optional] 
 **DefaultIoLimitPolicy** | Pointer to **string** | Default IO limit policy | [optional] 
 **SubnetType** | **string** | Subnet type | 
-**ArrayId** | Pointer to **string** | Array id | [optional] 
-**DirectorId** | Pointer to **string** | Director id | [optional] 
-**S3Hostname** | Pointer to **string** | S3 hostname | [optional] 
-**S3Port** | Pointer to **string** | S3 port | [optional] 
-**JobInfo** | Pointer to [**JobInfo**](JobInfo.md) |  | [optional] 
+**JobStatistics** | Pointer to [**JobGroupStatistics**](JobGroupStatistics.md) |  | [optional] 
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the storage. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -756,130 +752,30 @@ and a boolean to check if the value has been set.
 SetSubnetType sets SubnetType field to given value.
 
 
-### GetArrayId
+### GetJobStatistics
 
-`func (o *Storage) GetArrayId() string`
+`func (o *Storage) GetJobStatistics() JobGroupStatistics`
 
-GetArrayId returns the ArrayId field if non-nil, zero value otherwise.
+GetJobStatistics returns the JobStatistics field if non-nil, zero value otherwise.
 
-### GetArrayIdOk
+### GetJobStatisticsOk
 
-`func (o *Storage) GetArrayIdOk() (*string, bool)`
+`func (o *Storage) GetJobStatisticsOk() (*JobGroupStatistics, bool)`
 
-GetArrayIdOk returns a tuple with the ArrayId field if it's non-nil, zero value otherwise
+GetJobStatisticsOk returns a tuple with the JobStatistics field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetArrayId
+### SetJobStatistics
 
-`func (o *Storage) SetArrayId(v string)`
+`func (o *Storage) SetJobStatistics(v JobGroupStatistics)`
 
-SetArrayId sets ArrayId field to given value.
+SetJobStatistics sets JobStatistics field to given value.
 
-### HasArrayId
+### HasJobStatistics
 
-`func (o *Storage) HasArrayId() bool`
+`func (o *Storage) HasJobStatistics() bool`
 
-HasArrayId returns a boolean if a field has been set.
-
-### GetDirectorId
-
-`func (o *Storage) GetDirectorId() string`
-
-GetDirectorId returns the DirectorId field if non-nil, zero value otherwise.
-
-### GetDirectorIdOk
-
-`func (o *Storage) GetDirectorIdOk() (*string, bool)`
-
-GetDirectorIdOk returns a tuple with the DirectorId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDirectorId
-
-`func (o *Storage) SetDirectorId(v string)`
-
-SetDirectorId sets DirectorId field to given value.
-
-### HasDirectorId
-
-`func (o *Storage) HasDirectorId() bool`
-
-HasDirectorId returns a boolean if a field has been set.
-
-### GetS3Hostname
-
-`func (o *Storage) GetS3Hostname() string`
-
-GetS3Hostname returns the S3Hostname field if non-nil, zero value otherwise.
-
-### GetS3HostnameOk
-
-`func (o *Storage) GetS3HostnameOk() (*string, bool)`
-
-GetS3HostnameOk returns a tuple with the S3Hostname field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetS3Hostname
-
-`func (o *Storage) SetS3Hostname(v string)`
-
-SetS3Hostname sets S3Hostname field to given value.
-
-### HasS3Hostname
-
-`func (o *Storage) HasS3Hostname() bool`
-
-HasS3Hostname returns a boolean if a field has been set.
-
-### GetS3Port
-
-`func (o *Storage) GetS3Port() string`
-
-GetS3Port returns the S3Port field if non-nil, zero value otherwise.
-
-### GetS3PortOk
-
-`func (o *Storage) GetS3PortOk() (*string, bool)`
-
-GetS3PortOk returns a tuple with the S3Port field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetS3Port
-
-`func (o *Storage) SetS3Port(v string)`
-
-SetS3Port sets S3Port field to given value.
-
-### HasS3Port
-
-`func (o *Storage) HasS3Port() bool`
-
-HasS3Port returns a boolean if a field has been set.
-
-### GetJobInfo
-
-`func (o *Storage) GetJobInfo() JobInfo`
-
-GetJobInfo returns the JobInfo field if non-nil, zero value otherwise.
-
-### GetJobInfoOk
-
-`func (o *Storage) GetJobInfoOk() (*JobInfo, bool)`
-
-GetJobInfoOk returns a tuple with the JobInfo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetJobInfo
-
-`func (o *Storage) SetJobInfo(v JobInfo)`
-
-SetJobInfo sets JobInfo field to given value.
-
-### HasJobInfo
-
-`func (o *Storage) HasJobInfo() bool`
-
-HasJobInfo returns a boolean if a field has been set.
+HasJobStatistics returns a boolean if a field has been set.
 
 ### GetExtensionInfo
 

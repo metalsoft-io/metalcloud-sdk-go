@@ -23,8 +23,6 @@ var _ MappedNullable = &CreateUserSSHKeyDto{}
 type CreateUserSSHKeyDto struct {
 	// The SSH key of the user
 	SshKey string `json:"sshKey"`
-	// Whether the SSH key needs to be validated or not
-	ValidateKey *bool `json:"validateKey,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,8 +35,6 @@ type _CreateUserSSHKeyDto CreateUserSSHKeyDto
 func NewCreateUserSSHKeyDto(sshKey string) *CreateUserSSHKeyDto {
 	this := CreateUserSSHKeyDto{}
 	this.SshKey = sshKey
-	var validateKey bool = false
-	this.ValidateKey = &validateKey
 	return &this
 }
 
@@ -47,8 +43,6 @@ func NewCreateUserSSHKeyDto(sshKey string) *CreateUserSSHKeyDto {
 // but it doesn't guarantee that properties required by API are set
 func NewCreateUserSSHKeyDtoWithDefaults() *CreateUserSSHKeyDto {
 	this := CreateUserSSHKeyDto{}
-	var validateKey bool = false
-	this.ValidateKey = &validateKey
 	return &this
 }
 
@@ -76,38 +70,6 @@ func (o *CreateUserSSHKeyDto) SetSshKey(v string) {
 	o.SshKey = v
 }
 
-// GetValidateKey returns the ValidateKey field value if set, zero value otherwise.
-func (o *CreateUserSSHKeyDto) GetValidateKey() bool {
-	if o == nil || IsNil(o.ValidateKey) {
-		var ret bool
-		return ret
-	}
-	return *o.ValidateKey
-}
-
-// GetValidateKeyOk returns a tuple with the ValidateKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateUserSSHKeyDto) GetValidateKeyOk() (*bool, bool) {
-	if o == nil || IsNil(o.ValidateKey) {
-		return nil, false
-	}
-	return o.ValidateKey, true
-}
-
-// HasValidateKey returns a boolean if a field has been set.
-func (o *CreateUserSSHKeyDto) HasValidateKey() bool {
-	if o != nil && !IsNil(o.ValidateKey) {
-		return true
-	}
-
-	return false
-}
-
-// SetValidateKey gets a reference to the given bool and assigns it to the ValidateKey field.
-func (o *CreateUserSSHKeyDto) SetValidateKey(v bool) {
-	o.ValidateKey = &v
-}
-
 func (o CreateUserSSHKeyDto) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -119,9 +81,6 @@ func (o CreateUserSSHKeyDto) MarshalJSON() ([]byte, error) {
 func (o CreateUserSSHKeyDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["sshKey"] = o.SshKey
-	if !IsNil(o.ValidateKey) {
-		toSerialize["validateKey"] = o.ValidateKey
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -166,7 +125,6 @@ func (o *CreateUserSSHKeyDto) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "sshKey")
-		delete(additionalProperties, "validateKey")
 		o.AdditionalProperties = additionalProperties
 	}
 

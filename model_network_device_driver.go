@@ -21,17 +21,17 @@ type NetworkDeviceDriver string
 
 // List of NetworkDeviceDriver
 const (
-	CISCO_ACI51 NetworkDeviceDriver = "cisco_aci51"
-	NEXUS9000 NetworkDeviceDriver = "nexus9000"
-	CUMULUS42 NetworkDeviceDriver = "cumulus42"
-	DELL_S4048 NetworkDeviceDriver = "dell_s4048"
-	HP5800 NetworkDeviceDriver = "hp5800"
-	HP5900 NetworkDeviceDriver = "hp5900"
-	HP5950 NetworkDeviceDriver = "hp5950"
-	DUMMY NetworkDeviceDriver = "dummy"
-	JUNOS NetworkDeviceDriver = "junos"
-	OS_10 NetworkDeviceDriver = "os_10"
-	SONIC_ENTERPRISE NetworkDeviceDriver = "sonic_enterprise"
+	NETWORKDEVICEDRIVER_CISCO_ACI51 NetworkDeviceDriver = "cisco_aci51"
+	NETWORKDEVICEDRIVER_NEXUS9000 NetworkDeviceDriver = "nexus9000"
+	NETWORKDEVICEDRIVER_CUMULUS42 NetworkDeviceDriver = "cumulus42"
+	NETWORKDEVICEDRIVER_DELL_S4048 NetworkDeviceDriver = "dell_s4048"
+	NETWORKDEVICEDRIVER_HP5800 NetworkDeviceDriver = "hp5800"
+	NETWORKDEVICEDRIVER_HP5900 NetworkDeviceDriver = "hp5900"
+	NETWORKDEVICEDRIVER_HP5950 NetworkDeviceDriver = "hp5950"
+	NETWORKDEVICEDRIVER_DUMMY NetworkDeviceDriver = "dummy"
+	NETWORKDEVICEDRIVER_JUNOS NetworkDeviceDriver = "junos"
+	NETWORKDEVICEDRIVER_OS_10 NetworkDeviceDriver = "os_10"
+	NETWORKDEVICEDRIVER_SONIC_ENTERPRISE NetworkDeviceDriver = "sonic_enterprise"
 )
 
 // All allowed values of NetworkDeviceDriver enum

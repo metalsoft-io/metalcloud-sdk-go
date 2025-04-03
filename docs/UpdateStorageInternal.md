@@ -18,10 +18,6 @@ Name | Type | Description | Notes
 **PortGroupAllocationOrder** | Pointer to **map[string]interface{}** | Port group allocation order | [optional] 
 **PortGroupPhysicalPorts** | Pointer to **map[string]interface{}** | Port group physical ports | [optional] 
 **DefaultIoLimitPolicy** | Pointer to **string** | Default IO limit policy | [optional] 
-**ArrayId** | Pointer to **string** | Array id | [optional] 
-**DirectorId** | Pointer to **string** | Director id | [optional] 
-**S3Hostname** | Pointer to **string** | S3 hostname | [optional] 
-**S3Port** | Pointer to **string** | S3 port | [optional] 
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the storage. | [optional] 
 **Username** | Pointer to **string** | Username | [optional] 
 **Password** | Pointer to **string** | The password to use. | [optional] 
@@ -395,106 +391,6 @@ SetDefaultIoLimitPolicy sets DefaultIoLimitPolicy field to given value.
 `func (o *UpdateStorageInternal) HasDefaultIoLimitPolicy() bool`
 
 HasDefaultIoLimitPolicy returns a boolean if a field has been set.
-
-### GetArrayId
-
-`func (o *UpdateStorageInternal) GetArrayId() string`
-
-GetArrayId returns the ArrayId field if non-nil, zero value otherwise.
-
-### GetArrayIdOk
-
-`func (o *UpdateStorageInternal) GetArrayIdOk() (*string, bool)`
-
-GetArrayIdOk returns a tuple with the ArrayId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetArrayId
-
-`func (o *UpdateStorageInternal) SetArrayId(v string)`
-
-SetArrayId sets ArrayId field to given value.
-
-### HasArrayId
-
-`func (o *UpdateStorageInternal) HasArrayId() bool`
-
-HasArrayId returns a boolean if a field has been set.
-
-### GetDirectorId
-
-`func (o *UpdateStorageInternal) GetDirectorId() string`
-
-GetDirectorId returns the DirectorId field if non-nil, zero value otherwise.
-
-### GetDirectorIdOk
-
-`func (o *UpdateStorageInternal) GetDirectorIdOk() (*string, bool)`
-
-GetDirectorIdOk returns a tuple with the DirectorId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDirectorId
-
-`func (o *UpdateStorageInternal) SetDirectorId(v string)`
-
-SetDirectorId sets DirectorId field to given value.
-
-### HasDirectorId
-
-`func (o *UpdateStorageInternal) HasDirectorId() bool`
-
-HasDirectorId returns a boolean if a field has been set.
-
-### GetS3Hostname
-
-`func (o *UpdateStorageInternal) GetS3Hostname() string`
-
-GetS3Hostname returns the S3Hostname field if non-nil, zero value otherwise.
-
-### GetS3HostnameOk
-
-`func (o *UpdateStorageInternal) GetS3HostnameOk() (*string, bool)`
-
-GetS3HostnameOk returns a tuple with the S3Hostname field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetS3Hostname
-
-`func (o *UpdateStorageInternal) SetS3Hostname(v string)`
-
-SetS3Hostname sets S3Hostname field to given value.
-
-### HasS3Hostname
-
-`func (o *UpdateStorageInternal) HasS3Hostname() bool`
-
-HasS3Hostname returns a boolean if a field has been set.
-
-### GetS3Port
-
-`func (o *UpdateStorageInternal) GetS3Port() string`
-
-GetS3Port returns the S3Port field if non-nil, zero value otherwise.
-
-### GetS3PortOk
-
-`func (o *UpdateStorageInternal) GetS3PortOk() (*string, bool)`
-
-GetS3PortOk returns a tuple with the S3Port field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetS3Port
-
-`func (o *UpdateStorageInternal) SetS3Port(v string)`
-
-SetS3Port sets S3Port field to given value.
-
-### HasS3Port
-
-`func (o *UpdateStorageInternal) HasS3Port() bool`
-
-HasS3Port returns a boolean if a field has been set.
 
 ### GetExtensionInfo
 

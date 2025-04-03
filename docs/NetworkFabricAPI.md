@@ -175,7 +175,7 @@ import (
 )
 
 func main() {
-	createNetworkFabric := *openapiclient.NewCreateNetworkFabric("My Network Fabric", openapiclient.NetworkFabric_fabricConfiguration{EthernetFabric: openapiclient.NewEthernetFabric("ethernet")}) // CreateNetworkFabric | The network fabric create object
+	createNetworkFabric := *openapiclient.NewCreateNetworkFabric("My Network Fabric", openapiclient.NetworkFabric_fabricConfiguration{EthernetFabric: openapiclient.NewEthernetFabric(openapiclient.FabricType("ethernet"))}) // CreateNetworkFabric | The network fabric create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -625,7 +625,7 @@ import (
 
 func main() {
 	networkFabricId := int32(56) // int32 | The ID of the network fabric to update
-	updateNetworkFabric := *openapiclient.NewUpdateNetworkFabric(openapiclient.NetworkFabric_fabricConfiguration{EthernetFabric: openapiclient.NewEthernetFabric("ethernet")}) // UpdateNetworkFabric | Network fabric updates
+	updateNetworkFabric := *openapiclient.NewUpdateNetworkFabric(openapiclient.NetworkFabric_fabricConfiguration{EthernetFabric: openapiclient.NewEthernetFabric(openapiclient.FabricType("ethernet"))}) // UpdateNetworkFabric | Network fabric updates
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()

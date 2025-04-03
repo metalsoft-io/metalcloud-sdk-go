@@ -81,15 +81,7 @@ type Storage struct {
 	DefaultIoLimitPolicy *string `json:"defaultIoLimitPolicy,omitempty"`
 	// Subnet type
 	SubnetType string `json:"subnetType"`
-	// Array id
-	ArrayId *string `json:"arrayId,omitempty"`
-	// Director id
-	DirectorId *string `json:"directorId,omitempty"`
-	// S3 hostname
-	S3Hostname *string `json:"s3Hostname,omitempty"`
-	// S3 port
-	S3Port *string `json:"s3Port,omitempty"`
-	JobInfo *JobInfo `json:"jobInfo,omitempty"`
+	JobStatistics *JobGroupStatistics `json:"jobStatistics,omitempty"`
 	// The extension execution info of the storage.
 	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
 	// Reference links
@@ -999,164 +991,36 @@ func (o *Storage) SetSubnetType(v string) {
 	o.SubnetType = v
 }
 
-// GetArrayId returns the ArrayId field value if set, zero value otherwise.
-func (o *Storage) GetArrayId() string {
-	if o == nil || IsNil(o.ArrayId) {
-		var ret string
+// GetJobStatistics returns the JobStatistics field value if set, zero value otherwise.
+func (o *Storage) GetJobStatistics() JobGroupStatistics {
+	if o == nil || IsNil(o.JobStatistics) {
+		var ret JobGroupStatistics
 		return ret
 	}
-	return *o.ArrayId
+	return *o.JobStatistics
 }
 
-// GetArrayIdOk returns a tuple with the ArrayId field value if set, nil otherwise
+// GetJobStatisticsOk returns a tuple with the JobStatistics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Storage) GetArrayIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ArrayId) {
+func (o *Storage) GetJobStatisticsOk() (*JobGroupStatistics, bool) {
+	if o == nil || IsNil(o.JobStatistics) {
 		return nil, false
 	}
-	return o.ArrayId, true
+	return o.JobStatistics, true
 }
 
-// HasArrayId returns a boolean if a field has been set.
-func (o *Storage) HasArrayId() bool {
-	if o != nil && !IsNil(o.ArrayId) {
+// HasJobStatistics returns a boolean if a field has been set.
+func (o *Storage) HasJobStatistics() bool {
+	if o != nil && !IsNil(o.JobStatistics) {
 		return true
 	}
 
 	return false
 }
 
-// SetArrayId gets a reference to the given string and assigns it to the ArrayId field.
-func (o *Storage) SetArrayId(v string) {
-	o.ArrayId = &v
-}
-
-// GetDirectorId returns the DirectorId field value if set, zero value otherwise.
-func (o *Storage) GetDirectorId() string {
-	if o == nil || IsNil(o.DirectorId) {
-		var ret string
-		return ret
-	}
-	return *o.DirectorId
-}
-
-// GetDirectorIdOk returns a tuple with the DirectorId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Storage) GetDirectorIdOk() (*string, bool) {
-	if o == nil || IsNil(o.DirectorId) {
-		return nil, false
-	}
-	return o.DirectorId, true
-}
-
-// HasDirectorId returns a boolean if a field has been set.
-func (o *Storage) HasDirectorId() bool {
-	if o != nil && !IsNil(o.DirectorId) {
-		return true
-	}
-
-	return false
-}
-
-// SetDirectorId gets a reference to the given string and assigns it to the DirectorId field.
-func (o *Storage) SetDirectorId(v string) {
-	o.DirectorId = &v
-}
-
-// GetS3Hostname returns the S3Hostname field value if set, zero value otherwise.
-func (o *Storage) GetS3Hostname() string {
-	if o == nil || IsNil(o.S3Hostname) {
-		var ret string
-		return ret
-	}
-	return *o.S3Hostname
-}
-
-// GetS3HostnameOk returns a tuple with the S3Hostname field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Storage) GetS3HostnameOk() (*string, bool) {
-	if o == nil || IsNil(o.S3Hostname) {
-		return nil, false
-	}
-	return o.S3Hostname, true
-}
-
-// HasS3Hostname returns a boolean if a field has been set.
-func (o *Storage) HasS3Hostname() bool {
-	if o != nil && !IsNil(o.S3Hostname) {
-		return true
-	}
-
-	return false
-}
-
-// SetS3Hostname gets a reference to the given string and assigns it to the S3Hostname field.
-func (o *Storage) SetS3Hostname(v string) {
-	o.S3Hostname = &v
-}
-
-// GetS3Port returns the S3Port field value if set, zero value otherwise.
-func (o *Storage) GetS3Port() string {
-	if o == nil || IsNil(o.S3Port) {
-		var ret string
-		return ret
-	}
-	return *o.S3Port
-}
-
-// GetS3PortOk returns a tuple with the S3Port field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Storage) GetS3PortOk() (*string, bool) {
-	if o == nil || IsNil(o.S3Port) {
-		return nil, false
-	}
-	return o.S3Port, true
-}
-
-// HasS3Port returns a boolean if a field has been set.
-func (o *Storage) HasS3Port() bool {
-	if o != nil && !IsNil(o.S3Port) {
-		return true
-	}
-
-	return false
-}
-
-// SetS3Port gets a reference to the given string and assigns it to the S3Port field.
-func (o *Storage) SetS3Port(v string) {
-	o.S3Port = &v
-}
-
-// GetJobInfo returns the JobInfo field value if set, zero value otherwise.
-func (o *Storage) GetJobInfo() JobInfo {
-	if o == nil || IsNil(o.JobInfo) {
-		var ret JobInfo
-		return ret
-	}
-	return *o.JobInfo
-}
-
-// GetJobInfoOk returns a tuple with the JobInfo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Storage) GetJobInfoOk() (*JobInfo, bool) {
-	if o == nil || IsNil(o.JobInfo) {
-		return nil, false
-	}
-	return o.JobInfo, true
-}
-
-// HasJobInfo returns a boolean if a field has been set.
-func (o *Storage) HasJobInfo() bool {
-	if o != nil && !IsNil(o.JobInfo) {
-		return true
-	}
-
-	return false
-}
-
-// SetJobInfo gets a reference to the given JobInfo and assigns it to the JobInfo field.
-func (o *Storage) SetJobInfo(v JobInfo) {
-	o.JobInfo = &v
+// SetJobStatistics gets a reference to the given JobGroupStatistics and assigns it to the JobStatistics field.
+func (o *Storage) SetJobStatistics(v JobGroupStatistics) {
+	o.JobStatistics = &v
 }
 
 // GetExtensionInfo returns the ExtensionInfo field value if set, zero value otherwise.
@@ -1301,20 +1165,8 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 		toSerialize["defaultIoLimitPolicy"] = o.DefaultIoLimitPolicy
 	}
 	toSerialize["subnetType"] = o.SubnetType
-	if !IsNil(o.ArrayId) {
-		toSerialize["arrayId"] = o.ArrayId
-	}
-	if !IsNil(o.DirectorId) {
-		toSerialize["directorId"] = o.DirectorId
-	}
-	if !IsNil(o.S3Hostname) {
-		toSerialize["s3Hostname"] = o.S3Hostname
-	}
-	if !IsNil(o.S3Port) {
-		toSerialize["s3Port"] = o.S3Port
-	}
-	if !IsNil(o.JobInfo) {
-		toSerialize["jobInfo"] = o.JobInfo
+	if !IsNil(o.JobStatistics) {
+		toSerialize["jobStatistics"] = o.JobStatistics
 	}
 	if !IsNil(o.ExtensionInfo) {
 		toSerialize["extensionInfo"] = o.ExtensionInfo
@@ -1405,11 +1257,7 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "portGroupPhysicalPorts")
 		delete(additionalProperties, "defaultIoLimitPolicy")
 		delete(additionalProperties, "subnetType")
-		delete(additionalProperties, "arrayId")
-		delete(additionalProperties, "directorId")
-		delete(additionalProperties, "s3Hostname")
-		delete(additionalProperties, "s3Port")
-		delete(additionalProperties, "jobInfo")
+		delete(additionalProperties, "jobStatistics")
 		delete(additionalProperties, "extensionInfo")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

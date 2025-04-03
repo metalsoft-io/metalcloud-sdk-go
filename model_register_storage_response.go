@@ -23,6 +23,7 @@ var _ MappedNullable = &RegisterStorageResponse{}
 type RegisterStorageResponse struct {
 	// Id of the Storage
 	StorageId float32 `json:"storageId"`
+	// Job info
 	JobInfo *JobInfo `json:"jobInfo,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

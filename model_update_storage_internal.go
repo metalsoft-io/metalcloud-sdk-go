@@ -48,14 +48,6 @@ type UpdateStorageInternal struct {
 	PortGroupPhysicalPorts map[string]interface{} `json:"portGroupPhysicalPorts,omitempty"`
 	// Default IO limit policy
 	DefaultIoLimitPolicy *string `json:"defaultIoLimitPolicy,omitempty"`
-	// Array id
-	ArrayId *string `json:"arrayId,omitempty"`
-	// Director id
-	DirectorId *string `json:"directorId,omitempty"`
-	// S3 hostname
-	S3Hostname *string `json:"s3Hostname,omitempty"`
-	// S3 port
-	S3Port *string `json:"s3Port,omitempty"`
 	// The extension execution info of the storage.
 	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
 	// Username
@@ -534,134 +526,6 @@ func (o *UpdateStorageInternal) SetDefaultIoLimitPolicy(v string) {
 	o.DefaultIoLimitPolicy = &v
 }
 
-// GetArrayId returns the ArrayId field value if set, zero value otherwise.
-func (o *UpdateStorageInternal) GetArrayId() string {
-	if o == nil || IsNil(o.ArrayId) {
-		var ret string
-		return ret
-	}
-	return *o.ArrayId
-}
-
-// GetArrayIdOk returns a tuple with the ArrayId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateStorageInternal) GetArrayIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ArrayId) {
-		return nil, false
-	}
-	return o.ArrayId, true
-}
-
-// HasArrayId returns a boolean if a field has been set.
-func (o *UpdateStorageInternal) HasArrayId() bool {
-	if o != nil && !IsNil(o.ArrayId) {
-		return true
-	}
-
-	return false
-}
-
-// SetArrayId gets a reference to the given string and assigns it to the ArrayId field.
-func (o *UpdateStorageInternal) SetArrayId(v string) {
-	o.ArrayId = &v
-}
-
-// GetDirectorId returns the DirectorId field value if set, zero value otherwise.
-func (o *UpdateStorageInternal) GetDirectorId() string {
-	if o == nil || IsNil(o.DirectorId) {
-		var ret string
-		return ret
-	}
-	return *o.DirectorId
-}
-
-// GetDirectorIdOk returns a tuple with the DirectorId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateStorageInternal) GetDirectorIdOk() (*string, bool) {
-	if o == nil || IsNil(o.DirectorId) {
-		return nil, false
-	}
-	return o.DirectorId, true
-}
-
-// HasDirectorId returns a boolean if a field has been set.
-func (o *UpdateStorageInternal) HasDirectorId() bool {
-	if o != nil && !IsNil(o.DirectorId) {
-		return true
-	}
-
-	return false
-}
-
-// SetDirectorId gets a reference to the given string and assigns it to the DirectorId field.
-func (o *UpdateStorageInternal) SetDirectorId(v string) {
-	o.DirectorId = &v
-}
-
-// GetS3Hostname returns the S3Hostname field value if set, zero value otherwise.
-func (o *UpdateStorageInternal) GetS3Hostname() string {
-	if o == nil || IsNil(o.S3Hostname) {
-		var ret string
-		return ret
-	}
-	return *o.S3Hostname
-}
-
-// GetS3HostnameOk returns a tuple with the S3Hostname field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateStorageInternal) GetS3HostnameOk() (*string, bool) {
-	if o == nil || IsNil(o.S3Hostname) {
-		return nil, false
-	}
-	return o.S3Hostname, true
-}
-
-// HasS3Hostname returns a boolean if a field has been set.
-func (o *UpdateStorageInternal) HasS3Hostname() bool {
-	if o != nil && !IsNil(o.S3Hostname) {
-		return true
-	}
-
-	return false
-}
-
-// SetS3Hostname gets a reference to the given string and assigns it to the S3Hostname field.
-func (o *UpdateStorageInternal) SetS3Hostname(v string) {
-	o.S3Hostname = &v
-}
-
-// GetS3Port returns the S3Port field value if set, zero value otherwise.
-func (o *UpdateStorageInternal) GetS3Port() string {
-	if o == nil || IsNil(o.S3Port) {
-		var ret string
-		return ret
-	}
-	return *o.S3Port
-}
-
-// GetS3PortOk returns a tuple with the S3Port field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateStorageInternal) GetS3PortOk() (*string, bool) {
-	if o == nil || IsNil(o.S3Port) {
-		return nil, false
-	}
-	return o.S3Port, true
-}
-
-// HasS3Port returns a boolean if a field has been set.
-func (o *UpdateStorageInternal) HasS3Port() bool {
-	if o != nil && !IsNil(o.S3Port) {
-		return true
-	}
-
-	return false
-}
-
-// SetS3Port gets a reference to the given string and assigns it to the S3Port field.
-func (o *UpdateStorageInternal) SetS3Port(v string) {
-	o.S3Port = &v
-}
-
 // GetExtensionInfo returns the ExtensionInfo field value if set, zero value otherwise.
 func (o *UpdateStorageInternal) GetExtensionInfo() ExtensionExecutionInfo {
 	if o == nil || IsNil(o.ExtensionInfo) {
@@ -842,18 +706,6 @@ func (o UpdateStorageInternal) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DefaultIoLimitPolicy) {
 		toSerialize["defaultIoLimitPolicy"] = o.DefaultIoLimitPolicy
 	}
-	if !IsNil(o.ArrayId) {
-		toSerialize["arrayId"] = o.ArrayId
-	}
-	if !IsNil(o.DirectorId) {
-		toSerialize["directorId"] = o.DirectorId
-	}
-	if !IsNil(o.S3Hostname) {
-		toSerialize["s3Hostname"] = o.S3Hostname
-	}
-	if !IsNil(o.S3Port) {
-		toSerialize["s3Port"] = o.S3Port
-	}
 	if !IsNil(o.ExtensionInfo) {
 		toSerialize["extensionInfo"] = o.ExtensionInfo
 	}
@@ -902,10 +754,6 @@ func (o *UpdateStorageInternal) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "portGroupAllocationOrder")
 		delete(additionalProperties, "portGroupPhysicalPorts")
 		delete(additionalProperties, "defaultIoLimitPolicy")
-		delete(additionalProperties, "arrayId")
-		delete(additionalProperties, "directorId")
-		delete(additionalProperties, "s3Hostname")
-		delete(additionalProperties, "s3Port")
 		delete(additionalProperties, "extensionInfo")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")

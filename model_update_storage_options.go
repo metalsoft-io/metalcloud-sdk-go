@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UpdateStorageOptions type satisfies the MappedNullable interface at compile time
@@ -26,7 +25,7 @@ type UpdateStorageOptions struct {
 	// Enable advanced deduplication
 	EnableAdvancedDeduplication *float32 `json:"enableAdvancedDeduplication,omitempty"`
 	// Volume name
-	VolumeName string `json:"volumeName"`
+	VolumeName *string `json:"volumeName,omitempty"`
 	// Array id to use (for certain storage drivers)
 	ArrayId *string `json:"arrayId,omitempty"`
 	// Director id to use (for certain storage drivers)
@@ -46,9 +45,8 @@ type _UpdateStorageOptions UpdateStorageOptions
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateStorageOptions(volumeName string) *UpdateStorageOptions {
+func NewUpdateStorageOptions() *UpdateStorageOptions {
 	this := UpdateStorageOptions{}
-	this.VolumeName = volumeName
 	return &this
 }
 
@@ -124,28 +122,36 @@ func (o *UpdateStorageOptions) SetEnableAdvancedDeduplication(v float32) {
 	o.EnableAdvancedDeduplication = &v
 }
 
-// GetVolumeName returns the VolumeName field value
+// GetVolumeName returns the VolumeName field value if set, zero value otherwise.
 func (o *UpdateStorageOptions) GetVolumeName() string {
-	if o == nil {
+	if o == nil || IsNil(o.VolumeName) {
 		var ret string
 		return ret
 	}
-
-	return o.VolumeName
+	return *o.VolumeName
 }
 
-// GetVolumeNameOk returns a tuple with the VolumeName field value
+// GetVolumeNameOk returns a tuple with the VolumeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateStorageOptions) GetVolumeNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.VolumeName) {
 		return nil, false
 	}
-	return &o.VolumeName, true
+	return o.VolumeName, true
 }
 
-// SetVolumeName sets field value
+// HasVolumeName returns a boolean if a field has been set.
+func (o *UpdateStorageOptions) HasVolumeName() bool {
+	if o != nil && !IsNil(o.VolumeName) {
+		return true
+	}
+
+	return false
+}
+
+// SetVolumeName gets a reference to the given string and assigns it to the VolumeName field.
 func (o *UpdateStorageOptions) SetVolumeName(v string) {
-	o.VolumeName = v
+	o.VolumeName = &v
 }
 
 // GetArrayId returns the ArrayId field value if set, zero value otherwise.
@@ -324,7 +330,9 @@ func (o UpdateStorageOptions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.EnableAdvancedDeduplication) {
 		toSerialize["enableAdvancedDeduplication"] = o.EnableAdvancedDeduplication
 	}
-	toSerialize["volumeName"] = o.VolumeName
+	if !IsNil(o.VolumeName) {
+		toSerialize["volumeName"] = o.VolumeName
+	}
 	if !IsNil(o.ArrayId) {
 		toSerialize["arrayId"] = o.ArrayId
 	}
@@ -349,27 +357,6 @@ func (o UpdateStorageOptions) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *UpdateStorageOptions) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"volumeName",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varUpdateStorageOptions := _UpdateStorageOptions{}
 
 	err = json.Unmarshal(data, &varUpdateStorageOptions)

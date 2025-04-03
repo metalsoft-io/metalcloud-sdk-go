@@ -25,7 +25,6 @@ type Drive struct {
 	Label string `json:"label"`
 	// Drive Array Id
 	GroupId float32 `json:"groupId"`
-	ContainerId *float32 `json:"containerId,omitempty"`
 	InstanceId *float32 `json:"instanceId,omitempty"`
 	// Id of the storage pool the Drive is assigned to
 	StoragePoolId *float32 `json:"storagePoolId,omitempty"`
@@ -70,7 +69,7 @@ type Drive struct {
 	// Timestamp of the latest update of cached information for the Drive.
 	StorageUpdatedTimestamp string `json:"storageUpdatedTimestamp"`
 	// Targets of the Drive.
-	Targets map[string]interface{} `json:"targets,omitempty"`
+	Targets []map[string]interface{} `json:"targets,omitempty"`
 	// Custom information of the Drive.
 	ClusterCustomInfo map[string]interface{} `json:"clusterCustomInfo,omitempty"`
 	// Pair of SSH Keys to use on the Drive.
@@ -176,38 +175,6 @@ func (o *Drive) GetGroupIdOk() (*float32, bool) {
 // SetGroupId sets field value
 func (o *Drive) SetGroupId(v float32) {
 	o.GroupId = v
-}
-
-// GetContainerId returns the ContainerId field value if set, zero value otherwise.
-func (o *Drive) GetContainerId() float32 {
-	if o == nil || IsNil(o.ContainerId) {
-		var ret float32
-		return ret
-	}
-	return *o.ContainerId
-}
-
-// GetContainerIdOk returns a tuple with the ContainerId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Drive) GetContainerIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.ContainerId) {
-		return nil, false
-	}
-	return o.ContainerId, true
-}
-
-// HasContainerId returns a boolean if a field has been set.
-func (o *Drive) HasContainerId() bool {
-	if o != nil && !IsNil(o.ContainerId) {
-		return true
-	}
-
-	return false
-}
-
-// SetContainerId gets a reference to the given float32 and assigns it to the ContainerId field.
-func (o *Drive) SetContainerId(v float32) {
-	o.ContainerId = &v
 }
 
 // GetInstanceId returns the InstanceId field value if set, zero value otherwise.
@@ -851,9 +818,9 @@ func (o *Drive) SetStorageUpdatedTimestamp(v string) {
 }
 
 // GetTargets returns the Targets field value if set, zero value otherwise.
-func (o *Drive) GetTargets() map[string]interface{} {
+func (o *Drive) GetTargets() []map[string]interface{} {
 	if o == nil || IsNil(o.Targets) {
-		var ret map[string]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.Targets
@@ -861,9 +828,9 @@ func (o *Drive) GetTargets() map[string]interface{} {
 
 // GetTargetsOk returns a tuple with the Targets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetTargetsOk() (map[string]interface{}, bool) {
+func (o *Drive) GetTargetsOk() ([]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Targets) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Targets, true
 }
@@ -877,8 +844,8 @@ func (o *Drive) HasTargets() bool {
 	return false
 }
 
-// SetTargets gets a reference to the given map[string]interface{} and assigns it to the Targets field.
-func (o *Drive) SetTargets(v map[string]interface{}) {
+// SetTargets gets a reference to the given []map[string]interface{} and assigns it to the Targets field.
+func (o *Drive) SetTargets(v []map[string]interface{}) {
 	o.Targets = v
 }
 
@@ -1214,9 +1181,6 @@ func (o Drive) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["label"] = o.Label
 	toSerialize["groupId"] = o.GroupId
-	if !IsNil(o.ContainerId) {
-		toSerialize["containerId"] = o.ContainerId
-	}
 	if !IsNil(o.InstanceId) {
 		toSerialize["instanceId"] = o.InstanceId
 	}
@@ -1353,7 +1317,6 @@ func (o *Drive) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "groupId")
-		delete(additionalProperties, "containerId")
 		delete(additionalProperties, "instanceId")
 		delete(additionalProperties, "storagePoolId")
 		delete(additionalProperties, "sizeMb")

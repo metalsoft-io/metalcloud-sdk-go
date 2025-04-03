@@ -29,10 +29,6 @@ Name | Type | Description | Notes
 **PortGroupPhysicalPorts** | Pointer to **map[string]interface{}** | Port group physical ports | [optional] 
 **DefaultIoLimitPolicy** | Pointer to **string** | Default IO limit policy | [optional] 
 **SubnetType** | **string** | Subnet type | 
-**ArrayId** | Pointer to **string** | Array id | [optional] 
-**DirectorId** | Pointer to **string** | Director id | [optional] 
-**S3Hostname** | Pointer to **string** | S3 hostname | [optional] 
-**S3Port** | Pointer to **string** | S3 port | [optional] 
 **Options** | Pointer to [**UpdateStorageOptions**](UpdateStorageOptions.md) | Options for the storage | [optional] 
 **Password** | **string** | The password to use. | 
 
@@ -639,106 +635,6 @@ and a boolean to check if the value has been set.
 
 SetSubnetType sets SubnetType field to given value.
 
-
-### GetArrayId
-
-`func (o *CreateStorage) GetArrayId() string`
-
-GetArrayId returns the ArrayId field if non-nil, zero value otherwise.
-
-### GetArrayIdOk
-
-`func (o *CreateStorage) GetArrayIdOk() (*string, bool)`
-
-GetArrayIdOk returns a tuple with the ArrayId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetArrayId
-
-`func (o *CreateStorage) SetArrayId(v string)`
-
-SetArrayId sets ArrayId field to given value.
-
-### HasArrayId
-
-`func (o *CreateStorage) HasArrayId() bool`
-
-HasArrayId returns a boolean if a field has been set.
-
-### GetDirectorId
-
-`func (o *CreateStorage) GetDirectorId() string`
-
-GetDirectorId returns the DirectorId field if non-nil, zero value otherwise.
-
-### GetDirectorIdOk
-
-`func (o *CreateStorage) GetDirectorIdOk() (*string, bool)`
-
-GetDirectorIdOk returns a tuple with the DirectorId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDirectorId
-
-`func (o *CreateStorage) SetDirectorId(v string)`
-
-SetDirectorId sets DirectorId field to given value.
-
-### HasDirectorId
-
-`func (o *CreateStorage) HasDirectorId() bool`
-
-HasDirectorId returns a boolean if a field has been set.
-
-### GetS3Hostname
-
-`func (o *CreateStorage) GetS3Hostname() string`
-
-GetS3Hostname returns the S3Hostname field if non-nil, zero value otherwise.
-
-### GetS3HostnameOk
-
-`func (o *CreateStorage) GetS3HostnameOk() (*string, bool)`
-
-GetS3HostnameOk returns a tuple with the S3Hostname field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetS3Hostname
-
-`func (o *CreateStorage) SetS3Hostname(v string)`
-
-SetS3Hostname sets S3Hostname field to given value.
-
-### HasS3Hostname
-
-`func (o *CreateStorage) HasS3Hostname() bool`
-
-HasS3Hostname returns a boolean if a field has been set.
-
-### GetS3Port
-
-`func (o *CreateStorage) GetS3Port() string`
-
-GetS3Port returns the S3Port field if non-nil, zero value otherwise.
-
-### GetS3PortOk
-
-`func (o *CreateStorage) GetS3PortOk() (*string, bool)`
-
-GetS3PortOk returns a tuple with the S3Port field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetS3Port
-
-`func (o *CreateStorage) SetS3Port(v string)`
-
-SetS3Port sets S3Port field to given value.
-
-### HasS3Port
-
-`func (o *CreateStorage) HasS3Port() bool`
-
-HasS3Port returns a boolean if a field has been set.
 
 ### GetOptions
 

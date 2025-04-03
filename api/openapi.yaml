@@ -31902,6 +31902,10 @@ components:
       - jobGroupId
       - jobId
       type: object
+    DriveTargetInfo:
+      example: {}
+      properties: {}
+      type: object
     DriveConfiguration:
       example:
         sshPort: 5.962133916683182
@@ -31924,7 +31928,6 @@ components:
         infrastructureDeployId: 2.3021358869347655
         operatingSystemInfo: "{}"
         storagePoolId: 6.027456183070403
-        containerId: 1
         deployStatus: not_started
       properties:
         revision:
@@ -31935,9 +31938,6 @@ components:
           type: string
         groupId:
           description: Drive Array Id
-          example: 1
-          type: number
-        containerId:
           example: 1
           type: number
         instanceId:
@@ -32035,7 +32035,9 @@ components:
         sizeMb: 6.027456183070403
         templateId: 1
         updatedTimestamp: updatedTimestamp
-        targets: "{}"
+        targets:
+        - {}
+        - {}
         sshKeyPairInternalEncrypted: "{}"
         storageVirtualSizeCachedMb: 3.616076749251911
         wwn: wwn
@@ -32050,7 +32052,6 @@ components:
         operatingSystemInfo: "{}"
         storagePoolId: 0.8008281904610115
         id: 5.962133916683182
-        containerId: 1
         storageRealSizeCachedMb: 7.061401241503109
         sshPort: 1.4658129805029452
         provisioningProtocol: iSCSI
@@ -32073,9 +32074,6 @@ components:
           type: string
         groupId:
           description: Drive Array Id
-          example: 1
-          type: number
-        containerId:
           example: 1
           type: number
         instanceId:
@@ -32160,7 +32158,9 @@ components:
           type: string
         targets:
           description: Targets of the Drive.
-          type: object
+          items:
+            $ref: '#/components/schemas/DriveTargetInfo'
+          type: array
         clusterCustomInfo:
           description: Custom information of the Drive.
           type: object
@@ -32222,7 +32222,9 @@ components:
           sizeMb: 6.027456183070403
           templateId: 1
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           sshKeyPairInternalEncrypted: "{}"
           storageVirtualSizeCachedMb: 3.616076749251911
           wwn: wwn
@@ -32237,7 +32239,6 @@ components:
           operatingSystemInfo: "{}"
           storagePoolId: 0.8008281904610115
           id: 5.962133916683182
-          containerId: 1
           storageRealSizeCachedMb: 7.061401241503109
           sshPort: 1.4658129805029452
           provisioningProtocol: iSCSI
@@ -32259,7 +32260,9 @@ components:
           sizeMb: 6.027456183070403
           templateId: 1
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           sshKeyPairInternalEncrypted: "{}"
           storageVirtualSizeCachedMb: 3.616076749251911
           wwn: wwn
@@ -32274,7 +32277,6 @@ components:
           operatingSystemInfo: "{}"
           storagePoolId: 0.8008281904610115
           id: 5.962133916683182
-          containerId: 1
           storageRealSizeCachedMb: 7.061401241503109
           sshPort: 1.4658129805029452
           provisioningProtocol: iSCSI
@@ -44046,7 +44048,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-02T07:32:17.518Z
+        createdTimestamp: 2025-04-03T14:08:40.419Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -44055,7 +44057,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-02T07:32:17.519Z
+        updatedTimestamp: 2025-04-03T14:08:40.419Z
         revision: "1"
       properties:
         siteId:
@@ -44072,12 +44074,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-02T07:32:17.518Z
+          example: 2025-04-03T14:08:40.419Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-02T07:32:17.519Z
+          example: 2025-04-03T14:08:40.419Z
           format: date-time
           type: string
         links:
@@ -44099,7 +44101,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-02T07:32:17.518Z
+        - createdTimestamp: 2025-04-03T14:08:40.419Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -44108,9 +44110,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-02T07:32:17.519Z
+          updatedTimestamp: 2025-04-03T14:08:40.419Z
           revision: "1"
-        - createdTimestamp: 2025-04-02T07:32:17.518Z
+        - createdTimestamp: 2025-04-03T14:08:40.419Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -44119,7 +44121,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-02T07:32:17.519Z
+          updatedTimestamp: 2025-04-03T14:08:40.419Z
           revision: "1"
         meta: ""
         links: ""
@@ -44378,38 +44380,11 @@ components:
               implementationType: link-aggregation
           nullable: true
       type: object
-    BaseFabricDto:
-      properties:
-        fabricType:
-          description: The type of network fabric
-          enum:
-          - ethernet
-          - fibre_channel
-          example: ethernet
-          type: string
-        defaultNetworkProfileId:
-          description: "Unique identifier for the default network profile. Must be\
-            \ a positive integer (minimum: 1) corresponding to an existing profile."
-          example: 101
-          minimum: 1
-          type: integer
-        gnmiMonitoringEnabled:
-          description: Enables gNMI monitoring for telemetry data collection using
-            the gNMI protocol.
-          example: false
-          type: boolean
-        syslogMonitoringEnabled:
-          description: Enables syslog monitoring for capturing system logs for diagnostics
-            and troubleshooting.
-          example: true
-          type: boolean
-        zeroTouchEnabled:
-          description: Enables zero-touch provisioning for automatic device configuration.
-          example: false
-          type: boolean
-      required:
-      - fabricType
-      type: object
+    FabricType:
+      enum:
+      - ethernet
+      - fibre_channel
+      type: string
     EthernetFabric:
       example:
         vrfVlanRanges:
@@ -44444,11 +44419,10 @@ components:
         defaultNetworkProfileId: 101
       properties:
         fabricType:
+          allOf:
+          - $ref: '#/components/schemas/FabricType'
           description: The type of network fabric
-          enum:
-          - ethernet
           example: ethernet
-          type: string
         defaultNetworkProfileId:
           description: "Unique identifier for the default network profile. Must be\
             \ a positive integer (minimum: 1) corresponding to an existing profile."
@@ -44566,14 +44540,19 @@ components:
       required:
       - fabricType
       type: object
+    FabricTopologyType:
+      enum:
+      - director
+      - core-edge
+      - mesh
+      type: string
     FibreChannelFabric:
       properties:
         fabricType:
+          allOf:
+          - $ref: '#/components/schemas/FabricType'
           description: The type of network fabric
-          enum:
-          - fibre_channel
-          example: fibre_channel
-          type: string
+          example: ethernet
         defaultNetworkProfileId:
           description: "Unique identifier for the default network profile. Must be\
             \ a positive integer (minimum: 1) corresponding to an existing profile."
@@ -44601,13 +44580,10 @@ components:
           minimum: 1
           type: integer
         topologyType:
+          allOf:
+          - $ref: '#/components/schemas/FabricTopologyType'
           description: Fabric topology type
-          enum:
-          - director
-          - core-edge
-          - mesh
           example: core-edge
-          type: string
         mtu:
           description: Maximum transmission unit (MTU) size in bytes
           example: 2112
@@ -44643,6 +44619,11 @@ components:
       - fabricType
       - topologyType
       type: object
+    FabricStatus:
+      enum:
+      - draft
+      - active
+      type: string
     NetworkFabric:
       example:
         networkEquipment:
@@ -44752,7 +44733,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-02T07:32:17.527Z
+        createdTimestamp: 2025-04-03T14:08:40.431Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -44793,7 +44774,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-02T07:32:17.527Z
+        updatedTimestamp: 2025-04-03T14:08:40.431Z
         revision: "1"
         status: draft
       properties:
@@ -44821,12 +44802,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-02T07:32:17.527Z
+          example: 2025-04-03T14:08:40.431Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-02T07:32:17.527Z
+          example: 2025-04-03T14:08:40.431Z
           format: date-time
           type: string
         links:
@@ -44839,13 +44820,11 @@ components:
           example: "1"
           type: string
         status:
+          allOf:
+          - $ref: '#/components/schemas/FabricStatus'
           description: "The status of the network fabric, by default it is in draft\
             \ mode."
-          enum:
-          - draft
-          - active
           example: draft
-          type: string
         networkEquipment:
           description: The network equipments in the fabric
           items:
@@ -44969,7 +44948,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-02T07:32:17.527Z
+          createdTimestamp: 2025-04-03T14:08:40.431Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -45010,7 +44989,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-02T07:32:17.527Z
+          updatedTimestamp: 2025-04-03T14:08:40.431Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -45120,7 +45099,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-02T07:32:17.527Z
+          createdTimestamp: 2025-04-03T14:08:40.431Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -45161,7 +45140,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-02T07:32:17.527Z
+          updatedTimestamp: 2025-04-03T14:08:40.431Z
           revision: "1"
           status: draft
         meta: ""
@@ -47789,7 +47768,9 @@ components:
           sizeMb: 6.027456183070403
           templateId: 1
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           sshKeyPairInternalEncrypted: "{}"
           storageVirtualSizeCachedMb: 3.616076749251911
           wwn: wwn
@@ -47804,7 +47785,6 @@ components:
           operatingSystemInfo: "{}"
           storagePoolId: 0.8008281904610115
           id: 5.962133916683182
-          containerId: 1
           storageRealSizeCachedMb: 7.061401241503109
           sshPort: 1.4658129805029452
           provisioningProtocol: iSCSI
@@ -47826,7 +47806,9 @@ components:
           sizeMb: 6.027456183070403
           templateId: 1
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           sshKeyPairInternalEncrypted: "{}"
           storageVirtualSizeCachedMb: 3.616076749251911
           wwn: wwn
@@ -47841,7 +47823,6 @@ components:
           operatingSystemInfo: "{}"
           storagePoolId: 0.8008281904610115
           id: 5.962133916683182
-          containerId: 1
           storageRealSizeCachedMb: 7.061401241503109
           sshPort: 1.4658129805029452
           provisioningProtocol: iSCSI
@@ -49207,7 +49188,9 @@ components:
         sizeMb: 6.027456183070403
         templateId: 1
         updatedTimestamp: updatedTimestamp
-        targets: "{}"
+        targets:
+        - {}
+        - {}
         sshKeyPairInternalEncrypted: "{}"
         storageVirtualSizeCachedMb: 3.616076749251911
         wwn: wwn
@@ -49222,7 +49205,6 @@ components:
         operatingSystemInfo: "{}"
         storagePoolId: 0.8008281904610115
         id: 5.962133916683182
-        containerId: 1
         storageRealSizeCachedMb: 7.061401241503109
         sshPort: 1.4658129805029452
         provisioningProtocol: iSCSI
@@ -49244,9 +49226,6 @@ components:
           type: string
         groupId:
           description: Drive Array Id
-          example: 1
-          type: number
-        containerId:
           example: 1
           type: number
         instanceId:
@@ -49331,7 +49310,9 @@ components:
           type: string
         targets:
           description: Targets of the Drive.
-          type: object
+          items:
+            $ref: '#/components/schemas/DriveTargetInfo'
+          type: array
         clusterCustomInfo:
           description: Custom information of the Drive.
           type: object
@@ -49638,7 +49619,9 @@ components:
       example:
         sizeMb: 6.965117697638846
         updatedTimestamp: updatedTimestamp
-        targets: "{}"
+        targets:
+        - {}
+        - {}
         storageVirtualSizeCachedMb: 6.704019297950036
         wwn: wwn
         storageImageName: storageImageName
@@ -49725,7 +49708,9 @@ components:
           type: string
         targets:
           description: Targets of the Shared Drive.
-          type: object
+          items:
+            $ref: '#/components/schemas/DriveTargetInfo'
+          type: array
         wwn:
           type: string
         allocationAffinity:
@@ -49809,11 +49794,14 @@ components:
           storagePoolId: 1.0246457001441578
           id: 1.4894159098541704
           config: ""
+        variables: "{}"
         serverInstanceGroup: ""
         sharedDrives:
         - sizeMb: 6.965117697638846
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           storageVirtualSizeCachedMb: 6.704019297950036
           wwn: wwn
           storageImageName: storageImageName
@@ -49839,7 +49827,9 @@ components:
           config: ""
         - sizeMb: 6.965117697638846
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           storageVirtualSizeCachedMb: 6.704019297950036
           wwn: wwn
           storageImageName: storageImageName
@@ -49870,7 +49860,9 @@ components:
           sizeMb: 6.027456183070403
           templateId: 1
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           sshKeyPairInternalEncrypted: "{}"
           storageVirtualSizeCachedMb: 3.616076749251911
           wwn: wwn
@@ -49885,7 +49877,6 @@ components:
           operatingSystemInfo: "{}"
           storagePoolId: 0.8008281904610115
           id: 5.962133916683182
-          containerId: 1
           storageRealSizeCachedMb: 7.061401241503109
           sshPort: 1.4658129805029452
           provisioningProtocol: iSCSI
@@ -49906,7 +49897,9 @@ components:
           sizeMb: 6.027456183070403
           templateId: 1
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           sshKeyPairInternalEncrypted: "{}"
           storageVirtualSizeCachedMb: 3.616076749251911
           wwn: wwn
@@ -49921,7 +49914,6 @@ components:
           operatingSystemInfo: "{}"
           storagePoolId: 0.8008281904610115
           id: 5.962133916683182
-          containerId: 1
           storageRealSizeCachedMb: 7.061401241503109
           sshPort: 1.4658129805029452
           provisioningProtocol: iSCSI
@@ -49974,6 +49966,7 @@ components:
           secretKeyEncrypted: secretKeyEncrypted
           config: ""
         siteConfig: ""
+        secrets: "{}"
       properties:
         site:
           allOf:
@@ -50019,6 +50012,12 @@ components:
           items:
             $ref: '#/components/schemas/SharedDriveVariables'
           type: array
+        variables:
+          description: Additional variables
+          type: object
+        secrets:
+          description: Secrets
+          type: object
       required:
       - buckets
       - drives
@@ -51406,7 +51405,9 @@ components:
       example:
         sizeMb: 6.027456183070403
         updatedTimestamp: updatedTimestamp
-        targets: "{}"
+        targets:
+        - {}
+        - {}
         storageVirtualSizeCachedMb: 9.301444243932576
         wwn: wwn
         storageImageName: storageImageName
@@ -51494,7 +51495,9 @@ components:
           type: string
         targets:
           description: Targets of the Shared Drive.
-          type: object
+          items:
+            $ref: '#/components/schemas/DriveTargetInfo'
+          type: array
         wwn:
           type: string
         allocationAffinity:
@@ -51553,7 +51556,9 @@ components:
         data:
         - sizeMb: 6.027456183070403
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           storageVirtualSizeCachedMb: 9.301444243932576
           wwn: wwn
           storageImageName: storageImageName
@@ -51580,7 +51585,9 @@ components:
           config: ""
         - sizeMb: 6.027456183070403
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           storageVirtualSizeCachedMb: 9.301444243932576
           wwn: wwn
           storageImageName: storageImageName
@@ -52321,19 +52328,21 @@ components:
         configureError:
           description: Error message when configuring storage
           type: string
-      required:
-      - volumeName
       type: object
     Storage:
       example:
+        jobStatistics:
+          jobsCompleted: 1
+          jobsTotal: 1
+          groupCompletedTimestamp: 2022-01-01T00:00:00Z
+          groupId: 1
+          jobsThrownError: 1
+          groupCreatedTimestamp: 2022-01-01T00:00:00Z
         datacenterName: datacenterName
         inMaintenance: 3.616076749251911
         storageTechnology: block
         managementHost: managementHost
         passwordEncrypted: passwordEncrypted
-        jobInfo:
-          jobId: 0.8008281904610115
-          jobGroupId: 6.027456183070403
         storageDriver: dummy_driver
         totalCapacity: 5.962133916683182
         targetIQN: targetIQN
@@ -52351,11 +52360,8 @@ components:
         - alternateSanIPs
         - alternateSanIPs
         portGroupAllocationOrder: "{}"
-        directorId: directorId
         extensionInfo: ""
-        s3Hostname: s3Hostname
         userId: 6.027456183070403
-        arrayId: arrayId
         freeCapacity: 2.3021358869347655
         sharedDrivePriority: 7.386281948385884
         tags:
@@ -52365,7 +52371,6 @@ components:
         virtualUsedCapacity: 7.061401241503109
         defaultIoLimitPolicy: defaultIoLimitPolicy
         isExperimental: 2.027123023002322
-        s3Port: s3Port
         name: name
         siteId: 1.4658129805029452
         storageType: iscsi_ssd
@@ -52496,20 +52501,8 @@ components:
           - ipv4
           - ipv6
           type: string
-        arrayId:
-          description: Array id
-          type: string
-        directorId:
-          description: Director id
-          type: string
-        s3Hostname:
-          description: S3 hostname
-          type: string
-        s3Port:
-          description: S3 port
-          type: string
-        jobInfo:
-          $ref: '#/components/schemas/JobInfo'
+        jobStatistics:
+          $ref: '#/components/schemas/JobGroupStatistics'
         extensionInfo:
           allOf:
           - $ref: '#/components/schemas/ExtensionExecutionInfo'
@@ -52535,14 +52528,18 @@ components:
     StoragePaginatedList:
       example:
         data:
-        - datacenterName: datacenterName
+        - jobStatistics:
+            jobsCompleted: 1
+            jobsTotal: 1
+            groupCompletedTimestamp: 2022-01-01T00:00:00Z
+            groupId: 1
+            jobsThrownError: 1
+            groupCreatedTimestamp: 2022-01-01T00:00:00Z
+          datacenterName: datacenterName
           inMaintenance: 3.616076749251911
           storageTechnology: block
           managementHost: managementHost
           passwordEncrypted: passwordEncrypted
-          jobInfo:
-            jobId: 0.8008281904610115
-            jobGroupId: 6.027456183070403
           storageDriver: dummy_driver
           totalCapacity: 5.962133916683182
           targetIQN: targetIQN
@@ -52560,11 +52557,8 @@ components:
           - alternateSanIPs
           - alternateSanIPs
           portGroupAllocationOrder: "{}"
-          directorId: directorId
           extensionInfo: ""
-          s3Hostname: s3Hostname
           userId: 6.027456183070403
-          arrayId: arrayId
           freeCapacity: 2.3021358869347655
           sharedDrivePriority: 7.386281948385884
           tags:
@@ -52574,7 +52568,6 @@ components:
           virtualUsedCapacity: 7.061401241503109
           defaultIoLimitPolicy: defaultIoLimitPolicy
           isExperimental: 2.027123023002322
-          s3Port: s3Port
           name: name
           siteId: 1.4658129805029452
           storageType: iscsi_ssd
@@ -52582,14 +52575,18 @@ components:
           status: active
           iscsiHost: iscsiHost
           username: username
-        - datacenterName: datacenterName
+        - jobStatistics:
+            jobsCompleted: 1
+            jobsTotal: 1
+            groupCompletedTimestamp: 2022-01-01T00:00:00Z
+            groupId: 1
+            jobsThrownError: 1
+            groupCreatedTimestamp: 2022-01-01T00:00:00Z
+          datacenterName: datacenterName
           inMaintenance: 3.616076749251911
           storageTechnology: block
           managementHost: managementHost
           passwordEncrypted: passwordEncrypted
-          jobInfo:
-            jobId: 0.8008281904610115
-            jobGroupId: 6.027456183070403
           storageDriver: dummy_driver
           totalCapacity: 5.962133916683182
           targetIQN: targetIQN
@@ -52607,11 +52604,8 @@ components:
           - alternateSanIPs
           - alternateSanIPs
           portGroupAllocationOrder: "{}"
-          directorId: directorId
           extensionInfo: ""
-          s3Hostname: s3Hostname
           userId: 6.027456183070403
-          arrayId: arrayId
           freeCapacity: 2.3021358869347655
           sharedDrivePriority: 7.386281948385884
           tags:
@@ -52621,7 +52615,6 @@ components:
           virtualUsedCapacity: 7.061401241503109
           defaultIoLimitPolicy: defaultIoLimitPolicy
           isExperimental: 2.027123023002322
-          s3Port: s3Port
           name: name
           siteId: 1.4658129805029452
           storageType: iscsi_ssd
@@ -52681,8 +52674,6 @@ components:
         fibreChannelEnabled:
           description: Fibre channel enabled
           type: number
-      required:
-      - volumeName
       type: object
     CreateStorage:
       example:
@@ -52701,10 +52692,7 @@ components:
         - alternateSanIPs
         - alternateSanIPs
         portGroupAllocationOrder: "{}"
-        directorId: directorId
-        s3Hostname: s3Hostname
         userId: 0.8008281904610115
-        arrayId: arrayId
         freeCapacity: 5.637376656633329
         sharedDrivePriority: 4.145608029883936
         tags:
@@ -52714,7 +52702,6 @@ components:
         virtualUsedCapacity: 2.3021358869347655
         defaultIoLimitPolicy: defaultIoLimitPolicy
         isExperimental: 3.616076749251911
-        s3Port: s3Port
         name: name
         siteId: 6.027456183070403
         storageType: iscsi_ssd
@@ -52823,18 +52810,6 @@ components:
           - ipv4
           - ipv6
           type: string
-        arrayId:
-          description: Array id
-          type: string
-        directorId:
-          description: Director id
-          type: string
-        s3Hostname:
-          description: S3 hostname
-          type: string
-        s3Port:
-          description: S3 port
-          type: string
         options:
           allOf:
           - $ref: '#/components/schemas/UpdateStorageOptions'
@@ -52855,16 +52830,16 @@ components:
       type: object
     RegisterStorageResponse:
       example:
-        jobInfo:
-          jobId: 0.8008281904610115
-          jobGroupId: 6.027456183070403
+        jobInfo: ""
         storageId: 0.8008281904610115
       properties:
         storageId:
           description: Id of the Storage
           type: number
         jobInfo:
-          $ref: '#/components/schemas/JobInfo'
+          allOf:
+          - $ref: '#/components/schemas/JobInfo'
+          description: Job info
       required:
       - storageId
       type: object
@@ -52872,11 +52847,8 @@ components:
       example:
         portGroupAllocationOrder: "{}"
         datacenterName: datacenterName
-        directorId: directorId
         extensionInfo: ""
         inMaintenance: 5.637376656633329
-        s3Hostname: s3Hostname
-        arrayId: arrayId
         freeCapacity: 1.4658129805029452
         sharedDrivePriority: 9.301444243932576
         tags:
@@ -52887,7 +52859,6 @@ components:
         defaultIoLimitPolicy: defaultIoLimitPolicy
         password: password
         isExperimental: 2.3021358869347655
-        s3Port: s3Port
         totalCapacity: 0.8008281904610115
         options: ""
         drivePriority: 7.061401241503109
@@ -52943,18 +52914,6 @@ components:
           type: object
         defaultIoLimitPolicy:
           description: Default IO limit policy
-          type: string
-        arrayId:
-          description: Array id
-          type: string
-        directorId:
-          description: Director id
-          type: string
-        s3Hostname:
-          description: S3 hostname
-          type: string
-        s3Port:
-          description: S3 port
           type: string
         extensionInfo:
           allOf:
@@ -54178,15 +54137,10 @@ components:
     CreateUserSSHKeyDto:
       example:
         sshKey: sshKey
-        validateKey: false
       properties:
         sshKey:
           description: The SSH key of the user
           type: string
-        validateKey:
-          default: false
-          description: Whether the SSH key needs to be validated or not
-          type: boolean
       required:
       - sshKey
       type: object
@@ -54260,7 +54214,6 @@ components:
           href: /api/v2/path/to/resource
         id: 1
         diskSizeGB: 2
-        vncPort: 5900
         comments: 5.637376656633329
         hosts:
         - hosts
@@ -54271,7 +54224,6 @@ components:
         - tags
         - tags
         vmInstanceId: 1
-        vncPassword: vncPassword
         infrastructureId: 6.027456183070403
         cpuCores: 2
         administrationState: managed
@@ -54368,13 +54320,6 @@ components:
           items:
             type: string
           type: array
-        vncPort:
-          description: The port number for the VNC server.
-          example: 5900
-          type: number
-        vncPassword:
-          description: The password for the VNC server.
-          type: string
         disks:
           description: The disks of the VM.
           items:
@@ -54408,7 +54353,6 @@ components:
       - userEmail
       - userId
       - vmInstanceId
-      - vncPassword
       type: object
     UpdateVM:
       example:
@@ -55049,11 +54993,14 @@ components:
           storagePoolId: 1.0246457001441578
           id: 1.4894159098541704
           config: ""
+        variables: "{}"
         serverInstanceGroup: ""
         sharedDrives:
         - sizeMb: 6.965117697638846
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           storageVirtualSizeCachedMb: 6.704019297950036
           wwn: wwn
           storageImageName: storageImageName
@@ -55079,7 +55026,9 @@ components:
           config: ""
         - sizeMb: 6.965117697638846
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           storageVirtualSizeCachedMb: 6.704019297950036
           wwn: wwn
           storageImageName: storageImageName
@@ -55110,7 +55059,9 @@ components:
           sizeMb: 6.027456183070403
           templateId: 1
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           sshKeyPairInternalEncrypted: "{}"
           storageVirtualSizeCachedMb: 3.616076749251911
           wwn: wwn
@@ -55125,7 +55076,6 @@ components:
           operatingSystemInfo: "{}"
           storagePoolId: 0.8008281904610115
           id: 5.962133916683182
-          containerId: 1
           storageRealSizeCachedMb: 7.061401241503109
           sshPort: 1.4658129805029452
           provisioningProtocol: iSCSI
@@ -55146,7 +55096,9 @@ components:
           sizeMb: 6.027456183070403
           templateId: 1
           updatedTimestamp: updatedTimestamp
-          targets: "{}"
+          targets:
+          - {}
+          - {}
           sshKeyPairInternalEncrypted: "{}"
           storageVirtualSizeCachedMb: 3.616076749251911
           wwn: wwn
@@ -55161,7 +55113,6 @@ components:
           operatingSystemInfo: "{}"
           storagePoolId: 0.8008281904610115
           id: 5.962133916683182
-          containerId: 1
           storageRealSizeCachedMb: 7.061401241503109
           sshPort: 1.4658129805029452
           provisioningProtocol: iSCSI
@@ -55214,6 +55165,7 @@ components:
           secretKeyEncrypted: secretKeyEncrypted
           config: ""
         siteConfig: ""
+        secrets: "{}"
       properties:
         site:
           allOf:
@@ -55259,6 +55211,12 @@ components:
           items:
             $ref: '#/components/schemas/SharedDriveVariables'
           type: array
+        variables:
+          description: Additional variables
+          type: object
+        secrets:
+          description: Secrets
+          type: object
       required:
       - buckets
       - drives
@@ -55849,7 +55807,6 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           diskSizeGB: 2
-          vncPort: 5900
           comments: 5.637376656633329
           hosts:
           - hosts
@@ -55860,7 +55817,6 @@ components:
           - tags
           - tags
           vmInstanceId: 1
-          vncPassword: vncPassword
           infrastructureId: 6.027456183070403
           cpuCores: 2
           administrationState: managed
@@ -55892,7 +55848,6 @@ components:
             href: /api/v2/path/to/resource
           id: 1
           diskSizeGB: 2
-          vncPort: 5900
           comments: 5.637376656633329
           hosts:
           - hosts
@@ -55903,7 +55858,6 @@ components:
           - tags
           - tags
           vmInstanceId: 1
-          vncPassword: vncPassword
           infrastructureId: 6.027456183070403
           cpuCores: 2
           administrationState: managed

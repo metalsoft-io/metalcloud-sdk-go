@@ -54,7 +54,7 @@ type SharedDrive struct {
 	// Timestamp of the latest update of cached information for the Shared Drive.
 	StorageUpdatedTimestamp string `json:"storageUpdatedTimestamp"`
 	// Targets of the Shared Drive.
-	Targets map[string]interface{} `json:"targets,omitempty"`
+	Targets []map[string]interface{} `json:"targets,omitempty"`
 	Wwn *string `json:"wwn,omitempty"`
 	// Allocation affinity of the Shared Drive
 	AllocationAffinity string `json:"allocationAffinity"`
@@ -553,9 +553,9 @@ func (o *SharedDrive) SetStorageUpdatedTimestamp(v string) {
 }
 
 // GetTargets returns the Targets field value if set, zero value otherwise.
-func (o *SharedDrive) GetTargets() map[string]interface{} {
+func (o *SharedDrive) GetTargets() []map[string]interface{} {
 	if o == nil || IsNil(o.Targets) {
-		var ret map[string]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.Targets
@@ -563,9 +563,9 @@ func (o *SharedDrive) GetTargets() map[string]interface{} {
 
 // GetTargetsOk returns a tuple with the Targets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SharedDrive) GetTargetsOk() (map[string]interface{}, bool) {
+func (o *SharedDrive) GetTargetsOk() ([]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Targets) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Targets, true
 }
@@ -579,8 +579,8 @@ func (o *SharedDrive) HasTargets() bool {
 	return false
 }
 
-// SetTargets gets a reference to the given map[string]interface{} and assigns it to the Targets field.
-func (o *SharedDrive) SetTargets(v map[string]interface{}) {
+// SetTargets gets a reference to the given []map[string]interface{} and assigns it to the Targets field.
+func (o *SharedDrive) SetTargets(v []map[string]interface{}) {
 	o.Targets = v
 }
 

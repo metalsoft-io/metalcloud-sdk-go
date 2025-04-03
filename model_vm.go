@@ -67,10 +67,6 @@ type VM struct {
 	AllocationTimestamp string `json:"allocationTimestamp"`
 	// Tags for the VM. This is a JSON object.
 	Tags []string `json:"tags,omitempty"`
-	// The port number for the VNC server.
-	VncPort *float32 `json:"vncPort,omitempty"`
-	// The password for the VNC server.
-	VncPassword string `json:"vncPassword"`
 	// The disks of the VM.
 	Disks []VMDisk `json:"disks"`
 	// Reference links
@@ -84,7 +80,7 @@ type _VM VM
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVM(id float32, name string, siteId float32, datacenterName string, infrastructureId float32, userId float32, userEmail string, instanceId float32, vmInstanceId float32, host string, hosts []string, cpuCores float32, ramGB float32, diskSizeGB float32, typeId float32, poolId float32, administrationState string, powerState string, powerStateLastUpdatedTimestamp string, createdTimestamp string, allocationTimestamp string, vncPassword string, disks []VMDisk) *VM {
+func NewVM(id float32, name string, siteId float32, datacenterName string, infrastructureId float32, userId float32, userEmail string, instanceId float32, vmInstanceId float32, host string, hosts []string, cpuCores float32, ramGB float32, diskSizeGB float32, typeId float32, poolId float32, administrationState string, powerState string, powerStateLastUpdatedTimestamp string, createdTimestamp string, allocationTimestamp string, disks []VMDisk) *VM {
 	this := VM{}
 	this.Id = id
 	this.Name = name
@@ -107,7 +103,6 @@ func NewVM(id float32, name string, siteId float32, datacenterName string, infra
 	this.PowerStateLastUpdatedTimestamp = powerStateLastUpdatedTimestamp
 	this.CreatedTimestamp = createdTimestamp
 	this.AllocationTimestamp = allocationTimestamp
-	this.VncPassword = vncPassword
 	this.Disks = disks
 	return &this
 }
@@ -688,62 +683,6 @@ func (o *VM) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetVncPort returns the VncPort field value if set, zero value otherwise.
-func (o *VM) GetVncPort() float32 {
-	if o == nil || IsNil(o.VncPort) {
-		var ret float32
-		return ret
-	}
-	return *o.VncPort
-}
-
-// GetVncPortOk returns a tuple with the VncPort field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VM) GetVncPortOk() (*float32, bool) {
-	if o == nil || IsNil(o.VncPort) {
-		return nil, false
-	}
-	return o.VncPort, true
-}
-
-// HasVncPort returns a boolean if a field has been set.
-func (o *VM) HasVncPort() bool {
-	if o != nil && !IsNil(o.VncPort) {
-		return true
-	}
-
-	return false
-}
-
-// SetVncPort gets a reference to the given float32 and assigns it to the VncPort field.
-func (o *VM) SetVncPort(v float32) {
-	o.VncPort = &v
-}
-
-// GetVncPassword returns the VncPassword field value
-func (o *VM) GetVncPassword() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.VncPassword
-}
-
-// GetVncPasswordOk returns a tuple with the VncPassword field value
-// and a boolean to check if the value has been set.
-func (o *VM) GetVncPasswordOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.VncPassword, true
-}
-
-// SetVncPassword sets field value
-func (o *VM) SetVncPassword(v string) {
-	o.VncPassword = v
-}
-
 // GetDisks returns the Disks field value
 func (o *VM) GetDisks() []VMDisk {
 	if o == nil {
@@ -837,10 +776,6 @@ func (o VM) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !IsNil(o.VncPort) {
-		toSerialize["vncPort"] = o.VncPort
-	}
-	toSerialize["vncPassword"] = o.VncPassword
 	toSerialize["disks"] = o.Disks
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -879,7 +814,6 @@ func (o *VM) UnmarshalJSON(data []byte) (err error) {
 		"powerStateLastUpdatedTimestamp",
 		"createdTimestamp",
 		"allocationTimestamp",
-		"vncPassword",
 		"disks",
 	}
 
@@ -933,8 +867,6 @@ func (o *VM) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "allocationTimestamp")
 		delete(additionalProperties, "tags")
-		delete(additionalProperties, "vncPort")
-		delete(additionalProperties, "vncPassword")
 		delete(additionalProperties, "disks")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

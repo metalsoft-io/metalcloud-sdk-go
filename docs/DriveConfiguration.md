@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **Revision** | **float32** | Revision of the Drive Configuration | 
 **Label** | **string** | Label of the Drive. | 
 **GroupId** | **float32** | Drive Array Id | 
-**ContainerId** | Pointer to **float32** |  | [optional] 
 **InstanceId** | Pointer to **float32** |  | [optional] 
 **StoragePoolId** | Pointer to **float32** | Id of the storage pool the Drive is assigned to | [optional] 
 **SizeMb** | **float32** | Disk size in MB for Drive | 
@@ -105,31 +104,6 @@ and a boolean to check if the value has been set.
 
 SetGroupId sets GroupId field to given value.
 
-
-### GetContainerId
-
-`func (o *DriveConfiguration) GetContainerId() float32`
-
-GetContainerId returns the ContainerId field if non-nil, zero value otherwise.
-
-### GetContainerIdOk
-
-`func (o *DriveConfiguration) GetContainerIdOk() (*float32, bool)`
-
-GetContainerIdOk returns a tuple with the ContainerId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContainerId
-
-`func (o *DriveConfiguration) SetContainerId(v float32)`
-
-SetContainerId sets ContainerId field to given value.
-
-### HasContainerId
-
-`func (o *DriveConfiguration) HasContainerId() bool`
-
-HasContainerId returns a boolean if a field has been set.
 
 ### GetInstanceId
 

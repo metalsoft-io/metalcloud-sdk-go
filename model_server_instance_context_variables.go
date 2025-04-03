@@ -41,6 +41,10 @@ type ServerInstanceContextVariables struct {
 	Buckets []BucketVariables `json:"buckets"`
 	// The server instance shared drives variables.
 	SharedDrives []SharedDriveVariables `json:"sharedDrives"`
+	// Additional variables
+	Variables map[string]interface{} `json:"variables,omitempty"`
+	// Secrets
+	Secrets map[string]interface{} `json:"secrets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -313,6 +317,70 @@ func (o *ServerInstanceContextVariables) SetSharedDrives(v []SharedDriveVariable
 	o.SharedDrives = v
 }
 
+// GetVariables returns the Variables field value if set, zero value otherwise.
+func (o *ServerInstanceContextVariables) GetVariables() map[string]interface{} {
+	if o == nil || IsNil(o.Variables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Variables
+}
+
+// GetVariablesOk returns a tuple with the Variables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceContextVariables) GetVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Variables) {
+		return map[string]interface{}{}, false
+	}
+	return o.Variables, true
+}
+
+// HasVariables returns a boolean if a field has been set.
+func (o *ServerInstanceContextVariables) HasVariables() bool {
+	if o != nil && !IsNil(o.Variables) {
+		return true
+	}
+
+	return false
+}
+
+// SetVariables gets a reference to the given map[string]interface{} and assigns it to the Variables field.
+func (o *ServerInstanceContextVariables) SetVariables(v map[string]interface{}) {
+	o.Variables = v
+}
+
+// GetSecrets returns the Secrets field value if set, zero value otherwise.
+func (o *ServerInstanceContextVariables) GetSecrets() map[string]interface{} {
+	if o == nil || IsNil(o.Secrets) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Secrets
+}
+
+// GetSecretsOk returns a tuple with the Secrets field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceContextVariables) GetSecretsOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Secrets) {
+		return map[string]interface{}{}, false
+	}
+	return o.Secrets, true
+}
+
+// HasSecrets returns a boolean if a field has been set.
+func (o *ServerInstanceContextVariables) HasSecrets() bool {
+	if o != nil && !IsNil(o.Secrets) {
+		return true
+	}
+
+	return false
+}
+
+// SetSecrets gets a reference to the given map[string]interface{} and assigns it to the Secrets field.
+func (o *ServerInstanceContextVariables) SetSecrets(v map[string]interface{}) {
+	o.Secrets = v
+}
+
 func (o ServerInstanceContextVariables) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -333,6 +401,12 @@ func (o ServerInstanceContextVariables) ToMap() (map[string]interface{}, error) 
 	toSerialize["fileShares"] = o.FileShares
 	toSerialize["buckets"] = o.Buckets
 	toSerialize["sharedDrives"] = o.SharedDrives
+	if !IsNil(o.Variables) {
+		toSerialize["variables"] = o.Variables
+	}
+	if !IsNil(o.Secrets) {
+		toSerialize["secrets"] = o.Secrets
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -395,6 +469,8 @@ func (o *ServerInstanceContextVariables) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "fileShares")
 		delete(additionalProperties, "buckets")
 		delete(additionalProperties, "sharedDrives")
+		delete(additionalProperties, "variables")
+		delete(additionalProperties, "secrets")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **FileShares** | [**[]FileShareVariables**](FileShareVariables.md) | The server instance file shares variables. | 
 **Buckets** | [**[]BucketVariables**](BucketVariables.md) | The server instance buckets variables. | 
 **SharedDrives** | [**[]SharedDriveVariables**](SharedDriveVariables.md) | The server instance shared drives variables. | 
+**Variables** | Pointer to **map[string]interface{}** | Additional variables | [optional] 
+**Secrets** | Pointer to **map[string]interface{}** | Secrets | [optional] 
 
 ## Methods
 
@@ -233,6 +235,56 @@ and a boolean to check if the value has been set.
 
 SetSharedDrives sets SharedDrives field to given value.
 
+
+### GetVariables
+
+`func (o *ServerInstanceContextVariables) GetVariables() map[string]interface{}`
+
+GetVariables returns the Variables field if non-nil, zero value otherwise.
+
+### GetVariablesOk
+
+`func (o *ServerInstanceContextVariables) GetVariablesOk() (*map[string]interface{}, bool)`
+
+GetVariablesOk returns a tuple with the Variables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVariables
+
+`func (o *ServerInstanceContextVariables) SetVariables(v map[string]interface{})`
+
+SetVariables sets Variables field to given value.
+
+### HasVariables
+
+`func (o *ServerInstanceContextVariables) HasVariables() bool`
+
+HasVariables returns a boolean if a field has been set.
+
+### GetSecrets
+
+`func (o *ServerInstanceContextVariables) GetSecrets() map[string]interface{}`
+
+GetSecrets returns the Secrets field if non-nil, zero value otherwise.
+
+### GetSecretsOk
+
+`func (o *ServerInstanceContextVariables) GetSecretsOk() (*map[string]interface{}, bool)`
+
+GetSecretsOk returns a tuple with the Secrets field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSecrets
+
+`func (o *ServerInstanceContextVariables) SetSecrets(v map[string]interface{})`
+
+SetSecrets sets Secrets field to given value.
+
+### HasSecrets
+
+`func (o *ServerInstanceContextVariables) HasSecrets() bool`
+
+HasSecrets returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

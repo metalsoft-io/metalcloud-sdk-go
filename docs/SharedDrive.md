@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **StorageRealSizeWithSnapshotsCachedMb** | Pointer to **float32** | Cached information of the real size of the storage (including snapshots) in MB. | [optional] 
 **StorageVirtualSizeCachedMb** | Pointer to **float32** | Cached information of the virtual size of the storage in MB. | [optional] 
 **StorageUpdatedTimestamp** | **string** | Timestamp of the latest update of cached information for the Shared Drive. | 
-**Targets** | Pointer to **map[string]interface{}** | Targets of the Shared Drive. | [optional] 
+**Targets** | Pointer to **[]map[string]interface{}** | Targets of the Shared Drive. | [optional] 
 **Wwn** | Pointer to **string** |  | [optional] 
 **AllocationAffinity** | **string** | Allocation affinity of the Shared Drive | 
 **ProvisioningProtocol** | **string** | Provisioning protocol of the Shared Drive | 
@@ -408,20 +408,20 @@ SetStorageUpdatedTimestamp sets StorageUpdatedTimestamp field to given value.
 
 ### GetTargets
 
-`func (o *SharedDrive) GetTargets() map[string]interface{}`
+`func (o *SharedDrive) GetTargets() []map[string]interface{}`
 
 GetTargets returns the Targets field if non-nil, zero value otherwise.
 
 ### GetTargetsOk
 
-`func (o *SharedDrive) GetTargetsOk() (*map[string]interface{}, bool)`
+`func (o *SharedDrive) GetTargetsOk() (*[]map[string]interface{}, bool)`
 
 GetTargetsOk returns a tuple with the Targets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTargets
 
-`func (o *SharedDrive) SetTargets(v map[string]interface{})`
+`func (o *SharedDrive) SetTargets(v []map[string]interface{})`
 
 SetTargets sets Targets field to given value.
 
