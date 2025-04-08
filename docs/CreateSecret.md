@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The secret name. | 
-**Usage** | Pointer to [**SecretUsageType**](SecretUsageType.md) | Secret usage type. | [optional] 
+**Usage** | Pointer to [**VariableUsageType**](VariableUsageType.md) | Secret usage type. | [optional] 
 **Value** | **string** | The secret value. | 
 
 ## Methods
@@ -49,20 +49,20 @@ SetName sets Name field to given value.
 
 ### GetUsage
 
-`func (o *CreateSecret) GetUsage() SecretUsageType`
+`func (o *CreateSecret) GetUsage() VariableUsageType`
 
 GetUsage returns the Usage field if non-nil, zero value otherwise.
 
 ### GetUsageOk
 
-`func (o *CreateSecret) GetUsageOk() (*SecretUsageType, bool)`
+`func (o *CreateSecret) GetUsageOk() (*VariableUsageType, bool)`
 
 GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsage
 
-`func (o *CreateSecret) SetUsage(v SecretUsageType)`
+`func (o *CreateSecret) SetUsage(v VariableUsageType)`
 
 SetUsage sets Usage field to given value.
 

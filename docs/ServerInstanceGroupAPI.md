@@ -13,6 +13,9 @@ Method | HTTP request | Description
 [**GetServerInstanceGroupDriveGroups**](ServerInstanceGroupAPI.md#GetServerInstanceGroupDriveGroups) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/drive-groups | Get Server Instance Group Drive Groups
 [**GetServerInstanceGroupInterface**](ServerInstanceGroupAPI.md#GetServerInstanceGroupInterface) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces/{interfaceId} | Get Server Instance Group Interface details
 [**GetServerInstanceGroupInterfaces**](ServerInstanceGroupAPI.md#GetServerInstanceGroupInterfaces) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces | Get Server Instance Group Interfaces
+[**GetServerInstanceGroupNetworkConfiguration**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfiguration) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration | Get server instance group network configuration
+[**GetServerInstanceGroupNetworkConfigurationLogicalNetworkById**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfigurationLogicalNetworkById) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks/{logicalNetworkId} | Get server instance group network configuration logical network by id
+[**GetServerInstanceGroupNetworkConfigurationLogicalNetworks**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfigurationLogicalNetworks) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks | Get server instance group&#39;s network configuration logical networks
 [**GetServerInstanceGroupServerInstances**](ServerInstanceGroupAPI.md#GetServerInstanceGroupServerInstances) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/server-instances | List Server Instances for a Server Instance Group
 [**UpdateServerInstanceGroupConfig**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupConfig) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Updates Server Instance Group configuration
 [**UpdateServerInstanceGroupMeta**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupMeta) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/meta | Update an Server Instance Group meta information
@@ -678,6 +681,219 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ServerInstanceGroupInterfacePaginatedList**](ServerInstanceGroupInterfacePaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServerInstanceGroupNetworkConfiguration
+
+> NetworkEndpointGroup GetServerInstanceGroupNetworkConfiguration(ctx, serverInstanceGroupId).Execute()
+
+Get server instance group network configuration
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceGroupId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfiguration(context.Background(), serverInstanceGroupId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfiguration``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerInstanceGroupNetworkConfiguration`: NetworkEndpointGroup
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfiguration`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceGroupId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerInstanceGroupNetworkConfigurationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**NetworkEndpointGroup**](NetworkEndpointGroup.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServerInstanceGroupNetworkConfigurationLogicalNetworkById
+
+> NetworkEndpointGroupLogicalNetworkDto GetServerInstanceGroupNetworkConfigurationLogicalNetworkById(ctx, serverInstanceGroupId, logicalNetworkId).Execute()
+
+Get server instance group network configuration logical network by id
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceGroupId := int32(56) // int32 | 
+	logicalNetworkId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworkById(context.Background(), serverInstanceGroupId, logicalNetworkId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworkById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerInstanceGroupNetworkConfigurationLogicalNetworkById`: NetworkEndpointGroupLogicalNetworkDto
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworkById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceGroupId** | **int32** |  | 
+**logicalNetworkId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**NetworkEndpointGroupLogicalNetworkDto**](NetworkEndpointGroupLogicalNetworkDto.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServerInstanceGroupNetworkConfigurationLogicalNetworks
+
+> NetworkEndpointGroupLogicalNetworksList GetServerInstanceGroupNetworkConfigurationLogicalNetworks(ctx, serverInstanceGroupId).Execute()
+
+Get server instance group's network configuration logical networks
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceGroupId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworks(context.Background(), serverInstanceGroupId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworks``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerInstanceGroupNetworkConfigurationLogicalNetworks`: NetworkEndpointGroupLogicalNetworksList
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworks`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceGroupId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**NetworkEndpointGroupLogicalNetworksList**](NetworkEndpointGroupLogicalNetworksList.md)
 
 ### Authorization
 

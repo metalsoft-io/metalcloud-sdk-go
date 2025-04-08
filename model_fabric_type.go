@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// FabricType the model 'FabricType'
+// FabricType The type of network fabric
 type FabricType string
 
 // List of FabricType

@@ -145,6 +145,7 @@ docs/DriveGroupConfiguration.md
 docs/DriveGroupList.md
 docs/DriveGroupMeta.md
 docs/DriveGroupPaginatedList.md
+docs/DriveGroupVariables.md
 docs/DriveList.md
 docs/DriveMeta.md
 docs/DrivePaginatedList.md
@@ -309,7 +310,6 @@ docs/ScheduleFirmwareUpgrade.md
 docs/SearchFirmwareBinary.md
 docs/Secret.md
 docs/SecretPaginatedList.md
-docs/SecretUsageType.md
 docs/SecretsAPI.md
 docs/SecurityAPI.md
 docs/Server.md
@@ -420,6 +420,7 @@ docs/StorageCredentials.md
 docs/StorageNetworkDeviceConfiguration.md
 docs/StorageOptions.md
 docs/StoragePaginatedList.md
+docs/StorageStatistics.md
 docs/Subnet.md
 docs/SubnetAPI.md
 docs/SubnetPaginatedList.md
@@ -614,6 +615,7 @@ model_drive_group_configuration.go
 model_drive_group_list.go
 model_drive_group_meta.go
 model_drive_group_paginated_list.go
+model_drive_group_variables.go
 model_drive_list.go
 model_drive_meta.go
 model_drive_paginated_list.go
@@ -758,7 +760,6 @@ model_schedule_firmware_upgrade.go
 model_search_firmware_binary.go
 model_secret.go
 model_secret_paginated_list.go
-model_secret_usage_type.go
 model_server.go
 model_server_allocation_info.go
 model_server_capabilities.go
@@ -857,6 +858,7 @@ model_storage_credentials.go
 model_storage_network_device_configuration.go
 model_storage_options.go
 model_storage_paginated_list.go
+model_storage_statistics.go
 model_subnet.go
 model_subnet_paginated_list.go
 model_switch_position.go

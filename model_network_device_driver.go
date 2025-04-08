@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// NetworkDeviceDriver the model 'NetworkDeviceDriver'
+// NetworkDeviceDriver Driver software used to communicate with the network device
 type NetworkDeviceDriver string
 
 // List of NetworkDeviceDriver

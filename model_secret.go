@@ -30,7 +30,7 @@ type Secret struct {
 	// The secret value encrypted.
 	ValueEncrypted string `json:"valueEncrypted"`
 	// Secret usage type.
-	Usage *SecretUsageType `json:"usage,omitempty"`
+	Usage *VariableUsageType `json:"usage,omitempty"`
 	// Timestamp of creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Timestamp of last update.
@@ -162,9 +162,9 @@ func (o *Secret) SetValueEncrypted(v string) {
 }
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
-func (o *Secret) GetUsage() SecretUsageType {
+func (o *Secret) GetUsage() VariableUsageType {
 	if o == nil || IsNil(o.Usage) {
-		var ret SecretUsageType
+		var ret VariableUsageType
 		return ret
 	}
 	return *o.Usage
@@ -172,7 +172,7 @@ func (o *Secret) GetUsage() SecretUsageType {
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Secret) GetUsageOk() (*SecretUsageType, bool) {
+func (o *Secret) GetUsageOk() (*VariableUsageType, bool) {
 	if o == nil || IsNil(o.Usage) {
 		return nil, false
 	}
@@ -188,8 +188,8 @@ func (o *Secret) HasUsage() bool {
 	return false
 }
 
-// SetUsage gets a reference to the given SecretUsageType and assigns it to the Usage field.
-func (o *Secret) SetUsage(v SecretUsageType) {
+// SetUsage gets a reference to the given VariableUsageType and assigns it to the Usage field.
+func (o *Secret) SetUsage(v VariableUsageType) {
 	o.Usage = &v
 }
 

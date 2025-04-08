@@ -18839,6 +18839,14 @@ paths:
         schema:
           type: integer
         style: simple
+      - description: Filter by variable usage
+        explode: true
+        in: query
+        name: usage
+        required: false
+        schema:
+          $ref: '#/components/schemas/VariableUsageType'
+        style: form
       responses:
         "200":
           content:
@@ -18858,6 +18866,116 @@ paths:
       summary: Get server instance variables
       tags:
       - Server Instance
+  /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration:
+    get:
+      description: Returns the network configuration of the specified server instance
+        group
+      operationId: getServerInstanceGroupNetworkConfiguration
+      parameters:
+      - explode: false
+        in: path
+        name: serverInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkEndpointGroup'
+          description: The network configuration of the specified server instance
+            group
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Server instance group not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get server instance group network configuration
+      tags:
+      - Server Instance Group
+  /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks:
+    get:
+      description: Returns the logical networks of the specified server instance group
+      operationId: getServerInstanceGroupNetworkConfigurationLogicalNetworks
+      parameters:
+      - explode: false
+        in: path
+        name: serverInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworksList'
+          description: The logical networks of the specified server instance group
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get server instance group's network configuration logical networks
+      tags:
+      - Server Instance Group
+  /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks/{logicalNetworkId}:
+    get:
+      description: Returns the logical network by id of the specified server instance
+        group
+      operationId: getServerInstanceGroupNetworkConfigurationLogicalNetworkById
+      parameters:
+      - explode: false
+        in: path
+        name: serverInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: logicalNetworkId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworkDto'
+          description: The logical network by id of the specified server instance
+            group
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Server instance group or logical network not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get server instance group network configuration logical network by
+        id
+      tags:
+      - Server Instance Group
   /api/v2/servers:
     get:
       description: Returns a list of Servers
@@ -26594,6 +26712,14 @@ paths:
         schema:
           type: integer
         style: simple
+      - description: Filter by variable usage
+        explode: true
+        in: query
+        name: usage
+        required: false
+        schema:
+          $ref: '#/components/schemas/VariableUsageType'
+        style: form
       responses:
         "200":
           content:
@@ -29887,11 +30013,12 @@ components:
             - hp
           title: Filters applied to the query
           type: object
+        cursor:
+          description: Cursor to navigate to the next page
+          title: Cursor
+          type: string
       required:
-      - currentPage
       - itemsPerPage
-      - totalItems
-      - totalPages
       type: object
     AccountAddress:
       example:
@@ -39430,6 +39557,7 @@ components:
       - supportsFcProvisioning
       type: object
     GenericServiceStatus:
+      description: Service status of the Infrastructure
       enum:
       - ordered
       - active
@@ -40426,42 +40554,42 @@ components:
       type: object
     ServerInstanceGroupConfiguration:
       example:
-        ipv4SubnetCreateAuto: 2
-        driveArrayIdBoot: 3
+        ipv4SubnetCreateAuto: 6
+        driveArrayIdBoot: 7
         overrideIpv4WanVlanId: 3
         firmwarePolicyIds:
-        - 6.704019297950036
-        - 6.704019297950036
-        diskCount: 0
+        - 3.353193347011243
+        - 3.353193347011243
+        diskCount: 4
         updatedTimestamp: updatedTimestamp
         customVariables: "{}"
         deployType: create
-        processorCoreMhz: 7
+        processorCoreMhz: 6
         volumeTemplateId: 3
-        dnsSubdomainChangeId: 7
-        processorCoreCount: 0
-        infrastructureDeployId: 5
-        virtualInterfacesEnabled: 8
-        firewallRulesSetId: 6
+        dnsSubdomainChangeId: 5
+        processorCoreCount: 7
+        infrastructureDeployId: 3
+        virtualInterfacesEnabled: 7
+        firewallRulesSetId: 5
         instanceArrayBootMethod: pxe_iscsi
-        networkProfileGroupId: 7
+        networkProfileGroupId: 3
         serverGroupName: server-instance-group-name
-        emptyEdit: 3
-        processorCount: 7
+        emptyEdit: 4
+        processorCount: 0
         firewallProfileId: 6
-        ipAllocateAuto: 1
-        firewallManaged: 5
+        ipAllocateAuto: 2
+        firewallManaged: 6
         label: label
         diskTypes:
         - diskTypes
         - diskTypes
         additionalWanIpv4Json: "{}"
         revision: 1
-        networkEquipmentForceSubnetPoolIpv4WanId: 3
-        diskSizeMbytes: 4
-        instanceCount: 6
+        networkEquipmentForceSubnetPoolIpv4WanId: 7
+        diskSizeMbytes: 8
+        instanceCount: 1
         subdomain: subdomain
-        ramGbytes: 6
+        ramGbytes: 0
         deployStatus: not_started
       properties:
         revision:
@@ -40633,7 +40761,7 @@ components:
         diskCount: 1
         updatedTimestamp: updatedTimestamp
         customVariables: "{}"
-        isVmGroup: 6
+        isVmGroup: 3
         processorCoreMhz: 6
         dnsSubdomainPermanentId: 6
         volumeTemplateId: 7
@@ -40660,6 +40788,7 @@ components:
         firewallManaged: 2
         label: label
         subdomainPermanent: subdomainPermanent
+        networkEndpointGroupId: 6
         diskTypes:
         - diskTypes
         - diskTypes
@@ -40668,7 +40797,7 @@ components:
         networkEquipmentForceSubnetPoolIpv4WanId: 8
         diskSizeMbytes: 4
         infrastructureId: 1
-        vmInstanceGroupId: 3
+        vmInstanceGroupId: 6
         instanceCount: 5
         resourcePoolId: 9
         meta:
@@ -40684,42 +40813,42 @@ components:
         subdomain: subdomain
         ramGbytes: 7
         config:
-          ipv4SubnetCreateAuto: 2
-          driveArrayIdBoot: 3
+          ipv4SubnetCreateAuto: 6
+          driveArrayIdBoot: 7
           overrideIpv4WanVlanId: 3
           firmwarePolicyIds:
-          - 6.704019297950036
-          - 6.704019297950036
-          diskCount: 0
+          - 3.353193347011243
+          - 3.353193347011243
+          diskCount: 4
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
           deployType: create
-          processorCoreMhz: 7
+          processorCoreMhz: 6
           volumeTemplateId: 3
-          dnsSubdomainChangeId: 7
-          processorCoreCount: 0
-          infrastructureDeployId: 5
-          virtualInterfacesEnabled: 8
-          firewallRulesSetId: 6
+          dnsSubdomainChangeId: 5
+          processorCoreCount: 7
+          infrastructureDeployId: 3
+          virtualInterfacesEnabled: 7
+          firewallRulesSetId: 5
           instanceArrayBootMethod: pxe_iscsi
-          networkProfileGroupId: 7
+          networkProfileGroupId: 3
           serverGroupName: server-instance-group-name
-          emptyEdit: 3
-          processorCount: 7
+          emptyEdit: 4
+          processorCount: 0
           firewallProfileId: 6
-          ipAllocateAuto: 1
-          firewallManaged: 5
+          ipAllocateAuto: 2
+          firewallManaged: 6
           label: label
           diskTypes:
           - diskTypes
           - diskTypes
           additionalWanIpv4Json: "{}"
           revision: 1
-          networkEquipmentForceSubnetPoolIpv4WanId: 3
-          diskSizeMbytes: 4
-          instanceCount: 6
+          networkEquipmentForceSubnetPoolIpv4WanId: 7
+          diskSizeMbytes: 8
+          instanceCount: 1
           subdomain: subdomain
-          ramGbytes: 6
+          ramGbytes: 0
           deployStatus: not_started
       properties:
         id:
@@ -40867,6 +40996,9 @@ components:
         resourcePoolId:
           description: The resource pool assigned to this instance array
           type: integer
+        networkEndpointGroupId:
+          description: The network endpoint group id for the instance array
+          type: integer
         isVmGroup:
           description: Flag to indicate if the Server Instance Group is belongs to
             a VM.
@@ -40925,7 +41057,7 @@ components:
           diskCount: 1
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
-          isVmGroup: 6
+          isVmGroup: 3
           processorCoreMhz: 6
           dnsSubdomainPermanentId: 6
           volumeTemplateId: 7
@@ -40952,6 +41084,7 @@ components:
           firewallManaged: 2
           label: label
           subdomainPermanent: subdomainPermanent
+          networkEndpointGroupId: 6
           diskTypes:
           - diskTypes
           - diskTypes
@@ -40960,7 +41093,7 @@ components:
           networkEquipmentForceSubnetPoolIpv4WanId: 8
           diskSizeMbytes: 4
           infrastructureId: 1
-          vmInstanceGroupId: 3
+          vmInstanceGroupId: 6
           instanceCount: 5
           resourcePoolId: 9
           meta:
@@ -40976,42 +41109,42 @@ components:
           subdomain: subdomain
           ramGbytes: 7
           config:
-            ipv4SubnetCreateAuto: 2
-            driveArrayIdBoot: 3
+            ipv4SubnetCreateAuto: 6
+            driveArrayIdBoot: 7
             overrideIpv4WanVlanId: 3
             firmwarePolicyIds:
-            - 6.704019297950036
-            - 6.704019297950036
-            diskCount: 0
+            - 3.353193347011243
+            - 3.353193347011243
+            diskCount: 4
             updatedTimestamp: updatedTimestamp
             customVariables: "{}"
             deployType: create
-            processorCoreMhz: 7
+            processorCoreMhz: 6
             volumeTemplateId: 3
-            dnsSubdomainChangeId: 7
-            processorCoreCount: 0
-            infrastructureDeployId: 5
-            virtualInterfacesEnabled: 8
-            firewallRulesSetId: 6
+            dnsSubdomainChangeId: 5
+            processorCoreCount: 7
+            infrastructureDeployId: 3
+            virtualInterfacesEnabled: 7
+            firewallRulesSetId: 5
             instanceArrayBootMethod: pxe_iscsi
-            networkProfileGroupId: 7
+            networkProfileGroupId: 3
             serverGroupName: server-instance-group-name
-            emptyEdit: 3
-            processorCount: 7
+            emptyEdit: 4
+            processorCount: 0
             firewallProfileId: 6
-            ipAllocateAuto: 1
-            firewallManaged: 5
+            ipAllocateAuto: 2
+            firewallManaged: 6
             label: label
             diskTypes:
             - diskTypes
             - diskTypes
             additionalWanIpv4Json: "{}"
             revision: 1
-            networkEquipmentForceSubnetPoolIpv4WanId: 3
-            diskSizeMbytes: 4
-            instanceCount: 6
+            networkEquipmentForceSubnetPoolIpv4WanId: 7
+            diskSizeMbytes: 8
+            instanceCount: 1
             subdomain: subdomain
-            ramGbytes: 6
+            ramGbytes: 0
             deployStatus: not_started
         - ipv4SubnetCreateAuto: 7
           driveArrayIdBoot: 1
@@ -41023,7 +41156,7 @@ components:
           diskCount: 1
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
-          isVmGroup: 6
+          isVmGroup: 3
           processorCoreMhz: 6
           dnsSubdomainPermanentId: 6
           volumeTemplateId: 7
@@ -41050,6 +41183,7 @@ components:
           firewallManaged: 2
           label: label
           subdomainPermanent: subdomainPermanent
+          networkEndpointGroupId: 6
           diskTypes:
           - diskTypes
           - diskTypes
@@ -41058,7 +41192,7 @@ components:
           networkEquipmentForceSubnetPoolIpv4WanId: 8
           diskSizeMbytes: 4
           infrastructureId: 1
-          vmInstanceGroupId: 3
+          vmInstanceGroupId: 6
           instanceCount: 5
           resourcePoolId: 9
           meta:
@@ -41074,42 +41208,42 @@ components:
           subdomain: subdomain
           ramGbytes: 7
           config:
-            ipv4SubnetCreateAuto: 2
-            driveArrayIdBoot: 3
+            ipv4SubnetCreateAuto: 6
+            driveArrayIdBoot: 7
             overrideIpv4WanVlanId: 3
             firmwarePolicyIds:
-            - 6.704019297950036
-            - 6.704019297950036
-            diskCount: 0
+            - 3.353193347011243
+            - 3.353193347011243
+            diskCount: 4
             updatedTimestamp: updatedTimestamp
             customVariables: "{}"
             deployType: create
-            processorCoreMhz: 7
+            processorCoreMhz: 6
             volumeTemplateId: 3
-            dnsSubdomainChangeId: 7
-            processorCoreCount: 0
-            infrastructureDeployId: 5
-            virtualInterfacesEnabled: 8
-            firewallRulesSetId: 6
+            dnsSubdomainChangeId: 5
+            processorCoreCount: 7
+            infrastructureDeployId: 3
+            virtualInterfacesEnabled: 7
+            firewallRulesSetId: 5
             instanceArrayBootMethod: pxe_iscsi
-            networkProfileGroupId: 7
+            networkProfileGroupId: 3
             serverGroupName: server-instance-group-name
-            emptyEdit: 3
-            processorCount: 7
+            emptyEdit: 4
+            processorCount: 0
             firewallProfileId: 6
-            ipAllocateAuto: 1
-            firewallManaged: 5
+            ipAllocateAuto: 2
+            firewallManaged: 6
             label: label
             diskTypes:
             - diskTypes
             - diskTypes
             additionalWanIpv4Json: "{}"
             revision: 1
-            networkEquipmentForceSubnetPoolIpv4WanId: 3
-            diskSizeMbytes: 4
-            instanceCount: 6
+            networkEquipmentForceSubnetPoolIpv4WanId: 7
+            diskSizeMbytes: 8
+            instanceCount: 1
             subdomain: subdomain
-            ramGbytes: 6
+            ramGbytes: 0
             deployStatus: not_started
         meta: ""
         links: ""
@@ -42986,6 +43120,7 @@ components:
       - label
       type: object
     NetworkDeviceDriver:
+      description: Driver software used to communicate with the network device
       enum:
       - cisco_aci51
       - nexus9000
@@ -43000,6 +43135,8 @@ components:
       - sonic_enterprise
       type: string
     SwitchPosition:
+      description: The physical or logical position of the network device in the network
+        topology.
       enum:
       - tor
       - north
@@ -44048,7 +44185,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-04T12:20:57.431Z
+        createdTimestamp: 2025-04-07T17:08:22.278Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -44057,7 +44194,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-04T12:20:57.431Z
+        updatedTimestamp: 2025-04-07T17:08:22.278Z
         revision: "1"
       properties:
         siteId:
@@ -44074,12 +44211,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-04T12:20:57.431Z
+          example: 2025-04-07T17:08:22.278Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-04T12:20:57.431Z
+          example: 2025-04-07T17:08:22.278Z
           format: date-time
           type: string
         links:
@@ -44101,7 +44238,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-04T12:20:57.431Z
+        - createdTimestamp: 2025-04-07T17:08:22.278Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -44110,9 +44247,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-04T12:20:57.431Z
+          updatedTimestamp: 2025-04-07T17:08:22.278Z
           revision: "1"
-        - createdTimestamp: 2025-04-04T12:20:57.431Z
+        - createdTimestamp: 2025-04-07T17:08:22.278Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -44121,7 +44258,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-04T12:20:57.431Z
+          updatedTimestamp: 2025-04-07T17:08:22.278Z
           revision: "1"
         meta: ""
         links: ""
@@ -44381,6 +44518,7 @@ components:
           nullable: true
       type: object
     FabricType:
+      description: The type of network fabric
       enum:
       - ethernet
       - fibre_channel
@@ -44541,6 +44679,7 @@ components:
       - fabricType
       type: object
     FabricTopologyType:
+      description: Fabric topology type
       enum:
       - director
       - core-edge
@@ -44620,6 +44759,7 @@ components:
       - topologyType
       type: object
     FabricStatus:
+      description: "The status of the network fabric, by default it is in draft mode."
       enum:
       - draft
       - active
@@ -44733,7 +44873,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-04T12:20:57.439Z
+        createdTimestamp: 2025-04-07T17:08:22.285Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -44774,7 +44914,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-04T12:20:57.439Z
+        updatedTimestamp: 2025-04-07T17:08:22.285Z
         revision: "1"
         status: draft
       properties:
@@ -44802,12 +44942,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-04T12:20:57.439Z
+          example: 2025-04-07T17:08:22.285Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-04T12:20:57.439Z
+          example: 2025-04-07T17:08:22.285Z
           format: date-time
           type: string
         links:
@@ -44948,7 +45088,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-04T12:20:57.439Z
+          createdTimestamp: 2025-04-07T17:08:22.285Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -44989,7 +45129,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-04T12:20:57.439Z
+          updatedTimestamp: 2025-04-07T17:08:22.285Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -45099,7 +45239,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-04T12:20:57.439Z
+          createdTimestamp: 2025-04-07T17:08:22.285Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -45140,7 +45280,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-04T12:20:57.439Z
+          updatedTimestamp: 2025-04-07T17:08:22.285Z
           revision: "1"
           status: draft
         meta: ""
@@ -49032,6 +49172,9 @@ components:
         resourcePoolId:
           description: The resource pool assigned to this instance array
           type: integer
+        networkEndpointGroupId:
+          description: The network endpoint group id for the instance array
+          type: integer
         isVmGroup:
           description: Flag to indicate if the Server Instance Group is belongs to
             a VM.
@@ -49181,42 +49324,165 @@ components:
       - siteId
       - updatedTimestamp
       type: object
+    DriveGroupVariables:
+      example:
+        dnsSubdomainId: 5.637376656633329
+        createdTimestamp: createdTimestamp
+        extensionInstanceId: 1
+        label: label
+        ioLimitPolicy: ioLimitPolicy
+        subdomainPermanent: subdomainPermanent
+        templateId: 1
+        allocationAffinity: same_storage
+        filesystemInfo: "{}"
+        updatedTimestamp: updatedTimestamp
+        revision: 5.962133916683182
+        expandWithServerInstanceGroup: 1
+        containerClusterId: 1
+        dnsSubdomainPermanentId: 2.3021358869347655
+        infrastructureId: 0.8008281904610115
+        serviceStatus: ordered
+        storageType: iscsi_ssd
+        subdomain: subdomain
+        serverInstanceGroupId: 1
+        id: 1.4658129805029452
+        driveSizeMbDefault: 6.027456183070403
+        config: ""
+      properties:
+        label:
+          description: Label of the Drive Group.
+          type: string
+        infrastructureId:
+          description: Infrastructure id of the Drive Group
+          type: number
+        templateId:
+          description: Template Id
+          example: 1
+          type: number
+        driveSizeMbDefault:
+          description: Default disk size in MB for new Drives in the Drive Group
+          type: number
+        serverInstanceGroupId:
+          example: 1
+          type: number
+        expandWithServerInstanceGroup:
+          description: Flag to determine whether the Drive Group should be expanded
+            with a Server Instance Group by adding one drive for each instance
+          example: 1
+          type: number
+        ioLimitPolicy:
+          description: The IO limit policy of the Drive Group.
+          type: string
+        storageType:
+          default: iscsi_ssd
+          description: Service status of the Drive Group
+          enum:
+          - iscsi_ssd
+          - iscsi_hdd
+          - dummy
+          type: string
+        filesystemInfo:
+          description: Filesystem information of the Drive Group.
+          type: object
+        subdomain:
+          description: Subdomain of the Drive Group.
+          type: string
+        updatedTimestamp:
+          description: Timestamp of the Drive Group last update.
+          type: string
+        id:
+          description: Id of the Drive Group
+          type: number
+        revision:
+          description: Revision of the Drive Group State
+          type: number
+        extensionInstanceId:
+          example: 1
+          type: number
+        containerClusterId:
+          example: 1
+          type: number
+        serviceStatus:
+          description: Service status of the Drive Group
+          enum:
+          - ordered
+          - active
+          - deleted
+          - stopped
+          - suspended
+          type: string
+        subdomainPermanent:
+          description: Subdomain permanent of the Drive Group.
+          type: string
+        dnsSubdomainId:
+          description: Id of the DNS subdomain for the Drive Group.
+          type: number
+        dnsSubdomainPermanentId:
+          description: Id of the permanent DNS subdomain for the Drive Group.
+          type: number
+        allocationAffinity:
+          description: Allocation affinity of the Drive Group
+          enum:
+          - same_storage
+          - different_storage
+          type: string
+        config:
+          allOf:
+          - $ref: '#/components/schemas/DriveGroupConfiguration'
+          description: The current changes to be deployed for the Drive Group.
+        createdTimestamp:
+          description: Timestamp of the Drive Group creation.
+          type: string
+      required:
+      - allocationAffinity
+      - config
+      - createdTimestamp
+      - driveSizeMbDefault
+      - expandWithServerInstanceGroup
+      - id
+      - infrastructureId
+      - label
+      - revision
+      - serviceStatus
+      - storageType
+      - updatedTimestamp
+      type: object
     DriveVariables:
       example:
         iscsiIndexHex: iscsiIndexHex
         groupId: 1
-        sizeMb: 6.027456183070403
+        sizeMb: 9.301444243932576
         templateId: 1
         updatedTimestamp: updatedTimestamp
         targets:
         - {}
         - {}
         sshKeyPairInternalEncrypted: "{}"
-        storageVirtualSizeCachedMb: 3.616076749251911
+        storageVirtualSizeCachedMb: 1.4894159098541704
         wwn: wwn
         storageImageName: storageImageName
         storageUpdatedTimestamp: storageUpdatedTimestamp
         instanceId: 1
-        dnsSubdomainPermanentId: 4.145608029883936
+        dnsSubdomainPermanentId: 7.457744773683766
         osAdminPasswordEncrypted: osAdminPasswordEncrypted
         serviceStatus: ordered
         osAdminUsername: osAdminUsername
-        networkVlanId: 7.386281948385884
+        networkVlanId: 1.1730742509559433
         operatingSystemInfo: "{}"
-        storagePoolId: 0.8008281904610115
-        id: 5.962133916683182
-        storageRealSizeCachedMb: 7.061401241503109
-        sshPort: 1.4658129805029452
+        storagePoolId: 7.061401241503109
+        id: 2.027123023002322
+        storageRealSizeCachedMb: 1.2315135367772556
+        sshPort: 3.616076749251911
         provisioningProtocol: iSCSI
-        storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
-        dnsSubdomainId: 2.027123023002322
+        storageRealSizeWithSnapshotsCachedMb: 1.0246457001441578
+        dnsSubdomainId: 6.84685269835264
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
         filesystemInfo: "{}"
-        revision: 5.637376656633329
+        revision: 4.145608029883936
         clusterCustomInfo: "{}"
-        infrastructureId: 2.3021358869347655
+        infrastructureId: 7.386281948385884
         storageType: iscsi_ssd
         subdomain: subdomain
         config: ""
@@ -49363,20 +49629,20 @@ components:
       type: object
     FileShareVariables:
       example:
-        sizeGB: 1.2315135367772556
-        dnsSubdomainId: 1.1730742509559433
+        sizeGB: 4.965218492984954
+        dnsSubdomainId: 8.762042012749001
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
-        revision: 6.84685269835264
+        revision: 9.369310271410669
         endpoint: endpoint
-        infrastructureId: 7.457744773683766
+        infrastructureId: 6.683562403749608
         serviceStatus: ordered
-        networkVlanId: 4.965218492984954
+        networkVlanId: 9.018348186070783
         subdomain: subdomain
-        storagePoolId: 1.0246457001441578
-        id: 1.4894159098541704
+        storagePoolId: 5.025004791520295
+        id: 9.965781217890562
         config: ""
       properties:
         sizeGB:
@@ -49445,20 +49711,20 @@ components:
     BucketVariables:
       example:
         accessKeyId: accessKeyId
-        sizeGB: 5.025004791520295
-        dnsSubdomainId: 9.018348186070783
+        sizeGB: 6.438423552598547
+        dnsSubdomainId: 6.778324963048013
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
-        revision: 6.683562403749608
+        revision: 1.284659006116532
         endpoint: endpoint
-        infrastructureId: 8.762042012749001
+        infrastructureId: 2.8841621266687802
         serviceStatus: ordered
-        networkVlanId: 6.438423552598547
+        networkVlanId: 6.878052220127876
         subdomain: subdomain
-        storagePoolId: 9.965781217890562
-        id: 9.369310271410669
+        storagePoolId: 3.5571952270680973
+        id: 6.965117697638846
         secretKeyEncrypted: secretKeyEncrypted
         config: ""
       properties:
@@ -49617,31 +49883,31 @@ components:
       type: object
     SharedDriveVariables:
       example:
-        sizeMb: 6.965117697638846
+        sizeMb: 6.704019297950036
         updatedTimestamp: updatedTimestamp
         targets:
         - {}
         - {}
-        storageVirtualSizeCachedMb: 6.704019297950036
+        storageVirtualSizeCachedMb: 6.519180951018382
         wwn: wwn
         storageImageName: storageImageName
         storageUpdatedTimestamp: storageUpdatedTimestamp
-        dnsSubdomainPermanentId: 3.0937452626664474
+        dnsSubdomainPermanentId: 4.652396432933246
         serviceStatus: ordered
-        networkVlanId: 7.143538047012306
-        storagePoolId: 3.5571952270680973
-        id: 1.284659006116532
-        storageRealSizeCachedMb: 6.878052220127876
+        networkVlanId: 8.969578798196912
+        storagePoolId: 5.944895607614016
+        id: 3.353193347011243
+        storageRealSizeCachedMb: 0.8851374739011653
         provisioningProtocol: iSCSI
-        storageRealSizeWithSnapshotsCachedMb: 5.944895607614016
-        dnsSubdomainId: 3.353193347011243
+        storageRealSizeWithSnapshotsCachedMb: 7.058770351582356
+        dnsSubdomainId: 0.10263654006109402
         createdTimestamp: createdTimestamp
         label: label
         ioLimitPolicy: ioLimitPolicy
         subdomainPermanent: subdomainPermanent
         allocationAffinity: same_storage
-        revision: 2.8841621266687802
-        infrastructureId: 6.778324963048013
+        revision: 3.0937452626664474
+        infrastructureId: 7.143538047012306
         storageType: iscsi_ssd
         subdomain: subdomain
         config: ""
@@ -49761,212 +50027,261 @@ components:
       type: object
     ServerInstanceContextVariables:
       example:
-        server: ""
-        site: ""
-        fileShares:
-        - sizeGB: 1.2315135367772556
-          dnsSubdomainId: 1.1730742509559433
+        driveGroups:
+        - dnsSubdomainId: 5.637376656633329
           createdTimestamp: createdTimestamp
+          extensionInstanceId: 1
           label: label
+          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
+          templateId: 1
+          allocationAffinity: same_storage
+          filesystemInfo: "{}"
           updatedTimestamp: updatedTimestamp
-          revision: 6.84685269835264
-          endpoint: endpoint
-          infrastructureId: 7.457744773683766
+          revision: 5.962133916683182
+          expandWithServerInstanceGroup: 1
+          containerClusterId: 1
+          dnsSubdomainPermanentId: 2.3021358869347655
+          infrastructureId: 0.8008281904610115
           serviceStatus: ordered
-          networkVlanId: 4.965218492984954
+          storageType: iscsi_ssd
           subdomain: subdomain
-          storagePoolId: 1.0246457001441578
-          id: 1.4894159098541704
+          serverInstanceGroupId: 1
+          id: 1.4658129805029452
+          driveSizeMbDefault: 6.027456183070403
           config: ""
-        - sizeGB: 1.2315135367772556
-          dnsSubdomainId: 1.1730742509559433
+        - dnsSubdomainId: 5.637376656633329
+          createdTimestamp: createdTimestamp
+          extensionInstanceId: 1
+          label: label
+          ioLimitPolicy: ioLimitPolicy
+          subdomainPermanent: subdomainPermanent
+          templateId: 1
+          allocationAffinity: same_storage
+          filesystemInfo: "{}"
+          updatedTimestamp: updatedTimestamp
+          revision: 5.962133916683182
+          expandWithServerInstanceGroup: 1
+          containerClusterId: 1
+          dnsSubdomainPermanentId: 2.3021358869347655
+          infrastructureId: 0.8008281904610115
+          serviceStatus: ordered
+          storageType: iscsi_ssd
+          subdomain: subdomain
+          serverInstanceGroupId: 1
+          id: 1.4658129805029452
+          driveSizeMbDefault: 6.027456183070403
+          config: ""
+        server: ""
+        fileShares:
+        - sizeGB: 4.965218492984954
+          dnsSubdomainId: 8.762042012749001
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 6.84685269835264
+          revision: 9.369310271410669
           endpoint: endpoint
-          infrastructureId: 7.457744773683766
+          infrastructureId: 6.683562403749608
           serviceStatus: ordered
-          networkVlanId: 4.965218492984954
+          networkVlanId: 9.018348186070783
           subdomain: subdomain
-          storagePoolId: 1.0246457001441578
-          id: 1.4894159098541704
+          storagePoolId: 5.025004791520295
+          id: 9.965781217890562
+          config: ""
+        - sizeGB: 4.965218492984954
+          dnsSubdomainId: 8.762042012749001
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          updatedTimestamp: updatedTimestamp
+          revision: 9.369310271410669
+          endpoint: endpoint
+          infrastructureId: 6.683562403749608
+          serviceStatus: ordered
+          networkVlanId: 9.018348186070783
+          subdomain: subdomain
+          storagePoolId: 5.025004791520295
+          id: 9.965781217890562
           config: ""
         variables: "{}"
-        serverInstanceGroup: ""
         sharedDrives:
-        - sizeMb: 6.965117697638846
+        - sizeMb: 6.704019297950036
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
-          storageVirtualSizeCachedMb: 6.704019297950036
+          storageVirtualSizeCachedMb: 6.519180951018382
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
-          dnsSubdomainPermanentId: 3.0937452626664474
+          dnsSubdomainPermanentId: 4.652396432933246
           serviceStatus: ordered
-          networkVlanId: 7.143538047012306
-          storagePoolId: 3.5571952270680973
-          id: 1.284659006116532
-          storageRealSizeCachedMb: 6.878052220127876
+          networkVlanId: 8.969578798196912
+          storagePoolId: 5.944895607614016
+          id: 3.353193347011243
+          storageRealSizeCachedMb: 0.8851374739011653
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 5.944895607614016
-          dnsSubdomainId: 3.353193347011243
+          storageRealSizeWithSnapshotsCachedMb: 7.058770351582356
+          dnsSubdomainId: 0.10263654006109402
           createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
-          revision: 2.8841621266687802
-          infrastructureId: 6.778324963048013
+          revision: 3.0937452626664474
+          infrastructureId: 7.143538047012306
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
-        - sizeMb: 6.965117697638846
+        - sizeMb: 6.704019297950036
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
-          storageVirtualSizeCachedMb: 6.704019297950036
+          storageVirtualSizeCachedMb: 6.519180951018382
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
-          dnsSubdomainPermanentId: 3.0937452626664474
+          dnsSubdomainPermanentId: 4.652396432933246
           serviceStatus: ordered
-          networkVlanId: 7.143538047012306
-          storagePoolId: 3.5571952270680973
-          id: 1.284659006116532
-          storageRealSizeCachedMb: 6.878052220127876
+          networkVlanId: 8.969578798196912
+          storagePoolId: 5.944895607614016
+          id: 3.353193347011243
+          storageRealSizeCachedMb: 0.8851374739011653
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 5.944895607614016
-          dnsSubdomainId: 3.353193347011243
+          storageRealSizeWithSnapshotsCachedMb: 7.058770351582356
+          dnsSubdomainId: 0.10263654006109402
           createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
-          revision: 2.8841621266687802
-          infrastructureId: 6.778324963048013
+          revision: 3.0937452626664474
+          infrastructureId: 7.143538047012306
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
         serverInstance: ""
+        buckets:
+        - accessKeyId: accessKeyId
+          sizeGB: 6.438423552598547
+          dnsSubdomainId: 6.778324963048013
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          updatedTimestamp: updatedTimestamp
+          revision: 1.284659006116532
+          endpoint: endpoint
+          infrastructureId: 2.8841621266687802
+          serviceStatus: ordered
+          networkVlanId: 6.878052220127876
+          subdomain: subdomain
+          storagePoolId: 3.5571952270680973
+          id: 6.965117697638846
+          secretKeyEncrypted: secretKeyEncrypted
+          config: ""
+        - accessKeyId: accessKeyId
+          sizeGB: 6.438423552598547
+          dnsSubdomainId: 6.778324963048013
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          updatedTimestamp: updatedTimestamp
+          revision: 1.284659006116532
+          endpoint: endpoint
+          infrastructureId: 2.8841621266687802
+          serviceStatus: ordered
+          networkVlanId: 6.878052220127876
+          subdomain: subdomain
+          storagePoolId: 3.5571952270680973
+          id: 6.965117697638846
+          secretKeyEncrypted: secretKeyEncrypted
+          config: ""
+        managementSSHKey: managementSSHKey
+        secrets: "{}"
+        site: ""
+        serverInstanceGroup: ""
         drives:
         - iscsiIndexHex: iscsiIndexHex
           groupId: 1
-          sizeMb: 6.027456183070403
+          sizeMb: 9.301444243932576
           templateId: 1
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
           sshKeyPairInternalEncrypted: "{}"
-          storageVirtualSizeCachedMb: 3.616076749251911
+          storageVirtualSizeCachedMb: 1.4894159098541704
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
           instanceId: 1
-          dnsSubdomainPermanentId: 4.145608029883936
+          dnsSubdomainPermanentId: 7.457744773683766
           osAdminPasswordEncrypted: osAdminPasswordEncrypted
           serviceStatus: ordered
           osAdminUsername: osAdminUsername
-          networkVlanId: 7.386281948385884
+          networkVlanId: 1.1730742509559433
           operatingSystemInfo: "{}"
-          storagePoolId: 0.8008281904610115
-          id: 5.962133916683182
-          storageRealSizeCachedMb: 7.061401241503109
-          sshPort: 1.4658129805029452
+          storagePoolId: 7.061401241503109
+          id: 2.027123023002322
+          storageRealSizeCachedMb: 1.2315135367772556
+          sshPort: 3.616076749251911
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
-          dnsSubdomainId: 2.027123023002322
+          storageRealSizeWithSnapshotsCachedMb: 1.0246457001441578
+          dnsSubdomainId: 6.84685269835264
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           filesystemInfo: "{}"
-          revision: 5.637376656633329
+          revision: 4.145608029883936
           clusterCustomInfo: "{}"
-          infrastructureId: 2.3021358869347655
+          infrastructureId: 7.386281948385884
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
         - iscsiIndexHex: iscsiIndexHex
           groupId: 1
-          sizeMb: 6.027456183070403
+          sizeMb: 9.301444243932576
           templateId: 1
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
           sshKeyPairInternalEncrypted: "{}"
-          storageVirtualSizeCachedMb: 3.616076749251911
+          storageVirtualSizeCachedMb: 1.4894159098541704
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
           instanceId: 1
-          dnsSubdomainPermanentId: 4.145608029883936
+          dnsSubdomainPermanentId: 7.457744773683766
           osAdminPasswordEncrypted: osAdminPasswordEncrypted
           serviceStatus: ordered
           osAdminUsername: osAdminUsername
-          networkVlanId: 7.386281948385884
+          networkVlanId: 1.1730742509559433
           operatingSystemInfo: "{}"
-          storagePoolId: 0.8008281904610115
-          id: 5.962133916683182
-          storageRealSizeCachedMb: 7.061401241503109
-          sshPort: 1.4658129805029452
+          storagePoolId: 7.061401241503109
+          id: 2.027123023002322
+          storageRealSizeCachedMb: 1.2315135367772556
+          sshPort: 3.616076749251911
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
-          dnsSubdomainId: 2.027123023002322
+          storageRealSizeWithSnapshotsCachedMb: 1.0246457001441578
+          dnsSubdomainId: 6.84685269835264
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           filesystemInfo: "{}"
-          revision: 5.637376656633329
+          revision: 4.145608029883936
           clusterCustomInfo: "{}"
-          infrastructureId: 2.3021358869347655
+          infrastructureId: 7.386281948385884
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
         infrastructure: ""
-        buckets:
-        - accessKeyId: accessKeyId
-          sizeGB: 5.025004791520295
-          dnsSubdomainId: 9.018348186070783
-          createdTimestamp: createdTimestamp
-          label: label
-          subdomainPermanent: subdomainPermanent
-          updatedTimestamp: updatedTimestamp
-          revision: 6.683562403749608
-          endpoint: endpoint
-          infrastructureId: 8.762042012749001
-          serviceStatus: ordered
-          networkVlanId: 6.438423552598547
-          subdomain: subdomain
-          storagePoolId: 9.965781217890562
-          id: 9.369310271410669
-          secretKeyEncrypted: secretKeyEncrypted
-          config: ""
-        - accessKeyId: accessKeyId
-          sizeGB: 5.025004791520295
-          dnsSubdomainId: 9.018348186070783
-          createdTimestamp: createdTimestamp
-          label: label
-          subdomainPermanent: subdomainPermanent
-          updatedTimestamp: updatedTimestamp
-          revision: 6.683562403749608
-          endpoint: endpoint
-          infrastructureId: 8.762042012749001
-          serviceStatus: ordered
-          networkVlanId: 6.438423552598547
-          subdomain: subdomain
-          storagePoolId: 9.965781217890562
-          id: 9.369310271410669
-          secretKeyEncrypted: secretKeyEncrypted
-          config: ""
         siteConfig: ""
-        secrets: "{}"
+        userSSHKeys:
+        - userSSHKeys
+        - userSSHKeys
       properties:
         site:
           allOf:
@@ -49992,6 +50307,11 @@ components:
           allOf:
           - $ref: '#/components/schemas/InfrastructureVariables'
           description: The infrastructure variables.
+        driveGroups:
+          description: The server instance drive groups variables.
+          items:
+            $ref: '#/components/schemas/DriveGroupVariables'
+          type: array
         drives:
           description: The server instance drives variables.
           items:
@@ -50018,8 +50338,17 @@ components:
         secrets:
           description: Secrets
           type: object
+        userSSHKeys:
+          description: Infrastructure owner SSH keys
+          items:
+            type: string
+          type: array
+        managementSSHKey:
+          description: Management SSH key
+          type: string
       required:
       - buckets
+      - driveGroups
       - drives
       - fileShares
       - infrastructure
@@ -50030,6 +50359,16 @@ components:
       - site
       - siteConfig
       type: object
+    VariableUsageType:
+      enum:
+      - HTTPRequest
+      - JavaScript
+      - APICall
+      - AnsibleBundle
+      - SSHExec
+      - Copy
+      - OSAsset
+      type: string
     RegisterServer:
       example:
         managementAddress: managementAddress
@@ -52005,52 +52344,36 @@ components:
       type: object
     SiteControllerSeenAliveStatus:
       example:
-        storagesCount: 0
-        serversCount: 0
-        infrastructuresCount: 0
-        id: 1
-        networksCount: 0
+        offline: 0
+        may_be_offline: 0
+        was_seen_connected_very_recently: 0
       properties:
-        id:
-          description: The site ID
-          example: 1
-          type: integer
-        serversCount:
-          description: Number servers
+        may_be_offline:
+          description: Number of site controllers that may be offline
           example: 0
           type: number
-        networksCount:
-          description: Number network equipment
+        offline:
+          description: Number of site controllers that are offline
           example: 0
           type: number
-        storagesCount:
-          description: Number of storage pools
-          example: 0
-          type: number
-        infrastructuresCount:
-          description: Number of infrastructures
+        was_seen_connected_very_recently:
+          description: Number of site controllers seen connected very recently
           example: 0
           type: number
       required:
-      - id
-      - infrastructuresCount
-      - networksCount
-      - serversCount
-      - storagesCount
+      - may_be_offline
+      - offline
+      - was_seen_connected_very_recently
       type: object
     SiteStatistics:
       example:
         sitesResourceCount:
-        - storagesCount: 0
-          serversCount: 0
-          infrastructuresCount: 0
-          id: 1
-          networksCount: 0
-        - storagesCount: 0
-          serversCount: 0
-          infrastructuresCount: 0
-          id: 1
-          networksCount: 0
+        - offline: 0
+          may_be_offline: 0
+          was_seen_connected_very_recently: 0
+        - offline: 0
+          may_be_offline: 0
+          was_seen_connected_very_recently: 0
         sitesTotalCount: 5
         sitesActiveCount: 3
         siteControllerSeenAliveStatus: ""
@@ -52648,7 +52971,54 @@ components:
       - meta
       type: object
     StorageStatistics:
-      properties: {}
+      example:
+        activeCount: 9.301444243932576
+        types: "{}"
+        usedSpace: 5.962133916683182
+        freeSpace: 5.637376656633329
+        pendingCount: 2.3021358869347655
+        experimentalCount: 6.027456183070403
+        lowSpaceCount: 1.4658129805029452
+        readyCount: 7.061401241503109
+        maintenanceCount: 0.8008281904610115
+      properties:
+        maintenanceCount:
+          description: Number of storages in maintenance
+          type: number
+        experimentalCount:
+          description: Number of experimental storages
+          type: number
+        lowSpaceCount:
+          description: Number of storages low on space
+          type: number
+        usedSpace:
+          description: Total used space across all storages
+          type: number
+        freeSpace:
+          description: Total free space across all storages
+          type: number
+        types:
+          description: Number of storages by type
+          type: object
+        pendingCount:
+          description: Number of storages in pending state
+          type: number
+        readyCount:
+          description: Number of storages in ready state
+          type: number
+        activeCount:
+          description: Number of storages in active state
+          type: number
+      required:
+      - activeCount
+      - experimentalCount
+      - freeSpace
+      - lowSpaceCount
+      - maintenanceCount
+      - pendingCount
+      - readyCount
+      - types
+      - usedSpace
       type: object
     UpdateStorageOptions:
       properties:
@@ -52679,34 +53049,30 @@ components:
       type: object
     CreateStorage:
       example:
-        inMaintenance: 9.301444243932576
-        storageTechnology: block
-        managementHost: managementHost
-        password: password
-        storageDriver: dummy_driver
-        totalCapacity: 1.4658129805029452
-        targetIQN: targetIQN
-        options: ""
-        drivePriority: 2.027123023002322
-        iscsiPort: 7.061401241503109
-        portGroupPhysicalPorts: "{}"
         alternateSanIPs:
         - alternateSanIPs
         - alternateSanIPs
         portGroupAllocationOrder: "{}"
+        inMaintenance: 5.962133916683182
+        storageTechnology: block
+        managementHost: managementHost
         userId: 0.8008281904610115
-        freeCapacity: 5.637376656633329
-        sharedDrivePriority: 4.145608029883936
+        sharedDrivePriority: 7.061401241503109
         tags:
         - tags
         - tags
-        usableCapacity: 5.962133916683182
-        virtualUsedCapacity: 2.3021358869347655
         defaultIoLimitPolicy: defaultIoLimitPolicy
-        isExperimental: 3.616076749251911
+        password: password
+        isExperimental: 5.637376656633329
+        storageDriver: dummy_driver
+        targetIQN: targetIQN
         name: name
+        options: ""
         siteId: 6.027456183070403
         storageType: iscsi_ssd
+        drivePriority: 2.3021358869347655
+        iscsiPort: 1.4658129805029452
+        portGroupPhysicalPorts: "{}"
         subnetType: ipv4
         iscsiHost: iscsiHost
         username: username
@@ -52747,18 +53113,6 @@ components:
           - iscsi_hdd
           - dummy
           type: string
-        totalCapacity:
-          description: Total capacity in MB
-          type: number
-        usableCapacity:
-          description: Usable capacity in MB
-          type: number
-        freeCapacity:
-          description: Free capacity in MB
-          type: number
-        virtualUsedCapacity:
-          description: Virtual used capacity in MB
-          type: number
         name:
           description: Name of the storage
           type: string
@@ -52849,30 +53203,54 @@ components:
       type: object
     UpdateStorageInternal:
       example:
-        portGroupAllocationOrder: "{}"
-        datacenterName: datacenterName
         extensionInfo: ""
-        inMaintenance: 5.637376656633329
-        freeCapacity: 1.4658129805029452
-        sharedDrivePriority: 9.301444243932576
+        inMaintenance: 0.8008281904610115
+        freeCapacity: 7.061401241503109
+        sharedDrivePriority: 5.962133916683182
         tags:
         - tags
         - tags
-        usableCapacity: 6.027456183070403
-        virtualUsedCapacity: 5.962133916683182
         defaultIoLimitPolicy: defaultIoLimitPolicy
         password: password
-        isExperimental: 2.3021358869347655
-        totalCapacity: 0.8008281904610115
+        usableCapacity: 2.3021358869347655
+        virtualUsedCapacity: 9.301444243932576
+        isExperimental: 6.027456183070403
+        totalCapacity: 5.637376656633329
         options: ""
-        drivePriority: 7.061401241503109
-        portGroupPhysicalPorts: "{}"
+        drivePriority: 1.4658129805029452
         status: active
-        username: username
       properties:
-        datacenterName:
-          description: The name of the datacenter where the storage is located.
+        inMaintenance:
+          description: Specifies if the storage is in maintenance
+          type: number
+        isExperimental:
+          description: Specifies if the storage is experimental
+          type: number
+        drivePriority:
+          description: Specifies the drive priority
+          type: number
+        sharedDrivePriority:
+          description: Specifies the shared drive priority
+          type: number
+        tags:
+          description: Tags
+          items:
+            type: string
+          type: array
+        defaultIoLimitPolicy:
+          description: Default IO limit policy
           type: string
+        password:
+          description: The password to use.
+          type: string
+        options:
+          allOf:
+          - $ref: '#/components/schemas/StorageOptions'
+          description: Options for the storage
+        extensionInfo:
+          allOf:
+          - $ref: '#/components/schemas/ExtensionExecutionInfo'
+          description: The extension execution info of the storage.
         status:
           description: Storage status
           enum:
@@ -52893,46 +53271,6 @@ components:
         virtualUsedCapacity:
           description: Virtual used capacity in MB
           type: number
-        inMaintenance:
-          description: Specifies if the storage is in maintenance
-          type: number
-        isExperimental:
-          description: Specifies if the storage is experimental
-          type: number
-        drivePriority:
-          description: Specifies the drive priority
-          type: number
-        sharedDrivePriority:
-          description: Specifies the shared drive priority
-          type: number
-        tags:
-          description: Tags
-          items:
-            type: string
-          type: array
-        portGroupAllocationOrder:
-          description: Port group allocation order
-          type: object
-        portGroupPhysicalPorts:
-          description: Port group physical ports
-          type: object
-        defaultIoLimitPolicy:
-          description: Default IO limit policy
-          type: string
-        extensionInfo:
-          allOf:
-          - $ref: '#/components/schemas/ExtensionExecutionInfo'
-          description: The extension execution info of the storage.
-        username:
-          description: Username
-          type: string
-        password:
-          description: The password to use.
-          type: string
-        options:
-          allOf:
-          - $ref: '#/components/schemas/StorageOptions'
-          description: Options for the storage
       type: object
     StorageCredentials:
       example:
@@ -54964,212 +55302,261 @@ components:
       type: object
     VmInstanceContextVariables:
       example:
-        server: ""
-        site: ""
-        fileShares:
-        - sizeGB: 1.2315135367772556
-          dnsSubdomainId: 1.1730742509559433
+        driveGroups:
+        - dnsSubdomainId: 5.637376656633329
           createdTimestamp: createdTimestamp
+          extensionInstanceId: 1
           label: label
+          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
+          templateId: 1
+          allocationAffinity: same_storage
+          filesystemInfo: "{}"
           updatedTimestamp: updatedTimestamp
-          revision: 6.84685269835264
-          endpoint: endpoint
-          infrastructureId: 7.457744773683766
+          revision: 5.962133916683182
+          expandWithServerInstanceGroup: 1
+          containerClusterId: 1
+          dnsSubdomainPermanentId: 2.3021358869347655
+          infrastructureId: 0.8008281904610115
           serviceStatus: ordered
-          networkVlanId: 4.965218492984954
+          storageType: iscsi_ssd
           subdomain: subdomain
-          storagePoolId: 1.0246457001441578
-          id: 1.4894159098541704
+          serverInstanceGroupId: 1
+          id: 1.4658129805029452
+          driveSizeMbDefault: 6.027456183070403
           config: ""
-        - sizeGB: 1.2315135367772556
-          dnsSubdomainId: 1.1730742509559433
+        - dnsSubdomainId: 5.637376656633329
+          createdTimestamp: createdTimestamp
+          extensionInstanceId: 1
+          label: label
+          ioLimitPolicy: ioLimitPolicy
+          subdomainPermanent: subdomainPermanent
+          templateId: 1
+          allocationAffinity: same_storage
+          filesystemInfo: "{}"
+          updatedTimestamp: updatedTimestamp
+          revision: 5.962133916683182
+          expandWithServerInstanceGroup: 1
+          containerClusterId: 1
+          dnsSubdomainPermanentId: 2.3021358869347655
+          infrastructureId: 0.8008281904610115
+          serviceStatus: ordered
+          storageType: iscsi_ssd
+          subdomain: subdomain
+          serverInstanceGroupId: 1
+          id: 1.4658129805029452
+          driveSizeMbDefault: 6.027456183070403
+          config: ""
+        server: ""
+        fileShares:
+        - sizeGB: 4.965218492984954
+          dnsSubdomainId: 8.762042012749001
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 6.84685269835264
+          revision: 9.369310271410669
           endpoint: endpoint
-          infrastructureId: 7.457744773683766
+          infrastructureId: 6.683562403749608
           serviceStatus: ordered
-          networkVlanId: 4.965218492984954
+          networkVlanId: 9.018348186070783
           subdomain: subdomain
-          storagePoolId: 1.0246457001441578
-          id: 1.4894159098541704
+          storagePoolId: 5.025004791520295
+          id: 9.965781217890562
+          config: ""
+        - sizeGB: 4.965218492984954
+          dnsSubdomainId: 8.762042012749001
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          updatedTimestamp: updatedTimestamp
+          revision: 9.369310271410669
+          endpoint: endpoint
+          infrastructureId: 6.683562403749608
+          serviceStatus: ordered
+          networkVlanId: 9.018348186070783
+          subdomain: subdomain
+          storagePoolId: 5.025004791520295
+          id: 9.965781217890562
           config: ""
         variables: "{}"
-        serverInstanceGroup: ""
         sharedDrives:
-        - sizeMb: 6.965117697638846
+        - sizeMb: 6.704019297950036
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
-          storageVirtualSizeCachedMb: 6.704019297950036
+          storageVirtualSizeCachedMb: 6.519180951018382
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
-          dnsSubdomainPermanentId: 3.0937452626664474
+          dnsSubdomainPermanentId: 4.652396432933246
           serviceStatus: ordered
-          networkVlanId: 7.143538047012306
-          storagePoolId: 3.5571952270680973
-          id: 1.284659006116532
-          storageRealSizeCachedMb: 6.878052220127876
+          networkVlanId: 8.969578798196912
+          storagePoolId: 5.944895607614016
+          id: 3.353193347011243
+          storageRealSizeCachedMb: 0.8851374739011653
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 5.944895607614016
-          dnsSubdomainId: 3.353193347011243
+          storageRealSizeWithSnapshotsCachedMb: 7.058770351582356
+          dnsSubdomainId: 0.10263654006109402
           createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
-          revision: 2.8841621266687802
-          infrastructureId: 6.778324963048013
+          revision: 3.0937452626664474
+          infrastructureId: 7.143538047012306
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
-        - sizeMb: 6.965117697638846
+        - sizeMb: 6.704019297950036
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
-          storageVirtualSizeCachedMb: 6.704019297950036
+          storageVirtualSizeCachedMb: 6.519180951018382
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
-          dnsSubdomainPermanentId: 3.0937452626664474
+          dnsSubdomainPermanentId: 4.652396432933246
           serviceStatus: ordered
-          networkVlanId: 7.143538047012306
-          storagePoolId: 3.5571952270680973
-          id: 1.284659006116532
-          storageRealSizeCachedMb: 6.878052220127876
+          networkVlanId: 8.969578798196912
+          storagePoolId: 5.944895607614016
+          id: 3.353193347011243
+          storageRealSizeCachedMb: 0.8851374739011653
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 5.944895607614016
-          dnsSubdomainId: 3.353193347011243
+          storageRealSizeWithSnapshotsCachedMb: 7.058770351582356
+          dnsSubdomainId: 0.10263654006109402
           createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
-          revision: 2.8841621266687802
-          infrastructureId: 6.778324963048013
+          revision: 3.0937452626664474
+          infrastructureId: 7.143538047012306
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
         serverInstance: ""
+        buckets:
+        - accessKeyId: accessKeyId
+          sizeGB: 6.438423552598547
+          dnsSubdomainId: 6.778324963048013
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          updatedTimestamp: updatedTimestamp
+          revision: 1.284659006116532
+          endpoint: endpoint
+          infrastructureId: 2.8841621266687802
+          serviceStatus: ordered
+          networkVlanId: 6.878052220127876
+          subdomain: subdomain
+          storagePoolId: 3.5571952270680973
+          id: 6.965117697638846
+          secretKeyEncrypted: secretKeyEncrypted
+          config: ""
+        - accessKeyId: accessKeyId
+          sizeGB: 6.438423552598547
+          dnsSubdomainId: 6.778324963048013
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          updatedTimestamp: updatedTimestamp
+          revision: 1.284659006116532
+          endpoint: endpoint
+          infrastructureId: 2.8841621266687802
+          serviceStatus: ordered
+          networkVlanId: 6.878052220127876
+          subdomain: subdomain
+          storagePoolId: 3.5571952270680973
+          id: 6.965117697638846
+          secretKeyEncrypted: secretKeyEncrypted
+          config: ""
+        managementSSHKey: managementSSHKey
+        secrets: "{}"
+        site: ""
+        serverInstanceGroup: ""
         drives:
         - iscsiIndexHex: iscsiIndexHex
           groupId: 1
-          sizeMb: 6.027456183070403
+          sizeMb: 9.301444243932576
           templateId: 1
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
           sshKeyPairInternalEncrypted: "{}"
-          storageVirtualSizeCachedMb: 3.616076749251911
+          storageVirtualSizeCachedMb: 1.4894159098541704
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
           instanceId: 1
-          dnsSubdomainPermanentId: 4.145608029883936
+          dnsSubdomainPermanentId: 7.457744773683766
           osAdminPasswordEncrypted: osAdminPasswordEncrypted
           serviceStatus: ordered
           osAdminUsername: osAdminUsername
-          networkVlanId: 7.386281948385884
+          networkVlanId: 1.1730742509559433
           operatingSystemInfo: "{}"
-          storagePoolId: 0.8008281904610115
-          id: 5.962133916683182
-          storageRealSizeCachedMb: 7.061401241503109
-          sshPort: 1.4658129805029452
+          storagePoolId: 7.061401241503109
+          id: 2.027123023002322
+          storageRealSizeCachedMb: 1.2315135367772556
+          sshPort: 3.616076749251911
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
-          dnsSubdomainId: 2.027123023002322
+          storageRealSizeWithSnapshotsCachedMb: 1.0246457001441578
+          dnsSubdomainId: 6.84685269835264
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           filesystemInfo: "{}"
-          revision: 5.637376656633329
+          revision: 4.145608029883936
           clusterCustomInfo: "{}"
-          infrastructureId: 2.3021358869347655
+          infrastructureId: 7.386281948385884
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
         - iscsiIndexHex: iscsiIndexHex
           groupId: 1
-          sizeMb: 6.027456183070403
+          sizeMb: 9.301444243932576
           templateId: 1
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
           sshKeyPairInternalEncrypted: "{}"
-          storageVirtualSizeCachedMb: 3.616076749251911
+          storageVirtualSizeCachedMb: 1.4894159098541704
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
           instanceId: 1
-          dnsSubdomainPermanentId: 4.145608029883936
+          dnsSubdomainPermanentId: 7.457744773683766
           osAdminPasswordEncrypted: osAdminPasswordEncrypted
           serviceStatus: ordered
           osAdminUsername: osAdminUsername
-          networkVlanId: 7.386281948385884
+          networkVlanId: 1.1730742509559433
           operatingSystemInfo: "{}"
-          storagePoolId: 0.8008281904610115
-          id: 5.962133916683182
-          storageRealSizeCachedMb: 7.061401241503109
-          sshPort: 1.4658129805029452
+          storagePoolId: 7.061401241503109
+          id: 2.027123023002322
+          storageRealSizeCachedMb: 1.2315135367772556
+          sshPort: 3.616076749251911
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
-          dnsSubdomainId: 2.027123023002322
+          storageRealSizeWithSnapshotsCachedMb: 1.0246457001441578
+          dnsSubdomainId: 6.84685269835264
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           filesystemInfo: "{}"
-          revision: 5.637376656633329
+          revision: 4.145608029883936
           clusterCustomInfo: "{}"
-          infrastructureId: 2.3021358869347655
+          infrastructureId: 7.386281948385884
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
         infrastructure: ""
-        buckets:
-        - accessKeyId: accessKeyId
-          sizeGB: 5.025004791520295
-          dnsSubdomainId: 9.018348186070783
-          createdTimestamp: createdTimestamp
-          label: label
-          subdomainPermanent: subdomainPermanent
-          updatedTimestamp: updatedTimestamp
-          revision: 6.683562403749608
-          endpoint: endpoint
-          infrastructureId: 8.762042012749001
-          serviceStatus: ordered
-          networkVlanId: 6.438423552598547
-          subdomain: subdomain
-          storagePoolId: 9.965781217890562
-          id: 9.369310271410669
-          secretKeyEncrypted: secretKeyEncrypted
-          config: ""
-        - accessKeyId: accessKeyId
-          sizeGB: 5.025004791520295
-          dnsSubdomainId: 9.018348186070783
-          createdTimestamp: createdTimestamp
-          label: label
-          subdomainPermanent: subdomainPermanent
-          updatedTimestamp: updatedTimestamp
-          revision: 6.683562403749608
-          endpoint: endpoint
-          infrastructureId: 8.762042012749001
-          serviceStatus: ordered
-          networkVlanId: 6.438423552598547
-          subdomain: subdomain
-          storagePoolId: 9.965781217890562
-          id: 9.369310271410669
-          secretKeyEncrypted: secretKeyEncrypted
-          config: ""
         siteConfig: ""
-        secrets: "{}"
+        userSSHKeys:
+        - userSSHKeys
+        - userSSHKeys
       properties:
         site:
           allOf:
@@ -55195,6 +55582,11 @@ components:
           allOf:
           - $ref: '#/components/schemas/InfrastructureVariables'
           description: The infrastructure variables.
+        driveGroups:
+          description: The server instance drive groups variables.
+          items:
+            $ref: '#/components/schemas/DriveGroupVariables'
+          type: array
         drives:
           description: The server instance drives variables.
           items:
@@ -55221,8 +55613,17 @@ components:
         secrets:
           description: Secrets
           type: object
+        userSSHKeys:
+          description: Infrastructure owner SSH keys
+          items:
+            type: string
+          type: array
+        managementSSHKey:
+          description: Management SSH key
+          type: string
       required:
       - buckets
+      - driveGroups
       - drives
       - fileShares
       - infrastructure
@@ -56329,16 +56730,6 @@ components:
           example: 0
           type: number
       type: object
-    VariableUsageType:
-      enum:
-      - HTTPRequest
-      - JavaScript
-      - APICall
-      - AnsibleBundle
-      - SSHExec
-      - Copy
-      - OSAsset
-      type: string
     Variable:
       example:
         usage: ""
@@ -56472,16 +56863,6 @@ components:
       required:
       - value
       type: object
-    SecretUsageType:
-      enum:
-      - HTTPRequestSecret
-      - JavaScriptSecret
-      - APICallSecret
-      - AnsibleBundleSecret
-      - SSHExecSecret
-      - CopySecret
-      - OSAssetSecret
-      type: string
     Secret:
       example:
         valueEncrypted: valueEncrypted
@@ -56513,7 +56894,7 @@ components:
           type: string
         usage:
           allOf:
-          - $ref: '#/components/schemas/SecretUsageType'
+          - $ref: '#/components/schemas/VariableUsageType'
           description: Secret usage type.
         createdTimestamp:
           description: Timestamp of creation.
@@ -56596,7 +56977,7 @@ components:
           type: string
         usage:
           allOf:
-          - $ref: '#/components/schemas/SecretUsageType'
+          - $ref: '#/components/schemas/VariableUsageType'
           description: Secret usage type.
         value:
           description: The secret value.

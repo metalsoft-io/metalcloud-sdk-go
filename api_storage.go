@@ -2354,7 +2354,7 @@ func (r StorageAPIGetStorageStatisticsRequest) MinimumSpace(minimumSpace float32
 	return r
 }
 
-func (r StorageAPIGetStorageStatisticsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r StorageAPIGetStorageStatisticsRequest) Execute() (*StorageStatistics, *http.Response, error) {
 	return r.ApiService.GetStorageStatisticsExecute(r)
 }
 
@@ -2374,13 +2374,13 @@ func (a *StorageAPIService) GetStorageStatistics(ctx context.Context) StorageAPI
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *StorageAPIService) GetStorageStatisticsExecute(r StorageAPIGetStorageStatisticsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return StorageStatistics
+func (a *StorageAPIService) GetStorageStatisticsExecute(r StorageAPIGetStorageStatisticsRequest) (*StorageStatistics, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *StorageStatistics
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStorageStatistics")

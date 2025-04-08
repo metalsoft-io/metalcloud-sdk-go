@@ -24,7 +24,7 @@ type CreateSecret struct {
 	// The secret name.
 	Name string `json:"name"`
 	// Secret usage type.
-	Usage *SecretUsageType `json:"usage,omitempty"`
+	Usage *VariableUsageType `json:"usage,omitempty"`
 	// The secret value.
 	Value string `json:"value"`
 	AdditionalProperties map[string]interface{}
@@ -76,9 +76,9 @@ func (o *CreateSecret) SetName(v string) {
 }
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
-func (o *CreateSecret) GetUsage() SecretUsageType {
+func (o *CreateSecret) GetUsage() VariableUsageType {
 	if o == nil || IsNil(o.Usage) {
-		var ret SecretUsageType
+		var ret VariableUsageType
 		return ret
 	}
 	return *o.Usage
@@ -86,7 +86,7 @@ func (o *CreateSecret) GetUsage() SecretUsageType {
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecret) GetUsageOk() (*SecretUsageType, bool) {
+func (o *CreateSecret) GetUsageOk() (*VariableUsageType, bool) {
 	if o == nil || IsNil(o.Usage) {
 		return nil, false
 	}
@@ -102,8 +102,8 @@ func (o *CreateSecret) HasUsage() bool {
 	return false
 }
 
-// SetUsage gets a reference to the given SecretUsageType and assigns it to the Usage field.
-func (o *CreateSecret) SetUsage(v SecretUsageType) {
+// SetUsage gets a reference to the given VariableUsageType and assigns it to the Usage field.
+func (o *CreateSecret) SetUsage(v VariableUsageType) {
 	o.Usage = &v
 }
 

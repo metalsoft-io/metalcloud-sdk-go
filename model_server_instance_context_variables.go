@@ -33,6 +33,8 @@ type ServerInstanceContextVariables struct {
 	ServerInstanceGroup ServerInstanceGroupVariables `json:"serverInstanceGroup"`
 	// The infrastructure variables.
 	Infrastructure InfrastructureVariables `json:"infrastructure"`
+	// The server instance drive groups variables.
+	DriveGroups []DriveGroupVariables `json:"driveGroups"`
 	// The server instance drives variables.
 	Drives []DriveVariables `json:"drives"`
 	// The server instance file shares variables.
@@ -45,6 +47,10 @@ type ServerInstanceContextVariables struct {
 	Variables map[string]interface{} `json:"variables,omitempty"`
 	// Secrets
 	Secrets map[string]interface{} `json:"secrets,omitempty"`
+	// Infrastructure owner SSH keys
+	UserSSHKeys []string `json:"userSSHKeys,omitempty"`
+	// Management SSH key
+	ManagementSSHKey *string `json:"managementSSHKey,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,7 +60,7 @@ type _ServerInstanceContextVariables ServerInstanceContextVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceContextVariables(site SiteVariables, siteConfig SiteConfigVariables, server ServerVariables, serverInstance ServerInstanceVariables, serverInstanceGroup ServerInstanceGroupVariables, infrastructure InfrastructureVariables, drives []DriveVariables, fileShares []FileShareVariables, buckets []BucketVariables, sharedDrives []SharedDriveVariables) *ServerInstanceContextVariables {
+func NewServerInstanceContextVariables(site SiteVariables, siteConfig SiteConfigVariables, server ServerVariables, serverInstance ServerInstanceVariables, serverInstanceGroup ServerInstanceGroupVariables, infrastructure InfrastructureVariables, driveGroups []DriveGroupVariables, drives []DriveVariables, fileShares []FileShareVariables, buckets []BucketVariables, sharedDrives []SharedDriveVariables) *ServerInstanceContextVariables {
 	this := ServerInstanceContextVariables{}
 	this.Site = site
 	this.SiteConfig = siteConfig
@@ -62,6 +68,7 @@ func NewServerInstanceContextVariables(site SiteVariables, siteConfig SiteConfig
 	this.ServerInstance = serverInstance
 	this.ServerInstanceGroup = serverInstanceGroup
 	this.Infrastructure = infrastructure
+	this.DriveGroups = driveGroups
 	this.Drives = drives
 	this.FileShares = fileShares
 	this.Buckets = buckets
@@ -219,6 +226,30 @@ func (o *ServerInstanceContextVariables) GetInfrastructureOk() (*InfrastructureV
 // SetInfrastructure sets field value
 func (o *ServerInstanceContextVariables) SetInfrastructure(v InfrastructureVariables) {
 	o.Infrastructure = v
+}
+
+// GetDriveGroups returns the DriveGroups field value
+func (o *ServerInstanceContextVariables) GetDriveGroups() []DriveGroupVariables {
+	if o == nil {
+		var ret []DriveGroupVariables
+		return ret
+	}
+
+	return o.DriveGroups
+}
+
+// GetDriveGroupsOk returns a tuple with the DriveGroups field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceContextVariables) GetDriveGroupsOk() ([]DriveGroupVariables, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DriveGroups, true
+}
+
+// SetDriveGroups sets field value
+func (o *ServerInstanceContextVariables) SetDriveGroups(v []DriveGroupVariables) {
+	o.DriveGroups = v
 }
 
 // GetDrives returns the Drives field value
@@ -381,6 +412,70 @@ func (o *ServerInstanceContextVariables) SetSecrets(v map[string]interface{}) {
 	o.Secrets = v
 }
 
+// GetUserSSHKeys returns the UserSSHKeys field value if set, zero value otherwise.
+func (o *ServerInstanceContextVariables) GetUserSSHKeys() []string {
+	if o == nil || IsNil(o.UserSSHKeys) {
+		var ret []string
+		return ret
+	}
+	return o.UserSSHKeys
+}
+
+// GetUserSSHKeysOk returns a tuple with the UserSSHKeys field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceContextVariables) GetUserSSHKeysOk() ([]string, bool) {
+	if o == nil || IsNil(o.UserSSHKeys) {
+		return nil, false
+	}
+	return o.UserSSHKeys, true
+}
+
+// HasUserSSHKeys returns a boolean if a field has been set.
+func (o *ServerInstanceContextVariables) HasUserSSHKeys() bool {
+	if o != nil && !IsNil(o.UserSSHKeys) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserSSHKeys gets a reference to the given []string and assigns it to the UserSSHKeys field.
+func (o *ServerInstanceContextVariables) SetUserSSHKeys(v []string) {
+	o.UserSSHKeys = v
+}
+
+// GetManagementSSHKey returns the ManagementSSHKey field value if set, zero value otherwise.
+func (o *ServerInstanceContextVariables) GetManagementSSHKey() string {
+	if o == nil || IsNil(o.ManagementSSHKey) {
+		var ret string
+		return ret
+	}
+	return *o.ManagementSSHKey
+}
+
+// GetManagementSSHKeyOk returns a tuple with the ManagementSSHKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceContextVariables) GetManagementSSHKeyOk() (*string, bool) {
+	if o == nil || IsNil(o.ManagementSSHKey) {
+		return nil, false
+	}
+	return o.ManagementSSHKey, true
+}
+
+// HasManagementSSHKey returns a boolean if a field has been set.
+func (o *ServerInstanceContextVariables) HasManagementSSHKey() bool {
+	if o != nil && !IsNil(o.ManagementSSHKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetManagementSSHKey gets a reference to the given string and assigns it to the ManagementSSHKey field.
+func (o *ServerInstanceContextVariables) SetManagementSSHKey(v string) {
+	o.ManagementSSHKey = &v
+}
+
 func (o ServerInstanceContextVariables) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -397,6 +492,7 @@ func (o ServerInstanceContextVariables) ToMap() (map[string]interface{}, error) 
 	toSerialize["serverInstance"] = o.ServerInstance
 	toSerialize["serverInstanceGroup"] = o.ServerInstanceGroup
 	toSerialize["infrastructure"] = o.Infrastructure
+	toSerialize["driveGroups"] = o.DriveGroups
 	toSerialize["drives"] = o.Drives
 	toSerialize["fileShares"] = o.FileShares
 	toSerialize["buckets"] = o.Buckets
@@ -406,6 +502,12 @@ func (o ServerInstanceContextVariables) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.Secrets) {
 		toSerialize["secrets"] = o.Secrets
+	}
+	if !IsNil(o.UserSSHKeys) {
+		toSerialize["userSSHKeys"] = o.UserSSHKeys
+	}
+	if !IsNil(o.ManagementSSHKey) {
+		toSerialize["managementSSHKey"] = o.ManagementSSHKey
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -426,6 +528,7 @@ func (o *ServerInstanceContextVariables) UnmarshalJSON(data []byte) (err error) 
 		"serverInstance",
 		"serverInstanceGroup",
 		"infrastructure",
+		"driveGroups",
 		"drives",
 		"fileShares",
 		"buckets",
@@ -465,12 +568,15 @@ func (o *ServerInstanceContextVariables) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "serverInstance")
 		delete(additionalProperties, "serverInstanceGroup")
 		delete(additionalProperties, "infrastructure")
+		delete(additionalProperties, "driveGroups")
 		delete(additionalProperties, "drives")
 		delete(additionalProperties, "fileShares")
 		delete(additionalProperties, "buckets")
 		delete(additionalProperties, "sharedDrives")
 		delete(additionalProperties, "variables")
 		delete(additionalProperties, "secrets")
+		delete(additionalProperties, "userSSHKeys")
+		delete(additionalProperties, "managementSSHKey")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// GenericServiceStatus the model 'GenericServiceStatus'
+// GenericServiceStatus Service status of the Infrastructure
 type GenericServiceStatus string
 
 // List of GenericServiceStatus

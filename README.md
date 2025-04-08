@@ -366,6 +366,9 @@ Class | Method | HTTP request | Description
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupDriveGroups**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupdrivegroups) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/drive-groups | Get Server Instance Group Drive Groups
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupInterface**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupinterface) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces/{interfaceId} | Get Server Instance Group Interface details
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupInterfaces**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupinterfaces) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces | Get Server Instance Group Interfaces
+*ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfiguration**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfiguration) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration | Get server instance group network configuration
+*ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfigurationLogicalNetworkById**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfigurationlogicalnetworkbyid) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks/{logicalNetworkId} | Get server instance group network configuration logical network by id
+*ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfigurationLogicalNetworks**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfigurationlogicalnetworks) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks | Get server instance group&#39;s network configuration logical networks
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupServerInstances**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupserverinstances) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/server-instances | List Server Instances for a Server Instance Group
 *ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupConfig**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupconfig) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Updates Server Instance Group configuration
 *ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupMeta**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupmeta) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/meta | Update an Server Instance Group meta information
@@ -605,6 +608,7 @@ Class | Method | HTTP request | Description
  - [DriveGroupList](docs/DriveGroupList.md)
  - [DriveGroupMeta](docs/DriveGroupMeta.md)
  - [DriveGroupPaginatedList](docs/DriveGroupPaginatedList.md)
+ - [DriveGroupVariables](docs/DriveGroupVariables.md)
  - [DriveList](docs/DriveList.md)
  - [DriveMeta](docs/DriveMeta.md)
  - [DrivePaginatedList](docs/DrivePaginatedList.md)
@@ -750,7 +754,6 @@ Class | Method | HTTP request | Description
  - [SearchFirmwareBinary](docs/SearchFirmwareBinary.md)
  - [Secret](docs/Secret.md)
  - [SecretPaginatedList](docs/SecretPaginatedList.md)
- - [SecretUsageType](docs/SecretUsageType.md)
  - [Server](docs/Server.md)
  - [ServerAllocationInfo](docs/ServerAllocationInfo.md)
  - [ServerCapabilities](docs/ServerCapabilities.md)
@@ -848,6 +851,7 @@ Class | Method | HTTP request | Description
  - [StorageNetworkDeviceConfiguration](docs/StorageNetworkDeviceConfiguration.md)
  - [StorageOptions](docs/StorageOptions.md)
  - [StoragePaginatedList](docs/StoragePaginatedList.md)
+ - [StorageStatistics](docs/StorageStatistics.md)
  - [Subnet](docs/Subnet.md)
  - [SubnetPaginatedList](docs/SubnetPaginatedList.md)
  - [SwitchPosition](docs/SwitchPosition.md)

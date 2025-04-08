@@ -89,6 +89,8 @@ type ServerInstanceGroupVariables struct {
 	ServiceStatus string `json:"serviceStatus"`
 	// The resource pool assigned to this instance array
 	ResourcePoolId *int32 `json:"resourcePoolId,omitempty"`
+	// The network endpoint group id for the instance array
+	NetworkEndpointGroupId *int32 `json:"networkEndpointGroupId,omitempty"`
 	// Flag to indicate if the Server Instance Group is belongs to a VM.
 	IsVmGroup int32 `json:"isVmGroup"`
 	// Id of the VM Instance Group this Server Instance Group belongs to.
@@ -1225,6 +1227,38 @@ func (o *ServerInstanceGroupVariables) SetResourcePoolId(v int32) {
 	o.ResourcePoolId = &v
 }
 
+// GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field value if set, zero value otherwise.
+func (o *ServerInstanceGroupVariables) GetNetworkEndpointGroupId() int32 {
+	if o == nil || IsNil(o.NetworkEndpointGroupId) {
+		var ret int32
+		return ret
+	}
+	return *o.NetworkEndpointGroupId
+}
+
+// GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupVariables) GetNetworkEndpointGroupIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.NetworkEndpointGroupId) {
+		return nil, false
+	}
+	return o.NetworkEndpointGroupId, true
+}
+
+// HasNetworkEndpointGroupId returns a boolean if a field has been set.
+func (o *ServerInstanceGroupVariables) HasNetworkEndpointGroupId() bool {
+	if o != nil && !IsNil(o.NetworkEndpointGroupId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkEndpointGroupId gets a reference to the given int32 and assigns it to the NetworkEndpointGroupId field.
+func (o *ServerInstanceGroupVariables) SetNetworkEndpointGroupId(v int32) {
+	o.NetworkEndpointGroupId = &v
+}
+
 // GetIsVmGroup returns the IsVmGroup field value
 func (o *ServerInstanceGroupVariables) GetIsVmGroup() int32 {
 	if o == nil {
@@ -1431,6 +1465,9 @@ func (o ServerInstanceGroupVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ResourcePoolId) {
 		toSerialize["resourcePoolId"] = o.ResourcePoolId
 	}
+	if !IsNil(o.NetworkEndpointGroupId) {
+		toSerialize["networkEndpointGroupId"] = o.NetworkEndpointGroupId
+	}
 	toSerialize["isVmGroup"] = o.IsVmGroup
 	if !IsNil(o.VmInstanceGroupId) {
 		toSerialize["vmInstanceGroupId"] = o.VmInstanceGroupId
@@ -1541,6 +1578,7 @@ func (o *ServerInstanceGroupVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkEquipmentForceSubnetPoolIpv4WanId")
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "resourcePoolId")
+		delete(additionalProperties, "networkEndpointGroupId")
 		delete(additionalProperties, "isVmGroup")
 		delete(additionalProperties, "vmInstanceGroupId")
 		delete(additionalProperties, "defaultServerProfileID")

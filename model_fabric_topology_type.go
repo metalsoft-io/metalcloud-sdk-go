@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// FabricTopologyType the model 'FabricTopologyType'
+// FabricTopologyType Fabric topology type
 type FabricTopologyType string
 
 // List of FabricTopologyType

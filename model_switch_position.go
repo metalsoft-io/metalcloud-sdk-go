@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// SwitchPosition the model 'SwitchPosition'
+// SwitchPosition The physical or logical position of the network device in the network topology.
 type SwitchPosition string
 
 // List of SwitchPosition

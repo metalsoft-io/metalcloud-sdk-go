@@ -968,6 +968,13 @@ type VMInstanceAPIGetVmInstanceVariablesRequest struct {
 	ApiService *VMInstanceAPIService
 	infrastructureId int32
 	vmInstanceId int32
+	usage *VariableUsageType
+}
+
+// Filter by variable usage
+func (r VMInstanceAPIGetVmInstanceVariablesRequest) Usage(usage VariableUsageType) VMInstanceAPIGetVmInstanceVariablesRequest {
+	r.usage = &usage
+	return r
 }
 
 func (r VMInstanceAPIGetVmInstanceVariablesRequest) Execute() (*VmInstanceContextVariables, *http.Response, error) {
@@ -1014,6 +1021,9 @@ func (a *VMInstanceAPIService) GetVmInstanceVariablesExecute(r VMInstanceAPIGetV
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.usage != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "usage", r.usage, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

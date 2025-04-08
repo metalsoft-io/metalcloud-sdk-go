@@ -1721,6 +1721,13 @@ type ServerInstanceAPIGetServerInstanceVariablesRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceAPIService
 	serverInstanceId int32
+	usage *VariableUsageType
+}
+
+// Filter by variable usage
+func (r ServerInstanceAPIGetServerInstanceVariablesRequest) Usage(usage VariableUsageType) ServerInstanceAPIGetServerInstanceVariablesRequest {
+	r.usage = &usage
+	return r
 }
 
 func (r ServerInstanceAPIGetServerInstanceVariablesRequest) Execute() (*ServerInstanceContextVariables, *http.Response, error) {
@@ -1764,6 +1771,9 @@ func (a *ServerInstanceAPIService) GetServerInstanceVariablesExecute(r ServerIns
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.usage != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "usage", r.usage, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

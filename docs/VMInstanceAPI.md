@@ -554,7 +554,7 @@ Name | Type | Description  | Notes
 
 ## GetVmInstanceVariables
 
-> VmInstanceContextVariables GetVmInstanceVariables(ctx, infrastructureId, vmInstanceId).Execute()
+> VmInstanceContextVariables GetVmInstanceVariables(ctx, infrastructureId, vmInstanceId).Usage(usage).Execute()
 
 Get VM instance variables
 
@@ -573,10 +573,11 @@ import (
 func main() {
 	infrastructureId := int32(56) // int32 | 
 	vmInstanceId := int32(56) // int32 | 
+	usage := openapiclient.VariableUsageType("HTTPRequest") // VariableUsageType | Filter by variable usage (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VMInstanceAPI.GetVmInstanceVariables(context.Background(), infrastructureId, vmInstanceId).Execute()
+	resp, r, err := apiClient.VMInstanceAPI.GetVmInstanceVariables(context.Background(), infrastructureId, vmInstanceId).Usage(usage).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VMInstanceAPI.GetVmInstanceVariables``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -604,6 +605,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **usage** | [**VariableUsageType**](VariableUsageType.md) | Filter by variable usage | 
 
 ### Return type
 

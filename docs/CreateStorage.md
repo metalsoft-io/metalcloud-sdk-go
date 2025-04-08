@@ -9,10 +9,6 @@ Name | Type | Description | Notes
 **StorageDriver** | **string** | Storage driver | 
 **StorageTechnology** | **string** | Storage technology | 
 **StorageType** | **string** | Storage type | 
-**TotalCapacity** | Pointer to **float32** | Total capacity in MB | [optional] 
-**UsableCapacity** | Pointer to **float32** | Usable capacity in MB | [optional] 
-**FreeCapacity** | Pointer to **float32** | Free capacity in MB | [optional] 
-**VirtualUsedCapacity** | Pointer to **float32** | Virtual used capacity in MB | [optional] 
 **Name** | **string** | Name of the storage | 
 **IscsiHost** | Pointer to **string** | ISCSI host | [optional] 
 **IscsiPort** | Pointer to **float32** | ISCSI port | [optional] 
@@ -155,106 +151,6 @@ and a boolean to check if the value has been set.
 
 SetStorageType sets StorageType field to given value.
 
-
-### GetTotalCapacity
-
-`func (o *CreateStorage) GetTotalCapacity() float32`
-
-GetTotalCapacity returns the TotalCapacity field if non-nil, zero value otherwise.
-
-### GetTotalCapacityOk
-
-`func (o *CreateStorage) GetTotalCapacityOk() (*float32, bool)`
-
-GetTotalCapacityOk returns a tuple with the TotalCapacity field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTotalCapacity
-
-`func (o *CreateStorage) SetTotalCapacity(v float32)`
-
-SetTotalCapacity sets TotalCapacity field to given value.
-
-### HasTotalCapacity
-
-`func (o *CreateStorage) HasTotalCapacity() bool`
-
-HasTotalCapacity returns a boolean if a field has been set.
-
-### GetUsableCapacity
-
-`func (o *CreateStorage) GetUsableCapacity() float32`
-
-GetUsableCapacity returns the UsableCapacity field if non-nil, zero value otherwise.
-
-### GetUsableCapacityOk
-
-`func (o *CreateStorage) GetUsableCapacityOk() (*float32, bool)`
-
-GetUsableCapacityOk returns a tuple with the UsableCapacity field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUsableCapacity
-
-`func (o *CreateStorage) SetUsableCapacity(v float32)`
-
-SetUsableCapacity sets UsableCapacity field to given value.
-
-### HasUsableCapacity
-
-`func (o *CreateStorage) HasUsableCapacity() bool`
-
-HasUsableCapacity returns a boolean if a field has been set.
-
-### GetFreeCapacity
-
-`func (o *CreateStorage) GetFreeCapacity() float32`
-
-GetFreeCapacity returns the FreeCapacity field if non-nil, zero value otherwise.
-
-### GetFreeCapacityOk
-
-`func (o *CreateStorage) GetFreeCapacityOk() (*float32, bool)`
-
-GetFreeCapacityOk returns a tuple with the FreeCapacity field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFreeCapacity
-
-`func (o *CreateStorage) SetFreeCapacity(v float32)`
-
-SetFreeCapacity sets FreeCapacity field to given value.
-
-### HasFreeCapacity
-
-`func (o *CreateStorage) HasFreeCapacity() bool`
-
-HasFreeCapacity returns a boolean if a field has been set.
-
-### GetVirtualUsedCapacity
-
-`func (o *CreateStorage) GetVirtualUsedCapacity() float32`
-
-GetVirtualUsedCapacity returns the VirtualUsedCapacity field if non-nil, zero value otherwise.
-
-### GetVirtualUsedCapacityOk
-
-`func (o *CreateStorage) GetVirtualUsedCapacityOk() (*float32, bool)`
-
-GetVirtualUsedCapacityOk returns a tuple with the VirtualUsedCapacity field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVirtualUsedCapacity
-
-`func (o *CreateStorage) SetVirtualUsedCapacity(v float32)`
-
-SetVirtualUsedCapacity sets VirtualUsedCapacity field to given value.
-
-### HasVirtualUsedCapacity
-
-`func (o *CreateStorage) HasVirtualUsedCapacity() bool`
-
-HasVirtualUsedCapacity returns a boolean if a field has been set.
 
 ### GetName
 

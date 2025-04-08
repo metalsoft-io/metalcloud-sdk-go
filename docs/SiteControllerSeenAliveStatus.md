@@ -4,17 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | The site ID | 
-**ServersCount** | **float32** | Number servers | 
-**NetworksCount** | **float32** | Number network equipment | 
-**StoragesCount** | **float32** | Number of storage pools | 
-**InfrastructuresCount** | **float32** | Number of infrastructures | 
+**MayBeOffline** | **float32** | Number of site controllers that may be offline | 
+**Offline** | **float32** | Number of site controllers that are offline | 
+**WasSeenConnectedVeryRecently** | **float32** | Number of site controllers seen connected very recently | 
 
 ## Methods
 
 ### NewSiteControllerSeenAliveStatus
 
-`func NewSiteControllerSeenAliveStatus(id int32, serversCount float32, networksCount float32, storagesCount float32, infrastructuresCount float32, ) *SiteControllerSeenAliveStatus`
+`func NewSiteControllerSeenAliveStatus(mayBeOffline float32, offline float32, wasSeenConnectedVeryRecently float32, ) *SiteControllerSeenAliveStatus`
 
 NewSiteControllerSeenAliveStatus instantiates a new SiteControllerSeenAliveStatus object
 This constructor will assign default values to properties that have it defined,
@@ -29,104 +27,64 @@ NewSiteControllerSeenAliveStatusWithDefaults instantiates a new SiteControllerSe
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetMayBeOffline
 
-`func (o *SiteControllerSeenAliveStatus) GetId() int32`
+`func (o *SiteControllerSeenAliveStatus) GetMayBeOffline() float32`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetMayBeOffline returns the MayBeOffline field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetMayBeOfflineOk
 
-`func (o *SiteControllerSeenAliveStatus) GetIdOk() (*int32, bool)`
+`func (o *SiteControllerSeenAliveStatus) GetMayBeOfflineOk() (*float32, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetMayBeOfflineOk returns a tuple with the MayBeOffline field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetMayBeOffline
 
-`func (o *SiteControllerSeenAliveStatus) SetId(v int32)`
+`func (o *SiteControllerSeenAliveStatus) SetMayBeOffline(v float32)`
 
-SetId sets Id field to given value.
+SetMayBeOffline sets MayBeOffline field to given value.
 
 
-### GetServersCount
+### GetOffline
 
-`func (o *SiteControllerSeenAliveStatus) GetServersCount() float32`
+`func (o *SiteControllerSeenAliveStatus) GetOffline() float32`
 
-GetServersCount returns the ServersCount field if non-nil, zero value otherwise.
+GetOffline returns the Offline field if non-nil, zero value otherwise.
 
-### GetServersCountOk
+### GetOfflineOk
 
-`func (o *SiteControllerSeenAliveStatus) GetServersCountOk() (*float32, bool)`
+`func (o *SiteControllerSeenAliveStatus) GetOfflineOk() (*float32, bool)`
 
-GetServersCountOk returns a tuple with the ServersCount field if it's non-nil, zero value otherwise
+GetOfflineOk returns a tuple with the Offline field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServersCount
+### SetOffline
 
-`func (o *SiteControllerSeenAliveStatus) SetServersCount(v float32)`
+`func (o *SiteControllerSeenAliveStatus) SetOffline(v float32)`
 
-SetServersCount sets ServersCount field to given value.
+SetOffline sets Offline field to given value.
 
 
-### GetNetworksCount
+### GetWasSeenConnectedVeryRecently
 
-`func (o *SiteControllerSeenAliveStatus) GetNetworksCount() float32`
+`func (o *SiteControllerSeenAliveStatus) GetWasSeenConnectedVeryRecently() float32`
 
-GetNetworksCount returns the NetworksCount field if non-nil, zero value otherwise.
+GetWasSeenConnectedVeryRecently returns the WasSeenConnectedVeryRecently field if non-nil, zero value otherwise.
 
-### GetNetworksCountOk
+### GetWasSeenConnectedVeryRecentlyOk
 
-`func (o *SiteControllerSeenAliveStatus) GetNetworksCountOk() (*float32, bool)`
+`func (o *SiteControllerSeenAliveStatus) GetWasSeenConnectedVeryRecentlyOk() (*float32, bool)`
 
-GetNetworksCountOk returns a tuple with the NetworksCount field if it's non-nil, zero value otherwise
+GetWasSeenConnectedVeryRecentlyOk returns a tuple with the WasSeenConnectedVeryRecently field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNetworksCount
+### SetWasSeenConnectedVeryRecently
 
-`func (o *SiteControllerSeenAliveStatus) SetNetworksCount(v float32)`
+`func (o *SiteControllerSeenAliveStatus) SetWasSeenConnectedVeryRecently(v float32)`
 
-SetNetworksCount sets NetworksCount field to given value.
-
-
-### GetStoragesCount
-
-`func (o *SiteControllerSeenAliveStatus) GetStoragesCount() float32`
-
-GetStoragesCount returns the StoragesCount field if non-nil, zero value otherwise.
-
-### GetStoragesCountOk
-
-`func (o *SiteControllerSeenAliveStatus) GetStoragesCountOk() (*float32, bool)`
-
-GetStoragesCountOk returns a tuple with the StoragesCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStoragesCount
-
-`func (o *SiteControllerSeenAliveStatus) SetStoragesCount(v float32)`
-
-SetStoragesCount sets StoragesCount field to given value.
-
-
-### GetInfrastructuresCount
-
-`func (o *SiteControllerSeenAliveStatus) GetInfrastructuresCount() float32`
-
-GetInfrastructuresCount returns the InfrastructuresCount field if non-nil, zero value otherwise.
-
-### GetInfrastructuresCountOk
-
-`func (o *SiteControllerSeenAliveStatus) GetInfrastructuresCountOk() (*float32, bool)`
-
-GetInfrastructuresCountOk returns a tuple with the InfrastructuresCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInfrastructuresCount
-
-`func (o *SiteControllerSeenAliveStatus) SetInfrastructuresCount(v float32)`
-
-SetInfrastructuresCount sets InfrastructuresCount field to given value.
+SetWasSeenConnectedVeryRecently sets WasSeenConnectedVeryRecently field to given value.
 
 
 

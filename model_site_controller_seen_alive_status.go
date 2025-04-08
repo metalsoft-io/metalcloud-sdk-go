@@ -21,16 +21,12 @@ var _ MappedNullable = &SiteControllerSeenAliveStatus{}
 
 // SiteControllerSeenAliveStatus struct for SiteControllerSeenAliveStatus
 type SiteControllerSeenAliveStatus struct {
-	// The site ID
-	Id int32 `json:"id"`
-	// Number servers
-	ServersCount float32 `json:"serversCount"`
-	// Number network equipment
-	NetworksCount float32 `json:"networksCount"`
-	// Number of storage pools
-	StoragesCount float32 `json:"storagesCount"`
-	// Number of infrastructures
-	InfrastructuresCount float32 `json:"infrastructuresCount"`
+	// Number of site controllers that may be offline
+	MayBeOffline float32 `json:"may_be_offline"`
+	// Number of site controllers that are offline
+	Offline float32 `json:"offline"`
+	// Number of site controllers seen connected very recently
+	WasSeenConnectedVeryRecently float32 `json:"was_seen_connected_very_recently"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,13 +36,11 @@ type _SiteControllerSeenAliveStatus SiteControllerSeenAliveStatus
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSiteControllerSeenAliveStatus(id int32, serversCount float32, networksCount float32, storagesCount float32, infrastructuresCount float32) *SiteControllerSeenAliveStatus {
+func NewSiteControllerSeenAliveStatus(mayBeOffline float32, offline float32, wasSeenConnectedVeryRecently float32) *SiteControllerSeenAliveStatus {
 	this := SiteControllerSeenAliveStatus{}
-	this.Id = id
-	this.ServersCount = serversCount
-	this.NetworksCount = networksCount
-	this.StoragesCount = storagesCount
-	this.InfrastructuresCount = infrastructuresCount
+	this.MayBeOffline = mayBeOffline
+	this.Offline = offline
+	this.WasSeenConnectedVeryRecently = wasSeenConnectedVeryRecently
 	return &this
 }
 
@@ -58,124 +52,76 @@ func NewSiteControllerSeenAliveStatusWithDefaults() *SiteControllerSeenAliveStat
 	return &this
 }
 
-// GetId returns the Id field value
-func (o *SiteControllerSeenAliveStatus) GetId() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *SiteControllerSeenAliveStatus) GetIdOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *SiteControllerSeenAliveStatus) SetId(v int32) {
-	o.Id = v
-}
-
-// GetServersCount returns the ServersCount field value
-func (o *SiteControllerSeenAliveStatus) GetServersCount() float32 {
+// GetMayBeOffline returns the MayBeOffline field value
+func (o *SiteControllerSeenAliveStatus) GetMayBeOffline() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.ServersCount
+	return o.MayBeOffline
 }
 
-// GetServersCountOk returns a tuple with the ServersCount field value
+// GetMayBeOfflineOk returns a tuple with the MayBeOffline field value
 // and a boolean to check if the value has been set.
-func (o *SiteControllerSeenAliveStatus) GetServersCountOk() (*float32, bool) {
+func (o *SiteControllerSeenAliveStatus) GetMayBeOfflineOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ServersCount, true
+	return &o.MayBeOffline, true
 }
 
-// SetServersCount sets field value
-func (o *SiteControllerSeenAliveStatus) SetServersCount(v float32) {
-	o.ServersCount = v
+// SetMayBeOffline sets field value
+func (o *SiteControllerSeenAliveStatus) SetMayBeOffline(v float32) {
+	o.MayBeOffline = v
 }
 
-// GetNetworksCount returns the NetworksCount field value
-func (o *SiteControllerSeenAliveStatus) GetNetworksCount() float32 {
+// GetOffline returns the Offline field value
+func (o *SiteControllerSeenAliveStatus) GetOffline() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.NetworksCount
+	return o.Offline
 }
 
-// GetNetworksCountOk returns a tuple with the NetworksCount field value
+// GetOfflineOk returns a tuple with the Offline field value
 // and a boolean to check if the value has been set.
-func (o *SiteControllerSeenAliveStatus) GetNetworksCountOk() (*float32, bool) {
+func (o *SiteControllerSeenAliveStatus) GetOfflineOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NetworksCount, true
+	return &o.Offline, true
 }
 
-// SetNetworksCount sets field value
-func (o *SiteControllerSeenAliveStatus) SetNetworksCount(v float32) {
-	o.NetworksCount = v
+// SetOffline sets field value
+func (o *SiteControllerSeenAliveStatus) SetOffline(v float32) {
+	o.Offline = v
 }
 
-// GetStoragesCount returns the StoragesCount field value
-func (o *SiteControllerSeenAliveStatus) GetStoragesCount() float32 {
+// GetWasSeenConnectedVeryRecently returns the WasSeenConnectedVeryRecently field value
+func (o *SiteControllerSeenAliveStatus) GetWasSeenConnectedVeryRecently() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.StoragesCount
+	return o.WasSeenConnectedVeryRecently
 }
 
-// GetStoragesCountOk returns a tuple with the StoragesCount field value
+// GetWasSeenConnectedVeryRecentlyOk returns a tuple with the WasSeenConnectedVeryRecently field value
 // and a boolean to check if the value has been set.
-func (o *SiteControllerSeenAliveStatus) GetStoragesCountOk() (*float32, bool) {
+func (o *SiteControllerSeenAliveStatus) GetWasSeenConnectedVeryRecentlyOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.StoragesCount, true
+	return &o.WasSeenConnectedVeryRecently, true
 }
 
-// SetStoragesCount sets field value
-func (o *SiteControllerSeenAliveStatus) SetStoragesCount(v float32) {
-	o.StoragesCount = v
-}
-
-// GetInfrastructuresCount returns the InfrastructuresCount field value
-func (o *SiteControllerSeenAliveStatus) GetInfrastructuresCount() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.InfrastructuresCount
-}
-
-// GetInfrastructuresCountOk returns a tuple with the InfrastructuresCount field value
-// and a boolean to check if the value has been set.
-func (o *SiteControllerSeenAliveStatus) GetInfrastructuresCountOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.InfrastructuresCount, true
-}
-
-// SetInfrastructuresCount sets field value
-func (o *SiteControllerSeenAliveStatus) SetInfrastructuresCount(v float32) {
-	o.InfrastructuresCount = v
+// SetWasSeenConnectedVeryRecently sets field value
+func (o *SiteControllerSeenAliveStatus) SetWasSeenConnectedVeryRecently(v float32) {
+	o.WasSeenConnectedVeryRecently = v
 }
 
 func (o SiteControllerSeenAliveStatus) MarshalJSON() ([]byte, error) {
@@ -188,11 +134,9 @@ func (o SiteControllerSeenAliveStatus) MarshalJSON() ([]byte, error) {
 
 func (o SiteControllerSeenAliveStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["serversCount"] = o.ServersCount
-	toSerialize["networksCount"] = o.NetworksCount
-	toSerialize["storagesCount"] = o.StoragesCount
-	toSerialize["infrastructuresCount"] = o.InfrastructuresCount
+	toSerialize["may_be_offline"] = o.MayBeOffline
+	toSerialize["offline"] = o.Offline
+	toSerialize["was_seen_connected_very_recently"] = o.WasSeenConnectedVeryRecently
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -206,11 +150,9 @@ func (o *SiteControllerSeenAliveStatus) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
-		"serversCount",
-		"networksCount",
-		"storagesCount",
-		"infrastructuresCount",
+		"may_be_offline",
+		"offline",
+		"was_seen_connected_very_recently",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -240,11 +182,9 @@ func (o *SiteControllerSeenAliveStatus) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "serversCount")
-		delete(additionalProperties, "networksCount")
-		delete(additionalProperties, "storagesCount")
-		delete(additionalProperties, "infrastructuresCount")
+		delete(additionalProperties, "may_be_offline")
+		delete(additionalProperties, "offline")
+		delete(additionalProperties, "was_seen_connected_very_recently")
 		o.AdditionalProperties = additionalProperties
 	}
 

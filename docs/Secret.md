@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **UserIdOwner** | **float32** | ID of owner user. | 
 **Name** | **string** | The secret name. | 
 **ValueEncrypted** | **string** | The secret value encrypted. | 
-**Usage** | Pointer to [**SecretUsageType**](SecretUsageType.md) | Secret usage type. | [optional] 
+**Usage** | Pointer to [**VariableUsageType**](VariableUsageType.md) | Secret usage type. | [optional] 
 **CreatedTimestamp** | **string** | Timestamp of creation. | 
 **UpdatedTimestamp** | **string** | Timestamp of last update. | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -114,20 +114,20 @@ SetValueEncrypted sets ValueEncrypted field to given value.
 
 ### GetUsage
 
-`func (o *Secret) GetUsage() SecretUsageType`
+`func (o *Secret) GetUsage() VariableUsageType`
 
 GetUsage returns the Usage field if non-nil, zero value otherwise.
 
 ### GetUsageOk
 
-`func (o *Secret) GetUsageOk() (*SecretUsageType, bool)`
+`func (o *Secret) GetUsageOk() (*VariableUsageType, bool)`
 
 GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsage
 
-`func (o *Secret) SetUsage(v SecretUsageType)`
+`func (o *Secret) SetUsage(v VariableUsageType)`
 
 SetUsage sets Usage field to given value.
 

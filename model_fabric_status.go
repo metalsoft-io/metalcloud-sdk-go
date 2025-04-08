@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// FabricStatus the model 'FabricStatus'
+// FabricStatus The status of the network fabric, by default it is in draft mode.
 type FabricStatus string
 
 // List of FabricStatus

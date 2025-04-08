@@ -980,7 +980,7 @@ Other parameters are passed through a pointer to a apiGetServerInstanceStatistic
 
 ## GetServerInstanceVariables
 
-> ServerInstanceContextVariables GetServerInstanceVariables(ctx, serverInstanceId).Execute()
+> ServerInstanceContextVariables GetServerInstanceVariables(ctx, serverInstanceId).Usage(usage).Execute()
 
 Get server instance variables
 
@@ -998,10 +998,11 @@ import (
 
 func main() {
 	serverInstanceId := int32(56) // int32 | 
+	usage := openapiclient.VariableUsageType("HTTPRequest") // VariableUsageType | Filter by variable usage (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceAPI.GetServerInstanceVariables(context.Background(), serverInstanceId).Execute()
+	resp, r, err := apiClient.ServerInstanceAPI.GetServerInstanceVariables(context.Background(), serverInstanceId).Usage(usage).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetServerInstanceVariables``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1027,6 +1028,7 @@ Other parameters are passed through a pointer to a apiGetServerInstanceVariables
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **usage** | [**VariableUsageType**](VariableUsageType.md) | Filter by variable usage | 
 
 ### Return type
 

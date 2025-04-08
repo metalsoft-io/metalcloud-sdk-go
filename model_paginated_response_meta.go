@@ -24,11 +24,11 @@ type PaginatedResponseMeta struct {
 	// The number of items per page to return in the response
 	ItemsPerPage int32 `json:"itemsPerPage"`
 	// Total number of items matching the query
-	TotalItems int32 `json:"totalItems"`
+	TotalItems *int32 `json:"totalItems,omitempty"`
 	// Current page number (1-based indexing)
-	CurrentPage int32 `json:"currentPage"`
+	CurrentPage *int32 `json:"currentPage,omitempty"`
 	// Total number of pages based on the total number of items and the number of items per page
-	TotalPages int32 `json:"totalPages"`
+	TotalPages *int32 `json:"totalPages,omitempty"`
 	// Array of [field, direction] pairs for sorting. Each pair must contain exactly 2 strings.
 	SortBy [][]string `json:"sortBy,omitempty"`
 	SearchBy []string `json:"searchBy,omitempty"`
@@ -38,6 +38,8 @@ type PaginatedResponseMeta struct {
 	Select []string `json:"select,omitempty"`
 	// Key-value pairs of filters applied to the query
 	Filter map[string]interface{} `json:"filter,omitempty"`
+	// Cursor to navigate to the next page
+	Cursor *string `json:"cursor,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,12 +49,9 @@ type _PaginatedResponseMeta PaginatedResponseMeta
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaginatedResponseMeta(itemsPerPage int32, totalItems int32, currentPage int32, totalPages int32) *PaginatedResponseMeta {
+func NewPaginatedResponseMeta(itemsPerPage int32) *PaginatedResponseMeta {
 	this := PaginatedResponseMeta{}
 	this.ItemsPerPage = itemsPerPage
-	this.TotalItems = totalItems
-	this.CurrentPage = currentPage
-	this.TotalPages = totalPages
 	return &this
 }
 
@@ -88,76 +87,100 @@ func (o *PaginatedResponseMeta) SetItemsPerPage(v int32) {
 	o.ItemsPerPage = v
 }
 
-// GetTotalItems returns the TotalItems field value
+// GetTotalItems returns the TotalItems field value if set, zero value otherwise.
 func (o *PaginatedResponseMeta) GetTotalItems() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.TotalItems) {
 		var ret int32
 		return ret
 	}
-
-	return o.TotalItems
+	return *o.TotalItems
 }
 
-// GetTotalItemsOk returns a tuple with the TotalItems field value
+// GetTotalItemsOk returns a tuple with the TotalItems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaginatedResponseMeta) GetTotalItemsOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TotalItems) {
 		return nil, false
 	}
-	return &o.TotalItems, true
+	return o.TotalItems, true
 }
 
-// SetTotalItems sets field value
+// HasTotalItems returns a boolean if a field has been set.
+func (o *PaginatedResponseMeta) HasTotalItems() bool {
+	if o != nil && !IsNil(o.TotalItems) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalItems gets a reference to the given int32 and assigns it to the TotalItems field.
 func (o *PaginatedResponseMeta) SetTotalItems(v int32) {
-	o.TotalItems = v
+	o.TotalItems = &v
 }
 
-// GetCurrentPage returns the CurrentPage field value
+// GetCurrentPage returns the CurrentPage field value if set, zero value otherwise.
 func (o *PaginatedResponseMeta) GetCurrentPage() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CurrentPage) {
 		var ret int32
 		return ret
 	}
-
-	return o.CurrentPage
+	return *o.CurrentPage
 }
 
-// GetCurrentPageOk returns a tuple with the CurrentPage field value
+// GetCurrentPageOk returns a tuple with the CurrentPage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaginatedResponseMeta) GetCurrentPageOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CurrentPage) {
 		return nil, false
 	}
-	return &o.CurrentPage, true
+	return o.CurrentPage, true
 }
 
-// SetCurrentPage sets field value
+// HasCurrentPage returns a boolean if a field has been set.
+func (o *PaginatedResponseMeta) HasCurrentPage() bool {
+	if o != nil && !IsNil(o.CurrentPage) {
+		return true
+	}
+
+	return false
+}
+
+// SetCurrentPage gets a reference to the given int32 and assigns it to the CurrentPage field.
 func (o *PaginatedResponseMeta) SetCurrentPage(v int32) {
-	o.CurrentPage = v
+	o.CurrentPage = &v
 }
 
-// GetTotalPages returns the TotalPages field value
+// GetTotalPages returns the TotalPages field value if set, zero value otherwise.
 func (o *PaginatedResponseMeta) GetTotalPages() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.TotalPages) {
 		var ret int32
 		return ret
 	}
-
-	return o.TotalPages
+	return *o.TotalPages
 }
 
-// GetTotalPagesOk returns a tuple with the TotalPages field value
+// GetTotalPagesOk returns a tuple with the TotalPages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PaginatedResponseMeta) GetTotalPagesOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TotalPages) {
 		return nil, false
 	}
-	return &o.TotalPages, true
+	return o.TotalPages, true
 }
 
-// SetTotalPages sets field value
+// HasTotalPages returns a boolean if a field has been set.
+func (o *PaginatedResponseMeta) HasTotalPages() bool {
+	if o != nil && !IsNil(o.TotalPages) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalPages gets a reference to the given int32 and assigns it to the TotalPages field.
 func (o *PaginatedResponseMeta) SetTotalPages(v int32) {
-	o.TotalPages = v
+	o.TotalPages = &v
 }
 
 // GetSortBy returns the SortBy field value if set, zero value otherwise.
@@ -320,6 +343,38 @@ func (o *PaginatedResponseMeta) SetFilter(v map[string]interface{}) {
 	o.Filter = v
 }
 
+// GetCursor returns the Cursor field value if set, zero value otherwise.
+func (o *PaginatedResponseMeta) GetCursor() string {
+	if o == nil || IsNil(o.Cursor) {
+		var ret string
+		return ret
+	}
+	return *o.Cursor
+}
+
+// GetCursorOk returns a tuple with the Cursor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaginatedResponseMeta) GetCursorOk() (*string, bool) {
+	if o == nil || IsNil(o.Cursor) {
+		return nil, false
+	}
+	return o.Cursor, true
+}
+
+// HasCursor returns a boolean if a field has been set.
+func (o *PaginatedResponseMeta) HasCursor() bool {
+	if o != nil && !IsNil(o.Cursor) {
+		return true
+	}
+
+	return false
+}
+
+// SetCursor gets a reference to the given string and assigns it to the Cursor field.
+func (o *PaginatedResponseMeta) SetCursor(v string) {
+	o.Cursor = &v
+}
+
 func (o PaginatedResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -331,9 +386,15 @@ func (o PaginatedResponseMeta) MarshalJSON() ([]byte, error) {
 func (o PaginatedResponseMeta) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["itemsPerPage"] = o.ItemsPerPage
-	toSerialize["totalItems"] = o.TotalItems
-	toSerialize["currentPage"] = o.CurrentPage
-	toSerialize["totalPages"] = o.TotalPages
+	if !IsNil(o.TotalItems) {
+		toSerialize["totalItems"] = o.TotalItems
+	}
+	if !IsNil(o.CurrentPage) {
+		toSerialize["currentPage"] = o.CurrentPage
+	}
+	if !IsNil(o.TotalPages) {
+		toSerialize["totalPages"] = o.TotalPages
+	}
 	if !IsNil(o.SortBy) {
 		toSerialize["sortBy"] = o.SortBy
 	}
@@ -349,6 +410,9 @@ func (o PaginatedResponseMeta) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Filter) {
 		toSerialize["filter"] = o.Filter
 	}
+	if !IsNil(o.Cursor) {
+		toSerialize["cursor"] = o.Cursor
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -363,9 +427,6 @@ func (o *PaginatedResponseMeta) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"itemsPerPage",
-		"totalItems",
-		"currentPage",
-		"totalPages",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -404,6 +465,7 @@ func (o *PaginatedResponseMeta) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "search")
 		delete(additionalProperties, "select")
 		delete(additionalProperties, "filter")
+		delete(additionalProperties, "cursor")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -5,20 +5,21 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ItemsPerPage** | **int32** | The number of items per page to return in the response | 
-**TotalItems** | **int32** | Total number of items matching the query | 
-**CurrentPage** | **int32** | Current page number (1-based indexing) | 
-**TotalPages** | **int32** | Total number of pages based on the total number of items and the number of items per page | 
+**TotalItems** | Pointer to **int32** | Total number of items matching the query | [optional] 
+**CurrentPage** | Pointer to **int32** | Current page number (1-based indexing) | [optional] 
+**TotalPages** | Pointer to **int32** | Total number of pages based on the total number of items and the number of items per page | [optional] 
 **SortBy** | Pointer to **[][]string** | Array of [field, direction] pairs for sorting. Each pair must contain exactly 2 strings. | [optional] 
 **SearchBy** | Pointer to **[]string** |  | [optional] 
 **Search** | Pointer to **string** | Text to search for in searchable fields | [optional] 
 **Select** | Pointer to **[]string** | List of fields to include in the response | [optional] 
 **Filter** | Pointer to **map[string]interface{}** | Key-value pairs of filters applied to the query | [optional] 
+**Cursor** | Pointer to **string** | Cursor to navigate to the next page | [optional] 
 
 ## Methods
 
 ### NewPaginatedResponseMeta
 
-`func NewPaginatedResponseMeta(itemsPerPage int32, totalItems int32, currentPage int32, totalPages int32, ) *PaginatedResponseMeta`
+`func NewPaginatedResponseMeta(itemsPerPage int32, ) *PaginatedResponseMeta`
 
 NewPaginatedResponseMeta instantiates a new PaginatedResponseMeta object
 This constructor will assign default values to properties that have it defined,
@@ -72,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetTotalItems sets TotalItems field to given value.
 
+### HasTotalItems
+
+`func (o *PaginatedResponseMeta) HasTotalItems() bool`
+
+HasTotalItems returns a boolean if a field has been set.
 
 ### GetCurrentPage
 
@@ -92,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetCurrentPage sets CurrentPage field to given value.
 
+### HasCurrentPage
+
+`func (o *PaginatedResponseMeta) HasCurrentPage() bool`
+
+HasCurrentPage returns a boolean if a field has been set.
 
 ### GetTotalPages
 
@@ -112,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetTotalPages sets TotalPages field to given value.
 
+### HasTotalPages
+
+`func (o *PaginatedResponseMeta) HasTotalPages() bool`
+
+HasTotalPages returns a boolean if a field has been set.
 
 ### GetSortBy
 
@@ -237,6 +253,31 @@ SetFilter sets Filter field to given value.
 `func (o *PaginatedResponseMeta) HasFilter() bool`
 
 HasFilter returns a boolean if a field has been set.
+
+### GetCursor
+
+`func (o *PaginatedResponseMeta) GetCursor() string`
+
+GetCursor returns the Cursor field if non-nil, zero value otherwise.
+
+### GetCursorOk
+
+`func (o *PaginatedResponseMeta) GetCursorOk() (*string, bool)`
+
+GetCursorOk returns a tuple with the Cursor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCursor
+
+`func (o *PaginatedResponseMeta) SetCursor(v string)`
+
+SetCursor sets Cursor field to given value.
+
+### HasCursor
+
+`func (o *PaginatedResponseMeta) HasCursor() bool`
+
+HasCursor returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

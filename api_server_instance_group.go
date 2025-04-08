@@ -1262,6 +1262,319 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupInterfacesExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceGroupAPIService
+	serverInstanceGroupId int32
+}
+
+func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationRequest) Execute() (*NetworkEndpointGroup, *http.Response, error) {
+	return r.ApiService.GetServerInstanceGroupNetworkConfigurationExecute(r)
+}
+
+/*
+GetServerInstanceGroupNetworkConfiguration Get server instance group network configuration
+
+Returns the network configuration of the specified server instance group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceGroupId
+ @return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationRequest
+*/
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfiguration(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationRequest {
+	return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceGroupId: serverInstanceGroupId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkEndpointGroup
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationExecute(r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationRequest) (*NetworkEndpointGroup, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkEndpointGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupNetworkConfiguration")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceGroupId, "serverInstanceGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceGroupAPIService
+	serverInstanceGroupId int32
+	logicalNetworkId int32
+}
+
+func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest) Execute() (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+	return r.ApiService.GetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdExecute(r)
+}
+
+/*
+GetServerInstanceGroupNetworkConfigurationLogicalNetworkById Get server instance group network configuration logical network by id
+
+Returns the logical network by id of the specified server instance group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceGroupId
+ @param logicalNetworkId
+ @return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest
+*/
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationLogicalNetworkById(ctx context.Context, serverInstanceGroupId int32, logicalNetworkId int32) ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest {
+	return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceGroupId: serverInstanceGroupId,
+		logicalNetworkId: logicalNetworkId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkEndpointGroupLogicalNetworkDto
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdExecute(r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest) (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkEndpointGroupLogicalNetworkDto
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupNetworkConfigurationLogicalNetworkById")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks/{logicalNetworkId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceGroupId, "serverInstanceGroupId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"logicalNetworkId"+"}", url.PathEscape(parameterValueToString(r.logicalNetworkId, "logicalNetworkId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceGroupAPIService
+	serverInstanceGroupId int32
+}
+
+func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest) Execute() (*NetworkEndpointGroupLogicalNetworksList, *http.Response, error) {
+	return r.ApiService.GetServerInstanceGroupNetworkConfigurationLogicalNetworksExecute(r)
+}
+
+/*
+GetServerInstanceGroupNetworkConfigurationLogicalNetworks Get server instance group's network configuration logical networks
+
+Returns the logical networks of the specified server instance group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceGroupId
+ @return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest
+*/
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationLogicalNetworks(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest {
+	return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceGroupId: serverInstanceGroupId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkEndpointGroupLogicalNetworksList
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationLogicalNetworksExecute(r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest) (*NetworkEndpointGroupLogicalNetworksList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkEndpointGroupLogicalNetworksList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupNetworkConfigurationLogicalNetworks")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceGroupId, "serverInstanceGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ServerInstanceGroupAPIGetServerInstanceGroupServerInstancesRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService

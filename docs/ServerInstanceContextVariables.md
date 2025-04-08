@@ -10,18 +10,21 @@ Name | Type | Description | Notes
 **ServerInstance** | [**ServerInstanceVariables**](ServerInstanceVariables.md) | The server instance variables. | 
 **ServerInstanceGroup** | [**ServerInstanceGroupVariables**](ServerInstanceGroupVariables.md) | The server instance group variables. | 
 **Infrastructure** | [**InfrastructureVariables**](InfrastructureVariables.md) | The infrastructure variables. | 
+**DriveGroups** | [**[]DriveGroupVariables**](DriveGroupVariables.md) | The server instance drive groups variables. | 
 **Drives** | [**[]DriveVariables**](DriveVariables.md) | The server instance drives variables. | 
 **FileShares** | [**[]FileShareVariables**](FileShareVariables.md) | The server instance file shares variables. | 
 **Buckets** | [**[]BucketVariables**](BucketVariables.md) | The server instance buckets variables. | 
 **SharedDrives** | [**[]SharedDriveVariables**](SharedDriveVariables.md) | The server instance shared drives variables. | 
 **Variables** | Pointer to **map[string]interface{}** | Additional variables | [optional] 
 **Secrets** | Pointer to **map[string]interface{}** | Secrets | [optional] 
+**UserSSHKeys** | Pointer to **[]string** | Infrastructure owner SSH keys | [optional] 
+**ManagementSSHKey** | Pointer to **string** | Management SSH key | [optional] 
 
 ## Methods
 
 ### NewServerInstanceContextVariables
 
-`func NewServerInstanceContextVariables(site SiteVariables, siteConfig SiteConfigVariables, server ServerVariables, serverInstance ServerInstanceVariables, serverInstanceGroup ServerInstanceGroupVariables, infrastructure InfrastructureVariables, drives []DriveVariables, fileShares []FileShareVariables, buckets []BucketVariables, sharedDrives []SharedDriveVariables, ) *ServerInstanceContextVariables`
+`func NewServerInstanceContextVariables(site SiteVariables, siteConfig SiteConfigVariables, server ServerVariables, serverInstance ServerInstanceVariables, serverInstanceGroup ServerInstanceGroupVariables, infrastructure InfrastructureVariables, driveGroups []DriveGroupVariables, drives []DriveVariables, fileShares []FileShareVariables, buckets []BucketVariables, sharedDrives []SharedDriveVariables, ) *ServerInstanceContextVariables`
 
 NewServerInstanceContextVariables instantiates a new ServerInstanceContextVariables object
 This constructor will assign default values to properties that have it defined,
@@ -156,6 +159,26 @@ and a boolean to check if the value has been set.
 SetInfrastructure sets Infrastructure field to given value.
 
 
+### GetDriveGroups
+
+`func (o *ServerInstanceContextVariables) GetDriveGroups() []DriveGroupVariables`
+
+GetDriveGroups returns the DriveGroups field if non-nil, zero value otherwise.
+
+### GetDriveGroupsOk
+
+`func (o *ServerInstanceContextVariables) GetDriveGroupsOk() (*[]DriveGroupVariables, bool)`
+
+GetDriveGroupsOk returns a tuple with the DriveGroups field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDriveGroups
+
+`func (o *ServerInstanceContextVariables) SetDriveGroups(v []DriveGroupVariables)`
+
+SetDriveGroups sets DriveGroups field to given value.
+
+
 ### GetDrives
 
 `func (o *ServerInstanceContextVariables) GetDrives() []DriveVariables`
@@ -285,6 +308,56 @@ SetSecrets sets Secrets field to given value.
 `func (o *ServerInstanceContextVariables) HasSecrets() bool`
 
 HasSecrets returns a boolean if a field has been set.
+
+### GetUserSSHKeys
+
+`func (o *ServerInstanceContextVariables) GetUserSSHKeys() []string`
+
+GetUserSSHKeys returns the UserSSHKeys field if non-nil, zero value otherwise.
+
+### GetUserSSHKeysOk
+
+`func (o *ServerInstanceContextVariables) GetUserSSHKeysOk() (*[]string, bool)`
+
+GetUserSSHKeysOk returns a tuple with the UserSSHKeys field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUserSSHKeys
+
+`func (o *ServerInstanceContextVariables) SetUserSSHKeys(v []string)`
+
+SetUserSSHKeys sets UserSSHKeys field to given value.
+
+### HasUserSSHKeys
+
+`func (o *ServerInstanceContextVariables) HasUserSSHKeys() bool`
+
+HasUserSSHKeys returns a boolean if a field has been set.
+
+### GetManagementSSHKey
+
+`func (o *ServerInstanceContextVariables) GetManagementSSHKey() string`
+
+GetManagementSSHKey returns the ManagementSSHKey field if non-nil, zero value otherwise.
+
+### GetManagementSSHKeyOk
+
+`func (o *ServerInstanceContextVariables) GetManagementSSHKeyOk() (*string, bool)`
+
+GetManagementSSHKeyOk returns a tuple with the ManagementSSHKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetManagementSSHKey
+
+`func (o *ServerInstanceContextVariables) SetManagementSSHKey(v string)`
+
+SetManagementSSHKey sets ManagementSSHKey field to given value.
+
+### HasManagementSSHKey
+
+`func (o *ServerInstanceContextVariables) HasManagementSSHKey() bool`
+
+HasManagementSSHKey returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

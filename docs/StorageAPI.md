@@ -1049,7 +1049,7 @@ Name | Type | Description  | Notes
 
 ## GetStorageStatistics
 
-> map[string]interface{} GetStorageStatistics(ctx).IncludeMaintenance(includeMaintenance).IncludeExperimental(includeExperimental).MinimumSpace(minimumSpace).Execute()
+> StorageStatistics GetStorageStatistics(ctx).IncludeMaintenance(includeMaintenance).IncludeExperimental(includeExperimental).MinimumSpace(minimumSpace).Execute()
 
 Get Storages statistics
 
@@ -1079,7 +1079,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStorageStatistics``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetStorageStatistics`: map[string]interface{}
+	// response from `GetStorageStatistics`: StorageStatistics
 	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.GetStorageStatistics`: %v\n", resp)
 }
 ```
@@ -1101,7 +1101,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**StorageStatistics**](StorageStatistics.md)
 
 ### Authorization
 
