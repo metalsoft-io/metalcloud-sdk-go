@@ -365,7 +365,6 @@ docs/ServerInstanceProfileNetworkInterfaces.md
 docs/ServerInstanceProfileNetworkInterfacesConfig.md
 docs/ServerInstanceProfileNetworkProfilesInner.md
 docs/ServerInstanceProfilePaginatedList.md
-docs/ServerInstanceProfileReference.md
 docs/ServerInstanceProfileUpdate.md
 docs/ServerInstanceReinstallOS.md
 docs/ServerInstanceStatistics.md
@@ -468,7 +467,7 @@ docs/UpdateServerIpmiCredentials.md
 docs/UpdateServerType.md
 docs/UpdateSharedDrive.md
 docs/UpdateSharedDriveMeta.md
-docs/UpdateStorageInternal.md
+docs/UpdateStorage.md
 docs/UpdateStorageNetworkDeviceConfiguration.md
 docs/UpdateStorageOptions.md
 docs/UpdateSubnet.md
@@ -806,7 +805,6 @@ model_server_instance_profile_network_interfaces.go
 model_server_instance_profile_network_interfaces_config.go
 model_server_instance_profile_network_profiles_inner.go
 model_server_instance_profile_paginated_list.go
-model_server_instance_profile_reference.go
 model_server_instance_profile_update.go
 model_server_instance_reinstall_os.go
 model_server_instance_statistics.go
@@ -902,7 +900,7 @@ model_update_server_ipmi_credentials.go
 model_update_server_type.go
 model_update_shared_drive.go
 model_update_shared_drive_meta.go
-model_update_storage_internal.go
+model_update_storage.go
 model_update_storage_network_device_configuration.go
 model_update_storage_options.go
 model_update_subnet.go

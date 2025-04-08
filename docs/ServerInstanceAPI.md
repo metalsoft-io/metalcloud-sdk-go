@@ -4,7 +4,6 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ApplyProfileToServerInstance**](ServerInstanceAPI.md#ApplyProfileToServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/apply-profile | Apply the Server Instance Profile configuration to the Server Instance
 [**CreateServerInstance**](ServerInstanceAPI.md#CreateServerInstance) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instances | Add Server Instance to an infrastructure
 [**DeleteServerInstance**](ServerInstanceAPI.md#DeleteServerInstance) | **Delete** /api/v2/server-instances/{serverInstanceId} | Delete Server Instance
 [**GetInfrastructureServerInstances**](ServerInstanceAPI.md#GetInfrastructureServerInstances) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instances | List Server Instances for an infrastructure
@@ -26,78 +25,6 @@ Method | HTTP request | Description
 [**UpdateServerInstanceConfig**](ServerInstanceAPI.md#UpdateServerInstanceConfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/config | Update Server Instance configuration
 [**UpdateServerInstanceInterfaceConfig**](ServerInstanceAPI.md#UpdateServerInstanceInterfaceConfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId}/config | Update Server Instance Interface configuration
 
-
-
-## ApplyProfileToServerInstance
-
-> ApplyProfileToServerInstance(ctx, serverInstanceId).ServerInstanceProfileReference(serverInstanceProfileReference).IfMatch(ifMatch).Execute()
-
-Apply the Server Instance Profile configuration to the Server Instance
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	serverInstanceId := int32(56) // int32 | 
-	serverInstanceProfileReference := *openapiclient.NewServerInstanceProfileReference(int32(1)) // ServerInstanceProfileReference | The Server Instance Profile reference
-	ifMatch := "ifMatch_example" // string | Entity tag (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ServerInstanceAPI.ApplyProfileToServerInstance(context.Background(), serverInstanceId).ServerInstanceProfileReference(serverInstanceProfileReference).IfMatch(ifMatch).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.ApplyProfileToServerInstance``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceId** | **int32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiApplyProfileToServerInstanceRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **serverInstanceProfileReference** | [**ServerInstanceProfileReference**](ServerInstanceProfileReference.md) | The Server Instance Profile reference | 
- **ifMatch** | **string** | Entity tag | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## CreateServerInstance

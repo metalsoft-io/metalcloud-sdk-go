@@ -244,6 +244,13 @@ type StorageAPIDeleteStorageRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
 	storageId float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r StorageAPIDeleteStorageRequest) IfMatch(ifMatch string) StorageAPIDeleteStorageRequest {
+	r.ifMatch = &ifMatch
+	return r
 }
 
 func (r StorageAPIDeleteStorageRequest) Execute() (*http.Response, error) {
@@ -303,6 +310,9 @@ func (a *StorageAPIService) DeleteStorageExecute(r StorageAPIDeleteStorageReques
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2462,10 +2472,10 @@ type StorageAPIGetStoragesRequest struct {
 	ApiService *StorageAPIService
 	page *float32
 	limit *float32
-	filterStorageId *[]string
+	filterId *[]string
 	filterUserId *[]string
 	filterSiteId *[]string
-	filterStorageTechnology *[]string
+	filterTechnology *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -2483,9 +2493,9 @@ func (r StorageAPIGetStoragesRequest) Limit(limit float32) StorageAPIGetStorages
 	return r
 }
 
-// Filter by storageId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.storageId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.storageId&#x3D;$not:$like:John Doe&amp;filter.storageId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r StorageAPIGetStoragesRequest) FilterStorageId(filterStorageId []string) StorageAPIGetStoragesRequest {
-	r.filterStorageId = &filterStorageId
+// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r StorageAPIGetStoragesRequest) FilterId(filterId []string) StorageAPIGetStoragesRequest {
+	r.filterId = &filterId
 	return r
 }
 
@@ -2501,13 +2511,13 @@ func (r StorageAPIGetStoragesRequest) FilterSiteId(filterSiteId []string) Storag
 	return r
 }
 
-// Filter by storageTechnology query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.storageTechnology&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.storageTechnology&#x3D;$not:$like:John Doe&amp;filter.storageTechnology&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r StorageAPIGetStoragesRequest) FilterStorageTechnology(filterStorageTechnology []string) StorageAPIGetStoragesRequest {
-	r.filterStorageTechnology = &filterStorageTechnology
+// Filter by technology query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.technology&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.technology&#x3D;$not:$like:John Doe&amp;filter.technology&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r StorageAPIGetStoragesRequest) FilterTechnology(filterTechnology []string) StorageAPIGetStoragesRequest {
+	r.filterTechnology = &filterTechnology
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; storageId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;storageId&lt;/li&gt; &lt;li&gt;userId&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;storageDriver&lt;/li&gt; &lt;li&gt;storageTechnology&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;userId&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;driver&lt;/li&gt; &lt;li&gt;technology&lt;/li&gt;&lt;/ul&gt;       
 func (r StorageAPIGetStoragesRequest) SortBy(sortBy []string) StorageAPIGetStoragesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -2519,7 +2529,7 @@ func (r StorageAPIGetStoragesRequest) Search(search string) StorageAPIGetStorage
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; storageId,userId,siteId,storageDriver,storageTechnology           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;storageId&lt;/li&gt; &lt;li&gt;userId&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;storageDriver&lt;/li&gt; &lt;li&gt;storageTechnology&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,userId,siteId,driver,technology           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;userId&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;driver&lt;/li&gt; &lt;li&gt;technology&lt;/li&gt;&lt;/ul&gt;         
 func (r StorageAPIGetStoragesRequest) SearchBy(searchBy []string) StorageAPIGetStoragesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -2571,15 +2581,15 @@ func (a *StorageAPIService) GetStoragesExecute(r StorageAPIGetStoragesRequest) (
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
-	if r.filterStorageId != nil {
-		t := *r.filterStorageId
+	if r.filterId != nil {
+		t := *r.filterId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.storageId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.storageId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
 	if r.filterUserId != nil {
@@ -2604,15 +2614,15 @@ func (a *StorageAPIService) GetStoragesExecute(r StorageAPIGetStoragesRequest) (
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
 		}
 	}
-	if r.filterStorageTechnology != nil {
-		t := *r.filterStorageTechnology
+	if r.filterTechnology != nil {
+		t := *r.filterTechnology
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.storageTechnology", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.technology", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.storageTechnology", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.technology", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
@@ -2698,12 +2708,19 @@ type StorageAPIUpdateStorageRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
 	storageId float32
-	updateStorageInternal *UpdateStorageInternal
+	updateStorage *UpdateStorage
+	ifMatch *string
 }
 
 // The Storage update object
-func (r StorageAPIUpdateStorageRequest) UpdateStorageInternal(updateStorageInternal UpdateStorageInternal) StorageAPIUpdateStorageRequest {
-	r.updateStorageInternal = &updateStorageInternal
+func (r StorageAPIUpdateStorageRequest) UpdateStorage(updateStorage UpdateStorage) StorageAPIUpdateStorageRequest {
+	r.updateStorage = &updateStorage
+	return r
+}
+
+// Entity tag
+func (r StorageAPIUpdateStorageRequest) IfMatch(ifMatch string) StorageAPIUpdateStorageRequest {
+	r.ifMatch = &ifMatch
 	return r
 }
 
@@ -2749,8 +2766,8 @@ func (a *StorageAPIService) UpdateStorageExecute(r StorageAPIUpdateStorageReques
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateStorageInternal == nil {
-		return localVarReturnValue, nil, reportError("updateStorageInternal is required and must be specified")
+	if r.updateStorage == nil {
+		return localVarReturnValue, nil, reportError("updateStorage is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2770,8 +2787,11 @@ func (a *StorageAPIService) UpdateStorageExecute(r StorageAPIUpdateStorageReques
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
 	// body params
-	localVarPostBody = r.updateStorageInternal
+	localVarPostBody = r.updateStorage
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

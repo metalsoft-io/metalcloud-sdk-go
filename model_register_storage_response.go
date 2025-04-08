@@ -22,7 +22,7 @@ var _ MappedNullable = &RegisterStorageResponse{}
 // RegisterStorageResponse struct for RegisterStorageResponse
 type RegisterStorageResponse struct {
 	// Id of the Storage
-	StorageId float32 `json:"storageId"`
+	Id float32 `json:"id"`
 	// Job info
 	JobInfo *JobInfo `json:"jobInfo,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -34,9 +34,9 @@ type _RegisterStorageResponse RegisterStorageResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegisterStorageResponse(storageId float32) *RegisterStorageResponse {
+func NewRegisterStorageResponse(id float32) *RegisterStorageResponse {
 	this := RegisterStorageResponse{}
-	this.StorageId = storageId
+	this.Id = id
 	return &this
 }
 
@@ -48,28 +48,28 @@ func NewRegisterStorageResponseWithDefaults() *RegisterStorageResponse {
 	return &this
 }
 
-// GetStorageId returns the StorageId field value
-func (o *RegisterStorageResponse) GetStorageId() float32 {
+// GetId returns the Id field value
+func (o *RegisterStorageResponse) GetId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.StorageId
+	return o.Id
 }
 
-// GetStorageIdOk returns a tuple with the StorageId field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RegisterStorageResponse) GetStorageIdOk() (*float32, bool) {
+func (o *RegisterStorageResponse) GetIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.StorageId, true
+	return &o.Id, true
 }
 
-// SetStorageId sets field value
-func (o *RegisterStorageResponse) SetStorageId(v float32) {
-	o.StorageId = v
+// SetId sets field value
+func (o *RegisterStorageResponse) SetId(v float32) {
+	o.Id = v
 }
 
 // GetJobInfo returns the JobInfo field value if set, zero value otherwise.
@@ -114,7 +114,7 @@ func (o RegisterStorageResponse) MarshalJSON() ([]byte, error) {
 
 func (o RegisterStorageResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["storageId"] = o.StorageId
+	toSerialize["id"] = o.Id
 	if !IsNil(o.JobInfo) {
 		toSerialize["jobInfo"] = o.JobInfo
 	}
@@ -131,7 +131,7 @@ func (o *RegisterStorageResponse) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"storageId",
+		"id",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -161,7 +161,7 @@ func (o *RegisterStorageResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "storageId")
+		delete(additionalProperties, "id")
 		delete(additionalProperties, "jobInfo")
 		o.AdditionalProperties = additionalProperties
 	}

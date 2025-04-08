@@ -13,15 +13,15 @@ Name | Type | Description | Notes
 **DisableTpmAfterRegistration** | **bool** | Whether to disable TPM after registration | 
 **SyslogMonitoringEnabled** | **bool** | Whether syslog monitoring is enabled | 
 **DefaultServerCleanupPolicyID** | **float32** | Default server cleanup policy ID | 
-**AutomaticallyAllocateServerTypes** | **float32** | Automatically allocate server types | 
-**AutomaticallySetServersAsAvailable** | **float32** | Automatically set servers as available | 
-**ServerRegistrationBiosProfile** | **map[string]interface{}** | Server registration BIOS profile | 
+**AutomaticallyAllocateServerTypes** | **bool** | Automatically allocate server types | 
+**AutomaticallySetServersAsAvailable** | **bool** | Automatically set servers as available | 
+**ServerRegistrationBiosProfile** | **[]string** | Server registration BIOS profile | 
 
 ## Methods
 
 ### NewServerPolicy
 
-`func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, raidConfigurationEnabled bool, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes float32, automaticallySetServersAsAvailable float32, serverRegistrationBiosProfile map[string]interface{}, ) *ServerPolicy`
+`func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, raidConfigurationEnabled bool, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []string, ) *ServerPolicy`
 
 NewServerPolicy instantiates a new ServerPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -218,60 +218,60 @@ SetDefaultServerCleanupPolicyID sets DefaultServerCleanupPolicyID field to given
 
 ### GetAutomaticallyAllocateServerTypes
 
-`func (o *ServerPolicy) GetAutomaticallyAllocateServerTypes() float32`
+`func (o *ServerPolicy) GetAutomaticallyAllocateServerTypes() bool`
 
 GetAutomaticallyAllocateServerTypes returns the AutomaticallyAllocateServerTypes field if non-nil, zero value otherwise.
 
 ### GetAutomaticallyAllocateServerTypesOk
 
-`func (o *ServerPolicy) GetAutomaticallyAllocateServerTypesOk() (*float32, bool)`
+`func (o *ServerPolicy) GetAutomaticallyAllocateServerTypesOk() (*bool, bool)`
 
 GetAutomaticallyAllocateServerTypesOk returns a tuple with the AutomaticallyAllocateServerTypes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAutomaticallyAllocateServerTypes
 
-`func (o *ServerPolicy) SetAutomaticallyAllocateServerTypes(v float32)`
+`func (o *ServerPolicy) SetAutomaticallyAllocateServerTypes(v bool)`
 
 SetAutomaticallyAllocateServerTypes sets AutomaticallyAllocateServerTypes field to given value.
 
 
 ### GetAutomaticallySetServersAsAvailable
 
-`func (o *ServerPolicy) GetAutomaticallySetServersAsAvailable() float32`
+`func (o *ServerPolicy) GetAutomaticallySetServersAsAvailable() bool`
 
 GetAutomaticallySetServersAsAvailable returns the AutomaticallySetServersAsAvailable field if non-nil, zero value otherwise.
 
 ### GetAutomaticallySetServersAsAvailableOk
 
-`func (o *ServerPolicy) GetAutomaticallySetServersAsAvailableOk() (*float32, bool)`
+`func (o *ServerPolicy) GetAutomaticallySetServersAsAvailableOk() (*bool, bool)`
 
 GetAutomaticallySetServersAsAvailableOk returns a tuple with the AutomaticallySetServersAsAvailable field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAutomaticallySetServersAsAvailable
 
-`func (o *ServerPolicy) SetAutomaticallySetServersAsAvailable(v float32)`
+`func (o *ServerPolicy) SetAutomaticallySetServersAsAvailable(v bool)`
 
 SetAutomaticallySetServersAsAvailable sets AutomaticallySetServersAsAvailable field to given value.
 
 
 ### GetServerRegistrationBiosProfile
 
-`func (o *ServerPolicy) GetServerRegistrationBiosProfile() map[string]interface{}`
+`func (o *ServerPolicy) GetServerRegistrationBiosProfile() []string`
 
 GetServerRegistrationBiosProfile returns the ServerRegistrationBiosProfile field if non-nil, zero value otherwise.
 
 ### GetServerRegistrationBiosProfileOk
 
-`func (o *ServerPolicy) GetServerRegistrationBiosProfileOk() (*map[string]interface{}, bool)`
+`func (o *ServerPolicy) GetServerRegistrationBiosProfileOk() (*[]string, bool)`
 
 GetServerRegistrationBiosProfileOk returns a tuple with the ServerRegistrationBiosProfile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerRegistrationBiosProfile
 
-`func (o *ServerPolicy) SetServerRegistrationBiosProfile(v map[string]interface{})`
+`func (o *ServerPolicy) SetServerRegistrationBiosProfile(v []string)`
 
 SetServerRegistrationBiosProfile sets ServerRegistrationBiosProfile field to given value.
 

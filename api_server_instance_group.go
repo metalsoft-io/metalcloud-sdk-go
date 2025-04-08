@@ -25,112 +25,6 @@ import (
 // ServerInstanceGroupAPIService ServerInstanceGroupAPI service
 type ServerInstanceGroupAPIService service
 
-type ServerInstanceGroupAPIApplyProfileToServerInstanceGroupRequest struct {
-	ctx context.Context
-	ApiService *ServerInstanceGroupAPIService
-	serverInstanceGroupId int32
-	serverInstanceProfileId int32
-	ifMatch *string
-}
-
-// Entity tag
-func (r ServerInstanceGroupAPIApplyProfileToServerInstanceGroupRequest) IfMatch(ifMatch string) ServerInstanceGroupAPIApplyProfileToServerInstanceGroupRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ServerInstanceGroupAPIApplyProfileToServerInstanceGroupRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ApplyProfileToServerInstanceGroupExecute(r)
-}
-
-/*
-ApplyProfileToServerInstanceGroup Apply the Server profile configuration to all the Server Instances in the group
-
-Apply the Server profile configuration to all the Server Instances in the group. The infrastructure must be deployed for the changes to take effect. This is equivalent to running the same operation on each Server.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serverInstanceGroupId
- @param serverInstanceProfileId
- @return ServerInstanceGroupAPIApplyProfileToServerInstanceGroupRequest
-*/
-func (a *ServerInstanceGroupAPIService) ApplyProfileToServerInstanceGroup(ctx context.Context, serverInstanceGroupId int32, serverInstanceProfileId int32) ServerInstanceGroupAPIApplyProfileToServerInstanceGroupRequest {
-	return ServerInstanceGroupAPIApplyProfileToServerInstanceGroupRequest{
-		ApiService: a,
-		ctx: ctx,
-		serverInstanceGroupId: serverInstanceGroupId,
-		serverInstanceProfileId: serverInstanceProfileId,
-	}
-}
-
-// Execute executes the request
-func (a *ServerInstanceGroupAPIService) ApplyProfileToServerInstanceGroupExecute(r ServerInstanceGroupAPIApplyProfileToServerInstanceGroupRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.ApplyProfileToServerInstanceGroup")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/actions/apply-profile/{serverInstanceProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceGroupId, "serverInstanceGroupId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceProfileId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceProfileId, "serverInstanceProfileId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
 type ServerInstanceGroupAPICreateServerInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
@@ -1304,7 +1198,7 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurati
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration"
+	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking"
 	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceGroupId, "serverInstanceGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1365,39 +1259,39 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurati
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest struct {
+type ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
 	serverInstanceGroupId int32
-	logicalNetworkId int32
+	connectionId int32
 }
 
-func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest) Execute() (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
-	return r.ApiService.GetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdExecute(r)
+func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest) Execute() (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+	return r.ApiService.GetServerInstanceGroupNetworkConfigurationConnectionByIdExecute(r)
 }
 
 /*
-GetServerInstanceGroupNetworkConfigurationLogicalNetworkById Get server instance group network configuration logical network by id
+GetServerInstanceGroupNetworkConfigurationConnectionById Get server instance group network configuration connection by id
 
-Returns the logical network by id of the specified server instance group
+Returns the connection by id of the specified server instance group
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serverInstanceGroupId
- @param logicalNetworkId
- @return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest
+ @param connectionId
+ @return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest
 */
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationLogicalNetworkById(ctx context.Context, serverInstanceGroupId int32, logicalNetworkId int32) ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest {
-	return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest{
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnectionById(ctx context.Context, serverInstanceGroupId int32, connectionId int32) ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest {
+	return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		serverInstanceGroupId: serverInstanceGroupId,
-		logicalNetworkId: logicalNetworkId,
+		connectionId: connectionId,
 	}
 }
 
 // Execute executes the request
 //  @return NetworkEndpointGroupLogicalNetworkDto
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdExecute(r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest) (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnectionByIdExecute(r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest) (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1405,14 +1299,14 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurati
 		localVarReturnValue  *NetworkEndpointGroupLogicalNetworkDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupNetworkConfigurationLogicalNetworkById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupNetworkConfigurationConnectionById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks/{logicalNetworkId}"
+	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceGroupId, "serverInstanceGroupId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"logicalNetworkId"+"}", url.PathEscape(parameterValueToString(r.logicalNetworkId, "logicalNetworkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connectionId"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1472,27 +1366,27 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurati
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest struct {
+type ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
 	serverInstanceGroupId int32
 }
 
-func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest) Execute() (*NetworkEndpointGroupLogicalNetworksList, *http.Response, error) {
-	return r.ApiService.GetServerInstanceGroupNetworkConfigurationLogicalNetworksExecute(r)
+func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest) Execute() (*NetworkEndpointGroupLogicalNetworksList, *http.Response, error) {
+	return r.ApiService.GetServerInstanceGroupNetworkConfigurationConnectionsExecute(r)
 }
 
 /*
-GetServerInstanceGroupNetworkConfigurationLogicalNetworks Get server instance group's network configuration logical networks
+GetServerInstanceGroupNetworkConfigurationConnections Get server instance group's network configuration connections
 
-Returns the logical networks of the specified server instance group
+Returns the connections of the specified server instance group
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serverInstanceGroupId
- @return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest
+ @return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest
 */
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationLogicalNetworks(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest {
-	return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest{
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnections(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest {
+	return ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest{
 		ApiService: a,
 		ctx: ctx,
 		serverInstanceGroupId: serverInstanceGroupId,
@@ -1501,7 +1395,7 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurati
 
 // Execute executes the request
 //  @return NetworkEndpointGroupLogicalNetworksList
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationLogicalNetworksExecute(r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest) (*NetworkEndpointGroupLogicalNetworksList, *http.Response, error) {
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnectionsExecute(r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest) (*NetworkEndpointGroupLogicalNetworksList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1509,12 +1403,12 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurati
 		localVarReturnValue  *NetworkEndpointGroupLogicalNetworksList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupNetworkConfigurationLogicalNetworks")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupNetworkConfigurationConnections")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks"
+	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections"
 	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceGroupId, "serverInstanceGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

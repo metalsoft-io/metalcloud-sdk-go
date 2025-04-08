@@ -22,19 +22,6 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ServerInstanceAPIService ApplyProfileToServerInstance", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var serverInstanceId int32
-
-		httpRes, err := apiClient.ServerInstanceAPI.ApplyProfileToServerInstance(context.Background(), serverInstanceId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test ServerInstanceAPIService CreateServerInstance", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

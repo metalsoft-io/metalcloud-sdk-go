@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **StoragePhysicalInterfaceIdentifier** | Pointer to **string** | Identifier of the storage physical interface | [optional] 
-**NetworkEquipmentInterfaceIdentifier** | Pointer to **string** | Identifier of the network equipment interface | [optional] 
-**NetworkEquipmentInterfaceVlans** | Pointer to **[]float32** | Array of VLANS for the network equipment interface | [optional] 
+**NetworkDeviceInterfaceIdentifier** | Pointer to **string** | Identifier of the network device interface | [optional] 
+**NetworkDeviceInterfaceVlans** | Pointer to **[]float32** | Array of VLANS for the network device interface | [optional] 
 
 ## Methods
 
@@ -52,55 +52,55 @@ SetStoragePhysicalInterfaceIdentifier sets StoragePhysicalInterfaceIdentifier fi
 
 HasStoragePhysicalInterfaceIdentifier returns a boolean if a field has been set.
 
-### GetNetworkEquipmentInterfaceIdentifier
+### GetNetworkDeviceInterfaceIdentifier
 
-`func (o *UpdateStorageNetworkDeviceConfiguration) GetNetworkEquipmentInterfaceIdentifier() string`
+`func (o *UpdateStorageNetworkDeviceConfiguration) GetNetworkDeviceInterfaceIdentifier() string`
 
-GetNetworkEquipmentInterfaceIdentifier returns the NetworkEquipmentInterfaceIdentifier field if non-nil, zero value otherwise.
+GetNetworkDeviceInterfaceIdentifier returns the NetworkDeviceInterfaceIdentifier field if non-nil, zero value otherwise.
 
-### GetNetworkEquipmentInterfaceIdentifierOk
+### GetNetworkDeviceInterfaceIdentifierOk
 
-`func (o *UpdateStorageNetworkDeviceConfiguration) GetNetworkEquipmentInterfaceIdentifierOk() (*string, bool)`
+`func (o *UpdateStorageNetworkDeviceConfiguration) GetNetworkDeviceInterfaceIdentifierOk() (*string, bool)`
 
-GetNetworkEquipmentInterfaceIdentifierOk returns a tuple with the NetworkEquipmentInterfaceIdentifier field if it's non-nil, zero value otherwise
+GetNetworkDeviceInterfaceIdentifierOk returns a tuple with the NetworkDeviceInterfaceIdentifier field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNetworkEquipmentInterfaceIdentifier
+### SetNetworkDeviceInterfaceIdentifier
 
-`func (o *UpdateStorageNetworkDeviceConfiguration) SetNetworkEquipmentInterfaceIdentifier(v string)`
+`func (o *UpdateStorageNetworkDeviceConfiguration) SetNetworkDeviceInterfaceIdentifier(v string)`
 
-SetNetworkEquipmentInterfaceIdentifier sets NetworkEquipmentInterfaceIdentifier field to given value.
+SetNetworkDeviceInterfaceIdentifier sets NetworkDeviceInterfaceIdentifier field to given value.
 
-### HasNetworkEquipmentInterfaceIdentifier
+### HasNetworkDeviceInterfaceIdentifier
 
-`func (o *UpdateStorageNetworkDeviceConfiguration) HasNetworkEquipmentInterfaceIdentifier() bool`
+`func (o *UpdateStorageNetworkDeviceConfiguration) HasNetworkDeviceInterfaceIdentifier() bool`
 
-HasNetworkEquipmentInterfaceIdentifier returns a boolean if a field has been set.
+HasNetworkDeviceInterfaceIdentifier returns a boolean if a field has been set.
 
-### GetNetworkEquipmentInterfaceVlans
+### GetNetworkDeviceInterfaceVlans
 
-`func (o *UpdateStorageNetworkDeviceConfiguration) GetNetworkEquipmentInterfaceVlans() []float32`
+`func (o *UpdateStorageNetworkDeviceConfiguration) GetNetworkDeviceInterfaceVlans() []float32`
 
-GetNetworkEquipmentInterfaceVlans returns the NetworkEquipmentInterfaceVlans field if non-nil, zero value otherwise.
+GetNetworkDeviceInterfaceVlans returns the NetworkDeviceInterfaceVlans field if non-nil, zero value otherwise.
 
-### GetNetworkEquipmentInterfaceVlansOk
+### GetNetworkDeviceInterfaceVlansOk
 
-`func (o *UpdateStorageNetworkDeviceConfiguration) GetNetworkEquipmentInterfaceVlansOk() (*[]float32, bool)`
+`func (o *UpdateStorageNetworkDeviceConfiguration) GetNetworkDeviceInterfaceVlansOk() (*[]float32, bool)`
 
-GetNetworkEquipmentInterfaceVlansOk returns a tuple with the NetworkEquipmentInterfaceVlans field if it's non-nil, zero value otherwise
+GetNetworkDeviceInterfaceVlansOk returns a tuple with the NetworkDeviceInterfaceVlans field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNetworkEquipmentInterfaceVlans
+### SetNetworkDeviceInterfaceVlans
 
-`func (o *UpdateStorageNetworkDeviceConfiguration) SetNetworkEquipmentInterfaceVlans(v []float32)`
+`func (o *UpdateStorageNetworkDeviceConfiguration) SetNetworkDeviceInterfaceVlans(v []float32)`
 
-SetNetworkEquipmentInterfaceVlans sets NetworkEquipmentInterfaceVlans field to given value.
+SetNetworkDeviceInterfaceVlans sets NetworkDeviceInterfaceVlans field to given value.
 
-### HasNetworkEquipmentInterfaceVlans
+### HasNetworkDeviceInterfaceVlans
 
-`func (o *UpdateStorageNetworkDeviceConfiguration) HasNetworkEquipmentInterfaceVlans() bool`
+`func (o *UpdateStorageNetworkDeviceConfiguration) HasNetworkDeviceInterfaceVlans() bool`
 
-HasNetworkEquipmentInterfaceVlans returns a boolean if a field has been set.
+HasNetworkDeviceInterfaceVlans returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

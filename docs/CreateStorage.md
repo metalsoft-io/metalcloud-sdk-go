@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UserId** | Pointer to **float32** | Id of the owner | [optional] 
 **SiteId** | **float32** | Id of the site | 
-**StorageDriver** | **string** | Storage driver | 
-**StorageTechnology** | **string** | Storage technology | 
-**StorageType** | **string** | Storage type | 
+**Driver** | **string** | Storage driver | 
+**Technology** | **string** | Storage technology | 
+**Type** | **string** | Storage type | 
 **Name** | **string** | Name of the storage | 
 **IscsiHost** | Pointer to **string** | ISCSI host | [optional] 
 **IscsiPort** | Pointer to **float32** | ISCSI port | [optional] 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 
 ### NewCreateStorage
 
-`func NewCreateStorage(siteId float32, storageDriver string, storageTechnology string, storageType string, name string, managementHost string, username string, subnetType string, password string, ) *CreateStorage`
+`func NewCreateStorage(siteId float32, driver string, technology string, type_ string, name string, managementHost string, username string, subnetType string, password string, ) *CreateStorage`
 
 NewCreateStorage instantiates a new CreateStorage object
 This constructor will assign default values to properties that have it defined,
@@ -92,64 +92,64 @@ and a boolean to check if the value has been set.
 SetSiteId sets SiteId field to given value.
 
 
-### GetStorageDriver
+### GetDriver
 
-`func (o *CreateStorage) GetStorageDriver() string`
+`func (o *CreateStorage) GetDriver() string`
 
-GetStorageDriver returns the StorageDriver field if non-nil, zero value otherwise.
+GetDriver returns the Driver field if non-nil, zero value otherwise.
 
-### GetStorageDriverOk
+### GetDriverOk
 
-`func (o *CreateStorage) GetStorageDriverOk() (*string, bool)`
+`func (o *CreateStorage) GetDriverOk() (*string, bool)`
 
-GetStorageDriverOk returns a tuple with the StorageDriver field if it's non-nil, zero value otherwise
+GetDriverOk returns a tuple with the Driver field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStorageDriver
+### SetDriver
 
-`func (o *CreateStorage) SetStorageDriver(v string)`
+`func (o *CreateStorage) SetDriver(v string)`
 
-SetStorageDriver sets StorageDriver field to given value.
+SetDriver sets Driver field to given value.
 
 
-### GetStorageTechnology
+### GetTechnology
 
-`func (o *CreateStorage) GetStorageTechnology() string`
+`func (o *CreateStorage) GetTechnology() string`
 
-GetStorageTechnology returns the StorageTechnology field if non-nil, zero value otherwise.
+GetTechnology returns the Technology field if non-nil, zero value otherwise.
 
-### GetStorageTechnologyOk
+### GetTechnologyOk
 
-`func (o *CreateStorage) GetStorageTechnologyOk() (*string, bool)`
+`func (o *CreateStorage) GetTechnologyOk() (*string, bool)`
 
-GetStorageTechnologyOk returns a tuple with the StorageTechnology field if it's non-nil, zero value otherwise
+GetTechnologyOk returns a tuple with the Technology field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStorageTechnology
+### SetTechnology
 
-`func (o *CreateStorage) SetStorageTechnology(v string)`
+`func (o *CreateStorage) SetTechnology(v string)`
 
-SetStorageTechnology sets StorageTechnology field to given value.
+SetTechnology sets Technology field to given value.
 
 
-### GetStorageType
+### GetType
 
-`func (o *CreateStorage) GetStorageType() string`
+`func (o *CreateStorage) GetType() string`
 
-GetStorageType returns the StorageType field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetStorageTypeOk
+### GetTypeOk
 
-`func (o *CreateStorage) GetStorageTypeOk() (*string, bool)`
+`func (o *CreateStorage) GetTypeOk() (*string, bool)`
 
-GetStorageTypeOk returns a tuple with the StorageType field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStorageType
+### SetType
 
-`func (o *CreateStorage) SetStorageType(v string)`
+`func (o *CreateStorage) SetType(v string)`
 
-SetStorageType sets StorageType field to given value.
+SetType sets Type field to given value.
 
 
 ### GetName

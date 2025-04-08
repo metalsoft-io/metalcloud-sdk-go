@@ -4,7 +4,6 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ApplyProfileToServerInstanceGroup**](ServerInstanceGroupAPI.md#ApplyProfileToServerInstanceGroup) | **Post** /api/v2/server-instance-groups/{serverInstanceGroupId}/actions/apply-profile/{serverInstanceProfileId} | Apply the Server profile configuration to all the Server Instances in the group
 [**CreateServerInstanceGroup**](ServerInstanceGroupAPI.md#CreateServerInstanceGroup) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | Add a Server Instance Group to an infrastructure. By default it will not have any instance.
 [**DeleteServerInstanceGroup**](ServerInstanceGroupAPI.md#DeleteServerInstanceGroup) | **Delete** /api/v2/server-instance-groups/{serverInstanceGroupId} | Delete Server Instance Group. Will not take effect if there are instances in this group.
 [**GetInfrastructureServerInstanceGroups**](ServerInstanceGroupAPI.md#GetInfrastructureServerInstanceGroups) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | List Server Instance Groups for an infrastructure
@@ -13,86 +12,13 @@ Method | HTTP request | Description
 [**GetServerInstanceGroupDriveGroups**](ServerInstanceGroupAPI.md#GetServerInstanceGroupDriveGroups) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/drive-groups | Get Server Instance Group Drive Groups
 [**GetServerInstanceGroupInterface**](ServerInstanceGroupAPI.md#GetServerInstanceGroupInterface) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces/{interfaceId} | Get Server Instance Group Interface details
 [**GetServerInstanceGroupInterfaces**](ServerInstanceGroupAPI.md#GetServerInstanceGroupInterfaces) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces | Get Server Instance Group Interfaces
-[**GetServerInstanceGroupNetworkConfiguration**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfiguration) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration | Get server instance group network configuration
-[**GetServerInstanceGroupNetworkConfigurationLogicalNetworkById**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfigurationLogicalNetworkById) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks/{logicalNetworkId} | Get server instance group network configuration logical network by id
-[**GetServerInstanceGroupNetworkConfigurationLogicalNetworks**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfigurationLogicalNetworks) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks | Get server instance group&#39;s network configuration logical networks
+[**GetServerInstanceGroupNetworkConfiguration**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfiguration) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking | Get server instance group network configuration
+[**GetServerInstanceGroupNetworkConfigurationConnectionById**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfigurationConnectionById) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Get server instance group network configuration connection by id
+[**GetServerInstanceGroupNetworkConfigurationConnections**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfigurationConnections) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections | Get server instance group&#39;s network configuration connections
 [**GetServerInstanceGroupServerInstances**](ServerInstanceGroupAPI.md#GetServerInstanceGroupServerInstances) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/server-instances | List Server Instances for a Server Instance Group
 [**UpdateServerInstanceGroupConfig**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupConfig) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Updates Server Instance Group configuration
 [**UpdateServerInstanceGroupMeta**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupMeta) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/meta | Update an Server Instance Group meta information
 
-
-
-## ApplyProfileToServerInstanceGroup
-
-> ApplyProfileToServerInstanceGroup(ctx, serverInstanceGroupId, serverInstanceProfileId).IfMatch(ifMatch).Execute()
-
-Apply the Server profile configuration to all the Server Instances in the group
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	serverInstanceGroupId := int32(56) // int32 | 
-	serverInstanceProfileId := int32(56) // int32 | 
-	ifMatch := "ifMatch_example" // string | Entity tag (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ServerInstanceGroupAPI.ApplyProfileToServerInstanceGroup(context.Background(), serverInstanceGroupId, serverInstanceProfileId).IfMatch(ifMatch).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.ApplyProfileToServerInstanceGroup``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverInstanceGroupId** | **int32** |  | 
-**serverInstanceProfileId** | **int32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiApplyProfileToServerInstanceGroupRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **ifMatch** | **string** | Entity tag | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## CreateServerInstanceGroup
@@ -766,11 +692,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetServerInstanceGroupNetworkConfigurationLogicalNetworkById
+## GetServerInstanceGroupNetworkConfigurationConnectionById
 
-> NetworkEndpointGroupLogicalNetworkDto GetServerInstanceGroupNetworkConfigurationLogicalNetworkById(ctx, serverInstanceGroupId, logicalNetworkId).Execute()
+> NetworkEndpointGroupLogicalNetworkDto GetServerInstanceGroupNetworkConfigurationConnectionById(ctx, serverInstanceGroupId, connectionId).Execute()
 
-Get server instance group network configuration logical network by id
+Get server instance group network configuration connection by id
 
 
 
@@ -788,17 +714,17 @@ import (
 
 func main() {
 	serverInstanceGroupId := int32(56) // int32 | 
-	logicalNetworkId := int32(56) // int32 | 
+	connectionId := int32(56) // int32 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworkById(context.Background(), serverInstanceGroupId, logicalNetworkId).Execute()
+	resp, r, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnectionById(context.Background(), serverInstanceGroupId, connectionId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworkById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnectionById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetServerInstanceGroupNetworkConfigurationLogicalNetworkById`: NetworkEndpointGroupLogicalNetworkDto
-	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworkById`: %v\n", resp)
+	// response from `GetServerInstanceGroupNetworkConfigurationConnectionById`: NetworkEndpointGroupLogicalNetworkDto
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnectionById`: %v\n", resp)
 }
 ```
 
@@ -809,11 +735,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **serverInstanceGroupId** | **int32** |  | 
-**logicalNetworkId** | **int32** |  | 
+**connectionId** | **int32** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetServerInstanceGroupNetworkConfigurationLogicalNetworkByIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -839,11 +765,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetServerInstanceGroupNetworkConfigurationLogicalNetworks
+## GetServerInstanceGroupNetworkConfigurationConnections
 
-> NetworkEndpointGroupLogicalNetworksList GetServerInstanceGroupNetworkConfigurationLogicalNetworks(ctx, serverInstanceGroupId).Execute()
+> NetworkEndpointGroupLogicalNetworksList GetServerInstanceGroupNetworkConfigurationConnections(ctx, serverInstanceGroupId).Execute()
 
-Get server instance group's network configuration logical networks
+Get server instance group's network configuration connections
 
 
 
@@ -864,13 +790,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworks(context.Background(), serverInstanceGroupId).Execute()
+	resp, r, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnections(context.Background(), serverInstanceGroupId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworks``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnections``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetServerInstanceGroupNetworkConfigurationLogicalNetworks`: NetworkEndpointGroupLogicalNetworksList
-	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworks`: %v\n", resp)
+	// response from `GetServerInstanceGroupNetworkConfigurationConnections`: NetworkEndpointGroupLogicalNetworksList
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnections`: %v\n", resp)
 }
 ```
 
@@ -884,7 +810,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetServerInstanceGroupNetworkConfigurationLogicalNetworksRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetServerInstanceGroupNetworkConfigurationConnectionsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

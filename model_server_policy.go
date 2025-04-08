@@ -40,11 +40,11 @@ type ServerPolicy struct {
 	// Default server cleanup policy ID
 	DefaultServerCleanupPolicyID float32 `json:"defaultServerCleanupPolicyID"`
 	// Automatically allocate server types
-	AutomaticallyAllocateServerTypes float32 `json:"automaticallyAllocateServerTypes"`
+	AutomaticallyAllocateServerTypes bool `json:"automaticallyAllocateServerTypes"`
 	// Automatically set servers as available
-	AutomaticallySetServersAsAvailable float32 `json:"automaticallySetServersAsAvailable"`
+	AutomaticallySetServersAsAvailable bool `json:"automaticallySetServersAsAvailable"`
 	// Server registration BIOS profile
-	ServerRegistrationBiosProfile map[string]interface{} `json:"serverRegistrationBiosProfile"`
+	ServerRegistrationBiosProfile []string `json:"serverRegistrationBiosProfile"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,7 +54,7 @@ type _ServerPolicy ServerPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, raidConfigurationEnabled bool, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes float32, automaticallySetServersAsAvailable float32, serverRegistrationBiosProfile map[string]interface{}) *ServerPolicy {
+func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, raidConfigurationEnabled bool, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []string) *ServerPolicy {
 	this := ServerPolicy{}
 	this.RegisterCredentials = registerCredentials
 	this.MinimumNumberOfConnectedInterfaces = minimumNumberOfConnectedInterfaces
@@ -296,9 +296,9 @@ func (o *ServerPolicy) SetDefaultServerCleanupPolicyID(v float32) {
 }
 
 // GetAutomaticallyAllocateServerTypes returns the AutomaticallyAllocateServerTypes field value
-func (o *ServerPolicy) GetAutomaticallyAllocateServerTypes() float32 {
+func (o *ServerPolicy) GetAutomaticallyAllocateServerTypes() bool {
 	if o == nil {
-		var ret float32
+		var ret bool
 		return ret
 	}
 
@@ -307,7 +307,7 @@ func (o *ServerPolicy) GetAutomaticallyAllocateServerTypes() float32 {
 
 // GetAutomaticallyAllocateServerTypesOk returns a tuple with the AutomaticallyAllocateServerTypes field value
 // and a boolean to check if the value has been set.
-func (o *ServerPolicy) GetAutomaticallyAllocateServerTypesOk() (*float32, bool) {
+func (o *ServerPolicy) GetAutomaticallyAllocateServerTypesOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -315,14 +315,14 @@ func (o *ServerPolicy) GetAutomaticallyAllocateServerTypesOk() (*float32, bool) 
 }
 
 // SetAutomaticallyAllocateServerTypes sets field value
-func (o *ServerPolicy) SetAutomaticallyAllocateServerTypes(v float32) {
+func (o *ServerPolicy) SetAutomaticallyAllocateServerTypes(v bool) {
 	o.AutomaticallyAllocateServerTypes = v
 }
 
 // GetAutomaticallySetServersAsAvailable returns the AutomaticallySetServersAsAvailable field value
-func (o *ServerPolicy) GetAutomaticallySetServersAsAvailable() float32 {
+func (o *ServerPolicy) GetAutomaticallySetServersAsAvailable() bool {
 	if o == nil {
-		var ret float32
+		var ret bool
 		return ret
 	}
 
@@ -331,7 +331,7 @@ func (o *ServerPolicy) GetAutomaticallySetServersAsAvailable() float32 {
 
 // GetAutomaticallySetServersAsAvailableOk returns a tuple with the AutomaticallySetServersAsAvailable field value
 // and a boolean to check if the value has been set.
-func (o *ServerPolicy) GetAutomaticallySetServersAsAvailableOk() (*float32, bool) {
+func (o *ServerPolicy) GetAutomaticallySetServersAsAvailableOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -339,14 +339,14 @@ func (o *ServerPolicy) GetAutomaticallySetServersAsAvailableOk() (*float32, bool
 }
 
 // SetAutomaticallySetServersAsAvailable sets field value
-func (o *ServerPolicy) SetAutomaticallySetServersAsAvailable(v float32) {
+func (o *ServerPolicy) SetAutomaticallySetServersAsAvailable(v bool) {
 	o.AutomaticallySetServersAsAvailable = v
 }
 
 // GetServerRegistrationBiosProfile returns the ServerRegistrationBiosProfile field value
-func (o *ServerPolicy) GetServerRegistrationBiosProfile() map[string]interface{} {
+func (o *ServerPolicy) GetServerRegistrationBiosProfile() []string {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret []string
 		return ret
 	}
 
@@ -355,15 +355,15 @@ func (o *ServerPolicy) GetServerRegistrationBiosProfile() map[string]interface{}
 
 // GetServerRegistrationBiosProfileOk returns a tuple with the ServerRegistrationBiosProfile field value
 // and a boolean to check if the value has been set.
-func (o *ServerPolicy) GetServerRegistrationBiosProfileOk() (map[string]interface{}, bool) {
+func (o *ServerPolicy) GetServerRegistrationBiosProfileOk() ([]string, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.ServerRegistrationBiosProfile, true
 }
 
 // SetServerRegistrationBiosProfile sets field value
-func (o *ServerPolicy) SetServerRegistrationBiosProfile(v map[string]interface{}) {
+func (o *ServerPolicy) SetServerRegistrationBiosProfile(v []string) {
 	o.ServerRegistrationBiosProfile = v
 }
 

@@ -45,7 +45,7 @@ import (
 )
 
 func main() {
-	createStorage := *openapiclient.NewCreateStorage(float32(123), "StorageDriver_example", "StorageTechnology_example", "StorageType_example", "Name_example", "ManagementHost_example", "Username_example", "SubnetType_example", "Password_example") // CreateStorage | The Storage create object
+	createStorage := *openapiclient.NewCreateStorage(float32(123), "Driver_example", "Technology_example", "Type_example", "Name_example", "ManagementHost_example", "Username_example", "SubnetType_example", "Password_example") // CreateStorage | The Storage create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -112,7 +112,7 @@ import (
 
 func main() {
 	storageId := float32(8.14) // float32 | 
-	createStorageNetworkDeviceConfiguration := *openapiclient.NewCreateStorageNetworkDeviceConfiguration(float32(123), "StoragePhysicalInterfaceIdentifier_example", "NetworkEquipmentInterfaceIdentifier_example", []float32{float32(123)}) // CreateStorageNetworkDeviceConfiguration | The new Storage Network Device Configuration object
+	createStorageNetworkDeviceConfiguration := *openapiclient.NewCreateStorageNetworkDeviceConfiguration(float32(123), "StoragePhysicalInterfaceIdentifier_example", "NetworkDeviceInterfaceIdentifier_example", []float32{float32(123)}) // CreateStorageNetworkDeviceConfiguration | The new Storage Network Device Configuration object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 ## DeleteStorage
 
-> DeleteStorage(ctx, storageId).Execute()
+> DeleteStorage(ctx, storageId).IfMatch(ifMatch).Execute()
 
 Deletes a Storage
 
@@ -182,10 +182,11 @@ import (
 
 func main() {
 	storageId := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.StorageAPI.DeleteStorage(context.Background(), storageId).Execute()
+	r, err := apiClient.StorageAPI.DeleteStorage(context.Background(), storageId).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.DeleteStorage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,6 +210,7 @@ Other parameters are passed through a pointer to a apiDeleteStorageRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
@@ -1119,7 +1121,7 @@ Name | Type | Description  | Notes
 
 ## GetStorages
 
-> StoragePaginatedList GetStorages(ctx).Page(page).Limit(limit).FilterStorageId(filterStorageId).FilterUserId(filterUserId).FilterSiteId(filterSiteId).FilterStorageTechnology(filterStorageTechnology).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> StoragePaginatedList GetStorages(ctx).Page(page).Limit(limit).FilterId(filterId).FilterUserId(filterUserId).FilterSiteId(filterSiteId).FilterTechnology(filterTechnology).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get a list of Storages
 
@@ -1140,17 +1142,17 @@ import (
 func main() {
 	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
 	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 20           </p>       <p>              <b>Max Value: </b> 100           </p>        If provided value is greater than max value, max value will be applied.        (optional)
-	filterStorageId := []string{"Inner_example"} // []string | Filter by storageId query param.           <p>              <b>Format: </b> filter.storageId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.storageId=$not:$like:John Doe&filter.storageId=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.           <p>              <b>Format: </b> filter.id={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
 	filterUserId := []string{"Inner_example"} // []string | Filter by userId query param.           <p>              <b>Format: </b> filter.userId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.userId=$not:$like:John Doe&filter.userId=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
 	filterSiteId := []string{"Inner_example"} // []string | Filter by siteId query param.           <p>              <b>Format: </b> filter.siteId={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.siteId=$not:$like:John Doe&filter.siteId=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	filterStorageTechnology := []string{"Inner_example"} // []string | Filter by storageTechnology query param.           <p>              <b>Format: </b> filter.storageTechnology={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.storageTechnology=$not:$like:John Doe&filter.storageTechnology=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
-	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> storageId:DESC           </p>       <h4>Available Fields</h4><ul><li>storageId</li> <li>userId</li> <li>siteId</li> <li>storageDriver</li> <li>storageTechnology</li></ul>        (optional)
+	filterTechnology := []string{"Inner_example"} // []string | Filter by technology query param.           <p>              <b>Format: </b> filter.technology={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.technology=$not:$like:John Doe&filter.technology=like:John           </p>           <h4>Available Operations</h4><ul><li>$and</li> <li>$or</li> <li>$not</li> <li>$eq</li> <li>$gt</li> <li>$gte</li> <li>$in</li> <li>$null</li> <li>$lt</li> <li>$lte</li> <li>$btw</li> <li>$ilike</li> <li>$sw</li> <li>$contains</li></ul> (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> id:DESC           </p>       <h4>Available Fields</h4><ul><li>id</li> <li>userId</li> <li>siteId</li> <li>driver</li> <li>technology</li></ul>        (optional)
 	search := "search_example" // string | Search term to filter result values         <p>              <b>Example: </b> John           </p>         <p>              <b>Default Value: </b> No default value           </p>          (optional)
-	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values         <p>              <b>Example: </b> storageId,userId,siteId,storageDriver,storageTechnology           </p>         <p>              <b>Default Value: </b> By default all fields mentioned below will be used to search by term           </p>         <h4>Available Fields</h4><ul><li>storageId</li> <li>userId</li> <li>siteId</li> <li>storageDriver</li> <li>storageTechnology</li></ul>          (optional)
+	searchBy := []string{"Inner_example"} // []string | List of fields to search by term to filter result values         <p>              <b>Example: </b> id,userId,siteId,driver,technology           </p>         <p>              <b>Default Value: </b> By default all fields mentioned below will be used to search by term           </p>         <h4>Available Fields</h4><ul><li>id</li> <li>userId</li> <li>siteId</li> <li>driver</li> <li>technology</li></ul>          (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageAPI.GetStorages(context.Background()).Page(page).Limit(limit).FilterStorageId(filterStorageId).FilterUserId(filterUserId).FilterSiteId(filterSiteId).FilterStorageTechnology(filterStorageTechnology).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+	resp, r, err := apiClient.StorageAPI.GetStorages(context.Background()).Page(page).Limit(limit).FilterId(filterId).FilterUserId(filterUserId).FilterSiteId(filterSiteId).FilterTechnology(filterTechnology).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStorages``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1173,13 +1175,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
  **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
- **filterStorageId** | **[]string** | Filter by storageId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.storageId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.storageId&#x3D;$not:$like:John Doe&amp;filter.storageId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
+ **filterId** | **[]string** | Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
  **filterUserId** | **[]string** | Filter by userId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.userId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.userId&#x3D;$not:$like:John Doe&amp;filter.userId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
  **filterSiteId** | **[]string** | Filter by siteId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.siteId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.siteId&#x3D;$not:$like:John Doe&amp;filter.siteId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **filterStorageTechnology** | **[]string** | Filter by storageTechnology query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.storageTechnology&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.storageTechnology&#x3D;$not:$like:John Doe&amp;filter.storageTechnology&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
- **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; storageId:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;storageId&lt;/li&gt; &lt;li&gt;userId&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;storageDriver&lt;/li&gt; &lt;li&gt;storageTechnology&lt;/li&gt;&lt;/ul&gt;        | 
+ **filterTechnology** | **[]string** | Filter by technology query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.technology&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.technology&#x3D;$not:$like:John Doe&amp;filter.technology&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt; | 
+ **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;userId&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;driver&lt;/li&gt; &lt;li&gt;technology&lt;/li&gt;&lt;/ul&gt;        | 
  **search** | **string** | Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;          | 
- **searchBy** | **[]string** | List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; storageId,userId,siteId,storageDriver,storageTechnology           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;storageId&lt;/li&gt; &lt;li&gt;userId&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;storageDriver&lt;/li&gt; &lt;li&gt;storageTechnology&lt;/li&gt;&lt;/ul&gt;          | 
+ **searchBy** | **[]string** | List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,userId,siteId,driver,technology           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;userId&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;driver&lt;/li&gt; &lt;li&gt;technology&lt;/li&gt;&lt;/ul&gt;          | 
 
 ### Return type
 
@@ -1201,7 +1203,7 @@ Name | Type | Description  | Notes
 
 ## UpdateStorage
 
-> Storage UpdateStorage(ctx, storageId).UpdateStorageInternal(updateStorageInternal).Execute()
+> Storage UpdateStorage(ctx, storageId).UpdateStorage(updateStorage).IfMatch(ifMatch).Execute()
 
 Updates a Storage
 
@@ -1221,11 +1223,12 @@ import (
 
 func main() {
 	storageId := float32(8.14) // float32 | 
-	updateStorageInternal := *openapiclient.NewUpdateStorageInternal() // UpdateStorageInternal | The Storage update object
+	updateStorage := *openapiclient.NewUpdateStorage() // UpdateStorage | The Storage update object
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageAPI.UpdateStorage(context.Background(), storageId).UpdateStorageInternal(updateStorageInternal).Execute()
+	resp, r, err := apiClient.StorageAPI.UpdateStorage(context.Background(), storageId).UpdateStorage(updateStorage).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.UpdateStorage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1251,7 +1254,8 @@ Other parameters are passed through a pointer to a apiUpdateStorageRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateStorageInternal** | [**UpdateStorageInternal**](UpdateStorageInternal.md) | The Storage update object | 
+ **updateStorage** | [**UpdateStorage**](UpdateStorage.md) | The Storage update object | 
+ **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 

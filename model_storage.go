@@ -22,7 +22,9 @@ var _ MappedNullable = &Storage{}
 // Storage struct for Storage
 type Storage struct {
 	// Id of the Storage
-	StorageId float32 `json:"storageId"`
+	Id float32 `json:"id"`
+	// Revision of the Storage
+	Revision float32 `json:"revision"`
 	// Id of the owner
 	UserId *float32 `json:"userId,omitempty"`
 	// Id of the site
@@ -30,11 +32,11 @@ type Storage struct {
 	// The name of the datacenter where the storage is located.
 	DatacenterName string `json:"datacenterName"`
 	// Storage driver
-	StorageDriver string `json:"storageDriver"`
+	Driver string `json:"driver"`
 	// Storage technology
-	StorageTechnology string `json:"storageTechnology"`
+	Technology string `json:"technology"`
 	// Storage type
-	StorageType string `json:"storageType"`
+	Type string `json:"type"`
 	// Storage status
 	Status string `json:"status"`
 	// Total capacity in MB
@@ -95,14 +97,15 @@ type _Storage Storage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorage(storageId float32, siteId float32, datacenterName string, storageDriver string, storageTechnology string, storageType string, status string, name string, managementHost string, username string, subnetType string) *Storage {
+func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technology string, type_ string, status string, name string, managementHost string, username string, subnetType string) *Storage {
 	this := Storage{}
-	this.StorageId = storageId
+	this.Id = id
+	this.Revision = revision
 	this.SiteId = siteId
 	this.DatacenterName = datacenterName
-	this.StorageDriver = storageDriver
-	this.StorageTechnology = storageTechnology
-	this.StorageType = storageType
+	this.Driver = driver
+	this.Technology = technology
+	this.Type = type_
 	this.Status = status
 	this.Name = name
 	this.ManagementHost = managementHost
@@ -119,28 +122,52 @@ func NewStorageWithDefaults() *Storage {
 	return &this
 }
 
-// GetStorageId returns the StorageId field value
-func (o *Storage) GetStorageId() float32 {
+// GetId returns the Id field value
+func (o *Storage) GetId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.StorageId
+	return o.Id
 }
 
-// GetStorageIdOk returns a tuple with the StorageId field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Storage) GetStorageIdOk() (*float32, bool) {
+func (o *Storage) GetIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.StorageId, true
+	return &o.Id, true
 }
 
-// SetStorageId sets field value
-func (o *Storage) SetStorageId(v float32) {
-	o.StorageId = v
+// SetId sets field value
+func (o *Storage) SetId(v float32) {
+	o.Id = v
+}
+
+// GetRevision returns the Revision field value
+func (o *Storage) GetRevision() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Revision
+}
+
+// GetRevisionOk returns a tuple with the Revision field value
+// and a boolean to check if the value has been set.
+func (o *Storage) GetRevisionOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Revision, true
+}
+
+// SetRevision sets field value
+func (o *Storage) SetRevision(v float32) {
+	o.Revision = v
 }
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
@@ -223,76 +250,76 @@ func (o *Storage) SetDatacenterName(v string) {
 	o.DatacenterName = v
 }
 
-// GetStorageDriver returns the StorageDriver field value
-func (o *Storage) GetStorageDriver() string {
+// GetDriver returns the Driver field value
+func (o *Storage) GetDriver() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.StorageDriver
+	return o.Driver
 }
 
-// GetStorageDriverOk returns a tuple with the StorageDriver field value
+// GetDriverOk returns a tuple with the Driver field value
 // and a boolean to check if the value has been set.
-func (o *Storage) GetStorageDriverOk() (*string, bool) {
+func (o *Storage) GetDriverOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.StorageDriver, true
+	return &o.Driver, true
 }
 
-// SetStorageDriver sets field value
-func (o *Storage) SetStorageDriver(v string) {
-	o.StorageDriver = v
+// SetDriver sets field value
+func (o *Storage) SetDriver(v string) {
+	o.Driver = v
 }
 
-// GetStorageTechnology returns the StorageTechnology field value
-func (o *Storage) GetStorageTechnology() string {
+// GetTechnology returns the Technology field value
+func (o *Storage) GetTechnology() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.StorageTechnology
+	return o.Technology
 }
 
-// GetStorageTechnologyOk returns a tuple with the StorageTechnology field value
+// GetTechnologyOk returns a tuple with the Technology field value
 // and a boolean to check if the value has been set.
-func (o *Storage) GetStorageTechnologyOk() (*string, bool) {
+func (o *Storage) GetTechnologyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.StorageTechnology, true
+	return &o.Technology, true
 }
 
-// SetStorageTechnology sets field value
-func (o *Storage) SetStorageTechnology(v string) {
-	o.StorageTechnology = v
+// SetTechnology sets field value
+func (o *Storage) SetTechnology(v string) {
+	o.Technology = v
 }
 
-// GetStorageType returns the StorageType field value
-func (o *Storage) GetStorageType() string {
+// GetType returns the Type field value
+func (o *Storage) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.StorageType
+	return o.Type
 }
 
-// GetStorageTypeOk returns a tuple with the StorageType field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *Storage) GetStorageTypeOk() (*string, bool) {
+func (o *Storage) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.StorageType, true
+	return &o.Type, true
 }
 
-// SetStorageType sets field value
-func (o *Storage) SetStorageType(v string) {
-	o.StorageType = v
+// SetType sets field value
+func (o *Storage) SetType(v string) {
+	o.Type = v
 }
 
 // GetStatus returns the Status field value
@@ -1097,15 +1124,16 @@ func (o Storage) MarshalJSON() ([]byte, error) {
 
 func (o Storage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["storageId"] = o.StorageId
+	toSerialize["id"] = o.Id
+	toSerialize["revision"] = o.Revision
 	if !IsNil(o.UserId) {
 		toSerialize["userId"] = o.UserId
 	}
 	toSerialize["siteId"] = o.SiteId
 	toSerialize["datacenterName"] = o.DatacenterName
-	toSerialize["storageDriver"] = o.StorageDriver
-	toSerialize["storageTechnology"] = o.StorageTechnology
-	toSerialize["storageType"] = o.StorageType
+	toSerialize["driver"] = o.Driver
+	toSerialize["technology"] = o.Technology
+	toSerialize["type"] = o.Type
 	toSerialize["status"] = o.Status
 	if !IsNil(o.TotalCapacity) {
 		toSerialize["totalCapacity"] = o.TotalCapacity
@@ -1187,12 +1215,13 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"storageId",
+		"id",
+		"revision",
 		"siteId",
 		"datacenterName",
-		"storageDriver",
-		"storageTechnology",
-		"storageType",
+		"driver",
+		"technology",
+		"type",
 		"status",
 		"name",
 		"managementHost",
@@ -1227,13 +1256,14 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "storageId")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "revision")
 		delete(additionalProperties, "userId")
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "datacenterName")
-		delete(additionalProperties, "storageDriver")
-		delete(additionalProperties, "storageTechnology")
-		delete(additionalProperties, "storageType")
+		delete(additionalProperties, "driver")
+		delete(additionalProperties, "technology")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "totalCapacity")
 		delete(additionalProperties, "usableCapacity")

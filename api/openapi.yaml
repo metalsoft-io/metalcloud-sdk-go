@@ -17467,59 +17467,6 @@ paths:
       summary: Get Server Instance Group Interface details
       tags:
       - Server Instance Group
-  /api/v2/server-instance-groups/{serverInstanceGroupId}/actions/apply-profile/{serverInstanceProfileId}:
-    post:
-      description: Apply the Server profile configuration to all the Server Instances
-        in the group. The infrastructure must be deployed for the changes to take
-        effect. This is equivalent to running the same operation on each Server.
-      operationId: applyProfileToServerInstanceGroup
-      parameters:
-      - explode: false
-        in: path
-        name: serverInstanceGroupId
-        required: true
-        schema:
-          type: integer
-        style: simple
-      - explode: false
-        in: path
-        name: serverInstanceProfileId
-        required: true
-        schema:
-          type: integer
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: ""
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Server Instance Group not found
-        "409":
-          description: Conflict
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Apply the Server profile configuration to all the Server Instances
-        in the group
-      tags:
-      - Server Instance Group
   /api/v2/server-instance-profiles:
     get:
       description: ""
@@ -18654,57 +18601,6 @@ paths:
       summary: Reset a deployed server
       tags:
       - Server Instance
-  /api/v2/server-instances/{serverInstanceId}/actions/apply-profile:
-    post:
-      description: Apply the Server profile configuration to this Server Instance.
-        The infrastructure must be deployed for the changes to take effect.
-      operationId: applyProfileToServerInstance
-      parameters:
-      - explode: false
-        in: path
-        name: serverInstanceId
-        required: true
-        schema:
-          type: integer
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ServerInstanceProfileReference'
-        description: The Server Instance Profile reference
-        required: true
-      responses:
-        "204":
-          description: ""
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Server Instance not found
-        "409":
-          description: The Server Instance state does not allow this operation.
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Apply the Server Instance Profile configuration to the Server Instance
-      tags:
-      - Server Instance
   /api/v2/server-instances/{serverInstanceId}/actions/power_set:
     post:
       description: Set power to this Server Instance.
@@ -18866,7 +18762,7 @@ paths:
       summary: Get server instance variables
       tags:
       - Server Instance
-  /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration:
+  /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking:
     get:
       description: Returns the network configuration of the specified server instance
         group
@@ -18906,10 +18802,10 @@ paths:
       summary: Get server instance group network configuration
       tags:
       - Server Instance Group
-  /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks:
+  /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections:
     get:
-      description: Returns the logical networks of the specified server instance group
-      operationId: getServerInstanceGroupNetworkConfigurationLogicalNetworks
+      description: Returns the connections of the specified server instance group
+      operationId: getServerInstanceGroupNetworkConfigurationConnections
       parameters:
       - explode: false
         in: path
@@ -18924,7 +18820,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworksList'
-          description: The logical networks of the specified server instance group
+          description: The connections of the specified server instance group
         "401":
           description: Unauthorized
         "403":
@@ -18932,14 +18828,13 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Get server instance group's network configuration logical networks
+      summary: Get server instance group's network configuration connections
       tags:
       - Server Instance Group
-  /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks/{logicalNetworkId}:
+  /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}:
     get:
-      description: Returns the logical network by id of the specified server instance
-        group
-      operationId: getServerInstanceGroupNetworkConfigurationLogicalNetworkById
+      description: Returns the connection by id of the specified server instance group
+      operationId: getServerInstanceGroupNetworkConfigurationConnectionById
       parameters:
       - explode: false
         in: path
@@ -18950,7 +18845,7 @@ paths:
         style: simple
       - explode: false
         in: path
-        name: logicalNetworkId
+        name: connectionId
         required: true
         schema:
           type: integer
@@ -18961,19 +18856,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworkDto'
-          description: The logical network by id of the specified server instance
-            group
+          description: The connection by id of the specified server instance group
         "401":
           description: Unauthorized
         "403":
           description: Forbidden
         "404":
-          description: Server instance group or logical network not found
+          description: Server instance group or connection not found
       security:
       - JWT: []
       - apiKey: []
-      summary: Get server instance group network configuration logical network by
-        id
+      summary: Get server instance group network configuration connection by id
       tags:
       - Server Instance Group
   /api/v2/servers:
@@ -21830,12 +21723,12 @@ paths:
           type: number
         style: form
       - description: |-
-          Filter by storageId query param.
+          Filter by id query param.
                     <p>
-                       <b>Format: </b> filter.storageId={$not}:OPERATION:VALUE
+                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
                     </p>
                     <p>
-                       <b>Example: </b> filter.storageId=$not:$like:John Doe&filter.storageId=like:John
+                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
                     </p>
                     <h4>Available Operations</h4><ul><li>$and</li>
           <li>$or</li>
@@ -21853,7 +21746,7 @@ paths:
           <li>$contains</li></ul>
         explode: true
         in: query
-        name: filter.storageId
+        name: filter.id
         required: false
         schema:
           items:
@@ -21923,12 +21816,12 @@ paths:
           type: array
         style: form
       - description: |-
-          Filter by storageTechnology query param.
+          Filter by technology query param.
                     <p>
-                       <b>Format: </b> filter.storageTechnology={$not}:OPERATION:VALUE
+                       <b>Format: </b> filter.technology={$not}:OPERATION:VALUE
                     </p>
                     <p>
-                       <b>Example: </b> filter.storageTechnology=$not:$like:John Doe&filter.storageTechnology=like:John
+                       <b>Example: </b> filter.technology=$not:$like:John Doe&filter.technology=like:John
                     </p>
                     <h4>Available Operations</h4><ul><li>$and</li>
           <li>$or</li>
@@ -21946,7 +21839,7 @@ paths:
           <li>$contains</li></ul>
         explode: true
         in: query
-        name: filter.storageTechnology
+        name: filter.technology
         required: false
         schema:
           items:
@@ -21957,10 +21850,9 @@ paths:
           \ just provide query param multiple types. The order in url defines an order\
           \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
           \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
-          \          </p>\n      <p>\n             <b>Default Value: </b> storageId:DESC\n\
-          \          </p>\n      <h4>Available Fields</h4><ul><li>storageId</li>\n\
-          <li>userId</li>\n<li>siteId</li>\n<li>storageDriver</li>\n<li>storageTechnology</li></ul>\n\
-          \      "
+          \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>userId</li>\n\
+          <li>siteId</li>\n<li>driver</li>\n<li>technology</li></ul>\n      "
         explode: true
         in: query
         name: sortBy
@@ -21968,16 +21860,16 @@ paths:
         schema:
           items:
             enum:
-            - storageId:ASC
-            - storageId:DESC
+            - id:ASC
+            - id:DESC
             - userId:ASC
             - userId:DESC
             - siteId:ASC
             - siteId:DESC
-            - storageDriver:ASC
-            - storageDriver:DESC
-            - storageTechnology:ASC
-            - storageTechnology:DESC
+            - driver:ASC
+            - driver:DESC
+            - technology:ASC
+            - technology:DESC
             type: string
           type: array
         style: form
@@ -21992,12 +21884,11 @@ paths:
           type: string
         style: form
       - description: "List of fields to search by term to filter result values\n \
-          \       <p>\n             <b>Example: </b> storageId,userId,siteId,storageDriver,storageTechnology\n\
+          \       <p>\n             <b>Example: </b> id,userId,siteId,driver,technology\n\
           \          </p>\n        <p>\n             <b>Default Value: </b> By default\
           \ all fields mentioned below will be used to search by term\n          </p>\n\
-          \        <h4>Available Fields</h4><ul><li>storageId</li>\n<li>userId</li>\n\
-          <li>siteId</li>\n<li>storageDriver</li>\n<li>storageTechnology</li></ul>\n\
-          \        "
+          \        <h4>Available Fields</h4><ul><li>id</li>\n<li>userId</li>\n<li>siteId</li>\n\
+          <li>driver</li>\n<li>technology</li></ul>\n        "
         explode: true
         in: query
         name: searchBy
@@ -22127,6 +22018,14 @@ paths:
         schema:
           type: number
         style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "204":
           description: The Storage successfully deleted
@@ -22164,6 +22063,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Storage'
           description: The Storage successfully retrieved
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
         "400":
           description: Bad request
         "401":
@@ -22191,11 +22097,19 @@ paths:
         schema:
           type: number
         style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateStorageInternal'
+              $ref: '#/components/schemas/UpdateStorage'
         description: The Storage update object
         required: true
       responses:
@@ -22205,6 +22119,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Storage'
           description: The Storage successfully updated
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
         "400":
           description: Bad request
         "401":
@@ -44185,7 +44106,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-07T17:08:22.278Z
+        createdTimestamp: 2025-04-08T18:32:09.636Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -44194,7 +44115,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-07T17:08:22.278Z
+        updatedTimestamp: 2025-04-08T18:32:09.636Z
         revision: "1"
       properties:
         siteId:
@@ -44211,12 +44132,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-07T17:08:22.278Z
+          example: 2025-04-08T18:32:09.636Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-07T17:08:22.278Z
+          example: 2025-04-08T18:32:09.636Z
           format: date-time
           type: string
         links:
@@ -44238,7 +44159,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-07T17:08:22.278Z
+        - createdTimestamp: 2025-04-08T18:32:09.636Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -44247,9 +44168,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-07T17:08:22.278Z
+          updatedTimestamp: 2025-04-08T18:32:09.636Z
           revision: "1"
-        - createdTimestamp: 2025-04-07T17:08:22.278Z
+        - createdTimestamp: 2025-04-08T18:32:09.636Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -44258,7 +44179,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-07T17:08:22.278Z
+          updatedTimestamp: 2025-04-08T18:32:09.636Z
           revision: "1"
         meta: ""
         links: ""
@@ -44873,7 +44794,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-07T17:08:22.285Z
+        createdTimestamp: 2025-04-08T18:32:09.638Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -44914,7 +44835,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-07T17:08:22.285Z
+        updatedTimestamp: 2025-04-08T18:32:09.638Z
         revision: "1"
         status: draft
       properties:
@@ -44942,12 +44863,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-07T17:08:22.285Z
+          example: 2025-04-08T18:32:09.638Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-07T17:08:22.285Z
+          example: 2025-04-08T18:32:09.638Z
           format: date-time
           type: string
         links:
@@ -45088,7 +45009,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-07T17:08:22.285Z
+          createdTimestamp: 2025-04-08T18:32:09.638Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -45129,7 +45050,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-07T17:08:22.285Z
+          updatedTimestamp: 2025-04-08T18:32:09.638Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -45239,7 +45160,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-07T17:08:22.285Z
+          createdTimestamp: 2025-04-08T18:32:09.638Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -45280,7 +45201,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-07T17:08:22.285Z
+          updatedTimestamp: 2025-04-08T18:32:09.638Z
           revision: "1"
           status: draft
         meta: ""
@@ -48349,17 +48270,6 @@ components:
           maxLength: 63
           type: string
       type: object
-    ServerInstanceProfileReference:
-      example:
-        id: 1
-      properties:
-        id:
-          description: The Server profile ID.
-          example: 1
-          type: integer
-      required:
-      - id
-      type: object
     ServerInstancePowerSet:
       example:
         powerCommand: "on"
@@ -48511,15 +48421,17 @@ components:
           type: number
         automaticallyAllocateServerTypes:
           description: Automatically allocate server types
-          example: 0
-          type: number
+          example: false
+          type: boolean
         automaticallySetServersAsAvailable:
           description: Automatically set servers as available
-          example: 0
-          type: number
+          example: false
+          type: boolean
         serverRegistrationBiosProfile:
           description: Server registration BIOS profile
-          type: object
+          items:
+            type: string
+          type: array
       required:
       - automaticallyAllocateServerTypes
       - automaticallySetServersAsAvailable
@@ -51091,14 +51003,14 @@ components:
       type: object
     RemoteConsoleInfo:
       example:
-        activeConnections: 1
+        active_connections: 1
       properties:
-        activeConnections:
+        active_connections:
           description: Active Remote Console connections
           example: 1
           type: number
       required:
-      - activeConnections
+      - active_connections
       type: object
     ServerPowerSet:
       example:
@@ -52662,48 +52574,52 @@ components:
           jobsThrownError: 1
           groupCreatedTimestamp: 2022-01-01T00:00:00Z
         datacenterName: datacenterName
-        inMaintenance: 3.616076749251911
-        storageTechnology: block
+        inMaintenance: 2.027123023002322
         managementHost: managementHost
         passwordEncrypted: passwordEncrypted
-        storageDriver: dummy_driver
-        totalCapacity: 5.962133916683182
+        type: iscsi_ssd
+        totalCapacity: 5.637376656633329
         targetIQN: targetIQN
         options: ""
-        drivePriority: 4.145608029883936
+        drivePriority: 7.386281948385884
         links:
         - rel: self
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
-        iscsiPort: 9.301444243932576
+        id: 0.8008281904610115
+        iscsiPort: 3.616076749251911
         portGroupPhysicalPorts: "{}"
-        storageId: 0.8008281904610115
         alternateSanIPs:
         - alternateSanIPs
         - alternateSanIPs
         portGroupAllocationOrder: "{}"
         extensionInfo: ""
-        userId: 6.027456183070403
-        freeCapacity: 2.3021358869347655
-        sharedDrivePriority: 7.386281948385884
+        technology: block
+        userId: 1.4658129805029452
+        freeCapacity: 7.061401241503109
+        revision: 6.027456183070403
+        sharedDrivePriority: 1.2315135367772556
         tags:
         - tags
         - tags
-        usableCapacity: 5.637376656633329
-        virtualUsedCapacity: 7.061401241503109
+        usableCapacity: 2.3021358869347655
+        virtualUsedCapacity: 9.301444243932576
         defaultIoLimitPolicy: defaultIoLimitPolicy
-        isExperimental: 2.027123023002322
+        isExperimental: 4.145608029883936
+        driver: power_flex
         name: name
-        siteId: 1.4658129805029452
-        storageType: iscsi_ssd
+        siteId: 5.962133916683182
         subnetType: ipv4
         status: active
         iscsiHost: iscsiHost
         username: username
       properties:
-        storageId:
+        id:
           description: Id of the Storage
+          type: number
+        revision:
+          description: Revision of the Storage
           type: number
         userId:
           description: Id of the owner
@@ -52714,30 +52630,23 @@ components:
         datacenterName:
           description: The name of the datacenter where the storage is located.
           type: string
-        storageDriver:
+        driver:
           description: Storage driver
           enum:
-          - dummy_driver
-          - nexenta3
-          - nexenta4
-          - bigstep_storage
-          - hp_msa_1040
-          - unity_storage
-          - power_max
           - power_flex
           - power_scale
           - ecs
           - netapp
           - power_store
           type: string
-        storageTechnology:
+        technology:
           description: Storage technology
           enum:
           - block
           - file
           - object
           type: string
-        storageType:
+        type:
           description: Storage type
           enum:
           - iscsi_ssd
@@ -52839,15 +52748,16 @@ components:
           type: array
       required:
       - datacenterName
+      - driver
+      - id
       - managementHost
       - name
+      - revision
       - siteId
       - status
-      - storageDriver
-      - storageId
-      - storageTechnology
-      - storageType
       - subnetType
+      - technology
+      - type
       - username
       type: object
     StoragePaginatedList:
@@ -52861,41 +52771,42 @@ components:
             jobsThrownError: 1
             groupCreatedTimestamp: 2022-01-01T00:00:00Z
           datacenterName: datacenterName
-          inMaintenance: 3.616076749251911
-          storageTechnology: block
+          inMaintenance: 2.027123023002322
           managementHost: managementHost
           passwordEncrypted: passwordEncrypted
-          storageDriver: dummy_driver
-          totalCapacity: 5.962133916683182
+          type: iscsi_ssd
+          totalCapacity: 5.637376656633329
           targetIQN: targetIQN
           options: ""
-          drivePriority: 4.145608029883936
+          drivePriority: 7.386281948385884
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
-          iscsiPort: 9.301444243932576
+          id: 0.8008281904610115
+          iscsiPort: 3.616076749251911
           portGroupPhysicalPorts: "{}"
-          storageId: 0.8008281904610115
           alternateSanIPs:
           - alternateSanIPs
           - alternateSanIPs
           portGroupAllocationOrder: "{}"
           extensionInfo: ""
-          userId: 6.027456183070403
-          freeCapacity: 2.3021358869347655
-          sharedDrivePriority: 7.386281948385884
+          technology: block
+          userId: 1.4658129805029452
+          freeCapacity: 7.061401241503109
+          revision: 6.027456183070403
+          sharedDrivePriority: 1.2315135367772556
           tags:
           - tags
           - tags
-          usableCapacity: 5.637376656633329
-          virtualUsedCapacity: 7.061401241503109
+          usableCapacity: 2.3021358869347655
+          virtualUsedCapacity: 9.301444243932576
           defaultIoLimitPolicy: defaultIoLimitPolicy
-          isExperimental: 2.027123023002322
+          isExperimental: 4.145608029883936
+          driver: power_flex
           name: name
-          siteId: 1.4658129805029452
-          storageType: iscsi_ssd
+          siteId: 5.962133916683182
           subnetType: ipv4
           status: active
           iscsiHost: iscsiHost
@@ -52908,41 +52819,42 @@ components:
             jobsThrownError: 1
             groupCreatedTimestamp: 2022-01-01T00:00:00Z
           datacenterName: datacenterName
-          inMaintenance: 3.616076749251911
-          storageTechnology: block
+          inMaintenance: 2.027123023002322
           managementHost: managementHost
           passwordEncrypted: passwordEncrypted
-          storageDriver: dummy_driver
-          totalCapacity: 5.962133916683182
+          type: iscsi_ssd
+          totalCapacity: 5.637376656633329
           targetIQN: targetIQN
           options: ""
-          drivePriority: 4.145608029883936
+          drivePriority: 7.386281948385884
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
-          iscsiPort: 9.301444243932576
+          id: 0.8008281904610115
+          iscsiPort: 3.616076749251911
           portGroupPhysicalPorts: "{}"
-          storageId: 0.8008281904610115
           alternateSanIPs:
           - alternateSanIPs
           - alternateSanIPs
           portGroupAllocationOrder: "{}"
           extensionInfo: ""
-          userId: 6.027456183070403
-          freeCapacity: 2.3021358869347655
-          sharedDrivePriority: 7.386281948385884
+          technology: block
+          userId: 1.4658129805029452
+          freeCapacity: 7.061401241503109
+          revision: 6.027456183070403
+          sharedDrivePriority: 1.2315135367772556
           tags:
           - tags
           - tags
-          usableCapacity: 5.637376656633329
-          virtualUsedCapacity: 7.061401241503109
+          usableCapacity: 2.3021358869347655
+          virtualUsedCapacity: 9.301444243932576
           defaultIoLimitPolicy: defaultIoLimitPolicy
-          isExperimental: 2.027123023002322
+          isExperimental: 4.145608029883936
+          driver: power_flex
           name: name
-          siteId: 1.4658129805029452
-          storageType: iscsi_ssd
+          siteId: 5.962133916683182
           subnetType: ipv4
           status: active
           iscsiHost: iscsiHost
@@ -53054,8 +52966,9 @@ components:
         - alternateSanIPs
         portGroupAllocationOrder: "{}"
         inMaintenance: 5.962133916683182
-        storageTechnology: block
         managementHost: managementHost
+        technology: block
+        type: iscsi_ssd
         userId: 0.8008281904610115
         sharedDrivePriority: 7.061401241503109
         tags:
@@ -53064,12 +52977,11 @@ components:
         defaultIoLimitPolicy: defaultIoLimitPolicy
         password: password
         isExperimental: 5.637376656633329
-        storageDriver: dummy_driver
+        driver: power_flex
         targetIQN: targetIQN
         name: name
         options: ""
         siteId: 6.027456183070403
-        storageType: iscsi_ssd
         drivePriority: 2.3021358869347655
         iscsiPort: 1.4658129805029452
         portGroupPhysicalPorts: "{}"
@@ -53083,30 +52995,23 @@ components:
         siteId:
           description: Id of the site
           type: number
-        storageDriver:
+        driver:
           description: Storage driver
           enum:
-          - dummy_driver
-          - nexenta3
-          - nexenta4
-          - bigstep_storage
-          - hp_msa_1040
-          - unity_storage
-          - power_max
           - power_flex
           - power_scale
           - ecs
           - netapp
           - power_store
           type: string
-        storageTechnology:
+        technology:
           description: Storage technology
           enum:
           - block
           - file
           - object
           type: string
-        storageType:
+        type:
           description: Storage type
           enum:
           - iscsi_ssd
@@ -53176,22 +53081,22 @@ components:
           description: The password to use.
           type: string
       required:
+      - driver
       - managementHost
       - name
       - password
       - siteId
-      - storageDriver
-      - storageTechnology
-      - storageType
       - subnetType
+      - technology
+      - type
       - username
       type: object
     RegisterStorageResponse:
       example:
+        id: 0.8008281904610115
         jobInfo: ""
-        storageId: 0.8008281904610115
       properties:
-        storageId:
+        id:
           description: Id of the Storage
           type: number
         jobInfo:
@@ -53199,26 +53104,20 @@ components:
           - $ref: '#/components/schemas/JobInfo'
           description: Job info
       required:
-      - storageId
+      - id
       type: object
-    UpdateStorageInternal:
+    UpdateStorage:
       example:
-        extensionInfo: ""
+        defaultIoLimitPolicy: defaultIoLimitPolicy
+        password: password
+        isExperimental: 6.027456183070403
         inMaintenance: 0.8008281904610115
-        freeCapacity: 7.061401241503109
+        options: ""
+        drivePriority: 1.4658129805029452
         sharedDrivePriority: 5.962133916683182
         tags:
         - tags
         - tags
-        defaultIoLimitPolicy: defaultIoLimitPolicy
-        password: password
-        usableCapacity: 2.3021358869347655
-        virtualUsedCapacity: 9.301444243932576
-        isExperimental: 6.027456183070403
-        totalCapacity: 5.637376656633329
-        options: ""
-        drivePriority: 1.4658129805029452
-        status: active
       properties:
         inMaintenance:
           description: Specifies if the storage is in maintenance
@@ -53240,37 +53139,13 @@ components:
         defaultIoLimitPolicy:
           description: Default IO limit policy
           type: string
+        options:
+          allOf:
+          - $ref: '#/components/schemas/UpdateStorageOptions'
+          description: Options for the storage
         password:
           description: The password to use.
           type: string
-        options:
-          allOf:
-          - $ref: '#/components/schemas/StorageOptions'
-          description: Options for the storage
-        extensionInfo:
-          allOf:
-          - $ref: '#/components/schemas/ExtensionExecutionInfo'
-          description: The extension execution info of the storage.
-        status:
-          description: Storage status
-          enum:
-          - active
-          - deleted
-          - pending
-          - ready
-          type: string
-        totalCapacity:
-          description: Total capacity in MB
-          type: number
-        usableCapacity:
-          description: Usable capacity in MB
-          type: number
-        freeCapacity:
-          description: Free capacity in MB
-          type: number
-        virtualUsedCapacity:
-          description: Virtual used capacity in MB
-          type: number
       type: object
     StorageCredentials:
       example:
@@ -53354,13 +53229,13 @@ components:
     StorageNetworkDeviceConfiguration:
       example:
         storagePhysicalInterfaceIdentifier: storagePhysicalInterfaceIdentifier
-        networkEquipmentIdentifier: networkEquipmentIdentifier
-        networkEquipmentInterfaceVlans:
-        - 5.962133916683182
-        - 5.962133916683182
-        networkEquipmentId: 1.4658129805029452
+        networkDeviceId: 1.4658129805029452
+        networkDeviceInterfaceIdentifier: networkDeviceInterfaceIdentifier
         id: 0.8008281904610115
-        networkEquipmentInterfaceIdentifier: networkEquipmentInterfaceIdentifier
+        networkDeviceInterfaceVlans:
+        - 5.962133916683182
+        - 5.962133916683182
+        networkDeviceIdentifier: networkDeviceIdentifier
         storageId: 6.027456183070403
       properties:
         id:
@@ -53369,77 +53244,77 @@ components:
         storageId:
           description: Id of the storage
           type: number
-        networkEquipmentId:
-          description: Id of the network equipment
+        networkDeviceId:
+          description: Id of the network device
           type: number
         storagePhysicalInterfaceIdentifier:
           description: Identifier of the storage physical interface
           type: string
-        networkEquipmentIdentifier:
-          description: Identifier of the network equipment
+        networkDeviceIdentifier:
+          description: Identifier of the network device
           type: string
-        networkEquipmentInterfaceIdentifier:
-          description: Identifier of the network equipment interface
+        networkDeviceInterfaceIdentifier:
+          description: Identifier of the network device interface
           type: string
-        networkEquipmentInterfaceVlans:
-          description: Array of VLANS for the network equipment interface
+        networkDeviceInterfaceVlans:
+          description: Array of VLANS for the network device interface
           items:
             type: number
           type: array
       required:
       - id
-      - networkEquipmentId
-      - networkEquipmentIdentifier
-      - networkEquipmentInterfaceIdentifier
-      - networkEquipmentInterfaceVlans
+      - networkDeviceId
+      - networkDeviceIdentifier
+      - networkDeviceInterfaceIdentifier
+      - networkDeviceInterfaceVlans
       - storageId
       - storagePhysicalInterfaceIdentifier
       type: object
     CreateStorageNetworkDeviceConfiguration:
       example:
         storagePhysicalInterfaceIdentifier: storagePhysicalInterfaceIdentifier
-        networkEquipmentInterfaceVlans:
+        networkDeviceId: 0.8008281904610115
+        networkDeviceInterfaceIdentifier: networkDeviceInterfaceIdentifier
+        networkDeviceInterfaceVlans:
         - 6.027456183070403
         - 6.027456183070403
-        networkEquipmentId: 0.8008281904610115
-        networkEquipmentInterfaceIdentifier: networkEquipmentInterfaceIdentifier
       properties:
-        networkEquipmentId:
-          description: Id of the network equipment
+        networkDeviceId:
+          description: Id of the network device
           type: number
         storagePhysicalInterfaceIdentifier:
           description: Identifier of the storage physical interface
           type: string
-        networkEquipmentInterfaceIdentifier:
-          description: Identifier of the network equipment interface
+        networkDeviceInterfaceIdentifier:
+          description: Identifier of the network device interface
           type: string
-        networkEquipmentInterfaceVlans:
-          description: Array of VLANS for the network equipment interface
+        networkDeviceInterfaceVlans:
+          description: Array of VLANS for the network device interface
           items:
             type: number
           type: array
       required:
-      - networkEquipmentId
-      - networkEquipmentInterfaceIdentifier
-      - networkEquipmentInterfaceVlans
+      - networkDeviceId
+      - networkDeviceInterfaceIdentifier
+      - networkDeviceInterfaceVlans
       - storagePhysicalInterfaceIdentifier
       type: object
     UpdateStorageNetworkDeviceConfiguration:
       example:
         storagePhysicalInterfaceIdentifier: storagePhysicalInterfaceIdentifier
-        networkEquipmentInterfaceVlans:
+        networkDeviceInterfaceIdentifier: networkDeviceInterfaceIdentifier
+        networkDeviceInterfaceVlans:
         - 0.8008281904610115
         - 0.8008281904610115
-        networkEquipmentInterfaceIdentifier: networkEquipmentInterfaceIdentifier
       properties:
         storagePhysicalInterfaceIdentifier:
           description: Identifier of the storage physical interface
           type: string
-        networkEquipmentInterfaceIdentifier:
-          description: Identifier of the network equipment interface
+        networkDeviceInterfaceIdentifier:
+          description: Identifier of the network device interface
           type: string
-        networkEquipmentInterfaceVlans:
-          description: Array of VLANS for the network equipment interface
+        networkDeviceInterfaceVlans:
+          description: Array of VLANS for the network device interface
           items:
             type: number
           type: array

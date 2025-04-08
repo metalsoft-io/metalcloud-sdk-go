@@ -22,7 +22,7 @@ var _ MappedNullable = &RemoteConsoleInfo{}
 // RemoteConsoleInfo struct for RemoteConsoleInfo
 type RemoteConsoleInfo struct {
 	// Active Remote Console connections
-	ActiveConnections float32 `json:"activeConnections"`
+	ActiveConnections float32 `json:"active_connections"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -80,7 +80,7 @@ func (o RemoteConsoleInfo) MarshalJSON() ([]byte, error) {
 
 func (o RemoteConsoleInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["activeConnections"] = o.ActiveConnections
+	toSerialize["active_connections"] = o.ActiveConnections
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -94,7 +94,7 @@ func (o *RemoteConsoleInfo) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"activeConnections",
+		"active_connections",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -124,7 +124,7 @@ func (o *RemoteConsoleInfo) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "activeConnections")
+		delete(additionalProperties, "active_connections")
 		o.AdditionalProperties = additionalProperties
 	}
 

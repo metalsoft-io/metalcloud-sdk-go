@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StorageId** | **float32** | Id of the Storage | 
+**Id** | **float32** | Id of the Storage | 
+**Revision** | **float32** | Revision of the Storage | 
 **UserId** | Pointer to **float32** | Id of the owner | [optional] 
 **SiteId** | **float32** | Id of the site | 
 **DatacenterName** | **string** | The name of the datacenter where the storage is located. | 
-**StorageDriver** | **string** | Storage driver | 
-**StorageTechnology** | **string** | Storage technology | 
-**StorageType** | **string** | Storage type | 
+**Driver** | **string** | Storage driver | 
+**Technology** | **string** | Storage technology | 
+**Type** | **string** | Storage type | 
 **Status** | **string** | Storage status | 
 **TotalCapacity** | Pointer to **float32** | Total capacity in MB | [optional] 
 **UsableCapacity** | Pointer to **float32** | Usable capacity in MB | [optional] 
@@ -42,7 +43,7 @@ Name | Type | Description | Notes
 
 ### NewStorage
 
-`func NewStorage(storageId float32, siteId float32, datacenterName string, storageDriver string, storageTechnology string, storageType string, status string, name string, managementHost string, username string, subnetType string, ) *Storage`
+`func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technology string, type_ string, status string, name string, managementHost string, username string, subnetType string, ) *Storage`
 
 NewStorage instantiates a new Storage object
 This constructor will assign default values to properties that have it defined,
@@ -57,24 +58,44 @@ NewStorageWithDefaults instantiates a new Storage object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetStorageId
+### GetId
 
-`func (o *Storage) GetStorageId() float32`
+`func (o *Storage) GetId() float32`
 
-GetStorageId returns the StorageId field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetStorageIdOk
+### GetIdOk
 
-`func (o *Storage) GetStorageIdOk() (*float32, bool)`
+`func (o *Storage) GetIdOk() (*float32, bool)`
 
-GetStorageIdOk returns a tuple with the StorageId field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStorageId
+### SetId
 
-`func (o *Storage) SetStorageId(v float32)`
+`func (o *Storage) SetId(v float32)`
 
-SetStorageId sets StorageId field to given value.
+SetId sets Id field to given value.
+
+
+### GetRevision
+
+`func (o *Storage) GetRevision() float32`
+
+GetRevision returns the Revision field if non-nil, zero value otherwise.
+
+### GetRevisionOk
+
+`func (o *Storage) GetRevisionOk() (*float32, bool)`
+
+GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevision
+
+`func (o *Storage) SetRevision(v float32)`
+
+SetRevision sets Revision field to given value.
 
 
 ### GetUserId
@@ -142,64 +163,64 @@ and a boolean to check if the value has been set.
 SetDatacenterName sets DatacenterName field to given value.
 
 
-### GetStorageDriver
+### GetDriver
 
-`func (o *Storage) GetStorageDriver() string`
+`func (o *Storage) GetDriver() string`
 
-GetStorageDriver returns the StorageDriver field if non-nil, zero value otherwise.
+GetDriver returns the Driver field if non-nil, zero value otherwise.
 
-### GetStorageDriverOk
+### GetDriverOk
 
-`func (o *Storage) GetStorageDriverOk() (*string, bool)`
+`func (o *Storage) GetDriverOk() (*string, bool)`
 
-GetStorageDriverOk returns a tuple with the StorageDriver field if it's non-nil, zero value otherwise
+GetDriverOk returns a tuple with the Driver field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStorageDriver
+### SetDriver
 
-`func (o *Storage) SetStorageDriver(v string)`
+`func (o *Storage) SetDriver(v string)`
 
-SetStorageDriver sets StorageDriver field to given value.
+SetDriver sets Driver field to given value.
 
 
-### GetStorageTechnology
+### GetTechnology
 
-`func (o *Storage) GetStorageTechnology() string`
+`func (o *Storage) GetTechnology() string`
 
-GetStorageTechnology returns the StorageTechnology field if non-nil, zero value otherwise.
+GetTechnology returns the Technology field if non-nil, zero value otherwise.
 
-### GetStorageTechnologyOk
+### GetTechnologyOk
 
-`func (o *Storage) GetStorageTechnologyOk() (*string, bool)`
+`func (o *Storage) GetTechnologyOk() (*string, bool)`
 
-GetStorageTechnologyOk returns a tuple with the StorageTechnology field if it's non-nil, zero value otherwise
+GetTechnologyOk returns a tuple with the Technology field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStorageTechnology
+### SetTechnology
 
-`func (o *Storage) SetStorageTechnology(v string)`
+`func (o *Storage) SetTechnology(v string)`
 
-SetStorageTechnology sets StorageTechnology field to given value.
+SetTechnology sets Technology field to given value.
 
 
-### GetStorageType
+### GetType
 
-`func (o *Storage) GetStorageType() string`
+`func (o *Storage) GetType() string`
 
-GetStorageType returns the StorageType field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetStorageTypeOk
+### GetTypeOk
 
-`func (o *Storage) GetStorageTypeOk() (*string, bool)`
+`func (o *Storage) GetTypeOk() (*string, bool)`
 
-GetStorageTypeOk returns a tuple with the StorageType field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStorageType
+### SetType
 
-`func (o *Storage) SetStorageType(v string)`
+`func (o *Storage) SetType(v string)`
 
-SetStorageType sets StorageType field to given value.
+SetType sets Type field to given value.
 
 
 ### GetStatus

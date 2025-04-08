@@ -21,14 +21,14 @@ var _ MappedNullable = &CreateStorageNetworkDeviceConfiguration{}
 
 // CreateStorageNetworkDeviceConfiguration struct for CreateStorageNetworkDeviceConfiguration
 type CreateStorageNetworkDeviceConfiguration struct {
-	// Id of the network equipment
-	NetworkEquipmentId float32 `json:"networkEquipmentId"`
+	// Id of the network device
+	NetworkDeviceId float32 `json:"networkDeviceId"`
 	// Identifier of the storage physical interface
 	StoragePhysicalInterfaceIdentifier string `json:"storagePhysicalInterfaceIdentifier"`
-	// Identifier of the network equipment interface
-	NetworkEquipmentInterfaceIdentifier string `json:"networkEquipmentInterfaceIdentifier"`
-	// Array of VLANS for the network equipment interface
-	NetworkEquipmentInterfaceVlans []float32 `json:"networkEquipmentInterfaceVlans"`
+	// Identifier of the network device interface
+	NetworkDeviceInterfaceIdentifier string `json:"networkDeviceInterfaceIdentifier"`
+	// Array of VLANS for the network device interface
+	NetworkDeviceInterfaceVlans []float32 `json:"networkDeviceInterfaceVlans"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,12 +38,12 @@ type _CreateStorageNetworkDeviceConfiguration CreateStorageNetworkDeviceConfigur
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateStorageNetworkDeviceConfiguration(networkEquipmentId float32, storagePhysicalInterfaceIdentifier string, networkEquipmentInterfaceIdentifier string, networkEquipmentInterfaceVlans []float32) *CreateStorageNetworkDeviceConfiguration {
+func NewCreateStorageNetworkDeviceConfiguration(networkDeviceId float32, storagePhysicalInterfaceIdentifier string, networkDeviceInterfaceIdentifier string, networkDeviceInterfaceVlans []float32) *CreateStorageNetworkDeviceConfiguration {
 	this := CreateStorageNetworkDeviceConfiguration{}
-	this.NetworkEquipmentId = networkEquipmentId
+	this.NetworkDeviceId = networkDeviceId
 	this.StoragePhysicalInterfaceIdentifier = storagePhysicalInterfaceIdentifier
-	this.NetworkEquipmentInterfaceIdentifier = networkEquipmentInterfaceIdentifier
-	this.NetworkEquipmentInterfaceVlans = networkEquipmentInterfaceVlans
+	this.NetworkDeviceInterfaceIdentifier = networkDeviceInterfaceIdentifier
+	this.NetworkDeviceInterfaceVlans = networkDeviceInterfaceVlans
 	return &this
 }
 
@@ -55,28 +55,28 @@ func NewCreateStorageNetworkDeviceConfigurationWithDefaults() *CreateStorageNetw
 	return &this
 }
 
-// GetNetworkEquipmentId returns the NetworkEquipmentId field value
-func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkEquipmentId() float32 {
+// GetNetworkDeviceId returns the NetworkDeviceId field value
+func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkDeviceId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.NetworkEquipmentId
+	return o.NetworkDeviceId
 }
 
-// GetNetworkEquipmentIdOk returns a tuple with the NetworkEquipmentId field value
+// GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field value
 // and a boolean to check if the value has been set.
-func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkEquipmentIdOk() (*float32, bool) {
+func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkDeviceIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NetworkEquipmentId, true
+	return &o.NetworkDeviceId, true
 }
 
-// SetNetworkEquipmentId sets field value
-func (o *CreateStorageNetworkDeviceConfiguration) SetNetworkEquipmentId(v float32) {
-	o.NetworkEquipmentId = v
+// SetNetworkDeviceId sets field value
+func (o *CreateStorageNetworkDeviceConfiguration) SetNetworkDeviceId(v float32) {
+	o.NetworkDeviceId = v
 }
 
 // GetStoragePhysicalInterfaceIdentifier returns the StoragePhysicalInterfaceIdentifier field value
@@ -103,52 +103,52 @@ func (o *CreateStorageNetworkDeviceConfiguration) SetStoragePhysicalInterfaceIde
 	o.StoragePhysicalInterfaceIdentifier = v
 }
 
-// GetNetworkEquipmentInterfaceIdentifier returns the NetworkEquipmentInterfaceIdentifier field value
-func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkEquipmentInterfaceIdentifier() string {
+// GetNetworkDeviceInterfaceIdentifier returns the NetworkDeviceInterfaceIdentifier field value
+func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkDeviceInterfaceIdentifier() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.NetworkEquipmentInterfaceIdentifier
+	return o.NetworkDeviceInterfaceIdentifier
 }
 
-// GetNetworkEquipmentInterfaceIdentifierOk returns a tuple with the NetworkEquipmentInterfaceIdentifier field value
+// GetNetworkDeviceInterfaceIdentifierOk returns a tuple with the NetworkDeviceInterfaceIdentifier field value
 // and a boolean to check if the value has been set.
-func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkEquipmentInterfaceIdentifierOk() (*string, bool) {
+func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkDeviceInterfaceIdentifierOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NetworkEquipmentInterfaceIdentifier, true
+	return &o.NetworkDeviceInterfaceIdentifier, true
 }
 
-// SetNetworkEquipmentInterfaceIdentifier sets field value
-func (o *CreateStorageNetworkDeviceConfiguration) SetNetworkEquipmentInterfaceIdentifier(v string) {
-	o.NetworkEquipmentInterfaceIdentifier = v
+// SetNetworkDeviceInterfaceIdentifier sets field value
+func (o *CreateStorageNetworkDeviceConfiguration) SetNetworkDeviceInterfaceIdentifier(v string) {
+	o.NetworkDeviceInterfaceIdentifier = v
 }
 
-// GetNetworkEquipmentInterfaceVlans returns the NetworkEquipmentInterfaceVlans field value
-func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkEquipmentInterfaceVlans() []float32 {
+// GetNetworkDeviceInterfaceVlans returns the NetworkDeviceInterfaceVlans field value
+func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkDeviceInterfaceVlans() []float32 {
 	if o == nil {
 		var ret []float32
 		return ret
 	}
 
-	return o.NetworkEquipmentInterfaceVlans
+	return o.NetworkDeviceInterfaceVlans
 }
 
-// GetNetworkEquipmentInterfaceVlansOk returns a tuple with the NetworkEquipmentInterfaceVlans field value
+// GetNetworkDeviceInterfaceVlansOk returns a tuple with the NetworkDeviceInterfaceVlans field value
 // and a boolean to check if the value has been set.
-func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkEquipmentInterfaceVlansOk() ([]float32, bool) {
+func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkDeviceInterfaceVlansOk() ([]float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.NetworkEquipmentInterfaceVlans, true
+	return o.NetworkDeviceInterfaceVlans, true
 }
 
-// SetNetworkEquipmentInterfaceVlans sets field value
-func (o *CreateStorageNetworkDeviceConfiguration) SetNetworkEquipmentInterfaceVlans(v []float32) {
-	o.NetworkEquipmentInterfaceVlans = v
+// SetNetworkDeviceInterfaceVlans sets field value
+func (o *CreateStorageNetworkDeviceConfiguration) SetNetworkDeviceInterfaceVlans(v []float32) {
+	o.NetworkDeviceInterfaceVlans = v
 }
 
 func (o CreateStorageNetworkDeviceConfiguration) MarshalJSON() ([]byte, error) {
@@ -161,10 +161,10 @@ func (o CreateStorageNetworkDeviceConfiguration) MarshalJSON() ([]byte, error) {
 
 func (o CreateStorageNetworkDeviceConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["networkEquipmentId"] = o.NetworkEquipmentId
+	toSerialize["networkDeviceId"] = o.NetworkDeviceId
 	toSerialize["storagePhysicalInterfaceIdentifier"] = o.StoragePhysicalInterfaceIdentifier
-	toSerialize["networkEquipmentInterfaceIdentifier"] = o.NetworkEquipmentInterfaceIdentifier
-	toSerialize["networkEquipmentInterfaceVlans"] = o.NetworkEquipmentInterfaceVlans
+	toSerialize["networkDeviceInterfaceIdentifier"] = o.NetworkDeviceInterfaceIdentifier
+	toSerialize["networkDeviceInterfaceVlans"] = o.NetworkDeviceInterfaceVlans
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -178,10 +178,10 @@ func (o *CreateStorageNetworkDeviceConfiguration) UnmarshalJSON(data []byte) (er
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"networkEquipmentId",
+		"networkDeviceId",
 		"storagePhysicalInterfaceIdentifier",
-		"networkEquipmentInterfaceIdentifier",
-		"networkEquipmentInterfaceVlans",
+		"networkDeviceInterfaceIdentifier",
+		"networkDeviceInterfaceVlans",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -211,10 +211,10 @@ func (o *CreateStorageNetworkDeviceConfiguration) UnmarshalJSON(data []byte) (er
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "networkEquipmentId")
+		delete(additionalProperties, "networkDeviceId")
 		delete(additionalProperties, "storagePhysicalInterfaceIdentifier")
-		delete(additionalProperties, "networkEquipmentInterfaceIdentifier")
-		delete(additionalProperties, "networkEquipmentInterfaceVlans")
+		delete(additionalProperties, "networkDeviceInterfaceIdentifier")
+		delete(additionalProperties, "networkDeviceInterfaceVlans")
 		o.AdditionalProperties = additionalProperties
 	}
 

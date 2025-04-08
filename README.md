@@ -336,7 +336,6 @@ Class | Method | HTTP request | Description
 *ServerFirmwareAPI* | [**UpgradeFirmwareOfServer**](docs/ServerFirmwareAPI.md#upgradefirmwareofserver) | **Post** /api/v2/servers/{serverId}/firmware/actions/upgrade | Upgrades the firmware of all updatable components on Server
 *ServerFirmwareAPI* | [**UpgradeFirmwareOfServerComponent**](docs/ServerFirmwareAPI.md#upgradefirmwareofservercomponent) | **Post** /api/v2/servers/{serverId}/firmware/components/{serverComponentId}/actions/upgrade | Upgrades the firmware of the specified component on Server
 *ServerFirmwareAPI* | [**UpgradeFirmwareOfServersBatch**](docs/ServerFirmwareAPI.md#upgradefirmwareofserversbatch) | **Post** /api/v2/servers/firmware/actions/batch-upgrade | Upgrades the firmware of all updatable components on the specified Servers
-*ServerInstanceAPI* | [**ApplyProfileToServerInstance**](docs/ServerInstanceAPI.md#applyprofiletoserverinstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/apply-profile | Apply the Server Instance Profile configuration to the Server Instance
 *ServerInstanceAPI* | [**CreateServerInstance**](docs/ServerInstanceAPI.md#createserverinstance) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instances | Add Server Instance to an infrastructure
 *ServerInstanceAPI* | [**DeleteServerInstance**](docs/ServerInstanceAPI.md#deleteserverinstance) | **Delete** /api/v2/server-instances/{serverInstanceId} | Delete Server Instance
 *ServerInstanceAPI* | [**GetInfrastructureServerInstances**](docs/ServerInstanceAPI.md#getinfrastructureserverinstances) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instances | List Server Instances for an infrastructure
@@ -357,7 +356,6 @@ Class | Method | HTTP request | Description
 *ServerInstanceAPI* | [**SetPowerToServerInstance**](docs/ServerInstanceAPI.md#setpowertoserverinstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power_set | Set power to the Server Instance
 *ServerInstanceAPI* | [**UpdateServerInstanceConfig**](docs/ServerInstanceAPI.md#updateserverinstanceconfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/config | Update Server Instance configuration
 *ServerInstanceAPI* | [**UpdateServerInstanceInterfaceConfig**](docs/ServerInstanceAPI.md#updateserverinstanceinterfaceconfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId}/config | Update Server Instance Interface configuration
-*ServerInstanceGroupAPI* | [**ApplyProfileToServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#applyprofiletoserverinstancegroup) | **Post** /api/v2/server-instance-groups/{serverInstanceGroupId}/actions/apply-profile/{serverInstanceProfileId} | Apply the Server profile configuration to all the Server Instances in the group
 *ServerInstanceGroupAPI* | [**CreateServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#createserverinstancegroup) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | Add a Server Instance Group to an infrastructure. By default it will not have any instance.
 *ServerInstanceGroupAPI* | [**DeleteServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#deleteserverinstancegroup) | **Delete** /api/v2/server-instance-groups/{serverInstanceGroupId} | Delete Server Instance Group. Will not take effect if there are instances in this group.
 *ServerInstanceGroupAPI* | [**GetInfrastructureServerInstanceGroups**](docs/ServerInstanceGroupAPI.md#getinfrastructureserverinstancegroups) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | List Server Instance Groups for an infrastructure
@@ -366,9 +364,9 @@ Class | Method | HTTP request | Description
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupDriveGroups**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupdrivegroups) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/drive-groups | Get Server Instance Group Drive Groups
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupInterface**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupinterface) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces/{interfaceId} | Get Server Instance Group Interface details
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupInterfaces**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupinterfaces) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces | Get Server Instance Group Interfaces
-*ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfiguration**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfiguration) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration | Get server instance group network configuration
-*ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfigurationLogicalNetworkById**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfigurationlogicalnetworkbyid) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks/{logicalNetworkId} | Get server instance group network configuration logical network by id
-*ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfigurationLogicalNetworks**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfigurationlogicalnetworks) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/network-configuration/logical-networks | Get server instance group&#39;s network configuration logical networks
+*ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfiguration**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfiguration) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking | Get server instance group network configuration
+*ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfigurationConnectionById**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfigurationconnectionbyid) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Get server instance group network configuration connection by id
+*ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfigurationConnections**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfigurationconnections) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections | Get server instance group&#39;s network configuration connections
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupServerInstances**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupserverinstances) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/server-instances | List Server Instances for a Server Instance Group
 *ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupConfig**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupconfig) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Updates Server Instance Group configuration
 *ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupMeta**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupmeta) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/meta | Update an Server Instance Group meta information
@@ -800,7 +798,6 @@ Class | Method | HTTP request | Description
  - [ServerInstanceProfileNetworkInterfacesConfig](docs/ServerInstanceProfileNetworkInterfacesConfig.md)
  - [ServerInstanceProfileNetworkProfilesInner](docs/ServerInstanceProfileNetworkProfilesInner.md)
  - [ServerInstanceProfilePaginatedList](docs/ServerInstanceProfilePaginatedList.md)
- - [ServerInstanceProfileReference](docs/ServerInstanceProfileReference.md)
  - [ServerInstanceProfileUpdate](docs/ServerInstanceProfileUpdate.md)
  - [ServerInstanceReinstallOS](docs/ServerInstanceReinstallOS.md)
  - [ServerInstanceStatistics](docs/ServerInstanceStatistics.md)
@@ -895,7 +892,7 @@ Class | Method | HTTP request | Description
  - [UpdateServerType](docs/UpdateServerType.md)
  - [UpdateSharedDrive](docs/UpdateSharedDrive.md)
  - [UpdateSharedDriveMeta](docs/UpdateSharedDriveMeta.md)
- - [UpdateStorageInternal](docs/UpdateStorageInternal.md)
+ - [UpdateStorage](docs/UpdateStorage.md)
  - [UpdateStorageNetworkDeviceConfiguration](docs/UpdateStorageNetworkDeviceConfiguration.md)
  - [UpdateStorageOptions](docs/UpdateStorageOptions.md)
  - [UpdateSubnet](docs/UpdateSubnet.md)

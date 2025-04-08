@@ -22,20 +22,6 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ServerInstanceGroupAPIService ApplyProfileToServerInstanceGroup", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var serverInstanceGroupId int32
-		var serverInstanceProfileId int32
-
-		httpRes, err := apiClient.ServerInstanceGroupAPI.ApplyProfileToServerInstanceGroup(context.Background(), serverInstanceGroupId, serverInstanceProfileId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test ServerInstanceGroupAPIService CreateServerInstanceGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -162,14 +148,14 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ServerInstanceGroupAPIService GetServerInstanceGroupNetworkConfigurationLogicalNetworkById", func(t *testing.T) {
+	t.Run("Test ServerInstanceGroupAPIService GetServerInstanceGroupNetworkConfigurationConnectionById", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var serverInstanceGroupId int32
-		var logicalNetworkId int32
+		var connectionId int32
 
-		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworkById(context.Background(), serverInstanceGroupId, logicalNetworkId).Execute()
+		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnectionById(context.Background(), serverInstanceGroupId, connectionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -177,13 +163,13 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ServerInstanceGroupAPIService GetServerInstanceGroupNetworkConfigurationLogicalNetworks", func(t *testing.T) {
+	t.Run("Test ServerInstanceGroupAPIService GetServerInstanceGroupNetworkConfigurationConnections", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var serverInstanceGroupId int32
 
-		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationLogicalNetworks(context.Background(), serverInstanceGroupId).Execute()
+		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnections(context.Background(), serverInstanceGroupId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
