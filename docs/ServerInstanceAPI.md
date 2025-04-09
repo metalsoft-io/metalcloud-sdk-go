@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateServerInstance**](ServerInstanceAPI.md#CreateServerInstance) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instances | Add Server Instance to an infrastructure
 [**DeleteServerInstance**](ServerInstanceAPI.md#DeleteServerInstance) | **Delete** /api/v2/server-instances/{serverInstanceId} | Delete Server Instance
 [**GetInfrastructureServerInstances**](ServerInstanceAPI.md#GetInfrastructureServerInstances) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instances | List Server Instances for an infrastructure
-[**GetPowerFromServerInstance**](ServerInstanceAPI.md#GetPowerFromServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power_get | Get the power status of the Server Instance
+[**GetPowerFromServerInstance**](ServerInstanceAPI.md#GetPowerFromServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power-get | Get the power status of the Server Instance
 [**GetPowerStatusBatch**](ServerInstanceAPI.md#GetPowerStatusBatch) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/power-get | Gets power status of multiple servers
 [**GetServerInstance**](ServerInstanceAPI.md#GetServerInstance) | **Get** /api/v2/server-instances/{serverInstanceId} | Get Server Instance details
 [**GetServerInstanceConfig**](ServerInstanceAPI.md#GetServerInstanceConfig) | **Get** /api/v2/server-instances/{serverInstanceId}/config | Get Server Instance config details
@@ -21,7 +21,7 @@ Method | HTTP request | Description
 [**ReinstallServerInstanceOS**](ServerInstanceAPI.md#ReinstallServerInstanceOS) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/reinstall-os | Manage the flag to reinstall the operating system on the server
 [**ResetServerInstance**](ServerInstanceAPI.md#ResetServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/reset | Reset a deployed server
 [**SetPowerStatusBatch**](ServerInstanceAPI.md#SetPowerStatusBatch) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/power-set | sets power status of multiple servers
-[**SetPowerToServerInstance**](ServerInstanceAPI.md#SetPowerToServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power_set | Set power to the Server Instance
+[**SetPowerToServerInstance**](ServerInstanceAPI.md#SetPowerToServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power-set | Set power to the Server Instance
 [**UpdateServerInstanceConfig**](ServerInstanceAPI.md#UpdateServerInstanceConfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/config | Update Server Instance configuration
 [**UpdateServerInstanceInterfaceConfig**](ServerInstanceAPI.md#UpdateServerInstanceInterfaceConfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId}/config | Update Server Instance Interface configuration
 

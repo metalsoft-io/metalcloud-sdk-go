@@ -138,6 +138,119 @@ func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupExecute(r Serve
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceGroupAPIService
+	serverInstanceGroupId int32
+	createNetworkEndpointGroupLogicalNetwork *CreateNetworkEndpointGroupLogicalNetwork
+}
+
+// The network connection object to create
+func (r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) CreateNetworkEndpointGroupLogicalNetwork(createNetworkEndpointGroupLogicalNetwork CreateNetworkEndpointGroupLogicalNetwork) ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest {
+	r.createNetworkEndpointGroupLogicalNetwork = &createNetworkEndpointGroupLogicalNetwork
+	return r
+}
+
+func (r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+	return r.ApiService.CreateServerInstanceGroupNetworkConfigurationConnectionExecute(r)
+}
+
+/*
+CreateServerInstanceGroupNetworkConfigurationConnection Create a network connection for a server instance group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceGroupId
+ @return ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest
+*/
+func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigurationConnection(ctx context.Context, serverInstanceGroupId int32) ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest {
+	return ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceGroupId: serverInstanceGroupId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkEndpointGroupLogicalNetworkDto
+func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigurationConnectionExecute(r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkEndpointGroupLogicalNetworkDto
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.CreateServerInstanceGroupNetworkConfigurationConnection")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceGroupId, "serverInstanceGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createNetworkEndpointGroupLogicalNetwork == nil {
+		return localVarReturnValue, nil, reportError("createNetworkEndpointGroupLogicalNetwork is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createNetworkEndpointGroupLogicalNetwork
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ServerInstanceGroupAPIDeleteServerInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
@@ -211,6 +324,100 @@ func (a *ServerInstanceGroupAPIService) DeleteServerInstanceGroupExecute(r Serve
 	}
 	if r.ifMatch != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ServerInstanceGroupAPIDeleteServerInstanceGroupNetworkConfigurationConnectionRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceGroupAPIService
+	serverInstanceGroupId int32
+	connectionId int32
+}
+
+func (r ServerInstanceGroupAPIDeleteServerInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteServerInstanceGroupNetworkConfigurationConnectionExecute(r)
+}
+
+/*
+DeleteServerInstanceGroupNetworkConfigurationConnection Delete a network connection for a server instance group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceGroupId
+ @param connectionId
+ @return ServerInstanceGroupAPIDeleteServerInstanceGroupNetworkConfigurationConnectionRequest
+*/
+func (a *ServerInstanceGroupAPIService) DeleteServerInstanceGroupNetworkConfigurationConnection(ctx context.Context, serverInstanceGroupId int32, connectionId int32) ServerInstanceGroupAPIDeleteServerInstanceGroupNetworkConfigurationConnectionRequest {
+	return ServerInstanceGroupAPIDeleteServerInstanceGroupNetworkConfigurationConnectionRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceGroupId: serverInstanceGroupId,
+		connectionId: connectionId,
+	}
+}
+
+// Execute executes the request
+func (a *ServerInstanceGroupAPIService) DeleteServerInstanceGroupNetworkConfigurationConnectionExecute(r ServerInstanceGroupAPIDeleteServerInstanceGroupNetworkConfigurationConnectionRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.DeleteServerInstanceGroupNetworkConfigurationConnection")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceGroupId, "serverInstanceGroupId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connectionId"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1991,4 +2198,121 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupMetaExecute(r S
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest struct {
+	ctx context.Context
+	ApiService *ServerInstanceGroupAPIService
+	serverInstanceGroupId int32
+	connectionId float32
+	updateNetworkEndpointGroupLogicalNetworkDto *UpdateNetworkEndpointGroupLogicalNetworkDto
+}
+
+// The network connection object to update
+func (r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest) UpdateNetworkEndpointGroupLogicalNetworkDto(updateNetworkEndpointGroupLogicalNetworkDto UpdateNetworkEndpointGroupLogicalNetworkDto) ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest {
+	r.updateNetworkEndpointGroupLogicalNetworkDto = &updateNetworkEndpointGroupLogicalNetworkDto
+	return r
+}
+
+func (r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+	return r.ApiService.UpdateServerInstanceGroupNetworkConfigurationConnectionExecute(r)
+}
+
+/*
+UpdateServerInstanceGroupNetworkConfigurationConnection Update a network connection for a server instance group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverInstanceGroupId
+ @param connectionId
+ @return ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest
+*/
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfigurationConnection(ctx context.Context, serverInstanceGroupId int32, connectionId float32) ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest {
+	return ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverInstanceGroupId: serverInstanceGroupId,
+		connectionId: connectionId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkEndpointGroupLogicalNetworkDto
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfigurationConnectionExecute(r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest) (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkEndpointGroupLogicalNetworkDto
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.UpdateServerInstanceGroupNetworkConfigurationConnection")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceGroupId, "serverInstanceGroupId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connectionId"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateNetworkEndpointGroupLogicalNetworkDto == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkEndpointGroupLogicalNetworkDto is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateNetworkEndpointGroupLogicalNetworkDto
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

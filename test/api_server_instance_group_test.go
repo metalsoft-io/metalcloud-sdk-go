@@ -36,6 +36,20 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ServerInstanceGroupAPIService CreateServerInstanceGroupNetworkConfigurationConnection", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceGroupId int32
+
+		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.CreateServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ServerInstanceGroupAPIService DeleteServerInstanceGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -43,6 +57,20 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 		var serverInstanceGroupId int32
 
 		httpRes, err := apiClient.ServerInstanceGroupAPI.DeleteServerInstanceGroup(context.Background(), serverInstanceGroupId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ServerInstanceGroupAPIService DeleteServerInstanceGroupNetworkConfigurationConnection", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceGroupId int32
+		var connectionId int32
+
+		httpRes, err := apiClient.ServerInstanceGroupAPI.DeleteServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId, connectionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -214,6 +242,21 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 		httpRes, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupMeta(context.Background(), serverInstanceGroupId).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ServerInstanceGroupAPIService UpdateServerInstanceGroupNetworkConfigurationConnection", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceGroupId int32
+		var connectionId float32
+
+		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId, connectionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

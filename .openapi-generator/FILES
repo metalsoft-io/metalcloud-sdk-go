@@ -36,7 +36,6 @@ api_server_default_credentials.go
 api_server_firmware.go
 api_server_instance.go
 api_server_instance_group.go
-api_server_instance_profile.go
 api_server_type.go
 api_shared_drive.go
 api_site.go
@@ -251,6 +250,7 @@ docs/JobRetryInfo.md
 docs/JobStatistics.md
 docs/LicenseInstallments.md
 docs/Link.md
+docs/LinkDuplex.md
 docs/Location.md
 docs/LogicalNetwork.md
 docs/LogicalNetworkPaginatedList.md
@@ -262,11 +262,13 @@ docs/Network.md
 docs/NetworkAPI.md
 docs/NetworkDevice.md
 docs/NetworkDeviceAPI.md
-docs/NetworkDeviceControllerUpdateTagsForNetworkDeviceRequest.md
 docs/NetworkDeviceDriver.md
 docs/NetworkDevicePaginatedList.md
 docs/NetworkDevicePolicy.md
+docs/NetworkDevicePort.md
+docs/NetworkDevicePortCounters.md
 docs/NetworkDevicePortStatus.md
+docs/NetworkDevicePorts.md
 docs/NetworkDeviceStatus.md
 docs/NetworkDevicesToFabric.md
 docs/NetworkEndpointGroup.md
@@ -358,14 +360,6 @@ docs/ServerInstanceInterfaceUpdate.md
 docs/ServerInstanceOsInstallImageBuildInfo.md
 docs/ServerInstancePaginatedList.md
 docs/ServerInstancePowerSet.md
-docs/ServerInstanceProfile.md
-docs/ServerInstanceProfileAPI.md
-docs/ServerInstanceProfileCreate.md
-docs/ServerInstanceProfileNetworkInterfaces.md
-docs/ServerInstanceProfileNetworkInterfacesConfig.md
-docs/ServerInstanceProfileNetworkProfilesInner.md
-docs/ServerInstanceProfilePaginatedList.md
-docs/ServerInstanceProfileUpdate.md
 docs/ServerInstanceReinstallOS.md
 docs/ServerInstanceStatistics.md
 docs/ServerInstanceStorageProfile.md
@@ -471,6 +465,7 @@ docs/UpdateStorage.md
 docs/UpdateStorageNetworkDeviceConfiguration.md
 docs/UpdateStorageOptions.md
 docs/UpdateSubnet.md
+docs/UpdateTagsForNetworkDeviceRequest.md
 docs/UpdateUser.md
 docs/UpdateUserPermissionsDto.md
 docs/UpdateVM.md
@@ -709,6 +704,7 @@ model_job_retry_info.go
 model_job_statistics.go
 model_license_installments.go
 model_link.go
+model_link_duplex.go
 model_location.go
 model_logical_network.go
 model_logical_network_paginated_list.go
@@ -716,11 +712,13 @@ model_logical_network_profile.go
 model_logical_network_profile_paginated_list.go
 model_network.go
 model_network_device.go
-model_network_device_controller_update_tags_for_network_device_request.go
 model_network_device_driver.go
 model_network_device_paginated_list.go
 model_network_device_policy.go
+model_network_device_port.go
+model_network_device_port_counters.go
 model_network_device_port_status.go
+model_network_device_ports.go
 model_network_device_status.go
 model_network_devices_to_fabric.go
 model_network_endpoint_group.go
@@ -799,13 +797,6 @@ model_server_instance_interface_update.go
 model_server_instance_os_install_image_build_info.go
 model_server_instance_paginated_list.go
 model_server_instance_power_set.go
-model_server_instance_profile.go
-model_server_instance_profile_create.go
-model_server_instance_profile_network_interfaces.go
-model_server_instance_profile_network_interfaces_config.go
-model_server_instance_profile_network_profiles_inner.go
-model_server_instance_profile_paginated_list.go
-model_server_instance_profile_update.go
 model_server_instance_reinstall_os.go
 model_server_instance_statistics.go
 model_server_instance_storage_profile.go
@@ -904,6 +895,7 @@ model_update_storage.go
 model_update_storage_network_device_configuration.go
 model_update_storage_options.go
 model_update_subnet.go
+model_update_tags_for_network_device_request.go
 model_update_user.go
 model_update_user_permissions_dto.go
 model_update_variable.go
@@ -990,7 +982,6 @@ test/api_server_cleanup_policy_test.go
 test/api_server_default_credentials_test.go
 test/api_server_firmware_test.go
 test/api_server_instance_group_test.go
-test/api_server_instance_profile_test.go
 test/api_server_instance_test.go
 test/api_server_test.go
 test/api_server_type_test.go

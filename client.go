@@ -120,8 +120,6 @@ type APIClient struct {
 
 	ServerInstanceGroupAPI *ServerInstanceGroupAPIService
 
-	ServerInstanceProfileAPI *ServerInstanceProfileAPIService
-
 	ServerTypeAPI *ServerTypeAPIService
 
 	SharedDriveAPI *SharedDriveAPIService
@@ -204,7 +202,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ServerFirmwareAPI = (*ServerFirmwareAPIService)(&c.common)
 	c.ServerInstanceAPI = (*ServerInstanceAPIService)(&c.common)
 	c.ServerInstanceGroupAPI = (*ServerInstanceGroupAPIService)(&c.common)
-	c.ServerInstanceProfileAPI = (*ServerInstanceProfileAPIService)(&c.common)
 	c.ServerTypeAPI = (*ServerTypeAPIService)(&c.common)
 	c.SharedDriveAPI = (*SharedDriveAPIService)(&c.common)
 	c.SiteAPI = (*SiteAPIService)(&c.common)

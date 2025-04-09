@@ -123,6 +123,119 @@ func (a *NetworkDeviceAPIService) AddNetworkDeviceDefaultsExecute(r NetworkDevic
 	return localVarHTTPResponse, nil
 }
 
+type NetworkDeviceAPIAddTagsToNetworkDeviceRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId float32
+	updateTagsForNetworkDeviceRequest *UpdateTagsForNetworkDeviceRequest
+}
+
+// The tags to add
+func (r NetworkDeviceAPIAddTagsToNetworkDeviceRequest) UpdateTagsForNetworkDeviceRequest(updateTagsForNetworkDeviceRequest UpdateTagsForNetworkDeviceRequest) NetworkDeviceAPIAddTagsToNetworkDeviceRequest {
+	r.updateTagsForNetworkDeviceRequest = &updateTagsForNetworkDeviceRequest
+	return r
+}
+
+func (r NetworkDeviceAPIAddTagsToNetworkDeviceRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.AddTagsToNetworkDeviceExecute(r)
+}
+
+/*
+AddTagsToNetworkDevice Add tags to Network Device
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return NetworkDeviceAPIAddTagsToNetworkDeviceRequest
+*/
+func (a *NetworkDeviceAPIService) AddTagsToNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPIAddTagsToNetworkDeviceRequest {
+	return NetworkDeviceAPIAddTagsToNetworkDeviceRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]interface{}
+func (a *NetworkDeviceAPIService) AddTagsToNetworkDeviceExecute(r NetworkDeviceAPIAddTagsToNetworkDeviceRequest) (map[string]interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.AddTagsToNetworkDevice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/network-devices/{networkDeviceId}/tags"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateTagsForNetworkDeviceRequest == nil {
+		return localVarReturnValue, nil, reportError("updateTagsForNetworkDeviceRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateTagsForNetworkDeviceRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type NetworkDeviceAPIArchiveNetworkDeviceRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
@@ -327,6 +440,205 @@ func (a *NetworkDeviceAPIService) ChangeNetworkDeviceStatusExecute(r NetworkDevi
 	return localVarHTTPResponse, nil
 }
 
+type NetworkDeviceAPICreateNetworkDeviceRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	createNetworkDevice *CreateNetworkDevice
+}
+
+// The Network Device create object
+func (r NetworkDeviceAPICreateNetworkDeviceRequest) CreateNetworkDevice(createNetworkDevice CreateNetworkDevice) NetworkDeviceAPICreateNetworkDeviceRequest {
+	r.createNetworkDevice = &createNetworkDevice
+	return r
+}
+
+func (r NetworkDeviceAPICreateNetworkDeviceRequest) Execute() (*NetworkDevice, *http.Response, error) {
+	return r.ApiService.CreateNetworkDeviceExecute(r)
+}
+
+/*
+CreateNetworkDevice Create Network Device
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return NetworkDeviceAPICreateNetworkDeviceRequest
+*/
+func (a *NetworkDeviceAPIService) CreateNetworkDevice(ctx context.Context) NetworkDeviceAPICreateNetworkDeviceRequest {
+	return NetworkDeviceAPICreateNetworkDeviceRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkDevice
+func (a *NetworkDeviceAPIService) CreateNetworkDeviceExecute(r NetworkDeviceAPICreateNetworkDeviceRequest) (*NetworkDevice, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkDevice
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.CreateNetworkDevice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createNetworkDevice == nil {
+		return localVarReturnValue, nil, reportError("createNetworkDevice is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createNetworkDevice
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPIDeleteNetworkDeviceRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId float32
+}
+
+func (r NetworkDeviceAPIDeleteNetworkDeviceRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteNetworkDeviceExecute(r)
+}
+
+/*
+DeleteNetworkDevice Delete Network Device
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return NetworkDeviceAPIDeleteNetworkDeviceRequest
+*/
+func (a *NetworkDeviceAPIService) DeleteNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPIDeleteNetworkDeviceRequest {
+	return NetworkDeviceAPIDeleteNetworkDeviceRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+func (a *NetworkDeviceAPIService) DeleteNetworkDeviceExecute(r NetworkDeviceAPIDeleteNetworkDeviceRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.DeleteNetworkDevice")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type NetworkDeviceAPIDiscoverNetworkDeviceRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
@@ -471,6 +783,96 @@ func (a *NetworkDeviceAPIService) EnableNetworkDeviceSyslogExecute(r NetworkDevi
 	}
 
 	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/actions/syslog-subscribe"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPIGetIscsiBootServersRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId float32
+}
+
+func (r NetworkDeviceAPIGetIscsiBootServersRequest) Execute() (*http.Response, error) {
+	return r.ApiService.GetIscsiBootServersExecute(r)
+}
+
+/*
+GetIscsiBootServers Returns information about servers which are setup to boot from iSCSI block devices. This is useful in the event of a switch device reboot
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return NetworkDeviceAPIGetIscsiBootServersRequest
+*/
+func (a *NetworkDeviceAPIService) GetIscsiBootServers(ctx context.Context, networkDeviceId float32) NetworkDeviceAPIGetIscsiBootServersRequest {
+	return NetworkDeviceAPIGetIscsiBootServersRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+func (a *NetworkDeviceAPIService) GetIscsiBootServersExecute(r NetworkDeviceAPIGetIscsiBootServersRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetIscsiBootServers")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/iscsi-boot-servers"
 	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -912,7 +1314,7 @@ type NetworkDeviceAPIGetNetworkDevicePortsRequest struct {
 	networkDeviceId float32
 }
 
-func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) Execute() (*http.Response, error) {
+func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) Execute() (*NetworkDevicePorts, *http.Response, error) {
 	return r.ApiService.GetNetworkDevicePortsExecute(r)
 }
 
@@ -932,20 +1334,117 @@ func (a *NetworkDeviceAPIService) GetNetworkDevicePorts(ctx context.Context, net
 }
 
 // Execute executes the request
-func (a *NetworkDeviceAPIService) GetNetworkDevicePortsExecute(r NetworkDeviceAPIGetNetworkDevicePortsRequest) (*http.Response, error) {
+//  @return NetworkDevicePorts
+func (a *NetworkDeviceAPIService) GetNetworkDevicePortsExecute(r NetworkDeviceAPIGetNetworkDevicePortsRequest) (*NetworkDevicePorts, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *NetworkDevicePorts
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetNetworkDevicePorts")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/actions/ports"
 	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPIGetNetworkDeviceStatisticsRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+}
+
+func (r NetworkDeviceAPIGetNetworkDeviceStatisticsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.GetNetworkDeviceStatisticsExecute(r)
+}
+
+/*
+GetNetworkDeviceStatistics Get Network Device Statistics
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return NetworkDeviceAPIGetNetworkDeviceStatisticsRequest
+*/
+func (a *NetworkDeviceAPIService) GetNetworkDeviceStatistics(ctx context.Context) NetworkDeviceAPIGetNetworkDeviceStatisticsRequest {
+	return NetworkDeviceAPIGetNetworkDeviceStatisticsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+func (a *NetworkDeviceAPIService) GetNetworkDeviceStatisticsExecute(r NetworkDeviceAPIGetNetworkDeviceStatisticsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetNetworkDeviceStatistics")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/statistics"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1321,513 +1820,25 @@ func (a *NetworkDeviceAPIService) GetNetworkDevicesExecute(r NetworkDeviceAPIGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type NetworkDeviceAPINetworkDeviceControllerAddTagsToNetworkDeviceRequest struct {
-	ctx context.Context
-	ApiService *NetworkDeviceAPIService
-	networkDeviceId float32
-	networkDeviceControllerUpdateTagsForNetworkDeviceRequest *NetworkDeviceControllerUpdateTagsForNetworkDeviceRequest
-}
-
-// The tags to add
-func (r NetworkDeviceAPINetworkDeviceControllerAddTagsToNetworkDeviceRequest) NetworkDeviceControllerUpdateTagsForNetworkDeviceRequest(networkDeviceControllerUpdateTagsForNetworkDeviceRequest NetworkDeviceControllerUpdateTagsForNetworkDeviceRequest) NetworkDeviceAPINetworkDeviceControllerAddTagsToNetworkDeviceRequest {
-	r.networkDeviceControllerUpdateTagsForNetworkDeviceRequest = &networkDeviceControllerUpdateTagsForNetworkDeviceRequest
-	return r
-}
-
-func (r NetworkDeviceAPINetworkDeviceControllerAddTagsToNetworkDeviceRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.NetworkDeviceControllerAddTagsToNetworkDeviceExecute(r)
-}
-
-/*
-NetworkDeviceControllerAddTagsToNetworkDevice Add tags to Network Device
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkDeviceId
- @return NetworkDeviceAPINetworkDeviceControllerAddTagsToNetworkDeviceRequest
-*/
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerAddTagsToNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPINetworkDeviceControllerAddTagsToNetworkDeviceRequest {
-	return NetworkDeviceAPINetworkDeviceControllerAddTagsToNetworkDeviceRequest{
-		ApiService: a,
-		ctx: ctx,
-		networkDeviceId: networkDeviceId,
-	}
-}
-
-// Execute executes the request
-//  @return map[string]interface{}
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerAddTagsToNetworkDeviceExecute(r NetworkDeviceAPINetworkDeviceControllerAddTagsToNetworkDeviceRequest) (map[string]interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.NetworkDeviceControllerAddTagsToNetworkDevice")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/network-devices/network-devices/{networkDeviceId}/tags"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.networkDeviceControllerUpdateTagsForNetworkDeviceRequest == nil {
-		return localVarReturnValue, nil, reportError("networkDeviceControllerUpdateTagsForNetworkDeviceRequest is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.networkDeviceControllerUpdateTagsForNetworkDeviceRequest
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type NetworkDeviceAPINetworkDeviceControllerCreateNetworkDeviceRequest struct {
-	ctx context.Context
-	ApiService *NetworkDeviceAPIService
-	createNetworkDevice *CreateNetworkDevice
-}
-
-// The Network Device create object
-func (r NetworkDeviceAPINetworkDeviceControllerCreateNetworkDeviceRequest) CreateNetworkDevice(createNetworkDevice CreateNetworkDevice) NetworkDeviceAPINetworkDeviceControllerCreateNetworkDeviceRequest {
-	r.createNetworkDevice = &createNetworkDevice
-	return r
-}
-
-func (r NetworkDeviceAPINetworkDeviceControllerCreateNetworkDeviceRequest) Execute() (*NetworkDevice, *http.Response, error) {
-	return r.ApiService.NetworkDeviceControllerCreateNetworkDeviceExecute(r)
-}
-
-/*
-NetworkDeviceControllerCreateNetworkDevice Create Network Device
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return NetworkDeviceAPINetworkDeviceControllerCreateNetworkDeviceRequest
-*/
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerCreateNetworkDevice(ctx context.Context) NetworkDeviceAPINetworkDeviceControllerCreateNetworkDeviceRequest {
-	return NetworkDeviceAPINetworkDeviceControllerCreateNetworkDeviceRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return NetworkDevice
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerCreateNetworkDeviceExecute(r NetworkDeviceAPINetworkDeviceControllerCreateNetworkDeviceRequest) (*NetworkDevice, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *NetworkDevice
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.NetworkDeviceControllerCreateNetworkDevice")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/network-devices"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.createNetworkDevice == nil {
-		return localVarReturnValue, nil, reportError("createNetworkDevice is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.createNetworkDevice
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type NetworkDeviceAPINetworkDeviceControllerDeleteNetworkDeviceRequest struct {
+type NetworkDeviceAPIGetTagsForNetworkDeviceRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
 	networkDeviceId float32
 }
 
-func (r NetworkDeviceAPINetworkDeviceControllerDeleteNetworkDeviceRequest) Execute() (*http.Response, error) {
-	return r.ApiService.NetworkDeviceControllerDeleteNetworkDeviceExecute(r)
+func (r NetworkDeviceAPIGetTagsForNetworkDeviceRequest) Execute() ([]string, *http.Response, error) {
+	return r.ApiService.GetTagsForNetworkDeviceExecute(r)
 }
 
 /*
-NetworkDeviceControllerDeleteNetworkDevice Delete Network Device
+GetTagsForNetworkDevice Get tags for Network Device
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param networkDeviceId
- @return NetworkDeviceAPINetworkDeviceControllerDeleteNetworkDeviceRequest
+ @return NetworkDeviceAPIGetTagsForNetworkDeviceRequest
 */
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerDeleteNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPINetworkDeviceControllerDeleteNetworkDeviceRequest {
-	return NetworkDeviceAPINetworkDeviceControllerDeleteNetworkDeviceRequest{
-		ApiService: a,
-		ctx: ctx,
-		networkDeviceId: networkDeviceId,
-	}
-}
-
-// Execute executes the request
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerDeleteNetworkDeviceExecute(r NetworkDeviceAPINetworkDeviceControllerDeleteNetworkDeviceRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.NetworkDeviceControllerDeleteNetworkDevice")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type NetworkDeviceAPINetworkDeviceControllerGetIscsiBootServersRequest struct {
-	ctx context.Context
-	ApiService *NetworkDeviceAPIService
-	networkDeviceId float32
-}
-
-func (r NetworkDeviceAPINetworkDeviceControllerGetIscsiBootServersRequest) Execute() (*http.Response, error) {
-	return r.ApiService.NetworkDeviceControllerGetIscsiBootServersExecute(r)
-}
-
-/*
-NetworkDeviceControllerGetIscsiBootServers Returns information about servers which are setup to boot from iSCSI block devices. This is useful in the event of a switch device reboot
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkDeviceId
- @return NetworkDeviceAPINetworkDeviceControllerGetIscsiBootServersRequest
-*/
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerGetIscsiBootServers(ctx context.Context, networkDeviceId float32) NetworkDeviceAPINetworkDeviceControllerGetIscsiBootServersRequest {
-	return NetworkDeviceAPINetworkDeviceControllerGetIscsiBootServersRequest{
-		ApiService: a,
-		ctx: ctx,
-		networkDeviceId: networkDeviceId,
-	}
-}
-
-// Execute executes the request
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerGetIscsiBootServersExecute(r NetworkDeviceAPINetworkDeviceControllerGetIscsiBootServersRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.NetworkDeviceControllerGetIscsiBootServers")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/iscsi-boot-servers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type NetworkDeviceAPINetworkDeviceControllerGetNetworkDeviceStatisticsRequest struct {
-	ctx context.Context
-	ApiService *NetworkDeviceAPIService
-}
-
-func (r NetworkDeviceAPINetworkDeviceControllerGetNetworkDeviceStatisticsRequest) Execute() (*http.Response, error) {
-	return r.ApiService.NetworkDeviceControllerGetNetworkDeviceStatisticsExecute(r)
-}
-
-/*
-NetworkDeviceControllerGetNetworkDeviceStatistics Get Network Device Statistics
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return NetworkDeviceAPINetworkDeviceControllerGetNetworkDeviceStatisticsRequest
-*/
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerGetNetworkDeviceStatistics(ctx context.Context) NetworkDeviceAPINetworkDeviceControllerGetNetworkDeviceStatisticsRequest {
-	return NetworkDeviceAPINetworkDeviceControllerGetNetworkDeviceStatisticsRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerGetNetworkDeviceStatisticsExecute(r NetworkDeviceAPINetworkDeviceControllerGetNetworkDeviceStatisticsRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.NetworkDeviceControllerGetNetworkDeviceStatistics")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/network-devices/statistics"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type NetworkDeviceAPINetworkDeviceControllerGetTagsForNetworkDeviceRequest struct {
-	ctx context.Context
-	ApiService *NetworkDeviceAPIService
-	networkDeviceId float32
-}
-
-func (r NetworkDeviceAPINetworkDeviceControllerGetTagsForNetworkDeviceRequest) Execute() ([]string, *http.Response, error) {
-	return r.ApiService.NetworkDeviceControllerGetTagsForNetworkDeviceExecute(r)
-}
-
-/*
-NetworkDeviceControllerGetTagsForNetworkDevice Get tags for Network Device
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkDeviceId
- @return NetworkDeviceAPINetworkDeviceControllerGetTagsForNetworkDeviceRequest
-*/
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerGetTagsForNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPINetworkDeviceControllerGetTagsForNetworkDeviceRequest {
-	return NetworkDeviceAPINetworkDeviceControllerGetTagsForNetworkDeviceRequest{
+func (a *NetworkDeviceAPIService) GetTagsForNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPIGetTagsForNetworkDeviceRequest {
+	return NetworkDeviceAPIGetTagsForNetworkDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
 		networkDeviceId: networkDeviceId,
@@ -1836,7 +1847,7 @@ func (a *NetworkDeviceAPIService) NetworkDeviceControllerGetTagsForNetworkDevice
 
 // Execute executes the request
 //  @return []string
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerGetTagsForNetworkDeviceExecute(r NetworkDeviceAPINetworkDeviceControllerGetTagsForNetworkDeviceRequest) ([]string, *http.Response, error) {
+func (a *NetworkDeviceAPIService) GetTagsForNetworkDeviceExecute(r NetworkDeviceAPIGetTagsForNetworkDeviceRequest) ([]string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1844,7 +1855,7 @@ func (a *NetworkDeviceAPIService) NetworkDeviceControllerGetTagsForNetworkDevice
 		localVarReturnValue  []string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.NetworkDeviceControllerGetTagsForNetworkDevice")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetTagsForNetworkDevice")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1873,445 +1884,6 @@ func (a *NetworkDeviceAPIService) NetworkDeviceControllerGetTagsForNetworkDevice
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type NetworkDeviceAPINetworkDeviceControllerRemoveTagsFromNetworkDeviceRequest struct {
-	ctx context.Context
-	ApiService *NetworkDeviceAPIService
-	networkDeviceId float32
-	body *string
-}
-
-// The tags to remove
-func (r NetworkDeviceAPINetworkDeviceControllerRemoveTagsFromNetworkDeviceRequest) Body(body string) NetworkDeviceAPINetworkDeviceControllerRemoveTagsFromNetworkDeviceRequest {
-	r.body = &body
-	return r
-}
-
-func (r NetworkDeviceAPINetworkDeviceControllerRemoveTagsFromNetworkDeviceRequest) Execute() (*http.Response, error) {
-	return r.ApiService.NetworkDeviceControllerRemoveTagsFromNetworkDeviceExecute(r)
-}
-
-/*
-NetworkDeviceControllerRemoveTagsFromNetworkDevice Clear tags from Network Device
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkDeviceId
- @return NetworkDeviceAPINetworkDeviceControllerRemoveTagsFromNetworkDeviceRequest
-*/
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerRemoveTagsFromNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPINetworkDeviceControllerRemoveTagsFromNetworkDeviceRequest {
-	return NetworkDeviceAPINetworkDeviceControllerRemoveTagsFromNetworkDeviceRequest{
-		ApiService: a,
-		ctx: ctx,
-		networkDeviceId: networkDeviceId,
-	}
-}
-
-// Execute executes the request
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerRemoveTagsFromNetworkDeviceExecute(r NetworkDeviceAPINetworkDeviceControllerRemoveTagsFromNetworkDeviceRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.NetworkDeviceControllerRemoveTagsFromNetworkDevice")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/network-devices/network-devices/{networkDeviceId}/tags"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type NetworkDeviceAPINetworkDeviceControllerReplaceNetworkDeviceRequest struct {
-	ctx context.Context
-	ApiService *NetworkDeviceAPIService
-	networkDeviceId float32
-}
-
-func (r NetworkDeviceAPINetworkDeviceControllerReplaceNetworkDeviceRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.NetworkDeviceControllerReplaceNetworkDeviceExecute(r)
-}
-
-/*
-NetworkDeviceControllerReplaceNetworkDevice Replace network device
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkDeviceId Network device ID
- @return NetworkDeviceAPINetworkDeviceControllerReplaceNetworkDeviceRequest
-*/
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerReplaceNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPINetworkDeviceControllerReplaceNetworkDeviceRequest {
-	return NetworkDeviceAPINetworkDeviceControllerReplaceNetworkDeviceRequest{
-		ApiService: a,
-		ctx: ctx,
-		networkDeviceId: networkDeviceId,
-	}
-}
-
-// Execute executes the request
-//  @return map[string]interface{}
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerReplaceNetworkDeviceExecute(r NetworkDeviceAPINetworkDeviceControllerReplaceNetworkDeviceRequest) (map[string]interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.NetworkDeviceControllerReplaceNetworkDevice")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/replace"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type NetworkDeviceAPINetworkDeviceControllerUpdateNetworkDeviceRequest struct {
-	ctx context.Context
-	ApiService *NetworkDeviceAPIService
-	networkDeviceId float32
-	updateNetworkDevice *UpdateNetworkDevice
-	ifMatch *string
-}
-
-// The Network Device update object
-func (r NetworkDeviceAPINetworkDeviceControllerUpdateNetworkDeviceRequest) UpdateNetworkDevice(updateNetworkDevice UpdateNetworkDevice) NetworkDeviceAPINetworkDeviceControllerUpdateNetworkDeviceRequest {
-	r.updateNetworkDevice = &updateNetworkDevice
-	return r
-}
-
-// Entity tag
-func (r NetworkDeviceAPINetworkDeviceControllerUpdateNetworkDeviceRequest) IfMatch(ifMatch string) NetworkDeviceAPINetworkDeviceControllerUpdateNetworkDeviceRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r NetworkDeviceAPINetworkDeviceControllerUpdateNetworkDeviceRequest) Execute() (*NetworkDevice, *http.Response, error) {
-	return r.ApiService.NetworkDeviceControllerUpdateNetworkDeviceExecute(r)
-}
-
-/*
-NetworkDeviceControllerUpdateNetworkDevice Update Network Device
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkDeviceId
- @return NetworkDeviceAPINetworkDeviceControllerUpdateNetworkDeviceRequest
-*/
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerUpdateNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPINetworkDeviceControllerUpdateNetworkDeviceRequest {
-	return NetworkDeviceAPINetworkDeviceControllerUpdateNetworkDeviceRequest{
-		ApiService: a,
-		ctx: ctx,
-		networkDeviceId: networkDeviceId,
-	}
-}
-
-// Execute executes the request
-//  @return NetworkDevice
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerUpdateNetworkDeviceExecute(r NetworkDeviceAPINetworkDeviceControllerUpdateNetworkDeviceRequest) (*NetworkDevice, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *NetworkDevice
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.NetworkDeviceControllerUpdateNetworkDevice")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.updateNetworkDevice == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkDevice is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
-	}
-	// body params
-	localVarPostBody = r.updateNetworkDevice
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type NetworkDeviceAPINetworkDeviceControllerUpdateTagsForNetworkDeviceRequest struct {
-	ctx context.Context
-	ApiService *NetworkDeviceAPIService
-	networkDeviceId float32
-	networkDeviceControllerUpdateTagsForNetworkDeviceRequest *NetworkDeviceControllerUpdateTagsForNetworkDeviceRequest
-}
-
-// The tags to update
-func (r NetworkDeviceAPINetworkDeviceControllerUpdateTagsForNetworkDeviceRequest) NetworkDeviceControllerUpdateTagsForNetworkDeviceRequest(networkDeviceControllerUpdateTagsForNetworkDeviceRequest NetworkDeviceControllerUpdateTagsForNetworkDeviceRequest) NetworkDeviceAPINetworkDeviceControllerUpdateTagsForNetworkDeviceRequest {
-	r.networkDeviceControllerUpdateTagsForNetworkDeviceRequest = &networkDeviceControllerUpdateTagsForNetworkDeviceRequest
-	return r
-}
-
-func (r NetworkDeviceAPINetworkDeviceControllerUpdateTagsForNetworkDeviceRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.NetworkDeviceControllerUpdateTagsForNetworkDeviceExecute(r)
-}
-
-/*
-NetworkDeviceControllerUpdateTagsForNetworkDevice Update tags for Network Device
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkDeviceId
- @return NetworkDeviceAPINetworkDeviceControllerUpdateTagsForNetworkDeviceRequest
-*/
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerUpdateTagsForNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPINetworkDeviceControllerUpdateTagsForNetworkDeviceRequest {
-	return NetworkDeviceAPINetworkDeviceControllerUpdateTagsForNetworkDeviceRequest{
-		ApiService: a,
-		ctx: ctx,
-		networkDeviceId: networkDeviceId,
-	}
-}
-
-// Execute executes the request
-//  @return map[string]interface{}
-func (a *NetworkDeviceAPIService) NetworkDeviceControllerUpdateTagsForNetworkDeviceExecute(r NetworkDeviceAPINetworkDeviceControllerUpdateTagsForNetworkDeviceRequest) (map[string]interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.NetworkDeviceControllerUpdateTagsForNetworkDevice")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/network-devices/network-devices/{networkDeviceId}/tags"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.networkDeviceControllerUpdateTagsForNetworkDeviceRequest == nil {
-		return localVarReturnValue, nil, reportError("networkDeviceControllerUpdateTagsForNetworkDeviceRequest is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.networkDeviceControllerUpdateTagsForNetworkDeviceRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2556,6 +2128,209 @@ func (a *NetworkDeviceAPIService) RemoveNetworkDeviceDefaultsExecute(r NetworkDe
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPIRemoveTagsFromNetworkDeviceRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId float32
+	body *string
+}
+
+// The tags to remove
+func (r NetworkDeviceAPIRemoveTagsFromNetworkDeviceRequest) Body(body string) NetworkDeviceAPIRemoveTagsFromNetworkDeviceRequest {
+	r.body = &body
+	return r
+}
+
+func (r NetworkDeviceAPIRemoveTagsFromNetworkDeviceRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RemoveTagsFromNetworkDeviceExecute(r)
+}
+
+/*
+RemoveTagsFromNetworkDevice Clear tags from Network Device
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return NetworkDeviceAPIRemoveTagsFromNetworkDeviceRequest
+*/
+func (a *NetworkDeviceAPIService) RemoveTagsFromNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPIRemoveTagsFromNetworkDeviceRequest {
+	return NetworkDeviceAPIRemoveTagsFromNetworkDeviceRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+func (a *NetworkDeviceAPIService) RemoveTagsFromNetworkDeviceExecute(r NetworkDeviceAPIRemoveTagsFromNetworkDeviceRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.RemoveTagsFromNetworkDevice")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/network-devices/{networkDeviceId}/tags"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPIReplaceNetworkDeviceRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId float32
+}
+
+func (r NetworkDeviceAPIReplaceNetworkDeviceRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.ReplaceNetworkDeviceExecute(r)
+}
+
+/*
+ReplaceNetworkDevice Replace network device
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId Network device ID
+ @return NetworkDeviceAPIReplaceNetworkDeviceRequest
+*/
+func (a *NetworkDeviceAPIService) ReplaceNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPIReplaceNetworkDeviceRequest {
+	return NetworkDeviceAPIReplaceNetworkDeviceRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]interface{}
+func (a *NetworkDeviceAPIService) ReplaceNetworkDeviceExecute(r NetworkDeviceAPIReplaceNetworkDeviceRequest) (map[string]interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.ReplaceNetworkDevice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/replace"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type NetworkDeviceAPIResetNetworkDeviceRequest struct {
@@ -2873,4 +2648,240 @@ func (a *NetworkDeviceAPIService) SetNetworkDevicePortStatusExecute(r NetworkDev
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPIUpdateNetworkDeviceRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId float32
+	updateNetworkDevice *UpdateNetworkDevice
+	ifMatch *string
+}
+
+// The Network Device update object
+func (r NetworkDeviceAPIUpdateNetworkDeviceRequest) UpdateNetworkDevice(updateNetworkDevice UpdateNetworkDevice) NetworkDeviceAPIUpdateNetworkDeviceRequest {
+	r.updateNetworkDevice = &updateNetworkDevice
+	return r
+}
+
+// Entity tag
+func (r NetworkDeviceAPIUpdateNetworkDeviceRequest) IfMatch(ifMatch string) NetworkDeviceAPIUpdateNetworkDeviceRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r NetworkDeviceAPIUpdateNetworkDeviceRequest) Execute() (*NetworkDevice, *http.Response, error) {
+	return r.ApiService.UpdateNetworkDeviceExecute(r)
+}
+
+/*
+UpdateNetworkDevice Update Network Device
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return NetworkDeviceAPIUpdateNetworkDeviceRequest
+*/
+func (a *NetworkDeviceAPIService) UpdateNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPIUpdateNetworkDeviceRequest {
+	return NetworkDeviceAPIUpdateNetworkDeviceRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkDevice
+func (a *NetworkDeviceAPIService) UpdateNetworkDeviceExecute(r NetworkDeviceAPIUpdateNetworkDeviceRequest) (*NetworkDevice, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkDevice
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.UpdateNetworkDevice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateNetworkDevice == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkDevice is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.updateNetworkDevice
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type NetworkDeviceAPIUpdateTagsForNetworkDeviceRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId float32
+	updateTagsForNetworkDeviceRequest *UpdateTagsForNetworkDeviceRequest
+}
+
+// The tags to update
+func (r NetworkDeviceAPIUpdateTagsForNetworkDeviceRequest) UpdateTagsForNetworkDeviceRequest(updateTagsForNetworkDeviceRequest UpdateTagsForNetworkDeviceRequest) NetworkDeviceAPIUpdateTagsForNetworkDeviceRequest {
+	r.updateTagsForNetworkDeviceRequest = &updateTagsForNetworkDeviceRequest
+	return r
+}
+
+func (r NetworkDeviceAPIUpdateTagsForNetworkDeviceRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.UpdateTagsForNetworkDeviceExecute(r)
+}
+
+/*
+UpdateTagsForNetworkDevice Update tags for Network Device
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return NetworkDeviceAPIUpdateTagsForNetworkDeviceRequest
+*/
+func (a *NetworkDeviceAPIService) UpdateTagsForNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPIUpdateTagsForNetworkDeviceRequest {
+	return NetworkDeviceAPIUpdateTagsForNetworkDeviceRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]interface{}
+func (a *NetworkDeviceAPIService) UpdateTagsForNetworkDeviceExecute(r NetworkDeviceAPIUpdateTagsForNetworkDeviceRequest) (map[string]interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.UpdateTagsForNetworkDevice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/network-devices/{networkDeviceId}/tags"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateTagsForNetworkDeviceRequest == nil {
+		return localVarReturnValue, nil, reportError("updateTagsForNetworkDeviceRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateTagsForNetworkDeviceRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

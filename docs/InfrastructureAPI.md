@@ -502,7 +502,7 @@ Name | Type | Description  | Notes
 
 ## GetInfrastructureResourceUtilizationDetailed
 
-> InfrastructureResourceUtilizationResponse GetInfrastructureResourceUtilizationDetailed(ctx, infrastructureId).GetResourceUtilizationDetailed(getResourceUtilizationDetailed).Execute()
+> InfrastructureResourceUtilizationResponse GetInfrastructureResourceUtilizationDetailed(ctx).GetResourceUtilizationDetailed(getResourceUtilizationDetailed).Execute()
 
 Gets detailed resource utilization for infrastructures
 
@@ -522,12 +522,11 @@ import (
 )
 
 func main() {
-	infrastructureId := float32(8.14) // float32 | 
 	getResourceUtilizationDetailed := *openapiclient.NewGetResourceUtilizationDetailed(float32(123), time.Now(), time.Now()) // GetResourceUtilizationDetailed | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.InfrastructureAPI.GetInfrastructureResourceUtilizationDetailed(context.Background(), infrastructureId).GetResourceUtilizationDetailed(getResourceUtilizationDetailed).Execute()
+	resp, r, err := apiClient.InfrastructureAPI.GetInfrastructureResourceUtilizationDetailed(context.Background()).GetResourceUtilizationDetailed(getResourceUtilizationDetailed).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.GetInfrastructureResourceUtilizationDetailed``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -540,10 +539,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
 
 ### Other Parameters
 
@@ -552,7 +547,6 @@ Other parameters are passed through a pointer to a apiGetInfrastructureResourceU
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **getResourceUtilizationDetailed** | [**GetResourceUtilizationDetailed**](GetResourceUtilizationDetailed.md) |  | 
 
 ### Return type

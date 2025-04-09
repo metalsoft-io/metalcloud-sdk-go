@@ -577,7 +577,7 @@ func (a *ServerInstanceAPIService) GetPowerFromServerInstanceExecute(r ServerIns
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/server-instances/{serverInstanceId}/actions/power_get"
+	localVarPath := localBasePath + "/api/v2/server-instances/{serverInstanceId}/actions/power-get"
 	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceId, "serverInstanceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -2378,7 +2378,7 @@ func (a *ServerInstanceAPIService) SetPowerToServerInstanceExecute(r ServerInsta
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/server-instances/{serverInstanceId}/actions/power_set"
+	localVarPath := localBasePath + "/api/v2/server-instances/{serverInstanceId}/actions/power-set"
 	localVarPath = strings.Replace(localVarPath, "{"+"serverInstanceId"+"}", url.PathEscape(parameterValueToString(r.serverInstanceId, "serverInstanceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

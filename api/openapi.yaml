@@ -44,8 +44,6 @@ tags:
   name: Server Instance
 - description: A group of physical server instances part of an infrastructure.
   name: Server Instance Group
-- description: A reusable profile for server instances.
-  name: Server Instance Profile
 - description: Storage management.
   name: Storage
 - description: Network device management.
@@ -7913,14 +7911,7 @@ paths:
     post:
       description: Gets detailed resource utilization for infrastructures
       operationId: getInfrastructureResourceUtilizationDetailed
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
+      parameters: []
       requestBody:
         content:
           application/json:
@@ -11804,7 +11795,7 @@ paths:
       tags:
       - Network Device
     post:
-      operationId: NetworkDeviceController_createNetworkDevice
+      operationId: createNetworkDevice
       parameters: []
       requestBody:
         content:
@@ -11834,7 +11825,7 @@ paths:
       - Network Device
   /api/v2/network-devices/statistics:
     get:
-      operationId: NetworkDeviceController_getNetworkDeviceStatistics
+      operationId: getNetworkDeviceStatistics
       parameters: []
       responses:
         "200":
@@ -11851,7 +11842,7 @@ paths:
       - Network Device
   /api/v2/network-devices/{networkDeviceId}:
     delete:
-      operationId: NetworkDeviceController_deleteNetworkDevice
+      operationId: deleteNetworkDevice
       parameters:
       - explode: false
         in: path
@@ -11907,7 +11898,7 @@ paths:
       tags:
       - Network Device
     patch:
-      operationId: NetworkDeviceController_updateNetworkDevice
+      operationId: updateNetworkDevice
       parameters:
       - explode: false
         in: path
@@ -12007,7 +11998,7 @@ paths:
       - Network Device
   /api/v2/network-devices/{networkDeviceId}/replace:
     post:
-      operationId: NetworkDeviceController_replaceNetworkDevice
+      operationId: replaceNetworkDevice
       parameters:
       - description: Network device ID
         explode: false
@@ -12122,7 +12113,7 @@ paths:
       - Network Device
   /api/v2/network-devices/network-devices/{networkDeviceId}/tags:
     get:
-      operationId: NetworkDeviceController_getTagsForNetworkDevice
+      operationId: getTagsForNetworkDevice
       parameters:
       - explode: false
         in: path
@@ -12155,7 +12146,7 @@ paths:
       tags:
       - Network Device
     patch:
-      operationId: NetworkDeviceController_removeTagsFromNetworkDevice
+      operationId: removeTagsFromNetworkDevice
       parameters:
       - explode: false
         in: path
@@ -12189,7 +12180,7 @@ paths:
       tags:
       - Network Device
     post:
-      operationId: NetworkDeviceController_addTagsToNetworkDevice
+      operationId: addTagsToNetworkDevice
       parameters:
       - explode: false
         in: path
@@ -12202,7 +12193,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NetworkDeviceController_updateTagsForNetworkDevice_request'
+              $ref: '#/components/schemas/updateTagsForNetworkDevice_request'
         description: The tags to add
         required: true
       responses:
@@ -12227,7 +12218,7 @@ paths:
       tags:
       - Network Device
     put:
-      operationId: NetworkDeviceController_updateTagsForNetworkDevice
+      operationId: updateTagsForNetworkDevice
       parameters:
       - explode: false
         in: path
@@ -12240,7 +12231,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NetworkDeviceController_updateTagsForNetworkDevice_request'
+              $ref: '#/components/schemas/updateTagsForNetworkDevice_request'
         description: The tags to update
         required: true
       responses:
@@ -12266,7 +12257,7 @@ paths:
       - Network Device
   /api/v2/network-devices/{networkDeviceId}/iscsi-boot-servers:
     get:
-      operationId: NetworkDeviceController_getIscsiBootServers
+      operationId: getIscsiBootServers
       parameters:
       - explode: false
         in: path
@@ -12391,6 +12382,10 @@ paths:
         style: simple
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkDevicePorts'
           description: Ports found
         "401":
           description: Unauthorized
@@ -17467,323 +17462,6 @@ paths:
       summary: Get Server Instance Group Interface details
       tags:
       - Server Instance Group
-  /api/v2/server-instance-profiles:
-    get:
-      description: ""
-      operationId: getServerInstanceProfiles
-      parameters:
-      - description: "Page number to retrieve.If you provide invalid value the default\
-          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
-          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
-          \        </p>\n        "
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: number
-        style: form
-      - description: "Number of records per page.\n      <p>\n             <b>Example:\
-          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
-          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
-          \         </p>\n\n      If provided value is greater than max value, max\
-          \ value will be applied.\n      "
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          type: number
-        style: form
-      - description: |-
-          Filter by label query param.
-                    <p>
-                       <b>Format: </b> filter.label={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.label=$not:$like:John Doe&filter.label=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.label
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by ownerId query param.
-                    <p>
-                       <b>Format: </b> filter.ownerId={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.ownerId=$not:$like:John Doe&filter.ownerId=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.ownerId
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
-          \ just provide query param multiple types. The order in url defines an order\
-          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
-          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
-          \          </p>\n      <p>\n             <b>Default Value: </b> label:DESC\n\
-          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n\
-          <li>ownerId</li></ul>\n      "
-        explode: true
-        in: query
-        name: sortBy
-        required: false
-        schema:
-          items:
-            enum:
-            - id:ASC
-            - id:DESC
-            - label:ASC
-            - label:DESC
-            - ownerId:ASC
-            - ownerId:DESC
-            type: string
-          type: array
-        style: form
-      - description: "Search term to filter result values\n        <p>\n         \
-          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
-          \ Value: </b> No default value\n          </p>\n        "
-        explode: true
-        in: query
-        name: search
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: "List of fields to search by term to filter result values\n \
-          \       <p>\n             <b>Example: </b> label,ownerId\n          </p>\n\
-          \        <p>\n             <b>Default Value: </b> By default all fields\
-          \ mentioned below will be used to search by term\n          </p>\n     \
-          \   <h4>Available Fields</h4><ul><li>label</li>\n<li>ownerId</li></ul>\n\
-          \        "
-        explode: true
-        in: query
-        name: searchBy
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: "List of fields to select.\n      <p>\n             <b>Example:\
-          \ </b> id,label,ownerId\n          </p>\n      <p>\n             <b>Default\
-          \ Value: </b> By default all fields returns. If you want to select only\
-          \ some fields, provide them in query param\n          </p>\n      "
-        explode: true
-        in: query
-        name: select
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ServerInstanceProfilePaginatedList'
-          description: The list of Server Instance Profiles
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: List all Server Instance Profiles
-      tags:
-      - Server Instance Profile
-    post:
-      description: Creates new Server Instance Profile
-      operationId: createServerInstanceProfile
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ServerInstanceProfileCreate'
-        description: The Server Instance Profile to create
-        required: true
-      responses:
-        "201":
-          description: The Server Instance Profile was successfully created
-          headers:
-            Location:
-              description: New instance profile link
-              explode: false
-              schema:
-                type: string
-              style: simple
-            ETag:
-              description: Entity tag
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Create Server Instance Profile
-      tags:
-      - Server Instance Profile
-  /api/v2/server-instance-profiles/{serverInstanceProfileId}:
-    delete:
-      description: Deletes the specified Server Instance Profile
-      operationId: deleteServerInstanceProfile
-      parameters:
-      - explode: false
-        in: path
-        name: serverInstanceProfileId
-        required: true
-        schema:
-          type: integer
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: The Server Instance Profile was successfully deleted
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Server Instance Profile not found
-        "409":
-          description: Conflict
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Delete Server Instance Profile
-      tags:
-      - Server Instance Profile
-    get:
-      description: Returns details of the specified Server Instance Profile
-      operationId: getServerInstanceProfile
-      parameters:
-      - explode: false
-        in: path
-        name: serverInstanceProfileId
-        required: true
-        schema:
-          type: integer
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ServerInstanceProfile'
-          description: The details of the specified Server Instance Profile
-          headers:
-            ETag:
-              description: Entity tag
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Server Instance Profile not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Get Server Instance Profile details
-      tags:
-      - Server Instance Profile
-    patch:
-      description: Returns details of the updated Server Instance Profile
-      operationId: updateServerInstanceProfile
-      parameters:
-      - explode: false
-        in: path
-        name: serverInstanceProfileId
-        required: true
-        schema:
-          type: integer
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ServerInstanceProfileUpdate'
-        description: The Server Instance Profile changes
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ServerInstanceProfile'
-          description: The details of the updated Server Instance Profile
-          headers:
-            ETag:
-              description: Entity tag
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Server Instance not found
-        "409":
-          description: Conflict
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Update Server Instance Profile
-      tags:
-      - Server Instance Profile
   /api/v2/server-instances:
     get:
       description: Returns list of Server Instances
@@ -18601,7 +18279,7 @@ paths:
       summary: Reset a deployed server
       tags:
       - Server Instance
-  /api/v2/server-instances/{serverInstanceId}/actions/power_set:
+  /api/v2/server-instances/{serverInstanceId}/actions/power-set:
     post:
       description: Set power to this Server Instance.
       operationId: setPowerToServerInstance
@@ -18648,7 +18326,7 @@ paths:
       summary: Set power to the Server Instance
       tags:
       - Server Instance
-  /api/v2/server-instances/{serverInstanceId}/actions/power_get:
+  /api/v2/server-instances/{serverInstanceId}/actions/power-get:
     post:
       description: Get the power status of the Server Instance.
       operationId: getPowerFromServerInstance
@@ -18831,7 +18509,76 @@ paths:
       summary: Get server instance group's network configuration connections
       tags:
       - Server Instance Group
+    post:
+      operationId: createServerInstanceGroupNetworkConfigurationConnection
+      parameters:
+      - explode: false
+        in: path
+        name: serverInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNetworkEndpointGroupLogicalNetwork'
+        description: The network connection object to create
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworkDto'
+          description: The created network connection object
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Server instance group not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a network connection for a server instance group
+      tags:
+      - Server Instance Group
   /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}:
+    delete:
+      operationId: deleteServerInstanceGroupNetworkConfigurationConnection
+      parameters:
+      - explode: false
+        in: path
+        name: serverInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: The specified Server Instance Group network connection was
+            successfully deleted
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Server instance group or connection not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete a network connection for a server instance group
+      tags:
+      - Server Instance Group
     get:
       description: Returns the connection by id of the specified server instance group
       operationId: getServerInstanceGroupNetworkConfigurationConnectionById
@@ -18867,6 +18614,49 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Get server instance group network configuration connection by id
+      tags:
+      - Server Instance Group
+    patch:
+      operationId: updateServerInstanceGroupNetworkConfigurationConnection
+      parameters:
+      - explode: false
+        in: path
+        name: serverInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateNetworkEndpointGroupLogicalNetworkDto'
+        description: The network connection object to update
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworkDto'
+          description: The updated network connection object
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Server instance group or connection not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update a network connection for a server instance group
       tags:
       - Server Instance Group
   /api/v2/servers:
@@ -44066,6 +43856,127 @@ components:
       - datacenterName
       - managementMacAddress
       type: object
+    LinkDuplex:
+      enum:
+      - half
+      - full
+      type: string
+    NetworkDevicePortCounters:
+      example:
+        octets_out: 5.637376656633329
+        octets_in: 5.962133916683182
+        packets_out: 7.061401241503109
+        packets_in: 2.3021358869347655
+        errors_in: 9.301444243932576
+        errors_out: 3.616076749251911
+      properties:
+        octets_in:
+          type: number
+        octets_out:
+          type: number
+        packets_in:
+          type: number
+        packets_out:
+          type: number
+        errors_in:
+          type: number
+        errors_out:
+          type: number
+      required:
+      - errors_in
+      - errors_out
+      - octets_in
+      - octets_out
+      - packets_in
+      - packets_out
+      type: object
+    NetworkDevicePort:
+      example:
+        port_name: port_name
+        utilization_in: 6.027456183070403
+        counters:
+          octets_out: 5.637376656633329
+          octets_in: 5.962133916683182
+          packets_out: 7.061401241503109
+          packets_in: 2.3021358869347655
+          errors_in: 9.301444243932576
+          errors_out: 3.616076749251911
+        active: true
+        link_speed: 0.8008281904610115
+        utilization_out: 1.4658129805029452
+        enabled: true
+        link_duplex: ""
+      properties:
+        port_name:
+          type: string
+        enabled:
+          type: boolean
+        active:
+          type: boolean
+        link_speed:
+          type: number
+        link_duplex:
+          allOf:
+          - $ref: '#/components/schemas/LinkDuplex'
+        utilization_in:
+          type: number
+        utilization_out:
+          type: number
+        counters:
+          $ref: '#/components/schemas/NetworkDevicePortCounters'
+      required:
+      - active
+      - counters
+      - enabled
+      - link_duplex
+      - link_speed
+      - port_name
+      - utilization_in
+      - utilization_out
+      type: object
+    NetworkDevicePorts:
+      example:
+        switch_id: switch_id
+        ports:
+        - port_name: port_name
+          utilization_in: 6.027456183070403
+          counters:
+            octets_out: 5.637376656633329
+            octets_in: 5.962133916683182
+            packets_out: 7.061401241503109
+            packets_in: 2.3021358869347655
+            errors_in: 9.301444243932576
+            errors_out: 3.616076749251911
+          active: true
+          link_speed: 0.8008281904610115
+          utilization_out: 1.4658129805029452
+          enabled: true
+          link_duplex: ""
+        - port_name: port_name
+          utilization_in: 6.027456183070403
+          counters:
+            octets_out: 5.637376656633329
+            octets_in: 5.962133916683182
+            packets_out: 7.061401241503109
+            packets_in: 2.3021358869347655
+            errors_in: 9.301444243932576
+            errors_out: 3.616076749251911
+          active: true
+          link_speed: 0.8008281904610115
+          utilization_out: 1.4658129805029452
+          enabled: true
+          link_duplex: ""
+      properties:
+        switch_id:
+          type: string
+        ports:
+          items:
+            $ref: '#/components/schemas/NetworkDevicePort'
+          type: array
+      required:
+      - ports
+      - switch_id
+      type: object
     NetworkDevicePortStatus:
       example:
         ports:
@@ -44106,7 +44017,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-08T18:32:09.636Z
+        createdTimestamp: 2025-04-09T11:56:00.892Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -44115,7 +44026,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-08T18:32:09.636Z
+        updatedTimestamp: 2025-04-09T11:56:00.892Z
         revision: "1"
       properties:
         siteId:
@@ -44132,12 +44043,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-08T18:32:09.636Z
+          example: 2025-04-09T11:56:00.892Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-08T18:32:09.636Z
+          example: 2025-04-09T11:56:00.892Z
           format: date-time
           type: string
         links:
@@ -44159,7 +44070,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-08T18:32:09.636Z
+        - createdTimestamp: 2025-04-09T11:56:00.892Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -44168,9 +44079,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-08T18:32:09.636Z
+          updatedTimestamp: 2025-04-09T11:56:00.892Z
           revision: "1"
-        - createdTimestamp: 2025-04-08T18:32:09.636Z
+        - createdTimestamp: 2025-04-09T11:56:00.892Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -44179,7 +44090,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-08T18:32:09.636Z
+          updatedTimestamp: 2025-04-09T11:56:00.892Z
           revision: "1"
         meta: ""
         links: ""
@@ -44794,7 +44705,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-08T18:32:09.638Z
+        createdTimestamp: 2025-04-09T11:56:00.894Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -44835,7 +44746,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-08T18:32:09.638Z
+        updatedTimestamp: 2025-04-09T11:56:00.894Z
         revision: "1"
         status: draft
       properties:
@@ -44863,12 +44774,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-08T18:32:09.638Z
+          example: 2025-04-09T11:56:00.894Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-08T18:32:09.638Z
+          example: 2025-04-09T11:56:00.894Z
           format: date-time
           type: string
         links:
@@ -45009,7 +44920,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-08T18:32:09.638Z
+          createdTimestamp: 2025-04-09T11:56:00.894Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -45050,7 +44961,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-08T18:32:09.638Z
+          updatedTimestamp: 2025-04-09T11:56:00.894Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -45160,7 +45071,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-08T18:32:09.638Z
+          createdTimestamp: 2025-04-09T11:56:00.894Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -45201,7 +45112,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-08T18:32:09.638Z
+          updatedTimestamp: 2025-04-09T11:56:00.894Z
           revision: "1"
           status: draft
         meta: ""
@@ -47524,255 +47435,6 @@ components:
       - links
       - meta
       type: object
-    ServerInstanceProfile:
-      example:
-        networkInterfaces:
-          index: 0
-          config:
-            serverInterfaceId: 5
-            emptyEdit: 7
-            index: 1
-            label: label
-            updatedTimestamp: updatedTimestamp
-            deployType: create
-            revision: 1
-            instanceId: 6
-            dnsSubdomainChangeId: 5
-            subdomain: subdomain
-            infrastructureDeployId: 2
-            networkId: 10
-            capacityMbps: 1
-            deployStatus: not_started
-        networkProfiles:
-        - networkId: 1
-          networkProfileId: 1
-        - networkId: 1
-          networkProfileId: 1
-        links:
-        - rel: self
-          href: /api/v2/path/to/resource
-        - rel: self
-          href: /api/v2/path/to/resource
-        id: 1
-        label: server-profile-123
-        ownerId: 1
-        templateId: 1
-        revision: 1
-      properties:
-        id:
-          description: The Server profile ID.
-          example: 1
-          type: integer
-        revision:
-          description: Revision number
-          example: 1
-          type: number
-        ownerId:
-          description: The Server profile owner ID. Can be null if the profile is
-            public. Will be set to the currently logged user.
-          example: 1
-          type: integer
-        label:
-          description: The Server profile label. Will be automatically generated if
-            not provided.
-          example: server-profile-123
-          type: string
-        networkProfiles:
-          description: Network profiles mapping for each network in this infrastructure.
-            Changes to this configuration will be duplicated on each vm-instance of
-            this group.
-          items:
-            $ref: '#/components/schemas/ServerInstanceProfile_networkProfiles_inner'
-          type: array
-        networkInterfaces:
-          $ref: '#/components/schemas/ServerInstanceProfile_networkInterfaces'
-        templateId:
-          description: The template id of the operating system to deploy on the Server.
-            Can be null in which case no OS will be deployed but all operations will
-            continue as normal.
-          example: 1
-          type: integer
-        links:
-          description: Reference links
-          items:
-            $ref: '#/components/schemas/Link'
-          type: array
-      required:
-      - id
-      - revision
-      type: object
-    ServerInstanceProfilePaginatedList:
-      example:
-        data:
-        - networkInterfaces:
-            index: 0
-            config:
-              serverInterfaceId: 5
-              emptyEdit: 7
-              index: 1
-              label: label
-              updatedTimestamp: updatedTimestamp
-              deployType: create
-              revision: 1
-              instanceId: 6
-              dnsSubdomainChangeId: 5
-              subdomain: subdomain
-              infrastructureDeployId: 2
-              networkId: 10
-              capacityMbps: 1
-              deployStatus: not_started
-          networkProfiles:
-          - networkId: 1
-            networkProfileId: 1
-          - networkId: 1
-            networkProfileId: 1
-          links:
-          - rel: self
-            href: /api/v2/path/to/resource
-          - rel: self
-            href: /api/v2/path/to/resource
-          id: 1
-          label: server-profile-123
-          ownerId: 1
-          templateId: 1
-          revision: 1
-        - networkInterfaces:
-            index: 0
-            config:
-              serverInterfaceId: 5
-              emptyEdit: 7
-              index: 1
-              label: label
-              updatedTimestamp: updatedTimestamp
-              deployType: create
-              revision: 1
-              instanceId: 6
-              dnsSubdomainChangeId: 5
-              subdomain: subdomain
-              infrastructureDeployId: 2
-              networkId: 10
-              capacityMbps: 1
-              deployStatus: not_started
-          networkProfiles:
-          - networkId: 1
-            networkProfileId: 1
-          - networkId: 1
-            networkProfileId: 1
-          links:
-          - rel: self
-            href: /api/v2/path/to/resource
-          - rel: self
-            href: /api/v2/path/to/resource
-          id: 1
-          label: server-profile-123
-          ownerId: 1
-          templateId: 1
-          revision: 1
-        meta: ""
-        links: ""
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ServerInstanceProfile'
-          title: List of server instance profile's
-          type: array
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseMeta'
-          description: Metadata about the pagination of the response
-          title: Pagination metadata
-        links:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseLinks'
-          description: Links to navigate through the paginated results
-          title: Pagination links
-      required:
-      - data
-      - links
-      - meta
-      type: object
-    ServerInstanceProfileCreate:
-      example:
-        networkInterfaces:
-          index: 0
-          config:
-            serverInterfaceId: 5
-            emptyEdit: 7
-            index: 1
-            label: label
-            updatedTimestamp: updatedTimestamp
-            deployType: create
-            revision: 1
-            instanceId: 6
-            dnsSubdomainChangeId: 5
-            subdomain: subdomain
-            infrastructureDeployId: 2
-            networkId: 10
-            capacityMbps: 1
-            deployStatus: not_started
-        networkProfiles:
-        - networkId: 1
-          networkProfileId: 1
-        - networkId: 1
-          networkProfileId: 1
-        label: server-profile-123
-      properties:
-        label:
-          description: The Server profile label. Will be automatically generated if
-            not provided.
-          example: server-profile-123
-          type: string
-        networkProfiles:
-          description: Network profiles mapping for each network in this infrastructure.
-            Changes to this configuration will be duplicated on each vm-instance of
-            this group.
-          items:
-            $ref: '#/components/schemas/ServerInstanceProfile_networkProfiles_inner'
-          type: array
-        networkInterfaces:
-          $ref: '#/components/schemas/ServerInstanceProfile_networkInterfaces'
-      type: object
-    ServerInstanceProfileUpdate:
-      example:
-        networkInterfaces:
-          index: 0
-          config:
-            serverInterfaceId: 5
-            emptyEdit: 7
-            index: 1
-            label: label
-            updatedTimestamp: updatedTimestamp
-            deployType: create
-            revision: 1
-            instanceId: 6
-            dnsSubdomainChangeId: 5
-            subdomain: subdomain
-            infrastructureDeployId: 2
-            networkId: 10
-            capacityMbps: 1
-            deployStatus: not_started
-        networkProfiles:
-        - networkId: 1
-          networkProfileId: 1
-        - networkId: 1
-          networkProfileId: 1
-        label: server-profile-123
-      properties:
-        label:
-          description: The Server profile label. Will be automatically generated if
-            not provided.
-          example: server-profile-123
-          type: string
-        networkProfiles:
-          description: Network profiles mapping for each network in this infrastructure.
-            Changes to this configuration will be duplicated on each vm-instance of
-            this group.
-          items:
-            $ref: '#/components/schemas/ServerInstanceProfile_networkProfiles_inner'
-          type: array
-        networkInterfaces:
-          $ref: '#/components/schemas/ServerInstanceProfile_networkInterfaces'
-      type: object
     ServerInstanceUpdate:
       example:
         serverTypeId: 5
@@ -47921,19 +47583,19 @@ components:
       type: object
     ServerInstanceInterfaceConfiguration:
       example:
-        serverInterfaceId: 5
-        emptyEdit: 7
+        serverInterfaceId: 1
+        emptyEdit: 6
         index: 1
         label: label
         updatedTimestamp: updatedTimestamp
         deployType: create
         revision: 1
-        instanceId: 6
-        dnsSubdomainChangeId: 5
+        instanceId: 4
+        dnsSubdomainChangeId: 1
         subdomain: subdomain
-        infrastructureDeployId: 2
+        infrastructureDeployId: 1
         networkId: 10
-        capacityMbps: 1
+        capacityMbps: 7
         deployStatus: not_started
       properties:
         revision:
@@ -48033,19 +47695,19 @@ components:
         aclIdentifier: 9
         dirtyBit: true
         config:
-          serverInterfaceId: 5
-          emptyEdit: 7
+          serverInterfaceId: 1
+          emptyEdit: 6
           index: 1
           label: label
           updatedTimestamp: updatedTimestamp
           deployType: create
           revision: 1
-          instanceId: 6
-          dnsSubdomainChangeId: 5
+          instanceId: 4
+          dnsSubdomainChangeId: 1
           subdomain: subdomain
-          infrastructureDeployId: 2
+          infrastructureDeployId: 1
           networkId: 10
-          capacityMbps: 1
+          capacityMbps: 7
           deployStatus: not_started
         capacityMbps: 5
       properties:
@@ -48171,19 +47833,19 @@ components:
           aclIdentifier: 9
           dirtyBit: true
           config:
-            serverInterfaceId: 5
-            emptyEdit: 7
+            serverInterfaceId: 1
+            emptyEdit: 6
             index: 1
             label: label
             updatedTimestamp: updatedTimestamp
             deployType: create
             revision: 1
-            instanceId: 6
-            dnsSubdomainChangeId: 5
+            instanceId: 4
+            dnsSubdomainChangeId: 1
             subdomain: subdomain
-            infrastructureDeployId: 2
+            infrastructureDeployId: 1
             networkId: 10
-            capacityMbps: 1
+            capacityMbps: 7
             deployStatus: not_started
           capacityMbps: 5
         - serverInterfaceId: 2
@@ -48213,19 +47875,19 @@ components:
           aclIdentifier: 9
           dirtyBit: true
           config:
-            serverInterfaceId: 5
-            emptyEdit: 7
+            serverInterfaceId: 1
+            emptyEdit: 6
             index: 1
             label: label
             updatedTimestamp: updatedTimestamp
             deployType: create
             revision: 1
-            instanceId: 6
-            dnsSubdomainChangeId: 5
+            instanceId: 4
+            dnsSubdomainChangeId: 1
             subdomain: subdomain
-            infrastructureDeployId: 2
+            infrastructureDeployId: 1
             networkId: 10
-            capacityMbps: 1
+            capacityMbps: 7
             deployStatus: not_started
           capacityMbps: 5
         meta: ""
@@ -56871,7 +56533,7 @@ components:
       required:
       - value
       type: object
-    NetworkDeviceController_updateTagsForNetworkDevice_request:
+    updateTagsForNetworkDevice_request:
       properties:
         tags:
           items:
@@ -56908,46 +56570,6 @@ components:
       oneOf:
       - $ref: '#/components/schemas/EthernetFabric'
       - $ref: '#/components/schemas/FibreChannelFabric'
-    ServerInstanceProfile_networkProfiles_inner:
-      example:
-        networkId: 1
-        networkProfileId: 1
-      properties:
-        networkId:
-          example: 1
-          type: integer
-        networkProfileId:
-          example: 1
-          type: integer
-      type: object
-    ServerInstanceProfile_networkInterfaces_config:
-      oneOf:
-      - $ref: '#/components/schemas/ServerInstanceInterfaceConfiguration'
-    ServerInstanceProfile_networkInterfaces:
-      description: Instance interface configuration
-      example:
-        index: 0
-        config:
-          serverInterfaceId: 5
-          emptyEdit: 7
-          index: 1
-          label: label
-          updatedTimestamp: updatedTimestamp
-          deployType: create
-          revision: 1
-          instanceId: 6
-          dnsSubdomainChangeId: 5
-          subdomain: subdomain
-          infrastructureDeployId: 2
-          networkId: 10
-          capacityMbps: 1
-          deployStatus: not_started
-      properties:
-        index:
-          type: integer
-        config:
-          $ref: '#/components/schemas/ServerInstanceProfile_networkInterfaces_config'
-      type: object
   securitySchemes:
     apiKey:
       bearerFormat: ApiKey

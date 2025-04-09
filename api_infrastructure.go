@@ -763,7 +763,6 @@ func (a *InfrastructureAPIService) GetInfrastructureConfigInfoExecute(r Infrastr
 type InfrastructureAPIGetInfrastructureResourceUtilizationDetailedRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService
-	infrastructureId float32
 	getResourceUtilizationDetailed *GetResourceUtilizationDetailed
 }
 
@@ -782,14 +781,12 @@ GetInfrastructureResourceUtilizationDetailed Gets detailed resource utilization 
 Gets detailed resource utilization for infrastructures
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param infrastructureId
  @return InfrastructureAPIGetInfrastructureResourceUtilizationDetailedRequest
 */
-func (a *InfrastructureAPIService) GetInfrastructureResourceUtilizationDetailed(ctx context.Context, infrastructureId float32) InfrastructureAPIGetInfrastructureResourceUtilizationDetailedRequest {
+func (a *InfrastructureAPIService) GetInfrastructureResourceUtilizationDetailed(ctx context.Context) InfrastructureAPIGetInfrastructureResourceUtilizationDetailedRequest {
 	return InfrastructureAPIGetInfrastructureResourceUtilizationDetailedRequest{
 		ApiService: a,
 		ctx: ctx,
-		infrastructureId: infrastructureId,
 	}
 }
 
@@ -809,7 +806,6 @@ func (a *InfrastructureAPIService) GetInfrastructureResourceUtilizationDetailedE
 	}
 
 	localVarPath := localBasePath + "/api/v2/infrastructures/actions/get/resource-utilization-detailed"
-	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

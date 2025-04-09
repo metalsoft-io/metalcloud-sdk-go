@@ -224,31 +224,31 @@ Class | Method | HTTP request | Description
 *NetworkAPI* | [**GetInfrastructureNetwork**](docs/NetworkAPI.md#getinfrastructurenetwork) | **Get** /api/v2/infrastructures/{infrastructureId}/networks/{networkId} | Gets the specified network from the infrastructure
 *NetworkAPI* | [**GetInfrastructureNetworks**](docs/NetworkAPI.md#getinfrastructurenetworks) | **Get** /api/v2/infrastructures/{infrastructureId}/networks | Retrieves all networks on the infrastructure
 *NetworkDeviceAPI* | [**AddNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#addnetworkdevicedefaults) | **Post** /api/v2/network-devices/defaults | Add network device defaults
+*NetworkDeviceAPI* | [**AddTagsToNetworkDevice**](docs/NetworkDeviceAPI.md#addtagstonetworkdevice) | **Post** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Add tags to Network Device
 *NetworkDeviceAPI* | [**ArchiveNetworkDevice**](docs/NetworkDeviceAPI.md#archivenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/archive | Archives a network device
 *NetworkDeviceAPI* | [**ChangeNetworkDeviceStatus**](docs/NetworkDeviceAPI.md#changenetworkdevicestatus) | **Patch** /api/v2/network-devices/{networkDeviceId}/actions/change-status | Change status of a network device
+*NetworkDeviceAPI* | [**CreateNetworkDevice**](docs/NetworkDeviceAPI.md#createnetworkdevice) | **Post** /api/v2/network-devices | Create Network Device
+*NetworkDeviceAPI* | [**DeleteNetworkDevice**](docs/NetworkDeviceAPI.md#deletenetworkdevice) | **Delete** /api/v2/network-devices/{networkDeviceId} | Delete Network Device
 *NetworkDeviceAPI* | [**DiscoverNetworkDevice**](docs/NetworkDeviceAPI.md#discovernetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/discover | Discover network device interfaces, hardware and software configuration
 *NetworkDeviceAPI* | [**EnableNetworkDeviceSyslog**](docs/NetworkDeviceAPI.md#enablenetworkdevicesyslog) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/syslog-subscribe | Enables remote syslog for a network device
+*NetworkDeviceAPI* | [**GetIscsiBootServers**](docs/NetworkDeviceAPI.md#getiscsibootservers) | **Get** /api/v2/network-devices/{networkDeviceId}/iscsi-boot-servers | Returns information about servers which are setup to boot from iSCSI block devices. This is useful in the event of a switch device reboot
 *NetworkDeviceAPI* | [**GetNetworkDevice**](docs/NetworkDeviceAPI.md#getnetworkdevice) | **Get** /api/v2/network-devices/{networkDeviceId} | Get Network Device
 *NetworkDeviceAPI* | [**GetNetworkDeviceCredentials**](docs/NetworkDeviceAPI.md#getnetworkdevicecredentials) | **Get** /api/v2/network-devices/{networkDeviceId}/credentials | Get Network Device credentials
 *NetworkDeviceAPI* | [**GetNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#getnetworkdevicedefaults) | **Get** /api/v2/network-devices/defaults/{datacenterName} | Get network device defaults for a datacenter
 *NetworkDeviceAPI* | [**GetNetworkDeviceInventoryPorts**](docs/NetworkDeviceAPI.md#getnetworkdeviceinventoryports) | **Get** /api/v2/network-devices/{networkDeviceId}/ports | Get all ports for network device from the inventory (cached)
 *NetworkDeviceAPI* | [**GetNetworkDevicePorts**](docs/NetworkDeviceAPI.md#getnetworkdeviceports) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
+*NetworkDeviceAPI* | [**GetNetworkDeviceStatistics**](docs/NetworkDeviceAPI.md#getnetworkdevicestatistics) | **Get** /api/v2/network-devices/statistics | Get Network Device Statistics
 *NetworkDeviceAPI* | [**GetNetworkDevices**](docs/NetworkDeviceAPI.md#getnetworkdevices) | **Get** /api/v2/network-devices | Get paginated Network Devices
-*NetworkDeviceAPI* | [**NetworkDeviceControllerAddTagsToNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrolleraddtagstonetworkdevice) | **Post** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Add tags to Network Device
-*NetworkDeviceAPI* | [**NetworkDeviceControllerCreateNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrollercreatenetworkdevice) | **Post** /api/v2/network-devices | Create Network Device
-*NetworkDeviceAPI* | [**NetworkDeviceControllerDeleteNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrollerdeletenetworkdevice) | **Delete** /api/v2/network-devices/{networkDeviceId} | Delete Network Device
-*NetworkDeviceAPI* | [**NetworkDeviceControllerGetIscsiBootServers**](docs/NetworkDeviceAPI.md#networkdevicecontrollergetiscsibootservers) | **Get** /api/v2/network-devices/{networkDeviceId}/iscsi-boot-servers | Returns information about servers which are setup to boot from iSCSI block devices. This is useful in the event of a switch device reboot
-*NetworkDeviceAPI* | [**NetworkDeviceControllerGetNetworkDeviceStatistics**](docs/NetworkDeviceAPI.md#networkdevicecontrollergetnetworkdevicestatistics) | **Get** /api/v2/network-devices/statistics | Get Network Device Statistics
-*NetworkDeviceAPI* | [**NetworkDeviceControllerGetTagsForNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrollergettagsfornetworkdevice) | **Get** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Get tags for Network Device
-*NetworkDeviceAPI* | [**NetworkDeviceControllerRemoveTagsFromNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrollerremovetagsfromnetworkdevice) | **Patch** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Clear tags from Network Device
-*NetworkDeviceAPI* | [**NetworkDeviceControllerReplaceNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrollerreplacenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/replace | Replace network device
-*NetworkDeviceAPI* | [**NetworkDeviceControllerUpdateNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrollerupdatenetworkdevice) | **Patch** /api/v2/network-devices/{networkDeviceId} | Update Network Device
-*NetworkDeviceAPI* | [**NetworkDeviceControllerUpdateTagsForNetworkDevice**](docs/NetworkDeviceAPI.md#networkdevicecontrollerupdatetagsfornetworkdevice) | **Put** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Update tags for Network Device
+*NetworkDeviceAPI* | [**GetTagsForNetworkDevice**](docs/NetworkDeviceAPI.md#gettagsfornetworkdevice) | **Get** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Get tags for Network Device
 *NetworkDeviceAPI* | [**ReProvisionNetworkEquipment**](docs/NetworkDeviceAPI.md#reprovisionnetworkequipment) | **Post** /api/v2/network-devices/re-provision | Re-provision network equipment
 *NetworkDeviceAPI* | [**RemoveNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#removenetworkdevicedefaults) | **Delete** /api/v2/network-devices/defaults | Remove network device defaults
+*NetworkDeviceAPI* | [**RemoveTagsFromNetworkDevice**](docs/NetworkDeviceAPI.md#removetagsfromnetworkdevice) | **Patch** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Clear tags from Network Device
+*NetworkDeviceAPI* | [**ReplaceNetworkDevice**](docs/NetworkDeviceAPI.md#replacenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/replace | Replace network device
 *NetworkDeviceAPI* | [**ResetNetworkDevice**](docs/NetworkDeviceAPI.md#resetnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
 *NetworkDeviceAPI* | [**RunExtensionOnNetworkDevice**](docs/NetworkDeviceAPI.md#runextensiononnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
 *NetworkDeviceAPI* | [**SetNetworkDevicePortStatus**](docs/NetworkDeviceAPI.md#setnetworkdeviceportstatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
+*NetworkDeviceAPI* | [**UpdateNetworkDevice**](docs/NetworkDeviceAPI.md#updatenetworkdevice) | **Patch** /api/v2/network-devices/{networkDeviceId} | Update Network Device
+*NetworkDeviceAPI* | [**UpdateTagsForNetworkDevice**](docs/NetworkDeviceAPI.md#updatetagsfornetworkdevice) | **Put** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Update tags for Network Device
 *NetworkEndpointGroupAPI* | [**AddLogicalNetworksToNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#addlogicalnetworkstonetworkendpointgroup) | **Post** /api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks | Add a list of logical networks to a network endpoint group
 *NetworkEndpointGroupAPI* | [**CreateNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#createnetworkendpointgroup) | **Post** /api/v2/network-endpoint-groups | Create a new network endpoint group
 *NetworkEndpointGroupAPI* | [**DeleteNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#deletenetworkendpointgroup) | **Delete** /api/v2/network-endpoint-groups/{networkEndpointGroupId} | Delete a network endpoint group
@@ -339,7 +339,7 @@ Class | Method | HTTP request | Description
 *ServerInstanceAPI* | [**CreateServerInstance**](docs/ServerInstanceAPI.md#createserverinstance) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instances | Add Server Instance to an infrastructure
 *ServerInstanceAPI* | [**DeleteServerInstance**](docs/ServerInstanceAPI.md#deleteserverinstance) | **Delete** /api/v2/server-instances/{serverInstanceId} | Delete Server Instance
 *ServerInstanceAPI* | [**GetInfrastructureServerInstances**](docs/ServerInstanceAPI.md#getinfrastructureserverinstances) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instances | List Server Instances for an infrastructure
-*ServerInstanceAPI* | [**GetPowerFromServerInstance**](docs/ServerInstanceAPI.md#getpowerfromserverinstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power_get | Get the power status of the Server Instance
+*ServerInstanceAPI* | [**GetPowerFromServerInstance**](docs/ServerInstanceAPI.md#getpowerfromserverinstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power-get | Get the power status of the Server Instance
 *ServerInstanceAPI* | [**GetPowerStatusBatch**](docs/ServerInstanceAPI.md#getpowerstatusbatch) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/power-get | Gets power status of multiple servers
 *ServerInstanceAPI* | [**GetServerInstance**](docs/ServerInstanceAPI.md#getserverinstance) | **Get** /api/v2/server-instances/{serverInstanceId} | Get Server Instance details
 *ServerInstanceAPI* | [**GetServerInstanceConfig**](docs/ServerInstanceAPI.md#getserverinstanceconfig) | **Get** /api/v2/server-instances/{serverInstanceId}/config | Get Server Instance config details
@@ -353,11 +353,13 @@ Class | Method | HTTP request | Description
 *ServerInstanceAPI* | [**ReinstallServerInstanceOS**](docs/ServerInstanceAPI.md#reinstallserverinstanceos) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/reinstall-os | Manage the flag to reinstall the operating system on the server
 *ServerInstanceAPI* | [**ResetServerInstance**](docs/ServerInstanceAPI.md#resetserverinstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/reset | Reset a deployed server
 *ServerInstanceAPI* | [**SetPowerStatusBatch**](docs/ServerInstanceAPI.md#setpowerstatusbatch) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/power-set | sets power status of multiple servers
-*ServerInstanceAPI* | [**SetPowerToServerInstance**](docs/ServerInstanceAPI.md#setpowertoserverinstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power_set | Set power to the Server Instance
+*ServerInstanceAPI* | [**SetPowerToServerInstance**](docs/ServerInstanceAPI.md#setpowertoserverinstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power-set | Set power to the Server Instance
 *ServerInstanceAPI* | [**UpdateServerInstanceConfig**](docs/ServerInstanceAPI.md#updateserverinstanceconfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/config | Update Server Instance configuration
 *ServerInstanceAPI* | [**UpdateServerInstanceInterfaceConfig**](docs/ServerInstanceAPI.md#updateserverinstanceinterfaceconfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId}/config | Update Server Instance Interface configuration
 *ServerInstanceGroupAPI* | [**CreateServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#createserverinstancegroup) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | Add a Server Instance Group to an infrastructure. By default it will not have any instance.
+*ServerInstanceGroupAPI* | [**CreateServerInstanceGroupNetworkConfigurationConnection**](docs/ServerInstanceGroupAPI.md#createserverinstancegroupnetworkconfigurationconnection) | **Post** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections | Create a network connection for a server instance group
 *ServerInstanceGroupAPI* | [**DeleteServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#deleteserverinstancegroup) | **Delete** /api/v2/server-instance-groups/{serverInstanceGroupId} | Delete Server Instance Group. Will not take effect if there are instances in this group.
+*ServerInstanceGroupAPI* | [**DeleteServerInstanceGroupNetworkConfigurationConnection**](docs/ServerInstanceGroupAPI.md#deleteserverinstancegroupnetworkconfigurationconnection) | **Delete** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Delete a network connection for a server instance group
 *ServerInstanceGroupAPI* | [**GetInfrastructureServerInstanceGroups**](docs/ServerInstanceGroupAPI.md#getinfrastructureserverinstancegroups) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | List Server Instance Groups for an infrastructure
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#getserverinstancegroup) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId} | Get Server Instance Groups details
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupConfig**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupconfig) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Get Server Instance Group config details
@@ -370,11 +372,7 @@ Class | Method | HTTP request | Description
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupServerInstances**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupserverinstances) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/server-instances | List Server Instances for a Server Instance Group
 *ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupConfig**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupconfig) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Updates Server Instance Group configuration
 *ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupMeta**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupmeta) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/meta | Update an Server Instance Group meta information
-*ServerInstanceProfileAPI* | [**CreateServerInstanceProfile**](docs/ServerInstanceProfileAPI.md#createserverinstanceprofile) | **Post** /api/v2/server-instance-profiles | Create Server Instance Profile
-*ServerInstanceProfileAPI* | [**DeleteServerInstanceProfile**](docs/ServerInstanceProfileAPI.md#deleteserverinstanceprofile) | **Delete** /api/v2/server-instance-profiles/{serverInstanceProfileId} | Delete Server Instance Profile
-*ServerInstanceProfileAPI* | [**GetServerInstanceProfile**](docs/ServerInstanceProfileAPI.md#getserverinstanceprofile) | **Get** /api/v2/server-instance-profiles/{serverInstanceProfileId} | Get Server Instance Profile details
-*ServerInstanceProfileAPI* | [**GetServerInstanceProfiles**](docs/ServerInstanceProfileAPI.md#getserverinstanceprofiles) | **Get** /api/v2/server-instance-profiles | List all Server Instance Profiles
-*ServerInstanceProfileAPI* | [**UpdateServerInstanceProfile**](docs/ServerInstanceProfileAPI.md#updateserverinstanceprofile) | **Patch** /api/v2/server-instance-profiles/{serverInstanceProfileId} | Update Server Instance Profile
+*ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupNetworkConfigurationConnection**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupnetworkconfigurationconnection) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Update a network connection for a server instance group
 *ServerTypeAPI* | [**CreateServerType**](docs/ServerTypeAPI.md#createservertype) | **Post** /api/v2/server-types | Creates a Server Type
 *ServerTypeAPI* | [**DeleteServerType**](docs/ServerTypeAPI.md#deleteservertype) | **Delete** /api/v2/server-types/{serverTypeId} | Deletes a Server Type
 *ServerTypeAPI* | [**GetServerTypeInfo**](docs/ServerTypeAPI.md#getservertypeinfo) | **Get** /api/v2/server-types/{serverTypeId} | Get Server Type information
@@ -701,6 +699,7 @@ Class | Method | HTTP request | Description
  - [JobStatistics](docs/JobStatistics.md)
  - [LicenseInstallments](docs/LicenseInstallments.md)
  - [Link](docs/Link.md)
+ - [LinkDuplex](docs/LinkDuplex.md)
  - [Location](docs/Location.md)
  - [LogicalNetwork](docs/LogicalNetwork.md)
  - [LogicalNetworkPaginatedList](docs/LogicalNetworkPaginatedList.md)
@@ -708,11 +707,13 @@ Class | Method | HTTP request | Description
  - [LogicalNetworkProfilePaginatedList](docs/LogicalNetworkProfilePaginatedList.md)
  - [Network](docs/Network.md)
  - [NetworkDevice](docs/NetworkDevice.md)
- - [NetworkDeviceControllerUpdateTagsForNetworkDeviceRequest](docs/NetworkDeviceControllerUpdateTagsForNetworkDeviceRequest.md)
  - [NetworkDeviceDriver](docs/NetworkDeviceDriver.md)
  - [NetworkDevicePaginatedList](docs/NetworkDevicePaginatedList.md)
  - [NetworkDevicePolicy](docs/NetworkDevicePolicy.md)
+ - [NetworkDevicePort](docs/NetworkDevicePort.md)
+ - [NetworkDevicePortCounters](docs/NetworkDevicePortCounters.md)
  - [NetworkDevicePortStatus](docs/NetworkDevicePortStatus.md)
+ - [NetworkDevicePorts](docs/NetworkDevicePorts.md)
  - [NetworkDeviceStatus](docs/NetworkDeviceStatus.md)
  - [NetworkDevicesToFabric](docs/NetworkDevicesToFabric.md)
  - [NetworkEndpointGroup](docs/NetworkEndpointGroup.md)
@@ -792,13 +793,6 @@ Class | Method | HTTP request | Description
  - [ServerInstanceOsInstallImageBuildInfo](docs/ServerInstanceOsInstallImageBuildInfo.md)
  - [ServerInstancePaginatedList](docs/ServerInstancePaginatedList.md)
  - [ServerInstancePowerSet](docs/ServerInstancePowerSet.md)
- - [ServerInstanceProfile](docs/ServerInstanceProfile.md)
- - [ServerInstanceProfileCreate](docs/ServerInstanceProfileCreate.md)
- - [ServerInstanceProfileNetworkInterfaces](docs/ServerInstanceProfileNetworkInterfaces.md)
- - [ServerInstanceProfileNetworkInterfacesConfig](docs/ServerInstanceProfileNetworkInterfacesConfig.md)
- - [ServerInstanceProfileNetworkProfilesInner](docs/ServerInstanceProfileNetworkProfilesInner.md)
- - [ServerInstanceProfilePaginatedList](docs/ServerInstanceProfilePaginatedList.md)
- - [ServerInstanceProfileUpdate](docs/ServerInstanceProfileUpdate.md)
  - [ServerInstanceReinstallOS](docs/ServerInstanceReinstallOS.md)
  - [ServerInstanceStatistics](docs/ServerInstanceStatistics.md)
  - [ServerInstanceStorageProfile](docs/ServerInstanceStorageProfile.md)
@@ -896,6 +890,7 @@ Class | Method | HTTP request | Description
  - [UpdateStorageNetworkDeviceConfiguration](docs/UpdateStorageNetworkDeviceConfiguration.md)
  - [UpdateStorageOptions](docs/UpdateStorageOptions.md)
  - [UpdateSubnet](docs/UpdateSubnet.md)
+ - [UpdateTagsForNetworkDeviceRequest](docs/UpdateTagsForNetworkDeviceRequest.md)
  - [UpdateUser](docs/UpdateUser.md)
  - [UpdateUserPermissionsDto](docs/UpdateUserPermissionsDto.md)
  - [UpdateVM](docs/UpdateVM.md)

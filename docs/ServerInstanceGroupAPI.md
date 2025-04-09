@@ -5,7 +5,9 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateServerInstanceGroup**](ServerInstanceGroupAPI.md#CreateServerInstanceGroup) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | Add a Server Instance Group to an infrastructure. By default it will not have any instance.
+[**CreateServerInstanceGroupNetworkConfigurationConnection**](ServerInstanceGroupAPI.md#CreateServerInstanceGroupNetworkConfigurationConnection) | **Post** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections | Create a network connection for a server instance group
 [**DeleteServerInstanceGroup**](ServerInstanceGroupAPI.md#DeleteServerInstanceGroup) | **Delete** /api/v2/server-instance-groups/{serverInstanceGroupId} | Delete Server Instance Group. Will not take effect if there are instances in this group.
+[**DeleteServerInstanceGroupNetworkConfigurationConnection**](ServerInstanceGroupAPI.md#DeleteServerInstanceGroupNetworkConfigurationConnection) | **Delete** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Delete a network connection for a server instance group
 [**GetInfrastructureServerInstanceGroups**](ServerInstanceGroupAPI.md#GetInfrastructureServerInstanceGroups) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | List Server Instance Groups for an infrastructure
 [**GetServerInstanceGroup**](ServerInstanceGroupAPI.md#GetServerInstanceGroup) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId} | Get Server Instance Groups details
 [**GetServerInstanceGroupConfig**](ServerInstanceGroupAPI.md#GetServerInstanceGroupConfig) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Get Server Instance Group config details
@@ -18,6 +20,7 @@ Method | HTTP request | Description
 [**GetServerInstanceGroupServerInstances**](ServerInstanceGroupAPI.md#GetServerInstanceGroupServerInstances) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/server-instances | List Server Instances for a Server Instance Group
 [**UpdateServerInstanceGroupConfig**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupConfig) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Updates Server Instance Group configuration
 [**UpdateServerInstanceGroupMeta**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupMeta) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/meta | Update an Server Instance Group meta information
+[**UpdateServerInstanceGroupNetworkConfigurationConnection**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupNetworkConfigurationConnection) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Update a network connection for a server instance group
 
 
 
@@ -91,6 +94,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateServerInstanceGroupNetworkConfigurationConnection
+
+> NetworkEndpointGroupLogicalNetworkDto CreateServerInstanceGroupNetworkConfigurationConnection(ctx, serverInstanceGroupId).CreateNetworkEndpointGroupLogicalNetwork(createNetworkEndpointGroupLogicalNetwork).Execute()
+
+Create a network connection for a server instance group
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceGroupId := int32(56) // int32 | 
+	createNetworkEndpointGroupLogicalNetwork := *openapiclient.NewCreateNetworkEndpointGroupLogicalNetwork("1", true, "l2") // CreateNetworkEndpointGroupLogicalNetwork | The network connection object to create
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceGroupAPI.CreateServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId).CreateNetworkEndpointGroupLogicalNetwork(createNetworkEndpointGroupLogicalNetwork).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.CreateServerInstanceGroupNetworkConfigurationConnection``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateServerInstanceGroupNetworkConfigurationConnection`: NetworkEndpointGroupLogicalNetworkDto
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.CreateServerInstanceGroupNetworkConfigurationConnection`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceGroupId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateServerInstanceGroupNetworkConfigurationConnectionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createNetworkEndpointGroupLogicalNetwork** | [**CreateNetworkEndpointGroupLogicalNetwork**](CreateNetworkEndpointGroupLogicalNetwork.md) | The network connection object to create | 
+
+### Return type
+
+[**NetworkEndpointGroupLogicalNetworkDto**](NetworkEndpointGroupLogicalNetworkDto.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteServerInstanceGroup
 
 > DeleteServerInstanceGroup(ctx, serverInstanceGroupId).IfMatch(ifMatch).Execute()
@@ -142,6 +215,75 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteServerInstanceGroupNetworkConfigurationConnection
+
+> DeleteServerInstanceGroupNetworkConfigurationConnection(ctx, serverInstanceGroupId, connectionId).Execute()
+
+Delete a network connection for a server instance group
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceGroupId := int32(56) // int32 | 
+	connectionId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ServerInstanceGroupAPI.DeleteServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId, connectionId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.DeleteServerInstanceGroupNetworkConfigurationConnection``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceGroupId** | **int32** |  | 
+**connectionId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteServerInstanceGroupNetworkConfigurationConnectionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
@@ -1067,6 +1209,79 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateServerInstanceGroupNetworkConfigurationConnection
+
+> NetworkEndpointGroupLogicalNetworkDto UpdateServerInstanceGroupNetworkConfigurationConnection(ctx, serverInstanceGroupId, connectionId).UpdateNetworkEndpointGroupLogicalNetworkDto(updateNetworkEndpointGroupLogicalNetworkDto).Execute()
+
+Update a network connection for a server instance group
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceGroupId := int32(56) // int32 | 
+	connectionId := float32(8.14) // float32 | 
+	updateNetworkEndpointGroupLogicalNetworkDto := *openapiclient.NewUpdateNetworkEndpointGroupLogicalNetworkDto() // UpdateNetworkEndpointGroupLogicalNetworkDto | The network connection object to update
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId, connectionId).UpdateNetworkEndpointGroupLogicalNetworkDto(updateNetworkEndpointGroupLogicalNetworkDto).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.UpdateServerInstanceGroupNetworkConfigurationConnection``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateServerInstanceGroupNetworkConfigurationConnection`: NetworkEndpointGroupLogicalNetworkDto
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.UpdateServerInstanceGroupNetworkConfigurationConnection`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceGroupId** | **int32** |  | 
+**connectionId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateServerInstanceGroupNetworkConfigurationConnectionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateNetworkEndpointGroupLogicalNetworkDto** | [**UpdateNetworkEndpointGroupLogicalNetworkDto**](UpdateNetworkEndpointGroupLogicalNetworkDto.md) | The network connection object to update | 
+
+### Return type
+
+[**NetworkEndpointGroupLogicalNetworkDto**](NetworkEndpointGroupLogicalNetworkDto.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

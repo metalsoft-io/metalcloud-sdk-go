@@ -33,6 +33,20 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkDeviceAPIService AddTagsToNetworkDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkDeviceId float32
+
+		resp, httpRes, err := apiClient.NetworkDeviceAPI.AddTagsToNetworkDevice(context.Background(), networkDeviceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkDeviceAPIService ArchiveNetworkDevice", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -59,6 +73,31 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkDeviceAPIService CreateNetworkDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.NetworkDeviceAPI.CreateNetworkDevice(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkDeviceAPIService DeleteNetworkDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkDeviceId float32
+
+		httpRes, err := apiClient.NetworkDeviceAPI.DeleteNetworkDevice(context.Background(), networkDeviceId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkDeviceAPIService DiscoverNetworkDevice", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -79,6 +118,19 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 		var networkDeviceId float32
 
 		httpRes, err := apiClient.NetworkDeviceAPI.EnableNetworkDeviceSyslog(context.Background(), networkDeviceId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkDeviceAPIService GetIscsiBootServers", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkDeviceId float32
+
+		httpRes, err := apiClient.NetworkDeviceAPI.GetIscsiBootServers(context.Background(), networkDeviceId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -145,7 +197,19 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 
 		var networkDeviceId float32
 
-		httpRes, err := apiClient.NetworkDeviceAPI.GetNetworkDevicePorts(context.Background(), networkDeviceId).Execute()
+		resp, httpRes, err := apiClient.NetworkDeviceAPI.GetNetworkDevicePorts(context.Background(), networkDeviceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkDeviceAPIService GetNetworkDeviceStatistics", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceStatistics(context.Background()).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -164,131 +228,13 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test NetworkDeviceAPIService NetworkDeviceControllerAddTagsToNetworkDevice", func(t *testing.T) {
+	t.Run("Test NetworkDeviceAPIService GetTagsForNetworkDevice", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var networkDeviceId float32
 
-		resp, httpRes, err := apiClient.NetworkDeviceAPI.NetworkDeviceControllerAddTagsToNetworkDevice(context.Background(), networkDeviceId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test NetworkDeviceAPIService NetworkDeviceControllerCreateNetworkDevice", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.NetworkDeviceAPI.NetworkDeviceControllerCreateNetworkDevice(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test NetworkDeviceAPIService NetworkDeviceControllerDeleteNetworkDevice", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var networkDeviceId float32
-
-		httpRes, err := apiClient.NetworkDeviceAPI.NetworkDeviceControllerDeleteNetworkDevice(context.Background(), networkDeviceId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test NetworkDeviceAPIService NetworkDeviceControllerGetIscsiBootServers", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var networkDeviceId float32
-
-		httpRes, err := apiClient.NetworkDeviceAPI.NetworkDeviceControllerGetIscsiBootServers(context.Background(), networkDeviceId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test NetworkDeviceAPIService NetworkDeviceControllerGetNetworkDeviceStatistics", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		httpRes, err := apiClient.NetworkDeviceAPI.NetworkDeviceControllerGetNetworkDeviceStatistics(context.Background()).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test NetworkDeviceAPIService NetworkDeviceControllerGetTagsForNetworkDevice", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var networkDeviceId float32
-
-		resp, httpRes, err := apiClient.NetworkDeviceAPI.NetworkDeviceControllerGetTagsForNetworkDevice(context.Background(), networkDeviceId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test NetworkDeviceAPIService NetworkDeviceControllerRemoveTagsFromNetworkDevice", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var networkDeviceId float32
-
-		httpRes, err := apiClient.NetworkDeviceAPI.NetworkDeviceControllerRemoveTagsFromNetworkDevice(context.Background(), networkDeviceId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test NetworkDeviceAPIService NetworkDeviceControllerReplaceNetworkDevice", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var networkDeviceId float32
-
-		resp, httpRes, err := apiClient.NetworkDeviceAPI.NetworkDeviceControllerReplaceNetworkDevice(context.Background(), networkDeviceId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test NetworkDeviceAPIService NetworkDeviceControllerUpdateNetworkDevice", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var networkDeviceId float32
-
-		resp, httpRes, err := apiClient.NetworkDeviceAPI.NetworkDeviceControllerUpdateNetworkDevice(context.Background(), networkDeviceId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test NetworkDeviceAPIService NetworkDeviceControllerUpdateTagsForNetworkDevice", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var networkDeviceId float32
-
-		resp, httpRes, err := apiClient.NetworkDeviceAPI.NetworkDeviceControllerUpdateTagsForNetworkDevice(context.Background(), networkDeviceId).Execute()
+		resp, httpRes, err := apiClient.NetworkDeviceAPI.GetTagsForNetworkDevice(context.Background(), networkDeviceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -315,6 +261,33 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 		httpRes, err := apiClient.NetworkDeviceAPI.RemoveNetworkDeviceDefaults(context.Background()).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkDeviceAPIService RemoveTagsFromNetworkDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkDeviceId float32
+
+		httpRes, err := apiClient.NetworkDeviceAPI.RemoveTagsFromNetworkDevice(context.Background(), networkDeviceId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkDeviceAPIService ReplaceNetworkDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkDeviceId float32
+
+		resp, httpRes, err := apiClient.NetworkDeviceAPI.ReplaceNetworkDevice(context.Background(), networkDeviceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -355,6 +328,34 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 		httpRes, err := apiClient.NetworkDeviceAPI.SetNetworkDevicePortStatus(context.Background(), networkDeviceId).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkDeviceAPIService UpdateNetworkDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkDeviceId float32
+
+		resp, httpRes, err := apiClient.NetworkDeviceAPI.UpdateNetworkDevice(context.Background(), networkDeviceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkDeviceAPIService UpdateTagsForNetworkDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkDeviceId float32
+
+		resp, httpRes, err := apiClient.NetworkDeviceAPI.UpdateTagsForNetworkDevice(context.Background(), networkDeviceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

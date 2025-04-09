@@ -118,9 +118,7 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var infrastructureId float32
-
-		resp, httpRes, err := apiClient.InfrastructureAPI.GetInfrastructureResourceUtilizationDetailed(context.Background(), infrastructureId).Execute()
+		resp, httpRes, err := apiClient.InfrastructureAPI.GetInfrastructureResourceUtilizationDetailed(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
