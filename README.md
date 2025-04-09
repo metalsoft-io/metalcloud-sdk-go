@@ -429,38 +429,38 @@ Class | Method | HTTP request | Description
 *TemplateAssetAPI* | [**UpdateTemplateAsset**](docs/TemplateAssetAPI.md#updatetemplateasset) | **Put** /api/v2/template-assets/{templateAssetId} | Update template asset
 *UnmanagedServersAPI* | [**ImportGenericEndpointServer**](docs/UnmanagedServersAPI.md#importgenericendpointserver) | **Post** /api/v2/servers/generic-endpoint/import | Import Generic Endpoint Server
 *UnmanagedServersAPI* | [**ImportUnmanagedServer**](docs/UnmanagedServersAPI.md#importunmanagedserver) | **Post** /api/v2/servers/unmanaged/import | Import Unmanaged Server
+*UserAPI* | [**AddUserDelegate**](docs/UserAPI.md#adduserdelegate) | **Post** /api/v2/users/{userId}/actions/add-delegate/{delegateId} | Add a delegate to a user
+*UserAPI* | [**AddUserSshKey**](docs/UserAPI.md#addusersshkey) | **Post** /api/v2/users/{userId}/ssh-keys | Add SSH key for user
 *UserAPI* | [**ArchiveUser**](docs/UserAPI.md#archiveuser) | **Post** /api/v2/users/{userId}/actions/archive | Archive user
 *UserAPI* | [**ChangeUserAccount**](docs/UserAPI.md#changeuseraccount) | **Post** /api/v2/users/{userId}/actions/change-account | Change account for user
+*UserAPI* | [**ChangeUserEmail**](docs/UserAPI.md#changeuseremail) | **Post** /api/v2/users/{userId}/actions/change-email | Change user email
 *UserAPI* | [**CreateUserAuthorized**](docs/UserAPI.md#createuserauthorized) | **Post** /api/v2/users | Creates another user
+*UserAPI* | [**DeleteUserSshKey**](docs/UserAPI.md#deleteusersshkey) | **Delete** /api/v2/users/{userId}/ssh-keys/{keyId} | Delete SSH key for user
+*UserAPI* | [**DisableUser2FA**](docs/UserAPI.md#disableuser2fa) | **Post** /api/v2/users/{userId}/actions/2fa-disable | Disable 2FA
+*UserAPI* | [**EnableUser2FA**](docs/UserAPI.md#enableuser2fa) | **Post** /api/v2/users/{userId}/actions/2fa-enable | Enable 2FA
+*UserAPI* | [**GenerateUser2FASecret**](docs/UserAPI.md#generateuser2fasecret) | **Post** /api/v2/users/{userId}/actions/2fa-generate | Generate 2FA secret
 *UserAPI* | [**GetUser**](docs/UserAPI.md#getuser) | **Get** /api/v2/users/{userId} | Get user
+*UserAPI* | [**GetUserApiKey**](docs/UserAPI.md#getuserapikey) | **Get** /api/v2/users/{userId}/api-key | Get user API key
+*UserAPI* | [**GetUserChildDelegates**](docs/UserAPI.md#getuserchilddelegates) | **Get** /api/v2/users/{userId}/child-delegates | Get user child delegates by ID
+*UserAPI* | [**GetUserConfiguration**](docs/UserAPI.md#getuserconfiguration) | **Get** /api/v2/users/{userId}/config | Get user configuration by ID
 *UserAPI* | [**GetUserLimits**](docs/UserAPI.md#getuserlimits) | **Get** /api/v2/users/{userId}/limits | Get user limits
+*UserAPI* | [**GetUserParentDelegates**](docs/UserAPI.md#getuserparentdelegates) | **Get** /api/v2/users/{userId}/parent-delegates | Get user parent delegates by ID
+*UserAPI* | [**GetUserPermissions**](docs/UserAPI.md#getuserpermissions) | **Get** /api/v2/users/{userId}/permissions | Get user resource permissions by ID
+*UserAPI* | [**GetUserSshKey**](docs/UserAPI.md#getusersshkey) | **Get** /api/v2/users/{userId}/ssh-keys/{keyId} | Get specific SSH key
+*UserAPI* | [**GetUserSshKeys**](docs/UserAPI.md#getusersshkeys) | **Get** /api/v2/users/{userId}/ssh-keys | Get user SSH keys
+*UserAPI* | [**GetUserSuspendReasons**](docs/UserAPI.md#getusersuspendreasons) | **Get** /api/v2/users/{userId}/suspend-reasons | Get user suspend reasons by ID
 *UserAPI* | [**GetUsers**](docs/UserAPI.md#getusers) | **Get** /api/v2/users | Get users
+*UserAPI* | [**RegenerateUserApiKey**](docs/UserAPI.md#regenerateuserapikey) | **Post** /api/v2/users/{userId}/actions/regenerate-api-key | Regenerate user API key
+*UserAPI* | [**RegenerateUserJwtSalt**](docs/UserAPI.md#regenerateuserjwtsalt) | **Post** /api/v2/users/{userId}/actions/regenerate-jwt-salt | Regenerate user JWT salt. Also logs out all user sessions.
+*UserAPI* | [**RemoveUserDelegate**](docs/UserAPI.md#removeuserdelegate) | **Post** /api/v2/users/{userId}/actions/remove-delegate/{delegateId} | Remove a delegate from a user
+*UserAPI* | [**SuspendUser**](docs/UserAPI.md#suspenduser) | **Post** /api/v2/users/{userId}/actions/suspend | Suspend a user
 *UserAPI* | [**UnarchiveUser**](docs/UserAPI.md#unarchiveuser) | **Post** /api/v2/users/{userId}/actions/unarchive | Unarchive user
+*UserAPI* | [**UnsuspendUser**](docs/UserAPI.md#unsuspenduser) | **Post** /api/v2/users/{userId}/actions/unsuspend | Unsuspend a user
 *UserAPI* | [**UpdateUserConfig**](docs/UserAPI.md#updateuserconfig) | **Patch** /api/v2/users/{userId}/config | Update user configuration
 *UserAPI* | [**UpdateUserLimits**](docs/UserAPI.md#updateuserlimits) | **Patch** /api/v2/users/{userId}/actions/change-limits | Update user limits
-*UserAPI* | [**UserControllerAddDelegate**](docs/UserAPI.md#usercontrolleradddelegate) | **Post** /api/v2/users/{userId}/actions/add-delegate/{delegateId} | Add a delegate to a user
-*UserAPI* | [**UserControllerAddUserSshKey**](docs/UserAPI.md#usercontrolleraddusersshkey) | **Post** /api/v2/users/{userId}/ssh-keys | Add SSH key for user
-*UserAPI* | [**UserControllerDeleteUserSshKey**](docs/UserAPI.md#usercontrollerdeleteusersshkey) | **Delete** /api/v2/users/{userId}/ssh-keys/{keyId} | Delete SSH key for user
-*UserAPI* | [**UserControllerDisableTwoFactorAuthentication**](docs/UserAPI.md#usercontrollerdisabletwofactorauthentication) | **Post** /api/v2/users/{userId}/actions/2fa-disable | Disable 2FA
-*UserAPI* | [**UserControllerEnableTwoFactorAuthentication**](docs/UserAPI.md#usercontrollerenabletwofactorauthentication) | **Post** /api/v2/users/{userId}/actions/2fa-enable | Enable 2FA
-*UserAPI* | [**UserControllerGenerateTwoFactorAuthenticationSecret**](docs/UserAPI.md#usercontrollergeneratetwofactorauthenticationsecret) | **Post** /api/v2/users/{userId}/actions/2fa-generate | Generate 2FA secret
-*UserAPI* | [**UserControllerGetUserApiKey**](docs/UserAPI.md#usercontrollergetuserapikey) | **Get** /api/v2/users/{userId}/api-key | Get user API key
-*UserAPI* | [**UserControllerGetUserChildDelegates**](docs/UserAPI.md#usercontrollergetuserchilddelegates) | **Get** /api/v2/users/{userId}/child-delegates | Get user child delegates by ID
-*UserAPI* | [**UserControllerGetUserConfiguration**](docs/UserAPI.md#usercontrollergetuserconfiguration) | **Get** /api/v2/users/{userId}/config | Get user configuration by ID
-*UserAPI* | [**UserControllerGetUserParentDelegates**](docs/UserAPI.md#usercontrollergetuserparentdelegates) | **Get** /api/v2/users/{userId}/parent-delegates | Get user parent delegates by ID
-*UserAPI* | [**UserControllerGetUserPermissions**](docs/UserAPI.md#usercontrollergetuserpermissions) | **Get** /api/v2/users/{userId}/permissions | Get user resource permissions by ID
-*UserAPI* | [**UserControllerGetUserSshKey**](docs/UserAPI.md#usercontrollergetusersshkey) | **Get** /api/v2/users/{userId}/ssh-keys/{keyId} | Get specific SSH key
-*UserAPI* | [**UserControllerGetUserSshKeys**](docs/UserAPI.md#usercontrollergetusersshkeys) | **Get** /api/v2/users/{userId}/ssh-keys | Get user SSH keys
-*UserAPI* | [**UserControllerGetUserSuspendReasons**](docs/UserAPI.md#usercontrollergetusersuspendreasons) | **Get** /api/v2/users/{userId}/suspend-reasons | Get user suspend reasons by ID
-*UserAPI* | [**UserControllerRegenerateJwtSalt**](docs/UserAPI.md#usercontrollerregeneratejwtsalt) | **Post** /api/v2/users/{userId}/actions/regenerate-jwt-salt | Regenerate user JWT salt. Also logs out all user sessions.
-*UserAPI* | [**UserControllerRegenerateUserApiKey**](docs/UserAPI.md#usercontrollerregenerateuserapikey) | **Post** /api/v2/users/{userId}/actions/regenerate-api-key | Regenerate user API key
-*UserAPI* | [**UserControllerRemoveDelegate**](docs/UserAPI.md#usercontrollerremovedelegate) | **Post** /api/v2/users/{userId}/actions/remove-delegate/{delegateId} | Remove a delegate from a user
-*UserAPI* | [**UserControllerSuspendUser**](docs/UserAPI.md#usercontrollersuspenduser) | **Post** /api/v2/users/{userId}/actions/suspend | Suspend a user
-*UserAPI* | [**UserControllerUnsuspendUser**](docs/UserAPI.md#usercontrollerunsuspenduser) | **Post** /api/v2/users/{userId}/actions/unsuspend | Unsuspend a user
-*UserAPI* | [**UserControllerUpdateUserEmail**](docs/UserAPI.md#usercontrollerupdateuseremail) | **Post** /api/v2/users/{userId}/actions/change-email | Change user email
-*UserAPI* | [**UserControllerUpdateUserMeta**](docs/UserAPI.md#usercontrollerupdateusermeta) | **Patch** /api/v2/users/{userId}/meta | Update user metadata
-*UserAPI* | [**UserControllerUpdateUserPassword**](docs/UserAPI.md#usercontrollerupdateuserpassword) | **Post** /api/v2/users/{userId}/actions/change-password | Change user password
-*UserAPI* | [**UserControllerUpdateUserPermissions**](docs/UserAPI.md#usercontrollerupdateuserpermissions) | **Post** /api/v2/users/{userId}/actions/change-resource-permissions | Update user resource permissions
+*UserAPI* | [**UpdateUserMeta**](docs/UserAPI.md#updateusermeta) | **Patch** /api/v2/users/{userId}/meta | Update user metadata
+*UserAPI* | [**UpdateUserPassword**](docs/UserAPI.md#updateuserpassword) | **Post** /api/v2/users/{userId}/actions/change-password | Change user password
+*UserAPI* | [**UpdateUserPermissions**](docs/UserAPI.md#updateuserpermissions) | **Post** /api/v2/users/{userId}/actions/change-resource-permissions | Update user resource permissions
 *VMAPI* | [**GetVM**](docs/VMAPI.md#getvm) | **Get** /api/v2/vms/{vmId} | Retrieves the VM information
 *VMAPI* | [**GetVMPowerStatus**](docs/VMAPI.md#getvmpowerstatus) | **Get** /api/v2/vms/{vmId}/power-status | Retrieves the power status of the VM
 *VMAPI* | [**GetVMRemoteConsoleInfo**](docs/VMAPI.md#getvmremoteconsoleinfo) | **Get** /api/v2/vms/{vmId}/remote-console-info | Get Remote Console information

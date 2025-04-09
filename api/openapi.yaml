@@ -24251,7 +24251,7 @@ paths:
       - User
   /api/v2/users/{userId}/config:
     get:
-      operationId: UserController_getUserConfiguration
+      operationId: getUserConfiguration
       parameters:
       - explode: false
         in: path
@@ -24341,7 +24341,7 @@ paths:
       - User
   /api/v2/users/{userId}/meta:
     patch:
-      operationId: UserController_updateUserMeta
+      operationId: updateUserMeta
       parameters:
       - explode: false
         in: path
@@ -24645,7 +24645,7 @@ paths:
       - User
   /api/v2/users/{userId}/parent-delegates:
     get:
-      operationId: UserController_getUserParentDelegates
+      operationId: getUserParentDelegates
       parameters:
       - explode: false
         in: path
@@ -24682,7 +24682,7 @@ paths:
       - User
   /api/v2/users/{userId}/child-delegates:
     get:
-      operationId: UserController_getUserChildDelegates
+      operationId: getUserChildDelegates
       parameters:
       - explode: false
         in: path
@@ -24719,7 +24719,7 @@ paths:
       - User
   /api/v2/users/{userId}/actions/add-delegate/{delegateId}:
     post:
-      operationId: UserController_addDelegate
+      operationId: addUserDelegate
       parameters:
       - description: ID of the user
         explode: false
@@ -24762,7 +24762,7 @@ paths:
       - User
   /api/v2/users/{userId}/actions/remove-delegate/{delegateId}:
     post:
-      operationId: UserController_removeDelegate
+      operationId: removeUserDelegate
       parameters:
       - description: ID of the user
         explode: false
@@ -24803,7 +24803,7 @@ paths:
       - User
   /api/v2/users/{userId}/actions/suspend:
     post:
-      operationId: UserController_suspendUser
+      operationId: suspendUser
       parameters:
       - explode: false
         in: path
@@ -24853,7 +24853,7 @@ paths:
       - User
   /api/v2/users/{userId}/actions/unsuspend:
     post:
-      operationId: UserController_unsuspendUser
+      operationId: unsuspendUser
       parameters:
       - explode: false
         in: path
@@ -24893,7 +24893,7 @@ paths:
       - User
   /api/v2/users/{userId}/suspend-reasons:
     get:
-      operationId: UserController_getUserSuspendReasons
+      operationId: getUserSuspendReasons
       parameters:
       - explode: false
         in: path
@@ -24923,7 +24923,7 @@ paths:
       - User
   /api/v2/users/{userId}/permissions:
     get:
-      operationId: UserController_getUserPermissions
+      operationId: getUserPermissions
       parameters:
       - explode: false
         in: path
@@ -24953,7 +24953,7 @@ paths:
       - User
   /api/v2/users/{userId}/actions/change-resource-permissions:
     post:
-      operationId: UserController_updateUserPermissions
+      operationId: updateUserPermissions
       parameters:
       - explode: false
         in: path
@@ -25005,7 +25005,7 @@ paths:
       - User
   /api/v2/users/{userId}/actions/change-password:
     post:
-      operationId: UserController_updateUserPassword
+      operationId: updateUserPassword
       parameters:
       - explode: false
         in: path
@@ -25057,7 +25057,7 @@ paths:
       - User
   /api/v2/users/{userId}/actions/change-email:
     post:
-      operationId: UserController_updateUserEmail
+      operationId: changeUserEmail
       parameters:
       - explode: false
         in: path
@@ -25107,7 +25107,7 @@ paths:
       - User
   /api/v2/users/{userId}/api-key:
     get:
-      operationId: UserController_getUserApiKey
+      operationId: getUserApiKey
       parameters:
       - explode: false
         in: path
@@ -25137,7 +25137,7 @@ paths:
       - User
   /api/v2/users/{userId}/actions/regenerate-api-key:
     post:
-      operationId: UserController_regenerateUserApiKey
+      operationId: regenerateUserApiKey
       parameters:
       - explode: false
         in: path
@@ -25179,7 +25179,7 @@ paths:
       - User
   /api/v2/users/{userId}/actions/regenerate-jwt-salt:
     post:
-      operationId: UserController_regenerateJwtSalt
+      operationId: regenerateUserJwtSalt
       parameters:
       - explode: false
         in: path
@@ -25221,7 +25221,7 @@ paths:
       - User
   /api/v2/users/{userId}/ssh-keys:
     get:
-      operationId: UserController_getUserSshKeys
+      operationId: getUserSshKeys
       parameters:
       - explode: false
         in: path
@@ -25250,7 +25250,7 @@ paths:
       tags:
       - User
     post:
-      operationId: UserController_addUserSshKey
+      operationId: addUserSshKey
       parameters:
       - explode: false
         in: path
@@ -25290,7 +25290,7 @@ paths:
       - User
   /api/v2/users/{userId}/ssh-keys/{keyId}:
     delete:
-      operationId: UserController_deleteUserSshKey
+      operationId: deleteUserSshKey
       parameters:
       - explode: false
         in: path
@@ -25322,7 +25322,7 @@ paths:
       tags:
       - User
     get:
-      operationId: UserController_getUserSshKey
+      operationId: getUserSshKey
       parameters:
       - explode: false
         in: path
@@ -25359,7 +25359,7 @@ paths:
       - User
   /api/v2/users/{userId}/actions/2fa-generate:
     post:
-      operationId: UserController_generateTwoFactorAuthenticationSecret
+      operationId: generateUser2FASecret
       parameters:
       - explode: false
         in: path
@@ -25391,7 +25391,7 @@ paths:
       - User
   /api/v2/users/{userId}/actions/2fa-enable:
     post:
-      operationId: UserController_enableTwoFactorAuthentication
+      operationId: enableUser2FA
       parameters:
       - explode: false
         in: path
@@ -25437,7 +25437,7 @@ paths:
       - User
   /api/v2/users/{userId}/actions/2fa-disable:
     post:
-      operationId: UserController_disableTwoFactorAuthentication
+      operationId: disableUser2FA
       parameters:
       - explode: false
         in: path
@@ -44017,7 +44017,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-09T11:56:00.892Z
+        createdTimestamp: 2025-04-09T15:35:20.502Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -44026,7 +44026,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-09T11:56:00.892Z
+        updatedTimestamp: 2025-04-09T15:35:20.502Z
         revision: "1"
       properties:
         siteId:
@@ -44043,12 +44043,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-09T11:56:00.892Z
+          example: 2025-04-09T15:35:20.502Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-09T11:56:00.892Z
+          example: 2025-04-09T15:35:20.502Z
           format: date-time
           type: string
         links:
@@ -44070,7 +44070,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-09T11:56:00.892Z
+        - createdTimestamp: 2025-04-09T15:35:20.502Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -44079,9 +44079,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-09T11:56:00.892Z
+          updatedTimestamp: 2025-04-09T15:35:20.502Z
           revision: "1"
-        - createdTimestamp: 2025-04-09T11:56:00.892Z
+        - createdTimestamp: 2025-04-09T15:35:20.502Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -44090,7 +44090,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-09T11:56:00.892Z
+          updatedTimestamp: 2025-04-09T15:35:20.502Z
           revision: "1"
         meta: ""
         links: ""
@@ -44705,7 +44705,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-09T11:56:00.894Z
+        createdTimestamp: 2025-04-09T15:35:20.504Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -44746,7 +44746,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-09T11:56:00.894Z
+        updatedTimestamp: 2025-04-09T15:35:20.504Z
         revision: "1"
         status: draft
       properties:
@@ -44774,12 +44774,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-09T11:56:00.894Z
+          example: 2025-04-09T15:35:20.504Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-09T11:56:00.894Z
+          example: 2025-04-09T15:35:20.504Z
           format: date-time
           type: string
         links:
@@ -44920,7 +44920,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-09T11:56:00.894Z
+          createdTimestamp: 2025-04-09T15:35:20.504Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -44961,7 +44961,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-09T11:56:00.894Z
+          updatedTimestamp: 2025-04-09T15:35:20.504Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -45071,7 +45071,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-09T11:56:00.894Z
+          createdTimestamp: 2025-04-09T15:35:20.504Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -45112,7 +45112,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-09T11:56:00.894Z
+          updatedTimestamp: 2025-04-09T15:35:20.504Z
           revision: "1"
           status: draft
         meta: ""
