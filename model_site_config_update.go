@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SiteConfigUpdate type satisfies the MappedNullable interface at compile time
@@ -22,21 +21,21 @@ var _ MappedNullable = &SiteConfigUpdate{}
 // SiteConfigUpdate struct for SiteConfigUpdate
 type SiteConfigUpdate struct {
 	// Location details
-	Location Location `json:"location"`
+	Location *PartialTypeClass `json:"location,omitempty"`
 	// Repository details
-	Repo Repo `json:"repo"`
+	Repo *Repo `json:"repo,omitempty"`
 	// List of DNS Servers
-	DNSServers []string `json:"DNSServers"`
+	DNSServers []string `json:"DNSServers,omitempty"`
 	// List of NTP Servers
-	NTPServers []string `json:"NTPServers"`
+	NTPServers []string `json:"NTPServers,omitempty"`
 	// Network device policies
-	NetworkDevicePolicy NetworkDevicePolicy `json:"networkDevicePolicy"`
+	NetworkDevicePolicy *PartialTypeClass `json:"networkDevicePolicy,omitempty"`
 	// Server policies
-	ServerPolicy ServerPolicy `json:"serverPolicy"`
+	ServerPolicy *ServerPolicyUpdateDto `json:"serverPolicy,omitempty"`
 	// Controller policies
-	ControllerPolicy ControllerPolicy `json:"controllerPolicy"`
+	ControllerPolicy *ControllerPolicy `json:"controllerPolicy,omitempty"`
 	// Infrastructure policies
-	InfrastructurePolicy InfrastructurePolicy `json:"infrastructurePolicy"`
+	InfrastructurePolicy *InfrastructurePolicy `json:"infrastructurePolicy,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,16 +45,8 @@ type _SiteConfigUpdate SiteConfigUpdate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSiteConfigUpdate(location Location, repo Repo, dNSServers []string, nTPServers []string, networkDevicePolicy NetworkDevicePolicy, serverPolicy ServerPolicy, controllerPolicy ControllerPolicy, infrastructurePolicy InfrastructurePolicy) *SiteConfigUpdate {
+func NewSiteConfigUpdate() *SiteConfigUpdate {
 	this := SiteConfigUpdate{}
-	this.Location = location
-	this.Repo = repo
-	this.DNSServers = dNSServers
-	this.NTPServers = nTPServers
-	this.NetworkDevicePolicy = networkDevicePolicy
-	this.ServerPolicy = serverPolicy
-	this.ControllerPolicy = controllerPolicy
-	this.InfrastructurePolicy = infrastructurePolicy
 	return &this
 }
 
@@ -67,196 +58,260 @@ func NewSiteConfigUpdateWithDefaults() *SiteConfigUpdate {
 	return &this
 }
 
-// GetLocation returns the Location field value
-func (o *SiteConfigUpdate) GetLocation() Location {
-	if o == nil {
-		var ret Location
+// GetLocation returns the Location field value if set, zero value otherwise.
+func (o *SiteConfigUpdate) GetLocation() PartialTypeClass {
+	if o == nil || IsNil(o.Location) {
+		var ret PartialTypeClass
 		return ret
 	}
-
-	return o.Location
+	return *o.Location
 }
 
-// GetLocationOk returns a tuple with the Location field value
+// GetLocationOk returns a tuple with the Location field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SiteConfigUpdate) GetLocationOk() (*Location, bool) {
-	if o == nil {
+func (o *SiteConfigUpdate) GetLocationOk() (*PartialTypeClass, bool) {
+	if o == nil || IsNil(o.Location) {
 		return nil, false
 	}
-	return &o.Location, true
+	return o.Location, true
 }
 
-// SetLocation sets field value
-func (o *SiteConfigUpdate) SetLocation(v Location) {
-	o.Location = v
+// HasLocation returns a boolean if a field has been set.
+func (o *SiteConfigUpdate) HasLocation() bool {
+	if o != nil && !IsNil(o.Location) {
+		return true
+	}
+
+	return false
 }
 
-// GetRepo returns the Repo field value
+// SetLocation gets a reference to the given PartialTypeClass and assigns it to the Location field.
+func (o *SiteConfigUpdate) SetLocation(v PartialTypeClass) {
+	o.Location = &v
+}
+
+// GetRepo returns the Repo field value if set, zero value otherwise.
 func (o *SiteConfigUpdate) GetRepo() Repo {
-	if o == nil {
+	if o == nil || IsNil(o.Repo) {
 		var ret Repo
 		return ret
 	}
-
-	return o.Repo
+	return *o.Repo
 }
 
-// GetRepoOk returns a tuple with the Repo field value
+// GetRepoOk returns a tuple with the Repo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SiteConfigUpdate) GetRepoOk() (*Repo, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Repo) {
 		return nil, false
 	}
-	return &o.Repo, true
+	return o.Repo, true
 }
 
-// SetRepo sets field value
+// HasRepo returns a boolean if a field has been set.
+func (o *SiteConfigUpdate) HasRepo() bool {
+	if o != nil && !IsNil(o.Repo) {
+		return true
+	}
+
+	return false
+}
+
+// SetRepo gets a reference to the given Repo and assigns it to the Repo field.
 func (o *SiteConfigUpdate) SetRepo(v Repo) {
-	o.Repo = v
+	o.Repo = &v
 }
 
-// GetDNSServers returns the DNSServers field value
+// GetDNSServers returns the DNSServers field value if set, zero value otherwise.
 func (o *SiteConfigUpdate) GetDNSServers() []string {
-	if o == nil {
+	if o == nil || IsNil(o.DNSServers) {
 		var ret []string
 		return ret
 	}
-
 	return o.DNSServers
 }
 
-// GetDNSServersOk returns a tuple with the DNSServers field value
+// GetDNSServersOk returns a tuple with the DNSServers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SiteConfigUpdate) GetDNSServersOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DNSServers) {
 		return nil, false
 	}
 	return o.DNSServers, true
 }
 
-// SetDNSServers sets field value
+// HasDNSServers returns a boolean if a field has been set.
+func (o *SiteConfigUpdate) HasDNSServers() bool {
+	if o != nil && !IsNil(o.DNSServers) {
+		return true
+	}
+
+	return false
+}
+
+// SetDNSServers gets a reference to the given []string and assigns it to the DNSServers field.
 func (o *SiteConfigUpdate) SetDNSServers(v []string) {
 	o.DNSServers = v
 }
 
-// GetNTPServers returns the NTPServers field value
+// GetNTPServers returns the NTPServers field value if set, zero value otherwise.
 func (o *SiteConfigUpdate) GetNTPServers() []string {
-	if o == nil {
+	if o == nil || IsNil(o.NTPServers) {
 		var ret []string
 		return ret
 	}
-
 	return o.NTPServers
 }
 
-// GetNTPServersOk returns a tuple with the NTPServers field value
+// GetNTPServersOk returns a tuple with the NTPServers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SiteConfigUpdate) GetNTPServersOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NTPServers) {
 		return nil, false
 	}
 	return o.NTPServers, true
 }
 
-// SetNTPServers sets field value
+// HasNTPServers returns a boolean if a field has been set.
+func (o *SiteConfigUpdate) HasNTPServers() bool {
+	if o != nil && !IsNil(o.NTPServers) {
+		return true
+	}
+
+	return false
+}
+
+// SetNTPServers gets a reference to the given []string and assigns it to the NTPServers field.
 func (o *SiteConfigUpdate) SetNTPServers(v []string) {
 	o.NTPServers = v
 }
 
-// GetNetworkDevicePolicy returns the NetworkDevicePolicy field value
-func (o *SiteConfigUpdate) GetNetworkDevicePolicy() NetworkDevicePolicy {
-	if o == nil {
-		var ret NetworkDevicePolicy
+// GetNetworkDevicePolicy returns the NetworkDevicePolicy field value if set, zero value otherwise.
+func (o *SiteConfigUpdate) GetNetworkDevicePolicy() PartialTypeClass {
+	if o == nil || IsNil(o.NetworkDevicePolicy) {
+		var ret PartialTypeClass
 		return ret
 	}
-
-	return o.NetworkDevicePolicy
+	return *o.NetworkDevicePolicy
 }
 
-// GetNetworkDevicePolicyOk returns a tuple with the NetworkDevicePolicy field value
+// GetNetworkDevicePolicyOk returns a tuple with the NetworkDevicePolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SiteConfigUpdate) GetNetworkDevicePolicyOk() (*NetworkDevicePolicy, bool) {
-	if o == nil {
+func (o *SiteConfigUpdate) GetNetworkDevicePolicyOk() (*PartialTypeClass, bool) {
+	if o == nil || IsNil(o.NetworkDevicePolicy) {
 		return nil, false
 	}
-	return &o.NetworkDevicePolicy, true
+	return o.NetworkDevicePolicy, true
 }
 
-// SetNetworkDevicePolicy sets field value
-func (o *SiteConfigUpdate) SetNetworkDevicePolicy(v NetworkDevicePolicy) {
-	o.NetworkDevicePolicy = v
+// HasNetworkDevicePolicy returns a boolean if a field has been set.
+func (o *SiteConfigUpdate) HasNetworkDevicePolicy() bool {
+	if o != nil && !IsNil(o.NetworkDevicePolicy) {
+		return true
+	}
+
+	return false
 }
 
-// GetServerPolicy returns the ServerPolicy field value
-func (o *SiteConfigUpdate) GetServerPolicy() ServerPolicy {
-	if o == nil {
-		var ret ServerPolicy
+// SetNetworkDevicePolicy gets a reference to the given PartialTypeClass and assigns it to the NetworkDevicePolicy field.
+func (o *SiteConfigUpdate) SetNetworkDevicePolicy(v PartialTypeClass) {
+	o.NetworkDevicePolicy = &v
+}
+
+// GetServerPolicy returns the ServerPolicy field value if set, zero value otherwise.
+func (o *SiteConfigUpdate) GetServerPolicy() ServerPolicyUpdateDto {
+	if o == nil || IsNil(o.ServerPolicy) {
+		var ret ServerPolicyUpdateDto
 		return ret
 	}
-
-	return o.ServerPolicy
+	return *o.ServerPolicy
 }
 
-// GetServerPolicyOk returns a tuple with the ServerPolicy field value
+// GetServerPolicyOk returns a tuple with the ServerPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SiteConfigUpdate) GetServerPolicyOk() (*ServerPolicy, bool) {
-	if o == nil {
+func (o *SiteConfigUpdate) GetServerPolicyOk() (*ServerPolicyUpdateDto, bool) {
+	if o == nil || IsNil(o.ServerPolicy) {
 		return nil, false
 	}
-	return &o.ServerPolicy, true
+	return o.ServerPolicy, true
 }
 
-// SetServerPolicy sets field value
-func (o *SiteConfigUpdate) SetServerPolicy(v ServerPolicy) {
-	o.ServerPolicy = v
+// HasServerPolicy returns a boolean if a field has been set.
+func (o *SiteConfigUpdate) HasServerPolicy() bool {
+	if o != nil && !IsNil(o.ServerPolicy) {
+		return true
+	}
+
+	return false
 }
 
-// GetControllerPolicy returns the ControllerPolicy field value
+// SetServerPolicy gets a reference to the given ServerPolicyUpdateDto and assigns it to the ServerPolicy field.
+func (o *SiteConfigUpdate) SetServerPolicy(v ServerPolicyUpdateDto) {
+	o.ServerPolicy = &v
+}
+
+// GetControllerPolicy returns the ControllerPolicy field value if set, zero value otherwise.
 func (o *SiteConfigUpdate) GetControllerPolicy() ControllerPolicy {
-	if o == nil {
+	if o == nil || IsNil(o.ControllerPolicy) {
 		var ret ControllerPolicy
 		return ret
 	}
-
-	return o.ControllerPolicy
+	return *o.ControllerPolicy
 }
 
-// GetControllerPolicyOk returns a tuple with the ControllerPolicy field value
+// GetControllerPolicyOk returns a tuple with the ControllerPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SiteConfigUpdate) GetControllerPolicyOk() (*ControllerPolicy, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ControllerPolicy) {
 		return nil, false
 	}
-	return &o.ControllerPolicy, true
+	return o.ControllerPolicy, true
 }
 
-// SetControllerPolicy sets field value
+// HasControllerPolicy returns a boolean if a field has been set.
+func (o *SiteConfigUpdate) HasControllerPolicy() bool {
+	if o != nil && !IsNil(o.ControllerPolicy) {
+		return true
+	}
+
+	return false
+}
+
+// SetControllerPolicy gets a reference to the given ControllerPolicy and assigns it to the ControllerPolicy field.
 func (o *SiteConfigUpdate) SetControllerPolicy(v ControllerPolicy) {
-	o.ControllerPolicy = v
+	o.ControllerPolicy = &v
 }
 
-// GetInfrastructurePolicy returns the InfrastructurePolicy field value
+// GetInfrastructurePolicy returns the InfrastructurePolicy field value if set, zero value otherwise.
 func (o *SiteConfigUpdate) GetInfrastructurePolicy() InfrastructurePolicy {
-	if o == nil {
+	if o == nil || IsNil(o.InfrastructurePolicy) {
 		var ret InfrastructurePolicy
 		return ret
 	}
-
-	return o.InfrastructurePolicy
+	return *o.InfrastructurePolicy
 }
 
-// GetInfrastructurePolicyOk returns a tuple with the InfrastructurePolicy field value
+// GetInfrastructurePolicyOk returns a tuple with the InfrastructurePolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SiteConfigUpdate) GetInfrastructurePolicyOk() (*InfrastructurePolicy, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InfrastructurePolicy) {
 		return nil, false
 	}
-	return &o.InfrastructurePolicy, true
+	return o.InfrastructurePolicy, true
 }
 
-// SetInfrastructurePolicy sets field value
+// HasInfrastructurePolicy returns a boolean if a field has been set.
+func (o *SiteConfigUpdate) HasInfrastructurePolicy() bool {
+	if o != nil && !IsNil(o.InfrastructurePolicy) {
+		return true
+	}
+
+	return false
+}
+
+// SetInfrastructurePolicy gets a reference to the given InfrastructurePolicy and assigns it to the InfrastructurePolicy field.
 func (o *SiteConfigUpdate) SetInfrastructurePolicy(v InfrastructurePolicy) {
-	o.InfrastructurePolicy = v
+	o.InfrastructurePolicy = &v
 }
 
 func (o SiteConfigUpdate) MarshalJSON() ([]byte, error) {
@@ -269,14 +324,30 @@ func (o SiteConfigUpdate) MarshalJSON() ([]byte, error) {
 
 func (o SiteConfigUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["location"] = o.Location
-	toSerialize["repo"] = o.Repo
-	toSerialize["DNSServers"] = o.DNSServers
-	toSerialize["NTPServers"] = o.NTPServers
-	toSerialize["networkDevicePolicy"] = o.NetworkDevicePolicy
-	toSerialize["serverPolicy"] = o.ServerPolicy
-	toSerialize["controllerPolicy"] = o.ControllerPolicy
-	toSerialize["infrastructurePolicy"] = o.InfrastructurePolicy
+	if !IsNil(o.Location) {
+		toSerialize["location"] = o.Location
+	}
+	if !IsNil(o.Repo) {
+		toSerialize["repo"] = o.Repo
+	}
+	if !IsNil(o.DNSServers) {
+		toSerialize["DNSServers"] = o.DNSServers
+	}
+	if !IsNil(o.NTPServers) {
+		toSerialize["NTPServers"] = o.NTPServers
+	}
+	if !IsNil(o.NetworkDevicePolicy) {
+		toSerialize["networkDevicePolicy"] = o.NetworkDevicePolicy
+	}
+	if !IsNil(o.ServerPolicy) {
+		toSerialize["serverPolicy"] = o.ServerPolicy
+	}
+	if !IsNil(o.ControllerPolicy) {
+		toSerialize["controllerPolicy"] = o.ControllerPolicy
+	}
+	if !IsNil(o.InfrastructurePolicy) {
+		toSerialize["infrastructurePolicy"] = o.InfrastructurePolicy
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -286,34 +357,6 @@ func (o SiteConfigUpdate) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *SiteConfigUpdate) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"location",
-		"repo",
-		"DNSServers",
-		"NTPServers",
-		"networkDevicePolicy",
-		"serverPolicy",
-		"controllerPolicy",
-		"infrastructurePolicy",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varSiteConfigUpdate := _SiteConfigUpdate{}
 
 	err = json.Unmarshal(data, &varSiteConfigUpdate)

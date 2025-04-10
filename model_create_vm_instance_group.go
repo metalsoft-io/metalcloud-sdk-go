@@ -27,7 +27,7 @@ type CreateVMInstanceGroup struct {
 	// Id of the VM Type.
 	TypeId float32 `json:"typeId"`
 	// Id of the template used by the VM Instance Group.
-	VolumeTemplateId *float32 `json:"volumeTemplateId,omitempty"`
+	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
 	// Tags for the VM Instance Group.
 	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -138,36 +138,36 @@ func (o *CreateVMInstanceGroup) SetTypeId(v float32) {
 	o.TypeId = v
 }
 
-// GetVolumeTemplateId returns the VolumeTemplateId field value if set, zero value otherwise.
-func (o *CreateVMInstanceGroup) GetVolumeTemplateId() float32 {
-	if o == nil || IsNil(o.VolumeTemplateId) {
+// GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
+func (o *CreateVMInstanceGroup) GetOsTemplateId() float32 {
+	if o == nil || IsNil(o.OsTemplateId) {
 		var ret float32
 		return ret
 	}
-	return *o.VolumeTemplateId
+	return *o.OsTemplateId
 }
 
-// GetVolumeTemplateIdOk returns a tuple with the VolumeTemplateId field value if set, nil otherwise
+// GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMInstanceGroup) GetVolumeTemplateIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.VolumeTemplateId) {
+func (o *CreateVMInstanceGroup) GetOsTemplateIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
-	return o.VolumeTemplateId, true
+	return o.OsTemplateId, true
 }
 
-// HasVolumeTemplateId returns a boolean if a field has been set.
-func (o *CreateVMInstanceGroup) HasVolumeTemplateId() bool {
-	if o != nil && !IsNil(o.VolumeTemplateId) {
+// HasOsTemplateId returns a boolean if a field has been set.
+func (o *CreateVMInstanceGroup) HasOsTemplateId() bool {
+	if o != nil && !IsNil(o.OsTemplateId) {
 		return true
 	}
 
 	return false
 }
 
-// SetVolumeTemplateId gets a reference to the given float32 and assigns it to the VolumeTemplateId field.
-func (o *CreateVMInstanceGroup) SetVolumeTemplateId(v float32) {
-	o.VolumeTemplateId = &v
+// SetOsTemplateId gets a reference to the given float32 and assigns it to the OsTemplateId field.
+func (o *CreateVMInstanceGroup) SetOsTemplateId(v float32) {
+	o.OsTemplateId = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -217,8 +217,8 @@ func (o CreateVMInstanceGroup) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["diskSizeGB"] = o.DiskSizeGB
 	toSerialize["typeId"] = o.TypeId
-	if !IsNil(o.VolumeTemplateId) {
-		toSerialize["volumeTemplateId"] = o.VolumeTemplateId
+	if !IsNil(o.OsTemplateId) {
+		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
@@ -270,7 +270,7 @@ func (o *CreateVMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "instanceCount")
 		delete(additionalProperties, "diskSizeGB")
 		delete(additionalProperties, "typeId")
-		delete(additionalProperties, "volumeTemplateId")
+		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}

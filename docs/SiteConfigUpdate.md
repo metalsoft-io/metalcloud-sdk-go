@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Location** | [**Location**](Location.md) | Location details | 
-**Repo** | [**Repo**](Repo.md) | Repository details | 
-**DNSServers** | **[]string** | List of DNS Servers | 
-**NTPServers** | **[]string** | List of NTP Servers | 
-**NetworkDevicePolicy** | [**NetworkDevicePolicy**](NetworkDevicePolicy.md) | Network device policies | 
-**ServerPolicy** | [**ServerPolicy**](ServerPolicy.md) | Server policies | 
-**ControllerPolicy** | [**ControllerPolicy**](ControllerPolicy.md) | Controller policies | 
-**InfrastructurePolicy** | [**InfrastructurePolicy**](InfrastructurePolicy.md) | Infrastructure policies | 
+**Location** | Pointer to [**PartialTypeClass**](PartialTypeClass.md) | Location details | [optional] 
+**Repo** | Pointer to [**Repo**](Repo.md) | Repository details | [optional] 
+**DNSServers** | Pointer to **[]string** | List of DNS Servers | [optional] 
+**NTPServers** | Pointer to **[]string** | List of NTP Servers | [optional] 
+**NetworkDevicePolicy** | Pointer to [**PartialTypeClass**](PartialTypeClass.md) | Network device policies | [optional] 
+**ServerPolicy** | Pointer to [**ServerPolicyUpdateDto**](ServerPolicyUpdateDto.md) | Server policies | [optional] 
+**ControllerPolicy** | Pointer to [**ControllerPolicy**](ControllerPolicy.md) | Controller policies | [optional] 
+**InfrastructurePolicy** | Pointer to [**InfrastructurePolicy**](InfrastructurePolicy.md) | Infrastructure policies | [optional] 
 
 ## Methods
 
 ### NewSiteConfigUpdate
 
-`func NewSiteConfigUpdate(location Location, repo Repo, dNSServers []string, nTPServers []string, networkDevicePolicy NetworkDevicePolicy, serverPolicy ServerPolicy, controllerPolicy ControllerPolicy, infrastructurePolicy InfrastructurePolicy, ) *SiteConfigUpdate`
+`func NewSiteConfigUpdate() *SiteConfigUpdate`
 
 NewSiteConfigUpdate instantiates a new SiteConfigUpdate object
 This constructor will assign default values to properties that have it defined,
@@ -34,23 +34,28 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLocation
 
-`func (o *SiteConfigUpdate) GetLocation() Location`
+`func (o *SiteConfigUpdate) GetLocation() PartialTypeClass`
 
 GetLocation returns the Location field if non-nil, zero value otherwise.
 
 ### GetLocationOk
 
-`func (o *SiteConfigUpdate) GetLocationOk() (*Location, bool)`
+`func (o *SiteConfigUpdate) GetLocationOk() (*PartialTypeClass, bool)`
 
 GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocation
 
-`func (o *SiteConfigUpdate) SetLocation(v Location)`
+`func (o *SiteConfigUpdate) SetLocation(v PartialTypeClass)`
 
 SetLocation sets Location field to given value.
 
+### HasLocation
+
+`func (o *SiteConfigUpdate) HasLocation() bool`
+
+HasLocation returns a boolean if a field has been set.
 
 ### GetRepo
 
@@ -71,6 +76,11 @@ and a boolean to check if the value has been set.
 
 SetRepo sets Repo field to given value.
 
+### HasRepo
+
+`func (o *SiteConfigUpdate) HasRepo() bool`
+
+HasRepo returns a boolean if a field has been set.
 
 ### GetDNSServers
 
@@ -91,6 +101,11 @@ and a boolean to check if the value has been set.
 
 SetDNSServers sets DNSServers field to given value.
 
+### HasDNSServers
+
+`func (o *SiteConfigUpdate) HasDNSServers() bool`
+
+HasDNSServers returns a boolean if a field has been set.
 
 ### GetNTPServers
 
@@ -111,46 +126,61 @@ and a boolean to check if the value has been set.
 
 SetNTPServers sets NTPServers field to given value.
 
+### HasNTPServers
+
+`func (o *SiteConfigUpdate) HasNTPServers() bool`
+
+HasNTPServers returns a boolean if a field has been set.
 
 ### GetNetworkDevicePolicy
 
-`func (o *SiteConfigUpdate) GetNetworkDevicePolicy() NetworkDevicePolicy`
+`func (o *SiteConfigUpdate) GetNetworkDevicePolicy() PartialTypeClass`
 
 GetNetworkDevicePolicy returns the NetworkDevicePolicy field if non-nil, zero value otherwise.
 
 ### GetNetworkDevicePolicyOk
 
-`func (o *SiteConfigUpdate) GetNetworkDevicePolicyOk() (*NetworkDevicePolicy, bool)`
+`func (o *SiteConfigUpdate) GetNetworkDevicePolicyOk() (*PartialTypeClass, bool)`
 
 GetNetworkDevicePolicyOk returns a tuple with the NetworkDevicePolicy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDevicePolicy
 
-`func (o *SiteConfigUpdate) SetNetworkDevicePolicy(v NetworkDevicePolicy)`
+`func (o *SiteConfigUpdate) SetNetworkDevicePolicy(v PartialTypeClass)`
 
 SetNetworkDevicePolicy sets NetworkDevicePolicy field to given value.
 
+### HasNetworkDevicePolicy
+
+`func (o *SiteConfigUpdate) HasNetworkDevicePolicy() bool`
+
+HasNetworkDevicePolicy returns a boolean if a field has been set.
 
 ### GetServerPolicy
 
-`func (o *SiteConfigUpdate) GetServerPolicy() ServerPolicy`
+`func (o *SiteConfigUpdate) GetServerPolicy() ServerPolicyUpdateDto`
 
 GetServerPolicy returns the ServerPolicy field if non-nil, zero value otherwise.
 
 ### GetServerPolicyOk
 
-`func (o *SiteConfigUpdate) GetServerPolicyOk() (*ServerPolicy, bool)`
+`func (o *SiteConfigUpdate) GetServerPolicyOk() (*ServerPolicyUpdateDto, bool)`
 
 GetServerPolicyOk returns a tuple with the ServerPolicy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerPolicy
 
-`func (o *SiteConfigUpdate) SetServerPolicy(v ServerPolicy)`
+`func (o *SiteConfigUpdate) SetServerPolicy(v ServerPolicyUpdateDto)`
 
 SetServerPolicy sets ServerPolicy field to given value.
 
+### HasServerPolicy
+
+`func (o *SiteConfigUpdate) HasServerPolicy() bool`
+
+HasServerPolicy returns a boolean if a field has been set.
 
 ### GetControllerPolicy
 
@@ -171,6 +201,11 @@ and a boolean to check if the value has been set.
 
 SetControllerPolicy sets ControllerPolicy field to given value.
 
+### HasControllerPolicy
+
+`func (o *SiteConfigUpdate) HasControllerPolicy() bool`
+
+HasControllerPolicy returns a boolean if a field has been set.
 
 ### GetInfrastructurePolicy
 
@@ -191,6 +226,11 @@ and a boolean to check if the value has been set.
 
 SetInfrastructurePolicy sets InfrastructurePolicy field to given value.
 
+### HasInfrastructurePolicy
+
+`func (o *SiteConfigUpdate) HasInfrastructurePolicy() bool`
+
+HasInfrastructurePolicy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

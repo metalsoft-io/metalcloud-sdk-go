@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | The Product Instance label. Will be automatically generated if not provided. | [optional] 
 **GroupId** | Pointer to **int32** |  | [optional] 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
-**TemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
+**OsTemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -104,30 +104,30 @@ SetServerTypeId sets ServerTypeId field to given value.
 
 HasServerTypeId returns a boolean if a field has been set.
 
-### GetTemplateId
+### GetOsTemplateId
 
-`func (o *ServerInstanceCreate) GetTemplateId() int32`
+`func (o *ServerInstanceCreate) GetOsTemplateId() int32`
 
-GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
-### GetTemplateIdOk
+### GetOsTemplateIdOk
 
-`func (o *ServerInstanceCreate) GetTemplateIdOk() (*int32, bool)`
+`func (o *ServerInstanceCreate) GetOsTemplateIdOk() (*int32, bool)`
 
-GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTemplateId
+### SetOsTemplateId
 
-`func (o *ServerInstanceCreate) SetTemplateId(v int32)`
+`func (o *ServerInstanceCreate) SetOsTemplateId(v int32)`
 
-SetTemplateId sets TemplateId field to given value.
+SetOsTemplateId sets OsTemplateId field to given value.
 
-### HasTemplateId
+### HasOsTemplateId
 
-`func (o *ServerInstanceCreate) HasTemplateId() bool`
+`func (o *ServerInstanceCreate) HasOsTemplateId() bool`
 
-HasTemplateId returns a boolean if a field has been set.
+HasOsTemplateId returns a boolean if a field has been set.
 
 ### GetTags
 

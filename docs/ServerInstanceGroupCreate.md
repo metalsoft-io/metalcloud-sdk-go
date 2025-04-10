@@ -7,11 +7,11 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | The Product Instance label. Will be automatically generated if not provided. | [optional] 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
-**InstanceCount** | Pointer to **int32** | The number of instances to be created on the InstanceArray. | [optional] [default to 1]
-**IpAllocateAuto** | Pointer to **int32** | Automatically allocate IP addresses to child Instance&#x60;s InstanceInterface elements. | [optional] [default to 1]
+**InstanceCount** | Pointer to **int32** | The number of instances to be created on the Instance Group. | [optional] [default to 1]
+**ServerTypeId** | Pointer to **int32** | The server type ID of the created instances. | [optional] 
+**IpAllocateAuto** | Pointer to **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [optional] [default to 1]
 **Ipv4SubnetCreateAuto** | Pointer to **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [optional] [default to 1]
-**VolumeTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the InstanceArray have local disks. | [optional] 
-**DriveArrayIdBoot** | Pointer to **int32** | Id of the bootable drive for the Server Instance Group. | [optional] 
+**OsTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the Instance Group have local disks. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Object containing custom variables and variable overrides. | [optional] 
 **ProcessorCount** | Pointer to **int32** | The CPU count on each instance. | [optional] [default to 1]
 **ProcessorCoreCount** | Pointer to **int32** | The minimum cores of a CPU. | [optional] [default to 1]
@@ -23,10 +23,9 @@ Name | Type | Description | Notes
 **VirtualInterfacesEnabled** | Pointer to **int32** | Enable virtual interfaces | [optional] [default to 0]
 **AdditionalWanIpv4Json** | Pointer to **map[string]interface{}** | Contains info about additional ips to be assigned to the WAN interfaces. | [optional] 
 **OverrideIpv4WanVlanId** | Pointer to **int32** | The ipv4 vlan that should override the default from the WAN Network for the primary ip. | [optional] 
-**NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the InstanceInterfaces associated with this InstanceArray. | [optional] 
+**NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group. | [optional] 
 **ResourcePoolId** | Pointer to **int32** | The resource pool assigned to this instance array | [optional] 
-**Meta** | Pointer to [**GenericMeta**](GenericMeta.md) |  | [optional] 
-**ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -147,6 +146,31 @@ SetInstanceCount sets InstanceCount field to given value.
 
 HasInstanceCount returns a boolean if a field has been set.
 
+### GetServerTypeId
+
+`func (o *ServerInstanceGroupCreate) GetServerTypeId() int32`
+
+GetServerTypeId returns the ServerTypeId field if non-nil, zero value otherwise.
+
+### GetServerTypeIdOk
+
+`func (o *ServerInstanceGroupCreate) GetServerTypeIdOk() (*int32, bool)`
+
+GetServerTypeIdOk returns a tuple with the ServerTypeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerTypeId
+
+`func (o *ServerInstanceGroupCreate) SetServerTypeId(v int32)`
+
+SetServerTypeId sets ServerTypeId field to given value.
+
+### HasServerTypeId
+
+`func (o *ServerInstanceGroupCreate) HasServerTypeId() bool`
+
+HasServerTypeId returns a boolean if a field has been set.
+
 ### GetIpAllocateAuto
 
 `func (o *ServerInstanceGroupCreate) GetIpAllocateAuto() int32`
@@ -197,55 +221,30 @@ SetIpv4SubnetCreateAuto sets Ipv4SubnetCreateAuto field to given value.
 
 HasIpv4SubnetCreateAuto returns a boolean if a field has been set.
 
-### GetVolumeTemplateId
+### GetOsTemplateId
 
-`func (o *ServerInstanceGroupCreate) GetVolumeTemplateId() int32`
+`func (o *ServerInstanceGroupCreate) GetOsTemplateId() int32`
 
-GetVolumeTemplateId returns the VolumeTemplateId field if non-nil, zero value otherwise.
+GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
-### GetVolumeTemplateIdOk
+### GetOsTemplateIdOk
 
-`func (o *ServerInstanceGroupCreate) GetVolumeTemplateIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroupCreate) GetOsTemplateIdOk() (*int32, bool)`
 
-GetVolumeTemplateIdOk returns a tuple with the VolumeTemplateId field if it's non-nil, zero value otherwise
+GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVolumeTemplateId
+### SetOsTemplateId
 
-`func (o *ServerInstanceGroupCreate) SetVolumeTemplateId(v int32)`
+`func (o *ServerInstanceGroupCreate) SetOsTemplateId(v int32)`
 
-SetVolumeTemplateId sets VolumeTemplateId field to given value.
+SetOsTemplateId sets OsTemplateId field to given value.
 
-### HasVolumeTemplateId
+### HasOsTemplateId
 
-`func (o *ServerInstanceGroupCreate) HasVolumeTemplateId() bool`
+`func (o *ServerInstanceGroupCreate) HasOsTemplateId() bool`
 
-HasVolumeTemplateId returns a boolean if a field has been set.
-
-### GetDriveArrayIdBoot
-
-`func (o *ServerInstanceGroupCreate) GetDriveArrayIdBoot() int32`
-
-GetDriveArrayIdBoot returns the DriveArrayIdBoot field if non-nil, zero value otherwise.
-
-### GetDriveArrayIdBootOk
-
-`func (o *ServerInstanceGroupCreate) GetDriveArrayIdBootOk() (*int32, bool)`
-
-GetDriveArrayIdBootOk returns a tuple with the DriveArrayIdBoot field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDriveArrayIdBoot
-
-`func (o *ServerInstanceGroupCreate) SetDriveArrayIdBoot(v int32)`
-
-SetDriveArrayIdBoot sets DriveArrayIdBoot field to given value.
-
-### HasDriveArrayIdBoot
-
-`func (o *ServerInstanceGroupCreate) HasDriveArrayIdBoot() bool`
-
-HasDriveArrayIdBoot returns a boolean if a field has been set.
+HasOsTemplateId returns a boolean if a field has been set.
 
 ### GetCustomVariables
 
@@ -572,55 +571,30 @@ SetResourcePoolId sets ResourcePoolId field to given value.
 
 HasResourcePoolId returns a boolean if a field has been set.
 
-### GetMeta
+### GetTags
 
-`func (o *ServerInstanceGroupCreate) GetMeta() GenericMeta`
+`func (o *ServerInstanceGroupCreate) GetTags() []string`
 
-GetMeta returns the Meta field if non-nil, zero value otherwise.
+GetTags returns the Tags field if non-nil, zero value otherwise.
 
-### GetMetaOk
+### GetTagsOk
 
-`func (o *ServerInstanceGroupCreate) GetMetaOk() (*GenericMeta, bool)`
+`func (o *ServerInstanceGroupCreate) GetTagsOk() (*[]string, bool)`
 
-GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMeta
+### SetTags
 
-`func (o *ServerInstanceGroupCreate) SetMeta(v GenericMeta)`
+`func (o *ServerInstanceGroupCreate) SetTags(v []string)`
 
-SetMeta sets Meta field to given value.
+SetTags sets Tags field to given value.
 
-### HasMeta
+### HasTags
 
-`func (o *ServerInstanceGroupCreate) HasMeta() bool`
+`func (o *ServerInstanceGroupCreate) HasTags() bool`
 
-HasMeta returns a boolean if a field has been set.
-
-### GetServerTypeId
-
-`func (o *ServerInstanceGroupCreate) GetServerTypeId() int32`
-
-GetServerTypeId returns the ServerTypeId field if non-nil, zero value otherwise.
-
-### GetServerTypeIdOk
-
-`func (o *ServerInstanceGroupCreate) GetServerTypeIdOk() (*int32, bool)`
-
-GetServerTypeIdOk returns a tuple with the ServerTypeId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetServerTypeId
-
-`func (o *ServerInstanceGroupCreate) SetServerTypeId(v int32)`
-
-SetServerTypeId sets ServerTypeId field to given value.
-
-### HasServerTypeId
-
-`func (o *ServerInstanceGroupCreate) HasServerTypeId() bool`
-
-HasServerTypeId returns a boolean if a field has been set.
+HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

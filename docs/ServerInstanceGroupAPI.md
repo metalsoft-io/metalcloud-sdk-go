@@ -16,7 +16,7 @@ Method | HTTP request | Description
 [**GetServerInstanceGroupInterfaces**](ServerInstanceGroupAPI.md#GetServerInstanceGroupInterfaces) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces | Get Server Instance Group Interfaces
 [**GetServerInstanceGroupNetworkConfiguration**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfiguration) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking | Get server instance group network configuration
 [**GetServerInstanceGroupNetworkConfigurationConnectionById**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfigurationConnectionById) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Get server instance group network configuration connection by id
-[**GetServerInstanceGroupNetworkConfigurationConnections**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfigurationConnections) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections | Get server instance group&#39;s network configuration connections
+[**GetServerInstanceGroupNetworkConfigurationConnections**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfigurationConnections) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections | Get server instance group&#39;s network connections
 [**GetServerInstanceGroupServerInstances**](ServerInstanceGroupAPI.md#GetServerInstanceGroupServerInstances) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/server-instances | List Server Instances for a Server Instance Group
 [**UpdateServerInstanceGroupConfig**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupConfig) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Updates Server Instance Group configuration
 [**UpdateServerInstanceGroupMeta**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupMeta) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/meta | Update an Server Instance Group meta information
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 ## CreateServerInstanceGroupNetworkConfigurationConnection
 
-> NetworkEndpointGroupLogicalNetworkDto CreateServerInstanceGroupNetworkConfigurationConnection(ctx, serverInstanceGroupId).CreateNetworkEndpointGroupLogicalNetwork(createNetworkEndpointGroupLogicalNetwork).Execute()
+> ServerInstanceGroupNetworkConnectionDto CreateServerInstanceGroupNetworkConfigurationConnection(ctx, serverInstanceGroupId).CreateServerInstanceGroupNetworkConnectionDto(createServerInstanceGroupNetworkConnectionDto).Execute()
 
 Create a network connection for a server instance group
 
@@ -114,16 +114,16 @@ import (
 
 func main() {
 	serverInstanceGroupId := int32(56) // int32 | 
-	createNetworkEndpointGroupLogicalNetwork := *openapiclient.NewCreateNetworkEndpointGroupLogicalNetwork("1", true, "l2") // CreateNetworkEndpointGroupLogicalNetwork | The network connection object to create
+	createServerInstanceGroupNetworkConnectionDto := *openapiclient.NewCreateServerInstanceGroupNetworkConnectionDto("1", true, "l2") // CreateServerInstanceGroupNetworkConnectionDto | The network connection object to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceGroupAPI.CreateServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId).CreateNetworkEndpointGroupLogicalNetwork(createNetworkEndpointGroupLogicalNetwork).Execute()
+	resp, r, err := apiClient.ServerInstanceGroupAPI.CreateServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId).CreateServerInstanceGroupNetworkConnectionDto(createServerInstanceGroupNetworkConnectionDto).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.CreateServerInstanceGroupNetworkConfigurationConnection``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateServerInstanceGroupNetworkConfigurationConnection`: NetworkEndpointGroupLogicalNetworkDto
+	// response from `CreateServerInstanceGroupNetworkConfigurationConnection`: ServerInstanceGroupNetworkConnectionDto
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.CreateServerInstanceGroupNetworkConfigurationConnection`: %v\n", resp)
 }
 ```
@@ -144,11 +144,11 @@ Other parameters are passed through a pointer to a apiCreateServerInstanceGroupN
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkEndpointGroupLogicalNetwork** | [**CreateNetworkEndpointGroupLogicalNetwork**](CreateNetworkEndpointGroupLogicalNetwork.md) | The network connection object to create | 
+ **createServerInstanceGroupNetworkConnectionDto** | [**CreateServerInstanceGroupNetworkConnectionDto**](CreateServerInstanceGroupNetworkConnectionDto.md) | The network connection object to create | 
 
 ### Return type
 
-[**NetworkEndpointGroupLogicalNetworkDto**](NetworkEndpointGroupLogicalNetworkDto.md)
+[**ServerInstanceGroupNetworkConnectionDto**](ServerInstanceGroupNetworkConnectionDto.md)
 
 ### Authorization
 
@@ -836,7 +836,7 @@ Name | Type | Description  | Notes
 
 ## GetServerInstanceGroupNetworkConfigurationConnectionById
 
-> NetworkEndpointGroupLogicalNetworkDto GetServerInstanceGroupNetworkConfigurationConnectionById(ctx, serverInstanceGroupId, connectionId).Execute()
+> ServerInstanceGroupNetworkConnectionDto GetServerInstanceGroupNetworkConfigurationConnectionById(ctx, serverInstanceGroupId, connectionId).Execute()
 
 Get server instance group network configuration connection by id
 
@@ -865,7 +865,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnectionById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetServerInstanceGroupNetworkConfigurationConnectionById`: NetworkEndpointGroupLogicalNetworkDto
+	// response from `GetServerInstanceGroupNetworkConfigurationConnectionById`: ServerInstanceGroupNetworkConnectionDto
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnectionById`: %v\n", resp)
 }
 ```
@@ -891,7 +891,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NetworkEndpointGroupLogicalNetworkDto**](NetworkEndpointGroupLogicalNetworkDto.md)
+[**ServerInstanceGroupNetworkConnectionDto**](ServerInstanceGroupNetworkConnectionDto.md)
 
 ### Authorization
 
@@ -909,11 +909,9 @@ Name | Type | Description  | Notes
 
 ## GetServerInstanceGroupNetworkConfigurationConnections
 
-> NetworkEndpointGroupLogicalNetworksList GetServerInstanceGroupNetworkConfigurationConnections(ctx, serverInstanceGroupId).Execute()
+> ServerInstanceGroupNetworkConnectionsList GetServerInstanceGroupNetworkConfigurationConnections(ctx, serverInstanceGroupId).Execute()
 
-Get server instance group's network configuration connections
-
-
+Get server instance group's network connections
 
 ### Example
 
@@ -937,7 +935,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnections``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetServerInstanceGroupNetworkConfigurationConnections`: NetworkEndpointGroupLogicalNetworksList
+	// response from `GetServerInstanceGroupNetworkConfigurationConnections`: ServerInstanceGroupNetworkConnectionsList
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnections`: %v\n", resp)
 }
 ```
@@ -961,7 +959,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NetworkEndpointGroupLogicalNetworksList**](NetworkEndpointGroupLogicalNetworksList.md)
+[**ServerInstanceGroupNetworkConnectionsList**](ServerInstanceGroupNetworkConnectionsList.md)
 
 ### Authorization
 
@@ -1217,7 +1215,7 @@ Name | Type | Description  | Notes
 
 ## UpdateServerInstanceGroupNetworkConfigurationConnection
 
-> NetworkEndpointGroupLogicalNetworkDto UpdateServerInstanceGroupNetworkConfigurationConnection(ctx, serverInstanceGroupId, connectionId).UpdateNetworkEndpointGroupLogicalNetworkDto(updateNetworkEndpointGroupLogicalNetworkDto).Execute()
+> ServerInstanceGroupNetworkConnectionDto UpdateServerInstanceGroupNetworkConfigurationConnection(ctx, serverInstanceGroupId, connectionId).UpdateNetworkEndpointGroupLogicalNetworkDto(updateNetworkEndpointGroupLogicalNetworkDto).Execute()
 
 Update a network connection for a server instance group
 
@@ -1245,7 +1243,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.UpdateServerInstanceGroupNetworkConfigurationConnection``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateServerInstanceGroupNetworkConfigurationConnection`: NetworkEndpointGroupLogicalNetworkDto
+	// response from `UpdateServerInstanceGroupNetworkConfigurationConnection`: ServerInstanceGroupNetworkConnectionDto
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.UpdateServerInstanceGroupNetworkConfigurationConnection`: %v\n", resp)
 }
 ```
@@ -1272,7 +1270,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NetworkEndpointGroupLogicalNetworkDto**](NetworkEndpointGroupLogicalNetworkDto.md)
+[**ServerInstanceGroupNetworkConnectionDto**](ServerInstanceGroupNetworkConnectionDto.md)
 
 ### Authorization
 

@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## AddLogicalNetworksToNetworkEndpointGroup
 
-> CreateNetworkEndpointGroupLogicalNetwork AddLogicalNetworksToNetworkEndpointGroup(ctx, networkEndpointGroupId).CreateNetworkEndpointGroupLogicalNetwork(createNetworkEndpointGroupLogicalNetwork).Execute()
+> AddLogicalNetworksToNetworkEndpointGroup(ctx, networkEndpointGroupId).CreateNetworkEndpointGroupLogicalNetwork(createNetworkEndpointGroupLogicalNetwork).Execute()
 
 Add a list of logical networks to a network endpoint group
 
@@ -41,13 +41,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkEndpointGroupAPI.AddLogicalNetworksToNetworkEndpointGroup(context.Background(), networkEndpointGroupId).CreateNetworkEndpointGroupLogicalNetwork(createNetworkEndpointGroupLogicalNetwork).Execute()
+	r, err := apiClient.NetworkEndpointGroupAPI.AddLogicalNetworksToNetworkEndpointGroup(context.Background(), networkEndpointGroupId).CreateNetworkEndpointGroupLogicalNetwork(createNetworkEndpointGroupLogicalNetwork).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkEndpointGroupAPI.AddLogicalNetworksToNetworkEndpointGroup``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AddLogicalNetworksToNetworkEndpointGroup`: CreateNetworkEndpointGroupLogicalNetwork
-	fmt.Fprintf(os.Stdout, "Response from `NetworkEndpointGroupAPI.AddLogicalNetworksToNetworkEndpointGroup`: %v\n", resp)
 }
 ```
 
@@ -71,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateNetworkEndpointGroupLogicalNetwork**](CreateNetworkEndpointGroupLogicalNetwork.md)
+ (empty response body)
 
 ### Authorization
 
@@ -80,7 +78,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

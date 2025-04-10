@@ -42,23 +42,18 @@ type ServerInstanceGroup struct {
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	InfrastructureId int32 `json:"infrastructureId"`
 	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`
-	// The number of instances to be created on the InstanceArray.
+	// The number of instances to be created on the Instance Group.
 	InstanceCount int32 `json:"instanceCount"`
-	// Automatically allocate IP addresses to child Instance`s InstanceInterface elements.
+	// The server type ID of the created instances.
+	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
+	// Automatically allocate IP addresses to child Instance`s Instance Interface elements.
 	IpAllocateAuto int32 `json:"ipAllocateAuto"`
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
 	Ipv4SubnetCreateAuto int32 `json:"ipv4SubnetCreateAuto"`
-	FirewallProfileId *int32 `json:"firewallProfileId,omitempty"`
-	FirewallRulesSetId *int32 `json:"firewallRulesSetId,omitempty"`
-	FirewallManaged int32 `json:"firewallManaged"`
 	// Array of firmware policy ids containing associated firmware policies.
 	FirmwarePolicyIds []float32 `json:"firmwarePolicyIds,omitempty"`
-	// The volume template ID (or name) to use if the servers in the InstanceArray have local disks.
-	VolumeTemplateId *int32 `json:"volumeTemplateId,omitempty"`
-	// Id of the bootable drive for the Server Instance Group.
-	DriveArrayIdBoot *int32 `json:"driveArrayIdBoot,omitempty"`
-	// Instance Array Boot Method
-	InstanceArrayBootMethod string `json:"instanceArrayBootMethod"`
+	// The volume template ID (or name) to use if the servers in the Instance Group have local disks.
+	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
 	// Object containing custom variables and variable overrides.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// The CPU count on each instance.
@@ -83,7 +78,7 @@ type ServerInstanceGroup struct {
 	NetworkProfileSnapshotId *int32 `json:"networkProfileSnapshotId,omitempty"`
 	// The ipv4 vlan that should override the default from the WAN Network for the primary ip.
 	OverrideIpv4WanVlanId *int32 `json:"overrideIpv4WanVlanId,omitempty"`
-	// ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the InstanceInterfaces associated with this InstanceArray.
+	// ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group.
 	NetworkEquipmentForceSubnetPoolIpv4WanId *int32 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
 	// Current status of the Server Instance Group.
 	ServiceStatus string `json:"serviceStatus"`
@@ -95,9 +90,7 @@ type ServerInstanceGroup struct {
 	IsVmGroup int32 `json:"isVmGroup"`
 	// Id of the VM Instance Group this Server Instance Group belongs to.
 	VmInstanceGroupId *int32 `json:"vmInstanceGroupId,omitempty"`
-	// The group's default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied.
-	DefaultServerProfileID *int32 `json:"defaultServerProfileID,omitempty"`
-	Meta *GenericMeta `json:"meta,omitempty"`
+	Meta GenericMeta `json:"meta"`
 	Config *ServerInstanceGroupConfiguration `json:"config,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
@@ -110,7 +103,7 @@ type _ServerInstanceGroup ServerInstanceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroup(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32) *ServerInstanceGroup {
+func NewServerInstanceGroup(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, meta GenericMeta) *ServerInstanceGroup {
 	this := ServerInstanceGroup{}
 	this.Id = id
 	this.Revision = revision
@@ -121,8 +114,6 @@ func NewServerInstanceGroup(id int32, revision int32, label string, createdTimes
 	this.InstanceCount = instanceCount
 	this.IpAllocateAuto = ipAllocateAuto
 	this.Ipv4SubnetCreateAuto = ipv4SubnetCreateAuto
-	this.FirewallManaged = firewallManaged
-	this.InstanceArrayBootMethod = instanceArrayBootMethod
 	this.ProcessorCount = processorCount
 	this.ProcessorCoreCount = processorCoreCount
 	this.ProcessorCoreMhz = processorCoreMhz
@@ -134,6 +125,7 @@ func NewServerInstanceGroup(id int32, revision int32, label string, createdTimes
 	this.VirtualInterfacesEnabled = virtualInterfacesEnabled
 	this.ServiceStatus = serviceStatus
 	this.IsVmGroup = isVmGroup
+	this.Meta = meta
 	return &this
 }
 
@@ -525,6 +517,38 @@ func (o *ServerInstanceGroup) SetInstanceCount(v int32) {
 	o.InstanceCount = v
 }
 
+// GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
+func (o *ServerInstanceGroup) GetServerTypeId() int32 {
+	if o == nil || IsNil(o.ServerTypeId) {
+		var ret int32
+		return ret
+	}
+	return *o.ServerTypeId
+}
+
+// GetServerTypeIdOk returns a tuple with the ServerTypeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroup) GetServerTypeIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.ServerTypeId) {
+		return nil, false
+	}
+	return o.ServerTypeId, true
+}
+
+// HasServerTypeId returns a boolean if a field has been set.
+func (o *ServerInstanceGroup) HasServerTypeId() bool {
+	if o != nil && !IsNil(o.ServerTypeId) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerTypeId gets a reference to the given int32 and assigns it to the ServerTypeId field.
+func (o *ServerInstanceGroup) SetServerTypeId(v int32) {
+	o.ServerTypeId = &v
+}
+
 // GetIpAllocateAuto returns the IpAllocateAuto field value
 func (o *ServerInstanceGroup) GetIpAllocateAuto() int32 {
 	if o == nil {
@@ -573,94 +597,6 @@ func (o *ServerInstanceGroup) SetIpv4SubnetCreateAuto(v int32) {
 	o.Ipv4SubnetCreateAuto = v
 }
 
-// GetFirewallProfileId returns the FirewallProfileId field value if set, zero value otherwise.
-func (o *ServerInstanceGroup) GetFirewallProfileId() int32 {
-	if o == nil || IsNil(o.FirewallProfileId) {
-		var ret int32
-		return ret
-	}
-	return *o.FirewallProfileId
-}
-
-// GetFirewallProfileIdOk returns a tuple with the FirewallProfileId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetFirewallProfileIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.FirewallProfileId) {
-		return nil, false
-	}
-	return o.FirewallProfileId, true
-}
-
-// HasFirewallProfileId returns a boolean if a field has been set.
-func (o *ServerInstanceGroup) HasFirewallProfileId() bool {
-	if o != nil && !IsNil(o.FirewallProfileId) {
-		return true
-	}
-
-	return false
-}
-
-// SetFirewallProfileId gets a reference to the given int32 and assigns it to the FirewallProfileId field.
-func (o *ServerInstanceGroup) SetFirewallProfileId(v int32) {
-	o.FirewallProfileId = &v
-}
-
-// GetFirewallRulesSetId returns the FirewallRulesSetId field value if set, zero value otherwise.
-func (o *ServerInstanceGroup) GetFirewallRulesSetId() int32 {
-	if o == nil || IsNil(o.FirewallRulesSetId) {
-		var ret int32
-		return ret
-	}
-	return *o.FirewallRulesSetId
-}
-
-// GetFirewallRulesSetIdOk returns a tuple with the FirewallRulesSetId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetFirewallRulesSetIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.FirewallRulesSetId) {
-		return nil, false
-	}
-	return o.FirewallRulesSetId, true
-}
-
-// HasFirewallRulesSetId returns a boolean if a field has been set.
-func (o *ServerInstanceGroup) HasFirewallRulesSetId() bool {
-	if o != nil && !IsNil(o.FirewallRulesSetId) {
-		return true
-	}
-
-	return false
-}
-
-// SetFirewallRulesSetId gets a reference to the given int32 and assigns it to the FirewallRulesSetId field.
-func (o *ServerInstanceGroup) SetFirewallRulesSetId(v int32) {
-	o.FirewallRulesSetId = &v
-}
-
-// GetFirewallManaged returns the FirewallManaged field value
-func (o *ServerInstanceGroup) GetFirewallManaged() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.FirewallManaged
-}
-
-// GetFirewallManagedOk returns a tuple with the FirewallManaged field value
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetFirewallManagedOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FirewallManaged, true
-}
-
-// SetFirewallManaged sets field value
-func (o *ServerInstanceGroup) SetFirewallManaged(v int32) {
-	o.FirewallManaged = v
-}
-
 // GetFirmwarePolicyIds returns the FirmwarePolicyIds field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ServerInstanceGroup) GetFirmwarePolicyIds() []float32 {
 	if o == nil {
@@ -694,92 +630,36 @@ func (o *ServerInstanceGroup) SetFirmwarePolicyIds(v []float32) {
 	o.FirmwarePolicyIds = v
 }
 
-// GetVolumeTemplateId returns the VolumeTemplateId field value if set, zero value otherwise.
-func (o *ServerInstanceGroup) GetVolumeTemplateId() int32 {
-	if o == nil || IsNil(o.VolumeTemplateId) {
+// GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
+func (o *ServerInstanceGroup) GetOsTemplateId() int32 {
+	if o == nil || IsNil(o.OsTemplateId) {
 		var ret int32
 		return ret
 	}
-	return *o.VolumeTemplateId
+	return *o.OsTemplateId
 }
 
-// GetVolumeTemplateIdOk returns a tuple with the VolumeTemplateId field value if set, nil otherwise
+// GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetVolumeTemplateIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.VolumeTemplateId) {
+func (o *ServerInstanceGroup) GetOsTemplateIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
-	return o.VolumeTemplateId, true
+	return o.OsTemplateId, true
 }
 
-// HasVolumeTemplateId returns a boolean if a field has been set.
-func (o *ServerInstanceGroup) HasVolumeTemplateId() bool {
-	if o != nil && !IsNil(o.VolumeTemplateId) {
+// HasOsTemplateId returns a boolean if a field has been set.
+func (o *ServerInstanceGroup) HasOsTemplateId() bool {
+	if o != nil && !IsNil(o.OsTemplateId) {
 		return true
 	}
 
 	return false
 }
 
-// SetVolumeTemplateId gets a reference to the given int32 and assigns it to the VolumeTemplateId field.
-func (o *ServerInstanceGroup) SetVolumeTemplateId(v int32) {
-	o.VolumeTemplateId = &v
-}
-
-// GetDriveArrayIdBoot returns the DriveArrayIdBoot field value if set, zero value otherwise.
-func (o *ServerInstanceGroup) GetDriveArrayIdBoot() int32 {
-	if o == nil || IsNil(o.DriveArrayIdBoot) {
-		var ret int32
-		return ret
-	}
-	return *o.DriveArrayIdBoot
-}
-
-// GetDriveArrayIdBootOk returns a tuple with the DriveArrayIdBoot field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetDriveArrayIdBootOk() (*int32, bool) {
-	if o == nil || IsNil(o.DriveArrayIdBoot) {
-		return nil, false
-	}
-	return o.DriveArrayIdBoot, true
-}
-
-// HasDriveArrayIdBoot returns a boolean if a field has been set.
-func (o *ServerInstanceGroup) HasDriveArrayIdBoot() bool {
-	if o != nil && !IsNil(o.DriveArrayIdBoot) {
-		return true
-	}
-
-	return false
-}
-
-// SetDriveArrayIdBoot gets a reference to the given int32 and assigns it to the DriveArrayIdBoot field.
-func (o *ServerInstanceGroup) SetDriveArrayIdBoot(v int32) {
-	o.DriveArrayIdBoot = &v
-}
-
-// GetInstanceArrayBootMethod returns the InstanceArrayBootMethod field value
-func (o *ServerInstanceGroup) GetInstanceArrayBootMethod() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.InstanceArrayBootMethod
-}
-
-// GetInstanceArrayBootMethodOk returns a tuple with the InstanceArrayBootMethod field value
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetInstanceArrayBootMethodOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.InstanceArrayBootMethod, true
-}
-
-// SetInstanceArrayBootMethod sets field value
-func (o *ServerInstanceGroup) SetInstanceArrayBootMethod(v string) {
-	o.InstanceArrayBootMethod = v
+// SetOsTemplateId gets a reference to the given int32 and assigns it to the OsTemplateId field.
+func (o *ServerInstanceGroup) SetOsTemplateId(v int32) {
+	o.OsTemplateId = &v
 }
 
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
@@ -1318,68 +1198,28 @@ func (o *ServerInstanceGroup) SetVmInstanceGroupId(v int32) {
 	o.VmInstanceGroupId = &v
 }
 
-// GetDefaultServerProfileID returns the DefaultServerProfileID field value if set, zero value otherwise.
-func (o *ServerInstanceGroup) GetDefaultServerProfileID() int32 {
-	if o == nil || IsNil(o.DefaultServerProfileID) {
-		var ret int32
-		return ret
-	}
-	return *o.DefaultServerProfileID
-}
-
-// GetDefaultServerProfileIDOk returns a tuple with the DefaultServerProfileID field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetDefaultServerProfileIDOk() (*int32, bool) {
-	if o == nil || IsNil(o.DefaultServerProfileID) {
-		return nil, false
-	}
-	return o.DefaultServerProfileID, true
-}
-
-// HasDefaultServerProfileID returns a boolean if a field has been set.
-func (o *ServerInstanceGroup) HasDefaultServerProfileID() bool {
-	if o != nil && !IsNil(o.DefaultServerProfileID) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultServerProfileID gets a reference to the given int32 and assigns it to the DefaultServerProfileID field.
-func (o *ServerInstanceGroup) SetDefaultServerProfileID(v int32) {
-	o.DefaultServerProfileID = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
+// GetMeta returns the Meta field value
 func (o *ServerInstanceGroup) GetMeta() GenericMeta {
-	if o == nil || IsNil(o.Meta) {
+	if o == nil {
 		var ret GenericMeta
 		return ret
 	}
-	return *o.Meta
+
+	return o.Meta
 }
 
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// GetMetaOk returns a tuple with the Meta field value
 // and a boolean to check if the value has been set.
 func (o *ServerInstanceGroup) GetMetaOk() (*GenericMeta, bool) {
-	if o == nil || IsNil(o.Meta) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Meta, true
+	return &o.Meta, true
 }
 
-// HasMeta returns a boolean if a field has been set.
-func (o *ServerInstanceGroup) HasMeta() bool {
-	if o != nil && !IsNil(o.Meta) {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given GenericMeta and assigns it to the Meta field.
+// SetMeta sets field value
 func (o *ServerInstanceGroup) SetMeta(v GenericMeta) {
-	o.Meta = &v
+	o.Meta = v
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
@@ -1481,25 +1321,17 @@ func (o ServerInstanceGroup) ToMap() (map[string]interface{}, error) {
 		toSerialize["extensionInstanceId"] = o.ExtensionInstanceId
 	}
 	toSerialize["instanceCount"] = o.InstanceCount
+	if !IsNil(o.ServerTypeId) {
+		toSerialize["serverTypeId"] = o.ServerTypeId
+	}
 	toSerialize["ipAllocateAuto"] = o.IpAllocateAuto
 	toSerialize["ipv4SubnetCreateAuto"] = o.Ipv4SubnetCreateAuto
-	if !IsNil(o.FirewallProfileId) {
-		toSerialize["firewallProfileId"] = o.FirewallProfileId
-	}
-	if !IsNil(o.FirewallRulesSetId) {
-		toSerialize["firewallRulesSetId"] = o.FirewallRulesSetId
-	}
-	toSerialize["firewallManaged"] = o.FirewallManaged
 	if o.FirmwarePolicyIds != nil {
 		toSerialize["firmwarePolicyIds"] = o.FirmwarePolicyIds
 	}
-	if !IsNil(o.VolumeTemplateId) {
-		toSerialize["volumeTemplateId"] = o.VolumeTemplateId
+	if !IsNil(o.OsTemplateId) {
+		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
-	if !IsNil(o.DriveArrayIdBoot) {
-		toSerialize["driveArrayIdBoot"] = o.DriveArrayIdBoot
-	}
-	toSerialize["instanceArrayBootMethod"] = o.InstanceArrayBootMethod
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
 	}
@@ -1539,12 +1371,7 @@ func (o ServerInstanceGroup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VmInstanceGroupId) {
 		toSerialize["vmInstanceGroupId"] = o.VmInstanceGroupId
 	}
-	if !IsNil(o.DefaultServerProfileID) {
-		toSerialize["defaultServerProfileID"] = o.DefaultServerProfileID
-	}
-	if !IsNil(o.Meta) {
-		toSerialize["meta"] = o.Meta
-	}
+	toSerialize["meta"] = o.Meta
 	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
 	}
@@ -1573,8 +1400,6 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		"instanceCount",
 		"ipAllocateAuto",
 		"ipv4SubnetCreateAuto",
-		"firewallManaged",
-		"instanceArrayBootMethod",
 		"processorCount",
 		"processorCoreCount",
 		"processorCoreMhz",
@@ -1584,6 +1409,7 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		"virtualInterfacesEnabled",
 		"serviceStatus",
 		"isVmGroup",
+		"meta",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -1626,15 +1452,11 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "instanceCount")
+		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "ipAllocateAuto")
 		delete(additionalProperties, "ipv4SubnetCreateAuto")
-		delete(additionalProperties, "firewallProfileId")
-		delete(additionalProperties, "firewallRulesSetId")
-		delete(additionalProperties, "firewallManaged")
 		delete(additionalProperties, "firmwarePolicyIds")
-		delete(additionalProperties, "volumeTemplateId")
-		delete(additionalProperties, "driveArrayIdBoot")
-		delete(additionalProperties, "instanceArrayBootMethod")
+		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "processorCount")
 		delete(additionalProperties, "processorCoreCount")
@@ -1654,7 +1476,6 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkEndpointGroupId")
 		delete(additionalProperties, "isVmGroup")
 		delete(additionalProperties, "vmInstanceGroupId")
-		delete(additionalProperties, "defaultServerProfileID")
 		delete(additionalProperties, "meta")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "links")

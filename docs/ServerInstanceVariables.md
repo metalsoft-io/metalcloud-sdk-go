@@ -15,10 +15,9 @@ Name | Type | Description | Notes
 **DnsSubdomainPermanentId** | Pointer to **int32** | Id of the permanent DNS subdomain for the Product Instance | [optional] 
 **InfrastructureId** | **int32** |  | 
 **GroupId** | **int32** |  | 
-**DriveIdBootable** | Pointer to **int32** |  | [optional] 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
 **ServerId** | Pointer to **int32** | The ID of the server assigned to the instance. | [optional] 
-**TemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
+**OsTemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
 **InstanceWanMlagId** | Pointer to **int32** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
 **PreferredServerIds** | Pointer to **[]float32** |  | [optional] 
@@ -26,8 +25,6 @@ Name | Type | Description | Notes
 **ServiceStatus** | **string** | Current status of the server instance. | 
 **IsVmInstance** | **int32** | Flag to indicate if this is a VM instance | 
 **VmInstanceId** | Pointer to **int32** | The id of the linked VM instance | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**OperatingSystemInfo** | Pointer to **map[string]interface{}** | Operating system information of the Instance. | [optional] 
 **ClusterCustomInfo** | Pointer to [**ServerInstanceClusterCustomInfo**](ServerInstanceClusterCustomInfo.md) |  | [optional] 
 **OsInstallError** | Pointer to **string** | Last error message during OS install. | [optional] 
 **OsInstallImageUrl** | Pointer to **string** | URL where the OS image is available. | [optional] 
@@ -299,31 +296,6 @@ and a boolean to check if the value has been set.
 SetGroupId sets GroupId field to given value.
 
 
-### GetDriveIdBootable
-
-`func (o *ServerInstanceVariables) GetDriveIdBootable() int32`
-
-GetDriveIdBootable returns the DriveIdBootable field if non-nil, zero value otherwise.
-
-### GetDriveIdBootableOk
-
-`func (o *ServerInstanceVariables) GetDriveIdBootableOk() (*int32, bool)`
-
-GetDriveIdBootableOk returns a tuple with the DriveIdBootable field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDriveIdBootable
-
-`func (o *ServerInstanceVariables) SetDriveIdBootable(v int32)`
-
-SetDriveIdBootable sets DriveIdBootable field to given value.
-
-### HasDriveIdBootable
-
-`func (o *ServerInstanceVariables) HasDriveIdBootable() bool`
-
-HasDriveIdBootable returns a boolean if a field has been set.
-
 ### GetServerTypeId
 
 `func (o *ServerInstanceVariables) GetServerTypeId() int32`
@@ -374,30 +346,30 @@ SetServerId sets ServerId field to given value.
 
 HasServerId returns a boolean if a field has been set.
 
-### GetTemplateId
+### GetOsTemplateId
 
-`func (o *ServerInstanceVariables) GetTemplateId() int32`
+`func (o *ServerInstanceVariables) GetOsTemplateId() int32`
 
-GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
-### GetTemplateIdOk
+### GetOsTemplateIdOk
 
-`func (o *ServerInstanceVariables) GetTemplateIdOk() (*int32, bool)`
+`func (o *ServerInstanceVariables) GetOsTemplateIdOk() (*int32, bool)`
 
-GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTemplateId
+### SetOsTemplateId
 
-`func (o *ServerInstanceVariables) SetTemplateId(v int32)`
+`func (o *ServerInstanceVariables) SetOsTemplateId(v int32)`
 
-SetTemplateId sets TemplateId field to given value.
+SetOsTemplateId sets OsTemplateId field to given value.
 
-### HasTemplateId
+### HasOsTemplateId
 
-`func (o *ServerInstanceVariables) HasTemplateId() bool`
+`func (o *ServerInstanceVariables) HasOsTemplateId() bool`
 
-HasTemplateId returns a boolean if a field has been set.
+HasOsTemplateId returns a boolean if a field has been set.
 
 ### GetInstanceWanMlagId
 
@@ -563,56 +535,6 @@ SetVmInstanceId sets VmInstanceId field to given value.
 `func (o *ServerInstanceVariables) HasVmInstanceId() bool`
 
 HasVmInstanceId returns a boolean if a field has been set.
-
-### GetTags
-
-`func (o *ServerInstanceVariables) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *ServerInstanceVariables) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *ServerInstanceVariables) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *ServerInstanceVariables) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
-
-### GetOperatingSystemInfo
-
-`func (o *ServerInstanceVariables) GetOperatingSystemInfo() map[string]interface{}`
-
-GetOperatingSystemInfo returns the OperatingSystemInfo field if non-nil, zero value otherwise.
-
-### GetOperatingSystemInfoOk
-
-`func (o *ServerInstanceVariables) GetOperatingSystemInfoOk() (*map[string]interface{}, bool)`
-
-GetOperatingSystemInfoOk returns a tuple with the OperatingSystemInfo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOperatingSystemInfo
-
-`func (o *ServerInstanceVariables) SetOperatingSystemInfo(v map[string]interface{})`
-
-SetOperatingSystemInfo sets OperatingSystemInfo field to given value.
-
-### HasOperatingSystemInfo
-
-`func (o *ServerInstanceVariables) HasOperatingSystemInfo() bool`
-
-HasOperatingSystemInfo returns a boolean if a field has been set.
 
 ### GetClusterCustomInfo
 

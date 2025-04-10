@@ -13074,11 +13074,7 @@ paths:
           group
         required: true
       responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateNetworkEndpointGroupLogicalNetwork'
+        "204":
           description: The logical network has been successfully added to the network
             endpoint group.
         "400":
@@ -18482,7 +18478,6 @@ paths:
       - Server Instance Group
   /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections:
     get:
-      description: Returns the connections of the specified server instance group
       operationId: getServerInstanceGroupNetworkConfigurationConnections
       parameters:
       - explode: false
@@ -18497,16 +18492,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworksList'
+                $ref: '#/components/schemas/ServerInstanceGroupNetworkConnectionsList'
           description: The connections of the specified server instance group
         "401":
           description: Unauthorized
         "403":
           description: Forbidden
+        "404":
+          description: Server instance group not found
       security:
       - JWT: []
       - apiKey: []
-      summary: Get server instance group's network configuration connections
+      summary: Get server instance group's network connections
       tags:
       - Server Instance Group
     post:
@@ -18523,22 +18520,39 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateNetworkEndpointGroupLogicalNetwork'
+              $ref: '#/components/schemas/CreateServerInstanceGroupNetworkConnectionDto'
         description: The network connection object to create
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworkDto'
-          description: The created network connection object
+                $ref: '#/components/schemas/ServerInstanceGroupNetworkConnectionDto'
+          description: The network connection was successfully created
+          headers:
+            Location:
+              description: New network connection link
+              explode: false
+              schema:
+                type: string
+              style: simple
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Invalid request body
         "401":
           description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Server instance group not found
+        "409":
+          description: Network connection already exists
       security:
       - JWT: []
       - apiKey: []
@@ -18565,8 +18579,7 @@ paths:
         style: simple
       responses:
         "204":
-          description: The specified Server Instance Group network connection was
-            successfully deleted
+          description: The specified network connection was successfully deleted
         "401":
           description: Unauthorized
         "403":
@@ -18602,7 +18615,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworkDto'
+                $ref: '#/components/schemas/ServerInstanceGroupNetworkConnectionDto'
           description: The connection by id of the specified server instance group
         "401":
           description: Unauthorized
@@ -18645,7 +18658,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworkDto'
+                $ref: '#/components/schemas/ServerInstanceGroupNetworkConnectionDto'
           description: The updated network connection object
         "401":
           description: Unauthorized
@@ -40265,31 +40278,25 @@ components:
       type: object
     ServerInstanceGroupConfiguration:
       example:
-        ipv4SubnetCreateAuto: 6
-        driveArrayIdBoot: 7
-        overrideIpv4WanVlanId: 3
+        ipv4SubnetCreateAuto: 3
+        overrideIpv4WanVlanId: 0
         firmwarePolicyIds:
-        - 3.353193347011243
-        - 3.353193347011243
-        diskCount: 4
+        - 6.965117697638846
+        - 6.965117697638846
+        diskCount: 6
         updatedTimestamp: updatedTimestamp
         customVariables: "{}"
         deployType: create
         processorCoreMhz: 6
-        volumeTemplateId: 3
-        dnsSubdomainChangeId: 5
-        processorCoreCount: 7
-        infrastructureDeployId: 3
-        virtualInterfacesEnabled: 7
-        firewallRulesSetId: 5
-        instanceArrayBootMethod: pxe_iscsi
-        networkProfileGroupId: 3
+        dnsSubdomainChangeId: 6
+        processorCoreCount: 6
+        infrastructureDeployId: 0
+        virtualInterfacesEnabled: 3
+        networkProfileGroupId: 7
         serverGroupName: server-instance-group-name
         emptyEdit: 4
-        processorCount: 0
-        firewallProfileId: 6
-        ipAllocateAuto: 2
-        firewallManaged: 6
+        processorCount: 2
+        ipAllocateAuto: 6
         label: label
         diskTypes:
         - diskTypes
@@ -40297,10 +40304,11 @@ components:
         additionalWanIpv4Json: "{}"
         revision: 1
         networkEquipmentForceSubnetPoolIpv4WanId: 7
-        diskSizeMbytes: 8
-        instanceCount: 1
+        diskSizeMbytes: 3
+        instanceCount: 9
+        osTemplateId: 1
         subdomain: subdomain
-        ramGbytes: 0
+        ramGbytes: 5
         deployStatus: not_started
       properties:
         revision:
@@ -40324,23 +40332,17 @@ components:
           type: string
         instanceCount:
           default: 1
-          description: The number of instances to be created on the InstanceArray.
+          description: The number of instances to be created on the Instance Group.
           type: integer
         ipAllocateAuto:
           default: 1
-          description: Automatically allocate IP addresses to child Instance`s InstanceInterface
-            elements.
+          description: Automatically allocate IP addresses to child Instance`s Instance
+            Interface elements.
           type: integer
         ipv4SubnetCreateAuto:
           default: 1
           description: Automatically create or expand Subnet elements until the necessary
             IPv4 addresses are allocated.
-          type: integer
-        firewallProfileId:
-          type: integer
-        firewallRulesSetId:
-          type: integer
-        firewallManaged:
           type: integer
         firmwarePolicyIds:
           description: Array of firmware policy ids containing associated firmware
@@ -40349,19 +40351,10 @@ components:
             type: number
           nullable: true
           type: array
-        volumeTemplateId:
+        osTemplateId:
           description: The volume template ID (or name) to use if the servers in the
-            InstanceArray have local disks.
+            Instance Group have local disks.
           type: integer
-        driveArrayIdBoot:
-          description: Id of the bootable drive for the Server Instance Group.
-          type: integer
-        instanceArrayBootMethod:
-          description: Instance Array Boot Method
-          enum:
-          - pxe_iscsi
-          - local_drives
-          type: string
         customVariables:
           description: Object containing custom variables and variable overrides.
           type: object
@@ -40411,7 +40404,7 @@ components:
           type: integer
         networkEquipmentForceSubnetPoolIpv4WanId:
           description: ID of a ipv4 WAN subnet-pool from which to force the subnet
-            allocation for the InstanceInterfaces associated with this InstanceArray.
+            allocation for the Instance Interfaces associated with this Instance Group.
           type: integer
         dnsSubdomainChangeId:
           description: Id of the DNS subdomain for the Product Instance
@@ -40447,8 +40440,6 @@ components:
       - diskCount
       - diskSizeMbytes
       - diskTypes
-      - firewallManaged
-      - instanceArrayBootMethod
       - instanceCount
       - ipAllocateAuto
       - ipv4SubnetCreateAuto
@@ -40462,53 +40453,47 @@ components:
       type: object
     ServerInstanceGroup:
       example:
+        serverTypeId: 5
         ipv4SubnetCreateAuto: 7
-        driveArrayIdBoot: 1
-        overrideIpv4WanVlanId: 6
+        overrideIpv4WanVlanId: 4
         firmwarePolicyIds:
-        - 4.145608029883936
-        - 4.145608029883936
+        - 9.301444243932576
+        - 9.301444243932576
         extensionInstanceId: 5
         diskCount: 1
         updatedTimestamp: updatedTimestamp
         customVariables: "{}"
-        isVmGroup: 3
-        processorCoreMhz: 6
+        isVmGroup: 6
+        processorCoreMhz: 7
         dnsSubdomainPermanentId: 6
-        volumeTemplateId: 7
-        processorCoreCount: 1
+        processorCoreCount: 4
         serviceStatus: ordered
-        virtualInterfacesEnabled: 5
+        virtualInterfacesEnabled: 6
         links:
         - rel: self
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        firewallRulesSetId: 3
-        instanceArrayBootMethod: pxe_iscsi
-        networkProfileGroupId: 9
+        networkProfileGroupId: 7
         dnsSubdomainId: 0
-        defaultServerProfileID: 1
         serverGroupName: server-instance-group-name
-        networkProfileSnapshotId: 9
-        processorCount: 1
+        networkProfileSnapshotId: 1
+        processorCount: 2
         createdTimestamp: createdTimestamp
-        firewallProfileId: 9
         ipAllocateAuto: 2
-        firewallManaged: 2
         label: label
         subdomainPermanent: subdomainPermanent
-        networkEndpointGroupId: 6
+        networkEndpointGroupId: 9
         diskTypes:
         - diskTypes
         - diskTypes
         additionalWanIpv4Json: "{}"
         revision: 1
-        networkEquipmentForceSubnetPoolIpv4WanId: 8
-        diskSizeMbytes: 4
+        networkEquipmentForceSubnetPoolIpv4WanId: 5
+        diskSizeMbytes: 1
         infrastructureId: 1
-        vmInstanceGroupId: 6
+        vmInstanceGroupId: 8
         instanceCount: 5
         resourcePoolId: 9
         meta:
@@ -40521,34 +40506,29 @@ components:
           tags:
           - tags
           - tags
+        osTemplateId: 3
         subdomain: subdomain
-        ramGbytes: 7
+        ramGbytes: 1
         config:
-          ipv4SubnetCreateAuto: 6
-          driveArrayIdBoot: 7
-          overrideIpv4WanVlanId: 3
+          ipv4SubnetCreateAuto: 3
+          overrideIpv4WanVlanId: 0
           firmwarePolicyIds:
-          - 3.353193347011243
-          - 3.353193347011243
-          diskCount: 4
+          - 6.965117697638846
+          - 6.965117697638846
+          diskCount: 6
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
           deployType: create
           processorCoreMhz: 6
-          volumeTemplateId: 3
-          dnsSubdomainChangeId: 5
-          processorCoreCount: 7
-          infrastructureDeployId: 3
-          virtualInterfacesEnabled: 7
-          firewallRulesSetId: 5
-          instanceArrayBootMethod: pxe_iscsi
-          networkProfileGroupId: 3
+          dnsSubdomainChangeId: 6
+          processorCoreCount: 6
+          infrastructureDeployId: 0
+          virtualInterfacesEnabled: 3
+          networkProfileGroupId: 7
           serverGroupName: server-instance-group-name
           emptyEdit: 4
-          processorCount: 0
-          firewallProfileId: 6
-          ipAllocateAuto: 2
-          firewallManaged: 6
+          processorCount: 2
+          ipAllocateAuto: 6
           label: label
           diskTypes:
           - diskTypes
@@ -40556,10 +40536,11 @@ components:
           additionalWanIpv4Json: "{}"
           revision: 1
           networkEquipmentForceSubnetPoolIpv4WanId: 7
-          diskSizeMbytes: 8
-          instanceCount: 1
+          diskSizeMbytes: 3
+          instanceCount: 9
+          osTemplateId: 1
           subdomain: subdomain
-          ramGbytes: 0
+          ramGbytes: 5
           deployStatus: not_started
       properties:
         id:
@@ -40603,23 +40584,21 @@ components:
           type: integer
         instanceCount:
           default: 1
-          description: The number of instances to be created on the InstanceArray.
+          description: The number of instances to be created on the Instance Group.
+          type: integer
+        serverTypeId:
+          description: The server type ID of the created instances.
+          example: 5
           type: integer
         ipAllocateAuto:
           default: 1
-          description: Automatically allocate IP addresses to child Instance`s InstanceInterface
-            elements.
+          description: Automatically allocate IP addresses to child Instance`s Instance
+            Interface elements.
           type: integer
         ipv4SubnetCreateAuto:
           default: 1
           description: Automatically create or expand Subnet elements until the necessary
             IPv4 addresses are allocated.
-          type: integer
-        firewallProfileId:
-          type: integer
-        firewallRulesSetId:
-          type: integer
-        firewallManaged:
           type: integer
         firmwarePolicyIds:
           description: Array of firmware policy ids containing associated firmware
@@ -40628,19 +40607,10 @@ components:
             type: number
           nullable: true
           type: array
-        volumeTemplateId:
+        osTemplateId:
           description: The volume template ID (or name) to use if the servers in the
-            InstanceArray have local disks.
+            Instance Group have local disks.
           type: integer
-        driveArrayIdBoot:
-          description: Id of the bootable drive for the Server Instance Group.
-          type: integer
-        instanceArrayBootMethod:
-          description: Instance Array Boot Method
-          enum:
-          - pxe_iscsi
-          - local_drives
-          type: string
         customVariables:
           description: Object containing custom variables and variable overrides.
           type: object
@@ -40692,7 +40662,7 @@ components:
           type: integer
         networkEquipmentForceSubnetPoolIpv4WanId:
           description: ID of a ipv4 WAN subnet-pool from which to force the subnet
-            allocation for the InstanceInterfaces associated with this InstanceArray.
+            allocation for the Instance Interfaces associated with this Instance Group.
           type: integer
         serviceStatus:
           description: Current status of the Server Instance Group.
@@ -40718,12 +40688,6 @@ components:
           description: Id of the VM Instance Group this Server Instance Group belongs
             to.
           type: integer
-        defaultServerProfileID:
-          description: "The group's default server profile. Useful when creating a\
-            \ server instance with a group id set, the profile will be automatically\
-            \ applied."
-          example: 1
-          type: integer
         meta:
           $ref: '#/components/schemas/GenericMeta'
         config:
@@ -40738,15 +40702,14 @@ components:
       - diskCount
       - diskSizeMbytes
       - diskTypes
-      - firewallManaged
       - id
       - infrastructureId
-      - instanceArrayBootMethod
       - instanceCount
       - ipAllocateAuto
       - ipv4SubnetCreateAuto
       - isVmGroup
       - label
+      - meta
       - processorCoreCount
       - processorCoreMhz
       - processorCount
@@ -40758,53 +40721,47 @@ components:
     ServerInstanceGroupPaginatedList:
       example:
         data:
-        - ipv4SubnetCreateAuto: 7
-          driveArrayIdBoot: 1
-          overrideIpv4WanVlanId: 6
+        - serverTypeId: 5
+          ipv4SubnetCreateAuto: 7
+          overrideIpv4WanVlanId: 4
           firmwarePolicyIds:
-          - 4.145608029883936
-          - 4.145608029883936
+          - 9.301444243932576
+          - 9.301444243932576
           extensionInstanceId: 5
           diskCount: 1
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
-          isVmGroup: 3
-          processorCoreMhz: 6
+          isVmGroup: 6
+          processorCoreMhz: 7
           dnsSubdomainPermanentId: 6
-          volumeTemplateId: 7
-          processorCoreCount: 1
+          processorCoreCount: 4
           serviceStatus: ordered
-          virtualInterfacesEnabled: 5
+          virtualInterfacesEnabled: 6
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          firewallRulesSetId: 3
-          instanceArrayBootMethod: pxe_iscsi
-          networkProfileGroupId: 9
+          networkProfileGroupId: 7
           dnsSubdomainId: 0
-          defaultServerProfileID: 1
           serverGroupName: server-instance-group-name
-          networkProfileSnapshotId: 9
-          processorCount: 1
+          networkProfileSnapshotId: 1
+          processorCount: 2
           createdTimestamp: createdTimestamp
-          firewallProfileId: 9
           ipAllocateAuto: 2
-          firewallManaged: 2
           label: label
           subdomainPermanent: subdomainPermanent
-          networkEndpointGroupId: 6
+          networkEndpointGroupId: 9
           diskTypes:
           - diskTypes
           - diskTypes
           additionalWanIpv4Json: "{}"
           revision: 1
-          networkEquipmentForceSubnetPoolIpv4WanId: 8
-          diskSizeMbytes: 4
+          networkEquipmentForceSubnetPoolIpv4WanId: 5
+          diskSizeMbytes: 1
           infrastructureId: 1
-          vmInstanceGroupId: 6
+          vmInstanceGroupId: 8
           instanceCount: 5
           resourcePoolId: 9
           meta:
@@ -40817,34 +40774,29 @@ components:
             tags:
             - tags
             - tags
+          osTemplateId: 3
           subdomain: subdomain
-          ramGbytes: 7
+          ramGbytes: 1
           config:
-            ipv4SubnetCreateAuto: 6
-            driveArrayIdBoot: 7
-            overrideIpv4WanVlanId: 3
+            ipv4SubnetCreateAuto: 3
+            overrideIpv4WanVlanId: 0
             firmwarePolicyIds:
-            - 3.353193347011243
-            - 3.353193347011243
-            diskCount: 4
+            - 6.965117697638846
+            - 6.965117697638846
+            diskCount: 6
             updatedTimestamp: updatedTimestamp
             customVariables: "{}"
             deployType: create
             processorCoreMhz: 6
-            volumeTemplateId: 3
-            dnsSubdomainChangeId: 5
-            processorCoreCount: 7
-            infrastructureDeployId: 3
-            virtualInterfacesEnabled: 7
-            firewallRulesSetId: 5
-            instanceArrayBootMethod: pxe_iscsi
-            networkProfileGroupId: 3
+            dnsSubdomainChangeId: 6
+            processorCoreCount: 6
+            infrastructureDeployId: 0
+            virtualInterfacesEnabled: 3
+            networkProfileGroupId: 7
             serverGroupName: server-instance-group-name
             emptyEdit: 4
-            processorCount: 0
-            firewallProfileId: 6
-            ipAllocateAuto: 2
-            firewallManaged: 6
+            processorCount: 2
+            ipAllocateAuto: 6
             label: label
             diskTypes:
             - diskTypes
@@ -40852,58 +40804,53 @@ components:
             additionalWanIpv4Json: "{}"
             revision: 1
             networkEquipmentForceSubnetPoolIpv4WanId: 7
-            diskSizeMbytes: 8
-            instanceCount: 1
+            diskSizeMbytes: 3
+            instanceCount: 9
+            osTemplateId: 1
             subdomain: subdomain
-            ramGbytes: 0
+            ramGbytes: 5
             deployStatus: not_started
-        - ipv4SubnetCreateAuto: 7
-          driveArrayIdBoot: 1
-          overrideIpv4WanVlanId: 6
+        - serverTypeId: 5
+          ipv4SubnetCreateAuto: 7
+          overrideIpv4WanVlanId: 4
           firmwarePolicyIds:
-          - 4.145608029883936
-          - 4.145608029883936
+          - 9.301444243932576
+          - 9.301444243932576
           extensionInstanceId: 5
           diskCount: 1
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
-          isVmGroup: 3
-          processorCoreMhz: 6
+          isVmGroup: 6
+          processorCoreMhz: 7
           dnsSubdomainPermanentId: 6
-          volumeTemplateId: 7
-          processorCoreCount: 1
+          processorCoreCount: 4
           serviceStatus: ordered
-          virtualInterfacesEnabled: 5
+          virtualInterfacesEnabled: 6
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          firewallRulesSetId: 3
-          instanceArrayBootMethod: pxe_iscsi
-          networkProfileGroupId: 9
+          networkProfileGroupId: 7
           dnsSubdomainId: 0
-          defaultServerProfileID: 1
           serverGroupName: server-instance-group-name
-          networkProfileSnapshotId: 9
-          processorCount: 1
+          networkProfileSnapshotId: 1
+          processorCount: 2
           createdTimestamp: createdTimestamp
-          firewallProfileId: 9
           ipAllocateAuto: 2
-          firewallManaged: 2
           label: label
           subdomainPermanent: subdomainPermanent
-          networkEndpointGroupId: 6
+          networkEndpointGroupId: 9
           diskTypes:
           - diskTypes
           - diskTypes
           additionalWanIpv4Json: "{}"
           revision: 1
-          networkEquipmentForceSubnetPoolIpv4WanId: 8
-          diskSizeMbytes: 4
+          networkEquipmentForceSubnetPoolIpv4WanId: 5
+          diskSizeMbytes: 1
           infrastructureId: 1
-          vmInstanceGroupId: 6
+          vmInstanceGroupId: 8
           instanceCount: 5
           resourcePoolId: 9
           meta:
@@ -40916,34 +40863,29 @@ components:
             tags:
             - tags
             - tags
+          osTemplateId: 3
           subdomain: subdomain
-          ramGbytes: 7
+          ramGbytes: 1
           config:
-            ipv4SubnetCreateAuto: 6
-            driveArrayIdBoot: 7
-            overrideIpv4WanVlanId: 3
+            ipv4SubnetCreateAuto: 3
+            overrideIpv4WanVlanId: 0
             firmwarePolicyIds:
-            - 3.353193347011243
-            - 3.353193347011243
-            diskCount: 4
+            - 6.965117697638846
+            - 6.965117697638846
+            diskCount: 6
             updatedTimestamp: updatedTimestamp
             customVariables: "{}"
             deployType: create
             processorCoreMhz: 6
-            volumeTemplateId: 3
-            dnsSubdomainChangeId: 5
-            processorCoreCount: 7
-            infrastructureDeployId: 3
-            virtualInterfacesEnabled: 7
-            firewallRulesSetId: 5
-            instanceArrayBootMethod: pxe_iscsi
-            networkProfileGroupId: 3
+            dnsSubdomainChangeId: 6
+            processorCoreCount: 6
+            infrastructureDeployId: 0
+            virtualInterfacesEnabled: 3
+            networkProfileGroupId: 7
             serverGroupName: server-instance-group-name
             emptyEdit: 4
-            processorCount: 0
-            firewallProfileId: 6
-            ipAllocateAuto: 2
-            firewallManaged: 6
+            processorCount: 2
+            ipAllocateAuto: 6
             label: label
             diskTypes:
             - diskTypes
@@ -40951,10 +40893,11 @@ components:
             additionalWanIpv4Json: "{}"
             revision: 1
             networkEquipmentForceSubnetPoolIpv4WanId: 7
-            diskSizeMbytes: 8
-            instanceCount: 1
+            diskSizeMbytes: 3
+            instanceCount: 9
+            osTemplateId: 1
             subdomain: subdomain
-            ramGbytes: 0
+            ramGbytes: 5
             deployStatus: not_started
         meta: ""
         links: ""
@@ -40984,37 +40927,29 @@ components:
         serverTypeId: 5
         serverGroupName: server-instance-group-name
         ipv4SubnetCreateAuto: 5
-        driveArrayIdBoot: 2
         overrideIpv4WanVlanId: 1
-        processorCount: 7
+        processorCount: 2
         extensionInstanceId: 0
         ipAllocateAuto: 1
         label: label
-        diskCount: 4
+        diskCount: 2
         customVariables: "{}"
         diskTypes:
         - diskTypes
         - diskTypes
         additionalWanIpv4Json: "{}"
+        tags:
+        - tags
+        - tags
         networkEquipmentForceSubnetPoolIpv4WanId: 1
-        processorCoreMhz: 3
-        diskSizeMbytes: 7
-        volumeTemplateId: 5
+        processorCoreMhz: 9
+        diskSizeMbytes: 4
         instanceCount: 6
-        processorCoreCount: 9
-        resourcePoolId: 6
-        meta:
-          guiSettings:
-            rowIndex: 6.027456183070403
-            columnIndex: 1.4658129805029452
-            userAgent: userAgent
-            randomInstanceID: randomInstanceID
-            showWidgetChildren: true
-          tags:
-          - tags
-          - tags
-        ramGbytes: 2
-        virtualInterfacesEnabled: 1
+        processorCoreCount: 7
+        resourcePoolId: 1
+        osTemplateId: 5
+        ramGbytes: 3
+        virtualInterfacesEnabled: 7
       properties:
         label:
           description: The Product Instance label. Will be automatically generated
@@ -41029,24 +40964,25 @@ components:
           type: integer
         instanceCount:
           default: 1
-          description: The number of instances to be created on the InstanceArray.
+          description: The number of instances to be created on the Instance Group.
+          type: integer
+        serverTypeId:
+          description: The server type ID of the created instances.
+          example: 5
           type: integer
         ipAllocateAuto:
           default: 1
-          description: Automatically allocate IP addresses to child Instance`s InstanceInterface
-            elements.
+          description: Automatically allocate IP addresses to child Instance`s Instance
+            Interface elements.
           type: integer
         ipv4SubnetCreateAuto:
           default: 1
           description: Automatically create or expand Subnet elements until the necessary
             IPv4 addresses are allocated.
           type: integer
-        volumeTemplateId:
+        osTemplateId:
           description: The volume template ID (or name) to use if the servers in the
-            InstanceArray have local disks.
-          type: integer
-        driveArrayIdBoot:
-          description: Id of the bootable drive for the Server Instance Group.
+            Instance Group have local disks.
           type: integer
         customVariables:
           description: Object containing custom variables and variable overrides.
@@ -41095,17 +41031,15 @@ components:
           type: integer
         networkEquipmentForceSubnetPoolIpv4WanId:
           description: ID of a ipv4 WAN subnet-pool from which to force the subnet
-            allocation for the InstanceInterfaces associated with this InstanceArray.
+            allocation for the Instance Interfaces associated with this Instance Group.
           type: integer
         resourcePoolId:
           description: The resource pool assigned to this instance array
           type: integer
-        meta:
-          $ref: '#/components/schemas/GenericMeta'
-        serverTypeId:
-          description: The server type ID.
-          example: 5
-          type: integer
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     ServerInstanceStorageProfileControllerVolume:
       properties:
@@ -41200,24 +41134,23 @@ components:
     ServerInstanceConfiguration:
       example:
         serverTypeId: 5
-        emptyEdit: 1
+        emptyEdit: 6
         raidProfile: ""
-        groupId: 7
+        groupId: 4
         iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
         controlPanelUrl: controlPanelUrl
-        driveIdBootable: 1
         label: label
-        templateId: 1
         updatedTimestamp: updatedTimestamp
-        serverId: 1
+        serverId: 7
         customVariables: "{}"
         deployType: create
         revision: 1
         iscsiInitiatorUsername: iscsiInitiatorUsername
         iscsiInitiatorIqn: iscsiInitiatorIqn
-        dnsSubdomainChangeId: 6
+        dnsSubdomainChangeId: 1
+        osTemplateId: 1
         subdomain: subdomain
-        infrastructureDeployId: 7
+        infrastructureDeployId: 1
         instanceWanMlagId: 1
         deployStatus: not_started
       properties:
@@ -41238,8 +41171,6 @@ components:
           type: string
         groupId:
           type: integer
-        driveIdBootable:
-          type: integer
         serverTypeId:
           description: The server type ID.
           example: 5
@@ -41247,7 +41178,7 @@ components:
         serverId:
           description: The ID of the server assigned to the instance.
           type: integer
-        templateId:
+        osTemplateId:
           description: 'The template id of the operating system to deploy on the server.
             Can be null in which case no OS will be deployed but all operations will
             continue as normal. '
@@ -41317,17 +41248,15 @@ components:
         raidProfile: ""
         groupId: 5
         preferredServerIds:
-        - 9.301444243932576
-        - 9.301444243932576
-        templateId: 1
+        - 7.061401241503109
+        - 7.061401241503109
         updatedTimestamp: updatedTimestamp
-        serverId: 2
+        serverId: 5
         osInstallImageUrl: osInstallImageUrl
         customVariables: "{}"
         dnsSubdomainPermanentId: 6
         iscsiInitiatorIqn: iscsiInitiatorIqn
         serviceStatus: ordered
-        operatingSystemInfo: "{}"
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -41338,49 +41267,49 @@ components:
         createdTimestamp: createdTimestamp
         iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
         controlPanelUrl: controlPanelUrl
-        driveIdBootable: 5
         label: label
         subdomainPermanent: subdomainPermanent
         revision: 1
-        isVmInstance: 3
-        tags:
-        - tags
-        - tags
+        isVmInstance: 9
         clusterCustomInfo:
           initialPasswordEncrypted: initialPasswordEncrypted
-        vmInstanceId: 2
-        osReinstallRequired: 4
+        vmInstanceId: 3
+        osReinstallRequired: 2
         iscsiInitiatorUsername: iscsiInitiatorUsername
         infrastructureId: 1
         meta:
-          rowIndex: 6.027456183070403
-          columnIndex: 1.4658129805029452
-          userAgent: userAgent
-          randomInstanceID: randomInstanceID
-          showWidgetChildren: true
+          guiSettings:
+            rowIndex: 6.027456183070403
+            columnIndex: 1.4658129805029452
+            userAgent: userAgent
+            randomInstanceID: randomInstanceID
+            showWidgetChildren: true
+          tags:
+          - tags
+          - tags
+        osTemplateId: 1
         subdomain: subdomain
         osInstallImageBuildError: osInstallImageBuildError
-        instanceWanMlagId: 7
+        instanceWanMlagId: 2
         config:
           serverTypeId: 5
-          emptyEdit: 1
+          emptyEdit: 6
           raidProfile: ""
-          groupId: 7
+          groupId: 4
           iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
           controlPanelUrl: controlPanelUrl
-          driveIdBootable: 1
           label: label
-          templateId: 1
           updatedTimestamp: updatedTimestamp
-          serverId: 1
+          serverId: 7
           customVariables: "{}"
           deployType: create
           revision: 1
           iscsiInitiatorUsername: iscsiInitiatorUsername
           iscsiInitiatorIqn: iscsiInitiatorIqn
-          dnsSubdomainChangeId: 6
+          dnsSubdomainChangeId: 1
+          osTemplateId: 1
           subdomain: subdomain
-          infrastructureDeployId: 7
+          infrastructureDeployId: 1
           instanceWanMlagId: 1
           deployStatus: not_started
       properties:
@@ -41419,8 +41348,6 @@ components:
           type: integer
         groupId:
           type: integer
-        driveIdBootable:
-          type: integer
         serverTypeId:
           description: The server type ID.
           example: 5
@@ -41428,7 +41355,7 @@ components:
         serverId:
           description: The ID of the server assigned to the instance.
           type: integer
-        templateId:
+        osTemplateId:
           description: 'The template id of the operating system to deploy on the server.
             Can be null in which case no OS will be deployed but all operations will
             continue as normal. '
@@ -41462,15 +41389,6 @@ components:
         vmInstanceId:
           description: The id of the linked VM instance
           type: integer
-        meta:
-          $ref: '#/components/schemas/GenericGUISettings'
-        tags:
-          items:
-            type: string
-          type: array
-        operatingSystemInfo:
-          description: Operating system information of the Instance.
-          type: object
         clusterCustomInfo:
           $ref: '#/components/schemas/ServerInstanceClusterCustomInfo'
         osInstallError:
@@ -41501,6 +41419,8 @@ components:
         controlPanelUrl:
           description: Control panel url for the Instance Interface.
           type: string
+        meta:
+          $ref: '#/components/schemas/GenericMeta'
         config:
           $ref: '#/components/schemas/ServerInstanceConfiguration'
         links:
@@ -41515,6 +41435,7 @@ components:
       - infrastructureId
       - isVmInstance
       - label
+      - meta
       - revision
       - serviceStatus
       - updatedTimestamp
@@ -41528,17 +41449,15 @@ components:
           raidProfile: ""
           groupId: 5
           preferredServerIds:
-          - 9.301444243932576
-          - 9.301444243932576
-          templateId: 1
+          - 7.061401241503109
+          - 7.061401241503109
           updatedTimestamp: updatedTimestamp
-          serverId: 2
+          serverId: 5
           osInstallImageUrl: osInstallImageUrl
           customVariables: "{}"
           dnsSubdomainPermanentId: 6
           iscsiInitiatorIqn: iscsiInitiatorIqn
           serviceStatus: ordered
-          operatingSystemInfo: "{}"
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -41549,49 +41468,49 @@ components:
           createdTimestamp: createdTimestamp
           iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
           controlPanelUrl: controlPanelUrl
-          driveIdBootable: 5
           label: label
           subdomainPermanent: subdomainPermanent
           revision: 1
-          isVmInstance: 3
-          tags:
-          - tags
-          - tags
+          isVmInstance: 9
           clusterCustomInfo:
             initialPasswordEncrypted: initialPasswordEncrypted
-          vmInstanceId: 2
-          osReinstallRequired: 4
+          vmInstanceId: 3
+          osReinstallRequired: 2
           iscsiInitiatorUsername: iscsiInitiatorUsername
           infrastructureId: 1
           meta:
-            rowIndex: 6.027456183070403
-            columnIndex: 1.4658129805029452
-            userAgent: userAgent
-            randomInstanceID: randomInstanceID
-            showWidgetChildren: true
+            guiSettings:
+              rowIndex: 6.027456183070403
+              columnIndex: 1.4658129805029452
+              userAgent: userAgent
+              randomInstanceID: randomInstanceID
+              showWidgetChildren: true
+            tags:
+            - tags
+            - tags
+          osTemplateId: 1
           subdomain: subdomain
           osInstallImageBuildError: osInstallImageBuildError
-          instanceWanMlagId: 7
+          instanceWanMlagId: 2
           config:
             serverTypeId: 5
-            emptyEdit: 1
+            emptyEdit: 6
             raidProfile: ""
-            groupId: 7
+            groupId: 4
             iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
             controlPanelUrl: controlPanelUrl
-            driveIdBootable: 1
             label: label
-            templateId: 1
             updatedTimestamp: updatedTimestamp
-            serverId: 1
+            serverId: 7
             customVariables: "{}"
             deployType: create
             revision: 1
             iscsiInitiatorUsername: iscsiInitiatorUsername
             iscsiInitiatorIqn: iscsiInitiatorIqn
-            dnsSubdomainChangeId: 6
+            dnsSubdomainChangeId: 1
+            osTemplateId: 1
             subdomain: subdomain
-            infrastructureDeployId: 7
+            infrastructureDeployId: 1
             instanceWanMlagId: 1
             deployStatus: not_started
         - serverTypeId: 5
@@ -41600,17 +41519,15 @@ components:
           raidProfile: ""
           groupId: 5
           preferredServerIds:
-          - 9.301444243932576
-          - 9.301444243932576
-          templateId: 1
+          - 7.061401241503109
+          - 7.061401241503109
           updatedTimestamp: updatedTimestamp
-          serverId: 2
+          serverId: 5
           osInstallImageUrl: osInstallImageUrl
           customVariables: "{}"
           dnsSubdomainPermanentId: 6
           iscsiInitiatorIqn: iscsiInitiatorIqn
           serviceStatus: ordered
-          operatingSystemInfo: "{}"
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -41621,49 +41538,49 @@ components:
           createdTimestamp: createdTimestamp
           iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
           controlPanelUrl: controlPanelUrl
-          driveIdBootable: 5
           label: label
           subdomainPermanent: subdomainPermanent
           revision: 1
-          isVmInstance: 3
-          tags:
-          - tags
-          - tags
+          isVmInstance: 9
           clusterCustomInfo:
             initialPasswordEncrypted: initialPasswordEncrypted
-          vmInstanceId: 2
-          osReinstallRequired: 4
+          vmInstanceId: 3
+          osReinstallRequired: 2
           iscsiInitiatorUsername: iscsiInitiatorUsername
           infrastructureId: 1
           meta:
-            rowIndex: 6.027456183070403
-            columnIndex: 1.4658129805029452
-            userAgent: userAgent
-            randomInstanceID: randomInstanceID
-            showWidgetChildren: true
+            guiSettings:
+              rowIndex: 6.027456183070403
+              columnIndex: 1.4658129805029452
+              userAgent: userAgent
+              randomInstanceID: randomInstanceID
+              showWidgetChildren: true
+            tags:
+            - tags
+            - tags
+          osTemplateId: 1
           subdomain: subdomain
           osInstallImageBuildError: osInstallImageBuildError
-          instanceWanMlagId: 7
+          instanceWanMlagId: 2
           config:
             serverTypeId: 5
-            emptyEdit: 1
+            emptyEdit: 6
             raidProfile: ""
-            groupId: 7
+            groupId: 4
             iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
             controlPanelUrl: controlPanelUrl
-            driveIdBootable: 1
             label: label
-            templateId: 1
             updatedTimestamp: updatedTimestamp
-            serverId: 1
+            serverId: 7
             customVariables: "{}"
             deployType: create
             revision: 1
             iscsiInitiatorUsername: iscsiInitiatorUsername
             iscsiInitiatorIqn: iscsiInitiatorIqn
-            dnsSubdomainChangeId: 6
+            dnsSubdomainChangeId: 1
+            osTemplateId: 1
             subdomain: subdomain
-            infrastructureDeployId: 7
+            infrastructureDeployId: 1
             instanceWanMlagId: 1
             deployStatus: not_started
         meta: ""
@@ -41693,8 +41610,8 @@ components:
       example:
         serverTypeId: 5
         groupId: 0
+        osTemplateId: 1
         label: label
-        templateId: 1
         tags:
         - tags
         - tags
@@ -41710,7 +41627,7 @@ components:
           description: The server type ID.
           example: 5
           type: integer
-        templateId:
+        osTemplateId:
           description: 'The template id of the operating system to deploy on the server.
             Can be null in which case no OS will be deployed but all operations will
             continue as normal. '
@@ -44017,7 +43934,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-09T15:35:20.502Z
+        createdTimestamp: 2025-04-10T10:26:56.532Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -44026,7 +43943,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-09T15:35:20.502Z
+        updatedTimestamp: 2025-04-10T10:26:56.532Z
         revision: "1"
       properties:
         siteId:
@@ -44043,12 +43960,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-09T15:35:20.502Z
+          example: 2025-04-10T10:26:56.532Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-09T15:35:20.502Z
+          example: 2025-04-10T10:26:56.532Z
           format: date-time
           type: string
         links:
@@ -44070,7 +43987,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-09T15:35:20.502Z
+        - createdTimestamp: 2025-04-10T10:26:56.532Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -44079,9 +43996,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-09T15:35:20.502Z
+          updatedTimestamp: 2025-04-10T10:26:56.532Z
           revision: "1"
-        - createdTimestamp: 2025-04-09T15:35:20.502Z
+        - createdTimestamp: 2025-04-10T10:26:56.532Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -44090,7 +44007,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-09T15:35:20.502Z
+          updatedTimestamp: 2025-04-10T10:26:56.532Z
           revision: "1"
         meta: ""
         links: ""
@@ -44205,7 +44122,6 @@ components:
           description: The access mode of the network endpoint group
           enum:
           - l2
-          - l3
           example: l2
           type: string
         redundancy:
@@ -44302,7 +44218,6 @@ components:
           description: The access mode of the network endpoint group
           enum:
           - l2
-          - l3
           example: l2
           type: string
         redundancy:
@@ -44336,7 +44251,6 @@ components:
           description: The access mode of the network endpoint group
           enum:
           - l2
-          - l3
           example: l2
           type: string
         redundancy:
@@ -44705,7 +44619,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-09T15:35:20.504Z
+        createdTimestamp: 2025-04-10T10:26:56.535Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -44746,7 +44660,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-09T15:35:20.504Z
+        updatedTimestamp: 2025-04-10T10:26:56.535Z
         revision: "1"
         status: draft
       properties:
@@ -44774,12 +44688,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-09T15:35:20.504Z
+          example: 2025-04-10T10:26:56.535Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-09T15:35:20.504Z
+          example: 2025-04-10T10:26:56.535Z
           format: date-time
           type: string
         links:
@@ -44920,7 +44834,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-09T15:35:20.504Z
+          createdTimestamp: 2025-04-10T10:26:56.535Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -44961,7 +44875,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-09T15:35:20.504Z
+          updatedTimestamp: 2025-04-10T10:26:56.535Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -45071,7 +44985,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-09T15:35:20.504Z
+          createdTimestamp: 2025-04-10T10:26:56.535Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -45112,7 +45026,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-09T15:35:20.504Z
+          updatedTimestamp: 2025-04-10T10:26:56.535Z
           revision: "1"
           status: draft
         meta: ""
@@ -46983,27 +46897,27 @@ components:
       type: object
     ServerInstanceGroupUpdate:
       example:
+        serverTypeId: 5
         serverGroupName: server-instance-group-name
         ipv4SubnetCreateAuto: 1
-        driveArrayIdBoot: 5
-        overrideIpv4WanVlanId: 1
-        processorCount: 2
+        overrideIpv4WanVlanId: 7
+        processorCount: 5
         ipAllocateAuto: 6
         label: server-instance-group-123
-        diskCount: 2
+        diskCount: 3
         customVariables: "{}"
         diskTypes:
         - diskTypes
         - diskTypes
         additionalWanIpv4Json: "{}"
         networkEquipmentForceSubnetPoolIpv4WanId: 1
-        processorCoreMhz: 9
-        diskSizeMbytes: 4
-        volumeTemplateId: 5
+        processorCoreMhz: 7
+        diskSizeMbytes: 2
         instanceCount: 0
-        processorCoreCount: 7
-        ramGbytes: 3
-        virtualInterfacesEnabled: 7
+        processorCoreCount: 2
+        osTemplateId: 5
+        ramGbytes: 9
+        virtualInterfacesEnabled: 4
       properties:
         label:
           description: The server instance group label.
@@ -47016,24 +46930,25 @@ components:
           type: string
         instanceCount:
           default: 1
-          description: The number of instances to be created on the InstanceArray.
+          description: The number of instances to be created on the Instance Group.
+          type: integer
+        serverTypeId:
+          description: The server type ID of the created instances.
+          example: 5
           type: integer
         ipAllocateAuto:
           default: 1
-          description: Automatically allocate IP addresses to child Instance`s InstanceInterface
-            elements.
+          description: Automatically allocate IP addresses to child Instance`s Instance
+            Interface elements.
           type: integer
         ipv4SubnetCreateAuto:
           default: 1
           description: Automatically create or expand Subnet elements until the necessary
             IPv4 addresses are allocated.
           type: integer
-        volumeTemplateId:
+        osTemplateId:
           description: The volume template ID (or name) to use if the servers in the
-            InstanceArray have local disks.
-          type: integer
-        driveArrayIdBoot:
-          description: Id of the bootable drive for the Server Instance Group.
+            Instance Group have local disks.
           type: integer
         customVariables:
           description: Object containing custom variables and variable overrides.
@@ -47082,7 +46997,7 @@ components:
           type: integer
         networkEquipmentForceSubnetPoolIpv4WanId:
           description: ID of a ipv4 WAN subnet-pool from which to force the subnet
-            allocation for the InstanceInterfaces associated with this InstanceArray.
+            allocation for the Instance Interfaces associated with this Instance Group.
           type: integer
       type: object
     DriveGroupList:
@@ -47438,8 +47353,8 @@ components:
     ServerInstanceUpdate:
       example:
         serverTypeId: 5
+        osTemplateId: 1
         label: server-instance-123
-        templateId: 1
       properties:
         label:
           description: The server instance label.
@@ -47450,7 +47365,7 @@ components:
           description: The server type ID.
           example: 5
           type: integer
-        templateId:
+        osTemplateId:
           description: 'The template id of the operating system to deploy on the server.
             Can be null in which case no OS will be deployed but all operations will
             continue as normal. '
@@ -47978,8 +47893,6 @@ components:
           type: number
       required:
       - address
-      - latitude
-      - longitude
       type: object
     SiteVariables:
       properties:
@@ -48506,8 +48419,6 @@ components:
           type: integer
         groupId:
           type: integer
-        driveIdBootable:
-          type: integer
         serverTypeId:
           description: The server type ID.
           example: 5
@@ -48515,7 +48426,7 @@ components:
         serverId:
           description: The ID of the server assigned to the instance.
           type: integer
-        templateId:
+        osTemplateId:
           description: 'The template id of the operating system to deploy on the server.
             Can be null in which case no OS will be deployed but all operations will
             continue as normal. '
@@ -48549,13 +48460,6 @@ components:
         vmInstanceId:
           description: The id of the linked VM instance
           type: integer
-        tags:
-          items:
-            type: string
-          type: array
-        operatingSystemInfo:
-          description: Operating system information of the Instance.
-          type: object
         clusterCustomInfo:
           $ref: '#/components/schemas/ServerInstanceClusterCustomInfo'
         osInstallError:
@@ -48642,23 +48546,21 @@ components:
           type: integer
         instanceCount:
           default: 1
-          description: The number of instances to be created on the InstanceArray.
+          description: The number of instances to be created on the Instance Group.
+          type: integer
+        serverTypeId:
+          description: The server type ID of the created instances.
+          example: 5
           type: integer
         ipAllocateAuto:
           default: 1
-          description: Automatically allocate IP addresses to child Instance`s InstanceInterface
-            elements.
+          description: Automatically allocate IP addresses to child Instance`s Instance
+            Interface elements.
           type: integer
         ipv4SubnetCreateAuto:
           default: 1
           description: Automatically create or expand Subnet elements until the necessary
             IPv4 addresses are allocated.
-          type: integer
-        firewallProfileId:
-          type: integer
-        firewallRulesSetId:
-          type: integer
-        firewallManaged:
           type: integer
         firmwarePolicyIds:
           description: Array of firmware policy ids containing associated firmware
@@ -48667,19 +48569,10 @@ components:
             type: number
           nullable: true
           type: array
-        volumeTemplateId:
+        osTemplateId:
           description: The volume template ID (or name) to use if the servers in the
-            InstanceArray have local disks.
+            Instance Group have local disks.
           type: integer
-        driveArrayIdBoot:
-          description: Id of the bootable drive for the Server Instance Group.
-          type: integer
-        instanceArrayBootMethod:
-          description: Instance Array Boot Method
-          enum:
-          - pxe_iscsi
-          - local_drives
-          type: string
         customVariables:
           description: Object containing custom variables and variable overrides.
           type: object
@@ -48731,7 +48624,7 @@ components:
           type: integer
         networkEquipmentForceSubnetPoolIpv4WanId:
           description: ID of a ipv4 WAN subnet-pool from which to force the subnet
-            allocation for the InstanceInterfaces associated with this InstanceArray.
+            allocation for the Instance Interfaces associated with this Instance Group.
           type: integer
         serviceStatus:
           description: Current status of the Server Instance Group.
@@ -48757,12 +48650,6 @@ components:
           description: Id of the VM Instance Group this Server Instance Group belongs
             to.
           type: integer
-        defaultServerProfileID:
-          description: "The group's default server profile. Useful when creating a\
-            \ server instance with a group id set, the profile will be automatically\
-            \ applied."
-          example: 1
-          type: integer
         config:
           $ref: '#/components/schemas/ServerInstanceGroupConfiguration'
       required:
@@ -48770,10 +48657,8 @@ components:
       - diskCount
       - diskSizeMbytes
       - diskTypes
-      - firewallManaged
       - id
       - infrastructureId
-      - instanceArrayBootMethod
       - instanceCount
       - ipAllocateAuto
       - ipv4SubnetCreateAuto
@@ -49943,6 +49828,138 @@ components:
       - Copy
       - OSAsset
       type: string
+    ServerInstanceGroupNetworkConnectionDto:
+      example:
+        tagged: true
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        redundancy:
+          mode: active-backup
+          implementation:
+            implementationType: link-aggregation
+        id: "1"
+        accessMode: l2
+      properties:
+        tagged:
+          description: Whether the logical network is tagged.
+          example: true
+          type: boolean
+        accessMode:
+          description: The access mode of the network endpoint group
+          enum:
+          - l2
+          example: l2
+          type: string
+        redundancy:
+          allOf:
+          - $ref: '#/components/schemas/RedundancyConfig'
+          description: The redundancy configuration
+          example:
+            mode: active-backup
+            implementation:
+              implementationType: link-aggregation
+          nullable: true
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+        id:
+          description: The network connection ID.
+          example: "1"
+          type: string
+      required:
+      - accessMode
+      - id
+      - tagged
+      type: object
+    ServerInstanceGroupNetworkConnectionsList:
+      example:
+        data:
+        - tagged: true
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          redundancy:
+            mode: active-backup
+            implementation:
+              implementationType: link-aggregation
+          id: "1"
+          accessMode: l2
+        - tagged: true
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          redundancy:
+            mode: active-backup
+            implementation:
+              implementationType: link-aggregation
+          id: "1"
+          accessMode: l2
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ServerInstanceGroupNetworkConnectionDto'
+          title: List of server instance group network connections
+          type: array
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - data
+      type: object
+    CreateServerInstanceGroupNetworkConnectionDto:
+      example:
+        logicalNetworkId: "1"
+        tagged: true
+        redundancy:
+          mode: active-backup
+          implementation:
+            implementationType: link-aggregation
+        accessMode: l2
+      properties:
+        logicalNetworkId:
+          description: The logical network ID.
+          example: "1"
+          type: string
+        tagged:
+          description: Whether the logical network is tagged.
+          example: true
+          type: boolean
+        accessMode:
+          description: The access mode of the network endpoint group
+          enum:
+          - l2
+          example: l2
+          type: string
+        redundancy:
+          allOf:
+          - $ref: '#/components/schemas/RedundancyConfig'
+          description: The redundancy configuration
+          example:
+            mode: active-backup
+            implementation:
+              implementationType: link-aggregation
+          nullable: true
+      required:
+      - accessMode
+      - logicalNetworkId
+      - tagged
+      type: object
     RegisterServer:
       example:
         managementAddress: managementAddress
@@ -51857,6 +51874,70 @@ components:
       - repo
       - serverPolicy
       type: object
+    PartialTypeClass:
+      properties:
+        address:
+          description: Address of the site
+          type: string
+        latitude:
+          description: Latitude of the site
+          example: 41.882089
+          type: number
+        longitude:
+          description: Longitude of the site
+          example: -87.627831
+          type: number
+      type: object
+    ServerPolicyUpdateDto:
+      properties:
+        registerCredentials:
+          description: Server registration type
+          enum:
+          - random
+          - user
+          type: string
+        minimumNumberOfConnectedInterfaces:
+          description: Minimum number of switch-connected interfaces required
+          example: 1
+          type: number
+        dhcpOption82ToIPMapping:
+          description: Option82 to IP mapping
+          type: object
+        dhcpBmcMacAddressWhitelistEnabled:
+          description: Whether to enable DHCP BMC MAC address whitelist
+          type: boolean
+        dhcpBmcMacAddressWhitelist:
+          description: List of DHCP BMC MAC address whitelist
+          items:
+            type: string
+          type: array
+        raidConfigurationEnabled:
+          description: Whether RAID configuration is enabled
+          type: boolean
+        disableTpmAfterRegistration:
+          description: Whether to disable TPM after registration
+          type: boolean
+        syslogMonitoringEnabled:
+          description: Whether syslog monitoring is enabled
+          type: boolean
+        defaultServerCleanupPolicyID:
+          description: Default server cleanup policy ID
+          example: 0
+          type: number
+        automaticallyAllocateServerTypes:
+          description: Automatically allocate server types
+          example: false
+          type: boolean
+        automaticallySetServersAsAvailable:
+          description: Automatically set servers as available
+          example: false
+          type: boolean
+        serverRegistrationBiosProfile:
+          description: Server registration BIOS profile
+          items:
+            type: string
+          type: array
+      type: object
     SiteConfigUpdate:
       example:
         networkDevicePolicy: ""
@@ -51874,7 +51955,7 @@ components:
       properties:
         location:
           allOf:
-          - $ref: '#/components/schemas/Location'
+          - $ref: '#/components/schemas/PartialTypeClass'
           description: Location details
         repo:
           allOf:
@@ -51892,11 +51973,11 @@ components:
           type: array
         networkDevicePolicy:
           allOf:
-          - $ref: '#/components/schemas/NetworkDevicePolicy'
+          - $ref: '#/components/schemas/PartialTypeClass'
           description: Network device policies
         serverPolicy:
           allOf:
-          - $ref: '#/components/schemas/ServerPolicy'
+          - $ref: '#/components/schemas/ServerPolicyUpdateDto'
           description: Server policies
         controllerPolicy:
           allOf:
@@ -51906,15 +51987,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/InfrastructurePolicy'
           description: Infrastructure policies
-      required:
-      - DNSServers
-      - NTPServers
-      - controllerPolicy
-      - infrastructurePolicy
-      - location
-      - networkDevicePolicy
-      - repo
-      - serverPolicy
       type: object
     SiteControllerSeenAliveStatus:
       example:
@@ -54479,7 +54551,6 @@ components:
         vmId: 6.027456183070403
         label: label
         vmPoolId: 2.3021358869347655
-        templateId: 2.027123023002322
         ramGB: 9.301444243932576
         updatedTimestamp: updatedTimestamp
         deployType: create
@@ -54487,6 +54558,7 @@ components:
         revision: 0.8008281904610115
         dnsSubdomainChangeId: 5.962133916683182
         cpuCores: 3.616076749251911
+        osTemplateId: 2.027123023002322
         subdomain: subdomain
         infrastructureDeployId: 5.637376656633329
         typeId: 1.4658129805029452
@@ -54545,7 +54617,7 @@ components:
         cpuCores:
           description: Number of CPU cores for the VM Instance.
           type: number
-        templateId:
+        osTemplateId:
           description: Id of the template used by the VM Instance.
           type: number
         customVariables:
@@ -54584,7 +54656,6 @@ components:
         label: label
         vmPoolId: 1.4658129805029452
         subdomainPermanent: subdomainPermanent
-        templateId: 7.061401241503109
         ramGB: 5.637376656633329
         updatedTimestamp: updatedTimestamp
         customVariables: "{}"
@@ -54595,6 +54666,7 @@ components:
         cpuCores: 2.3021358869347655
         serviceStatus: ordered
         meta: ""
+        osTemplateId: 7.061401241503109
         subdomain: subdomain
         typeId: 6.027456183070403
         links: "{}"
@@ -54626,7 +54698,7 @@ components:
         cpuCores:
           description: Number of CPU cores for the VM Instance.
           type: number
-        templateId:
+        osTemplateId:
           description: Id of the template used by the VM Instance.
           type: number
         customVariables:
@@ -54709,7 +54781,6 @@ components:
           label: label
           vmPoolId: 1.4658129805029452
           subdomainPermanent: subdomainPermanent
-          templateId: 7.061401241503109
           ramGB: 5.637376656633329
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
@@ -54720,6 +54791,7 @@ components:
           cpuCores: 2.3021358869347655
           serviceStatus: ordered
           meta: ""
+          osTemplateId: 7.061401241503109
           subdomain: subdomain
           typeId: 6.027456183070403
           links: "{}"
@@ -54733,7 +54805,6 @@ components:
           label: label
           vmPoolId: 1.4658129805029452
           subdomainPermanent: subdomainPermanent
-          templateId: 7.061401241503109
           ramGB: 5.637376656633329
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
@@ -54744,6 +54815,7 @@ components:
           cpuCores: 2.3021358869347655
           serviceStatus: ordered
           meta: ""
+          osTemplateId: 7.061401241503109
           subdomain: subdomain
           typeId: 6.027456183070403
           links: "{}"
@@ -55173,8 +55245,8 @@ components:
       type: object
     CreateVMInstanceGroup:
       example:
-        volumeTemplateId: 5.962133916683182
         instanceCount: 0.8008281904610115
+        osTemplateId: 5.962133916683182
         typeId: 1.4658129805029452
         diskSizeGB: 6.027456183070403
         tags:
@@ -55190,7 +55262,7 @@ components:
         typeId:
           description: Id of the VM Type.
           type: number
-        volumeTemplateId:
+        osTemplateId:
           description: Id of the template used by the VM Instance Group.
           type: number
         tags:

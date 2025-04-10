@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | The server instance label. | [optional] 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
-**TemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
+**OsTemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
 
 ## Methods
 
@@ -77,30 +77,30 @@ SetServerTypeId sets ServerTypeId field to given value.
 
 HasServerTypeId returns a boolean if a field has been set.
 
-### GetTemplateId
+### GetOsTemplateId
 
-`func (o *ServerInstanceUpdate) GetTemplateId() int32`
+`func (o *ServerInstanceUpdate) GetOsTemplateId() int32`
 
-GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
-### GetTemplateIdOk
+### GetOsTemplateIdOk
 
-`func (o *ServerInstanceUpdate) GetTemplateIdOk() (*int32, bool)`
+`func (o *ServerInstanceUpdate) GetOsTemplateIdOk() (*int32, bool)`
 
-GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTemplateId
+### SetOsTemplateId
 
-`func (o *ServerInstanceUpdate) SetTemplateId(v int32)`
+`func (o *ServerInstanceUpdate) SetOsTemplateId(v int32)`
 
-SetTemplateId sets TemplateId field to given value.
+SetOsTemplateId sets OsTemplateId field to given value.
 
-### HasTemplateId
+### HasOsTemplateId
 
-`func (o *ServerInstanceUpdate) HasTemplateId() bool`
+`func (o *ServerInstanceUpdate) HasOsTemplateId() bool`
 
-HasTemplateId returns a boolean if a field has been set.
+HasOsTemplateId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

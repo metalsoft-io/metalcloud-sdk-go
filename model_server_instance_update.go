@@ -25,7 +25,7 @@ type ServerInstanceUpdate struct {
 	// The server type ID.
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
 	// The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal. 
-	TemplateId *int32 `json:"templateId,omitempty"`
+	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -112,36 +112,36 @@ func (o *ServerInstanceUpdate) SetServerTypeId(v int32) {
 	o.ServerTypeId = &v
 }
 
-// GetTemplateId returns the TemplateId field value if set, zero value otherwise.
-func (o *ServerInstanceUpdate) GetTemplateId() int32 {
-	if o == nil || IsNil(o.TemplateId) {
+// GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
+func (o *ServerInstanceUpdate) GetOsTemplateId() int32 {
+	if o == nil || IsNil(o.OsTemplateId) {
 		var ret int32
 		return ret
 	}
-	return *o.TemplateId
+	return *o.OsTemplateId
 }
 
-// GetTemplateIdOk returns a tuple with the TemplateId field value if set, nil otherwise
+// GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceUpdate) GetTemplateIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.TemplateId) {
+func (o *ServerInstanceUpdate) GetOsTemplateIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
-	return o.TemplateId, true
+	return o.OsTemplateId, true
 }
 
-// HasTemplateId returns a boolean if a field has been set.
-func (o *ServerInstanceUpdate) HasTemplateId() bool {
-	if o != nil && !IsNil(o.TemplateId) {
+// HasOsTemplateId returns a boolean if a field has been set.
+func (o *ServerInstanceUpdate) HasOsTemplateId() bool {
+	if o != nil && !IsNil(o.OsTemplateId) {
 		return true
 	}
 
 	return false
 }
 
-// SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
-func (o *ServerInstanceUpdate) SetTemplateId(v int32) {
-	o.TemplateId = &v
+// SetOsTemplateId gets a reference to the given int32 and assigns it to the OsTemplateId field.
+func (o *ServerInstanceUpdate) SetOsTemplateId(v int32) {
+	o.OsTemplateId = &v
 }
 
 func (o ServerInstanceUpdate) MarshalJSON() ([]byte, error) {
@@ -160,8 +160,8 @@ func (o ServerInstanceUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServerTypeId) {
 		toSerialize["serverTypeId"] = o.ServerTypeId
 	}
-	if !IsNil(o.TemplateId) {
-		toSerialize["templateId"] = o.TemplateId
+	if !IsNil(o.OsTemplateId) {
+		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -187,7 +187,7 @@ func (o *ServerInstanceUpdate) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "serverTypeId")
-		delete(additionalProperties, "templateId")
+		delete(additionalProperties, "osTemplateId")
 		o.AdditionalProperties = additionalProperties
 	}
 

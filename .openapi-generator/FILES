@@ -118,6 +118,7 @@ docs/CreateSecret.md
 docs/CreateServerCleanupPolicy.md
 docs/CreateServerDefaultCredentials.md
 docs/CreateServerFirmwareUpgradePolicy.md
+docs/CreateServerInstanceGroupNetworkConnectionDto.md
 docs/CreateServerType.md
 docs/CreateSharedDrive.md
 docs/CreateStorage.md
@@ -292,6 +293,7 @@ docs/OSTemplatePaginatedList.md
 docs/OSTemplateUpdate.md
 docs/PaginatedResponseLinks.md
 docs/PaginatedResponseMeta.md
+docs/PartialTypeClass.md
 docs/PublicSignupDisabled.md
 docs/ReRegisterServerResponse.md
 docs/RedundancyConfig.md
@@ -350,6 +352,8 @@ docs/ServerInstanceGroupCreate.md
 docs/ServerInstanceGroupInterface.md
 docs/ServerInstanceGroupInterfaceConfiguration.md
 docs/ServerInstanceGroupInterfacePaginatedList.md
+docs/ServerInstanceGroupNetworkConnectionDto.md
+docs/ServerInstanceGroupNetworkConnectionsList.md
 docs/ServerInstanceGroupPaginatedList.md
 docs/ServerInstanceGroupUpdate.md
 docs/ServerInstanceGroupVariables.md
@@ -371,6 +375,7 @@ docs/ServerInterface.md
 docs/ServerMetricsInfo.md
 docs/ServerPaginatedList.md
 docs/ServerPolicy.md
+docs/ServerPolicyUpdateDto.md
 docs/ServerPowerSet.md
 docs/ServerStatistics.md
 docs/ServerStorageController.md
@@ -586,6 +591,7 @@ model_create_secret.go
 model_create_server_cleanup_policy.go
 model_create_server_default_credentials.go
 model_create_server_firmware_upgrade_policy.go
+model_create_server_instance_group_network_connection_dto.go
 model_create_server_type.go
 model_create_shared_drive.go
 model_create_storage.go
@@ -739,6 +745,7 @@ model_os_template_paginated_list.go
 model_os_template_update.go
 model_paginated_response_links.go
 model_paginated_response_meta.go
+model_partial_type_class.go
 model_public_signup_disabled.go
 model_re_register_server_response.go
 model_redundancy_config.go
@@ -787,6 +794,8 @@ model_server_instance_group_create.go
 model_server_instance_group_interface.go
 model_server_instance_group_interface_configuration.go
 model_server_instance_group_interface_paginated_list.go
+model_server_instance_group_network_connection_dto.go
+model_server_instance_group_network_connections_list.go
 model_server_instance_group_paginated_list.go
 model_server_instance_group_update.go
 model_server_instance_group_variables.go
@@ -808,6 +817,7 @@ model_server_interface.go
 model_server_metrics_info.go
 model_server_paginated_list.go
 model_server_policy.go
+model_server_policy_update_dto.go
 model_server_power_set.go
 model_server_statistics.go
 model_server_storage_controller.go

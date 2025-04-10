@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **DiskSizeGB** | **float32** | Disk size in GB of the VM Instance. | 
 **RamGB** | **float32** | RAM size in GB of the VM Instance. | 
 **CpuCores** | **float32** | Number of CPU cores for the VM Instance. | 
-**TemplateId** | Pointer to **float32** | Id of the template used by the VM Instance. | [optional] 
+**OsTemplateId** | Pointer to **float32** | Id of the template used by the VM Instance. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for the VM Instance. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the VM Instance last update. | 
 **Id** | **float32** | VM Instance ID | 
@@ -223,30 +223,30 @@ and a boolean to check if the value has been set.
 SetCpuCores sets CpuCores field to given value.
 
 
-### GetTemplateId
+### GetOsTemplateId
 
-`func (o *VMInstance) GetTemplateId() float32`
+`func (o *VMInstance) GetOsTemplateId() float32`
 
-GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
-### GetTemplateIdOk
+### GetOsTemplateIdOk
 
-`func (o *VMInstance) GetTemplateIdOk() (*float32, bool)`
+`func (o *VMInstance) GetOsTemplateIdOk() (*float32, bool)`
 
-GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTemplateId
+### SetOsTemplateId
 
-`func (o *VMInstance) SetTemplateId(v float32)`
+`func (o *VMInstance) SetOsTemplateId(v float32)`
 
-SetTemplateId sets TemplateId field to given value.
+SetOsTemplateId sets OsTemplateId field to given value.
 
-### HasTemplateId
+### HasOsTemplateId
 
-`func (o *VMInstance) HasTemplateId() bool`
+`func (o *VMInstance) HasOsTemplateId() bool`
 
-HasTemplateId returns a boolean if a field has been set.
+HasOsTemplateId returns a boolean if a field has been set.
 
 ### GetCustomVariables
 

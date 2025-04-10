@@ -142,16 +142,16 @@ type ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnecti
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
 	serverInstanceGroupId int32
-	createNetworkEndpointGroupLogicalNetwork *CreateNetworkEndpointGroupLogicalNetwork
+	createServerInstanceGroupNetworkConnectionDto *CreateServerInstanceGroupNetworkConnectionDto
 }
 
 // The network connection object to create
-func (r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) CreateNetworkEndpointGroupLogicalNetwork(createNetworkEndpointGroupLogicalNetwork CreateNetworkEndpointGroupLogicalNetwork) ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest {
-	r.createNetworkEndpointGroupLogicalNetwork = &createNetworkEndpointGroupLogicalNetwork
+func (r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) CreateServerInstanceGroupNetworkConnectionDto(createServerInstanceGroupNetworkConnectionDto CreateServerInstanceGroupNetworkConnectionDto) ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest {
+	r.createServerInstanceGroupNetworkConnectionDto = &createServerInstanceGroupNetworkConnectionDto
 	return r
 }
 
-func (r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+func (r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*ServerInstanceGroupNetworkConnectionDto, *http.Response, error) {
 	return r.ApiService.CreateServerInstanceGroupNetworkConfigurationConnectionExecute(r)
 }
 
@@ -171,13 +171,13 @@ func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigur
 }
 
 // Execute executes the request
-//  @return NetworkEndpointGroupLogicalNetworkDto
-func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigurationConnectionExecute(r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+//  @return ServerInstanceGroupNetworkConnectionDto
+func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigurationConnectionExecute(r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) (*ServerInstanceGroupNetworkConnectionDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NetworkEndpointGroupLogicalNetworkDto
+		localVarReturnValue  *ServerInstanceGroupNetworkConnectionDto
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.CreateServerInstanceGroupNetworkConfigurationConnection")
@@ -191,8 +191,8 @@ func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigur
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkEndpointGroupLogicalNetwork == nil {
-		return localVarReturnValue, nil, reportError("createNetworkEndpointGroupLogicalNetwork is required and must be specified")
+	if r.createServerInstanceGroupNetworkConnectionDto == nil {
+		return localVarReturnValue, nil, reportError("createServerInstanceGroupNetworkConnectionDto is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -213,7 +213,7 @@ func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkEndpointGroupLogicalNetwork
+	localVarPostBody = r.createServerInstanceGroupNetworkConnectionDto
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1473,7 +1473,7 @@ type ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionB
 	connectionId int32
 }
 
-func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest) Execute() (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest) Execute() (*ServerInstanceGroupNetworkConnectionDto, *http.Response, error) {
 	return r.ApiService.GetServerInstanceGroupNetworkConfigurationConnectionByIdExecute(r)
 }
 
@@ -1497,13 +1497,13 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurati
 }
 
 // Execute executes the request
-//  @return NetworkEndpointGroupLogicalNetworkDto
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnectionByIdExecute(r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest) (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+//  @return ServerInstanceGroupNetworkConnectionDto
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnectionByIdExecute(r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest) (*ServerInstanceGroupNetworkConnectionDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NetworkEndpointGroupLogicalNetworkDto
+		localVarReturnValue  *ServerInstanceGroupNetworkConnectionDto
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupNetworkConfigurationConnectionById")
@@ -1579,14 +1579,12 @@ type ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnections
 	serverInstanceGroupId int32
 }
 
-func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest) Execute() (*NetworkEndpointGroupLogicalNetworksList, *http.Response, error) {
+func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest) Execute() (*ServerInstanceGroupNetworkConnectionsList, *http.Response, error) {
 	return r.ApiService.GetServerInstanceGroupNetworkConfigurationConnectionsExecute(r)
 }
 
 /*
-GetServerInstanceGroupNetworkConfigurationConnections Get server instance group's network configuration connections
-
-Returns the connections of the specified server instance group
+GetServerInstanceGroupNetworkConfigurationConnections Get server instance group's network connections
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serverInstanceGroupId
@@ -1601,13 +1599,13 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurati
 }
 
 // Execute executes the request
-//  @return NetworkEndpointGroupLogicalNetworksList
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnectionsExecute(r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest) (*NetworkEndpointGroupLogicalNetworksList, *http.Response, error) {
+//  @return ServerInstanceGroupNetworkConnectionsList
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnectionsExecute(r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionsRequest) (*ServerInstanceGroupNetworkConnectionsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NetworkEndpointGroupLogicalNetworksList
+		localVarReturnValue  *ServerInstanceGroupNetworkConnectionsList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupNetworkConfigurationConnections")
@@ -2214,7 +2212,7 @@ func (r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConne
 	return r
 }
 
-func (r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+func (r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*ServerInstanceGroupNetworkConnectionDto, *http.Response, error) {
 	return r.ApiService.UpdateServerInstanceGroupNetworkConfigurationConnectionExecute(r)
 }
 
@@ -2236,13 +2234,13 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfigur
 }
 
 // Execute executes the request
-//  @return NetworkEndpointGroupLogicalNetworkDto
-func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfigurationConnectionExecute(r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest) (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+//  @return ServerInstanceGroupNetworkConnectionDto
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfigurationConnectionExecute(r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest) (*ServerInstanceGroupNetworkConnectionDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NetworkEndpointGroupLogicalNetworkDto
+		localVarReturnValue  *ServerInstanceGroupNetworkConnectionDto
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.UpdateServerInstanceGroupNetworkConfigurationConnection")

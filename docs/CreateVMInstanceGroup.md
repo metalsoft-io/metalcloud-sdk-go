@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **InstanceCount** | Pointer to **float32** |  | [optional] [default to 1]
 **DiskSizeGB** | **float32** | Disk size in GB for each VM Instance in the VM Instance Group. | 
 **TypeId** | **float32** | Id of the VM Type. | 
-**VolumeTemplateId** | Pointer to **float32** | Id of the template used by the VM Instance Group. | [optional] 
+**OsTemplateId** | Pointer to **float32** | Id of the template used by the VM Instance Group. | [optional] 
 **Tags** | Pointer to **[]string** | Tags for the VM Instance Group. | [optional] 
 
 ## Methods
@@ -94,30 +94,30 @@ and a boolean to check if the value has been set.
 SetTypeId sets TypeId field to given value.
 
 
-### GetVolumeTemplateId
+### GetOsTemplateId
 
-`func (o *CreateVMInstanceGroup) GetVolumeTemplateId() float32`
+`func (o *CreateVMInstanceGroup) GetOsTemplateId() float32`
 
-GetVolumeTemplateId returns the VolumeTemplateId field if non-nil, zero value otherwise.
+GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
-### GetVolumeTemplateIdOk
+### GetOsTemplateIdOk
 
-`func (o *CreateVMInstanceGroup) GetVolumeTemplateIdOk() (*float32, bool)`
+`func (o *CreateVMInstanceGroup) GetOsTemplateIdOk() (*float32, bool)`
 
-GetVolumeTemplateIdOk returns a tuple with the VolumeTemplateId field if it's non-nil, zero value otherwise
+GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVolumeTemplateId
+### SetOsTemplateId
 
-`func (o *CreateVMInstanceGroup) SetVolumeTemplateId(v float32)`
+`func (o *CreateVMInstanceGroup) SetOsTemplateId(v float32)`
 
-SetVolumeTemplateId sets VolumeTemplateId field to given value.
+SetOsTemplateId sets OsTemplateId field to given value.
 
-### HasVolumeTemplateId
+### HasOsTemplateId
 
-`func (o *CreateVMInstanceGroup) HasVolumeTemplateId() bool`
+`func (o *CreateVMInstanceGroup) HasOsTemplateId() bool`
 
-HasVolumeTemplateId returns a boolean if a field has been set.
+HasOsTemplateId returns a boolean if a field has been set.
 
 ### GetTags
 

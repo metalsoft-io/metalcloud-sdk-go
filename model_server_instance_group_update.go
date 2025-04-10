@@ -23,16 +23,16 @@ type ServerInstanceGroupUpdate struct {
 	// The server instance group label.
 	Label *string `json:"label,omitempty"`
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
-	// The number of instances to be created on the InstanceArray.
+	// The number of instances to be created on the Instance Group.
 	InstanceCount *int32 `json:"instanceCount,omitempty"`
-	// Automatically allocate IP addresses to child Instance`s InstanceInterface elements.
+	// The server type ID of the created instances.
+	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
+	// Automatically allocate IP addresses to child Instance`s Instance Interface elements.
 	IpAllocateAuto *int32 `json:"ipAllocateAuto,omitempty"`
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
 	Ipv4SubnetCreateAuto *int32 `json:"ipv4SubnetCreateAuto,omitempty"`
-	// The volume template ID (or name) to use if the servers in the InstanceArray have local disks.
-	VolumeTemplateId *int32 `json:"volumeTemplateId,omitempty"`
-	// Id of the bootable drive for the Server Instance Group.
-	DriveArrayIdBoot *int32 `json:"driveArrayIdBoot,omitempty"`
+	// The volume template ID (or name) to use if the servers in the Instance Group have local disks.
+	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
 	// Object containing custom variables and variable overrides.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// The CPU count on each instance.
@@ -55,7 +55,7 @@ type ServerInstanceGroupUpdate struct {
 	AdditionalWanIpv4Json map[string]interface{} `json:"additionalWanIpv4Json,omitempty"`
 	// The ipv4 vlan that should override the default from the WAN Network for the primary ip.
 	OverrideIpv4WanVlanId *int32 `json:"overrideIpv4WanVlanId,omitempty"`
-	// ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the InstanceInterfaces associated with this InstanceArray.
+	// ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group.
 	NetworkEquipmentForceSubnetPoolIpv4WanId *int32 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -215,6 +215,38 @@ func (o *ServerInstanceGroupUpdate) SetInstanceCount(v int32) {
 	o.InstanceCount = &v
 }
 
+// GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetServerTypeId() int32 {
+	if o == nil || IsNil(o.ServerTypeId) {
+		var ret int32
+		return ret
+	}
+	return *o.ServerTypeId
+}
+
+// GetServerTypeIdOk returns a tuple with the ServerTypeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupUpdate) GetServerTypeIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.ServerTypeId) {
+		return nil, false
+	}
+	return o.ServerTypeId, true
+}
+
+// HasServerTypeId returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasServerTypeId() bool {
+	if o != nil && !IsNil(o.ServerTypeId) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerTypeId gets a reference to the given int32 and assigns it to the ServerTypeId field.
+func (o *ServerInstanceGroupUpdate) SetServerTypeId(v int32) {
+	o.ServerTypeId = &v
+}
+
 // GetIpAllocateAuto returns the IpAllocateAuto field value if set, zero value otherwise.
 func (o *ServerInstanceGroupUpdate) GetIpAllocateAuto() int32 {
 	if o == nil || IsNil(o.IpAllocateAuto) {
@@ -279,68 +311,36 @@ func (o *ServerInstanceGroupUpdate) SetIpv4SubnetCreateAuto(v int32) {
 	o.Ipv4SubnetCreateAuto = &v
 }
 
-// GetVolumeTemplateId returns the VolumeTemplateId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupUpdate) GetVolumeTemplateId() int32 {
-	if o == nil || IsNil(o.VolumeTemplateId) {
+// GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetOsTemplateId() int32 {
+	if o == nil || IsNil(o.OsTemplateId) {
 		var ret int32
 		return ret
 	}
-	return *o.VolumeTemplateId
+	return *o.OsTemplateId
 }
 
-// GetVolumeTemplateIdOk returns a tuple with the VolumeTemplateId field value if set, nil otherwise
+// GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupUpdate) GetVolumeTemplateIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.VolumeTemplateId) {
+func (o *ServerInstanceGroupUpdate) GetOsTemplateIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
-	return o.VolumeTemplateId, true
+	return o.OsTemplateId, true
 }
 
-// HasVolumeTemplateId returns a boolean if a field has been set.
-func (o *ServerInstanceGroupUpdate) HasVolumeTemplateId() bool {
-	if o != nil && !IsNil(o.VolumeTemplateId) {
+// HasOsTemplateId returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasOsTemplateId() bool {
+	if o != nil && !IsNil(o.OsTemplateId) {
 		return true
 	}
 
 	return false
 }
 
-// SetVolumeTemplateId gets a reference to the given int32 and assigns it to the VolumeTemplateId field.
-func (o *ServerInstanceGroupUpdate) SetVolumeTemplateId(v int32) {
-	o.VolumeTemplateId = &v
-}
-
-// GetDriveArrayIdBoot returns the DriveArrayIdBoot field value if set, zero value otherwise.
-func (o *ServerInstanceGroupUpdate) GetDriveArrayIdBoot() int32 {
-	if o == nil || IsNil(o.DriveArrayIdBoot) {
-		var ret int32
-		return ret
-	}
-	return *o.DriveArrayIdBoot
-}
-
-// GetDriveArrayIdBootOk returns a tuple with the DriveArrayIdBoot field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupUpdate) GetDriveArrayIdBootOk() (*int32, bool) {
-	if o == nil || IsNil(o.DriveArrayIdBoot) {
-		return nil, false
-	}
-	return o.DriveArrayIdBoot, true
-}
-
-// HasDriveArrayIdBoot returns a boolean if a field has been set.
-func (o *ServerInstanceGroupUpdate) HasDriveArrayIdBoot() bool {
-	if o != nil && !IsNil(o.DriveArrayIdBoot) {
-		return true
-	}
-
-	return false
-}
-
-// SetDriveArrayIdBoot gets a reference to the given int32 and assigns it to the DriveArrayIdBoot field.
-func (o *ServerInstanceGroupUpdate) SetDriveArrayIdBoot(v int32) {
-	o.DriveArrayIdBoot = &v
+// SetOsTemplateId gets a reference to the given int32 and assigns it to the OsTemplateId field.
+func (o *ServerInstanceGroupUpdate) SetOsTemplateId(v int32) {
+	o.OsTemplateId = &v
 }
 
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
@@ -746,17 +746,17 @@ func (o ServerInstanceGroupUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InstanceCount) {
 		toSerialize["instanceCount"] = o.InstanceCount
 	}
+	if !IsNil(o.ServerTypeId) {
+		toSerialize["serverTypeId"] = o.ServerTypeId
+	}
 	if !IsNil(o.IpAllocateAuto) {
 		toSerialize["ipAllocateAuto"] = o.IpAllocateAuto
 	}
 	if !IsNil(o.Ipv4SubnetCreateAuto) {
 		toSerialize["ipv4SubnetCreateAuto"] = o.Ipv4SubnetCreateAuto
 	}
-	if !IsNil(o.VolumeTemplateId) {
-		toSerialize["volumeTemplateId"] = o.VolumeTemplateId
-	}
-	if !IsNil(o.DriveArrayIdBoot) {
-		toSerialize["driveArrayIdBoot"] = o.DriveArrayIdBoot
+	if !IsNil(o.OsTemplateId) {
+		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
@@ -819,10 +819,10 @@ func (o *ServerInstanceGroupUpdate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "instanceCount")
+		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "ipAllocateAuto")
 		delete(additionalProperties, "ipv4SubnetCreateAuto")
-		delete(additionalProperties, "volumeTemplateId")
-		delete(additionalProperties, "driveArrayIdBoot")
+		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "processorCount")
 		delete(additionalProperties, "processorCoreCount")

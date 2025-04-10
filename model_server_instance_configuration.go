@@ -30,13 +30,12 @@ type ServerInstanceConfiguration struct {
 	// Subdomain of the Product Instance.
 	Subdomain *string `json:"subdomain,omitempty"`
 	GroupId int32 `json:"groupId"`
-	DriveIdBootable *int32 `json:"driveIdBootable,omitempty"`
 	// The server type ID.
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
 	// The ID of the server assigned to the instance.
 	ServerId *int32 `json:"serverId,omitempty"`
 	// The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal. 
-	TemplateId *int32 `json:"templateId,omitempty"`
+	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
 	InstanceWanMlagId *int32 `json:"instanceWanMlagId,omitempty"`
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// RAID profile for the Instance Interface.
@@ -219,38 +218,6 @@ func (o *ServerInstanceConfiguration) SetGroupId(v int32) {
 	o.GroupId = v
 }
 
-// GetDriveIdBootable returns the DriveIdBootable field value if set, zero value otherwise.
-func (o *ServerInstanceConfiguration) GetDriveIdBootable() int32 {
-	if o == nil || IsNil(o.DriveIdBootable) {
-		var ret int32
-		return ret
-	}
-	return *o.DriveIdBootable
-}
-
-// GetDriveIdBootableOk returns a tuple with the DriveIdBootable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceConfiguration) GetDriveIdBootableOk() (*int32, bool) {
-	if o == nil || IsNil(o.DriveIdBootable) {
-		return nil, false
-	}
-	return o.DriveIdBootable, true
-}
-
-// HasDriveIdBootable returns a boolean if a field has been set.
-func (o *ServerInstanceConfiguration) HasDriveIdBootable() bool {
-	if o != nil && !IsNil(o.DriveIdBootable) {
-		return true
-	}
-
-	return false
-}
-
-// SetDriveIdBootable gets a reference to the given int32 and assigns it to the DriveIdBootable field.
-func (o *ServerInstanceConfiguration) SetDriveIdBootable(v int32) {
-	o.DriveIdBootable = &v
-}
-
 // GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
 func (o *ServerInstanceConfiguration) GetServerTypeId() int32 {
 	if o == nil || IsNil(o.ServerTypeId) {
@@ -315,36 +282,36 @@ func (o *ServerInstanceConfiguration) SetServerId(v int32) {
 	o.ServerId = &v
 }
 
-// GetTemplateId returns the TemplateId field value if set, zero value otherwise.
-func (o *ServerInstanceConfiguration) GetTemplateId() int32 {
-	if o == nil || IsNil(o.TemplateId) {
+// GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
+func (o *ServerInstanceConfiguration) GetOsTemplateId() int32 {
+	if o == nil || IsNil(o.OsTemplateId) {
 		var ret int32
 		return ret
 	}
-	return *o.TemplateId
+	return *o.OsTemplateId
 }
 
-// GetTemplateIdOk returns a tuple with the TemplateId field value if set, nil otherwise
+// GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceConfiguration) GetTemplateIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.TemplateId) {
+func (o *ServerInstanceConfiguration) GetOsTemplateIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
-	return o.TemplateId, true
+	return o.OsTemplateId, true
 }
 
-// HasTemplateId returns a boolean if a field has been set.
-func (o *ServerInstanceConfiguration) HasTemplateId() bool {
-	if o != nil && !IsNil(o.TemplateId) {
+// HasOsTemplateId returns a boolean if a field has been set.
+func (o *ServerInstanceConfiguration) HasOsTemplateId() bool {
+	if o != nil && !IsNil(o.OsTemplateId) {
 		return true
 	}
 
 	return false
 }
 
-// SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
-func (o *ServerInstanceConfiguration) SetTemplateId(v int32) {
-	o.TemplateId = &v
+// SetOsTemplateId gets a reference to the given int32 and assigns it to the OsTemplateId field.
+func (o *ServerInstanceConfiguration) SetOsTemplateId(v int32) {
+	o.OsTemplateId = &v
 }
 
 // GetInstanceWanMlagId returns the InstanceWanMlagId field value if set, zero value otherwise.
@@ -732,17 +699,14 @@ func (o ServerInstanceConfiguration) ToMap() (map[string]interface{}, error) {
 		toSerialize["subdomain"] = o.Subdomain
 	}
 	toSerialize["groupId"] = o.GroupId
-	if !IsNil(o.DriveIdBootable) {
-		toSerialize["driveIdBootable"] = o.DriveIdBootable
-	}
 	if !IsNil(o.ServerTypeId) {
 		toSerialize["serverTypeId"] = o.ServerTypeId
 	}
 	if !IsNil(o.ServerId) {
 		toSerialize["serverId"] = o.ServerId
 	}
-	if !IsNil(o.TemplateId) {
-		toSerialize["templateId"] = o.TemplateId
+	if !IsNil(o.OsTemplateId) {
+		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
 	if !IsNil(o.InstanceWanMlagId) {
 		toSerialize["instanceWanMlagId"] = o.InstanceWanMlagId
@@ -829,10 +793,9 @@ func (o *ServerInstanceConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "subdomain")
 		delete(additionalProperties, "groupId")
-		delete(additionalProperties, "driveIdBootable")
 		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "serverId")
-		delete(additionalProperties, "templateId")
+		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "instanceWanMlagId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "raidProfile")

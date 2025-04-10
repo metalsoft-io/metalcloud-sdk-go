@@ -38,7 +38,7 @@ type VMInstance struct {
 	// Number of CPU cores for the VM Instance.
 	CpuCores float32 `json:"cpuCores"`
 	// Id of the template used by the VM Instance.
-	TemplateId *float32 `json:"templateId,omitempty"`
+	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
 	// Custom variables for the VM Instance.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// Timestamp of the VM Instance last update.
@@ -322,36 +322,36 @@ func (o *VMInstance) SetCpuCores(v float32) {
 	o.CpuCores = v
 }
 
-// GetTemplateId returns the TemplateId field value if set, zero value otherwise.
-func (o *VMInstance) GetTemplateId() float32 {
-	if o == nil || IsNil(o.TemplateId) {
+// GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
+func (o *VMInstance) GetOsTemplateId() float32 {
+	if o == nil || IsNil(o.OsTemplateId) {
 		var ret float32
 		return ret
 	}
-	return *o.TemplateId
+	return *o.OsTemplateId
 }
 
-// GetTemplateIdOk returns a tuple with the TemplateId field value if set, nil otherwise
+// GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstance) GetTemplateIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.TemplateId) {
+func (o *VMInstance) GetOsTemplateIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
-	return o.TemplateId, true
+	return o.OsTemplateId, true
 }
 
-// HasTemplateId returns a boolean if a field has been set.
-func (o *VMInstance) HasTemplateId() bool {
-	if o != nil && !IsNil(o.TemplateId) {
+// HasOsTemplateId returns a boolean if a field has been set.
+func (o *VMInstance) HasOsTemplateId() bool {
+	if o != nil && !IsNil(o.OsTemplateId) {
 		return true
 	}
 
 	return false
 }
 
-// SetTemplateId gets a reference to the given float32 and assigns it to the TemplateId field.
-func (o *VMInstance) SetTemplateId(v float32) {
-	o.TemplateId = &v
+// SetOsTemplateId gets a reference to the given float32 and assigns it to the OsTemplateId field.
+func (o *VMInstance) SetOsTemplateId(v float32) {
+	o.OsTemplateId = &v
 }
 
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
@@ -778,8 +778,8 @@ func (o VMInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize["diskSizeGB"] = o.DiskSizeGB
 	toSerialize["ramGB"] = o.RamGB
 	toSerialize["cpuCores"] = o.CpuCores
-	if !IsNil(o.TemplateId) {
-		toSerialize["templateId"] = o.TemplateId
+	if !IsNil(o.OsTemplateId) {
+		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
@@ -871,7 +871,7 @@ func (o *VMInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "diskSizeGB")
 		delete(additionalProperties, "ramGB")
 		delete(additionalProperties, "cpuCores")
-		delete(additionalProperties, "templateId")
+		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "id")

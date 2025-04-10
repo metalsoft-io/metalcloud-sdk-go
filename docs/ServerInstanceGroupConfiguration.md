@@ -9,16 +9,11 @@ Name | Type | Description | Notes
 **UpdatedTimestamp** | **string** | Timestamp of the latest update of the Product Instance. | 
 **Subdomain** | Pointer to **string** | Subdomain of the Product Instance. | [optional] 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
-**InstanceCount** | **int32** | The number of instances to be created on the InstanceArray. | [default to 1]
-**IpAllocateAuto** | **int32** | Automatically allocate IP addresses to child Instance&#x60;s InstanceInterface elements. | [default to 1]
+**InstanceCount** | **int32** | The number of instances to be created on the Instance Group. | [default to 1]
+**IpAllocateAuto** | **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [default to 1]
 **Ipv4SubnetCreateAuto** | **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [default to 1]
-**FirewallProfileId** | Pointer to **int32** |  | [optional] 
-**FirewallRulesSetId** | Pointer to **int32** |  | [optional] 
-**FirewallManaged** | **int32** |  | 
 **FirmwarePolicyIds** | Pointer to **[]float32** | Array of firmware policy ids containing associated firmware policies. | [optional] 
-**VolumeTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the InstanceArray have local disks. | [optional] 
-**DriveArrayIdBoot** | Pointer to **int32** | Id of the bootable drive for the Server Instance Group. | [optional] 
-**InstanceArrayBootMethod** | **string** | Instance Array Boot Method | 
+**OsTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the Instance Group have local disks. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Object containing custom variables and variable overrides. | [optional] 
 **ProcessorCount** | **int32** | The CPU count on each instance. | [default to 1]
 **ProcessorCoreCount** | **int32** | The minimum cores of a CPU. | [default to 1]
@@ -31,7 +26,7 @@ Name | Type | Description | Notes
 **AdditionalWanIpv4Json** | Pointer to **map[string]interface{}** | Contains info about additional ips to be assigned to the WAN interfaces. | [optional] 
 **NetworkProfileGroupId** | Pointer to **int32** |  | [optional] 
 **OverrideIpv4WanVlanId** | Pointer to **int32** | The ipv4 vlan that should override the default from the WAN Network for the primary ip. | [optional] 
-**NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the InstanceInterfaces associated with this InstanceArray. | [optional] 
+**NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group. | [optional] 
 **DnsSubdomainChangeId** | Pointer to **int32** | Id of the DNS subdomain for the Product Instance | [optional] 
 **InfrastructureDeployId** | Pointer to **int32** | Id of the deployment for the Product Instance | [optional] 
 **EmptyEdit** | Pointer to **int32** | Number of empty edits | [optional] 
@@ -42,7 +37,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceGroupConfiguration
 
-`func NewServerInstanceGroupConfiguration(revision int32, label string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, deployType string, deployStatus string, ) *ServerInstanceGroupConfiguration`
+`func NewServerInstanceGroupConfiguration(revision int32, label string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, deployType string, deployStatus string, ) *ServerInstanceGroupConfiguration`
 
 NewServerInstanceGroupConfiguration instantiates a new ServerInstanceGroupConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -227,76 +222,6 @@ and a boolean to check if the value has been set.
 SetIpv4SubnetCreateAuto sets Ipv4SubnetCreateAuto field to given value.
 
 
-### GetFirewallProfileId
-
-`func (o *ServerInstanceGroupConfiguration) GetFirewallProfileId() int32`
-
-GetFirewallProfileId returns the FirewallProfileId field if non-nil, zero value otherwise.
-
-### GetFirewallProfileIdOk
-
-`func (o *ServerInstanceGroupConfiguration) GetFirewallProfileIdOk() (*int32, bool)`
-
-GetFirewallProfileIdOk returns a tuple with the FirewallProfileId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFirewallProfileId
-
-`func (o *ServerInstanceGroupConfiguration) SetFirewallProfileId(v int32)`
-
-SetFirewallProfileId sets FirewallProfileId field to given value.
-
-### HasFirewallProfileId
-
-`func (o *ServerInstanceGroupConfiguration) HasFirewallProfileId() bool`
-
-HasFirewallProfileId returns a boolean if a field has been set.
-
-### GetFirewallRulesSetId
-
-`func (o *ServerInstanceGroupConfiguration) GetFirewallRulesSetId() int32`
-
-GetFirewallRulesSetId returns the FirewallRulesSetId field if non-nil, zero value otherwise.
-
-### GetFirewallRulesSetIdOk
-
-`func (o *ServerInstanceGroupConfiguration) GetFirewallRulesSetIdOk() (*int32, bool)`
-
-GetFirewallRulesSetIdOk returns a tuple with the FirewallRulesSetId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFirewallRulesSetId
-
-`func (o *ServerInstanceGroupConfiguration) SetFirewallRulesSetId(v int32)`
-
-SetFirewallRulesSetId sets FirewallRulesSetId field to given value.
-
-### HasFirewallRulesSetId
-
-`func (o *ServerInstanceGroupConfiguration) HasFirewallRulesSetId() bool`
-
-HasFirewallRulesSetId returns a boolean if a field has been set.
-
-### GetFirewallManaged
-
-`func (o *ServerInstanceGroupConfiguration) GetFirewallManaged() int32`
-
-GetFirewallManaged returns the FirewallManaged field if non-nil, zero value otherwise.
-
-### GetFirewallManagedOk
-
-`func (o *ServerInstanceGroupConfiguration) GetFirewallManagedOk() (*int32, bool)`
-
-GetFirewallManagedOk returns a tuple with the FirewallManaged field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFirewallManaged
-
-`func (o *ServerInstanceGroupConfiguration) SetFirewallManaged(v int32)`
-
-SetFirewallManaged sets FirewallManaged field to given value.
-
-
 ### GetFirmwarePolicyIds
 
 `func (o *ServerInstanceGroupConfiguration) GetFirmwarePolicyIds() []float32`
@@ -332,75 +257,30 @@ HasFirmwarePolicyIds returns a boolean if a field has been set.
 `func (o *ServerInstanceGroupConfiguration) UnsetFirmwarePolicyIds()`
 
 UnsetFirmwarePolicyIds ensures that no value is present for FirmwarePolicyIds, not even an explicit nil
-### GetVolumeTemplateId
+### GetOsTemplateId
 
-`func (o *ServerInstanceGroupConfiguration) GetVolumeTemplateId() int32`
+`func (o *ServerInstanceGroupConfiguration) GetOsTemplateId() int32`
 
-GetVolumeTemplateId returns the VolumeTemplateId field if non-nil, zero value otherwise.
+GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
-### GetVolumeTemplateIdOk
+### GetOsTemplateIdOk
 
-`func (o *ServerInstanceGroupConfiguration) GetVolumeTemplateIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroupConfiguration) GetOsTemplateIdOk() (*int32, bool)`
 
-GetVolumeTemplateIdOk returns a tuple with the VolumeTemplateId field if it's non-nil, zero value otherwise
+GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVolumeTemplateId
+### SetOsTemplateId
 
-`func (o *ServerInstanceGroupConfiguration) SetVolumeTemplateId(v int32)`
+`func (o *ServerInstanceGroupConfiguration) SetOsTemplateId(v int32)`
 
-SetVolumeTemplateId sets VolumeTemplateId field to given value.
+SetOsTemplateId sets OsTemplateId field to given value.
 
-### HasVolumeTemplateId
+### HasOsTemplateId
 
-`func (o *ServerInstanceGroupConfiguration) HasVolumeTemplateId() bool`
+`func (o *ServerInstanceGroupConfiguration) HasOsTemplateId() bool`
 
-HasVolumeTemplateId returns a boolean if a field has been set.
-
-### GetDriveArrayIdBoot
-
-`func (o *ServerInstanceGroupConfiguration) GetDriveArrayIdBoot() int32`
-
-GetDriveArrayIdBoot returns the DriveArrayIdBoot field if non-nil, zero value otherwise.
-
-### GetDriveArrayIdBootOk
-
-`func (o *ServerInstanceGroupConfiguration) GetDriveArrayIdBootOk() (*int32, bool)`
-
-GetDriveArrayIdBootOk returns a tuple with the DriveArrayIdBoot field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDriveArrayIdBoot
-
-`func (o *ServerInstanceGroupConfiguration) SetDriveArrayIdBoot(v int32)`
-
-SetDriveArrayIdBoot sets DriveArrayIdBoot field to given value.
-
-### HasDriveArrayIdBoot
-
-`func (o *ServerInstanceGroupConfiguration) HasDriveArrayIdBoot() bool`
-
-HasDriveArrayIdBoot returns a boolean if a field has been set.
-
-### GetInstanceArrayBootMethod
-
-`func (o *ServerInstanceGroupConfiguration) GetInstanceArrayBootMethod() string`
-
-GetInstanceArrayBootMethod returns the InstanceArrayBootMethod field if non-nil, zero value otherwise.
-
-### GetInstanceArrayBootMethodOk
-
-`func (o *ServerInstanceGroupConfiguration) GetInstanceArrayBootMethodOk() (*string, bool)`
-
-GetInstanceArrayBootMethodOk returns a tuple with the InstanceArrayBootMethod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInstanceArrayBootMethod
-
-`func (o *ServerInstanceGroupConfiguration) SetInstanceArrayBootMethod(v string)`
-
-SetInstanceArrayBootMethod sets InstanceArrayBootMethod field to given value.
-
+HasOsTemplateId returns a boolean if a field has been set.
 
 ### GetCustomVariables
 

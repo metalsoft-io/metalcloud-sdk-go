@@ -16,16 +16,12 @@ Name | Type | Description | Notes
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **InfrastructureId** | **int32** |  | 
 **ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
-**InstanceCount** | **int32** | The number of instances to be created on the InstanceArray. | [default to 1]
-**IpAllocateAuto** | **int32** | Automatically allocate IP addresses to child Instance&#x60;s InstanceInterface elements. | [default to 1]
+**InstanceCount** | **int32** | The number of instances to be created on the Instance Group. | [default to 1]
+**ServerTypeId** | Pointer to **int32** | The server type ID of the created instances. | [optional] 
+**IpAllocateAuto** | **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [default to 1]
 **Ipv4SubnetCreateAuto** | **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [default to 1]
-**FirewallProfileId** | Pointer to **int32** |  | [optional] 
-**FirewallRulesSetId** | Pointer to **int32** |  | [optional] 
-**FirewallManaged** | **int32** |  | 
 **FirmwarePolicyIds** | Pointer to **[]float32** | Array of firmware policy ids containing associated firmware policies. | [optional] 
-**VolumeTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the InstanceArray have local disks. | [optional] 
-**DriveArrayIdBoot** | Pointer to **int32** | Id of the bootable drive for the Server Instance Group. | [optional] 
-**InstanceArrayBootMethod** | **string** | Instance Array Boot Method | 
+**OsTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the Instance Group have local disks. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Object containing custom variables and variable overrides. | [optional] 
 **ProcessorCount** | **int32** | The CPU count on each instance. | [default to 1]
 **ProcessorCoreCount** | **int32** | The minimum cores of a CPU. | [default to 1]
@@ -39,14 +35,13 @@ Name | Type | Description | Notes
 **NetworkProfileGroupId** | Pointer to **int32** |  | [optional] 
 **NetworkProfileSnapshotId** | Pointer to **int32** |  | [optional] 
 **OverrideIpv4WanVlanId** | Pointer to **int32** | The ipv4 vlan that should override the default from the WAN Network for the primary ip. | [optional] 
-**NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the InstanceInterfaces associated with this InstanceArray. | [optional] 
+**NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group. | [optional] 
 **ServiceStatus** | **string** | Current status of the Server Instance Group. | 
 **ResourcePoolId** | Pointer to **int32** | The resource pool assigned to this instance array | [optional] 
 **NetworkEndpointGroupId** | Pointer to **int32** | The network endpoint group id for the instance array | [optional] 
 **IsVmGroup** | **int32** | Flag to indicate if the Server Instance Group is belongs to a VM. | 
 **VmInstanceGroupId** | Pointer to **int32** | Id of the VM Instance Group this Server Instance Group belongs to. | [optional] 
-**DefaultServerProfileID** | Pointer to **int32** | The group&#39;s default server profile. Useful when creating a server instance with a group id set, the profile will be automatically applied. | [optional] 
-**Meta** | Pointer to [**GenericMeta**](GenericMeta.md) |  | [optional] 
+**Meta** | [**GenericMeta**](GenericMeta.md) |  | 
 **Config** | Pointer to [**ServerInstanceGroupConfiguration**](ServerInstanceGroupConfiguration.md) |  | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
@@ -54,7 +49,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceGroup
 
-`func NewServerInstanceGroup(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, firewallManaged int32, instanceArrayBootMethod string, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, ) *ServerInstanceGroup`
+`func NewServerInstanceGroup(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, meta GenericMeta, ) *ServerInstanceGroup`
 
 NewServerInstanceGroup instantiates a new ServerInstanceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -359,6 +354,31 @@ and a boolean to check if the value has been set.
 SetInstanceCount sets InstanceCount field to given value.
 
 
+### GetServerTypeId
+
+`func (o *ServerInstanceGroup) GetServerTypeId() int32`
+
+GetServerTypeId returns the ServerTypeId field if non-nil, zero value otherwise.
+
+### GetServerTypeIdOk
+
+`func (o *ServerInstanceGroup) GetServerTypeIdOk() (*int32, bool)`
+
+GetServerTypeIdOk returns a tuple with the ServerTypeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerTypeId
+
+`func (o *ServerInstanceGroup) SetServerTypeId(v int32)`
+
+SetServerTypeId sets ServerTypeId field to given value.
+
+### HasServerTypeId
+
+`func (o *ServerInstanceGroup) HasServerTypeId() bool`
+
+HasServerTypeId returns a boolean if a field has been set.
+
 ### GetIpAllocateAuto
 
 `func (o *ServerInstanceGroup) GetIpAllocateAuto() int32`
@@ -399,76 +419,6 @@ and a boolean to check if the value has been set.
 SetIpv4SubnetCreateAuto sets Ipv4SubnetCreateAuto field to given value.
 
 
-### GetFirewallProfileId
-
-`func (o *ServerInstanceGroup) GetFirewallProfileId() int32`
-
-GetFirewallProfileId returns the FirewallProfileId field if non-nil, zero value otherwise.
-
-### GetFirewallProfileIdOk
-
-`func (o *ServerInstanceGroup) GetFirewallProfileIdOk() (*int32, bool)`
-
-GetFirewallProfileIdOk returns a tuple with the FirewallProfileId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFirewallProfileId
-
-`func (o *ServerInstanceGroup) SetFirewallProfileId(v int32)`
-
-SetFirewallProfileId sets FirewallProfileId field to given value.
-
-### HasFirewallProfileId
-
-`func (o *ServerInstanceGroup) HasFirewallProfileId() bool`
-
-HasFirewallProfileId returns a boolean if a field has been set.
-
-### GetFirewallRulesSetId
-
-`func (o *ServerInstanceGroup) GetFirewallRulesSetId() int32`
-
-GetFirewallRulesSetId returns the FirewallRulesSetId field if non-nil, zero value otherwise.
-
-### GetFirewallRulesSetIdOk
-
-`func (o *ServerInstanceGroup) GetFirewallRulesSetIdOk() (*int32, bool)`
-
-GetFirewallRulesSetIdOk returns a tuple with the FirewallRulesSetId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFirewallRulesSetId
-
-`func (o *ServerInstanceGroup) SetFirewallRulesSetId(v int32)`
-
-SetFirewallRulesSetId sets FirewallRulesSetId field to given value.
-
-### HasFirewallRulesSetId
-
-`func (o *ServerInstanceGroup) HasFirewallRulesSetId() bool`
-
-HasFirewallRulesSetId returns a boolean if a field has been set.
-
-### GetFirewallManaged
-
-`func (o *ServerInstanceGroup) GetFirewallManaged() int32`
-
-GetFirewallManaged returns the FirewallManaged field if non-nil, zero value otherwise.
-
-### GetFirewallManagedOk
-
-`func (o *ServerInstanceGroup) GetFirewallManagedOk() (*int32, bool)`
-
-GetFirewallManagedOk returns a tuple with the FirewallManaged field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFirewallManaged
-
-`func (o *ServerInstanceGroup) SetFirewallManaged(v int32)`
-
-SetFirewallManaged sets FirewallManaged field to given value.
-
-
 ### GetFirmwarePolicyIds
 
 `func (o *ServerInstanceGroup) GetFirmwarePolicyIds() []float32`
@@ -504,75 +454,30 @@ HasFirmwarePolicyIds returns a boolean if a field has been set.
 `func (o *ServerInstanceGroup) UnsetFirmwarePolicyIds()`
 
 UnsetFirmwarePolicyIds ensures that no value is present for FirmwarePolicyIds, not even an explicit nil
-### GetVolumeTemplateId
+### GetOsTemplateId
 
-`func (o *ServerInstanceGroup) GetVolumeTemplateId() int32`
+`func (o *ServerInstanceGroup) GetOsTemplateId() int32`
 
-GetVolumeTemplateId returns the VolumeTemplateId field if non-nil, zero value otherwise.
+GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
-### GetVolumeTemplateIdOk
+### GetOsTemplateIdOk
 
-`func (o *ServerInstanceGroup) GetVolumeTemplateIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetOsTemplateIdOk() (*int32, bool)`
 
-GetVolumeTemplateIdOk returns a tuple with the VolumeTemplateId field if it's non-nil, zero value otherwise
+GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVolumeTemplateId
+### SetOsTemplateId
 
-`func (o *ServerInstanceGroup) SetVolumeTemplateId(v int32)`
+`func (o *ServerInstanceGroup) SetOsTemplateId(v int32)`
 
-SetVolumeTemplateId sets VolumeTemplateId field to given value.
+SetOsTemplateId sets OsTemplateId field to given value.
 
-### HasVolumeTemplateId
+### HasOsTemplateId
 
-`func (o *ServerInstanceGroup) HasVolumeTemplateId() bool`
+`func (o *ServerInstanceGroup) HasOsTemplateId() bool`
 
-HasVolumeTemplateId returns a boolean if a field has been set.
-
-### GetDriveArrayIdBoot
-
-`func (o *ServerInstanceGroup) GetDriveArrayIdBoot() int32`
-
-GetDriveArrayIdBoot returns the DriveArrayIdBoot field if non-nil, zero value otherwise.
-
-### GetDriveArrayIdBootOk
-
-`func (o *ServerInstanceGroup) GetDriveArrayIdBootOk() (*int32, bool)`
-
-GetDriveArrayIdBootOk returns a tuple with the DriveArrayIdBoot field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDriveArrayIdBoot
-
-`func (o *ServerInstanceGroup) SetDriveArrayIdBoot(v int32)`
-
-SetDriveArrayIdBoot sets DriveArrayIdBoot field to given value.
-
-### HasDriveArrayIdBoot
-
-`func (o *ServerInstanceGroup) HasDriveArrayIdBoot() bool`
-
-HasDriveArrayIdBoot returns a boolean if a field has been set.
-
-### GetInstanceArrayBootMethod
-
-`func (o *ServerInstanceGroup) GetInstanceArrayBootMethod() string`
-
-GetInstanceArrayBootMethod returns the InstanceArrayBootMethod field if non-nil, zero value otherwise.
-
-### GetInstanceArrayBootMethodOk
-
-`func (o *ServerInstanceGroup) GetInstanceArrayBootMethodOk() (*string, bool)`
-
-GetInstanceArrayBootMethodOk returns a tuple with the InstanceArrayBootMethod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInstanceArrayBootMethod
-
-`func (o *ServerInstanceGroup) SetInstanceArrayBootMethod(v string)`
-
-SetInstanceArrayBootMethod sets InstanceArrayBootMethod field to given value.
-
+HasOsTemplateId returns a boolean if a field has been set.
 
 ### GetCustomVariables
 
@@ -1004,31 +909,6 @@ SetVmInstanceGroupId sets VmInstanceGroupId field to given value.
 
 HasVmInstanceGroupId returns a boolean if a field has been set.
 
-### GetDefaultServerProfileID
-
-`func (o *ServerInstanceGroup) GetDefaultServerProfileID() int32`
-
-GetDefaultServerProfileID returns the DefaultServerProfileID field if non-nil, zero value otherwise.
-
-### GetDefaultServerProfileIDOk
-
-`func (o *ServerInstanceGroup) GetDefaultServerProfileIDOk() (*int32, bool)`
-
-GetDefaultServerProfileIDOk returns a tuple with the DefaultServerProfileID field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultServerProfileID
-
-`func (o *ServerInstanceGroup) SetDefaultServerProfileID(v int32)`
-
-SetDefaultServerProfileID sets DefaultServerProfileID field to given value.
-
-### HasDefaultServerProfileID
-
-`func (o *ServerInstanceGroup) HasDefaultServerProfileID() bool`
-
-HasDefaultServerProfileID returns a boolean if a field has been set.
-
 ### GetMeta
 
 `func (o *ServerInstanceGroup) GetMeta() GenericMeta`
@@ -1048,11 +928,6 @@ and a boolean to check if the value has been set.
 
 SetMeta sets Meta field to given value.
 
-### HasMeta
-
-`func (o *ServerInstanceGroup) HasMeta() bool`
-
-HasMeta returns a boolean if a field has been set.
 
 ### GetConfig
 

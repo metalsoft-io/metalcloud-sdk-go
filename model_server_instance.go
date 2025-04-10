@@ -41,13 +41,12 @@ type ServerInstance struct {
 	DnsSubdomainPermanentId *int32 `json:"dnsSubdomainPermanentId,omitempty"`
 	InfrastructureId int32 `json:"infrastructureId"`
 	GroupId int32 `json:"groupId"`
-	DriveIdBootable *int32 `json:"driveIdBootable,omitempty"`
 	// The server type ID.
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
 	// The ID of the server assigned to the instance.
 	ServerId *int32 `json:"serverId,omitempty"`
 	// The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal. 
-	TemplateId *int32 `json:"templateId,omitempty"`
+	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
 	InstanceWanMlagId *int32 `json:"instanceWanMlagId,omitempty"`
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	PreferredServerIds []float32 `json:"preferredServerIds,omitempty"`
@@ -59,10 +58,6 @@ type ServerInstance struct {
 	IsVmInstance int32 `json:"isVmInstance"`
 	// The id of the linked VM instance
 	VmInstanceId *int32 `json:"vmInstanceId,omitempty"`
-	Meta *GenericGUISettings `json:"meta,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	// Operating system information of the Instance.
-	OperatingSystemInfo map[string]interface{} `json:"operatingSystemInfo,omitempty"`
 	ClusterCustomInfo *ServerInstanceClusterCustomInfo `json:"clusterCustomInfo,omitempty"`
 	// Last error message during OS install.
 	OsInstallError *string `json:"osInstallError,omitempty"`
@@ -82,6 +77,7 @@ type ServerInstance struct {
 	IscsiInitiatorPasswordEncrypted *string `json:"iscsiInitiatorPasswordEncrypted,omitempty"`
 	// Control panel url for the Instance Interface.
 	ControlPanelUrl *string `json:"controlPanelUrl,omitempty"`
+	Meta GenericMeta `json:"meta"`
 	Config *ServerInstanceConfiguration `json:"config,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
@@ -94,7 +90,7 @@ type _ServerInstance ServerInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance int32) *ServerInstance {
+func NewServerInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance int32, meta GenericMeta) *ServerInstance {
 	this := ServerInstance{}
 	this.Id = id
 	this.Revision = revision
@@ -105,6 +101,7 @@ func NewServerInstance(id int32, revision int32, label string, createdTimestamp 
 	this.GroupId = groupId
 	this.ServiceStatus = serviceStatus
 	this.IsVmInstance = isVmInstance
+	this.Meta = meta
 	return &this
 }
 
@@ -412,38 +409,6 @@ func (o *ServerInstance) SetGroupId(v int32) {
 	o.GroupId = v
 }
 
-// GetDriveIdBootable returns the DriveIdBootable field value if set, zero value otherwise.
-func (o *ServerInstance) GetDriveIdBootable() int32 {
-	if o == nil || IsNil(o.DriveIdBootable) {
-		var ret int32
-		return ret
-	}
-	return *o.DriveIdBootable
-}
-
-// GetDriveIdBootableOk returns a tuple with the DriveIdBootable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstance) GetDriveIdBootableOk() (*int32, bool) {
-	if o == nil || IsNil(o.DriveIdBootable) {
-		return nil, false
-	}
-	return o.DriveIdBootable, true
-}
-
-// HasDriveIdBootable returns a boolean if a field has been set.
-func (o *ServerInstance) HasDriveIdBootable() bool {
-	if o != nil && !IsNil(o.DriveIdBootable) {
-		return true
-	}
-
-	return false
-}
-
-// SetDriveIdBootable gets a reference to the given int32 and assigns it to the DriveIdBootable field.
-func (o *ServerInstance) SetDriveIdBootable(v int32) {
-	o.DriveIdBootable = &v
-}
-
 // GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
 func (o *ServerInstance) GetServerTypeId() int32 {
 	if o == nil || IsNil(o.ServerTypeId) {
@@ -508,36 +473,36 @@ func (o *ServerInstance) SetServerId(v int32) {
 	o.ServerId = &v
 }
 
-// GetTemplateId returns the TemplateId field value if set, zero value otherwise.
-func (o *ServerInstance) GetTemplateId() int32 {
-	if o == nil || IsNil(o.TemplateId) {
+// GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
+func (o *ServerInstance) GetOsTemplateId() int32 {
+	if o == nil || IsNil(o.OsTemplateId) {
 		var ret int32
 		return ret
 	}
-	return *o.TemplateId
+	return *o.OsTemplateId
 }
 
-// GetTemplateIdOk returns a tuple with the TemplateId field value if set, nil otherwise
+// GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstance) GetTemplateIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.TemplateId) {
+func (o *ServerInstance) GetOsTemplateIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
-	return o.TemplateId, true
+	return o.OsTemplateId, true
 }
 
-// HasTemplateId returns a boolean if a field has been set.
-func (o *ServerInstance) HasTemplateId() bool {
-	if o != nil && !IsNil(o.TemplateId) {
+// HasOsTemplateId returns a boolean if a field has been set.
+func (o *ServerInstance) HasOsTemplateId() bool {
+	if o != nil && !IsNil(o.OsTemplateId) {
 		return true
 	}
 
 	return false
 }
 
-// SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
-func (o *ServerInstance) SetTemplateId(v int32) {
-	o.TemplateId = &v
+// SetOsTemplateId gets a reference to the given int32 and assigns it to the OsTemplateId field.
+func (o *ServerInstance) SetOsTemplateId(v int32) {
+	o.OsTemplateId = &v
 }
 
 // GetInstanceWanMlagId returns the InstanceWanMlagId field value if set, zero value otherwise.
@@ -746,102 +711,6 @@ func (o *ServerInstance) HasVmInstanceId() bool {
 // SetVmInstanceId gets a reference to the given int32 and assigns it to the VmInstanceId field.
 func (o *ServerInstance) SetVmInstanceId(v int32) {
 	o.VmInstanceId = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ServerInstance) GetMeta() GenericGUISettings {
-	if o == nil || IsNil(o.Meta) {
-		var ret GenericGUISettings
-		return ret
-	}
-	return *o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstance) GetMetaOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.Meta) {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ServerInstance) HasMeta() bool {
-	if o != nil && !IsNil(o.Meta) {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given GenericGUISettings and assigns it to the Meta field.
-func (o *ServerInstance) SetMeta(v GenericGUISettings) {
-	o.Meta = &v
-}
-
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *ServerInstance) GetTags() []string {
-	if o == nil || IsNil(o.Tags) {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstance) GetTagsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *ServerInstance) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *ServerInstance) SetTags(v []string) {
-	o.Tags = v
-}
-
-// GetOperatingSystemInfo returns the OperatingSystemInfo field value if set, zero value otherwise.
-func (o *ServerInstance) GetOperatingSystemInfo() map[string]interface{} {
-	if o == nil || IsNil(o.OperatingSystemInfo) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.OperatingSystemInfo
-}
-
-// GetOperatingSystemInfoOk returns a tuple with the OperatingSystemInfo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstance) GetOperatingSystemInfoOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.OperatingSystemInfo) {
-		return map[string]interface{}{}, false
-	}
-	return o.OperatingSystemInfo, true
-}
-
-// HasOperatingSystemInfo returns a boolean if a field has been set.
-func (o *ServerInstance) HasOperatingSystemInfo() bool {
-	if o != nil && !IsNil(o.OperatingSystemInfo) {
-		return true
-	}
-
-	return false
-}
-
-// SetOperatingSystemInfo gets a reference to the given map[string]interface{} and assigns it to the OperatingSystemInfo field.
-func (o *ServerInstance) SetOperatingSystemInfo(v map[string]interface{}) {
-	o.OperatingSystemInfo = v
 }
 
 // GetClusterCustomInfo returns the ClusterCustomInfo field value if set, zero value otherwise.
@@ -1164,6 +1033,30 @@ func (o *ServerInstance) SetControlPanelUrl(v string) {
 	o.ControlPanelUrl = &v
 }
 
+// GetMeta returns the Meta field value
+func (o *ServerInstance) GetMeta() GenericMeta {
+	if o == nil {
+		var ret GenericMeta
+		return ret
+	}
+
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstance) GetMetaOk() (*GenericMeta, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Meta, true
+}
+
+// SetMeta sets field value
+func (o *ServerInstance) SetMeta(v GenericMeta) {
+	o.Meta = v
+}
+
 // GetConfig returns the Config field value if set, zero value otherwise.
 func (o *ServerInstance) GetConfig() ServerInstanceConfiguration {
 	if o == nil || IsNil(o.Config) {
@@ -1257,17 +1150,14 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["infrastructureId"] = o.InfrastructureId
 	toSerialize["groupId"] = o.GroupId
-	if !IsNil(o.DriveIdBootable) {
-		toSerialize["driveIdBootable"] = o.DriveIdBootable
-	}
 	if !IsNil(o.ServerTypeId) {
 		toSerialize["serverTypeId"] = o.ServerTypeId
 	}
 	if !IsNil(o.ServerId) {
 		toSerialize["serverId"] = o.ServerId
 	}
-	if !IsNil(o.TemplateId) {
-		toSerialize["templateId"] = o.TemplateId
+	if !IsNil(o.OsTemplateId) {
+		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
 	if !IsNil(o.InstanceWanMlagId) {
 		toSerialize["instanceWanMlagId"] = o.InstanceWanMlagId
@@ -1285,15 +1175,6 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize["isVmInstance"] = o.IsVmInstance
 	if !IsNil(o.VmInstanceId) {
 		toSerialize["vmInstanceId"] = o.VmInstanceId
-	}
-	if !IsNil(o.Meta) {
-		toSerialize["meta"] = o.Meta
-	}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !IsNil(o.OperatingSystemInfo) {
-		toSerialize["operatingSystemInfo"] = o.OperatingSystemInfo
 	}
 	if !IsNil(o.ClusterCustomInfo) {
 		toSerialize["clusterCustomInfo"] = o.ClusterCustomInfo
@@ -1325,6 +1206,7 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ControlPanelUrl) {
 		toSerialize["controlPanelUrl"] = o.ControlPanelUrl
 	}
+	toSerialize["meta"] = o.Meta
 	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
 	}
@@ -1353,6 +1235,7 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 		"groupId",
 		"serviceStatus",
 		"isVmInstance",
+		"meta",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -1393,10 +1276,9 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dnsSubdomainPermanentId")
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "groupId")
-		delete(additionalProperties, "driveIdBootable")
 		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "serverId")
-		delete(additionalProperties, "templateId")
+		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "instanceWanMlagId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "preferredServerIds")
@@ -1404,9 +1286,6 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "isVmInstance")
 		delete(additionalProperties, "vmInstanceId")
-		delete(additionalProperties, "meta")
-		delete(additionalProperties, "tags")
-		delete(additionalProperties, "operatingSystemInfo")
 		delete(additionalProperties, "clusterCustomInfo")
 		delete(additionalProperties, "osInstallError")
 		delete(additionalProperties, "osInstallImageUrl")
@@ -1417,6 +1296,7 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "iscsiInitiatorUsername")
 		delete(additionalProperties, "iscsiInitiatorPasswordEncrypted")
 		delete(additionalProperties, "controlPanelUrl")
+		delete(additionalProperties, "meta")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

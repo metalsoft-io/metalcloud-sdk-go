@@ -9,10 +9,9 @@ Name | Type | Description | Notes
 **UpdatedTimestamp** | **string** | Timestamp of the latest update of the Product Instance. | 
 **Subdomain** | Pointer to **string** | Subdomain of the Product Instance. | [optional] 
 **GroupId** | **int32** |  | 
-**DriveIdBootable** | Pointer to **int32** |  | [optional] 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
 **ServerId** | Pointer to **int32** | The ID of the server assigned to the instance. | [optional] 
-**TemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
+**OsTemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
 **InstanceWanMlagId** | Pointer to **int32** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
 **RaidProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | RAID profile for the Instance Interface. | [optional] 
@@ -150,31 +149,6 @@ and a boolean to check if the value has been set.
 SetGroupId sets GroupId field to given value.
 
 
-### GetDriveIdBootable
-
-`func (o *ServerInstanceConfiguration) GetDriveIdBootable() int32`
-
-GetDriveIdBootable returns the DriveIdBootable field if non-nil, zero value otherwise.
-
-### GetDriveIdBootableOk
-
-`func (o *ServerInstanceConfiguration) GetDriveIdBootableOk() (*int32, bool)`
-
-GetDriveIdBootableOk returns a tuple with the DriveIdBootable field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDriveIdBootable
-
-`func (o *ServerInstanceConfiguration) SetDriveIdBootable(v int32)`
-
-SetDriveIdBootable sets DriveIdBootable field to given value.
-
-### HasDriveIdBootable
-
-`func (o *ServerInstanceConfiguration) HasDriveIdBootable() bool`
-
-HasDriveIdBootable returns a boolean if a field has been set.
-
 ### GetServerTypeId
 
 `func (o *ServerInstanceConfiguration) GetServerTypeId() int32`
@@ -225,30 +199,30 @@ SetServerId sets ServerId field to given value.
 
 HasServerId returns a boolean if a field has been set.
 
-### GetTemplateId
+### GetOsTemplateId
 
-`func (o *ServerInstanceConfiguration) GetTemplateId() int32`
+`func (o *ServerInstanceConfiguration) GetOsTemplateId() int32`
 
-GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
-### GetTemplateIdOk
+### GetOsTemplateIdOk
 
-`func (o *ServerInstanceConfiguration) GetTemplateIdOk() (*int32, bool)`
+`func (o *ServerInstanceConfiguration) GetOsTemplateIdOk() (*int32, bool)`
 
-GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTemplateId
+### SetOsTemplateId
 
-`func (o *ServerInstanceConfiguration) SetTemplateId(v int32)`
+`func (o *ServerInstanceConfiguration) SetOsTemplateId(v int32)`
 
-SetTemplateId sets TemplateId field to given value.
+SetOsTemplateId sets OsTemplateId field to given value.
 
-### HasTemplateId
+### HasOsTemplateId
 
-`func (o *ServerInstanceConfiguration) HasTemplateId() bool`
+`func (o *ServerInstanceConfiguration) HasOsTemplateId() bool`
 
-HasTemplateId returns a boolean if a field has been set.
+HasOsTemplateId returns a boolean if a field has been set.
 
 ### GetInstanceWanMlagId
 

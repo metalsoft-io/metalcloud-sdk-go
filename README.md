@@ -368,7 +368,7 @@ Class | Method | HTTP request | Description
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupInterfaces**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupinterfaces) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces | Get Server Instance Group Interfaces
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfiguration**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfiguration) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking | Get server instance group network configuration
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfigurationConnectionById**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfigurationconnectionbyid) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Get server instance group network configuration connection by id
-*ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfigurationConnections**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfigurationconnections) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections | Get server instance group&#39;s network configuration connections
+*ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfigurationConnections**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfigurationconnections) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections | Get server instance group&#39;s network connections
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupServerInstances**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupserverinstances) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/server-instances | List Server Instances for a Server Instance Group
 *ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupConfig**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupconfig) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Updates Server Instance Group configuration
 *ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupMeta**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupmeta) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/meta | Update an Server Instance Group meta information
@@ -581,6 +581,7 @@ Class | Method | HTTP request | Description
  - [CreateServerCleanupPolicy](docs/CreateServerCleanupPolicy.md)
  - [CreateServerDefaultCredentials](docs/CreateServerDefaultCredentials.md)
  - [CreateServerFirmwareUpgradePolicy](docs/CreateServerFirmwareUpgradePolicy.md)
+ - [CreateServerInstanceGroupNetworkConnectionDto](docs/CreateServerInstanceGroupNetworkConnectionDto.md)
  - [CreateServerType](docs/CreateServerType.md)
  - [CreateSharedDrive](docs/CreateSharedDrive.md)
  - [CreateStorage](docs/CreateStorage.md)
@@ -734,6 +735,7 @@ Class | Method | HTTP request | Description
  - [OSTemplateUpdate](docs/OSTemplateUpdate.md)
  - [PaginatedResponseLinks](docs/PaginatedResponseLinks.md)
  - [PaginatedResponseMeta](docs/PaginatedResponseMeta.md)
+ - [PartialTypeClass](docs/PartialTypeClass.md)
  - [PublicSignupDisabled](docs/PublicSignupDisabled.md)
  - [ReRegisterServerResponse](docs/ReRegisterServerResponse.md)
  - [RedundancyConfig](docs/RedundancyConfig.md)
@@ -783,6 +785,8 @@ Class | Method | HTTP request | Description
  - [ServerInstanceGroupInterface](docs/ServerInstanceGroupInterface.md)
  - [ServerInstanceGroupInterfaceConfiguration](docs/ServerInstanceGroupInterfaceConfiguration.md)
  - [ServerInstanceGroupInterfacePaginatedList](docs/ServerInstanceGroupInterfacePaginatedList.md)
+ - [ServerInstanceGroupNetworkConnectionDto](docs/ServerInstanceGroupNetworkConnectionDto.md)
+ - [ServerInstanceGroupNetworkConnectionsList](docs/ServerInstanceGroupNetworkConnectionsList.md)
  - [ServerInstanceGroupPaginatedList](docs/ServerInstanceGroupPaginatedList.md)
  - [ServerInstanceGroupUpdate](docs/ServerInstanceGroupUpdate.md)
  - [ServerInstanceGroupVariables](docs/ServerInstanceGroupVariables.md)
@@ -804,6 +808,7 @@ Class | Method | HTTP request | Description
  - [ServerMetricsInfo](docs/ServerMetricsInfo.md)
  - [ServerPaginatedList](docs/ServerPaginatedList.md)
  - [ServerPolicy](docs/ServerPolicy.md)
+ - [ServerPolicyUpdateDto](docs/ServerPolicyUpdateDto.md)
  - [ServerPowerSet](docs/ServerPowerSet.md)
  - [ServerStatistics](docs/ServerStatistics.md)
  - [ServerStorageController](docs/ServerStorageController.md)
