@@ -4,38 +4,38 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** | Label of the Shared Drive. | 
-**StoragePoolId** | Pointer to **float32** | Id of the storage pool the Shared Drive is assigned to | [optional] 
-**SizeMb** | **float32** | Disk size in MB for Shared Drive | 
-**StorageImageName** | Pointer to **string** | The name of the storage image used by the Shared Drive. | [optional] 
-**StorageType** | **string** | Service status of the Shared Drive | [default to "iscsi_ssd"]
-**IoLimitPolicy** | Pointer to **string** | The IO limit policy of the Shared Drive. | [optional] 
-**Subdomain** | Pointer to **string** | Subdomain of the Shared Drive. | [optional] 
-**UpdatedTimestamp** | **string** | Timestamp of the Shared Drive last update. | 
-**Id** | **float32** | Id of the Shared Drive | 
-**Revision** | **float32** | Revision of the Shared Drive State | 
-**InfrastructureId** | **float32** | Infrastructure id of the Shared Drive | 
-**ServiceStatus** | **string** | Service status of the Shared Drive | 
+**Label** | **string** | Label of the Drive. | 
+**StoragePoolId** | Pointer to **float32** | Id of the storage pool the Drive is assigned to | [optional] 
+**SizeMb** | **float32** | Disk size in MB for Drive | 
+**StorageImageName** | Pointer to **string** | The name of the storage image used by the Drive. | [optional] 
+**StorageType** | **string** | Service status of the Drive | [default to "iscsi_ssd"]
+**IoLimitPolicy** | Pointer to **string** | The IO limit policy of the Drive. | [optional] 
+**Subdomain** | Pointer to **string** | Subdomain of the Drive. | [optional] 
+**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Drive. | [optional] 
+**UpdatedTimestamp** | **string** | Timestamp of the Drive last update. | 
+**Id** | **float32** | Id of the Drive | 
+**Revision** | **float32** | Revision of the Drive State | 
+**InfrastructureId** | **float32** | Infrastructure id of the Drive | 
+**ServiceStatus** | **string** | Service status of the Drive | 
 **StorageRealSizeCachedMb** | Pointer to **float32** | Cached information of the real size of the storage in MB. | [optional] 
 **StorageRealSizeWithSnapshotsCachedMb** | Pointer to **float32** | Cached information of the real size of the storage (including snapshots) in MB. | [optional] 
 **StorageVirtualSizeCachedMb** | Pointer to **float32** | Cached information of the virtual size of the storage in MB. | [optional] 
-**StorageUpdatedTimestamp** | **string** | Timestamp of the latest update of cached information for the Shared Drive. | 
-**Targets** | Pointer to **[]map[string]interface{}** | Targets of the Shared Drive. | [optional] 
+**StorageUpdatedTimestamp** | **string** | Timestamp of the latest update of cached information for the Drive. | 
+**Targets** | Pointer to **[]map[string]interface{}** | Targets of the Drive. | [optional] 
 **Wwn** | Pointer to **string** |  | [optional] 
-**AllocationAffinity** | **string** | Allocation affinity of the Shared Drive | 
-**ProvisioningProtocol** | **string** | Provisioning protocol of the Shared Drive | 
-**SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Shared Drive. | [optional] 
-**DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the Shared Drive. | [optional] 
-**DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the Shared Drive. | [optional] 
-**NetworkVlanId** | Pointer to **float32** | Id of the VLAN for the Shared Drive. | [optional] 
-**Config** | [**SharedDriveConfiguration**](SharedDriveConfiguration.md) | The current changes to be deployed for the Shared Drive. | 
-**CreatedTimestamp** | **string** | Timestamp of the Shared Drive creation. | 
+**AllocationAffinity** | **string** | Allocation affinity of the Drive | 
+**ProvisioningProtocol** | **string** | Provisioning protocol of the Drive | 
+**SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Drive. | [optional] 
+**DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the Drive. | [optional] 
+**DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the Drive. | [optional] 
+**Config** | [**DriveConfiguration**](DriveConfiguration.md) | The current changes to be deployed for the Drive. | 
+**CreatedTimestamp** | **string** | Timestamp of the Drive creation. | 
 
 ## Methods
 
 ### NewSharedDriveVariables
 
-`func NewSharedDriveVariables(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string, ) *SharedDriveVariables`
+`func NewSharedDriveVariables(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, ) *SharedDriveVariables`
 
 NewSharedDriveVariables instantiates a new SharedDriveVariables object
 This constructor will assign default values to properties that have it defined,
@@ -209,6 +209,31 @@ SetSubdomain sets Subdomain field to given value.
 `func (o *SharedDriveVariables) HasSubdomain() bool`
 
 HasSubdomain returns a boolean if a field has been set.
+
+### GetLogicalNetworkId
+
+`func (o *SharedDriveVariables) GetLogicalNetworkId() float32`
+
+GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
+
+### GetLogicalNetworkIdOk
+
+`func (o *SharedDriveVariables) GetLogicalNetworkIdOk() (*float32, bool)`
+
+GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogicalNetworkId
+
+`func (o *SharedDriveVariables) SetLogicalNetworkId(v float32)`
+
+SetLogicalNetworkId sets LogicalNetworkId field to given value.
+
+### HasLogicalNetworkId
+
+`func (o *SharedDriveVariables) HasLogicalNetworkId() bool`
+
+HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetUpdatedTimestamp
 
@@ -570,47 +595,22 @@ SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 
 HasDnsSubdomainPermanentId returns a boolean if a field has been set.
 
-### GetNetworkVlanId
-
-`func (o *SharedDriveVariables) GetNetworkVlanId() float32`
-
-GetNetworkVlanId returns the NetworkVlanId field if non-nil, zero value otherwise.
-
-### GetNetworkVlanIdOk
-
-`func (o *SharedDriveVariables) GetNetworkVlanIdOk() (*float32, bool)`
-
-GetNetworkVlanIdOk returns a tuple with the NetworkVlanId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetworkVlanId
-
-`func (o *SharedDriveVariables) SetNetworkVlanId(v float32)`
-
-SetNetworkVlanId sets NetworkVlanId field to given value.
-
-### HasNetworkVlanId
-
-`func (o *SharedDriveVariables) HasNetworkVlanId() bool`
-
-HasNetworkVlanId returns a boolean if a field has been set.
-
 ### GetConfig
 
-`func (o *SharedDriveVariables) GetConfig() SharedDriveConfiguration`
+`func (o *SharedDriveVariables) GetConfig() DriveConfiguration`
 
 GetConfig returns the Config field if non-nil, zero value otherwise.
 
 ### GetConfigOk
 
-`func (o *SharedDriveVariables) GetConfigOk() (*SharedDriveConfiguration, bool)`
+`func (o *SharedDriveVariables) GetConfigOk() (*DriveConfiguration, bool)`
 
 GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfig
 
-`func (o *SharedDriveVariables) SetConfig(v SharedDriveConfiguration)`
+`func (o *SharedDriveVariables) SetConfig(v DriveConfiguration)`
 
 SetConfig sets Config field to given value.
 

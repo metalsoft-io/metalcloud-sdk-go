@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SizeGB** | Pointer to **float32** | Disk size in GB for Bucket | [optional] 
 **Label** | Pointer to **string** | Label of the Bucket. | [optional] 
+**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Bucket. | [optional] 
 **GuiSettings** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
 
 ## Methods
@@ -76,6 +77,31 @@ SetLabel sets Label field to given value.
 `func (o *UpdateBucket) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
+
+### GetLogicalNetworkId
+
+`func (o *UpdateBucket) GetLogicalNetworkId() float32`
+
+GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
+
+### GetLogicalNetworkIdOk
+
+`func (o *UpdateBucket) GetLogicalNetworkIdOk() (*float32, bool)`
+
+GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogicalNetworkId
+
+`func (o *UpdateBucket) SetLogicalNetworkId(v float32)`
+
+SetLogicalNetworkId sets LogicalNetworkId field to given value.
+
+### HasLogicalNetworkId
+
+`func (o *UpdateBucket) HasLogicalNetworkId() bool`
+
+HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetGuiSettings
 

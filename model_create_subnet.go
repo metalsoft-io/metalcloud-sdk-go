@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the CreateSubnetDto type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateSubnetDto{}
+// checks if the CreateSubnet type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateSubnet{}
 
-// CreateSubnetDto struct for CreateSubnetDto
-type CreateSubnetDto struct {
+// CreateSubnet struct for CreateSubnet
+type CreateSubnet struct {
 	Label *string `json:"label,omitempty"`
 	// Name of the Subnet
 	Name string `json:"name"`
@@ -37,14 +37,14 @@ type CreateSubnetDto struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _CreateSubnetDto CreateSubnetDto
+type _CreateSubnet CreateSubnet
 
-// NewCreateSubnetDto instantiates a new CreateSubnetDto object
+// NewCreateSubnet instantiates a new CreateSubnet object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateSubnetDto(name string, parentSubnetId float32, networkAddress string, prefixLength float32, isPool bool, vrfId float32, allocationDenylist []string, allowedChildOverlapConditions []string, tags map[string]interface{}, metadata map[string]interface{}) *CreateSubnetDto {
-	this := CreateSubnetDto{}
+func NewCreateSubnet(name string, parentSubnetId float32, networkAddress string, prefixLength float32, isPool bool, vrfId float32, allocationDenylist []string, allowedChildOverlapConditions []string, tags map[string]interface{}, metadata map[string]interface{}) *CreateSubnet {
+	this := CreateSubnet{}
 	this.Name = name
 	this.ParentSubnetId = parentSubnetId
 	this.NetworkAddress = networkAddress
@@ -58,16 +58,16 @@ func NewCreateSubnetDto(name string, parentSubnetId float32, networkAddress stri
 	return &this
 }
 
-// NewCreateSubnetDtoWithDefaults instantiates a new CreateSubnetDto object
+// NewCreateSubnetWithDefaults instantiates a new CreateSubnet object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateSubnetDtoWithDefaults() *CreateSubnetDto {
-	this := CreateSubnetDto{}
+func NewCreateSubnetWithDefaults() *CreateSubnet {
+	this := CreateSubnet{}
 	return &this
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
-func (o *CreateSubnetDto) GetLabel() string {
+func (o *CreateSubnet) GetLabel() string {
 	if o == nil || IsNil(o.Label) {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *CreateSubnetDto) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSubnetDto) GetLabelOk() (*string, bool) {
+func (o *CreateSubnet) GetLabelOk() (*string, bool) {
 	if o == nil || IsNil(o.Label) {
 		return nil, false
 	}
@@ -85,7 +85,7 @@ func (o *CreateSubnetDto) GetLabelOk() (*string, bool) {
 }
 
 // HasLabel returns a boolean if a field has been set.
-func (o *CreateSubnetDto) HasLabel() bool {
+func (o *CreateSubnet) HasLabel() bool {
 	if o != nil && !IsNil(o.Label) {
 		return true
 	}
@@ -94,12 +94,12 @@ func (o *CreateSubnetDto) HasLabel() bool {
 }
 
 // SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *CreateSubnetDto) SetLabel(v string) {
+func (o *CreateSubnet) SetLabel(v string) {
 	o.Label = &v
 }
 
 // GetName returns the Name field value
-func (o *CreateSubnetDto) GetName() string {
+func (o *CreateSubnet) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -110,7 +110,7 @@ func (o *CreateSubnetDto) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateSubnetDto) GetNameOk() (*string, bool) {
+func (o *CreateSubnet) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -118,12 +118,12 @@ func (o *CreateSubnetDto) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *CreateSubnetDto) SetName(v string) {
+func (o *CreateSubnet) SetName(v string) {
 	o.Name = v
 }
 
 // GetParentSubnetId returns the ParentSubnetId field value
-func (o *CreateSubnetDto) GetParentSubnetId() float32 {
+func (o *CreateSubnet) GetParentSubnetId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -134,7 +134,7 @@ func (o *CreateSubnetDto) GetParentSubnetId() float32 {
 
 // GetParentSubnetIdOk returns a tuple with the ParentSubnetId field value
 // and a boolean to check if the value has been set.
-func (o *CreateSubnetDto) GetParentSubnetIdOk() (*float32, bool) {
+func (o *CreateSubnet) GetParentSubnetIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -142,12 +142,12 @@ func (o *CreateSubnetDto) GetParentSubnetIdOk() (*float32, bool) {
 }
 
 // SetParentSubnetId sets field value
-func (o *CreateSubnetDto) SetParentSubnetId(v float32) {
+func (o *CreateSubnet) SetParentSubnetId(v float32) {
 	o.ParentSubnetId = v
 }
 
 // GetNetworkAddress returns the NetworkAddress field value
-func (o *CreateSubnetDto) GetNetworkAddress() string {
+func (o *CreateSubnet) GetNetworkAddress() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -158,7 +158,7 @@ func (o *CreateSubnetDto) GetNetworkAddress() string {
 
 // GetNetworkAddressOk returns a tuple with the NetworkAddress field value
 // and a boolean to check if the value has been set.
-func (o *CreateSubnetDto) GetNetworkAddressOk() (*string, bool) {
+func (o *CreateSubnet) GetNetworkAddressOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -166,12 +166,12 @@ func (o *CreateSubnetDto) GetNetworkAddressOk() (*string, bool) {
 }
 
 // SetNetworkAddress sets field value
-func (o *CreateSubnetDto) SetNetworkAddress(v string) {
+func (o *CreateSubnet) SetNetworkAddress(v string) {
 	o.NetworkAddress = v
 }
 
 // GetPrefixLength returns the PrefixLength field value
-func (o *CreateSubnetDto) GetPrefixLength() float32 {
+func (o *CreateSubnet) GetPrefixLength() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -182,7 +182,7 @@ func (o *CreateSubnetDto) GetPrefixLength() float32 {
 
 // GetPrefixLengthOk returns a tuple with the PrefixLength field value
 // and a boolean to check if the value has been set.
-func (o *CreateSubnetDto) GetPrefixLengthOk() (*float32, bool) {
+func (o *CreateSubnet) GetPrefixLengthOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -190,12 +190,12 @@ func (o *CreateSubnetDto) GetPrefixLengthOk() (*float32, bool) {
 }
 
 // SetPrefixLength sets field value
-func (o *CreateSubnetDto) SetPrefixLength(v float32) {
+func (o *CreateSubnet) SetPrefixLength(v float32) {
 	o.PrefixLength = v
 }
 
 // GetIsPool returns the IsPool field value
-func (o *CreateSubnetDto) GetIsPool() bool {
+func (o *CreateSubnet) GetIsPool() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -206,7 +206,7 @@ func (o *CreateSubnetDto) GetIsPool() bool {
 
 // GetIsPoolOk returns a tuple with the IsPool field value
 // and a boolean to check if the value has been set.
-func (o *CreateSubnetDto) GetIsPoolOk() (*bool, bool) {
+func (o *CreateSubnet) GetIsPoolOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -214,12 +214,12 @@ func (o *CreateSubnetDto) GetIsPoolOk() (*bool, bool) {
 }
 
 // SetIsPool sets field value
-func (o *CreateSubnetDto) SetIsPool(v bool) {
+func (o *CreateSubnet) SetIsPool(v bool) {
 	o.IsPool = v
 }
 
 // GetVrfId returns the VrfId field value
-func (o *CreateSubnetDto) GetVrfId() float32 {
+func (o *CreateSubnet) GetVrfId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -230,7 +230,7 @@ func (o *CreateSubnetDto) GetVrfId() float32 {
 
 // GetVrfIdOk returns a tuple with the VrfId field value
 // and a boolean to check if the value has been set.
-func (o *CreateSubnetDto) GetVrfIdOk() (*float32, bool) {
+func (o *CreateSubnet) GetVrfIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -238,12 +238,12 @@ func (o *CreateSubnetDto) GetVrfIdOk() (*float32, bool) {
 }
 
 // SetVrfId sets field value
-func (o *CreateSubnetDto) SetVrfId(v float32) {
+func (o *CreateSubnet) SetVrfId(v float32) {
 	o.VrfId = v
 }
 
 // GetAllocationDenylist returns the AllocationDenylist field value
-func (o *CreateSubnetDto) GetAllocationDenylist() []string {
+func (o *CreateSubnet) GetAllocationDenylist() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -254,7 +254,7 @@ func (o *CreateSubnetDto) GetAllocationDenylist() []string {
 
 // GetAllocationDenylistOk returns a tuple with the AllocationDenylist field value
 // and a boolean to check if the value has been set.
-func (o *CreateSubnetDto) GetAllocationDenylistOk() ([]string, bool) {
+func (o *CreateSubnet) GetAllocationDenylistOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -262,12 +262,12 @@ func (o *CreateSubnetDto) GetAllocationDenylistOk() ([]string, bool) {
 }
 
 // SetAllocationDenylist sets field value
-func (o *CreateSubnetDto) SetAllocationDenylist(v []string) {
+func (o *CreateSubnet) SetAllocationDenylist(v []string) {
 	o.AllocationDenylist = v
 }
 
 // GetAllowedChildOverlapConditions returns the AllowedChildOverlapConditions field value
-func (o *CreateSubnetDto) GetAllowedChildOverlapConditions() []string {
+func (o *CreateSubnet) GetAllowedChildOverlapConditions() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -278,7 +278,7 @@ func (o *CreateSubnetDto) GetAllowedChildOverlapConditions() []string {
 
 // GetAllowedChildOverlapConditionsOk returns a tuple with the AllowedChildOverlapConditions field value
 // and a boolean to check if the value has been set.
-func (o *CreateSubnetDto) GetAllowedChildOverlapConditionsOk() ([]string, bool) {
+func (o *CreateSubnet) GetAllowedChildOverlapConditionsOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -286,12 +286,12 @@ func (o *CreateSubnetDto) GetAllowedChildOverlapConditionsOk() ([]string, bool) 
 }
 
 // SetAllowedChildOverlapConditions sets field value
-func (o *CreateSubnetDto) SetAllowedChildOverlapConditions(v []string) {
+func (o *CreateSubnet) SetAllowedChildOverlapConditions(v []string) {
 	o.AllowedChildOverlapConditions = v
 }
 
 // GetTags returns the Tags field value
-func (o *CreateSubnetDto) GetTags() map[string]interface{} {
+func (o *CreateSubnet) GetTags() map[string]interface{} {
 	if o == nil {
 		var ret map[string]interface{}
 		return ret
@@ -302,7 +302,7 @@ func (o *CreateSubnetDto) GetTags() map[string]interface{} {
 
 // GetTagsOk returns a tuple with the Tags field value
 // and a boolean to check if the value has been set.
-func (o *CreateSubnetDto) GetTagsOk() (map[string]interface{}, bool) {
+func (o *CreateSubnet) GetTagsOk() (map[string]interface{}, bool) {
 	if o == nil {
 		return map[string]interface{}{}, false
 	}
@@ -310,12 +310,12 @@ func (o *CreateSubnetDto) GetTagsOk() (map[string]interface{}, bool) {
 }
 
 // SetTags sets field value
-func (o *CreateSubnetDto) SetTags(v map[string]interface{}) {
+func (o *CreateSubnet) SetTags(v map[string]interface{}) {
 	o.Tags = v
 }
 
 // GetMetadata returns the Metadata field value
-func (o *CreateSubnetDto) GetMetadata() map[string]interface{} {
+func (o *CreateSubnet) GetMetadata() map[string]interface{} {
 	if o == nil {
 		var ret map[string]interface{}
 		return ret
@@ -326,7 +326,7 @@ func (o *CreateSubnetDto) GetMetadata() map[string]interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
-func (o *CreateSubnetDto) GetMetadataOk() (map[string]interface{}, bool) {
+func (o *CreateSubnet) GetMetadataOk() (map[string]interface{}, bool) {
 	if o == nil {
 		return map[string]interface{}{}, false
 	}
@@ -334,11 +334,11 @@ func (o *CreateSubnetDto) GetMetadataOk() (map[string]interface{}, bool) {
 }
 
 // SetMetadata sets field value
-func (o *CreateSubnetDto) SetMetadata(v map[string]interface{}) {
+func (o *CreateSubnet) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
-func (o CreateSubnetDto) MarshalJSON() ([]byte, error) {
+func (o CreateSubnet) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -346,7 +346,7 @@ func (o CreateSubnetDto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateSubnetDto) ToMap() (map[string]interface{}, error) {
+func (o CreateSubnet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
@@ -369,7 +369,7 @@ func (o CreateSubnetDto) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *CreateSubnetDto) UnmarshalJSON(data []byte) (err error) {
+func (o *CreateSubnet) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -400,15 +400,15 @@ func (o *CreateSubnetDto) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varCreateSubnetDto := _CreateSubnetDto{}
+	varCreateSubnet := _CreateSubnet{}
 
-	err = json.Unmarshal(data, &varCreateSubnetDto)
+	err = json.Unmarshal(data, &varCreateSubnet)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CreateSubnetDto(varCreateSubnetDto)
+	*o = CreateSubnet(varCreateSubnet)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -430,38 +430,38 @@ func (o *CreateSubnetDto) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableCreateSubnetDto struct {
-	value *CreateSubnetDto
+type NullableCreateSubnet struct {
+	value *CreateSubnet
 	isSet bool
 }
 
-func (v NullableCreateSubnetDto) Get() *CreateSubnetDto {
+func (v NullableCreateSubnet) Get() *CreateSubnet {
 	return v.value
 }
 
-func (v *NullableCreateSubnetDto) Set(val *CreateSubnetDto) {
+func (v *NullableCreateSubnet) Set(val *CreateSubnet) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateSubnetDto) IsSet() bool {
+func (v NullableCreateSubnet) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateSubnetDto) Unset() {
+func (v *NullableCreateSubnet) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateSubnetDto(val *CreateSubnetDto) *NullableCreateSubnetDto {
-	return &NullableCreateSubnetDto{value: val, isSet: true}
+func NewNullableCreateSubnet(val *CreateSubnet) *NullableCreateSubnet {
+	return &NullableCreateSubnet{value: val, isSet: true}
 }
 
-func (v NullableCreateSubnetDto) MarshalJSON() ([]byte, error) {
+func (v NullableCreateSubnet) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateSubnetDto) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateSubnet) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

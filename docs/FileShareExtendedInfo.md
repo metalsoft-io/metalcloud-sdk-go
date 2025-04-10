@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **StoragePoolId** | Pointer to **float32** | Id of the storage pool the File Share is assigned to | [optional] 
 **Label** | **string** | Label of the File Share. | 
 **Subdomain** | Pointer to **string** | Subdomain of the File Share. | [optional] 
+**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the File Share. | [optional] 
 **Id** | **float32** | Id of the File Share | 
 **Revision** | **float32** | Revision of the File Share | 
 **InfrastructureId** | **float32** | Infrastructure id of the File Share | 
@@ -150,6 +151,31 @@ SetSubdomain sets Subdomain field to given value.
 `func (o *FileShareExtendedInfo) HasSubdomain() bool`
 
 HasSubdomain returns a boolean if a field has been set.
+
+### GetLogicalNetworkId
+
+`func (o *FileShareExtendedInfo) GetLogicalNetworkId() float32`
+
+GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
+
+### GetLogicalNetworkIdOk
+
+`func (o *FileShareExtendedInfo) GetLogicalNetworkIdOk() (*float32, bool)`
+
+GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogicalNetworkId
+
+`func (o *FileShareExtendedInfo) SetLogicalNetworkId(v float32)`
+
+SetLogicalNetworkId sets LogicalNetworkId field to given value.
+
+### HasLogicalNetworkId
+
+`func (o *FileShareExtendedInfo) HasLogicalNetworkId() bool`
+
+HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetId
 

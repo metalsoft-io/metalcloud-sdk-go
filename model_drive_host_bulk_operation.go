@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the FileShareHostBulkOperation type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &FileShareHostBulkOperation{}
+// checks if the DriveHostBulkOperation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DriveHostBulkOperation{}
 
-// FileShareHostBulkOperation struct for FileShareHostBulkOperation
-type FileShareHostBulkOperation struct {
+// DriveHostBulkOperation struct for DriveHostBulkOperation
+type DriveHostBulkOperation struct {
 	// Id of the Server Instance Group Host that will be modified
 	ServerInstanceGroupId float32 `json:"serverInstanceGroupId"`
 	// Operation type for the Server Instance Group Host
@@ -28,29 +28,29 @@ type FileShareHostBulkOperation struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _FileShareHostBulkOperation FileShareHostBulkOperation
+type _DriveHostBulkOperation DriveHostBulkOperation
 
-// NewFileShareHostBulkOperation instantiates a new FileShareHostBulkOperation object
+// NewDriveHostBulkOperation instantiates a new DriveHostBulkOperation object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFileShareHostBulkOperation(serverInstanceGroupId float32, operationType string) *FileShareHostBulkOperation {
-	this := FileShareHostBulkOperation{}
+func NewDriveHostBulkOperation(serverInstanceGroupId float32, operationType string) *DriveHostBulkOperation {
+	this := DriveHostBulkOperation{}
 	this.ServerInstanceGroupId = serverInstanceGroupId
 	this.OperationType = operationType
 	return &this
 }
 
-// NewFileShareHostBulkOperationWithDefaults instantiates a new FileShareHostBulkOperation object
+// NewDriveHostBulkOperationWithDefaults instantiates a new DriveHostBulkOperation object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewFileShareHostBulkOperationWithDefaults() *FileShareHostBulkOperation {
-	this := FileShareHostBulkOperation{}
+func NewDriveHostBulkOperationWithDefaults() *DriveHostBulkOperation {
+	this := DriveHostBulkOperation{}
 	return &this
 }
 
 // GetServerInstanceGroupId returns the ServerInstanceGroupId field value
-func (o *FileShareHostBulkOperation) GetServerInstanceGroupId() float32 {
+func (o *DriveHostBulkOperation) GetServerInstanceGroupId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -61,7 +61,7 @@ func (o *FileShareHostBulkOperation) GetServerInstanceGroupId() float32 {
 
 // GetServerInstanceGroupIdOk returns a tuple with the ServerInstanceGroupId field value
 // and a boolean to check if the value has been set.
-func (o *FileShareHostBulkOperation) GetServerInstanceGroupIdOk() (*float32, bool) {
+func (o *DriveHostBulkOperation) GetServerInstanceGroupIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,12 +69,12 @@ func (o *FileShareHostBulkOperation) GetServerInstanceGroupIdOk() (*float32, boo
 }
 
 // SetServerInstanceGroupId sets field value
-func (o *FileShareHostBulkOperation) SetServerInstanceGroupId(v float32) {
+func (o *DriveHostBulkOperation) SetServerInstanceGroupId(v float32) {
 	o.ServerInstanceGroupId = v
 }
 
 // GetOperationType returns the OperationType field value
-func (o *FileShareHostBulkOperation) GetOperationType() string {
+func (o *DriveHostBulkOperation) GetOperationType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -85,7 +85,7 @@ func (o *FileShareHostBulkOperation) GetOperationType() string {
 
 // GetOperationTypeOk returns a tuple with the OperationType field value
 // and a boolean to check if the value has been set.
-func (o *FileShareHostBulkOperation) GetOperationTypeOk() (*string, bool) {
+func (o *DriveHostBulkOperation) GetOperationTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,11 +93,11 @@ func (o *FileShareHostBulkOperation) GetOperationTypeOk() (*string, bool) {
 }
 
 // SetOperationType sets field value
-func (o *FileShareHostBulkOperation) SetOperationType(v string) {
+func (o *DriveHostBulkOperation) SetOperationType(v string) {
 	o.OperationType = v
 }
 
-func (o FileShareHostBulkOperation) MarshalJSON() ([]byte, error) {
+func (o DriveHostBulkOperation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -105,7 +105,7 @@ func (o FileShareHostBulkOperation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o FileShareHostBulkOperation) ToMap() (map[string]interface{}, error) {
+func (o DriveHostBulkOperation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["serverInstanceGroupId"] = o.ServerInstanceGroupId
 	toSerialize["operationType"] = o.OperationType
@@ -117,7 +117,7 @@ func (o FileShareHostBulkOperation) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *FileShareHostBulkOperation) UnmarshalJSON(data []byte) (err error) {
+func (o *DriveHostBulkOperation) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -140,15 +140,15 @@ func (o *FileShareHostBulkOperation) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varFileShareHostBulkOperation := _FileShareHostBulkOperation{}
+	varDriveHostBulkOperation := _DriveHostBulkOperation{}
 
-	err = json.Unmarshal(data, &varFileShareHostBulkOperation)
+	err = json.Unmarshal(data, &varDriveHostBulkOperation)
 
 	if err != nil {
 		return err
 	}
 
-	*o = FileShareHostBulkOperation(varFileShareHostBulkOperation)
+	*o = DriveHostBulkOperation(varDriveHostBulkOperation)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -161,38 +161,38 @@ func (o *FileShareHostBulkOperation) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableFileShareHostBulkOperation struct {
-	value *FileShareHostBulkOperation
+type NullableDriveHostBulkOperation struct {
+	value *DriveHostBulkOperation
 	isSet bool
 }
 
-func (v NullableFileShareHostBulkOperation) Get() *FileShareHostBulkOperation {
+func (v NullableDriveHostBulkOperation) Get() *DriveHostBulkOperation {
 	return v.value
 }
 
-func (v *NullableFileShareHostBulkOperation) Set(val *FileShareHostBulkOperation) {
+func (v *NullableDriveHostBulkOperation) Set(val *DriveHostBulkOperation) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFileShareHostBulkOperation) IsSet() bool {
+func (v NullableDriveHostBulkOperation) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFileShareHostBulkOperation) Unset() {
+func (v *NullableDriveHostBulkOperation) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFileShareHostBulkOperation(val *FileShareHostBulkOperation) *NullableFileShareHostBulkOperation {
-	return &NullableFileShareHostBulkOperation{value: val, isSet: true}
+func NewNullableDriveHostBulkOperation(val *DriveHostBulkOperation) *NullableDriveHostBulkOperation {
+	return &NullableDriveHostBulkOperation{value: val, isSet: true}
 }
 
-func (v NullableFileShareHostBulkOperation) MarshalJSON() ([]byte, error) {
+func (v NullableDriveHostBulkOperation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFileShareHostBulkOperation) UnmarshalJSON(src []byte) error {
+func (v *NullableDriveHostBulkOperation) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

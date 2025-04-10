@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -27,16 +28,16 @@ type SubnetAPIService service
 type SubnetAPICreateSubnetRequest struct {
 	ctx context.Context
 	ApiService *SubnetAPIService
-	createSubnetDto *CreateSubnetDto
+	createSubnet *CreateSubnet
 }
 
 // The Subnet to create
-func (r SubnetAPICreateSubnetRequest) CreateSubnetDto(createSubnetDto CreateSubnetDto) SubnetAPICreateSubnetRequest {
-	r.createSubnetDto = &createSubnetDto
+func (r SubnetAPICreateSubnetRequest) CreateSubnet(createSubnet CreateSubnet) SubnetAPICreateSubnetRequest {
+	r.createSubnet = &createSubnet
 	return r
 }
 
-func (r SubnetAPICreateSubnetRequest) Execute() (*CreateSubnetDto, *http.Response, error) {
+func (r SubnetAPICreateSubnetRequest) Execute() (*CreateSubnet, *http.Response, error) {
 	return r.ApiService.CreateSubnetExecute(r)
 }
 
@@ -54,13 +55,13 @@ func (a *SubnetAPIService) CreateSubnet(ctx context.Context) SubnetAPICreateSubn
 }
 
 // Execute executes the request
-//  @return CreateSubnetDto
-func (a *SubnetAPIService) CreateSubnetExecute(r SubnetAPICreateSubnetRequest) (*CreateSubnetDto, *http.Response, error) {
+//  @return CreateSubnet
+func (a *SubnetAPIService) CreateSubnetExecute(r SubnetAPICreateSubnetRequest) (*CreateSubnet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateSubnetDto
+		localVarReturnValue  *CreateSubnet
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubnetAPIService.CreateSubnet")
@@ -73,8 +74,8 @@ func (a *SubnetAPIService) CreateSubnetExecute(r SubnetAPICreateSubnetRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createSubnetDto == nil {
-		return localVarReturnValue, nil, reportError("createSubnetDto is required and must be specified")
+	if r.createSubnet == nil {
+		return localVarReturnValue, nil, reportError("createSubnet is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -95,7 +96,7 @@ func (a *SubnetAPIService) CreateSubnetExecute(r SubnetAPICreateSubnetRequest) (
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createSubnetDto
+	localVarPostBody = r.createSubnet
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -341,6 +342,34 @@ func (a *SubnetAPIService) GetSubnetExecute(r SubnetAPIGetSubnetRequest) (*Subne
 type SubnetAPIGetSubnetsRequest struct {
 	ctx context.Context
 	ApiService *SubnetAPIService
+	page *float32
+	limit *float32
+	filterId *[]string
+	sortBy *[]string
+}
+
+// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+func (r SubnetAPIGetSubnetsRequest) Page(page float32) SubnetAPIGetSubnetsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+func (r SubnetAPIGetSubnetsRequest) Limit(limit float32) SubnetAPIGetSubnetsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r SubnetAPIGetSubnetsRequest) FilterId(filterId []string) SubnetAPIGetSubnetsRequest {
+	r.filterId = &filterId
+	return r
+}
+
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default sorting specified, the result order is not guaranteed           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;       
+func (r SubnetAPIGetSubnetsRequest) SortBy(sortBy []string) SubnetAPIGetSubnetsRequest {
+	r.sortBy = &sortBy
+	return r
 }
 
 func (r SubnetAPIGetSubnetsRequest) Execute() (*SubnetPaginatedList, *http.Response, error) {
@@ -383,6 +412,34 @@ func (a *SubnetAPIService) GetSubnetsExecute(r SubnetAPIGetSubnetsRequest) (*Sub
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterId != nil {
+		t := *r.filterId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

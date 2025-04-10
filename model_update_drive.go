@@ -24,6 +24,10 @@ type UpdateDrive struct {
 	Label *string `json:"label,omitempty"`
 	// Disk size in MB for Drive
 	SizeMb *float32 `json:"sizeMb,omitempty"`
+	// The IO limit policy of the Drive.
+	IoLimitPolicy *string `json:"ioLimitPolicy,omitempty"`
+	// Id of the Logical Network for the Drive.
+	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -110,6 +114,70 @@ func (o *UpdateDrive) SetSizeMb(v float32) {
 	o.SizeMb = &v
 }
 
+// GetIoLimitPolicy returns the IoLimitPolicy field value if set, zero value otherwise.
+func (o *UpdateDrive) GetIoLimitPolicy() string {
+	if o == nil || IsNil(o.IoLimitPolicy) {
+		var ret string
+		return ret
+	}
+	return *o.IoLimitPolicy
+}
+
+// GetIoLimitPolicyOk returns a tuple with the IoLimitPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateDrive) GetIoLimitPolicyOk() (*string, bool) {
+	if o == nil || IsNil(o.IoLimitPolicy) {
+		return nil, false
+	}
+	return o.IoLimitPolicy, true
+}
+
+// HasIoLimitPolicy returns a boolean if a field has been set.
+func (o *UpdateDrive) HasIoLimitPolicy() bool {
+	if o != nil && !IsNil(o.IoLimitPolicy) {
+		return true
+	}
+
+	return false
+}
+
+// SetIoLimitPolicy gets a reference to the given string and assigns it to the IoLimitPolicy field.
+func (o *UpdateDrive) SetIoLimitPolicy(v string) {
+	o.IoLimitPolicy = &v
+}
+
+// GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
+func (o *UpdateDrive) GetLogicalNetworkId() float32 {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		var ret float32
+		return ret
+	}
+	return *o.LogicalNetworkId
+}
+
+// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateDrive) GetLogicalNetworkIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		return nil, false
+	}
+	return o.LogicalNetworkId, true
+}
+
+// HasLogicalNetworkId returns a boolean if a field has been set.
+func (o *UpdateDrive) HasLogicalNetworkId() bool {
+	if o != nil && !IsNil(o.LogicalNetworkId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
+func (o *UpdateDrive) SetLogicalNetworkId(v float32) {
+	o.LogicalNetworkId = &v
+}
+
 func (o UpdateDrive) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -125,6 +193,12 @@ func (o UpdateDrive) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SizeMb) {
 		toSerialize["sizeMb"] = o.SizeMb
+	}
+	if !IsNil(o.IoLimitPolicy) {
+		toSerialize["ioLimitPolicy"] = o.IoLimitPolicy
+	}
+	if !IsNil(o.LogicalNetworkId) {
+		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -150,6 +224,8 @@ func (o *UpdateDrive) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "sizeMb")
+		delete(additionalProperties, "ioLimitPolicy")
+		delete(additionalProperties, "logicalNetworkId")
 		o.AdditionalProperties = additionalProperties
 	}
 

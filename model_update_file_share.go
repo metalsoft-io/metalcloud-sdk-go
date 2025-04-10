@@ -24,6 +24,8 @@ type UpdateFileShare struct {
 	SizeGB *float32 `json:"sizeGB,omitempty"`
 	// Label of the File Share.
 	Label *string `json:"label,omitempty"`
+	// Id of the Logical Network for the File Share.
+	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -110,6 +112,38 @@ func (o *UpdateFileShare) SetLabel(v string) {
 	o.Label = &v
 }
 
+// GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
+func (o *UpdateFileShare) GetLogicalNetworkId() float32 {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		var ret float32
+		return ret
+	}
+	return *o.LogicalNetworkId
+}
+
+// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateFileShare) GetLogicalNetworkIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		return nil, false
+	}
+	return o.LogicalNetworkId, true
+}
+
+// HasLogicalNetworkId returns a boolean if a field has been set.
+func (o *UpdateFileShare) HasLogicalNetworkId() bool {
+	if o != nil && !IsNil(o.LogicalNetworkId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
+func (o *UpdateFileShare) SetLogicalNetworkId(v float32) {
+	o.LogicalNetworkId = &v
+}
+
 func (o UpdateFileShare) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -125,6 +159,9 @@ func (o UpdateFileShare) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
+	}
+	if !IsNil(o.LogicalNetworkId) {
+		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -150,6 +187,7 @@ func (o *UpdateFileShare) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "sizeGB")
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "logicalNetworkId")
 		o.AdditionalProperties = additionalProperties
 	}
 

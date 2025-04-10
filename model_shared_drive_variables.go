@@ -21,29 +21,31 @@ var _ MappedNullable = &SharedDriveVariables{}
 
 // SharedDriveVariables struct for SharedDriveVariables
 type SharedDriveVariables struct {
-	// Label of the Shared Drive.
+	// Label of the Drive.
 	Label string `json:"label"`
-	// Id of the storage pool the Shared Drive is assigned to
+	// Id of the storage pool the Drive is assigned to
 	StoragePoolId *float32 `json:"storagePoolId,omitempty"`
-	// Disk size in MB for Shared Drive
+	// Disk size in MB for Drive
 	SizeMb float32 `json:"sizeMb"`
-	// The name of the storage image used by the Shared Drive.
+	// The name of the storage image used by the Drive.
 	StorageImageName *string `json:"storageImageName,omitempty"`
-	// Service status of the Shared Drive
+	// Service status of the Drive
 	StorageType string `json:"storageType"`
-	// The IO limit policy of the Shared Drive.
+	// The IO limit policy of the Drive.
 	IoLimitPolicy *string `json:"ioLimitPolicy,omitempty"`
-	// Subdomain of the Shared Drive.
+	// Subdomain of the Drive.
 	Subdomain *string `json:"subdomain,omitempty"`
-	// Timestamp of the Shared Drive last update.
+	// Id of the Logical Network for the Drive.
+	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
+	// Timestamp of the Drive last update.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
-	// Id of the Shared Drive
+	// Id of the Drive
 	Id float32 `json:"id"`
-	// Revision of the Shared Drive State
+	// Revision of the Drive State
 	Revision float32 `json:"revision"`
-	// Infrastructure id of the Shared Drive
+	// Infrastructure id of the Drive
 	InfrastructureId float32 `json:"infrastructureId"`
-	// Service status of the Shared Drive
+	// Service status of the Drive
 	ServiceStatus string `json:"serviceStatus"`
 	// Cached information of the real size of the storage in MB.
 	StorageRealSizeCachedMb *float32 `json:"storageRealSizeCachedMb,omitempty"`
@@ -51,26 +53,24 @@ type SharedDriveVariables struct {
 	StorageRealSizeWithSnapshotsCachedMb *float32 `json:"storageRealSizeWithSnapshotsCachedMb,omitempty"`
 	// Cached information of the virtual size of the storage in MB.
 	StorageVirtualSizeCachedMb *float32 `json:"storageVirtualSizeCachedMb,omitempty"`
-	// Timestamp of the latest update of cached information for the Shared Drive.
+	// Timestamp of the latest update of cached information for the Drive.
 	StorageUpdatedTimestamp string `json:"storageUpdatedTimestamp"`
-	// Targets of the Shared Drive.
+	// Targets of the Drive.
 	Targets []map[string]interface{} `json:"targets,omitempty"`
 	Wwn *string `json:"wwn,omitempty"`
-	// Allocation affinity of the Shared Drive
+	// Allocation affinity of the Drive
 	AllocationAffinity string `json:"allocationAffinity"`
-	// Provisioning protocol of the Shared Drive
+	// Provisioning protocol of the Drive
 	ProvisioningProtocol string `json:"provisioningProtocol"`
-	// Subdomain permanent of the Shared Drive.
+	// Subdomain permanent of the Drive.
 	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
-	// Id of the DNS subdomain for the Shared Drive.
+	// Id of the DNS subdomain for the Drive.
 	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
-	// Id of the permanent DNS subdomain for the Shared Drive.
+	// Id of the permanent DNS subdomain for the Drive.
 	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
-	// Id of the VLAN for the Shared Drive.
-	NetworkVlanId *float32 `json:"networkVlanId,omitempty"`
-	// The current changes to be deployed for the Shared Drive.
-	Config SharedDriveConfiguration `json:"config"`
-	// Timestamp of the Shared Drive creation.
+	// The current changes to be deployed for the Drive.
+	Config DriveConfiguration `json:"config"`
+	// Timestamp of the Drive creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
 	AdditionalProperties map[string]interface{}
 }
@@ -81,7 +81,7 @@ type _SharedDriveVariables SharedDriveVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSharedDriveVariables(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string) *SharedDriveVariables {
+func NewSharedDriveVariables(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string) *SharedDriveVariables {
 	this := SharedDriveVariables{}
 	this.Label = label
 	this.SizeMb = sizeMb
@@ -307,6 +307,38 @@ func (o *SharedDriveVariables) HasSubdomain() bool {
 // SetSubdomain gets a reference to the given string and assigns it to the Subdomain field.
 func (o *SharedDriveVariables) SetSubdomain(v string) {
 	o.Subdomain = &v
+}
+
+// GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
+func (o *SharedDriveVariables) GetLogicalNetworkId() float32 {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		var ret float32
+		return ret
+	}
+	return *o.LogicalNetworkId
+}
+
+// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SharedDriveVariables) GetLogicalNetworkIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		return nil, false
+	}
+	return o.LogicalNetworkId, true
+}
+
+// HasLogicalNetworkId returns a boolean if a field has been set.
+func (o *SharedDriveVariables) HasLogicalNetworkId() bool {
+	if o != nil && !IsNil(o.LogicalNetworkId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
+func (o *SharedDriveVariables) SetLogicalNetworkId(v float32) {
+	o.LogicalNetworkId = &v
 }
 
 // GetUpdatedTimestamp returns the UpdatedTimestamp field value
@@ -757,42 +789,10 @@ func (o *SharedDriveVariables) SetDnsSubdomainPermanentId(v float32) {
 	o.DnsSubdomainPermanentId = &v
 }
 
-// GetNetworkVlanId returns the NetworkVlanId field value if set, zero value otherwise.
-func (o *SharedDriveVariables) GetNetworkVlanId() float32 {
-	if o == nil || IsNil(o.NetworkVlanId) {
-		var ret float32
-		return ret
-	}
-	return *o.NetworkVlanId
-}
-
-// GetNetworkVlanIdOk returns a tuple with the NetworkVlanId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SharedDriveVariables) GetNetworkVlanIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.NetworkVlanId) {
-		return nil, false
-	}
-	return o.NetworkVlanId, true
-}
-
-// HasNetworkVlanId returns a boolean if a field has been set.
-func (o *SharedDriveVariables) HasNetworkVlanId() bool {
-	if o != nil && !IsNil(o.NetworkVlanId) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworkVlanId gets a reference to the given float32 and assigns it to the NetworkVlanId field.
-func (o *SharedDriveVariables) SetNetworkVlanId(v float32) {
-	o.NetworkVlanId = &v
-}
-
 // GetConfig returns the Config field value
-func (o *SharedDriveVariables) GetConfig() SharedDriveConfiguration {
+func (o *SharedDriveVariables) GetConfig() DriveConfiguration {
 	if o == nil {
-		var ret SharedDriveConfiguration
+		var ret DriveConfiguration
 		return ret
 	}
 
@@ -801,7 +801,7 @@ func (o *SharedDriveVariables) GetConfig() SharedDriveConfiguration {
 
 // GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
-func (o *SharedDriveVariables) GetConfigOk() (*SharedDriveConfiguration, bool) {
+func (o *SharedDriveVariables) GetConfigOk() (*DriveConfiguration, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -809,7 +809,7 @@ func (o *SharedDriveVariables) GetConfigOk() (*SharedDriveConfiguration, bool) {
 }
 
 // SetConfig sets field value
-func (o *SharedDriveVariables) SetConfig(v SharedDriveConfiguration) {
+func (o *SharedDriveVariables) SetConfig(v DriveConfiguration) {
 	o.Config = v
 }
 
@@ -862,6 +862,9 @@ func (o SharedDriveVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Subdomain) {
 		toSerialize["subdomain"] = o.Subdomain
 	}
+	if !IsNil(o.LogicalNetworkId) {
+		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
+	}
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
@@ -893,9 +896,6 @@ func (o SharedDriveVariables) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DnsSubdomainPermanentId) {
 		toSerialize["dnsSubdomainPermanentId"] = o.DnsSubdomainPermanentId
-	}
-	if !IsNil(o.NetworkVlanId) {
-		toSerialize["networkVlanId"] = o.NetworkVlanId
 	}
 	toSerialize["config"] = o.Config
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
@@ -961,6 +961,7 @@ func (o *SharedDriveVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "storageType")
 		delete(additionalProperties, "ioLimitPolicy")
 		delete(additionalProperties, "subdomain")
+		delete(additionalProperties, "logicalNetworkId")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
@@ -977,7 +978,6 @@ func (o *SharedDriveVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "dnsSubdomainPermanentId")
-		delete(additionalProperties, "networkVlanId")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "createdTimestamp")
 		o.AdditionalProperties = additionalProperties

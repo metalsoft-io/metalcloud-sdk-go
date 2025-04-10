@@ -1949,11 +1949,12 @@ type StorageAPIGetStorageSharedDrivesRequest struct {
 	filterServiceStatus *[]string
 	filterWwn *[]string
 	filterIoLimitPolicy *[]string
-	filterNetworkVlanId *[]string
+	filterLogicalNetworkId *[]string
 	filterAllocationAffinity *[]string
 	filterProvisioningProtocol *[]string
 	filterConfigDeployStatus *[]string
 	filterConfigDeployType *[]string
+	filterConfigLogicalNetworkId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -2019,9 +2020,9 @@ func (r StorageAPIGetStorageSharedDrivesRequest) FilterIoLimitPolicy(filterIoLim
 	return r
 }
 
-// Filter by networkVlanId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.networkVlanId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.networkVlanId&#x3D;$not:$like:John Doe&amp;filter.networkVlanId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r StorageAPIGetStorageSharedDrivesRequest) FilterNetworkVlanId(filterNetworkVlanId []string) StorageAPIGetStorageSharedDrivesRequest {
-	r.filterNetworkVlanId = &filterNetworkVlanId
+// Filter by logicalNetworkId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.logicalNetworkId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.logicalNetworkId&#x3D;$not:$like:John Doe&amp;filter.logicalNetworkId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r StorageAPIGetStorageSharedDrivesRequest) FilterLogicalNetworkId(filterLogicalNetworkId []string) StorageAPIGetStorageSharedDrivesRequest {
+	r.filterLogicalNetworkId = &filterLogicalNetworkId
 	return r
 }
 
@@ -2049,6 +2050,12 @@ func (r StorageAPIGetStorageSharedDrivesRequest) FilterConfigDeployType(filterCo
 	return r
 }
 
+// Filter by config.logicalNetworkId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.logicalNetworkId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.logicalNetworkId&#x3D;$not:$like:John Doe&amp;filter.config.logicalNetworkId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r StorageAPIGetStorageSharedDrivesRequest) FilterConfigLogicalNetworkId(filterConfigLogicalNetworkId []string) StorageAPIGetStorageSharedDrivesRequest {
+	r.filterConfigLogicalNetworkId = &filterConfigLogicalNetworkId
+	return r
+}
+
 // Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;storagePoolId&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt;&lt;/ul&gt;       
 func (r StorageAPIGetStorageSharedDrivesRequest) SortBy(sortBy []string) StorageAPIGetStorageSharedDrivesRequest {
 	r.sortBy = &sortBy
@@ -2061,13 +2068,13 @@ func (r StorageAPIGetStorageSharedDrivesRequest) Search(search string) StorageAP
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,subdomain,subdomainPermanent,infrastructureId           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;subdomain&lt;/li&gt; &lt;li&gt;subdomainPermanent&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;storagePoolId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;wwn&lt;/li&gt; &lt;li&gt;ioLimitPolicy&lt;/li&gt; &lt;li&gt;networkVlanId&lt;/li&gt; &lt;li&gt;allocationAffinity&lt;/li&gt; &lt;li&gt;provisioningProtocol&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,subdomain,subdomainPermanent,infrastructureId           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;subdomain&lt;/li&gt; &lt;li&gt;subdomainPermanent&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;storagePoolId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;wwn&lt;/li&gt; &lt;li&gt;ioLimitPolicy&lt;/li&gt; &lt;li&gt;logicalNetworkId&lt;/li&gt; &lt;li&gt;allocationAffinity&lt;/li&gt; &lt;li&gt;provisioningProtocol&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt; &lt;li&gt;config.logicalNetworkId&lt;/li&gt;&lt;/ul&gt;         
 func (r StorageAPIGetStorageSharedDrivesRequest) SearchBy(searchBy []string) StorageAPIGetStorageSharedDrivesRequest {
 	r.searchBy = &searchBy
 	return r
 }
 
-func (r StorageAPIGetStorageSharedDrivesRequest) Execute() (*SharedDrivePaginatedList, *http.Response, error) {
+func (r StorageAPIGetStorageSharedDrivesRequest) Execute() (*DrivePaginatedList, *http.Response, error) {
 	return r.ApiService.GetStorageSharedDrivesExecute(r)
 }
 
@@ -2089,13 +2096,13 @@ func (a *StorageAPIService) GetStorageSharedDrives(ctx context.Context, storageI
 }
 
 // Execute executes the request
-//  @return SharedDrivePaginatedList
-func (a *StorageAPIService) GetStorageSharedDrivesExecute(r StorageAPIGetStorageSharedDrivesRequest) (*SharedDrivePaginatedList, *http.Response, error) {
+//  @return DrivePaginatedList
+func (a *StorageAPIService) GetStorageSharedDrivesExecute(r StorageAPIGetStorageSharedDrivesRequest) (*DrivePaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SharedDrivePaginatedList
+		localVarReturnValue  *DrivePaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStorageSharedDrives")
@@ -2204,15 +2211,15 @@ func (a *StorageAPIService) GetStorageSharedDrivesExecute(r StorageAPIGetStorage
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.ioLimitPolicy", t, "form", "multi")
 		}
 	}
-	if r.filterNetworkVlanId != nil {
-		t := *r.filterNetworkVlanId
+	if r.filterLogicalNetworkId != nil {
+		t := *r.filterLogicalNetworkId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkVlanId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.logicalNetworkId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkVlanId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.logicalNetworkId", t, "form", "multi")
 		}
 	}
 	if r.filterAllocationAffinity != nil {
@@ -2257,6 +2264,17 @@ func (a *StorageAPIService) GetStorageSharedDrivesExecute(r StorageAPIGetStorage
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", t, "form", "multi")
+		}
+	}
+	if r.filterConfigLogicalNetworkId != nil {
+		t := *r.filterConfigLogicalNetworkId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.logicalNetworkId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.logicalNetworkId", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

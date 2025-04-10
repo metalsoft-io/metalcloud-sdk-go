@@ -64,8 +64,6 @@ type APIClient struct {
 
 	DriveAPI *DriveAPIService
 
-	DriveGroupAPI *DriveGroupAPIService
-
 	EventAPI *EventAPIService
 
 	ExtensionAPI *ExtensionAPIService
@@ -122,8 +120,6 @@ type APIClient struct {
 
 	ServerTypeAPI *ServerTypeAPIService
 
-	SharedDriveAPI *SharedDriveAPIService
-
 	SiteAPI *SiteAPIService
 
 	StorageAPI *StorageAPIService
@@ -174,7 +170,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ConfigurationAPI = (*ConfigurationAPIService)(&c.common)
 	c.CustomIsoAPI = (*CustomIsoAPIService)(&c.common)
 	c.DriveAPI = (*DriveAPIService)(&c.common)
-	c.DriveGroupAPI = (*DriveGroupAPIService)(&c.common)
 	c.EventAPI = (*EventAPIService)(&c.common)
 	c.ExtensionAPI = (*ExtensionAPIService)(&c.common)
 	c.ExtensionInstanceAPI = (*ExtensionInstanceAPIService)(&c.common)
@@ -203,7 +198,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ServerInstanceAPI = (*ServerInstanceAPIService)(&c.common)
 	c.ServerInstanceGroupAPI = (*ServerInstanceGroupAPIService)(&c.common)
 	c.ServerTypeAPI = (*ServerTypeAPIService)(&c.common)
-	c.SharedDriveAPI = (*SharedDriveAPIService)(&c.common)
 	c.SiteAPI = (*SiteAPIService)(&c.common)
 	c.StorageAPI = (*StorageAPIService)(&c.common)
 	c.SubnetAPI = (*SubnetAPIService)(&c.common)

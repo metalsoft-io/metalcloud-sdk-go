@@ -36,6 +36,8 @@ Method | HTTP request | Description
 [**UpdateUserMeta**](UserAPI.md#UpdateUserMeta) | **Patch** /api/v2/users/{userId}/meta | Update user metadata
 [**UpdateUserPassword**](UserAPI.md#UpdateUserPassword) | **Post** /api/v2/users/{userId}/actions/change-password | Change user password
 [**UpdateUserPermissions**](UserAPI.md#UpdateUserPermissions) | **Post** /api/v2/users/{userId}/actions/change-resource-permissions | Update user resource permissions
+[**UserControllerHandleEmailVerify**](UserAPI.md#UserControllerHandleEmailVerify) | **Get** /api/v2/users/actions/verify-email | Handle user email verify action
+[**UserControllerHandleUserResetPassword**](UserAPI.md#UserControllerHandleUserResetPassword) | **Get** /api/v2/users/actions/reset-password | Handle user reset password action
 
 
 
@@ -881,7 +883,7 @@ Name | Type | Description  | Notes
 
 ## GetUserChildDelegates
 
-> UserList GetUserChildDelegates(ctx, userId).Recursion(recursion).Execute()
+> UserList GetUserChildDelegates(ctx, userId).Execute()
 
 Get user child delegates by ID
 
@@ -899,11 +901,10 @@ import (
 
 func main() {
 	userId := float32(8.14) // float32 | 
-	recursion := float32(8.14) // float32 |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.GetUserChildDelegates(context.Background(), userId).Recursion(recursion).Execute()
+	resp, r, err := apiClient.UserAPI.GetUserChildDelegates(context.Background(), userId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.GetUserChildDelegates``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -929,7 +930,6 @@ Other parameters are passed through a pointer to a apiGetUserChildDelegatesReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **recursion** | **float32** |  | 
 
 ### Return type
 
@@ -1089,7 +1089,7 @@ Name | Type | Description  | Notes
 
 ## GetUserParentDelegates
 
-> UserList GetUserParentDelegates(ctx, userId).Recursion(recursion).Execute()
+> UserList GetUserParentDelegates(ctx, userId).Execute()
 
 Get user parent delegates by ID
 
@@ -1107,11 +1107,10 @@ import (
 
 func main() {
 	userId := float32(8.14) // float32 | 
-	recursion := float32(8.14) // float32 |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.GetUserParentDelegates(context.Background(), userId).Recursion(recursion).Execute()
+	resp, r, err := apiClient.UserAPI.GetUserParentDelegates(context.Background(), userId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.GetUserParentDelegates``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1137,7 +1136,6 @@ Other parameters are passed through a pointer to a apiGetUserParentDelegatesRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **recursion** | **float32** |  | 
 
 ### Return type
 
@@ -2297,6 +2295,130 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerHandleEmailVerify
+
+> UserControllerHandleEmailVerify(ctx).Token(token).Execute()
+
+Handle user email verify action
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	token := "token_example" // string | The encrypted request token.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.UserAPI.UserControllerHandleEmailVerify(context.Background()).Token(token).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerHandleEmailVerify``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerHandleEmailVerifyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **string** | The encrypted request token. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserControllerHandleUserResetPassword
+
+> UserControllerHandleUserResetPassword(ctx).Token(token).Execute()
+
+Handle user reset password action
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	token := "token_example" // string | The encrypted request token.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.UserAPI.UserControllerHandleUserResetPassword(context.Background()).Token(token).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UserControllerHandleUserResetPassword``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserControllerHandleUserResetPasswordRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **string** | The encrypted request token. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

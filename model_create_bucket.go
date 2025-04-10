@@ -23,6 +23,8 @@ var _ MappedNullable = &CreateBucket{}
 type CreateBucket struct {
 	// Disk size in GB for Bucket
 	SizeGB float32 `json:"sizeGB"`
+	// Id of the Logical Network for the Bucket.
+	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	// Label of the Bucket.
 	Label *string `json:"label,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -72,6 +74,38 @@ func (o *CreateBucket) SetSizeGB(v float32) {
 	o.SizeGB = v
 }
 
+// GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
+func (o *CreateBucket) GetLogicalNetworkId() float32 {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		var ret float32
+		return ret
+	}
+	return *o.LogicalNetworkId
+}
+
+// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateBucket) GetLogicalNetworkIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		return nil, false
+	}
+	return o.LogicalNetworkId, true
+}
+
+// HasLogicalNetworkId returns a boolean if a field has been set.
+func (o *CreateBucket) HasLogicalNetworkId() bool {
+	if o != nil && !IsNil(o.LogicalNetworkId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
+func (o *CreateBucket) SetLogicalNetworkId(v float32) {
+	o.LogicalNetworkId = &v
+}
+
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *CreateBucket) GetLabel() string {
 	if o == nil || IsNil(o.Label) {
@@ -115,6 +149,9 @@ func (o CreateBucket) MarshalJSON() ([]byte, error) {
 func (o CreateBucket) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["sizeGB"] = o.SizeGB
+	if !IsNil(o.LogicalNetworkId) {
+		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
+	}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
@@ -162,6 +199,7 @@ func (o *CreateBucket) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "sizeGB")
+		delete(additionalProperties, "logicalNetworkId")
 		delete(additionalProperties, "label")
 		o.AdditionalProperties = additionalProperties
 	}

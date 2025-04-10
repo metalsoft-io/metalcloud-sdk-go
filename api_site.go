@@ -547,6 +547,121 @@ func (a *SiteAPIService) GetSiteConfigExecute(r SiteAPIGetSiteConfigRequest) (*S
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type SiteAPIGetSiteControllerOneLinerRequest struct {
+	ctx context.Context
+	ApiService *SiteAPIService
+	siteId float32
+	generateSiteControllerOneliner *GenerateSiteControllerOneliner
+}
+
+// Data needed for the controller one-liner generation
+func (r SiteAPIGetSiteControllerOneLinerRequest) GenerateSiteControllerOneliner(generateSiteControllerOneliner GenerateSiteControllerOneliner) SiteAPIGetSiteControllerOneLinerRequest {
+	r.generateSiteControllerOneliner = &generateSiteControllerOneliner
+	return r
+}
+
+func (r SiteAPIGetSiteControllerOneLinerRequest) Execute() (*GetSiteControllerOneLiner200Response, *http.Response, error) {
+	return r.ApiService.GetSiteControllerOneLinerExecute(r)
+}
+
+/*
+GetSiteControllerOneLiner Get a one liner to configure a site controller
+
+Returns the one liner
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param siteId
+ @return SiteAPIGetSiteControllerOneLinerRequest
+*/
+func (a *SiteAPIService) GetSiteControllerOneLiner(ctx context.Context, siteId float32) SiteAPIGetSiteControllerOneLinerRequest {
+	return SiteAPIGetSiteControllerOneLinerRequest{
+		ApiService: a,
+		ctx: ctx,
+		siteId: siteId,
+	}
+}
+
+// Execute executes the request
+//  @return GetSiteControllerOneLiner200Response
+func (a *SiteAPIService) GetSiteControllerOneLinerExecute(r SiteAPIGetSiteControllerOneLinerRequest) (*GetSiteControllerOneLiner200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetSiteControllerOneLiner200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SiteAPIService.GetSiteControllerOneLiner")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/sites/{siteId}/controllers/actions/get/one-liner"
+	localVarPath = strings.Replace(localVarPath, "{"+"siteId"+"}", url.PathEscape(parameterValueToString(r.siteId, "siteId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.generateSiteControllerOneliner == nil {
+		return localVarReturnValue, nil, reportError("generateSiteControllerOneliner is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.generateSiteControllerOneliner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type SiteAPIGetSitesRequest struct {
 	ctx context.Context
 	ApiService *SiteAPIService

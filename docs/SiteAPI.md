@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**GetAgents**](SiteAPI.md#GetAgents) | **Get** /api/v2/sites/{siteId}/controllers | Get a list of agents for a site
 [**GetSite**](SiteAPI.md#GetSite) | **Get** /api/v2/sites/{siteId} | Get Site information
 [**GetSiteConfig**](SiteAPI.md#GetSiteConfig) | **Get** /api/v2/sites/{siteId}/config | Get Site Config information
+[**GetSiteControllerOneLiner**](SiteAPI.md#GetSiteControllerOneLiner) | **Post** /api/v2/sites/{siteId}/controllers/actions/get/one-liner | Get a one liner to configure a site controller
 [**GetSites**](SiteAPI.md#GetSites) | **Get** /api/v2/sites | Get a list of Sites
 [**GetSitesStatistics**](SiteAPI.md#GetSitesStatistics) | **Get** /api/v2/sites/statistics | Get Sites statistics
 [**UpdateSite**](SiteAPI.md#UpdateSite) | **Patch** /api/v2/sites/{siteId} | Updates a Site
@@ -355,6 +356,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSiteControllerOneLiner
+
+> GetSiteControllerOneLiner200Response GetSiteControllerOneLiner(ctx, siteId).GenerateSiteControllerOneliner(generateSiteControllerOneliner).Execute()
+
+Get a one liner to configure a site controller
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	siteId := float32(8.14) // float32 | 
+	generateSiteControllerOneliner := *openapiclient.NewGenerateSiteControllerOneliner(false, false, false, "Registry_example", "GitHubTag_example", false, "api.example.com", "v6.4.0", "your-secure-tunnel-token") // GenerateSiteControllerOneliner | Data needed for the controller one-liner generation
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SiteAPI.GetSiteControllerOneLiner(context.Background(), siteId).GenerateSiteControllerOneliner(generateSiteControllerOneliner).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SiteAPI.GetSiteControllerOneLiner``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSiteControllerOneLiner`: GetSiteControllerOneLiner200Response
+	fmt.Fprintf(os.Stdout, "Response from `SiteAPI.GetSiteControllerOneLiner`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**siteId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSiteControllerOneLinerRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **generateSiteControllerOneliner** | [**GenerateSiteControllerOneliner**](GenerateSiteControllerOneliner.md) | Data needed for the controller one-liner generation | 
+
+### Return type
+
+[**GetSiteControllerOneLiner200Response**](GetSiteControllerOneLiner200Response.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

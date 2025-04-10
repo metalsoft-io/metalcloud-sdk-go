@@ -31,6 +31,8 @@ type BucketExtendedInfo struct {
 	Label string `json:"label"`
 	// Subdomain of the Bucket.
 	Subdomain string `json:"subdomain"`
+	// Id of the Logical Network for the Bucket.
+	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	// Id of the Bucket
 	Id float32 `json:"id"`
 	// Revision of the Bucket
@@ -45,8 +47,6 @@ type BucketExtendedInfo struct {
 	SubdomainPermanent string `json:"subdomainPermanent"`
 	// Id of the DNS subdomain for the Bucket.
 	DnsSubdomainId float32 `json:"dnsSubdomainId"`
-	// Id of the VLAN for the Bucket.
-	NetworkVlanId *float32 `json:"networkVlanId,omitempty"`
 	// Endpoint of the Bucket.
 	Endpoint *string `json:"endpoint,omitempty"`
 	// Endpoint of the Bucket.
@@ -223,6 +223,38 @@ func (o *BucketExtendedInfo) SetSubdomain(v string) {
 	o.Subdomain = v
 }
 
+// GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
+func (o *BucketExtendedInfo) GetLogicalNetworkId() float32 {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		var ret float32
+		return ret
+	}
+	return *o.LogicalNetworkId
+}
+
+// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BucketExtendedInfo) GetLogicalNetworkIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		return nil, false
+	}
+	return o.LogicalNetworkId, true
+}
+
+// HasLogicalNetworkId returns a boolean if a field has been set.
+func (o *BucketExtendedInfo) HasLogicalNetworkId() bool {
+	if o != nil && !IsNil(o.LogicalNetworkId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
+func (o *BucketExtendedInfo) SetLogicalNetworkId(v float32) {
+	o.LogicalNetworkId = &v
+}
+
 // GetId returns the Id field value
 func (o *BucketExtendedInfo) GetId() float32 {
 	if o == nil {
@@ -389,38 +421,6 @@ func (o *BucketExtendedInfo) GetDnsSubdomainIdOk() (*float32, bool) {
 // SetDnsSubdomainId sets field value
 func (o *BucketExtendedInfo) SetDnsSubdomainId(v float32) {
 	o.DnsSubdomainId = v
-}
-
-// GetNetworkVlanId returns the NetworkVlanId field value if set, zero value otherwise.
-func (o *BucketExtendedInfo) GetNetworkVlanId() float32 {
-	if o == nil || IsNil(o.NetworkVlanId) {
-		var ret float32
-		return ret
-	}
-	return *o.NetworkVlanId
-}
-
-// GetNetworkVlanIdOk returns a tuple with the NetworkVlanId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *BucketExtendedInfo) GetNetworkVlanIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.NetworkVlanId) {
-		return nil, false
-	}
-	return o.NetworkVlanId, true
-}
-
-// HasNetworkVlanId returns a boolean if a field has been set.
-func (o *BucketExtendedInfo) HasNetworkVlanId() bool {
-	if o != nil && !IsNil(o.NetworkVlanId) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworkVlanId gets a reference to the given float32 and assigns it to the NetworkVlanId field.
-func (o *BucketExtendedInfo) SetNetworkVlanId(v float32) {
-	o.NetworkVlanId = &v
 }
 
 // GetEndpoint returns the Endpoint field value if set, zero value otherwise.
@@ -608,6 +608,9 @@ func (o BucketExtendedInfo) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["label"] = o.Label
 	toSerialize["subdomain"] = o.Subdomain
+	if !IsNil(o.LogicalNetworkId) {
+		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["infrastructureId"] = o.InfrastructureId
@@ -615,9 +618,6 @@ func (o BucketExtendedInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	toSerialize["subdomainPermanent"] = o.SubdomainPermanent
 	toSerialize["dnsSubdomainId"] = o.DnsSubdomainId
-	if !IsNil(o.NetworkVlanId) {
-		toSerialize["networkVlanId"] = o.NetworkVlanId
-	}
 	if !IsNil(o.Endpoint) {
 		toSerialize["endpoint"] = o.Endpoint
 	}
@@ -691,6 +691,7 @@ func (o *BucketExtendedInfo) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "storagePoolId")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "subdomain")
+		delete(additionalProperties, "logicalNetworkId")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "infrastructureId")
@@ -698,7 +699,6 @@ func (o *BucketExtendedInfo) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
-		delete(additionalProperties, "networkVlanId")
 		delete(additionalProperties, "endpoint")
 		delete(additionalProperties, "accessKeyId")
 		delete(additionalProperties, "secretKeyEncrypted")

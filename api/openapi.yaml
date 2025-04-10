@@ -1136,6 +1136,28 @@ paths:
       summary: Check if public signup is disabled
       tags:
       - Authentication
+  /api/v2/reset-password:
+    post:
+      description: Resets the user password.
+      operationId: resetPassword
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordReset'
+        description: The password reset request
+        required: true
+      responses:
+        "200":
+          description: User password verification URL successfully reset
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      summary: Reset user password
+      tags:
+      - Authentication
   /api/v2/buckets/{bucketId}:
     get:
       description: Returns Bucket information
@@ -2236,1251 +2258,6 @@ paths:
       summary: Boot Custom Iso into Server
       tags:
       - Custom Iso
-  /api/v2/drives/{driveId}:
-    get:
-      description: Returns Drive information
-      operationId: getDrive
-      parameters:
-      - explode: false
-        in: path
-        name: driveId
-        required: true
-        schema:
-          type: number
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Drive'
-          description: Returns Drive information
-          headers:
-            ETag:
-              description: Entity tag
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Get Drive information
-      tags:
-      - Drive
-  /api/v2/infrastructures/{infrastructureId}/drives:
-    get:
-      description: Returns list of all Drives on the infrastructure
-      operationId: getInfrastructureDrives
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: "Page number to retrieve.If you provide invalid value the default\
-          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
-          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
-          \        </p>\n        "
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: number
-        style: form
-      - description: "Number of records per page.\n      <p>\n             <b>Example:\
-          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
-          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
-          \         </p>\n\n      If provided value is greater than max value, max\
-          \ value will be applied.\n      "
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          type: number
-        style: form
-      - description: |-
-          Filter by id query param.
-                    <p>
-                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.id
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by instanceId query param.
-                    <p>
-                       <b>Format: </b> filter.instanceId={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.instanceId=$not:$like:John Doe&filter.instanceId=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.instanceId
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by infrastructureId query param.
-                    <p>
-                       <b>Format: </b> filter.infrastructureId={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.infrastructureId=$not:$like:John Doe&filter.infrastructureId=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.infrastructureId
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by serviceStatus query param.
-                    <p>
-                       <b>Format: </b> filter.serviceStatus={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.serviceStatus=$not:$like:John Doe&filter.serviceStatus=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li>
-          <li>$in</li></ul>
-        explode: true
-        in: query
-        name: filter.serviceStatus
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by label query param.
-                    <p>
-                       <b>Format: </b> filter.label={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.label=$not:$like:John Doe&filter.label=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.label
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by subdomain query param.
-                    <p>
-                       <b>Format: </b> filter.subdomain={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.subdomain=$not:$like:John Doe&filter.subdomain=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.subdomain
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by subdomainPermanent query param.
-                    <p>
-                       <b>Format: </b> filter.subdomainPermanent={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.subdomainPermanent=$not:$like:John Doe&filter.subdomainPermanent=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.subdomainPermanent
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by storagePoolId query param.
-                    <p>
-                       <b>Format: </b> filter.storagePoolId={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.storagePoolId=$not:$like:John Doe&filter.storagePoolId=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.storagePoolId
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by provisioningProtocol query param.
-                    <p>
-                       <b>Format: </b> filter.provisioningProtocol={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.provisioningProtocol=$not:$like:John Doe&filter.provisioningProtocol=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.provisioningProtocol
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by config.deployStatus query param.
-                    <p>
-                       <b>Format: </b> filter.config.deployStatus={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.config.deployStatus=$not:$like:John Doe&filter.config.deployStatus=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li>
-          <li>$in</li></ul>
-        explode: true
-        in: query
-        name: filter.config.deployStatus
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by config.deployType query param.
-                    <p>
-                       <b>Format: </b> filter.config.deployType={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.config.deployType=$not:$like:John Doe&filter.config.deployType=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li>
-          <li>$in</li></ul>
-        explode: true
-        in: query
-        name: filter.config.deployType
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
-          \ just provide query param multiple types. The order in url defines an order\
-          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
-          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
-          \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
-          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>storagePoolId</li>\n\
-          <li>infrastructureId</li>\n<li>serviceStatus</li>\n<li>config.deployStatus</li>\n\
-          <li>config.deployType</li></ul>\n      "
-        explode: true
-        in: query
-        name: sortBy
-        required: false
-        schema:
-          items:
-            enum:
-            - id:ASC
-            - id:DESC
-            - storagePoolId:ASC
-            - storagePoolId:DESC
-            - infrastructureId:ASC
-            - infrastructureId:DESC
-            - serviceStatus:ASC
-            - serviceStatus:DESC
-            - config.deployStatus:ASC
-            - config.deployStatus:DESC
-            - config.deployType:ASC
-            - config.deployType:DESC
-            type: string
-          type: array
-        style: form
-      - description: "Search term to filter result values\n        <p>\n         \
-          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
-          \ Value: </b> No default value\n          </p>\n        "
-        explode: true
-        in: query
-        name: search
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: "List of fields to search by term to filter result values\n \
-          \       <p>\n             <b>Example: </b> id,label,subdomain,subdomainPermanent,infrastructureId\n\
-          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
-          \ all fields mentioned below will be used to search by term\n          </p>\n\
-          \        <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>subdomain</li>\n\
-          <li>subdomainPermanent</li>\n<li>infrastructureId</li>\n<li>storagePoolId</li>\n\
-          <li>serviceStatus</li>\n<li>wwn</li>\n<li>networkVlanId</li>\n<li>provisioningProtocol</li>\n\
-          <li>templateId</li>\n<li>config.deployStatus</li>\n<li>config.deployType</li>\n\
-          <li>config.templateId</li></ul>\n        "
-        explode: true
-        in: query
-        name: searchBy
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DrivePaginatedList'
-          description: Returns list of all Drives on the infrastructure
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Get all Drives on the infrastructure
-      tags:
-      - Drive
-    post:
-      operationId: createDrive
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateDrive'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Drive'
-          description: Config update of the Drive.
-          headers:
-            Location:
-              description: New Drive link
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Infrastructure not found.
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Create a new Drive
-      tags:
-      - Drive
-  /api/v2/infrastructures/{infrastructureId}/drives/{driveId}:
-    delete:
-      operationId: deleteDrive
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: driveId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Successfully deleted Drive.
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Infrastructure not found.
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Deletes a Drive
-      tags:
-      - Drive
-    get:
-      description: Returns Drive information
-      operationId: getInfrastructureDrive
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: driveId
-        required: true
-        schema:
-          type: number
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Drive'
-          description: Returns Drive information
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Get Drive information
-      tags:
-      - Drive
-  /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/config:
-    get:
-      operationId: getDriveConfigInfo
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: driveId
-        required: true
-        schema:
-          type: number
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DriveConfiguration'
-          description: Returns the Drive
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Get configuration information about the specified Drive
-      tags:
-      - Drive
-    patch:
-      operationId: patchDriveConfig
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: driveId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateDrive'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Drive'
-          description: Config update of the Drive.
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Infrastructure not found.
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Updates the config of a Drive
-      tags:
-      - Drive
-  /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/meta:
-    patch:
-      operationId: patchDriveMeta
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: driveId
-        required: true
-        schema:
-          type: number
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateDriveMeta'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Drive'
-          description: Meta update of the Drive.
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Infrastructure not found.
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Updates the meta of a Drive
-      tags:
-      - Drive
-  /api/v2/infrastructures/{infrastructureId}/drive-groups:
-    get:
-      description: Returns list of all Drive Groups on the infrastructure
-      operationId: getInfrastructureDriveGroups
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: "Page number to retrieve.If you provide invalid value the default\
-          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
-          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
-          \        </p>\n        "
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: number
-        style: form
-      - description: "Number of records per page.\n      <p>\n             <b>Example:\
-          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
-          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
-          \         </p>\n\n      If provided value is greater than max value, max\
-          \ value will be applied.\n      "
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          type: number
-        style: form
-      - description: |-
-          Filter by id query param.
-                    <p>
-                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.id
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by serverInstanceGroupId query param.
-                    <p>
-                       <b>Format: </b> filter.serverInstanceGroupId={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.serverInstanceGroupId=$not:$like:John Doe&filter.serverInstanceGroupId=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.serverInstanceGroupId
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by templateId query param.
-                    <p>
-                       <b>Format: </b> filter.templateId={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.templateId=$not:$like:John Doe&filter.templateId=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.templateId
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by serviceStatus query param.
-                    <p>
-                       <b>Format: </b> filter.serviceStatus={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.serviceStatus=$not:$like:John Doe&filter.serviceStatus=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li>
-          <li>$in</li></ul>
-        explode: true
-        in: query
-        name: filter.serviceStatus
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by label query param.
-                    <p>
-                       <b>Format: </b> filter.label={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.label=$not:$like:John Doe&filter.label=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.label
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by subdomain query param.
-                    <p>
-                       <b>Format: </b> filter.subdomain={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.subdomain=$not:$like:John Doe&filter.subdomain=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.subdomain
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by subdomainPermanent query param.
-                    <p>
-                       <b>Format: </b> filter.subdomainPermanent={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.subdomainPermanent=$not:$like:John Doe&filter.subdomainPermanent=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.subdomainPermanent
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by extensionInstanceId query param.
-                    <p>
-                       <b>Format: </b> filter.extensionInstanceId={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.extensionInstanceId=$not:$like:John Doe&filter.extensionInstanceId=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.extensionInstanceId
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by tags query param.
-                    <p>
-                       <b>Format: </b> filter.tags={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.tags=$not:$like:John Doe&filter.tags=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$contains</li></ul>
-        explode: true
-        in: query
-        name: filter.tags
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by config.deployStatus query param.
-                    <p>
-                       <b>Format: </b> filter.config.deployStatus={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.config.deployStatus=$not:$like:John Doe&filter.config.deployStatus=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li>
-          <li>$in</li></ul>
-        explode: true
-        in: query
-        name: filter.config.deployStatus
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by config.deployType query param.
-                    <p>
-                       <b>Format: </b> filter.config.deployType={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.config.deployType=$not:$like:John Doe&filter.config.deployType=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li>
-          <li>$in</li></ul>
-        explode: true
-        in: query
-        name: filter.config.deployType
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
-          \ just provide query param multiple types. The order in url defines an order\
-          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
-          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
-          \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
-          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>serviceStatus</li>\n\
-          <li>config.deployStatus</li>\n<li>config.deployType</li></ul>\n      "
-        explode: true
-        in: query
-        name: sortBy
-        required: false
-        schema:
-          items:
-            enum:
-            - id:ASC
-            - id:DESC
-            - serviceStatus:ASC
-            - serviceStatus:DESC
-            - config.deployStatus:ASC
-            - config.deployStatus:DESC
-            - config.deployType:ASC
-            - config.deployType:DESC
-            type: string
-          type: array
-        style: form
-      - description: "Search term to filter result values\n        <p>\n         \
-          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
-          \ Value: </b> No default value\n          </p>\n        "
-        explode: true
-        in: query
-        name: search
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: "List of fields to search by term to filter result values\n \
-          \       <p>\n             <b>Example: </b> id,label,subdomain,subdomainPermanent,infrastructureId\n\
-          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
-          \ all fields mentioned below will be used to search by term\n          </p>\n\
-          \        <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>subdomain</li>\n\
-          <li>subdomainPermanent</li>\n<li>infrastructureId</li>\n<li>serviceStatus</li>\n\
-          <li>templateId</li>\n<li>serverInstanceGroupId</li>\n<li>extensionInstanceId</li>\n\
-          <li>config.deployStatus</li>\n<li>config.deployType</li>\n<li>config.templateId</li></ul>\n\
-          \        "
-        explode: true
-        in: query
-        name: searchBy
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DriveGroupPaginatedList'
-          description: Returns list of all DriveGroups on the infrastructure
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Get all Drive Groups on the infrastructure
-      tags:
-      - Drive Group
-    post:
-      operationId: createDriveGroup
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateGroupDrive'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DriveGroup'
-          description: Config update of the Drive Group.
-          headers:
-            Location:
-              description: New Drive Group link
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Infrastructure not found.
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Create a new Drive Group
-      tags:
-      - Drive Group
-  /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}:
-    delete:
-      operationId: deleteDriveGroup
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: driveGroupId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Successfully deleted Drive Group.
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Infrastructure not found.
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Deletes a Drive Group
-      tags:
-      - Drive Group
-    get:
-      description: Returns DriveGroup information
-      operationId: getInfrastructureDriveGroup
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: driveGroupId
-        required: true
-        schema:
-          type: number
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DriveGroup'
-          description: Returns Drive Group information
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Get DriveGroup information
-      tags:
-      - Drive Group
-  /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/drives:
-    get:
-      description: Returns the Drives of the Drive Group
-      operationId: getDriveGroupDrives
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: driveGroupId
-        required: true
-        schema:
-          type: number
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DrivePaginatedList'
-          description: Returns the Drives of the Drive Group
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Get the Drives of the Drive Group
-      tags:
-      - Drive Group
-  /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/config:
-    get:
-      operationId: getDriveGroupConfigInfo
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: driveGroupId
-        required: true
-        schema:
-          type: number
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DriveGroupConfiguration'
-          description: Returns the Drive Group
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Get configuration information about the specified Drive Group
-      tags:
-      - Drive Group
-    patch:
-      operationId: patchDriveGroupConfig
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: driveGroupId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateGroupDrive'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DriveGroup'
-          description: Config update of the Drive Group.
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Infrastructure not found.
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Updates the config of a Drive Group
-      tags:
-      - Drive Group
-  /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/meta:
-    patch:
-      operationId: patchDriveGroupMeta
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: driveGroupId
-        required: true
-        schema:
-          type: number
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateDriveGroupMeta'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DriveGroup'
-          description: Meta update of the Drive Group.
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Infrastructure not found.
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Updates the meta of a Drive Group
-      tags:
-      - Drive Group
   /api/v2/events:
     get:
       description: Returns list of all Events
@@ -20244,14 +19021,14 @@ paths:
       summary: Deletes unused server types
       tags:
       - Server Type
-  /api/v2/shared-drives/{sharedDriveId}:
+  /api/v2/drives/{driveId}:
     get:
-      description: Returns Shared Drive information
-      operationId: getSharedDrive
+      description: Returns Drive information
+      operationId: getDrive
       parameters:
       - explode: false
         in: path
-        name: sharedDriveId
+        name: driveId
         required: true
         schema:
           type: number
@@ -20261,8 +19038,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SharedDrive'
-          description: Returns Shared Drive information
+                $ref: '#/components/schemas/Drive'
+          description: Returns Drive information
           headers:
             ETag:
               description: Entity tag
@@ -20281,13 +19058,13 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Get Shared Drive information
+      summary: Get Drive information
       tags:
-      - Shared Drive
-  /api/v2/infrastructures/{infrastructureId}/shared-drives:
+      - Drive
+  /api/v2/infrastructures/{infrastructureId}/drives:
     get:
-      description: Returns list of all Shared Drives on the infrastructure
-      operationId: getInfrastructureSharedDrives
+      description: Returns list of all Drives on the infrastructure
+      operationId: getInfrastructureDrives
       parameters:
       - explode: false
         in: path
@@ -20464,17 +19241,17 @@ paths:
           type: array
         style: form
       - description: |-
-          Filter by networkVlanId query param.
+          Filter by logicalNetworkId query param.
                     <p>
-                       <b>Format: </b> filter.networkVlanId={$not}:OPERATION:VALUE
+                       <b>Format: </b> filter.logicalNetworkId={$not}:OPERATION:VALUE
                     </p>
                     <p>
-                       <b>Example: </b> filter.networkVlanId=$not:$like:John Doe&filter.networkVlanId=like:John
+                       <b>Example: </b> filter.logicalNetworkId=$not:$like:John Doe&filter.logicalNetworkId=like:John
                     </p>
                     <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
-        name: filter.networkVlanId
+        name: filter.logicalNetworkId
         required: false
         schema:
           items:
@@ -20555,6 +19332,24 @@ paths:
             type: string
           type: array
         style: form
+      - description: |-
+          Filter by config.logicalNetworkId query param.
+                    <p>
+                       <b>Format: </b> filter.config.logicalNetworkId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.config.logicalNetworkId=$not:$like:John Doe&filter.config.logicalNetworkId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.config.logicalNetworkId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
           \ just provide query param multiple types. The order in url defines an order\
           \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
@@ -20601,9 +19396,10 @@ paths:
           \ all fields mentioned below will be used to search by term\n          </p>\n\
           \        <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>subdomain</li>\n\
           <li>subdomainPermanent</li>\n<li>infrastructureId</li>\n<li>storagePoolId</li>\n\
-          <li>serviceStatus</li>\n<li>wwn</li>\n<li>ioLimitPolicy</li>\n<li>networkVlanId</li>\n\
+          <li>serviceStatus</li>\n<li>wwn</li>\n<li>ioLimitPolicy</li>\n<li>logicalNetworkId</li>\n\
           <li>allocationAffinity</li>\n<li>provisioningProtocol</li>\n<li>config.deployStatus</li>\n\
-          <li>config.deployType</li></ul>\n        "
+          <li>config.deployType</li>\n<li>config.logicalNetworkId</li></ul>\n    \
+          \    "
         explode: true
         in: query
         name: searchBy
@@ -20618,8 +19414,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SharedDrivePaginatedList'
-          description: Returns list of all Shared Drives on the infrastructure
+                $ref: '#/components/schemas/DrivePaginatedList'
+          description: Returns list of all Drives on the infrastructure
         "400":
           description: Bad request
         "401":
@@ -20631,11 +19427,11 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Get all Shared Drives on the infrastructure
+      summary: Get all Drives on the infrastructure
       tags:
-      - Shared Drive
+      - Drive
     post:
-      operationId: createSharedDrive
+      operationId: createDrive
       parameters:
       - explode: false
         in: path
@@ -20648,18 +19444,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateSharedDrive'
+              $ref: '#/components/schemas/CreateDrive'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SharedDrive'
-          description: Config update of the Shared Drive.
+                $ref: '#/components/schemas/Drive'
+          description: Config update of the Drive.
           headers:
             Location:
-              description: New Shared Drive link
+              description: New Drive link
               explode: false
               schema:
                 type: string
@@ -20673,16 +19469,16 @@ paths:
         "404":
           description: Infrastructure not found.
         "500":
-          description: Failed to update config of Shared Drive.
+          description: Failed to update config of Drive.
       security:
       - JWT: []
       - apiKey: []
-      summary: Create a new Shared Drive
+      summary: Create a new Drive
       tags:
-      - Shared Drive
-  /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}:
+      - Drive
+  /api/v2/infrastructures/{infrastructureId}/drives/{driveId}:
     delete:
-      operationId: deleteSharedDrive
+      operationId: deleteDrive
       parameters:
       - explode: false
         in: path
@@ -20693,7 +19489,7 @@ paths:
         style: simple
       - explode: false
         in: path
-        name: sharedDriveId
+        name: driveId
         required: true
         schema:
           type: number
@@ -20708,7 +19504,7 @@ paths:
         style: simple
       responses:
         "204":
-          description: Successfully deleted Shared Drive.
+          description: Successfully deleted Drive.
         "400":
           description: Bad request
         "401":
@@ -20722,16 +19518,16 @@ paths:
         "428":
           description: Precondition required
         "500":
-          description: Failed to delete Shared Drive
+          description: Failed to delete Drive
       security:
       - JWT: []
       - apiKey: []
-      summary: Deletes a Shared Drive
+      summary: Deletes a Drive
       tags:
-      - Shared Drive
+      - Drive
     get:
-      description: Returns Shared Drive information
-      operationId: getInfrastructureSharedDrive
+      description: Returns Drive information
+      operationId: getInfrastructureDrive
       parameters:
       - explode: false
         in: path
@@ -20742,7 +19538,7 @@ paths:
         style: simple
       - explode: false
         in: path
-        name: sharedDriveId
+        name: driveId
         required: true
         schema:
           type: number
@@ -20752,8 +19548,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SharedDrive'
-          description: Returns Shared Drive information
+                $ref: '#/components/schemas/Drive'
+          description: Returns Drive information
         "400":
           description: Bad request
         "401":
@@ -20765,12 +19561,12 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Get Shared Drive information
+      summary: Get Drive information
       tags:
-      - Shared Drive
-  /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/config:
+      - Drive
+  /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/config:
     get:
-      operationId: getSharedDriveConfigInfo
+      operationId: getDriveConfigInfo
       parameters:
       - explode: false
         in: path
@@ -20781,7 +19577,7 @@ paths:
         style: simple
       - explode: false
         in: path
-        name: sharedDriveId
+        name: driveId
         required: true
         schema:
           type: number
@@ -20791,8 +19587,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SharedDriveConfiguration'
-          description: Returns the Shared Drive
+                $ref: '#/components/schemas/DriveConfiguration'
+          description: Returns the Drive
         "400":
           description: Bad request
         "401":
@@ -20804,11 +19600,11 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Get configuration information about the specified Shared Drive
+      summary: Get configuration information about the specified Drive
       tags:
-      - Shared Drive
+      - Drive
     patch:
-      operationId: patchSharedDriveConfig
+      operationId: patchDriveConfig
       parameters:
       - explode: false
         in: path
@@ -20819,7 +19615,7 @@ paths:
         style: simple
       - explode: false
         in: path
-        name: sharedDriveId
+        name: driveId
         required: true
         schema:
           type: number
@@ -20836,15 +19632,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateSharedDrive'
+              $ref: '#/components/schemas/UpdateDrive'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SharedDrive'
-          description: Config update of the Shared Drive.
+                $ref: '#/components/schemas/Drive'
+          description: Config update of the Drive.
         "400":
           description: Bad request
         "401":
@@ -20858,16 +19654,16 @@ paths:
         "428":
           description: Precondition required
         "500":
-          description: Failed to update config of Shared Drive.
+          description: Failed to update config of Drive.
       security:
       - JWT: []
       - apiKey: []
-      summary: Updates the config of a Shared Drive
+      summary: Updates the config of a Drive
       tags:
-      - Shared Drive
-  /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/meta:
+      - Drive
+  /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/meta:
     patch:
-      operationId: patchSharedDriveMeta
+      operationId: patchDriveMeta
       parameters:
       - explode: false
         in: path
@@ -20878,7 +19674,7 @@ paths:
         style: simple
       - explode: false
         in: path
-        name: sharedDriveId
+        name: driveId
         required: true
         schema:
           type: number
@@ -20887,15 +19683,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateSharedDriveMeta'
+              $ref: '#/components/schemas/UpdateDriveMeta'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SharedDrive'
-          description: Meta update of the Shared Drive.
+                $ref: '#/components/schemas/Drive'
+          description: Meta update of the Drive.
         "400":
           description: Bad request
         "401":
@@ -20905,17 +19701,17 @@ paths:
         "404":
           description: Infrastructure not found.
         "500":
-          description: Failed to update meta of Shared Drive.
+          description: Failed to update meta of Drive.
       security:
       - JWT: []
       - apiKey: []
-      summary: Updates the meta of a Shared Drive
+      summary: Updates the meta of a Drive
       tags:
-      - Shared Drive
-  /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/hosts:
+      - Drive
+  /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/hosts:
     get:
-      description: Returns the Hosts of Shared Drive
-      operationId: getSharedDriveHosts
+      description: Returns the Hosts of Drive
+      operationId: getDriveHosts
       parameters:
       - explode: false
         in: path
@@ -20926,7 +19722,7 @@ paths:
         style: simple
       - explode: false
         in: path
-        name: sharedDriveId
+        name: driveId
         required: true
         schema:
           type: number
@@ -20936,8 +19732,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SharedDriveHosts'
-          description: Returns the Hosts of Shared Drive
+                $ref: '#/components/schemas/DriveHosts'
+          description: Returns the Hosts of Drive
         "400":
           description: Bad request
         "401":
@@ -20949,13 +19745,13 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Get the Hosts of Shared Drive
+      summary: Get the Hosts of Drive
       tags:
-      - Shared Drive
-  /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/actions/modify-instance-array-hosts-bulk:
+      - Drive
+  /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/actions/modify-server-instance-group-hosts-bulk:
     post:
-      description: Updates Instance Array Hosts on the Shared Drive
-      operationId: updateSharedDriveInstanceArrayHostsBulk
+      description: Updates Server Instance Group Hosts on the Drive
+      operationId: updateDriveServerInstanceGroupHostsBulk
       parameters:
       - explode: false
         in: path
@@ -20966,7 +19762,7 @@ paths:
         style: simple
       - explode: false
         in: path
-        name: sharedDriveId
+        name: driveId
         required: true
         schema:
           type: number
@@ -20975,16 +19771,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SharedDriveHostsModifyBulk'
-        description: The Shared Drive Instance Array Hosts update object
+              $ref: '#/components/schemas/DriveHostsModifyBulk'
+        description: The Drive Server Instance Group Hosts update object
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SharedDriveHosts'
-          description: The Shared Drive information successfully updated
+                $ref: '#/components/schemas/DriveHosts'
+          description: The Drive information successfully updated
         "400":
           description: Bad request
         "401":
@@ -20998,9 +19794,9 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Updates Instance Array Hosts on the Shared Drive
+      summary: Updates Server Instance Group Hosts on the Drive
       tags:
-      - Shared Drive
+      - Drive
   /api/v2/sites:
     get:
       description: Returns a list of Sites
@@ -21495,6 +20291,46 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Get a list of agents for a site
+      tags:
+      - Site
+  /api/v2/sites/{siteId}/controllers/actions/get/one-liner:
+    post:
+      description: Returns the one liner
+      operationId: getSiteControllerOneLiner
+      parameters:
+      - explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateSiteControllerOneliner'
+        description: Data needed for the controller one-liner generation
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getSiteControllerOneLiner_200_response'
+          description: Returns a one-liner command to install site controller
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get a one liner to configure a site controller
       tags:
       - Site
   /api/v2/storages:
@@ -22384,17 +21220,17 @@ paths:
           type: array
         style: form
       - description: |-
-          Filter by networkVlanId query param.
+          Filter by logicalNetworkId query param.
                     <p>
-                       <b>Format: </b> filter.networkVlanId={$not}:OPERATION:VALUE
+                       <b>Format: </b> filter.logicalNetworkId={$not}:OPERATION:VALUE
                     </p>
                     <p>
-                       <b>Example: </b> filter.networkVlanId=$not:$like:John Doe&filter.networkVlanId=like:John
+                       <b>Example: </b> filter.logicalNetworkId=$not:$like:John Doe&filter.logicalNetworkId=like:John
                     </p>
                     <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
-        name: filter.networkVlanId
+        name: filter.logicalNetworkId
         required: false
         schema:
           items:
@@ -22475,6 +21311,24 @@ paths:
             type: string
           type: array
         style: form
+      - description: |-
+          Filter by config.logicalNetworkId query param.
+                    <p>
+                       <b>Format: </b> filter.config.logicalNetworkId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.config.logicalNetworkId=$not:$like:John Doe&filter.config.logicalNetworkId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.config.logicalNetworkId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
           \ just provide query param multiple types. The order in url defines an order\
           \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
@@ -22521,9 +21375,10 @@ paths:
           \ all fields mentioned below will be used to search by term\n          </p>\n\
           \        <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>subdomain</li>\n\
           <li>subdomainPermanent</li>\n<li>infrastructureId</li>\n<li>storagePoolId</li>\n\
-          <li>serviceStatus</li>\n<li>wwn</li>\n<li>ioLimitPolicy</li>\n<li>networkVlanId</li>\n\
+          <li>serviceStatus</li>\n<li>wwn</li>\n<li>ioLimitPolicy</li>\n<li>logicalNetworkId</li>\n\
           <li>allocationAffinity</li>\n<li>provisioningProtocol</li>\n<li>config.deployStatus</li>\n\
-          <li>config.deployType</li></ul>\n        "
+          <li>config.deployType</li>\n<li>config.logicalNetworkId</li></ul>\n    \
+          \    "
         explode: true
         in: query
         name: searchBy
@@ -22538,7 +21393,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SharedDrivePaginatedList'
+                $ref: '#/components/schemas/DrivePaginatedList'
           description: Returns list of all Shared Drives linked to the specified Storage
         "400":
           description: Bad request
@@ -23393,7 +22248,67 @@ paths:
     get:
       description: Returns list of all Subnets
       operationId: getSubnets
-      parameters: []
+      parameters:
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by id query param.
+                    <p>
+                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.id
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> No default\
+          \ sorting specified, the result order is not guaranteed\n          </p>\n\
+          \      <h4>Available Fields</h4><ul><li>id</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -23418,7 +22333,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateSubnetDto'
+              $ref: '#/components/schemas/CreateSubnet'
         description: The Subnet to create
         required: true
       responses:
@@ -23426,7 +22341,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateSubnetDto'
+                $ref: '#/components/schemas/CreateSubnet'
           description: The details of created subnet
           headers:
             Location:
@@ -24667,13 +23582,6 @@ paths:
         schema:
           type: number
         style: simple
-      - explode: true
-        in: query
-        name: recursion
-        required: false
-        schema:
-          type: number
-        style: form
       responses:
         "200":
           content:
@@ -24704,13 +23612,6 @@ paths:
         schema:
           type: number
         style: simple
-      - explode: true
-        in: query
-        name: recursion
-        required: false
-        schema:
-          type: number
-        style: form
       responses:
         "200":
           content:
@@ -25486,6 +24387,72 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Disable 2FA
+      tags:
+      - User
+  /api/v2/users/actions/verify-email:
+    get:
+      operationId: UserController_handleEmailVerify
+      parameters:
+      - description: The encrypted request token.
+        explode: true
+        in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: The user email has been successfully verified.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: Conflict
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Handle user email verify action
+      tags:
+      - User
+  /api/v2/users/actions/reset-password:
+    get:
+      operationId: UserController_handleUserResetPassword
+      parameters:
+      - description: The encrypted request token.
+        explode: true
+        in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: The user password has been successfully reset.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: Conflict
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Handle user reset password action
       tags:
       - User
   /api/v2/vms/{vmId}:
@@ -30736,8 +29703,8 @@ components:
       type: object
     GenericGUISettings:
       example:
-        rowIndex: 6.027456183070403
-        columnIndex: 1.4658129805029452
+        rowIndex: 1.4658129805029452
+        columnIndex: 5.962133916683182
         userAgent: userAgent
         randomInstanceID: randomInstanceID
         showWidgetChildren: true
@@ -30761,8 +29728,8 @@ components:
     UserMeta:
       example:
         guiSettings:
-          rowIndex: 6.027456183070403
-          columnIndex: 1.4658129805029452
+          rowIndex: 1.4658129805029452
+          columnIndex: 5.962133916683182
           userAgent: userAgent
           randomInstanceID: randomInstanceID
           showWidgetChildren: true
@@ -31199,9 +30166,24 @@ components:
       required:
       - isPublicSignupDisabled
       type: object
+    PasswordReset:
+      example:
+        redirectUrl: redirectUrl
+        email: email
+      properties:
+        email:
+          description: The email address of the user
+          type: string
+        redirectUrl:
+          description: The redirect URL after password recovery
+          type: string
+      required:
+      - email
+      type: object
     BucketConfiguration:
       example:
         sizeGB: 6.027456183070403
+        logicalNetworkId: 2.3021358869347655
         dnsSubdomainChangeId: 5.962133916683182
         subdomain: subdomain
         infrastructureDeployId: 5.637376656633329
@@ -31255,6 +30237,9 @@ components:
         infrastructureDeployId:
           description: Id of the deployment for the Drive Group.
           type: number
+        logicalNetworkId:
+          description: Id of the Logical Network for the Bucket.
+          type: number
       required:
       - deployStatus
       - deployType
@@ -31273,21 +30258,21 @@ components:
       example:
         accessKeyId: accessKeyId
         sizeGB: 0.8008281904610115
-        dnsSubdomainId: 2.3021358869347655
+        dnsSubdomainId: 7.061401241503109
+        logicalNetworkId: 1.4658129805029452
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
-        revision: 5.962133916683182
+        revision: 5.637376656633329
         endpoint: endpoint
-        infrastructureId: 5.637376656633329
+        infrastructureId: 2.3021358869347655
         serviceStatus: ordered
         meta: ""
         infrastructure: "{}"
-        networkVlanId: 7.061401241503109
         subdomain: subdomain
         storagePoolId: 6.027456183070403
-        id: 1.4658129805029452
+        id: 5.962133916683182
         secretKeyEncrypted: secretKeyEncrypted
         config: ""
       properties:
@@ -31306,6 +30291,9 @@ components:
         subdomain:
           description: Subdomain of the Bucket.
           type: string
+        logicalNetworkId:
+          description: Id of the Logical Network for the Bucket.
+          type: number
         id:
           description: Id of the Bucket
           type: number
@@ -31332,9 +30320,6 @@ components:
           type: string
         dnsSubdomainId:
           description: Id of the DNS subdomain for the Bucket.
-          type: number
-        networkVlanId:
-          description: Id of the VLAN for the Bucket.
           type: number
         endpoint:
           description: Endpoint of the Bucket.
@@ -31375,10 +30360,14 @@ components:
     CreateBucket:
       example:
         sizeGB: 0.8008281904610115
+        logicalNetworkId: 6.027456183070403
         label: label
       properties:
         sizeGB:
           description: Disk size in GB for Bucket
+          type: number
+        logicalNetworkId:
+          description: Id of the Logical Network for the Bucket.
           type: number
         label:
           description: Label of the Bucket.
@@ -31390,20 +30379,20 @@ components:
       example:
         accessKeyId: accessKeyId
         sizeGB: 0.8008281904610115
-        dnsSubdomainId: 2.3021358869347655
+        dnsSubdomainId: 7.061401241503109
+        logicalNetworkId: 1.4658129805029452
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
-        revision: 5.962133916683182
+        revision: 5.637376656633329
         endpoint: endpoint
-        infrastructureId: 5.637376656633329
+        infrastructureId: 2.3021358869347655
         serviceStatus: ordered
         meta: ""
-        networkVlanId: 7.061401241503109
         subdomain: subdomain
         storagePoolId: 6.027456183070403
-        id: 1.4658129805029452
+        id: 5.962133916683182
         secretKeyEncrypted: secretKeyEncrypted
         config: ""
       properties:
@@ -31422,6 +30411,9 @@ components:
         subdomain:
           description: Subdomain of the Bucket.
           type: string
+        logicalNetworkId:
+          description: Id of the Logical Network for the Bucket.
+          type: number
         id:
           description: Id of the Bucket
           type: number
@@ -31448,9 +30440,6 @@ components:
           type: string
         dnsSubdomainId:
           description: Id of the DNS subdomain for the Bucket.
-          type: number
-        networkVlanId:
-          description: Id of the VLAN for the Bucket.
           type: number
         endpoint:
           description: Endpoint of the Bucket.
@@ -31489,40 +30478,40 @@ components:
         data:
         - accessKeyId: accessKeyId
           sizeGB: 0.8008281904610115
-          dnsSubdomainId: 2.3021358869347655
+          dnsSubdomainId: 7.061401241503109
+          logicalNetworkId: 1.4658129805029452
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 5.962133916683182
+          revision: 5.637376656633329
           endpoint: endpoint
-          infrastructureId: 5.637376656633329
+          infrastructureId: 2.3021358869347655
           serviceStatus: ordered
           meta: ""
           infrastructure: "{}"
-          networkVlanId: 7.061401241503109
           subdomain: subdomain
           storagePoolId: 6.027456183070403
-          id: 1.4658129805029452
+          id: 5.962133916683182
           secretKeyEncrypted: secretKeyEncrypted
           config: ""
         - accessKeyId: accessKeyId
           sizeGB: 0.8008281904610115
-          dnsSubdomainId: 2.3021358869347655
+          dnsSubdomainId: 7.061401241503109
+          logicalNetworkId: 1.4658129805029452
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 5.962133916683182
+          revision: 5.637376656633329
           endpoint: endpoint
-          infrastructureId: 5.637376656633329
+          infrastructureId: 2.3021358869347655
           serviceStatus: ordered
           meta: ""
           infrastructure: "{}"
-          networkVlanId: 7.061401241503109
           subdomain: subdomain
           storagePoolId: 6.027456183070403
-          id: 1.4658129805029452
+          id: 5.962133916683182
           secretKeyEncrypted: secretKeyEncrypted
           config: ""
         meta: ""
@@ -31551,10 +30540,11 @@ components:
     UpdateBucket:
       example:
         sizeGB: 0.8008281904610115
+        logicalNetworkId: 6.027456183070403
         label: label
         guiSettings:
-          rowIndex: 6.027456183070403
-          columnIndex: 1.4658129805029452
+          rowIndex: 1.4658129805029452
+          columnIndex: 5.962133916683182
           userAgent: userAgent
           randomInstanceID: randomInstanceID
           showWidgetChildren: true
@@ -31565,14 +30555,17 @@ components:
         label:
           description: Label of the Bucket.
           type: string
+        logicalNetworkId:
+          description: Id of the Logical Network for the Bucket.
+          type: number
         guiSettings:
           $ref: '#/components/schemas/GenericGUISettings'
       type: object
     UpdateBucketMeta:
       example:
         guiSettings:
-          rowIndex: 6.027456183070403
-          columnIndex: 1.4658129805029452
+          rowIndex: 1.4658129805029452
+          columnIndex: 5.962133916683182
           userAgent: userAgent
           randomInstanceID: randomInstanceID
           showWidgetChildren: true
@@ -31752,862 +30745,6 @@ components:
       required:
       - jobGroupId
       - jobId
-      type: object
-    DriveTargetInfo:
-      example: {}
-      properties: {}
-      type: object
-    DriveConfiguration:
-      example:
-        sshPort: 5.962133916683182
-        iscsiIndexHex: iscsiIndexHex
-        groupId: 1
-        label: label
-        sizeMb: 1.4658129805029452
-        templateId: 1
-        updatedTimestamp: updatedTimestamp
-        filesystemInfo: "{}"
-        deployType: create
-        revision: 0.8008281904610115
-        storageImageName: storageImageName
-        instanceId: 1
-        dnsSubdomainChangeId: 5.637376656633329
-        osAdminPasswordEncrypted: osAdminPasswordEncrypted
-        osAdminUsername: osAdminUsername
-        storageType: iscsi_ssd
-        subdomain: subdomain
-        infrastructureDeployId: 2.3021358869347655
-        operatingSystemInfo: "{}"
-        storagePoolId: 6.027456183070403
-        deployStatus: not_started
-      properties:
-        revision:
-          description: Revision of the Drive Configuration
-          type: number
-        label:
-          description: Label of the Drive.
-          type: string
-        groupId:
-          description: Drive Array Id
-          example: 1
-          type: number
-        instanceId:
-          example: 1
-          type: number
-        storagePoolId:
-          description: Id of the storage pool the Drive is assigned to
-          type: number
-        sizeMb:
-          description: Disk size in MB for Drive
-          type: number
-        storageImageName:
-          description: The name of the storage image used by the Drive.
-          type: string
-        iscsiIndexHex:
-          description: The iSCSI Index in hex format of the Drive.
-          type: string
-        templateId:
-          description: Template Id
-          example: 1
-          type: number
-        osAdminUsername:
-          description: The OS Admin Username the Drive will use.
-          type: string
-        osAdminPasswordEncrypted:
-          description: The OS Admin Password the Drive will use.
-          type: string
-        storageType:
-          default: iscsi_ssd
-          description: Storage type of the Drive
-          enum:
-          - iscsi_ssd
-          - iscsi_hdd
-          - dummy
-          type: string
-        subdomain:
-          description: Subdomain of the Drive.
-          type: string
-        updatedTimestamp:
-          description: Timestamp of the Drive last update.
-          type: string
-        sshPort:
-          description: SSH port used by the Drive.
-          type: number
-        operatingSystemInfo:
-          description: Operating system information of the Drive.
-          type: object
-        filesystemInfo:
-          description: Filesystem information of the Drive.
-          type: object
-        dnsSubdomainChangeId:
-          description: Id of the DNS subdomain for the Drive.
-          type: number
-        deployType:
-          default: create
-          description: Deploy type of the Drive
-          enum:
-          - create
-          - delete
-          - edit
-          - start
-          - stop
-          - suspend
-          type: string
-        deployStatus:
-          default: not_started
-          description: Deploy status of the Drive
-          enum:
-          - not_started
-          - ongoing
-          - finished
-          type: string
-        infrastructureDeployId:
-          description: Id of the deployment for the Drive.
-          type: number
-      required:
-      - deployStatus
-      - deployType
-      - groupId
-      - label
-      - revision
-      - sizeMb
-      - storageType
-      - updatedTimestamp
-      type: object
-    DriveMeta:
-      properties:
-        guiSettings:
-          $ref: '#/components/schemas/GenericGUISettings'
-      type: object
-    Drive:
-      example:
-        iscsiIndexHex: iscsiIndexHex
-        groupId: 1
-        sizeMb: 6.027456183070403
-        templateId: 1
-        updatedTimestamp: updatedTimestamp
-        targets:
-        - {}
-        - {}
-        sshKeyPairInternalEncrypted: "{}"
-        storageVirtualSizeCachedMb: 3.616076749251911
-        wwn: wwn
-        storageImageName: storageImageName
-        storageUpdatedTimestamp: storageUpdatedTimestamp
-        instanceId: 1
-        dnsSubdomainPermanentId: 4.145608029883936
-        osAdminPasswordEncrypted: osAdminPasswordEncrypted
-        serviceStatus: ordered
-        osAdminUsername: osAdminUsername
-        networkVlanId: 7.386281948385884
-        operatingSystemInfo: "{}"
-        storagePoolId: 0.8008281904610115
-        id: 5.962133916683182
-        storageRealSizeCachedMb: 7.061401241503109
-        sshPort: 1.4658129805029452
-        provisioningProtocol: iSCSI
-        storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
-        dnsSubdomainId: 2.027123023002322
-        createdTimestamp: createdTimestamp
-        label: label
-        subdomainPermanent: subdomainPermanent
-        filesystemInfo: "{}"
-        revision: 5.637376656633329
-        clusterCustomInfo: "{}"
-        infrastructureId: 2.3021358869347655
-        meta: ""
-        storageType: iscsi_ssd
-        subdomain: subdomain
-        config: ""
-      properties:
-        label:
-          description: Label of the Drive.
-          type: string
-        groupId:
-          description: Drive Array Id
-          example: 1
-          type: number
-        instanceId:
-          example: 1
-          type: number
-        storagePoolId:
-          description: Id of the storage pool the Drive is assigned to
-          type: number
-        sizeMb:
-          description: Disk size in MB for Drive
-          type: number
-        storageImageName:
-          description: The name of the storage image used by the Drive.
-          type: string
-        iscsiIndexHex:
-          description: The iSCSI Index in hex format of the Drive.
-          type: string
-        templateId:
-          description: Template Id
-          example: 1
-          type: number
-        osAdminUsername:
-          description: The OS Admin Username the Drive will use.
-          type: string
-        osAdminPasswordEncrypted:
-          description: The OS Admin Password the Drive will use.
-          type: string
-        storageType:
-          default: iscsi_ssd
-          description: Storage type of the Drive
-          enum:
-          - iscsi_ssd
-          - iscsi_hdd
-          - dummy
-          type: string
-        subdomain:
-          description: Subdomain of the Drive.
-          type: string
-        updatedTimestamp:
-          description: Timestamp of the Drive last update.
-          type: string
-        sshPort:
-          description: SSH port used by the Drive.
-          type: number
-        operatingSystemInfo:
-          description: Operating system information of the Drive.
-          type: object
-        filesystemInfo:
-          description: Filesystem information of the Drive.
-          type: object
-        id:
-          description: Id of the Drive
-          type: number
-        revision:
-          description: Revision of the Drive State
-          type: number
-        infrastructureId:
-          description: Infrastructure id of the Drive
-          type: number
-        serviceStatus:
-          description: Service status of the Drive
-          enum:
-          - ordered
-          - active
-          - deleted
-          - stopped
-          - suspended
-          type: string
-        storageRealSizeCachedMb:
-          description: Cached information of the real size of the storage in MB.
-          type: number
-        storageRealSizeWithSnapshotsCachedMb:
-          description: Cached information of the real size of the storage (including
-            snapshots) in MB.
-          type: number
-        storageVirtualSizeCachedMb:
-          description: Cached information of the virtual size of the storage in MB.
-          type: number
-        storageUpdatedTimestamp:
-          description: Timestamp of the latest update of cached information for the
-            Drive.
-          type: string
-        targets:
-          description: Targets of the Drive.
-          items:
-            $ref: '#/components/schemas/DriveTargetInfo'
-          type: array
-        clusterCustomInfo:
-          description: Custom information of the Drive.
-          type: object
-        sshKeyPairInternalEncrypted:
-          description: Pair of SSH Keys to use on the Drive.
-          type: object
-        wwn:
-          type: string
-        provisioningProtocol:
-          description: Provisioning protocol of the Drive
-          enum:
-          - iSCSI
-          - SCSI_FC
-          type: string
-        subdomainPermanent:
-          description: Subdomain permanent of the Drive.
-          type: string
-        dnsSubdomainId:
-          description: Id of the DNS subdomain for the Drive.
-          type: number
-        dnsSubdomainPermanentId:
-          description: Id of the permanent DNS subdomain for the Drive.
-          type: number
-        networkVlanId:
-          description: Id of the VLAN for the Drive.
-          type: number
-        config:
-          allOf:
-          - $ref: '#/components/schemas/DriveConfiguration'
-          description: The current changes to be deployed for the Drive.
-        createdTimestamp:
-          description: Timestamp of the Drive creation.
-          type: string
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/DriveMeta'
-          description: Meta information of the Drive.
-      required:
-      - config
-      - createdTimestamp
-      - groupId
-      - id
-      - infrastructureId
-      - label
-      - meta
-      - provisioningProtocol
-      - revision
-      - serviceStatus
-      - sizeMb
-      - storageType
-      - storageUpdatedTimestamp
-      - updatedTimestamp
-      type: object
-    DrivePaginatedList:
-      example:
-        data:
-        - iscsiIndexHex: iscsiIndexHex
-          groupId: 1
-          sizeMb: 6.027456183070403
-          templateId: 1
-          updatedTimestamp: updatedTimestamp
-          targets:
-          - {}
-          - {}
-          sshKeyPairInternalEncrypted: "{}"
-          storageVirtualSizeCachedMb: 3.616076749251911
-          wwn: wwn
-          storageImageName: storageImageName
-          storageUpdatedTimestamp: storageUpdatedTimestamp
-          instanceId: 1
-          dnsSubdomainPermanentId: 4.145608029883936
-          osAdminPasswordEncrypted: osAdminPasswordEncrypted
-          serviceStatus: ordered
-          osAdminUsername: osAdminUsername
-          networkVlanId: 7.386281948385884
-          operatingSystemInfo: "{}"
-          storagePoolId: 0.8008281904610115
-          id: 5.962133916683182
-          storageRealSizeCachedMb: 7.061401241503109
-          sshPort: 1.4658129805029452
-          provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
-          dnsSubdomainId: 2.027123023002322
-          createdTimestamp: createdTimestamp
-          label: label
-          subdomainPermanent: subdomainPermanent
-          filesystemInfo: "{}"
-          revision: 5.637376656633329
-          clusterCustomInfo: "{}"
-          infrastructureId: 2.3021358869347655
-          meta: ""
-          storageType: iscsi_ssd
-          subdomain: subdomain
-          config: ""
-        - iscsiIndexHex: iscsiIndexHex
-          groupId: 1
-          sizeMb: 6.027456183070403
-          templateId: 1
-          updatedTimestamp: updatedTimestamp
-          targets:
-          - {}
-          - {}
-          sshKeyPairInternalEncrypted: "{}"
-          storageVirtualSizeCachedMb: 3.616076749251911
-          wwn: wwn
-          storageImageName: storageImageName
-          storageUpdatedTimestamp: storageUpdatedTimestamp
-          instanceId: 1
-          dnsSubdomainPermanentId: 4.145608029883936
-          osAdminPasswordEncrypted: osAdminPasswordEncrypted
-          serviceStatus: ordered
-          osAdminUsername: osAdminUsername
-          networkVlanId: 7.386281948385884
-          operatingSystemInfo: "{}"
-          storagePoolId: 0.8008281904610115
-          id: 5.962133916683182
-          storageRealSizeCachedMb: 7.061401241503109
-          sshPort: 1.4658129805029452
-          provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
-          dnsSubdomainId: 2.027123023002322
-          createdTimestamp: createdTimestamp
-          label: label
-          subdomainPermanent: subdomainPermanent
-          filesystemInfo: "{}"
-          revision: 5.637376656633329
-          clusterCustomInfo: "{}"
-          infrastructureId: 2.3021358869347655
-          meta: ""
-          storageType: iscsi_ssd
-          subdomain: subdomain
-          config: ""
-        meta: ""
-        links: ""
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Drive'
-          title: List of drive's
-          type: array
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseMeta'
-          description: Metadata about the pagination of the response
-          title: Pagination metadata
-        links:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseLinks'
-          description: Links to navigate through the paginated results
-          title: Pagination links
-      required:
-      - data
-      - links
-      - meta
-      type: object
-    CreateDrive:
-      example:
-        groupId: 0.8008281904610115
-        label: label
-        sizeMb: 6.027456183070403
-      properties:
-        label:
-          description: Label of the Drive.
-          type: string
-        groupId:
-          description: Id of the Drive Group
-          type: number
-        sizeMb:
-          description: Disk size in MB for Drive
-          type: number
-      required:
-      - groupId
-      type: object
-    UpdateDrive:
-      example:
-        label: label
-        sizeMb: 0.8008281904610115
-      properties:
-        label:
-          description: Label of the Drive.
-          type: string
-        sizeMb:
-          description: Disk size in MB for Drive
-          type: number
-      type: object
-    UpdateDriveMeta:
-      example:
-        guiSettings:
-          rowIndex: 6.027456183070403
-          columnIndex: 1.4658129805029452
-          userAgent: userAgent
-          randomInstanceID: randomInstanceID
-          showWidgetChildren: true
-      properties:
-        guiSettings:
-          $ref: '#/components/schemas/GenericGUISettings'
-      type: object
-    DriveGroupConfiguration:
-      example:
-        label: label
-        ioLimitPolicy: ioLimitPolicy
-        templateId: 1
-        filesystemInfo: "{}"
-        updatedTimestamp: updatedTimestamp
-        deployType: create
-        revision: 0.8008281904610115
-        expandWithServerInstanceGroup: 1
-        infrastructureId: 6.027456183070403
-        dnsSubdomainChangeId: 5.962133916683182
-        storageType: iscsi_ssd
-        subdomain: subdomain
-        infrastructureDeployId: 5.637376656633329
-        serverInstanceGroupId: 1
-        driveSizeMbDefault: 1.4658129805029452
-        deployStatus: not_started
-      properties:
-        revision:
-          description: Revision of the Drive Group Configuration
-          type: number
-        label:
-          description: Label of the Drive Group.
-          type: string
-        infrastructureId:
-          description: Infrastructure id of the Drive Group
-          type: number
-        templateId:
-          description: Template Id
-          example: 1
-          type: number
-        driveSizeMbDefault:
-          description: Default disk size in MB for new Drives in the Drive Group
-          type: number
-        serverInstanceGroupId:
-          example: 1
-          type: number
-        expandWithServerInstanceGroup:
-          description: Flag to determine whether the Drive Group should be expanded
-            with a Server Instance Group by adding one drive for each instance
-          example: 1
-          type: number
-        ioLimitPolicy:
-          description: The IO limit policy of the Drive Group.
-          type: string
-        storageType:
-          default: iscsi_ssd
-          description: Service status of the Drive Group
-          enum:
-          - iscsi_ssd
-          - iscsi_hdd
-          - dummy
-          type: string
-        filesystemInfo:
-          description: Filesystem information of the Drive Group.
-          type: object
-        subdomain:
-          description: Subdomain of the Drive Group.
-          type: string
-        updatedTimestamp:
-          description: Timestamp of the Drive Group last update.
-          type: string
-        dnsSubdomainChangeId:
-          description: Id of the DNS subdomain for the Drive Group.
-          type: number
-        deployType:
-          default: create
-          description: Deploy type of the Drive Group
-          enum:
-          - create
-          - delete
-          - edit
-          - start
-          - stop
-          - suspend
-          type: string
-        deployStatus:
-          default: not_started
-          description: Deploy status of the Drive Group
-          enum:
-          - not_started
-          - ongoing
-          - finished
-          type: string
-        infrastructureDeployId:
-          description: Id of the deployment for the Drive Group.
-          type: number
-      required:
-      - deployStatus
-      - deployType
-      - driveSizeMbDefault
-      - expandWithServerInstanceGroup
-      - infrastructureId
-      - label
-      - revision
-      - storageType
-      - updatedTimestamp
-      type: object
-    DriveGroupMeta:
-      properties:
-        guiSettings:
-          $ref: '#/components/schemas/GenericGUISettings'
-        tags:
-          description: Tags for the Drive Group.
-          items:
-            type: string
-          type: array
-      type: object
-    DriveGroup:
-      example:
-        dnsSubdomainId: 5.637376656633329
-        createdTimestamp: createdTimestamp
-        extensionInstanceId: 1
-        label: label
-        ioLimitPolicy: ioLimitPolicy
-        subdomainPermanent: subdomainPermanent
-        templateId: 1
-        allocationAffinity: same_storage
-        filesystemInfo: "{}"
-        updatedTimestamp: updatedTimestamp
-        revision: 5.962133916683182
-        expandWithServerInstanceGroup: 1
-        containerClusterId: 1
-        dnsSubdomainPermanentId: 2.3021358869347655
-        infrastructureId: 0.8008281904610115
-        serviceStatus: ordered
-        meta: ""
-        storageType: iscsi_ssd
-        subdomain: subdomain
-        serverInstanceGroupId: 1
-        id: 1.4658129805029452
-        driveSizeMbDefault: 6.027456183070403
-        config: ""
-      properties:
-        label:
-          description: Label of the Drive Group.
-          type: string
-        infrastructureId:
-          description: Infrastructure id of the Drive Group
-          type: number
-        templateId:
-          description: Template Id
-          example: 1
-          type: number
-        driveSizeMbDefault:
-          description: Default disk size in MB for new Drives in the Drive Group
-          type: number
-        serverInstanceGroupId:
-          example: 1
-          type: number
-        expandWithServerInstanceGroup:
-          description: Flag to determine whether the Drive Group should be expanded
-            with a Server Instance Group by adding one drive for each instance
-          example: 1
-          type: number
-        ioLimitPolicy:
-          description: The IO limit policy of the Drive Group.
-          type: string
-        storageType:
-          default: iscsi_ssd
-          description: Service status of the Drive Group
-          enum:
-          - iscsi_ssd
-          - iscsi_hdd
-          - dummy
-          type: string
-        filesystemInfo:
-          description: Filesystem information of the Drive Group.
-          type: object
-        subdomain:
-          description: Subdomain of the Drive Group.
-          type: string
-        updatedTimestamp:
-          description: Timestamp of the Drive Group last update.
-          type: string
-        id:
-          description: Id of the Drive Group
-          type: number
-        revision:
-          description: Revision of the Drive Group State
-          type: number
-        extensionInstanceId:
-          example: 1
-          type: number
-        containerClusterId:
-          example: 1
-          type: number
-        serviceStatus:
-          description: Service status of the Drive Group
-          enum:
-          - ordered
-          - active
-          - deleted
-          - stopped
-          - suspended
-          type: string
-        subdomainPermanent:
-          description: Subdomain permanent of the Drive Group.
-          type: string
-        dnsSubdomainId:
-          description: Id of the DNS subdomain for the Drive Group.
-          type: number
-        dnsSubdomainPermanentId:
-          description: Id of the permanent DNS subdomain for the Drive Group.
-          type: number
-        allocationAffinity:
-          description: Allocation affinity of the Drive Group
-          enum:
-          - same_storage
-          - different_storage
-          type: string
-        config:
-          allOf:
-          - $ref: '#/components/schemas/DriveGroupConfiguration'
-          description: The current changes to be deployed for the Drive Group.
-        createdTimestamp:
-          description: Timestamp of the Drive Group creation.
-          type: string
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/DriveGroupMeta'
-          description: Meta information of the Drive Group.
-      required:
-      - allocationAffinity
-      - config
-      - createdTimestamp
-      - driveSizeMbDefault
-      - expandWithServerInstanceGroup
-      - id
-      - infrastructureId
-      - label
-      - meta
-      - revision
-      - serviceStatus
-      - storageType
-      - updatedTimestamp
-      type: object
-    DriveGroupPaginatedList:
-      example:
-        data:
-        - dnsSubdomainId: 5.637376656633329
-          createdTimestamp: createdTimestamp
-          extensionInstanceId: 1
-          label: label
-          ioLimitPolicy: ioLimitPolicy
-          subdomainPermanent: subdomainPermanent
-          templateId: 1
-          allocationAffinity: same_storage
-          filesystemInfo: "{}"
-          updatedTimestamp: updatedTimestamp
-          revision: 5.962133916683182
-          expandWithServerInstanceGroup: 1
-          containerClusterId: 1
-          dnsSubdomainPermanentId: 2.3021358869347655
-          infrastructureId: 0.8008281904610115
-          serviceStatus: ordered
-          meta: ""
-          storageType: iscsi_ssd
-          subdomain: subdomain
-          serverInstanceGroupId: 1
-          id: 1.4658129805029452
-          driveSizeMbDefault: 6.027456183070403
-          config: ""
-        - dnsSubdomainId: 5.637376656633329
-          createdTimestamp: createdTimestamp
-          extensionInstanceId: 1
-          label: label
-          ioLimitPolicy: ioLimitPolicy
-          subdomainPermanent: subdomainPermanent
-          templateId: 1
-          allocationAffinity: same_storage
-          filesystemInfo: "{}"
-          updatedTimestamp: updatedTimestamp
-          revision: 5.962133916683182
-          expandWithServerInstanceGroup: 1
-          containerClusterId: 1
-          dnsSubdomainPermanentId: 2.3021358869347655
-          infrastructureId: 0.8008281904610115
-          serviceStatus: ordered
-          meta: ""
-          storageType: iscsi_ssd
-          subdomain: subdomain
-          serverInstanceGroupId: 1
-          id: 1.4658129805029452
-          driveSizeMbDefault: 6.027456183070403
-          config: ""
-        meta: ""
-        links: ""
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/DriveGroup'
-          title: List of drive group's
-          type: array
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseMeta'
-          description: Metadata about the pagination of the response
-          title: Pagination metadata
-        links:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseLinks'
-          description: Links to navigate through the paginated results
-          title: Pagination links
-      required:
-      - data
-      - links
-      - meta
-      type: object
-    CreateGroupDrive:
-      example:
-        expandWithServerInstanceGroup: 1
-        driveCount: 1
-        extensionInstanceId: 1
-        label: label
-        ioLimitPolicy: ioLimitPolicy
-        allocationAffinity: same_storage
-        driveSizeMbDefault: 0.8008281904610115
-      properties:
-        driveSizeMbDefault:
-          description: Default disk size in MB for new Drives in the Drive Group
-          type: number
-        extensionInstanceId:
-          example: 1
-          type: number
-        label:
-          description: Label of the Drive.
-          type: string
-        driveCount:
-          description: Number of drives in the Drive Group
-          example: 1
-          type: number
-        ioLimitPolicy:
-          description: The IO limit policy of the Drive Group.
-          type: string
-        expandWithServerInstanceGroup:
-          description: Flag to determine whether the Drive Group should be expanded
-            with a Server Instance Group by adding one drive for each instance
-          example: 1
-          type: number
-        allocationAffinity:
-          description: Allocation affinity of the Drive Group
-          enum:
-          - same_storage
-          - different_storage
-          type: string
-      required:
-      - driveCount
-      - driveSizeMbDefault
-      type: object
-    UpdateGroupDrive:
-      example:
-        expandWithServerInstanceGroup: 1
-        label: label
-        ioLimitPolicy: ioLimitPolicy
-        allocationAffinity: same_storage
-        driveSizeMbDefault: 0.8008281904610115
-      properties:
-        label:
-          description: Label of the Drive.
-          type: string
-        driveSizeMbDefault:
-          description: Default disk size in MB for new Drives in the Drive Group
-          type: number
-        ioLimitPolicy:
-          description: The IO limit policy of the Drive Group.
-          type: string
-        expandWithServerInstanceGroup:
-          description: Flag to determine whether the Drive Group should be expanded
-            with a Server Instance Group by adding one drive for each instance
-          example: 1
-          type: number
-        allocationAffinity:
-          description: Allocation affinity of the Drive Group
-          enum:
-          - same_storage
-          - different_storage
-          type: string
-      type: object
-    UpdateDriveGroupMeta:
-      example:
-        guiSettings:
-          rowIndex: 6.027456183070403
-          columnIndex: 1.4658129805029452
-          userAgent: userAgent
-          randomInstanceID: randomInstanceID
-          showWidgetChildren: true
-        tags:
-        - tags
-        - tags
-      properties:
-        guiSettings:
-          $ref: '#/components/schemas/GenericGUISettings'
-        tags:
-          description: Tags for the Drive Group.
-          items:
-            type: string
-          type: array
       type: object
     Event:
       example:
@@ -36801,6 +34938,7 @@ components:
     FileShareConfiguration:
       example:
         sizeGB: 6.027456183070403
+        logicalNetworkId: 2.3021358869347655
         dnsSubdomainChangeId: 5.962133916683182
         subdomain: subdomain
         infrastructureDeployId: 5.637376656633329
@@ -36830,11 +34968,11 @@ components:
           description: Subdomain of the File Share.
           type: string
         dnsSubdomainChangeId:
-          description: Id of the DNS subdomain for the Drive Group.
+          description: Id of the DNS subdomain for the File Share.
           type: number
         deployType:
           default: create
-          description: Deploy type of the Drive Group
+          description: Deploy type of the File Share
           enum:
           - create
           - delete
@@ -36845,14 +34983,17 @@ components:
           type: string
         deployStatus:
           default: not_started
-          description: Deploy status of the Drive Group
+          description: Deploy status of the File Share
           enum:
           - not_started
           - ongoing
           - finished
           type: string
         infrastructureDeployId:
-          description: Id of the deployment for the Drive Group.
+          description: Id of the deployment for the File Share.
+          type: number
+        logicalNetworkId:
+          description: Id of the Logical Network for the File Share.
           type: number
       required:
       - deployStatus
@@ -36870,21 +35011,22 @@ components:
     FileShareExtendedInfo:
       example:
         sizeGB: 0.8008281904610115
-        dnsSubdomainId: 2.3021358869347655
+        dnsSubdomainId: 7.061401241503109
+        logicalNetworkId: 1.4658129805029452
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
-        revision: 5.962133916683182
+        revision: 5.637376656633329
         endpoint: endpoint
-        infrastructureId: 5.637376656633329
+        infrastructureId: 2.3021358869347655
         serviceStatus: ordered
         meta: ""
         infrastructure: "{}"
-        networkVlanId: 7.061401241503109
+        networkVlanId: 9.301444243932576
         subdomain: subdomain
         storagePoolId: 6.027456183070403
-        id: 1.4658129805029452
+        id: 5.962133916683182
         config: ""
       properties:
         sizeGB:
@@ -36902,6 +35044,9 @@ components:
         subdomain:
           description: Subdomain of the File Share.
           type: string
+        logicalNetworkId:
+          description: Id of the Logical Network for the File Share.
+          type: number
         id:
           description: Id of the File Share
           type: number
@@ -36962,10 +35107,14 @@ components:
     CreateFileShare:
       example:
         sizeGB: 0.8008281904610115
+        logicalNetworkId: 6.027456183070403
         label: label
       properties:
         sizeGB:
           description: Disk size in GB for File Share
+          type: number
+        logicalNetworkId:
+          description: Id of the Logical Network for the File Share.
           type: number
         label:
           description: Display name of the File Share.
@@ -36976,20 +35125,21 @@ components:
     FileShare:
       example:
         sizeGB: 0.8008281904610115
-        dnsSubdomainId: 2.3021358869347655
+        dnsSubdomainId: 7.061401241503109
+        logicalNetworkId: 1.4658129805029452
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
-        revision: 5.962133916683182
+        revision: 5.637376656633329
         endpoint: endpoint
-        infrastructureId: 5.637376656633329
+        infrastructureId: 2.3021358869347655
         serviceStatus: ordered
         meta: ""
-        networkVlanId: 7.061401241503109
+        networkVlanId: 9.301444243932576
         subdomain: subdomain
         storagePoolId: 6.027456183070403
-        id: 1.4658129805029452
+        id: 5.962133916683182
         config: ""
       properties:
         sizeGB:
@@ -37007,6 +35157,9 @@ components:
         subdomain:
           description: Subdomain of the File Share.
           type: string
+        logicalNetworkId:
+          description: Id of the Logical Network for the File Share.
+          type: number
         id:
           description: Id of the File Share
           type: number
@@ -37064,38 +35217,40 @@ components:
       example:
         data:
         - sizeGB: 0.8008281904610115
-          dnsSubdomainId: 2.3021358869347655
+          dnsSubdomainId: 7.061401241503109
+          logicalNetworkId: 1.4658129805029452
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 5.962133916683182
+          revision: 5.637376656633329
           endpoint: endpoint
-          infrastructureId: 5.637376656633329
+          infrastructureId: 2.3021358869347655
           serviceStatus: ordered
           meta: ""
           infrastructure: "{}"
-          networkVlanId: 7.061401241503109
+          networkVlanId: 9.301444243932576
           subdomain: subdomain
           storagePoolId: 6.027456183070403
-          id: 1.4658129805029452
+          id: 5.962133916683182
           config: ""
         - sizeGB: 0.8008281904610115
-          dnsSubdomainId: 2.3021358869347655
+          dnsSubdomainId: 7.061401241503109
+          logicalNetworkId: 1.4658129805029452
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 5.962133916683182
+          revision: 5.637376656633329
           endpoint: endpoint
-          infrastructureId: 5.637376656633329
+          infrastructureId: 2.3021358869347655
           serviceStatus: ordered
           meta: ""
           infrastructure: "{}"
-          networkVlanId: 7.061401241503109
+          networkVlanId: 9.301444243932576
           subdomain: subdomain
           storagePoolId: 6.027456183070403
-          id: 1.4658129805029452
+          id: 5.962133916683182
           config: ""
         meta: ""
         links: ""
@@ -37123,6 +35278,7 @@ components:
     UpdateFileShare:
       example:
         sizeGB: 0.8008281904610115
+        logicalNetworkId: 6.027456183070403
         label: label
       properties:
         sizeGB:
@@ -37131,12 +35287,15 @@ components:
         label:
           description: Label of the File Share.
           type: string
+        logicalNetworkId:
+          description: Id of the Logical Network for the File Share.
+          type: number
       type: object
     UpdateFileShareMeta:
       example:
         guiSettings:
-          rowIndex: 6.027456183070403
-          columnIndex: 1.4658129805029452
+          rowIndex: 1.4658129805029452
+          columnIndex: 5.962133916683182
           userAgent: userAgent
           randomInstanceID: randomInstanceID
           showWidgetChildren: true
@@ -37144,41 +35303,70 @@ components:
         guiSettings:
           $ref: '#/components/schemas/GenericGUISettings'
       type: object
+    FileShareHostType:
+      properties:
+        willBeConnected:
+          description: File Share Host Ids that will be connected.
+          items:
+            type: string
+          type: array
+        connected:
+          description: File Share Host Ids that are connected.
+          items:
+            type: string
+          type: array
+        willBeDisconnected:
+          description: File Share Host Ids that will be disconnected.
+          items:
+            type: string
+          type: array
+        disconnected:
+          description: File Share Host Ids that are disconnected.
+          items:
+            type: string
+          type: array
+      required:
+      - connected
+      - disconnected
+      - willBeConnected
+      - willBeDisconnected
+      type: object
     FileShareHosts:
       example:
-        instanceGroup: "{}"
+        instanceGroup: ""
       properties:
         instanceGroup:
+          allOf:
+          - $ref: '#/components/schemas/FileShareHostType'
           description: File Share Hosts.
-          type: object
       required:
       - instanceGroup
       type: object
     FileShareHostBulkOperation:
       example:
-        instanceArrayId: 0.8008281904610115
         operationType: add
+        serverInstanceGroupId: 0.8008281904610115
       properties:
-        instanceArrayId:
-          description: Id of the Instance Array Host that will be modified
+        serverInstanceGroupId:
+          description: Id of the Server Instance Group Host that will be modified
           type: number
         operationType:
-          description: Operation type for the Instance Array Host
+          description: Operation type for the Server Instance Group Host
           enum:
           - add
           - remove
           type: string
       required:
-      - instanceArrayId
       - operationType
+      - serverInstanceGroupId
       type: object
     FileShareHostsModifyBulk:
       example:
         fileShareHostBulkOperations:
-        - instanceArrayId: 0.8008281904610115
-          operationType: add
-        - instanceArrayId: 0.8008281904610115
-          operationType: add
+        - operationType: add
+          serverInstanceGroupId: 0.8008281904610115
+        - operationType: add
+          serverInstanceGroupId: 0.8008281904610115
       properties:
         fileShareHostBulkOperations:
           description: List of operations to be performed on the File Share Hosts
@@ -39406,8 +37594,8 @@ components:
     InfrastructureMeta:
       example:
         guiSettings:
-          rowIndex: 6.027456183070403
-          columnIndex: 1.4658129805029452
+          rowIndex: 1.4658129805029452
+          columnIndex: 5.962133916683182
           userAgent: userAgent
           randomInstanceID: randomInstanceID
           showWidgetChildren: true
@@ -39814,8 +38002,8 @@ components:
       example:
         meta:
           guiSettings:
-            rowIndex: 6.027456183070403
-            columnIndex: 1.4658129805029452
+            rowIndex: 1.4658129805029452
+            columnIndex: 5.962133916683182
             userAgent: userAgent
             randomInstanceID: randomInstanceID
             showWidgetChildren: true
@@ -40061,8 +38249,8 @@ components:
     UpdateInfrastructureMeta:
       example:
         guiSettings:
-          rowIndex: 6.027456183070403
-          columnIndex: 1.4658129805029452
+          rowIndex: 1.4658129805029452
+          columnIndex: 5.962133916683182
           userAgent: userAgent
           randomInstanceID: randomInstanceID
           showWidgetChildren: true
@@ -40258,8 +38446,8 @@ components:
     GenericMeta:
       example:
         guiSettings:
-          rowIndex: 6.027456183070403
-          columnIndex: 1.4658129805029452
+          rowIndex: 1.4658129805029452
+          columnIndex: 5.962133916683182
           userAgent: userAgent
           randomInstanceID: randomInstanceID
           showWidgetChildren: true
@@ -40498,8 +38686,8 @@ components:
         resourcePoolId: 9
         meta:
           guiSettings:
-            rowIndex: 6.027456183070403
-            columnIndex: 1.4658129805029452
+            rowIndex: 1.4658129805029452
+            columnIndex: 5.962133916683182
             userAgent: userAgent
             randomInstanceID: randomInstanceID
             showWidgetChildren: true
@@ -40766,8 +38954,8 @@ components:
           resourcePoolId: 9
           meta:
             guiSettings:
-              rowIndex: 6.027456183070403
-              columnIndex: 1.4658129805029452
+              rowIndex: 1.4658129805029452
+              columnIndex: 5.962133916683182
               userAgent: userAgent
               randomInstanceID: randomInstanceID
               showWidgetChildren: true
@@ -40855,8 +39043,8 @@ components:
           resourcePoolId: 9
           meta:
             guiSettings:
-              rowIndex: 6.027456183070403
-              columnIndex: 1.4658129805029452
+              rowIndex: 1.4658129805029452
+              columnIndex: 5.962133916683182
               userAgent: userAgent
               randomInstanceID: randomInstanceID
               showWidgetChildren: true
@@ -41279,8 +39467,8 @@ components:
         infrastructureId: 1
         meta:
           guiSettings:
-            rowIndex: 6.027456183070403
-            columnIndex: 1.4658129805029452
+            rowIndex: 1.4658129805029452
+            columnIndex: 5.962133916683182
             userAgent: userAgent
             randomInstanceID: randomInstanceID
             showWidgetChildren: true
@@ -41480,8 +39668,8 @@ components:
           infrastructureId: 1
           meta:
             guiSettings:
-              rowIndex: 6.027456183070403
-              columnIndex: 1.4658129805029452
+              rowIndex: 1.4658129805029452
+              columnIndex: 5.962133916683182
               userAgent: userAgent
               randomInstanceID: randomInstanceID
               showWidgetChildren: true
@@ -41550,8 +39738,8 @@ components:
           infrastructureId: 1
           meta:
             guiSettings:
-              rowIndex: 6.027456183070403
-              columnIndex: 1.4658129805029452
+              rowIndex: 1.4658129805029452
+              columnIndex: 5.962133916683182
               userAgent: userAgent
               randomInstanceID: randomInstanceID
               showWidgetChildren: true
@@ -43934,7 +42122,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-10T10:26:56.532Z
+        createdTimestamp: 2025-04-10T19:23:09.844Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -43943,7 +42131,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-10T10:26:56.532Z
+        updatedTimestamp: 2025-04-10T19:23:09.845Z
         revision: "1"
       properties:
         siteId:
@@ -43960,12 +42148,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-10T10:26:56.532Z
+          example: 2025-04-10T19:23:09.844Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-10T10:26:56.532Z
+          example: 2025-04-10T19:23:09.845Z
           format: date-time
           type: string
         links:
@@ -43987,7 +42175,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-10T10:26:56.532Z
+        - createdTimestamp: 2025-04-10T19:23:09.844Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -43996,9 +42184,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-10T10:26:56.532Z
+          updatedTimestamp: 2025-04-10T19:23:09.845Z
           revision: "1"
-        - createdTimestamp: 2025-04-10T10:26:56.532Z
+        - createdTimestamp: 2025-04-10T19:23:09.844Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -44007,7 +42195,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-10T10:26:56.532Z
+          updatedTimestamp: 2025-04-10T19:23:09.845Z
           revision: "1"
         meta: ""
         links: ""
@@ -44619,7 +42807,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-10T10:26:56.535Z
+        createdTimestamp: 2025-04-10T19:23:09.856Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -44660,7 +42848,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-10T10:26:56.535Z
+        updatedTimestamp: 2025-04-10T19:23:09.856Z
         revision: "1"
         status: draft
       properties:
@@ -44688,12 +42876,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-10T10:26:56.535Z
+          example: 2025-04-10T19:23:09.856Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-10T10:26:56.535Z
+          example: 2025-04-10T19:23:09.856Z
           format: date-time
           type: string
         links:
@@ -44834,7 +43022,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-10T10:26:56.535Z
+          createdTimestamp: 2025-04-10T19:23:09.856Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -44875,7 +43063,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-10T10:26:56.535Z
+          updatedTimestamp: 2025-04-10T19:23:09.856Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -44985,7 +43173,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-10T10:26:56.535Z
+          createdTimestamp: 2025-04-10T19:23:09.856Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -45026,7 +43214,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-10T10:26:56.535Z
+          updatedTimestamp: 2025-04-10T19:23:09.856Z
           revision: "1"
           status: draft
         meta: ""
@@ -47000,6 +45188,225 @@ components:
             allocation for the Instance Interfaces associated with this Instance Group.
           type: integer
       type: object
+    DriveGroupConfiguration:
+      properties:
+        revision:
+          description: Revision of the Drive Group Configuration
+          type: number
+        label:
+          description: Label of the Drive Group.
+          type: string
+        infrastructureId:
+          description: Infrastructure id of the Drive Group
+          type: number
+        templateId:
+          description: Template Id
+          example: 1
+          type: number
+        driveSizeMbDefault:
+          description: Default disk size in MB for new Drives in the Drive Group
+          type: number
+        serverInstanceGroupId:
+          example: 1
+          type: number
+        expandWithServerInstanceGroup:
+          description: Flag to determine whether the Drive Group should be expanded
+            with a Server Instance Group by adding one drive for each instance
+          example: 1
+          type: number
+        ioLimitPolicy:
+          description: The IO limit policy of the Drive Group.
+          type: string
+        storageType:
+          default: iscsi_ssd
+          description: Service status of the Drive Group
+          enum:
+          - iscsi_ssd
+          - iscsi_hdd
+          type: string
+        filesystemInfo:
+          description: Filesystem information of the Drive Group.
+          type: object
+        subdomain:
+          description: Subdomain of the Drive Group.
+          type: string
+        updatedTimestamp:
+          description: Timestamp of the Drive Group last update.
+          type: string
+        dnsSubdomainChangeId:
+          description: Id of the DNS subdomain for the Drive Group.
+          type: number
+        deployType:
+          default: create
+          description: Deploy type of the Drive Group
+          enum:
+          - create
+          - delete
+          - edit
+          - start
+          - stop
+          - suspend
+          type: string
+        deployStatus:
+          default: not_started
+          description: Deploy status of the Drive Group
+          enum:
+          - not_started
+          - ongoing
+          - finished
+          type: string
+        infrastructureDeployId:
+          description: Id of the deployment for the Drive Group.
+          type: number
+      required:
+      - deployStatus
+      - deployType
+      - driveSizeMbDefault
+      - expandWithServerInstanceGroup
+      - infrastructureId
+      - label
+      - revision
+      - storageType
+      - updatedTimestamp
+      type: object
+    DriveGroupMeta:
+      properties:
+        guiSettings:
+          $ref: '#/components/schemas/GenericGUISettings'
+        tags:
+          description: Tags for the Drive Group.
+          items:
+            type: string
+          type: array
+      type: object
+    DriveGroup:
+      example:
+        dnsSubdomainId: 5.637376656633329
+        createdTimestamp: createdTimestamp
+        extensionInstanceId: 1
+        label: label
+        ioLimitPolicy: ioLimitPolicy
+        subdomainPermanent: subdomainPermanent
+        templateId: 1
+        allocationAffinity: same_storage
+        filesystemInfo: "{}"
+        updatedTimestamp: updatedTimestamp
+        revision: 5.962133916683182
+        expandWithServerInstanceGroup: 1
+        containerClusterId: 1
+        dnsSubdomainPermanentId: 2.3021358869347655
+        infrastructureId: 0.8008281904610115
+        serviceStatus: ordered
+        meta: ""
+        storageType: iscsi_ssd
+        subdomain: subdomain
+        serverInstanceGroupId: 1
+        id: 1.4658129805029452
+        driveSizeMbDefault: 6.027456183070403
+        config: ""
+      properties:
+        label:
+          description: Label of the Drive Group.
+          type: string
+        infrastructureId:
+          description: Infrastructure id of the Drive Group
+          type: number
+        templateId:
+          description: Template Id
+          example: 1
+          type: number
+        driveSizeMbDefault:
+          description: Default disk size in MB for new Drives in the Drive Group
+          type: number
+        serverInstanceGroupId:
+          example: 1
+          type: number
+        expandWithServerInstanceGroup:
+          description: Flag to determine whether the Drive Group should be expanded
+            with a Server Instance Group by adding one drive for each instance
+          example: 1
+          type: number
+        ioLimitPolicy:
+          description: The IO limit policy of the Drive Group.
+          type: string
+        storageType:
+          default: iscsi_ssd
+          description: Service status of the Drive Group
+          enum:
+          - iscsi_ssd
+          - iscsi_hdd
+          type: string
+        filesystemInfo:
+          description: Filesystem information of the Drive Group.
+          type: object
+        subdomain:
+          description: Subdomain of the Drive Group.
+          type: string
+        updatedTimestamp:
+          description: Timestamp of the Drive Group last update.
+          type: string
+        id:
+          description: Id of the Drive Group
+          type: number
+        revision:
+          description: Revision of the Drive Group State
+          type: number
+        extensionInstanceId:
+          example: 1
+          type: number
+        containerClusterId:
+          example: 1
+          type: number
+        serviceStatus:
+          description: Service status of the Drive Group
+          enum:
+          - ordered
+          - active
+          - deleted
+          - stopped
+          - suspended
+          type: string
+        subdomainPermanent:
+          description: Subdomain permanent of the Drive Group.
+          type: string
+        dnsSubdomainId:
+          description: Id of the DNS subdomain for the Drive Group.
+          type: number
+        dnsSubdomainPermanentId:
+          description: Id of the permanent DNS subdomain for the Drive Group.
+          type: number
+        allocationAffinity:
+          description: Allocation affinity of the Drive Group
+          enum:
+          - same_storage
+          - different_storage
+          type: string
+        config:
+          allOf:
+          - $ref: '#/components/schemas/DriveGroupConfiguration'
+          description: The current changes to be deployed for the Drive Group.
+        createdTimestamp:
+          description: Timestamp of the Drive Group creation.
+          type: string
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/DriveGroupMeta'
+          description: Meta information of the Drive Group.
+      required:
+      - allocationAffinity
+      - config
+      - createdTimestamp
+      - driveSizeMbDefault
+      - expandWithServerInstanceGroup
+      - id
+      - infrastructureId
+      - label
+      - meta
+      - revision
+      - serviceStatus
+      - storageType
+      - updatedTimestamp
+      type: object
     DriveGroupList:
       example:
         data:
@@ -47398,80 +45805,337 @@ components:
       - serverStatus
       - site
       type: object
+    DriveTargetInfo:
+      example: {}
+      properties: {}
+      type: object
+    DriveConfiguration:
+      example:
+        sshPort: 5.962133916683182
+        iscsiIndexHex: iscsiIndexHex
+        groupId: 1
+        label: label
+        sizeMb: 1.4658129805029452
+        templateId: 1
+        updatedTimestamp: updatedTimestamp
+        filesystemInfo: "{}"
+        deployType: create
+        revision: 0.8008281904610115
+        storageImageName: storageImageName
+        instanceId: 1
+        dnsSubdomainChangeId: 5.637376656633329
+        osAdminPasswordEncrypted: osAdminPasswordEncrypted
+        osAdminUsername: osAdminUsername
+        storageType: iscsi_ssd
+        subdomain: subdomain
+        infrastructureDeployId: 2.3021358869347655
+        operatingSystemInfo: "{}"
+        storagePoolId: 6.027456183070403
+        deployStatus: not_started
+      properties:
+        revision:
+          description: Revision of the Drive Configuration
+          type: number
+        label:
+          description: Label of the Drive.
+          type: string
+        groupId:
+          description: Drive Array Id
+          example: 1
+          type: number
+        instanceId:
+          example: 1
+          type: number
+        storagePoolId:
+          description: Id of the storage pool the Drive is assigned to
+          type: number
+        sizeMb:
+          description: Disk size in MB for Drive
+          type: number
+        storageImageName:
+          description: The name of the storage image used by the Drive.
+          type: string
+        iscsiIndexHex:
+          description: The iSCSI Index in hex format of the Drive.
+          type: string
+        templateId:
+          description: Template Id
+          example: 1
+          type: number
+        osAdminUsername:
+          description: The OS Admin Username the Drive will use.
+          type: string
+        osAdminPasswordEncrypted:
+          description: The OS Admin Password the Drive will use.
+          type: string
+        storageType:
+          default: iscsi_ssd
+          description: Storage type of the Drive
+          enum:
+          - iscsi_ssd
+          - iscsi_hdd
+          type: string
+        subdomain:
+          description: Subdomain of the Drive.
+          type: string
+        updatedTimestamp:
+          description: Timestamp of the Drive last update.
+          type: string
+        sshPort:
+          description: SSH port used by the Drive.
+          type: number
+        operatingSystemInfo:
+          description: Operating system information of the Drive.
+          type: object
+        filesystemInfo:
+          description: Filesystem information of the Drive.
+          type: object
+        dnsSubdomainChangeId:
+          description: Id of the DNS subdomain for the Drive.
+          type: number
+        deployType:
+          default: create
+          description: Deploy type of the Drive
+          enum:
+          - create
+          - delete
+          - edit
+          - start
+          - stop
+          - suspend
+          type: string
+        deployStatus:
+          default: not_started
+          description: Deploy status of the Drive
+          enum:
+          - not_started
+          - ongoing
+          - finished
+          type: string
+        infrastructureDeployId:
+          description: Id of the deployment for the Drive.
+          type: number
+      required:
+      - deployStatus
+      - deployType
+      - groupId
+      - label
+      - revision
+      - sizeMb
+      - storageType
+      - updatedTimestamp
+      type: object
+    DriveMeta:
+      properties:
+        guiSettings:
+          $ref: '#/components/schemas/GenericGUISettings'
+      type: object
+    Drive:
+      example:
+        logicalNetworkId: 1.4658129805029452
+        sizeMb: 6.027456183070403
+        updatedTimestamp: updatedTimestamp
+        targets:
+        - {}
+        - {}
+        storageVirtualSizeCachedMb: 3.616076749251911
+        wwn: wwn
+        storageImageName: storageImageName
+        storageUpdatedTimestamp: storageUpdatedTimestamp
+        dnsSubdomainPermanentId: 4.145608029883936
+        serviceStatus: ordered
+        storagePoolId: 0.8008281904610115
+        id: 5.962133916683182
+        storageRealSizeCachedMb: 7.061401241503109
+        provisioningProtocol: iSCSI
+        storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
+        dnsSubdomainId: 2.027123023002322
+        createdTimestamp: createdTimestamp
+        label: label
+        ioLimitPolicy: ioLimitPolicy
+        subdomainPermanent: subdomainPermanent
+        allocationAffinity: same_storage
+        revision: 5.637376656633329
+        infrastructureId: 2.3021358869347655
+        meta: ""
+        storageType: iscsi_ssd
+        subdomain: subdomain
+        config: ""
+      properties:
+        label:
+          description: Label of the Drive.
+          type: string
+        storagePoolId:
+          description: Id of the storage pool the Drive is assigned to
+          type: number
+        sizeMb:
+          description: Disk size in MB for Drive
+          type: number
+        storageImageName:
+          description: The name of the storage image used by the Drive.
+          type: string
+        storageType:
+          default: iscsi_ssd
+          description: Service status of the Drive
+          enum:
+          - iscsi_ssd
+          - iscsi_hdd
+          type: string
+        ioLimitPolicy:
+          description: The IO limit policy of the Drive.
+          type: string
+        subdomain:
+          description: Subdomain of the Drive.
+          type: string
+        logicalNetworkId:
+          description: Id of the Logical Network for the Drive.
+          type: number
+        updatedTimestamp:
+          description: Timestamp of the Drive last update.
+          type: string
+        id:
+          description: Id of the Drive
+          type: number
+        revision:
+          description: Revision of the Drive State
+          type: number
+        infrastructureId:
+          description: Infrastructure id of the Drive
+          type: number
+        serviceStatus:
+          description: Service status of the Drive
+          enum:
+          - ordered
+          - active
+          - deleted
+          - stopped
+          - suspended
+          type: string
+        storageRealSizeCachedMb:
+          description: Cached information of the real size of the storage in MB.
+          type: number
+        storageRealSizeWithSnapshotsCachedMb:
+          description: Cached information of the real size of the storage (including
+            snapshots) in MB.
+          type: number
+        storageVirtualSizeCachedMb:
+          description: Cached information of the virtual size of the storage in MB.
+          type: number
+        storageUpdatedTimestamp:
+          description: Timestamp of the latest update of cached information for the
+            Drive.
+          type: string
+        targets:
+          description: Targets of the Drive.
+          items:
+            $ref: '#/components/schemas/DriveTargetInfo'
+          type: array
+        wwn:
+          type: string
+        allocationAffinity:
+          description: Allocation affinity of the Drive
+          enum:
+          - same_storage
+          - different_storage
+          type: string
+        provisioningProtocol:
+          description: Provisioning protocol of the Drive
+          enum:
+          - iSCSI
+          - SCSI_FC
+          type: string
+        subdomainPermanent:
+          description: Subdomain permanent of the Drive.
+          type: string
+        dnsSubdomainId:
+          description: Id of the DNS subdomain for the Drive.
+          type: number
+        dnsSubdomainPermanentId:
+          description: Id of the permanent DNS subdomain for the Drive.
+          type: number
+        config:
+          allOf:
+          - $ref: '#/components/schemas/DriveConfiguration'
+          description: The current changes to be deployed for the Drive.
+        createdTimestamp:
+          description: Timestamp of the Drive creation.
+          type: string
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/DriveMeta'
+          description: Meta information of the Drive.
+      required:
+      - allocationAffinity
+      - config
+      - createdTimestamp
+      - id
+      - infrastructureId
+      - label
+      - meta
+      - provisioningProtocol
+      - revision
+      - serviceStatus
+      - sizeMb
+      - storageType
+      - storageUpdatedTimestamp
+      - updatedTimestamp
+      type: object
     DriveList:
       example:
         data:
-        - iscsiIndexHex: iscsiIndexHex
-          groupId: 1
+        - logicalNetworkId: 1.4658129805029452
           sizeMb: 6.027456183070403
-          templateId: 1
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
-          sshKeyPairInternalEncrypted: "{}"
           storageVirtualSizeCachedMb: 3.616076749251911
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
-          instanceId: 1
           dnsSubdomainPermanentId: 4.145608029883936
-          osAdminPasswordEncrypted: osAdminPasswordEncrypted
           serviceStatus: ordered
-          osAdminUsername: osAdminUsername
-          networkVlanId: 7.386281948385884
-          operatingSystemInfo: "{}"
           storagePoolId: 0.8008281904610115
           id: 5.962133916683182
           storageRealSizeCachedMb: 7.061401241503109
-          sshPort: 1.4658129805029452
           provisioningProtocol: iSCSI
           storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
           dnsSubdomainId: 2.027123023002322
           createdTimestamp: createdTimestamp
           label: label
+          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
-          filesystemInfo: "{}"
+          allocationAffinity: same_storage
           revision: 5.637376656633329
-          clusterCustomInfo: "{}"
           infrastructureId: 2.3021358869347655
           meta: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
-        - iscsiIndexHex: iscsiIndexHex
-          groupId: 1
+        - logicalNetworkId: 1.4658129805029452
           sizeMb: 6.027456183070403
-          templateId: 1
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
-          sshKeyPairInternalEncrypted: "{}"
           storageVirtualSizeCachedMb: 3.616076749251911
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
-          instanceId: 1
           dnsSubdomainPermanentId: 4.145608029883936
-          osAdminPasswordEncrypted: osAdminPasswordEncrypted
           serviceStatus: ordered
-          osAdminUsername: osAdminUsername
-          networkVlanId: 7.386281948385884
-          operatingSystemInfo: "{}"
           storagePoolId: 0.8008281904610115
           id: 5.962133916683182
           storageRealSizeCachedMb: 7.061401241503109
-          sshPort: 1.4658129805029452
           provisioningProtocol: iSCSI
           storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
           dnsSubdomainId: 2.027123023002322
           createdTimestamp: createdTimestamp
           label: label
+          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
-          filesystemInfo: "{}"
+          allocationAffinity: same_storage
           revision: 5.637376656633329
-          clusterCustomInfo: "{}"
           infrastructureId: 2.3021358869347655
           meta: ""
           storageType: iscsi_ssd
@@ -48838,7 +47502,6 @@ components:
           enum:
           - iscsi_ssd
           - iscsi_hdd
-          - dummy
           type: string
         filesystemInfo:
           description: Filesystem information of the Drive Group.
@@ -48984,7 +47647,6 @@ components:
           enum:
           - iscsi_ssd
           - iscsi_hdd
-          - dummy
           type: string
         subdomain:
           description: Subdomain of the Drive.
@@ -49089,19 +47751,20 @@ components:
     FileShareVariables:
       example:
         sizeGB: 4.965218492984954
-        dnsSubdomainId: 8.762042012749001
+        dnsSubdomainId: 9.018348186070783
+        logicalNetworkId: 9.965781217890562
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
-        revision: 9.369310271410669
+        revision: 6.683562403749608
         endpoint: endpoint
-        infrastructureId: 6.683562403749608
+        infrastructureId: 8.762042012749001
         serviceStatus: ordered
-        networkVlanId: 9.018348186070783
+        networkVlanId: 6.438423552598547
         subdomain: subdomain
         storagePoolId: 5.025004791520295
-        id: 9.965781217890562
+        id: 9.369310271410669
         config: ""
       properties:
         sizeGB:
@@ -49119,6 +47782,9 @@ components:
         subdomain:
           description: Subdomain of the File Share.
           type: string
+        logicalNetworkId:
+          description: Id of the Logical Network for the File Share.
+          type: number
         id:
           description: Id of the File Share
           type: number
@@ -49170,20 +47836,20 @@ components:
     BucketVariables:
       example:
         accessKeyId: accessKeyId
-        sizeGB: 6.438423552598547
-        dnsSubdomainId: 6.778324963048013
+        sizeGB: 3.5571952270680973
+        dnsSubdomainId: 5.944895607614016
+        logicalNetworkId: 1.284659006116532
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
-        revision: 1.284659006116532
+        revision: 6.778324963048013
         endpoint: endpoint
-        infrastructureId: 2.8841621266687802
+        infrastructureId: 6.878052220127876
         serviceStatus: ordered
-        networkVlanId: 6.878052220127876
         subdomain: subdomain
-        storagePoolId: 3.5571952270680973
-        id: 6.965117697638846
+        storagePoolId: 6.965117697638846
+        id: 2.8841621266687802
         secretKeyEncrypted: secretKeyEncrypted
         config: ""
       properties:
@@ -49202,6 +47868,9 @@ components:
         subdomain:
           description: Subdomain of the Bucket.
           type: string
+        logicalNetworkId:
+          description: Id of the Logical Network for the Bucket.
+          type: number
         id:
           description: Id of the Bucket
           type: number
@@ -49228,9 +47897,6 @@ components:
           type: string
         dnsSubdomainId:
           description: Id of the DNS subdomain for the Bucket.
-          type: number
-        networkVlanId:
-          description: Id of the VLAN for the Bucket.
           type: number
         endpoint:
           description: Endpoint of the Bucket.
@@ -49259,157 +47925,79 @@ components:
       - subdomainPermanent
       - updatedTimestamp
       type: object
-    SharedDriveConfiguration:
-      example:
-        label: label
-        sizeMb: 1.4658129805029452
-        ioLimitPolicy: ioLimitPolicy
-        updatedTimestamp: updatedTimestamp
-        deployType: create
-        revision: 0.8008281904610115
-        storageImageName: storageImageName
-        dnsSubdomainChangeId: 5.962133916683182
-        storageType: iscsi_ssd
-        subdomain: subdomain
-        infrastructureDeployId: 5.637376656633329
-        storagePoolId: 6.027456183070403
-        deployStatus: not_started
-      properties:
-        revision:
-          description: Revision of the Shared Drive Configuration
-          type: number
-        label:
-          description: Label of the Shared Drive.
-          type: string
-        storagePoolId:
-          description: Id of the storage pool the Shared Drive is assigned to
-          type: number
-        sizeMb:
-          description: Disk size in MB for Shared Drive
-          type: number
-        storageImageName:
-          description: The name of the storage image used by the Shared Drive.
-          type: string
-        storageType:
-          default: iscsi_ssd
-          description: Service status of the Shared Drive
-          enum:
-          - iscsi_ssd
-          - iscsi_hdd
-          type: string
-        ioLimitPolicy:
-          description: The IO limit policy of the Shared Drive.
-          type: string
-        subdomain:
-          description: Subdomain of the Shared Drive.
-          type: string
-        dnsSubdomainChangeId:
-          description: Id of the DNS subdomain for the Shared Drive.
-          type: number
-        deployType:
-          default: create
-          description: Deploy type of the Shared Drive
-          enum:
-          - create
-          - delete
-          - edit
-          - start
-          - stop
-          - suspend
-          type: string
-        deployStatus:
-          default: not_started
-          description: Deploy status of the Shared Drive
-          enum:
-          - not_started
-          - ongoing
-          - finished
-          type: string
-        infrastructureDeployId:
-          description: Id of the deployment for the Shared Drive.
-          type: number
-        updatedTimestamp:
-          description: Timestamp of the Shared Drive last update.
-          type: string
-      required:
-      - deployStatus
-      - deployType
-      - label
-      - revision
-      - sizeMb
-      - storageType
-      - updatedTimestamp
-      type: object
     SharedDriveVariables:
       example:
-        sizeMb: 6.704019297950036
+        logicalNetworkId: 3.0937452626664474
+        sizeMb: 3.353193347011243
         updatedTimestamp: updatedTimestamp
         targets:
         - {}
         - {}
-        storageVirtualSizeCachedMb: 6.519180951018382
+        storageVirtualSizeCachedMb: 4.652396432933246
         wwn: wwn
         storageImageName: storageImageName
         storageUpdatedTimestamp: storageUpdatedTimestamp
-        dnsSubdomainPermanentId: 4.652396432933246
+        dnsSubdomainPermanentId: 7.740351818741173
         serviceStatus: ordered
-        networkVlanId: 8.969578798196912
-        storagePoolId: 5.944895607614016
-        id: 3.353193347011243
-        storageRealSizeCachedMb: 0.8851374739011653
+        storagePoolId: 6.704019297950036
+        id: 7.143538047012306
+        storageRealSizeCachedMb: 6.519180951018382
         provisioningProtocol: iSCSI
-        storageRealSizeWithSnapshotsCachedMb: 7.058770351582356
-        dnsSubdomainId: 0.10263654006109402
+        storageRealSizeWithSnapshotsCachedMb: 0.10263654006109402
+        dnsSubdomainId: 8.969578798196912
         createdTimestamp: createdTimestamp
         label: label
         ioLimitPolicy: ioLimitPolicy
         subdomainPermanent: subdomainPermanent
         allocationAffinity: same_storage
-        revision: 3.0937452626664474
-        infrastructureId: 7.143538047012306
+        revision: 0.8851374739011653
+        infrastructureId: 7.058770351582356
         storageType: iscsi_ssd
         subdomain: subdomain
         config: ""
       properties:
         label:
-          description: Label of the Shared Drive.
+          description: Label of the Drive.
           type: string
         storagePoolId:
-          description: Id of the storage pool the Shared Drive is assigned to
+          description: Id of the storage pool the Drive is assigned to
           type: number
         sizeMb:
-          description: Disk size in MB for Shared Drive
+          description: Disk size in MB for Drive
           type: number
         storageImageName:
-          description: The name of the storage image used by the Shared Drive.
+          description: The name of the storage image used by the Drive.
           type: string
         storageType:
           default: iscsi_ssd
-          description: Service status of the Shared Drive
+          description: Service status of the Drive
           enum:
           - iscsi_ssd
           - iscsi_hdd
           type: string
         ioLimitPolicy:
-          description: The IO limit policy of the Shared Drive.
+          description: The IO limit policy of the Drive.
           type: string
         subdomain:
-          description: Subdomain of the Shared Drive.
+          description: Subdomain of the Drive.
           type: string
+        logicalNetworkId:
+          description: Id of the Logical Network for the Drive.
+          type: number
         updatedTimestamp:
-          description: Timestamp of the Shared Drive last update.
+          description: Timestamp of the Drive last update.
           type: string
         id:
-          description: Id of the Shared Drive
+          description: Id of the Drive
           type: number
         revision:
-          description: Revision of the Shared Drive State
+          description: Revision of the Drive State
           type: number
         infrastructureId:
-          description: Infrastructure id of the Shared Drive
+          description: Infrastructure id of the Drive
           type: number
         serviceStatus:
-          description: Service status of the Shared Drive
+          description: Service status of the Drive
           enum:
           - ordered
           - active
@@ -49429,45 +48017,42 @@ components:
           type: number
         storageUpdatedTimestamp:
           description: Timestamp of the latest update of cached information for the
-            Shared Drive.
+            Drive.
           type: string
         targets:
-          description: Targets of the Shared Drive.
+          description: Targets of the Drive.
           items:
             $ref: '#/components/schemas/DriveTargetInfo'
           type: array
         wwn:
           type: string
         allocationAffinity:
-          description: Allocation affinity of the Shared Drive
+          description: Allocation affinity of the Drive
           enum:
           - same_storage
           - different_storage
           type: string
         provisioningProtocol:
-          description: Provisioning protocol of the Shared Drive
+          description: Provisioning protocol of the Drive
           enum:
           - iSCSI
           - SCSI_FC
           type: string
         subdomainPermanent:
-          description: Subdomain permanent of the Shared Drive.
+          description: Subdomain permanent of the Drive.
           type: string
         dnsSubdomainId:
-          description: Id of the DNS subdomain for the Shared Drive.
+          description: Id of the DNS subdomain for the Drive.
           type: number
         dnsSubdomainPermanentId:
-          description: Id of the permanent DNS subdomain for the Shared Drive.
-          type: number
-        networkVlanId:
-          description: Id of the VLAN for the Shared Drive.
+          description: Id of the permanent DNS subdomain for the Drive.
           type: number
         config:
           allOf:
-          - $ref: '#/components/schemas/SharedDriveConfiguration'
-          description: The current changes to be deployed for the Shared Drive.
+          - $ref: '#/components/schemas/DriveConfiguration'
+          description: The current changes to be deployed for the Drive.
         createdTimestamp:
-          description: Timestamp of the Shared Drive creation.
+          description: Timestamp of the Drive creation.
           type: string
       required:
       - allocationAffinity
@@ -49534,127 +48119,129 @@ components:
         server: ""
         fileShares:
         - sizeGB: 4.965218492984954
-          dnsSubdomainId: 8.762042012749001
+          dnsSubdomainId: 9.018348186070783
+          logicalNetworkId: 9.965781217890562
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 9.369310271410669
+          revision: 6.683562403749608
           endpoint: endpoint
-          infrastructureId: 6.683562403749608
+          infrastructureId: 8.762042012749001
           serviceStatus: ordered
-          networkVlanId: 9.018348186070783
+          networkVlanId: 6.438423552598547
           subdomain: subdomain
           storagePoolId: 5.025004791520295
-          id: 9.965781217890562
+          id: 9.369310271410669
           config: ""
         - sizeGB: 4.965218492984954
-          dnsSubdomainId: 8.762042012749001
+          dnsSubdomainId: 9.018348186070783
+          logicalNetworkId: 9.965781217890562
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 9.369310271410669
+          revision: 6.683562403749608
           endpoint: endpoint
-          infrastructureId: 6.683562403749608
+          infrastructureId: 8.762042012749001
           serviceStatus: ordered
-          networkVlanId: 9.018348186070783
+          networkVlanId: 6.438423552598547
           subdomain: subdomain
           storagePoolId: 5.025004791520295
-          id: 9.965781217890562
+          id: 9.369310271410669
           config: ""
         variables: "{}"
         sharedDrives:
-        - sizeMb: 6.704019297950036
+        - logicalNetworkId: 3.0937452626664474
+          sizeMb: 3.353193347011243
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
-          storageVirtualSizeCachedMb: 6.519180951018382
+          storageVirtualSizeCachedMb: 4.652396432933246
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
-          dnsSubdomainPermanentId: 4.652396432933246
+          dnsSubdomainPermanentId: 7.740351818741173
           serviceStatus: ordered
-          networkVlanId: 8.969578798196912
-          storagePoolId: 5.944895607614016
-          id: 3.353193347011243
-          storageRealSizeCachedMb: 0.8851374739011653
+          storagePoolId: 6.704019297950036
+          id: 7.143538047012306
+          storageRealSizeCachedMb: 6.519180951018382
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 7.058770351582356
-          dnsSubdomainId: 0.10263654006109402
+          storageRealSizeWithSnapshotsCachedMb: 0.10263654006109402
+          dnsSubdomainId: 8.969578798196912
           createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
-          revision: 3.0937452626664474
-          infrastructureId: 7.143538047012306
+          revision: 0.8851374739011653
+          infrastructureId: 7.058770351582356
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
-        - sizeMb: 6.704019297950036
+        - logicalNetworkId: 3.0937452626664474
+          sizeMb: 3.353193347011243
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
-          storageVirtualSizeCachedMb: 6.519180951018382
+          storageVirtualSizeCachedMb: 4.652396432933246
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
-          dnsSubdomainPermanentId: 4.652396432933246
+          dnsSubdomainPermanentId: 7.740351818741173
           serviceStatus: ordered
-          networkVlanId: 8.969578798196912
-          storagePoolId: 5.944895607614016
-          id: 3.353193347011243
-          storageRealSizeCachedMb: 0.8851374739011653
+          storagePoolId: 6.704019297950036
+          id: 7.143538047012306
+          storageRealSizeCachedMb: 6.519180951018382
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 7.058770351582356
-          dnsSubdomainId: 0.10263654006109402
+          storageRealSizeWithSnapshotsCachedMb: 0.10263654006109402
+          dnsSubdomainId: 8.969578798196912
           createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
-          revision: 3.0937452626664474
-          infrastructureId: 7.143538047012306
+          revision: 0.8851374739011653
+          infrastructureId: 7.058770351582356
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
         serverInstance: ""
         buckets:
         - accessKeyId: accessKeyId
-          sizeGB: 6.438423552598547
-          dnsSubdomainId: 6.778324963048013
+          sizeGB: 3.5571952270680973
+          dnsSubdomainId: 5.944895607614016
+          logicalNetworkId: 1.284659006116532
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 1.284659006116532
+          revision: 6.778324963048013
           endpoint: endpoint
-          infrastructureId: 2.8841621266687802
+          infrastructureId: 6.878052220127876
           serviceStatus: ordered
-          networkVlanId: 6.878052220127876
           subdomain: subdomain
-          storagePoolId: 3.5571952270680973
-          id: 6.965117697638846
+          storagePoolId: 6.965117697638846
+          id: 2.8841621266687802
           secretKeyEncrypted: secretKeyEncrypted
           config: ""
         - accessKeyId: accessKeyId
-          sizeGB: 6.438423552598547
-          dnsSubdomainId: 6.778324963048013
+          sizeGB: 3.5571952270680973
+          dnsSubdomainId: 5.944895607614016
+          logicalNetworkId: 1.284659006116532
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 1.284659006116532
+          revision: 6.778324963048013
           endpoint: endpoint
-          infrastructureId: 2.8841621266687802
+          infrastructureId: 6.878052220127876
           serviceStatus: ordered
-          networkVlanId: 6.878052220127876
           subdomain: subdomain
-          storagePoolId: 3.5571952270680973
-          id: 6.965117697638846
+          storagePoolId: 6.965117697638846
+          id: 2.8841621266687802
           secretKeyEncrypted: secretKeyEncrypted
           config: ""
         managementSSHKey: managementSSHKey
@@ -51326,218 +49913,63 @@ components:
       - serverTypeIdToServerInformation
       - utilizationReport
       type: object
-    SharedDriveMeta:
-      properties:
-        guiSettings:
-          $ref: '#/components/schemas/GenericGUISettings'
-      type: object
-    SharedDrive:
-      example:
-        sizeMb: 6.027456183070403
-        updatedTimestamp: updatedTimestamp
-        targets:
-        - {}
-        - {}
-        storageVirtualSizeCachedMb: 9.301444243932576
-        wwn: wwn
-        storageImageName: storageImageName
-        storageUpdatedTimestamp: storageUpdatedTimestamp
-        dnsSubdomainPermanentId: 2.027123023002322
-        serviceStatus: ordered
-        networkVlanId: 4.145608029883936
-        storagePoolId: 0.8008281904610115
-        id: 1.4658129805029452
-        storageRealSizeCachedMb: 2.3021358869347655
-        provisioningProtocol: iSCSI
-        storageRealSizeWithSnapshotsCachedMb: 7.061401241503109
-        dnsSubdomainId: 3.616076749251911
-        createdTimestamp: createdTimestamp
-        label: label
-        ioLimitPolicy: ioLimitPolicy
-        subdomainPermanent: subdomainPermanent
-        allocationAffinity: same_storage
-        revision: 5.962133916683182
-        infrastructureId: 5.637376656633329
-        meta: ""
-        storageType: iscsi_ssd
-        subdomain: subdomain
-        config: ""
-      properties:
-        label:
-          description: Label of the Shared Drive.
-          type: string
-        storagePoolId:
-          description: Id of the storage pool the Shared Drive is assigned to
-          type: number
-        sizeMb:
-          description: Disk size in MB for Shared Drive
-          type: number
-        storageImageName:
-          description: The name of the storage image used by the Shared Drive.
-          type: string
-        storageType:
-          default: iscsi_ssd
-          description: Service status of the Shared Drive
-          enum:
-          - iscsi_ssd
-          - iscsi_hdd
-          type: string
-        ioLimitPolicy:
-          description: The IO limit policy of the Shared Drive.
-          type: string
-        subdomain:
-          description: Subdomain of the Shared Drive.
-          type: string
-        updatedTimestamp:
-          description: Timestamp of the Shared Drive last update.
-          type: string
-        id:
-          description: Id of the Shared Drive
-          type: number
-        revision:
-          description: Revision of the Shared Drive State
-          type: number
-        infrastructureId:
-          description: Infrastructure id of the Shared Drive
-          type: number
-        serviceStatus:
-          description: Service status of the Shared Drive
-          enum:
-          - ordered
-          - active
-          - deleted
-          - stopped
-          - suspended
-          type: string
-        storageRealSizeCachedMb:
-          description: Cached information of the real size of the storage in MB.
-          type: number
-        storageRealSizeWithSnapshotsCachedMb:
-          description: Cached information of the real size of the storage (including
-            snapshots) in MB.
-          type: number
-        storageVirtualSizeCachedMb:
-          description: Cached information of the virtual size of the storage in MB.
-          type: number
-        storageUpdatedTimestamp:
-          description: Timestamp of the latest update of cached information for the
-            Shared Drive.
-          type: string
-        targets:
-          description: Targets of the Shared Drive.
-          items:
-            $ref: '#/components/schemas/DriveTargetInfo'
-          type: array
-        wwn:
-          type: string
-        allocationAffinity:
-          description: Allocation affinity of the Shared Drive
-          enum:
-          - same_storage
-          - different_storage
-          type: string
-        provisioningProtocol:
-          description: Provisioning protocol of the Shared Drive
-          enum:
-          - iSCSI
-          - SCSI_FC
-          type: string
-        subdomainPermanent:
-          description: Subdomain permanent of the Shared Drive.
-          type: string
-        dnsSubdomainId:
-          description: Id of the DNS subdomain for the Shared Drive.
-          type: number
-        dnsSubdomainPermanentId:
-          description: Id of the permanent DNS subdomain for the Shared Drive.
-          type: number
-        networkVlanId:
-          description: Id of the VLAN for the Shared Drive.
-          type: number
-        config:
-          allOf:
-          - $ref: '#/components/schemas/SharedDriveConfiguration'
-          description: The current changes to be deployed for the Shared Drive.
-        createdTimestamp:
-          description: Timestamp of the Shared Drive creation.
-          type: string
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/SharedDriveMeta'
-          description: Meta information of the Shared Drive.
-      required:
-      - allocationAffinity
-      - config
-      - createdTimestamp
-      - id
-      - infrastructureId
-      - label
-      - meta
-      - provisioningProtocol
-      - revision
-      - serviceStatus
-      - sizeMb
-      - storageType
-      - storageUpdatedTimestamp
-      - updatedTimestamp
-      type: object
-    SharedDrivePaginatedList:
+    DrivePaginatedList:
       example:
         data:
-        - sizeMb: 6.027456183070403
+        - logicalNetworkId: 1.4658129805029452
+          sizeMb: 6.027456183070403
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
-          storageVirtualSizeCachedMb: 9.301444243932576
+          storageVirtualSizeCachedMb: 3.616076749251911
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
-          dnsSubdomainPermanentId: 2.027123023002322
+          dnsSubdomainPermanentId: 4.145608029883936
           serviceStatus: ordered
-          networkVlanId: 4.145608029883936
           storagePoolId: 0.8008281904610115
-          id: 1.4658129805029452
-          storageRealSizeCachedMb: 2.3021358869347655
+          id: 5.962133916683182
+          storageRealSizeCachedMb: 7.061401241503109
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 7.061401241503109
-          dnsSubdomainId: 3.616076749251911
+          storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
+          dnsSubdomainId: 2.027123023002322
           createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
-          revision: 5.962133916683182
-          infrastructureId: 5.637376656633329
+          revision: 5.637376656633329
+          infrastructureId: 2.3021358869347655
           meta: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
-        - sizeMb: 6.027456183070403
+        - logicalNetworkId: 1.4658129805029452
+          sizeMb: 6.027456183070403
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
-          storageVirtualSizeCachedMb: 9.301444243932576
+          storageVirtualSizeCachedMb: 3.616076749251911
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
-          dnsSubdomainPermanentId: 2.027123023002322
+          dnsSubdomainPermanentId: 4.145608029883936
           serviceStatus: ordered
-          networkVlanId: 4.145608029883936
           storagePoolId: 0.8008281904610115
-          id: 1.4658129805029452
-          storageRealSizeCachedMb: 2.3021358869347655
+          id: 5.962133916683182
+          storageRealSizeCachedMb: 7.061401241503109
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 7.061401241503109
-          dnsSubdomainId: 3.616076749251911
+          storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
+          dnsSubdomainId: 2.027123023002322
           createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
-          revision: 5.962133916683182
-          infrastructureId: 5.637376656633329
+          revision: 5.637376656633329
+          infrastructureId: 2.3021358869347655
           meta: ""
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -51547,8 +49979,8 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/SharedDrive'
-          title: List of shared drive's
+            $ref: '#/components/schemas/Drive'
+          title: List of drive's
           type: array
         meta:
           allOf:
@@ -51565,13 +49997,17 @@ components:
       - links
       - meta
       type: object
-    CreateSharedDrive:
+    CreateDrive:
       example:
+        logicalNetworkId: 6.027456183070403
         sizeMb: 0.8008281904610115
         label: label
       properties:
         sizeMb:
-          description: Disk size in MB for Shared Drive
+          description: Disk size in MB for Drive
+          type: number
+        logicalNetworkId:
+          description: Id of the Logical Network for the Drive.
           type: number
         label:
           description: Display name of the File Share.
@@ -51579,27 +50015,31 @@ components:
       required:
       - sizeMb
       type: object
-    UpdateSharedDrive:
+    UpdateDrive:
       example:
+        logicalNetworkId: 6.027456183070403
         label: label
         sizeMb: 0.8008281904610115
         ioLimitPolicy: ioLimitPolicy
       properties:
         label:
-          description: Label of the Shared Drive.
+          description: Label of the Drive.
           type: string
         sizeMb:
-          description: Disk size in MB for Shared Drive
+          description: Disk size in MB for Drive
           type: number
         ioLimitPolicy:
-          description: The IO limit policy of the Shared Drive.
+          description: The IO limit policy of the Drive.
           type: string
+        logicalNetworkId:
+          description: Id of the Logical Network for the Drive.
+          type: number
       type: object
-    UpdateSharedDriveMeta:
+    UpdateDriveMeta:
       example:
         guiSettings:
-          rowIndex: 6.027456183070403
-          columnIndex: 1.4658129805029452
+          rowIndex: 1.4658129805029452
+          columnIndex: 5.962133916683182
           userAgent: userAgent
           randomInstanceID: randomInstanceID
           showWidgetChildren: true
@@ -51607,46 +50047,75 @@ components:
         guiSettings:
           $ref: '#/components/schemas/GenericGUISettings'
       type: object
-    SharedDriveHosts:
+    DriveHostType:
+      properties:
+        willBeConnected:
+          description: Drive Host Ids that will be connected.
+          items:
+            type: string
+          type: array
+        connected:
+          description: Drive Host Ids that are connected.
+          items:
+            type: string
+          type: array
+        willBeDisconnected:
+          description: Drive Host Ids that will be disconnected.
+          items:
+            type: string
+          type: array
+        disconnected:
+          description: Drive Host Ids that are disconnected.
+          items:
+            type: string
+          type: array
+      required:
+      - connected
+      - disconnected
+      - willBeConnected
+      - willBeDisconnected
+      type: object
+    DriveHosts:
       example:
-        instanceGroup: "{}"
+        instanceGroup: ""
       properties:
         instanceGroup:
-          description: File Share Hosts.
-          type: object
+          allOf:
+          - $ref: '#/components/schemas/DriveHostType'
+          description: Drive Hosts.
       required:
       - instanceGroup
       type: object
-    SharedDriveHostBulkOperation:
+    DriveHostBulkOperation:
       example:
-        instanceArrayId: 0.8008281904610115
         operationType: add
+        serverInstanceGroupId: 0.8008281904610115
       properties:
-        instanceArrayId:
-          description: Id of the Instance Array Host that will be modified
+        serverInstanceGroupId:
+          description: Id of the Server Instance Group Host that will be modified
           type: number
         operationType:
-          description: Operation type for the Instance Array Host
+          description: Operation type for the Server Instance Group Host
           enum:
           - add
           - remove
           type: string
       required:
-      - instanceArrayId
       - operationType
+      - serverInstanceGroupId
       type: object
-    SharedDriveHostsModifyBulk:
+    DriveHostsModifyBulk:
       example:
         sharedDriveHostBulkOperations:
-        - instanceArrayId: 0.8008281904610115
-          operationType: add
-        - instanceArrayId: 0.8008281904610115
-          operationType: add
+        - operationType: add
+          serverInstanceGroupId: 0.8008281904610115
+        - operationType: add
+          serverInstanceGroupId: 0.8008281904610115
       properties:
         sharedDriveHostBulkOperations:
           description: List of operations to be performed on the File Share Hosts
           items:
-            $ref: '#/components/schemas/SharedDriveHostBulkOperation'
+            $ref: '#/components/schemas/DriveHostBulkOperation'
           type: array
       required:
       - sharedDriveHostBulkOperations
@@ -52221,6 +50690,66 @@ components:
       - agentUpdatedTimestamp
       - agentVersion
       - siteName
+      type: object
+    GenerateSiteControllerOneliner:
+      example:
+        registry: registry.metalsoft.dev
+        imagesTag: v6.4.0
+        gitHubTag: main
+        msTunnelSecret: your-secure-tunnel-token
+        sslHostname: api.example.com
+        inbandMode: false
+        dockerEnv: false
+        usePodman: false
+        localScript: false
+      properties:
+        usePodman:
+          default: false
+          description: Use Podman instead of Docker
+          type: boolean
+        inbandMode:
+          default: false
+          description: Install in inband mode
+          type: boolean
+        dockerEnv:
+          default: false
+          description: Use Docker environment variables
+          type: boolean
+        registry:
+          default: registry.metalsoft.dev
+          description: Registry URL
+          type: string
+        gitHubTag:
+          default: main
+          description: GitHub tag for deploy-agents.sh script
+          type: string
+        localScript:
+          default: false
+          description: Use local script instead of curling it
+          type: boolean
+        sslHostname:
+          description: SSL hostname
+          example: api.example.com
+          type: string
+        imagesTag:
+          description: Docker images tag version ( The version of tunnel microservice
+            )
+          example: v6.4.0
+          type: string
+        msTunnelSecret:
+          description: MS Tunnel Secret for secure connections
+          example: your-secure-tunnel-token
+          type: string
+      required:
+      - dockerEnv
+      - gitHubTag
+      - imagesTag
+      - inbandMode
+      - localScript
+      - msTunnelSecret
+      - registry
+      - sslHostname
+      - usePodman
       type: object
     StorageOptions:
       properties:
@@ -53232,7 +51761,7 @@ components:
       - links
       - meta
       type: object
-    CreateSubnetDto:
+    CreateSubnet:
       example:
         prefixLength: 6.027456183070403
         isPool: true
@@ -54892,8 +53421,8 @@ components:
     UpdateVMInstanceMeta:
       example:
         guiSettings:
-          rowIndex: 6.027456183070403
-          columnIndex: 1.4658129805029452
+          rowIndex: 1.4658129805029452
+          columnIndex: 5.962133916683182
           userAgent: userAgent
           randomInstanceID: randomInstanceID
           showWidgetChildren: true
@@ -54959,127 +53488,129 @@ components:
         server: ""
         fileShares:
         - sizeGB: 4.965218492984954
-          dnsSubdomainId: 8.762042012749001
+          dnsSubdomainId: 9.018348186070783
+          logicalNetworkId: 9.965781217890562
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 9.369310271410669
+          revision: 6.683562403749608
           endpoint: endpoint
-          infrastructureId: 6.683562403749608
+          infrastructureId: 8.762042012749001
           serviceStatus: ordered
-          networkVlanId: 9.018348186070783
+          networkVlanId: 6.438423552598547
           subdomain: subdomain
           storagePoolId: 5.025004791520295
-          id: 9.965781217890562
+          id: 9.369310271410669
           config: ""
         - sizeGB: 4.965218492984954
-          dnsSubdomainId: 8.762042012749001
+          dnsSubdomainId: 9.018348186070783
+          logicalNetworkId: 9.965781217890562
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 9.369310271410669
+          revision: 6.683562403749608
           endpoint: endpoint
-          infrastructureId: 6.683562403749608
+          infrastructureId: 8.762042012749001
           serviceStatus: ordered
-          networkVlanId: 9.018348186070783
+          networkVlanId: 6.438423552598547
           subdomain: subdomain
           storagePoolId: 5.025004791520295
-          id: 9.965781217890562
+          id: 9.369310271410669
           config: ""
         variables: "{}"
         sharedDrives:
-        - sizeMb: 6.704019297950036
+        - logicalNetworkId: 3.0937452626664474
+          sizeMb: 3.353193347011243
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
-          storageVirtualSizeCachedMb: 6.519180951018382
+          storageVirtualSizeCachedMb: 4.652396432933246
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
-          dnsSubdomainPermanentId: 4.652396432933246
+          dnsSubdomainPermanentId: 7.740351818741173
           serviceStatus: ordered
-          networkVlanId: 8.969578798196912
-          storagePoolId: 5.944895607614016
-          id: 3.353193347011243
-          storageRealSizeCachedMb: 0.8851374739011653
+          storagePoolId: 6.704019297950036
+          id: 7.143538047012306
+          storageRealSizeCachedMb: 6.519180951018382
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 7.058770351582356
-          dnsSubdomainId: 0.10263654006109402
+          storageRealSizeWithSnapshotsCachedMb: 0.10263654006109402
+          dnsSubdomainId: 8.969578798196912
           createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
-          revision: 3.0937452626664474
-          infrastructureId: 7.143538047012306
+          revision: 0.8851374739011653
+          infrastructureId: 7.058770351582356
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
-        - sizeMb: 6.704019297950036
+        - logicalNetworkId: 3.0937452626664474
+          sizeMb: 3.353193347011243
           updatedTimestamp: updatedTimestamp
           targets:
           - {}
           - {}
-          storageVirtualSizeCachedMb: 6.519180951018382
+          storageVirtualSizeCachedMb: 4.652396432933246
           wwn: wwn
           storageImageName: storageImageName
           storageUpdatedTimestamp: storageUpdatedTimestamp
-          dnsSubdomainPermanentId: 4.652396432933246
+          dnsSubdomainPermanentId: 7.740351818741173
           serviceStatus: ordered
-          networkVlanId: 8.969578798196912
-          storagePoolId: 5.944895607614016
-          id: 3.353193347011243
-          storageRealSizeCachedMb: 0.8851374739011653
+          storagePoolId: 6.704019297950036
+          id: 7.143538047012306
+          storageRealSizeCachedMb: 6.519180951018382
           provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 7.058770351582356
-          dnsSubdomainId: 0.10263654006109402
+          storageRealSizeWithSnapshotsCachedMb: 0.10263654006109402
+          dnsSubdomainId: 8.969578798196912
           createdTimestamp: createdTimestamp
           label: label
           ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
-          revision: 3.0937452626664474
-          infrastructureId: 7.143538047012306
+          revision: 0.8851374739011653
+          infrastructureId: 7.058770351582356
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
         serverInstance: ""
         buckets:
         - accessKeyId: accessKeyId
-          sizeGB: 6.438423552598547
-          dnsSubdomainId: 6.778324963048013
+          sizeGB: 3.5571952270680973
+          dnsSubdomainId: 5.944895607614016
+          logicalNetworkId: 1.284659006116532
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 1.284659006116532
+          revision: 6.778324963048013
           endpoint: endpoint
-          infrastructureId: 2.8841621266687802
+          infrastructureId: 6.878052220127876
           serviceStatus: ordered
-          networkVlanId: 6.878052220127876
           subdomain: subdomain
-          storagePoolId: 3.5571952270680973
-          id: 6.965117697638846
+          storagePoolId: 6.965117697638846
+          id: 2.8841621266687802
           secretKeyEncrypted: secretKeyEncrypted
           config: ""
         - accessKeyId: accessKeyId
-          sizeGB: 6.438423552598547
-          dnsSubdomainId: 6.778324963048013
+          sizeGB: 3.5571952270680973
+          dnsSubdomainId: 5.944895607614016
+          logicalNetworkId: 1.284659006116532
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
-          revision: 1.284659006116532
+          revision: 6.778324963048013
           endpoint: endpoint
-          infrastructureId: 2.8841621266687802
+          infrastructureId: 6.878052220127876
           serviceStatus: ordered
-          networkVlanId: 6.878052220127876
           subdomain: subdomain
-          storagePoolId: 3.5571952270680973
-          id: 6.965117697638846
+          storagePoolId: 6.965117697638846
+          id: 2.8841621266687802
           secretKeyEncrypted: secretKeyEncrypted
           config: ""
         managementSSHKey: managementSSHKey
@@ -55289,8 +53820,8 @@ components:
     UpdateVMInstanceGroupMeta:
       example:
         guiSettings:
-          rowIndex: 6.027456183070403
-          columnIndex: 1.4658129805029452
+          rowIndex: 1.4658129805029452
+          columnIndex: 5.962133916683182
           userAgent: userAgent
           randomInstanceID: randomInstanceID
           showWidgetChildren: true
@@ -56611,6 +55142,13 @@ components:
           items:
             type: string
           type: array
+      type: object
+    getSiteControllerOneLiner_200_response:
+      example:
+        command: command
+      properties:
+        command:
+          type: string
       type: object
     AuthenticationRequest_properties:
       description: Input options.

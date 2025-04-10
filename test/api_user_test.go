@@ -466,4 +466,26 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test UserAPIService UserControllerHandleEmailVerify", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.UserAPI.UserControllerHandleEmailVerify(context.Background()).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UserAPIService UserControllerHandleUserResetPassword", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.UserAPI.UserControllerHandleUserResetPassword(context.Background()).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

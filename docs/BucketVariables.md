@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **StoragePoolId** | Pointer to **float32** | Id of the storage pool the Bucket is assigned to | [optional] 
 **Label** | **string** | Label of the Bucket. | 
 **Subdomain** | **string** | Subdomain of the Bucket. | 
+**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Bucket. | [optional] 
 **Id** | **float32** | Id of the Bucket | 
 **Revision** | **float32** | Revision of the Bucket | 
 **InfrastructureId** | **float32** | Infrastructure id of the Bucket | 
@@ -16,7 +17,6 @@ Name | Type | Description | Notes
 **ServiceStatus** | **string** | Service status of the Bucket | 
 **SubdomainPermanent** | **string** | Subdomain permanent of the Bucket. | 
 **DnsSubdomainId** | **float32** | Id of the DNS subdomain for the Bucket. | 
-**NetworkVlanId** | Pointer to **float32** | Id of the VLAN for the Bucket. | [optional] 
 **Endpoint** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
 **AccessKeyId** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
 **SecretKeyEncrypted** | Pointer to **string** | Endpoint of the Bucket. | [optional] 
@@ -145,6 +145,31 @@ and a boolean to check if the value has been set.
 
 SetSubdomain sets Subdomain field to given value.
 
+
+### GetLogicalNetworkId
+
+`func (o *BucketVariables) GetLogicalNetworkId() float32`
+
+GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
+
+### GetLogicalNetworkIdOk
+
+`func (o *BucketVariables) GetLogicalNetworkIdOk() (*float32, bool)`
+
+GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogicalNetworkId
+
+`func (o *BucketVariables) SetLogicalNetworkId(v float32)`
+
+SetLogicalNetworkId sets LogicalNetworkId field to given value.
+
+### HasLogicalNetworkId
+
+`func (o *BucketVariables) HasLogicalNetworkId() bool`
+
+HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetId
 
@@ -285,31 +310,6 @@ and a boolean to check if the value has been set.
 
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
-
-### GetNetworkVlanId
-
-`func (o *BucketVariables) GetNetworkVlanId() float32`
-
-GetNetworkVlanId returns the NetworkVlanId field if non-nil, zero value otherwise.
-
-### GetNetworkVlanIdOk
-
-`func (o *BucketVariables) GetNetworkVlanIdOk() (*float32, bool)`
-
-GetNetworkVlanIdOk returns a tuple with the NetworkVlanId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetworkVlanId
-
-`func (o *BucketVariables) SetNetworkVlanId(v float32)`
-
-SetNetworkVlanId sets NetworkVlanId field to given value.
-
-### HasNetworkVlanId
-
-`func (o *BucketVariables) HasNetworkVlanId() bool`
-
-HasNetworkVlanId returns a boolean if a field has been set.
 
 ### GetEndpoint
 

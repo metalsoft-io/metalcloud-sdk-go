@@ -1337,12 +1337,6 @@ type UserAPIGetUserChildDelegatesRequest struct {
 	ctx context.Context
 	ApiService *UserAPIService
 	userId float32
-	recursion *float32
-}
-
-func (r UserAPIGetUserChildDelegatesRequest) Recursion(recursion float32) UserAPIGetUserChildDelegatesRequest {
-	r.recursion = &recursion
-	return r
 }
 
 func (r UserAPIGetUserChildDelegatesRequest) Execute() (*UserList, *http.Response, error) {
@@ -1386,9 +1380,6 @@ func (a *UserAPIService) GetUserChildDelegatesExecute(r UserAPIGetUserChildDeleg
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.recursion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "recursion", r.recursion, "form", "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1651,12 +1642,6 @@ type UserAPIGetUserParentDelegatesRequest struct {
 	ctx context.Context
 	ApiService *UserAPIService
 	userId float32
-	recursion *float32
-}
-
-func (r UserAPIGetUserParentDelegatesRequest) Recursion(recursion float32) UserAPIGetUserParentDelegatesRequest {
-	r.recursion = &recursion
-	return r
 }
 
 func (r UserAPIGetUserParentDelegatesRequest) Execute() (*UserList, *http.Response, error) {
@@ -1700,9 +1685,6 @@ func (a *UserAPIService) GetUserParentDelegatesExecute(r UserAPIGetUserParentDel
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.recursion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "recursion", r.recursion, "form", "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3704,4 +3686,198 @@ func (a *UserAPIService) UpdateUserPermissionsExecute(r UserAPIUpdateUserPermiss
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type UserAPIUserControllerHandleEmailVerifyRequest struct {
+	ctx context.Context
+	ApiService *UserAPIService
+	token *string
+}
+
+// The encrypted request token.
+func (r UserAPIUserControllerHandleEmailVerifyRequest) Token(token string) UserAPIUserControllerHandleEmailVerifyRequest {
+	r.token = &token
+	return r
+}
+
+func (r UserAPIUserControllerHandleEmailVerifyRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UserControllerHandleEmailVerifyExecute(r)
+}
+
+/*
+UserControllerHandleEmailVerify Handle user email verify action
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return UserAPIUserControllerHandleEmailVerifyRequest
+*/
+func (a *UserAPIService) UserControllerHandleEmailVerify(ctx context.Context) UserAPIUserControllerHandleEmailVerifyRequest {
+	return UserAPIUserControllerHandleEmailVerifyRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+func (a *UserAPIService) UserControllerHandleEmailVerifyExecute(r UserAPIUserControllerHandleEmailVerifyRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserAPIService.UserControllerHandleEmailVerify")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/users/actions/verify-email"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.token == nil {
+		return nil, reportError("token is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "token", r.token, "form", "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type UserAPIUserControllerHandleUserResetPasswordRequest struct {
+	ctx context.Context
+	ApiService *UserAPIService
+	token *string
+}
+
+// The encrypted request token.
+func (r UserAPIUserControllerHandleUserResetPasswordRequest) Token(token string) UserAPIUserControllerHandleUserResetPasswordRequest {
+	r.token = &token
+	return r
+}
+
+func (r UserAPIUserControllerHandleUserResetPasswordRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UserControllerHandleUserResetPasswordExecute(r)
+}
+
+/*
+UserControllerHandleUserResetPassword Handle user reset password action
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return UserAPIUserControllerHandleUserResetPasswordRequest
+*/
+func (a *UserAPIService) UserControllerHandleUserResetPassword(ctx context.Context) UserAPIUserControllerHandleUserResetPasswordRequest {
+	return UserAPIUserControllerHandleUserResetPasswordRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+func (a *UserAPIService) UserControllerHandleUserResetPasswordExecute(r UserAPIUserControllerHandleUserResetPasswordRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserAPIService.UserControllerHandleUserResetPassword")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/users/actions/reset-password"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.token == nil {
+		return nil, reportError("token is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "token", r.token, "form", "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }

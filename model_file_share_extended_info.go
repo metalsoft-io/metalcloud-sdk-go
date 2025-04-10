@@ -31,6 +31,8 @@ type FileShareExtendedInfo struct {
 	Label string `json:"label"`
 	// Subdomain of the File Share.
 	Subdomain *string `json:"subdomain,omitempty"`
+	// Id of the Logical Network for the File Share.
+	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	// Id of the File Share
 	Id float32 `json:"id"`
 	// Revision of the File Share
@@ -222,6 +224,38 @@ func (o *FileShareExtendedInfo) HasSubdomain() bool {
 // SetSubdomain gets a reference to the given string and assigns it to the Subdomain field.
 func (o *FileShareExtendedInfo) SetSubdomain(v string) {
 	o.Subdomain = &v
+}
+
+// GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
+func (o *FileShareExtendedInfo) GetLogicalNetworkId() float32 {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		var ret float32
+		return ret
+	}
+	return *o.LogicalNetworkId
+}
+
+// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FileShareExtendedInfo) GetLogicalNetworkIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		return nil, false
+	}
+	return o.LogicalNetworkId, true
+}
+
+// HasLogicalNetworkId returns a boolean if a field has been set.
+func (o *FileShareExtendedInfo) HasLogicalNetworkId() bool {
+	if o != nil && !IsNil(o.LogicalNetworkId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
+func (o *FileShareExtendedInfo) SetLogicalNetworkId(v float32) {
+	o.LogicalNetworkId = &v
 }
 
 // GetId returns the Id field value
@@ -563,6 +597,9 @@ func (o FileShareExtendedInfo) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Subdomain) {
 		toSerialize["subdomain"] = o.Subdomain
 	}
+	if !IsNil(o.LogicalNetworkId) {
+		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["infrastructureId"] = o.InfrastructureId
@@ -641,6 +678,7 @@ func (o *FileShareExtendedInfo) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "storagePoolId")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "subdomain")
+		delete(additionalProperties, "logicalNetworkId")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "infrastructureId")

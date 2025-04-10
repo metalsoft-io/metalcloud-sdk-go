@@ -33,14 +33,16 @@ type FileShareConfiguration struct {
 	Label string `json:"label"`
 	// Subdomain of the File Share.
 	Subdomain *string `json:"subdomain,omitempty"`
-	// Id of the DNS subdomain for the Drive Group.
+	// Id of the DNS subdomain for the File Share.
 	DnsSubdomainChangeId *float32 `json:"dnsSubdomainChangeId,omitempty"`
-	// Deploy type of the Drive Group
+	// Deploy type of the File Share
 	DeployType string `json:"deployType"`
-	// Deploy status of the Drive Group
+	// Deploy status of the File Share
 	DeployStatus string `json:"deployStatus"`
-	// Id of the deployment for the Drive Group.
+	// Id of the deployment for the File Share.
 	InfrastructureDeployId *float32 `json:"infrastructureDeployId,omitempty"`
+	// Id of the Logical Network for the File Share.
+	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -345,6 +347,38 @@ func (o *FileShareConfiguration) SetInfrastructureDeployId(v float32) {
 	o.InfrastructureDeployId = &v
 }
 
+// GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
+func (o *FileShareConfiguration) GetLogicalNetworkId() float32 {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		var ret float32
+		return ret
+	}
+	return *o.LogicalNetworkId
+}
+
+// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FileShareConfiguration) GetLogicalNetworkIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		return nil, false
+	}
+	return o.LogicalNetworkId, true
+}
+
+// HasLogicalNetworkId returns a boolean if a field has been set.
+func (o *FileShareConfiguration) HasLogicalNetworkId() bool {
+	if o != nil && !IsNil(o.LogicalNetworkId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
+func (o *FileShareConfiguration) SetLogicalNetworkId(v float32) {
+	o.LogicalNetworkId = &v
+}
+
 func (o FileShareConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -372,6 +406,9 @@ func (o FileShareConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize["deployStatus"] = o.DeployStatus
 	if !IsNil(o.InfrastructureDeployId) {
 		toSerialize["infrastructureDeployId"] = o.InfrastructureDeployId
+	}
+	if !IsNil(o.LogicalNetworkId) {
+		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -431,6 +468,7 @@ func (o *FileShareConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "deployType")
 		delete(additionalProperties, "deployStatus")
 		delete(additionalProperties, "infrastructureDeployId")
+		delete(additionalProperties, "logicalNetworkId")
 		o.AdditionalProperties = additionalProperties
 	}
 

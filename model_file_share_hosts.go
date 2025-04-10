@@ -22,7 +22,7 @@ var _ MappedNullable = &FileShareHosts{}
 // FileShareHosts struct for FileShareHosts
 type FileShareHosts struct {
 	// File Share Hosts.
-	InstanceGroup map[string]interface{} `json:"instanceGroup"`
+	InstanceGroup FileShareHostType `json:"instanceGroup"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _FileShareHosts FileShareHosts
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFileShareHosts(instanceGroup map[string]interface{}) *FileShareHosts {
+func NewFileShareHosts(instanceGroup FileShareHostType) *FileShareHosts {
 	this := FileShareHosts{}
 	this.InstanceGroup = instanceGroup
 	return &this
@@ -47,9 +47,9 @@ func NewFileShareHostsWithDefaults() *FileShareHosts {
 }
 
 // GetInstanceGroup returns the InstanceGroup field value
-func (o *FileShareHosts) GetInstanceGroup() map[string]interface{} {
+func (o *FileShareHosts) GetInstanceGroup() FileShareHostType {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret FileShareHostType
 		return ret
 	}
 
@@ -58,15 +58,15 @@ func (o *FileShareHosts) GetInstanceGroup() map[string]interface{} {
 
 // GetInstanceGroupOk returns a tuple with the InstanceGroup field value
 // and a boolean to check if the value has been set.
-func (o *FileShareHosts) GetInstanceGroupOk() (map[string]interface{}, bool) {
+func (o *FileShareHosts) GetInstanceGroupOk() (*FileShareHostType, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.InstanceGroup, true
+	return &o.InstanceGroup, true
 }
 
 // SetInstanceGroup sets field value
-func (o *FileShareHosts) SetInstanceGroup(v map[string]interface{}) {
+func (o *FileShareHosts) SetInstanceGroup(v FileShareHostType) {
 	o.InstanceGroup = v
 }
 

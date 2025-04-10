@@ -8,7 +8,6 @@ api_bucket.go
 api_configuration.go
 api_custom_iso.go
 api_drive.go
-api_drive_group.go
 api_event.go
 api_extension.go
 api_extension_instance.go
@@ -37,7 +36,6 @@ api_server_firmware.go
 api_server_instance.go
 api_server_instance_group.go
 api_server_type.go
-api_shared_drive.go
 api_site.go
 api_storage.go
 api_subnet.go
@@ -104,7 +102,6 @@ docs/CreateFileShare.md
 docs/CreateFirmwareBaseline.md
 docs/CreateFirmwareBinary.md
 docs/CreateFirmwareCatalog.md
-docs/CreateGroupDrive.md
 docs/CreateLogicalNetwork.md
 docs/CreateLogicalNetworkProfile.md
 docs/CreateNetwork.md
@@ -120,10 +117,9 @@ docs/CreateServerDefaultCredentials.md
 docs/CreateServerFirmwareUpgradePolicy.md
 docs/CreateServerInstanceGroupNetworkConnectionDto.md
 docs/CreateServerType.md
-docs/CreateSharedDrive.md
 docs/CreateStorage.md
 docs/CreateStorageNetworkDeviceConfiguration.md
-docs/CreateSubnetDto.md
+docs/CreateSubnet.md
 docs/CreateUser.md
 docs/CreateUserSSHKeyDto.md
 docs/CreateVMInstance.md
@@ -140,12 +136,14 @@ docs/Drive.md
 docs/DriveAPI.md
 docs/DriveConfiguration.md
 docs/DriveGroup.md
-docs/DriveGroupAPI.md
 docs/DriveGroupConfiguration.md
 docs/DriveGroupList.md
 docs/DriveGroupMeta.md
-docs/DriveGroupPaginatedList.md
 docs/DriveGroupVariables.md
+docs/DriveHostBulkOperation.md
+docs/DriveHostType.md
+docs/DriveHosts.md
+docs/DriveHostsModifyBulk.md
 docs/DriveList.md
 docs/DriveMeta.md
 docs/DrivePaginatedList.md
@@ -192,6 +190,7 @@ docs/FileShareAPI.md
 docs/FileShareConfiguration.md
 docs/FileShareExtendedInfo.md
 docs/FileShareHostBulkOperation.md
+docs/FileShareHostType.md
 docs/FileShareHosts.md
 docs/FileShareHostsModifyBulk.md
 docs/FileShareMeta.md
@@ -212,10 +211,12 @@ docs/FirmwarePolicyAPI.md
 docs/FirmwareUpgrade.md
 docs/FirmwareVendorType.md
 docs/GenerateFirmwareUpgradeAudit.md
+docs/GenerateSiteControllerOneliner.md
 docs/GenericGUISettings.md
 docs/GenericMeta.md
 docs/GenericServiceStatus.md
 docs/GetResourceUtilizationDetailed.md
+docs/GetSiteControllerOneLiner200Response.md
 docs/GlobalFirmwareUpgradeConfiguration.md
 docs/Infrastructure.md
 docs/InfrastructureAPI.md
@@ -294,6 +295,7 @@ docs/OSTemplateUpdate.md
 docs/PaginatedResponseLinks.md
 docs/PaginatedResponseMeta.md
 docs/PartialTypeClass.md
+docs/PasswordReset.md
 docs/PublicSignupDisabled.md
 docs/ReRegisterServerResponse.md
 docs/RedundancyConfig.md
@@ -391,14 +393,6 @@ docs/ServerUnmanagedImport.md
 docs/ServerUnmanagedImportInternalInterfaceDto.md
 docs/ServerVNCInfo.md
 docs/ServerVariables.md
-docs/SharedDrive.md
-docs/SharedDriveAPI.md
-docs/SharedDriveConfiguration.md
-docs/SharedDriveHostBulkOperation.md
-docs/SharedDriveHosts.md
-docs/SharedDriveHostsModifyBulk.md
-docs/SharedDriveMeta.md
-docs/SharedDrivePaginatedList.md
 docs/SharedDriveVariables.md
 docs/Site.md
 docs/SiteAPI.md
@@ -437,7 +431,6 @@ docs/UpdateBucket.md
 docs/UpdateBucketMeta.md
 docs/UpdateCustomIso.md
 docs/UpdateDrive.md
-docs/UpdateDriveGroupMeta.md
 docs/UpdateDriveMeta.md
 docs/UpdateExtension.md
 docs/UpdateExtensionInstance.md
@@ -446,7 +439,6 @@ docs/UpdateFileShareMeta.md
 docs/UpdateFirmwareBaseline.md
 docs/UpdateFirmwareCatalog.md
 docs/UpdateGlobalFirmwareUpgradeConfiguration.md
-docs/UpdateGroupDrive.md
 docs/UpdateInfrastructure.md
 docs/UpdateInfrastructureMeta.md
 docs/UpdateLogicalNetwork.md
@@ -464,8 +456,6 @@ docs/UpdateServerDefaultCredentials.md
 docs/UpdateServerFirmwareUpgradePolicy.md
 docs/UpdateServerIpmiCredentials.md
 docs/UpdateServerType.md
-docs/UpdateSharedDrive.md
-docs/UpdateSharedDriveMeta.md
 docs/UpdateStorage.md
 docs/UpdateStorageNetworkDeviceConfiguration.md
 docs/UpdateStorageOptions.md
@@ -577,7 +567,6 @@ model_create_file_share.go
 model_create_firmware_baseline.go
 model_create_firmware_binary.go
 model_create_firmware_catalog.go
-model_create_group_drive.go
 model_create_logical_network.go
 model_create_logical_network_profile.go
 model_create_network.go
@@ -593,10 +582,9 @@ model_create_server_default_credentials.go
 model_create_server_firmware_upgrade_policy.go
 model_create_server_instance_group_network_connection_dto.go
 model_create_server_type.go
-model_create_shared_drive.go
 model_create_storage.go
 model_create_storage_network_device_configuration.go
-model_create_subnet_dto.go
+model_create_subnet.go
 model_create_user.go
 model_create_user_ssh_key_dto.go
 model_create_variable.go
@@ -614,8 +602,11 @@ model_drive_group.go
 model_drive_group_configuration.go
 model_drive_group_list.go
 model_drive_group_meta.go
-model_drive_group_paginated_list.go
 model_drive_group_variables.go
+model_drive_host_bulk_operation.go
+model_drive_host_type.go
+model_drive_hosts.go
+model_drive_hosts_modify_bulk.go
 model_drive_list.go
 model_drive_meta.go
 model_drive_paginated_list.go
@@ -658,6 +649,7 @@ model_file_share.go
 model_file_share_configuration.go
 model_file_share_extended_info.go
 model_file_share_host_bulk_operation.go
+model_file_share_host_type.go
 model_file_share_hosts.go
 model_file_share_hosts_modify_bulk.go
 model_file_share_meta.go
@@ -673,10 +665,12 @@ model_firmware_catalog_paginated_list.go
 model_firmware_upgrade.go
 model_firmware_vendor_type.go
 model_generate_firmware_upgrade_audit.go
+model_generate_site_controller_oneliner.go
 model_generic_gui_settings.go
 model_generic_meta.go
 model_generic_service_status.go
 model_get_resource_utilization_detailed.go
+model_get_site_controller_one_liner_200_response.go
 model_global_firmware_upgrade_configuration.go
 model_infrastructure.go
 model_infrastructure_config.go
@@ -746,6 +740,7 @@ model_os_template_update.go
 model_paginated_response_links.go
 model_paginated_response_meta.go
 model_partial_type_class.go
+model_password_reset.go
 model_public_signup_disabled.go
 model_re_register_server_response.go
 model_redundancy_config.go
@@ -832,13 +827,6 @@ model_server_unmanaged_import.go
 model_server_unmanaged_import_internal_interface_dto.go
 model_server_variables.go
 model_server_vnc_info.go
-model_shared_drive.go
-model_shared_drive_configuration.go
-model_shared_drive_host_bulk_operation.go
-model_shared_drive_hosts.go
-model_shared_drive_hosts_modify_bulk.go
-model_shared_drive_meta.go
-model_shared_drive_paginated_list.go
 model_shared_drive_variables.go
 model_site.go
 model_site_config.go
@@ -872,7 +860,6 @@ model_update_bucket.go
 model_update_bucket_meta.go
 model_update_custom_iso.go
 model_update_drive.go
-model_update_drive_group_meta.go
 model_update_drive_meta.go
 model_update_extension.go
 model_update_extension_instance.go
@@ -881,7 +868,6 @@ model_update_file_share_meta.go
 model_update_firmware_baseline.go
 model_update_firmware_catalog.go
 model_update_global_firmware_upgrade_configuration.go
-model_update_group_drive.go
 model_update_infrastructure.go
 model_update_infrastructure_meta.go
 model_update_logical_network.go
@@ -899,8 +885,6 @@ model_update_server_default_credentials.go
 model_update_server_firmware_upgrade_policy.go
 model_update_server_ipmi_credentials.go
 model_update_server_type.go
-model_update_shared_drive.go
-model_update_shared_drive_meta.go
 model_update_storage.go
 model_update_storage_network_device_configuration.go
 model_update_storage_options.go
@@ -965,7 +949,6 @@ test/api_authentication_test.go
 test/api_bucket_test.go
 test/api_configuration_test.go
 test/api_custom_iso_test.go
-test/api_drive_group_test.go
 test/api_drive_test.go
 test/api_event_test.go
 test/api_extension_instance_test.go
@@ -995,7 +978,6 @@ test/api_server_instance_group_test.go
 test/api_server_instance_test.go
 test/api_server_test.go
 test/api_server_type_test.go
-test/api_shared_drive_test.go
 test/api_site_test.go
 test/api_storage_test.go
 test/api_subnet_test.go

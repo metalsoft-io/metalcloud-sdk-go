@@ -1,46 +1,46 @@
-# SharedDriveHosts
+# DriveHosts
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InstanceGroup** | **map[string]interface{}** | File Share Hosts. | 
+**InstanceGroup** | [**DriveHostType**](DriveHostType.md) | Drive Hosts. | 
 
 ## Methods
 
-### NewSharedDriveHosts
+### NewDriveHosts
 
-`func NewSharedDriveHosts(instanceGroup map[string]interface{}, ) *SharedDriveHosts`
+`func NewDriveHosts(instanceGroup DriveHostType, ) *DriveHosts`
 
-NewSharedDriveHosts instantiates a new SharedDriveHosts object
+NewDriveHosts instantiates a new DriveHosts object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSharedDriveHostsWithDefaults
+### NewDriveHostsWithDefaults
 
-`func NewSharedDriveHostsWithDefaults() *SharedDriveHosts`
+`func NewDriveHostsWithDefaults() *DriveHosts`
 
-NewSharedDriveHostsWithDefaults instantiates a new SharedDriveHosts object
+NewDriveHostsWithDefaults instantiates a new DriveHosts object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetInstanceGroup
 
-`func (o *SharedDriveHosts) GetInstanceGroup() map[string]interface{}`
+`func (o *DriveHosts) GetInstanceGroup() DriveHostType`
 
 GetInstanceGroup returns the InstanceGroup field if non-nil, zero value otherwise.
 
 ### GetInstanceGroupOk
 
-`func (o *SharedDriveHosts) GetInstanceGroupOk() (*map[string]interface{}, bool)`
+`func (o *DriveHosts) GetInstanceGroupOk() (*DriveHostType, bool)`
 
 GetInstanceGroupOk returns a tuple with the InstanceGroup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInstanceGroup
 
-`func (o *SharedDriveHosts) SetInstanceGroup(v map[string]interface{})`
+`func (o *DriveHosts) SetInstanceGroup(v DriveHostType)`
 
 SetInstanceGroup sets InstanceGroup field to given value.
 

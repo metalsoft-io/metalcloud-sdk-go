@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateSubnet
 
-> CreateSubnetDto CreateSubnet(ctx).CreateSubnetDto(createSubnetDto).Execute()
+> CreateSubnet CreateSubnet(ctx).CreateSubnet(createSubnet).Execute()
 
 Create a subnet.
 
@@ -31,16 +31,16 @@ import (
 )
 
 func main() {
-	createSubnetDto := *openapiclient.NewCreateSubnetDto("Name_example", float32(123), "NetworkAddress_example", float32(123), false, float32(123), []string{"AllocationDenylist_example"}, []string{"AllowedChildOverlapConditions_example"}, map[string]interface{}(123), map[string]interface{}(123)) // CreateSubnetDto | The Subnet to create
+	createSubnet := *openapiclient.NewCreateSubnet("Name_example", float32(123), "NetworkAddress_example", float32(123), false, float32(123), []string{"AllocationDenylist_example"}, []string{"AllowedChildOverlapConditions_example"}, map[string]interface{}(123), map[string]interface{}(123)) // CreateSubnet | The Subnet to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubnetAPI.CreateSubnet(context.Background()).CreateSubnetDto(createSubnetDto).Execute()
+	resp, r, err := apiClient.SubnetAPI.CreateSubnet(context.Background()).CreateSubnet(createSubnet).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.CreateSubnet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateSubnet`: CreateSubnetDto
+	// response from `CreateSubnet`: CreateSubnet
 	fmt.Fprintf(os.Stdout, "Response from `SubnetAPI.CreateSubnet`: %v\n", resp)
 }
 ```
@@ -56,11 +56,11 @@ Other parameters are passed through a pointer to a apiCreateSubnetRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createSubnetDto** | [**CreateSubnetDto**](CreateSubnetDto.md) | The Subnet to create | 
+ **createSubnet** | [**CreateSubnet**](CreateSubnet.md) | The Subnet to create | 
 
 ### Return type
 
-[**CreateSubnetDto**](CreateSubnetDto.md)
+[**CreateSubnet**](CreateSubnet.md)
 
 ### Authorization
 
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ## GetSubnets
 
-> SubnetPaginatedList GetSubnets(ctx).Execute()
+> SubnetPaginatedList GetSubnets(ctx).Page(page).Limit(limit).FilterId(filterId).SortBy(sortBy).Execute()
 
 List all Subnets
 
@@ -237,10 +237,14 @@ import (
 )
 
 func main() {
+	page := float32(8.14) // float32 | Page number to retrieve.If you provide invalid value the default page number will applied         <p>              <b>Example: </b> 1           </p>         <p>              <b>Default Value: </b> 1           </p>          (optional)
+	limit := float32(8.14) // float32 | Number of records per page.       <p>              <b>Example: </b> 20           </p>       <p>              <b>Default Value: </b> 20           </p>       <p>              <b>Max Value: </b> 100           </p>        If provided value is greater than max value, max value will be applied.        (optional)
+	filterId := []string{"Inner_example"} // []string | Filter by id query param.           <p>              <b>Format: </b> filter.id={$not}:OPERATION:VALUE           </p>           <p>              <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John           </p>           <h4>Available Operations</h4><ul><li>$eq</li></ul> (optional)
+	sortBy := []string{"SortBy_example"} // []string | Parameter to sort by.       <p>To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting</p>       <p>              <b>Format: </b> fieldName:DIRECTION           </p>       <p>              <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC           </p>       <p>              <b>Default Value: </b> No default sorting specified, the result order is not guaranteed           </p>       <h4>Available Fields</h4><ul><li>id</li></ul>        (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubnetAPI.GetSubnets(context.Background()).Execute()
+	resp, r, err := apiClient.SubnetAPI.GetSubnets(context.Background()).Page(page).Limit(limit).FilterId(filterId).SortBy(sortBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.GetSubnets``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -252,12 +256,19 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetSubnetsRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **float32** | Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;          | 
+ **limit** | **float32** | Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.        | 
+ **filterId** | **[]string** | Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt; | 
+ **sortBy** | **[]string** | Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default sorting specified, the result order is not guaranteed           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;        | 
 
 ### Return type
 

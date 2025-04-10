@@ -10,10 +10,11 @@ Name | Type | Description | Notes
 **StoragePoolId** | Pointer to **float32** | Id of the storage pool the File Share is assigned to | [optional] 
 **Label** | **string** | Label of the File Share. | 
 **Subdomain** | Pointer to **string** | Subdomain of the File Share. | [optional] 
-**DnsSubdomainChangeId** | Pointer to **float32** | Id of the DNS subdomain for the Drive Group. | [optional] 
-**DeployType** | **string** | Deploy type of the Drive Group | [default to "create"]
-**DeployStatus** | **string** | Deploy status of the Drive Group | [default to "not_started"]
-**InfrastructureDeployId** | Pointer to **float32** | Id of the deployment for the Drive Group. | [optional] 
+**DnsSubdomainChangeId** | Pointer to **float32** | Id of the DNS subdomain for the File Share. | [optional] 
+**DeployType** | **string** | Deploy type of the File Share | [default to "create"]
+**DeployStatus** | **string** | Deploy status of the File Share | [default to "not_started"]
+**InfrastructureDeployId** | Pointer to **float32** | Id of the deployment for the File Share. | [optional] 
+**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the File Share. | [optional] 
 
 ## Methods
 
@@ -253,6 +254,31 @@ SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
 `func (o *FileShareConfiguration) HasInfrastructureDeployId() bool`
 
 HasInfrastructureDeployId returns a boolean if a field has been set.
+
+### GetLogicalNetworkId
+
+`func (o *FileShareConfiguration) GetLogicalNetworkId() float32`
+
+GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
+
+### GetLogicalNetworkIdOk
+
+`func (o *FileShareConfiguration) GetLogicalNetworkIdOk() (*float32, bool)`
+
+GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogicalNetworkId
+
+`func (o *FileShareConfiguration) SetLogicalNetworkId(v float32)`
+
+SetLogicalNetworkId sets LogicalNetworkId field to given value.
+
+### HasLogicalNetworkId
+
+`func (o *FileShareConfiguration) HasLogicalNetworkId() bool`
+
+HasLogicalNetworkId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

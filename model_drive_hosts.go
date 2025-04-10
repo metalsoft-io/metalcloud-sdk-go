@@ -16,40 +16,40 @@ import (
 	"fmt"
 )
 
-// checks if the SharedDriveHosts type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &SharedDriveHosts{}
+// checks if the DriveHosts type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DriveHosts{}
 
-// SharedDriveHosts struct for SharedDriveHosts
-type SharedDriveHosts struct {
-	// File Share Hosts.
-	InstanceGroup map[string]interface{} `json:"instanceGroup"`
+// DriveHosts struct for DriveHosts
+type DriveHosts struct {
+	// Drive Hosts.
+	InstanceGroup DriveHostType `json:"instanceGroup"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _SharedDriveHosts SharedDriveHosts
+type _DriveHosts DriveHosts
 
-// NewSharedDriveHosts instantiates a new SharedDriveHosts object
+// NewDriveHosts instantiates a new DriveHosts object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSharedDriveHosts(instanceGroup map[string]interface{}) *SharedDriveHosts {
-	this := SharedDriveHosts{}
+func NewDriveHosts(instanceGroup DriveHostType) *DriveHosts {
+	this := DriveHosts{}
 	this.InstanceGroup = instanceGroup
 	return &this
 }
 
-// NewSharedDriveHostsWithDefaults instantiates a new SharedDriveHosts object
+// NewDriveHostsWithDefaults instantiates a new DriveHosts object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSharedDriveHostsWithDefaults() *SharedDriveHosts {
-	this := SharedDriveHosts{}
+func NewDriveHostsWithDefaults() *DriveHosts {
+	this := DriveHosts{}
 	return &this
 }
 
 // GetInstanceGroup returns the InstanceGroup field value
-func (o *SharedDriveHosts) GetInstanceGroup() map[string]interface{} {
+func (o *DriveHosts) GetInstanceGroup() DriveHostType {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret DriveHostType
 		return ret
 	}
 
@@ -58,19 +58,19 @@ func (o *SharedDriveHosts) GetInstanceGroup() map[string]interface{} {
 
 // GetInstanceGroupOk returns a tuple with the InstanceGroup field value
 // and a boolean to check if the value has been set.
-func (o *SharedDriveHosts) GetInstanceGroupOk() (map[string]interface{}, bool) {
+func (o *DriveHosts) GetInstanceGroupOk() (*DriveHostType, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.InstanceGroup, true
+	return &o.InstanceGroup, true
 }
 
 // SetInstanceGroup sets field value
-func (o *SharedDriveHosts) SetInstanceGroup(v map[string]interface{}) {
+func (o *DriveHosts) SetInstanceGroup(v DriveHostType) {
 	o.InstanceGroup = v
 }
 
-func (o SharedDriveHosts) MarshalJSON() ([]byte, error) {
+func (o DriveHosts) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,7 +78,7 @@ func (o SharedDriveHosts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o SharedDriveHosts) ToMap() (map[string]interface{}, error) {
+func (o DriveHosts) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["instanceGroup"] = o.InstanceGroup
 
@@ -89,7 +89,7 @@ func (o SharedDriveHosts) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *SharedDriveHosts) UnmarshalJSON(data []byte) (err error) {
+func (o *DriveHosts) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -111,15 +111,15 @@ func (o *SharedDriveHosts) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varSharedDriveHosts := _SharedDriveHosts{}
+	varDriveHosts := _DriveHosts{}
 
-	err = json.Unmarshal(data, &varSharedDriveHosts)
+	err = json.Unmarshal(data, &varDriveHosts)
 
 	if err != nil {
 		return err
 	}
 
-	*o = SharedDriveHosts(varSharedDriveHosts)
+	*o = DriveHosts(varDriveHosts)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -131,38 +131,38 @@ func (o *SharedDriveHosts) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableSharedDriveHosts struct {
-	value *SharedDriveHosts
+type NullableDriveHosts struct {
+	value *DriveHosts
 	isSet bool
 }
 
-func (v NullableSharedDriveHosts) Get() *SharedDriveHosts {
+func (v NullableDriveHosts) Get() *DriveHosts {
 	return v.value
 }
 
-func (v *NullableSharedDriveHosts) Set(val *SharedDriveHosts) {
+func (v *NullableDriveHosts) Set(val *DriveHosts) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSharedDriveHosts) IsSet() bool {
+func (v NullableDriveHosts) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSharedDriveHosts) Unset() {
+func (v *NullableDriveHosts) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSharedDriveHosts(val *SharedDriveHosts) *NullableSharedDriveHosts {
-	return &NullableSharedDriveHosts{value: val, isSet: true}
+func NewNullableDriveHosts(val *DriveHosts) *NullableDriveHosts {
+	return &NullableDriveHosts{value: val, isSet: true}
 }
 
-func (v NullableSharedDriveHosts) MarshalJSON() ([]byte, error) {
+func (v NullableDriveHosts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSharedDriveHosts) UnmarshalJSON(src []byte) error {
+func (v *NullableDriveHosts) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

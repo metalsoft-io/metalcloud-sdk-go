@@ -97,6 +97,7 @@ Class | Method | HTTP request | Description
 *AuthenticationAPI* | [**Login**](docs/AuthenticationAPI.md#login) | **Post** /api/v2/login | User login
 *AuthenticationAPI* | [**Login2FA**](docs/AuthenticationAPI.md#login2fa) | **Post** /api/v2/login-2fa | User login with 2FA
 *AuthenticationAPI* | [**Logout**](docs/AuthenticationAPI.md#logout) | **Post** /api/v2/logout | Logout user
+*AuthenticationAPI* | [**ResetPassword**](docs/AuthenticationAPI.md#resetpassword) | **Post** /api/v2/reset-password | Reset user password
 *AuthenticationAPI* | [**SignUp**](docs/AuthenticationAPI.md#signup) | **Post** /api/v2/sign-up | Sign up
 *BucketAPI* | [**CreateInfrastructureBucket**](docs/BucketAPI.md#createinfrastructurebucket) | **Post** /api/v2/infrastructures/{infrastructureId}/buckets | Creates a Bucket
 *BucketAPI* | [**DeleteBucket**](docs/BucketAPI.md#deletebucket) | **Delete** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId} | Deletes a Bucket
@@ -121,18 +122,12 @@ Class | Method | HTTP request | Description
 *DriveAPI* | [**DeleteDrive**](docs/DriveAPI.md#deletedrive) | **Delete** /api/v2/infrastructures/{infrastructureId}/drives/{driveId} | Deletes a Drive
 *DriveAPI* | [**GetDrive**](docs/DriveAPI.md#getdrive) | **Get** /api/v2/drives/{driveId} | Get Drive information
 *DriveAPI* | [**GetDriveConfigInfo**](docs/DriveAPI.md#getdriveconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/config | Get configuration information about the specified Drive
+*DriveAPI* | [**GetDriveHosts**](docs/DriveAPI.md#getdrivehosts) | **Get** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/hosts | Get the Hosts of Drive
 *DriveAPI* | [**GetInfrastructureDrive**](docs/DriveAPI.md#getinfrastructuredrive) | **Get** /api/v2/infrastructures/{infrastructureId}/drives/{driveId} | Get Drive information
 *DriveAPI* | [**GetInfrastructureDrives**](docs/DriveAPI.md#getinfrastructuredrives) | **Get** /api/v2/infrastructures/{infrastructureId}/drives | Get all Drives on the infrastructure
 *DriveAPI* | [**PatchDriveConfig**](docs/DriveAPI.md#patchdriveconfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/config | Updates the config of a Drive
 *DriveAPI* | [**PatchDriveMeta**](docs/DriveAPI.md#patchdrivemeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/meta | Updates the meta of a Drive
-*DriveGroupAPI* | [**CreateDriveGroup**](docs/DriveGroupAPI.md#createdrivegroup) | **Post** /api/v2/infrastructures/{infrastructureId}/drive-groups | Create a new Drive Group
-*DriveGroupAPI* | [**DeleteDriveGroup**](docs/DriveGroupAPI.md#deletedrivegroup) | **Delete** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId} | Deletes a Drive Group
-*DriveGroupAPI* | [**GetDriveGroupConfigInfo**](docs/DriveGroupAPI.md#getdrivegroupconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/config | Get configuration information about the specified Drive Group
-*DriveGroupAPI* | [**GetDriveGroupDrives**](docs/DriveGroupAPI.md#getdrivegroupdrives) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/drives | Get the Drives of the Drive Group
-*DriveGroupAPI* | [**GetInfrastructureDriveGroup**](docs/DriveGroupAPI.md#getinfrastructuredrivegroup) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId} | Get DriveGroup information
-*DriveGroupAPI* | [**GetInfrastructureDriveGroups**](docs/DriveGroupAPI.md#getinfrastructuredrivegroups) | **Get** /api/v2/infrastructures/{infrastructureId}/drive-groups | Get all Drive Groups on the infrastructure
-*DriveGroupAPI* | [**PatchDriveGroupConfig**](docs/DriveGroupAPI.md#patchdrivegroupconfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/config | Updates the config of a Drive Group
-*DriveGroupAPI* | [**PatchDriveGroupMeta**](docs/DriveGroupAPI.md#patchdrivegroupmeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/drive-groups/{driveGroupId}/meta | Updates the meta of a Drive Group
+*DriveAPI* | [**UpdateDriveServerInstanceGroupHostsBulk**](docs/DriveAPI.md#updatedriveserverinstancegrouphostsbulk) | **Post** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/actions/modify-server-instance-group-hosts-bulk | Updates Server Instance Group Hosts on the Drive
 *EventAPI* | [**GetEvent**](docs/EventAPI.md#getevent) | **Get** /api/v2/events/{eventId} | Get Event information
 *EventAPI* | [**GetEvents**](docs/EventAPI.md#getevents) | **Get** /api/v2/events | Get all Events
 *ExtensionAPI* | [**ArchiveExtension**](docs/ExtensionAPI.md#archiveextension) | **Post** /api/v2/extensions/{extensionId}/actions/archive | Archive published extension
@@ -380,21 +375,12 @@ Class | Method | HTTP request | Description
 *ServerTypeAPI* | [**GetServerTypesStatisticsBatch**](docs/ServerTypeAPI.md#getservertypesstatisticsbatch) | **Post** /api/v2/server-types/statistics | Get Server Type statistics batch
 *ServerTypeAPI* | [**RemoveUnusedServerTypes**](docs/ServerTypeAPI.md#removeunusedservertypes) | **Post** /api/v2/server-types/actions/clean-unused | Deletes unused server types
 *ServerTypeAPI* | [**UpdateServerType**](docs/ServerTypeAPI.md#updateservertype) | **Patch** /api/v2/server-types/{serverTypeId} | Updates a Server Type
-*SharedDriveAPI* | [**CreateSharedDrive**](docs/SharedDriveAPI.md#createshareddrive) | **Post** /api/v2/infrastructures/{infrastructureId}/shared-drives | Create a new Shared Drive
-*SharedDriveAPI* | [**DeleteSharedDrive**](docs/SharedDriveAPI.md#deleteshareddrive) | **Delete** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId} | Deletes a Shared Drive
-*SharedDriveAPI* | [**GetInfrastructureSharedDrive**](docs/SharedDriveAPI.md#getinfrastructureshareddrive) | **Get** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId} | Get Shared Drive information
-*SharedDriveAPI* | [**GetInfrastructureSharedDrives**](docs/SharedDriveAPI.md#getinfrastructureshareddrives) | **Get** /api/v2/infrastructures/{infrastructureId}/shared-drives | Get all Shared Drives on the infrastructure
-*SharedDriveAPI* | [**GetSharedDrive**](docs/SharedDriveAPI.md#getshareddrive) | **Get** /api/v2/shared-drives/{sharedDriveId} | Get Shared Drive information
-*SharedDriveAPI* | [**GetSharedDriveConfigInfo**](docs/SharedDriveAPI.md#getshareddriveconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/config | Get configuration information about the specified Shared Drive
-*SharedDriveAPI* | [**GetSharedDriveHosts**](docs/SharedDriveAPI.md#getshareddrivehosts) | **Get** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/hosts | Get the Hosts of Shared Drive
-*SharedDriveAPI* | [**PatchSharedDriveConfig**](docs/SharedDriveAPI.md#patchshareddriveconfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/config | Updates the config of a Shared Drive
-*SharedDriveAPI* | [**PatchSharedDriveMeta**](docs/SharedDriveAPI.md#patchshareddrivemeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/meta | Updates the meta of a Shared Drive
-*SharedDriveAPI* | [**UpdateSharedDriveInstanceArrayHostsBulk**](docs/SharedDriveAPI.md#updateshareddriveinstancearrayhostsbulk) | **Post** /api/v2/infrastructures/{infrastructureId}/shared-drives/{sharedDriveId}/actions/modify-instance-array-hosts-bulk | Updates Instance Array Hosts on the Shared Drive
 *SiteAPI* | [**CreateSite**](docs/SiteAPI.md#createsite) | **Post** /api/v2/sites | Creates a Site
 *SiteAPI* | [**DecommissionSite**](docs/SiteAPI.md#decommissionsite) | **Post** /api/v2/sites/{siteId}/actions/decommission | Decommissions a Site
 *SiteAPI* | [**GetAgents**](docs/SiteAPI.md#getagents) | **Get** /api/v2/sites/{siteId}/controllers | Get a list of agents for a site
 *SiteAPI* | [**GetSite**](docs/SiteAPI.md#getsite) | **Get** /api/v2/sites/{siteId} | Get Site information
 *SiteAPI* | [**GetSiteConfig**](docs/SiteAPI.md#getsiteconfig) | **Get** /api/v2/sites/{siteId}/config | Get Site Config information
+*SiteAPI* | [**GetSiteControllerOneLiner**](docs/SiteAPI.md#getsitecontrolleroneliner) | **Post** /api/v2/sites/{siteId}/controllers/actions/get/one-liner | Get a one liner to configure a site controller
 *SiteAPI* | [**GetSites**](docs/SiteAPI.md#getsites) | **Get** /api/v2/sites | Get a list of Sites
 *SiteAPI* | [**GetSitesStatistics**](docs/SiteAPI.md#getsitesstatistics) | **Get** /api/v2/sites/statistics | Get Sites statistics
 *SiteAPI* | [**UpdateSite**](docs/SiteAPI.md#updatesite) | **Patch** /api/v2/sites/{siteId} | Updates a Site
@@ -461,6 +447,8 @@ Class | Method | HTTP request | Description
 *UserAPI* | [**UpdateUserMeta**](docs/UserAPI.md#updateusermeta) | **Patch** /api/v2/users/{userId}/meta | Update user metadata
 *UserAPI* | [**UpdateUserPassword**](docs/UserAPI.md#updateuserpassword) | **Post** /api/v2/users/{userId}/actions/change-password | Change user password
 *UserAPI* | [**UpdateUserPermissions**](docs/UserAPI.md#updateuserpermissions) | **Post** /api/v2/users/{userId}/actions/change-resource-permissions | Update user resource permissions
+*UserAPI* | [**UserControllerHandleEmailVerify**](docs/UserAPI.md#usercontrollerhandleemailverify) | **Get** /api/v2/users/actions/verify-email | Handle user email verify action
+*UserAPI* | [**UserControllerHandleUserResetPassword**](docs/UserAPI.md#usercontrollerhandleuserresetpassword) | **Get** /api/v2/users/actions/reset-password | Handle user reset password action
 *VMAPI* | [**GetVM**](docs/VMAPI.md#getvm) | **Get** /api/v2/vms/{vmId} | Retrieves the VM information
 *VMAPI* | [**GetVMPowerStatus**](docs/VMAPI.md#getvmpowerstatus) | **Get** /api/v2/vms/{vmId}/power-status | Retrieves the power status of the VM
 *VMAPI* | [**GetVMRemoteConsoleInfo**](docs/VMAPI.md#getvmremoteconsoleinfo) | **Get** /api/v2/vms/{vmId}/remote-console-info | Get Remote Console information
@@ -567,7 +555,6 @@ Class | Method | HTTP request | Description
  - [CreateFirmwareBaseline](docs/CreateFirmwareBaseline.md)
  - [CreateFirmwareBinary](docs/CreateFirmwareBinary.md)
  - [CreateFirmwareCatalog](docs/CreateFirmwareCatalog.md)
- - [CreateGroupDrive](docs/CreateGroupDrive.md)
  - [CreateLogicalNetwork](docs/CreateLogicalNetwork.md)
  - [CreateLogicalNetworkProfile](docs/CreateLogicalNetworkProfile.md)
  - [CreateNetwork](docs/CreateNetwork.md)
@@ -583,10 +570,9 @@ Class | Method | HTTP request | Description
  - [CreateServerFirmwareUpgradePolicy](docs/CreateServerFirmwareUpgradePolicy.md)
  - [CreateServerInstanceGroupNetworkConnectionDto](docs/CreateServerInstanceGroupNetworkConnectionDto.md)
  - [CreateServerType](docs/CreateServerType.md)
- - [CreateSharedDrive](docs/CreateSharedDrive.md)
  - [CreateStorage](docs/CreateStorage.md)
  - [CreateStorageNetworkDeviceConfiguration](docs/CreateStorageNetworkDeviceConfiguration.md)
- - [CreateSubnetDto](docs/CreateSubnetDto.md)
+ - [CreateSubnet](docs/CreateSubnet.md)
  - [CreateUser](docs/CreateUser.md)
  - [CreateUserSSHKeyDto](docs/CreateUserSSHKeyDto.md)
  - [CreateVMInstance](docs/CreateVMInstance.md)
@@ -604,8 +590,11 @@ Class | Method | HTTP request | Description
  - [DriveGroupConfiguration](docs/DriveGroupConfiguration.md)
  - [DriveGroupList](docs/DriveGroupList.md)
  - [DriveGroupMeta](docs/DriveGroupMeta.md)
- - [DriveGroupPaginatedList](docs/DriveGroupPaginatedList.md)
  - [DriveGroupVariables](docs/DriveGroupVariables.md)
+ - [DriveHostBulkOperation](docs/DriveHostBulkOperation.md)
+ - [DriveHostType](docs/DriveHostType.md)
+ - [DriveHosts](docs/DriveHosts.md)
+ - [DriveHostsModifyBulk](docs/DriveHostsModifyBulk.md)
  - [DriveList](docs/DriveList.md)
  - [DriveMeta](docs/DriveMeta.md)
  - [DrivePaginatedList](docs/DrivePaginatedList.md)
@@ -648,6 +637,7 @@ Class | Method | HTTP request | Description
  - [FileShareConfiguration](docs/FileShareConfiguration.md)
  - [FileShareExtendedInfo](docs/FileShareExtendedInfo.md)
  - [FileShareHostBulkOperation](docs/FileShareHostBulkOperation.md)
+ - [FileShareHostType](docs/FileShareHostType.md)
  - [FileShareHosts](docs/FileShareHosts.md)
  - [FileShareHostsModifyBulk](docs/FileShareHostsModifyBulk.md)
  - [FileShareMeta](docs/FileShareMeta.md)
@@ -663,10 +653,12 @@ Class | Method | HTTP request | Description
  - [FirmwareUpgrade](docs/FirmwareUpgrade.md)
  - [FirmwareVendorType](docs/FirmwareVendorType.md)
  - [GenerateFirmwareUpgradeAudit](docs/GenerateFirmwareUpgradeAudit.md)
+ - [GenerateSiteControllerOneliner](docs/GenerateSiteControllerOneliner.md)
  - [GenericGUISettings](docs/GenericGUISettings.md)
  - [GenericMeta](docs/GenericMeta.md)
  - [GenericServiceStatus](docs/GenericServiceStatus.md)
  - [GetResourceUtilizationDetailed](docs/GetResourceUtilizationDetailed.md)
+ - [GetSiteControllerOneLiner200Response](docs/GetSiteControllerOneLiner200Response.md)
  - [GlobalFirmwareUpgradeConfiguration](docs/GlobalFirmwareUpgradeConfiguration.md)
  - [Infrastructure](docs/Infrastructure.md)
  - [InfrastructureConfig](docs/InfrastructureConfig.md)
@@ -736,6 +728,7 @@ Class | Method | HTTP request | Description
  - [PaginatedResponseLinks](docs/PaginatedResponseLinks.md)
  - [PaginatedResponseMeta](docs/PaginatedResponseMeta.md)
  - [PartialTypeClass](docs/PartialTypeClass.md)
+ - [PasswordReset](docs/PasswordReset.md)
  - [PublicSignupDisabled](docs/PublicSignupDisabled.md)
  - [ReRegisterServerResponse](docs/ReRegisterServerResponse.md)
  - [RedundancyConfig](docs/RedundancyConfig.md)
@@ -823,13 +816,6 @@ Class | Method | HTTP request | Description
  - [ServerUnmanagedImportInternalInterfaceDto](docs/ServerUnmanagedImportInternalInterfaceDto.md)
  - [ServerVNCInfo](docs/ServerVNCInfo.md)
  - [ServerVariables](docs/ServerVariables.md)
- - [SharedDrive](docs/SharedDrive.md)
- - [SharedDriveConfiguration](docs/SharedDriveConfiguration.md)
- - [SharedDriveHostBulkOperation](docs/SharedDriveHostBulkOperation.md)
- - [SharedDriveHosts](docs/SharedDriveHosts.md)
- - [SharedDriveHostsModifyBulk](docs/SharedDriveHostsModifyBulk.md)
- - [SharedDriveMeta](docs/SharedDriveMeta.md)
- - [SharedDrivePaginatedList](docs/SharedDrivePaginatedList.md)
  - [SharedDriveVariables](docs/SharedDriveVariables.md)
  - [Site](docs/Site.md)
  - [SiteConfig](docs/SiteConfig.md)
@@ -862,7 +848,6 @@ Class | Method | HTTP request | Description
  - [UpdateBucketMeta](docs/UpdateBucketMeta.md)
  - [UpdateCustomIso](docs/UpdateCustomIso.md)
  - [UpdateDrive](docs/UpdateDrive.md)
- - [UpdateDriveGroupMeta](docs/UpdateDriveGroupMeta.md)
  - [UpdateDriveMeta](docs/UpdateDriveMeta.md)
  - [UpdateExtension](docs/UpdateExtension.md)
  - [UpdateExtensionInstance](docs/UpdateExtensionInstance.md)
@@ -871,7 +856,6 @@ Class | Method | HTTP request | Description
  - [UpdateFirmwareBaseline](docs/UpdateFirmwareBaseline.md)
  - [UpdateFirmwareCatalog](docs/UpdateFirmwareCatalog.md)
  - [UpdateGlobalFirmwareUpgradeConfiguration](docs/UpdateGlobalFirmwareUpgradeConfiguration.md)
- - [UpdateGroupDrive](docs/UpdateGroupDrive.md)
  - [UpdateInfrastructure](docs/UpdateInfrastructure.md)
  - [UpdateInfrastructureMeta](docs/UpdateInfrastructureMeta.md)
  - [UpdateLogicalNetwork](docs/UpdateLogicalNetwork.md)
@@ -889,8 +873,6 @@ Class | Method | HTTP request | Description
  - [UpdateServerFirmwareUpgradePolicy](docs/UpdateServerFirmwareUpgradePolicy.md)
  - [UpdateServerIpmiCredentials](docs/UpdateServerIpmiCredentials.md)
  - [UpdateServerType](docs/UpdateServerType.md)
- - [UpdateSharedDrive](docs/UpdateSharedDrive.md)
- - [UpdateSharedDriveMeta](docs/UpdateSharedDriveMeta.md)
  - [UpdateStorage](docs/UpdateStorage.md)
  - [UpdateStorageNetworkDeviceConfiguration](docs/UpdateStorageNetworkDeviceConfiguration.md)
  - [UpdateStorageOptions](docs/UpdateStorageOptions.md)

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **DeployType** | **string** | Deploy type of the Drive Group | [default to "create"]
 **DeployStatus** | **string** | Deploy status of the Drive Group | [default to "not_started"]
 **InfrastructureDeployId** | Pointer to **float32** | Id of the deployment for the Drive Group. | [optional] 
+**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Bucket. | [optional] 
 
 ## Methods
 
@@ -248,6 +249,31 @@ SetInfrastructureDeployId sets InfrastructureDeployId field to given value.
 `func (o *BucketConfiguration) HasInfrastructureDeployId() bool`
 
 HasInfrastructureDeployId returns a boolean if a field has been set.
+
+### GetLogicalNetworkId
+
+`func (o *BucketConfiguration) GetLogicalNetworkId() float32`
+
+GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
+
+### GetLogicalNetworkIdOk
+
+`func (o *BucketConfiguration) GetLogicalNetworkIdOk() (*float32, bool)`
+
+GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogicalNetworkId
+
+`func (o *BucketConfiguration) SetLogicalNetworkId(v float32)`
+
+SetLogicalNetworkId sets LogicalNetworkId field to given value.
+
+### HasLogicalNetworkId
+
+`func (o *BucketConfiguration) HasLogicalNetworkId() bool`
+
+HasLogicalNetworkId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

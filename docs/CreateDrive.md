@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **string** | Label of the Drive. | [optional] 
-**GroupId** | **float32** | Id of the Drive Group | 
-**SizeMb** | Pointer to **float32** | Disk size in MB for Drive | [optional] 
+**SizeMb** | **float32** | Disk size in MB for Drive | 
+**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Drive. | [optional] 
+**Label** | Pointer to **string** | Display name of the File Share. | [optional] 
 
 ## Methods
 
 ### NewCreateDrive
 
-`func NewCreateDrive(groupId float32, ) *CreateDrive`
+`func NewCreateDrive(sizeMb float32, ) *CreateDrive`
 
 NewCreateDrive instantiates a new CreateDrive object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +26,51 @@ will change when the set of required properties is changed
 NewCreateDriveWithDefaults instantiates a new CreateDrive object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetSizeMb
+
+`func (o *CreateDrive) GetSizeMb() float32`
+
+GetSizeMb returns the SizeMb field if non-nil, zero value otherwise.
+
+### GetSizeMbOk
+
+`func (o *CreateDrive) GetSizeMbOk() (*float32, bool)`
+
+GetSizeMbOk returns a tuple with the SizeMb field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSizeMb
+
+`func (o *CreateDrive) SetSizeMb(v float32)`
+
+SetSizeMb sets SizeMb field to given value.
+
+
+### GetLogicalNetworkId
+
+`func (o *CreateDrive) GetLogicalNetworkId() float32`
+
+GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
+
+### GetLogicalNetworkIdOk
+
+`func (o *CreateDrive) GetLogicalNetworkIdOk() (*float32, bool)`
+
+GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogicalNetworkId
+
+`func (o *CreateDrive) SetLogicalNetworkId(v float32)`
+
+SetLogicalNetworkId sets LogicalNetworkId field to given value.
+
+### HasLogicalNetworkId
+
+`func (o *CreateDrive) HasLogicalNetworkId() bool`
+
+HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetLabel
 
@@ -51,51 +96,6 @@ SetLabel sets Label field to given value.
 `func (o *CreateDrive) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
-
-### GetGroupId
-
-`func (o *CreateDrive) GetGroupId() float32`
-
-GetGroupId returns the GroupId field if non-nil, zero value otherwise.
-
-### GetGroupIdOk
-
-`func (o *CreateDrive) GetGroupIdOk() (*float32, bool)`
-
-GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGroupId
-
-`func (o *CreateDrive) SetGroupId(v float32)`
-
-SetGroupId sets GroupId field to given value.
-
-
-### GetSizeMb
-
-`func (o *CreateDrive) GetSizeMb() float32`
-
-GetSizeMb returns the SizeMb field if non-nil, zero value otherwise.
-
-### GetSizeMbOk
-
-`func (o *CreateDrive) GetSizeMbOk() (*float32, bool)`
-
-GetSizeMbOk returns a tuple with the SizeMb field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSizeMb
-
-`func (o *CreateDrive) SetSizeMb(v float32)`
-
-SetSizeMb sets SizeMb field to given value.
-
-### HasSizeMb
-
-`func (o *CreateDrive) HasSizeMb() bool`
-
-HasSizeMb returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

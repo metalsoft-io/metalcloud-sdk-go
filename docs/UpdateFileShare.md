@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SizeGB** | Pointer to **float32** | Disk size in GB for File Share | [optional] 
 **Label** | Pointer to **string** | Label of the File Share. | [optional] 
+**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the File Share. | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetLabel sets Label field to given value.
 `func (o *UpdateFileShare) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
+
+### GetLogicalNetworkId
+
+`func (o *UpdateFileShare) GetLogicalNetworkId() float32`
+
+GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
+
+### GetLogicalNetworkIdOk
+
+`func (o *UpdateFileShare) GetLogicalNetworkIdOk() (*float32, bool)`
+
+GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogicalNetworkId
+
+`func (o *UpdateFileShare) SetLogicalNetworkId(v float32)`
+
+SetLogicalNetworkId sets LogicalNetworkId field to given value.
+
+### HasLogicalNetworkId
+
+`func (o *UpdateFileShare) HasLogicalNetworkId() bool`
+
+HasLogicalNetworkId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

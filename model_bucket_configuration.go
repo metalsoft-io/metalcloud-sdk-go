@@ -41,6 +41,8 @@ type BucketConfiguration struct {
 	DeployStatus string `json:"deployStatus"`
 	// Id of the deployment for the Drive Group.
 	InfrastructureDeployId *float32 `json:"infrastructureDeployId,omitempty"`
+	// Id of the Logical Network for the Bucket.
+	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -338,6 +340,38 @@ func (o *BucketConfiguration) SetInfrastructureDeployId(v float32) {
 	o.InfrastructureDeployId = &v
 }
 
+// GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
+func (o *BucketConfiguration) GetLogicalNetworkId() float32 {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		var ret float32
+		return ret
+	}
+	return *o.LogicalNetworkId
+}
+
+// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BucketConfiguration) GetLogicalNetworkIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		return nil, false
+	}
+	return o.LogicalNetworkId, true
+}
+
+// HasLogicalNetworkId returns a boolean if a field has been set.
+func (o *BucketConfiguration) HasLogicalNetworkId() bool {
+	if o != nil && !IsNil(o.LogicalNetworkId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
+func (o *BucketConfiguration) SetLogicalNetworkId(v float32) {
+	o.LogicalNetworkId = &v
+}
+
 func (o BucketConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -363,6 +397,9 @@ func (o BucketConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize["deployStatus"] = o.DeployStatus
 	if !IsNil(o.InfrastructureDeployId) {
 		toSerialize["infrastructureDeployId"] = o.InfrastructureDeployId
+	}
+	if !IsNil(o.LogicalNetworkId) {
+		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -423,6 +460,7 @@ func (o *BucketConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "deployType")
 		delete(additionalProperties, "deployStatus")
 		delete(additionalProperties, "infrastructureDeployId")
+		delete(additionalProperties, "logicalNetworkId")
 		o.AdditionalProperties = additionalProperties
 	}
 

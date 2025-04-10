@@ -89,6 +89,20 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test SiteAPIService GetSiteControllerOneLiner", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var siteId float32
+
+		resp, httpRes, err := apiClient.SiteAPI.GetSiteControllerOneLiner(context.Background(), siteId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SiteAPIService GetSites", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

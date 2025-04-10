@@ -79,6 +79,21 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DriveAPIService GetDriveHosts", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveId float32
+
+		resp, httpRes, err := apiClient.DriveAPI.GetDriveHosts(context.Background(), infrastructureId, driveId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DriveAPIService GetInfrastructureDrive", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -131,6 +146,21 @@ func Test_sdk_DriveAPIService(t *testing.T) {
 		var driveId float32
 
 		resp, httpRes, err := apiClient.DriveAPI.PatchDriveMeta(context.Background(), infrastructureId, driveId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DriveAPIService UpdateDriveServerInstanceGroupHostsBulk", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+		var driveId float32
+
+		resp, httpRes, err := apiClient.DriveAPI.UpdateDriveServerInstanceGroupHostsBulk(context.Background(), infrastructureId, driveId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
