@@ -12,15 +12,15 @@ Name | Type | Description | Notes
 **Revision** | **int32** | The revision number of the template asset | [readonly] 
 **CreatedBy** | **int32** | The user ID of the user who created the template asset | 
 **ModifiedBy** | Pointer to **int32** | The user ID of the user who last modified the template asset | [optional] 
-**CreatedAt** | **time.Time** | The date and time the template asset was created | [readonly] 
-**ModifiedAt** | Pointer to **time.Time** | The date and time the template asset was last modified | [optional] [readonly] 
+**CreatedAt** | **string** | The date and time the template asset was created | [readonly] 
+**ModifiedAt** | Pointer to **string** | The date and time the template asset was last modified | [optional] [readonly] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewTemplateAsset
 
-`func NewTemplateAsset(id int32, templateId int32, usage string, file TemplateAssetFile, revision int32, createdBy int32, createdAt time.Time, ) *TemplateAsset`
+`func NewTemplateAsset(id int32, templateId int32, usage string, file TemplateAssetFile, revision int32, createdBy int32, createdAt string, ) *TemplateAsset`
 
 NewTemplateAsset instantiates a new TemplateAsset object
 This constructor will assign default values to properties that have it defined,
@@ -207,40 +207,40 @@ HasModifiedBy returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
-`func (o *TemplateAsset) GetCreatedAt() time.Time`
+`func (o *TemplateAsset) GetCreatedAt() string`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *TemplateAsset) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *TemplateAsset) GetCreatedAtOk() (*string, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *TemplateAsset) SetCreatedAt(v time.Time)`
+`func (o *TemplateAsset) SetCreatedAt(v string)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetModifiedAt
 
-`func (o *TemplateAsset) GetModifiedAt() time.Time`
+`func (o *TemplateAsset) GetModifiedAt() string`
 
 GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
 
 ### GetModifiedAtOk
 
-`func (o *TemplateAsset) GetModifiedAtOk() (*time.Time, bool)`
+`func (o *TemplateAsset) GetModifiedAtOk() (*string, bool)`
 
 GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModifiedAt
 
-`func (o *TemplateAsset) SetModifiedAt(v time.Time)`
+`func (o *TemplateAsset) SetModifiedAt(v string)`
 
 SetModifiedAt sets ModifiedAt field to given value.
 

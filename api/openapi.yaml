@@ -42122,7 +42122,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-10T19:23:09.844Z
+        createdTimestamp: 2025-04-11T05:15:06.237Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -42131,7 +42131,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-10T19:23:09.845Z
+        updatedTimestamp: 2025-04-11T05:15:06.237Z
         revision: "1"
       properties:
         siteId:
@@ -42148,12 +42148,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-10T19:23:09.844Z
+          example: 2025-04-11T05:15:06.237Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-10T19:23:09.845Z
+          example: 2025-04-11T05:15:06.237Z
           format: date-time
           type: string
         links:
@@ -42175,7 +42175,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-10T19:23:09.844Z
+        - createdTimestamp: 2025-04-11T05:15:06.237Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -42184,9 +42184,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-10T19:23:09.845Z
+          updatedTimestamp: 2025-04-11T05:15:06.237Z
           revision: "1"
-        - createdTimestamp: 2025-04-10T19:23:09.844Z
+        - createdTimestamp: 2025-04-11T05:15:06.237Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -42195,7 +42195,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-10T19:23:09.845Z
+          updatedTimestamp: 2025-04-11T05:15:06.237Z
           revision: "1"
         meta: ""
         links: ""
@@ -42807,7 +42807,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-10T19:23:09.856Z
+        createdTimestamp: 2025-04-11T05:15:06.24Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -42848,7 +42848,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-10T19:23:09.856Z
+        updatedTimestamp: 2025-04-11T05:15:06.24Z
         revision: "1"
         status: draft
       properties:
@@ -42876,12 +42876,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-10T19:23:09.856Z
+          example: 2025-04-11T05:15:06.24Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-10T19:23:09.856Z
+          example: 2025-04-11T05:15:06.24Z
           format: date-time
           type: string
         links:
@@ -43022,7 +43022,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-10T19:23:09.856Z
+          createdTimestamp: 2025-04-11T05:15:06.24Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -43063,7 +43063,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-10T19:23:09.856Z
+          updatedTimestamp: 2025-04-11T05:15:06.24Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -43173,7 +43173,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-10T19:23:09.856Z
+          createdTimestamp: 2025-04-11T05:15:06.24Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -43214,7 +43214,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-10T19:23:09.856Z
+          updatedTimestamp: 2025-04-11T05:15:06.24Z
           revision: "1"
           status: draft
         meta: ""
@@ -52014,13 +52014,11 @@ components:
         createdAt:
           description: The date and time the template asset was created
           example: 2024-01-01T00:00:00Z
-          format: date-time
           readOnly: true
           type: string
         modifiedAt:
           description: The date and time the template asset was last modified
           example: 2024-01-01T00:00:00Z
-          format: date-time
           readOnly: true
           type: string
         links:

@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"time"
 	"fmt"
 )
 
@@ -38,9 +37,9 @@ type TemplateAsset struct {
 	// The user ID of the user who last modified the template asset
 	ModifiedBy *int32 `json:"modifiedBy,omitempty"`
 	// The date and time the template asset was created
-	CreatedAt time.Time `json:"createdAt"`
+	CreatedAt string `json:"createdAt"`
 	// The date and time the template asset was last modified
-	ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
+	ModifiedAt *string `json:"modifiedAt,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -52,7 +51,7 @@ type _TemplateAsset TemplateAsset
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTemplateAsset(id int32, templateId int32, usage string, file TemplateAssetFile, revision int32, createdBy int32, createdAt time.Time) *TemplateAsset {
+func NewTemplateAsset(id int32, templateId int32, usage string, file TemplateAssetFile, revision int32, createdBy int32, createdAt string) *TemplateAsset {
 	this := TemplateAsset{}
 	this.Id = id
 	this.TemplateId = templateId
@@ -281,9 +280,9 @@ func (o *TemplateAsset) SetModifiedBy(v int32) {
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *TemplateAsset) GetCreatedAt() time.Time {
+func (o *TemplateAsset) GetCreatedAt() string {
 	if o == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 
@@ -292,7 +291,7 @@ func (o *TemplateAsset) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *TemplateAsset) GetCreatedAtOk() (*time.Time, bool) {
+func (o *TemplateAsset) GetCreatedAtOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -300,14 +299,14 @@ func (o *TemplateAsset) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // SetCreatedAt sets field value
-func (o *TemplateAsset) SetCreatedAt(v time.Time) {
+func (o *TemplateAsset) SetCreatedAt(v string) {
 	o.CreatedAt = v
 }
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
-func (o *TemplateAsset) GetModifiedAt() time.Time {
+func (o *TemplateAsset) GetModifiedAt() string {
 	if o == nil || IsNil(o.ModifiedAt) {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.ModifiedAt
@@ -315,7 +314,7 @@ func (o *TemplateAsset) GetModifiedAt() time.Time {
 
 // GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TemplateAsset) GetModifiedAtOk() (*time.Time, bool) {
+func (o *TemplateAsset) GetModifiedAtOk() (*string, bool) {
 	if o == nil || IsNil(o.ModifiedAt) {
 		return nil, false
 	}
@@ -331,8 +330,8 @@ func (o *TemplateAsset) HasModifiedAt() bool {
 	return false
 }
 
-// SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
-func (o *TemplateAsset) SetModifiedAt(v time.Time) {
+// SetModifiedAt gets a reference to the given string and assigns it to the ModifiedAt field.
+func (o *TemplateAsset) SetModifiedAt(v string) {
 	o.ModifiedAt = &v
 }
 
