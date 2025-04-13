@@ -1,4 +1,4 @@
-# UpdateDriveMeta
+# SharedDriveMeta
 
 ## Properties
 
@@ -8,45 +8,45 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewUpdateDriveMeta
+### NewSharedDriveMeta
 
-`func NewUpdateDriveMeta() *UpdateDriveMeta`
+`func NewSharedDriveMeta() *SharedDriveMeta`
 
-NewUpdateDriveMeta instantiates a new UpdateDriveMeta object
+NewSharedDriveMeta instantiates a new SharedDriveMeta object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUpdateDriveMetaWithDefaults
+### NewSharedDriveMetaWithDefaults
 
-`func NewUpdateDriveMetaWithDefaults() *UpdateDriveMeta`
+`func NewSharedDriveMetaWithDefaults() *SharedDriveMeta`
 
-NewUpdateDriveMetaWithDefaults instantiates a new UpdateDriveMeta object
+NewSharedDriveMetaWithDefaults instantiates a new SharedDriveMeta object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetGuiSettings
 
-`func (o *UpdateDriveMeta) GetGuiSettings() GenericGUISettings`
+`func (o *SharedDriveMeta) GetGuiSettings() GenericGUISettings`
 
 GetGuiSettings returns the GuiSettings field if non-nil, zero value otherwise.
 
 ### GetGuiSettingsOk
 
-`func (o *UpdateDriveMeta) GetGuiSettingsOk() (*GenericGUISettings, bool)`
+`func (o *SharedDriveMeta) GetGuiSettingsOk() (*GenericGUISettings, bool)`
 
 GetGuiSettingsOk returns a tuple with the GuiSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGuiSettings
 
-`func (o *UpdateDriveMeta) SetGuiSettings(v GenericGUISettings)`
+`func (o *SharedDriveMeta) SetGuiSettings(v GenericGUISettings)`
 
 SetGuiSettings sets GuiSettings field to given value.
 
 ### HasGuiSettings
 
-`func (o *UpdateDriveMeta) HasGuiSettings() bool`
+`func (o *SharedDriveMeta) HasGuiSettings() bool`
 
 HasGuiSettings returns a boolean if a field has been set.
 

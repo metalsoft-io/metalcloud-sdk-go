@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UserIdOwner** | **float32** | User ID of the owner | 
-**StartTimestamp** | **time.Time** | Start timestamp for the resource utilization | 
-**EndTimestamp** | **time.Time** | End timestamp for the resource utilization | 
+**StartTimestamp** | **string** | Start timestamp for the resource utilization | 
+**EndTimestamp** | **string** | End timestamp for the resource utilization | 
 **InfrastructureIds** | Pointer to **[]float32** | List of infrastructure IDs | [optional] 
 **SiteIds** | Pointer to **[]float32** | List of site IDs | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewGetResourceUtilizationDetailed
 
-`func NewGetResourceUtilizationDetailed(userIdOwner float32, startTimestamp time.Time, endTimestamp time.Time, ) *GetResourceUtilizationDetailed`
+`func NewGetResourceUtilizationDetailed(userIdOwner float32, startTimestamp string, endTimestamp string, ) *GetResourceUtilizationDetailed`
 
 NewGetResourceUtilizationDetailed instantiates a new GetResourceUtilizationDetailed object
 This constructor will assign default values to properties that have it defined,
@@ -51,40 +51,40 @@ SetUserIdOwner sets UserIdOwner field to given value.
 
 ### GetStartTimestamp
 
-`func (o *GetResourceUtilizationDetailed) GetStartTimestamp() time.Time`
+`func (o *GetResourceUtilizationDetailed) GetStartTimestamp() string`
 
 GetStartTimestamp returns the StartTimestamp field if non-nil, zero value otherwise.
 
 ### GetStartTimestampOk
 
-`func (o *GetResourceUtilizationDetailed) GetStartTimestampOk() (*time.Time, bool)`
+`func (o *GetResourceUtilizationDetailed) GetStartTimestampOk() (*string, bool)`
 
 GetStartTimestampOk returns a tuple with the StartTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartTimestamp
 
-`func (o *GetResourceUtilizationDetailed) SetStartTimestamp(v time.Time)`
+`func (o *GetResourceUtilizationDetailed) SetStartTimestamp(v string)`
 
 SetStartTimestamp sets StartTimestamp field to given value.
 
 
 ### GetEndTimestamp
 
-`func (o *GetResourceUtilizationDetailed) GetEndTimestamp() time.Time`
+`func (o *GetResourceUtilizationDetailed) GetEndTimestamp() string`
 
 GetEndTimestamp returns the EndTimestamp field if non-nil, zero value otherwise.
 
 ### GetEndTimestampOk
 
-`func (o *GetResourceUtilizationDetailed) GetEndTimestampOk() (*time.Time, bool)`
+`func (o *GetResourceUtilizationDetailed) GetEndTimestampOk() (*string, bool)`
 
 GetEndTimestampOk returns a tuple with the EndTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndTimestamp
 
-`func (o *GetResourceUtilizationDetailed) SetEndTimestamp(v time.Time)`
+`func (o *GetResourceUtilizationDetailed) SetEndTimestamp(v string)`
 
 SetEndTimestamp sets EndTimestamp field to given value.
 

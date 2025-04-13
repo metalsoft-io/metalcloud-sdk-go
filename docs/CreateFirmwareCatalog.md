@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **UpdateType** | [**CatalogUpdateType**](CatalogUpdateType.md) |  | 
 **VendorId** | Pointer to **string** |  | [optional] 
 **VendorUrl** | Pointer to **string** |  | [optional] 
-**VendorReleaseTimestamp** | Pointer to **time.Time** |  | [optional] 
+**VendorReleaseTimestamp** | Pointer to **string** |  | [optional] 
 **MetalsoftServerTypesSupported** | Pointer to **[]string** |  | [optional] 
 **VendorServerTypesSupported** | Pointer to **[]string** | Array of the server types supported by the vendor for this catalog | [optional] 
 **VendorConfiguration** | Pointer to **map[string]interface{}** | Record of the vendor configuration for this catalog | [optional] 
@@ -171,20 +171,20 @@ HasVendorUrl returns a boolean if a field has been set.
 
 ### GetVendorReleaseTimestamp
 
-`func (o *CreateFirmwareCatalog) GetVendorReleaseTimestamp() time.Time`
+`func (o *CreateFirmwareCatalog) GetVendorReleaseTimestamp() string`
 
 GetVendorReleaseTimestamp returns the VendorReleaseTimestamp field if non-nil, zero value otherwise.
 
 ### GetVendorReleaseTimestampOk
 
-`func (o *CreateFirmwareCatalog) GetVendorReleaseTimestampOk() (*time.Time, bool)`
+`func (o *CreateFirmwareCatalog) GetVendorReleaseTimestampOk() (*string, bool)`
 
 GetVendorReleaseTimestampOk returns a tuple with the VendorReleaseTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVendorReleaseTimestamp
 
-`func (o *CreateFirmwareCatalog) SetVendorReleaseTimestamp(v time.Time)`
+`func (o *CreateFirmwareCatalog) SetVendorReleaseTimestamp(v string)`
 
 SetVendorReleaseTimestamp sets VendorReleaseTimestamp field to given value.
 

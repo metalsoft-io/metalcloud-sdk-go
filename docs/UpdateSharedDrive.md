@@ -1,4 +1,4 @@
-# UpdateDrive
+# UpdateSharedDrive
 
 ## Properties
 
@@ -11,120 +11,120 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewUpdateDrive
+### NewUpdateSharedDrive
 
-`func NewUpdateDrive() *UpdateDrive`
+`func NewUpdateSharedDrive() *UpdateSharedDrive`
 
-NewUpdateDrive instantiates a new UpdateDrive object
+NewUpdateSharedDrive instantiates a new UpdateSharedDrive object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUpdateDriveWithDefaults
+### NewUpdateSharedDriveWithDefaults
 
-`func NewUpdateDriveWithDefaults() *UpdateDrive`
+`func NewUpdateSharedDriveWithDefaults() *UpdateSharedDrive`
 
-NewUpdateDriveWithDefaults instantiates a new UpdateDrive object
+NewUpdateSharedDriveWithDefaults instantiates a new UpdateSharedDrive object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetLabel
 
-`func (o *UpdateDrive) GetLabel() string`
+`func (o *UpdateSharedDrive) GetLabel() string`
 
 GetLabel returns the Label field if non-nil, zero value otherwise.
 
 ### GetLabelOk
 
-`func (o *UpdateDrive) GetLabelOk() (*string, bool)`
+`func (o *UpdateSharedDrive) GetLabelOk() (*string, bool)`
 
 GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLabel
 
-`func (o *UpdateDrive) SetLabel(v string)`
+`func (o *UpdateSharedDrive) SetLabel(v string)`
 
 SetLabel sets Label field to given value.
 
 ### HasLabel
 
-`func (o *UpdateDrive) HasLabel() bool`
+`func (o *UpdateSharedDrive) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
 
 ### GetSizeMb
 
-`func (o *UpdateDrive) GetSizeMb() float32`
+`func (o *UpdateSharedDrive) GetSizeMb() float32`
 
 GetSizeMb returns the SizeMb field if non-nil, zero value otherwise.
 
 ### GetSizeMbOk
 
-`func (o *UpdateDrive) GetSizeMbOk() (*float32, bool)`
+`func (o *UpdateSharedDrive) GetSizeMbOk() (*float32, bool)`
 
 GetSizeMbOk returns a tuple with the SizeMb field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSizeMb
 
-`func (o *UpdateDrive) SetSizeMb(v float32)`
+`func (o *UpdateSharedDrive) SetSizeMb(v float32)`
 
 SetSizeMb sets SizeMb field to given value.
 
 ### HasSizeMb
 
-`func (o *UpdateDrive) HasSizeMb() bool`
+`func (o *UpdateSharedDrive) HasSizeMb() bool`
 
 HasSizeMb returns a boolean if a field has been set.
 
 ### GetIoLimitPolicy
 
-`func (o *UpdateDrive) GetIoLimitPolicy() string`
+`func (o *UpdateSharedDrive) GetIoLimitPolicy() string`
 
 GetIoLimitPolicy returns the IoLimitPolicy field if non-nil, zero value otherwise.
 
 ### GetIoLimitPolicyOk
 
-`func (o *UpdateDrive) GetIoLimitPolicyOk() (*string, bool)`
+`func (o *UpdateSharedDrive) GetIoLimitPolicyOk() (*string, bool)`
 
 GetIoLimitPolicyOk returns a tuple with the IoLimitPolicy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIoLimitPolicy
 
-`func (o *UpdateDrive) SetIoLimitPolicy(v string)`
+`func (o *UpdateSharedDrive) SetIoLimitPolicy(v string)`
 
 SetIoLimitPolicy sets IoLimitPolicy field to given value.
 
 ### HasIoLimitPolicy
 
-`func (o *UpdateDrive) HasIoLimitPolicy() bool`
+`func (o *UpdateSharedDrive) HasIoLimitPolicy() bool`
 
 HasIoLimitPolicy returns a boolean if a field has been set.
 
 ### GetLogicalNetworkId
 
-`func (o *UpdateDrive) GetLogicalNetworkId() float32`
+`func (o *UpdateSharedDrive) GetLogicalNetworkId() float32`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *UpdateDrive) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *UpdateSharedDrive) GetLogicalNetworkIdOk() (*float32, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *UpdateDrive) SetLogicalNetworkId(v float32)`
+`func (o *UpdateSharedDrive) SetLogicalNetworkId(v float32)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
 ### HasLogicalNetworkId
 
-`func (o *UpdateDrive) HasLogicalNetworkId() bool`
+`func (o *UpdateSharedDrive) HasLogicalNetworkId() bool`
 
 HasLogicalNetworkId returns a boolean if a field has been set.
 

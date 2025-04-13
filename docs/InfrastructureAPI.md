@@ -517,12 +517,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-    "time"
 	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
 )
 
 func main() {
-	getResourceUtilizationDetailed := *openapiclient.NewGetResourceUtilizationDetailed(float32(123), time.Now(), time.Now()) // GetResourceUtilizationDetailed | 
+	getResourceUtilizationDetailed := *openapiclient.NewGetResourceUtilizationDetailed(float32(123), "StartTimestamp_example", "EndTimestamp_example") // GetResourceUtilizationDetailed | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

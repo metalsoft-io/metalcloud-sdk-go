@@ -95,7 +95,6 @@ docs/ControllerPolicy.md
 docs/CreateAccount.md
 docs/CreateBucket.md
 docs/CreateCustomIso.md
-docs/CreateDrive.md
 docs/CreateExtension.md
 docs/CreateExtensionInstance.md
 docs/CreateFileShare.md
@@ -103,6 +102,7 @@ docs/CreateFirmwareBaseline.md
 docs/CreateFirmwareBinary.md
 docs/CreateFirmwareCatalog.md
 docs/CreateLogicalNetwork.md
+docs/CreateLogicalNetworkACLDto.md
 docs/CreateLogicalNetworkProfile.md
 docs/CreateNetwork.md
 docs/CreateNetworkDevice.md
@@ -117,6 +117,7 @@ docs/CreateServerDefaultCredentials.md
 docs/CreateServerFirmwareUpgradePolicy.md
 docs/CreateServerInstanceGroupNetworkConnectionDto.md
 docs/CreateServerType.md
+docs/CreateSharedDrive.md
 docs/CreateStorage.md
 docs/CreateStorageNetworkDeviceConfiguration.md
 docs/CreateSubnet.md
@@ -140,10 +141,6 @@ docs/DriveGroupConfiguration.md
 docs/DriveGroupList.md
 docs/DriveGroupMeta.md
 docs/DriveGroupVariables.md
-docs/DriveHostBulkOperation.md
-docs/DriveHostType.md
-docs/DriveHosts.md
-docs/DriveHostsModifyBulk.md
 docs/DriveList.md
 docs/DriveMeta.md
 docs/DrivePaginatedList.md
@@ -255,6 +252,7 @@ docs/Link.md
 docs/LinkDuplex.md
 docs/Location.md
 docs/LogicalNetwork.md
+docs/LogicalNetworkACLDto.md
 docs/LogicalNetworkPaginatedList.md
 docs/LogicalNetworkProfile.md
 docs/LogicalNetworkProfilePaginatedList.md
@@ -393,6 +391,14 @@ docs/ServerUnmanagedImport.md
 docs/ServerUnmanagedImportInternalInterfaceDto.md
 docs/ServerVNCInfo.md
 docs/ServerVariables.md
+docs/SharedDrive.md
+docs/SharedDriveConfiguration.md
+docs/SharedDriveHostBulkOperation.md
+docs/SharedDriveHostType.md
+docs/SharedDriveHosts.md
+docs/SharedDriveHostsModifyBulk.md
+docs/SharedDriveMeta.md
+docs/SharedDrivePaginatedList.md
 docs/SharedDriveVariables.md
 docs/Site.md
 docs/SiteAPI.md
@@ -430,8 +436,6 @@ docs/UpdateAccount.md
 docs/UpdateBucket.md
 docs/UpdateBucketMeta.md
 docs/UpdateCustomIso.md
-docs/UpdateDrive.md
-docs/UpdateDriveMeta.md
 docs/UpdateExtension.md
 docs/UpdateExtensionInstance.md
 docs/UpdateFileShare.md
@@ -442,6 +446,7 @@ docs/UpdateGlobalFirmwareUpgradeConfiguration.md
 docs/UpdateInfrastructure.md
 docs/UpdateInfrastructureMeta.md
 docs/UpdateLogicalNetwork.md
+docs/UpdateLogicalNetworkACLDto.md
 docs/UpdateLogicalNetworkProfile.md
 docs/UpdateNetworkDevice.md
 docs/UpdateNetworkEndpointGroup.md
@@ -456,6 +461,8 @@ docs/UpdateServerDefaultCredentials.md
 docs/UpdateServerFirmwareUpgradePolicy.md
 docs/UpdateServerIpmiCredentials.md
 docs/UpdateServerType.md
+docs/UpdateSharedDrive.md
+docs/UpdateSharedDriveMeta.md
 docs/UpdateStorage.md
 docs/UpdateStorageNetworkDeviceConfiguration.md
 docs/UpdateStorageOptions.md
@@ -560,7 +567,6 @@ model_controller_policy.go
 model_create_account.go
 model_create_bucket.go
 model_create_custom_iso.go
-model_create_drive.go
 model_create_extension.go
 model_create_extension_instance.go
 model_create_file_share.go
@@ -568,6 +574,7 @@ model_create_firmware_baseline.go
 model_create_firmware_binary.go
 model_create_firmware_catalog.go
 model_create_logical_network.go
+model_create_logical_network_acl_dto.go
 model_create_logical_network_profile.go
 model_create_network.go
 model_create_network_device.go
@@ -582,6 +589,7 @@ model_create_server_default_credentials.go
 model_create_server_firmware_upgrade_policy.go
 model_create_server_instance_group_network_connection_dto.go
 model_create_server_type.go
+model_create_shared_drive.go
 model_create_storage.go
 model_create_storage_network_device_configuration.go
 model_create_subnet.go
@@ -603,10 +611,6 @@ model_drive_group_configuration.go
 model_drive_group_list.go
 model_drive_group_meta.go
 model_drive_group_variables.go
-model_drive_host_bulk_operation.go
-model_drive_host_type.go
-model_drive_hosts.go
-model_drive_hosts_modify_bulk.go
 model_drive_list.go
 model_drive_meta.go
 model_drive_paginated_list.go
@@ -707,6 +711,7 @@ model_link.go
 model_link_duplex.go
 model_location.go
 model_logical_network.go
+model_logical_network_acl_dto.go
 model_logical_network_paginated_list.go
 model_logical_network_profile.go
 model_logical_network_profile_paginated_list.go
@@ -827,6 +832,14 @@ model_server_unmanaged_import.go
 model_server_unmanaged_import_internal_interface_dto.go
 model_server_variables.go
 model_server_vnc_info.go
+model_shared_drive.go
+model_shared_drive_configuration.go
+model_shared_drive_host_bulk_operation.go
+model_shared_drive_host_type.go
+model_shared_drive_hosts.go
+model_shared_drive_hosts_modify_bulk.go
+model_shared_drive_meta.go
+model_shared_drive_paginated_list.go
 model_shared_drive_variables.go
 model_site.go
 model_site_config.go
@@ -859,8 +872,6 @@ model_update_account.go
 model_update_bucket.go
 model_update_bucket_meta.go
 model_update_custom_iso.go
-model_update_drive.go
-model_update_drive_meta.go
 model_update_extension.go
 model_update_extension_instance.go
 model_update_file_share.go
@@ -871,6 +882,7 @@ model_update_global_firmware_upgrade_configuration.go
 model_update_infrastructure.go
 model_update_infrastructure_meta.go
 model_update_logical_network.go
+model_update_logical_network_acl_dto.go
 model_update_logical_network_profile.go
 model_update_network_device.go
 model_update_network_endpoint_group.go
@@ -885,6 +897,8 @@ model_update_server_default_credentials.go
 model_update_server_firmware_upgrade_policy.go
 model_update_server_ipmi_credentials.go
 model_update_server_type.go
+model_update_shared_drive.go
+model_update_shared_drive_meta.go
 model_update_storage.go
 model_update_storage_network_device_configuration.go
 model_update_storage_options.go

@@ -69,7 +69,7 @@ type SharedDriveVariables struct {
 	// Id of the permanent DNS subdomain for the Drive.
 	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
 	// The current changes to be deployed for the Drive.
-	Config DriveConfiguration `json:"config"`
+	Config SharedDriveConfiguration `json:"config"`
 	// Timestamp of the Drive creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
 	AdditionalProperties map[string]interface{}
@@ -81,7 +81,7 @@ type _SharedDriveVariables SharedDriveVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSharedDriveVariables(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string) *SharedDriveVariables {
+func NewSharedDriveVariables(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string) *SharedDriveVariables {
 	this := SharedDriveVariables{}
 	this.Label = label
 	this.SizeMb = sizeMb
@@ -790,9 +790,9 @@ func (o *SharedDriveVariables) SetDnsSubdomainPermanentId(v float32) {
 }
 
 // GetConfig returns the Config field value
-func (o *SharedDriveVariables) GetConfig() DriveConfiguration {
+func (o *SharedDriveVariables) GetConfig() SharedDriveConfiguration {
 	if o == nil {
-		var ret DriveConfiguration
+		var ret SharedDriveConfiguration
 		return ret
 	}
 
@@ -801,7 +801,7 @@ func (o *SharedDriveVariables) GetConfig() DriveConfiguration {
 
 // GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
-func (o *SharedDriveVariables) GetConfigOk() (*DriveConfiguration, bool) {
+func (o *SharedDriveVariables) GetConfigOk() (*SharedDriveConfiguration, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -809,7 +809,7 @@ func (o *SharedDriveVariables) GetConfigOk() (*DriveConfiguration, bool) {
 }
 
 // SetConfig sets field value
-func (o *SharedDriveVariables) SetConfig(v DriveConfiguration) {
+func (o *SharedDriveVariables) SetConfig(v SharedDriveConfiguration) {
 	o.Config = v
 }
 

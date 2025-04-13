@@ -1,4 +1,4 @@
-# SharedDriveVariables
+# SharedDrive
 
 ## Properties
 
@@ -30,609 +30,630 @@ Name | Type | Description | Notes
 **DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the Drive. | [optional] 
 **Config** | [**SharedDriveConfiguration**](SharedDriveConfiguration.md) | The current changes to be deployed for the Drive. | 
 **CreatedTimestamp** | **string** | Timestamp of the Drive creation. | 
+**Meta** | [**SharedDriveMeta**](SharedDriveMeta.md) | Meta information of the Drive. | 
 
 ## Methods
 
-### NewSharedDriveVariables
+### NewSharedDrive
 
-`func NewSharedDriveVariables(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string, ) *SharedDriveVariables`
+`func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string, meta SharedDriveMeta, ) *SharedDrive`
 
-NewSharedDriveVariables instantiates a new SharedDriveVariables object
+NewSharedDrive instantiates a new SharedDrive object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSharedDriveVariablesWithDefaults
+### NewSharedDriveWithDefaults
 
-`func NewSharedDriveVariablesWithDefaults() *SharedDriveVariables`
+`func NewSharedDriveWithDefaults() *SharedDrive`
 
-NewSharedDriveVariablesWithDefaults instantiates a new SharedDriveVariables object
+NewSharedDriveWithDefaults instantiates a new SharedDrive object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetLabel
 
-`func (o *SharedDriveVariables) GetLabel() string`
+`func (o *SharedDrive) GetLabel() string`
 
 GetLabel returns the Label field if non-nil, zero value otherwise.
 
 ### GetLabelOk
 
-`func (o *SharedDriveVariables) GetLabelOk() (*string, bool)`
+`func (o *SharedDrive) GetLabelOk() (*string, bool)`
 
 GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLabel
 
-`func (o *SharedDriveVariables) SetLabel(v string)`
+`func (o *SharedDrive) SetLabel(v string)`
 
 SetLabel sets Label field to given value.
 
 
 ### GetStoragePoolId
 
-`func (o *SharedDriveVariables) GetStoragePoolId() float32`
+`func (o *SharedDrive) GetStoragePoolId() float32`
 
 GetStoragePoolId returns the StoragePoolId field if non-nil, zero value otherwise.
 
 ### GetStoragePoolIdOk
 
-`func (o *SharedDriveVariables) GetStoragePoolIdOk() (*float32, bool)`
+`func (o *SharedDrive) GetStoragePoolIdOk() (*float32, bool)`
 
 GetStoragePoolIdOk returns a tuple with the StoragePoolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStoragePoolId
 
-`func (o *SharedDriveVariables) SetStoragePoolId(v float32)`
+`func (o *SharedDrive) SetStoragePoolId(v float32)`
 
 SetStoragePoolId sets StoragePoolId field to given value.
 
 ### HasStoragePoolId
 
-`func (o *SharedDriveVariables) HasStoragePoolId() bool`
+`func (o *SharedDrive) HasStoragePoolId() bool`
 
 HasStoragePoolId returns a boolean if a field has been set.
 
 ### GetSizeMb
 
-`func (o *SharedDriveVariables) GetSizeMb() float32`
+`func (o *SharedDrive) GetSizeMb() float32`
 
 GetSizeMb returns the SizeMb field if non-nil, zero value otherwise.
 
 ### GetSizeMbOk
 
-`func (o *SharedDriveVariables) GetSizeMbOk() (*float32, bool)`
+`func (o *SharedDrive) GetSizeMbOk() (*float32, bool)`
 
 GetSizeMbOk returns a tuple with the SizeMb field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSizeMb
 
-`func (o *SharedDriveVariables) SetSizeMb(v float32)`
+`func (o *SharedDrive) SetSizeMb(v float32)`
 
 SetSizeMb sets SizeMb field to given value.
 
 
 ### GetStorageImageName
 
-`func (o *SharedDriveVariables) GetStorageImageName() string`
+`func (o *SharedDrive) GetStorageImageName() string`
 
 GetStorageImageName returns the StorageImageName field if non-nil, zero value otherwise.
 
 ### GetStorageImageNameOk
 
-`func (o *SharedDriveVariables) GetStorageImageNameOk() (*string, bool)`
+`func (o *SharedDrive) GetStorageImageNameOk() (*string, bool)`
 
 GetStorageImageNameOk returns a tuple with the StorageImageName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStorageImageName
 
-`func (o *SharedDriveVariables) SetStorageImageName(v string)`
+`func (o *SharedDrive) SetStorageImageName(v string)`
 
 SetStorageImageName sets StorageImageName field to given value.
 
 ### HasStorageImageName
 
-`func (o *SharedDriveVariables) HasStorageImageName() bool`
+`func (o *SharedDrive) HasStorageImageName() bool`
 
 HasStorageImageName returns a boolean if a field has been set.
 
 ### GetStorageType
 
-`func (o *SharedDriveVariables) GetStorageType() string`
+`func (o *SharedDrive) GetStorageType() string`
 
 GetStorageType returns the StorageType field if non-nil, zero value otherwise.
 
 ### GetStorageTypeOk
 
-`func (o *SharedDriveVariables) GetStorageTypeOk() (*string, bool)`
+`func (o *SharedDrive) GetStorageTypeOk() (*string, bool)`
 
 GetStorageTypeOk returns a tuple with the StorageType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStorageType
 
-`func (o *SharedDriveVariables) SetStorageType(v string)`
+`func (o *SharedDrive) SetStorageType(v string)`
 
 SetStorageType sets StorageType field to given value.
 
 
 ### GetIoLimitPolicy
 
-`func (o *SharedDriveVariables) GetIoLimitPolicy() string`
+`func (o *SharedDrive) GetIoLimitPolicy() string`
 
 GetIoLimitPolicy returns the IoLimitPolicy field if non-nil, zero value otherwise.
 
 ### GetIoLimitPolicyOk
 
-`func (o *SharedDriveVariables) GetIoLimitPolicyOk() (*string, bool)`
+`func (o *SharedDrive) GetIoLimitPolicyOk() (*string, bool)`
 
 GetIoLimitPolicyOk returns a tuple with the IoLimitPolicy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIoLimitPolicy
 
-`func (o *SharedDriveVariables) SetIoLimitPolicy(v string)`
+`func (o *SharedDrive) SetIoLimitPolicy(v string)`
 
 SetIoLimitPolicy sets IoLimitPolicy field to given value.
 
 ### HasIoLimitPolicy
 
-`func (o *SharedDriveVariables) HasIoLimitPolicy() bool`
+`func (o *SharedDrive) HasIoLimitPolicy() bool`
 
 HasIoLimitPolicy returns a boolean if a field has been set.
 
 ### GetSubdomain
 
-`func (o *SharedDriveVariables) GetSubdomain() string`
+`func (o *SharedDrive) GetSubdomain() string`
 
 GetSubdomain returns the Subdomain field if non-nil, zero value otherwise.
 
 ### GetSubdomainOk
 
-`func (o *SharedDriveVariables) GetSubdomainOk() (*string, bool)`
+`func (o *SharedDrive) GetSubdomainOk() (*string, bool)`
 
 GetSubdomainOk returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubdomain
 
-`func (o *SharedDriveVariables) SetSubdomain(v string)`
+`func (o *SharedDrive) SetSubdomain(v string)`
 
 SetSubdomain sets Subdomain field to given value.
 
 ### HasSubdomain
 
-`func (o *SharedDriveVariables) HasSubdomain() bool`
+`func (o *SharedDrive) HasSubdomain() bool`
 
 HasSubdomain returns a boolean if a field has been set.
 
 ### GetLogicalNetworkId
 
-`func (o *SharedDriveVariables) GetLogicalNetworkId() float32`
+`func (o *SharedDrive) GetLogicalNetworkId() float32`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *SharedDriveVariables) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *SharedDrive) GetLogicalNetworkIdOk() (*float32, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *SharedDriveVariables) SetLogicalNetworkId(v float32)`
+`func (o *SharedDrive) SetLogicalNetworkId(v float32)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
 ### HasLogicalNetworkId
 
-`func (o *SharedDriveVariables) HasLogicalNetworkId() bool`
+`func (o *SharedDrive) HasLogicalNetworkId() bool`
 
 HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetUpdatedTimestamp
 
-`func (o *SharedDriveVariables) GetUpdatedTimestamp() string`
+`func (o *SharedDrive) GetUpdatedTimestamp() string`
 
 GetUpdatedTimestamp returns the UpdatedTimestamp field if non-nil, zero value otherwise.
 
 ### GetUpdatedTimestampOk
 
-`func (o *SharedDriveVariables) GetUpdatedTimestampOk() (*string, bool)`
+`func (o *SharedDrive) GetUpdatedTimestampOk() (*string, bool)`
 
 GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedTimestamp
 
-`func (o *SharedDriveVariables) SetUpdatedTimestamp(v string)`
+`func (o *SharedDrive) SetUpdatedTimestamp(v string)`
 
 SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
 
 ### GetId
 
-`func (o *SharedDriveVariables) GetId() float32`
+`func (o *SharedDrive) GetId() float32`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *SharedDriveVariables) GetIdOk() (*float32, bool)`
+`func (o *SharedDrive) GetIdOk() (*float32, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *SharedDriveVariables) SetId(v float32)`
+`func (o *SharedDrive) SetId(v float32)`
 
 SetId sets Id field to given value.
 
 
 ### GetRevision
 
-`func (o *SharedDriveVariables) GetRevision() float32`
+`func (o *SharedDrive) GetRevision() float32`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *SharedDriveVariables) GetRevisionOk() (*float32, bool)`
+`func (o *SharedDrive) GetRevisionOk() (*float32, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *SharedDriveVariables) SetRevision(v float32)`
+`func (o *SharedDrive) SetRevision(v float32)`
 
 SetRevision sets Revision field to given value.
 
 
 ### GetInfrastructureId
 
-`func (o *SharedDriveVariables) GetInfrastructureId() float32`
+`func (o *SharedDrive) GetInfrastructureId() float32`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *SharedDriveVariables) GetInfrastructureIdOk() (*float32, bool)`
+`func (o *SharedDrive) GetInfrastructureIdOk() (*float32, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *SharedDriveVariables) SetInfrastructureId(v float32)`
+`func (o *SharedDrive) SetInfrastructureId(v float32)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
 
 ### GetServiceStatus
 
-`func (o *SharedDriveVariables) GetServiceStatus() string`
+`func (o *SharedDrive) GetServiceStatus() string`
 
 GetServiceStatus returns the ServiceStatus field if non-nil, zero value otherwise.
 
 ### GetServiceStatusOk
 
-`func (o *SharedDriveVariables) GetServiceStatusOk() (*string, bool)`
+`func (o *SharedDrive) GetServiceStatusOk() (*string, bool)`
 
 GetServiceStatusOk returns a tuple with the ServiceStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServiceStatus
 
-`func (o *SharedDriveVariables) SetServiceStatus(v string)`
+`func (o *SharedDrive) SetServiceStatus(v string)`
 
 SetServiceStatus sets ServiceStatus field to given value.
 
 
 ### GetStorageRealSizeCachedMb
 
-`func (o *SharedDriveVariables) GetStorageRealSizeCachedMb() float32`
+`func (o *SharedDrive) GetStorageRealSizeCachedMb() float32`
 
 GetStorageRealSizeCachedMb returns the StorageRealSizeCachedMb field if non-nil, zero value otherwise.
 
 ### GetStorageRealSizeCachedMbOk
 
-`func (o *SharedDriveVariables) GetStorageRealSizeCachedMbOk() (*float32, bool)`
+`func (o *SharedDrive) GetStorageRealSizeCachedMbOk() (*float32, bool)`
 
 GetStorageRealSizeCachedMbOk returns a tuple with the StorageRealSizeCachedMb field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStorageRealSizeCachedMb
 
-`func (o *SharedDriveVariables) SetStorageRealSizeCachedMb(v float32)`
+`func (o *SharedDrive) SetStorageRealSizeCachedMb(v float32)`
 
 SetStorageRealSizeCachedMb sets StorageRealSizeCachedMb field to given value.
 
 ### HasStorageRealSizeCachedMb
 
-`func (o *SharedDriveVariables) HasStorageRealSizeCachedMb() bool`
+`func (o *SharedDrive) HasStorageRealSizeCachedMb() bool`
 
 HasStorageRealSizeCachedMb returns a boolean if a field has been set.
 
 ### GetStorageRealSizeWithSnapshotsCachedMb
 
-`func (o *SharedDriveVariables) GetStorageRealSizeWithSnapshotsCachedMb() float32`
+`func (o *SharedDrive) GetStorageRealSizeWithSnapshotsCachedMb() float32`
 
 GetStorageRealSizeWithSnapshotsCachedMb returns the StorageRealSizeWithSnapshotsCachedMb field if non-nil, zero value otherwise.
 
 ### GetStorageRealSizeWithSnapshotsCachedMbOk
 
-`func (o *SharedDriveVariables) GetStorageRealSizeWithSnapshotsCachedMbOk() (*float32, bool)`
+`func (o *SharedDrive) GetStorageRealSizeWithSnapshotsCachedMbOk() (*float32, bool)`
 
 GetStorageRealSizeWithSnapshotsCachedMbOk returns a tuple with the StorageRealSizeWithSnapshotsCachedMb field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStorageRealSizeWithSnapshotsCachedMb
 
-`func (o *SharedDriveVariables) SetStorageRealSizeWithSnapshotsCachedMb(v float32)`
+`func (o *SharedDrive) SetStorageRealSizeWithSnapshotsCachedMb(v float32)`
 
 SetStorageRealSizeWithSnapshotsCachedMb sets StorageRealSizeWithSnapshotsCachedMb field to given value.
 
 ### HasStorageRealSizeWithSnapshotsCachedMb
 
-`func (o *SharedDriveVariables) HasStorageRealSizeWithSnapshotsCachedMb() bool`
+`func (o *SharedDrive) HasStorageRealSizeWithSnapshotsCachedMb() bool`
 
 HasStorageRealSizeWithSnapshotsCachedMb returns a boolean if a field has been set.
 
 ### GetStorageVirtualSizeCachedMb
 
-`func (o *SharedDriveVariables) GetStorageVirtualSizeCachedMb() float32`
+`func (o *SharedDrive) GetStorageVirtualSizeCachedMb() float32`
 
 GetStorageVirtualSizeCachedMb returns the StorageVirtualSizeCachedMb field if non-nil, zero value otherwise.
 
 ### GetStorageVirtualSizeCachedMbOk
 
-`func (o *SharedDriveVariables) GetStorageVirtualSizeCachedMbOk() (*float32, bool)`
+`func (o *SharedDrive) GetStorageVirtualSizeCachedMbOk() (*float32, bool)`
 
 GetStorageVirtualSizeCachedMbOk returns a tuple with the StorageVirtualSizeCachedMb field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStorageVirtualSizeCachedMb
 
-`func (o *SharedDriveVariables) SetStorageVirtualSizeCachedMb(v float32)`
+`func (o *SharedDrive) SetStorageVirtualSizeCachedMb(v float32)`
 
 SetStorageVirtualSizeCachedMb sets StorageVirtualSizeCachedMb field to given value.
 
 ### HasStorageVirtualSizeCachedMb
 
-`func (o *SharedDriveVariables) HasStorageVirtualSizeCachedMb() bool`
+`func (o *SharedDrive) HasStorageVirtualSizeCachedMb() bool`
 
 HasStorageVirtualSizeCachedMb returns a boolean if a field has been set.
 
 ### GetStorageUpdatedTimestamp
 
-`func (o *SharedDriveVariables) GetStorageUpdatedTimestamp() string`
+`func (o *SharedDrive) GetStorageUpdatedTimestamp() string`
 
 GetStorageUpdatedTimestamp returns the StorageUpdatedTimestamp field if non-nil, zero value otherwise.
 
 ### GetStorageUpdatedTimestampOk
 
-`func (o *SharedDriveVariables) GetStorageUpdatedTimestampOk() (*string, bool)`
+`func (o *SharedDrive) GetStorageUpdatedTimestampOk() (*string, bool)`
 
 GetStorageUpdatedTimestampOk returns a tuple with the StorageUpdatedTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStorageUpdatedTimestamp
 
-`func (o *SharedDriveVariables) SetStorageUpdatedTimestamp(v string)`
+`func (o *SharedDrive) SetStorageUpdatedTimestamp(v string)`
 
 SetStorageUpdatedTimestamp sets StorageUpdatedTimestamp field to given value.
 
 
 ### GetTargets
 
-`func (o *SharedDriveVariables) GetTargets() []map[string]interface{}`
+`func (o *SharedDrive) GetTargets() []map[string]interface{}`
 
 GetTargets returns the Targets field if non-nil, zero value otherwise.
 
 ### GetTargetsOk
 
-`func (o *SharedDriveVariables) GetTargetsOk() (*[]map[string]interface{}, bool)`
+`func (o *SharedDrive) GetTargetsOk() (*[]map[string]interface{}, bool)`
 
 GetTargetsOk returns a tuple with the Targets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTargets
 
-`func (o *SharedDriveVariables) SetTargets(v []map[string]interface{})`
+`func (o *SharedDrive) SetTargets(v []map[string]interface{})`
 
 SetTargets sets Targets field to given value.
 
 ### HasTargets
 
-`func (o *SharedDriveVariables) HasTargets() bool`
+`func (o *SharedDrive) HasTargets() bool`
 
 HasTargets returns a boolean if a field has been set.
 
 ### GetWwn
 
-`func (o *SharedDriveVariables) GetWwn() string`
+`func (o *SharedDrive) GetWwn() string`
 
 GetWwn returns the Wwn field if non-nil, zero value otherwise.
 
 ### GetWwnOk
 
-`func (o *SharedDriveVariables) GetWwnOk() (*string, bool)`
+`func (o *SharedDrive) GetWwnOk() (*string, bool)`
 
 GetWwnOk returns a tuple with the Wwn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWwn
 
-`func (o *SharedDriveVariables) SetWwn(v string)`
+`func (o *SharedDrive) SetWwn(v string)`
 
 SetWwn sets Wwn field to given value.
 
 ### HasWwn
 
-`func (o *SharedDriveVariables) HasWwn() bool`
+`func (o *SharedDrive) HasWwn() bool`
 
 HasWwn returns a boolean if a field has been set.
 
 ### GetAllocationAffinity
 
-`func (o *SharedDriveVariables) GetAllocationAffinity() string`
+`func (o *SharedDrive) GetAllocationAffinity() string`
 
 GetAllocationAffinity returns the AllocationAffinity field if non-nil, zero value otherwise.
 
 ### GetAllocationAffinityOk
 
-`func (o *SharedDriveVariables) GetAllocationAffinityOk() (*string, bool)`
+`func (o *SharedDrive) GetAllocationAffinityOk() (*string, bool)`
 
 GetAllocationAffinityOk returns a tuple with the AllocationAffinity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAllocationAffinity
 
-`func (o *SharedDriveVariables) SetAllocationAffinity(v string)`
+`func (o *SharedDrive) SetAllocationAffinity(v string)`
 
 SetAllocationAffinity sets AllocationAffinity field to given value.
 
 
 ### GetProvisioningProtocol
 
-`func (o *SharedDriveVariables) GetProvisioningProtocol() string`
+`func (o *SharedDrive) GetProvisioningProtocol() string`
 
 GetProvisioningProtocol returns the ProvisioningProtocol field if non-nil, zero value otherwise.
 
 ### GetProvisioningProtocolOk
 
-`func (o *SharedDriveVariables) GetProvisioningProtocolOk() (*string, bool)`
+`func (o *SharedDrive) GetProvisioningProtocolOk() (*string, bool)`
 
 GetProvisioningProtocolOk returns a tuple with the ProvisioningProtocol field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProvisioningProtocol
 
-`func (o *SharedDriveVariables) SetProvisioningProtocol(v string)`
+`func (o *SharedDrive) SetProvisioningProtocol(v string)`
 
 SetProvisioningProtocol sets ProvisioningProtocol field to given value.
 
 
 ### GetSubdomainPermanent
 
-`func (o *SharedDriveVariables) GetSubdomainPermanent() string`
+`func (o *SharedDrive) GetSubdomainPermanent() string`
 
 GetSubdomainPermanent returns the SubdomainPermanent field if non-nil, zero value otherwise.
 
 ### GetSubdomainPermanentOk
 
-`func (o *SharedDriveVariables) GetSubdomainPermanentOk() (*string, bool)`
+`func (o *SharedDrive) GetSubdomainPermanentOk() (*string, bool)`
 
 GetSubdomainPermanentOk returns a tuple with the SubdomainPermanent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubdomainPermanent
 
-`func (o *SharedDriveVariables) SetSubdomainPermanent(v string)`
+`func (o *SharedDrive) SetSubdomainPermanent(v string)`
 
 SetSubdomainPermanent sets SubdomainPermanent field to given value.
 
 ### HasSubdomainPermanent
 
-`func (o *SharedDriveVariables) HasSubdomainPermanent() bool`
+`func (o *SharedDrive) HasSubdomainPermanent() bool`
 
 HasSubdomainPermanent returns a boolean if a field has been set.
 
 ### GetDnsSubdomainId
 
-`func (o *SharedDriveVariables) GetDnsSubdomainId() float32`
+`func (o *SharedDrive) GetDnsSubdomainId() float32`
 
 GetDnsSubdomainId returns the DnsSubdomainId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainIdOk
 
-`func (o *SharedDriveVariables) GetDnsSubdomainIdOk() (*float32, bool)`
+`func (o *SharedDrive) GetDnsSubdomainIdOk() (*float32, bool)`
 
 GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainId
 
-`func (o *SharedDriveVariables) SetDnsSubdomainId(v float32)`
+`func (o *SharedDrive) SetDnsSubdomainId(v float32)`
 
 SetDnsSubdomainId sets DnsSubdomainId field to given value.
 
 ### HasDnsSubdomainId
 
-`func (o *SharedDriveVariables) HasDnsSubdomainId() bool`
+`func (o *SharedDrive) HasDnsSubdomainId() bool`
 
 HasDnsSubdomainId returns a boolean if a field has been set.
 
 ### GetDnsSubdomainPermanentId
 
-`func (o *SharedDriveVariables) GetDnsSubdomainPermanentId() float32`
+`func (o *SharedDrive) GetDnsSubdomainPermanentId() float32`
 
 GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field if non-nil, zero value otherwise.
 
 ### GetDnsSubdomainPermanentIdOk
 
-`func (o *SharedDriveVariables) GetDnsSubdomainPermanentIdOk() (*float32, bool)`
+`func (o *SharedDrive) GetDnsSubdomainPermanentIdOk() (*float32, bool)`
 
 GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDnsSubdomainPermanentId
 
-`func (o *SharedDriveVariables) SetDnsSubdomainPermanentId(v float32)`
+`func (o *SharedDrive) SetDnsSubdomainPermanentId(v float32)`
 
 SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 
 ### HasDnsSubdomainPermanentId
 
-`func (o *SharedDriveVariables) HasDnsSubdomainPermanentId() bool`
+`func (o *SharedDrive) HasDnsSubdomainPermanentId() bool`
 
 HasDnsSubdomainPermanentId returns a boolean if a field has been set.
 
 ### GetConfig
 
-`func (o *SharedDriveVariables) GetConfig() SharedDriveConfiguration`
+`func (o *SharedDrive) GetConfig() SharedDriveConfiguration`
 
 GetConfig returns the Config field if non-nil, zero value otherwise.
 
 ### GetConfigOk
 
-`func (o *SharedDriveVariables) GetConfigOk() (*SharedDriveConfiguration, bool)`
+`func (o *SharedDrive) GetConfigOk() (*SharedDriveConfiguration, bool)`
 
 GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfig
 
-`func (o *SharedDriveVariables) SetConfig(v SharedDriveConfiguration)`
+`func (o *SharedDrive) SetConfig(v SharedDriveConfiguration)`
 
 SetConfig sets Config field to given value.
 
 
 ### GetCreatedTimestamp
 
-`func (o *SharedDriveVariables) GetCreatedTimestamp() string`
+`func (o *SharedDrive) GetCreatedTimestamp() string`
 
 GetCreatedTimestamp returns the CreatedTimestamp field if non-nil, zero value otherwise.
 
 ### GetCreatedTimestampOk
 
-`func (o *SharedDriveVariables) GetCreatedTimestampOk() (*string, bool)`
+`func (o *SharedDrive) GetCreatedTimestampOk() (*string, bool)`
 
 GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedTimestamp
 
-`func (o *SharedDriveVariables) SetCreatedTimestamp(v string)`
+`func (o *SharedDrive) SetCreatedTimestamp(v string)`
 
 SetCreatedTimestamp sets CreatedTimestamp field to given value.
+
+
+### GetMeta
+
+`func (o *SharedDrive) GetMeta() SharedDriveMeta`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *SharedDrive) GetMetaOk() (*SharedDriveMeta, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *SharedDrive) SetMeta(v SharedDriveMeta)`
+
+SetMeta sets Meta field to given value.
 
 
 

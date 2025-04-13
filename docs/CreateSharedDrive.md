@@ -1,4 +1,4 @@
-# CreateDrive
+# CreateSharedDrive
 
 ## Properties
 
@@ -6,94 +6,94 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SizeMb** | **float32** | Disk size in MB for Drive | 
 **LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Drive. | [optional] 
-**Label** | Pointer to **string** | Display name of the File Share. | [optional] 
+**Label** | Pointer to **string** | Label of the Drive. | [optional] 
 
 ## Methods
 
-### NewCreateDrive
+### NewCreateSharedDrive
 
-`func NewCreateDrive(sizeMb float32, ) *CreateDrive`
+`func NewCreateSharedDrive(sizeMb float32, ) *CreateSharedDrive`
 
-NewCreateDrive instantiates a new CreateDrive object
+NewCreateSharedDrive instantiates a new CreateSharedDrive object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCreateDriveWithDefaults
+### NewCreateSharedDriveWithDefaults
 
-`func NewCreateDriveWithDefaults() *CreateDrive`
+`func NewCreateSharedDriveWithDefaults() *CreateSharedDrive`
 
-NewCreateDriveWithDefaults instantiates a new CreateDrive object
+NewCreateSharedDriveWithDefaults instantiates a new CreateSharedDrive object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetSizeMb
 
-`func (o *CreateDrive) GetSizeMb() float32`
+`func (o *CreateSharedDrive) GetSizeMb() float32`
 
 GetSizeMb returns the SizeMb field if non-nil, zero value otherwise.
 
 ### GetSizeMbOk
 
-`func (o *CreateDrive) GetSizeMbOk() (*float32, bool)`
+`func (o *CreateSharedDrive) GetSizeMbOk() (*float32, bool)`
 
 GetSizeMbOk returns a tuple with the SizeMb field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSizeMb
 
-`func (o *CreateDrive) SetSizeMb(v float32)`
+`func (o *CreateSharedDrive) SetSizeMb(v float32)`
 
 SetSizeMb sets SizeMb field to given value.
 
 
 ### GetLogicalNetworkId
 
-`func (o *CreateDrive) GetLogicalNetworkId() float32`
+`func (o *CreateSharedDrive) GetLogicalNetworkId() float32`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *CreateDrive) GetLogicalNetworkIdOk() (*float32, bool)`
+`func (o *CreateSharedDrive) GetLogicalNetworkIdOk() (*float32, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *CreateDrive) SetLogicalNetworkId(v float32)`
+`func (o *CreateSharedDrive) SetLogicalNetworkId(v float32)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
 ### HasLogicalNetworkId
 
-`func (o *CreateDrive) HasLogicalNetworkId() bool`
+`func (o *CreateSharedDrive) HasLogicalNetworkId() bool`
 
 HasLogicalNetworkId returns a boolean if a field has been set.
 
 ### GetLabel
 
-`func (o *CreateDrive) GetLabel() string`
+`func (o *CreateSharedDrive) GetLabel() string`
 
 GetLabel returns the Label field if non-nil, zero value otherwise.
 
 ### GetLabelOk
 
-`func (o *CreateDrive) GetLabelOk() (*string, bool)`
+`func (o *CreateSharedDrive) GetLabelOk() (*string, bool)`
 
 GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLabel
 
-`func (o *CreateDrive) SetLabel(v string)`
+`func (o *CreateSharedDrive) SetLabel(v string)`
 
 SetLabel sets Label field to given value.
 
 ### HasLabel
 
-`func (o *CreateDrive) HasLabel() bool`
+`func (o *CreateSharedDrive) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
 

@@ -29,15 +29,15 @@ type DriveAPICreateDriveRequest struct {
 	ctx context.Context
 	ApiService *DriveAPIService
 	infrastructureId float32
-	createDrive *CreateDrive
+	createSharedDrive *CreateSharedDrive
 }
 
-func (r DriveAPICreateDriveRequest) CreateDrive(createDrive CreateDrive) DriveAPICreateDriveRequest {
-	r.createDrive = &createDrive
+func (r DriveAPICreateDriveRequest) CreateSharedDrive(createSharedDrive CreateSharedDrive) DriveAPICreateDriveRequest {
+	r.createSharedDrive = &createSharedDrive
 	return r
 }
 
-func (r DriveAPICreateDriveRequest) Execute() (*Drive, *http.Response, error) {
+func (r DriveAPICreateDriveRequest) Execute() (*SharedDrive, *http.Response, error) {
 	return r.ApiService.CreateDriveExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *DriveAPIService) CreateDrive(ctx context.Context, infrastructureId floa
 }
 
 // Execute executes the request
-//  @return Drive
-func (a *DriveAPIService) CreateDriveExecute(r DriveAPICreateDriveRequest) (*Drive, *http.Response, error) {
+//  @return SharedDrive
+func (a *DriveAPIService) CreateDriveExecute(r DriveAPICreateDriveRequest) (*SharedDrive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Drive
+		localVarReturnValue  *SharedDrive
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.CreateDrive")
@@ -77,8 +77,8 @@ func (a *DriveAPIService) CreateDriveExecute(r DriveAPICreateDriveRequest) (*Dri
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createDrive == nil {
-		return localVarReturnValue, nil, reportError("createDrive is required and must be specified")
+	if r.createSharedDrive == nil {
+		return localVarReturnValue, nil, reportError("createSharedDrive is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *DriveAPIService) CreateDriveExecute(r DriveAPICreateDriveRequest) (*Dri
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createDrive
+	localVarPostBody = r.createSharedDrive
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -247,7 +247,7 @@ type DriveAPIGetDriveRequest struct {
 	driveId float32
 }
 
-func (r DriveAPIGetDriveRequest) Execute() (*Drive, *http.Response, error) {
+func (r DriveAPIGetDriveRequest) Execute() (*SharedDrive, *http.Response, error) {
 	return r.ApiService.GetDriveExecute(r)
 }
 
@@ -269,13 +269,13 @@ func (a *DriveAPIService) GetDrive(ctx context.Context, driveId float32) DriveAP
 }
 
 // Execute executes the request
-//  @return Drive
-func (a *DriveAPIService) GetDriveExecute(r DriveAPIGetDriveRequest) (*Drive, *http.Response, error) {
+//  @return SharedDrive
+func (a *DriveAPIService) GetDriveExecute(r DriveAPIGetDriveRequest) (*SharedDrive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Drive
+		localVarReturnValue  *SharedDrive
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.GetDrive")
@@ -351,7 +351,7 @@ type DriveAPIGetDriveConfigInfoRequest struct {
 	driveId float32
 }
 
-func (r DriveAPIGetDriveConfigInfoRequest) Execute() (*DriveConfiguration, *http.Response, error) {
+func (r DriveAPIGetDriveConfigInfoRequest) Execute() (*SharedDriveConfiguration, *http.Response, error) {
 	return r.ApiService.GetDriveConfigInfoExecute(r)
 }
 
@@ -373,13 +373,13 @@ func (a *DriveAPIService) GetDriveConfigInfo(ctx context.Context, infrastructure
 }
 
 // Execute executes the request
-//  @return DriveConfiguration
-func (a *DriveAPIService) GetDriveConfigInfoExecute(r DriveAPIGetDriveConfigInfoRequest) (*DriveConfiguration, *http.Response, error) {
+//  @return SharedDriveConfiguration
+func (a *DriveAPIService) GetDriveConfigInfoExecute(r DriveAPIGetDriveConfigInfoRequest) (*SharedDriveConfiguration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DriveConfiguration
+		localVarReturnValue  *SharedDriveConfiguration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.GetDriveConfigInfo")
@@ -456,7 +456,7 @@ type DriveAPIGetDriveHostsRequest struct {
 	driveId float32
 }
 
-func (r DriveAPIGetDriveHostsRequest) Execute() (*DriveHosts, *http.Response, error) {
+func (r DriveAPIGetDriveHostsRequest) Execute() (*SharedDriveHosts, *http.Response, error) {
 	return r.ApiService.GetDriveHostsExecute(r)
 }
 
@@ -480,13 +480,13 @@ func (a *DriveAPIService) GetDriveHosts(ctx context.Context, infrastructureId fl
 }
 
 // Execute executes the request
-//  @return DriveHosts
-func (a *DriveAPIService) GetDriveHostsExecute(r DriveAPIGetDriveHostsRequest) (*DriveHosts, *http.Response, error) {
+//  @return SharedDriveHosts
+func (a *DriveAPIService) GetDriveHostsExecute(r DriveAPIGetDriveHostsRequest) (*SharedDriveHosts, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DriveHosts
+		localVarReturnValue  *SharedDriveHosts
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.GetDriveHosts")
@@ -563,7 +563,7 @@ type DriveAPIGetInfrastructureDriveRequest struct {
 	driveId float32
 }
 
-func (r DriveAPIGetInfrastructureDriveRequest) Execute() (*Drive, *http.Response, error) {
+func (r DriveAPIGetInfrastructureDriveRequest) Execute() (*SharedDrive, *http.Response, error) {
 	return r.ApiService.GetInfrastructureDriveExecute(r)
 }
 
@@ -587,13 +587,13 @@ func (a *DriveAPIService) GetInfrastructureDrive(ctx context.Context, infrastruc
 }
 
 // Execute executes the request
-//  @return Drive
-func (a *DriveAPIService) GetInfrastructureDriveExecute(r DriveAPIGetInfrastructureDriveRequest) (*Drive, *http.Response, error) {
+//  @return SharedDrive
+func (a *DriveAPIService) GetInfrastructureDriveExecute(r DriveAPIGetInfrastructureDriveRequest) (*SharedDrive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Drive
+		localVarReturnValue  *SharedDrive
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.GetInfrastructureDrive")
@@ -802,7 +802,7 @@ func (r DriveAPIGetInfrastructureDrivesRequest) SearchBy(searchBy []string) Driv
 	return r
 }
 
-func (r DriveAPIGetInfrastructureDrivesRequest) Execute() (*DrivePaginatedList, *http.Response, error) {
+func (r DriveAPIGetInfrastructureDrivesRequest) Execute() (*SharedDrivePaginatedList, *http.Response, error) {
 	return r.ApiService.GetInfrastructureDrivesExecute(r)
 }
 
@@ -824,13 +824,13 @@ func (a *DriveAPIService) GetInfrastructureDrives(ctx context.Context, infrastru
 }
 
 // Execute executes the request
-//  @return DrivePaginatedList
-func (a *DriveAPIService) GetInfrastructureDrivesExecute(r DriveAPIGetInfrastructureDrivesRequest) (*DrivePaginatedList, *http.Response, error) {
+//  @return SharedDrivePaginatedList
+func (a *DriveAPIService) GetInfrastructureDrivesExecute(r DriveAPIGetInfrastructureDrivesRequest) (*SharedDrivePaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DrivePaginatedList
+		localVarReturnValue  *SharedDrivePaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.GetInfrastructureDrives")
@@ -1089,12 +1089,12 @@ type DriveAPIPatchDriveConfigRequest struct {
 	ApiService *DriveAPIService
 	infrastructureId float32
 	driveId float32
-	updateDrive *UpdateDrive
+	updateSharedDrive *UpdateSharedDrive
 	ifMatch *string
 }
 
-func (r DriveAPIPatchDriveConfigRequest) UpdateDrive(updateDrive UpdateDrive) DriveAPIPatchDriveConfigRequest {
-	r.updateDrive = &updateDrive
+func (r DriveAPIPatchDriveConfigRequest) UpdateSharedDrive(updateSharedDrive UpdateSharedDrive) DriveAPIPatchDriveConfigRequest {
+	r.updateSharedDrive = &updateSharedDrive
 	return r
 }
 
@@ -1104,7 +1104,7 @@ func (r DriveAPIPatchDriveConfigRequest) IfMatch(ifMatch string) DriveAPIPatchDr
 	return r
 }
 
-func (r DriveAPIPatchDriveConfigRequest) Execute() (*Drive, *http.Response, error) {
+func (r DriveAPIPatchDriveConfigRequest) Execute() (*SharedDrive, *http.Response, error) {
 	return r.ApiService.PatchDriveConfigExecute(r)
 }
 
@@ -1126,13 +1126,13 @@ func (a *DriveAPIService) PatchDriveConfig(ctx context.Context, infrastructureId
 }
 
 // Execute executes the request
-//  @return Drive
-func (a *DriveAPIService) PatchDriveConfigExecute(r DriveAPIPatchDriveConfigRequest) (*Drive, *http.Response, error) {
+//  @return SharedDrive
+func (a *DriveAPIService) PatchDriveConfigExecute(r DriveAPIPatchDriveConfigRequest) (*SharedDrive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Drive
+		localVarReturnValue  *SharedDrive
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.PatchDriveConfig")
@@ -1147,8 +1147,8 @@ func (a *DriveAPIService) PatchDriveConfigExecute(r DriveAPIPatchDriveConfigRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateDrive == nil {
-		return localVarReturnValue, nil, reportError("updateDrive is required and must be specified")
+	if r.updateSharedDrive == nil {
+		return localVarReturnValue, nil, reportError("updateSharedDrive is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1172,7 +1172,7 @@ func (a *DriveAPIService) PatchDriveConfigExecute(r DriveAPIPatchDriveConfigRequ
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.updateDrive
+	localVarPostBody = r.updateSharedDrive
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1215,15 +1215,15 @@ type DriveAPIPatchDriveMetaRequest struct {
 	ApiService *DriveAPIService
 	infrastructureId float32
 	driveId float32
-	updateDriveMeta *UpdateDriveMeta
+	updateSharedDriveMeta *UpdateSharedDriveMeta
 }
 
-func (r DriveAPIPatchDriveMetaRequest) UpdateDriveMeta(updateDriveMeta UpdateDriveMeta) DriveAPIPatchDriveMetaRequest {
-	r.updateDriveMeta = &updateDriveMeta
+func (r DriveAPIPatchDriveMetaRequest) UpdateSharedDriveMeta(updateSharedDriveMeta UpdateSharedDriveMeta) DriveAPIPatchDriveMetaRequest {
+	r.updateSharedDriveMeta = &updateSharedDriveMeta
 	return r
 }
 
-func (r DriveAPIPatchDriveMetaRequest) Execute() (*Drive, *http.Response, error) {
+func (r DriveAPIPatchDriveMetaRequest) Execute() (*SharedDrive, *http.Response, error) {
 	return r.ApiService.PatchDriveMetaExecute(r)
 }
 
@@ -1245,13 +1245,13 @@ func (a *DriveAPIService) PatchDriveMeta(ctx context.Context, infrastructureId f
 }
 
 // Execute executes the request
-//  @return Drive
-func (a *DriveAPIService) PatchDriveMetaExecute(r DriveAPIPatchDriveMetaRequest) (*Drive, *http.Response, error) {
+//  @return SharedDrive
+func (a *DriveAPIService) PatchDriveMetaExecute(r DriveAPIPatchDriveMetaRequest) (*SharedDrive, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Drive
+		localVarReturnValue  *SharedDrive
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.PatchDriveMeta")
@@ -1266,8 +1266,8 @@ func (a *DriveAPIService) PatchDriveMetaExecute(r DriveAPIPatchDriveMetaRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateDriveMeta == nil {
-		return localVarReturnValue, nil, reportError("updateDriveMeta is required and must be specified")
+	if r.updateSharedDriveMeta == nil {
+		return localVarReturnValue, nil, reportError("updateSharedDriveMeta is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1288,7 +1288,7 @@ func (a *DriveAPIService) PatchDriveMetaExecute(r DriveAPIPatchDriveMetaRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDriveMeta
+	localVarPostBody = r.updateSharedDriveMeta
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1331,16 +1331,16 @@ type DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest struct {
 	ApiService *DriveAPIService
 	infrastructureId float32
 	driveId float32
-	driveHostsModifyBulk *DriveHostsModifyBulk
+	sharedDriveHostsModifyBulk *SharedDriveHostsModifyBulk
 }
 
 // The Drive Server Instance Group Hosts update object
-func (r DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest) DriveHostsModifyBulk(driveHostsModifyBulk DriveHostsModifyBulk) DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest {
-	r.driveHostsModifyBulk = &driveHostsModifyBulk
+func (r DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest) SharedDriveHostsModifyBulk(sharedDriveHostsModifyBulk SharedDriveHostsModifyBulk) DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest {
+	r.sharedDriveHostsModifyBulk = &sharedDriveHostsModifyBulk
 	return r
 }
 
-func (r DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest) Execute() (*DriveHosts, *http.Response, error) {
+func (r DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest) Execute() (*SharedDriveHosts, *http.Response, error) {
 	return r.ApiService.UpdateDriveServerInstanceGroupHostsBulkExecute(r)
 }
 
@@ -1364,13 +1364,13 @@ func (a *DriveAPIService) UpdateDriveServerInstanceGroupHostsBulk(ctx context.Co
 }
 
 // Execute executes the request
-//  @return DriveHosts
-func (a *DriveAPIService) UpdateDriveServerInstanceGroupHostsBulkExecute(r DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest) (*DriveHosts, *http.Response, error) {
+//  @return SharedDriveHosts
+func (a *DriveAPIService) UpdateDriveServerInstanceGroupHostsBulkExecute(r DriveAPIUpdateDriveServerInstanceGroupHostsBulkRequest) (*SharedDriveHosts, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DriveHosts
+		localVarReturnValue  *SharedDriveHosts
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DriveAPIService.UpdateDriveServerInstanceGroupHostsBulk")
@@ -1385,8 +1385,8 @@ func (a *DriveAPIService) UpdateDriveServerInstanceGroupHostsBulkExecute(r Drive
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.driveHostsModifyBulk == nil {
-		return localVarReturnValue, nil, reportError("driveHostsModifyBulk is required and must be specified")
+	if r.sharedDriveHostsModifyBulk == nil {
+		return localVarReturnValue, nil, reportError("sharedDriveHostsModifyBulk is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1407,7 +1407,7 @@ func (a *DriveAPIService) UpdateDriveServerInstanceGroupHostsBulkExecute(r Drive
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.driveHostsModifyBulk
+	localVarPostBody = r.sharedDriveHostsModifyBulk
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

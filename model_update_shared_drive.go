@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the UpdateDrive type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateDrive{}
+// checks if the UpdateSharedDrive type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateSharedDrive{}
 
-// UpdateDrive struct for UpdateDrive
-type UpdateDrive struct {
+// UpdateSharedDrive struct for UpdateSharedDrive
+type UpdateSharedDrive struct {
 	// Label of the Drive.
 	Label *string `json:"label,omitempty"`
 	// Disk size in MB for Drive
@@ -31,27 +31,27 @@ type UpdateDrive struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _UpdateDrive UpdateDrive
+type _UpdateSharedDrive UpdateSharedDrive
 
-// NewUpdateDrive instantiates a new UpdateDrive object
+// NewUpdateSharedDrive instantiates a new UpdateSharedDrive object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateDrive() *UpdateDrive {
-	this := UpdateDrive{}
+func NewUpdateSharedDrive() *UpdateSharedDrive {
+	this := UpdateSharedDrive{}
 	return &this
 }
 
-// NewUpdateDriveWithDefaults instantiates a new UpdateDrive object
+// NewUpdateSharedDriveWithDefaults instantiates a new UpdateSharedDrive object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateDriveWithDefaults() *UpdateDrive {
-	this := UpdateDrive{}
+func NewUpdateSharedDriveWithDefaults() *UpdateSharedDrive {
+	this := UpdateSharedDrive{}
 	return &this
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
-func (o *UpdateDrive) GetLabel() string {
+func (o *UpdateSharedDrive) GetLabel() string {
 	if o == nil || IsNil(o.Label) {
 		var ret string
 		return ret
@@ -61,7 +61,7 @@ func (o *UpdateDrive) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateDrive) GetLabelOk() (*string, bool) {
+func (o *UpdateSharedDrive) GetLabelOk() (*string, bool) {
 	if o == nil || IsNil(o.Label) {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *UpdateDrive) GetLabelOk() (*string, bool) {
 }
 
 // HasLabel returns a boolean if a field has been set.
-func (o *UpdateDrive) HasLabel() bool {
+func (o *UpdateSharedDrive) HasLabel() bool {
 	if o != nil && !IsNil(o.Label) {
 		return true
 	}
@@ -78,12 +78,12 @@ func (o *UpdateDrive) HasLabel() bool {
 }
 
 // SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *UpdateDrive) SetLabel(v string) {
+func (o *UpdateSharedDrive) SetLabel(v string) {
 	o.Label = &v
 }
 
 // GetSizeMb returns the SizeMb field value if set, zero value otherwise.
-func (o *UpdateDrive) GetSizeMb() float32 {
+func (o *UpdateSharedDrive) GetSizeMb() float32 {
 	if o == nil || IsNil(o.SizeMb) {
 		var ret float32
 		return ret
@@ -93,7 +93,7 @@ func (o *UpdateDrive) GetSizeMb() float32 {
 
 // GetSizeMbOk returns a tuple with the SizeMb field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateDrive) GetSizeMbOk() (*float32, bool) {
+func (o *UpdateSharedDrive) GetSizeMbOk() (*float32, bool) {
 	if o == nil || IsNil(o.SizeMb) {
 		return nil, false
 	}
@@ -101,7 +101,7 @@ func (o *UpdateDrive) GetSizeMbOk() (*float32, bool) {
 }
 
 // HasSizeMb returns a boolean if a field has been set.
-func (o *UpdateDrive) HasSizeMb() bool {
+func (o *UpdateSharedDrive) HasSizeMb() bool {
 	if o != nil && !IsNil(o.SizeMb) {
 		return true
 	}
@@ -110,12 +110,12 @@ func (o *UpdateDrive) HasSizeMb() bool {
 }
 
 // SetSizeMb gets a reference to the given float32 and assigns it to the SizeMb field.
-func (o *UpdateDrive) SetSizeMb(v float32) {
+func (o *UpdateSharedDrive) SetSizeMb(v float32) {
 	o.SizeMb = &v
 }
 
 // GetIoLimitPolicy returns the IoLimitPolicy field value if set, zero value otherwise.
-func (o *UpdateDrive) GetIoLimitPolicy() string {
+func (o *UpdateSharedDrive) GetIoLimitPolicy() string {
 	if o == nil || IsNil(o.IoLimitPolicy) {
 		var ret string
 		return ret
@@ -125,7 +125,7 @@ func (o *UpdateDrive) GetIoLimitPolicy() string {
 
 // GetIoLimitPolicyOk returns a tuple with the IoLimitPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateDrive) GetIoLimitPolicyOk() (*string, bool) {
+func (o *UpdateSharedDrive) GetIoLimitPolicyOk() (*string, bool) {
 	if o == nil || IsNil(o.IoLimitPolicy) {
 		return nil, false
 	}
@@ -133,7 +133,7 @@ func (o *UpdateDrive) GetIoLimitPolicyOk() (*string, bool) {
 }
 
 // HasIoLimitPolicy returns a boolean if a field has been set.
-func (o *UpdateDrive) HasIoLimitPolicy() bool {
+func (o *UpdateSharedDrive) HasIoLimitPolicy() bool {
 	if o != nil && !IsNil(o.IoLimitPolicy) {
 		return true
 	}
@@ -142,12 +142,12 @@ func (o *UpdateDrive) HasIoLimitPolicy() bool {
 }
 
 // SetIoLimitPolicy gets a reference to the given string and assigns it to the IoLimitPolicy field.
-func (o *UpdateDrive) SetIoLimitPolicy(v string) {
+func (o *UpdateSharedDrive) SetIoLimitPolicy(v string) {
 	o.IoLimitPolicy = &v
 }
 
 // GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
-func (o *UpdateDrive) GetLogicalNetworkId() float32 {
+func (o *UpdateSharedDrive) GetLogicalNetworkId() float32 {
 	if o == nil || IsNil(o.LogicalNetworkId) {
 		var ret float32
 		return ret
@@ -157,7 +157,7 @@ func (o *UpdateDrive) GetLogicalNetworkId() float32 {
 
 // GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateDrive) GetLogicalNetworkIdOk() (*float32, bool) {
+func (o *UpdateSharedDrive) GetLogicalNetworkIdOk() (*float32, bool) {
 	if o == nil || IsNil(o.LogicalNetworkId) {
 		return nil, false
 	}
@@ -165,7 +165,7 @@ func (o *UpdateDrive) GetLogicalNetworkIdOk() (*float32, bool) {
 }
 
 // HasLogicalNetworkId returns a boolean if a field has been set.
-func (o *UpdateDrive) HasLogicalNetworkId() bool {
+func (o *UpdateSharedDrive) HasLogicalNetworkId() bool {
 	if o != nil && !IsNil(o.LogicalNetworkId) {
 		return true
 	}
@@ -174,11 +174,11 @@ func (o *UpdateDrive) HasLogicalNetworkId() bool {
 }
 
 // SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
-func (o *UpdateDrive) SetLogicalNetworkId(v float32) {
+func (o *UpdateSharedDrive) SetLogicalNetworkId(v float32) {
 	o.LogicalNetworkId = &v
 }
 
-func (o UpdateDrive) MarshalJSON() ([]byte, error) {
+func (o UpdateSharedDrive) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -186,7 +186,7 @@ func (o UpdateDrive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateDrive) ToMap() (map[string]interface{}, error) {
+func (o UpdateSharedDrive) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
@@ -208,16 +208,16 @@ func (o UpdateDrive) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *UpdateDrive) UnmarshalJSON(data []byte) (err error) {
-	varUpdateDrive := _UpdateDrive{}
+func (o *UpdateSharedDrive) UnmarshalJSON(data []byte) (err error) {
+	varUpdateSharedDrive := _UpdateSharedDrive{}
 
-	err = json.Unmarshal(data, &varUpdateDrive)
+	err = json.Unmarshal(data, &varUpdateSharedDrive)
 
 	if err != nil {
 		return err
 	}
 
-	*o = UpdateDrive(varUpdateDrive)
+	*o = UpdateSharedDrive(varUpdateSharedDrive)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -232,38 +232,38 @@ func (o *UpdateDrive) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableUpdateDrive struct {
-	value *UpdateDrive
+type NullableUpdateSharedDrive struct {
+	value *UpdateSharedDrive
 	isSet bool
 }
 
-func (v NullableUpdateDrive) Get() *UpdateDrive {
+func (v NullableUpdateSharedDrive) Get() *UpdateSharedDrive {
 	return v.value
 }
 
-func (v *NullableUpdateDrive) Set(val *UpdateDrive) {
+func (v *NullableUpdateSharedDrive) Set(val *UpdateSharedDrive) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateDrive) IsSet() bool {
+func (v NullableUpdateSharedDrive) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateDrive) Unset() {
+func (v *NullableUpdateSharedDrive) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateDrive(val *UpdateDrive) *NullableUpdateDrive {
-	return &NullableUpdateDrive{value: val, isSet: true}
+func NewNullableUpdateSharedDrive(val *UpdateSharedDrive) *NullableUpdateSharedDrive {
+	return &NullableUpdateSharedDrive{value: val, isSet: true}
 }
 
-func (v NullableUpdateDrive) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateSharedDrive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateDrive) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateSharedDrive) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

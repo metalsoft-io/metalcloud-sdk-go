@@ -16,42 +16,29 @@ import (
 	"fmt"
 )
 
-// checks if the Drive type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Drive{}
+// checks if the SharedDrive type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SharedDrive{}
 
-// Drive struct for Drive
-type Drive struct {
+// SharedDrive struct for SharedDrive
+type SharedDrive struct {
 	// Label of the Drive.
 	Label string `json:"label"`
-	// Drive Array Id
-	GroupId float32 `json:"groupId"`
-	InstanceId *float32 `json:"instanceId,omitempty"`
 	// Id of the storage pool the Drive is assigned to
 	StoragePoolId *float32 `json:"storagePoolId,omitempty"`
 	// Disk size in MB for Drive
 	SizeMb float32 `json:"sizeMb"`
 	// The name of the storage image used by the Drive.
 	StorageImageName *string `json:"storageImageName,omitempty"`
-	// The iSCSI Index in hex format of the Drive.
-	IscsiIndexHex *string `json:"iscsiIndexHex,omitempty"`
-	// Template Id
-	TemplateId *float32 `json:"templateId,omitempty"`
-	// The OS Admin Username the Drive will use.
-	OsAdminUsername *string `json:"osAdminUsername,omitempty"`
-	// The OS Admin Password the Drive will use.
-	OsAdminPasswordEncrypted *string `json:"osAdminPasswordEncrypted,omitempty"`
-	// Storage type of the Drive
+	// Service status of the Drive
 	StorageType string `json:"storageType"`
+	// The IO limit policy of the Drive.
+	IoLimitPolicy *string `json:"ioLimitPolicy,omitempty"`
 	// Subdomain of the Drive.
 	Subdomain *string `json:"subdomain,omitempty"`
+	// Id of the Logical Network for the Drive.
+	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	// Timestamp of the Drive last update.
 	UpdatedTimestamp string `json:"updatedTimestamp"`
-	// SSH port used by the Drive.
-	SshPort *float32 `json:"sshPort,omitempty"`
-	// Operating system information of the Drive.
-	OperatingSystemInfo map[string]interface{} `json:"operatingSystemInfo,omitempty"`
-	// Filesystem information of the Drive.
-	FilesystemInfo map[string]interface{} `json:"filesystemInfo,omitempty"`
 	// Id of the Drive
 	Id float32 `json:"id"`
 	// Revision of the Drive State
@@ -70,11 +57,9 @@ type Drive struct {
 	StorageUpdatedTimestamp string `json:"storageUpdatedTimestamp"`
 	// Targets of the Drive.
 	Targets []map[string]interface{} `json:"targets,omitempty"`
-	// Custom information of the Drive.
-	ClusterCustomInfo map[string]interface{} `json:"clusterCustomInfo,omitempty"`
-	// Pair of SSH Keys to use on the Drive.
-	SshKeyPairInternalEncrypted map[string]interface{} `json:"sshKeyPairInternalEncrypted,omitempty"`
 	Wwn *string `json:"wwn,omitempty"`
+	// Allocation affinity of the Drive
+	AllocationAffinity string `json:"allocationAffinity"`
 	// Provisioning protocol of the Drive
 	ProvisioningProtocol string `json:"provisioningProtocol"`
 	// Subdomain permanent of the Drive.
@@ -83,27 +68,24 @@ type Drive struct {
 	DnsSubdomainId *float32 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the Drive.
 	DnsSubdomainPermanentId *float32 `json:"dnsSubdomainPermanentId,omitempty"`
-	// Id of the VLAN for the Drive.
-	NetworkVlanId *float32 `json:"networkVlanId,omitempty"`
 	// The current changes to be deployed for the Drive.
-	Config DriveConfiguration `json:"config"`
+	Config SharedDriveConfiguration `json:"config"`
 	// Timestamp of the Drive creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Meta information of the Drive.
-	Meta DriveMeta `json:"meta"`
+	Meta SharedDriveMeta `json:"meta"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _Drive Drive
+type _SharedDrive SharedDrive
 
-// NewDrive instantiates a new Drive object
+// NewSharedDrive instantiates a new SharedDrive object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDrive(label string, groupId float32, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, meta DriveMeta) *Drive {
-	this := Drive{}
+func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string, meta SharedDriveMeta) *SharedDrive {
+	this := SharedDrive{}
 	this.Label = label
-	this.GroupId = groupId
 	this.SizeMb = sizeMb
 	this.StorageType = storageType
 	this.UpdatedTimestamp = updatedTimestamp
@@ -112,6 +94,7 @@ func NewDrive(label string, groupId float32, sizeMb float32, storageType string,
 	this.InfrastructureId = infrastructureId
 	this.ServiceStatus = serviceStatus
 	this.StorageUpdatedTimestamp = storageUpdatedTimestamp
+	this.AllocationAffinity = allocationAffinity
 	this.ProvisioningProtocol = provisioningProtocol
 	this.Config = config
 	this.CreatedTimestamp = createdTimestamp
@@ -119,18 +102,18 @@ func NewDrive(label string, groupId float32, sizeMb float32, storageType string,
 	return &this
 }
 
-// NewDriveWithDefaults instantiates a new Drive object
+// NewSharedDriveWithDefaults instantiates a new SharedDrive object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewDriveWithDefaults() *Drive {
-	this := Drive{}
+func NewSharedDriveWithDefaults() *SharedDrive {
+	this := SharedDrive{}
 	var storageType string = "iscsi_ssd"
 	this.StorageType = storageType
 	return &this
 }
 
 // GetLabel returns the Label field value
-func (o *Drive) GetLabel() string {
+func (o *SharedDrive) GetLabel() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -141,7 +124,7 @@ func (o *Drive) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetLabelOk() (*string, bool) {
+func (o *SharedDrive) GetLabelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -149,68 +132,12 @@ func (o *Drive) GetLabelOk() (*string, bool) {
 }
 
 // SetLabel sets field value
-func (o *Drive) SetLabel(v string) {
+func (o *SharedDrive) SetLabel(v string) {
 	o.Label = v
 }
 
-// GetGroupId returns the GroupId field value
-func (o *Drive) GetGroupId() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.GroupId
-}
-
-// GetGroupIdOk returns a tuple with the GroupId field value
-// and a boolean to check if the value has been set.
-func (o *Drive) GetGroupIdOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.GroupId, true
-}
-
-// SetGroupId sets field value
-func (o *Drive) SetGroupId(v float32) {
-	o.GroupId = v
-}
-
-// GetInstanceId returns the InstanceId field value if set, zero value otherwise.
-func (o *Drive) GetInstanceId() float32 {
-	if o == nil || IsNil(o.InstanceId) {
-		var ret float32
-		return ret
-	}
-	return *o.InstanceId
-}
-
-// GetInstanceIdOk returns a tuple with the InstanceId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Drive) GetInstanceIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.InstanceId) {
-		return nil, false
-	}
-	return o.InstanceId, true
-}
-
-// HasInstanceId returns a boolean if a field has been set.
-func (o *Drive) HasInstanceId() bool {
-	if o != nil && !IsNil(o.InstanceId) {
-		return true
-	}
-
-	return false
-}
-
-// SetInstanceId gets a reference to the given float32 and assigns it to the InstanceId field.
-func (o *Drive) SetInstanceId(v float32) {
-	o.InstanceId = &v
-}
-
 // GetStoragePoolId returns the StoragePoolId field value if set, zero value otherwise.
-func (o *Drive) GetStoragePoolId() float32 {
+func (o *SharedDrive) GetStoragePoolId() float32 {
 	if o == nil || IsNil(o.StoragePoolId) {
 		var ret float32
 		return ret
@@ -220,7 +147,7 @@ func (o *Drive) GetStoragePoolId() float32 {
 
 // GetStoragePoolIdOk returns a tuple with the StoragePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetStoragePoolIdOk() (*float32, bool) {
+func (o *SharedDrive) GetStoragePoolIdOk() (*float32, bool) {
 	if o == nil || IsNil(o.StoragePoolId) {
 		return nil, false
 	}
@@ -228,7 +155,7 @@ func (o *Drive) GetStoragePoolIdOk() (*float32, bool) {
 }
 
 // HasStoragePoolId returns a boolean if a field has been set.
-func (o *Drive) HasStoragePoolId() bool {
+func (o *SharedDrive) HasStoragePoolId() bool {
 	if o != nil && !IsNil(o.StoragePoolId) {
 		return true
 	}
@@ -237,12 +164,12 @@ func (o *Drive) HasStoragePoolId() bool {
 }
 
 // SetStoragePoolId gets a reference to the given float32 and assigns it to the StoragePoolId field.
-func (o *Drive) SetStoragePoolId(v float32) {
+func (o *SharedDrive) SetStoragePoolId(v float32) {
 	o.StoragePoolId = &v
 }
 
 // GetSizeMb returns the SizeMb field value
-func (o *Drive) GetSizeMb() float32 {
+func (o *SharedDrive) GetSizeMb() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -253,7 +180,7 @@ func (o *Drive) GetSizeMb() float32 {
 
 // GetSizeMbOk returns a tuple with the SizeMb field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetSizeMbOk() (*float32, bool) {
+func (o *SharedDrive) GetSizeMbOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -261,12 +188,12 @@ func (o *Drive) GetSizeMbOk() (*float32, bool) {
 }
 
 // SetSizeMb sets field value
-func (o *Drive) SetSizeMb(v float32) {
+func (o *SharedDrive) SetSizeMb(v float32) {
 	o.SizeMb = v
 }
 
 // GetStorageImageName returns the StorageImageName field value if set, zero value otherwise.
-func (o *Drive) GetStorageImageName() string {
+func (o *SharedDrive) GetStorageImageName() string {
 	if o == nil || IsNil(o.StorageImageName) {
 		var ret string
 		return ret
@@ -276,7 +203,7 @@ func (o *Drive) GetStorageImageName() string {
 
 // GetStorageImageNameOk returns a tuple with the StorageImageName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetStorageImageNameOk() (*string, bool) {
+func (o *SharedDrive) GetStorageImageNameOk() (*string, bool) {
 	if o == nil || IsNil(o.StorageImageName) {
 		return nil, false
 	}
@@ -284,7 +211,7 @@ func (o *Drive) GetStorageImageNameOk() (*string, bool) {
 }
 
 // HasStorageImageName returns a boolean if a field has been set.
-func (o *Drive) HasStorageImageName() bool {
+func (o *SharedDrive) HasStorageImageName() bool {
 	if o != nil && !IsNil(o.StorageImageName) {
 		return true
 	}
@@ -293,140 +220,12 @@ func (o *Drive) HasStorageImageName() bool {
 }
 
 // SetStorageImageName gets a reference to the given string and assigns it to the StorageImageName field.
-func (o *Drive) SetStorageImageName(v string) {
+func (o *SharedDrive) SetStorageImageName(v string) {
 	o.StorageImageName = &v
 }
 
-// GetIscsiIndexHex returns the IscsiIndexHex field value if set, zero value otherwise.
-func (o *Drive) GetIscsiIndexHex() string {
-	if o == nil || IsNil(o.IscsiIndexHex) {
-		var ret string
-		return ret
-	}
-	return *o.IscsiIndexHex
-}
-
-// GetIscsiIndexHexOk returns a tuple with the IscsiIndexHex field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Drive) GetIscsiIndexHexOk() (*string, bool) {
-	if o == nil || IsNil(o.IscsiIndexHex) {
-		return nil, false
-	}
-	return o.IscsiIndexHex, true
-}
-
-// HasIscsiIndexHex returns a boolean if a field has been set.
-func (o *Drive) HasIscsiIndexHex() bool {
-	if o != nil && !IsNil(o.IscsiIndexHex) {
-		return true
-	}
-
-	return false
-}
-
-// SetIscsiIndexHex gets a reference to the given string and assigns it to the IscsiIndexHex field.
-func (o *Drive) SetIscsiIndexHex(v string) {
-	o.IscsiIndexHex = &v
-}
-
-// GetTemplateId returns the TemplateId field value if set, zero value otherwise.
-func (o *Drive) GetTemplateId() float32 {
-	if o == nil || IsNil(o.TemplateId) {
-		var ret float32
-		return ret
-	}
-	return *o.TemplateId
-}
-
-// GetTemplateIdOk returns a tuple with the TemplateId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Drive) GetTemplateIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.TemplateId) {
-		return nil, false
-	}
-	return o.TemplateId, true
-}
-
-// HasTemplateId returns a boolean if a field has been set.
-func (o *Drive) HasTemplateId() bool {
-	if o != nil && !IsNil(o.TemplateId) {
-		return true
-	}
-
-	return false
-}
-
-// SetTemplateId gets a reference to the given float32 and assigns it to the TemplateId field.
-func (o *Drive) SetTemplateId(v float32) {
-	o.TemplateId = &v
-}
-
-// GetOsAdminUsername returns the OsAdminUsername field value if set, zero value otherwise.
-func (o *Drive) GetOsAdminUsername() string {
-	if o == nil || IsNil(o.OsAdminUsername) {
-		var ret string
-		return ret
-	}
-	return *o.OsAdminUsername
-}
-
-// GetOsAdminUsernameOk returns a tuple with the OsAdminUsername field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Drive) GetOsAdminUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.OsAdminUsername) {
-		return nil, false
-	}
-	return o.OsAdminUsername, true
-}
-
-// HasOsAdminUsername returns a boolean if a field has been set.
-func (o *Drive) HasOsAdminUsername() bool {
-	if o != nil && !IsNil(o.OsAdminUsername) {
-		return true
-	}
-
-	return false
-}
-
-// SetOsAdminUsername gets a reference to the given string and assigns it to the OsAdminUsername field.
-func (o *Drive) SetOsAdminUsername(v string) {
-	o.OsAdminUsername = &v
-}
-
-// GetOsAdminPasswordEncrypted returns the OsAdminPasswordEncrypted field value if set, zero value otherwise.
-func (o *Drive) GetOsAdminPasswordEncrypted() string {
-	if o == nil || IsNil(o.OsAdminPasswordEncrypted) {
-		var ret string
-		return ret
-	}
-	return *o.OsAdminPasswordEncrypted
-}
-
-// GetOsAdminPasswordEncryptedOk returns a tuple with the OsAdminPasswordEncrypted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Drive) GetOsAdminPasswordEncryptedOk() (*string, bool) {
-	if o == nil || IsNil(o.OsAdminPasswordEncrypted) {
-		return nil, false
-	}
-	return o.OsAdminPasswordEncrypted, true
-}
-
-// HasOsAdminPasswordEncrypted returns a boolean if a field has been set.
-func (o *Drive) HasOsAdminPasswordEncrypted() bool {
-	if o != nil && !IsNil(o.OsAdminPasswordEncrypted) {
-		return true
-	}
-
-	return false
-}
-
-// SetOsAdminPasswordEncrypted gets a reference to the given string and assigns it to the OsAdminPasswordEncrypted field.
-func (o *Drive) SetOsAdminPasswordEncrypted(v string) {
-	o.OsAdminPasswordEncrypted = &v
-}
-
 // GetStorageType returns the StorageType field value
-func (o *Drive) GetStorageType() string {
+func (o *SharedDrive) GetStorageType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -437,7 +236,7 @@ func (o *Drive) GetStorageType() string {
 
 // GetStorageTypeOk returns a tuple with the StorageType field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetStorageTypeOk() (*string, bool) {
+func (o *SharedDrive) GetStorageTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -445,12 +244,44 @@ func (o *Drive) GetStorageTypeOk() (*string, bool) {
 }
 
 // SetStorageType sets field value
-func (o *Drive) SetStorageType(v string) {
+func (o *SharedDrive) SetStorageType(v string) {
 	o.StorageType = v
 }
 
+// GetIoLimitPolicy returns the IoLimitPolicy field value if set, zero value otherwise.
+func (o *SharedDrive) GetIoLimitPolicy() string {
+	if o == nil || IsNil(o.IoLimitPolicy) {
+		var ret string
+		return ret
+	}
+	return *o.IoLimitPolicy
+}
+
+// GetIoLimitPolicyOk returns a tuple with the IoLimitPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SharedDrive) GetIoLimitPolicyOk() (*string, bool) {
+	if o == nil || IsNil(o.IoLimitPolicy) {
+		return nil, false
+	}
+	return o.IoLimitPolicy, true
+}
+
+// HasIoLimitPolicy returns a boolean if a field has been set.
+func (o *SharedDrive) HasIoLimitPolicy() bool {
+	if o != nil && !IsNil(o.IoLimitPolicy) {
+		return true
+	}
+
+	return false
+}
+
+// SetIoLimitPolicy gets a reference to the given string and assigns it to the IoLimitPolicy field.
+func (o *SharedDrive) SetIoLimitPolicy(v string) {
+	o.IoLimitPolicy = &v
+}
+
 // GetSubdomain returns the Subdomain field value if set, zero value otherwise.
-func (o *Drive) GetSubdomain() string {
+func (o *SharedDrive) GetSubdomain() string {
 	if o == nil || IsNil(o.Subdomain) {
 		var ret string
 		return ret
@@ -460,7 +291,7 @@ func (o *Drive) GetSubdomain() string {
 
 // GetSubdomainOk returns a tuple with the Subdomain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetSubdomainOk() (*string, bool) {
+func (o *SharedDrive) GetSubdomainOk() (*string, bool) {
 	if o == nil || IsNil(o.Subdomain) {
 		return nil, false
 	}
@@ -468,7 +299,7 @@ func (o *Drive) GetSubdomainOk() (*string, bool) {
 }
 
 // HasSubdomain returns a boolean if a field has been set.
-func (o *Drive) HasSubdomain() bool {
+func (o *SharedDrive) HasSubdomain() bool {
 	if o != nil && !IsNil(o.Subdomain) {
 		return true
 	}
@@ -477,12 +308,44 @@ func (o *Drive) HasSubdomain() bool {
 }
 
 // SetSubdomain gets a reference to the given string and assigns it to the Subdomain field.
-func (o *Drive) SetSubdomain(v string) {
+func (o *SharedDrive) SetSubdomain(v string) {
 	o.Subdomain = &v
 }
 
+// GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
+func (o *SharedDrive) GetLogicalNetworkId() float32 {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		var ret float32
+		return ret
+	}
+	return *o.LogicalNetworkId
+}
+
+// GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SharedDrive) GetLogicalNetworkIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.LogicalNetworkId) {
+		return nil, false
+	}
+	return o.LogicalNetworkId, true
+}
+
+// HasLogicalNetworkId returns a boolean if a field has been set.
+func (o *SharedDrive) HasLogicalNetworkId() bool {
+	if o != nil && !IsNil(o.LogicalNetworkId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
+func (o *SharedDrive) SetLogicalNetworkId(v float32) {
+	o.LogicalNetworkId = &v
+}
+
 // GetUpdatedTimestamp returns the UpdatedTimestamp field value
-func (o *Drive) GetUpdatedTimestamp() string {
+func (o *SharedDrive) GetUpdatedTimestamp() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -493,7 +356,7 @@ func (o *Drive) GetUpdatedTimestamp() string {
 
 // GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetUpdatedTimestampOk() (*string, bool) {
+func (o *SharedDrive) GetUpdatedTimestampOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -501,108 +364,12 @@ func (o *Drive) GetUpdatedTimestampOk() (*string, bool) {
 }
 
 // SetUpdatedTimestamp sets field value
-func (o *Drive) SetUpdatedTimestamp(v string) {
+func (o *SharedDrive) SetUpdatedTimestamp(v string) {
 	o.UpdatedTimestamp = v
 }
 
-// GetSshPort returns the SshPort field value if set, zero value otherwise.
-func (o *Drive) GetSshPort() float32 {
-	if o == nil || IsNil(o.SshPort) {
-		var ret float32
-		return ret
-	}
-	return *o.SshPort
-}
-
-// GetSshPortOk returns a tuple with the SshPort field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Drive) GetSshPortOk() (*float32, bool) {
-	if o == nil || IsNil(o.SshPort) {
-		return nil, false
-	}
-	return o.SshPort, true
-}
-
-// HasSshPort returns a boolean if a field has been set.
-func (o *Drive) HasSshPort() bool {
-	if o != nil && !IsNil(o.SshPort) {
-		return true
-	}
-
-	return false
-}
-
-// SetSshPort gets a reference to the given float32 and assigns it to the SshPort field.
-func (o *Drive) SetSshPort(v float32) {
-	o.SshPort = &v
-}
-
-// GetOperatingSystemInfo returns the OperatingSystemInfo field value if set, zero value otherwise.
-func (o *Drive) GetOperatingSystemInfo() map[string]interface{} {
-	if o == nil || IsNil(o.OperatingSystemInfo) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.OperatingSystemInfo
-}
-
-// GetOperatingSystemInfoOk returns a tuple with the OperatingSystemInfo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Drive) GetOperatingSystemInfoOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.OperatingSystemInfo) {
-		return map[string]interface{}{}, false
-	}
-	return o.OperatingSystemInfo, true
-}
-
-// HasOperatingSystemInfo returns a boolean if a field has been set.
-func (o *Drive) HasOperatingSystemInfo() bool {
-	if o != nil && !IsNil(o.OperatingSystemInfo) {
-		return true
-	}
-
-	return false
-}
-
-// SetOperatingSystemInfo gets a reference to the given map[string]interface{} and assigns it to the OperatingSystemInfo field.
-func (o *Drive) SetOperatingSystemInfo(v map[string]interface{}) {
-	o.OperatingSystemInfo = v
-}
-
-// GetFilesystemInfo returns the FilesystemInfo field value if set, zero value otherwise.
-func (o *Drive) GetFilesystemInfo() map[string]interface{} {
-	if o == nil || IsNil(o.FilesystemInfo) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.FilesystemInfo
-}
-
-// GetFilesystemInfoOk returns a tuple with the FilesystemInfo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Drive) GetFilesystemInfoOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.FilesystemInfo) {
-		return map[string]interface{}{}, false
-	}
-	return o.FilesystemInfo, true
-}
-
-// HasFilesystemInfo returns a boolean if a field has been set.
-func (o *Drive) HasFilesystemInfo() bool {
-	if o != nil && !IsNil(o.FilesystemInfo) {
-		return true
-	}
-
-	return false
-}
-
-// SetFilesystemInfo gets a reference to the given map[string]interface{} and assigns it to the FilesystemInfo field.
-func (o *Drive) SetFilesystemInfo(v map[string]interface{}) {
-	o.FilesystemInfo = v
-}
-
 // GetId returns the Id field value
-func (o *Drive) GetId() float32 {
+func (o *SharedDrive) GetId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -613,7 +380,7 @@ func (o *Drive) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetIdOk() (*float32, bool) {
+func (o *SharedDrive) GetIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -621,12 +388,12 @@ func (o *Drive) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *Drive) SetId(v float32) {
+func (o *SharedDrive) SetId(v float32) {
 	o.Id = v
 }
 
 // GetRevision returns the Revision field value
-func (o *Drive) GetRevision() float32 {
+func (o *SharedDrive) GetRevision() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -637,7 +404,7 @@ func (o *Drive) GetRevision() float32 {
 
 // GetRevisionOk returns a tuple with the Revision field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetRevisionOk() (*float32, bool) {
+func (o *SharedDrive) GetRevisionOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -645,12 +412,12 @@ func (o *Drive) GetRevisionOk() (*float32, bool) {
 }
 
 // SetRevision sets field value
-func (o *Drive) SetRevision(v float32) {
+func (o *SharedDrive) SetRevision(v float32) {
 	o.Revision = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
-func (o *Drive) GetInfrastructureId() float32 {
+func (o *SharedDrive) GetInfrastructureId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -661,7 +428,7 @@ func (o *Drive) GetInfrastructureId() float32 {
 
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetInfrastructureIdOk() (*float32, bool) {
+func (o *SharedDrive) GetInfrastructureIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -669,12 +436,12 @@ func (o *Drive) GetInfrastructureIdOk() (*float32, bool) {
 }
 
 // SetInfrastructureId sets field value
-func (o *Drive) SetInfrastructureId(v float32) {
+func (o *SharedDrive) SetInfrastructureId(v float32) {
 	o.InfrastructureId = v
 }
 
 // GetServiceStatus returns the ServiceStatus field value
-func (o *Drive) GetServiceStatus() string {
+func (o *SharedDrive) GetServiceStatus() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -685,7 +452,7 @@ func (o *Drive) GetServiceStatus() string {
 
 // GetServiceStatusOk returns a tuple with the ServiceStatus field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetServiceStatusOk() (*string, bool) {
+func (o *SharedDrive) GetServiceStatusOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -693,12 +460,12 @@ func (o *Drive) GetServiceStatusOk() (*string, bool) {
 }
 
 // SetServiceStatus sets field value
-func (o *Drive) SetServiceStatus(v string) {
+func (o *SharedDrive) SetServiceStatus(v string) {
 	o.ServiceStatus = v
 }
 
 // GetStorageRealSizeCachedMb returns the StorageRealSizeCachedMb field value if set, zero value otherwise.
-func (o *Drive) GetStorageRealSizeCachedMb() float32 {
+func (o *SharedDrive) GetStorageRealSizeCachedMb() float32 {
 	if o == nil || IsNil(o.StorageRealSizeCachedMb) {
 		var ret float32
 		return ret
@@ -708,7 +475,7 @@ func (o *Drive) GetStorageRealSizeCachedMb() float32 {
 
 // GetStorageRealSizeCachedMbOk returns a tuple with the StorageRealSizeCachedMb field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetStorageRealSizeCachedMbOk() (*float32, bool) {
+func (o *SharedDrive) GetStorageRealSizeCachedMbOk() (*float32, bool) {
 	if o == nil || IsNil(o.StorageRealSizeCachedMb) {
 		return nil, false
 	}
@@ -716,7 +483,7 @@ func (o *Drive) GetStorageRealSizeCachedMbOk() (*float32, bool) {
 }
 
 // HasStorageRealSizeCachedMb returns a boolean if a field has been set.
-func (o *Drive) HasStorageRealSizeCachedMb() bool {
+func (o *SharedDrive) HasStorageRealSizeCachedMb() bool {
 	if o != nil && !IsNil(o.StorageRealSizeCachedMb) {
 		return true
 	}
@@ -725,12 +492,12 @@ func (o *Drive) HasStorageRealSizeCachedMb() bool {
 }
 
 // SetStorageRealSizeCachedMb gets a reference to the given float32 and assigns it to the StorageRealSizeCachedMb field.
-func (o *Drive) SetStorageRealSizeCachedMb(v float32) {
+func (o *SharedDrive) SetStorageRealSizeCachedMb(v float32) {
 	o.StorageRealSizeCachedMb = &v
 }
 
 // GetStorageRealSizeWithSnapshotsCachedMb returns the StorageRealSizeWithSnapshotsCachedMb field value if set, zero value otherwise.
-func (o *Drive) GetStorageRealSizeWithSnapshotsCachedMb() float32 {
+func (o *SharedDrive) GetStorageRealSizeWithSnapshotsCachedMb() float32 {
 	if o == nil || IsNil(o.StorageRealSizeWithSnapshotsCachedMb) {
 		var ret float32
 		return ret
@@ -740,7 +507,7 @@ func (o *Drive) GetStorageRealSizeWithSnapshotsCachedMb() float32 {
 
 // GetStorageRealSizeWithSnapshotsCachedMbOk returns a tuple with the StorageRealSizeWithSnapshotsCachedMb field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetStorageRealSizeWithSnapshotsCachedMbOk() (*float32, bool) {
+func (o *SharedDrive) GetStorageRealSizeWithSnapshotsCachedMbOk() (*float32, bool) {
 	if o == nil || IsNil(o.StorageRealSizeWithSnapshotsCachedMb) {
 		return nil, false
 	}
@@ -748,7 +515,7 @@ func (o *Drive) GetStorageRealSizeWithSnapshotsCachedMbOk() (*float32, bool) {
 }
 
 // HasStorageRealSizeWithSnapshotsCachedMb returns a boolean if a field has been set.
-func (o *Drive) HasStorageRealSizeWithSnapshotsCachedMb() bool {
+func (o *SharedDrive) HasStorageRealSizeWithSnapshotsCachedMb() bool {
 	if o != nil && !IsNil(o.StorageRealSizeWithSnapshotsCachedMb) {
 		return true
 	}
@@ -757,12 +524,12 @@ func (o *Drive) HasStorageRealSizeWithSnapshotsCachedMb() bool {
 }
 
 // SetStorageRealSizeWithSnapshotsCachedMb gets a reference to the given float32 and assigns it to the StorageRealSizeWithSnapshotsCachedMb field.
-func (o *Drive) SetStorageRealSizeWithSnapshotsCachedMb(v float32) {
+func (o *SharedDrive) SetStorageRealSizeWithSnapshotsCachedMb(v float32) {
 	o.StorageRealSizeWithSnapshotsCachedMb = &v
 }
 
 // GetStorageVirtualSizeCachedMb returns the StorageVirtualSizeCachedMb field value if set, zero value otherwise.
-func (o *Drive) GetStorageVirtualSizeCachedMb() float32 {
+func (o *SharedDrive) GetStorageVirtualSizeCachedMb() float32 {
 	if o == nil || IsNil(o.StorageVirtualSizeCachedMb) {
 		var ret float32
 		return ret
@@ -772,7 +539,7 @@ func (o *Drive) GetStorageVirtualSizeCachedMb() float32 {
 
 // GetStorageVirtualSizeCachedMbOk returns a tuple with the StorageVirtualSizeCachedMb field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetStorageVirtualSizeCachedMbOk() (*float32, bool) {
+func (o *SharedDrive) GetStorageVirtualSizeCachedMbOk() (*float32, bool) {
 	if o == nil || IsNil(o.StorageVirtualSizeCachedMb) {
 		return nil, false
 	}
@@ -780,7 +547,7 @@ func (o *Drive) GetStorageVirtualSizeCachedMbOk() (*float32, bool) {
 }
 
 // HasStorageVirtualSizeCachedMb returns a boolean if a field has been set.
-func (o *Drive) HasStorageVirtualSizeCachedMb() bool {
+func (o *SharedDrive) HasStorageVirtualSizeCachedMb() bool {
 	if o != nil && !IsNil(o.StorageVirtualSizeCachedMb) {
 		return true
 	}
@@ -789,12 +556,12 @@ func (o *Drive) HasStorageVirtualSizeCachedMb() bool {
 }
 
 // SetStorageVirtualSizeCachedMb gets a reference to the given float32 and assigns it to the StorageVirtualSizeCachedMb field.
-func (o *Drive) SetStorageVirtualSizeCachedMb(v float32) {
+func (o *SharedDrive) SetStorageVirtualSizeCachedMb(v float32) {
 	o.StorageVirtualSizeCachedMb = &v
 }
 
 // GetStorageUpdatedTimestamp returns the StorageUpdatedTimestamp field value
-func (o *Drive) GetStorageUpdatedTimestamp() string {
+func (o *SharedDrive) GetStorageUpdatedTimestamp() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -805,7 +572,7 @@ func (o *Drive) GetStorageUpdatedTimestamp() string {
 
 // GetStorageUpdatedTimestampOk returns a tuple with the StorageUpdatedTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetStorageUpdatedTimestampOk() (*string, bool) {
+func (o *SharedDrive) GetStorageUpdatedTimestampOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -813,12 +580,12 @@ func (o *Drive) GetStorageUpdatedTimestampOk() (*string, bool) {
 }
 
 // SetStorageUpdatedTimestamp sets field value
-func (o *Drive) SetStorageUpdatedTimestamp(v string) {
+func (o *SharedDrive) SetStorageUpdatedTimestamp(v string) {
 	o.StorageUpdatedTimestamp = v
 }
 
 // GetTargets returns the Targets field value if set, zero value otherwise.
-func (o *Drive) GetTargets() []map[string]interface{} {
+func (o *SharedDrive) GetTargets() []map[string]interface{} {
 	if o == nil || IsNil(o.Targets) {
 		var ret []map[string]interface{}
 		return ret
@@ -828,7 +595,7 @@ func (o *Drive) GetTargets() []map[string]interface{} {
 
 // GetTargetsOk returns a tuple with the Targets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetTargetsOk() ([]map[string]interface{}, bool) {
+func (o *SharedDrive) GetTargetsOk() ([]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Targets) {
 		return nil, false
 	}
@@ -836,7 +603,7 @@ func (o *Drive) GetTargetsOk() ([]map[string]interface{}, bool) {
 }
 
 // HasTargets returns a boolean if a field has been set.
-func (o *Drive) HasTargets() bool {
+func (o *SharedDrive) HasTargets() bool {
 	if o != nil && !IsNil(o.Targets) {
 		return true
 	}
@@ -845,76 +612,12 @@ func (o *Drive) HasTargets() bool {
 }
 
 // SetTargets gets a reference to the given []map[string]interface{} and assigns it to the Targets field.
-func (o *Drive) SetTargets(v []map[string]interface{}) {
+func (o *SharedDrive) SetTargets(v []map[string]interface{}) {
 	o.Targets = v
 }
 
-// GetClusterCustomInfo returns the ClusterCustomInfo field value if set, zero value otherwise.
-func (o *Drive) GetClusterCustomInfo() map[string]interface{} {
-	if o == nil || IsNil(o.ClusterCustomInfo) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.ClusterCustomInfo
-}
-
-// GetClusterCustomInfoOk returns a tuple with the ClusterCustomInfo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Drive) GetClusterCustomInfoOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.ClusterCustomInfo) {
-		return map[string]interface{}{}, false
-	}
-	return o.ClusterCustomInfo, true
-}
-
-// HasClusterCustomInfo returns a boolean if a field has been set.
-func (o *Drive) HasClusterCustomInfo() bool {
-	if o != nil && !IsNil(o.ClusterCustomInfo) {
-		return true
-	}
-
-	return false
-}
-
-// SetClusterCustomInfo gets a reference to the given map[string]interface{} and assigns it to the ClusterCustomInfo field.
-func (o *Drive) SetClusterCustomInfo(v map[string]interface{}) {
-	o.ClusterCustomInfo = v
-}
-
-// GetSshKeyPairInternalEncrypted returns the SshKeyPairInternalEncrypted field value if set, zero value otherwise.
-func (o *Drive) GetSshKeyPairInternalEncrypted() map[string]interface{} {
-	if o == nil || IsNil(o.SshKeyPairInternalEncrypted) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.SshKeyPairInternalEncrypted
-}
-
-// GetSshKeyPairInternalEncryptedOk returns a tuple with the SshKeyPairInternalEncrypted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Drive) GetSshKeyPairInternalEncryptedOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.SshKeyPairInternalEncrypted) {
-		return map[string]interface{}{}, false
-	}
-	return o.SshKeyPairInternalEncrypted, true
-}
-
-// HasSshKeyPairInternalEncrypted returns a boolean if a field has been set.
-func (o *Drive) HasSshKeyPairInternalEncrypted() bool {
-	if o != nil && !IsNil(o.SshKeyPairInternalEncrypted) {
-		return true
-	}
-
-	return false
-}
-
-// SetSshKeyPairInternalEncrypted gets a reference to the given map[string]interface{} and assigns it to the SshKeyPairInternalEncrypted field.
-func (o *Drive) SetSshKeyPairInternalEncrypted(v map[string]interface{}) {
-	o.SshKeyPairInternalEncrypted = v
-}
-
 // GetWwn returns the Wwn field value if set, zero value otherwise.
-func (o *Drive) GetWwn() string {
+func (o *SharedDrive) GetWwn() string {
 	if o == nil || IsNil(o.Wwn) {
 		var ret string
 		return ret
@@ -924,7 +627,7 @@ func (o *Drive) GetWwn() string {
 
 // GetWwnOk returns a tuple with the Wwn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetWwnOk() (*string, bool) {
+func (o *SharedDrive) GetWwnOk() (*string, bool) {
 	if o == nil || IsNil(o.Wwn) {
 		return nil, false
 	}
@@ -932,7 +635,7 @@ func (o *Drive) GetWwnOk() (*string, bool) {
 }
 
 // HasWwn returns a boolean if a field has been set.
-func (o *Drive) HasWwn() bool {
+func (o *SharedDrive) HasWwn() bool {
 	if o != nil && !IsNil(o.Wwn) {
 		return true
 	}
@@ -941,12 +644,36 @@ func (o *Drive) HasWwn() bool {
 }
 
 // SetWwn gets a reference to the given string and assigns it to the Wwn field.
-func (o *Drive) SetWwn(v string) {
+func (o *SharedDrive) SetWwn(v string) {
 	o.Wwn = &v
 }
 
+// GetAllocationAffinity returns the AllocationAffinity field value
+func (o *SharedDrive) GetAllocationAffinity() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AllocationAffinity
+}
+
+// GetAllocationAffinityOk returns a tuple with the AllocationAffinity field value
+// and a boolean to check if the value has been set.
+func (o *SharedDrive) GetAllocationAffinityOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AllocationAffinity, true
+}
+
+// SetAllocationAffinity sets field value
+func (o *SharedDrive) SetAllocationAffinity(v string) {
+	o.AllocationAffinity = v
+}
+
 // GetProvisioningProtocol returns the ProvisioningProtocol field value
-func (o *Drive) GetProvisioningProtocol() string {
+func (o *SharedDrive) GetProvisioningProtocol() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -957,7 +684,7 @@ func (o *Drive) GetProvisioningProtocol() string {
 
 // GetProvisioningProtocolOk returns a tuple with the ProvisioningProtocol field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetProvisioningProtocolOk() (*string, bool) {
+func (o *SharedDrive) GetProvisioningProtocolOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -965,12 +692,12 @@ func (o *Drive) GetProvisioningProtocolOk() (*string, bool) {
 }
 
 // SetProvisioningProtocol sets field value
-func (o *Drive) SetProvisioningProtocol(v string) {
+func (o *SharedDrive) SetProvisioningProtocol(v string) {
 	o.ProvisioningProtocol = v
 }
 
 // GetSubdomainPermanent returns the SubdomainPermanent field value if set, zero value otherwise.
-func (o *Drive) GetSubdomainPermanent() string {
+func (o *SharedDrive) GetSubdomainPermanent() string {
 	if o == nil || IsNil(o.SubdomainPermanent) {
 		var ret string
 		return ret
@@ -980,7 +707,7 @@ func (o *Drive) GetSubdomainPermanent() string {
 
 // GetSubdomainPermanentOk returns a tuple with the SubdomainPermanent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetSubdomainPermanentOk() (*string, bool) {
+func (o *SharedDrive) GetSubdomainPermanentOk() (*string, bool) {
 	if o == nil || IsNil(o.SubdomainPermanent) {
 		return nil, false
 	}
@@ -988,7 +715,7 @@ func (o *Drive) GetSubdomainPermanentOk() (*string, bool) {
 }
 
 // HasSubdomainPermanent returns a boolean if a field has been set.
-func (o *Drive) HasSubdomainPermanent() bool {
+func (o *SharedDrive) HasSubdomainPermanent() bool {
 	if o != nil && !IsNil(o.SubdomainPermanent) {
 		return true
 	}
@@ -997,12 +724,12 @@ func (o *Drive) HasSubdomainPermanent() bool {
 }
 
 // SetSubdomainPermanent gets a reference to the given string and assigns it to the SubdomainPermanent field.
-func (o *Drive) SetSubdomainPermanent(v string) {
+func (o *SharedDrive) SetSubdomainPermanent(v string) {
 	o.SubdomainPermanent = &v
 }
 
 // GetDnsSubdomainId returns the DnsSubdomainId field value if set, zero value otherwise.
-func (o *Drive) GetDnsSubdomainId() float32 {
+func (o *SharedDrive) GetDnsSubdomainId() float32 {
 	if o == nil || IsNil(o.DnsSubdomainId) {
 		var ret float32
 		return ret
@@ -1012,7 +739,7 @@ func (o *Drive) GetDnsSubdomainId() float32 {
 
 // GetDnsSubdomainIdOk returns a tuple with the DnsSubdomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetDnsSubdomainIdOk() (*float32, bool) {
+func (o *SharedDrive) GetDnsSubdomainIdOk() (*float32, bool) {
 	if o == nil || IsNil(o.DnsSubdomainId) {
 		return nil, false
 	}
@@ -1020,7 +747,7 @@ func (o *Drive) GetDnsSubdomainIdOk() (*float32, bool) {
 }
 
 // HasDnsSubdomainId returns a boolean if a field has been set.
-func (o *Drive) HasDnsSubdomainId() bool {
+func (o *SharedDrive) HasDnsSubdomainId() bool {
 	if o != nil && !IsNil(o.DnsSubdomainId) {
 		return true
 	}
@@ -1029,12 +756,12 @@ func (o *Drive) HasDnsSubdomainId() bool {
 }
 
 // SetDnsSubdomainId gets a reference to the given float32 and assigns it to the DnsSubdomainId field.
-func (o *Drive) SetDnsSubdomainId(v float32) {
+func (o *SharedDrive) SetDnsSubdomainId(v float32) {
 	o.DnsSubdomainId = &v
 }
 
 // GetDnsSubdomainPermanentId returns the DnsSubdomainPermanentId field value if set, zero value otherwise.
-func (o *Drive) GetDnsSubdomainPermanentId() float32 {
+func (o *SharedDrive) GetDnsSubdomainPermanentId() float32 {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
 		var ret float32
 		return ret
@@ -1044,7 +771,7 @@ func (o *Drive) GetDnsSubdomainPermanentId() float32 {
 
 // GetDnsSubdomainPermanentIdOk returns a tuple with the DnsSubdomainPermanentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Drive) GetDnsSubdomainPermanentIdOk() (*float32, bool) {
+func (o *SharedDrive) GetDnsSubdomainPermanentIdOk() (*float32, bool) {
 	if o == nil || IsNil(o.DnsSubdomainPermanentId) {
 		return nil, false
 	}
@@ -1052,7 +779,7 @@ func (o *Drive) GetDnsSubdomainPermanentIdOk() (*float32, bool) {
 }
 
 // HasDnsSubdomainPermanentId returns a boolean if a field has been set.
-func (o *Drive) HasDnsSubdomainPermanentId() bool {
+func (o *SharedDrive) HasDnsSubdomainPermanentId() bool {
 	if o != nil && !IsNil(o.DnsSubdomainPermanentId) {
 		return true
 	}
@@ -1061,46 +788,14 @@ func (o *Drive) HasDnsSubdomainPermanentId() bool {
 }
 
 // SetDnsSubdomainPermanentId gets a reference to the given float32 and assigns it to the DnsSubdomainPermanentId field.
-func (o *Drive) SetDnsSubdomainPermanentId(v float32) {
+func (o *SharedDrive) SetDnsSubdomainPermanentId(v float32) {
 	o.DnsSubdomainPermanentId = &v
 }
 
-// GetNetworkVlanId returns the NetworkVlanId field value if set, zero value otherwise.
-func (o *Drive) GetNetworkVlanId() float32 {
-	if o == nil || IsNil(o.NetworkVlanId) {
-		var ret float32
-		return ret
-	}
-	return *o.NetworkVlanId
-}
-
-// GetNetworkVlanIdOk returns a tuple with the NetworkVlanId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Drive) GetNetworkVlanIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.NetworkVlanId) {
-		return nil, false
-	}
-	return o.NetworkVlanId, true
-}
-
-// HasNetworkVlanId returns a boolean if a field has been set.
-func (o *Drive) HasNetworkVlanId() bool {
-	if o != nil && !IsNil(o.NetworkVlanId) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworkVlanId gets a reference to the given float32 and assigns it to the NetworkVlanId field.
-func (o *Drive) SetNetworkVlanId(v float32) {
-	o.NetworkVlanId = &v
-}
-
 // GetConfig returns the Config field value
-func (o *Drive) GetConfig() DriveConfiguration {
+func (o *SharedDrive) GetConfig() SharedDriveConfiguration {
 	if o == nil {
-		var ret DriveConfiguration
+		var ret SharedDriveConfiguration
 		return ret
 	}
 
@@ -1109,7 +804,7 @@ func (o *Drive) GetConfig() DriveConfiguration {
 
 // GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetConfigOk() (*DriveConfiguration, bool) {
+func (o *SharedDrive) GetConfigOk() (*SharedDriveConfiguration, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -1117,12 +812,12 @@ func (o *Drive) GetConfigOk() (*DriveConfiguration, bool) {
 }
 
 // SetConfig sets field value
-func (o *Drive) SetConfig(v DriveConfiguration) {
+func (o *SharedDrive) SetConfig(v SharedDriveConfiguration) {
 	o.Config = v
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
-func (o *Drive) GetCreatedTimestamp() string {
+func (o *SharedDrive) GetCreatedTimestamp() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -1133,7 +828,7 @@ func (o *Drive) GetCreatedTimestamp() string {
 
 // GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetCreatedTimestampOk() (*string, bool) {
+func (o *SharedDrive) GetCreatedTimestampOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -1141,14 +836,14 @@ func (o *Drive) GetCreatedTimestampOk() (*string, bool) {
 }
 
 // SetCreatedTimestamp sets field value
-func (o *Drive) SetCreatedTimestamp(v string) {
+func (o *SharedDrive) SetCreatedTimestamp(v string) {
 	o.CreatedTimestamp = v
 }
 
 // GetMeta returns the Meta field value
-func (o *Drive) GetMeta() DriveMeta {
+func (o *SharedDrive) GetMeta() SharedDriveMeta {
 	if o == nil {
-		var ret DriveMeta
+		var ret SharedDriveMeta
 		return ret
 	}
 
@@ -1157,7 +852,7 @@ func (o *Drive) GetMeta() DriveMeta {
 
 // GetMetaOk returns a tuple with the Meta field value
 // and a boolean to check if the value has been set.
-func (o *Drive) GetMetaOk() (*DriveMeta, bool) {
+func (o *SharedDrive) GetMetaOk() (*SharedDriveMeta, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -1165,11 +860,11 @@ func (o *Drive) GetMetaOk() (*DriveMeta, bool) {
 }
 
 // SetMeta sets field value
-func (o *Drive) SetMeta(v DriveMeta) {
+func (o *SharedDrive) SetMeta(v SharedDriveMeta) {
 	o.Meta = v
 }
 
-func (o Drive) MarshalJSON() ([]byte, error) {
+func (o SharedDrive) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -1177,13 +872,9 @@ func (o Drive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o Drive) ToMap() (map[string]interface{}, error) {
+func (o SharedDrive) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["label"] = o.Label
-	toSerialize["groupId"] = o.GroupId
-	if !IsNil(o.InstanceId) {
-		toSerialize["instanceId"] = o.InstanceId
-	}
 	if !IsNil(o.StoragePoolId) {
 		toSerialize["storagePoolId"] = o.StoragePoolId
 	}
@@ -1191,32 +882,17 @@ func (o Drive) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StorageImageName) {
 		toSerialize["storageImageName"] = o.StorageImageName
 	}
-	if !IsNil(o.IscsiIndexHex) {
-		toSerialize["iscsiIndexHex"] = o.IscsiIndexHex
-	}
-	if !IsNil(o.TemplateId) {
-		toSerialize["templateId"] = o.TemplateId
-	}
-	if !IsNil(o.OsAdminUsername) {
-		toSerialize["osAdminUsername"] = o.OsAdminUsername
-	}
-	if !IsNil(o.OsAdminPasswordEncrypted) {
-		toSerialize["osAdminPasswordEncrypted"] = o.OsAdminPasswordEncrypted
-	}
 	toSerialize["storageType"] = o.StorageType
+	if !IsNil(o.IoLimitPolicy) {
+		toSerialize["ioLimitPolicy"] = o.IoLimitPolicy
+	}
 	if !IsNil(o.Subdomain) {
 		toSerialize["subdomain"] = o.Subdomain
 	}
+	if !IsNil(o.LogicalNetworkId) {
+		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
+	}
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
-	if !IsNil(o.SshPort) {
-		toSerialize["sshPort"] = o.SshPort
-	}
-	if !IsNil(o.OperatingSystemInfo) {
-		toSerialize["operatingSystemInfo"] = o.OperatingSystemInfo
-	}
-	if !IsNil(o.FilesystemInfo) {
-		toSerialize["filesystemInfo"] = o.FilesystemInfo
-	}
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["infrastructureId"] = o.InfrastructureId
@@ -1234,15 +910,10 @@ func (o Drive) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Targets) {
 		toSerialize["targets"] = o.Targets
 	}
-	if !IsNil(o.ClusterCustomInfo) {
-		toSerialize["clusterCustomInfo"] = o.ClusterCustomInfo
-	}
-	if !IsNil(o.SshKeyPairInternalEncrypted) {
-		toSerialize["sshKeyPairInternalEncrypted"] = o.SshKeyPairInternalEncrypted
-	}
 	if !IsNil(o.Wwn) {
 		toSerialize["wwn"] = o.Wwn
 	}
+	toSerialize["allocationAffinity"] = o.AllocationAffinity
 	toSerialize["provisioningProtocol"] = o.ProvisioningProtocol
 	if !IsNil(o.SubdomainPermanent) {
 		toSerialize["subdomainPermanent"] = o.SubdomainPermanent
@@ -1252,9 +923,6 @@ func (o Drive) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DnsSubdomainPermanentId) {
 		toSerialize["dnsSubdomainPermanentId"] = o.DnsSubdomainPermanentId
-	}
-	if !IsNil(o.NetworkVlanId) {
-		toSerialize["networkVlanId"] = o.NetworkVlanId
 	}
 	toSerialize["config"] = o.Config
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
@@ -1267,13 +935,12 @@ func (o Drive) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *Drive) UnmarshalJSON(data []byte) (err error) {
+func (o *SharedDrive) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"label",
-		"groupId",
 		"sizeMb",
 		"storageType",
 		"updatedTimestamp",
@@ -1282,6 +949,7 @@ func (o *Drive) UnmarshalJSON(data []byte) (err error) {
 		"infrastructureId",
 		"serviceStatus",
 		"storageUpdatedTimestamp",
+		"allocationAffinity",
 		"provisioningProtocol",
 		"config",
 		"createdTimestamp",
@@ -1302,35 +970,28 @@ func (o *Drive) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varDrive := _Drive{}
+	varSharedDrive := _SharedDrive{}
 
-	err = json.Unmarshal(data, &varDrive)
+	err = json.Unmarshal(data, &varSharedDrive)
 
 	if err != nil {
 		return err
 	}
 
-	*o = Drive(varDrive)
+	*o = SharedDrive(varSharedDrive)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
-		delete(additionalProperties, "groupId")
-		delete(additionalProperties, "instanceId")
 		delete(additionalProperties, "storagePoolId")
 		delete(additionalProperties, "sizeMb")
 		delete(additionalProperties, "storageImageName")
-		delete(additionalProperties, "iscsiIndexHex")
-		delete(additionalProperties, "templateId")
-		delete(additionalProperties, "osAdminUsername")
-		delete(additionalProperties, "osAdminPasswordEncrypted")
 		delete(additionalProperties, "storageType")
+		delete(additionalProperties, "ioLimitPolicy")
 		delete(additionalProperties, "subdomain")
+		delete(additionalProperties, "logicalNetworkId")
 		delete(additionalProperties, "updatedTimestamp")
-		delete(additionalProperties, "sshPort")
-		delete(additionalProperties, "operatingSystemInfo")
-		delete(additionalProperties, "filesystemInfo")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "infrastructureId")
@@ -1340,14 +1001,12 @@ func (o *Drive) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "storageVirtualSizeCachedMb")
 		delete(additionalProperties, "storageUpdatedTimestamp")
 		delete(additionalProperties, "targets")
-		delete(additionalProperties, "clusterCustomInfo")
-		delete(additionalProperties, "sshKeyPairInternalEncrypted")
 		delete(additionalProperties, "wwn")
+		delete(additionalProperties, "allocationAffinity")
 		delete(additionalProperties, "provisioningProtocol")
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "dnsSubdomainPermanentId")
-		delete(additionalProperties, "networkVlanId")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "meta")
@@ -1357,38 +1016,38 @@ func (o *Drive) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableDrive struct {
-	value *Drive
+type NullableSharedDrive struct {
+	value *SharedDrive
 	isSet bool
 }
 
-func (v NullableDrive) Get() *Drive {
+func (v NullableSharedDrive) Get() *SharedDrive {
 	return v.value
 }
 
-func (v *NullableDrive) Set(val *Drive) {
+func (v *NullableSharedDrive) Set(val *SharedDrive) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDrive) IsSet() bool {
+func (v NullableSharedDrive) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDrive) Unset() {
+func (v *NullableSharedDrive) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDrive(val *Drive) *NullableDrive {
-	return &NullableDrive{value: val, isSet: true}
+func NewNullableSharedDrive(val *SharedDrive) *NullableSharedDrive {
+	return &NullableSharedDrive{value: val, isSet: true}
 }
 
-func (v NullableDrive) MarshalJSON() ([]byte, error) {
+func (v NullableSharedDrive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDrive) UnmarshalJSON(src []byte) error {
+func (v *NullableSharedDrive) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

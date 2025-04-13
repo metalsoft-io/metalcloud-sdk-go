@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## CreateDrive
 
-> Drive CreateDrive(ctx, infrastructureId).CreateDrive(createDrive).Execute()
+> SharedDrive CreateDrive(ctx, infrastructureId).CreateSharedDrive(createSharedDrive).Execute()
 
 Create a new Drive
 
@@ -37,16 +37,16 @@ import (
 
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
-	createDrive := *openapiclient.NewCreateDrive(float32(123)) // CreateDrive | 
+	createSharedDrive := *openapiclient.NewCreateSharedDrive(float32(123)) // CreateSharedDrive | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DriveAPI.CreateDrive(context.Background(), infrastructureId).CreateDrive(createDrive).Execute()
+	resp, r, err := apiClient.DriveAPI.CreateDrive(context.Background(), infrastructureId).CreateSharedDrive(createSharedDrive).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.CreateDrive``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateDrive`: Drive
+	// response from `CreateDrive`: SharedDrive
 	fmt.Fprintf(os.Stdout, "Response from `DriveAPI.CreateDrive`: %v\n", resp)
 }
 ```
@@ -67,11 +67,11 @@ Other parameters are passed through a pointer to a apiCreateDriveRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createDrive** | [**CreateDrive**](CreateDrive.md) |  | 
+ **createSharedDrive** | [**CreateSharedDrive**](CreateSharedDrive.md) |  | 
 
 ### Return type
 
-[**Drive**](Drive.md)
+[**SharedDrive**](SharedDrive.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## GetDrive
 
-> Drive GetDrive(ctx, driveId).Execute()
+> SharedDrive GetDrive(ctx, driveId).Execute()
 
 Get Drive information
 
@@ -188,7 +188,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.GetDrive``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetDrive`: Drive
+	// response from `GetDrive`: SharedDrive
 	fmt.Fprintf(os.Stdout, "Response from `DriveAPI.GetDrive`: %v\n", resp)
 }
 ```
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Drive**](Drive.md)
+[**SharedDrive**](SharedDrive.md)
 
 ### Authorization
 
@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 ## GetDriveConfigInfo
 
-> DriveConfiguration GetDriveConfigInfo(ctx, infrastructureId, driveId).Execute()
+> SharedDriveConfiguration GetDriveConfigInfo(ctx, infrastructureId, driveId).Execute()
 
 Get configuration information about the specified Drive
 
@@ -257,7 +257,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.GetDriveConfigInfo``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetDriveConfigInfo`: DriveConfiguration
+	// response from `GetDriveConfigInfo`: SharedDriveConfiguration
 	fmt.Fprintf(os.Stdout, "Response from `DriveAPI.GetDriveConfigInfo`: %v\n", resp)
 }
 ```
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DriveConfiguration**](DriveConfiguration.md)
+[**SharedDriveConfiguration**](SharedDriveConfiguration.md)
 
 ### Authorization
 
@@ -301,7 +301,7 @@ Name | Type | Description  | Notes
 
 ## GetDriveHosts
 
-> DriveHosts GetDriveHosts(ctx, infrastructureId, driveId).Execute()
+> SharedDriveHosts GetDriveHosts(ctx, infrastructureId, driveId).Execute()
 
 Get the Hosts of Drive
 
@@ -330,7 +330,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.GetDriveHosts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetDriveHosts`: DriveHosts
+	// response from `GetDriveHosts`: SharedDriveHosts
 	fmt.Fprintf(os.Stdout, "Response from `DriveAPI.GetDriveHosts`: %v\n", resp)
 }
 ```
@@ -356,7 +356,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DriveHosts**](DriveHosts.md)
+[**SharedDriveHosts**](SharedDriveHosts.md)
 
 ### Authorization
 
@@ -374,7 +374,7 @@ Name | Type | Description  | Notes
 
 ## GetInfrastructureDrive
 
-> Drive GetInfrastructureDrive(ctx, infrastructureId, driveId).Execute()
+> SharedDrive GetInfrastructureDrive(ctx, infrastructureId, driveId).Execute()
 
 Get Drive information
 
@@ -403,7 +403,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.GetInfrastructureDrive``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetInfrastructureDrive`: Drive
+	// response from `GetInfrastructureDrive`: SharedDrive
 	fmt.Fprintf(os.Stdout, "Response from `DriveAPI.GetInfrastructureDrive`: %v\n", resp)
 }
 ```
@@ -429,7 +429,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Drive**](Drive.md)
+[**SharedDrive**](SharedDrive.md)
 
 ### Authorization
 
@@ -447,7 +447,7 @@ Name | Type | Description  | Notes
 
 ## GetInfrastructureDrives
 
-> DrivePaginatedList GetInfrastructureDrives(ctx, infrastructureId).Page(page).Limit(limit).FilterLabel(filterLabel).FilterSubdomain(filterSubdomain).FilterSubdomainPermanent(filterSubdomainPermanent).FilterInfrastructureId(filterInfrastructureId).FilterStoragePoolId(filterStoragePoolId).FilterServiceStatus(filterServiceStatus).FilterWwn(filterWwn).FilterIoLimitPolicy(filterIoLimitPolicy).FilterLogicalNetworkId(filterLogicalNetworkId).FilterAllocationAffinity(filterAllocationAffinity).FilterProvisioningProtocol(filterProvisioningProtocol).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).FilterConfigLogicalNetworkId(filterConfigLogicalNetworkId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> SharedDrivePaginatedList GetInfrastructureDrives(ctx, infrastructureId).Page(page).Limit(limit).FilterLabel(filterLabel).FilterSubdomain(filterSubdomain).FilterSubdomainPermanent(filterSubdomainPermanent).FilterInfrastructureId(filterInfrastructureId).FilterStoragePoolId(filterStoragePoolId).FilterServiceStatus(filterServiceStatus).FilterWwn(filterWwn).FilterIoLimitPolicy(filterIoLimitPolicy).FilterLogicalNetworkId(filterLogicalNetworkId).FilterAllocationAffinity(filterAllocationAffinity).FilterProvisioningProtocol(filterProvisioningProtocol).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).FilterConfigLogicalNetworkId(filterConfigLogicalNetworkId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get all Drives on the infrastructure
 
@@ -494,7 +494,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.GetInfrastructureDrives``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetInfrastructureDrives`: DrivePaginatedList
+	// response from `GetInfrastructureDrives`: SharedDrivePaginatedList
 	fmt.Fprintf(os.Stdout, "Response from `DriveAPI.GetInfrastructureDrives`: %v\n", resp)
 }
 ```
@@ -537,7 +537,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DrivePaginatedList**](DrivePaginatedList.md)
+[**SharedDrivePaginatedList**](SharedDrivePaginatedList.md)
 
 ### Authorization
 
@@ -555,7 +555,7 @@ Name | Type | Description  | Notes
 
 ## PatchDriveConfig
 
-> Drive PatchDriveConfig(ctx, infrastructureId, driveId).UpdateDrive(updateDrive).IfMatch(ifMatch).Execute()
+> SharedDrive PatchDriveConfig(ctx, infrastructureId, driveId).UpdateSharedDrive(updateSharedDrive).IfMatch(ifMatch).Execute()
 
 Updates the config of a Drive
 
@@ -574,17 +574,17 @@ import (
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
 	driveId := float32(8.14) // float32 | 
-	updateDrive := *openapiclient.NewUpdateDrive() // UpdateDrive | 
+	updateSharedDrive := *openapiclient.NewUpdateSharedDrive() // UpdateSharedDrive | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DriveAPI.PatchDriveConfig(context.Background(), infrastructureId, driveId).UpdateDrive(updateDrive).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.DriveAPI.PatchDriveConfig(context.Background(), infrastructureId, driveId).UpdateSharedDrive(updateSharedDrive).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.PatchDriveConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PatchDriveConfig`: Drive
+	// response from `PatchDriveConfig`: SharedDrive
 	fmt.Fprintf(os.Stdout, "Response from `DriveAPI.PatchDriveConfig`: %v\n", resp)
 }
 ```
@@ -607,12 +607,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateDrive** | [**UpdateDrive**](UpdateDrive.md) |  | 
+ **updateSharedDrive** | [**UpdateSharedDrive**](UpdateSharedDrive.md) |  | 
  **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
-[**Drive**](Drive.md)
+[**SharedDrive**](SharedDrive.md)
 
 ### Authorization
 
@@ -630,7 +630,7 @@ Name | Type | Description  | Notes
 
 ## PatchDriveMeta
 
-> Drive PatchDriveMeta(ctx, infrastructureId, driveId).UpdateDriveMeta(updateDriveMeta).Execute()
+> SharedDrive PatchDriveMeta(ctx, infrastructureId, driveId).UpdateSharedDriveMeta(updateSharedDriveMeta).Execute()
 
 Updates the meta of a Drive
 
@@ -649,16 +649,16 @@ import (
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
 	driveId := float32(8.14) // float32 | 
-	updateDriveMeta := *openapiclient.NewUpdateDriveMeta() // UpdateDriveMeta | 
+	updateSharedDriveMeta := *openapiclient.NewUpdateSharedDriveMeta() // UpdateSharedDriveMeta | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DriveAPI.PatchDriveMeta(context.Background(), infrastructureId, driveId).UpdateDriveMeta(updateDriveMeta).Execute()
+	resp, r, err := apiClient.DriveAPI.PatchDriveMeta(context.Background(), infrastructureId, driveId).UpdateSharedDriveMeta(updateSharedDriveMeta).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.PatchDriveMeta``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PatchDriveMeta`: Drive
+	// response from `PatchDriveMeta`: SharedDrive
 	fmt.Fprintf(os.Stdout, "Response from `DriveAPI.PatchDriveMeta`: %v\n", resp)
 }
 ```
@@ -681,11 +681,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateDriveMeta** | [**UpdateDriveMeta**](UpdateDriveMeta.md) |  | 
+ **updateSharedDriveMeta** | [**UpdateSharedDriveMeta**](UpdateSharedDriveMeta.md) |  | 
 
 ### Return type
 
-[**Drive**](Drive.md)
+[**SharedDrive**](SharedDrive.md)
 
 ### Authorization
 
@@ -703,7 +703,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDriveServerInstanceGroupHostsBulk
 
-> DriveHosts UpdateDriveServerInstanceGroupHostsBulk(ctx, infrastructureId, driveId).DriveHostsModifyBulk(driveHostsModifyBulk).Execute()
+> SharedDriveHosts UpdateDriveServerInstanceGroupHostsBulk(ctx, infrastructureId, driveId).SharedDriveHostsModifyBulk(sharedDriveHostsModifyBulk).Execute()
 
 Updates Server Instance Group Hosts on the Drive
 
@@ -724,16 +724,16 @@ import (
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
 	driveId := float32(8.14) // float32 | 
-	driveHostsModifyBulk := *openapiclient.NewDriveHostsModifyBulk([]openapiclient.DriveHostBulkOperation{*openapiclient.NewDriveHostBulkOperation(float32(123), "OperationType_example")}) // DriveHostsModifyBulk | The Drive Server Instance Group Hosts update object
+	sharedDriveHostsModifyBulk := *openapiclient.NewSharedDriveHostsModifyBulk([]openapiclient.SharedDriveHostBulkOperation{*openapiclient.NewSharedDriveHostBulkOperation(float32(123), "OperationType_example")}) // SharedDriveHostsModifyBulk | The Drive Server Instance Group Hosts update object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DriveAPI.UpdateDriveServerInstanceGroupHostsBulk(context.Background(), infrastructureId, driveId).DriveHostsModifyBulk(driveHostsModifyBulk).Execute()
+	resp, r, err := apiClient.DriveAPI.UpdateDriveServerInstanceGroupHostsBulk(context.Background(), infrastructureId, driveId).SharedDriveHostsModifyBulk(sharedDriveHostsModifyBulk).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DriveAPI.UpdateDriveServerInstanceGroupHostsBulk``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateDriveServerInstanceGroupHostsBulk`: DriveHosts
+	// response from `UpdateDriveServerInstanceGroupHostsBulk`: SharedDriveHosts
 	fmt.Fprintf(os.Stdout, "Response from `DriveAPI.UpdateDriveServerInstanceGroupHostsBulk`: %v\n", resp)
 }
 ```
@@ -756,11 +756,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **driveHostsModifyBulk** | [**DriveHostsModifyBulk**](DriveHostsModifyBulk.md) | The Drive Server Instance Group Hosts update object | 
+ **sharedDriveHostsModifyBulk** | [**SharedDriveHostsModifyBulk**](SharedDriveHostsModifyBulk.md) | The Drive Server Instance Group Hosts update object | 
 
 ### Return type
 
-[**DriveHosts**](DriveHosts.md)
+[**SharedDriveHosts**](SharedDriveHosts.md)
 
 ### Authorization
 

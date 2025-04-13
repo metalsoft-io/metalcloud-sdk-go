@@ -5,8 +5,10 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateServerInstanceGroup**](ServerInstanceGroupAPI.md#CreateServerInstanceGroup) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | Add a Server Instance Group to an infrastructure. By default it will not have any instance.
+[**CreateServerInstanceGroupLogicalNetworkACL**](ServerInstanceGroupAPI.md#CreateServerInstanceGroupLogicalNetworkACL) | **Post** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}/security/rules | Create a security rule for a logical network
 [**CreateServerInstanceGroupNetworkConfigurationConnection**](ServerInstanceGroupAPI.md#CreateServerInstanceGroupNetworkConfigurationConnection) | **Post** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections | Create a network connection for a server instance group
 [**DeleteServerInstanceGroup**](ServerInstanceGroupAPI.md#DeleteServerInstanceGroup) | **Delete** /api/v2/server-instance-groups/{serverInstanceGroupId} | Delete Server Instance Group. Will not take effect if there are instances in this group.
+[**DeleteServerInstanceGroupLogicalNetworkACL**](ServerInstanceGroupAPI.md#DeleteServerInstanceGroupLogicalNetworkACL) | **Delete** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}/security/rules/{ruleId} | Delete a security rule for a logical network
 [**DeleteServerInstanceGroupNetworkConfigurationConnection**](ServerInstanceGroupAPI.md#DeleteServerInstanceGroupNetworkConfigurationConnection) | **Delete** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Delete a network connection for a server instance group
 [**GetInfrastructureServerInstanceGroups**](ServerInstanceGroupAPI.md#GetInfrastructureServerInstanceGroups) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | List Server Instance Groups for an infrastructure
 [**GetServerInstanceGroup**](ServerInstanceGroupAPI.md#GetServerInstanceGroup) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId} | Get Server Instance Groups details
@@ -14,11 +16,14 @@ Method | HTTP request | Description
 [**GetServerInstanceGroupDriveGroups**](ServerInstanceGroupAPI.md#GetServerInstanceGroupDriveGroups) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/drive-groups | Get Server Instance Group Drive Groups
 [**GetServerInstanceGroupInterface**](ServerInstanceGroupAPI.md#GetServerInstanceGroupInterface) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces/{interfaceId} | Get Server Instance Group Interface details
 [**GetServerInstanceGroupInterfaces**](ServerInstanceGroupAPI.md#GetServerInstanceGroupInterfaces) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces | Get Server Instance Group Interfaces
+[**GetServerInstanceGroupLogicalNetworkACL**](ServerInstanceGroupAPI.md#GetServerInstanceGroupLogicalNetworkACL) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}/security/rules | Get the security rules for a logical network
+[**GetServerInstanceGroupLogicalNetworkACLById**](ServerInstanceGroupAPI.md#GetServerInstanceGroupLogicalNetworkACLById) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}/security/rules/{ruleId} | Get a security rule for a logical network by id
 [**GetServerInstanceGroupNetworkConfiguration**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfiguration) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking | Get server instance group network configuration
 [**GetServerInstanceGroupNetworkConfigurationConnectionById**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfigurationConnectionById) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Get server instance group network configuration connection by id
 [**GetServerInstanceGroupNetworkConfigurationConnections**](ServerInstanceGroupAPI.md#GetServerInstanceGroupNetworkConfigurationConnections) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections | Get server instance group&#39;s network connections
 [**GetServerInstanceGroupServerInstances**](ServerInstanceGroupAPI.md#GetServerInstanceGroupServerInstances) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/server-instances | List Server Instances for a Server Instance Group
 [**UpdateServerInstanceGroupConfig**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupConfig) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Updates Server Instance Group configuration
+[**UpdateServerInstanceGroupLogicalNetworkACL**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupLogicalNetworkACL) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}/security/rules/{ruleId} | Update a security rule for a logical network
 [**UpdateServerInstanceGroupMeta**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupMeta) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/meta | Update an Server Instance Group meta information
 [**UpdateServerInstanceGroupNetworkConfigurationConnection**](ServerInstanceGroupAPI.md#UpdateServerInstanceGroupNetworkConfigurationConnection) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Update a network connection for a server instance group
 
@@ -79,6 +84,79 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ServerInstanceGroup**](ServerInstanceGroup.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateServerInstanceGroupLogicalNetworkACL
+
+> LogicalNetworkACLDto CreateServerInstanceGroupLogicalNetworkACL(ctx, serverInstanceGroupId, connectionId).CreateLogicalNetworkACLDto(createLogicalNetworkACLDto).Execute()
+
+Create a security rule for a logical network
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceGroupId := int32(56) // int32 | 
+	connectionId := int32(56) // int32 | 
+	createLogicalNetworkACLDto := *openapiclient.NewCreateLogicalNetworkACLDto("ipv4", "in", int32(1), "allow", "physical-interface-vlan-scoped") // CreateLogicalNetworkACLDto | The security rule to create
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceGroupAPI.CreateServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId).CreateLogicalNetworkACLDto(createLogicalNetworkACLDto).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.CreateServerInstanceGroupLogicalNetworkACL``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateServerInstanceGroupLogicalNetworkACL`: LogicalNetworkACLDto
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.CreateServerInstanceGroupLogicalNetworkACL`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceGroupId** | **int32** |  | 
+**connectionId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateServerInstanceGroupLogicalNetworkACLRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **createLogicalNetworkACLDto** | [**CreateLogicalNetworkACLDto**](CreateLogicalNetworkACLDto.md) | The security rule to create | 
+
+### Return type
+
+[**LogicalNetworkACLDto**](LogicalNetworkACLDto.md)
 
 ### Authorization
 
@@ -215,6 +293,78 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteServerInstanceGroupLogicalNetworkACL
+
+> DeleteServerInstanceGroupLogicalNetworkACL(ctx, serverInstanceGroupId, connectionId, ruleId).Execute()
+
+Delete a security rule for a logical network
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceGroupId := int32(56) // int32 | 
+	connectionId := int32(56) // int32 | 
+	ruleId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ServerInstanceGroupAPI.DeleteServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId, ruleId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.DeleteServerInstanceGroupLogicalNetworkACL``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceGroupId** | **int32** |  | 
+**connectionId** | **int32** |  | 
+**ruleId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteServerInstanceGroupLogicalNetworkACLRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
 
 ### Return type
 
@@ -764,6 +914,151 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetServerInstanceGroupLogicalNetworkACL
+
+> LogicalNetworkACLDto GetServerInstanceGroupLogicalNetworkACL(ctx, serverInstanceGroupId, connectionId).Execute()
+
+Get the security rules for a logical network
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceGroupId := int32(56) // int32 | 
+	connectionId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACL``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerInstanceGroupLogicalNetworkACL`: LogicalNetworkACLDto
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACL`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceGroupId** | **int32** |  | 
+**connectionId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerInstanceGroupLogicalNetworkACLRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**LogicalNetworkACLDto**](LogicalNetworkACLDto.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServerInstanceGroupLogicalNetworkACLById
+
+> LogicalNetworkACLDto GetServerInstanceGroupLogicalNetworkACLById(ctx, serverInstanceGroupId, connectionId, ruleId).Execute()
+
+Get a security rule for a logical network by id
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceGroupId := int32(56) // int32 | 
+	connectionId := int32(56) // int32 | 
+	ruleId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACLById(context.Background(), serverInstanceGroupId, connectionId, ruleId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACLById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerInstanceGroupLogicalNetworkACLById`: LogicalNetworkACLDto
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACLById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceGroupId** | **int32** |  | 
+**connectionId** | **int32** |  | 
+**ruleId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerInstanceGroupLogicalNetworkACLByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+### Return type
+
+[**LogicalNetworkACLDto**](LogicalNetworkACLDto.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetServerInstanceGroupNetworkConfiguration
 
 > NetworkEndpointGroup GetServerInstanceGroupNetworkConfiguration(ctx, serverInstanceGroupId).Execute()
@@ -1128,6 +1423,82 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ServerInstanceGroupConfiguration**](ServerInstanceGroupConfiguration.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateServerInstanceGroupLogicalNetworkACL
+
+> LogicalNetworkACLDto UpdateServerInstanceGroupLogicalNetworkACL(ctx, serverInstanceGroupId, connectionId, ruleId).UpdateLogicalNetworkACLDto(updateLogicalNetworkACLDto).Execute()
+
+Update a security rule for a logical network
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceGroupId := int32(56) // int32 | 
+	connectionId := int32(56) // int32 | 
+	ruleId := int32(56) // int32 | 
+	updateLogicalNetworkACLDto := *openapiclient.NewUpdateLogicalNetworkACLDto() // UpdateLogicalNetworkACLDto | The security rule to update
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId, ruleId).UpdateLogicalNetworkACLDto(updateLogicalNetworkACLDto).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.UpdateServerInstanceGroupLogicalNetworkACL``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateServerInstanceGroupLogicalNetworkACL`: LogicalNetworkACLDto
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.UpdateServerInstanceGroupLogicalNetworkACL`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceGroupId** | **int32** |  | 
+**connectionId** | **int32** |  | 
+**ruleId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateServerInstanceGroupLogicalNetworkACLRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **updateLogicalNetworkACLDto** | [**UpdateLogicalNetworkACLDto**](UpdateLogicalNetworkACLDto.md) | The security rule to update | 
+
+### Return type
+
+[**LogicalNetworkACLDto**](LogicalNetworkACLDto.md)
 
 ### Authorization
 

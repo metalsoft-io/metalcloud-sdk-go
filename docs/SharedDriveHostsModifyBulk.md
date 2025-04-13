@@ -1,46 +1,46 @@
-# DriveHostsModifyBulk
+# SharedDriveHostsModifyBulk
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SharedDriveHostBulkOperations** | [**[]DriveHostBulkOperation**](DriveHostBulkOperation.md) | List of operations to be performed on the File Share Hosts | 
+**SharedDriveHostBulkOperations** | [**[]SharedDriveHostBulkOperation**](SharedDriveHostBulkOperation.md) | List of operations to be performed on the File Share Hosts | 
 
 ## Methods
 
-### NewDriveHostsModifyBulk
+### NewSharedDriveHostsModifyBulk
 
-`func NewDriveHostsModifyBulk(sharedDriveHostBulkOperations []DriveHostBulkOperation, ) *DriveHostsModifyBulk`
+`func NewSharedDriveHostsModifyBulk(sharedDriveHostBulkOperations []SharedDriveHostBulkOperation, ) *SharedDriveHostsModifyBulk`
 
-NewDriveHostsModifyBulk instantiates a new DriveHostsModifyBulk object
+NewSharedDriveHostsModifyBulk instantiates a new SharedDriveHostsModifyBulk object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewDriveHostsModifyBulkWithDefaults
+### NewSharedDriveHostsModifyBulkWithDefaults
 
-`func NewDriveHostsModifyBulkWithDefaults() *DriveHostsModifyBulk`
+`func NewSharedDriveHostsModifyBulkWithDefaults() *SharedDriveHostsModifyBulk`
 
-NewDriveHostsModifyBulkWithDefaults instantiates a new DriveHostsModifyBulk object
+NewSharedDriveHostsModifyBulkWithDefaults instantiates a new SharedDriveHostsModifyBulk object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetSharedDriveHostBulkOperations
 
-`func (o *DriveHostsModifyBulk) GetSharedDriveHostBulkOperations() []DriveHostBulkOperation`
+`func (o *SharedDriveHostsModifyBulk) GetSharedDriveHostBulkOperations() []SharedDriveHostBulkOperation`
 
 GetSharedDriveHostBulkOperations returns the SharedDriveHostBulkOperations field if non-nil, zero value otherwise.
 
 ### GetSharedDriveHostBulkOperationsOk
 
-`func (o *DriveHostsModifyBulk) GetSharedDriveHostBulkOperationsOk() (*[]DriveHostBulkOperation, bool)`
+`func (o *SharedDriveHostsModifyBulk) GetSharedDriveHostBulkOperationsOk() (*[]SharedDriveHostBulkOperation, bool)`
 
 GetSharedDriveHostBulkOperationsOk returns a tuple with the SharedDriveHostBulkOperations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSharedDriveHostBulkOperations
 
-`func (o *DriveHostsModifyBulk) SetSharedDriveHostBulkOperations(v []DriveHostBulkOperation)`
+`func (o *SharedDriveHostsModifyBulk) SetSharedDriveHostBulkOperations(v []SharedDriveHostBulkOperation)`
 
 SetSharedDriveHostBulkOperations sets SharedDriveHostBulkOperations field to given value.
 

@@ -5,14 +5,21 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the Drive. | 
+**GroupId** | **float32** | Drive Array Id | 
+**InstanceId** | Pointer to **float32** |  | [optional] 
 **StoragePoolId** | Pointer to **float32** | Id of the storage pool the Drive is assigned to | [optional] 
 **SizeMb** | **float32** | Disk size in MB for Drive | 
 **StorageImageName** | Pointer to **string** | The name of the storage image used by the Drive. | [optional] 
-**StorageType** | **string** | Service status of the Drive | [default to "iscsi_ssd"]
-**IoLimitPolicy** | Pointer to **string** | The IO limit policy of the Drive. | [optional] 
+**IscsiIndexHex** | Pointer to **string** | The iSCSI Index in hex format of the Drive. | [optional] 
+**TemplateId** | Pointer to **float32** | Template Id | [optional] 
+**OsAdminUsername** | Pointer to **string** | The OS Admin Username the Drive will use. | [optional] 
+**OsAdminPasswordEncrypted** | Pointer to **string** | The OS Admin Password the Drive will use. | [optional] 
+**StorageType** | **string** | Storage type of the Drive | [default to "iscsi_ssd"]
 **Subdomain** | Pointer to **string** | Subdomain of the Drive. | [optional] 
-**LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Drive. | [optional] 
 **UpdatedTimestamp** | **string** | Timestamp of the Drive last update. | 
+**SshPort** | Pointer to **float32** | SSH port used by the Drive. | [optional] 
+**OperatingSystemInfo** | Pointer to **map[string]interface{}** | Operating system information of the Drive. | [optional] 
+**FilesystemInfo** | Pointer to **map[string]interface{}** | Filesystem information of the Drive. | [optional] 
 **Id** | **float32** | Id of the Drive | 
 **Revision** | **float32** | Revision of the Drive State | 
 **InfrastructureId** | **float32** | Infrastructure id of the Drive | 
@@ -22,12 +29,14 @@ Name | Type | Description | Notes
 **StorageVirtualSizeCachedMb** | Pointer to **float32** | Cached information of the virtual size of the storage in MB. | [optional] 
 **StorageUpdatedTimestamp** | **string** | Timestamp of the latest update of cached information for the Drive. | 
 **Targets** | Pointer to **[]map[string]interface{}** | Targets of the Drive. | [optional] 
+**ClusterCustomInfo** | Pointer to **map[string]interface{}** | Custom information of the Drive. | [optional] 
+**SshKeyPairInternalEncrypted** | Pointer to **map[string]interface{}** | Pair of SSH Keys to use on the Drive. | [optional] 
 **Wwn** | Pointer to **string** |  | [optional] 
-**AllocationAffinity** | **string** | Allocation affinity of the Drive | 
 **ProvisioningProtocol** | **string** | Provisioning protocol of the Drive | 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Drive. | [optional] 
 **DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the Drive. | [optional] 
 **DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the Drive. | [optional] 
+**NetworkVlanId** | Pointer to **float32** | Id of the VLAN for the Drive. | [optional] 
 **Config** | [**DriveConfiguration**](DriveConfiguration.md) | The current changes to be deployed for the Drive. | 
 **CreatedTimestamp** | **string** | Timestamp of the Drive creation. | 
 **Meta** | [**DriveMeta**](DriveMeta.md) | Meta information of the Drive. | 
@@ -36,7 +45,7 @@ Name | Type | Description | Notes
 
 ### NewDrive
 
-`func NewDrive(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, meta DriveMeta, ) *Drive`
+`func NewDrive(label string, groupId float32, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, meta DriveMeta, ) *Drive`
 
 NewDrive instantiates a new Drive object
 This constructor will assign default values to properties that have it defined,
@@ -70,6 +79,51 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
+
+### GetGroupId
+
+`func (o *Drive) GetGroupId() float32`
+
+GetGroupId returns the GroupId field if non-nil, zero value otherwise.
+
+### GetGroupIdOk
+
+`func (o *Drive) GetGroupIdOk() (*float32, bool)`
+
+GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupId
+
+`func (o *Drive) SetGroupId(v float32)`
+
+SetGroupId sets GroupId field to given value.
+
+
+### GetInstanceId
+
+`func (o *Drive) GetInstanceId() float32`
+
+GetInstanceId returns the InstanceId field if non-nil, zero value otherwise.
+
+### GetInstanceIdOk
+
+`func (o *Drive) GetInstanceIdOk() (*float32, bool)`
+
+GetInstanceIdOk returns a tuple with the InstanceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceId
+
+`func (o *Drive) SetInstanceId(v float32)`
+
+SetInstanceId sets InstanceId field to given value.
+
+### HasInstanceId
+
+`func (o *Drive) HasInstanceId() bool`
+
+HasInstanceId returns a boolean if a field has been set.
 
 ### GetStoragePoolId
 
@@ -141,6 +195,106 @@ SetStorageImageName sets StorageImageName field to given value.
 
 HasStorageImageName returns a boolean if a field has been set.
 
+### GetIscsiIndexHex
+
+`func (o *Drive) GetIscsiIndexHex() string`
+
+GetIscsiIndexHex returns the IscsiIndexHex field if non-nil, zero value otherwise.
+
+### GetIscsiIndexHexOk
+
+`func (o *Drive) GetIscsiIndexHexOk() (*string, bool)`
+
+GetIscsiIndexHexOk returns a tuple with the IscsiIndexHex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIscsiIndexHex
+
+`func (o *Drive) SetIscsiIndexHex(v string)`
+
+SetIscsiIndexHex sets IscsiIndexHex field to given value.
+
+### HasIscsiIndexHex
+
+`func (o *Drive) HasIscsiIndexHex() bool`
+
+HasIscsiIndexHex returns a boolean if a field has been set.
+
+### GetTemplateId
+
+`func (o *Drive) GetTemplateId() float32`
+
+GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+
+### GetTemplateIdOk
+
+`func (o *Drive) GetTemplateIdOk() (*float32, bool)`
+
+GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplateId
+
+`func (o *Drive) SetTemplateId(v float32)`
+
+SetTemplateId sets TemplateId field to given value.
+
+### HasTemplateId
+
+`func (o *Drive) HasTemplateId() bool`
+
+HasTemplateId returns a boolean if a field has been set.
+
+### GetOsAdminUsername
+
+`func (o *Drive) GetOsAdminUsername() string`
+
+GetOsAdminUsername returns the OsAdminUsername field if non-nil, zero value otherwise.
+
+### GetOsAdminUsernameOk
+
+`func (o *Drive) GetOsAdminUsernameOk() (*string, bool)`
+
+GetOsAdminUsernameOk returns a tuple with the OsAdminUsername field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOsAdminUsername
+
+`func (o *Drive) SetOsAdminUsername(v string)`
+
+SetOsAdminUsername sets OsAdminUsername field to given value.
+
+### HasOsAdminUsername
+
+`func (o *Drive) HasOsAdminUsername() bool`
+
+HasOsAdminUsername returns a boolean if a field has been set.
+
+### GetOsAdminPasswordEncrypted
+
+`func (o *Drive) GetOsAdminPasswordEncrypted() string`
+
+GetOsAdminPasswordEncrypted returns the OsAdminPasswordEncrypted field if non-nil, zero value otherwise.
+
+### GetOsAdminPasswordEncryptedOk
+
+`func (o *Drive) GetOsAdminPasswordEncryptedOk() (*string, bool)`
+
+GetOsAdminPasswordEncryptedOk returns a tuple with the OsAdminPasswordEncrypted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOsAdminPasswordEncrypted
+
+`func (o *Drive) SetOsAdminPasswordEncrypted(v string)`
+
+SetOsAdminPasswordEncrypted sets OsAdminPasswordEncrypted field to given value.
+
+### HasOsAdminPasswordEncrypted
+
+`func (o *Drive) HasOsAdminPasswordEncrypted() bool`
+
+HasOsAdminPasswordEncrypted returns a boolean if a field has been set.
+
 ### GetStorageType
 
 `func (o *Drive) GetStorageType() string`
@@ -160,31 +314,6 @@ and a boolean to check if the value has been set.
 
 SetStorageType sets StorageType field to given value.
 
-
-### GetIoLimitPolicy
-
-`func (o *Drive) GetIoLimitPolicy() string`
-
-GetIoLimitPolicy returns the IoLimitPolicy field if non-nil, zero value otherwise.
-
-### GetIoLimitPolicyOk
-
-`func (o *Drive) GetIoLimitPolicyOk() (*string, bool)`
-
-GetIoLimitPolicyOk returns a tuple with the IoLimitPolicy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIoLimitPolicy
-
-`func (o *Drive) SetIoLimitPolicy(v string)`
-
-SetIoLimitPolicy sets IoLimitPolicy field to given value.
-
-### HasIoLimitPolicy
-
-`func (o *Drive) HasIoLimitPolicy() bool`
-
-HasIoLimitPolicy returns a boolean if a field has been set.
 
 ### GetSubdomain
 
@@ -211,31 +340,6 @@ SetSubdomain sets Subdomain field to given value.
 
 HasSubdomain returns a boolean if a field has been set.
 
-### GetLogicalNetworkId
-
-`func (o *Drive) GetLogicalNetworkId() float32`
-
-GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
-
-### GetLogicalNetworkIdOk
-
-`func (o *Drive) GetLogicalNetworkIdOk() (*float32, bool)`
-
-GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLogicalNetworkId
-
-`func (o *Drive) SetLogicalNetworkId(v float32)`
-
-SetLogicalNetworkId sets LogicalNetworkId field to given value.
-
-### HasLogicalNetworkId
-
-`func (o *Drive) HasLogicalNetworkId() bool`
-
-HasLogicalNetworkId returns a boolean if a field has been set.
-
 ### GetUpdatedTimestamp
 
 `func (o *Drive) GetUpdatedTimestamp() string`
@@ -255,6 +359,81 @@ and a boolean to check if the value has been set.
 
 SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
+
+### GetSshPort
+
+`func (o *Drive) GetSshPort() float32`
+
+GetSshPort returns the SshPort field if non-nil, zero value otherwise.
+
+### GetSshPortOk
+
+`func (o *Drive) GetSshPortOk() (*float32, bool)`
+
+GetSshPortOk returns a tuple with the SshPort field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSshPort
+
+`func (o *Drive) SetSshPort(v float32)`
+
+SetSshPort sets SshPort field to given value.
+
+### HasSshPort
+
+`func (o *Drive) HasSshPort() bool`
+
+HasSshPort returns a boolean if a field has been set.
+
+### GetOperatingSystemInfo
+
+`func (o *Drive) GetOperatingSystemInfo() map[string]interface{}`
+
+GetOperatingSystemInfo returns the OperatingSystemInfo field if non-nil, zero value otherwise.
+
+### GetOperatingSystemInfoOk
+
+`func (o *Drive) GetOperatingSystemInfoOk() (*map[string]interface{}, bool)`
+
+GetOperatingSystemInfoOk returns a tuple with the OperatingSystemInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOperatingSystemInfo
+
+`func (o *Drive) SetOperatingSystemInfo(v map[string]interface{})`
+
+SetOperatingSystemInfo sets OperatingSystemInfo field to given value.
+
+### HasOperatingSystemInfo
+
+`func (o *Drive) HasOperatingSystemInfo() bool`
+
+HasOperatingSystemInfo returns a boolean if a field has been set.
+
+### GetFilesystemInfo
+
+`func (o *Drive) GetFilesystemInfo() map[string]interface{}`
+
+GetFilesystemInfo returns the FilesystemInfo field if non-nil, zero value otherwise.
+
+### GetFilesystemInfoOk
+
+`func (o *Drive) GetFilesystemInfoOk() (*map[string]interface{}, bool)`
+
+GetFilesystemInfoOk returns a tuple with the FilesystemInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilesystemInfo
+
+`func (o *Drive) SetFilesystemInfo(v map[string]interface{})`
+
+SetFilesystemInfo sets FilesystemInfo field to given value.
+
+### HasFilesystemInfo
+
+`func (o *Drive) HasFilesystemInfo() bool`
+
+HasFilesystemInfo returns a boolean if a field has been set.
 
 ### GetId
 
@@ -456,6 +635,56 @@ SetTargets sets Targets field to given value.
 
 HasTargets returns a boolean if a field has been set.
 
+### GetClusterCustomInfo
+
+`func (o *Drive) GetClusterCustomInfo() map[string]interface{}`
+
+GetClusterCustomInfo returns the ClusterCustomInfo field if non-nil, zero value otherwise.
+
+### GetClusterCustomInfoOk
+
+`func (o *Drive) GetClusterCustomInfoOk() (*map[string]interface{}, bool)`
+
+GetClusterCustomInfoOk returns a tuple with the ClusterCustomInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClusterCustomInfo
+
+`func (o *Drive) SetClusterCustomInfo(v map[string]interface{})`
+
+SetClusterCustomInfo sets ClusterCustomInfo field to given value.
+
+### HasClusterCustomInfo
+
+`func (o *Drive) HasClusterCustomInfo() bool`
+
+HasClusterCustomInfo returns a boolean if a field has been set.
+
+### GetSshKeyPairInternalEncrypted
+
+`func (o *Drive) GetSshKeyPairInternalEncrypted() map[string]interface{}`
+
+GetSshKeyPairInternalEncrypted returns the SshKeyPairInternalEncrypted field if non-nil, zero value otherwise.
+
+### GetSshKeyPairInternalEncryptedOk
+
+`func (o *Drive) GetSshKeyPairInternalEncryptedOk() (*map[string]interface{}, bool)`
+
+GetSshKeyPairInternalEncryptedOk returns a tuple with the SshKeyPairInternalEncrypted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSshKeyPairInternalEncrypted
+
+`func (o *Drive) SetSshKeyPairInternalEncrypted(v map[string]interface{})`
+
+SetSshKeyPairInternalEncrypted sets SshKeyPairInternalEncrypted field to given value.
+
+### HasSshKeyPairInternalEncrypted
+
+`func (o *Drive) HasSshKeyPairInternalEncrypted() bool`
+
+HasSshKeyPairInternalEncrypted returns a boolean if a field has been set.
+
 ### GetWwn
 
 `func (o *Drive) GetWwn() string`
@@ -480,26 +709,6 @@ SetWwn sets Wwn field to given value.
 `func (o *Drive) HasWwn() bool`
 
 HasWwn returns a boolean if a field has been set.
-
-### GetAllocationAffinity
-
-`func (o *Drive) GetAllocationAffinity() string`
-
-GetAllocationAffinity returns the AllocationAffinity field if non-nil, zero value otherwise.
-
-### GetAllocationAffinityOk
-
-`func (o *Drive) GetAllocationAffinityOk() (*string, bool)`
-
-GetAllocationAffinityOk returns a tuple with the AllocationAffinity field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAllocationAffinity
-
-`func (o *Drive) SetAllocationAffinity(v string)`
-
-SetAllocationAffinity sets AllocationAffinity field to given value.
-
 
 ### GetProvisioningProtocol
 
@@ -595,6 +804,31 @@ SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 `func (o *Drive) HasDnsSubdomainPermanentId() bool`
 
 HasDnsSubdomainPermanentId returns a boolean if a field has been set.
+
+### GetNetworkVlanId
+
+`func (o *Drive) GetNetworkVlanId() float32`
+
+GetNetworkVlanId returns the NetworkVlanId field if non-nil, zero value otherwise.
+
+### GetNetworkVlanIdOk
+
+`func (o *Drive) GetNetworkVlanIdOk() (*float32, bool)`
+
+GetNetworkVlanIdOk returns a tuple with the NetworkVlanId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkVlanId
+
+`func (o *Drive) SetNetworkVlanId(v float32)`
+
+SetNetworkVlanId sets NetworkVlanId field to given value.
+
+### HasNetworkVlanId
+
+`func (o *Drive) HasNetworkVlanId() bool`
+
+HasNetworkVlanId returns a boolean if a field has been set.
 
 ### GetConfig
 

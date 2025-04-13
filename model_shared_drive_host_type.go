@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the DriveHostType type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &DriveHostType{}
+// checks if the SharedDriveHostType type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SharedDriveHostType{}
 
-// DriveHostType struct for DriveHostType
-type DriveHostType struct {
+// SharedDriveHostType struct for SharedDriveHostType
+type SharedDriveHostType struct {
 	// Drive Host Ids that will be connected.
 	WillBeConnected []string `json:"willBeConnected"`
 	// Drive Host Ids that are connected.
@@ -32,14 +32,14 @@ type DriveHostType struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _DriveHostType DriveHostType
+type _SharedDriveHostType SharedDriveHostType
 
-// NewDriveHostType instantiates a new DriveHostType object
+// NewSharedDriveHostType instantiates a new SharedDriveHostType object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDriveHostType(willBeConnected []string, connected []string, willBeDisconnected []string, disconnected []string) *DriveHostType {
-	this := DriveHostType{}
+func NewSharedDriveHostType(willBeConnected []string, connected []string, willBeDisconnected []string, disconnected []string) *SharedDriveHostType {
+	this := SharedDriveHostType{}
 	this.WillBeConnected = willBeConnected
 	this.Connected = connected
 	this.WillBeDisconnected = willBeDisconnected
@@ -47,16 +47,16 @@ func NewDriveHostType(willBeConnected []string, connected []string, willBeDiscon
 	return &this
 }
 
-// NewDriveHostTypeWithDefaults instantiates a new DriveHostType object
+// NewSharedDriveHostTypeWithDefaults instantiates a new SharedDriveHostType object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewDriveHostTypeWithDefaults() *DriveHostType {
-	this := DriveHostType{}
+func NewSharedDriveHostTypeWithDefaults() *SharedDriveHostType {
+	this := SharedDriveHostType{}
 	return &this
 }
 
 // GetWillBeConnected returns the WillBeConnected field value
-func (o *DriveHostType) GetWillBeConnected() []string {
+func (o *SharedDriveHostType) GetWillBeConnected() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -67,7 +67,7 @@ func (o *DriveHostType) GetWillBeConnected() []string {
 
 // GetWillBeConnectedOk returns a tuple with the WillBeConnected field value
 // and a boolean to check if the value has been set.
-func (o *DriveHostType) GetWillBeConnectedOk() ([]string, bool) {
+func (o *SharedDriveHostType) GetWillBeConnectedOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,12 +75,12 @@ func (o *DriveHostType) GetWillBeConnectedOk() ([]string, bool) {
 }
 
 // SetWillBeConnected sets field value
-func (o *DriveHostType) SetWillBeConnected(v []string) {
+func (o *SharedDriveHostType) SetWillBeConnected(v []string) {
 	o.WillBeConnected = v
 }
 
 // GetConnected returns the Connected field value
-func (o *DriveHostType) GetConnected() []string {
+func (o *SharedDriveHostType) GetConnected() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -91,7 +91,7 @@ func (o *DriveHostType) GetConnected() []string {
 
 // GetConnectedOk returns a tuple with the Connected field value
 // and a boolean to check if the value has been set.
-func (o *DriveHostType) GetConnectedOk() ([]string, bool) {
+func (o *SharedDriveHostType) GetConnectedOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,12 +99,12 @@ func (o *DriveHostType) GetConnectedOk() ([]string, bool) {
 }
 
 // SetConnected sets field value
-func (o *DriveHostType) SetConnected(v []string) {
+func (o *SharedDriveHostType) SetConnected(v []string) {
 	o.Connected = v
 }
 
 // GetWillBeDisconnected returns the WillBeDisconnected field value
-func (o *DriveHostType) GetWillBeDisconnected() []string {
+func (o *SharedDriveHostType) GetWillBeDisconnected() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -115,7 +115,7 @@ func (o *DriveHostType) GetWillBeDisconnected() []string {
 
 // GetWillBeDisconnectedOk returns a tuple with the WillBeDisconnected field value
 // and a boolean to check if the value has been set.
-func (o *DriveHostType) GetWillBeDisconnectedOk() ([]string, bool) {
+func (o *SharedDriveHostType) GetWillBeDisconnectedOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -123,12 +123,12 @@ func (o *DriveHostType) GetWillBeDisconnectedOk() ([]string, bool) {
 }
 
 // SetWillBeDisconnected sets field value
-func (o *DriveHostType) SetWillBeDisconnected(v []string) {
+func (o *SharedDriveHostType) SetWillBeDisconnected(v []string) {
 	o.WillBeDisconnected = v
 }
 
 // GetDisconnected returns the Disconnected field value
-func (o *DriveHostType) GetDisconnected() []string {
+func (o *SharedDriveHostType) GetDisconnected() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -139,7 +139,7 @@ func (o *DriveHostType) GetDisconnected() []string {
 
 // GetDisconnectedOk returns a tuple with the Disconnected field value
 // and a boolean to check if the value has been set.
-func (o *DriveHostType) GetDisconnectedOk() ([]string, bool) {
+func (o *SharedDriveHostType) GetDisconnectedOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -147,11 +147,11 @@ func (o *DriveHostType) GetDisconnectedOk() ([]string, bool) {
 }
 
 // SetDisconnected sets field value
-func (o *DriveHostType) SetDisconnected(v []string) {
+func (o *SharedDriveHostType) SetDisconnected(v []string) {
 	o.Disconnected = v
 }
 
-func (o DriveHostType) MarshalJSON() ([]byte, error) {
+func (o SharedDriveHostType) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -159,7 +159,7 @@ func (o DriveHostType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o DriveHostType) ToMap() (map[string]interface{}, error) {
+func (o SharedDriveHostType) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["willBeConnected"] = o.WillBeConnected
 	toSerialize["connected"] = o.Connected
@@ -173,7 +173,7 @@ func (o DriveHostType) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *DriveHostType) UnmarshalJSON(data []byte) (err error) {
+func (o *SharedDriveHostType) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -198,15 +198,15 @@ func (o *DriveHostType) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varDriveHostType := _DriveHostType{}
+	varSharedDriveHostType := _SharedDriveHostType{}
 
-	err = json.Unmarshal(data, &varDriveHostType)
+	err = json.Unmarshal(data, &varSharedDriveHostType)
 
 	if err != nil {
 		return err
 	}
 
-	*o = DriveHostType(varDriveHostType)
+	*o = SharedDriveHostType(varSharedDriveHostType)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -221,38 +221,38 @@ func (o *DriveHostType) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableDriveHostType struct {
-	value *DriveHostType
+type NullableSharedDriveHostType struct {
+	value *SharedDriveHostType
 	isSet bool
 }
 
-func (v NullableDriveHostType) Get() *DriveHostType {
+func (v NullableSharedDriveHostType) Get() *SharedDriveHostType {
 	return v.value
 }
 
-func (v *NullableDriveHostType) Set(val *DriveHostType) {
+func (v *NullableSharedDriveHostType) Set(val *SharedDriveHostType) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDriveHostType) IsSet() bool {
+func (v NullableSharedDriveHostType) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDriveHostType) Unset() {
+func (v *NullableSharedDriveHostType) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDriveHostType(val *DriveHostType) *NullableDriveHostType {
-	return &NullableDriveHostType{value: val, isSet: true}
+func NewNullableSharedDriveHostType(val *SharedDriveHostType) *NullableSharedDriveHostType {
+	return &NullableSharedDriveHostType{value: val, isSet: true}
 }
 
-func (v NullableDriveHostType) MarshalJSON() ([]byte, error) {
+func (v NullableSharedDriveHostType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDriveHostType) UnmarshalJSON(src []byte) error {
+func (v *NullableSharedDriveHostType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

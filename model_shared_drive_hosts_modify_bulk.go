@@ -16,40 +16,40 @@ import (
 	"fmt"
 )
 
-// checks if the DriveHostsModifyBulk type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &DriveHostsModifyBulk{}
+// checks if the SharedDriveHostsModifyBulk type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SharedDriveHostsModifyBulk{}
 
-// DriveHostsModifyBulk struct for DriveHostsModifyBulk
-type DriveHostsModifyBulk struct {
+// SharedDriveHostsModifyBulk struct for SharedDriveHostsModifyBulk
+type SharedDriveHostsModifyBulk struct {
 	// List of operations to be performed on the File Share Hosts
-	SharedDriveHostBulkOperations []DriveHostBulkOperation `json:"sharedDriveHostBulkOperations"`
+	SharedDriveHostBulkOperations []SharedDriveHostBulkOperation `json:"sharedDriveHostBulkOperations"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _DriveHostsModifyBulk DriveHostsModifyBulk
+type _SharedDriveHostsModifyBulk SharedDriveHostsModifyBulk
 
-// NewDriveHostsModifyBulk instantiates a new DriveHostsModifyBulk object
+// NewSharedDriveHostsModifyBulk instantiates a new SharedDriveHostsModifyBulk object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDriveHostsModifyBulk(sharedDriveHostBulkOperations []DriveHostBulkOperation) *DriveHostsModifyBulk {
-	this := DriveHostsModifyBulk{}
+func NewSharedDriveHostsModifyBulk(sharedDriveHostBulkOperations []SharedDriveHostBulkOperation) *SharedDriveHostsModifyBulk {
+	this := SharedDriveHostsModifyBulk{}
 	this.SharedDriveHostBulkOperations = sharedDriveHostBulkOperations
 	return &this
 }
 
-// NewDriveHostsModifyBulkWithDefaults instantiates a new DriveHostsModifyBulk object
+// NewSharedDriveHostsModifyBulkWithDefaults instantiates a new SharedDriveHostsModifyBulk object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewDriveHostsModifyBulkWithDefaults() *DriveHostsModifyBulk {
-	this := DriveHostsModifyBulk{}
+func NewSharedDriveHostsModifyBulkWithDefaults() *SharedDriveHostsModifyBulk {
+	this := SharedDriveHostsModifyBulk{}
 	return &this
 }
 
 // GetSharedDriveHostBulkOperations returns the SharedDriveHostBulkOperations field value
-func (o *DriveHostsModifyBulk) GetSharedDriveHostBulkOperations() []DriveHostBulkOperation {
+func (o *SharedDriveHostsModifyBulk) GetSharedDriveHostBulkOperations() []SharedDriveHostBulkOperation {
 	if o == nil {
-		var ret []DriveHostBulkOperation
+		var ret []SharedDriveHostBulkOperation
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *DriveHostsModifyBulk) GetSharedDriveHostBulkOperations() []DriveHostBul
 
 // GetSharedDriveHostBulkOperationsOk returns a tuple with the SharedDriveHostBulkOperations field value
 // and a boolean to check if the value has been set.
-func (o *DriveHostsModifyBulk) GetSharedDriveHostBulkOperationsOk() ([]DriveHostBulkOperation, bool) {
+func (o *SharedDriveHostsModifyBulk) GetSharedDriveHostBulkOperationsOk() ([]SharedDriveHostBulkOperation, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,11 +66,11 @@ func (o *DriveHostsModifyBulk) GetSharedDriveHostBulkOperationsOk() ([]DriveHost
 }
 
 // SetSharedDriveHostBulkOperations sets field value
-func (o *DriveHostsModifyBulk) SetSharedDriveHostBulkOperations(v []DriveHostBulkOperation) {
+func (o *SharedDriveHostsModifyBulk) SetSharedDriveHostBulkOperations(v []SharedDriveHostBulkOperation) {
 	o.SharedDriveHostBulkOperations = v
 }
 
-func (o DriveHostsModifyBulk) MarshalJSON() ([]byte, error) {
+func (o SharedDriveHostsModifyBulk) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,7 +78,7 @@ func (o DriveHostsModifyBulk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o DriveHostsModifyBulk) ToMap() (map[string]interface{}, error) {
+func (o SharedDriveHostsModifyBulk) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["sharedDriveHostBulkOperations"] = o.SharedDriveHostBulkOperations
 
@@ -89,7 +89,7 @@ func (o DriveHostsModifyBulk) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *DriveHostsModifyBulk) UnmarshalJSON(data []byte) (err error) {
+func (o *SharedDriveHostsModifyBulk) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -111,15 +111,15 @@ func (o *DriveHostsModifyBulk) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varDriveHostsModifyBulk := _DriveHostsModifyBulk{}
+	varSharedDriveHostsModifyBulk := _SharedDriveHostsModifyBulk{}
 
-	err = json.Unmarshal(data, &varDriveHostsModifyBulk)
+	err = json.Unmarshal(data, &varSharedDriveHostsModifyBulk)
 
 	if err != nil {
 		return err
 	}
 
-	*o = DriveHostsModifyBulk(varDriveHostsModifyBulk)
+	*o = SharedDriveHostsModifyBulk(varSharedDriveHostsModifyBulk)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -131,38 +131,38 @@ func (o *DriveHostsModifyBulk) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableDriveHostsModifyBulk struct {
-	value *DriveHostsModifyBulk
+type NullableSharedDriveHostsModifyBulk struct {
+	value *SharedDriveHostsModifyBulk
 	isSet bool
 }
 
-func (v NullableDriveHostsModifyBulk) Get() *DriveHostsModifyBulk {
+func (v NullableSharedDriveHostsModifyBulk) Get() *SharedDriveHostsModifyBulk {
 	return v.value
 }
 
-func (v *NullableDriveHostsModifyBulk) Set(val *DriveHostsModifyBulk) {
+func (v *NullableSharedDriveHostsModifyBulk) Set(val *SharedDriveHostsModifyBulk) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDriveHostsModifyBulk) IsSet() bool {
+func (v NullableSharedDriveHostsModifyBulk) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDriveHostsModifyBulk) Unset() {
+func (v *NullableSharedDriveHostsModifyBulk) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDriveHostsModifyBulk(val *DriveHostsModifyBulk) *NullableDriveHostsModifyBulk {
-	return &NullableDriveHostsModifyBulk{value: val, isSet: true}
+func NewNullableSharedDriveHostsModifyBulk(val *SharedDriveHostsModifyBulk) *NullableSharedDriveHostsModifyBulk {
+	return &NullableSharedDriveHostsModifyBulk{value: val, isSet: true}
 }
 
-func (v NullableDriveHostsModifyBulk) MarshalJSON() ([]byte, error) {
+func (v NullableSharedDriveHostsModifyBulk) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDriveHostsModifyBulk) UnmarshalJSON(src []byte) error {
+func (v *NullableSharedDriveHostsModifyBulk) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

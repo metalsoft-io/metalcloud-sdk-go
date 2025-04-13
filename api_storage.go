@@ -2074,7 +2074,7 @@ func (r StorageAPIGetStorageSharedDrivesRequest) SearchBy(searchBy []string) Sto
 	return r
 }
 
-func (r StorageAPIGetStorageSharedDrivesRequest) Execute() (*DrivePaginatedList, *http.Response, error) {
+func (r StorageAPIGetStorageSharedDrivesRequest) Execute() (*SharedDrivePaginatedList, *http.Response, error) {
 	return r.ApiService.GetStorageSharedDrivesExecute(r)
 }
 
@@ -2096,13 +2096,13 @@ func (a *StorageAPIService) GetStorageSharedDrives(ctx context.Context, storageI
 }
 
 // Execute executes the request
-//  @return DrivePaginatedList
-func (a *StorageAPIService) GetStorageSharedDrivesExecute(r StorageAPIGetStorageSharedDrivesRequest) (*DrivePaginatedList, *http.Response, error) {
+//  @return SharedDrivePaginatedList
+func (a *StorageAPIService) GetStorageSharedDrivesExecute(r StorageAPIGetStorageSharedDrivesRequest) (*SharedDrivePaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DrivePaginatedList
+		localVarReturnValue  *SharedDrivePaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStorageSharedDrives")

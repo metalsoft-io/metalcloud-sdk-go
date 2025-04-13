@@ -1,4 +1,4 @@
-# DriveHostBulkOperation
+# SharedDriveHostBulkOperation
 
 ## Properties
 
@@ -9,59 +9,59 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewDriveHostBulkOperation
+### NewSharedDriveHostBulkOperation
 
-`func NewDriveHostBulkOperation(serverInstanceGroupId float32, operationType string, ) *DriveHostBulkOperation`
+`func NewSharedDriveHostBulkOperation(serverInstanceGroupId float32, operationType string, ) *SharedDriveHostBulkOperation`
 
-NewDriveHostBulkOperation instantiates a new DriveHostBulkOperation object
+NewSharedDriveHostBulkOperation instantiates a new SharedDriveHostBulkOperation object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewDriveHostBulkOperationWithDefaults
+### NewSharedDriveHostBulkOperationWithDefaults
 
-`func NewDriveHostBulkOperationWithDefaults() *DriveHostBulkOperation`
+`func NewSharedDriveHostBulkOperationWithDefaults() *SharedDriveHostBulkOperation`
 
-NewDriveHostBulkOperationWithDefaults instantiates a new DriveHostBulkOperation object
+NewSharedDriveHostBulkOperationWithDefaults instantiates a new SharedDriveHostBulkOperation object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetServerInstanceGroupId
 
-`func (o *DriveHostBulkOperation) GetServerInstanceGroupId() float32`
+`func (o *SharedDriveHostBulkOperation) GetServerInstanceGroupId() float32`
 
 GetServerInstanceGroupId returns the ServerInstanceGroupId field if non-nil, zero value otherwise.
 
 ### GetServerInstanceGroupIdOk
 
-`func (o *DriveHostBulkOperation) GetServerInstanceGroupIdOk() (*float32, bool)`
+`func (o *SharedDriveHostBulkOperation) GetServerInstanceGroupIdOk() (*float32, bool)`
 
 GetServerInstanceGroupIdOk returns a tuple with the ServerInstanceGroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerInstanceGroupId
 
-`func (o *DriveHostBulkOperation) SetServerInstanceGroupId(v float32)`
+`func (o *SharedDriveHostBulkOperation) SetServerInstanceGroupId(v float32)`
 
 SetServerInstanceGroupId sets ServerInstanceGroupId field to given value.
 
 
 ### GetOperationType
 
-`func (o *DriveHostBulkOperation) GetOperationType() string`
+`func (o *SharedDriveHostBulkOperation) GetOperationType() string`
 
 GetOperationType returns the OperationType field if non-nil, zero value otherwise.
 
 ### GetOperationTypeOk
 
-`func (o *DriveHostBulkOperation) GetOperationTypeOk() (*string, bool)`
+`func (o *SharedDriveHostBulkOperation) GetOperationTypeOk() (*string, bool)`
 
 GetOperationTypeOk returns a tuple with the OperationType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOperationType
 
-`func (o *DriveHostBulkOperation) SetOperationType(v string)`
+`func (o *SharedDriveHostBulkOperation) SetOperationType(v string)`
 
 SetOperationType sets OperationType field to given value.
 

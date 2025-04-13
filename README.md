@@ -352,8 +352,10 @@ Class | Method | HTTP request | Description
 *ServerInstanceAPI* | [**UpdateServerInstanceConfig**](docs/ServerInstanceAPI.md#updateserverinstanceconfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/config | Update Server Instance configuration
 *ServerInstanceAPI* | [**UpdateServerInstanceInterfaceConfig**](docs/ServerInstanceAPI.md#updateserverinstanceinterfaceconfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId}/config | Update Server Instance Interface configuration
 *ServerInstanceGroupAPI* | [**CreateServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#createserverinstancegroup) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | Add a Server Instance Group to an infrastructure. By default it will not have any instance.
+*ServerInstanceGroupAPI* | [**CreateServerInstanceGroupLogicalNetworkACL**](docs/ServerInstanceGroupAPI.md#createserverinstancegrouplogicalnetworkacl) | **Post** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}/security/rules | Create a security rule for a logical network
 *ServerInstanceGroupAPI* | [**CreateServerInstanceGroupNetworkConfigurationConnection**](docs/ServerInstanceGroupAPI.md#createserverinstancegroupnetworkconfigurationconnection) | **Post** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections | Create a network connection for a server instance group
 *ServerInstanceGroupAPI* | [**DeleteServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#deleteserverinstancegroup) | **Delete** /api/v2/server-instance-groups/{serverInstanceGroupId} | Delete Server Instance Group. Will not take effect if there are instances in this group.
+*ServerInstanceGroupAPI* | [**DeleteServerInstanceGroupLogicalNetworkACL**](docs/ServerInstanceGroupAPI.md#deleteserverinstancegrouplogicalnetworkacl) | **Delete** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}/security/rules/{ruleId} | Delete a security rule for a logical network
 *ServerInstanceGroupAPI* | [**DeleteServerInstanceGroupNetworkConfigurationConnection**](docs/ServerInstanceGroupAPI.md#deleteserverinstancegroupnetworkconfigurationconnection) | **Delete** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Delete a network connection for a server instance group
 *ServerInstanceGroupAPI* | [**GetInfrastructureServerInstanceGroups**](docs/ServerInstanceGroupAPI.md#getinfrastructureserverinstancegroups) | **Get** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | List Server Instance Groups for an infrastructure
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#getserverinstancegroup) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId} | Get Server Instance Groups details
@@ -361,11 +363,14 @@ Class | Method | HTTP request | Description
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupDriveGroups**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupdrivegroups) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/drive-groups | Get Server Instance Group Drive Groups
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupInterface**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupinterface) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces/{interfaceId} | Get Server Instance Group Interface details
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupInterfaces**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupinterfaces) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/interfaces | Get Server Instance Group Interfaces
+*ServerInstanceGroupAPI* | [**GetServerInstanceGroupLogicalNetworkACL**](docs/ServerInstanceGroupAPI.md#getserverinstancegrouplogicalnetworkacl) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}/security/rules | Get the security rules for a logical network
+*ServerInstanceGroupAPI* | [**GetServerInstanceGroupLogicalNetworkACLById**](docs/ServerInstanceGroupAPI.md#getserverinstancegrouplogicalnetworkaclbyid) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}/security/rules/{ruleId} | Get a security rule for a logical network by id
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfiguration**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfiguration) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking | Get server instance group network configuration
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfigurationConnectionById**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfigurationconnectionbyid) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Get server instance group network configuration connection by id
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupNetworkConfigurationConnections**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupnetworkconfigurationconnections) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections | Get server instance group&#39;s network connections
 *ServerInstanceGroupAPI* | [**GetServerInstanceGroupServerInstances**](docs/ServerInstanceGroupAPI.md#getserverinstancegroupserverinstances) | **Get** /api/v2/server-instance-groups/{serverInstanceGroupId}/server-instances | List Server Instances for a Server Instance Group
 *ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupConfig**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupconfig) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config | Updates Server Instance Group configuration
+*ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupLogicalNetworkACL**](docs/ServerInstanceGroupAPI.md#updateserverinstancegrouplogicalnetworkacl) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}/security/rules/{ruleId} | Update a security rule for a logical network
 *ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupMeta**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupmeta) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/meta | Update an Server Instance Group meta information
 *ServerInstanceGroupAPI* | [**UpdateServerInstanceGroupNetworkConfigurationConnection**](docs/ServerInstanceGroupAPI.md#updateserverinstancegroupnetworkconfigurationconnection) | **Patch** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId} | Update a network connection for a server instance group
 *ServerTypeAPI* | [**CreateServerType**](docs/ServerTypeAPI.md#createservertype) | **Post** /api/v2/server-types | Creates a Server Type
@@ -548,7 +553,6 @@ Class | Method | HTTP request | Description
  - [CreateAccount](docs/CreateAccount.md)
  - [CreateBucket](docs/CreateBucket.md)
  - [CreateCustomIso](docs/CreateCustomIso.md)
- - [CreateDrive](docs/CreateDrive.md)
  - [CreateExtension](docs/CreateExtension.md)
  - [CreateExtensionInstance](docs/CreateExtensionInstance.md)
  - [CreateFileShare](docs/CreateFileShare.md)
@@ -556,6 +560,7 @@ Class | Method | HTTP request | Description
  - [CreateFirmwareBinary](docs/CreateFirmwareBinary.md)
  - [CreateFirmwareCatalog](docs/CreateFirmwareCatalog.md)
  - [CreateLogicalNetwork](docs/CreateLogicalNetwork.md)
+ - [CreateLogicalNetworkACLDto](docs/CreateLogicalNetworkACLDto.md)
  - [CreateLogicalNetworkProfile](docs/CreateLogicalNetworkProfile.md)
  - [CreateNetwork](docs/CreateNetwork.md)
  - [CreateNetworkDevice](docs/CreateNetworkDevice.md)
@@ -570,6 +575,7 @@ Class | Method | HTTP request | Description
  - [CreateServerFirmwareUpgradePolicy](docs/CreateServerFirmwareUpgradePolicy.md)
  - [CreateServerInstanceGroupNetworkConnectionDto](docs/CreateServerInstanceGroupNetworkConnectionDto.md)
  - [CreateServerType](docs/CreateServerType.md)
+ - [CreateSharedDrive](docs/CreateSharedDrive.md)
  - [CreateStorage](docs/CreateStorage.md)
  - [CreateStorageNetworkDeviceConfiguration](docs/CreateStorageNetworkDeviceConfiguration.md)
  - [CreateSubnet](docs/CreateSubnet.md)
@@ -591,10 +597,6 @@ Class | Method | HTTP request | Description
  - [DriveGroupList](docs/DriveGroupList.md)
  - [DriveGroupMeta](docs/DriveGroupMeta.md)
  - [DriveGroupVariables](docs/DriveGroupVariables.md)
- - [DriveHostBulkOperation](docs/DriveHostBulkOperation.md)
- - [DriveHostType](docs/DriveHostType.md)
- - [DriveHosts](docs/DriveHosts.md)
- - [DriveHostsModifyBulk](docs/DriveHostsModifyBulk.md)
  - [DriveList](docs/DriveList.md)
  - [DriveMeta](docs/DriveMeta.md)
  - [DrivePaginatedList](docs/DrivePaginatedList.md)
@@ -695,6 +697,7 @@ Class | Method | HTTP request | Description
  - [LinkDuplex](docs/LinkDuplex.md)
  - [Location](docs/Location.md)
  - [LogicalNetwork](docs/LogicalNetwork.md)
+ - [LogicalNetworkACLDto](docs/LogicalNetworkACLDto.md)
  - [LogicalNetworkPaginatedList](docs/LogicalNetworkPaginatedList.md)
  - [LogicalNetworkProfile](docs/LogicalNetworkProfile.md)
  - [LogicalNetworkProfilePaginatedList](docs/LogicalNetworkProfilePaginatedList.md)
@@ -816,6 +819,14 @@ Class | Method | HTTP request | Description
  - [ServerUnmanagedImportInternalInterfaceDto](docs/ServerUnmanagedImportInternalInterfaceDto.md)
  - [ServerVNCInfo](docs/ServerVNCInfo.md)
  - [ServerVariables](docs/ServerVariables.md)
+ - [SharedDrive](docs/SharedDrive.md)
+ - [SharedDriveConfiguration](docs/SharedDriveConfiguration.md)
+ - [SharedDriveHostBulkOperation](docs/SharedDriveHostBulkOperation.md)
+ - [SharedDriveHostType](docs/SharedDriveHostType.md)
+ - [SharedDriveHosts](docs/SharedDriveHosts.md)
+ - [SharedDriveHostsModifyBulk](docs/SharedDriveHostsModifyBulk.md)
+ - [SharedDriveMeta](docs/SharedDriveMeta.md)
+ - [SharedDrivePaginatedList](docs/SharedDrivePaginatedList.md)
  - [SharedDriveVariables](docs/SharedDriveVariables.md)
  - [Site](docs/Site.md)
  - [SiteConfig](docs/SiteConfig.md)
@@ -847,8 +858,6 @@ Class | Method | HTTP request | Description
  - [UpdateBucket](docs/UpdateBucket.md)
  - [UpdateBucketMeta](docs/UpdateBucketMeta.md)
  - [UpdateCustomIso](docs/UpdateCustomIso.md)
- - [UpdateDrive](docs/UpdateDrive.md)
- - [UpdateDriveMeta](docs/UpdateDriveMeta.md)
  - [UpdateExtension](docs/UpdateExtension.md)
  - [UpdateExtensionInstance](docs/UpdateExtensionInstance.md)
  - [UpdateFileShare](docs/UpdateFileShare.md)
@@ -859,6 +868,7 @@ Class | Method | HTTP request | Description
  - [UpdateInfrastructure](docs/UpdateInfrastructure.md)
  - [UpdateInfrastructureMeta](docs/UpdateInfrastructureMeta.md)
  - [UpdateLogicalNetwork](docs/UpdateLogicalNetwork.md)
+ - [UpdateLogicalNetworkACLDto](docs/UpdateLogicalNetworkACLDto.md)
  - [UpdateLogicalNetworkProfile](docs/UpdateLogicalNetworkProfile.md)
  - [UpdateNetworkDevice](docs/UpdateNetworkDevice.md)
  - [UpdateNetworkEndpointGroup](docs/UpdateNetworkEndpointGroup.md)
@@ -873,6 +883,8 @@ Class | Method | HTTP request | Description
  - [UpdateServerFirmwareUpgradePolicy](docs/UpdateServerFirmwareUpgradePolicy.md)
  - [UpdateServerIpmiCredentials](docs/UpdateServerIpmiCredentials.md)
  - [UpdateServerType](docs/UpdateServerType.md)
+ - [UpdateSharedDrive](docs/UpdateSharedDrive.md)
+ - [UpdateSharedDriveMeta](docs/UpdateSharedDriveMeta.md)
  - [UpdateStorage](docs/UpdateStorage.md)
  - [UpdateStorageNetworkDeviceConfiguration](docs/UpdateStorageNetworkDeviceConfiguration.md)
  - [UpdateStorageOptions](docs/UpdateStorageOptions.md)

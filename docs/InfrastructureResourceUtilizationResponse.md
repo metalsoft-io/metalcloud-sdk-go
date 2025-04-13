@@ -8,15 +8,15 @@ Name | Type | Description | Notes
 **NetworkReport** | **map[string]interface{}** | Network utilization report | 
 **ReservationInstallments** | **map[string]interface{}** | Reservation installments information | 
 **Infrastructures** | **map[string]interface{}** | Infrastructures information | 
-**StartTimestamp** | **time.Time** | Start timestamp of the utilization period | 
-**EndTimestamp** | **time.Time** | End timestamp of the utilization period | 
+**StartTimestamp** | **string** | Start timestamp of the utilization period | 
+**EndTimestamp** | **string** | End timestamp of the utilization period | 
 **LicenseInstallments** | [**LicenseInstallments**](LicenseInstallments.md) | License installments information | 
 
 ## Methods
 
 ### NewInfrastructureResourceUtilizationResponse
 
-`func NewInfrastructureResourceUtilizationResponse(detailedReport map[string]interface{}, networkReport map[string]interface{}, reservationInstallments map[string]interface{}, infrastructures map[string]interface{}, startTimestamp time.Time, endTimestamp time.Time, licenseInstallments LicenseInstallments, ) *InfrastructureResourceUtilizationResponse`
+`func NewInfrastructureResourceUtilizationResponse(detailedReport map[string]interface{}, networkReport map[string]interface{}, reservationInstallments map[string]interface{}, infrastructures map[string]interface{}, startTimestamp string, endTimestamp string, licenseInstallments LicenseInstallments, ) *InfrastructureResourceUtilizationResponse`
 
 NewInfrastructureResourceUtilizationResponse instantiates a new InfrastructureResourceUtilizationResponse object
 This constructor will assign default values to properties that have it defined,
@@ -113,40 +113,40 @@ SetInfrastructures sets Infrastructures field to given value.
 
 ### GetStartTimestamp
 
-`func (o *InfrastructureResourceUtilizationResponse) GetStartTimestamp() time.Time`
+`func (o *InfrastructureResourceUtilizationResponse) GetStartTimestamp() string`
 
 GetStartTimestamp returns the StartTimestamp field if non-nil, zero value otherwise.
 
 ### GetStartTimestampOk
 
-`func (o *InfrastructureResourceUtilizationResponse) GetStartTimestampOk() (*time.Time, bool)`
+`func (o *InfrastructureResourceUtilizationResponse) GetStartTimestampOk() (*string, bool)`
 
 GetStartTimestampOk returns a tuple with the StartTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartTimestamp
 
-`func (o *InfrastructureResourceUtilizationResponse) SetStartTimestamp(v time.Time)`
+`func (o *InfrastructureResourceUtilizationResponse) SetStartTimestamp(v string)`
 
 SetStartTimestamp sets StartTimestamp field to given value.
 
 
 ### GetEndTimestamp
 
-`func (o *InfrastructureResourceUtilizationResponse) GetEndTimestamp() time.Time`
+`func (o *InfrastructureResourceUtilizationResponse) GetEndTimestamp() string`
 
 GetEndTimestamp returns the EndTimestamp field if non-nil, zero value otherwise.
 
 ### GetEndTimestampOk
 
-`func (o *InfrastructureResourceUtilizationResponse) GetEndTimestampOk() (*time.Time, bool)`
+`func (o *InfrastructureResourceUtilizationResponse) GetEndTimestampOk() (*string, bool)`
 
 GetEndTimestampOk returns a tuple with the EndTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndTimestamp
 
-`func (o *InfrastructureResourceUtilizationResponse) SetEndTimestamp(v time.Time)`
+`func (o *InfrastructureResourceUtilizationResponse) SetEndTimestamp(v string)`
 
 SetEndTimestamp sets EndTimestamp field to given value.
 

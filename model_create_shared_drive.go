@@ -16,42 +16,42 @@ import (
 	"fmt"
 )
 
-// checks if the CreateDrive type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateDrive{}
+// checks if the CreateSharedDrive type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateSharedDrive{}
 
-// CreateDrive struct for CreateDrive
-type CreateDrive struct {
+// CreateSharedDrive struct for CreateSharedDrive
+type CreateSharedDrive struct {
 	// Disk size in MB for Drive
 	SizeMb float32 `json:"sizeMb"`
 	// Id of the Logical Network for the Drive.
 	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
-	// Display name of the File Share.
+	// Label of the Drive.
 	Label *string `json:"label,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _CreateDrive CreateDrive
+type _CreateSharedDrive CreateSharedDrive
 
-// NewCreateDrive instantiates a new CreateDrive object
+// NewCreateSharedDrive instantiates a new CreateSharedDrive object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateDrive(sizeMb float32) *CreateDrive {
-	this := CreateDrive{}
+func NewCreateSharedDrive(sizeMb float32) *CreateSharedDrive {
+	this := CreateSharedDrive{}
 	this.SizeMb = sizeMb
 	return &this
 }
 
-// NewCreateDriveWithDefaults instantiates a new CreateDrive object
+// NewCreateSharedDriveWithDefaults instantiates a new CreateSharedDrive object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateDriveWithDefaults() *CreateDrive {
-	this := CreateDrive{}
+func NewCreateSharedDriveWithDefaults() *CreateSharedDrive {
+	this := CreateSharedDrive{}
 	return &this
 }
 
 // GetSizeMb returns the SizeMb field value
-func (o *CreateDrive) GetSizeMb() float32 {
+func (o *CreateSharedDrive) GetSizeMb() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -62,7 +62,7 @@ func (o *CreateDrive) GetSizeMb() float32 {
 
 // GetSizeMbOk returns a tuple with the SizeMb field value
 // and a boolean to check if the value has been set.
-func (o *CreateDrive) GetSizeMbOk() (*float32, bool) {
+func (o *CreateSharedDrive) GetSizeMbOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -70,12 +70,12 @@ func (o *CreateDrive) GetSizeMbOk() (*float32, bool) {
 }
 
 // SetSizeMb sets field value
-func (o *CreateDrive) SetSizeMb(v float32) {
+func (o *CreateSharedDrive) SetSizeMb(v float32) {
 	o.SizeMb = v
 }
 
 // GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
-func (o *CreateDrive) GetLogicalNetworkId() float32 {
+func (o *CreateSharedDrive) GetLogicalNetworkId() float32 {
 	if o == nil || IsNil(o.LogicalNetworkId) {
 		var ret float32
 		return ret
@@ -85,7 +85,7 @@ func (o *CreateDrive) GetLogicalNetworkId() float32 {
 
 // GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateDrive) GetLogicalNetworkIdOk() (*float32, bool) {
+func (o *CreateSharedDrive) GetLogicalNetworkIdOk() (*float32, bool) {
 	if o == nil || IsNil(o.LogicalNetworkId) {
 		return nil, false
 	}
@@ -93,7 +93,7 @@ func (o *CreateDrive) GetLogicalNetworkIdOk() (*float32, bool) {
 }
 
 // HasLogicalNetworkId returns a boolean if a field has been set.
-func (o *CreateDrive) HasLogicalNetworkId() bool {
+func (o *CreateSharedDrive) HasLogicalNetworkId() bool {
 	if o != nil && !IsNil(o.LogicalNetworkId) {
 		return true
 	}
@@ -102,12 +102,12 @@ func (o *CreateDrive) HasLogicalNetworkId() bool {
 }
 
 // SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
-func (o *CreateDrive) SetLogicalNetworkId(v float32) {
+func (o *CreateSharedDrive) SetLogicalNetworkId(v float32) {
 	o.LogicalNetworkId = &v
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
-func (o *CreateDrive) GetLabel() string {
+func (o *CreateSharedDrive) GetLabel() string {
 	if o == nil || IsNil(o.Label) {
 		var ret string
 		return ret
@@ -117,7 +117,7 @@ func (o *CreateDrive) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateDrive) GetLabelOk() (*string, bool) {
+func (o *CreateSharedDrive) GetLabelOk() (*string, bool) {
 	if o == nil || IsNil(o.Label) {
 		return nil, false
 	}
@@ -125,7 +125,7 @@ func (o *CreateDrive) GetLabelOk() (*string, bool) {
 }
 
 // HasLabel returns a boolean if a field has been set.
-func (o *CreateDrive) HasLabel() bool {
+func (o *CreateSharedDrive) HasLabel() bool {
 	if o != nil && !IsNil(o.Label) {
 		return true
 	}
@@ -134,11 +134,11 @@ func (o *CreateDrive) HasLabel() bool {
 }
 
 // SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *CreateDrive) SetLabel(v string) {
+func (o *CreateSharedDrive) SetLabel(v string) {
 	o.Label = &v
 }
 
-func (o CreateDrive) MarshalJSON() ([]byte, error) {
+func (o CreateSharedDrive) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -146,7 +146,7 @@ func (o CreateDrive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateDrive) ToMap() (map[string]interface{}, error) {
+func (o CreateSharedDrive) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["sizeMb"] = o.SizeMb
 	if !IsNil(o.LogicalNetworkId) {
@@ -163,7 +163,7 @@ func (o CreateDrive) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *CreateDrive) UnmarshalJSON(data []byte) (err error) {
+func (o *CreateSharedDrive) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -185,15 +185,15 @@ func (o *CreateDrive) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varCreateDrive := _CreateDrive{}
+	varCreateSharedDrive := _CreateSharedDrive{}
 
-	err = json.Unmarshal(data, &varCreateDrive)
+	err = json.Unmarshal(data, &varCreateSharedDrive)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CreateDrive(varCreateDrive)
+	*o = CreateSharedDrive(varCreateSharedDrive)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -207,38 +207,38 @@ func (o *CreateDrive) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableCreateDrive struct {
-	value *CreateDrive
+type NullableCreateSharedDrive struct {
+	value *CreateSharedDrive
 	isSet bool
 }
 
-func (v NullableCreateDrive) Get() *CreateDrive {
+func (v NullableCreateSharedDrive) Get() *CreateSharedDrive {
 	return v.value
 }
 
-func (v *NullableCreateDrive) Set(val *CreateDrive) {
+func (v *NullableCreateSharedDrive) Set(val *CreateSharedDrive) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateDrive) IsSet() bool {
+func (v NullableCreateSharedDrive) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateDrive) Unset() {
+func (v *NullableCreateSharedDrive) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateDrive(val *CreateDrive) *NullableCreateDrive {
-	return &NullableCreateDrive{value: val, isSet: true}
+func NewNullableCreateSharedDrive(val *CreateSharedDrive) *NullableCreateSharedDrive {
+	return &NullableCreateSharedDrive{value: val, isSet: true}
 }
 
-func (v NullableCreateDrive) MarshalJSON() ([]byte, error) {
+func (v NullableCreateSharedDrive) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateDrive) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateSharedDrive) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

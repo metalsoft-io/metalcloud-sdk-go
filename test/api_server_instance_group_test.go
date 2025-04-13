@@ -36,6 +36,21 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ServerInstanceGroupAPIService CreateServerInstanceGroupLogicalNetworkACL", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceGroupId int32
+		var connectionId int32
+
+		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.CreateServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ServerInstanceGroupAPIService CreateServerInstanceGroupNetworkConfigurationConnection", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -57,6 +72,21 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 		var serverInstanceGroupId int32
 
 		httpRes, err := apiClient.ServerInstanceGroupAPI.DeleteServerInstanceGroup(context.Background(), serverInstanceGroupId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ServerInstanceGroupAPIService DeleteServerInstanceGroupLogicalNetworkACL", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceGroupId int32
+		var connectionId int32
+		var ruleId int32
+
+		httpRes, err := apiClient.ServerInstanceGroupAPI.DeleteServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId, ruleId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -162,6 +192,37 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ServerInstanceGroupAPIService GetServerInstanceGroupLogicalNetworkACL", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceGroupId int32
+		var connectionId int32
+
+		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ServerInstanceGroupAPIService GetServerInstanceGroupLogicalNetworkACLById", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceGroupId int32
+		var connectionId int32
+		var ruleId int32
+
+		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACLById(context.Background(), serverInstanceGroupId, connectionId, ruleId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ServerInstanceGroupAPIService GetServerInstanceGroupNetworkConfiguration", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -226,6 +287,22 @@ func Test_sdk_ServerInstanceGroupAPIService(t *testing.T) {
 		var serverInstanceGroupId int32
 
 		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupConfig(context.Background(), serverInstanceGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ServerInstanceGroupAPIService UpdateServerInstanceGroupLogicalNetworkACL", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceGroupId int32
+		var connectionId int32
+		var ruleId int32
+
+		resp, httpRes, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId, ruleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

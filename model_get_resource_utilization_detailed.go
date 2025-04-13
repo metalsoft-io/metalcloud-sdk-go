@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"time"
 	"fmt"
 )
 
@@ -25,9 +24,9 @@ type GetResourceUtilizationDetailed struct {
 	// User ID of the owner
 	UserIdOwner float32 `json:"userIdOwner"`
 	// Start timestamp for the resource utilization
-	StartTimestamp time.Time `json:"startTimestamp"`
+	StartTimestamp string `json:"startTimestamp"`
 	// End timestamp for the resource utilization
-	EndTimestamp time.Time `json:"endTimestamp"`
+	EndTimestamp string `json:"endTimestamp"`
 	// List of infrastructure IDs
 	InfrastructureIds []float32 `json:"infrastructureIds,omitempty"`
 	// List of site IDs
@@ -41,7 +40,7 @@ type _GetResourceUtilizationDetailed GetResourceUtilizationDetailed
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetResourceUtilizationDetailed(userIdOwner float32, startTimestamp time.Time, endTimestamp time.Time) *GetResourceUtilizationDetailed {
+func NewGetResourceUtilizationDetailed(userIdOwner float32, startTimestamp string, endTimestamp string) *GetResourceUtilizationDetailed {
 	this := GetResourceUtilizationDetailed{}
 	this.UserIdOwner = userIdOwner
 	this.StartTimestamp = startTimestamp
@@ -82,9 +81,9 @@ func (o *GetResourceUtilizationDetailed) SetUserIdOwner(v float32) {
 }
 
 // GetStartTimestamp returns the StartTimestamp field value
-func (o *GetResourceUtilizationDetailed) GetStartTimestamp() time.Time {
+func (o *GetResourceUtilizationDetailed) GetStartTimestamp() string {
 	if o == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 
@@ -93,7 +92,7 @@ func (o *GetResourceUtilizationDetailed) GetStartTimestamp() time.Time {
 
 // GetStartTimestampOk returns a tuple with the StartTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *GetResourceUtilizationDetailed) GetStartTimestampOk() (*time.Time, bool) {
+func (o *GetResourceUtilizationDetailed) GetStartTimestampOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -101,14 +100,14 @@ func (o *GetResourceUtilizationDetailed) GetStartTimestampOk() (*time.Time, bool
 }
 
 // SetStartTimestamp sets field value
-func (o *GetResourceUtilizationDetailed) SetStartTimestamp(v time.Time) {
+func (o *GetResourceUtilizationDetailed) SetStartTimestamp(v string) {
 	o.StartTimestamp = v
 }
 
 // GetEndTimestamp returns the EndTimestamp field value
-func (o *GetResourceUtilizationDetailed) GetEndTimestamp() time.Time {
+func (o *GetResourceUtilizationDetailed) GetEndTimestamp() string {
 	if o == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 
@@ -117,7 +116,7 @@ func (o *GetResourceUtilizationDetailed) GetEndTimestamp() time.Time {
 
 // GetEndTimestampOk returns a tuple with the EndTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *GetResourceUtilizationDetailed) GetEndTimestampOk() (*time.Time, bool) {
+func (o *GetResourceUtilizationDetailed) GetEndTimestampOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -125,7 +124,7 @@ func (o *GetResourceUtilizationDetailed) GetEndTimestampOk() (*time.Time, bool) 
 }
 
 // SetEndTimestamp sets field value
-func (o *GetResourceUtilizationDetailed) SetEndTimestamp(v time.Time) {
+func (o *GetResourceUtilizationDetailed) SetEndTimestamp(v string) {
 	o.EndTimestamp = v
 }
 

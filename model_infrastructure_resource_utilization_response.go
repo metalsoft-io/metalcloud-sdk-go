@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"time"
 	"fmt"
 )
 
@@ -31,9 +30,9 @@ type InfrastructureResourceUtilizationResponse struct {
 	// Infrastructures information
 	Infrastructures map[string]interface{} `json:"infrastructures"`
 	// Start timestamp of the utilization period
-	StartTimestamp time.Time `json:"startTimestamp"`
+	StartTimestamp string `json:"startTimestamp"`
 	// End timestamp of the utilization period
-	EndTimestamp time.Time `json:"endTimestamp"`
+	EndTimestamp string `json:"endTimestamp"`
 	// License installments information
 	LicenseInstallments LicenseInstallments `json:"licenseInstallments"`
 	AdditionalProperties map[string]interface{}
@@ -45,7 +44,7 @@ type _InfrastructureResourceUtilizationResponse InfrastructureResourceUtilizatio
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfrastructureResourceUtilizationResponse(detailedReport map[string]interface{}, networkReport map[string]interface{}, reservationInstallments map[string]interface{}, infrastructures map[string]interface{}, startTimestamp time.Time, endTimestamp time.Time, licenseInstallments LicenseInstallments) *InfrastructureResourceUtilizationResponse {
+func NewInfrastructureResourceUtilizationResponse(detailedReport map[string]interface{}, networkReport map[string]interface{}, reservationInstallments map[string]interface{}, infrastructures map[string]interface{}, startTimestamp string, endTimestamp string, licenseInstallments LicenseInstallments) *InfrastructureResourceUtilizationResponse {
 	this := InfrastructureResourceUtilizationResponse{}
 	this.DetailedReport = detailedReport
 	this.NetworkReport = networkReport
@@ -162,9 +161,9 @@ func (o *InfrastructureResourceUtilizationResponse) SetInfrastructures(v map[str
 }
 
 // GetStartTimestamp returns the StartTimestamp field value
-func (o *InfrastructureResourceUtilizationResponse) GetStartTimestamp() time.Time {
+func (o *InfrastructureResourceUtilizationResponse) GetStartTimestamp() string {
 	if o == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 
@@ -173,7 +172,7 @@ func (o *InfrastructureResourceUtilizationResponse) GetStartTimestamp() time.Tim
 
 // GetStartTimestampOk returns a tuple with the StartTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *InfrastructureResourceUtilizationResponse) GetStartTimestampOk() (*time.Time, bool) {
+func (o *InfrastructureResourceUtilizationResponse) GetStartTimestampOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -181,14 +180,14 @@ func (o *InfrastructureResourceUtilizationResponse) GetStartTimestampOk() (*time
 }
 
 // SetStartTimestamp sets field value
-func (o *InfrastructureResourceUtilizationResponse) SetStartTimestamp(v time.Time) {
+func (o *InfrastructureResourceUtilizationResponse) SetStartTimestamp(v string) {
 	o.StartTimestamp = v
 }
 
 // GetEndTimestamp returns the EndTimestamp field value
-func (o *InfrastructureResourceUtilizationResponse) GetEndTimestamp() time.Time {
+func (o *InfrastructureResourceUtilizationResponse) GetEndTimestamp() string {
 	if o == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 
@@ -197,7 +196,7 @@ func (o *InfrastructureResourceUtilizationResponse) GetEndTimestamp() time.Time 
 
 // GetEndTimestampOk returns a tuple with the EndTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *InfrastructureResourceUtilizationResponse) GetEndTimestampOk() (*time.Time, bool) {
+func (o *InfrastructureResourceUtilizationResponse) GetEndTimestampOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -205,7 +204,7 @@ func (o *InfrastructureResourceUtilizationResponse) GetEndTimestampOk() (*time.T
 }
 
 // SetEndTimestamp sets field value
-func (o *InfrastructureResourceUtilizationResponse) SetEndTimestamp(v time.Time) {
+func (o *InfrastructureResourceUtilizationResponse) SetEndTimestamp(v string) {
 	o.EndTimestamp = v
 }
 

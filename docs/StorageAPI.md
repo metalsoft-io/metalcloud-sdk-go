@@ -945,7 +945,7 @@ Name | Type | Description  | Notes
 
 ## GetStorageSharedDrives
 
-> DrivePaginatedList GetStorageSharedDrives(ctx, storageId).Page(page).Limit(limit).FilterLabel(filterLabel).FilterSubdomain(filterSubdomain).FilterSubdomainPermanent(filterSubdomainPermanent).FilterInfrastructureId(filterInfrastructureId).FilterStoragePoolId(filterStoragePoolId).FilterServiceStatus(filterServiceStatus).FilterWwn(filterWwn).FilterIoLimitPolicy(filterIoLimitPolicy).FilterLogicalNetworkId(filterLogicalNetworkId).FilterAllocationAffinity(filterAllocationAffinity).FilterProvisioningProtocol(filterProvisioningProtocol).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).FilterConfigLogicalNetworkId(filterConfigLogicalNetworkId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> SharedDrivePaginatedList GetStorageSharedDrives(ctx, storageId).Page(page).Limit(limit).FilterLabel(filterLabel).FilterSubdomain(filterSubdomain).FilterSubdomainPermanent(filterSubdomainPermanent).FilterInfrastructureId(filterInfrastructureId).FilterStoragePoolId(filterStoragePoolId).FilterServiceStatus(filterServiceStatus).FilterWwn(filterWwn).FilterIoLimitPolicy(filterIoLimitPolicy).FilterLogicalNetworkId(filterLogicalNetworkId).FilterAllocationAffinity(filterAllocationAffinity).FilterProvisioningProtocol(filterProvisioningProtocol).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).FilterConfigLogicalNetworkId(filterConfigLogicalNetworkId).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get all Shared Drives linked to the specified storage
 
@@ -992,7 +992,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStorageSharedDrives``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetStorageSharedDrives`: DrivePaginatedList
+	// response from `GetStorageSharedDrives`: SharedDrivePaginatedList
 	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.GetStorageSharedDrives`: %v\n", resp)
 }
 ```
@@ -1035,7 +1035,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DrivePaginatedList**](DrivePaginatedList.md)
+[**SharedDrivePaginatedList**](SharedDrivePaginatedList.md)
 
 ### Authorization
 

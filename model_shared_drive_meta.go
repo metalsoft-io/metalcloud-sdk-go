@@ -15,36 +15,36 @@ import (
 	"encoding/json"
 )
 
-// checks if the UpdateDriveMeta type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateDriveMeta{}
+// checks if the SharedDriveMeta type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SharedDriveMeta{}
 
-// UpdateDriveMeta struct for UpdateDriveMeta
-type UpdateDriveMeta struct {
+// SharedDriveMeta struct for SharedDriveMeta
+type SharedDriveMeta struct {
 	GuiSettings *GenericGUISettings `json:"guiSettings,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _UpdateDriveMeta UpdateDriveMeta
+type _SharedDriveMeta SharedDriveMeta
 
-// NewUpdateDriveMeta instantiates a new UpdateDriveMeta object
+// NewSharedDriveMeta instantiates a new SharedDriveMeta object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateDriveMeta() *UpdateDriveMeta {
-	this := UpdateDriveMeta{}
+func NewSharedDriveMeta() *SharedDriveMeta {
+	this := SharedDriveMeta{}
 	return &this
 }
 
-// NewUpdateDriveMetaWithDefaults instantiates a new UpdateDriveMeta object
+// NewSharedDriveMetaWithDefaults instantiates a new SharedDriveMeta object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateDriveMetaWithDefaults() *UpdateDriveMeta {
-	this := UpdateDriveMeta{}
+func NewSharedDriveMetaWithDefaults() *SharedDriveMeta {
+	this := SharedDriveMeta{}
 	return &this
 }
 
 // GetGuiSettings returns the GuiSettings field value if set, zero value otherwise.
-func (o *UpdateDriveMeta) GetGuiSettings() GenericGUISettings {
+func (o *SharedDriveMeta) GetGuiSettings() GenericGUISettings {
 	if o == nil || IsNil(o.GuiSettings) {
 		var ret GenericGUISettings
 		return ret
@@ -54,7 +54,7 @@ func (o *UpdateDriveMeta) GetGuiSettings() GenericGUISettings {
 
 // GetGuiSettingsOk returns a tuple with the GuiSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateDriveMeta) GetGuiSettingsOk() (*GenericGUISettings, bool) {
+func (o *SharedDriveMeta) GetGuiSettingsOk() (*GenericGUISettings, bool) {
 	if o == nil || IsNil(o.GuiSettings) {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *UpdateDriveMeta) GetGuiSettingsOk() (*GenericGUISettings, bool) {
 }
 
 // HasGuiSettings returns a boolean if a field has been set.
-func (o *UpdateDriveMeta) HasGuiSettings() bool {
+func (o *SharedDriveMeta) HasGuiSettings() bool {
 	if o != nil && !IsNil(o.GuiSettings) {
 		return true
 	}
@@ -71,11 +71,11 @@ func (o *UpdateDriveMeta) HasGuiSettings() bool {
 }
 
 // SetGuiSettings gets a reference to the given GenericGUISettings and assigns it to the GuiSettings field.
-func (o *UpdateDriveMeta) SetGuiSettings(v GenericGUISettings) {
+func (o *SharedDriveMeta) SetGuiSettings(v GenericGUISettings) {
 	o.GuiSettings = &v
 }
 
-func (o UpdateDriveMeta) MarshalJSON() ([]byte, error) {
+func (o SharedDriveMeta) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -83,7 +83,7 @@ func (o UpdateDriveMeta) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateDriveMeta) ToMap() (map[string]interface{}, error) {
+func (o SharedDriveMeta) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.GuiSettings) {
 		toSerialize["guiSettings"] = o.GuiSettings
@@ -96,16 +96,16 @@ func (o UpdateDriveMeta) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *UpdateDriveMeta) UnmarshalJSON(data []byte) (err error) {
-	varUpdateDriveMeta := _UpdateDriveMeta{}
+func (o *SharedDriveMeta) UnmarshalJSON(data []byte) (err error) {
+	varSharedDriveMeta := _SharedDriveMeta{}
 
-	err = json.Unmarshal(data, &varUpdateDriveMeta)
+	err = json.Unmarshal(data, &varSharedDriveMeta)
 
 	if err != nil {
 		return err
 	}
 
-	*o = UpdateDriveMeta(varUpdateDriveMeta)
+	*o = SharedDriveMeta(varSharedDriveMeta)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -117,38 +117,38 @@ func (o *UpdateDriveMeta) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableUpdateDriveMeta struct {
-	value *UpdateDriveMeta
+type NullableSharedDriveMeta struct {
+	value *SharedDriveMeta
 	isSet bool
 }
 
-func (v NullableUpdateDriveMeta) Get() *UpdateDriveMeta {
+func (v NullableSharedDriveMeta) Get() *SharedDriveMeta {
 	return v.value
 }
 
-func (v *NullableUpdateDriveMeta) Set(val *UpdateDriveMeta) {
+func (v *NullableSharedDriveMeta) Set(val *SharedDriveMeta) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateDriveMeta) IsSet() bool {
+func (v NullableSharedDriveMeta) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateDriveMeta) Unset() {
+func (v *NullableSharedDriveMeta) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateDriveMeta(val *UpdateDriveMeta) *NullableUpdateDriveMeta {
-	return &NullableUpdateDriveMeta{value: val, isSet: true}
+func NewNullableSharedDriveMeta(val *SharedDriveMeta) *NullableSharedDriveMeta {
+	return &NullableSharedDriveMeta{value: val, isSet: true}
 }
 
-func (v NullableUpdateDriveMeta) MarshalJSON() ([]byte, error) {
+func (v NullableSharedDriveMeta) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateDriveMeta) UnmarshalJSON(src []byte) error {
+func (v *NullableSharedDriveMeta) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
