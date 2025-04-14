@@ -290,7 +290,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSubnet
 
-> UpdateSubnet UpdateSubnet(ctx, subnetId).UpdateSubnet(updateSubnet).IfMatch(ifMatch).Execute()
+> Subnet UpdateSubnet(ctx, subnetId).UpdateSubnet(updateSubnet).IfMatch(ifMatch).Execute()
 
 Updates Subnet
 
@@ -310,7 +310,7 @@ import (
 
 func main() {
 	subnetId := int32(56) // int32 | 
-	updateSubnet := *openapiclient.NewUpdateSubnet(float32(123), "Name_example", []string{"AllocationDenylist_example"}, []string{"AllowedChildOverlapConditions_example"}, map[string]interface{}(123), map[string]interface{}(123)) // UpdateSubnet | The Subnet changes
+	updateSubnet := *openapiclient.NewUpdateSubnet() // UpdateSubnet | The Subnet changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -320,7 +320,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.UpdateSubnet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateSubnet`: UpdateSubnet
+	// response from `UpdateSubnet`: Subnet
 	fmt.Fprintf(os.Stdout, "Response from `SubnetAPI.UpdateSubnet`: %v\n", resp)
 }
 ```
@@ -346,7 +346,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UpdateSubnet**](UpdateSubnet.md)
+[**Subnet**](Subnet.md)
 
 ### Authorization
 

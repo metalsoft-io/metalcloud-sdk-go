@@ -514,7 +514,7 @@ func (r SubnetAPIUpdateSubnetRequest) IfMatch(ifMatch string) SubnetAPIUpdateSub
 	return r
 }
 
-func (r SubnetAPIUpdateSubnetRequest) Execute() (*UpdateSubnet, *http.Response, error) {
+func (r SubnetAPIUpdateSubnetRequest) Execute() (*Subnet, *http.Response, error) {
 	return r.ApiService.UpdateSubnetExecute(r)
 }
 
@@ -536,13 +536,13 @@ func (a *SubnetAPIService) UpdateSubnet(ctx context.Context, subnetId int32) Sub
 }
 
 // Execute executes the request
-//  @return UpdateSubnet
-func (a *SubnetAPIService) UpdateSubnetExecute(r SubnetAPIUpdateSubnetRequest) (*UpdateSubnet, *http.Response, error) {
+//  @return Subnet
+func (a *SubnetAPIService) UpdateSubnetExecute(r SubnetAPIUpdateSubnetRequest) (*Subnet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *UpdateSubnet
+		localVarReturnValue  *Subnet
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubnetAPIService.UpdateSubnet")

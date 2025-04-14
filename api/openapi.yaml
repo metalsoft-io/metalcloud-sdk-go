@@ -22695,7 +22695,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateSubnet'
+                $ref: '#/components/schemas/Subnet'
           description: The specified Subnet was successfully updated
           headers:
             ETag:
@@ -42331,7 +42331,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-12T20:49:19.678Z
+        createdTimestamp: 2025-04-14T11:08:13.764Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -42340,7 +42340,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-12T20:49:19.678Z
+        updatedTimestamp: 2025-04-14T11:08:13.764Z
         revision: "1"
       properties:
         siteId:
@@ -42357,12 +42357,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-12T20:49:19.678Z
+          example: 2025-04-14T11:08:13.764Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-12T20:49:19.678Z
+          example: 2025-04-14T11:08:13.764Z
           format: date-time
           type: string
         links:
@@ -42384,7 +42384,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-12T20:49:19.678Z
+        - createdTimestamp: 2025-04-14T11:08:13.764Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -42393,9 +42393,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-12T20:49:19.678Z
+          updatedTimestamp: 2025-04-14T11:08:13.764Z
           revision: "1"
-        - createdTimestamp: 2025-04-12T20:49:19.678Z
+        - createdTimestamp: 2025-04-14T11:08:13.764Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -42404,7 +42404,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-12T20:49:19.678Z
+          updatedTimestamp: 2025-04-14T11:08:13.764Z
           revision: "1"
         meta: ""
         links: ""
@@ -43016,7 +43016,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-12T20:49:19.69Z
+        createdTimestamp: 2025-04-14T11:08:13.779Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -43057,7 +43057,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-12T20:49:19.69Z
+        updatedTimestamp: 2025-04-14T11:08:13.779Z
         revision: "1"
         status: draft
       properties:
@@ -43085,12 +43085,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-12T20:49:19.69Z
+          example: 2025-04-14T11:08:13.779Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-12T20:49:19.69Z
+          example: 2025-04-14T11:08:13.779Z
           format: date-time
           type: string
         links:
@@ -43231,7 +43231,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-12T20:49:19.69Z
+          createdTimestamp: 2025-04-14T11:08:13.779Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -43272,7 +43272,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-12T20:49:19.69Z
+          updatedTimestamp: 2025-04-14T11:08:13.779Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -43382,7 +43382,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-12T20:49:19.69Z
+          createdTimestamp: 2025-04-14T11:08:13.779Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -43423,7 +43423,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-12T20:49:19.69Z
+          updatedTimestamp: 2025-04-14T11:08:13.779Z
           revision: "1"
           status: draft
         meta: ""
@@ -45973,10 +45973,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-04-12T20:49:19.685Z
+        createdTimestamp: 2025-04-14T11:08:13.771Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: physical-interface-vlan-scoped
-        updatedTimestamp: 2025-04-12T20:49:19.685Z
+        updatedTimestamp: 2025-04-14T11:08:13.771Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -46062,12 +46062,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-12T20:49:19.685Z
+          example: 2025-04-14T11:08:13.771Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-12T20:49:19.685Z
+          example: 2025-04-14T11:08:13.771Z
           format: date-time
           type: string
         links:
@@ -52728,13 +52728,6 @@ components:
           type: object
         metadata:
           type: object
-      required:
-      - allocationDenylist
-      - allowedChildOverlapConditions
-      - metadata
-      - name
-      - revision
-      - tags
       type: object
     Version:
       example:

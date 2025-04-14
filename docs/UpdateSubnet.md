@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revision** | **float32** | Revision of the Subnet | 
+**Revision** | Pointer to **float32** | Revision of the Subnet | [optional] 
 **Label** | Pointer to **string** |  | [optional] 
-**Name** | **string** | Name of the Subnet | 
-**AllocationDenylist** | **[]string** |  | 
-**AllowedChildOverlapConditions** | **[]string** |  | 
-**Tags** | **map[string]interface{}** |  | 
-**Metadata** | **map[string]interface{}** |  | 
+**Name** | Pointer to **string** | Name of the Subnet | [optional] 
+**AllocationDenylist** | Pointer to **[]string** |  | [optional] 
+**AllowedChildOverlapConditions** | Pointer to **[]string** |  | [optional] 
+**Tags** | Pointer to **map[string]interface{}** |  | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
 ### NewUpdateSubnet
 
-`func NewUpdateSubnet(revision float32, name string, allocationDenylist []string, allowedChildOverlapConditions []string, tags map[string]interface{}, metadata map[string]interface{}, ) *UpdateSubnet`
+`func NewUpdateSubnet() *UpdateSubnet`
 
 NewUpdateSubnet instantiates a new UpdateSubnet object
 This constructor will assign default values to properties that have it defined,
@@ -50,6 +50,11 @@ and a boolean to check if the value has been set.
 
 SetRevision sets Revision field to given value.
 
+### HasRevision
+
+`func (o *UpdateSubnet) HasRevision() bool`
+
+HasRevision returns a boolean if a field has been set.
 
 ### GetLabel
 
@@ -95,6 +100,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *UpdateSubnet) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetAllocationDenylist
 
@@ -115,6 +125,11 @@ and a boolean to check if the value has been set.
 
 SetAllocationDenylist sets AllocationDenylist field to given value.
 
+### HasAllocationDenylist
+
+`func (o *UpdateSubnet) HasAllocationDenylist() bool`
+
+HasAllocationDenylist returns a boolean if a field has been set.
 
 ### GetAllowedChildOverlapConditions
 
@@ -135,6 +150,11 @@ and a boolean to check if the value has been set.
 
 SetAllowedChildOverlapConditions sets AllowedChildOverlapConditions field to given value.
 
+### HasAllowedChildOverlapConditions
+
+`func (o *UpdateSubnet) HasAllowedChildOverlapConditions() bool`
+
+HasAllowedChildOverlapConditions returns a boolean if a field has been set.
 
 ### GetTags
 
@@ -155,6 +175,11 @@ and a boolean to check if the value has been set.
 
 SetTags sets Tags field to given value.
 
+### HasTags
+
+`func (o *UpdateSubnet) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -175,6 +200,11 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
+### HasMetadata
+
+`func (o *UpdateSubnet) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

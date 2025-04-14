@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UpdateSubnet type satisfies the MappedNullable interface at compile time
@@ -22,14 +21,14 @@ var _ MappedNullable = &UpdateSubnet{}
 // UpdateSubnet struct for UpdateSubnet
 type UpdateSubnet struct {
 	// Revision of the Subnet
-	Revision float32 `json:"revision"`
+	Revision *float32 `json:"revision,omitempty"`
 	Label *string `json:"label,omitempty"`
 	// Name of the Subnet
-	Name string `json:"name"`
-	AllocationDenylist []string `json:"allocationDenylist"`
-	AllowedChildOverlapConditions []string `json:"allowedChildOverlapConditions"`
-	Tags map[string]interface{} `json:"tags"`
-	Metadata map[string]interface{} `json:"metadata"`
+	Name *string `json:"name,omitempty"`
+	AllocationDenylist []string `json:"allocationDenylist,omitempty"`
+	AllowedChildOverlapConditions []string `json:"allowedChildOverlapConditions,omitempty"`
+	Tags map[string]interface{} `json:"tags,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,14 +38,8 @@ type _UpdateSubnet UpdateSubnet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateSubnet(revision float32, name string, allocationDenylist []string, allowedChildOverlapConditions []string, tags map[string]interface{}, metadata map[string]interface{}) *UpdateSubnet {
+func NewUpdateSubnet() *UpdateSubnet {
 	this := UpdateSubnet{}
-	this.Revision = revision
-	this.Name = name
-	this.AllocationDenylist = allocationDenylist
-	this.AllowedChildOverlapConditions = allowedChildOverlapConditions
-	this.Tags = tags
-	this.Metadata = metadata
 	return &this
 }
 
@@ -58,28 +51,36 @@ func NewUpdateSubnetWithDefaults() *UpdateSubnet {
 	return &this
 }
 
-// GetRevision returns the Revision field value
+// GetRevision returns the Revision field value if set, zero value otherwise.
 func (o *UpdateSubnet) GetRevision() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.Revision) {
 		var ret float32
 		return ret
 	}
-
-	return o.Revision
+	return *o.Revision
 }
 
-// GetRevisionOk returns a tuple with the Revision field value
+// GetRevisionOk returns a tuple with the Revision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSubnet) GetRevisionOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Revision) {
 		return nil, false
 	}
-	return &o.Revision, true
+	return o.Revision, true
 }
 
-// SetRevision sets field value
+// HasRevision returns a boolean if a field has been set.
+func (o *UpdateSubnet) HasRevision() bool {
+	if o != nil && !IsNil(o.Revision) {
+		return true
+	}
+
+	return false
+}
+
+// SetRevision gets a reference to the given float32 and assigns it to the Revision field.
 func (o *UpdateSubnet) SetRevision(v float32) {
-	o.Revision = v
+	o.Revision = &v
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
@@ -114,122 +115,162 @@ func (o *UpdateSubnet) SetLabel(v string) {
 	o.Label = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateSubnet) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSubnet) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *UpdateSubnet) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *UpdateSubnet) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetAllocationDenylist returns the AllocationDenylist field value
+// GetAllocationDenylist returns the AllocationDenylist field value if set, zero value otherwise.
 func (o *UpdateSubnet) GetAllocationDenylist() []string {
-	if o == nil {
+	if o == nil || IsNil(o.AllocationDenylist) {
 		var ret []string
 		return ret
 	}
-
 	return o.AllocationDenylist
 }
 
-// GetAllocationDenylistOk returns a tuple with the AllocationDenylist field value
+// GetAllocationDenylistOk returns a tuple with the AllocationDenylist field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSubnet) GetAllocationDenylistOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AllocationDenylist) {
 		return nil, false
 	}
 	return o.AllocationDenylist, true
 }
 
-// SetAllocationDenylist sets field value
+// HasAllocationDenylist returns a boolean if a field has been set.
+func (o *UpdateSubnet) HasAllocationDenylist() bool {
+	if o != nil && !IsNil(o.AllocationDenylist) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllocationDenylist gets a reference to the given []string and assigns it to the AllocationDenylist field.
 func (o *UpdateSubnet) SetAllocationDenylist(v []string) {
 	o.AllocationDenylist = v
 }
 
-// GetAllowedChildOverlapConditions returns the AllowedChildOverlapConditions field value
+// GetAllowedChildOverlapConditions returns the AllowedChildOverlapConditions field value if set, zero value otherwise.
 func (o *UpdateSubnet) GetAllowedChildOverlapConditions() []string {
-	if o == nil {
+	if o == nil || IsNil(o.AllowedChildOverlapConditions) {
 		var ret []string
 		return ret
 	}
-
 	return o.AllowedChildOverlapConditions
 }
 
-// GetAllowedChildOverlapConditionsOk returns a tuple with the AllowedChildOverlapConditions field value
+// GetAllowedChildOverlapConditionsOk returns a tuple with the AllowedChildOverlapConditions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSubnet) GetAllowedChildOverlapConditionsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AllowedChildOverlapConditions) {
 		return nil, false
 	}
 	return o.AllowedChildOverlapConditions, true
 }
 
-// SetAllowedChildOverlapConditions sets field value
+// HasAllowedChildOverlapConditions returns a boolean if a field has been set.
+func (o *UpdateSubnet) HasAllowedChildOverlapConditions() bool {
+	if o != nil && !IsNil(o.AllowedChildOverlapConditions) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowedChildOverlapConditions gets a reference to the given []string and assigns it to the AllowedChildOverlapConditions field.
 func (o *UpdateSubnet) SetAllowedChildOverlapConditions(v []string) {
 	o.AllowedChildOverlapConditions = v
 }
 
-// GetTags returns the Tags field value
+// GetTags returns the Tags field value if set, zero value otherwise.
 func (o *UpdateSubnet) GetTags() map[string]interface{} {
-	if o == nil {
+	if o == nil || IsNil(o.Tags) {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSubnet) GetTagsOk() (map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Tags) {
 		return map[string]interface{}{}, false
 	}
 	return o.Tags, true
 }
 
-// SetTags sets field value
+// HasTags returns a boolean if a field has been set.
+func (o *UpdateSubnet) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given map[string]interface{} and assigns it to the Tags field.
 func (o *UpdateSubnet) SetTags(v map[string]interface{}) {
 	o.Tags = v
 }
 
-// GetMetadata returns the Metadata field value
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *UpdateSubnet) GetMetadata() map[string]interface{} {
-	if o == nil {
+	if o == nil || IsNil(o.Metadata) {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSubnet) GetMetadataOk() (map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Metadata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Metadata, true
 }
 
-// SetMetadata sets field value
+// HasMetadata returns a boolean if a field has been set.
+func (o *UpdateSubnet) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
 func (o *UpdateSubnet) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
@@ -244,15 +285,27 @@ func (o UpdateSubnet) MarshalJSON() ([]byte, error) {
 
 func (o UpdateSubnet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["revision"] = o.Revision
+	if !IsNil(o.Revision) {
+		toSerialize["revision"] = o.Revision
+	}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["allocationDenylist"] = o.AllocationDenylist
-	toSerialize["allowedChildOverlapConditions"] = o.AllowedChildOverlapConditions
-	toSerialize["tags"] = o.Tags
-	toSerialize["metadata"] = o.Metadata
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.AllocationDenylist) {
+		toSerialize["allocationDenylist"] = o.AllocationDenylist
+	}
+	if !IsNil(o.AllowedChildOverlapConditions) {
+		toSerialize["allowedChildOverlapConditions"] = o.AllowedChildOverlapConditions
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -262,32 +315,6 @@ func (o UpdateSubnet) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *UpdateSubnet) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"revision",
-		"name",
-		"allocationDenylist",
-		"allowedChildOverlapConditions",
-		"tags",
-		"metadata",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varUpdateSubnet := _UpdateSubnet{}
 
 	err = json.Unmarshal(data, &varUpdateSubnet)
