@@ -18,9 +18,9 @@ import (
 
 // AuthenticationRequestProperties - Input options.
 type AuthenticationRequestProperties struct {
-	AuthenticationRequestPropertiesLdap  *AuthenticationRequestPropertiesLdap
+	AuthenticationRequestPropertiesLdap *AuthenticationRequestPropertiesLdap
 	AuthenticationRequestPropertiesMySql *AuthenticationRequestPropertiesMySql
-	AuthenticationRequestPropertiesSaml  *AuthenticationRequestPropertiesSaml
+	AuthenticationRequestPropertiesSaml *AuthenticationRequestPropertiesSaml
 }
 
 // AuthenticationRequestPropertiesLdapAsAuthenticationRequestProperties is a convenience function that returns AuthenticationRequestPropertiesLdap wrapped in AuthenticationRequestProperties
@@ -43,6 +43,7 @@ func AuthenticationRequestPropertiesSamlAsAuthenticationRequestProperties(v *Aut
 		AuthenticationRequestPropertiesSaml: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *AuthenticationRequestProperties) UnmarshalJSON(data []byte) error {
@@ -119,7 +120,7 @@ func (src AuthenticationRequestProperties) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *AuthenticationRequestProperties) GetActualInstance() interface{} {
+func (obj *AuthenticationRequestProperties) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -133,6 +134,24 @@ func (obj *AuthenticationRequestProperties) GetActualInstance() interface{} {
 
 	if obj.AuthenticationRequestPropertiesSaml != nil {
 		return obj.AuthenticationRequestPropertiesSaml
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj AuthenticationRequestProperties) GetActualInstanceValue() (interface{}) {
+	if obj.AuthenticationRequestPropertiesLdap != nil {
+		return *obj.AuthenticationRequestPropertiesLdap
+	}
+
+	if obj.AuthenticationRequestPropertiesMySql != nil {
+		return *obj.AuthenticationRequestPropertiesMySql
+	}
+
+	if obj.AuthenticationRequestPropertiesSaml != nil {
+		return *obj.AuthenticationRequestPropertiesSaml
 	}
 
 	// all schemas are nil
@@ -174,3 +193,5 @@ func (v *NullableAuthenticationRequestProperties) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

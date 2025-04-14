@@ -36,6 +36,7 @@ func ExtensionTaskWebhookAsExtensionTaskOptions(v *ExtensionTaskWebhook) Extensi
 	}
 }
 
+
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ExtensionTaskOptions) UnmarshalJSON(data []byte) error {
 	var err error
@@ -93,7 +94,7 @@ func (src ExtensionTaskOptions) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *ExtensionTaskOptions) GetActualInstance() interface{} {
+func (obj *ExtensionTaskOptions) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -103,6 +104,20 @@ func (obj *ExtensionTaskOptions) GetActualInstance() interface{} {
 
 	if obj.ExtensionTaskWebhook != nil {
 		return obj.ExtensionTaskWebhook
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj ExtensionTaskOptions) GetActualInstanceValue() (interface{}) {
+	if obj.ExtensionTaskAnsible != nil {
+		return *obj.ExtensionTaskAnsible
+	}
+
+	if obj.ExtensionTaskWebhook != nil {
+		return *obj.ExtensionTaskWebhook
 	}
 
 	// all schemas are nil
@@ -144,3 +159,5 @@ func (v *NullableExtensionTaskOptions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

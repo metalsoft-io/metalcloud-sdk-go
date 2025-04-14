@@ -18,11 +18,11 @@ import (
 
 // ExtensionInputOptions - Input options.
 type ExtensionInputOptions struct {
-	ExtensionInputBoolean    *ExtensionInputBoolean
-	ExtensionInputInteger    *ExtensionInputInteger
+	ExtensionInputBoolean *ExtensionInputBoolean
+	ExtensionInputInteger *ExtensionInputInteger
 	ExtensionInputOsTemplate *ExtensionInputOsTemplate
 	ExtensionInputServerType *ExtensionInputServerType
-	ExtensionInputString     *ExtensionInputString
+	ExtensionInputString *ExtensionInputString
 }
 
 // ExtensionInputBooleanAsExtensionInputOptions is a convenience function that returns ExtensionInputBoolean wrapped in ExtensionInputOptions
@@ -59,6 +59,7 @@ func ExtensionInputStringAsExtensionInputOptions(v *ExtensionInputString) Extens
 		ExtensionInputString: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ExtensionInputOptions) UnmarshalJSON(data []byte) error {
@@ -171,7 +172,7 @@ func (src ExtensionInputOptions) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *ExtensionInputOptions) GetActualInstance() interface{} {
+func (obj *ExtensionInputOptions) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -193,6 +194,32 @@ func (obj *ExtensionInputOptions) GetActualInstance() interface{} {
 
 	if obj.ExtensionInputString != nil {
 		return obj.ExtensionInputString
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj ExtensionInputOptions) GetActualInstanceValue() (interface{}) {
+	if obj.ExtensionInputBoolean != nil {
+		return *obj.ExtensionInputBoolean
+	}
+
+	if obj.ExtensionInputInteger != nil {
+		return *obj.ExtensionInputInteger
+	}
+
+	if obj.ExtensionInputOsTemplate != nil {
+		return *obj.ExtensionInputOsTemplate
+	}
+
+	if obj.ExtensionInputServerType != nil {
+		return *obj.ExtensionInputServerType
+	}
+
+	if obj.ExtensionInputString != nil {
+		return *obj.ExtensionInputString
 	}
 
 	// all schemas are nil
@@ -234,3 +261,5 @@ func (v *NullableExtensionInputOptions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

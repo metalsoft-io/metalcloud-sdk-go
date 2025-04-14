@@ -18,7 +18,7 @@ import (
 
 // NetworkFabricFabricConfiguration - Network fabric configuration with type-specific properties based on the fabricType discriminator
 type NetworkFabricFabricConfiguration struct {
-	EthernetFabric     *EthernetFabric
+	EthernetFabric *EthernetFabric
 	FibreChannelFabric *FibreChannelFabric
 }
 
@@ -35,6 +35,7 @@ func FibreChannelFabricAsNetworkFabricFabricConfiguration(v *FibreChannelFabric)
 		FibreChannelFabric: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *NetworkFabricFabricConfiguration) UnmarshalJSON(data []byte) error {
@@ -111,7 +112,7 @@ func (src NetworkFabricFabricConfiguration) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *NetworkFabricFabricConfiguration) GetActualInstance() interface{} {
+func (obj *NetworkFabricFabricConfiguration) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -121,6 +122,20 @@ func (obj *NetworkFabricFabricConfiguration) GetActualInstance() interface{} {
 
 	if obj.FibreChannelFabric != nil {
 		return obj.FibreChannelFabric
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj NetworkFabricFabricConfiguration) GetActualInstanceValue() (interface{}) {
+	if obj.EthernetFabric != nil {
+		return *obj.EthernetFabric
+	}
+
+	if obj.FibreChannelFabric != nil {
+		return *obj.FibreChannelFabric
 	}
 
 	// all schemas are nil
@@ -162,3 +177,5 @@ func (v *NullableNetworkFabricFabricConfiguration) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

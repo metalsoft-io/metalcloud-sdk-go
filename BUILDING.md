@@ -2,11 +2,10 @@
 
 ## To generate the SDK follow these steps:
 
-* Install the OpenAPI generator and goimports.
+* Install the OpenAPI generator.
 
 ```bash
 npm install @openapitools/openapi-generator-cli -g
-go install golang.org/x/tools/cmd/goimports@latest
 ```
 
 * Create a configuration file for the OpenAPI generator.
@@ -41,16 +40,4 @@ wget https://my-metalcloud.com/api/v2/swagger-json -O ./metalcloud-api.json --no
 
 ```bash
 openapi-generator-cli generate -g go -i ./metalcloud-api.json -o ./metalcloud-sdk-go -c ./metalcloud-sdk-go-config.json --git-user-id=metalsoft-io --git-repo-id=metalcloud-sdk-go
-```
-
-* Removing unused imports
-
-This step is needed as the OpenAPI generator leaves unused imports when used with the `useOneOfDiscriminatorLookup` option.
-The `goimports` tool is used to remove unused imports.
-
-```bash
-~/go/bin/goimports -w ./metalcloud-sdk-go/model_authentication_request_properties.go
-~/go/bin/goimports -w ./metalcloud-sdk-go/model_extension_input_options.go
-~/go/bin/goimports -w ./metalcloud-sdk-go/model_extension_task_options.go
-~/go/bin/goimports -w ./metalcloud-sdk-go/model_network_fabric_fabric_configuration.go
 ```
