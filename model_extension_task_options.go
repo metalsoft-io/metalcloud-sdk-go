@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
 )
 
@@ -37,49 +36,32 @@ func ExtensionTaskWebhookAsExtensionTaskOptions(v *ExtensionTaskWebhook) Extensi
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ExtensionTaskOptions) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into ExtensionTaskAnsible
-	err = newStrictDecoder(data).Decode(&dst.ExtensionTaskAnsible)
+	err = json.Unmarshal(data, &dst.ExtensionTaskAnsible)
 	if err == nil {
-        if len(dst.ExtensionTaskAnsible.AdditionalProperties) > 0 {
-            dst.ExtensionTaskAnsible = nil
-        } else {
-            jsonExtensionTaskAnsible, _ := json.Marshal(dst.ExtensionTaskAnsible)
-            if string(jsonExtensionTaskAnsible) == "{}" { // empty struct
-                dst.ExtensionTaskAnsible = nil
-            } else {
-                if err = validator.Validate(dst.ExtensionTaskAnsible); err != nil {
-                    dst.ExtensionTaskAnsible = nil
-                } else {
-                    match++
-                }
-            }
-        }
+		jsonExtensionTaskAnsible, _ := json.Marshal(dst.ExtensionTaskAnsible)
+		if string(jsonExtensionTaskAnsible) == "{}" { // empty struct
+			dst.ExtensionTaskAnsible = nil
+		} else {
+			match++
+		}
 	} else {
 		dst.ExtensionTaskAnsible = nil
 	}
 
 	// try to unmarshal data into ExtensionTaskWebhook
-	err = newStrictDecoder(data).Decode(&dst.ExtensionTaskWebhook)
+	err = json.Unmarshal(data, &dst.ExtensionTaskWebhook)
 	if err == nil {
-        if len(dst.ExtensionTaskWebhook.AdditionalProperties) > 0 {
-            dst.ExtensionTaskWebhook = nil
-        } else {
-            jsonExtensionTaskWebhook, _ := json.Marshal(dst.ExtensionTaskWebhook)
-            if string(jsonExtensionTaskWebhook) == "{}" { // empty struct
-                dst.ExtensionTaskWebhook = nil
-            } else {
-                if err = validator.Validate(dst.ExtensionTaskWebhook); err != nil {
-                    dst.ExtensionTaskWebhook = nil
-                } else {
-                    match++
-                }
-            }
-        }
+		jsonExtensionTaskWebhook, _ := json.Marshal(dst.ExtensionTaskWebhook)
+		if string(jsonExtensionTaskWebhook) == "{}" { // empty struct
+			dst.ExtensionTaskWebhook = nil
+		} else {
+			match++
+		}
 	} else {
 		dst.ExtensionTaskWebhook = nil
 	}
@@ -111,7 +93,7 @@ func (src ExtensionTaskOptions) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *ExtensionTaskOptions) GetActualInstance() (interface{}) {
+func (obj *ExtensionTaskOptions) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -121,20 +103,6 @@ func (obj *ExtensionTaskOptions) GetActualInstance() (interface{}) {
 
 	if obj.ExtensionTaskWebhook != nil {
 		return obj.ExtensionTaskWebhook
-	}
-
-	// all schemas are nil
-	return nil
-}
-
-// Get the actual instance value
-func (obj ExtensionTaskOptions) GetActualInstanceValue() (interface{}) {
-	if obj.ExtensionTaskAnsible != nil {
-		return *obj.ExtensionTaskAnsible
-	}
-
-	if obj.ExtensionTaskWebhook != nil {
-		return *obj.ExtensionTaskWebhook
 	}
 
 	// all schemas are nil
@@ -176,5 +144,3 @@ func (v *NullableExtensionTaskOptions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

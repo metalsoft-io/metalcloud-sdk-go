@@ -13,17 +13,16 @@ package sdk
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
 )
 
 // ExtensionInputOptions - Input options.
 type ExtensionInputOptions struct {
-	ExtensionInputBoolean *ExtensionInputBoolean
-	ExtensionInputInteger *ExtensionInputInteger
+	ExtensionInputBoolean    *ExtensionInputBoolean
+	ExtensionInputInteger    *ExtensionInputInteger
 	ExtensionInputOsTemplate *ExtensionInputOsTemplate
 	ExtensionInputServerType *ExtensionInputServerType
-	ExtensionInputString *ExtensionInputString
+	ExtensionInputString     *ExtensionInputString
 }
 
 // ExtensionInputBooleanAsExtensionInputOptions is a convenience function that returns ExtensionInputBoolean wrapped in ExtensionInputOptions
@@ -61,112 +60,71 @@ func ExtensionInputStringAsExtensionInputOptions(v *ExtensionInputString) Extens
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ExtensionInputOptions) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into ExtensionInputBoolean
-	err = newStrictDecoder(data).Decode(&dst.ExtensionInputBoolean)
+	err = json.Unmarshal(data, &dst.ExtensionInputBoolean)
 	if err == nil {
-        if len(dst.ExtensionInputBoolean.AdditionalProperties) > 0 {
-            dst.ExtensionInputBoolean = nil
-        } else {
-            jsonExtensionInputBoolean, _ := json.Marshal(dst.ExtensionInputBoolean)
-            if string(jsonExtensionInputBoolean) == "{}" { // empty struct
-                dst.ExtensionInputBoolean = nil
-            } else {
-                if err = validator.Validate(dst.ExtensionInputBoolean); err != nil {
-                    dst.ExtensionInputBoolean = nil
-                } else {
-                    match++
-                }
-            }
-        }
+		jsonExtensionInputBoolean, _ := json.Marshal(dst.ExtensionInputBoolean)
+		if string(jsonExtensionInputBoolean) == "{}" { // empty struct
+			dst.ExtensionInputBoolean = nil
+		} else {
+			match++
+		}
 	} else {
 		dst.ExtensionInputBoolean = nil
 	}
 
 	// try to unmarshal data into ExtensionInputInteger
-	err = newStrictDecoder(data).Decode(&dst.ExtensionInputInteger)
+	err = json.Unmarshal(data, &dst.ExtensionInputInteger)
 	if err == nil {
-        if len(dst.ExtensionInputInteger.AdditionalProperties) > 0 {
-            dst.ExtensionInputInteger = nil
-        } else {
-            jsonExtensionInputInteger, _ := json.Marshal(dst.ExtensionInputInteger)
-            if string(jsonExtensionInputInteger) == "{}" { // empty struct
-                dst.ExtensionInputInteger = nil
-            } else {
-                if err = validator.Validate(dst.ExtensionInputInteger); err != nil {
-                    dst.ExtensionInputInteger = nil
-                } else {
-                    match++
-                }
-            }
-        }
+		jsonExtensionInputInteger, _ := json.Marshal(dst.ExtensionInputInteger)
+		if string(jsonExtensionInputInteger) == "{}" { // empty struct
+			dst.ExtensionInputInteger = nil
+		} else {
+			match++
+		}
 	} else {
 		dst.ExtensionInputInteger = nil
 	}
 
 	// try to unmarshal data into ExtensionInputOsTemplate
-	err = newStrictDecoder(data).Decode(&dst.ExtensionInputOsTemplate)
+	err = json.Unmarshal(data, &dst.ExtensionInputOsTemplate)
 	if err == nil {
-        if len(dst.ExtensionInputOsTemplate.AdditionalProperties) > 0 {
-            dst.ExtensionInputOsTemplate = nil
-        } else {
-            jsonExtensionInputOsTemplate, _ := json.Marshal(dst.ExtensionInputOsTemplate)
-            if string(jsonExtensionInputOsTemplate) == "{}" { // empty struct
-                dst.ExtensionInputOsTemplate = nil
-            } else {
-                if err = validator.Validate(dst.ExtensionInputOsTemplate); err != nil {
-                    dst.ExtensionInputOsTemplate = nil
-                } else {
-                    match++
-                }
-            }
-        }
+		jsonExtensionInputOsTemplate, _ := json.Marshal(dst.ExtensionInputOsTemplate)
+		if string(jsonExtensionInputOsTemplate) == "{}" { // empty struct
+			dst.ExtensionInputOsTemplate = nil
+		} else {
+			match++
+		}
 	} else {
 		dst.ExtensionInputOsTemplate = nil
 	}
 
 	// try to unmarshal data into ExtensionInputServerType
-	err = newStrictDecoder(data).Decode(&dst.ExtensionInputServerType)
+	err = json.Unmarshal(data, &dst.ExtensionInputServerType)
 	if err == nil {
-        if len(dst.ExtensionInputServerType.AdditionalProperties) > 0 {
-            dst.ExtensionInputServerType = nil
-        } else {
-            jsonExtensionInputServerType, _ := json.Marshal(dst.ExtensionInputServerType)
-            if string(jsonExtensionInputServerType) == "{}" { // empty struct
-                dst.ExtensionInputServerType = nil
-            } else {
-                if err = validator.Validate(dst.ExtensionInputServerType); err != nil {
-                    dst.ExtensionInputServerType = nil
-                } else {
-                    match++
-                }
-            }
-        }
+		jsonExtensionInputServerType, _ := json.Marshal(dst.ExtensionInputServerType)
+		if string(jsonExtensionInputServerType) == "{}" { // empty struct
+			dst.ExtensionInputServerType = nil
+		} else {
+			match++
+		}
 	} else {
 		dst.ExtensionInputServerType = nil
 	}
 
 	// try to unmarshal data into ExtensionInputString
-	err = newStrictDecoder(data).Decode(&dst.ExtensionInputString)
+	err = json.Unmarshal(data, &dst.ExtensionInputString)
 	if err == nil {
-        if len(dst.ExtensionInputString.AdditionalProperties) > 0 {
-            dst.ExtensionInputString = nil
-        } else {
-            jsonExtensionInputString, _ := json.Marshal(dst.ExtensionInputString)
-            if string(jsonExtensionInputString) == "{}" { // empty struct
-                dst.ExtensionInputString = nil
-            } else {
-                if err = validator.Validate(dst.ExtensionInputString); err != nil {
-                    dst.ExtensionInputString = nil
-                } else {
-                    match++
-                }
-            }
-        }
+		jsonExtensionInputString, _ := json.Marshal(dst.ExtensionInputString)
+		if string(jsonExtensionInputString) == "{}" { // empty struct
+			dst.ExtensionInputString = nil
+		} else {
+			match++
+		}
 	} else {
 		dst.ExtensionInputString = nil
 	}
@@ -213,7 +171,7 @@ func (src ExtensionInputOptions) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *ExtensionInputOptions) GetActualInstance() (interface{}) {
+func (obj *ExtensionInputOptions) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -235,32 +193,6 @@ func (obj *ExtensionInputOptions) GetActualInstance() (interface{}) {
 
 	if obj.ExtensionInputString != nil {
 		return obj.ExtensionInputString
-	}
-
-	// all schemas are nil
-	return nil
-}
-
-// Get the actual instance value
-func (obj ExtensionInputOptions) GetActualInstanceValue() (interface{}) {
-	if obj.ExtensionInputBoolean != nil {
-		return *obj.ExtensionInputBoolean
-	}
-
-	if obj.ExtensionInputInteger != nil {
-		return *obj.ExtensionInputInteger
-	}
-
-	if obj.ExtensionInputOsTemplate != nil {
-		return *obj.ExtensionInputOsTemplate
-	}
-
-	if obj.ExtensionInputServerType != nil {
-		return *obj.ExtensionInputServerType
-	}
-
-	if obj.ExtensionInputString != nil {
-		return *obj.ExtensionInputString
 	}
 
 	// all schemas are nil
@@ -302,5 +234,3 @@ func (v *NullableExtensionInputOptions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
