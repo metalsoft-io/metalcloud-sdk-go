@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | The server instance group label. | [optional] 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
+**NetworkEndpointGroupId** | Pointer to **int32** |  | [optional] 
 **InstanceCount** | Pointer to **int32** | The number of instances to be created on the Instance Group. | [optional] [default to 1]
 **ServerTypeId** | Pointer to **int32** | The server type ID of the created instances. | [optional] 
 **IpAllocateAuto** | Pointer to **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [optional] [default to 1]
@@ -92,6 +93,31 @@ SetServerGroupName sets ServerGroupName field to given value.
 `func (o *ServerInstanceGroupUpdate) HasServerGroupName() bool`
 
 HasServerGroupName returns a boolean if a field has been set.
+
+### GetNetworkEndpointGroupId
+
+`func (o *ServerInstanceGroupUpdate) GetNetworkEndpointGroupId() int32`
+
+GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field if non-nil, zero value otherwise.
+
+### GetNetworkEndpointGroupIdOk
+
+`func (o *ServerInstanceGroupUpdate) GetNetworkEndpointGroupIdOk() (*int32, bool)`
+
+GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkEndpointGroupId
+
+`func (o *ServerInstanceGroupUpdate) SetNetworkEndpointGroupId(v int32)`
+
+SetNetworkEndpointGroupId sets NetworkEndpointGroupId field to given value.
+
+### HasNetworkEndpointGroupId
+
+`func (o *ServerInstanceGroupUpdate) HasNetworkEndpointGroupId() bool`
+
+HasNetworkEndpointGroupId returns a boolean if a field has been set.
 
 ### GetInstanceCount
 

@@ -17466,6 +17466,37 @@ paths:
       summary: Get server instance group network configuration
       tags:
       - Server Instance Group
+    put:
+      operationId: updateServerInstanceGroupNetworkConfiguration
+      parameters:
+      - explode: false
+        in: path
+        name: serverInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkEndpointGroup'
+          description: The network configuration of the specified server instance
+            group
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Server instance group not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create or return the network configuration of the specified server
+        instance group
+      tags:
+      - Server Instance Group
   /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections:
     get:
       operationId: getServerInstanceGroupNetworkConfigurationConnections
@@ -38851,47 +38882,47 @@ components:
     ServerInstanceGroup:
       example:
         serverTypeId: 5
-        ipv4SubnetCreateAuto: 7
-        overrideIpv4WanVlanId: 4
+        ipv4SubnetCreateAuto: 9
+        overrideIpv4WanVlanId: 5
         firmwarePolicyIds:
-        - 9.301444243932576
-        - 9.301444243932576
+        - 3.616076749251911
+        - 3.616076749251911
         extensionInstanceId: 5
         diskCount: 1
         updatedTimestamp: updatedTimestamp
         customVariables: "{}"
         isVmGroup: 6
-        processorCoreMhz: 7
+        processorCoreMhz: 1
         dnsSubdomainPermanentId: 6
-        processorCoreCount: 4
+        processorCoreCount: 7
         serviceStatus: ordered
-        virtualInterfacesEnabled: 6
+        virtualInterfacesEnabled: 7
         links:
         - rel: self
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        networkProfileGroupId: 7
+        networkProfileGroupId: 1
         dnsSubdomainId: 0
         serverGroupName: server-instance-group-name
-        networkProfileSnapshotId: 1
-        processorCount: 2
+        networkProfileSnapshotId: 4
+        processorCount: 4
         createdTimestamp: createdTimestamp
-        ipAllocateAuto: 2
+        ipAllocateAuto: 7
         label: label
         subdomainPermanent: subdomainPermanent
-        networkEndpointGroupId: 9
+        networkEndpointGroupId: 5
         diskTypes:
         - diskTypes
         - diskTypes
         additionalWanIpv4Json: "{}"
         revision: 1
-        networkEquipmentForceSubnetPoolIpv4WanId: 5
-        diskSizeMbytes: 1
+        networkEquipmentForceSubnetPoolIpv4WanId: 9
+        diskSizeMbytes: 6
         infrastructureId: 1
         vmInstanceGroupId: 8
-        instanceCount: 5
+        instanceCount: 2
         resourcePoolId: 9
         meta:
           guiSettings:
@@ -38903,7 +38934,7 @@ components:
           tags:
           - tags
           - tags
-        osTemplateId: 3
+        osTemplateId: 2
         subdomain: subdomain
         ramGbytes: 1
         config:
@@ -38978,6 +39009,8 @@ components:
         infrastructureId:
           type: integer
         extensionInstanceId:
+          type: integer
+        networkEndpointGroupId:
           type: integer
         instanceCount:
           default: 1
@@ -39074,9 +39107,6 @@ components:
         resourcePoolId:
           description: The resource pool assigned to this instance array
           type: integer
-        networkEndpointGroupId:
-          description: The network endpoint group id for the instance array
-          type: integer
         isVmGroup:
           description: Flag to indicate if the Server Instance Group is belongs to
             a VM.
@@ -39119,47 +39149,47 @@ components:
       example:
         data:
         - serverTypeId: 5
-          ipv4SubnetCreateAuto: 7
-          overrideIpv4WanVlanId: 4
+          ipv4SubnetCreateAuto: 9
+          overrideIpv4WanVlanId: 5
           firmwarePolicyIds:
-          - 9.301444243932576
-          - 9.301444243932576
+          - 3.616076749251911
+          - 3.616076749251911
           extensionInstanceId: 5
           diskCount: 1
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
           isVmGroup: 6
-          processorCoreMhz: 7
+          processorCoreMhz: 1
           dnsSubdomainPermanentId: 6
-          processorCoreCount: 4
+          processorCoreCount: 7
           serviceStatus: ordered
-          virtualInterfacesEnabled: 6
+          virtualInterfacesEnabled: 7
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          networkProfileGroupId: 7
+          networkProfileGroupId: 1
           dnsSubdomainId: 0
           serverGroupName: server-instance-group-name
-          networkProfileSnapshotId: 1
-          processorCount: 2
+          networkProfileSnapshotId: 4
+          processorCount: 4
           createdTimestamp: createdTimestamp
-          ipAllocateAuto: 2
+          ipAllocateAuto: 7
           label: label
           subdomainPermanent: subdomainPermanent
-          networkEndpointGroupId: 9
+          networkEndpointGroupId: 5
           diskTypes:
           - diskTypes
           - diskTypes
           additionalWanIpv4Json: "{}"
           revision: 1
-          networkEquipmentForceSubnetPoolIpv4WanId: 5
-          diskSizeMbytes: 1
+          networkEquipmentForceSubnetPoolIpv4WanId: 9
+          diskSizeMbytes: 6
           infrastructureId: 1
           vmInstanceGroupId: 8
-          instanceCount: 5
+          instanceCount: 2
           resourcePoolId: 9
           meta:
             guiSettings:
@@ -39171,7 +39201,7 @@ components:
             tags:
             - tags
             - tags
-          osTemplateId: 3
+          osTemplateId: 2
           subdomain: subdomain
           ramGbytes: 1
           config:
@@ -39208,47 +39238,47 @@ components:
             ramGbytes: 5
             deployStatus: not_started
         - serverTypeId: 5
-          ipv4SubnetCreateAuto: 7
-          overrideIpv4WanVlanId: 4
+          ipv4SubnetCreateAuto: 9
+          overrideIpv4WanVlanId: 5
           firmwarePolicyIds:
-          - 9.301444243932576
-          - 9.301444243932576
+          - 3.616076749251911
+          - 3.616076749251911
           extensionInstanceId: 5
           diskCount: 1
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
           isVmGroup: 6
-          processorCoreMhz: 7
+          processorCoreMhz: 1
           dnsSubdomainPermanentId: 6
-          processorCoreCount: 4
+          processorCoreCount: 7
           serviceStatus: ordered
-          virtualInterfacesEnabled: 6
+          virtualInterfacesEnabled: 7
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          networkProfileGroupId: 7
+          networkProfileGroupId: 1
           dnsSubdomainId: 0
           serverGroupName: server-instance-group-name
-          networkProfileSnapshotId: 1
-          processorCount: 2
+          networkProfileSnapshotId: 4
+          processorCount: 4
           createdTimestamp: createdTimestamp
-          ipAllocateAuto: 2
+          ipAllocateAuto: 7
           label: label
           subdomainPermanent: subdomainPermanent
-          networkEndpointGroupId: 9
+          networkEndpointGroupId: 5
           diskTypes:
           - diskTypes
           - diskTypes
           additionalWanIpv4Json: "{}"
           revision: 1
-          networkEquipmentForceSubnetPoolIpv4WanId: 5
-          diskSizeMbytes: 1
+          networkEquipmentForceSubnetPoolIpv4WanId: 9
+          diskSizeMbytes: 6
           infrastructureId: 1
           vmInstanceGroupId: 8
-          instanceCount: 5
+          instanceCount: 2
           resourcePoolId: 9
           meta:
             guiSettings:
@@ -39260,7 +39290,7 @@ components:
             tags:
             - tags
             - tags
-          osTemplateId: 3
+          osTemplateId: 2
           subdomain: subdomain
           ramGbytes: 1
           config:
@@ -42331,7 +42361,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-14T11:08:13.764Z
+        createdTimestamp: 2025-04-14T17:31:47.748Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -42340,7 +42370,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-14T11:08:13.764Z
+        updatedTimestamp: 2025-04-14T17:31:47.749Z
         revision: "1"
       properties:
         siteId:
@@ -42357,12 +42387,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-14T11:08:13.764Z
+          example: 2025-04-14T17:31:47.748Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-14T11:08:13.764Z
+          example: 2025-04-14T17:31:47.749Z
           format: date-time
           type: string
         links:
@@ -42384,7 +42414,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-14T11:08:13.764Z
+        - createdTimestamp: 2025-04-14T17:31:47.748Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -42393,9 +42423,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-14T11:08:13.764Z
+          updatedTimestamp: 2025-04-14T17:31:47.749Z
           revision: "1"
-        - createdTimestamp: 2025-04-14T11:08:13.764Z
+        - createdTimestamp: 2025-04-14T17:31:47.748Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -42404,7 +42434,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-14T11:08:13.764Z
+          updatedTimestamp: 2025-04-14T17:31:47.749Z
           revision: "1"
         meta: ""
         links: ""
@@ -43016,7 +43046,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-14T11:08:13.779Z
+        createdTimestamp: 2025-04-14T17:31:47.77Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -43057,7 +43087,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-14T11:08:13.779Z
+        updatedTimestamp: 2025-04-14T17:31:47.771Z
         revision: "1"
         status: draft
       properties:
@@ -43085,12 +43115,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-14T11:08:13.779Z
+          example: 2025-04-14T17:31:47.77Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-14T11:08:13.779Z
+          example: 2025-04-14T17:31:47.771Z
           format: date-time
           type: string
         links:
@@ -43231,7 +43261,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-14T11:08:13.779Z
+          createdTimestamp: 2025-04-14T17:31:47.77Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -43272,7 +43302,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-14T11:08:13.779Z
+          updatedTimestamp: 2025-04-14T17:31:47.771Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -43382,7 +43412,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-14T11:08:13.779Z
+          createdTimestamp: 2025-04-14T17:31:47.77Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -43423,7 +43453,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-14T11:08:13.779Z
+          updatedTimestamp: 2025-04-14T17:31:47.771Z
           revision: "1"
           status: draft
         meta: ""
@@ -45296,25 +45326,26 @@ components:
       example:
         serverTypeId: 5
         serverGroupName: server-instance-group-name
-        ipv4SubnetCreateAuto: 1
-        overrideIpv4WanVlanId: 7
-        processorCount: 5
-        ipAllocateAuto: 6
+        ipv4SubnetCreateAuto: 5
+        overrideIpv4WanVlanId: 1
+        processorCount: 2
+        ipAllocateAuto: 1
         label: server-instance-group-123
-        diskCount: 3
+        networkEndpointGroupId: 0
+        diskCount: 2
         customVariables: "{}"
         diskTypes:
         - diskTypes
         - diskTypes
         additionalWanIpv4Json: "{}"
         networkEquipmentForceSubnetPoolIpv4WanId: 1
-        processorCoreMhz: 7
-        diskSizeMbytes: 2
-        instanceCount: 0
-        processorCoreCount: 2
+        processorCoreMhz: 9
+        diskSizeMbytes: 4
+        instanceCount: 6
+        processorCoreCount: 7
         osTemplateId: 5
-        ramGbytes: 9
-        virtualInterfacesEnabled: 4
+        ramGbytes: 3
+        virtualInterfacesEnabled: 7
       properties:
         label:
           description: The server instance group label.
@@ -45325,6 +45356,8 @@ components:
           example: server-instance-group-name
           maxLength: 255
           type: string
+        networkEndpointGroupId:
+          type: integer
         instanceCount:
           default: 1
           description: The number of instances to be created on the Instance Group.
@@ -45973,10 +46006,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-04-14T11:08:13.771Z
+        createdTimestamp: 2025-04-14T17:31:47.762Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: physical-interface-vlan-scoped
-        updatedTimestamp: 2025-04-14T11:08:13.771Z
+        updatedTimestamp: 2025-04-14T17:31:47.763Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -46062,12 +46095,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-14T11:08:13.771Z
+          example: 2025-04-14T17:31:47.762Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-14T11:08:13.771Z
+          example: 2025-04-14T17:31:47.763Z
           format: date-time
           type: string
         links:
@@ -47741,6 +47774,8 @@ components:
           type: integer
         extensionInstanceId:
           type: integer
+        networkEndpointGroupId:
+          type: integer
         instanceCount:
           default: 1
           description: The number of instances to be created on the Instance Group.
@@ -47835,9 +47870,6 @@ components:
           type: string
         resourcePoolId:
           description: The resource pool assigned to this instance array
-          type: integer
-        networkEndpointGroupId:
-          description: The network endpoint group id for the instance array
           type: integer
         isVmGroup:
           description: Flag to indicate if the Server Instance Group is belongs to
@@ -52652,6 +52684,7 @@ components:
         parentSubnetId: 0.8008281904610115
         label: label
         networkAddress: networkAddress
+        gateway: gateway
         tags: "{}"
       properties:
         label:
@@ -52666,6 +52699,8 @@ components:
           type: string
         prefixLength:
           type: number
+        gateway:
+          type: string
         isPool:
           type: boolean
         vrfId:
@@ -52685,6 +52720,7 @@ components:
       required:
       - allocationDenylist
       - allowedChildOverlapConditions
+      - gateway
       - isPool
       - metadata
       - name
@@ -55861,12 +55897,23 @@ components:
       type: object
     UpdateVariable:
       example:
+        usage: ""
+        name: variable_name
         value: "{}"
       properties:
+        name:
+          description: The variable name.
+          example: variable_name
+          type: string
         value:
           description: The variable value.
           type: object
+        usage:
+          allOf:
+          - $ref: '#/components/schemas/VariableUsageType'
+          description: Variable usage type.
       required:
+      - name
       - value
       type: object
     Secret:
@@ -56024,6 +56071,14 @@ components:
       - $ref: '#/components/schemas/AuthenticationRequestPropertiesLdap'
     ExtensionInput_options:
       description: Input options.
+      discriminator:
+        mapping:
+          ExtensionInputString: '#/components/schemas/ExtensionInputString'
+          ExtensionInputInteger: '#/components/schemas/ExtensionInputInteger'
+          ExtensionInputBoolean: '#/components/schemas/ExtensionInputBoolean'
+          ExtensionInputServerType: '#/components/schemas/ExtensionInputServerType'
+          ExtensionInputOsTemplate: '#/components/schemas/ExtensionInputOsTemplate'
+        propertyName: inputType
       oneOf:
       - $ref: '#/components/schemas/ExtensionInputString'
       - $ref: '#/components/schemas/ExtensionInputInteger'
@@ -56032,6 +56087,11 @@ components:
       - $ref: '#/components/schemas/ExtensionInputOsTemplate'
     ExtensionTask_options:
       description: Task options.
+      discriminator:
+        mapping:
+          ExtensionTaskAnsible: '#/components/schemas/ExtensionTaskAnsible'
+          ExtensionTaskWebhook: '#/components/schemas/ExtensionTaskWebhook'
+        propertyName: taskType
       oneOf:
       - $ref: '#/components/schemas/ExtensionTaskAnsible'
       - $ref: '#/components/schemas/ExtensionTaskWebhook'

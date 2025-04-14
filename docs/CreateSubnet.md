@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **ParentSubnetId** | **float32** | ID of the parent subnet | 
 **NetworkAddress** | **string** |  | 
 **PrefixLength** | **float32** |  | 
+**Gateway** | **string** |  | 
 **IsPool** | **bool** |  | 
 **VrfId** | **float32** |  | 
 **AllocationDenylist** | **[]string** |  | 
@@ -20,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewCreateSubnet
 
-`func NewCreateSubnet(name string, parentSubnetId float32, networkAddress string, prefixLength float32, isPool bool, vrfId float32, allocationDenylist []string, allowedChildOverlapConditions []string, tags map[string]interface{}, metadata map[string]interface{}, ) *CreateSubnet`
+`func NewCreateSubnet(name string, parentSubnetId float32, networkAddress string, prefixLength float32, gateway string, isPool bool, vrfId float32, allocationDenylist []string, allowedChildOverlapConditions []string, tags map[string]interface{}, metadata map[string]interface{}, ) *CreateSubnet`
 
 NewCreateSubnet instantiates a new CreateSubnet object
 This constructor will assign default values to properties that have it defined,
@@ -138,6 +139,26 @@ and a boolean to check if the value has been set.
 `func (o *CreateSubnet) SetPrefixLength(v float32)`
 
 SetPrefixLength sets PrefixLength field to given value.
+
+
+### GetGateway
+
+`func (o *CreateSubnet) GetGateway() string`
+
+GetGateway returns the Gateway field if non-nil, zero value otherwise.
+
+### GetGatewayOk
+
+`func (o *CreateSubnet) GetGatewayOk() (*string, bool)`
+
+GetGatewayOk returns a tuple with the Gateway field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGateway
+
+`func (o *CreateSubnet) SetGateway(v string)`
+
+SetGateway sets Gateway field to given value.
 
 
 ### GetIsPool

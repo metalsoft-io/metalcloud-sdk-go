@@ -28,6 +28,7 @@ type CreateSubnet struct {
 	ParentSubnetId float32 `json:"parentSubnetId"`
 	NetworkAddress string `json:"networkAddress"`
 	PrefixLength float32 `json:"prefixLength"`
+	Gateway string `json:"gateway"`
 	IsPool bool `json:"isPool"`
 	VrfId float32 `json:"vrfId"`
 	AllocationDenylist []string `json:"allocationDenylist"`
@@ -43,12 +44,13 @@ type _CreateSubnet CreateSubnet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateSubnet(name string, parentSubnetId float32, networkAddress string, prefixLength float32, isPool bool, vrfId float32, allocationDenylist []string, allowedChildOverlapConditions []string, tags map[string]interface{}, metadata map[string]interface{}) *CreateSubnet {
+func NewCreateSubnet(name string, parentSubnetId float32, networkAddress string, prefixLength float32, gateway string, isPool bool, vrfId float32, allocationDenylist []string, allowedChildOverlapConditions []string, tags map[string]interface{}, metadata map[string]interface{}) *CreateSubnet {
 	this := CreateSubnet{}
 	this.Name = name
 	this.ParentSubnetId = parentSubnetId
 	this.NetworkAddress = networkAddress
 	this.PrefixLength = prefixLength
+	this.Gateway = gateway
 	this.IsPool = isPool
 	this.VrfId = vrfId
 	this.AllocationDenylist = allocationDenylist
@@ -192,6 +194,30 @@ func (o *CreateSubnet) GetPrefixLengthOk() (*float32, bool) {
 // SetPrefixLength sets field value
 func (o *CreateSubnet) SetPrefixLength(v float32) {
 	o.PrefixLength = v
+}
+
+// GetGateway returns the Gateway field value
+func (o *CreateSubnet) GetGateway() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Gateway
+}
+
+// GetGatewayOk returns a tuple with the Gateway field value
+// and a boolean to check if the value has been set.
+func (o *CreateSubnet) GetGatewayOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Gateway, true
+}
+
+// SetGateway sets field value
+func (o *CreateSubnet) SetGateway(v string) {
+	o.Gateway = v
 }
 
 // GetIsPool returns the IsPool field value
@@ -355,6 +381,7 @@ func (o CreateSubnet) ToMap() (map[string]interface{}, error) {
 	toSerialize["parentSubnetId"] = o.ParentSubnetId
 	toSerialize["networkAddress"] = o.NetworkAddress
 	toSerialize["prefixLength"] = o.PrefixLength
+	toSerialize["gateway"] = o.Gateway
 	toSerialize["isPool"] = o.IsPool
 	toSerialize["vrfId"] = o.VrfId
 	toSerialize["allocationDenylist"] = o.AllocationDenylist
@@ -378,6 +405,7 @@ func (o *CreateSubnet) UnmarshalJSON(data []byte) (err error) {
 		"parentSubnetId",
 		"networkAddress",
 		"prefixLength",
+		"gateway",
 		"isPool",
 		"vrfId",
 		"allocationDenylist",
@@ -418,6 +446,7 @@ func (o *CreateSubnet) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "parentSubnetId")
 		delete(additionalProperties, "networkAddress")
 		delete(additionalProperties, "prefixLength")
+		delete(additionalProperties, "gateway")
 		delete(additionalProperties, "isPool")
 		delete(additionalProperties, "vrfId")
 		delete(additionalProperties, "allocationDenylist")

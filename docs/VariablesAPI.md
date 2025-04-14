@@ -318,7 +318,7 @@ import (
 
 func main() {
 	id := float32(8.14) // float32 | 
-	updateVariable := *openapiclient.NewUpdateVariable(map[string]interface{}(123)) // UpdateVariable | 
+	updateVariable := *openapiclient.NewUpdateVariable("variable_name", map[string]interface{}(123)) // UpdateVariable | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

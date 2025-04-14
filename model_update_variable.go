@@ -21,8 +21,12 @@ var _ MappedNullable = &UpdateVariable{}
 
 // UpdateVariable struct for UpdateVariable
 type UpdateVariable struct {
+	// The variable name.
+	Name string `json:"name"`
 	// The variable value.
 	Value map[string]interface{} `json:"value"`
+	// Variable usage type.
+	Usage *VariableUsageType `json:"usage,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,8 +36,9 @@ type _UpdateVariable UpdateVariable
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateVariable(value map[string]interface{}) *UpdateVariable {
+func NewUpdateVariable(name string, value map[string]interface{}) *UpdateVariable {
 	this := UpdateVariable{}
+	this.Name = name
 	this.Value = value
 	return &this
 }
@@ -44,6 +49,30 @@ func NewUpdateVariable(value map[string]interface{}) *UpdateVariable {
 func NewUpdateVariableWithDefaults() *UpdateVariable {
 	this := UpdateVariable{}
 	return &this
+}
+
+// GetName returns the Name field value
+func (o *UpdateVariable) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *UpdateVariable) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *UpdateVariable) SetName(v string) {
+	o.Name = v
 }
 
 // GetValue returns the Value field value
@@ -70,6 +99,38 @@ func (o *UpdateVariable) SetValue(v map[string]interface{}) {
 	o.Value = v
 }
 
+// GetUsage returns the Usage field value if set, zero value otherwise.
+func (o *UpdateVariable) GetUsage() VariableUsageType {
+	if o == nil || IsNil(o.Usage) {
+		var ret VariableUsageType
+		return ret
+	}
+	return *o.Usage
+}
+
+// GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateVariable) GetUsageOk() (*VariableUsageType, bool) {
+	if o == nil || IsNil(o.Usage) {
+		return nil, false
+	}
+	return o.Usage, true
+}
+
+// HasUsage returns a boolean if a field has been set.
+func (o *UpdateVariable) HasUsage() bool {
+	if o != nil && !IsNil(o.Usage) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsage gets a reference to the given VariableUsageType and assigns it to the Usage field.
+func (o *UpdateVariable) SetUsage(v VariableUsageType) {
+	o.Usage = &v
+}
+
 func (o UpdateVariable) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -80,7 +141,11 @@ func (o UpdateVariable) MarshalJSON() ([]byte, error) {
 
 func (o UpdateVariable) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
 	toSerialize["value"] = o.Value
+	if !IsNil(o.Usage) {
+		toSerialize["usage"] = o.Usage
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -94,6 +159,7 @@ func (o *UpdateVariable) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"name",
 		"value",
 	}
 
@@ -124,7 +190,9 @@ func (o *UpdateVariable) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "value")
+		delete(additionalProperties, "usage")
 		o.AdditionalProperties = additionalProperties
 	}
 

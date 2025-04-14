@@ -64,86 +64,74 @@ func ExtensionInputStringAsExtensionInputOptions(v *ExtensionInputString) Extens
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ExtensionInputOptions) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into ExtensionInputBoolean
-	err = json.Unmarshal(data, &dst.ExtensionInputBoolean)
-	if err == nil {
-		jsonExtensionInputBoolean, _ := json.Marshal(dst.ExtensionInputBoolean)
-		if string(jsonExtensionInputBoolean) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'ExtensionInputBoolean'
+	if jsonDict["inputType"] == "ExtensionInputBoolean" {
+		// try to unmarshal JSON data into ExtensionInputBoolean
+		err = json.Unmarshal(data, &dst.ExtensionInputBoolean)
+		if err == nil {
+			return nil // data stored in dst.ExtensionInputBoolean, return on the first match
+		} else {
 			dst.ExtensionInputBoolean = nil
-		} else {
-			match++
+			return fmt.Errorf("failed to unmarshal ExtensionInputOptions as ExtensionInputBoolean: %s", err.Error())
 		}
-	} else {
-		dst.ExtensionInputBoolean = nil
 	}
 
-	// try to unmarshal data into ExtensionInputInteger
-	err = json.Unmarshal(data, &dst.ExtensionInputInteger)
-	if err == nil {
-		jsonExtensionInputInteger, _ := json.Marshal(dst.ExtensionInputInteger)
-		if string(jsonExtensionInputInteger) == "{}" { // empty struct
+	// check if the discriminator value is 'ExtensionInputInteger'
+	if jsonDict["inputType"] == "ExtensionInputInteger" {
+		// try to unmarshal JSON data into ExtensionInputInteger
+		err = json.Unmarshal(data, &dst.ExtensionInputInteger)
+		if err == nil {
+			return nil // data stored in dst.ExtensionInputInteger, return on the first match
+		} else {
 			dst.ExtensionInputInteger = nil
-		} else {
-			match++
+			return fmt.Errorf("failed to unmarshal ExtensionInputOptions as ExtensionInputInteger: %s", err.Error())
 		}
-	} else {
-		dst.ExtensionInputInteger = nil
 	}
 
-	// try to unmarshal data into ExtensionInputOsTemplate
-	err = json.Unmarshal(data, &dst.ExtensionInputOsTemplate)
-	if err == nil {
-		jsonExtensionInputOsTemplate, _ := json.Marshal(dst.ExtensionInputOsTemplate)
-		if string(jsonExtensionInputOsTemplate) == "{}" { // empty struct
+	// check if the discriminator value is 'ExtensionInputOsTemplate'
+	if jsonDict["inputType"] == "ExtensionInputOsTemplate" {
+		// try to unmarshal JSON data into ExtensionInputOsTemplate
+		err = json.Unmarshal(data, &dst.ExtensionInputOsTemplate)
+		if err == nil {
+			return nil // data stored in dst.ExtensionInputOsTemplate, return on the first match
+		} else {
 			dst.ExtensionInputOsTemplate = nil
-		} else {
-			match++
+			return fmt.Errorf("failed to unmarshal ExtensionInputOptions as ExtensionInputOsTemplate: %s", err.Error())
 		}
-	} else {
-		dst.ExtensionInputOsTemplate = nil
 	}
 
-	// try to unmarshal data into ExtensionInputServerType
-	err = json.Unmarshal(data, &dst.ExtensionInputServerType)
-	if err == nil {
-		jsonExtensionInputServerType, _ := json.Marshal(dst.ExtensionInputServerType)
-		if string(jsonExtensionInputServerType) == "{}" { // empty struct
+	// check if the discriminator value is 'ExtensionInputServerType'
+	if jsonDict["inputType"] == "ExtensionInputServerType" {
+		// try to unmarshal JSON data into ExtensionInputServerType
+		err = json.Unmarshal(data, &dst.ExtensionInputServerType)
+		if err == nil {
+			return nil // data stored in dst.ExtensionInputServerType, return on the first match
+		} else {
 			dst.ExtensionInputServerType = nil
-		} else {
-			match++
+			return fmt.Errorf("failed to unmarshal ExtensionInputOptions as ExtensionInputServerType: %s", err.Error())
 		}
-	} else {
-		dst.ExtensionInputServerType = nil
 	}
 
-	// try to unmarshal data into ExtensionInputString
-	err = json.Unmarshal(data, &dst.ExtensionInputString)
-	if err == nil {
-		jsonExtensionInputString, _ := json.Marshal(dst.ExtensionInputString)
-		if string(jsonExtensionInputString) == "{}" { // empty struct
+	// check if the discriminator value is 'ExtensionInputString'
+	if jsonDict["inputType"] == "ExtensionInputString" {
+		// try to unmarshal JSON data into ExtensionInputString
+		err = json.Unmarshal(data, &dst.ExtensionInputString)
+		if err == nil {
+			return nil // data stored in dst.ExtensionInputString, return on the first match
+		} else {
 			dst.ExtensionInputString = nil
-		} else {
-			match++
+			return fmt.Errorf("failed to unmarshal ExtensionInputOptions as ExtensionInputString: %s", err.Error())
 		}
-	} else {
-		dst.ExtensionInputString = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.ExtensionInputBoolean = nil
-		dst.ExtensionInputInteger = nil
-		dst.ExtensionInputOsTemplate = nil
-		dst.ExtensionInputServerType = nil
-		dst.ExtensionInputString = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(ExtensionInputOptions)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(ExtensionInputOptions)")
-	}
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

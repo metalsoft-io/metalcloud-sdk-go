@@ -40,44 +40,38 @@ func ExtensionTaskWebhookAsExtensionTaskOptions(v *ExtensionTaskWebhook) Extensi
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ExtensionTaskOptions) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into ExtensionTaskAnsible
-	err = json.Unmarshal(data, &dst.ExtensionTaskAnsible)
-	if err == nil {
-		jsonExtensionTaskAnsible, _ := json.Marshal(dst.ExtensionTaskAnsible)
-		if string(jsonExtensionTaskAnsible) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'ExtensionTaskAnsible'
+	if jsonDict["taskType"] == "ExtensionTaskAnsible" {
+		// try to unmarshal JSON data into ExtensionTaskAnsible
+		err = json.Unmarshal(data, &dst.ExtensionTaskAnsible)
+		if err == nil {
+			return nil // data stored in dst.ExtensionTaskAnsible, return on the first match
+		} else {
 			dst.ExtensionTaskAnsible = nil
-		} else {
-			match++
+			return fmt.Errorf("failed to unmarshal ExtensionTaskOptions as ExtensionTaskAnsible: %s", err.Error())
 		}
-	} else {
-		dst.ExtensionTaskAnsible = nil
 	}
 
-	// try to unmarshal data into ExtensionTaskWebhook
-	err = json.Unmarshal(data, &dst.ExtensionTaskWebhook)
-	if err == nil {
-		jsonExtensionTaskWebhook, _ := json.Marshal(dst.ExtensionTaskWebhook)
-		if string(jsonExtensionTaskWebhook) == "{}" { // empty struct
+	// check if the discriminator value is 'ExtensionTaskWebhook'
+	if jsonDict["taskType"] == "ExtensionTaskWebhook" {
+		// try to unmarshal JSON data into ExtensionTaskWebhook
+		err = json.Unmarshal(data, &dst.ExtensionTaskWebhook)
+		if err == nil {
+			return nil // data stored in dst.ExtensionTaskWebhook, return on the first match
+		} else {
 			dst.ExtensionTaskWebhook = nil
-		} else {
-			match++
+			return fmt.Errorf("failed to unmarshal ExtensionTaskOptions as ExtensionTaskWebhook: %s", err.Error())
 		}
-	} else {
-		dst.ExtensionTaskWebhook = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.ExtensionTaskAnsible = nil
-		dst.ExtensionTaskWebhook = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(ExtensionTaskOptions)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(ExtensionTaskOptions)")
-	}
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
