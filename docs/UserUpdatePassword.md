@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **NewPassword** | **string** | The new password of the user | 
-**OldPassword** | **string** | The old password of the user | 
+**OldPassword** | Pointer to **string** | The old password of the user | [optional] 
 
 ## Methods
 
 ### NewUserUpdatePassword
 
-`func NewUserUpdatePassword(newPassword string, oldPassword string, ) *UserUpdatePassword`
+`func NewUserUpdatePassword(newPassword string, ) *UserUpdatePassword`
 
 NewUserUpdatePassword instantiates a new UserUpdatePassword object
 This constructor will assign default values to properties that have it defined,
@@ -65,6 +65,11 @@ and a boolean to check if the value has been set.
 
 SetOldPassword sets OldPassword field to given value.
 
+### HasOldPassword
+
+`func (o *UserUpdatePassword) HasOldPassword() bool`
+
+HasOldPassword returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

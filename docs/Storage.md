@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** | Tags | [optional] 
 **PortGroupAllocationOrder** | Pointer to **map[string]interface{}** | Port group allocation order | [optional] 
 **PortGroupPhysicalPorts** | Pointer to **map[string]interface{}** | Port group physical ports | [optional] 
-**DefaultIoLimitPolicy** | Pointer to **string** | Default IO limit policy | [optional] 
+**DefaultQoS** | Pointer to **string** | Default QoS to use. The QoS must be defined in the storage. | [optional] 
 **SubnetType** | **string** | Subnet type | 
 **JobStatistics** | Pointer to [**JobGroupStatistics**](JobGroupStatistics.md) |  | [optional] 
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the storage. | [optional] 
@@ -728,30 +728,30 @@ SetPortGroupPhysicalPorts sets PortGroupPhysicalPorts field to given value.
 
 HasPortGroupPhysicalPorts returns a boolean if a field has been set.
 
-### GetDefaultIoLimitPolicy
+### GetDefaultQoS
 
-`func (o *Storage) GetDefaultIoLimitPolicy() string`
+`func (o *Storage) GetDefaultQoS() string`
 
-GetDefaultIoLimitPolicy returns the DefaultIoLimitPolicy field if non-nil, zero value otherwise.
+GetDefaultQoS returns the DefaultQoS field if non-nil, zero value otherwise.
 
-### GetDefaultIoLimitPolicyOk
+### GetDefaultQoSOk
 
-`func (o *Storage) GetDefaultIoLimitPolicyOk() (*string, bool)`
+`func (o *Storage) GetDefaultQoSOk() (*string, bool)`
 
-GetDefaultIoLimitPolicyOk returns a tuple with the DefaultIoLimitPolicy field if it's non-nil, zero value otherwise
+GetDefaultQoSOk returns a tuple with the DefaultQoS field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDefaultIoLimitPolicy
+### SetDefaultQoS
 
-`func (o *Storage) SetDefaultIoLimitPolicy(v string)`
+`func (o *Storage) SetDefaultQoS(v string)`
 
-SetDefaultIoLimitPolicy sets DefaultIoLimitPolicy field to given value.
+SetDefaultQoS sets DefaultQoS field to given value.
 
-### HasDefaultIoLimitPolicy
+### HasDefaultQoS
 
-`func (o *Storage) HasDefaultIoLimitPolicy() bool`
+`func (o *Storage) HasDefaultQoS() bool`
 
-HasDefaultIoLimitPolicy returns a boolean if a field has been set.
+HasDefaultQoS returns a boolean if a field has been set.
 
 ### GetSubnetType
 

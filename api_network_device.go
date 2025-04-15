@@ -1120,7 +1120,7 @@ func (a *NetworkDeviceAPIService) GetNetworkDeviceCredentialsExecute(r NetworkDe
 type NetworkDeviceAPIGetNetworkDeviceDefaultsRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
-	datacenterName string
+	siteId float32
 }
 
 func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) Execute() ([]map[string]interface{}, *http.Response, error) {
@@ -1128,17 +1128,17 @@ func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) Execute() ([]map[string
 }
 
 /*
-GetNetworkDeviceDefaults Get network device defaults for a datacenter
+GetNetworkDeviceDefaults Get network device defaults for a site
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param datacenterName
+ @param siteId
  @return NetworkDeviceAPIGetNetworkDeviceDefaultsRequest
 */
-func (a *NetworkDeviceAPIService) GetNetworkDeviceDefaults(ctx context.Context, datacenterName string) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
+func (a *NetworkDeviceAPIService) GetNetworkDeviceDefaults(ctx context.Context, siteId float32) NetworkDeviceAPIGetNetworkDeviceDefaultsRequest {
 	return NetworkDeviceAPIGetNetworkDeviceDefaultsRequest{
 		ApiService: a,
 		ctx: ctx,
-		datacenterName: datacenterName,
+		siteId: siteId,
 	}
 }
 
@@ -1157,8 +1157,8 @@ func (a *NetworkDeviceAPIService) GetNetworkDeviceDefaultsExecute(r NetworkDevic
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/network-devices/defaults/{datacenterName}"
-	localVarPath = strings.Replace(localVarPath, "{"+"datacenterName"+"}", url.PathEscape(parameterValueToString(r.datacenterName, "datacenterName")), -1)
+	localVarPath := localBasePath + "/api/v2/network-devices/defaults/{siteId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"siteId"+"}", url.PathEscape(parameterValueToString(r.siteId, "siteId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

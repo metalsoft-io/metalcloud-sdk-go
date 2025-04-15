@@ -15,7 +15,7 @@ Method | HTTP request | Description
 [**GetIscsiBootServers**](NetworkDeviceAPI.md#GetIscsiBootServers) | **Get** /api/v2/network-devices/{networkDeviceId}/iscsi-boot-servers | Returns information about servers which are setup to boot from iSCSI block devices. This is useful in the event of a switch device reboot
 [**GetNetworkDevice**](NetworkDeviceAPI.md#GetNetworkDevice) | **Get** /api/v2/network-devices/{networkDeviceId} | Get Network Device
 [**GetNetworkDeviceCredentials**](NetworkDeviceAPI.md#GetNetworkDeviceCredentials) | **Get** /api/v2/network-devices/{networkDeviceId}/credentials | Get Network Device credentials
-[**GetNetworkDeviceDefaults**](NetworkDeviceAPI.md#GetNetworkDeviceDefaults) | **Get** /api/v2/network-devices/defaults/{datacenterName} | Get network device defaults for a datacenter
+[**GetNetworkDeviceDefaults**](NetworkDeviceAPI.md#GetNetworkDeviceDefaults) | **Get** /api/v2/network-devices/defaults/{siteId} | Get network device defaults for a site
 [**GetNetworkDeviceInventoryPorts**](NetworkDeviceAPI.md#GetNetworkDeviceInventoryPorts) | **Get** /api/v2/network-devices/{networkDeviceId}/ports | Get all ports for network device from the inventory (cached)
 [**GetNetworkDevicePorts**](NetworkDeviceAPI.md#GetNetworkDevicePorts) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
 [**GetNetworkDeviceStatistics**](NetworkDeviceAPI.md#GetNetworkDeviceStatistics) | **Get** /api/v2/network-devices/statistics | Get Network Device Statistics
@@ -775,9 +775,9 @@ Name | Type | Description  | Notes
 
 ## GetNetworkDeviceDefaults
 
-> []map[string]interface{} GetNetworkDeviceDefaults(ctx, datacenterName).Execute()
+> []map[string]interface{} GetNetworkDeviceDefaults(ctx, siteId).Execute()
 
-Get network device defaults for a datacenter
+Get network device defaults for a site
 
 ### Example
 
@@ -792,11 +792,11 @@ import (
 )
 
 func main() {
-	datacenterName := "datacenterName_example" // string | 
+	siteId := float32(8.14) // float32 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceDefaults(context.Background(), datacenterName).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceDefaults(context.Background(), siteId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDeviceDefaults``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -812,7 +812,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**datacenterName** | **string** |  | 
+**siteId** | **float32** |  | 
 
 ### Other Parameters
 

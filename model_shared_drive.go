@@ -31,8 +31,8 @@ type SharedDrive struct {
 	StorageImageName *string `json:"storageImageName,omitempty"`
 	// Service status of the Drive
 	StorageType string `json:"storageType"`
-	// The IO limit policy of the Drive.
-	IoLimitPolicy *string `json:"ioLimitPolicy,omitempty"`
+	// The QoS of the Drive.
+	QoS *string `json:"qoS,omitempty"`
 	// Subdomain of the Drive.
 	Subdomain *string `json:"subdomain,omitempty"`
 	// Id of the Logical Network for the Drive.
@@ -248,36 +248,36 @@ func (o *SharedDrive) SetStorageType(v string) {
 	o.StorageType = v
 }
 
-// GetIoLimitPolicy returns the IoLimitPolicy field value if set, zero value otherwise.
-func (o *SharedDrive) GetIoLimitPolicy() string {
-	if o == nil || IsNil(o.IoLimitPolicy) {
+// GetQoS returns the QoS field value if set, zero value otherwise.
+func (o *SharedDrive) GetQoS() string {
+	if o == nil || IsNil(o.QoS) {
 		var ret string
 		return ret
 	}
-	return *o.IoLimitPolicy
+	return *o.QoS
 }
 
-// GetIoLimitPolicyOk returns a tuple with the IoLimitPolicy field value if set, nil otherwise
+// GetQoSOk returns a tuple with the QoS field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SharedDrive) GetIoLimitPolicyOk() (*string, bool) {
-	if o == nil || IsNil(o.IoLimitPolicy) {
+func (o *SharedDrive) GetQoSOk() (*string, bool) {
+	if o == nil || IsNil(o.QoS) {
 		return nil, false
 	}
-	return o.IoLimitPolicy, true
+	return o.QoS, true
 }
 
-// HasIoLimitPolicy returns a boolean if a field has been set.
-func (o *SharedDrive) HasIoLimitPolicy() bool {
-	if o != nil && !IsNil(o.IoLimitPolicy) {
+// HasQoS returns a boolean if a field has been set.
+func (o *SharedDrive) HasQoS() bool {
+	if o != nil && !IsNil(o.QoS) {
 		return true
 	}
 
 	return false
 }
 
-// SetIoLimitPolicy gets a reference to the given string and assigns it to the IoLimitPolicy field.
-func (o *SharedDrive) SetIoLimitPolicy(v string) {
-	o.IoLimitPolicy = &v
+// SetQoS gets a reference to the given string and assigns it to the QoS field.
+func (o *SharedDrive) SetQoS(v string) {
+	o.QoS = &v
 }
 
 // GetSubdomain returns the Subdomain field value if set, zero value otherwise.
@@ -883,8 +883,8 @@ func (o SharedDrive) ToMap() (map[string]interface{}, error) {
 		toSerialize["storageImageName"] = o.StorageImageName
 	}
 	toSerialize["storageType"] = o.StorageType
-	if !IsNil(o.IoLimitPolicy) {
-		toSerialize["ioLimitPolicy"] = o.IoLimitPolicy
+	if !IsNil(o.QoS) {
+		toSerialize["qoS"] = o.QoS
 	}
 	if !IsNil(o.Subdomain) {
 		toSerialize["subdomain"] = o.Subdomain
@@ -988,7 +988,7 @@ func (o *SharedDrive) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "sizeMb")
 		delete(additionalProperties, "storageImageName")
 		delete(additionalProperties, "storageType")
-		delete(additionalProperties, "ioLimitPolicy")
+		delete(additionalProperties, "qoS")
 		delete(additionalProperties, "subdomain")
 		delete(additionalProperties, "logicalNetworkId")
 		delete(additionalProperties, "updatedTimestamp")

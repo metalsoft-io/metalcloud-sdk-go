@@ -22,11 +22,75 @@ func Test_sdk_SecurityAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test SecurityAPIService CreateRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.SecurityAPI.CreateRole(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SecurityAPIService DeleteRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var roleName string
+
+		resp, httpRes, err := apiClient.SecurityAPI.DeleteRole(context.Background(), roleName).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SecurityAPIService GetPermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.SecurityAPI.GetPermissions(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SecurityAPIService GetProviders", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.SecurityAPI.GetProviders(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SecurityAPIService GetRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var roleName string
+
+		resp, httpRes, err := apiClient.SecurityAPI.GetRole(context.Background(), roleName).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SecurityAPIService GetRoles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.SecurityAPI.GetRoles(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -41,6 +105,20 @@ func Test_sdk_SecurityAPIService(t *testing.T) {
 		var name string
 
 		resp, httpRes, err := apiClient.SecurityAPI.UpdateProvider(context.Background(), name).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SecurityAPIService UpdateRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var roleName string
+
+		resp, httpRes, err := apiClient.SecurityAPI.UpdateRole(context.Background(), roleName).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

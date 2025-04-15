@@ -23,7 +23,6 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** | Tags | [optional] 
 **PortGroupAllocationOrder** | Pointer to **map[string]interface{}** | Port group allocation order | [optional] 
 **PortGroupPhysicalPorts** | Pointer to **map[string]interface{}** | Port group physical ports | [optional] 
-**DefaultIoLimitPolicy** | Pointer to **string** | Default IO limit policy | [optional] 
 **SubnetType** | **string** | Subnet type | 
 **Options** | Pointer to [**UpdateStorageOptions**](UpdateStorageOptions.md) | Options for the storage | [optional] 
 **Password** | **string** | The password to use. | 
@@ -486,31 +485,6 @@ SetPortGroupPhysicalPorts sets PortGroupPhysicalPorts field to given value.
 `func (o *CreateStorage) HasPortGroupPhysicalPorts() bool`
 
 HasPortGroupPhysicalPorts returns a boolean if a field has been set.
-
-### GetDefaultIoLimitPolicy
-
-`func (o *CreateStorage) GetDefaultIoLimitPolicy() string`
-
-GetDefaultIoLimitPolicy returns the DefaultIoLimitPolicy field if non-nil, zero value otherwise.
-
-### GetDefaultIoLimitPolicyOk
-
-`func (o *CreateStorage) GetDefaultIoLimitPolicyOk() (*string, bool)`
-
-GetDefaultIoLimitPolicyOk returns a tuple with the DefaultIoLimitPolicy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultIoLimitPolicy
-
-`func (o *CreateStorage) SetDefaultIoLimitPolicy(v string)`
-
-SetDefaultIoLimitPolicy sets DefaultIoLimitPolicy field to given value.
-
-### HasDefaultIoLimitPolicy
-
-`func (o *CreateStorage) HasDefaultIoLimitPolicy() bool`
-
-HasDefaultIoLimitPolicy returns a boolean if a field has been set.
 
 ### GetSubnetType
 

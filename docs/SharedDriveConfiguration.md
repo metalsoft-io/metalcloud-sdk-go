@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **SizeMb** | **float32** | Disk size in MB for Drive | 
 **StorageImageName** | Pointer to **string** | The name of the storage image used by the Drive. | [optional] 
 **StorageType** | **string** | Service status of the Drive | [default to "iscsi_ssd"]
-**IoLimitPolicy** | Pointer to **string** | The IO limit policy of the Drive. | [optional] 
+**QoS** | Pointer to **string** | The QoS of the Drive. | [optional] 
 **Subdomain** | Pointer to **string** | Subdomain of the Drive. | [optional] 
 **DnsSubdomainChangeId** | Pointer to **float32** | Id of the DNS subdomain for the Drive. | [optional] 
 **DeployType** | **string** | Deploy type of the Drive | [default to "create"]
@@ -168,30 +168,30 @@ and a boolean to check if the value has been set.
 SetStorageType sets StorageType field to given value.
 
 
-### GetIoLimitPolicy
+### GetQoS
 
-`func (o *SharedDriveConfiguration) GetIoLimitPolicy() string`
+`func (o *SharedDriveConfiguration) GetQoS() string`
 
-GetIoLimitPolicy returns the IoLimitPolicy field if non-nil, zero value otherwise.
+GetQoS returns the QoS field if non-nil, zero value otherwise.
 
-### GetIoLimitPolicyOk
+### GetQoSOk
 
-`func (o *SharedDriveConfiguration) GetIoLimitPolicyOk() (*string, bool)`
+`func (o *SharedDriveConfiguration) GetQoSOk() (*string, bool)`
 
-GetIoLimitPolicyOk returns a tuple with the IoLimitPolicy field if it's non-nil, zero value otherwise
+GetQoSOk returns a tuple with the QoS field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIoLimitPolicy
+### SetQoS
 
-`func (o *SharedDriveConfiguration) SetIoLimitPolicy(v string)`
+`func (o *SharedDriveConfiguration) SetQoS(v string)`
 
-SetIoLimitPolicy sets IoLimitPolicy field to given value.
+SetQoS sets QoS field to given value.
 
-### HasIoLimitPolicy
+### HasQoS
 
-`func (o *SharedDriveConfiguration) HasIoLimitPolicy() bool`
+`func (o *SharedDriveConfiguration) HasQoS() bool`
 
-HasIoLimitPolicy returns a boolean if a field has been set.
+HasQoS returns a boolean if a field has been set.
 
 ### GetSubdomain
 

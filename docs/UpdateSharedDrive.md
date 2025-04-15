@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | Label of the Drive. | [optional] 
 **SizeMb** | Pointer to **float32** | Disk size in MB for Drive | [optional] 
-**IoLimitPolicy** | Pointer to **string** | The IO limit policy of the Drive. | [optional] 
 **LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Drive. | [optional] 
 
 ## Methods
@@ -77,31 +76,6 @@ SetSizeMb sets SizeMb field to given value.
 `func (o *UpdateSharedDrive) HasSizeMb() bool`
 
 HasSizeMb returns a boolean if a field has been set.
-
-### GetIoLimitPolicy
-
-`func (o *UpdateSharedDrive) GetIoLimitPolicy() string`
-
-GetIoLimitPolicy returns the IoLimitPolicy field if non-nil, zero value otherwise.
-
-### GetIoLimitPolicyOk
-
-`func (o *UpdateSharedDrive) GetIoLimitPolicyOk() (*string, bool)`
-
-GetIoLimitPolicyOk returns a tuple with the IoLimitPolicy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIoLimitPolicy
-
-`func (o *UpdateSharedDrive) SetIoLimitPolicy(v string)`
-
-SetIoLimitPolicy sets IoLimitPolicy field to given value.
-
-### HasIoLimitPolicy
-
-`func (o *UpdateSharedDrive) HasIoLimitPolicy() bool`
-
-HasIoLimitPolicy returns a boolean if a field has been set.
 
 ### GetLogicalNetworkId
 

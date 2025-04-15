@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **DriveSizeMbDefault** | **float32** | Default disk size in MB for new Drives in the Drive Group | 
 **ServerInstanceGroupId** | Pointer to **float32** |  | [optional] 
 **ExpandWithServerInstanceGroup** | **float32** | Flag to determine whether the Drive Group should be expanded with a Server Instance Group by adding one drive for each instance | 
-**IoLimitPolicy** | Pointer to **string** | The IO limit policy of the Drive Group. | [optional] 
+**QoS** | Pointer to **string** | The IO limit policy of the Drive Group. | [optional] 
 **StorageType** | **string** | Service status of the Drive Group | [default to "iscsi_ssd"]
 **FilesystemInfo** | Pointer to **map[string]interface{}** | Filesystem information of the Drive Group. | [optional] 
 **Subdomain** | Pointer to **string** | Subdomain of the Drive Group. | [optional] 
@@ -177,30 +177,30 @@ and a boolean to check if the value has been set.
 SetExpandWithServerInstanceGroup sets ExpandWithServerInstanceGroup field to given value.
 
 
-### GetIoLimitPolicy
+### GetQoS
 
-`func (o *DriveGroup) GetIoLimitPolicy() string`
+`func (o *DriveGroup) GetQoS() string`
 
-GetIoLimitPolicy returns the IoLimitPolicy field if non-nil, zero value otherwise.
+GetQoS returns the QoS field if non-nil, zero value otherwise.
 
-### GetIoLimitPolicyOk
+### GetQoSOk
 
-`func (o *DriveGroup) GetIoLimitPolicyOk() (*string, bool)`
+`func (o *DriveGroup) GetQoSOk() (*string, bool)`
 
-GetIoLimitPolicyOk returns a tuple with the IoLimitPolicy field if it's non-nil, zero value otherwise
+GetQoSOk returns a tuple with the QoS field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIoLimitPolicy
+### SetQoS
 
-`func (o *DriveGroup) SetIoLimitPolicy(v string)`
+`func (o *DriveGroup) SetQoS(v string)`
 
-SetIoLimitPolicy sets IoLimitPolicy field to given value.
+SetQoS sets QoS field to given value.
 
-### HasIoLimitPolicy
+### HasQoS
 
-`func (o *DriveGroup) HasIoLimitPolicy() bool`
+`func (o *DriveGroup) HasQoS() bool`
 
-HasIoLimitPolicy returns a boolean if a field has been set.
+HasQoS returns a boolean if a field has been set.
 
 ### GetStorageType
 

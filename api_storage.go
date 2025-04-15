@@ -1948,7 +1948,7 @@ type StorageAPIGetStorageSharedDrivesRequest struct {
 	filterStoragePoolId *[]string
 	filterServiceStatus *[]string
 	filterWwn *[]string
-	filterIoLimitPolicy *[]string
+	filterQoS *[]string
 	filterLogicalNetworkId *[]string
 	filterAllocationAffinity *[]string
 	filterProvisioningProtocol *[]string
@@ -2014,9 +2014,9 @@ func (r StorageAPIGetStorageSharedDrivesRequest) FilterWwn(filterWwn []string) S
 	return r
 }
 
-// Filter by ioLimitPolicy query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.ioLimitPolicy&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.ioLimitPolicy&#x3D;$not:$like:John Doe&amp;filter.ioLimitPolicy&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r StorageAPIGetStorageSharedDrivesRequest) FilterIoLimitPolicy(filterIoLimitPolicy []string) StorageAPIGetStorageSharedDrivesRequest {
-	r.filterIoLimitPolicy = &filterIoLimitPolicy
+// Filter by qoS query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.qoS&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.qoS&#x3D;$not:$like:John Doe&amp;filter.qoS&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r StorageAPIGetStorageSharedDrivesRequest) FilterQoS(filterQoS []string) StorageAPIGetStorageSharedDrivesRequest {
+	r.filterQoS = &filterQoS
 	return r
 }
 
@@ -2068,7 +2068,7 @@ func (r StorageAPIGetStorageSharedDrivesRequest) Search(search string) StorageAP
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,subdomain,subdomainPermanent,infrastructureId           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;subdomain&lt;/li&gt; &lt;li&gt;subdomainPermanent&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;storagePoolId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;wwn&lt;/li&gt; &lt;li&gt;ioLimitPolicy&lt;/li&gt; &lt;li&gt;logicalNetworkId&lt;/li&gt; &lt;li&gt;allocationAffinity&lt;/li&gt; &lt;li&gt;provisioningProtocol&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt; &lt;li&gt;config.logicalNetworkId&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,subdomain,subdomainPermanent,infrastructureId           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;subdomain&lt;/li&gt; &lt;li&gt;subdomainPermanent&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;storagePoolId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;wwn&lt;/li&gt; &lt;li&gt;qoS&lt;/li&gt; &lt;li&gt;logicalNetworkId&lt;/li&gt; &lt;li&gt;allocationAffinity&lt;/li&gt; &lt;li&gt;provisioningProtocol&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt; &lt;li&gt;config.logicalNetworkId&lt;/li&gt;&lt;/ul&gt;         
 func (r StorageAPIGetStorageSharedDrivesRequest) SearchBy(searchBy []string) StorageAPIGetStorageSharedDrivesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -2200,15 +2200,15 @@ func (a *StorageAPIService) GetStorageSharedDrivesExecute(r StorageAPIGetStorage
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.wwn", t, "form", "multi")
 		}
 	}
-	if r.filterIoLimitPolicy != nil {
-		t := *r.filterIoLimitPolicy
+	if r.filterQoS != nil {
+		t := *r.filterQoS
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.ioLimitPolicy", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.qoS", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.ioLimitPolicy", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.qoS", t, "form", "multi")
 		}
 	}
 	if r.filterLogicalNetworkId != nil {

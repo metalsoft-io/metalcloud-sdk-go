@@ -11,7 +11,6 @@ Method | HTTP request | Description
 [**Login**](AuthenticationAPI.md#Login) | **Post** /api/v2/login | User login
 [**Login2FA**](AuthenticationAPI.md#Login2FA) | **Post** /api/v2/login-2fa | User login with 2FA
 [**Logout**](AuthenticationAPI.md#Logout) | **Post** /api/v2/logout | Logout user
-[**ResetPassword**](AuthenticationAPI.md#ResetPassword) | **Post** /api/v2/reset-password | Reset user password
 [**SignUp**](AuthenticationAPI.md#SignUp) | **Post** /api/v2/sign-up | Sign up
 
 
@@ -454,70 +453,6 @@ Other parameters are passed through a pointer to a apiLogoutRequest struct via t
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ResetPassword
-
-> ResetPassword(ctx).PasswordReset(passwordReset).Execute()
-
-Reset user password
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	passwordReset := *openapiclient.NewPasswordReset("Email_example") // PasswordReset | The password reset request
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.AuthenticationAPI.ResetPassword(context.Background()).PasswordReset(passwordReset).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.ResetPassword``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiResetPasswordRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **passwordReset** | [**PasswordReset**](PasswordReset.md) | The password reset request | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

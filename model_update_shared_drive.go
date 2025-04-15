@@ -24,8 +24,6 @@ type UpdateSharedDrive struct {
 	Label *string `json:"label,omitempty"`
 	// Disk size in MB for Drive
 	SizeMb *float32 `json:"sizeMb,omitempty"`
-	// The IO limit policy of the Drive.
-	IoLimitPolicy *string `json:"ioLimitPolicy,omitempty"`
 	// Id of the Logical Network for the Drive.
 	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -114,38 +112,6 @@ func (o *UpdateSharedDrive) SetSizeMb(v float32) {
 	o.SizeMb = &v
 }
 
-// GetIoLimitPolicy returns the IoLimitPolicy field value if set, zero value otherwise.
-func (o *UpdateSharedDrive) GetIoLimitPolicy() string {
-	if o == nil || IsNil(o.IoLimitPolicy) {
-		var ret string
-		return ret
-	}
-	return *o.IoLimitPolicy
-}
-
-// GetIoLimitPolicyOk returns a tuple with the IoLimitPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateSharedDrive) GetIoLimitPolicyOk() (*string, bool) {
-	if o == nil || IsNil(o.IoLimitPolicy) {
-		return nil, false
-	}
-	return o.IoLimitPolicy, true
-}
-
-// HasIoLimitPolicy returns a boolean if a field has been set.
-func (o *UpdateSharedDrive) HasIoLimitPolicy() bool {
-	if o != nil && !IsNil(o.IoLimitPolicy) {
-		return true
-	}
-
-	return false
-}
-
-// SetIoLimitPolicy gets a reference to the given string and assigns it to the IoLimitPolicy field.
-func (o *UpdateSharedDrive) SetIoLimitPolicy(v string) {
-	o.IoLimitPolicy = &v
-}
-
 // GetLogicalNetworkId returns the LogicalNetworkId field value if set, zero value otherwise.
 func (o *UpdateSharedDrive) GetLogicalNetworkId() float32 {
 	if o == nil || IsNil(o.LogicalNetworkId) {
@@ -194,9 +160,6 @@ func (o UpdateSharedDrive) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SizeMb) {
 		toSerialize["sizeMb"] = o.SizeMb
 	}
-	if !IsNil(o.IoLimitPolicy) {
-		toSerialize["ioLimitPolicy"] = o.IoLimitPolicy
-	}
 	if !IsNil(o.LogicalNetworkId) {
 		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
 	}
@@ -224,7 +187,6 @@ func (o *UpdateSharedDrive) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "sizeMb")
-		delete(additionalProperties, "ioLimitPolicy")
 		delete(additionalProperties, "logicalNetworkId")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -22,110 +22,11 @@ func Test_sdk_UserAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test UserAPIService AddUserDelegate", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-		var delegateId float32
-
-		resp, httpRes, err := apiClient.UserAPI.AddUserDelegate(context.Background(), userId, delegateId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService AddUserSshKey", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.AddUserSshKey(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService ArchiveUser", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.ArchiveUser(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService ChangeUserAccount", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.ChangeUserAccount(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService ChangeUserEmail", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.ChangeUserEmail(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService CreateUserAuthorized", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.UserAPI.CreateUserAuthorized(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService DeleteUserSshKey", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-		var keyId float32
-
-		httpRes, err := apiClient.UserAPI.DeleteUserSshKey(context.Background(), userId, keyId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test UserAPIService DisableUser2FA", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var userId float32
-
-		httpRes, err := apiClient.UserAPI.DisableUser2FA(context.Background(), userId).Execute()
+		httpRes, err := apiClient.UserAPI.DisableUser2FA(context.Background()).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -136,9 +37,7 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var userId float32
-
-		httpRes, err := apiClient.UserAPI.EnableUser2FA(context.Background(), userId).Execute()
+		httpRes, err := apiClient.UserAPI.EnableUser2FA(context.Background()).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -149,23 +48,7 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.GenerateUser2FASecret(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService GetUser", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.GetUser(context.Background(), userId).Execute()
+		resp, httpRes, err := apiClient.UserAPI.GenerateUser2FASecret(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -187,13 +70,11 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserAPIService GetUserChildDelegates", func(t *testing.T) {
+	t.Run("Test UserAPIService InitiateEmailChange", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.GetUserChildDelegates(context.Background(), userId).Execute()
+		resp, httpRes, err := apiClient.UserAPI.InitiateEmailChange(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -201,113 +82,13 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserAPIService GetUserConfiguration", func(t *testing.T) {
+	t.Run("Test UserAPIService InitiatePasswordReset", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.GetUserConfiguration(context.Background(), userId).Execute()
+		httpRes, err := apiClient.UserAPI.InitiatePasswordReset(context.Background()).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService GetUserLimits", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.GetUserLimits(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService GetUserParentDelegates", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.GetUserParentDelegates(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService GetUserPermissions", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.GetUserPermissions(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService GetUserSshKey", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-		var keyId float32
-
-		resp, httpRes, err := apiClient.UserAPI.GetUserSshKey(context.Background(), userId, keyId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService GetUserSshKeys", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.GetUserSshKeys(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService GetUserSuspendReasons", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.GetUserSuspendReasons(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService GetUsers", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.UserAPI.GetUsers(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -316,9 +97,7 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.RegenerateUserApiKey(context.Background(), userId).Execute()
+		resp, httpRes, err := apiClient.UserAPI.RegenerateUserApiKey(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -330,107 +109,7 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.RegenerateUserJwtSalt(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService RemoveUserDelegate", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-		var delegateId float32
-
-		resp, httpRes, err := apiClient.UserAPI.RemoveUserDelegate(context.Background(), userId, delegateId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService SuspendUser", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.SuspendUser(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService UnarchiveUser", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.UnarchiveUser(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService UnsuspendUser", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		httpRes, err := apiClient.UserAPI.UnsuspendUser(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService UpdateUserConfig", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.UpdateUserConfig(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService UpdateUserLimits", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.UpdateUserLimits(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService UpdateUserMeta", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.UpdateUserMeta(context.Background(), userId).Execute()
+		resp, httpRes, err := apiClient.UserAPI.RegenerateUserJwtSalt(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -442,23 +121,7 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.UpdateUserPassword(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test UserAPIService UpdateUserPermissions", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.UpdateUserPermissions(context.Background(), userId).Execute()
+		resp, httpRes, err := apiClient.UserAPI.UpdateUserPassword(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

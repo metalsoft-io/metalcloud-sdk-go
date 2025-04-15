@@ -35,7 +35,7 @@ type DriveGroupConfiguration struct {
 	// Flag to determine whether the Drive Group should be expanded with a Server Instance Group by adding one drive for each instance
 	ExpandWithServerInstanceGroup float32 `json:"expandWithServerInstanceGroup"`
 	// The IO limit policy of the Drive Group.
-	IoLimitPolicy *string `json:"ioLimitPolicy,omitempty"`
+	QoS *string `json:"qoS,omitempty"`
 	// Service status of the Drive Group
 	StorageType string `json:"storageType"`
 	// Filesystem information of the Drive Group.
@@ -273,36 +273,36 @@ func (o *DriveGroupConfiguration) SetExpandWithServerInstanceGroup(v float32) {
 	o.ExpandWithServerInstanceGroup = v
 }
 
-// GetIoLimitPolicy returns the IoLimitPolicy field value if set, zero value otherwise.
-func (o *DriveGroupConfiguration) GetIoLimitPolicy() string {
-	if o == nil || IsNil(o.IoLimitPolicy) {
+// GetQoS returns the QoS field value if set, zero value otherwise.
+func (o *DriveGroupConfiguration) GetQoS() string {
+	if o == nil || IsNil(o.QoS) {
 		var ret string
 		return ret
 	}
-	return *o.IoLimitPolicy
+	return *o.QoS
 }
 
-// GetIoLimitPolicyOk returns a tuple with the IoLimitPolicy field value if set, nil otherwise
+// GetQoSOk returns a tuple with the QoS field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DriveGroupConfiguration) GetIoLimitPolicyOk() (*string, bool) {
-	if o == nil || IsNil(o.IoLimitPolicy) {
+func (o *DriveGroupConfiguration) GetQoSOk() (*string, bool) {
+	if o == nil || IsNil(o.QoS) {
 		return nil, false
 	}
-	return o.IoLimitPolicy, true
+	return o.QoS, true
 }
 
-// HasIoLimitPolicy returns a boolean if a field has been set.
-func (o *DriveGroupConfiguration) HasIoLimitPolicy() bool {
-	if o != nil && !IsNil(o.IoLimitPolicy) {
+// HasQoS returns a boolean if a field has been set.
+func (o *DriveGroupConfiguration) HasQoS() bool {
+	if o != nil && !IsNil(o.QoS) {
 		return true
 	}
 
 	return false
 }
 
-// SetIoLimitPolicy gets a reference to the given string and assigns it to the IoLimitPolicy field.
-func (o *DriveGroupConfiguration) SetIoLimitPolicy(v string) {
-	o.IoLimitPolicy = &v
+// SetQoS gets a reference to the given string and assigns it to the QoS field.
+func (o *DriveGroupConfiguration) SetQoS(v string) {
+	o.QoS = &v
 }
 
 // GetStorageType returns the StorageType field value
@@ -550,8 +550,8 @@ func (o DriveGroupConfiguration) ToMap() (map[string]interface{}, error) {
 		toSerialize["serverInstanceGroupId"] = o.ServerInstanceGroupId
 	}
 	toSerialize["expandWithServerInstanceGroup"] = o.ExpandWithServerInstanceGroup
-	if !IsNil(o.IoLimitPolicy) {
-		toSerialize["ioLimitPolicy"] = o.IoLimitPolicy
+	if !IsNil(o.QoS) {
+		toSerialize["qoS"] = o.QoS
 	}
 	toSerialize["storageType"] = o.StorageType
 	if !IsNil(o.FilesystemInfo) {
@@ -627,7 +627,7 @@ func (o *DriveGroupConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "driveSizeMbDefault")
 		delete(additionalProperties, "serverInstanceGroupId")
 		delete(additionalProperties, "expandWithServerInstanceGroup")
-		delete(additionalProperties, "ioLimitPolicy")
+		delete(additionalProperties, "qoS")
 		delete(additionalProperties, "storageType")
 		delete(additionalProperties, "filesystemInfo")
 		delete(additionalProperties, "subdomain")

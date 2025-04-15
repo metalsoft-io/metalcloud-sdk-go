@@ -168,9 +168,9 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var datacenterName string
+		var siteId float32
 
-		resp, httpRes, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceDefaults(context.Background(), datacenterName).Execute()
+		resp, httpRes, err := apiClient.NetworkDeviceAPI.GetNetworkDeviceDefaults(context.Background(), siteId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

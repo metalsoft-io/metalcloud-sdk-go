@@ -24,8 +24,10 @@ tags:
   name: Configuration
 - description: Account management operations.
   name: Account
-- description: User management operations.
+- description: User security sensitive operations.
   name: User
+- description: Users management operations.
+  name: Users
 - description: Site management.
   name: Site
 - description: Firmware policy management.
@@ -1134,28 +1136,6 @@ paths:
         "403":
           description: Forbidden
       summary: Check if public signup is disabled
-      tags:
-      - Authentication
-  /api/v2/reset-password:
-    post:
-      description: Resets the user password.
-      operationId: resetPassword
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PasswordReset'
-        description: The password reset request
-        required: true
-      responses:
-        "200":
-          description: User password verification URL successfully reset
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-      summary: Reset user password
       tags:
       - Authentication
   /api/v2/buckets/{bucketId}:
@@ -11061,16 +11041,16 @@ paths:
         block devices. This is useful in the event of a switch device reboot
       tags:
       - Network Device
-  /api/v2/network-devices/defaults/{datacenterName}:
+  /api/v2/network-devices/defaults/{siteId}:
     get:
       operationId: getNetworkDeviceDefaults
       parameters:
       - explode: false
         in: path
-        name: datacenterName
+        name: siteId
         required: true
         schema:
-          type: string
+          type: number
         style: simple
       responses:
         "200":
@@ -11090,7 +11070,7 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Get network device defaults for a datacenter
+      summary: Get network device defaults for a site
       tags:
       - Network Device
   /api/v2/network-devices/defaults:
@@ -13420,6 +13400,176 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Updates authentication provider
+      tags:
+      - Security
+  /api/v2/permissions:
+    get:
+      operationId: getPermissions
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionList'
+          description: The list of permissions
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all permissions
+      tags:
+      - Security
+  /api/v2/roles:
+    get:
+      operationId: getRoles
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleList'
+          description: The list of roles
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all roles
+      tags:
+      - Security
+    post:
+      operationId: createRole
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRole'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+          description: The created role
+        "400":
+          description: Invalid role data
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Role not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a new role
+      tags:
+      - Security
+  /api/v2/roles/{roleName}:
+    delete:
+      operationId: deleteRole
+      parameters:
+      - explode: false
+        in: path
+        name: roleName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+          description: The deleted role
+        "400":
+          description: Invalid role data
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Role not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete a role by name
+      tags:
+      - Security
+    get:
+      operationId: getRole
+      parameters:
+      - explode: false
+        in: path
+        name: roleName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+          description: The role
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Role not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get a role by name
+      tags:
+      - Security
+    put:
+      operationId: updateRole
+      parameters:
+      - explode: false
+        in: path
+        name: roleName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditRole'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+          description: The updated role
+        "400":
+          description: Invalid role data
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Role not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update a role by name
       tags:
       - Security
   /api/v2/resource-pools:
@@ -16666,6 +16816,28 @@ paths:
       summary: List Server Instances
       tags:
       - Server Instance
+  /api/v2/server-instances/statistics:
+    get:
+      description: Returns the statistics related to server instances
+      operationId: getServerInstanceStatistics
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerInstanceStatistics'
+          description: The Server Instance Statistics
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get Server Instance counters
+      tags:
+      - Server Instance
   /api/v2/server-instances/{serverInstanceId}:
     delete:
       description: Deletes the specified Server Instance
@@ -16873,28 +17045,6 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Get Server Instance credentials
-      tags:
-      - Server Instance
-  /api/v2/server-instances/statistics:
-    get:
-      description: Returns the statistics related to server instances
-      operationId: getServerInstanceStatistics
-      parameters: []
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ServerInstanceStatistics'
-          description: The Server Instance Statistics
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Get Server Instance counters
       tags:
       - Server Instance
   /api/v2/server-instances/{serverInstanceId}/drives:
@@ -19467,17 +19617,17 @@ paths:
           type: array
         style: form
       - description: |-
-          Filter by ioLimitPolicy query param.
+          Filter by qoS query param.
                     <p>
-                       <b>Format: </b> filter.ioLimitPolicy={$not}:OPERATION:VALUE
+                       <b>Format: </b> filter.qoS={$not}:OPERATION:VALUE
                     </p>
                     <p>
-                       <b>Example: </b> filter.ioLimitPolicy=$not:$like:John Doe&filter.ioLimitPolicy=like:John
+                       <b>Example: </b> filter.qoS=$not:$like:John Doe&filter.qoS=like:John
                     </p>
                     <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
-        name: filter.ioLimitPolicy
+        name: filter.qoS
         required: false
         schema:
           items:
@@ -19640,7 +19790,7 @@ paths:
           \ all fields mentioned below will be used to search by term\n          </p>\n\
           \        <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>subdomain</li>\n\
           <li>subdomainPermanent</li>\n<li>infrastructureId</li>\n<li>storagePoolId</li>\n\
-          <li>serviceStatus</li>\n<li>wwn</li>\n<li>ioLimitPolicy</li>\n<li>logicalNetworkId</li>\n\
+          <li>serviceStatus</li>\n<li>wwn</li>\n<li>qoS</li>\n<li>logicalNetworkId</li>\n\
           <li>allocationAffinity</li>\n<li>provisioningProtocol</li>\n<li>config.deployStatus</li>\n\
           <li>config.deployType</li>\n<li>config.logicalNetworkId</li></ul>\n    \
           \    "
@@ -21446,17 +21596,17 @@ paths:
           type: array
         style: form
       - description: |-
-          Filter by ioLimitPolicy query param.
+          Filter by qoS query param.
                     <p>
-                       <b>Format: </b> filter.ioLimitPolicy={$not}:OPERATION:VALUE
+                       <b>Format: </b> filter.qoS={$not}:OPERATION:VALUE
                     </p>
                     <p>
-                       <b>Example: </b> filter.ioLimitPolicy=$not:$like:John Doe&filter.ioLimitPolicy=like:John
+                       <b>Example: </b> filter.qoS=$not:$like:John Doe&filter.qoS=like:John
                     </p>
                     <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
-        name: filter.ioLimitPolicy
+        name: filter.qoS
         required: false
         schema:
           items:
@@ -21619,7 +21769,7 @@ paths:
           \ all fields mentioned below will be used to search by term\n          </p>\n\
           \        <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>subdomain</li>\n\
           <li>subdomainPermanent</li>\n<li>infrastructureId</li>\n<li>storagePoolId</li>\n\
-          <li>serviceStatus</li>\n<li>wwn</li>\n<li>ioLimitPolicy</li>\n<li>logicalNetworkId</li>\n\
+          <li>serviceStatus</li>\n<li>wwn</li>\n<li>qoS</li>\n<li>logicalNetworkId</li>\n\
           <li>allocationAffinity</li>\n<li>provisioningProtocol</li>\n<li>config.deployStatus</li>\n\
           <li>config.deployType</li>\n<li>config.logicalNetworkId</li></ul>\n    \
           \    "
@@ -23129,6 +23279,374 @@ paths:
       summary: Import Unmanaged Server
       tags:
       - Unmanaged Servers
+  /api/v2/user/actions/change-password:
+    post:
+      operationId: updateUserPassword
+      parameters:
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdatePassword'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: The user password has been successfully updated.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: Conflict
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Change user password
+      tags:
+      - User
+  /api/v2/user/actions/initiate-password-reset:
+    post:
+      description: Initiates the reset of the user password.
+      operationId: initiatePasswordReset
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordReset'
+        description: The password reset request
+        required: true
+      responses:
+        "200":
+          description: User password verification URL successfully reset
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Initiate reset user password
+      tags:
+      - User
+  /api/v2/user/actions/initiate-email-change:
+    post:
+      operationId: initiateEmailChange
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeUserEmail'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Email change request verification URL successfully sent.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Initiates the user email change
+      tags:
+      - User
+  /api/v2/user/api-key:
+    get:
+      operationId: getUserApiKey
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserApiKey'
+          description: The API key of the user
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get user API key
+      tags:
+      - User
+  /api/v2/user/actions/regenerate-api-key:
+    post:
+      operationId: regenerateUserApiKey
+      parameters:
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: The API key has been successfully regenerated.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Regenerate user API key
+      tags:
+      - User
+  /api/v2/user/actions/regenerate-jwt-salt:
+    post:
+      operationId: regenerateUserJwtSalt
+      parameters:
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: The JWT salt has been successfully regenerated.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Regenerate user JWT salt. Also logs out all user sessions.
+      tags:
+      - User
+  /api/v2/user/actions/2fa-generate:
+    post:
+      operationId: generateUser2FASecret
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwoFactorAuthenticationSecret'
+          description: 2FA secret generated successfully
+        "400":
+          description: Invalid user ID
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Generate 2FA secret
+      tags:
+      - User
+  /api/v2/user/actions/2fa-enable:
+    post:
+      operationId: enableUser2FA
+      parameters:
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorAuthenticationToken'
+        required: true
+      responses:
+        "200":
+          description: 2FA enabled successfully
+        "400":
+          description: Invalid user ID or token
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: 2FA already enabled
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Enable 2FA
+      tags:
+      - User
+  /api/v2/user/actions/2fa-disable:
+    post:
+      operationId: disableUser2FA
+      parameters:
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: 2FA disabled successfully
+        "400":
+          description: Invalid user ID
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: 2FA already disabled
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Disable 2FA
+      tags:
+      - User
+  /api/v2/user/actions/verify-email:
+    get:
+      operationId: UserController_handleEmailVerify
+      parameters:
+      - description: The encrypted request token.
+        explode: true
+        in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: The user email has been successfully verified.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: Conflict
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Handle user email verify action
+      tags:
+      - User
+  /api/v2/user/actions/reset-password:
+    get:
+      operationId: UserController_handleUserResetPassword
+      parameters:
+      - description: The encrypted request token.
+        explode: true
+        in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: The user password has been successfully reset.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: Conflict
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Handle user reset password action
+      tags:
+      - User
   /api/v2/users:
     get:
       description: Returns a list of users
@@ -23327,7 +23845,7 @@ paths:
       - apiKey: []
       summary: Get users
       tags:
-      - User
+      - Users
     post:
       description: Creates another user
       operationId: createUserAuthorized
@@ -23374,7 +23892,7 @@ paths:
       - apiKey: []
       summary: Creates another user
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}:
     get:
       description: Returns a user
@@ -23420,7 +23938,7 @@ paths:
       - apiKey: []
       summary: Get user
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/config:
     get:
       operationId: getUserConfiguration
@@ -23450,7 +23968,7 @@ paths:
       - apiKey: []
       summary: Get user configuration by ID
       tags:
-      - User
+      - Users
     patch:
       description: Updates a user configuration
       operationId: updateUserConfig
@@ -23510,7 +24028,7 @@ paths:
       - apiKey: []
       summary: Update user configuration
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/meta:
     patch:
       operationId: updateUserMeta
@@ -23552,7 +24070,7 @@ paths:
       - apiKey: []
       summary: Update user metadata
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/actions/change-account:
     post:
       description: Changes account for user
@@ -23613,7 +24131,7 @@ paths:
       - apiKey: []
       summary: Change account for user
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/actions/archive:
     post:
       description: Archives a user
@@ -23665,7 +24183,7 @@ paths:
       - apiKey: []
       summary: Archive user
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/actions/unarchive:
     post:
       description: Unarchive a user
@@ -23717,7 +24235,7 @@ paths:
       - apiKey: []
       summary: Unarchive user
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/limits:
     get:
       description: Returns the limits of a user
@@ -23755,7 +24273,7 @@ paths:
       - apiKey: []
       summary: Get user limits
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/actions/change-limits:
     patch:
       description: Updates the limits of a user
@@ -23814,7 +24332,7 @@ paths:
       - apiKey: []
       summary: Update user limits
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/parent-delegates:
     get:
       operationId: getUserParentDelegates
@@ -23844,7 +24362,7 @@ paths:
       - apiKey: []
       summary: Get user parent delegates by ID
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/child-delegates:
     get:
       operationId: getUserChildDelegates
@@ -23874,7 +24392,7 @@ paths:
       - apiKey: []
       summary: Get user child delegates by ID
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/actions/add-delegate/{delegateId}:
     post:
       operationId: addUserDelegate
@@ -23917,7 +24435,7 @@ paths:
       - apiKey: []
       summary: Add a delegate to a user
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/actions/remove-delegate/{delegateId}:
     post:
       operationId: removeUserDelegate
@@ -23958,7 +24476,7 @@ paths:
       - apiKey: []
       summary: Remove a delegate from a user
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/actions/suspend:
     post:
       operationId: suspendUser
@@ -24008,7 +24526,7 @@ paths:
       - apiKey: []
       summary: Suspend a user
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/actions/unsuspend:
     post:
       operationId: unsuspendUser
@@ -24048,7 +24566,7 @@ paths:
       - apiKey: []
       summary: Unsuspend a user
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/suspend-reasons:
     get:
       operationId: getUserSuspendReasons
@@ -24078,7 +24596,7 @@ paths:
       - apiKey: []
       summary: Get user suspend reasons by ID
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/permissions:
     get:
       operationId: getUserPermissions
@@ -24108,7 +24626,7 @@ paths:
       - apiKey: []
       summary: Get user resource permissions by ID
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/actions/change-resource-permissions:
     post:
       operationId: updateUserPermissions
@@ -24160,223 +24678,7 @@ paths:
       - apiKey: []
       summary: Update user resource permissions
       tags:
-      - User
-  /api/v2/users/{userId}/actions/change-password:
-    post:
-      operationId: updateUserPassword
-      parameters:
-      - explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserUpdatePassword'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-          description: The user password has been successfully updated.
-        "400":
-          description: Invalid request sent
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: User not found
-        "409":
-          description: Conflict
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Change user password
-      tags:
-      - User
-  /api/v2/users/{userId}/actions/change-email:
-    post:
-      operationId: changeUserEmail
-      parameters:
-      - explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ChangeUserEmail'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-          description: The user email has been successfully updated.
-        "400":
-          description: Invalid request sent
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: User not found
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Change user email
-      tags:
-      - User
-  /api/v2/users/{userId}/api-key:
-    get:
-      operationId: getUserApiKey
-      parameters:
-      - explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          type: number
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserApiKey'
-          description: The API key of the user
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: User not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Get user API key
-      tags:
-      - User
-  /api/v2/users/{userId}/actions/regenerate-api-key:
-    post:
-      operationId: regenerateUserApiKey
-      parameters:
-      - explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-          description: The API key has been successfully regenerated.
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: User not found
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Regenerate user API key
-      tags:
-      - User
-  /api/v2/users/{userId}/actions/regenerate-jwt-salt:
-    post:
-      operationId: regenerateUserJwtSalt
-      parameters:
-      - explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-          description: The JWT salt has been successfully regenerated.
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: User not found
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Regenerate user JWT salt. Also logs out all user sessions.
-      tags:
-      - User
+      - Users
   /api/v2/users/{userId}/ssh-keys:
     get:
       operationId: getUserSshKeys
@@ -24406,7 +24708,7 @@ paths:
       - apiKey: []
       summary: Get user SSH keys
       tags:
-      - User
+      - Users
     post:
       operationId: addUserSshKey
       parameters:
@@ -24445,7 +24747,7 @@ paths:
       - apiKey: []
       summary: Add SSH key for user
       tags:
-      - User
+      - Users
   /api/v2/users/{userId}/ssh-keys/{keyId}:
     delete:
       operationId: deleteUserSshKey
@@ -24478,7 +24780,7 @@ paths:
       - apiKey: []
       summary: Delete SSH key for user
       tags:
-      - User
+      - Users
     get:
       operationId: getUserSshKey
       parameters:
@@ -24514,191 +24816,7 @@ paths:
       - apiKey: []
       summary: Get specific SSH key
       tags:
-      - User
-  /api/v2/users/{userId}/actions/2fa-generate:
-    post:
-      operationId: generateUser2FASecret
-      parameters:
-      - explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          type: number
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TwoFactorAuthenticationSecret'
-          description: 2FA secret generated successfully
-        "400":
-          description: Invalid user ID
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: User not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Generate 2FA secret
-      tags:
-      - User
-  /api/v2/users/{userId}/actions/2fa-enable:
-    post:
-      operationId: enableUser2FA
-      parameters:
-      - explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TwoFactorAuthenticationToken'
-        required: true
-      responses:
-        "200":
-          description: 2FA enabled successfully
-        "400":
-          description: Invalid user ID or token
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: User not found
-        "409":
-          description: 2FA already enabled
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Enable 2FA
-      tags:
-      - User
-  /api/v2/users/{userId}/actions/2fa-disable:
-    post:
-      operationId: disableUser2FA
-      parameters:
-      - explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          description: 2FA disabled successfully
-        "400":
-          description: Invalid user ID
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: User not found
-        "409":
-          description: 2FA already disabled
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Disable 2FA
-      tags:
-      - User
-  /api/v2/users/actions/verify-email:
-    get:
-      operationId: UserController_handleEmailVerify
-      parameters:
-      - description: The encrypted request token.
-        explode: true
-        in: query
-        name: token
-        required: true
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          description: The user email has been successfully verified.
-        "400":
-          description: Invalid request sent
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: User not found
-        "409":
-          description: Conflict
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Handle user email verify action
-      tags:
-      - User
-  /api/v2/users/actions/reset-password:
-    get:
-      operationId: UserController_handleUserResetPassword
-      parameters:
-      - description: The encrypted request token.
-        explode: true
-        in: query
-        name: token
-        required: true
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          description: The user password has been successfully reset.
-        "400":
-          description: Invalid request sent
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: User not found
-        "409":
-          description: Conflict
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Handle user reset password action
-      tags:
-      - User
+      - Users
   /api/v2/vms/{vmId}:
     get:
       description: Retrieves the VM information
@@ -30409,20 +30527,6 @@ components:
           type: boolean
       required:
       - isPublicSignupDisabled
-      type: object
-    PasswordReset:
-      example:
-        redirectUrl: redirectUrl
-        email: email
-      properties:
-        email:
-          description: The email address of the user
-          type: string
-        redirectUrl:
-          description: The redirect URL after password recovery
-          type: string
-      required:
-      - email
       type: object
     BucketConfiguration:
       example:
@@ -42361,7 +42465,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-14T17:31:47.748Z
+        createdTimestamp: 2025-04-15T13:03:36.425Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -42370,7 +42474,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-14T17:31:47.749Z
+        updatedTimestamp: 2025-04-15T13:03:36.425Z
         revision: "1"
       properties:
         siteId:
@@ -42387,12 +42491,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-14T17:31:47.748Z
+          example: 2025-04-15T13:03:36.425Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-14T17:31:47.749Z
+          example: 2025-04-15T13:03:36.425Z
           format: date-time
           type: string
         links:
@@ -42414,7 +42518,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-14T17:31:47.748Z
+        - createdTimestamp: 2025-04-15T13:03:36.425Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -42423,9 +42527,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-14T17:31:47.749Z
+          updatedTimestamp: 2025-04-15T13:03:36.425Z
           revision: "1"
-        - createdTimestamp: 2025-04-14T17:31:47.748Z
+        - createdTimestamp: 2025-04-15T13:03:36.425Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -42434,7 +42538,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-14T17:31:47.749Z
+          updatedTimestamp: 2025-04-15T13:03:36.425Z
           revision: "1"
         meta: ""
         links: ""
@@ -43046,7 +43150,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-14T17:31:47.77Z
+        createdTimestamp: 2025-04-15T13:03:36.445Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -43087,7 +43191,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-14T17:31:47.771Z
+        updatedTimestamp: 2025-04-15T13:03:36.445Z
         revision: "1"
         status: draft
       properties:
@@ -43115,12 +43219,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-14T17:31:47.77Z
+          example: 2025-04-15T13:03:36.445Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-14T17:31:47.771Z
+          example: 2025-04-15T13:03:36.445Z
           format: date-time
           type: string
         links:
@@ -43261,7 +43365,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-14T17:31:47.77Z
+          createdTimestamp: 2025-04-15T13:03:36.445Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -43302,7 +43406,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-14T17:31:47.771Z
+          updatedTimestamp: 2025-04-15T13:03:36.445Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -43412,7 +43516,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-14T17:31:47.77Z
+          createdTimestamp: 2025-04-15T13:03:36.445Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -43453,7 +43557,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-14T17:31:47.771Z
+          updatedTimestamp: 2025-04-15T13:03:36.445Z
           revision: "1"
           status: draft
         meta: ""
@@ -44293,6 +44397,158 @@ components:
       required:
       - domains
       - enabled
+      type: object
+    Permission:
+      example:
+        name: name
+        description: description
+        id: id
+        label: label
+      properties:
+        id:
+          description: Permission ID
+          type: string
+        name:
+          description: Permission name
+          type: string
+        label:
+          description: Permission name
+          type: string
+        description:
+          description: Permission name
+          type: string
+      required:
+      - id
+      - label
+      - name
+      type: object
+    PermissionList:
+      example:
+        permissions:
+        - name: name
+          description: description
+          id: id
+          label: label
+        - name: name
+          description: description
+          id: id
+          label: label
+      properties:
+        permissions:
+          description: List of permissions
+          items:
+            $ref: '#/components/schemas/Permission'
+          type: array
+      required:
+      - permissions
+      type: object
+    CreateRole:
+      example:
+        description: description
+        label: label
+      properties:
+        label:
+          description: Role label
+          type: string
+        description:
+          description: Role description
+          type: string
+      required:
+      - label
+      type: object
+    Role:
+      example:
+        permissions:
+        - admin_access
+        - metalcloud_access
+        usersWithRole: 105
+        name: root
+        description: Highest level
+        id: id
+        label: Root
+        type: built-in
+      properties:
+        id:
+          description: Role ID
+          type: string
+        name:
+          description: Role name identifier
+          example: root
+          type: string
+        label:
+          description: Display label for the role
+          example: Root
+          type: string
+        description:
+          description: Role description
+          example: Highest level
+          type: string
+        type:
+          description: Role type
+          example: built-in
+          type: string
+        permissions:
+          description: List of permissions assigned to the role
+          example:
+          - admin_access
+          - metalcloud_access
+          items:
+            type: string
+          type: array
+        usersWithRole:
+          description: Number of users with this role
+          example: 105
+          type: number
+      required:
+      - id
+      - label
+      - name
+      - permissions
+      - type
+      type: object
+    RoleList:
+      example:
+        roles:
+        - permissions:
+          - admin_access
+          - metalcloud_access
+          usersWithRole: 105
+          name: root
+          description: Highest level
+          id: id
+          label: Root
+          type: built-in
+        - permissions:
+          - admin_access
+          - metalcloud_access
+          usersWithRole: 105
+          name: root
+          description: Highest level
+          id: id
+          label: Root
+          type: built-in
+      properties:
+        roles:
+          description: List of roles
+          items:
+            $ref: '#/components/schemas/Role'
+          type: array
+      required:
+      - roles
+      type: object
+    EditRole:
+      example:
+        description: description
+        label: label
+      properties:
+        label:
+          description: Role label
+          type: string
+        description:
+          description: Role description
+          type: string
+      required:
+      - label
       type: object
     ResourcePoolStatistics:
       example:
@@ -45456,7 +45712,7 @@ components:
             with a Server Instance Group by adding one drive for each instance
           example: 1
           type: number
-        ioLimitPolicy:
+        qoS:
           description: The IO limit policy of the Drive Group.
           type: string
         storageType:
@@ -45527,7 +45783,6 @@ components:
         createdTimestamp: createdTimestamp
         extensionInstanceId: 1
         label: label
-        ioLimitPolicy: ioLimitPolicy
         subdomainPermanent: subdomainPermanent
         templateId: 1
         allocationAffinity: same_storage
@@ -45538,6 +45793,7 @@ components:
         containerClusterId: 1
         dnsSubdomainPermanentId: 2.3021358869347655
         infrastructureId: 0.8008281904610115
+        qoS: qoS
         serviceStatus: ordered
         meta: ""
         storageType: iscsi_ssd
@@ -45568,7 +45824,7 @@ components:
             with a Server Instance Group by adding one drive for each instance
           example: 1
           type: number
-        ioLimitPolicy:
+        qoS:
           description: The IO limit policy of the Drive Group.
           type: string
         storageType:
@@ -45656,7 +45912,6 @@ components:
           createdTimestamp: createdTimestamp
           extensionInstanceId: 1
           label: label
-          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           templateId: 1
           allocationAffinity: same_storage
@@ -45667,6 +45922,7 @@ components:
           containerClusterId: 1
           dnsSubdomainPermanentId: 2.3021358869347655
           infrastructureId: 0.8008281904610115
+          qoS: qoS
           serviceStatus: ordered
           meta: ""
           storageType: iscsi_ssd
@@ -45679,7 +45935,6 @@ components:
           createdTimestamp: createdTimestamp
           extensionInstanceId: 1
           label: label
-          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           templateId: 1
           allocationAffinity: same_storage
@@ -45690,6 +45945,7 @@ components:
           containerClusterId: 1
           dnsSubdomainPermanentId: 2.3021358869347655
           infrastructureId: 0.8008281904610115
+          qoS: qoS
           serviceStatus: ordered
           meta: ""
           storageType: iscsi_ssd
@@ -46006,10 +46262,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-04-14T17:31:47.762Z
+        createdTimestamp: 2025-04-15T13:03:36.433Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: physical-interface-vlan-scoped
-        updatedTimestamp: 2025-04-14T17:31:47.763Z
+        updatedTimestamp: 2025-04-15T13:03:36.433Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -46095,12 +46351,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-14T17:31:47.762Z
+          example: 2025-04-15T13:03:36.433Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-14T17:31:47.763Z
+          example: 2025-04-15T13:03:36.433Z
           format: date-time
           type: string
         links:
@@ -46292,6 +46548,21 @@ components:
           - physical-interface
           type: string
       type: object
+    ServerInstanceStatistics:
+      example:
+        serverStatus: "{}"
+        site: "{}"
+      properties:
+        serverStatus:
+          description: An object containing server status as key and count as value
+          type: object
+        site:
+          description: An object containing server site name as key and count as value
+          type: object
+      required:
+      - serverStatus
+      - site
+      type: object
     ServerInstanceUpdate:
       example:
         serverTypeId: 5
@@ -46324,21 +46595,6 @@ components:
           type: string
       required:
       - publicKey
-      type: object
-    ServerInstanceStatistics:
-      example:
-        serverStatus: "{}"
-        site: "{}"
-      properties:
-        serverStatus:
-          description: An object containing server status as key and count as value
-          type: object
-        site:
-          description: An object containing server site name as key and count as value
-          type: object
-      required:
-      - serverStatus
-      - site
       type: object
     DriveTargetInfo:
       example: {}
@@ -48018,7 +48274,6 @@ components:
         createdTimestamp: createdTimestamp
         extensionInstanceId: 1
         label: label
-        ioLimitPolicy: ioLimitPolicy
         subdomainPermanent: subdomainPermanent
         templateId: 1
         allocationAffinity: same_storage
@@ -48029,6 +48284,7 @@ components:
         containerClusterId: 1
         dnsSubdomainPermanentId: 2.3021358869347655
         infrastructureId: 0.8008281904610115
+        qoS: qoS
         serviceStatus: ordered
         storageType: iscsi_ssd
         subdomain: subdomain
@@ -48058,7 +48314,7 @@ components:
             with a Server Instance Group by adding one drive for each instance
           example: 1
           type: number
-        ioLimitPolicy:
+        qoS:
           description: The IO limit policy of the Drive Group.
           type: string
         storageType:
@@ -48495,11 +48751,11 @@ components:
         logicalNetworkId: 2.3021358869347655
         label: label
         sizeMb: 1.4658129805029452
-        ioLimitPolicy: ioLimitPolicy
         updatedTimestamp: updatedTimestamp
         deployType: create
         revision: 0.8008281904610115
         storageImageName: storageImageName
+        qoS: qoS
         dnsSubdomainChangeId: 5.962133916683182
         storageType: iscsi_ssd
         subdomain: subdomain
@@ -48529,8 +48785,8 @@ components:
           - iscsi_ssd
           - iscsi_hdd
           type: string
-        ioLimitPolicy:
-          description: The IO limit policy of the Drive.
+        qoS:
+          description: The QoS of the Drive.
           type: string
         subdomain:
           description: Subdomain of the Drive.
@@ -48597,10 +48853,10 @@ components:
         dnsSubdomainId: 8.969578798196912
         createdTimestamp: createdTimestamp
         label: label
-        ioLimitPolicy: ioLimitPolicy
         subdomainPermanent: subdomainPermanent
         allocationAffinity: same_storage
         revision: 0.8851374739011653
+        qoS: qoS
         infrastructureId: 7.058770351582356
         storageType: iscsi_ssd
         subdomain: subdomain
@@ -48625,8 +48881,8 @@ components:
           - iscsi_ssd
           - iscsi_hdd
           type: string
-        ioLimitPolicy:
-          description: The IO limit policy of the Drive.
+        qoS:
+          description: The QoS of the Drive.
           type: string
         subdomain:
           description: Subdomain of the Drive.
@@ -48726,7 +48982,6 @@ components:
           createdTimestamp: createdTimestamp
           extensionInstanceId: 1
           label: label
-          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           templateId: 1
           allocationAffinity: same_storage
@@ -48737,6 +48992,7 @@ components:
           containerClusterId: 1
           dnsSubdomainPermanentId: 2.3021358869347655
           infrastructureId: 0.8008281904610115
+          qoS: qoS
           serviceStatus: ordered
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -48748,7 +49004,6 @@ components:
           createdTimestamp: createdTimestamp
           extensionInstanceId: 1
           label: label
-          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           templateId: 1
           allocationAffinity: same_storage
@@ -48759,6 +49014,7 @@ components:
           containerClusterId: 1
           dnsSubdomainPermanentId: 2.3021358869347655
           infrastructureId: 0.8008281904610115
+          qoS: qoS
           serviceStatus: ordered
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -48822,10 +49078,10 @@ components:
           dnsSubdomainId: 8.969578798196912
           createdTimestamp: createdTimestamp
           label: label
-          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
           revision: 0.8851374739011653
+          qoS: qoS
           infrastructureId: 7.058770351582356
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -48850,10 +49106,10 @@ components:
           dnsSubdomainId: 8.969578798196912
           createdTimestamp: createdTimestamp
           label: label
-          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
           revision: 0.8851374739011653
+          qoS: qoS
           infrastructureId: 7.058770351582356
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -50590,10 +50846,10 @@ components:
         dnsSubdomainId: 2.027123023002322
         createdTimestamp: createdTimestamp
         label: label
-        ioLimitPolicy: ioLimitPolicy
         subdomainPermanent: subdomainPermanent
         allocationAffinity: same_storage
         revision: 5.637376656633329
+        qoS: qoS
         infrastructureId: 2.3021358869347655
         meta: ""
         storageType: iscsi_ssd
@@ -50619,8 +50875,8 @@ components:
           - iscsi_ssd
           - iscsi_hdd
           type: string
-        ioLimitPolicy:
-          description: The IO limit policy of the Drive.
+        qoS:
+          description: The QoS of the Drive.
           type: string
         subdomain:
           description: Subdomain of the Drive.
@@ -50741,10 +50997,10 @@ components:
           dnsSubdomainId: 2.027123023002322
           createdTimestamp: createdTimestamp
           label: label
-          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
           revision: 5.637376656633329
+          qoS: qoS
           infrastructureId: 2.3021358869347655
           meta: ""
           storageType: iscsi_ssd
@@ -50770,10 +51026,10 @@ components:
           dnsSubdomainId: 2.027123023002322
           createdTimestamp: createdTimestamp
           label: label
-          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
           revision: 5.637376656633329
+          qoS: qoS
           infrastructureId: 2.3021358869347655
           meta: ""
           storageType: iscsi_ssd
@@ -50825,7 +51081,6 @@ components:
         logicalNetworkId: 6.027456183070403
         label: label
         sizeMb: 0.8008281904610115
-        ioLimitPolicy: ioLimitPolicy
       properties:
         label:
           description: Label of the Drive.
@@ -50833,9 +51088,6 @@ components:
         sizeMb:
           description: Disk size in MB for Drive
           type: number
-        ioLimitPolicy:
-          description: The IO limit policy of the Drive.
-          type: string
         logicalNetworkId:
           description: Id of the Logical Network for the Drive.
           type: number
@@ -51644,6 +51896,7 @@ components:
         datacenterName: datacenterName
         inMaintenance: 2.027123023002322
         managementHost: managementHost
+        defaultQoS: defaultQoS
         passwordEncrypted: passwordEncrypted
         type: iscsi_ssd
         totalCapacity: 5.637376656633329
@@ -51673,7 +51926,6 @@ components:
         - tags
         usableCapacity: 2.3021358869347655
         virtualUsedCapacity: 9.301444243932576
-        defaultIoLimitPolicy: defaultIoLimitPolicy
         isExperimental: 4.145608029883936
         driver: power_flex
         name: name
@@ -51794,8 +52046,8 @@ components:
         portGroupPhysicalPorts:
           description: Port group physical ports
           type: object
-        defaultIoLimitPolicy:
-          description: Default IO limit policy
+        defaultQoS:
+          description: Default QoS to use. The QoS must be defined in the storage.
           type: string
         subnetType:
           description: Subnet type
@@ -51841,6 +52093,7 @@ components:
           datacenterName: datacenterName
           inMaintenance: 2.027123023002322
           managementHost: managementHost
+          defaultQoS: defaultQoS
           passwordEncrypted: passwordEncrypted
           type: iscsi_ssd
           totalCapacity: 5.637376656633329
@@ -51870,7 +52123,6 @@ components:
           - tags
           usableCapacity: 2.3021358869347655
           virtualUsedCapacity: 9.301444243932576
-          defaultIoLimitPolicy: defaultIoLimitPolicy
           isExperimental: 4.145608029883936
           driver: power_flex
           name: name
@@ -51889,6 +52141,7 @@ components:
           datacenterName: datacenterName
           inMaintenance: 2.027123023002322
           managementHost: managementHost
+          defaultQoS: defaultQoS
           passwordEncrypted: passwordEncrypted
           type: iscsi_ssd
           totalCapacity: 5.637376656633329
@@ -51918,7 +52171,6 @@ components:
           - tags
           usableCapacity: 2.3021358869347655
           virtualUsedCapacity: 9.301444243932576
-          defaultIoLimitPolicy: defaultIoLimitPolicy
           isExperimental: 4.145608029883936
           driver: power_flex
           name: name
@@ -52042,7 +52294,6 @@ components:
         tags:
         - tags
         - tags
-        defaultIoLimitPolicy: defaultIoLimitPolicy
         password: password
         isExperimental: 5.637376656633329
         driver: power_flex
@@ -52132,9 +52383,6 @@ components:
         portGroupPhysicalPorts:
           description: Port group physical ports
           type: object
-        defaultIoLimitPolicy:
-          description: Default IO limit policy
-          type: string
         subnetType:
           description: Subnet type
           enum:
@@ -52176,10 +52424,10 @@ components:
       type: object
     UpdateStorage:
       example:
-        defaultIoLimitPolicy: defaultIoLimitPolicy
         password: password
         isExperimental: 6.027456183070403
         inMaintenance: 0.8008281904610115
+        defaultQoS: defaultQoS
         options: ""
         drivePriority: 1.4658129805029452
         sharedDrivePriority: 5.962133916683182
@@ -52204,8 +52452,8 @@ components:
           items:
             type: string
           type: array
-        defaultIoLimitPolicy:
-          description: Default IO limit policy
+        defaultQoS:
+          description: Default QoS to use. The QoS must be defined in the storage.
           type: string
         options:
           allOf:
@@ -53110,6 +53358,74 @@ components:
       - serverTypeId
       - siteId
       type: object
+    UserUpdatePassword:
+      example:
+        oldPassword: oldPassword
+        newPassword: newPassword
+      properties:
+        newPassword:
+          description: The new password of the user
+          type: string
+        oldPassword:
+          description: The old password of the user
+          type: string
+      required:
+      - newPassword
+      type: object
+    PasswordReset:
+      example:
+        redirectUrl: redirectUrl
+        email: email
+      properties:
+        email:
+          description: The email address of the user
+          type: string
+        redirectUrl:
+          description: The redirect URL after password recovery
+          type: string
+      required:
+      - email
+      type: object
+    ChangeUserEmail:
+      example:
+        redirectUrl: redirectUrl
+        email: email
+      properties:
+        email:
+          description: The new email address of the user
+          type: string
+        redirectUrl:
+          description: The redirect URL after email verification
+          type: string
+      required:
+      - email
+      type: object
+    UserApiKey:
+      example:
+        apiKey: 1:qJjpByjLYz7Rgwpv0wN61KlZxL8qgdZ2uJwLw3PWyrVQc4EDTtCs20xe9zFLLU1
+      properties:
+        apiKey:
+          description: The user API key
+          example: 1:qJjpByjLYz7Rgwpv0wN61KlZxL8qgdZ2uJwLw3PWyrVQc4EDTtCs20xe9zFLLU1
+          type: string
+      required:
+      - apiKey
+      type: object
+    TwoFactorAuthenticationSecret:
+      example:
+        qrCode: qrCode
+        secret2FA: secret2FA
+      properties:
+        qrCode:
+          description: The QR code for the 2FA secret
+          type: string
+        secret2FA:
+          description: The 2FA secret
+          type: string
+      required:
+      - qrCode
+      - secret2FA
+      type: object
     UpdateUser:
       example:
         experimentalTags:
@@ -53409,46 +53725,6 @@ components:
           - $ref: '#/components/schemas/SpecialPermissions'
           description: Special permissions
       type: object
-    UserUpdatePassword:
-      example:
-        oldPassword: oldPassword
-        newPassword: newPassword
-      properties:
-        newPassword:
-          description: The new password of the user
-          type: string
-        oldPassword:
-          description: The old password of the user
-          type: string
-      required:
-      - newPassword
-      - oldPassword
-      type: object
-    ChangeUserEmail:
-      example:
-        redirectUrl: redirectUrl
-        email: email
-      properties:
-        email:
-          description: The new email address of the user
-          type: string
-        redirectUrl:
-          description: The redirect URL after email verification
-          type: string
-      required:
-      - email
-      type: object
-    UserApiKey:
-      example:
-        apiKey: 1:qJjpByjLYz7Rgwpv0wN61KlZxL8qgdZ2uJwLw3PWyrVQc4EDTtCs20xe9zFLLU1
-      properties:
-        apiKey:
-          description: The user API key
-          example: 1:qJjpByjLYz7Rgwpv0wN61KlZxL8qgdZ2uJwLw3PWyrVQc4EDTtCs20xe9zFLLU1
-          type: string
-      required:
-      - apiKey
-      type: object
     UserSSHKeys:
       example:
         sshKey: sshKey
@@ -53525,21 +53801,6 @@ components:
           type: string
       required:
       - sshKey
-      type: object
-    TwoFactorAuthenticationSecret:
-      example:
-        qrCode: qrCode
-        secret2FA: secret2FA
-      properties:
-        qrCode:
-          description: The QR code for the 2FA secret
-          type: string
-        secret2FA:
-          description: The 2FA secret
-          type: string
-      required:
-      - qrCode
-      - secret2FA
       type: object
     VMDisk:
       example:
@@ -54347,7 +54608,6 @@ components:
           createdTimestamp: createdTimestamp
           extensionInstanceId: 1
           label: label
-          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           templateId: 1
           allocationAffinity: same_storage
@@ -54358,6 +54618,7 @@ components:
           containerClusterId: 1
           dnsSubdomainPermanentId: 2.3021358869347655
           infrastructureId: 0.8008281904610115
+          qoS: qoS
           serviceStatus: ordered
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -54369,7 +54630,6 @@ components:
           createdTimestamp: createdTimestamp
           extensionInstanceId: 1
           label: label
-          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           templateId: 1
           allocationAffinity: same_storage
@@ -54380,6 +54640,7 @@ components:
           containerClusterId: 1
           dnsSubdomainPermanentId: 2.3021358869347655
           infrastructureId: 0.8008281904610115
+          qoS: qoS
           serviceStatus: ordered
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -54443,10 +54704,10 @@ components:
           dnsSubdomainId: 8.969578798196912
           createdTimestamp: createdTimestamp
           label: label
-          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
           revision: 0.8851374739011653
+          qoS: qoS
           infrastructureId: 7.058770351582356
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -54471,10 +54732,10 @@ components:
           dnsSubdomainId: 8.969578798196912
           createdTimestamp: createdTimestamp
           label: label
-          ioLimitPolicy: ioLimitPolicy
           subdomainPermanent: subdomainPermanent
           allocationAffinity: same_storage
           revision: 0.8851374739011653
+          qoS: qoS
           infrastructureId: 7.058770351582356
           storageType: iscsi_ssd
           subdomain: subdomain

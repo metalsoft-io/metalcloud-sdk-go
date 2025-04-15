@@ -43,6 +43,7 @@ api_system.go
 api_template_asset.go
 api_unmanaged_servers.go
 api_user.go
+api_users.go
 api_variables.go
 api_vm.go
 api_vm_instance.go
@@ -111,6 +112,7 @@ docs/CreateNetworkEndpointGroup.md
 docs/CreateNetworkEndpointGroupLogicalNetwork.md
 docs/CreateNetworkFabric.md
 docs/CreateResourcePool.md
+docs/CreateRole.md
 docs/CreateSecret.md
 docs/CreateServerCleanupPolicy.md
 docs/CreateServerDefaultCredentials.md
@@ -145,6 +147,7 @@ docs/DriveList.md
 docs/DriveMeta.md
 docs/DrivePaginatedList.md
 docs/DriveVariables.md
+docs/EditRole.md
 docs/EthernetFabric.md
 docs/Event.md
 docs/EventAPI.md
@@ -294,6 +297,8 @@ docs/PaginatedResponseLinks.md
 docs/PaginatedResponseMeta.md
 docs/PartialTypeClass.md
 docs/PasswordReset.md
+docs/Permission.md
+docs/PermissionList.md
 docs/PublicSignupDisabled.md
 docs/ReRegisterServerResponse.md
 docs/RedundancyConfig.md
@@ -308,6 +313,8 @@ docs/ResourcePoolAPI.md
 docs/ResourcePoolPaginatedList.md
 docs/ResourcePoolStatistics.md
 docs/ResourcePoolWithStats.md
+docs/Role.md
+docs/RoleList.md
 docs/RunExtensionOnPhysicalDevice.md
 docs/SSHPublicKey.md
 docs/ScheduleFirmwareUpgrade.md
@@ -495,6 +502,7 @@ docs/UserSuspend.md
 docs/UserSuspendReason.md
 docs/UserSuspendReasonList.md
 docs/UserUpdatePassword.md
+docs/UsersAPI.md
 docs/VM.md
 docs/VMAPI.md
 docs/VMDisk.md
@@ -583,6 +591,7 @@ model_create_network_endpoint_group.go
 model_create_network_endpoint_group_logical_network.go
 model_create_network_fabric.go
 model_create_resource_pool.go
+model_create_role.go
 model_create_secret.go
 model_create_server_cleanup_policy.go
 model_create_server_default_credentials.go
@@ -615,6 +624,7 @@ model_drive_list.go
 model_drive_meta.go
 model_drive_paginated_list.go
 model_drive_variables.go
+model_edit_role.go
 model_ethernet_fabric.go
 model_event.go
 model_event_paginated_list.go
@@ -746,6 +756,8 @@ model_paginated_response_links.go
 model_paginated_response_meta.go
 model_partial_type_class.go
 model_password_reset.go
+model_permission.go
+model_permission_list.go
 model_public_signup_disabled.go
 model_re_register_server_response.go
 model_redundancy_config.go
@@ -759,6 +771,8 @@ model_resource_pool.go
 model_resource_pool_paginated_list.go
 model_resource_pool_statistics.go
 model_resource_pool_with_stats.go
+model_role.go
+model_role_list.go
 model_run_extension_on_physical_device.go
 model_schedule_firmware_upgrade.go
 model_search_firmware_binary.go
@@ -999,6 +1013,7 @@ test/api_system_test.go
 test/api_template_asset_test.go
 test/api_unmanaged_servers_test.go
 test/api_user_test.go
+test/api_users_test.go
 test/api_variables_test.go
 test/api_vm_instance_group_test.go
 test/api_vm_instance_test.go

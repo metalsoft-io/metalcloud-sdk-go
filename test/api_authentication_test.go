@@ -105,17 +105,6 @@ func Test_sdk_AuthenticationAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test AuthenticationAPIService ResetPassword", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		httpRes, err := apiClient.AuthenticationAPI.ResetPassword(context.Background()).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test AuthenticationAPIService SignUp", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

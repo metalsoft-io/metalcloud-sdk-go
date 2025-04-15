@@ -59,8 +59,6 @@ type CreateStorage struct {
 	PortGroupAllocationOrder map[string]interface{} `json:"portGroupAllocationOrder,omitempty"`
 	// Port group physical ports
 	PortGroupPhysicalPorts map[string]interface{} `json:"portGroupPhysicalPorts,omitempty"`
-	// Default IO limit policy
-	DefaultIoLimitPolicy *string `json:"defaultIoLimitPolicy,omitempty"`
 	// Subnet type
 	SubnetType string `json:"subnetType"`
 	// Options for the storage
@@ -650,38 +648,6 @@ func (o *CreateStorage) SetPortGroupPhysicalPorts(v map[string]interface{}) {
 	o.PortGroupPhysicalPorts = v
 }
 
-// GetDefaultIoLimitPolicy returns the DefaultIoLimitPolicy field value if set, zero value otherwise.
-func (o *CreateStorage) GetDefaultIoLimitPolicy() string {
-	if o == nil || IsNil(o.DefaultIoLimitPolicy) {
-		var ret string
-		return ret
-	}
-	return *o.DefaultIoLimitPolicy
-}
-
-// GetDefaultIoLimitPolicyOk returns a tuple with the DefaultIoLimitPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateStorage) GetDefaultIoLimitPolicyOk() (*string, bool) {
-	if o == nil || IsNil(o.DefaultIoLimitPolicy) {
-		return nil, false
-	}
-	return o.DefaultIoLimitPolicy, true
-}
-
-// HasDefaultIoLimitPolicy returns a boolean if a field has been set.
-func (o *CreateStorage) HasDefaultIoLimitPolicy() bool {
-	if o != nil && !IsNil(o.DefaultIoLimitPolicy) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultIoLimitPolicy gets a reference to the given string and assigns it to the DefaultIoLimitPolicy field.
-func (o *CreateStorage) SetDefaultIoLimitPolicy(v string) {
-	o.DefaultIoLimitPolicy = &v
-}
-
 // GetSubnetType returns the SubnetType field value
 func (o *CreateStorage) GetSubnetType() string {
 	if o == nil {
@@ -815,9 +781,6 @@ func (o CreateStorage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PortGroupPhysicalPorts) {
 		toSerialize["portGroupPhysicalPorts"] = o.PortGroupPhysicalPorts
 	}
-	if !IsNil(o.DefaultIoLimitPolicy) {
-		toSerialize["defaultIoLimitPolicy"] = o.DefaultIoLimitPolicy
-	}
 	toSerialize["subnetType"] = o.SubnetType
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
@@ -893,7 +856,6 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "portGroupAllocationOrder")
 		delete(additionalProperties, "portGroupPhysicalPorts")
-		delete(additionalProperties, "defaultIoLimitPolicy")
 		delete(additionalProperties, "subnetType")
 		delete(additionalProperties, "options")
 		delete(additionalProperties, "password")

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **DrivePriority** | Pointer to **float32** | Specifies the drive priority | [optional] 
 **SharedDrivePriority** | Pointer to **float32** | Specifies the shared drive priority | [optional] 
 **Tags** | Pointer to **[]string** | Tags | [optional] 
-**DefaultIoLimitPolicy** | Pointer to **string** | Default IO limit policy | [optional] 
+**DefaultQoS** | Pointer to **string** | Default QoS to use. The QoS must be defined in the storage. | [optional] 
 **Options** | Pointer to [**UpdateStorageOptions**](UpdateStorageOptions.md) | Options for the storage | [optional] 
 **Password** | Pointer to **string** | The password to use. | [optional] 
 
@@ -157,30 +157,30 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
-### GetDefaultIoLimitPolicy
+### GetDefaultQoS
 
-`func (o *UpdateStorage) GetDefaultIoLimitPolicy() string`
+`func (o *UpdateStorage) GetDefaultQoS() string`
 
-GetDefaultIoLimitPolicy returns the DefaultIoLimitPolicy field if non-nil, zero value otherwise.
+GetDefaultQoS returns the DefaultQoS field if non-nil, zero value otherwise.
 
-### GetDefaultIoLimitPolicyOk
+### GetDefaultQoSOk
 
-`func (o *UpdateStorage) GetDefaultIoLimitPolicyOk() (*string, bool)`
+`func (o *UpdateStorage) GetDefaultQoSOk() (*string, bool)`
 
-GetDefaultIoLimitPolicyOk returns a tuple with the DefaultIoLimitPolicy field if it's non-nil, zero value otherwise
+GetDefaultQoSOk returns a tuple with the DefaultQoS field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDefaultIoLimitPolicy
+### SetDefaultQoS
 
-`func (o *UpdateStorage) SetDefaultIoLimitPolicy(v string)`
+`func (o *UpdateStorage) SetDefaultQoS(v string)`
 
-SetDefaultIoLimitPolicy sets DefaultIoLimitPolicy field to given value.
+SetDefaultQoS sets DefaultQoS field to given value.
 
-### HasDefaultIoLimitPolicy
+### HasDefaultQoS
 
-`func (o *UpdateStorage) HasDefaultIoLimitPolicy() bool`
+`func (o *UpdateStorage) HasDefaultQoS() bool`
 
-HasDefaultIoLimitPolicy returns a boolean if a field has been set.
+HasDefaultQoS returns a boolean if a field has been set.
 
 ### GetOptions
 

@@ -134,6 +134,8 @@ type APIClient struct {
 
 	UserAPI *UserAPIService
 
+	UsersAPI *UsersAPIService
+
 	VMAPI *VMAPIService
 
 	VMInstanceAPI *VMInstanceAPIService
@@ -205,6 +207,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.TemplateAssetAPI = (*TemplateAssetAPIService)(&c.common)
 	c.UnmanagedServersAPI = (*UnmanagedServersAPIService)(&c.common)
 	c.UserAPI = (*UserAPIService)(&c.common)
+	c.UsersAPI = (*UsersAPIService)(&c.common)
 	c.VMAPI = (*VMAPIService)(&c.common)
 	c.VMInstanceAPI = (*VMInstanceAPIService)(&c.common)
 	c.VMInstanceGroupAPI = (*VMInstanceGroupAPIService)(&c.common)

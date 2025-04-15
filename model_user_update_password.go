@@ -24,7 +24,7 @@ type UserUpdatePassword struct {
 	// The new password of the user
 	NewPassword string `json:"newPassword"`
 	// The old password of the user
-	OldPassword string `json:"oldPassword"`
+	OldPassword *string `json:"oldPassword,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +34,9 @@ type _UserUpdatePassword UserUpdatePassword
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserUpdatePassword(newPassword string, oldPassword string) *UserUpdatePassword {
+func NewUserUpdatePassword(newPassword string) *UserUpdatePassword {
 	this := UserUpdatePassword{}
 	this.NewPassword = newPassword
-	this.OldPassword = oldPassword
 	return &this
 }
 
@@ -73,28 +72,36 @@ func (o *UserUpdatePassword) SetNewPassword(v string) {
 	o.NewPassword = v
 }
 
-// GetOldPassword returns the OldPassword field value
+// GetOldPassword returns the OldPassword field value if set, zero value otherwise.
 func (o *UserUpdatePassword) GetOldPassword() string {
-	if o == nil {
+	if o == nil || IsNil(o.OldPassword) {
 		var ret string
 		return ret
 	}
-
-	return o.OldPassword
+	return *o.OldPassword
 }
 
-// GetOldPasswordOk returns a tuple with the OldPassword field value
+// GetOldPasswordOk returns a tuple with the OldPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserUpdatePassword) GetOldPasswordOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OldPassword) {
 		return nil, false
 	}
-	return &o.OldPassword, true
+	return o.OldPassword, true
 }
 
-// SetOldPassword sets field value
+// HasOldPassword returns a boolean if a field has been set.
+func (o *UserUpdatePassword) HasOldPassword() bool {
+	if o != nil && !IsNil(o.OldPassword) {
+		return true
+	}
+
+	return false
+}
+
+// SetOldPassword gets a reference to the given string and assigns it to the OldPassword field.
 func (o *UserUpdatePassword) SetOldPassword(v string) {
-	o.OldPassword = v
+	o.OldPassword = &v
 }
 
 func (o UserUpdatePassword) MarshalJSON() ([]byte, error) {
@@ -108,7 +115,9 @@ func (o UserUpdatePassword) MarshalJSON() ([]byte, error) {
 func (o UserUpdatePassword) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["newPassword"] = o.NewPassword
-	toSerialize["oldPassword"] = o.OldPassword
+	if !IsNil(o.OldPassword) {
+		toSerialize["oldPassword"] = o.OldPassword
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -123,7 +132,6 @@ func (o *UserUpdatePassword) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"newPassword",
-		"oldPassword",
 	}
 
 	allProperties := make(map[string]interface{})
