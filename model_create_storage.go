@@ -28,7 +28,7 @@ type CreateStorage struct {
 	// Storage driver
 	Driver string `json:"driver"`
 	// Storage technology
-	Technology string `json:"technology"`
+	Technologies []string `json:"technologies"`
 	// Storage type
 	Type string `json:"type"`
 	// Name of the storage
@@ -74,11 +74,11 @@ type _CreateStorage CreateStorage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateStorage(siteId float32, driver string, technology string, type_ string, name string, managementHost string, username string, subnetType string, password string) *CreateStorage {
+func NewCreateStorage(siteId float32, driver string, technologies []string, type_ string, name string, managementHost string, username string, subnetType string, password string) *CreateStorage {
 	this := CreateStorage{}
 	this.SiteId = siteId
 	this.Driver = driver
-	this.Technology = technology
+	this.Technologies = technologies
 	this.Type = type_
 	this.Name = name
 	this.ManagementHost = managementHost
@@ -176,28 +176,28 @@ func (o *CreateStorage) SetDriver(v string) {
 	o.Driver = v
 }
 
-// GetTechnology returns the Technology field value
-func (o *CreateStorage) GetTechnology() string {
+// GetTechnologies returns the Technologies field value
+func (o *CreateStorage) GetTechnologies() []string {
 	if o == nil {
-		var ret string
+		var ret []string
 		return ret
 	}
 
-	return o.Technology
+	return o.Technologies
 }
 
-// GetTechnologyOk returns a tuple with the Technology field value
+// GetTechnologiesOk returns a tuple with the Technologies field value
 // and a boolean to check if the value has been set.
-func (o *CreateStorage) GetTechnologyOk() (*string, bool) {
+func (o *CreateStorage) GetTechnologiesOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Technology, true
+	return o.Technologies, true
 }
 
-// SetTechnology sets field value
-func (o *CreateStorage) SetTechnology(v string) {
-	o.Technology = v
+// SetTechnologies sets field value
+func (o *CreateStorage) SetTechnologies(v []string) {
+	o.Technologies = v
 }
 
 // GetType returns the Type field value
@@ -743,7 +743,7 @@ func (o CreateStorage) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["siteId"] = o.SiteId
 	toSerialize["driver"] = o.Driver
-	toSerialize["technology"] = o.Technology
+	toSerialize["technologies"] = o.Technologies
 	toSerialize["type"] = o.Type
 	toSerialize["name"] = o.Name
 	if !IsNil(o.IscsiHost) {
@@ -801,7 +801,7 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"siteId",
 		"driver",
-		"technology",
+		"technologies",
 		"type",
 		"name",
 		"managementHost",
@@ -840,7 +840,7 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "userId")
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "driver")
-		delete(additionalProperties, "technology")
+		delete(additionalProperties, "technologies")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "iscsiHost")

@@ -22,7 +22,7 @@ var _ MappedNullable = &RedundancyImplementation{}
 // RedundancyImplementation struct for RedundancyImplementation
 type RedundancyImplementation struct {
 	// The type of redundancy implementation
-	ImplementationType string `json:"implementationType"`
+	ImplementationType NetworkEndpointGroupRedundancyImplementationType `json:"implementationType"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _RedundancyImplementation RedundancyImplementation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRedundancyImplementation(implementationType string) *RedundancyImplementation {
+func NewRedundancyImplementation(implementationType NetworkEndpointGroupRedundancyImplementationType) *RedundancyImplementation {
 	this := RedundancyImplementation{}
 	this.ImplementationType = implementationType
 	return &this
@@ -47,9 +47,9 @@ func NewRedundancyImplementationWithDefaults() *RedundancyImplementation {
 }
 
 // GetImplementationType returns the ImplementationType field value
-func (o *RedundancyImplementation) GetImplementationType() string {
+func (o *RedundancyImplementation) GetImplementationType() NetworkEndpointGroupRedundancyImplementationType {
 	if o == nil {
-		var ret string
+		var ret NetworkEndpointGroupRedundancyImplementationType
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *RedundancyImplementation) GetImplementationType() string {
 
 // GetImplementationTypeOk returns a tuple with the ImplementationType field value
 // and a boolean to check if the value has been set.
-func (o *RedundancyImplementation) GetImplementationTypeOk() (*string, bool) {
+func (o *RedundancyImplementation) GetImplementationTypeOk() (*NetworkEndpointGroupRedundancyImplementationType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *RedundancyImplementation) GetImplementationTypeOk() (*string, bool) {
 }
 
 // SetImplementationType sets field value
-func (o *RedundancyImplementation) SetImplementationType(v string) {
+func (o *RedundancyImplementation) SetImplementationType(v NetworkEndpointGroupRedundancyImplementationType) {
 	o.ImplementationType = v
 }
 

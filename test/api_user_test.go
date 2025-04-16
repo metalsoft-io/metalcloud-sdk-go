@@ -60,9 +60,7 @@ func Test_sdk_UserAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var userId float32
-
-		resp, httpRes, err := apiClient.UserAPI.GetUserApiKey(context.Background(), userId).Execute()
+		resp, httpRes, err := apiClient.UserAPI.GetUserApiKey(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

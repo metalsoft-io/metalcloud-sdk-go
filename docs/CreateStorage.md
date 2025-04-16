@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **UserId** | Pointer to **float32** | Id of the owner | [optional] 
 **SiteId** | **float32** | Id of the site | 
 **Driver** | **string** | Storage driver | 
-**Technology** | **string** | Storage technology | 
+**Technologies** | **[]string** | Storage technology | 
 **Type** | **string** | Storage type | 
 **Name** | **string** | Name of the storage | 
 **IscsiHost** | Pointer to **string** | ISCSI host | [optional] 
@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 
 ### NewCreateStorage
 
-`func NewCreateStorage(siteId float32, driver string, technology string, type_ string, name string, managementHost string, username string, subnetType string, password string, ) *CreateStorage`
+`func NewCreateStorage(siteId float32, driver string, technologies []string, type_ string, name string, managementHost string, username string, subnetType string, password string, ) *CreateStorage`
 
 NewCreateStorage instantiates a new CreateStorage object
 This constructor will assign default values to properties that have it defined,
@@ -111,24 +111,24 @@ and a boolean to check if the value has been set.
 SetDriver sets Driver field to given value.
 
 
-### GetTechnology
+### GetTechnologies
 
-`func (o *CreateStorage) GetTechnology() string`
+`func (o *CreateStorage) GetTechnologies() []string`
 
-GetTechnology returns the Technology field if non-nil, zero value otherwise.
+GetTechnologies returns the Technologies field if non-nil, zero value otherwise.
 
-### GetTechnologyOk
+### GetTechnologiesOk
 
-`func (o *CreateStorage) GetTechnologyOk() (*string, bool)`
+`func (o *CreateStorage) GetTechnologiesOk() (*[]string, bool)`
 
-GetTechnologyOk returns a tuple with the Technology field if it's non-nil, zero value otherwise
+GetTechnologiesOk returns a tuple with the Technologies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTechnology
+### SetTechnologies
 
-`func (o *CreateStorage) SetTechnology(v string)`
+`func (o *CreateStorage) SetTechnologies(v []string)`
 
-SetTechnology sets Technology field to given value.
+SetTechnologies sets Technologies field to given value.
 
 
 ### GetType

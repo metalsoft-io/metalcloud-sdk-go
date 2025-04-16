@@ -1,4 +1,4 @@
-# CreateServerInstanceGroupNetworkConnectionDto
+# CreateServerInstanceGroupNetworkConnection
 
 ## Properties
 
@@ -6,121 +6,121 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LogicalNetworkId** | **string** | The logical network ID. | 
 **Tagged** | **bool** | Whether the logical network is tagged. | 
-**AccessMode** | **string** | The access mode of the network endpoint group | 
+**AccessMode** | [**NetworkEndpointGroupAllowedAccessMode**](NetworkEndpointGroupAllowedAccessMode.md) | The access mode of the network endpoint group | 
 **Redundancy** | Pointer to [**NullableRedundancyConfig**](RedundancyConfig.md) | The redundancy configuration | [optional] 
 
 ## Methods
 
-### NewCreateServerInstanceGroupNetworkConnectionDto
+### NewCreateServerInstanceGroupNetworkConnection
 
-`func NewCreateServerInstanceGroupNetworkConnectionDto(logicalNetworkId string, tagged bool, accessMode string, ) *CreateServerInstanceGroupNetworkConnectionDto`
+`func NewCreateServerInstanceGroupNetworkConnection(logicalNetworkId string, tagged bool, accessMode NetworkEndpointGroupAllowedAccessMode, ) *CreateServerInstanceGroupNetworkConnection`
 
-NewCreateServerInstanceGroupNetworkConnectionDto instantiates a new CreateServerInstanceGroupNetworkConnectionDto object
+NewCreateServerInstanceGroupNetworkConnection instantiates a new CreateServerInstanceGroupNetworkConnection object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCreateServerInstanceGroupNetworkConnectionDtoWithDefaults
+### NewCreateServerInstanceGroupNetworkConnectionWithDefaults
 
-`func NewCreateServerInstanceGroupNetworkConnectionDtoWithDefaults() *CreateServerInstanceGroupNetworkConnectionDto`
+`func NewCreateServerInstanceGroupNetworkConnectionWithDefaults() *CreateServerInstanceGroupNetworkConnection`
 
-NewCreateServerInstanceGroupNetworkConnectionDtoWithDefaults instantiates a new CreateServerInstanceGroupNetworkConnectionDto object
+NewCreateServerInstanceGroupNetworkConnectionWithDefaults instantiates a new CreateServerInstanceGroupNetworkConnection object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetLogicalNetworkId
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) GetLogicalNetworkId() string`
+`func (o *CreateServerInstanceGroupNetworkConnection) GetLogicalNetworkId() string`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) GetLogicalNetworkIdOk() (*string, bool)`
+`func (o *CreateServerInstanceGroupNetworkConnection) GetLogicalNetworkIdOk() (*string, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) SetLogicalNetworkId(v string)`
+`func (o *CreateServerInstanceGroupNetworkConnection) SetLogicalNetworkId(v string)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
 
 ### GetTagged
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) GetTagged() bool`
+`func (o *CreateServerInstanceGroupNetworkConnection) GetTagged() bool`
 
 GetTagged returns the Tagged field if non-nil, zero value otherwise.
 
 ### GetTaggedOk
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) GetTaggedOk() (*bool, bool)`
+`func (o *CreateServerInstanceGroupNetworkConnection) GetTaggedOk() (*bool, bool)`
 
 GetTaggedOk returns a tuple with the Tagged field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTagged
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) SetTagged(v bool)`
+`func (o *CreateServerInstanceGroupNetworkConnection) SetTagged(v bool)`
 
 SetTagged sets Tagged field to given value.
 
 
 ### GetAccessMode
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) GetAccessMode() string`
+`func (o *CreateServerInstanceGroupNetworkConnection) GetAccessMode() NetworkEndpointGroupAllowedAccessMode`
 
 GetAccessMode returns the AccessMode field if non-nil, zero value otherwise.
 
 ### GetAccessModeOk
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) GetAccessModeOk() (*string, bool)`
+`func (o *CreateServerInstanceGroupNetworkConnection) GetAccessModeOk() (*NetworkEndpointGroupAllowedAccessMode, bool)`
 
 GetAccessModeOk returns a tuple with the AccessMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccessMode
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) SetAccessMode(v string)`
+`func (o *CreateServerInstanceGroupNetworkConnection) SetAccessMode(v NetworkEndpointGroupAllowedAccessMode)`
 
 SetAccessMode sets AccessMode field to given value.
 
 
 ### GetRedundancy
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) GetRedundancy() RedundancyConfig`
+`func (o *CreateServerInstanceGroupNetworkConnection) GetRedundancy() RedundancyConfig`
 
 GetRedundancy returns the Redundancy field if non-nil, zero value otherwise.
 
 ### GetRedundancyOk
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) GetRedundancyOk() (*RedundancyConfig, bool)`
+`func (o *CreateServerInstanceGroupNetworkConnection) GetRedundancyOk() (*RedundancyConfig, bool)`
 
 GetRedundancyOk returns a tuple with the Redundancy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRedundancy
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) SetRedundancy(v RedundancyConfig)`
+`func (o *CreateServerInstanceGroupNetworkConnection) SetRedundancy(v RedundancyConfig)`
 
 SetRedundancy sets Redundancy field to given value.
 
 ### HasRedundancy
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) HasRedundancy() bool`
+`func (o *CreateServerInstanceGroupNetworkConnection) HasRedundancy() bool`
 
 HasRedundancy returns a boolean if a field has been set.
 
 ### SetRedundancyNil
 
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) SetRedundancyNil(b bool)`
+`func (o *CreateServerInstanceGroupNetworkConnection) SetRedundancyNil(b bool)`
 
  SetRedundancyNil sets the value for Redundancy to be an explicit nil
 
 ### UnsetRedundancy
-`func (o *CreateServerInstanceGroupNetworkConnectionDto) UnsetRedundancy()`
+`func (o *CreateServerInstanceGroupNetworkConnection) UnsetRedundancy()`
 
 UnsetRedundancy ensures that no value is present for Redundancy, not even an explicit nil
 

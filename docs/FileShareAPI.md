@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## GetFileShare
 
-> FileShareExtendedInfo GetFileShare(ctx, fileShareId).Execute()
+> FileShare GetFileShare(ctx, fileShareId).Execute()
 
 Get File Share information
 
@@ -192,7 +192,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FileShareAPI.GetFileShare``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetFileShare`: FileShareExtendedInfo
+	// response from `GetFileShare`: FileShare
 	fmt.Fprintf(os.Stdout, "Response from `FileShareAPI.GetFileShare`: %v\n", resp)
 }
 ```
@@ -216,7 +216,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FileShareExtendedInfo**](FileShareExtendedInfo.md)
+[**FileShare**](FileShare.md)
 
 ### Authorization
 

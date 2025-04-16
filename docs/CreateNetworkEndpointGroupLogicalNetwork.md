@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LogicalNetworkId** | **string** | The logical network ID. | 
 **Tagged** | **bool** | Whether the logical network is tagged. | 
-**AccessMode** | **string** | The access mode of the network endpoint group | 
+**AccessMode** | [**NetworkEndpointGroupAllowedAccessMode**](NetworkEndpointGroupAllowedAccessMode.md) | The access mode of the network endpoint group | 
 **Redundancy** | Pointer to [**NullableRedundancyConfig**](RedundancyConfig.md) | The redundancy configuration | [optional] 
 
 ## Methods
 
 ### NewCreateNetworkEndpointGroupLogicalNetwork
 
-`func NewCreateNetworkEndpointGroupLogicalNetwork(logicalNetworkId string, tagged bool, accessMode string, ) *CreateNetworkEndpointGroupLogicalNetwork`
+`func NewCreateNetworkEndpointGroupLogicalNetwork(logicalNetworkId string, tagged bool, accessMode NetworkEndpointGroupAllowedAccessMode, ) *CreateNetworkEndpointGroupLogicalNetwork`
 
 NewCreateNetworkEndpointGroupLogicalNetwork instantiates a new CreateNetworkEndpointGroupLogicalNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -70,20 +70,20 @@ SetTagged sets Tagged field to given value.
 
 ### GetAccessMode
 
-`func (o *CreateNetworkEndpointGroupLogicalNetwork) GetAccessMode() string`
+`func (o *CreateNetworkEndpointGroupLogicalNetwork) GetAccessMode() NetworkEndpointGroupAllowedAccessMode`
 
 GetAccessMode returns the AccessMode field if non-nil, zero value otherwise.
 
 ### GetAccessModeOk
 
-`func (o *CreateNetworkEndpointGroupLogicalNetwork) GetAccessModeOk() (*string, bool)`
+`func (o *CreateNetworkEndpointGroupLogicalNetwork) GetAccessModeOk() (*NetworkEndpointGroupAllowedAccessMode, bool)`
 
 GetAccessModeOk returns a tuple with the AccessMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccessMode
 
-`func (o *CreateNetworkEndpointGroupLogicalNetwork) SetAccessMode(v string)`
+`func (o *CreateNetworkEndpointGroupLogicalNetwork) SetAccessMode(v NetworkEndpointGroupAllowedAccessMode)`
 
 SetAccessMode sets AccessMode field to given value.
 

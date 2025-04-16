@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]BucketExtendedInfo**](BucketExtendedInfo.md) |  | 
+**Data** | [**[]Bucket**](Bucket.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
 **Links** | [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewBucketPaginatedList
 
-`func NewBucketPaginatedList(data []BucketExtendedInfo, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *BucketPaginatedList`
+`func NewBucketPaginatedList(data []Bucket, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *BucketPaginatedList`
 
 NewBucketPaginatedList instantiates a new BucketPaginatedList object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *BucketPaginatedList) GetData() []BucketExtendedInfo`
+`func (o *BucketPaginatedList) GetData() []Bucket`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *BucketPaginatedList) GetDataOk() (*[]BucketExtendedInfo, bool)`
+`func (o *BucketPaginatedList) GetDataOk() (*[]Bucket, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *BucketPaginatedList) SetData(v []BucketExtendedInfo)`
+`func (o *BucketPaginatedList) SetData(v []Bucket)`
 
 SetData sets Data field to given value.
 

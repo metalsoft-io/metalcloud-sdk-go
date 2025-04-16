@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **Id** | **float32** | Id of the Drive | 
 **Revision** | **float32** | Revision of the Drive State | 
 **InfrastructureId** | **float32** | Infrastructure id of the Drive | 
+**Infrastructure** | [**ParentInfrastructureDto**](ParentInfrastructureDto.md) | Infrastructure information | 
 **ServiceStatus** | **string** | Service status of the Drive | 
 **StorageRealSizeCachedMb** | Pointer to **float32** | Cached information of the real size of the storage in MB. | [optional] 
 **StorageRealSizeWithSnapshotsCachedMb** | Pointer to **float32** | Cached information of the real size of the storage (including snapshots) in MB. | [optional] 
@@ -44,7 +45,7 @@ Name | Type | Description | Notes
 
 ### NewDriveVariables
 
-`func NewDriveVariables(label string, groupId float32, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, ) *DriveVariables`
+`func NewDriveVariables(label string, groupId float32, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructureDto, serviceStatus string, storageUpdatedTimestamp string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, ) *DriveVariables`
 
 NewDriveVariables instantiates a new DriveVariables object
 This constructor will assign default values to properties that have it defined,
@@ -492,6 +493,26 @@ and a boolean to check if the value has been set.
 `func (o *DriveVariables) SetInfrastructureId(v float32)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
+
+
+### GetInfrastructure
+
+`func (o *DriveVariables) GetInfrastructure() ParentInfrastructureDto`
+
+GetInfrastructure returns the Infrastructure field if non-nil, zero value otherwise.
+
+### GetInfrastructureOk
+
+`func (o *DriveVariables) GetInfrastructureOk() (*ParentInfrastructureDto, bool)`
+
+GetInfrastructureOk returns a tuple with the Infrastructure field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructure
+
+`func (o *DriveVariables) SetInfrastructure(v ParentInfrastructureDto)`
+
+SetInfrastructure sets Infrastructure field to given value.
 
 
 ### GetServiceStatus

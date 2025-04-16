@@ -252,7 +252,7 @@ type BucketAPIGetBucketRequest struct {
 	bucketId float32
 }
 
-func (r BucketAPIGetBucketRequest) Execute() (*BucketExtendedInfo, *http.Response, error) {
+func (r BucketAPIGetBucketRequest) Execute() (*Bucket, *http.Response, error) {
 	return r.ApiService.GetBucketExecute(r)
 }
 
@@ -274,13 +274,13 @@ func (a *BucketAPIService) GetBucket(ctx context.Context, bucketId float32) Buck
 }
 
 // Execute executes the request
-//  @return BucketExtendedInfo
-func (a *BucketAPIService) GetBucketExecute(r BucketAPIGetBucketRequest) (*BucketExtendedInfo, *http.Response, error) {
+//  @return Bucket
+func (a *BucketAPIService) GetBucketExecute(r BucketAPIGetBucketRequest) (*Bucket, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *BucketExtendedInfo
+		localVarReturnValue  *Bucket
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BucketAPIService.GetBucket")

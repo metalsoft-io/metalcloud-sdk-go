@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]ServerInstanceGroupNetworkConnectionDto**](ServerInstanceGroupNetworkConnectionDto.md) |  | 
+**Data** | [**[]ServerInstanceGroupNetworkConnection**](ServerInstanceGroupNetworkConnection.md) |  | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewServerInstanceGroupNetworkConnectionsList
 
-`func NewServerInstanceGroupNetworkConnectionsList(data []ServerInstanceGroupNetworkConnectionDto, ) *ServerInstanceGroupNetworkConnectionsList`
+`func NewServerInstanceGroupNetworkConnectionsList(data []ServerInstanceGroupNetworkConnection, ) *ServerInstanceGroupNetworkConnectionsList`
 
 NewServerInstanceGroupNetworkConnectionsList instantiates a new ServerInstanceGroupNetworkConnectionsList object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *ServerInstanceGroupNetworkConnectionsList) GetData() []ServerInstanceGroupNetworkConnectionDto`
+`func (o *ServerInstanceGroupNetworkConnectionsList) GetData() []ServerInstanceGroupNetworkConnection`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *ServerInstanceGroupNetworkConnectionsList) GetDataOk() (*[]ServerInstanceGroupNetworkConnectionDto, bool)`
+`func (o *ServerInstanceGroupNetworkConnectionsList) GetDataOk() (*[]ServerInstanceGroupNetworkConnection, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *ServerInstanceGroupNetworkConnectionsList) SetData(v []ServerInstanceGroupNetworkConnectionDto)`
+`func (o *ServerInstanceGroupNetworkConnectionsList) SetData(v []ServerInstanceGroupNetworkConnection)`
 
 SetData sets Data field to given value.
 

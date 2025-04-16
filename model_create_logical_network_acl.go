@@ -13,21 +13,22 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the UpdateLogicalNetworkACLDto type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateLogicalNetworkACLDto{}
+// checks if the CreateLogicalNetworkACL type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateLogicalNetworkACL{}
 
-// UpdateLogicalNetworkACLDto struct for UpdateLogicalNetworkACLDto
-type UpdateLogicalNetworkACLDto struct {
-	// The type of the rule
-	RuleType *string `json:"ruleType,omitempty"`
-	// The direction of the rule
-	Direction *string `json:"direction,omitempty"`
-	// The sequence number of the rule
-	Sequence *int32 `json:"sequence,omitempty"`
+// CreateLogicalNetworkACL struct for CreateLogicalNetworkACL
+type CreateLogicalNetworkACL struct {
+	// The type of the rule such as ipv4, ipv6, mac
+	RuleType ACLType `json:"ruleType"`
+	// The direction of the rule such as in, out
+	Direction ACLDirection `json:"direction"`
+	// The sequence number of the rule important for the order evaluation of the rules
+	Sequence int32 `json:"sequence"`
 	// The forwarding action of the rule
-	ForwardingAction *string `json:"forwardingAction,omitempty"`
+	ForwardingAction ACLForwardingAction `json:"forwardingAction"`
 	// The network protocol of the ACL rule
 	NetworkProtocol *string `json:"networkProtocol,omitempty"`
 	// The source address of the rule if the rule type is IPv4, IPv6
@@ -43,159 +44,132 @@ type UpdateLogicalNetworkACLDto struct {
 	// The destination MAC address of the rule if the rule type is MAC
 	DestinationMac *string `json:"destinationMac,omitempty"`
 	// The enforcement point of the rule
-	EnforcementPoint *string `json:"enforcementPoint,omitempty"`
+	EnforcementPoint ACLEnforcementPoint `json:"enforcementPoint"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _UpdateLogicalNetworkACLDto UpdateLogicalNetworkACLDto
+type _CreateLogicalNetworkACL CreateLogicalNetworkACL
 
-// NewUpdateLogicalNetworkACLDto instantiates a new UpdateLogicalNetworkACLDto object
+// NewCreateLogicalNetworkACL instantiates a new CreateLogicalNetworkACL object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateLogicalNetworkACLDto() *UpdateLogicalNetworkACLDto {
-	this := UpdateLogicalNetworkACLDto{}
+func NewCreateLogicalNetworkACL(ruleType ACLType, direction ACLDirection, sequence int32, forwardingAction ACLForwardingAction, enforcementPoint ACLEnforcementPoint) *CreateLogicalNetworkACL {
+	this := CreateLogicalNetworkACL{}
+	this.RuleType = ruleType
+	this.Direction = direction
+	this.Sequence = sequence
+	this.ForwardingAction = forwardingAction
+	this.EnforcementPoint = enforcementPoint
 	return &this
 }
 
-// NewUpdateLogicalNetworkACLDtoWithDefaults instantiates a new UpdateLogicalNetworkACLDto object
+// NewCreateLogicalNetworkACLWithDefaults instantiates a new CreateLogicalNetworkACL object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateLogicalNetworkACLDtoWithDefaults() *UpdateLogicalNetworkACLDto {
-	this := UpdateLogicalNetworkACLDto{}
+func NewCreateLogicalNetworkACLWithDefaults() *CreateLogicalNetworkACL {
+	this := CreateLogicalNetworkACL{}
 	return &this
 }
 
-// GetRuleType returns the RuleType field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkACLDto) GetRuleType() string {
-	if o == nil || IsNil(o.RuleType) {
-		var ret string
+// GetRuleType returns the RuleType field value
+func (o *CreateLogicalNetworkACL) GetRuleType() ACLType {
+	if o == nil {
+		var ret ACLType
 		return ret
 	}
-	return *o.RuleType
+
+	return o.RuleType
 }
 
-// GetRuleTypeOk returns a tuple with the RuleType field value if set, nil otherwise
+// GetRuleTypeOk returns a tuple with the RuleType field value
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkACLDto) GetRuleTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.RuleType) {
+func (o *CreateLogicalNetworkACL) GetRuleTypeOk() (*ACLType, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.RuleType, true
+	return &o.RuleType, true
 }
 
-// HasRuleType returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkACLDto) HasRuleType() bool {
-	if o != nil && !IsNil(o.RuleType) {
-		return true
-	}
-
-	return false
+// SetRuleType sets field value
+func (o *CreateLogicalNetworkACL) SetRuleType(v ACLType) {
+	o.RuleType = v
 }
 
-// SetRuleType gets a reference to the given string and assigns it to the RuleType field.
-func (o *UpdateLogicalNetworkACLDto) SetRuleType(v string) {
-	o.RuleType = &v
-}
-
-// GetDirection returns the Direction field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkACLDto) GetDirection() string {
-	if o == nil || IsNil(o.Direction) {
-		var ret string
+// GetDirection returns the Direction field value
+func (o *CreateLogicalNetworkACL) GetDirection() ACLDirection {
+	if o == nil {
+		var ret ACLDirection
 		return ret
 	}
-	return *o.Direction
+
+	return o.Direction
 }
 
-// GetDirectionOk returns a tuple with the Direction field value if set, nil otherwise
+// GetDirectionOk returns a tuple with the Direction field value
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkACLDto) GetDirectionOk() (*string, bool) {
-	if o == nil || IsNil(o.Direction) {
+func (o *CreateLogicalNetworkACL) GetDirectionOk() (*ACLDirection, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Direction, true
+	return &o.Direction, true
 }
 
-// HasDirection returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkACLDto) HasDirection() bool {
-	if o != nil && !IsNil(o.Direction) {
-		return true
-	}
-
-	return false
+// SetDirection sets field value
+func (o *CreateLogicalNetworkACL) SetDirection(v ACLDirection) {
+	o.Direction = v
 }
 
-// SetDirection gets a reference to the given string and assigns it to the Direction field.
-func (o *UpdateLogicalNetworkACLDto) SetDirection(v string) {
-	o.Direction = &v
-}
-
-// GetSequence returns the Sequence field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkACLDto) GetSequence() int32 {
-	if o == nil || IsNil(o.Sequence) {
+// GetSequence returns the Sequence field value
+func (o *CreateLogicalNetworkACL) GetSequence() int32 {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Sequence
+
+	return o.Sequence
 }
 
-// GetSequenceOk returns a tuple with the Sequence field value if set, nil otherwise
+// GetSequenceOk returns a tuple with the Sequence field value
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkACLDto) GetSequenceOk() (*int32, bool) {
-	if o == nil || IsNil(o.Sequence) {
+func (o *CreateLogicalNetworkACL) GetSequenceOk() (*int32, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Sequence, true
+	return &o.Sequence, true
 }
 
-// HasSequence returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkACLDto) HasSequence() bool {
-	if o != nil && !IsNil(o.Sequence) {
-		return true
-	}
-
-	return false
+// SetSequence sets field value
+func (o *CreateLogicalNetworkACL) SetSequence(v int32) {
+	o.Sequence = v
 }
 
-// SetSequence gets a reference to the given int32 and assigns it to the Sequence field.
-func (o *UpdateLogicalNetworkACLDto) SetSequence(v int32) {
-	o.Sequence = &v
-}
-
-// GetForwardingAction returns the ForwardingAction field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkACLDto) GetForwardingAction() string {
-	if o == nil || IsNil(o.ForwardingAction) {
-		var ret string
+// GetForwardingAction returns the ForwardingAction field value
+func (o *CreateLogicalNetworkACL) GetForwardingAction() ACLForwardingAction {
+	if o == nil {
+		var ret ACLForwardingAction
 		return ret
 	}
-	return *o.ForwardingAction
+
+	return o.ForwardingAction
 }
 
-// GetForwardingActionOk returns a tuple with the ForwardingAction field value if set, nil otherwise
+// GetForwardingActionOk returns a tuple with the ForwardingAction field value
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkACLDto) GetForwardingActionOk() (*string, bool) {
-	if o == nil || IsNil(o.ForwardingAction) {
+func (o *CreateLogicalNetworkACL) GetForwardingActionOk() (*ACLForwardingAction, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ForwardingAction, true
+	return &o.ForwardingAction, true
 }
 
-// HasForwardingAction returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkACLDto) HasForwardingAction() bool {
-	if o != nil && !IsNil(o.ForwardingAction) {
-		return true
-	}
-
-	return false
-}
-
-// SetForwardingAction gets a reference to the given string and assigns it to the ForwardingAction field.
-func (o *UpdateLogicalNetworkACLDto) SetForwardingAction(v string) {
-	o.ForwardingAction = &v
+// SetForwardingAction sets field value
+func (o *CreateLogicalNetworkACL) SetForwardingAction(v ACLForwardingAction) {
+	o.ForwardingAction = v
 }
 
 // GetNetworkProtocol returns the NetworkProtocol field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkACLDto) GetNetworkProtocol() string {
+func (o *CreateLogicalNetworkACL) GetNetworkProtocol() string {
 	if o == nil || IsNil(o.NetworkProtocol) {
 		var ret string
 		return ret
@@ -205,7 +179,7 @@ func (o *UpdateLogicalNetworkACLDto) GetNetworkProtocol() string {
 
 // GetNetworkProtocolOk returns a tuple with the NetworkProtocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkACLDto) GetNetworkProtocolOk() (*string, bool) {
+func (o *CreateLogicalNetworkACL) GetNetworkProtocolOk() (*string, bool) {
 	if o == nil || IsNil(o.NetworkProtocol) {
 		return nil, false
 	}
@@ -213,7 +187,7 @@ func (o *UpdateLogicalNetworkACLDto) GetNetworkProtocolOk() (*string, bool) {
 }
 
 // HasNetworkProtocol returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkACLDto) HasNetworkProtocol() bool {
+func (o *CreateLogicalNetworkACL) HasNetworkProtocol() bool {
 	if o != nil && !IsNil(o.NetworkProtocol) {
 		return true
 	}
@@ -222,12 +196,12 @@ func (o *UpdateLogicalNetworkACLDto) HasNetworkProtocol() bool {
 }
 
 // SetNetworkProtocol gets a reference to the given string and assigns it to the NetworkProtocol field.
-func (o *UpdateLogicalNetworkACLDto) SetNetworkProtocol(v string) {
+func (o *CreateLogicalNetworkACL) SetNetworkProtocol(v string) {
 	o.NetworkProtocol = &v
 }
 
 // GetSourceAddress returns the SourceAddress field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkACLDto) GetSourceAddress() string {
+func (o *CreateLogicalNetworkACL) GetSourceAddress() string {
 	if o == nil || IsNil(o.SourceAddress) {
 		var ret string
 		return ret
@@ -237,7 +211,7 @@ func (o *UpdateLogicalNetworkACLDto) GetSourceAddress() string {
 
 // GetSourceAddressOk returns a tuple with the SourceAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkACLDto) GetSourceAddressOk() (*string, bool) {
+func (o *CreateLogicalNetworkACL) GetSourceAddressOk() (*string, bool) {
 	if o == nil || IsNil(o.SourceAddress) {
 		return nil, false
 	}
@@ -245,7 +219,7 @@ func (o *UpdateLogicalNetworkACLDto) GetSourceAddressOk() (*string, bool) {
 }
 
 // HasSourceAddress returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkACLDto) HasSourceAddress() bool {
+func (o *CreateLogicalNetworkACL) HasSourceAddress() bool {
 	if o != nil && !IsNil(o.SourceAddress) {
 		return true
 	}
@@ -254,12 +228,12 @@ func (o *UpdateLogicalNetworkACLDto) HasSourceAddress() bool {
 }
 
 // SetSourceAddress gets a reference to the given string and assigns it to the SourceAddress field.
-func (o *UpdateLogicalNetworkACLDto) SetSourceAddress(v string) {
+func (o *CreateLogicalNetworkACL) SetSourceAddress(v string) {
 	o.SourceAddress = &v
 }
 
 // GetDestinationAddress returns the DestinationAddress field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkACLDto) GetDestinationAddress() string {
+func (o *CreateLogicalNetworkACL) GetDestinationAddress() string {
 	if o == nil || IsNil(o.DestinationAddress) {
 		var ret string
 		return ret
@@ -269,7 +243,7 @@ func (o *UpdateLogicalNetworkACLDto) GetDestinationAddress() string {
 
 // GetDestinationAddressOk returns a tuple with the DestinationAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkACLDto) GetDestinationAddressOk() (*string, bool) {
+func (o *CreateLogicalNetworkACL) GetDestinationAddressOk() (*string, bool) {
 	if o == nil || IsNil(o.DestinationAddress) {
 		return nil, false
 	}
@@ -277,7 +251,7 @@ func (o *UpdateLogicalNetworkACLDto) GetDestinationAddressOk() (*string, bool) {
 }
 
 // HasDestinationAddress returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkACLDto) HasDestinationAddress() bool {
+func (o *CreateLogicalNetworkACL) HasDestinationAddress() bool {
 	if o != nil && !IsNil(o.DestinationAddress) {
 		return true
 	}
@@ -286,12 +260,12 @@ func (o *UpdateLogicalNetworkACLDto) HasDestinationAddress() bool {
 }
 
 // SetDestinationAddress gets a reference to the given string and assigns it to the DestinationAddress field.
-func (o *UpdateLogicalNetworkACLDto) SetDestinationAddress(v string) {
+func (o *CreateLogicalNetworkACL) SetDestinationAddress(v string) {
 	o.DestinationAddress = &v
 }
 
 // GetSourcePort returns the SourcePort field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkACLDto) GetSourcePort() string {
+func (o *CreateLogicalNetworkACL) GetSourcePort() string {
 	if o == nil || IsNil(o.SourcePort) {
 		var ret string
 		return ret
@@ -301,7 +275,7 @@ func (o *UpdateLogicalNetworkACLDto) GetSourcePort() string {
 
 // GetSourcePortOk returns a tuple with the SourcePort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkACLDto) GetSourcePortOk() (*string, bool) {
+func (o *CreateLogicalNetworkACL) GetSourcePortOk() (*string, bool) {
 	if o == nil || IsNil(o.SourcePort) {
 		return nil, false
 	}
@@ -309,7 +283,7 @@ func (o *UpdateLogicalNetworkACLDto) GetSourcePortOk() (*string, bool) {
 }
 
 // HasSourcePort returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkACLDto) HasSourcePort() bool {
+func (o *CreateLogicalNetworkACL) HasSourcePort() bool {
 	if o != nil && !IsNil(o.SourcePort) {
 		return true
 	}
@@ -318,12 +292,12 @@ func (o *UpdateLogicalNetworkACLDto) HasSourcePort() bool {
 }
 
 // SetSourcePort gets a reference to the given string and assigns it to the SourcePort field.
-func (o *UpdateLogicalNetworkACLDto) SetSourcePort(v string) {
+func (o *CreateLogicalNetworkACL) SetSourcePort(v string) {
 	o.SourcePort = &v
 }
 
 // GetDestinationPort returns the DestinationPort field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkACLDto) GetDestinationPort() string {
+func (o *CreateLogicalNetworkACL) GetDestinationPort() string {
 	if o == nil || IsNil(o.DestinationPort) {
 		var ret string
 		return ret
@@ -333,7 +307,7 @@ func (o *UpdateLogicalNetworkACLDto) GetDestinationPort() string {
 
 // GetDestinationPortOk returns a tuple with the DestinationPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkACLDto) GetDestinationPortOk() (*string, bool) {
+func (o *CreateLogicalNetworkACL) GetDestinationPortOk() (*string, bool) {
 	if o == nil || IsNil(o.DestinationPort) {
 		return nil, false
 	}
@@ -341,7 +315,7 @@ func (o *UpdateLogicalNetworkACLDto) GetDestinationPortOk() (*string, bool) {
 }
 
 // HasDestinationPort returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkACLDto) HasDestinationPort() bool {
+func (o *CreateLogicalNetworkACL) HasDestinationPort() bool {
 	if o != nil && !IsNil(o.DestinationPort) {
 		return true
 	}
@@ -350,12 +324,12 @@ func (o *UpdateLogicalNetworkACLDto) HasDestinationPort() bool {
 }
 
 // SetDestinationPort gets a reference to the given string and assigns it to the DestinationPort field.
-func (o *UpdateLogicalNetworkACLDto) SetDestinationPort(v string) {
+func (o *CreateLogicalNetworkACL) SetDestinationPort(v string) {
 	o.DestinationPort = &v
 }
 
 // GetSourceMac returns the SourceMac field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkACLDto) GetSourceMac() string {
+func (o *CreateLogicalNetworkACL) GetSourceMac() string {
 	if o == nil || IsNil(o.SourceMac) {
 		var ret string
 		return ret
@@ -365,7 +339,7 @@ func (o *UpdateLogicalNetworkACLDto) GetSourceMac() string {
 
 // GetSourceMacOk returns a tuple with the SourceMac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkACLDto) GetSourceMacOk() (*string, bool) {
+func (o *CreateLogicalNetworkACL) GetSourceMacOk() (*string, bool) {
 	if o == nil || IsNil(o.SourceMac) {
 		return nil, false
 	}
@@ -373,7 +347,7 @@ func (o *UpdateLogicalNetworkACLDto) GetSourceMacOk() (*string, bool) {
 }
 
 // HasSourceMac returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkACLDto) HasSourceMac() bool {
+func (o *CreateLogicalNetworkACL) HasSourceMac() bool {
 	if o != nil && !IsNil(o.SourceMac) {
 		return true
 	}
@@ -382,12 +356,12 @@ func (o *UpdateLogicalNetworkACLDto) HasSourceMac() bool {
 }
 
 // SetSourceMac gets a reference to the given string and assigns it to the SourceMac field.
-func (o *UpdateLogicalNetworkACLDto) SetSourceMac(v string) {
+func (o *CreateLogicalNetworkACL) SetSourceMac(v string) {
 	o.SourceMac = &v
 }
 
 // GetDestinationMac returns the DestinationMac field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkACLDto) GetDestinationMac() string {
+func (o *CreateLogicalNetworkACL) GetDestinationMac() string {
 	if o == nil || IsNil(o.DestinationMac) {
 		var ret string
 		return ret
@@ -397,7 +371,7 @@ func (o *UpdateLogicalNetworkACLDto) GetDestinationMac() string {
 
 // GetDestinationMacOk returns a tuple with the DestinationMac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkACLDto) GetDestinationMacOk() (*string, bool) {
+func (o *CreateLogicalNetworkACL) GetDestinationMacOk() (*string, bool) {
 	if o == nil || IsNil(o.DestinationMac) {
 		return nil, false
 	}
@@ -405,7 +379,7 @@ func (o *UpdateLogicalNetworkACLDto) GetDestinationMacOk() (*string, bool) {
 }
 
 // HasDestinationMac returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkACLDto) HasDestinationMac() bool {
+func (o *CreateLogicalNetworkACL) HasDestinationMac() bool {
 	if o != nil && !IsNil(o.DestinationMac) {
 		return true
 	}
@@ -414,43 +388,35 @@ func (o *UpdateLogicalNetworkACLDto) HasDestinationMac() bool {
 }
 
 // SetDestinationMac gets a reference to the given string and assigns it to the DestinationMac field.
-func (o *UpdateLogicalNetworkACLDto) SetDestinationMac(v string) {
+func (o *CreateLogicalNetworkACL) SetDestinationMac(v string) {
 	o.DestinationMac = &v
 }
 
-// GetEnforcementPoint returns the EnforcementPoint field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkACLDto) GetEnforcementPoint() string {
-	if o == nil || IsNil(o.EnforcementPoint) {
-		var ret string
+// GetEnforcementPoint returns the EnforcementPoint field value
+func (o *CreateLogicalNetworkACL) GetEnforcementPoint() ACLEnforcementPoint {
+	if o == nil {
+		var ret ACLEnforcementPoint
 		return ret
 	}
-	return *o.EnforcementPoint
+
+	return o.EnforcementPoint
 }
 
-// GetEnforcementPointOk returns a tuple with the EnforcementPoint field value if set, nil otherwise
+// GetEnforcementPointOk returns a tuple with the EnforcementPoint field value
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkACLDto) GetEnforcementPointOk() (*string, bool) {
-	if o == nil || IsNil(o.EnforcementPoint) {
+func (o *CreateLogicalNetworkACL) GetEnforcementPointOk() (*ACLEnforcementPoint, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.EnforcementPoint, true
+	return &o.EnforcementPoint, true
 }
 
-// HasEnforcementPoint returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkACLDto) HasEnforcementPoint() bool {
-	if o != nil && !IsNil(o.EnforcementPoint) {
-		return true
-	}
-
-	return false
+// SetEnforcementPoint sets field value
+func (o *CreateLogicalNetworkACL) SetEnforcementPoint(v ACLEnforcementPoint) {
+	o.EnforcementPoint = v
 }
 
-// SetEnforcementPoint gets a reference to the given string and assigns it to the EnforcementPoint field.
-func (o *UpdateLogicalNetworkACLDto) SetEnforcementPoint(v string) {
-	o.EnforcementPoint = &v
-}
-
-func (o UpdateLogicalNetworkACLDto) MarshalJSON() ([]byte, error) {
+func (o CreateLogicalNetworkACL) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -458,20 +424,12 @@ func (o UpdateLogicalNetworkACLDto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateLogicalNetworkACLDto) ToMap() (map[string]interface{}, error) {
+func (o CreateLogicalNetworkACL) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.RuleType) {
-		toSerialize["ruleType"] = o.RuleType
-	}
-	if !IsNil(o.Direction) {
-		toSerialize["direction"] = o.Direction
-	}
-	if !IsNil(o.Sequence) {
-		toSerialize["sequence"] = o.Sequence
-	}
-	if !IsNil(o.ForwardingAction) {
-		toSerialize["forwardingAction"] = o.ForwardingAction
-	}
+	toSerialize["ruleType"] = o.RuleType
+	toSerialize["direction"] = o.Direction
+	toSerialize["sequence"] = o.Sequence
+	toSerialize["forwardingAction"] = o.ForwardingAction
 	if !IsNil(o.NetworkProtocol) {
 		toSerialize["networkProtocol"] = o.NetworkProtocol
 	}
@@ -493,9 +451,7 @@ func (o UpdateLogicalNetworkACLDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DestinationMac) {
 		toSerialize["destinationMac"] = o.DestinationMac
 	}
-	if !IsNil(o.EnforcementPoint) {
-		toSerialize["enforcementPoint"] = o.EnforcementPoint
-	}
+	toSerialize["enforcementPoint"] = o.EnforcementPoint
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -504,16 +460,41 @@ func (o UpdateLogicalNetworkACLDto) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *UpdateLogicalNetworkACLDto) UnmarshalJSON(data []byte) (err error) {
-	varUpdateLogicalNetworkACLDto := _UpdateLogicalNetworkACLDto{}
+func (o *CreateLogicalNetworkACL) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"ruleType",
+		"direction",
+		"sequence",
+		"forwardingAction",
+		"enforcementPoint",
+	}
 
-	err = json.Unmarshal(data, &varUpdateLogicalNetworkACLDto)
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateLogicalNetworkACL := _CreateLogicalNetworkACL{}
+
+	err = json.Unmarshal(data, &varCreateLogicalNetworkACL)
 
 	if err != nil {
 		return err
 	}
 
-	*o = UpdateLogicalNetworkACLDto(varUpdateLogicalNetworkACLDto)
+	*o = CreateLogicalNetworkACL(varCreateLogicalNetworkACL)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -536,38 +517,38 @@ func (o *UpdateLogicalNetworkACLDto) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableUpdateLogicalNetworkACLDto struct {
-	value *UpdateLogicalNetworkACLDto
+type NullableCreateLogicalNetworkACL struct {
+	value *CreateLogicalNetworkACL
 	isSet bool
 }
 
-func (v NullableUpdateLogicalNetworkACLDto) Get() *UpdateLogicalNetworkACLDto {
+func (v NullableCreateLogicalNetworkACL) Get() *CreateLogicalNetworkACL {
 	return v.value
 }
 
-func (v *NullableUpdateLogicalNetworkACLDto) Set(val *UpdateLogicalNetworkACLDto) {
+func (v *NullableCreateLogicalNetworkACL) Set(val *CreateLogicalNetworkACL) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateLogicalNetworkACLDto) IsSet() bool {
+func (v NullableCreateLogicalNetworkACL) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateLogicalNetworkACLDto) Unset() {
+func (v *NullableCreateLogicalNetworkACL) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateLogicalNetworkACLDto(val *UpdateLogicalNetworkACLDto) *NullableUpdateLogicalNetworkACLDto {
-	return &NullableUpdateLogicalNetworkACLDto{value: val, isSet: true}
+func NewNullableCreateLogicalNetworkACL(val *CreateLogicalNetworkACL) *NullableCreateLogicalNetworkACL {
+	return &NullableCreateLogicalNetworkACL{value: val, isSet: true}
 }
 
-func (v NullableUpdateLogicalNetworkACLDto) MarshalJSON() ([]byte, error) {
+func (v NullableCreateLogicalNetworkACL) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateLogicalNetworkACLDto) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateLogicalNetworkACL) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

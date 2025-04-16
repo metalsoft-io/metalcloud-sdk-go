@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ## CreateServerInstanceGroupLogicalNetworkACL
 
-> LogicalNetworkACLDto CreateServerInstanceGroupLogicalNetworkACL(ctx, serverInstanceGroupId, connectionId).CreateLogicalNetworkACLDto(createLogicalNetworkACLDto).Execute()
+> LogicalNetworkACL CreateServerInstanceGroupLogicalNetworkACL(ctx, serverInstanceGroupId, connectionId).CreateLogicalNetworkACL(createLogicalNetworkACL).Execute()
 
 Create a security rule for a logical network
 
@@ -121,16 +121,16 @@ import (
 func main() {
 	serverInstanceGroupId := int32(56) // int32 | 
 	connectionId := int32(56) // int32 | 
-	createLogicalNetworkACLDto := *openapiclient.NewCreateLogicalNetworkACLDto("ipv4", "in", int32(1), "allow", "physical-interface-vlan-scoped") // CreateLogicalNetworkACLDto | The security rule to create
+	createLogicalNetworkACL := *openapiclient.NewCreateLogicalNetworkACL(openapiclient.ACLType("ipv4"), openapiclient.ACLDirection("in"), int32(1), openapiclient.ACLForwardingAction("allow"), openapiclient.ACLEnforcementPoint("svi")) // CreateLogicalNetworkACL | The security rule to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceGroupAPI.CreateServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId).CreateLogicalNetworkACLDto(createLogicalNetworkACLDto).Execute()
+	resp, r, err := apiClient.ServerInstanceGroupAPI.CreateServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId).CreateLogicalNetworkACL(createLogicalNetworkACL).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.CreateServerInstanceGroupLogicalNetworkACL``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateServerInstanceGroupLogicalNetworkACL`: LogicalNetworkACLDto
+	// response from `CreateServerInstanceGroupLogicalNetworkACL`: LogicalNetworkACL
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.CreateServerInstanceGroupLogicalNetworkACL`: %v\n", resp)
 }
 ```
@@ -153,11 +153,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **createLogicalNetworkACLDto** | [**CreateLogicalNetworkACLDto**](CreateLogicalNetworkACLDto.md) | The security rule to create | 
+ **createLogicalNetworkACL** | [**CreateLogicalNetworkACL**](CreateLogicalNetworkACL.md) | The security rule to create | 
 
 ### Return type
 
-[**LogicalNetworkACLDto**](LogicalNetworkACLDto.md)
+[**LogicalNetworkACL**](LogicalNetworkACL.md)
 
 ### Authorization
 
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 ## CreateServerInstanceGroupNetworkConfigurationConnection
 
-> ServerInstanceGroupNetworkConnectionDto CreateServerInstanceGroupNetworkConfigurationConnection(ctx, serverInstanceGroupId).CreateServerInstanceGroupNetworkConnectionDto(createServerInstanceGroupNetworkConnectionDto).Execute()
+> ServerInstanceGroupNetworkConnection CreateServerInstanceGroupNetworkConfigurationConnection(ctx, serverInstanceGroupId).CreateServerInstanceGroupNetworkConnection(createServerInstanceGroupNetworkConnection).Execute()
 
 Create a network connection for a server instance group
 
@@ -193,16 +193,16 @@ import (
 
 func main() {
 	serverInstanceGroupId := int32(56) // int32 | 
-	createServerInstanceGroupNetworkConnectionDto := *openapiclient.NewCreateServerInstanceGroupNetworkConnectionDto("1", true, "l2") // CreateServerInstanceGroupNetworkConnectionDto | The network connection object to create
+	createServerInstanceGroupNetworkConnection := *openapiclient.NewCreateServerInstanceGroupNetworkConnection("1", true, openapiclient.NetworkEndpointGroupAllowedAccessMode("l2")) // CreateServerInstanceGroupNetworkConnection | The network connection object to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceGroupAPI.CreateServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId).CreateServerInstanceGroupNetworkConnectionDto(createServerInstanceGroupNetworkConnectionDto).Execute()
+	resp, r, err := apiClient.ServerInstanceGroupAPI.CreateServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId).CreateServerInstanceGroupNetworkConnection(createServerInstanceGroupNetworkConnection).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.CreateServerInstanceGroupNetworkConfigurationConnection``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateServerInstanceGroupNetworkConfigurationConnection`: ServerInstanceGroupNetworkConnectionDto
+	// response from `CreateServerInstanceGroupNetworkConfigurationConnection`: ServerInstanceGroupNetworkConnection
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.CreateServerInstanceGroupNetworkConfigurationConnection`: %v\n", resp)
 }
 ```
@@ -223,11 +223,11 @@ Other parameters are passed through a pointer to a apiCreateServerInstanceGroupN
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createServerInstanceGroupNetworkConnectionDto** | [**CreateServerInstanceGroupNetworkConnectionDto**](CreateServerInstanceGroupNetworkConnectionDto.md) | The network connection object to create | 
+ **createServerInstanceGroupNetworkConnection** | [**CreateServerInstanceGroupNetworkConnection**](CreateServerInstanceGroupNetworkConnection.md) | The network connection object to create | 
 
 ### Return type
 
-[**ServerInstanceGroupNetworkConnectionDto**](ServerInstanceGroupNetworkConnectionDto.md)
+[**ServerInstanceGroupNetworkConnection**](ServerInstanceGroupNetworkConnection.md)
 
 ### Authorization
 
@@ -917,7 +917,7 @@ Name | Type | Description  | Notes
 
 ## GetServerInstanceGroupLogicalNetworkACL
 
-> LogicalNetworkACLDto GetServerInstanceGroupLogicalNetworkACL(ctx, serverInstanceGroupId, connectionId).Execute()
+> LogicalNetworkACL GetServerInstanceGroupLogicalNetworkACL(ctx, serverInstanceGroupId, connectionId).Execute()
 
 Get the security rules for a logical network
 
@@ -944,7 +944,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACL``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetServerInstanceGroupLogicalNetworkACL`: LogicalNetworkACLDto
+	// response from `GetServerInstanceGroupLogicalNetworkACL`: LogicalNetworkACL
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACL`: %v\n", resp)
 }
 ```
@@ -970,7 +970,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogicalNetworkACLDto**](LogicalNetworkACLDto.md)
+[**LogicalNetworkACL**](LogicalNetworkACL.md)
 
 ### Authorization
 
@@ -988,7 +988,7 @@ Name | Type | Description  | Notes
 
 ## GetServerInstanceGroupLogicalNetworkACLById
 
-> LogicalNetworkACLDto GetServerInstanceGroupLogicalNetworkACLById(ctx, serverInstanceGroupId, connectionId, ruleId).Execute()
+> LogicalNetworkACL GetServerInstanceGroupLogicalNetworkACLById(ctx, serverInstanceGroupId, connectionId, ruleId).Execute()
 
 Get a security rule for a logical network by id
 
@@ -1016,7 +1016,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACLById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetServerInstanceGroupLogicalNetworkACLById`: LogicalNetworkACLDto
+	// response from `GetServerInstanceGroupLogicalNetworkACLById`: LogicalNetworkACL
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupLogicalNetworkACLById`: %v\n", resp)
 }
 ```
@@ -1044,7 +1044,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogicalNetworkACLDto**](LogicalNetworkACLDto.md)
+[**LogicalNetworkACL**](LogicalNetworkACL.md)
 
 ### Authorization
 
@@ -1132,7 +1132,7 @@ Name | Type | Description  | Notes
 
 ## GetServerInstanceGroupNetworkConfigurationConnectionById
 
-> ServerInstanceGroupNetworkConnectionDto GetServerInstanceGroupNetworkConfigurationConnectionById(ctx, serverInstanceGroupId, connectionId).Execute()
+> ServerInstanceGroupNetworkConnection GetServerInstanceGroupNetworkConfigurationConnectionById(ctx, serverInstanceGroupId, connectionId).Execute()
 
 Get server instance group network configuration connection by id
 
@@ -1161,7 +1161,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnectionById``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetServerInstanceGroupNetworkConfigurationConnectionById`: ServerInstanceGroupNetworkConnectionDto
+	// response from `GetServerInstanceGroupNetworkConfigurationConnectionById`: ServerInstanceGroupNetworkConnection
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.GetServerInstanceGroupNetworkConfigurationConnectionById`: %v\n", resp)
 }
 ```
@@ -1187,7 +1187,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ServerInstanceGroupNetworkConnectionDto**](ServerInstanceGroupNetworkConnectionDto.md)
+[**ServerInstanceGroupNetworkConnection**](ServerInstanceGroupNetworkConnection.md)
 
 ### Authorization
 
@@ -1441,7 +1441,7 @@ Name | Type | Description  | Notes
 
 ## UpdateServerInstanceGroupLogicalNetworkACL
 
-> LogicalNetworkACLDto UpdateServerInstanceGroupLogicalNetworkACL(ctx, serverInstanceGroupId, connectionId, ruleId).UpdateLogicalNetworkACLDto(updateLogicalNetworkACLDto).Execute()
+> LogicalNetworkACL UpdateServerInstanceGroupLogicalNetworkACL(ctx, serverInstanceGroupId, connectionId, ruleId).UpdateLogicalNetworkACL(updateLogicalNetworkACL).Execute()
 
 Update a security rule for a logical network
 
@@ -1461,16 +1461,16 @@ func main() {
 	serverInstanceGroupId := int32(56) // int32 | 
 	connectionId := int32(56) // int32 | 
 	ruleId := int32(56) // int32 | 
-	updateLogicalNetworkACLDto := *openapiclient.NewUpdateLogicalNetworkACLDto() // UpdateLogicalNetworkACLDto | The security rule to update
+	updateLogicalNetworkACL := *openapiclient.NewUpdateLogicalNetworkACL() // UpdateLogicalNetworkACL | The security rule to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId, ruleId).UpdateLogicalNetworkACLDto(updateLogicalNetworkACLDto).Execute()
+	resp, r, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupLogicalNetworkACL(context.Background(), serverInstanceGroupId, connectionId, ruleId).UpdateLogicalNetworkACL(updateLogicalNetworkACL).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.UpdateServerInstanceGroupLogicalNetworkACL``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateServerInstanceGroupLogicalNetworkACL`: LogicalNetworkACLDto
+	// response from `UpdateServerInstanceGroupLogicalNetworkACL`: LogicalNetworkACL
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.UpdateServerInstanceGroupLogicalNetworkACL`: %v\n", resp)
 }
 ```
@@ -1495,11 +1495,11 @@ Name | Type | Description  | Notes
 
 
 
- **updateLogicalNetworkACLDto** | [**UpdateLogicalNetworkACLDto**](UpdateLogicalNetworkACLDto.md) | The security rule to update | 
+ **updateLogicalNetworkACL** | [**UpdateLogicalNetworkACL**](UpdateLogicalNetworkACL.md) | The security rule to update | 
 
 ### Return type
 
-[**LogicalNetworkACLDto**](LogicalNetworkACLDto.md)
+[**LogicalNetworkACL**](LogicalNetworkACL.md)
 
 ### Authorization
 
@@ -1655,7 +1655,7 @@ Name | Type | Description  | Notes
 
 ## UpdateServerInstanceGroupNetworkConfigurationConnection
 
-> ServerInstanceGroupNetworkConnectionDto UpdateServerInstanceGroupNetworkConfigurationConnection(ctx, serverInstanceGroupId, connectionId).UpdateNetworkEndpointGroupLogicalNetworkDto(updateNetworkEndpointGroupLogicalNetworkDto).Execute()
+> ServerInstanceGroupNetworkConnection UpdateServerInstanceGroupNetworkConfigurationConnection(ctx, serverInstanceGroupId, connectionId).UpdateNetworkEndpointGroupLogicalNetwork(updateNetworkEndpointGroupLogicalNetwork).Execute()
 
 Update a network connection for a server instance group
 
@@ -1674,16 +1674,16 @@ import (
 func main() {
 	serverInstanceGroupId := int32(56) // int32 | 
 	connectionId := float32(8.14) // float32 | 
-	updateNetworkEndpointGroupLogicalNetworkDto := *openapiclient.NewUpdateNetworkEndpointGroupLogicalNetworkDto() // UpdateNetworkEndpointGroupLogicalNetworkDto | The network connection object to update
+	updateNetworkEndpointGroupLogicalNetwork := *openapiclient.NewUpdateNetworkEndpointGroupLogicalNetwork() // UpdateNetworkEndpointGroupLogicalNetwork | The network connection object to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId, connectionId).UpdateNetworkEndpointGroupLogicalNetworkDto(updateNetworkEndpointGroupLogicalNetworkDto).Execute()
+	resp, r, err := apiClient.ServerInstanceGroupAPI.UpdateServerInstanceGroupNetworkConfigurationConnection(context.Background(), serverInstanceGroupId, connectionId).UpdateNetworkEndpointGroupLogicalNetwork(updateNetworkEndpointGroupLogicalNetwork).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceGroupAPI.UpdateServerInstanceGroupNetworkConfigurationConnection``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateServerInstanceGroupNetworkConfigurationConnection`: ServerInstanceGroupNetworkConnectionDto
+	// response from `UpdateServerInstanceGroupNetworkConfigurationConnection`: ServerInstanceGroupNetworkConnection
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceGroupAPI.UpdateServerInstanceGroupNetworkConfigurationConnection`: %v\n", resp)
 }
 ```
@@ -1706,11 +1706,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkEndpointGroupLogicalNetworkDto** | [**UpdateNetworkEndpointGroupLogicalNetworkDto**](UpdateNetworkEndpointGroupLogicalNetworkDto.md) | The network connection object to update | 
+ **updateNetworkEndpointGroupLogicalNetwork** | [**UpdateNetworkEndpointGroupLogicalNetwork**](UpdateNetworkEndpointGroupLogicalNetwork.md) | The network connection object to update | 
 
 ### Return type
 
-[**ServerInstanceGroupNetworkConnectionDto**](ServerInstanceGroupNetworkConnectionDto.md)
+[**ServerInstanceGroupNetworkConnection**](ServerInstanceGroupNetworkConnection.md)
 
 ### Authorization
 

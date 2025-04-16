@@ -205,7 +205,7 @@ Other parameters are passed through a pointer to a apiGenerateUser2FASecretReque
 
 ## GetUserApiKey
 
-> UserApiKey GetUserApiKey(ctx, userId).Execute()
+> UserApiKey GetUserApiKey(ctx).Execute()
 
 Get user API key
 
@@ -222,11 +222,10 @@ import (
 )
 
 func main() {
-	userId := float32(8.14) // float32 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.GetUserApiKey(context.Background(), userId).Execute()
+	resp, r, err := apiClient.UserAPI.GetUserApiKey(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.GetUserApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -238,19 +237,11 @@ func main() {
 
 ### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **float32** |  | 
+This endpoint does not need any parameter.
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetUserApiKeyRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
 
 
 ### Return type

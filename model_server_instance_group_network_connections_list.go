@@ -21,7 +21,7 @@ var _ MappedNullable = &ServerInstanceGroupNetworkConnectionsList{}
 
 // ServerInstanceGroupNetworkConnectionsList struct for ServerInstanceGroupNetworkConnectionsList
 type ServerInstanceGroupNetworkConnectionsList struct {
-	Data []ServerInstanceGroupNetworkConnectionDto `json:"data"`
+	Data []ServerInstanceGroupNetworkConnection `json:"data"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -33,7 +33,7 @@ type _ServerInstanceGroupNetworkConnectionsList ServerInstanceGroupNetworkConnec
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroupNetworkConnectionsList(data []ServerInstanceGroupNetworkConnectionDto) *ServerInstanceGroupNetworkConnectionsList {
+func NewServerInstanceGroupNetworkConnectionsList(data []ServerInstanceGroupNetworkConnection) *ServerInstanceGroupNetworkConnectionsList {
 	this := ServerInstanceGroupNetworkConnectionsList{}
 	this.Data = data
 	return &this
@@ -48,9 +48,9 @@ func NewServerInstanceGroupNetworkConnectionsListWithDefaults() *ServerInstanceG
 }
 
 // GetData returns the Data field value
-func (o *ServerInstanceGroupNetworkConnectionsList) GetData() []ServerInstanceGroupNetworkConnectionDto {
+func (o *ServerInstanceGroupNetworkConnectionsList) GetData() []ServerInstanceGroupNetworkConnection {
 	if o == nil {
-		var ret []ServerInstanceGroupNetworkConnectionDto
+		var ret []ServerInstanceGroupNetworkConnection
 		return ret
 	}
 
@@ -59,7 +59,7 @@ func (o *ServerInstanceGroupNetworkConnectionsList) GetData() []ServerInstanceGr
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupNetworkConnectionsList) GetDataOk() ([]ServerInstanceGroupNetworkConnectionDto, bool) {
+func (o *ServerInstanceGroupNetworkConnectionsList) GetDataOk() ([]ServerInstanceGroupNetworkConnection, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *ServerInstanceGroupNetworkConnectionsList) GetDataOk() ([]ServerInstanc
 }
 
 // SetData sets field value
-func (o *ServerInstanceGroupNetworkConnectionsList) SetData(v []ServerInstanceGroupNetworkConnectionDto) {
+func (o *ServerInstanceGroupNetworkConnectionsList) SetData(v []ServerInstanceGroupNetworkConnection) {
 	o.Data = v
 }
 

@@ -17,7 +17,6 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 )
 
 
@@ -327,7 +326,6 @@ func (a *UserAPIService) GenerateUser2FASecretExecute(r UserAPIGenerateUser2FASe
 type UserAPIGetUserApiKeyRequest struct {
 	ctx context.Context
 	ApiService *UserAPIService
-	userId float32
 }
 
 func (r UserAPIGetUserApiKeyRequest) Execute() (*UserApiKey, *http.Response, error) {
@@ -338,14 +336,12 @@ func (r UserAPIGetUserApiKeyRequest) Execute() (*UserApiKey, *http.Response, err
 GetUserApiKey Get user API key
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userId
  @return UserAPIGetUserApiKeyRequest
 */
-func (a *UserAPIService) GetUserApiKey(ctx context.Context, userId float32) UserAPIGetUserApiKeyRequest {
+func (a *UserAPIService) GetUserApiKey(ctx context.Context) UserAPIGetUserApiKeyRequest {
 	return UserAPIGetUserApiKeyRequest{
 		ApiService: a,
 		ctx: ctx,
-		userId: userId,
 	}
 }
 
@@ -365,7 +361,6 @@ func (a *UserAPIService) GetUserApiKeyExecute(r UserAPIGetUserApiKeyRequest) (*U
 	}
 
 	localVarPath := localBasePath + "/api/v2/user/api-key"
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

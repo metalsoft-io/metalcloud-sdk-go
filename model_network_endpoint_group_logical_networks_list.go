@@ -21,7 +21,7 @@ var _ MappedNullable = &NetworkEndpointGroupLogicalNetworksList{}
 
 // NetworkEndpointGroupLogicalNetworksList struct for NetworkEndpointGroupLogicalNetworksList
 type NetworkEndpointGroupLogicalNetworksList struct {
-	Data []NetworkEndpointGroupLogicalNetworkDto `json:"data"`
+	Data []NetworkEndpointGroupLogicalNetwork `json:"data"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -33,7 +33,7 @@ type _NetworkEndpointGroupLogicalNetworksList NetworkEndpointGroupLogicalNetwork
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkEndpointGroupLogicalNetworksList(data []NetworkEndpointGroupLogicalNetworkDto) *NetworkEndpointGroupLogicalNetworksList {
+func NewNetworkEndpointGroupLogicalNetworksList(data []NetworkEndpointGroupLogicalNetwork) *NetworkEndpointGroupLogicalNetworksList {
 	this := NetworkEndpointGroupLogicalNetworksList{}
 	this.Data = data
 	return &this
@@ -48,9 +48,9 @@ func NewNetworkEndpointGroupLogicalNetworksListWithDefaults() *NetworkEndpointGr
 }
 
 // GetData returns the Data field value
-func (o *NetworkEndpointGroupLogicalNetworksList) GetData() []NetworkEndpointGroupLogicalNetworkDto {
+func (o *NetworkEndpointGroupLogicalNetworksList) GetData() []NetworkEndpointGroupLogicalNetwork {
 	if o == nil {
-		var ret []NetworkEndpointGroupLogicalNetworkDto
+		var ret []NetworkEndpointGroupLogicalNetwork
 		return ret
 	}
 
@@ -59,7 +59,7 @@ func (o *NetworkEndpointGroupLogicalNetworksList) GetData() []NetworkEndpointGro
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *NetworkEndpointGroupLogicalNetworksList) GetDataOk() ([]NetworkEndpointGroupLogicalNetworkDto, bool) {
+func (o *NetworkEndpointGroupLogicalNetworksList) GetDataOk() ([]NetworkEndpointGroupLogicalNetwork, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *NetworkEndpointGroupLogicalNetworksList) GetDataOk() ([]NetworkEndpoint
 }
 
 // SetData sets field value
-func (o *NetworkEndpointGroupLogicalNetworksList) SetData(v []NetworkEndpointGroupLogicalNetworkDto) {
+func (o *NetworkEndpointGroupLogicalNetworksList) SetData(v []NetworkEndpointGroupLogicalNetwork) {
 	o.Data = v
 }
 

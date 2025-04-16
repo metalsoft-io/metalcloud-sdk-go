@@ -26,7 +26,7 @@ type CreateNetworkEndpointGroupLogicalNetwork struct {
 	// Whether the logical network is tagged.
 	Tagged bool `json:"tagged"`
 	// The access mode of the network endpoint group
-	AccessMode string `json:"accessMode"`
+	AccessMode NetworkEndpointGroupAllowedAccessMode `json:"accessMode"`
 	// The redundancy configuration
 	Redundancy NullableRedundancyConfig `json:"redundancy,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -38,7 +38,7 @@ type _CreateNetworkEndpointGroupLogicalNetwork CreateNetworkEndpointGroupLogical
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateNetworkEndpointGroupLogicalNetwork(logicalNetworkId string, tagged bool, accessMode string) *CreateNetworkEndpointGroupLogicalNetwork {
+func NewCreateNetworkEndpointGroupLogicalNetwork(logicalNetworkId string, tagged bool, accessMode NetworkEndpointGroupAllowedAccessMode) *CreateNetworkEndpointGroupLogicalNetwork {
 	this := CreateNetworkEndpointGroupLogicalNetwork{}
 	this.LogicalNetworkId = logicalNetworkId
 	this.Tagged = tagged
@@ -103,9 +103,9 @@ func (o *CreateNetworkEndpointGroupLogicalNetwork) SetTagged(v bool) {
 }
 
 // GetAccessMode returns the AccessMode field value
-func (o *CreateNetworkEndpointGroupLogicalNetwork) GetAccessMode() string {
+func (o *CreateNetworkEndpointGroupLogicalNetwork) GetAccessMode() NetworkEndpointGroupAllowedAccessMode {
 	if o == nil {
-		var ret string
+		var ret NetworkEndpointGroupAllowedAccessMode
 		return ret
 	}
 
@@ -114,7 +114,7 @@ func (o *CreateNetworkEndpointGroupLogicalNetwork) GetAccessMode() string {
 
 // GetAccessModeOk returns a tuple with the AccessMode field value
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkEndpointGroupLogicalNetwork) GetAccessModeOk() (*string, bool) {
+func (o *CreateNetworkEndpointGroupLogicalNetwork) GetAccessModeOk() (*NetworkEndpointGroupAllowedAccessMode, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -122,7 +122,7 @@ func (o *CreateNetworkEndpointGroupLogicalNetwork) GetAccessModeOk() (*string, b
 }
 
 // SetAccessMode sets field value
-func (o *CreateNetworkEndpointGroupLogicalNetwork) SetAccessMode(v string) {
+func (o *CreateNetworkEndpointGroupLogicalNetwork) SetAccessMode(v NetworkEndpointGroupAllowedAccessMode) {
 	o.AccessMode = v
 }
 

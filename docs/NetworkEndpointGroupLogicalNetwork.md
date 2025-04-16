@@ -1,4 +1,4 @@
-# NetworkEndpointGroupLogicalNetworkDto
+# NetworkEndpointGroupLogicalNetwork
 
 ## Properties
 
@@ -6,166 +6,166 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LogicalNetworkId** | **string** | The logical network ID. | 
 **Tagged** | **bool** | Whether the logical network is tagged. | 
-**AccessMode** | **string** | The access mode of the network endpoint group | 
+**AccessMode** | [**NetworkEndpointGroupAllowedAccessMode**](NetworkEndpointGroupAllowedAccessMode.md) | The access mode of the network endpoint group | 
 **Redundancy** | Pointer to [**NullableRedundancyConfig**](RedundancyConfig.md) | The redundancy configuration | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 **NetworkEndpointGroupId** | **string** | The network endpoint group ID. | 
 
 ## Methods
 
-### NewNetworkEndpointGroupLogicalNetworkDto
+### NewNetworkEndpointGroupLogicalNetwork
 
-`func NewNetworkEndpointGroupLogicalNetworkDto(logicalNetworkId string, tagged bool, accessMode string, networkEndpointGroupId string, ) *NetworkEndpointGroupLogicalNetworkDto`
+`func NewNetworkEndpointGroupLogicalNetwork(logicalNetworkId string, tagged bool, accessMode NetworkEndpointGroupAllowedAccessMode, networkEndpointGroupId string, ) *NetworkEndpointGroupLogicalNetwork`
 
-NewNetworkEndpointGroupLogicalNetworkDto instantiates a new NetworkEndpointGroupLogicalNetworkDto object
+NewNetworkEndpointGroupLogicalNetwork instantiates a new NetworkEndpointGroupLogicalNetwork object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewNetworkEndpointGroupLogicalNetworkDtoWithDefaults
+### NewNetworkEndpointGroupLogicalNetworkWithDefaults
 
-`func NewNetworkEndpointGroupLogicalNetworkDtoWithDefaults() *NetworkEndpointGroupLogicalNetworkDto`
+`func NewNetworkEndpointGroupLogicalNetworkWithDefaults() *NetworkEndpointGroupLogicalNetwork`
 
-NewNetworkEndpointGroupLogicalNetworkDtoWithDefaults instantiates a new NetworkEndpointGroupLogicalNetworkDto object
+NewNetworkEndpointGroupLogicalNetworkWithDefaults instantiates a new NetworkEndpointGroupLogicalNetwork object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetLogicalNetworkId
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) GetLogicalNetworkId() string`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetLogicalNetworkId() string`
 
 GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkIdOk
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) GetLogicalNetworkIdOk() (*string, bool)`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetLogicalNetworkIdOk() (*string, bool)`
 
 GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkId
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) SetLogicalNetworkId(v string)`
+`func (o *NetworkEndpointGroupLogicalNetwork) SetLogicalNetworkId(v string)`
 
 SetLogicalNetworkId sets LogicalNetworkId field to given value.
 
 
 ### GetTagged
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) GetTagged() bool`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetTagged() bool`
 
 GetTagged returns the Tagged field if non-nil, zero value otherwise.
 
 ### GetTaggedOk
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) GetTaggedOk() (*bool, bool)`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetTaggedOk() (*bool, bool)`
 
 GetTaggedOk returns a tuple with the Tagged field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTagged
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) SetTagged(v bool)`
+`func (o *NetworkEndpointGroupLogicalNetwork) SetTagged(v bool)`
 
 SetTagged sets Tagged field to given value.
 
 
 ### GetAccessMode
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) GetAccessMode() string`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetAccessMode() NetworkEndpointGroupAllowedAccessMode`
 
 GetAccessMode returns the AccessMode field if non-nil, zero value otherwise.
 
 ### GetAccessModeOk
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) GetAccessModeOk() (*string, bool)`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetAccessModeOk() (*NetworkEndpointGroupAllowedAccessMode, bool)`
 
 GetAccessModeOk returns a tuple with the AccessMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccessMode
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) SetAccessMode(v string)`
+`func (o *NetworkEndpointGroupLogicalNetwork) SetAccessMode(v NetworkEndpointGroupAllowedAccessMode)`
 
 SetAccessMode sets AccessMode field to given value.
 
 
 ### GetRedundancy
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) GetRedundancy() RedundancyConfig`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetRedundancy() RedundancyConfig`
 
 GetRedundancy returns the Redundancy field if non-nil, zero value otherwise.
 
 ### GetRedundancyOk
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) GetRedundancyOk() (*RedundancyConfig, bool)`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetRedundancyOk() (*RedundancyConfig, bool)`
 
 GetRedundancyOk returns a tuple with the Redundancy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRedundancy
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) SetRedundancy(v RedundancyConfig)`
+`func (o *NetworkEndpointGroupLogicalNetwork) SetRedundancy(v RedundancyConfig)`
 
 SetRedundancy sets Redundancy field to given value.
 
 ### HasRedundancy
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) HasRedundancy() bool`
+`func (o *NetworkEndpointGroupLogicalNetwork) HasRedundancy() bool`
 
 HasRedundancy returns a boolean if a field has been set.
 
 ### SetRedundancyNil
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) SetRedundancyNil(b bool)`
+`func (o *NetworkEndpointGroupLogicalNetwork) SetRedundancyNil(b bool)`
 
  SetRedundancyNil sets the value for Redundancy to be an explicit nil
 
 ### UnsetRedundancy
-`func (o *NetworkEndpointGroupLogicalNetworkDto) UnsetRedundancy()`
+`func (o *NetworkEndpointGroupLogicalNetwork) UnsetRedundancy()`
 
 UnsetRedundancy ensures that no value is present for Redundancy, not even an explicit nil
 ### GetLinks
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) GetLinks() []Link`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) GetLinksOk() (*[]Link, bool)`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) SetLinks(v []Link)`
+`func (o *NetworkEndpointGroupLogicalNetwork) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 
 ### HasLinks
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) HasLinks() bool`
+`func (o *NetworkEndpointGroupLogicalNetwork) HasLinks() bool`
 
 HasLinks returns a boolean if a field has been set.
 
 ### GetNetworkEndpointGroupId
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) GetNetworkEndpointGroupId() string`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetNetworkEndpointGroupId() string`
 
 GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field if non-nil, zero value otherwise.
 
 ### GetNetworkEndpointGroupIdOk
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) GetNetworkEndpointGroupIdOk() (*string, bool)`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetNetworkEndpointGroupIdOk() (*string, bool)`
 
 GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkEndpointGroupId
 
-`func (o *NetworkEndpointGroupLogicalNetworkDto) SetNetworkEndpointGroupId(v string)`
+`func (o *NetworkEndpointGroupLogicalNetwork) SetNetworkEndpointGroupId(v string)`
 
 SetNetworkEndpointGroupId sets NetworkEndpointGroupId field to given value.
 

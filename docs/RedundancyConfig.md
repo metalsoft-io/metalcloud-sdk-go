@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Mode** | **string** | The redundancy mode | 
+**Mode** | [**NetworkEndpointGroupRedundancyMode**](NetworkEndpointGroupRedundancyMode.md) | The redundancy mode | 
 **Implementation** | Pointer to [**NullableRedundancyImplementation**](RedundancyImplementation.md) | The redundancy implementation configuration | [optional] 
 
 ## Methods
 
 ### NewRedundancyConfig
 
-`func NewRedundancyConfig(mode string, ) *RedundancyConfig`
+`func NewRedundancyConfig(mode NetworkEndpointGroupRedundancyMode, ) *RedundancyConfig`
 
 NewRedundancyConfig instantiates a new RedundancyConfig object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetMode
 
-`func (o *RedundancyConfig) GetMode() string`
+`func (o *RedundancyConfig) GetMode() NetworkEndpointGroupRedundancyMode`
 
 GetMode returns the Mode field if non-nil, zero value otherwise.
 
 ### GetModeOk
 
-`func (o *RedundancyConfig) GetModeOk() (*string, bool)`
+`func (o *RedundancyConfig) GetModeOk() (*NetworkEndpointGroupRedundancyMode, bool)`
 
 GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMode
 
-`func (o *RedundancyConfig) SetMode(v string)`
+`func (o *RedundancyConfig) SetMode(v NetworkEndpointGroupRedundancyMode)`
 
 SetMode sets Mode field to given value.
 

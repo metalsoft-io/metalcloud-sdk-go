@@ -37,7 +37,7 @@ import (
 
 func main() {
 	networkEndpointGroupId := int32(56) // int32 | The ID of the network endpoint group
-	createNetworkEndpointGroupLogicalNetwork := *openapiclient.NewCreateNetworkEndpointGroupLogicalNetwork("1", true, "l2") // CreateNetworkEndpointGroupLogicalNetwork | The logical network id and settings to add to the network endpoint group
+	createNetworkEndpointGroupLogicalNetwork := *openapiclient.NewCreateNetworkEndpointGroupLogicalNetwork("1", true, openapiclient.NetworkEndpointGroupAllowedAccessMode("l2")) // CreateNetworkEndpointGroupLogicalNetwork | The logical network id and settings to add to the network endpoint group
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkEndpointGroupLogicalNetwork
 
-> NetworkEndpointGroupLogicalNetworkDto GetNetworkEndpointGroupLogicalNetwork(ctx, networkEndpointGroupId, logicalNetworkId).Execute()
+> NetworkEndpointGroupLogicalNetwork GetNetworkEndpointGroupLogicalNetwork(ctx, networkEndpointGroupId, logicalNetworkId).Execute()
 
 Get a logical network by its ID
 
@@ -312,7 +312,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkEndpointGroupAPI.GetNetworkEndpointGroupLogicalNetwork``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetNetworkEndpointGroupLogicalNetwork`: NetworkEndpointGroupLogicalNetworkDto
+	// response from `GetNetworkEndpointGroupLogicalNetwork`: NetworkEndpointGroupLogicalNetwork
 	fmt.Fprintf(os.Stdout, "Response from `NetworkEndpointGroupAPI.GetNetworkEndpointGroupLogicalNetwork`: %v\n", resp)
 }
 ```
@@ -338,7 +338,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NetworkEndpointGroupLogicalNetworkDto**](NetworkEndpointGroupLogicalNetworkDto.md)
+[**NetworkEndpointGroupLogicalNetwork**](NetworkEndpointGroupLogicalNetwork.md)
 
 ### Authorization
 
@@ -508,7 +508,7 @@ Name | Type | Description  | Notes
 
 ## RemoveLogicalNetworkFromNetworkEndpointGroup
 
-> NetworkEndpointGroupLogicalNetworkDto RemoveLogicalNetworkFromNetworkEndpointGroup(ctx, networkEndpointGroupId, logicalNetworkId).Execute()
+> NetworkEndpointGroupLogicalNetwork RemoveLogicalNetworkFromNetworkEndpointGroup(ctx, networkEndpointGroupId, logicalNetworkId).Execute()
 
 Remove a logical network from a network endpoint group
 
@@ -535,7 +535,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkEndpointGroupAPI.RemoveLogicalNetworkFromNetworkEndpointGroup``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemoveLogicalNetworkFromNetworkEndpointGroup`: NetworkEndpointGroupLogicalNetworkDto
+	// response from `RemoveLogicalNetworkFromNetworkEndpointGroup`: NetworkEndpointGroupLogicalNetwork
 	fmt.Fprintf(os.Stdout, "Response from `NetworkEndpointGroupAPI.RemoveLogicalNetworkFromNetworkEndpointGroup`: %v\n", resp)
 }
 ```
@@ -561,7 +561,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NetworkEndpointGroupLogicalNetworkDto**](NetworkEndpointGroupLogicalNetworkDto.md)
+[**NetworkEndpointGroupLogicalNetwork**](NetworkEndpointGroupLogicalNetwork.md)
 
 ### Authorization
 
@@ -651,7 +651,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkEndpointGroupLogicalNetwork
 
-> NetworkEndpointGroupLogicalNetworkDto UpdateNetworkEndpointGroupLogicalNetwork(ctx, networkEndpointGroupId, logicalNetworkId).UpdateNetworkEndpointGroupLogicalNetworkDto(updateNetworkEndpointGroupLogicalNetworkDto).IfMatch(ifMatch).Execute()
+> NetworkEndpointGroupLogicalNetwork UpdateNetworkEndpointGroupLogicalNetwork(ctx, networkEndpointGroupId, logicalNetworkId).UpdateNetworkEndpointGroupLogicalNetwork(updateNetworkEndpointGroupLogicalNetwork).IfMatch(ifMatch).Execute()
 
 Update a logical network in a network endpoint group
 
@@ -670,17 +670,17 @@ import (
 func main() {
 	networkEndpointGroupId := int32(56) // int32 | The ID of the network endpoint group
 	logicalNetworkId := int32(56) // int32 | The ID of the logical network
-	updateNetworkEndpointGroupLogicalNetworkDto := *openapiclient.NewUpdateNetworkEndpointGroupLogicalNetworkDto() // UpdateNetworkEndpointGroupLogicalNetworkDto | The logical network id and settings to add to the network endpoint group
+	updateNetworkEndpointGroupLogicalNetwork := *openapiclient.NewUpdateNetworkEndpointGroupLogicalNetwork() // UpdateNetworkEndpointGroupLogicalNetwork | The logical network id and settings to add to the network endpoint group
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkEndpointGroupAPI.UpdateNetworkEndpointGroupLogicalNetwork(context.Background(), networkEndpointGroupId, logicalNetworkId).UpdateNetworkEndpointGroupLogicalNetworkDto(updateNetworkEndpointGroupLogicalNetworkDto).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.NetworkEndpointGroupAPI.UpdateNetworkEndpointGroupLogicalNetwork(context.Background(), networkEndpointGroupId, logicalNetworkId).UpdateNetworkEndpointGroupLogicalNetwork(updateNetworkEndpointGroupLogicalNetwork).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkEndpointGroupAPI.UpdateNetworkEndpointGroupLogicalNetwork``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateNetworkEndpointGroupLogicalNetwork`: NetworkEndpointGroupLogicalNetworkDto
+	// response from `UpdateNetworkEndpointGroupLogicalNetwork`: NetworkEndpointGroupLogicalNetwork
 	fmt.Fprintf(os.Stdout, "Response from `NetworkEndpointGroupAPI.UpdateNetworkEndpointGroupLogicalNetwork`: %v\n", resp)
 }
 ```
@@ -703,12 +703,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkEndpointGroupLogicalNetworkDto** | [**UpdateNetworkEndpointGroupLogicalNetworkDto**](UpdateNetworkEndpointGroupLogicalNetworkDto.md) | The logical network id and settings to add to the network endpoint group | 
+ **updateNetworkEndpointGroupLogicalNetwork** | [**UpdateNetworkEndpointGroupLogicalNetwork**](UpdateNetworkEndpointGroupLogicalNetwork.md) | The logical network id and settings to add to the network endpoint group | 
  **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
-[**NetworkEndpointGroupLogicalNetworkDto**](NetworkEndpointGroupLogicalNetworkDto.md)
+[**NetworkEndpointGroupLogicalNetwork**](NetworkEndpointGroupLogicalNetwork.md)
 
 ### Authorization
 

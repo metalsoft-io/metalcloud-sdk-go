@@ -21,7 +21,7 @@ var _ MappedNullable = &FileSharePaginatedList{}
 
 // FileSharePaginatedList struct for FileSharePaginatedList
 type FileSharePaginatedList struct {
-	Data []FileShareExtendedInfo `json:"data"`
+	Data []FileShare `json:"data"`
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
@@ -35,7 +35,7 @@ type _FileSharePaginatedList FileSharePaginatedList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFileSharePaginatedList(data []FileShareExtendedInfo, meta PaginatedResponseMeta, links PaginatedResponseLinks) *FileSharePaginatedList {
+func NewFileSharePaginatedList(data []FileShare, meta PaginatedResponseMeta, links PaginatedResponseLinks) *FileSharePaginatedList {
 	this := FileSharePaginatedList{}
 	this.Data = data
 	this.Meta = meta
@@ -52,9 +52,9 @@ func NewFileSharePaginatedListWithDefaults() *FileSharePaginatedList {
 }
 
 // GetData returns the Data field value
-func (o *FileSharePaginatedList) GetData() []FileShareExtendedInfo {
+func (o *FileSharePaginatedList) GetData() []FileShare {
 	if o == nil {
-		var ret []FileShareExtendedInfo
+		var ret []FileShare
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *FileSharePaginatedList) GetData() []FileShareExtendedInfo {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *FileSharePaginatedList) GetDataOk() ([]FileShareExtendedInfo, bool) {
+func (o *FileSharePaginatedList) GetDataOk() ([]FileShare, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *FileSharePaginatedList) GetDataOk() ([]FileShareExtendedInfo, bool) {
 }
 
 // SetData sets field value
-func (o *FileSharePaginatedList) SetData(v []FileShareExtendedInfo) {
+func (o *FileSharePaginatedList) SetData(v []FileShare) {
 	o.Data = v
 }
 

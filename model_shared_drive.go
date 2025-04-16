@@ -45,6 +45,8 @@ type SharedDrive struct {
 	Revision float32 `json:"revision"`
 	// Infrastructure id of the Drive
 	InfrastructureId float32 `json:"infrastructureId"`
+	// Infrastructure information
+	Infrastructure ParentInfrastructureDto `json:"infrastructure"`
 	// Service status of the Drive
 	ServiceStatus string `json:"serviceStatus"`
 	// Cached information of the real size of the storage in MB.
@@ -83,7 +85,7 @@ type _SharedDrive SharedDrive
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string, meta SharedDriveMeta) *SharedDrive {
+func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructureDto, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string, meta SharedDriveMeta) *SharedDrive {
 	this := SharedDrive{}
 	this.Label = label
 	this.SizeMb = sizeMb
@@ -92,6 +94,7 @@ func NewSharedDrive(label string, sizeMb float32, storageType string, updatedTim
 	this.Id = id
 	this.Revision = revision
 	this.InfrastructureId = infrastructureId
+	this.Infrastructure = infrastructure
 	this.ServiceStatus = serviceStatus
 	this.StorageUpdatedTimestamp = storageUpdatedTimestamp
 	this.AllocationAffinity = allocationAffinity
@@ -438,6 +441,30 @@ func (o *SharedDrive) GetInfrastructureIdOk() (*float32, bool) {
 // SetInfrastructureId sets field value
 func (o *SharedDrive) SetInfrastructureId(v float32) {
 	o.InfrastructureId = v
+}
+
+// GetInfrastructure returns the Infrastructure field value
+func (o *SharedDrive) GetInfrastructure() ParentInfrastructureDto {
+	if o == nil {
+		var ret ParentInfrastructureDto
+		return ret
+	}
+
+	return o.Infrastructure
+}
+
+// GetInfrastructureOk returns a tuple with the Infrastructure field value
+// and a boolean to check if the value has been set.
+func (o *SharedDrive) GetInfrastructureOk() (*ParentInfrastructureDto, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Infrastructure, true
+}
+
+// SetInfrastructure sets field value
+func (o *SharedDrive) SetInfrastructure(v ParentInfrastructureDto) {
+	o.Infrastructure = v
 }
 
 // GetServiceStatus returns the ServiceStatus field value
@@ -896,6 +923,7 @@ func (o SharedDrive) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["infrastructureId"] = o.InfrastructureId
+	toSerialize["infrastructure"] = o.Infrastructure
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	if !IsNil(o.StorageRealSizeCachedMb) {
 		toSerialize["storageRealSizeCachedMb"] = o.StorageRealSizeCachedMb
@@ -947,6 +975,7 @@ func (o *SharedDrive) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"revision",
 		"infrastructureId",
+		"infrastructure",
 		"serviceStatus",
 		"storageUpdatedTimestamp",
 		"allocationAffinity",
@@ -995,6 +1024,7 @@ func (o *SharedDrive) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "infrastructureId")
+		delete(additionalProperties, "infrastructure")
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "storageRealSizeCachedMb")
 		delete(additionalProperties, "storageRealSizeWithSnapshotsCachedMb")

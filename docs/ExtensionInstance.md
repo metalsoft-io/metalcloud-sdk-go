@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **UpdatedTimestamp** | **string** | Timestamp of the Extension Instance last update. | 
 **Id** | **float32** | The extension instance ID. | 
 **InfrastructureId** | **float32** | The infrastructure ID. | 
+**Infrastructure** | [**ParentInfrastructureDto**](ParentInfrastructureDto.md) | Infrastructure information | 
 **ExtensionId** | **float32** | The extension ID. | 
 **ServiceStatus** | **string** | Service status of the Extension Instance | 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Extension Instance. | [optional] 
@@ -26,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewExtensionInstance
 
-`func NewExtensionInstance(revision float32, label string, automaticManagement float32, updatedTimestamp string, id float32, infrastructureId float32, extensionId float32, serviceStatus string, inputVariables []ExtensionVariable, outputVariables []ExtensionVariable, config ExtensionInstanceConfiguration, createdTimestamp string, ) *ExtensionInstance`
+`func NewExtensionInstance(revision float32, label string, automaticManagement float32, updatedTimestamp string, id float32, infrastructureId float32, infrastructure ParentInfrastructureDto, extensionId float32, serviceStatus string, inputVariables []ExtensionVariable, outputVariables []ExtensionVariable, config ExtensionInstanceConfiguration, createdTimestamp string, ) *ExtensionInstance`
 
 NewExtensionInstance instantiates a new ExtensionInstance object
 This constructor will assign default values to properties that have it defined,
@@ -184,6 +185,26 @@ and a boolean to check if the value has been set.
 `func (o *ExtensionInstance) SetInfrastructureId(v float32)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
+
+
+### GetInfrastructure
+
+`func (o *ExtensionInstance) GetInfrastructure() ParentInfrastructureDto`
+
+GetInfrastructure returns the Infrastructure field if non-nil, zero value otherwise.
+
+### GetInfrastructureOk
+
+`func (o *ExtensionInstance) GetInfrastructureOk() (*ParentInfrastructureDto, bool)`
+
+GetInfrastructureOk returns a tuple with the Infrastructure field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructure
+
+`func (o *ExtensionInstance) SetInfrastructure(v ParentInfrastructureDto)`
+
+SetInfrastructure sets Infrastructure field to given value.
 
 
 ### GetExtensionId

@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ## GetBucket
 
-> BucketExtendedInfo GetBucket(ctx, bucketId).Execute()
+> Bucket GetBucket(ctx, bucketId).Execute()
 
 Get Bucket information
 
@@ -191,7 +191,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BucketAPI.GetBucket``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetBucket`: BucketExtendedInfo
+	// response from `GetBucket`: Bucket
 	fmt.Fprintf(os.Stdout, "Response from `BucketAPI.GetBucket`: %v\n", resp)
 }
 ```
@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BucketExtendedInfo**](BucketExtendedInfo.md)
+[**Bucket**](Bucket.md)
 
 ### Authorization
 

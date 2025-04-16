@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]NetworkEndpointGroupLogicalNetworkDto**](NetworkEndpointGroupLogicalNetworkDto.md) |  | 
+**Data** | [**[]NetworkEndpointGroupLogicalNetwork**](NetworkEndpointGroupLogicalNetwork.md) |  | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewNetworkEndpointGroupLogicalNetworksList
 
-`func NewNetworkEndpointGroupLogicalNetworksList(data []NetworkEndpointGroupLogicalNetworkDto, ) *NetworkEndpointGroupLogicalNetworksList`
+`func NewNetworkEndpointGroupLogicalNetworksList(data []NetworkEndpointGroupLogicalNetwork, ) *NetworkEndpointGroupLogicalNetworksList`
 
 NewNetworkEndpointGroupLogicalNetworksList instantiates a new NetworkEndpointGroupLogicalNetworksList object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *NetworkEndpointGroupLogicalNetworksList) GetData() []NetworkEndpointGroupLogicalNetworkDto`
+`func (o *NetworkEndpointGroupLogicalNetworksList) GetData() []NetworkEndpointGroupLogicalNetwork`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *NetworkEndpointGroupLogicalNetworksList) GetDataOk() (*[]NetworkEndpointGroupLogicalNetworkDto, bool)`
+`func (o *NetworkEndpointGroupLogicalNetworksList) GetDataOk() (*[]NetworkEndpointGroupLogicalNetwork, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *NetworkEndpointGroupLogicalNetworksList) SetData(v []NetworkEndpointGroupLogicalNetworkDto)`
+`func (o *NetworkEndpointGroupLogicalNetworksList) SetData(v []NetworkEndpointGroupLogicalNetwork)`
 
 SetData sets Data field to given value.
 

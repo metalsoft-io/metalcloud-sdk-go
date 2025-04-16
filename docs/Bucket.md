@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Id** | **float32** | Id of the Bucket | 
 **Revision** | **float32** | Revision of the Bucket | 
 **InfrastructureId** | **float32** | Infrastructure id of the Bucket | 
+**Infrastructure** | [**ParentInfrastructureDto**](ParentInfrastructureDto.md) | Infrastructure information | 
 **CreatedTimestamp** | **string** | Timestamp of the Bucket creation. | 
 **ServiceStatus** | **string** | Service status of the Bucket | 
 **SubdomainPermanent** | **string** | Subdomain permanent of the Bucket. | 
@@ -27,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewBucket
 
-`func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, config BucketConfiguration, meta BucketMeta, ) *Bucket`
+`func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructureDto, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, config BucketConfiguration, meta BucketMeta, ) *Bucket`
 
 NewBucket instantiates a new Bucket object
 This constructor will assign default values to properties that have it defined,
@@ -230,6 +231,26 @@ and a boolean to check if the value has been set.
 `func (o *Bucket) SetInfrastructureId(v float32)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
+
+
+### GetInfrastructure
+
+`func (o *Bucket) GetInfrastructure() ParentInfrastructureDto`
+
+GetInfrastructure returns the Infrastructure field if non-nil, zero value otherwise.
+
+### GetInfrastructureOk
+
+`func (o *Bucket) GetInfrastructureOk() (*ParentInfrastructureDto, bool)`
+
+GetInfrastructureOk returns a tuple with the Infrastructure field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructure
+
+`func (o *Bucket) SetInfrastructure(v ParentInfrastructureDto)`
+
+SetInfrastructure sets Infrastructure field to given value.
 
 
 ### GetCreatedTimestamp

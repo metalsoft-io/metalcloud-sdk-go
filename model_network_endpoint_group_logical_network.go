@@ -16,17 +16,17 @@ import (
 	"fmt"
 )
 
-// checks if the NetworkEndpointGroupLogicalNetworkDto type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &NetworkEndpointGroupLogicalNetworkDto{}
+// checks if the NetworkEndpointGroupLogicalNetwork type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NetworkEndpointGroupLogicalNetwork{}
 
-// NetworkEndpointGroupLogicalNetworkDto struct for NetworkEndpointGroupLogicalNetworkDto
-type NetworkEndpointGroupLogicalNetworkDto struct {
+// NetworkEndpointGroupLogicalNetwork struct for NetworkEndpointGroupLogicalNetwork
+type NetworkEndpointGroupLogicalNetwork struct {
 	// The logical network ID.
 	LogicalNetworkId string `json:"logicalNetworkId"`
 	// Whether the logical network is tagged.
 	Tagged bool `json:"tagged"`
 	// The access mode of the network endpoint group
-	AccessMode string `json:"accessMode"`
+	AccessMode NetworkEndpointGroupAllowedAccessMode `json:"accessMode"`
 	// The redundancy configuration
 	Redundancy NullableRedundancyConfig `json:"redundancy,omitempty"`
 	// Reference links
@@ -36,14 +36,14 @@ type NetworkEndpointGroupLogicalNetworkDto struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _NetworkEndpointGroupLogicalNetworkDto NetworkEndpointGroupLogicalNetworkDto
+type _NetworkEndpointGroupLogicalNetwork NetworkEndpointGroupLogicalNetwork
 
-// NewNetworkEndpointGroupLogicalNetworkDto instantiates a new NetworkEndpointGroupLogicalNetworkDto object
+// NewNetworkEndpointGroupLogicalNetwork instantiates a new NetworkEndpointGroupLogicalNetwork object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkEndpointGroupLogicalNetworkDto(logicalNetworkId string, tagged bool, accessMode string, networkEndpointGroupId string) *NetworkEndpointGroupLogicalNetworkDto {
-	this := NetworkEndpointGroupLogicalNetworkDto{}
+func NewNetworkEndpointGroupLogicalNetwork(logicalNetworkId string, tagged bool, accessMode NetworkEndpointGroupAllowedAccessMode, networkEndpointGroupId string) *NetworkEndpointGroupLogicalNetwork {
+	this := NetworkEndpointGroupLogicalNetwork{}
 	this.LogicalNetworkId = logicalNetworkId
 	this.Tagged = tagged
 	this.AccessMode = accessMode
@@ -51,16 +51,16 @@ func NewNetworkEndpointGroupLogicalNetworkDto(logicalNetworkId string, tagged bo
 	return &this
 }
 
-// NewNetworkEndpointGroupLogicalNetworkDtoWithDefaults instantiates a new NetworkEndpointGroupLogicalNetworkDto object
+// NewNetworkEndpointGroupLogicalNetworkWithDefaults instantiates a new NetworkEndpointGroupLogicalNetwork object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewNetworkEndpointGroupLogicalNetworkDtoWithDefaults() *NetworkEndpointGroupLogicalNetworkDto {
-	this := NetworkEndpointGroupLogicalNetworkDto{}
+func NewNetworkEndpointGroupLogicalNetworkWithDefaults() *NetworkEndpointGroupLogicalNetwork {
+	this := NetworkEndpointGroupLogicalNetwork{}
 	return &this
 }
 
 // GetLogicalNetworkId returns the LogicalNetworkId field value
-func (o *NetworkEndpointGroupLogicalNetworkDto) GetLogicalNetworkId() string {
+func (o *NetworkEndpointGroupLogicalNetwork) GetLogicalNetworkId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -71,7 +71,7 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) GetLogicalNetworkId() string {
 
 // GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkEndpointGroupLogicalNetworkDto) GetLogicalNetworkIdOk() (*string, bool) {
+func (o *NetworkEndpointGroupLogicalNetwork) GetLogicalNetworkIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -79,12 +79,12 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) GetLogicalNetworkIdOk() (*string
 }
 
 // SetLogicalNetworkId sets field value
-func (o *NetworkEndpointGroupLogicalNetworkDto) SetLogicalNetworkId(v string) {
+func (o *NetworkEndpointGroupLogicalNetwork) SetLogicalNetworkId(v string) {
 	o.LogicalNetworkId = v
 }
 
 // GetTagged returns the Tagged field value
-func (o *NetworkEndpointGroupLogicalNetworkDto) GetTagged() bool {
+func (o *NetworkEndpointGroupLogicalNetwork) GetTagged() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -95,7 +95,7 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) GetTagged() bool {
 
 // GetTaggedOk returns a tuple with the Tagged field value
 // and a boolean to check if the value has been set.
-func (o *NetworkEndpointGroupLogicalNetworkDto) GetTaggedOk() (*bool, bool) {
+func (o *NetworkEndpointGroupLogicalNetwork) GetTaggedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -103,14 +103,14 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) GetTaggedOk() (*bool, bool) {
 }
 
 // SetTagged sets field value
-func (o *NetworkEndpointGroupLogicalNetworkDto) SetTagged(v bool) {
+func (o *NetworkEndpointGroupLogicalNetwork) SetTagged(v bool) {
 	o.Tagged = v
 }
 
 // GetAccessMode returns the AccessMode field value
-func (o *NetworkEndpointGroupLogicalNetworkDto) GetAccessMode() string {
+func (o *NetworkEndpointGroupLogicalNetwork) GetAccessMode() NetworkEndpointGroupAllowedAccessMode {
 	if o == nil {
-		var ret string
+		var ret NetworkEndpointGroupAllowedAccessMode
 		return ret
 	}
 
@@ -119,7 +119,7 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) GetAccessMode() string {
 
 // GetAccessModeOk returns a tuple with the AccessMode field value
 // and a boolean to check if the value has been set.
-func (o *NetworkEndpointGroupLogicalNetworkDto) GetAccessModeOk() (*string, bool) {
+func (o *NetworkEndpointGroupLogicalNetwork) GetAccessModeOk() (*NetworkEndpointGroupAllowedAccessMode, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -127,12 +127,12 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) GetAccessModeOk() (*string, bool
 }
 
 // SetAccessMode sets field value
-func (o *NetworkEndpointGroupLogicalNetworkDto) SetAccessMode(v string) {
+func (o *NetworkEndpointGroupLogicalNetwork) SetAccessMode(v NetworkEndpointGroupAllowedAccessMode) {
 	o.AccessMode = v
 }
 
 // GetRedundancy returns the Redundancy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *NetworkEndpointGroupLogicalNetworkDto) GetRedundancy() RedundancyConfig {
+func (o *NetworkEndpointGroupLogicalNetwork) GetRedundancy() RedundancyConfig {
 	if o == nil || IsNil(o.Redundancy.Get()) {
 		var ret RedundancyConfig
 		return ret
@@ -143,7 +143,7 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) GetRedundancy() RedundancyConfig
 // GetRedundancyOk returns a tuple with the Redundancy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NetworkEndpointGroupLogicalNetworkDto) GetRedundancyOk() (*RedundancyConfig, bool) {
+func (o *NetworkEndpointGroupLogicalNetwork) GetRedundancyOk() (*RedundancyConfig, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -151,7 +151,7 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) GetRedundancyOk() (*RedundancyCo
 }
 
 // HasRedundancy returns a boolean if a field has been set.
-func (o *NetworkEndpointGroupLogicalNetworkDto) HasRedundancy() bool {
+func (o *NetworkEndpointGroupLogicalNetwork) HasRedundancy() bool {
 	if o != nil && o.Redundancy.IsSet() {
 		return true
 	}
@@ -160,21 +160,21 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) HasRedundancy() bool {
 }
 
 // SetRedundancy gets a reference to the given NullableRedundancyConfig and assigns it to the Redundancy field.
-func (o *NetworkEndpointGroupLogicalNetworkDto) SetRedundancy(v RedundancyConfig) {
+func (o *NetworkEndpointGroupLogicalNetwork) SetRedundancy(v RedundancyConfig) {
 	o.Redundancy.Set(&v)
 }
 // SetRedundancyNil sets the value for Redundancy to be an explicit nil
-func (o *NetworkEndpointGroupLogicalNetworkDto) SetRedundancyNil() {
+func (o *NetworkEndpointGroupLogicalNetwork) SetRedundancyNil() {
 	o.Redundancy.Set(nil)
 }
 
 // UnsetRedundancy ensures that no value is present for Redundancy, not even an explicit nil
-func (o *NetworkEndpointGroupLogicalNetworkDto) UnsetRedundancy() {
+func (o *NetworkEndpointGroupLogicalNetwork) UnsetRedundancy() {
 	o.Redundancy.Unset()
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
-func (o *NetworkEndpointGroupLogicalNetworkDto) GetLinks() []Link {
+func (o *NetworkEndpointGroupLogicalNetwork) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
@@ -184,7 +184,7 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) GetLinks() []Link {
 
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkEndpointGroupLogicalNetworkDto) GetLinksOk() ([]Link, bool) {
+func (o *NetworkEndpointGroupLogicalNetwork) GetLinksOk() ([]Link, bool) {
 	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
@@ -192,7 +192,7 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) GetLinksOk() ([]Link, bool) {
 }
 
 // HasLinks returns a boolean if a field has been set.
-func (o *NetworkEndpointGroupLogicalNetworkDto) HasLinks() bool {
+func (o *NetworkEndpointGroupLogicalNetwork) HasLinks() bool {
 	if o != nil && !IsNil(o.Links) {
 		return true
 	}
@@ -201,12 +201,12 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) HasLinks() bool {
 }
 
 // SetLinks gets a reference to the given []Link and assigns it to the Links field.
-func (o *NetworkEndpointGroupLogicalNetworkDto) SetLinks(v []Link) {
+func (o *NetworkEndpointGroupLogicalNetwork) SetLinks(v []Link) {
 	o.Links = v
 }
 
 // GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field value
-func (o *NetworkEndpointGroupLogicalNetworkDto) GetNetworkEndpointGroupId() string {
+func (o *NetworkEndpointGroupLogicalNetwork) GetNetworkEndpointGroupId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -217,7 +217,7 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) GetNetworkEndpointGroupId() stri
 
 // GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field value
 // and a boolean to check if the value has been set.
-func (o *NetworkEndpointGroupLogicalNetworkDto) GetNetworkEndpointGroupIdOk() (*string, bool) {
+func (o *NetworkEndpointGroupLogicalNetwork) GetNetworkEndpointGroupIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -225,11 +225,11 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) GetNetworkEndpointGroupIdOk() (*
 }
 
 // SetNetworkEndpointGroupId sets field value
-func (o *NetworkEndpointGroupLogicalNetworkDto) SetNetworkEndpointGroupId(v string) {
+func (o *NetworkEndpointGroupLogicalNetwork) SetNetworkEndpointGroupId(v string) {
 	o.NetworkEndpointGroupId = v
 }
 
-func (o NetworkEndpointGroupLogicalNetworkDto) MarshalJSON() ([]byte, error) {
+func (o NetworkEndpointGroupLogicalNetwork) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -237,7 +237,7 @@ func (o NetworkEndpointGroupLogicalNetworkDto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o NetworkEndpointGroupLogicalNetworkDto) ToMap() (map[string]interface{}, error) {
+func (o NetworkEndpointGroupLogicalNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["logicalNetworkId"] = o.LogicalNetworkId
 	toSerialize["tagged"] = o.Tagged
@@ -257,7 +257,7 @@ func (o NetworkEndpointGroupLogicalNetworkDto) ToMap() (map[string]interface{}, 
 	return toSerialize, nil
 }
 
-func (o *NetworkEndpointGroupLogicalNetworkDto) UnmarshalJSON(data []byte) (err error) {
+func (o *NetworkEndpointGroupLogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -282,15 +282,15 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) UnmarshalJSON(data []byte) (err 
 		}
 	}
 
-	varNetworkEndpointGroupLogicalNetworkDto := _NetworkEndpointGroupLogicalNetworkDto{}
+	varNetworkEndpointGroupLogicalNetwork := _NetworkEndpointGroupLogicalNetwork{}
 
-	err = json.Unmarshal(data, &varNetworkEndpointGroupLogicalNetworkDto)
+	err = json.Unmarshal(data, &varNetworkEndpointGroupLogicalNetwork)
 
 	if err != nil {
 		return err
 	}
 
-	*o = NetworkEndpointGroupLogicalNetworkDto(varNetworkEndpointGroupLogicalNetworkDto)
+	*o = NetworkEndpointGroupLogicalNetwork(varNetworkEndpointGroupLogicalNetwork)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -307,38 +307,38 @@ func (o *NetworkEndpointGroupLogicalNetworkDto) UnmarshalJSON(data []byte) (err 
 	return err
 }
 
-type NullableNetworkEndpointGroupLogicalNetworkDto struct {
-	value *NetworkEndpointGroupLogicalNetworkDto
+type NullableNetworkEndpointGroupLogicalNetwork struct {
+	value *NetworkEndpointGroupLogicalNetwork
 	isSet bool
 }
 
-func (v NullableNetworkEndpointGroupLogicalNetworkDto) Get() *NetworkEndpointGroupLogicalNetworkDto {
+func (v NullableNetworkEndpointGroupLogicalNetwork) Get() *NetworkEndpointGroupLogicalNetwork {
 	return v.value
 }
 
-func (v *NullableNetworkEndpointGroupLogicalNetworkDto) Set(val *NetworkEndpointGroupLogicalNetworkDto) {
+func (v *NullableNetworkEndpointGroupLogicalNetwork) Set(val *NetworkEndpointGroupLogicalNetwork) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableNetworkEndpointGroupLogicalNetworkDto) IsSet() bool {
+func (v NullableNetworkEndpointGroupLogicalNetwork) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableNetworkEndpointGroupLogicalNetworkDto) Unset() {
+func (v *NullableNetworkEndpointGroupLogicalNetwork) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableNetworkEndpointGroupLogicalNetworkDto(val *NetworkEndpointGroupLogicalNetworkDto) *NullableNetworkEndpointGroupLogicalNetworkDto {
-	return &NullableNetworkEndpointGroupLogicalNetworkDto{value: val, isSet: true}
+func NewNullableNetworkEndpointGroupLogicalNetwork(val *NetworkEndpointGroupLogicalNetwork) *NullableNetworkEndpointGroupLogicalNetwork {
+	return &NullableNetworkEndpointGroupLogicalNetwork{value: val, isSet: true}
 }
 
-func (v NullableNetworkEndpointGroupLogicalNetworkDto) MarshalJSON() ([]byte, error) {
+func (v NullableNetworkEndpointGroupLogicalNetwork) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableNetworkEndpointGroupLogicalNetworkDto) UnmarshalJSON(src []byte) error {
+func (v *NullableNetworkEndpointGroupLogicalNetwork) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

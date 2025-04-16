@@ -434,7 +434,7 @@ type NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworkRequest struct 
 	logicalNetworkId int32
 }
 
-func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworkRequest) Execute() (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+func (r NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworkRequest) Execute() (*NetworkEndpointGroupLogicalNetwork, *http.Response, error) {
 	return r.ApiService.GetNetworkEndpointGroupLogicalNetworkExecute(r)
 }
 
@@ -456,13 +456,13 @@ func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupLogicalNetwork(c
 }
 
 // Execute executes the request
-//  @return NetworkEndpointGroupLogicalNetworkDto
-func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupLogicalNetworkExecute(r NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworkRequest) (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+//  @return NetworkEndpointGroupLogicalNetwork
+func (a *NetworkEndpointGroupAPIService) GetNetworkEndpointGroupLogicalNetworkExecute(r NetworkEndpointGroupAPIGetNetworkEndpointGroupLogicalNetworkRequest) (*NetworkEndpointGroupLogicalNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NetworkEndpointGroupLogicalNetworkDto
+		localVarReturnValue  *NetworkEndpointGroupLogicalNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkEndpointGroupAPIService.GetNetworkEndpointGroupLogicalNetwork")
@@ -911,7 +911,7 @@ type NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest 
 	logicalNetworkId int32
 }
 
-func (r NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest) Execute() (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+func (r NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest) Execute() (*NetworkEndpointGroupLogicalNetwork, *http.Response, error) {
 	return r.ApiService.RemoveLogicalNetworkFromNetworkEndpointGroupExecute(r)
 }
 
@@ -933,13 +933,13 @@ func (a *NetworkEndpointGroupAPIService) RemoveLogicalNetworkFromNetworkEndpoint
 }
 
 // Execute executes the request
-//  @return NetworkEndpointGroupLogicalNetworkDto
-func (a *NetworkEndpointGroupAPIService) RemoveLogicalNetworkFromNetworkEndpointGroupExecute(r NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest) (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+//  @return NetworkEndpointGroupLogicalNetwork
+func (a *NetworkEndpointGroupAPIService) RemoveLogicalNetworkFromNetworkEndpointGroupExecute(r NetworkEndpointGroupAPIRemoveLogicalNetworkFromNetworkEndpointGroupRequest) (*NetworkEndpointGroupLogicalNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NetworkEndpointGroupLogicalNetworkDto
+		localVarReturnValue  *NetworkEndpointGroupLogicalNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkEndpointGroupAPIService.RemoveLogicalNetworkFromNetworkEndpointGroup")
@@ -1137,13 +1137,13 @@ type NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest stru
 	ApiService *NetworkEndpointGroupAPIService
 	networkEndpointGroupId int32
 	logicalNetworkId int32
-	updateNetworkEndpointGroupLogicalNetworkDto *UpdateNetworkEndpointGroupLogicalNetworkDto
+	updateNetworkEndpointGroupLogicalNetwork *UpdateNetworkEndpointGroupLogicalNetwork
 	ifMatch *string
 }
 
 // The logical network id and settings to add to the network endpoint group
-func (r NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest) UpdateNetworkEndpointGroupLogicalNetworkDto(updateNetworkEndpointGroupLogicalNetworkDto UpdateNetworkEndpointGroupLogicalNetworkDto) NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest {
-	r.updateNetworkEndpointGroupLogicalNetworkDto = &updateNetworkEndpointGroupLogicalNetworkDto
+func (r NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest) UpdateNetworkEndpointGroupLogicalNetwork(updateNetworkEndpointGroupLogicalNetwork UpdateNetworkEndpointGroupLogicalNetwork) NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest {
+	r.updateNetworkEndpointGroupLogicalNetwork = &updateNetworkEndpointGroupLogicalNetwork
 	return r
 }
 
@@ -1153,7 +1153,7 @@ func (r NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest) 
 	return r
 }
 
-func (r NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest) Execute() (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+func (r NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest) Execute() (*NetworkEndpointGroupLogicalNetwork, *http.Response, error) {
 	return r.ApiService.UpdateNetworkEndpointGroupLogicalNetworkExecute(r)
 }
 
@@ -1175,13 +1175,13 @@ func (a *NetworkEndpointGroupAPIService) UpdateNetworkEndpointGroupLogicalNetwor
 }
 
 // Execute executes the request
-//  @return NetworkEndpointGroupLogicalNetworkDto
-func (a *NetworkEndpointGroupAPIService) UpdateNetworkEndpointGroupLogicalNetworkExecute(r NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest) (*NetworkEndpointGroupLogicalNetworkDto, *http.Response, error) {
+//  @return NetworkEndpointGroupLogicalNetwork
+func (a *NetworkEndpointGroupAPIService) UpdateNetworkEndpointGroupLogicalNetworkExecute(r NetworkEndpointGroupAPIUpdateNetworkEndpointGroupLogicalNetworkRequest) (*NetworkEndpointGroupLogicalNetwork, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NetworkEndpointGroupLogicalNetworkDto
+		localVarReturnValue  *NetworkEndpointGroupLogicalNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkEndpointGroupAPIService.UpdateNetworkEndpointGroupLogicalNetwork")
@@ -1196,8 +1196,8 @@ func (a *NetworkEndpointGroupAPIService) UpdateNetworkEndpointGroupLogicalNetwor
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkEndpointGroupLogicalNetworkDto == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkEndpointGroupLogicalNetworkDto is required and must be specified")
+	if r.updateNetworkEndpointGroupLogicalNetwork == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkEndpointGroupLogicalNetwork is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1221,7 +1221,7 @@ func (a *NetworkEndpointGroupAPIService) UpdateNetworkEndpointGroupLogicalNetwor
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.updateNetworkEndpointGroupLogicalNetworkDto
+	localVarPostBody = r.updateNetworkEndpointGroupLogicalNetwork
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

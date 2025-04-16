@@ -143,16 +143,16 @@ type ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest str
 	ApiService *ServerInstanceGroupAPIService
 	serverInstanceGroupId int32
 	connectionId int32
-	createLogicalNetworkACLDto *CreateLogicalNetworkACLDto
+	createLogicalNetworkACL *CreateLogicalNetworkACL
 }
 
 // The security rule to create
-func (r ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest) CreateLogicalNetworkACLDto(createLogicalNetworkACLDto CreateLogicalNetworkACLDto) ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest {
-	r.createLogicalNetworkACLDto = &createLogicalNetworkACLDto
+func (r ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest) CreateLogicalNetworkACL(createLogicalNetworkACL CreateLogicalNetworkACL) ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest {
+	r.createLogicalNetworkACL = &createLogicalNetworkACL
 	return r
 }
 
-func (r ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest) Execute() (*LogicalNetworkACLDto, *http.Response, error) {
+func (r ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest) Execute() (*LogicalNetworkACL, *http.Response, error) {
 	return r.ApiService.CreateServerInstanceGroupLogicalNetworkACLExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupLogicalNetworkA
 }
 
 // Execute executes the request
-//  @return LogicalNetworkACLDto
-func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupLogicalNetworkACLExecute(r ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest) (*LogicalNetworkACLDto, *http.Response, error) {
+//  @return LogicalNetworkACL
+func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupLogicalNetworkACLExecute(r ServerInstanceGroupAPICreateServerInstanceGroupLogicalNetworkACLRequest) (*LogicalNetworkACL, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *LogicalNetworkACLDto
+		localVarReturnValue  *LogicalNetworkACL
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.CreateServerInstanceGroupLogicalNetworkACL")
@@ -195,8 +195,8 @@ func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupLogicalNetworkA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createLogicalNetworkACLDto == nil {
-		return localVarReturnValue, nil, reportError("createLogicalNetworkACLDto is required and must be specified")
+	if r.createLogicalNetworkACL == nil {
+		return localVarReturnValue, nil, reportError("createLogicalNetworkACL is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -217,7 +217,7 @@ func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupLogicalNetworkA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createLogicalNetworkACLDto
+	localVarPostBody = r.createLogicalNetworkACL
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -259,16 +259,16 @@ type ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnecti
 	ctx context.Context
 	ApiService *ServerInstanceGroupAPIService
 	serverInstanceGroupId int32
-	createServerInstanceGroupNetworkConnectionDto *CreateServerInstanceGroupNetworkConnectionDto
+	createServerInstanceGroupNetworkConnection *CreateServerInstanceGroupNetworkConnection
 }
 
 // The network connection object to create
-func (r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) CreateServerInstanceGroupNetworkConnectionDto(createServerInstanceGroupNetworkConnectionDto CreateServerInstanceGroupNetworkConnectionDto) ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest {
-	r.createServerInstanceGroupNetworkConnectionDto = &createServerInstanceGroupNetworkConnectionDto
+func (r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) CreateServerInstanceGroupNetworkConnection(createServerInstanceGroupNetworkConnection CreateServerInstanceGroupNetworkConnection) ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest {
+	r.createServerInstanceGroupNetworkConnection = &createServerInstanceGroupNetworkConnection
 	return r
 }
 
-func (r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*ServerInstanceGroupNetworkConnectionDto, *http.Response, error) {
+func (r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*ServerInstanceGroupNetworkConnection, *http.Response, error) {
 	return r.ApiService.CreateServerInstanceGroupNetworkConfigurationConnectionExecute(r)
 }
 
@@ -288,13 +288,13 @@ func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigur
 }
 
 // Execute executes the request
-//  @return ServerInstanceGroupNetworkConnectionDto
-func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigurationConnectionExecute(r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) (*ServerInstanceGroupNetworkConnectionDto, *http.Response, error) {
+//  @return ServerInstanceGroupNetworkConnection
+func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigurationConnectionExecute(r ServerInstanceGroupAPICreateServerInstanceGroupNetworkConfigurationConnectionRequest) (*ServerInstanceGroupNetworkConnection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ServerInstanceGroupNetworkConnectionDto
+		localVarReturnValue  *ServerInstanceGroupNetworkConnection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.CreateServerInstanceGroupNetworkConfigurationConnection")
@@ -308,8 +308,8 @@ func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigur
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createServerInstanceGroupNetworkConnectionDto == nil {
-		return localVarReturnValue, nil, reportError("createServerInstanceGroupNetworkConnectionDto is required and must be specified")
+	if r.createServerInstanceGroupNetworkConnection == nil {
+		return localVarReturnValue, nil, reportError("createServerInstanceGroupNetworkConnection is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -330,7 +330,7 @@ func (a *ServerInstanceGroupAPIService) CreateServerInstanceGroupNetworkConfigur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createServerInstanceGroupNetworkConnectionDto
+	localVarPostBody = r.createServerInstanceGroupNetworkConnection
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1585,7 +1585,7 @@ type ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLRequest struct
 	connectionId int32
 }
 
-func (r ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLRequest) Execute() (*LogicalNetworkACLDto, *http.Response, error) {
+func (r ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLRequest) Execute() (*LogicalNetworkACL, *http.Response, error) {
 	return r.ApiService.GetServerInstanceGroupLogicalNetworkACLExecute(r)
 }
 
@@ -1607,13 +1607,13 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupLogicalNetworkACL(
 }
 
 // Execute executes the request
-//  @return LogicalNetworkACLDto
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupLogicalNetworkACLExecute(r ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLRequest) (*LogicalNetworkACLDto, *http.Response, error) {
+//  @return LogicalNetworkACL
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupLogicalNetworkACLExecute(r ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLRequest) (*LogicalNetworkACL, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *LogicalNetworkACLDto
+		localVarReturnValue  *LogicalNetworkACL
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupLogicalNetworkACL")
@@ -1691,7 +1691,7 @@ type ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLByIdRequest st
 	ruleId int32
 }
 
-func (r ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLByIdRequest) Execute() (*LogicalNetworkACLDto, *http.Response, error) {
+func (r ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLByIdRequest) Execute() (*LogicalNetworkACL, *http.Response, error) {
 	return r.ApiService.GetServerInstanceGroupLogicalNetworkACLByIdExecute(r)
 }
 
@@ -1715,13 +1715,13 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupLogicalNetworkACLB
 }
 
 // Execute executes the request
-//  @return LogicalNetworkACLDto
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupLogicalNetworkACLByIdExecute(r ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLByIdRequest) (*LogicalNetworkACLDto, *http.Response, error) {
+//  @return LogicalNetworkACL
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupLogicalNetworkACLByIdExecute(r ServerInstanceGroupAPIGetServerInstanceGroupLogicalNetworkACLByIdRequest) (*LogicalNetworkACL, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *LogicalNetworkACLDto
+		localVarReturnValue  *LogicalNetworkACL
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupLogicalNetworkACLById")
@@ -1902,7 +1902,7 @@ type ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionB
 	connectionId int32
 }
 
-func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest) Execute() (*ServerInstanceGroupNetworkConnectionDto, *http.Response, error) {
+func (r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest) Execute() (*ServerInstanceGroupNetworkConnection, *http.Response, error) {
 	return r.ApiService.GetServerInstanceGroupNetworkConfigurationConnectionByIdExecute(r)
 }
 
@@ -1926,13 +1926,13 @@ func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurati
 }
 
 // Execute executes the request
-//  @return ServerInstanceGroupNetworkConnectionDto
-func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnectionByIdExecute(r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest) (*ServerInstanceGroupNetworkConnectionDto, *http.Response, error) {
+//  @return ServerInstanceGroupNetworkConnection
+func (a *ServerInstanceGroupAPIService) GetServerInstanceGroupNetworkConfigurationConnectionByIdExecute(r ServerInstanceGroupAPIGetServerInstanceGroupNetworkConfigurationConnectionByIdRequest) (*ServerInstanceGroupNetworkConnection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ServerInstanceGroupNetworkConnectionDto
+		localVarReturnValue  *ServerInstanceGroupNetworkConnection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.GetServerInstanceGroupNetworkConfigurationConnectionById")
@@ -2529,16 +2529,16 @@ type ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest str
 	serverInstanceGroupId int32
 	connectionId int32
 	ruleId int32
-	updateLogicalNetworkACLDto *UpdateLogicalNetworkACLDto
+	updateLogicalNetworkACL *UpdateLogicalNetworkACL
 }
 
 // The security rule to update
-func (r ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest) UpdateLogicalNetworkACLDto(updateLogicalNetworkACLDto UpdateLogicalNetworkACLDto) ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest {
-	r.updateLogicalNetworkACLDto = &updateLogicalNetworkACLDto
+func (r ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest) UpdateLogicalNetworkACL(updateLogicalNetworkACL UpdateLogicalNetworkACL) ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest {
+	r.updateLogicalNetworkACL = &updateLogicalNetworkACL
 	return r
 }
 
-func (r ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest) Execute() (*LogicalNetworkACLDto, *http.Response, error) {
+func (r ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest) Execute() (*LogicalNetworkACL, *http.Response, error) {
 	return r.ApiService.UpdateServerInstanceGroupLogicalNetworkACLExecute(r)
 }
 
@@ -2562,13 +2562,13 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupLogicalNetworkA
 }
 
 // Execute executes the request
-//  @return LogicalNetworkACLDto
-func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupLogicalNetworkACLExecute(r ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest) (*LogicalNetworkACLDto, *http.Response, error) {
+//  @return LogicalNetworkACL
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupLogicalNetworkACLExecute(r ServerInstanceGroupAPIUpdateServerInstanceGroupLogicalNetworkACLRequest) (*LogicalNetworkACL, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *LogicalNetworkACLDto
+		localVarReturnValue  *LogicalNetworkACL
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.UpdateServerInstanceGroupLogicalNetworkACL")
@@ -2584,8 +2584,8 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupLogicalNetworkA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateLogicalNetworkACLDto == nil {
-		return localVarReturnValue, nil, reportError("updateLogicalNetworkACLDto is required and must be specified")
+	if r.updateLogicalNetworkACL == nil {
+		return localVarReturnValue, nil, reportError("updateLogicalNetworkACL is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2606,7 +2606,7 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupLogicalNetworkA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateLogicalNetworkACLDto
+	localVarPostBody = r.updateLogicalNetworkACL
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2854,16 +2854,16 @@ type ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnecti
 	ApiService *ServerInstanceGroupAPIService
 	serverInstanceGroupId int32
 	connectionId float32
-	updateNetworkEndpointGroupLogicalNetworkDto *UpdateNetworkEndpointGroupLogicalNetworkDto
+	updateNetworkEndpointGroupLogicalNetwork *UpdateNetworkEndpointGroupLogicalNetwork
 }
 
 // The network connection object to update
-func (r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest) UpdateNetworkEndpointGroupLogicalNetworkDto(updateNetworkEndpointGroupLogicalNetworkDto UpdateNetworkEndpointGroupLogicalNetworkDto) ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest {
-	r.updateNetworkEndpointGroupLogicalNetworkDto = &updateNetworkEndpointGroupLogicalNetworkDto
+func (r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest) UpdateNetworkEndpointGroupLogicalNetwork(updateNetworkEndpointGroupLogicalNetwork UpdateNetworkEndpointGroupLogicalNetwork) ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest {
+	r.updateNetworkEndpointGroupLogicalNetwork = &updateNetworkEndpointGroupLogicalNetwork
 	return r
 }
 
-func (r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*ServerInstanceGroupNetworkConnectionDto, *http.Response, error) {
+func (r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*ServerInstanceGroupNetworkConnection, *http.Response, error) {
 	return r.ApiService.UpdateServerInstanceGroupNetworkConfigurationConnectionExecute(r)
 }
 
@@ -2885,13 +2885,13 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfigur
 }
 
 // Execute executes the request
-//  @return ServerInstanceGroupNetworkConnectionDto
-func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfigurationConnectionExecute(r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest) (*ServerInstanceGroupNetworkConnectionDto, *http.Response, error) {
+//  @return ServerInstanceGroupNetworkConnection
+func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfigurationConnectionExecute(r ServerInstanceGroupAPIUpdateServerInstanceGroupNetworkConfigurationConnectionRequest) (*ServerInstanceGroupNetworkConnection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ServerInstanceGroupNetworkConnectionDto
+		localVarReturnValue  *ServerInstanceGroupNetworkConnection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceGroupAPIService.UpdateServerInstanceGroupNetworkConfigurationConnection")
@@ -2906,8 +2906,8 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfigur
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkEndpointGroupLogicalNetworkDto == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkEndpointGroupLogicalNetworkDto is required and must be specified")
+	if r.updateNetworkEndpointGroupLogicalNetwork == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkEndpointGroupLogicalNetwork is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2928,7 +2928,7 @@ func (a *ServerInstanceGroupAPIService) UpdateServerInstanceGroupNetworkConfigur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkEndpointGroupLogicalNetworkDto
+	localVarPostBody = r.updateNetworkEndpointGroupLogicalNetwork
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

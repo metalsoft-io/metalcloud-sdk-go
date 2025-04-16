@@ -2493,7 +2493,7 @@ type StorageAPIGetStoragesRequest struct {
 	filterId *[]string
 	filterUserId *[]string
 	filterSiteId *[]string
-	filterTechnology *[]string
+	filterTechnologies *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -2529,13 +2529,13 @@ func (r StorageAPIGetStoragesRequest) FilterSiteId(filterSiteId []string) Storag
 	return r
 }
 
-// Filter by technology query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.technology&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.technology&#x3D;$not:$like:John Doe&amp;filter.technology&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r StorageAPIGetStoragesRequest) FilterTechnology(filterTechnology []string) StorageAPIGetStoragesRequest {
-	r.filterTechnology = &filterTechnology
+// Filter by technologies query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.technologies&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.technologies&#x3D;$not:$like:John Doe&amp;filter.technologies&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r StorageAPIGetStoragesRequest) FilterTechnologies(filterTechnologies []string) StorageAPIGetStoragesRequest {
+	r.filterTechnologies = &filterTechnologies
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;userId&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;driver&lt;/li&gt; &lt;li&gt;technology&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;userId&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;driver&lt;/li&gt; &lt;li&gt;technologies&lt;/li&gt;&lt;/ul&gt;       
 func (r StorageAPIGetStoragesRequest) SortBy(sortBy []string) StorageAPIGetStoragesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -2547,7 +2547,7 @@ func (r StorageAPIGetStoragesRequest) Search(search string) StorageAPIGetStorage
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,userId,siteId,driver,technology           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;userId&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;driver&lt;/li&gt; &lt;li&gt;technology&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,userId,siteId,driver,technologies           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;userId&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;driver&lt;/li&gt; &lt;li&gt;technologies&lt;/li&gt;&lt;/ul&gt;         
 func (r StorageAPIGetStoragesRequest) SearchBy(searchBy []string) StorageAPIGetStoragesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -2632,15 +2632,15 @@ func (a *StorageAPIService) GetStoragesExecute(r StorageAPIGetStoragesRequest) (
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
 		}
 	}
-	if r.filterTechnology != nil {
-		t := *r.filterTechnology
+	if r.filterTechnologies != nil {
+		t := *r.filterTechnologies
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.technology", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.technologies", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.technology", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.technologies", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

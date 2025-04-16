@@ -52,6 +52,10 @@ api_vm_pool.go
 api_vm_type.go
 client.go
 configuration.go
+docs/ACLDirection.md
+docs/ACLEnforcementPoint.md
+docs/ACLForwardingAction.md
+docs/ACLType.md
 docs/AIAPI.md
 docs/AIGenerateRequest.md
 docs/AIGenerateResponse.md
@@ -84,7 +88,6 @@ docs/BatchServerFirmwareUpgradeResponse.md
 docs/Bucket.md
 docs/BucketAPI.md
 docs/BucketConfiguration.md
-docs/BucketExtendedInfo.md
 docs/BucketMeta.md
 docs/BucketPaginatedList.md
 docs/BucketVariables.md
@@ -103,7 +106,7 @@ docs/CreateFirmwareBaseline.md
 docs/CreateFirmwareBinary.md
 docs/CreateFirmwareCatalog.md
 docs/CreateLogicalNetwork.md
-docs/CreateLogicalNetworkACLDto.md
+docs/CreateLogicalNetworkACL.md
 docs/CreateLogicalNetworkProfile.md
 docs/CreateNetwork.md
 docs/CreateNetworkDevice.md
@@ -117,7 +120,7 @@ docs/CreateSecret.md
 docs/CreateServerCleanupPolicy.md
 docs/CreateServerDefaultCredentials.md
 docs/CreateServerFirmwareUpgradePolicy.md
-docs/CreateServerInstanceGroupNetworkConnectionDto.md
+docs/CreateServerInstanceGroupNetworkConnection.md
 docs/CreateServerType.md
 docs/CreateSharedDrive.md
 docs/CreateStorage.md
@@ -188,7 +191,6 @@ docs/FibreChannelFabric.md
 docs/FileShare.md
 docs/FileShareAPI.md
 docs/FileShareConfiguration.md
-docs/FileShareExtendedInfo.md
 docs/FileShareHostBulkOperation.md
 docs/FileShareHostType.md
 docs/FileShareHosts.md
@@ -255,7 +257,7 @@ docs/Link.md
 docs/LinkDuplex.md
 docs/Location.md
 docs/LogicalNetwork.md
-docs/LogicalNetworkACLDto.md
+docs/LogicalNetworkACL.md
 docs/LogicalNetworkPaginatedList.md
 docs/LogicalNetworkProfile.md
 docs/LogicalNetworkProfilePaginatedList.md
@@ -276,9 +278,12 @@ docs/NetworkDeviceStatus.md
 docs/NetworkDevicesToFabric.md
 docs/NetworkEndpointGroup.md
 docs/NetworkEndpointGroupAPI.md
-docs/NetworkEndpointGroupLogicalNetworkDto.md
+docs/NetworkEndpointGroupAllowedAccessMode.md
+docs/NetworkEndpointGroupLogicalNetwork.md
 docs/NetworkEndpointGroupLogicalNetworksList.md
 docs/NetworkEndpointGroupPaginatedList.md
+docs/NetworkEndpointGroupRedundancyImplementationType.md
+docs/NetworkEndpointGroupRedundancyMode.md
 docs/NetworkFabric.md
 docs/NetworkFabricAPI.md
 docs/NetworkFabricFabricConfiguration.md
@@ -295,6 +300,7 @@ docs/OSTemplatePaginatedList.md
 docs/OSTemplateUpdate.md
 docs/PaginatedResponseLinks.md
 docs/PaginatedResponseMeta.md
+docs/ParentInfrastructureDto.md
 docs/PartialTypeClass.md
 docs/PasswordReset.md
 docs/Permission.md
@@ -359,7 +365,7 @@ docs/ServerInstanceGroupCreate.md
 docs/ServerInstanceGroupInterface.md
 docs/ServerInstanceGroupInterfaceConfiguration.md
 docs/ServerInstanceGroupInterfacePaginatedList.md
-docs/ServerInstanceGroupNetworkConnectionDto.md
+docs/ServerInstanceGroupNetworkConnection.md
 docs/ServerInstanceGroupNetworkConnectionsList.md
 docs/ServerInstanceGroupPaginatedList.md
 docs/ServerInstanceGroupUpdate.md
@@ -453,11 +459,11 @@ docs/UpdateGlobalFirmwareUpgradeConfiguration.md
 docs/UpdateInfrastructure.md
 docs/UpdateInfrastructureMeta.md
 docs/UpdateLogicalNetwork.md
-docs/UpdateLogicalNetworkACLDto.md
+docs/UpdateLogicalNetworkACL.md
 docs/UpdateLogicalNetworkProfile.md
 docs/UpdateNetworkDevice.md
 docs/UpdateNetworkEndpointGroup.md
-docs/UpdateNetworkEndpointGroupLogicalNetworkDto.md
+docs/UpdateNetworkEndpointGroupLogicalNetwork.md
 docs/UpdateNetworkFabric.md
 docs/UpdateResourcePool.md
 docs/UpdateSecret.md
@@ -541,6 +547,10 @@ model_account_address.go
 model_account_config.go
 model_account_limits.go
 model_account_paginated_list.go
+model_acl_direction.go
+model_acl_enforcement_point.go
+model_acl_forwarding_action.go
+model_acl_type.go
 model_add_user_to_infrastructure.go
 model_admin_password_reveal_permissions.go
 model_agent_capabilities.go
@@ -564,7 +574,6 @@ model_batch_server_firmware_upgrade.go
 model_batch_server_firmware_upgrade_response.go
 model_bucket.go
 model_bucket_configuration.go
-model_bucket_extended_info.go
 model_bucket_meta.go
 model_bucket_paginated_list.go
 model_bucket_variables.go
@@ -582,7 +591,7 @@ model_create_firmware_baseline.go
 model_create_firmware_binary.go
 model_create_firmware_catalog.go
 model_create_logical_network.go
-model_create_logical_network_acl_dto.go
+model_create_logical_network_acl.go
 model_create_logical_network_profile.go
 model_create_network.go
 model_create_network_device.go
@@ -596,7 +605,7 @@ model_create_secret.go
 model_create_server_cleanup_policy.go
 model_create_server_default_credentials.go
 model_create_server_firmware_upgrade_policy.go
-model_create_server_instance_group_network_connection_dto.go
+model_create_server_instance_group_network_connection.go
 model_create_server_type.go
 model_create_shared_drive.go
 model_create_storage.go
@@ -661,7 +670,6 @@ model_fabric_type.go
 model_fibre_channel_fabric.go
 model_file_share.go
 model_file_share_configuration.go
-model_file_share_extended_info.go
 model_file_share_host_bulk_operation.go
 model_file_share_host_type.go
 model_file_share_hosts.go
@@ -721,7 +729,7 @@ model_link.go
 model_link_duplex.go
 model_location.go
 model_logical_network.go
-model_logical_network_acl_dto.go
+model_logical_network_acl.go
 model_logical_network_paginated_list.go
 model_logical_network_profile.go
 model_logical_network_profile_paginated_list.go
@@ -737,9 +745,12 @@ model_network_device_ports.go
 model_network_device_status.go
 model_network_devices_to_fabric.go
 model_network_endpoint_group.go
-model_network_endpoint_group_logical_network_dto.go
+model_network_endpoint_group_allowed_access_mode.go
+model_network_endpoint_group_logical_network.go
 model_network_endpoint_group_logical_networks_list.go
 model_network_endpoint_group_paginated_list.go
+model_network_endpoint_group_redundancy_implementation_type.go
+model_network_endpoint_group_redundancy_mode.go
 model_network_fabric.go
 model_network_fabric_fabric_configuration.go
 model_network_fabric_paginated_list.go
@@ -754,6 +765,7 @@ model_os_template_paginated_list.go
 model_os_template_update.go
 model_paginated_response_links.go
 model_paginated_response_meta.go
+model_parent_infrastructure_dto.go
 model_partial_type_class.go
 model_password_reset.go
 model_permission.go
@@ -808,7 +820,7 @@ model_server_instance_group_create.go
 model_server_instance_group_interface.go
 model_server_instance_group_interface_configuration.go
 model_server_instance_group_interface_paginated_list.go
-model_server_instance_group_network_connection_dto.go
+model_server_instance_group_network_connection.go
 model_server_instance_group_network_connections_list.go
 model_server_instance_group_paginated_list.go
 model_server_instance_group_update.go
@@ -896,11 +908,11 @@ model_update_global_firmware_upgrade_configuration.go
 model_update_infrastructure.go
 model_update_infrastructure_meta.go
 model_update_logical_network.go
-model_update_logical_network_acl_dto.go
+model_update_logical_network_acl.go
 model_update_logical_network_profile.go
 model_update_network_device.go
 model_update_network_endpoint_group.go
-model_update_network_endpoint_group_logical_network_dto.go
+model_update_network_endpoint_group_logical_network.go
 model_update_network_fabric.go
 model_update_resource_pool.go
 model_update_secret.go

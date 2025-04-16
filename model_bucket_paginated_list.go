@@ -21,7 +21,7 @@ var _ MappedNullable = &BucketPaginatedList{}
 
 // BucketPaginatedList struct for BucketPaginatedList
 type BucketPaginatedList struct {
-	Data []BucketExtendedInfo `json:"data"`
+	Data []Bucket `json:"data"`
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
@@ -35,7 +35,7 @@ type _BucketPaginatedList BucketPaginatedList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucketPaginatedList(data []BucketExtendedInfo, meta PaginatedResponseMeta, links PaginatedResponseLinks) *BucketPaginatedList {
+func NewBucketPaginatedList(data []Bucket, meta PaginatedResponseMeta, links PaginatedResponseLinks) *BucketPaginatedList {
 	this := BucketPaginatedList{}
 	this.Data = data
 	this.Meta = meta
@@ -52,9 +52,9 @@ func NewBucketPaginatedListWithDefaults() *BucketPaginatedList {
 }
 
 // GetData returns the Data field value
-func (o *BucketPaginatedList) GetData() []BucketExtendedInfo {
+func (o *BucketPaginatedList) GetData() []Bucket {
 	if o == nil {
-		var ret []BucketExtendedInfo
+		var ret []Bucket
 		return ret
 	}
 
@@ -63,7 +63,7 @@ func (o *BucketPaginatedList) GetData() []BucketExtendedInfo {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *BucketPaginatedList) GetDataOk() ([]BucketExtendedInfo, bool) {
+func (o *BucketPaginatedList) GetDataOk() ([]Bucket, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +71,7 @@ func (o *BucketPaginatedList) GetDataOk() ([]BucketExtendedInfo, bool) {
 }
 
 // SetData sets field value
-func (o *BucketPaginatedList) SetData(v []BucketExtendedInfo) {
+func (o *BucketPaginatedList) SetData(v []Bucket) {
 	o.Data = v
 }
 

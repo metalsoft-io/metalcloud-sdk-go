@@ -34,7 +34,7 @@ type Storage struct {
 	// Storage driver
 	Driver string `json:"driver"`
 	// Storage technology
-	Technology string `json:"technology"`
+	Technologies []string `json:"technologies"`
 	// Storage type
 	Type string `json:"type"`
 	// Storage status
@@ -97,14 +97,14 @@ type _Storage Storage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technology string, type_ string, status string, name string, managementHost string, username string, subnetType string) *Storage {
+func NewStorage(id float32, revision float32, siteId float32, datacenterName string, driver string, technologies []string, type_ string, status string, name string, managementHost string, username string, subnetType string) *Storage {
 	this := Storage{}
 	this.Id = id
 	this.Revision = revision
 	this.SiteId = siteId
 	this.DatacenterName = datacenterName
 	this.Driver = driver
-	this.Technology = technology
+	this.Technologies = technologies
 	this.Type = type_
 	this.Status = status
 	this.Name = name
@@ -274,28 +274,28 @@ func (o *Storage) SetDriver(v string) {
 	o.Driver = v
 }
 
-// GetTechnology returns the Technology field value
-func (o *Storage) GetTechnology() string {
+// GetTechnologies returns the Technologies field value
+func (o *Storage) GetTechnologies() []string {
 	if o == nil {
-		var ret string
+		var ret []string
 		return ret
 	}
 
-	return o.Technology
+	return o.Technologies
 }
 
-// GetTechnologyOk returns a tuple with the Technology field value
+// GetTechnologiesOk returns a tuple with the Technologies field value
 // and a boolean to check if the value has been set.
-func (o *Storage) GetTechnologyOk() (*string, bool) {
+func (o *Storage) GetTechnologiesOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Technology, true
+	return o.Technologies, true
 }
 
-// SetTechnology sets field value
-func (o *Storage) SetTechnology(v string) {
-	o.Technology = v
+// SetTechnologies sets field value
+func (o *Storage) SetTechnologies(v []string) {
+	o.Technologies = v
 }
 
 // GetType returns the Type field value
@@ -1132,7 +1132,7 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 	toSerialize["siteId"] = o.SiteId
 	toSerialize["datacenterName"] = o.DatacenterName
 	toSerialize["driver"] = o.Driver
-	toSerialize["technology"] = o.Technology
+	toSerialize["technologies"] = o.Technologies
 	toSerialize["type"] = o.Type
 	toSerialize["status"] = o.Status
 	if !IsNil(o.TotalCapacity) {
@@ -1220,7 +1220,7 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		"siteId",
 		"datacenterName",
 		"driver",
-		"technology",
+		"technologies",
 		"type",
 		"status",
 		"name",
@@ -1262,7 +1262,7 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "datacenterName")
 		delete(additionalProperties, "driver")
-		delete(additionalProperties, "technology")
+		delete(additionalProperties, "technologies")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "totalCapacity")

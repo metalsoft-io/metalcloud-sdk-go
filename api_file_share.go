@@ -252,7 +252,7 @@ type FileShareAPIGetFileShareRequest struct {
 	fileShareId float32
 }
 
-func (r FileShareAPIGetFileShareRequest) Execute() (*FileShareExtendedInfo, *http.Response, error) {
+func (r FileShareAPIGetFileShareRequest) Execute() (*FileShare, *http.Response, error) {
 	return r.ApiService.GetFileShareExecute(r)
 }
 
@@ -274,13 +274,13 @@ func (a *FileShareAPIService) GetFileShare(ctx context.Context, fileShareId floa
 }
 
 // Execute executes the request
-//  @return FileShareExtendedInfo
-func (a *FileShareAPIService) GetFileShareExecute(r FileShareAPIGetFileShareRequest) (*FileShareExtendedInfo, *http.Response, error) {
+//  @return FileShare
+func (a *FileShareAPIService) GetFileShareExecute(r FileShareAPIGetFileShareRequest) (*FileShare, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FileShareExtendedInfo
+		localVarReturnValue  *FileShare
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FileShareAPIService.GetFileShare")

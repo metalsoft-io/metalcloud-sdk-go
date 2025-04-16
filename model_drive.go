@@ -58,6 +58,8 @@ type Drive struct {
 	Revision float32 `json:"revision"`
 	// Infrastructure id of the Drive
 	InfrastructureId float32 `json:"infrastructureId"`
+	// Infrastructure information
+	Infrastructure ParentInfrastructureDto `json:"infrastructure"`
 	// Service status of the Drive
 	ServiceStatus string `json:"serviceStatus"`
 	// Cached information of the real size of the storage in MB.
@@ -100,7 +102,7 @@ type _Drive Drive
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDrive(label string, groupId float32, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, storageUpdatedTimestamp string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, meta DriveMeta) *Drive {
+func NewDrive(label string, groupId float32, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructureDto, serviceStatus string, storageUpdatedTimestamp string, provisioningProtocol string, config DriveConfiguration, createdTimestamp string, meta DriveMeta) *Drive {
 	this := Drive{}
 	this.Label = label
 	this.GroupId = groupId
@@ -110,6 +112,7 @@ func NewDrive(label string, groupId float32, sizeMb float32, storageType string,
 	this.Id = id
 	this.Revision = revision
 	this.InfrastructureId = infrastructureId
+	this.Infrastructure = infrastructure
 	this.ServiceStatus = serviceStatus
 	this.StorageUpdatedTimestamp = storageUpdatedTimestamp
 	this.ProvisioningProtocol = provisioningProtocol
@@ -673,6 +676,30 @@ func (o *Drive) SetInfrastructureId(v float32) {
 	o.InfrastructureId = v
 }
 
+// GetInfrastructure returns the Infrastructure field value
+func (o *Drive) GetInfrastructure() ParentInfrastructureDto {
+	if o == nil {
+		var ret ParentInfrastructureDto
+		return ret
+	}
+
+	return o.Infrastructure
+}
+
+// GetInfrastructureOk returns a tuple with the Infrastructure field value
+// and a boolean to check if the value has been set.
+func (o *Drive) GetInfrastructureOk() (*ParentInfrastructureDto, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Infrastructure, true
+}
+
+// SetInfrastructure sets field value
+func (o *Drive) SetInfrastructure(v ParentInfrastructureDto) {
+	o.Infrastructure = v
+}
+
 // GetServiceStatus returns the ServiceStatus field value
 func (o *Drive) GetServiceStatus() string {
 	if o == nil {
@@ -1220,6 +1247,7 @@ func (o Drive) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["infrastructureId"] = o.InfrastructureId
+	toSerialize["infrastructure"] = o.Infrastructure
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	if !IsNil(o.StorageRealSizeCachedMb) {
 		toSerialize["storageRealSizeCachedMb"] = o.StorageRealSizeCachedMb
@@ -1280,6 +1308,7 @@ func (o *Drive) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"revision",
 		"infrastructureId",
+		"infrastructure",
 		"serviceStatus",
 		"storageUpdatedTimestamp",
 		"provisioningProtocol",
@@ -1334,6 +1363,7 @@ func (o *Drive) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "infrastructureId")
+		delete(additionalProperties, "infrastructure")
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "storageRealSizeCachedMb")
 		delete(additionalProperties, "storageRealSizeWithSnapshotsCachedMb")

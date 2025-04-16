@@ -39,6 +39,8 @@ type Bucket struct {
 	Revision float32 `json:"revision"`
 	// Infrastructure id of the Bucket
 	InfrastructureId float32 `json:"infrastructureId"`
+	// Infrastructure information
+	Infrastructure ParentInfrastructureDto `json:"infrastructure"`
 	// Timestamp of the Bucket creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Service status of the Bucket
@@ -66,7 +68,7 @@ type _Bucket Bucket
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, config BucketConfiguration, meta BucketMeta) *Bucket {
+func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructureDto, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, config BucketConfiguration, meta BucketMeta) *Bucket {
 	this := Bucket{}
 	this.SizeGB = sizeGB
 	this.UpdatedTimestamp = updatedTimestamp
@@ -75,6 +77,7 @@ func NewBucket(sizeGB float32, updatedTimestamp string, label string, subdomain 
 	this.Id = id
 	this.Revision = revision
 	this.InfrastructureId = infrastructureId
+	this.Infrastructure = infrastructure
 	this.CreatedTimestamp = createdTimestamp
 	this.ServiceStatus = serviceStatus
 	this.SubdomainPermanent = subdomainPermanent
@@ -322,6 +325,30 @@ func (o *Bucket) GetInfrastructureIdOk() (*float32, bool) {
 // SetInfrastructureId sets field value
 func (o *Bucket) SetInfrastructureId(v float32) {
 	o.InfrastructureId = v
+}
+
+// GetInfrastructure returns the Infrastructure field value
+func (o *Bucket) GetInfrastructure() ParentInfrastructureDto {
+	if o == nil {
+		var ret ParentInfrastructureDto
+		return ret
+	}
+
+	return o.Infrastructure
+}
+
+// GetInfrastructureOk returns a tuple with the Infrastructure field value
+// and a boolean to check if the value has been set.
+func (o *Bucket) GetInfrastructureOk() (*ParentInfrastructureDto, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Infrastructure, true
+}
+
+// SetInfrastructure sets field value
+func (o *Bucket) SetInfrastructure(v ParentInfrastructureDto) {
+	o.Infrastructure = v
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
@@ -587,6 +614,7 @@ func (o Bucket) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["infrastructureId"] = o.InfrastructureId
+	toSerialize["infrastructure"] = o.Infrastructure
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	toSerialize["subdomainPermanent"] = o.SubdomainPermanent
@@ -622,6 +650,7 @@ func (o *Bucket) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"revision",
 		"infrastructureId",
+		"infrastructure",
 		"createdTimestamp",
 		"serviceStatus",
 		"subdomainPermanent",
@@ -666,6 +695,7 @@ func (o *Bucket) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "infrastructureId")
+		delete(additionalProperties, "infrastructure")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "subdomainPermanent")

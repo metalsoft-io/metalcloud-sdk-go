@@ -22,7 +22,7 @@ var _ MappedNullable = &RedundancyConfig{}
 // RedundancyConfig struct for RedundancyConfig
 type RedundancyConfig struct {
 	// The redundancy mode
-	Mode string `json:"mode"`
+	Mode NetworkEndpointGroupRedundancyMode `json:"mode"`
 	// The redundancy implementation configuration
 	Implementation NullableRedundancyImplementation `json:"implementation,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -34,7 +34,7 @@ type _RedundancyConfig RedundancyConfig
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRedundancyConfig(mode string) *RedundancyConfig {
+func NewRedundancyConfig(mode NetworkEndpointGroupRedundancyMode) *RedundancyConfig {
 	this := RedundancyConfig{}
 	this.Mode = mode
 	return &this
@@ -49,9 +49,9 @@ func NewRedundancyConfigWithDefaults() *RedundancyConfig {
 }
 
 // GetMode returns the Mode field value
-func (o *RedundancyConfig) GetMode() string {
+func (o *RedundancyConfig) GetMode() NetworkEndpointGroupRedundancyMode {
 	if o == nil {
-		var ret string
+		var ret NetworkEndpointGroupRedundancyMode
 		return ret
 	}
 
@@ -60,7 +60,7 @@ func (o *RedundancyConfig) GetMode() string {
 
 // GetModeOk returns a tuple with the Mode field value
 // and a boolean to check if the value has been set.
-func (o *RedundancyConfig) GetModeOk() (*string, bool) {
+func (o *RedundancyConfig) GetModeOk() (*NetworkEndpointGroupRedundancyMode, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *RedundancyConfig) GetModeOk() (*string, bool) {
 }
 
 // SetMode sets field value
-func (o *RedundancyConfig) SetMode(v string) {
+func (o *RedundancyConfig) SetMode(v NetworkEndpointGroupRedundancyMode) {
 	o.Mode = v
 }
 

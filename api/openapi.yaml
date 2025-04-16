@@ -1155,7 +1155,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BucketExtendedInfo'
+                $ref: '#/components/schemas/Bucket'
           description: Returns Bucket information
           headers:
             ETag:
@@ -2572,6 +2572,82 @@ paths:
       summary: Get Event information
       tags:
       - Event
+  /api/v2/extension-instances/{extensionInstanceId}:
+    delete:
+      description: Deletes the specified extension instance
+      operationId: deleteExtensionInstance
+      parameters:
+      - explode: false
+        in: path
+        name: extensionInstanceId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: The specified extension instance was successfully deleted
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Extension instance not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete extension instance
+      tags:
+      - Extension Instance
+    get:
+      description: Returns the details of the specified extension instance
+      operationId: getExtensionInstance
+      parameters:
+      - explode: false
+        in: path
+        name: extensionInstanceId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtensionInstance'
+          description: The details of the specified extension instance
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Extension instance not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get extension instance details
+      tags:
+      - Extension Instance
   /api/v2/infrastructures/{infrastructureId}/extension-instances:
     get:
       description: Returns list of extension instances
@@ -2762,82 +2838,6 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Add extension instance to an infrastructure
-      tags:
-      - Extension Instance
-  /api/v2/extension-instances/{extensionInstanceId}:
-    delete:
-      description: Deletes the specified extension instance
-      operationId: deleteExtensionInstance
-      parameters:
-      - explode: false
-        in: path
-        name: extensionInstanceId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: Entity tag
-        explode: false
-        in: header
-        name: If-Match
-        required: false
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: The specified extension instance was successfully deleted
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Extension instance not found
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Delete extension instance
-      tags:
-      - Extension Instance
-    get:
-      description: Returns the details of the specified extension instance
-      operationId: getExtensionInstance
-      parameters:
-      - explode: false
-        in: path
-        name: extensionInstanceId
-        required: true
-        schema:
-          type: number
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExtensionInstance'
-          description: The details of the specified extension instance
-          headers:
-            ETag:
-              description: Entity tag
-              explode: false
-              schema:
-                type: string
-              style: simple
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Extension instance not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Get extension instance details
       tags:
       - Extension Instance
   /api/v2/extension-instances/{extensionInstanceId}/config:
@@ -3299,7 +3299,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FileShareExtendedInfo'
+                $ref: '#/components/schemas/FileShare'
           description: Returns File Share information
           headers:
             ETag:
@@ -11874,7 +11874,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworkDto'
+                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetwork'
           description: The logical network has been successfully removed from the
             network endpoint group.
         "401":
@@ -11913,7 +11913,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworkDto'
+                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetwork'
           description: Returns a logical network by its id
         "401":
           description: Unauthorized
@@ -11956,7 +11956,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateNetworkEndpointGroupLogicalNetworkDto'
+              $ref: '#/components/schemas/UpdateNetworkEndpointGroupLogicalNetwork'
         description: The logical network id and settings to add to the network endpoint
           group
         required: true
@@ -11965,7 +11965,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworkDto'
+                $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetwork'
           description: The logical network has been successfully updated in the network
             endpoint group.
         "401":
@@ -16408,7 +16408,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LogicalNetworkACLDto'
+                $ref: '#/components/schemas/LogicalNetworkACL'
           description: The security rules for the logical network
         "401":
           description: Unauthorized
@@ -16443,7 +16443,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateLogicalNetworkACLDto'
+              $ref: '#/components/schemas/CreateLogicalNetworkACL'
         description: The security rule to create
         required: true
       responses:
@@ -16451,7 +16451,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LogicalNetworkACLDto'
+                $ref: '#/components/schemas/LogicalNetworkACL'
           description: The security rule was successfully created
         "401":
           description: Unauthorized
@@ -16534,7 +16534,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LogicalNetworkACLDto'
+                $ref: '#/components/schemas/LogicalNetworkACL'
           description: The security rule for the logical network
         "401":
           description: Unauthorized
@@ -16576,7 +16576,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateLogicalNetworkACLDto'
+              $ref: '#/components/schemas/UpdateLogicalNetworkACL'
         description: The security rule to update
         required: true
       responses:
@@ -16584,7 +16584,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LogicalNetworkACLDto'
+                $ref: '#/components/schemas/LogicalNetworkACL'
           description: The security rule was successfully updated
         "401":
           description: Unauthorized
@@ -17691,7 +17691,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateServerInstanceGroupNetworkConnectionDto'
+              $ref: '#/components/schemas/CreateServerInstanceGroupNetworkConnection'
         description: The network connection object to create
         required: true
       responses:
@@ -17699,7 +17699,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServerInstanceGroupNetworkConnectionDto'
+                $ref: '#/components/schemas/ServerInstanceGroupNetworkConnection'
           description: The network connection was successfully created
           headers:
             Location:
@@ -17786,7 +17786,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServerInstanceGroupNetworkConnectionDto'
+                $ref: '#/components/schemas/ServerInstanceGroupNetworkConnection'
           description: The connection by id of the specified server instance group
         "401":
           description: Unauthorized
@@ -17821,7 +17821,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateNetworkEndpointGroupLogicalNetworkDto'
+              $ref: '#/components/schemas/UpdateNetworkEndpointGroupLogicalNetwork'
         description: The network connection object to update
         required: true
       responses:
@@ -17829,7 +17829,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServerInstanceGroupNetworkConnectionDto'
+                $ref: '#/components/schemas/ServerInstanceGroupNetworkConnection'
           description: The updated network connection object
         "401":
           description: Unauthorized
@@ -20849,30 +20849,17 @@ paths:
           type: array
         style: form
       - description: |-
-          Filter by technology query param.
+          Filter by technologies query param.
                     <p>
-                       <b>Format: </b> filter.technology={$not}:OPERATION:VALUE
+                       <b>Format: </b> filter.technologies={$not}:OPERATION:VALUE
                     </p>
                     <p>
-                       <b>Example: </b> filter.technology=$not:$like:John Doe&filter.technology=like:John
+                       <b>Example: </b> filter.technologies=$not:$like:John Doe&filter.technologies=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$and</li>
-          <li>$or</li>
-          <li>$not</li>
-          <li>$eq</li>
-          <li>$gt</li>
-          <li>$gte</li>
-          <li>$in</li>
-          <li>$null</li>
-          <li>$lt</li>
-          <li>$lte</li>
-          <li>$btw</li>
-          <li>$ilike</li>
-          <li>$sw</li>
-          <li>$contains</li></ul>
+                    <h4>Available Operations</h4><ul><li>$in</li></ul>
         explode: true
         in: query
-        name: filter.technology
+        name: filter.technologies
         required: false
         schema:
           items:
@@ -20885,7 +20872,7 @@ paths:
           \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
           \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
           \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>userId</li>\n\
-          <li>siteId</li>\n<li>driver</li>\n<li>technology</li></ul>\n      "
+          <li>siteId</li>\n<li>driver</li>\n<li>technologies</li></ul>\n      "
         explode: true
         in: query
         name: sortBy
@@ -20901,8 +20888,8 @@ paths:
             - siteId:DESC
             - driver:ASC
             - driver:DESC
-            - technology:ASC
-            - technology:DESC
+            - technologies:ASC
+            - technologies:DESC
             type: string
           type: array
         style: form
@@ -20917,11 +20904,11 @@ paths:
           type: string
         style: form
       - description: "List of fields to search by term to filter result values\n \
-          \       <p>\n             <b>Example: </b> id,userId,siteId,driver,technology\n\
+          \       <p>\n             <b>Example: </b> id,userId,siteId,driver,technologies\n\
           \          </p>\n        <p>\n             <b>Default Value: </b> By default\
           \ all fields mentioned below will be used to search by term\n          </p>\n\
           \        <h4>Available Fields</h4><ul><li>id</li>\n<li>userId</li>\n<li>siteId</li>\n\
-          <li>driver</li>\n<li>technology</li></ul>\n        "
+          <li>driver</li>\n<li>technologies</li></ul>\n        "
         explode: true
         in: query
         name: searchBy
@@ -23387,14 +23374,7 @@ paths:
   /api/v2/user/api-key:
     get:
       operationId: getUserApiKey
-      parameters:
-      - explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          type: number
-        style: simple
+      parameters: []
       responses:
         "200":
           content:
@@ -30528,6 +30508,18 @@ components:
       required:
       - isPublicSignupDisabled
       type: object
+    ParentInfrastructureDto:
+      properties:
+        userIdOwner:
+          description: User ID of the owner of the Infrastructure.
+          type: number
+        id:
+          description: Infrastructure Id
+          example: 1
+          type: number
+      required:
+      - id
+      type: object
     BucketConfiguration:
       example:
         sizeGB: 6.027456183070403
@@ -30602,7 +30594,7 @@ components:
         guiSettings:
           $ref: '#/components/schemas/GenericGUISettings'
       type: object
-    BucketExtendedInfo:
+    Bucket:
       example:
         accessKeyId: accessKeyId
         sizeGB: 0.8008281904610115
@@ -30615,9 +30607,9 @@ components:
         revision: 5.637376656633329
         endpoint: endpoint
         infrastructureId: 2.3021358869347655
+        infrastructure: ""
         serviceStatus: ordered
         meta: ""
-        infrastructure: "{}"
         subdomain: subdomain
         storagePoolId: 6.027456183070403
         id: 5.962133916683182
@@ -30651,6 +30643,10 @@ components:
         infrastructureId:
           description: Infrastructure id of the Bucket
           type: number
+        infrastructure:
+          allOf:
+          - $ref: '#/components/schemas/ParentInfrastructureDto'
+          description: Infrastructure information
         createdTimestamp:
           description: Timestamp of the Bucket creation.
           type: string
@@ -30686,9 +30682,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/BucketMeta'
           description: Meta information of the Bucket.
-        infrastructure:
-          description: Infrastructure information
-          type: object
       required:
       - config
       - createdTimestamp
@@ -30723,104 +30716,6 @@ components:
       required:
       - sizeGB
       type: object
-    Bucket:
-      example:
-        accessKeyId: accessKeyId
-        sizeGB: 0.8008281904610115
-        dnsSubdomainId: 7.061401241503109
-        logicalNetworkId: 1.4658129805029452
-        createdTimestamp: createdTimestamp
-        label: label
-        subdomainPermanent: subdomainPermanent
-        updatedTimestamp: updatedTimestamp
-        revision: 5.637376656633329
-        endpoint: endpoint
-        infrastructureId: 2.3021358869347655
-        serviceStatus: ordered
-        meta: ""
-        subdomain: subdomain
-        storagePoolId: 6.027456183070403
-        id: 5.962133916683182
-        secretKeyEncrypted: secretKeyEncrypted
-        config: ""
-      properties:
-        sizeGB:
-          description: Disk size in GB for Bucket
-          type: number
-        updatedTimestamp:
-          description: Timestamp of the Bucket last update.
-          type: string
-        storagePoolId:
-          description: Id of the storage pool the Bucket is assigned to
-          type: number
-        label:
-          description: Label of the Bucket.
-          type: string
-        subdomain:
-          description: Subdomain of the Bucket.
-          type: string
-        logicalNetworkId:
-          description: Id of the Logical Network for the Bucket.
-          type: number
-        id:
-          description: Id of the Bucket
-          type: number
-        revision:
-          description: Revision of the Bucket
-          type: number
-        infrastructureId:
-          description: Infrastructure id of the Bucket
-          type: number
-        createdTimestamp:
-          description: Timestamp of the Bucket creation.
-          type: string
-        serviceStatus:
-          description: Service status of the Bucket
-          enum:
-          - ordered
-          - active
-          - deleted
-          - stopped
-          - suspended
-          type: string
-        subdomainPermanent:
-          description: Subdomain permanent of the Bucket.
-          type: string
-        dnsSubdomainId:
-          description: Id of the DNS subdomain for the Bucket.
-          type: number
-        endpoint:
-          description: Endpoint of the Bucket.
-          type: string
-        accessKeyId:
-          description: Endpoint of the Bucket.
-          type: string
-        secretKeyEncrypted:
-          description: Endpoint of the Bucket.
-          type: string
-        config:
-          allOf:
-          - $ref: '#/components/schemas/BucketConfiguration'
-          description: The current changes to be deployed for the Bucket.
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/BucketMeta'
-          description: Meta information of the Bucket.
-      required:
-      - config
-      - createdTimestamp
-      - dnsSubdomainId
-      - id
-      - infrastructureId
-      - label
-      - meta
-      - revision
-      - serviceStatus
-      - sizeGB
-      - subdomain
-      - subdomainPermanent
-      - updatedTimestamp
-      type: object
     BucketPaginatedList:
       example:
         data:
@@ -30835,9 +30730,9 @@ components:
           revision: 5.637376656633329
           endpoint: endpoint
           infrastructureId: 2.3021358869347655
+          infrastructure: ""
           serviceStatus: ordered
           meta: ""
-          infrastructure: "{}"
           subdomain: subdomain
           storagePoolId: 6.027456183070403
           id: 5.962133916683182
@@ -30854,9 +30749,9 @@ components:
           revision: 5.637376656633329
           endpoint: endpoint
           infrastructureId: 2.3021358869347655
+          infrastructure: ""
           serviceStatus: ordered
           meta: ""
-          infrastructure: "{}"
           subdomain: subdomain
           storagePoolId: 6.027456183070403
           id: 5.962133916683182
@@ -30867,8 +30762,8 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/BucketExtendedInfo'
-          title: List of bucket extended info's
+            $ref: '#/components/schemas/Bucket'
+          title: List of bucket's
           type: array
         meta:
           allOf:
@@ -31731,33 +31626,6 @@ components:
       - label
       - value
       type: object
-    CreateExtensionInstance:
-      example:
-        label: ext-instance-123
-        inputVariables:
-        - label: label
-          value: value
-        - label: label
-          value: value
-        extensionId: 12
-      properties:
-        label:
-          description: The extension instance label. Will be automatically generated
-            if not provided.
-          example: ext-instance-123
-          maxLength: 63
-          minLength: 1
-          type: string
-        extensionId:
-          description: The extension ID.
-          example: 12
-          type: number
-        inputVariables:
-          description: Input variables values.
-          items:
-            $ref: '#/components/schemas/ExtensionVariable'
-          type: array
-      type: object
     ExtensionInstanceConfiguration:
       properties:
         revision:
@@ -31826,6 +31694,7 @@ components:
         automaticManagement: 1
         dnsSubdomainPermanentId: 6.027456183070403
         infrastructureId: 1
+        infrastructure: ""
         serviceStatus: ordered
         subdomain: subdomain
         outputVariables:
@@ -31877,6 +31746,10 @@ components:
           description: The infrastructure ID.
           example: 1
           type: number
+        infrastructure:
+          allOf:
+          - $ref: '#/components/schemas/ParentInfrastructureDto'
+          description: Infrastructure information
         extensionId:
           description: The extension ID.
           example: 12
@@ -31927,6 +31800,7 @@ components:
       - createdTimestamp
       - extensionId
       - id
+      - infrastructure
       - infrastructureId
       - inputVariables
       - label
@@ -31934,6 +31808,33 @@ components:
       - revision
       - serviceStatus
       - updatedTimestamp
+      type: object
+    CreateExtensionInstance:
+      example:
+        label: ext-instance-123
+        inputVariables:
+        - label: label
+          value: value
+        - label: label
+          value: value
+        extensionId: 12
+      properties:
+        label:
+          description: The extension instance label. Will be automatically generated
+            if not provided.
+          example: ext-instance-123
+          maxLength: 63
+          minLength: 1
+          type: string
+        extensionId:
+          description: The extension ID.
+          example: 12
+          type: number
+        inputVariables:
+          description: Input variables values.
+          items:
+            $ref: '#/components/schemas/ExtensionVariable'
+          type: array
       type: object
     ExtensionInstancePaginatedList:
       example:
@@ -31947,6 +31848,7 @@ components:
           automaticManagement: 1
           dnsSubdomainPermanentId: 6.027456183070403
           infrastructureId: 1
+          infrastructure: ""
           serviceStatus: ordered
           subdomain: subdomain
           outputVariables:
@@ -31976,6 +31878,7 @@ components:
           automaticManagement: 1
           dnsSubdomainPermanentId: 6.027456183070403
           infrastructureId: 1
+          infrastructure: ""
           serviceStatus: ordered
           subdomain: subdomain
           outputVariables:
@@ -35356,7 +35259,7 @@ components:
         guiSettings:
           $ref: '#/components/schemas/GenericGUISettings'
       type: object
-    FileShareExtendedInfo:
+    FileShare:
       example:
         sizeGB: 0.8008281904610115
         dnsSubdomainId: 7.061401241503109
@@ -35368,9 +35271,9 @@ components:
         revision: 5.637376656633329
         endpoint: endpoint
         infrastructureId: 2.3021358869347655
+        infrastructure: ""
         serviceStatus: ordered
         meta: ""
-        infrastructure: "{}"
         networkVlanId: 9.301444243932576
         subdomain: subdomain
         storagePoolId: 6.027456183070403
@@ -35404,6 +35307,10 @@ components:
         infrastructureId:
           description: Infrastructure id of the File Share
           type: number
+        infrastructure:
+          allOf:
+          - $ref: '#/components/schemas/ParentInfrastructureDto'
+          description: Infrastructure information
         createdTimestamp:
           description: Timestamp of the File Share creation.
           type: string
@@ -35436,9 +35343,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/FileShareMeta'
           description: Meta information of the File Share.
-        infrastructure:
-          description: Infrastructure information
-          type: object
       required:
       - config
       - createdTimestamp
@@ -35470,97 +35374,6 @@ components:
       required:
       - sizeGB
       type: object
-    FileShare:
-      example:
-        sizeGB: 0.8008281904610115
-        dnsSubdomainId: 7.061401241503109
-        logicalNetworkId: 1.4658129805029452
-        createdTimestamp: createdTimestamp
-        label: label
-        subdomainPermanent: subdomainPermanent
-        updatedTimestamp: updatedTimestamp
-        revision: 5.637376656633329
-        endpoint: endpoint
-        infrastructureId: 2.3021358869347655
-        serviceStatus: ordered
-        meta: ""
-        networkVlanId: 9.301444243932576
-        subdomain: subdomain
-        storagePoolId: 6.027456183070403
-        id: 5.962133916683182
-        config: ""
-      properties:
-        sizeGB:
-          description: Disk size in GB for File Share
-          type: number
-        updatedTimestamp:
-          description: Timestamp of the File Share last update.
-          type: string
-        storagePoolId:
-          description: Id of the storage pool the File Share is assigned to
-          type: number
-        label:
-          description: Label of the File Share.
-          type: string
-        subdomain:
-          description: Subdomain of the File Share.
-          type: string
-        logicalNetworkId:
-          description: Id of the Logical Network for the File Share.
-          type: number
-        id:
-          description: Id of the File Share
-          type: number
-        revision:
-          description: Revision of the File Share
-          type: number
-        infrastructureId:
-          description: Infrastructure id of the File Share
-          type: number
-        createdTimestamp:
-          description: Timestamp of the File Share creation.
-          type: string
-        serviceStatus:
-          description: Service status of the File Share
-          enum:
-          - ordered
-          - active
-          - deleted
-          - stopped
-          - suspended
-          type: string
-        subdomainPermanent:
-          description: Subdomain permanent of the File Share.
-          type: string
-        dnsSubdomainId:
-          description: Id of the DNS subdomain for the File Share.
-          type: number
-        networkVlanId:
-          description: Id of the VLAN for the File Share.
-          type: number
-        endpoint:
-          description: Endpoint of the File Share.
-          type: string
-        config:
-          allOf:
-          - $ref: '#/components/schemas/FileShareConfiguration'
-          description: The current changes to be deployed for the File Share.
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/FileShareMeta'
-          description: Meta information of the File Share.
-      required:
-      - config
-      - createdTimestamp
-      - id
-      - infrastructureId
-      - label
-      - meta
-      - revision
-      - serviceStatus
-      - sizeGB
-      - updatedTimestamp
-      type: object
     FileSharePaginatedList:
       example:
         data:
@@ -35574,9 +35387,9 @@ components:
           revision: 5.637376656633329
           endpoint: endpoint
           infrastructureId: 2.3021358869347655
+          infrastructure: ""
           serviceStatus: ordered
           meta: ""
-          infrastructure: "{}"
           networkVlanId: 9.301444243932576
           subdomain: subdomain
           storagePoolId: 6.027456183070403
@@ -35592,9 +35405,9 @@ components:
           revision: 5.637376656633329
           endpoint: endpoint
           infrastructureId: 2.3021358869347655
+          infrastructure: ""
           serviceStatus: ordered
           meta: ""
-          infrastructure: "{}"
           networkVlanId: 9.301444243932576
           subdomain: subdomain
           storagePoolId: 6.027456183070403
@@ -35605,8 +35418,8 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/FileShareExtendedInfo'
-          title: List of file share extended info's
+            $ref: '#/components/schemas/FileShare'
+          title: List of file share's
           type: array
         meta:
           allOf:
@@ -42465,7 +42278,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-15T13:03:36.425Z
+        createdTimestamp: 2025-04-16T17:49:52.138Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -42474,7 +42287,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-15T13:03:36.425Z
+        updatedTimestamp: 2025-04-16T17:49:52.139Z
         revision: "1"
       properties:
         siteId:
@@ -42491,12 +42304,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-15T13:03:36.425Z
+          example: 2025-04-16T17:49:52.138Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-15T13:03:36.425Z
+          example: 2025-04-16T17:49:52.139Z
           format: date-time
           type: string
         links:
@@ -42518,7 +42331,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-15T13:03:36.425Z
+        - createdTimestamp: 2025-04-16T17:49:52.138Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -42527,9 +42340,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-15T13:03:36.425Z
+          updatedTimestamp: 2025-04-16T17:49:52.139Z
           revision: "1"
-        - createdTimestamp: 2025-04-15T13:03:36.425Z
+        - createdTimestamp: 2025-04-16T17:49:52.138Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -42538,7 +42351,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-15T13:03:36.425Z
+          updatedTimestamp: 2025-04-16T17:49:52.139Z
           revision: "1"
         meta: ""
         links: ""
@@ -42593,28 +42406,41 @@ components:
           example: Test Network Endpoint Group
           type: string
       type: object
+    NetworkEndpointGroupAllowedAccessMode:
+      description: The access mode of the network endpoint group
+      enum:
+      - l2
+      type: string
+    NetworkEndpointGroupRedundancyMode:
+      description: The redundancy mode
+      enum:
+      - active-backup
+      - active-active
+      type: string
+    NetworkEndpointGroupRedundancyImplementationType:
+      description: The type of redundancy implementation
+      enum:
+      - link-aggregation
+      - distributed-link-aggregation
+      - ecmp
+      type: string
     RedundancyImplementation:
       properties:
         implementationType:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupRedundancyImplementationType'
           description: The type of redundancy implementation
-          enum:
-          - link-aggregation
-          - distributed-link-aggregation
-          - ecmp
           example: link-aggregation
-          type: string
       required:
       - implementationType
       type: object
     RedundancyConfig:
       properties:
         mode:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupRedundancyMode'
           description: The redundancy mode
-          enum:
-          - active-backup
-          - active-active
           example: active-backup
-          type: string
         implementation:
           allOf:
           - $ref: '#/components/schemas/RedundancyImplementation'
@@ -42625,7 +42451,7 @@ components:
       required:
       - mode
       type: object
-    NetworkEndpointGroupLogicalNetworkDto:
+    NetworkEndpointGroupLogicalNetwork:
       example:
         logicalNetworkId: "1"
         tagged: true
@@ -42650,11 +42476,10 @@ components:
           example: true
           type: boolean
         accessMode:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
           description: The access mode of the network endpoint group
-          enum:
-          - l2
           example: l2
-          type: string
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -42716,7 +42541,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetworkDto'
+            $ref: '#/components/schemas/NetworkEndpointGroupLogicalNetwork'
           title: List of network endpoint group logical networks
           type: array
         links:
@@ -42746,11 +42571,10 @@ components:
           example: true
           type: boolean
         accessMode:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
           description: The access mode of the network endpoint group
-          enum:
-          - l2
           example: l2
-          type: string
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -42765,7 +42589,7 @@ components:
       - logicalNetworkId
       - tagged
       type: object
-    UpdateNetworkEndpointGroupLogicalNetworkDto:
+    UpdateNetworkEndpointGroupLogicalNetwork:
       example:
         tagged: true
         redundancy:
@@ -42779,11 +42603,10 @@ components:
           example: true
           type: boolean
         accessMode:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
           description: The access mode of the network endpoint group
-          enum:
-          - l2
           example: l2
-          type: string
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -43150,7 +42973,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-15T13:03:36.445Z
+        createdTimestamp: 2025-04-16T17:49:52.151Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -43191,7 +43014,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-15T13:03:36.445Z
+        updatedTimestamp: 2025-04-16T17:49:52.151Z
         revision: "1"
         status: draft
       properties:
@@ -43219,12 +43042,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-15T13:03:36.445Z
+          example: 2025-04-16T17:49:52.151Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-15T13:03:36.445Z
+          example: 2025-04-16T17:49:52.151Z
           format: date-time
           type: string
         links:
@@ -43365,7 +43188,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-15T13:03:36.445Z
+          createdTimestamp: 2025-04-16T17:49:52.151Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -43406,7 +43229,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-15T13:03:36.445Z
+          updatedTimestamp: 2025-04-16T17:49:52.151Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -43516,7 +43339,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-15T13:03:36.445Z
+          createdTimestamp: 2025-04-16T17:49:52.151Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -43557,7 +43380,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-15T13:03:36.445Z
+          updatedTimestamp: 2025-04-16T17:49:52.151Z
           revision: "1"
           status: draft
         meta: ""
@@ -46255,17 +46078,45 @@ components:
       - links
       - meta
       type: object
-    LogicalNetworkACLDto:
+    ACLType:
+      description: "The type of the rule such as ipv4, ipv6, mac"
+      enum:
+      - ipv4
+      - ipv6
+      - mac
+      type: string
+    ACLDirection:
+      description: "The direction of the rule such as in, out"
+      enum:
+      - in
+      - out
+      type: string
+    ACLForwardingAction:
+      description: The forwarding action of the rule
+      enum:
+      - allow
+      - deny
+      - transit
+      - discard
+      type: string
+    ACLEnforcementPoint:
+      description: The enforcement point of the rule
+      enum:
+      - svi
+      - physical-interface-vlan-scoped
+      - physical-interface
+      type: string
+    LogicalNetworkACL:
       example:
         destinationPort: "80,443,8080"
         sourcePort: "80,443,8080"
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-04-15T13:03:36.433Z
+        createdTimestamp: 2025-04-16T17:49:52.146Z
         destinationMac: 00:11:22:33:44:55
-        enforcementPoint: physical-interface-vlan-scoped
-        updatedTimestamp: 2025-04-15T13:03:36.433Z
+        enforcementPoint: svi
+        updatedTimestamp: 2025-04-16T17:49:52.146Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -46281,34 +46132,25 @@ components:
         direction: in
       properties:
         ruleType:
+          allOf:
+          - $ref: '#/components/schemas/ACLType'
           description: "The type of the rule such as ipv4, ipv6, mac"
-          enum:
-          - ipv4
-          - ipv6
-          - mac
           example: ipv4
-          type: string
         direction:
+          allOf:
+          - $ref: '#/components/schemas/ACLDirection'
           description: "The direction of the rule such as in, out"
-          enum:
-          - in
-          - out
           example: in
-          type: string
         sequence:
           description: The sequence number of the rule important for the order evaluation
             of the rules
           example: 1
           type: integer
         forwardingAction:
+          allOf:
+          - $ref: '#/components/schemas/ACLForwardingAction'
           description: The forwarding action of the rule
-          enum:
-          - allow
-          - deny
-          - transit
-          - discard
           example: allow
-          type: string
         networkProtocol:
           description: The network protocol of the ACL rule
           example: "tcp,udp,icmp"
@@ -46342,21 +46184,18 @@ components:
           example: 00:11:22:33:44:55
           type: string
         enforcementPoint:
+          allOf:
+          - $ref: '#/components/schemas/ACLEnforcementPoint'
           description: The enforcement point of the rule
-          enum:
-          - svi
-          - physical-interface-vlan-scoped
-          - physical-interface
-          example: physical-interface-vlan-scoped
-          type: string
+          example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-15T13:03:36.433Z
+          example: 2025-04-16T17:49:52.146Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-15T13:03:36.433Z
+          example: 2025-04-16T17:49:52.146Z
           format: date-time
           type: string
         links:
@@ -46385,7 +46224,7 @@ components:
       - sequence
       - updatedTimestamp
       type: object
-    CreateLogicalNetworkACLDto:
+    CreateLogicalNetworkACL:
       example:
         destinationPort: "80,443,8080"
         sourceMac: 00:11:22:33:44:55
@@ -46395,40 +46234,31 @@ components:
         destinationAddress: 192.168.1.0/24
         ruleType: ipv4
         destinationMac: 00:11:22:33:44:55
-        enforcementPoint: physical-interface-vlan-scoped
+        enforcementPoint: svi
         forwardingAction: allow
         networkProtocol: "tcp,udp,icmp"
         direction: in
       properties:
         ruleType:
+          allOf:
+          - $ref: '#/components/schemas/ACLType'
           description: "The type of the rule such as ipv4, ipv6, mac"
-          enum:
-          - ipv4
-          - ipv6
-          - mac
           example: ipv4
-          type: string
         direction:
+          allOf:
+          - $ref: '#/components/schemas/ACLDirection'
           description: "The direction of the rule such as in, out"
-          enum:
-          - in
-          - out
           example: in
-          type: string
         sequence:
           description: The sequence number of the rule important for the order evaluation
             of the rules
           example: 1
           type: integer
         forwardingAction:
+          allOf:
+          - $ref: '#/components/schemas/ACLForwardingAction'
           description: The forwarding action of the rule
-          enum:
-          - allow
-          - deny
-          - transit
-          - discard
           example: allow
-          type: string
         networkProtocol:
           description: The network protocol of the ACL rule
           example: "tcp,udp,icmp"
@@ -46462,13 +46292,10 @@ components:
           example: 00:11:22:33:44:55
           type: string
         enforcementPoint:
+          allOf:
+          - $ref: '#/components/schemas/ACLEnforcementPoint'
           description: The enforcement point of the rule
-          enum:
-          - svi
-          - physical-interface-vlan-scoped
-          - physical-interface
-          example: physical-interface-vlan-scoped
-          type: string
+          example: svi
       required:
       - direction
       - enforcementPoint
@@ -46476,58 +46303,57 @@ components:
       - ruleType
       - sequence
       type: object
-    UpdateLogicalNetworkACLDto:
+    UpdateLogicalNetworkACL:
       example:
         destinationPort: destinationPort
-        sourceMac: sourceMac
-        sequence: 0
-        sourcePort: sourcePort
-        sourceAddress: sourceAddress
-        destinationAddress: destinationAddress
+        sourceMac: 00:11:22:33:44:55
+        sequence: 1
+        sourcePort: "80,443,8080"
+        sourceAddress: 192.168.1.0/24
+        destinationAddress: 192.168.1.0/24
         ruleType: ipv4
-        destinationMac: destinationMac
-        enforcementPoint: svi
+        destinationMac: 00:11:22:33:44:55
+        enforcementPoint: physical-interface-vlan-scoped
         forwardingAction: allow
-        networkProtocol: networkProtocol
+        networkProtocol: "tcp,udp,icmp"
         direction: in
       properties:
         ruleType:
+          allOf:
+          - $ref: '#/components/schemas/ACLType'
           description: The type of the rule
-          enum:
-          - ipv4
-          - ipv6
-          - mac
-          type: string
+          example: ipv4
         direction:
+          allOf:
+          - $ref: '#/components/schemas/ACLDirection'
           description: The direction of the rule
-          enum:
-          - in
-          - out
-          type: string
+          example: in
         sequence:
           description: The sequence number of the rule
+          example: 1
           type: integer
         forwardingAction:
+          allOf:
+          - $ref: '#/components/schemas/ACLForwardingAction'
           description: The forwarding action of the rule
-          enum:
-          - allow
-          - deny
-          - transit
-          - discard
-          type: string
+          example: allow
         networkProtocol:
           description: The network protocol of the ACL rule
+          example: "tcp,udp,icmp"
           type: string
         sourceAddress:
           description: "The source address of the rule if the rule type is IPv4, IPv6"
+          example: 192.168.1.0/24
           type: string
         destinationAddress:
           description: "The destination address of the rule if the rule type is IPv4,\
             \ IPv6"
+          example: 192.168.1.0/24
           type: string
         sourcePort:
           description: "The source port of the rule if the rule type is IPv4, IPv6,\
             \ TCP or UDP"
+          example: "80,443,8080"
           type: string
         destinationPort:
           description: "The destination port of the rule if the rule type is IPv4,\
@@ -46535,18 +46361,18 @@ components:
           type: string
         sourceMac:
           description: The source MAC address of the rule if the rule type is MAC
+          example: 00:11:22:33:44:55
           type: string
         destinationMac:
           description: The destination MAC address of the rule if the rule type is
             MAC
+          example: 00:11:22:33:44:55
           type: string
         enforcementPoint:
+          allOf:
+          - $ref: '#/components/schemas/ACLEnforcementPoint'
           description: The enforcement point of the rule
-          enum:
-          - svi
-          - physical-interface-vlan-scoped
-          - physical-interface
-          type: string
+          example: physical-interface-vlan-scoped
       type: object
     ServerInstanceStatistics:
       example:
@@ -46735,6 +46561,7 @@ components:
         revision: 5.637376656633329
         clusterCustomInfo: "{}"
         infrastructureId: 2.3021358869347655
+        infrastructure: ""
         meta: ""
         storageType: iscsi_ssd
         subdomain: subdomain
@@ -46803,6 +46630,10 @@ components:
         infrastructureId:
           description: Infrastructure id of the Drive
           type: number
+        infrastructure:
+          allOf:
+          - $ref: '#/components/schemas/ParentInfrastructureDto'
+          description: Infrastructure information
         serviceStatus:
           description: Service status of the Drive
           enum:
@@ -46873,6 +46704,7 @@ components:
       - createdTimestamp
       - groupId
       - id
+      - infrastructure
       - infrastructureId
       - label
       - meta
@@ -46921,6 +46753,7 @@ components:
           revision: 5.637376656633329
           clusterCustomInfo: "{}"
           infrastructureId: 2.3021358869347655
+          infrastructure: ""
           meta: ""
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -46959,6 +46792,7 @@ components:
           revision: 5.637376656633329
           clusterCustomInfo: "{}"
           infrastructureId: 2.3021358869347655
+          infrastructure: ""
           meta: ""
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -48426,6 +48260,7 @@ components:
         revision: 4.145608029883936
         clusterCustomInfo: "{}"
         infrastructureId: 7.386281948385884
+        infrastructure: ""
         storageType: iscsi_ssd
         subdomain: subdomain
         config: ""
@@ -48493,6 +48328,10 @@ components:
         infrastructureId:
           description: Infrastructure id of the Drive
           type: number
+        infrastructure:
+          allOf:
+          - $ref: '#/components/schemas/ParentInfrastructureDto'
+          description: Infrastructure information
         serviceStatus:
           description: Service status of the Drive
           enum:
@@ -48559,6 +48398,7 @@ components:
       - createdTimestamp
       - groupId
       - id
+      - infrastructure
       - infrastructureId
       - label
       - provisioningProtocol
@@ -48581,6 +48421,7 @@ components:
         revision: 6.683562403749608
         endpoint: endpoint
         infrastructureId: 8.762042012749001
+        infrastructure: ""
         serviceStatus: ordered
         networkVlanId: 6.438423552598547
         subdomain: subdomain
@@ -48615,6 +48456,10 @@ components:
         infrastructureId:
           description: Infrastructure id of the File Share
           type: number
+        infrastructure:
+          allOf:
+          - $ref: '#/components/schemas/ParentInfrastructureDto'
+          description: Infrastructure information
         createdTimestamp:
           description: Timestamp of the File Share creation.
           type: string
@@ -48647,6 +48492,7 @@ components:
       - config
       - createdTimestamp
       - id
+      - infrastructure
       - infrastructureId
       - label
       - revision
@@ -48667,6 +48513,7 @@ components:
         revision: 6.778324963048013
         endpoint: endpoint
         infrastructureId: 6.878052220127876
+        infrastructure: ""
         serviceStatus: ordered
         subdomain: subdomain
         storagePoolId: 6.965117697638846
@@ -48701,6 +48548,10 @@ components:
         infrastructureId:
           description: Infrastructure id of the Bucket
           type: number
+        infrastructure:
+          allOf:
+          - $ref: '#/components/schemas/ParentInfrastructureDto'
+          description: Infrastructure information
         createdTimestamp:
           description: Timestamp of the Bucket creation.
           type: string
@@ -48737,6 +48588,7 @@ components:
       - createdTimestamp
       - dnsSubdomainId
       - id
+      - infrastructure
       - infrastructureId
       - label
       - revision
@@ -48858,6 +48710,7 @@ components:
         revision: 0.8851374739011653
         qoS: qoS
         infrastructureId: 7.058770351582356
+        infrastructure: ""
         storageType: iscsi_ssd
         subdomain: subdomain
         config: ""
@@ -48902,6 +48755,10 @@ components:
         infrastructureId:
           description: Infrastructure id of the Drive
           type: number
+        infrastructure:
+          allOf:
+          - $ref: '#/components/schemas/ParentInfrastructureDto'
+          description: Infrastructure information
         serviceStatus:
           description: Service status of the Drive
           enum:
@@ -48965,6 +48822,7 @@ components:
       - config
       - createdTimestamp
       - id
+      - infrastructure
       - infrastructureId
       - label
       - provisioningProtocol
@@ -49034,6 +48892,7 @@ components:
           revision: 6.683562403749608
           endpoint: endpoint
           infrastructureId: 8.762042012749001
+          infrastructure: ""
           serviceStatus: ordered
           networkVlanId: 6.438423552598547
           subdomain: subdomain
@@ -49050,6 +48909,7 @@ components:
           revision: 6.683562403749608
           endpoint: endpoint
           infrastructureId: 8.762042012749001
+          infrastructure: ""
           serviceStatus: ordered
           networkVlanId: 6.438423552598547
           subdomain: subdomain
@@ -49083,6 +48943,7 @@ components:
           revision: 0.8851374739011653
           qoS: qoS
           infrastructureId: 7.058770351582356
+          infrastructure: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
@@ -49111,6 +48972,7 @@ components:
           revision: 0.8851374739011653
           qoS: qoS
           infrastructureId: 7.058770351582356
+          infrastructure: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
@@ -49127,6 +48989,7 @@ components:
           revision: 6.778324963048013
           endpoint: endpoint
           infrastructureId: 6.878052220127876
+          infrastructure: ""
           serviceStatus: ordered
           subdomain: subdomain
           storagePoolId: 6.965117697638846
@@ -49144,6 +49007,7 @@ components:
           revision: 6.778324963048013
           endpoint: endpoint
           infrastructureId: 6.878052220127876
+          infrastructure: ""
           serviceStatus: ordered
           subdomain: subdomain
           storagePoolId: 6.965117697638846
@@ -49189,6 +49053,7 @@ components:
           revision: 4.145608029883936
           clusterCustomInfo: "{}"
           infrastructureId: 7.386281948385884
+          infrastructure: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
@@ -49226,6 +49091,7 @@ components:
           revision: 4.145608029883936
           clusterCustomInfo: "{}"
           infrastructureId: 7.386281948385884
+          infrastructure: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
@@ -49321,7 +49187,7 @@ components:
       - Copy
       - OSAsset
       type: string
-    ServerInstanceGroupNetworkConnectionDto:
+    ServerInstanceGroupNetworkConnection:
       example:
         tagged: true
         links:
@@ -49341,11 +49207,10 @@ components:
           example: true
           type: boolean
         accessMode:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
           description: The access mode of the network endpoint group
-          enum:
-          - l2
           example: l2
-          type: string
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -49404,7 +49269,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/ServerInstanceGroupNetworkConnectionDto'
+            $ref: '#/components/schemas/ServerInstanceGroupNetworkConnection'
           title: List of server instance group network connections
           type: array
         links:
@@ -49415,7 +49280,7 @@ components:
       required:
       - data
       type: object
-    CreateServerInstanceGroupNetworkConnectionDto:
+    CreateServerInstanceGroupNetworkConnection:
       example:
         logicalNetworkId: "1"
         tagged: true
@@ -49434,11 +49299,10 @@ components:
           example: true
           type: boolean
         accessMode:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
           description: The access mode of the network endpoint group
-          enum:
-          - l2
           example: l2
-          type: string
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -50851,6 +50715,7 @@ components:
         revision: 5.637376656633329
         qoS: qoS
         infrastructureId: 2.3021358869347655
+        infrastructure: ""
         meta: ""
         storageType: iscsi_ssd
         subdomain: subdomain
@@ -50896,6 +50761,10 @@ components:
         infrastructureId:
           description: Infrastructure id of the Drive
           type: number
+        infrastructure:
+          allOf:
+          - $ref: '#/components/schemas/ParentInfrastructureDto'
+          description: Infrastructure information
         serviceStatus:
           description: Service status of the Drive
           enum:
@@ -50963,6 +50832,7 @@ components:
       - config
       - createdTimestamp
       - id
+      - infrastructure
       - infrastructureId
       - label
       - meta
@@ -51002,6 +50872,7 @@ components:
           revision: 5.637376656633329
           qoS: qoS
           infrastructureId: 2.3021358869347655
+          infrastructure: ""
           meta: ""
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -51031,6 +50902,7 @@ components:
           revision: 5.637376656633329
           qoS: qoS
           infrastructureId: 2.3021358869347655
+          infrastructure: ""
           meta: ""
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -51916,7 +51788,6 @@ components:
         - alternateSanIPs
         portGroupAllocationOrder: "{}"
         extensionInfo: ""
-        technology: block
         userId: 1.4658129805029452
         freeCapacity: 7.061401241503109
         revision: 6.027456183070403
@@ -51924,6 +51795,8 @@ components:
         tags:
         - tags
         - tags
+        technologies:
+        - block
         usableCapacity: 2.3021358869347655
         virtualUsedCapacity: 9.301444243932576
         isExperimental: 4.145608029883936
@@ -51959,13 +51832,17 @@ components:
           - netapp
           - power_store
           type: string
-        technology:
+        technologies:
           description: Storage technology
-          enum:
+          example:
           - block
-          - file
-          - object
-          type: string
+          items:
+            enum:
+            - block
+            - file
+            - object
+            type: string
+          type: array
         type:
           description: Storage type
           enum:
@@ -52076,7 +51953,7 @@ components:
       - siteId
       - status
       - subnetType
-      - technology
+      - technologies
       - type
       - username
       type: object
@@ -52113,7 +51990,6 @@ components:
           - alternateSanIPs
           portGroupAllocationOrder: "{}"
           extensionInfo: ""
-          technology: block
           userId: 1.4658129805029452
           freeCapacity: 7.061401241503109
           revision: 6.027456183070403
@@ -52121,6 +51997,8 @@ components:
           tags:
           - tags
           - tags
+          technologies:
+          - block
           usableCapacity: 2.3021358869347655
           virtualUsedCapacity: 9.301444243932576
           isExperimental: 4.145608029883936
@@ -52161,7 +52039,6 @@ components:
           - alternateSanIPs
           portGroupAllocationOrder: "{}"
           extensionInfo: ""
-          technology: block
           userId: 1.4658129805029452
           freeCapacity: 7.061401241503109
           revision: 6.027456183070403
@@ -52169,6 +52046,8 @@ components:
           tags:
           - tags
           - tags
+          technologies:
+          - block
           usableCapacity: 2.3021358869347655
           virtualUsedCapacity: 9.301444243932576
           isExperimental: 4.145608029883936
@@ -52287,13 +52166,14 @@ components:
         portGroupAllocationOrder: "{}"
         inMaintenance: 5.962133916683182
         managementHost: managementHost
-        technology: block
         type: iscsi_ssd
         userId: 0.8008281904610115
         sharedDrivePriority: 7.061401241503109
         tags:
         - tags
         - tags
+        technologies:
+        - block
         password: password
         isExperimental: 5.637376656633329
         driver: power_flex
@@ -52323,13 +52203,17 @@ components:
           - netapp
           - power_store
           type: string
-        technology:
+        technologies:
           description: Storage technology
-          enum:
+          example:
           - block
-          - file
-          - object
-          type: string
+          items:
+            enum:
+            - block
+            - file
+            - object
+            type: string
+          type: array
         type:
           description: Storage type
           enum:
@@ -52403,7 +52287,7 @@ components:
       - password
       - siteId
       - subnetType
-      - technology
+      - technologies
       - type
       - username
       type: object
@@ -52672,6 +52556,7 @@ components:
           revision: 5.637376656633329
           clusterCustomInfo: "{}"
           infrastructureId: 2.3021358869347655
+          infrastructure: ""
           meta: ""
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -52710,6 +52595,7 @@ components:
           revision: 5.637376656633329
           clusterCustomInfo: "{}"
           infrastructureId: 2.3021358869347655
+          infrastructure: ""
           meta: ""
           storageType: iscsi_ssd
           subdomain: subdomain
@@ -54660,6 +54546,7 @@ components:
           revision: 6.683562403749608
           endpoint: endpoint
           infrastructureId: 8.762042012749001
+          infrastructure: ""
           serviceStatus: ordered
           networkVlanId: 6.438423552598547
           subdomain: subdomain
@@ -54676,6 +54563,7 @@ components:
           revision: 6.683562403749608
           endpoint: endpoint
           infrastructureId: 8.762042012749001
+          infrastructure: ""
           serviceStatus: ordered
           networkVlanId: 6.438423552598547
           subdomain: subdomain
@@ -54709,6 +54597,7 @@ components:
           revision: 0.8851374739011653
           qoS: qoS
           infrastructureId: 7.058770351582356
+          infrastructure: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
@@ -54737,6 +54626,7 @@ components:
           revision: 0.8851374739011653
           qoS: qoS
           infrastructureId: 7.058770351582356
+          infrastructure: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
@@ -54753,6 +54643,7 @@ components:
           revision: 6.778324963048013
           endpoint: endpoint
           infrastructureId: 6.878052220127876
+          infrastructure: ""
           serviceStatus: ordered
           subdomain: subdomain
           storagePoolId: 6.965117697638846
@@ -54770,6 +54661,7 @@ components:
           revision: 6.778324963048013
           endpoint: endpoint
           infrastructureId: 6.878052220127876
+          infrastructure: ""
           serviceStatus: ordered
           subdomain: subdomain
           storagePoolId: 6.965117697638846
@@ -54815,6 +54707,7 @@ components:
           revision: 4.145608029883936
           clusterCustomInfo: "{}"
           infrastructureId: 7.386281948385884
+          infrastructure: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""
@@ -54852,6 +54745,7 @@ components:
           revision: 4.145608029883936
           clusterCustomInfo: "{}"
           infrastructureId: 7.386281948385884
+          infrastructure: ""
           storageType: iscsi_ssd
           subdomain: subdomain
           config: ""

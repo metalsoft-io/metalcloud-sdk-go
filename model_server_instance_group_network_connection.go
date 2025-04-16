@@ -16,15 +16,15 @@ import (
 	"fmt"
 )
 
-// checks if the ServerInstanceGroupNetworkConnectionDto type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ServerInstanceGroupNetworkConnectionDto{}
+// checks if the ServerInstanceGroupNetworkConnection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerInstanceGroupNetworkConnection{}
 
-// ServerInstanceGroupNetworkConnectionDto struct for ServerInstanceGroupNetworkConnectionDto
-type ServerInstanceGroupNetworkConnectionDto struct {
+// ServerInstanceGroupNetworkConnection struct for ServerInstanceGroupNetworkConnection
+type ServerInstanceGroupNetworkConnection struct {
 	// Whether the logical network is tagged.
 	Tagged bool `json:"tagged"`
 	// The access mode of the network endpoint group
-	AccessMode string `json:"accessMode"`
+	AccessMode NetworkEndpointGroupAllowedAccessMode `json:"accessMode"`
 	// The redundancy configuration
 	Redundancy NullableRedundancyConfig `json:"redundancy,omitempty"`
 	// Reference links
@@ -34,30 +34,30 @@ type ServerInstanceGroupNetworkConnectionDto struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _ServerInstanceGroupNetworkConnectionDto ServerInstanceGroupNetworkConnectionDto
+type _ServerInstanceGroupNetworkConnection ServerInstanceGroupNetworkConnection
 
-// NewServerInstanceGroupNetworkConnectionDto instantiates a new ServerInstanceGroupNetworkConnectionDto object
+// NewServerInstanceGroupNetworkConnection instantiates a new ServerInstanceGroupNetworkConnection object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroupNetworkConnectionDto(tagged bool, accessMode string, id string) *ServerInstanceGroupNetworkConnectionDto {
-	this := ServerInstanceGroupNetworkConnectionDto{}
+func NewServerInstanceGroupNetworkConnection(tagged bool, accessMode NetworkEndpointGroupAllowedAccessMode, id string) *ServerInstanceGroupNetworkConnection {
+	this := ServerInstanceGroupNetworkConnection{}
 	this.Tagged = tagged
 	this.AccessMode = accessMode
 	this.Id = id
 	return &this
 }
 
-// NewServerInstanceGroupNetworkConnectionDtoWithDefaults instantiates a new ServerInstanceGroupNetworkConnectionDto object
+// NewServerInstanceGroupNetworkConnectionWithDefaults instantiates a new ServerInstanceGroupNetworkConnection object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewServerInstanceGroupNetworkConnectionDtoWithDefaults() *ServerInstanceGroupNetworkConnectionDto {
-	this := ServerInstanceGroupNetworkConnectionDto{}
+func NewServerInstanceGroupNetworkConnectionWithDefaults() *ServerInstanceGroupNetworkConnection {
+	this := ServerInstanceGroupNetworkConnection{}
 	return &this
 }
 
 // GetTagged returns the Tagged field value
-func (o *ServerInstanceGroupNetworkConnectionDto) GetTagged() bool {
+func (o *ServerInstanceGroupNetworkConnection) GetTagged() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -68,7 +68,7 @@ func (o *ServerInstanceGroupNetworkConnectionDto) GetTagged() bool {
 
 // GetTaggedOk returns a tuple with the Tagged field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupNetworkConnectionDto) GetTaggedOk() (*bool, bool) {
+func (o *ServerInstanceGroupNetworkConnection) GetTaggedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,14 +76,14 @@ func (o *ServerInstanceGroupNetworkConnectionDto) GetTaggedOk() (*bool, bool) {
 }
 
 // SetTagged sets field value
-func (o *ServerInstanceGroupNetworkConnectionDto) SetTagged(v bool) {
+func (o *ServerInstanceGroupNetworkConnection) SetTagged(v bool) {
 	o.Tagged = v
 }
 
 // GetAccessMode returns the AccessMode field value
-func (o *ServerInstanceGroupNetworkConnectionDto) GetAccessMode() string {
+func (o *ServerInstanceGroupNetworkConnection) GetAccessMode() NetworkEndpointGroupAllowedAccessMode {
 	if o == nil {
-		var ret string
+		var ret NetworkEndpointGroupAllowedAccessMode
 		return ret
 	}
 
@@ -92,7 +92,7 @@ func (o *ServerInstanceGroupNetworkConnectionDto) GetAccessMode() string {
 
 // GetAccessModeOk returns a tuple with the AccessMode field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupNetworkConnectionDto) GetAccessModeOk() (*string, bool) {
+func (o *ServerInstanceGroupNetworkConnection) GetAccessModeOk() (*NetworkEndpointGroupAllowedAccessMode, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,12 +100,12 @@ func (o *ServerInstanceGroupNetworkConnectionDto) GetAccessModeOk() (*string, bo
 }
 
 // SetAccessMode sets field value
-func (o *ServerInstanceGroupNetworkConnectionDto) SetAccessMode(v string) {
+func (o *ServerInstanceGroupNetworkConnection) SetAccessMode(v NetworkEndpointGroupAllowedAccessMode) {
 	o.AccessMode = v
 }
 
 // GetRedundancy returns the Redundancy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ServerInstanceGroupNetworkConnectionDto) GetRedundancy() RedundancyConfig {
+func (o *ServerInstanceGroupNetworkConnection) GetRedundancy() RedundancyConfig {
 	if o == nil || IsNil(o.Redundancy.Get()) {
 		var ret RedundancyConfig
 		return ret
@@ -116,7 +116,7 @@ func (o *ServerInstanceGroupNetworkConnectionDto) GetRedundancy() RedundancyConf
 // GetRedundancyOk returns a tuple with the Redundancy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ServerInstanceGroupNetworkConnectionDto) GetRedundancyOk() (*RedundancyConfig, bool) {
+func (o *ServerInstanceGroupNetworkConnection) GetRedundancyOk() (*RedundancyConfig, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *ServerInstanceGroupNetworkConnectionDto) GetRedundancyOk() (*Redundancy
 }
 
 // HasRedundancy returns a boolean if a field has been set.
-func (o *ServerInstanceGroupNetworkConnectionDto) HasRedundancy() bool {
+func (o *ServerInstanceGroupNetworkConnection) HasRedundancy() bool {
 	if o != nil && o.Redundancy.IsSet() {
 		return true
 	}
@@ -133,21 +133,21 @@ func (o *ServerInstanceGroupNetworkConnectionDto) HasRedundancy() bool {
 }
 
 // SetRedundancy gets a reference to the given NullableRedundancyConfig and assigns it to the Redundancy field.
-func (o *ServerInstanceGroupNetworkConnectionDto) SetRedundancy(v RedundancyConfig) {
+func (o *ServerInstanceGroupNetworkConnection) SetRedundancy(v RedundancyConfig) {
 	o.Redundancy.Set(&v)
 }
 // SetRedundancyNil sets the value for Redundancy to be an explicit nil
-func (o *ServerInstanceGroupNetworkConnectionDto) SetRedundancyNil() {
+func (o *ServerInstanceGroupNetworkConnection) SetRedundancyNil() {
 	o.Redundancy.Set(nil)
 }
 
 // UnsetRedundancy ensures that no value is present for Redundancy, not even an explicit nil
-func (o *ServerInstanceGroupNetworkConnectionDto) UnsetRedundancy() {
+func (o *ServerInstanceGroupNetworkConnection) UnsetRedundancy() {
 	o.Redundancy.Unset()
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
-func (o *ServerInstanceGroupNetworkConnectionDto) GetLinks() []Link {
+func (o *ServerInstanceGroupNetworkConnection) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
 		var ret []Link
 		return ret
@@ -157,7 +157,7 @@ func (o *ServerInstanceGroupNetworkConnectionDto) GetLinks() []Link {
 
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupNetworkConnectionDto) GetLinksOk() ([]Link, bool) {
+func (o *ServerInstanceGroupNetworkConnection) GetLinksOk() ([]Link, bool) {
 	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
@@ -165,7 +165,7 @@ func (o *ServerInstanceGroupNetworkConnectionDto) GetLinksOk() ([]Link, bool) {
 }
 
 // HasLinks returns a boolean if a field has been set.
-func (o *ServerInstanceGroupNetworkConnectionDto) HasLinks() bool {
+func (o *ServerInstanceGroupNetworkConnection) HasLinks() bool {
 	if o != nil && !IsNil(o.Links) {
 		return true
 	}
@@ -174,12 +174,12 @@ func (o *ServerInstanceGroupNetworkConnectionDto) HasLinks() bool {
 }
 
 // SetLinks gets a reference to the given []Link and assigns it to the Links field.
-func (o *ServerInstanceGroupNetworkConnectionDto) SetLinks(v []Link) {
+func (o *ServerInstanceGroupNetworkConnection) SetLinks(v []Link) {
 	o.Links = v
 }
 
 // GetId returns the Id field value
-func (o *ServerInstanceGroupNetworkConnectionDto) GetId() string {
+func (o *ServerInstanceGroupNetworkConnection) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -190,7 +190,7 @@ func (o *ServerInstanceGroupNetworkConnectionDto) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupNetworkConnectionDto) GetIdOk() (*string, bool) {
+func (o *ServerInstanceGroupNetworkConnection) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -198,11 +198,11 @@ func (o *ServerInstanceGroupNetworkConnectionDto) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *ServerInstanceGroupNetworkConnectionDto) SetId(v string) {
+func (o *ServerInstanceGroupNetworkConnection) SetId(v string) {
 	o.Id = v
 }
 
-func (o ServerInstanceGroupNetworkConnectionDto) MarshalJSON() ([]byte, error) {
+func (o ServerInstanceGroupNetworkConnection) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -210,7 +210,7 @@ func (o ServerInstanceGroupNetworkConnectionDto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ServerInstanceGroupNetworkConnectionDto) ToMap() (map[string]interface{}, error) {
+func (o ServerInstanceGroupNetworkConnection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["tagged"] = o.Tagged
 	toSerialize["accessMode"] = o.AccessMode
@@ -229,7 +229,7 @@ func (o ServerInstanceGroupNetworkConnectionDto) ToMap() (map[string]interface{}
 	return toSerialize, nil
 }
 
-func (o *ServerInstanceGroupNetworkConnectionDto) UnmarshalJSON(data []byte) (err error) {
+func (o *ServerInstanceGroupNetworkConnection) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -253,15 +253,15 @@ func (o *ServerInstanceGroupNetworkConnectionDto) UnmarshalJSON(data []byte) (er
 		}
 	}
 
-	varServerInstanceGroupNetworkConnectionDto := _ServerInstanceGroupNetworkConnectionDto{}
+	varServerInstanceGroupNetworkConnection := _ServerInstanceGroupNetworkConnection{}
 
-	err = json.Unmarshal(data, &varServerInstanceGroupNetworkConnectionDto)
+	err = json.Unmarshal(data, &varServerInstanceGroupNetworkConnection)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ServerInstanceGroupNetworkConnectionDto(varServerInstanceGroupNetworkConnectionDto)
+	*o = ServerInstanceGroupNetworkConnection(varServerInstanceGroupNetworkConnection)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -277,38 +277,38 @@ func (o *ServerInstanceGroupNetworkConnectionDto) UnmarshalJSON(data []byte) (er
 	return err
 }
 
-type NullableServerInstanceGroupNetworkConnectionDto struct {
-	value *ServerInstanceGroupNetworkConnectionDto
+type NullableServerInstanceGroupNetworkConnection struct {
+	value *ServerInstanceGroupNetworkConnection
 	isSet bool
 }
 
-func (v NullableServerInstanceGroupNetworkConnectionDto) Get() *ServerInstanceGroupNetworkConnectionDto {
+func (v NullableServerInstanceGroupNetworkConnection) Get() *ServerInstanceGroupNetworkConnection {
 	return v.value
 }
 
-func (v *NullableServerInstanceGroupNetworkConnectionDto) Set(val *ServerInstanceGroupNetworkConnectionDto) {
+func (v *NullableServerInstanceGroupNetworkConnection) Set(val *ServerInstanceGroupNetworkConnection) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableServerInstanceGroupNetworkConnectionDto) IsSet() bool {
+func (v NullableServerInstanceGroupNetworkConnection) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableServerInstanceGroupNetworkConnectionDto) Unset() {
+func (v *NullableServerInstanceGroupNetworkConnection) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableServerInstanceGroupNetworkConnectionDto(val *ServerInstanceGroupNetworkConnectionDto) *NullableServerInstanceGroupNetworkConnectionDto {
-	return &NullableServerInstanceGroupNetworkConnectionDto{value: val, isSet: true}
+func NewNullableServerInstanceGroupNetworkConnection(val *ServerInstanceGroupNetworkConnection) *NullableServerInstanceGroupNetworkConnection {
+	return &NullableServerInstanceGroupNetworkConnection{value: val, isSet: true}
 }
 
-func (v NullableServerInstanceGroupNetworkConnectionDto) MarshalJSON() ([]byte, error) {
+func (v NullableServerInstanceGroupNetworkConnection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableServerInstanceGroupNetworkConnectionDto) UnmarshalJSON(src []byte) error {
+func (v *NullableServerInstanceGroupNetworkConnection) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
