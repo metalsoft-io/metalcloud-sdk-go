@@ -42,8 +42,8 @@ Name | Type | Description | Notes
 **ServerSupportsVirtualMedia** | Pointer to **float32** | Flag to indicate if the supports Virtual Media. | [optional] 
 **ServerSupportsOobProvisioning** | Pointer to **float32** | Flag to indicate if the supports OOB provisioning. | [optional] 
 **BootingCustomIsoInProgress** | Pointer to **float32** | Flag to indicate if the server is booting a custom iso. | [optional] 
-**BiosInfo** | Pointer to **map[string]string** | The bios info of the server. | [optional] 
-**VendorInfo** | Pointer to **map[string]string** | The vendor info of the server. | [optional] 
+**BiosInfo** | Pointer to [**ServerBiosInfo**](ServerBiosInfo.md) | The bios info of the server. | [optional] 
+**VendorInfo** | Pointer to [**ServerVendorInfo**](ServerVendorInfo.md) | The vendor info of the server. | [optional] 
 **ServerClass** | **string** | The class of the server. | 
 **ServerStatus** | **string** | The status of the server. | 
 **ServerComments** | Pointer to **string** | The comments of the server. | [optional] 
@@ -1013,20 +1013,20 @@ HasBootingCustomIsoInProgress returns a boolean if a field has been set.
 
 ### GetBiosInfo
 
-`func (o *ServerVariables) GetBiosInfo() map[string]string`
+`func (o *ServerVariables) GetBiosInfo() ServerBiosInfo`
 
 GetBiosInfo returns the BiosInfo field if non-nil, zero value otherwise.
 
 ### GetBiosInfoOk
 
-`func (o *ServerVariables) GetBiosInfoOk() (*map[string]string, bool)`
+`func (o *ServerVariables) GetBiosInfoOk() (*ServerBiosInfo, bool)`
 
 GetBiosInfoOk returns a tuple with the BiosInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBiosInfo
 
-`func (o *ServerVariables) SetBiosInfo(v map[string]string)`
+`func (o *ServerVariables) SetBiosInfo(v ServerBiosInfo)`
 
 SetBiosInfo sets BiosInfo field to given value.
 
@@ -1038,20 +1038,20 @@ HasBiosInfo returns a boolean if a field has been set.
 
 ### GetVendorInfo
 
-`func (o *ServerVariables) GetVendorInfo() map[string]string`
+`func (o *ServerVariables) GetVendorInfo() ServerVendorInfo`
 
 GetVendorInfo returns the VendorInfo field if non-nil, zero value otherwise.
 
 ### GetVendorInfoOk
 
-`func (o *ServerVariables) GetVendorInfoOk() (*map[string]string, bool)`
+`func (o *ServerVariables) GetVendorInfoOk() (*ServerVendorInfo, bool)`
 
 GetVendorInfoOk returns a tuple with the VendorInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVendorInfo
 
-`func (o *ServerVariables) SetVendorInfo(v map[string]string)`
+`func (o *ServerVariables) SetVendorInfo(v ServerVendorInfo)`
 
 SetVendorInfo sets VendorInfo field to given value.
 

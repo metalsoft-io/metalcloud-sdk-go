@@ -51,6 +51,8 @@ type VMInstance struct {
 	GroupId float32 `json:"groupId"`
 	// Id of the Infrastructure.
 	InfrastructureId float32 `json:"infrastructureId"`
+	// Infrastructure information
+	Infrastructure ParentInfrastructureDto `json:"infrastructure"`
 	// Service status of the VM Instance.
 	ServiceStatus string `json:"serviceStatus"`
 	// Subdomain permanent of the VM Instance.
@@ -78,7 +80,7 @@ type _VMInstance VMInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id float32, revision float32, groupId float32, infrastructureId float32, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta, links map[string]interface{}) *VMInstance {
+func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id float32, revision float32, groupId float32, infrastructureId float32, infrastructure ParentInfrastructureDto, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta, links map[string]interface{}) *VMInstance {
 	this := VMInstance{}
 	this.Label = label
 	this.TypeId = typeId
@@ -90,6 +92,7 @@ func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float
 	this.Revision = revision
 	this.GroupId = groupId
 	this.InfrastructureId = infrastructureId
+	this.Infrastructure = infrastructure
 	this.ServiceStatus = serviceStatus
 	this.CreatedTimestamp = createdTimestamp
 	this.Config = config
@@ -506,6 +509,30 @@ func (o *VMInstance) SetInfrastructureId(v float32) {
 	o.InfrastructureId = v
 }
 
+// GetInfrastructure returns the Infrastructure field value
+func (o *VMInstance) GetInfrastructure() ParentInfrastructureDto {
+	if o == nil {
+		var ret ParentInfrastructureDto
+		return ret
+	}
+
+	return o.Infrastructure
+}
+
+// GetInfrastructureOk returns a tuple with the Infrastructure field value
+// and a boolean to check if the value has been set.
+func (o *VMInstance) GetInfrastructureOk() (*ParentInfrastructureDto, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Infrastructure, true
+}
+
+// SetInfrastructure sets field value
+func (o *VMInstance) SetInfrastructure(v ParentInfrastructureDto) {
+	o.Infrastructure = v
+}
+
 // GetServiceStatus returns the ServiceStatus field value
 func (o *VMInstance) GetServiceStatus() string {
 	if o == nil {
@@ -789,6 +816,7 @@ func (o VMInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize["revision"] = o.Revision
 	toSerialize["groupId"] = o.GroupId
 	toSerialize["infrastructureId"] = o.InfrastructureId
+	toSerialize["infrastructure"] = o.Infrastructure
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	if !IsNil(o.SubdomainPermanent) {
 		toSerialize["subdomainPermanent"] = o.SubdomainPermanent
@@ -829,6 +857,7 @@ func (o *VMInstance) UnmarshalJSON(data []byte) (err error) {
 		"revision",
 		"groupId",
 		"infrastructureId",
+		"infrastructure",
 		"serviceStatus",
 		"createdTimestamp",
 		"config",
@@ -878,6 +907,7 @@ func (o *VMInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "groupId")
 		delete(additionalProperties, "infrastructureId")
+		delete(additionalProperties, "infrastructure")
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")

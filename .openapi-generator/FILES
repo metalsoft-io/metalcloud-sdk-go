@@ -332,6 +332,7 @@ docs/SecurityAPI.md
 docs/Server.md
 docs/ServerAPI.md
 docs/ServerAllocationInfo.md
+docs/ServerBiosInfo.md
 docs/ServerCapabilities.md
 docs/ServerCleanupPolicy.md
 docs/ServerCleanupPolicyAPI.md
@@ -404,6 +405,7 @@ docs/ServerUnmanagedImport.md
 docs/ServerUnmanagedImportInternalInterfaceDto.md
 docs/ServerVNCInfo.md
 docs/ServerVariables.md
+docs/ServerVendorInfo.md
 docs/SharedDrive.md
 docs/SharedDriveConfiguration.md
 docs/SharedDriveHostBulkOperation.md
@@ -792,6 +794,7 @@ model_secret.go
 model_secret_paginated_list.go
 model_server.go
 model_server_allocation_info.go
+model_server_bios_info.go
 model_server_capabilities.go
 model_server_cleanup_policy.go
 model_server_cleanup_policy_paginated_list.go
@@ -857,6 +860,7 @@ model_server_type_utilization_report_grouped.go
 model_server_unmanaged_import.go
 model_server_unmanaged_import_internal_interface_dto.go
 model_server_variables.go
+model_server_vendor_info.go
 model_server_vnc_info.go
 model_shared_drive.go
 model_shared_drive_configuration.go

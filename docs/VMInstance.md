@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **Revision** | **float32** | Revision of the VM Instance | 
 **GroupId** | **float32** | Id of the VM Instance Group. | 
 **InfrastructureId** | **float32** | Id of the Infrastructure. | 
+**Infrastructure** | [**ParentInfrastructureDto**](ParentInfrastructureDto.md) | Infrastructure information | 
 **ServiceStatus** | **string** | Service status of the VM Instance. | 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the VM Instance. | [optional] 
 **DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the VM Instance. | [optional] 
@@ -33,7 +34,7 @@ Name | Type | Description | Notes
 
 ### NewVMInstance
 
-`func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id float32, revision float32, groupId float32, infrastructureId float32, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta, links map[string]interface{}, ) *VMInstance`
+`func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id float32, revision float32, groupId float32, infrastructureId float32, infrastructure ParentInfrastructureDto, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta, links map[string]interface{}, ) *VMInstance`
 
 NewVMInstance instantiates a new VMInstance object
 This constructor will assign default values to properties that have it defined,
@@ -371,6 +372,26 @@ and a boolean to check if the value has been set.
 `func (o *VMInstance) SetInfrastructureId(v float32)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
+
+
+### GetInfrastructure
+
+`func (o *VMInstance) GetInfrastructure() ParentInfrastructureDto`
+
+GetInfrastructure returns the Infrastructure field if non-nil, zero value otherwise.
+
+### GetInfrastructureOk
+
+`func (o *VMInstance) GetInfrastructureOk() (*ParentInfrastructureDto, bool)`
+
+GetInfrastructureOk returns a tuple with the Infrastructure field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructure
+
+`func (o *VMInstance) SetInfrastructure(v ParentInfrastructureDto)`
+
+SetInfrastructure sets Infrastructure field to given value.
 
 
 ### GetServiceStatus

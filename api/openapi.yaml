@@ -1929,17 +1929,17 @@ paths:
           type: array
         style: form
       - description: |-
-          Filter by displayName query param.
+          Filter by label query param.
                     <p>
-                       <b>Format: </b> filter.displayName={$not}:OPERATION:VALUE
+                       <b>Format: </b> filter.label={$not}:OPERATION:VALUE
                     </p>
                     <p>
-                       <b>Example: </b> filter.displayName=$not:$like:John Doe&filter.displayName=like:John
+                       <b>Example: </b> filter.label=$not:$like:John Doe&filter.label=like:John
                     </p>
                     <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
-        name: filter.displayName
+        name: filter.label
         required: false
         schema:
           items:
@@ -1994,10 +1994,10 @@ paths:
           type: string
         style: form
       - description: "List of fields to search by term to filter result values\n \
-          \       <p>\n             <b>Example: </b> id,name,displayName,accessUrl\n\
-          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
+          \       <p>\n             <b>Example: </b> id,name,label,accessUrl\n   \
+          \       </p>\n        <p>\n             <b>Default Value: </b> By default\
           \ all fields mentioned below will be used to search by term\n          </p>\n\
-          \        <h4>Available Fields</h4><ul><li>id</li>\n<li>name</li>\n<li>displayName</li>\n\
+          \        <h4>Available Fields</h4><ul><li>id</li>\n<li>name</li>\n<li>label</li>\n\
           <li>accessUrl</li></ul>\n        "
         explode: true
         in: query
@@ -30825,10 +30825,10 @@ components:
     CustomIso:
       example:
         accessUrl: accessUrl
-        displayName: displayName
         createdTimestamp: createdTimestamp
         userIdOwner: 6.027456183070403
         passwordEncrypted: passwordEncrypted
+        label: label
         type: http
         updatedTimestamp: updatedTimestamp
         imageUrl: imageUrl
@@ -30848,11 +30848,11 @@ components:
         modifiedBy:
           description: The ID of the user who last edited the custom ISO
           type: number
+        label:
+          description: The label of the custom ISO
+          type: string
         name:
           description: The name of the custom ISO
-          type: string
-        displayName:
-          description: The display name of the custom ISO
           type: string
         type:
           description: The type of the custom ISO
@@ -30884,9 +30884,9 @@ components:
       required:
       - accessUrl
       - createdTimestamp
-      - displayName
       - id
       - isPublic
+      - label
       - name
       - type
       - updatedTimestamp
@@ -30895,10 +30895,10 @@ components:
       example:
         data:
         - accessUrl: accessUrl
-          displayName: displayName
           createdTimestamp: createdTimestamp
           userIdOwner: 6.027456183070403
           passwordEncrypted: passwordEncrypted
+          label: label
           type: http
           updatedTimestamp: updatedTimestamp
           imageUrl: imageUrl
@@ -30908,10 +30908,10 @@ components:
           id: 0.8008281904610115
           username: username
         - accessUrl: accessUrl
-          displayName: displayName
           createdTimestamp: createdTimestamp
           userIdOwner: 6.027456183070403
           passwordEncrypted: passwordEncrypted
+          label: label
           type: http
           updatedTimestamp: updatedTimestamp
           imageUrl: imageUrl
@@ -30946,32 +30946,32 @@ components:
     CreateCustomIso:
       example:
         accessUrl: accessUrl
-        displayName: displayName
         name: name
+        label: label
       properties:
-        name:
-          description: The name of the custom ISO
+        label:
+          description: The label of the custom ISO
           type: string
         accessUrl:
           description: The access URL of the custom ISO
           type: string
-        displayName:
-          description: The display name of the custom ISO
+        name:
+          description: The name of the custom ISO
           type: string
       required:
       - accessUrl
-      - name
+      - label
       type: object
     UpdateCustomIso:
       example:
         accessUrl: accessUrl
-        displayName: displayName
+        name: name
       properties:
         accessUrl:
           description: The access URL of the custom ISO
           type: string
-        displayName:
-          description: The display name of the custom ISO
+        name:
+          description: The name of the custom ISO
           type: string
       type: object
     JobInfo:
@@ -36920,6 +36920,23 @@ components:
       - serverTypeId
       - siteId
       type: object
+    ServerBiosInfo:
+      properties:
+        vendor:
+          description: The BIOS vendor of the server.
+          type: string
+        version:
+          description: The BIOS version of the server.
+          type: string
+      type: object
+    ServerVendorInfo:
+      properties:
+        management:
+          type: string
+        version:
+          description: The version of the server vendor.
+          type: string
+      type: object
     ServerGpuInfo:
       example:
         vendor: vendor
@@ -37207,8 +37224,7 @@ components:
         processorCpuMark: 9.301444243932576
         ramGbytes: 5.962133916683182
         instanceCustomInfo: "{}"
-        biosInfo:
-          key: biosInfo
+        biosInfo: ""
         rackPositionLowerUnit: rackPositionLowerUnit
         serverTypeId: 6.027456183070403
         requiresReRegister: 4.965218492984954
@@ -37233,8 +37249,7 @@ components:
           serverId: 7.058770351582356
           diskSizeGb: 6.519180951018382
           status: installed
-        vendorInfo:
-          key: vendorInfo
+        vendorInfo: ""
         bdkDebug: 7.386281948385884
         jobInfo:
           jobId: 0.8008281904610115
@@ -37459,15 +37474,13 @@ components:
           description: Flag to indicate if the server is booting a custom iso.
           type: number
         biosInfo:
-          additionalProperties:
-            type: string
+          allOf:
+          - $ref: '#/components/schemas/ServerBiosInfo'
           description: The bios info of the server.
-          type: object
         vendorInfo:
-          additionalProperties:
-            type: string
+          allOf:
+          - $ref: '#/components/schemas/ServerVendorInfo'
           description: The vendor info of the server.
-          type: object
         serverClass:
           description: The class of the server.
           enum:
@@ -38799,47 +38812,47 @@ components:
     ServerInstanceGroup:
       example:
         serverTypeId: 5
-        ipv4SubnetCreateAuto: 9
-        overrideIpv4WanVlanId: 5
+        ipv4SubnetCreateAuto: 7
+        overrideIpv4WanVlanId: 4
         firmwarePolicyIds:
-        - 3.616076749251911
-        - 3.616076749251911
+        - 9.301444243932576
+        - 9.301444243932576
         extensionInstanceId: 5
         diskCount: 1
         updatedTimestamp: updatedTimestamp
         customVariables: "{}"
-        isVmGroup: 6
-        processorCoreMhz: 1
+        isVmGroup: 9
+        processorCoreMhz: 7
         dnsSubdomainPermanentId: 6
-        processorCoreCount: 7
+        processorCoreCount: 4
         serviceStatus: ordered
-        virtualInterfacesEnabled: 7
+        virtualInterfacesEnabled: 6
         links:
         - rel: self
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        networkProfileGroupId: 1
+        networkProfileGroupId: 7
         dnsSubdomainId: 0
         serverGroupName: server-instance-group-name
-        networkProfileSnapshotId: 4
-        processorCount: 4
+        networkProfileSnapshotId: 1
+        processorCount: 2
         createdTimestamp: createdTimestamp
-        ipAllocateAuto: 7
+        ipAllocateAuto: 2
         label: label
         subdomainPermanent: subdomainPermanent
-        networkEndpointGroupId: 5
+        networkEndpointGroupId: 8
         diskTypes:
         - diskTypes
         - diskTypes
         additionalWanIpv4Json: "{}"
         revision: 1
-        networkEquipmentForceSubnetPoolIpv4WanId: 9
-        diskSizeMbytes: 6
+        networkEquipmentForceSubnetPoolIpv4WanId: 5
+        diskSizeMbytes: 1
         infrastructureId: 1
-        vmInstanceGroupId: 8
-        instanceCount: 2
+        vmInstanceGroupId: 6
+        instanceCount: 5
         resourcePoolId: 9
         meta:
           guiSettings:
@@ -38851,7 +38864,7 @@ components:
           tags:
           - tags
           - tags
-        osTemplateId: 2
+        osTemplateId: 3
         subdomain: subdomain
         ramGbytes: 1
         config:
@@ -38926,8 +38939,6 @@ components:
         infrastructureId:
           type: integer
         extensionInstanceId:
-          type: integer
-        networkEndpointGroupId:
           type: integer
         instanceCount:
           default: 1
@@ -39032,6 +39043,8 @@ components:
           description: Id of the VM Instance Group this Server Instance Group belongs
             to.
           type: integer
+        networkEndpointGroupId:
+          type: integer
         meta:
           $ref: '#/components/schemas/GenericMeta'
         config:
@@ -39066,47 +39079,47 @@ components:
       example:
         data:
         - serverTypeId: 5
-          ipv4SubnetCreateAuto: 9
-          overrideIpv4WanVlanId: 5
+          ipv4SubnetCreateAuto: 7
+          overrideIpv4WanVlanId: 4
           firmwarePolicyIds:
-          - 3.616076749251911
-          - 3.616076749251911
+          - 9.301444243932576
+          - 9.301444243932576
           extensionInstanceId: 5
           diskCount: 1
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
-          isVmGroup: 6
-          processorCoreMhz: 1
+          isVmGroup: 9
+          processorCoreMhz: 7
           dnsSubdomainPermanentId: 6
-          processorCoreCount: 7
+          processorCoreCount: 4
           serviceStatus: ordered
-          virtualInterfacesEnabled: 7
+          virtualInterfacesEnabled: 6
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          networkProfileGroupId: 1
+          networkProfileGroupId: 7
           dnsSubdomainId: 0
           serverGroupName: server-instance-group-name
-          networkProfileSnapshotId: 4
-          processorCount: 4
+          networkProfileSnapshotId: 1
+          processorCount: 2
           createdTimestamp: createdTimestamp
-          ipAllocateAuto: 7
+          ipAllocateAuto: 2
           label: label
           subdomainPermanent: subdomainPermanent
-          networkEndpointGroupId: 5
+          networkEndpointGroupId: 8
           diskTypes:
           - diskTypes
           - diskTypes
           additionalWanIpv4Json: "{}"
           revision: 1
-          networkEquipmentForceSubnetPoolIpv4WanId: 9
-          diskSizeMbytes: 6
+          networkEquipmentForceSubnetPoolIpv4WanId: 5
+          diskSizeMbytes: 1
           infrastructureId: 1
-          vmInstanceGroupId: 8
-          instanceCount: 2
+          vmInstanceGroupId: 6
+          instanceCount: 5
           resourcePoolId: 9
           meta:
             guiSettings:
@@ -39118,7 +39131,7 @@ components:
             tags:
             - tags
             - tags
-          osTemplateId: 2
+          osTemplateId: 3
           subdomain: subdomain
           ramGbytes: 1
           config:
@@ -39155,47 +39168,47 @@ components:
             ramGbytes: 5
             deployStatus: not_started
         - serverTypeId: 5
-          ipv4SubnetCreateAuto: 9
-          overrideIpv4WanVlanId: 5
+          ipv4SubnetCreateAuto: 7
+          overrideIpv4WanVlanId: 4
           firmwarePolicyIds:
-          - 3.616076749251911
-          - 3.616076749251911
+          - 9.301444243932576
+          - 9.301444243932576
           extensionInstanceId: 5
           diskCount: 1
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
-          isVmGroup: 6
-          processorCoreMhz: 1
+          isVmGroup: 9
+          processorCoreMhz: 7
           dnsSubdomainPermanentId: 6
-          processorCoreCount: 7
+          processorCoreCount: 4
           serviceStatus: ordered
-          virtualInterfacesEnabled: 7
+          virtualInterfacesEnabled: 6
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          networkProfileGroupId: 1
+          networkProfileGroupId: 7
           dnsSubdomainId: 0
           serverGroupName: server-instance-group-name
-          networkProfileSnapshotId: 4
-          processorCount: 4
+          networkProfileSnapshotId: 1
+          processorCount: 2
           createdTimestamp: createdTimestamp
-          ipAllocateAuto: 7
+          ipAllocateAuto: 2
           label: label
           subdomainPermanent: subdomainPermanent
-          networkEndpointGroupId: 5
+          networkEndpointGroupId: 8
           diskTypes:
           - diskTypes
           - diskTypes
           additionalWanIpv4Json: "{}"
           revision: 1
-          networkEquipmentForceSubnetPoolIpv4WanId: 9
-          diskSizeMbytes: 6
+          networkEquipmentForceSubnetPoolIpv4WanId: 5
+          diskSizeMbytes: 1
           infrastructureId: 1
-          vmInstanceGroupId: 8
-          instanceCount: 2
+          vmInstanceGroupId: 6
+          instanceCount: 5
           resourcePoolId: 9
           meta:
             guiSettings:
@@ -39207,7 +39220,7 @@ components:
             tags:
             - tags
             - tags
-          osTemplateId: 2
+          osTemplateId: 3
           subdomain: subdomain
           ramGbytes: 1
           config:
@@ -42278,7 +42291,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-16T17:49:52.138Z
+        createdTimestamp: 2025-04-18T09:09:46.468Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -42287,7 +42300,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-16T17:49:52.139Z
+        updatedTimestamp: 2025-04-18T09:09:46.468Z
         revision: "1"
       properties:
         siteId:
@@ -42304,12 +42317,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-16T17:49:52.138Z
+          example: 2025-04-18T09:09:46.468Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-16T17:49:52.139Z
+          example: 2025-04-18T09:09:46.468Z
           format: date-time
           type: string
         links:
@@ -42331,7 +42344,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-16T17:49:52.138Z
+        - createdTimestamp: 2025-04-18T09:09:46.468Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -42340,9 +42353,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-16T17:49:52.139Z
+          updatedTimestamp: 2025-04-18T09:09:46.468Z
           revision: "1"
-        - createdTimestamp: 2025-04-16T17:49:52.138Z
+        - createdTimestamp: 2025-04-18T09:09:46.468Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -42351,7 +42364,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-16T17:49:52.139Z
+          updatedTimestamp: 2025-04-18T09:09:46.468Z
           revision: "1"
         meta: ""
         links: ""
@@ -42973,7 +42986,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-16T17:49:52.151Z
+        createdTimestamp: 2025-04-18T09:09:46.483Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -43014,7 +43027,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-16T17:49:52.151Z
+        updatedTimestamp: 2025-04-18T09:09:46.483Z
         revision: "1"
         status: draft
       properties:
@@ -43042,12 +43055,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-16T17:49:52.151Z
+          example: 2025-04-18T09:09:46.483Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-16T17:49:52.151Z
+          example: 2025-04-18T09:09:46.483Z
           format: date-time
           type: string
         links:
@@ -43188,7 +43201,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-16T17:49:52.151Z
+          createdTimestamp: 2025-04-18T09:09:46.483Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -43229,7 +43242,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-16T17:49:52.151Z
+          updatedTimestamp: 2025-04-18T09:09:46.483Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -43339,7 +43352,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-16T17:49:52.151Z
+          createdTimestamp: 2025-04-18T09:09:46.483Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -43380,7 +43393,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-16T17:49:52.151Z
+          updatedTimestamp: 2025-04-18T09:09:46.483Z
           revision: "1"
           status: draft
         meta: ""
@@ -45405,26 +45418,25 @@ components:
       example:
         serverTypeId: 5
         serverGroupName: server-instance-group-name
-        ipv4SubnetCreateAuto: 5
-        overrideIpv4WanVlanId: 1
-        processorCount: 2
-        ipAllocateAuto: 1
+        ipv4SubnetCreateAuto: 1
+        overrideIpv4WanVlanId: 7
+        processorCount: 5
+        ipAllocateAuto: 6
         label: server-instance-group-123
-        networkEndpointGroupId: 0
-        diskCount: 2
+        diskCount: 3
         customVariables: "{}"
         diskTypes:
         - diskTypes
         - diskTypes
         additionalWanIpv4Json: "{}"
         networkEquipmentForceSubnetPoolIpv4WanId: 1
-        processorCoreMhz: 9
-        diskSizeMbytes: 4
-        instanceCount: 6
-        processorCoreCount: 7
+        processorCoreMhz: 7
+        diskSizeMbytes: 2
+        instanceCount: 0
+        processorCoreCount: 2
         osTemplateId: 5
-        ramGbytes: 3
-        virtualInterfacesEnabled: 7
+        ramGbytes: 9
+        virtualInterfacesEnabled: 4
       properties:
         label:
           description: The server instance group label.
@@ -45435,8 +45447,6 @@ components:
           example: server-instance-group-name
           maxLength: 255
           type: string
-        networkEndpointGroupId:
-          type: integer
         instanceCount:
           default: 1
           description: The number of instances to be created on the Instance Group.
@@ -46113,10 +46123,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-04-16T17:49:52.146Z
+        createdTimestamp: 2025-04-18T09:09:46.477Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-04-16T17:49:52.146Z
+        updatedTimestamp: 2025-04-18T09:09:46.478Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -46190,12 +46200,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-16T17:49:52.146Z
+          example: 2025-04-18T09:09:46.477Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-16T17:49:52.146Z
+          example: 2025-04-18T09:09:46.478Z
           format: date-time
           type: string
         links:
@@ -47537,15 +47547,13 @@ components:
           description: Flag to indicate if the server is booting a custom iso.
           type: number
         biosInfo:
-          additionalProperties:
-            type: string
+          allOf:
+          - $ref: '#/components/schemas/ServerBiosInfo'
           description: The bios info of the server.
-          type: object
         vendorInfo:
-          additionalProperties:
-            type: string
+          allOf:
+          - $ref: '#/components/schemas/ServerVendorInfo'
           description: The vendor info of the server.
-          type: object
         serverClass:
           description: The class of the server.
           enum:
@@ -47864,8 +47872,6 @@ components:
           type: integer
         extensionInstanceId:
           type: integer
-        networkEndpointGroupId:
-          type: integer
         instanceCount:
           default: 1
           description: The number of instances to be created on the Instance Group.
@@ -47968,6 +47974,8 @@ components:
         vmInstanceGroupId:
           description: Id of the VM Instance Group this Server Instance Group belongs
             to.
+          type: integer
+        networkEndpointGroupId:
           type: integer
         config:
           $ref: '#/components/schemas/ServerInstanceGroupConfiguration'
@@ -49498,8 +49506,7 @@ components:
           processorCpuMark: 9.301444243932576
           ramGbytes: 5.962133916683182
           instanceCustomInfo: "{}"
-          biosInfo:
-            key: biosInfo
+          biosInfo: ""
           rackPositionLowerUnit: rackPositionLowerUnit
           serverTypeId: 6.027456183070403
           requiresReRegister: 4.965218492984954
@@ -49524,8 +49531,7 @@ components:
             serverId: 7.058770351582356
             diskSizeGb: 6.519180951018382
             status: installed
-          vendorInfo:
-            key: vendorInfo
+          vendorInfo: ""
           bdkDebug: 7.386281948385884
           jobInfo:
             jobId: 0.8008281904610115
@@ -49668,8 +49674,7 @@ components:
           processorCpuMark: 9.301444243932576
           ramGbytes: 5.962133916683182
           instanceCustomInfo: "{}"
-          biosInfo:
-            key: biosInfo
+          biosInfo: ""
           rackPositionLowerUnit: rackPositionLowerUnit
           serverTypeId: 6.027456183070403
           requiresReRegister: 4.965218492984954
@@ -49694,8 +49699,7 @@ components:
             serverId: 7.058770351582356
             diskSizeGb: 6.519180951018382
             status: installed
-          vendorInfo:
-            key: vendorInfo
+          vendorInfo: ""
           bdkDebug: 7.386281948385884
           jobInfo:
             jobId: 0.8008281904610115
@@ -53984,6 +53988,7 @@ components:
         dnsSubdomainPermanentId: 7.061401241503109
         infrastructureId: 5.962133916683182
         instanceCount: 0.8008281904610115
+        infrastructure: ""
         serviceStatus: ordered
         meta: ""
         subdomain: subdomain
@@ -54016,6 +54021,10 @@ components:
         infrastructureId:
           description: Id of the Infrastructure.
           type: number
+        infrastructure:
+          allOf:
+          - $ref: '#/components/schemas/ParentInfrastructureDto'
+          description: Infrastructure information
         serviceStatus:
           description: Status of the VM Instance Group.
           enum:
@@ -54056,6 +54065,7 @@ components:
       - createdTimestamp
       - diskSizeGB
       - id
+      - infrastructure
       - infrastructureId
       - label
       - links
@@ -54077,6 +54087,7 @@ components:
           dnsSubdomainPermanentId: 7.061401241503109
           infrastructureId: 5.962133916683182
           instanceCount: 0.8008281904610115
+          infrastructure: ""
           serviceStatus: ordered
           meta: ""
           subdomain: subdomain
@@ -54094,6 +54105,7 @@ components:
           dnsSubdomainPermanentId: 7.061401241503109
           infrastructureId: 5.962133916683182
           instanceCount: 0.8008281904610115
+          infrastructure: ""
           serviceStatus: ordered
           meta: ""
           subdomain: subdomain
@@ -54227,30 +54239,31 @@ components:
       type: object
     VMInstance:
       example:
-        dnsSubdomainId: 7.386281948385884
         vmId: 0.8008281904610115
         groupId: 2.027123023002322
-        createdTimestamp: createdTimestamp
-        label: label
         vmPoolId: 1.4658129805029452
-        subdomainPermanent: subdomainPermanent
         ramGB: 5.637376656633329
         updatedTimestamp: updatedTimestamp
         customVariables: "{}"
-        revision: 3.616076749251911
         dnsSubdomainPermanentId: 1.2315135367772556
-        infrastructureId: 4.145608029883936
         uniqueIndex: 1.0246457001441578
-        cpuCores: 2.3021358869347655
         serviceStatus: ordered
+        links: "{}"
+        id: 9.301444243932576
+        diskSizeGB: 5.962133916683182
+        dnsSubdomainId: 7.386281948385884
+        createdTimestamp: createdTimestamp
+        label: label
+        subdomainPermanent: subdomainPermanent
+        revision: 3.616076749251911
+        infrastructureId: 4.145608029883936
+        cpuCores: 2.3021358869347655
+        infrastructure: ""
         meta: ""
         osTemplateId: 7.061401241503109
         subdomain: subdomain
         typeId: 6.027456183070403
-        links: "{}"
-        id: 9.301444243932576
         config: ""
-        diskSizeGB: 5.962133916683182
       properties:
         label:
           description: Name of the VM Instance.
@@ -54297,6 +54310,10 @@ components:
         infrastructureId:
           description: Id of the Infrastructure.
           type: number
+        infrastructure:
+          allOf:
+          - $ref: '#/components/schemas/ParentInfrastructureDto'
+          description: Infrastructure information
         serviceStatus:
           description: Service status of the VM Instance.
           enum:
@@ -54339,6 +54356,7 @@ components:
       - diskSizeGB
       - groupId
       - id
+      - infrastructure
       - infrastructureId
       - label
       - links
@@ -54352,54 +54370,56 @@ components:
     VMInstancePaginatedList:
       example:
         data:
-        - dnsSubdomainId: 7.386281948385884
-          vmId: 0.8008281904610115
+        - vmId: 0.8008281904610115
           groupId: 2.027123023002322
-          createdTimestamp: createdTimestamp
-          label: label
           vmPoolId: 1.4658129805029452
-          subdomainPermanent: subdomainPermanent
           ramGB: 5.637376656633329
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
-          revision: 3.616076749251911
           dnsSubdomainPermanentId: 1.2315135367772556
-          infrastructureId: 4.145608029883936
           uniqueIndex: 1.0246457001441578
-          cpuCores: 2.3021358869347655
           serviceStatus: ordered
+          links: "{}"
+          id: 9.301444243932576
+          diskSizeGB: 5.962133916683182
+          dnsSubdomainId: 7.386281948385884
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          revision: 3.616076749251911
+          infrastructureId: 4.145608029883936
+          cpuCores: 2.3021358869347655
+          infrastructure: ""
           meta: ""
           osTemplateId: 7.061401241503109
           subdomain: subdomain
           typeId: 6.027456183070403
-          links: "{}"
-          id: 9.301444243932576
           config: ""
-          diskSizeGB: 5.962133916683182
-        - dnsSubdomainId: 7.386281948385884
-          vmId: 0.8008281904610115
+        - vmId: 0.8008281904610115
           groupId: 2.027123023002322
-          createdTimestamp: createdTimestamp
-          label: label
           vmPoolId: 1.4658129805029452
-          subdomainPermanent: subdomainPermanent
           ramGB: 5.637376656633329
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
-          revision: 3.616076749251911
           dnsSubdomainPermanentId: 1.2315135367772556
-          infrastructureId: 4.145608029883936
           uniqueIndex: 1.0246457001441578
-          cpuCores: 2.3021358869347655
           serviceStatus: ordered
+          links: "{}"
+          id: 9.301444243932576
+          diskSizeGB: 5.962133916683182
+          dnsSubdomainId: 7.386281948385884
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          revision: 3.616076749251911
+          infrastructureId: 4.145608029883936
+          cpuCores: 2.3021358869347655
+          infrastructure: ""
           meta: ""
           osTemplateId: 7.061401241503109
           subdomain: subdomain
           typeId: 6.027456183070403
-          links: "{}"
-          id: 9.301444243932576
           config: ""
-          diskSizeGB: 5.962133916683182
         meta: ""
         links: ""
       properties:

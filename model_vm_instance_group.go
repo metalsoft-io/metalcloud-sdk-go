@@ -36,6 +36,8 @@ type VMInstanceGroup struct {
 	Revision float32 `json:"revision"`
 	// Id of the Infrastructure.
 	InfrastructureId float32 `json:"infrastructureId"`
+	// Infrastructure information
+	Infrastructure ParentInfrastructureDto `json:"infrastructure"`
 	// Status of the VM Instance Group.
 	ServiceStatus string `json:"serviceStatus"`
 	// Disk size in GB for each VM Instance in the VM Instance Group.
@@ -63,7 +65,7 @@ type _VMInstanceGroup VMInstanceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstanceGroup(label string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, serviceStatus string, diskSizeGB float32, createdTimestamp string, config VMInstanceGroupConfiguration, meta VMInstanceGroupMeta, links map[string]interface{}) *VMInstanceGroup {
+func NewVMInstanceGroup(label string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructureDto, serviceStatus string, diskSizeGB float32, createdTimestamp string, config VMInstanceGroupConfiguration, meta VMInstanceGroupMeta, links map[string]interface{}) *VMInstanceGroup {
 	this := VMInstanceGroup{}
 	this.Label = label
 	var instanceCount float32 = 1
@@ -72,6 +74,7 @@ func NewVMInstanceGroup(label string, updatedTimestamp string, id float32, revis
 	this.Id = id
 	this.Revision = revision
 	this.InfrastructureId = infrastructureId
+	this.Infrastructure = infrastructure
 	this.ServiceStatus = serviceStatus
 	this.DiskSizeGB = diskSizeGB
 	this.CreatedTimestamp = createdTimestamp
@@ -305,6 +308,30 @@ func (o *VMInstanceGroup) GetInfrastructureIdOk() (*float32, bool) {
 // SetInfrastructureId sets field value
 func (o *VMInstanceGroup) SetInfrastructureId(v float32) {
 	o.InfrastructureId = v
+}
+
+// GetInfrastructure returns the Infrastructure field value
+func (o *VMInstanceGroup) GetInfrastructure() ParentInfrastructureDto {
+	if o == nil {
+		var ret ParentInfrastructureDto
+		return ret
+	}
+
+	return o.Infrastructure
+}
+
+// GetInfrastructureOk returns a tuple with the Infrastructure field value
+// and a boolean to check if the value has been set.
+func (o *VMInstanceGroup) GetInfrastructureOk() (*ParentInfrastructureDto, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Infrastructure, true
+}
+
+// SetInfrastructure sets field value
+func (o *VMInstanceGroup) SetInfrastructure(v ParentInfrastructureDto) {
+	o.Infrastructure = v
 }
 
 // GetServiceStatus returns the ServiceStatus field value
@@ -571,6 +598,7 @@ func (o VMInstanceGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["infrastructureId"] = o.InfrastructureId
+	toSerialize["infrastructure"] = o.Infrastructure
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	toSerialize["diskSizeGB"] = o.DiskSizeGB
 	if !IsNil(o.SubdomainPermanent) {
@@ -604,6 +632,7 @@ func (o *VMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"revision",
 		"infrastructureId",
+		"infrastructure",
 		"serviceStatus",
 		"diskSizeGB",
 		"createdTimestamp",
@@ -647,6 +676,7 @@ func (o *VMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "infrastructureId")
+		delete(additionalProperties, "infrastructure")
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "diskSizeGB")
 		delete(additionalProperties, "subdomainPermanent")

@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Id** | **float32** | The ID of the custom ISO | 
 **UserIdOwner** | Pointer to **float32** | The ID of the user who owns the custom ISO. If public then null | [optional] 
 **ModifiedBy** | Pointer to **float32** | The ID of the user who last edited the custom ISO | [optional] 
+**Label** | **string** | The label of the custom ISO | 
 **Name** | **string** | The name of the custom ISO | 
-**DisplayName** | **string** | The display name of the custom ISO | 
 **Type** | **string** | The type of the custom ISO | 
 **IsPublic** | **float32** | Flag to indicate if the custom ISO is public | 
 **AccessUrl** | **string** | The access URL of the custom ISO | 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewCustomIso
 
-`func NewCustomIso(id float32, name string, displayName string, type_ string, isPublic float32, accessUrl string, createdTimestamp string, updatedTimestamp string, ) *CustomIso`
+`func NewCustomIso(id float32, label string, name string, type_ string, isPublic float32, accessUrl string, createdTimestamp string, updatedTimestamp string, ) *CustomIso`
 
 NewCustomIso instantiates a new CustomIso object
 This constructor will assign default values to properties that have it defined,
@@ -107,6 +107,26 @@ SetModifiedBy sets ModifiedBy field to given value.
 
 HasModifiedBy returns a boolean if a field has been set.
 
+### GetLabel
+
+`func (o *CustomIso) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *CustomIso) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *CustomIso) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+
 ### GetName
 
 `func (o *CustomIso) GetName() string`
@@ -125,26 +145,6 @@ and a boolean to check if the value has been set.
 `func (o *CustomIso) SetName(v string)`
 
 SetName sets Name field to given value.
-
-
-### GetDisplayName
-
-`func (o *CustomIso) GetDisplayName() string`
-
-GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
-
-### GetDisplayNameOk
-
-`func (o *CustomIso) GetDisplayNameOk() (*string, bool)`
-
-GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDisplayName
-
-`func (o *CustomIso) SetDisplayName(v string)`
-
-SetDisplayName sets DisplayName field to given value.
 
 
 ### GetType

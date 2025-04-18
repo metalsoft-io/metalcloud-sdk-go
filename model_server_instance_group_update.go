@@ -23,7 +23,6 @@ type ServerInstanceGroupUpdate struct {
 	// The server instance group label.
 	Label *string `json:"label,omitempty"`
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
-	NetworkEndpointGroupId *int32 `json:"networkEndpointGroupId,omitempty"`
 	// The number of instances to be created on the Instance Group.
 	InstanceCount *int32 `json:"instanceCount,omitempty"`
 	// The server type ID of the created instances.
@@ -182,38 +181,6 @@ func (o *ServerInstanceGroupUpdate) HasServerGroupName() bool {
 // SetServerGroupName gets a reference to the given string and assigns it to the ServerGroupName field.
 func (o *ServerInstanceGroupUpdate) SetServerGroupName(v string) {
 	o.ServerGroupName = &v
-}
-
-// GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupUpdate) GetNetworkEndpointGroupId() int32 {
-	if o == nil || IsNil(o.NetworkEndpointGroupId) {
-		var ret int32
-		return ret
-	}
-	return *o.NetworkEndpointGroupId
-}
-
-// GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupUpdate) GetNetworkEndpointGroupIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.NetworkEndpointGroupId) {
-		return nil, false
-	}
-	return o.NetworkEndpointGroupId, true
-}
-
-// HasNetworkEndpointGroupId returns a boolean if a field has been set.
-func (o *ServerInstanceGroupUpdate) HasNetworkEndpointGroupId() bool {
-	if o != nil && !IsNil(o.NetworkEndpointGroupId) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworkEndpointGroupId gets a reference to the given int32 and assigns it to the NetworkEndpointGroupId field.
-func (o *ServerInstanceGroupUpdate) SetNetworkEndpointGroupId(v int32) {
-	o.NetworkEndpointGroupId = &v
 }
 
 // GetInstanceCount returns the InstanceCount field value if set, zero value otherwise.
@@ -776,9 +743,6 @@ func (o ServerInstanceGroupUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServerGroupName) {
 		toSerialize["serverGroupName"] = o.ServerGroupName
 	}
-	if !IsNil(o.NetworkEndpointGroupId) {
-		toSerialize["networkEndpointGroupId"] = o.NetworkEndpointGroupId
-	}
 	if !IsNil(o.InstanceCount) {
 		toSerialize["instanceCount"] = o.InstanceCount
 	}
@@ -854,7 +818,6 @@ func (o *ServerInstanceGroupUpdate) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "serverGroupName")
-		delete(additionalProperties, "networkEndpointGroupId")
 		delete(additionalProperties, "instanceCount")
 		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "ipAllocateAuto")

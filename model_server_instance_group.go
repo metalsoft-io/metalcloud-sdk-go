@@ -42,7 +42,6 @@ type ServerInstanceGroup struct {
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	InfrastructureId int32 `json:"infrastructureId"`
 	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`
-	NetworkEndpointGroupId *int32 `json:"networkEndpointGroupId,omitempty"`
 	// The number of instances to be created on the Instance Group.
 	InstanceCount int32 `json:"instanceCount"`
 	// The server type ID of the created instances.
@@ -89,6 +88,7 @@ type ServerInstanceGroup struct {
 	IsVmGroup int32 `json:"isVmGroup"`
 	// Id of the VM Instance Group this Server Instance Group belongs to.
 	VmInstanceGroupId *int32 `json:"vmInstanceGroupId,omitempty"`
+	NetworkEndpointGroupId *int32 `json:"networkEndpointGroupId,omitempty"`
 	Meta GenericMeta `json:"meta"`
 	Config *ServerInstanceGroupConfiguration `json:"config,omitempty"`
 	// Reference links
@@ -490,38 +490,6 @@ func (o *ServerInstanceGroup) HasExtensionInstanceId() bool {
 // SetExtensionInstanceId gets a reference to the given int32 and assigns it to the ExtensionInstanceId field.
 func (o *ServerInstanceGroup) SetExtensionInstanceId(v int32) {
 	o.ExtensionInstanceId = &v
-}
-
-// GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field value if set, zero value otherwise.
-func (o *ServerInstanceGroup) GetNetworkEndpointGroupId() int32 {
-	if o == nil || IsNil(o.NetworkEndpointGroupId) {
-		var ret int32
-		return ret
-	}
-	return *o.NetworkEndpointGroupId
-}
-
-// GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroup) GetNetworkEndpointGroupIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.NetworkEndpointGroupId) {
-		return nil, false
-	}
-	return o.NetworkEndpointGroupId, true
-}
-
-// HasNetworkEndpointGroupId returns a boolean if a field has been set.
-func (o *ServerInstanceGroup) HasNetworkEndpointGroupId() bool {
-	if o != nil && !IsNil(o.NetworkEndpointGroupId) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworkEndpointGroupId gets a reference to the given int32 and assigns it to the NetworkEndpointGroupId field.
-func (o *ServerInstanceGroup) SetNetworkEndpointGroupId(v int32) {
-	o.NetworkEndpointGroupId = &v
 }
 
 // GetInstanceCount returns the InstanceCount field value
@@ -1197,6 +1165,38 @@ func (o *ServerInstanceGroup) SetVmInstanceGroupId(v int32) {
 	o.VmInstanceGroupId = &v
 }
 
+// GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field value if set, zero value otherwise.
+func (o *ServerInstanceGroup) GetNetworkEndpointGroupId() int32 {
+	if o == nil || IsNil(o.NetworkEndpointGroupId) {
+		var ret int32
+		return ret
+	}
+	return *o.NetworkEndpointGroupId
+}
+
+// GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroup) GetNetworkEndpointGroupIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.NetworkEndpointGroupId) {
+		return nil, false
+	}
+	return o.NetworkEndpointGroupId, true
+}
+
+// HasNetworkEndpointGroupId returns a boolean if a field has been set.
+func (o *ServerInstanceGroup) HasNetworkEndpointGroupId() bool {
+	if o != nil && !IsNil(o.NetworkEndpointGroupId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkEndpointGroupId gets a reference to the given int32 and assigns it to the NetworkEndpointGroupId field.
+func (o *ServerInstanceGroup) SetNetworkEndpointGroupId(v int32) {
+	o.NetworkEndpointGroupId = &v
+}
+
 // GetMeta returns the Meta field value
 func (o *ServerInstanceGroup) GetMeta() GenericMeta {
 	if o == nil {
@@ -1319,9 +1319,6 @@ func (o ServerInstanceGroup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExtensionInstanceId) {
 		toSerialize["extensionInstanceId"] = o.ExtensionInstanceId
 	}
-	if !IsNil(o.NetworkEndpointGroupId) {
-		toSerialize["networkEndpointGroupId"] = o.NetworkEndpointGroupId
-	}
 	toSerialize["instanceCount"] = o.InstanceCount
 	if !IsNil(o.ServerTypeId) {
 		toSerialize["serverTypeId"] = o.ServerTypeId
@@ -1369,6 +1366,9 @@ func (o ServerInstanceGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize["isVmGroup"] = o.IsVmGroup
 	if !IsNil(o.VmInstanceGroupId) {
 		toSerialize["vmInstanceGroupId"] = o.VmInstanceGroupId
+	}
+	if !IsNil(o.NetworkEndpointGroupId) {
+		toSerialize["networkEndpointGroupId"] = o.NetworkEndpointGroupId
 	}
 	toSerialize["meta"] = o.Meta
 	if !IsNil(o.Config) {
@@ -1450,7 +1450,6 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "extensionInstanceId")
-		delete(additionalProperties, "networkEndpointGroupId")
 		delete(additionalProperties, "instanceCount")
 		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "ipAllocateAuto")
@@ -1475,6 +1474,7 @@ func (o *ServerInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "resourcePoolId")
 		delete(additionalProperties, "isVmGroup")
 		delete(additionalProperties, "vmInstanceGroupId")
+		delete(additionalProperties, "networkEndpointGroupId")
 		delete(additionalProperties, "meta")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "links")

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | The name of the custom ISO | 
+**Label** | **string** | The label of the custom ISO | 
 **AccessUrl** | **string** | The access URL of the custom ISO | 
-**DisplayName** | Pointer to **string** | The display name of the custom ISO | [optional] 
+**Name** | Pointer to **string** | The name of the custom ISO | [optional] 
 
 ## Methods
 
 ### NewCreateCustomIso
 
-`func NewCreateCustomIso(name string, accessUrl string, ) *CreateCustomIso`
+`func NewCreateCustomIso(label string, accessUrl string, ) *CreateCustomIso`
 
 NewCreateCustomIso instantiates a new CreateCustomIso object
 This constructor will assign default values to properties that have it defined,
@@ -27,24 +27,24 @@ NewCreateCustomIsoWithDefaults instantiates a new CreateCustomIso object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetLabel
 
-`func (o *CreateCustomIso) GetName() string`
+`func (o *CreateCustomIso) GetLabel() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetLabel returns the Label field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetLabelOk
 
-`func (o *CreateCustomIso) GetNameOk() (*string, bool)`
+`func (o *CreateCustomIso) GetLabelOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetLabel
 
-`func (o *CreateCustomIso) SetName(v string)`
+`func (o *CreateCustomIso) SetLabel(v string)`
 
-SetName sets Name field to given value.
+SetLabel sets Label field to given value.
 
 
 ### GetAccessUrl
@@ -67,30 +67,30 @@ and a boolean to check if the value has been set.
 SetAccessUrl sets AccessUrl field to given value.
 
 
-### GetDisplayName
+### GetName
 
-`func (o *CreateCustomIso) GetDisplayName() string`
+`func (o *CreateCustomIso) GetName() string`
 
-GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetDisplayNameOk
+### GetNameOk
 
-`func (o *CreateCustomIso) GetDisplayNameOk() (*string, bool)`
+`func (o *CreateCustomIso) GetNameOk() (*string, bool)`
 
-GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDisplayName
+### SetName
 
-`func (o *CreateCustomIso) SetDisplayName(v string)`
+`func (o *CreateCustomIso) SetName(v string)`
 
-SetDisplayName sets DisplayName field to given value.
+SetName sets Name field to given value.
 
-### HasDisplayName
+### HasName
 
-`func (o *CreateCustomIso) HasDisplayName() bool`
+`func (o *CreateCustomIso) HasName() bool`
 
-HasDisplayName returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -22,8 +22,8 @@ var _ MappedNullable = &UpdateCustomIso{}
 type UpdateCustomIso struct {
 	// The access URL of the custom ISO
 	AccessUrl *string `json:"accessUrl,omitempty"`
-	// The display name of the custom ISO
-	DisplayName *string `json:"displayName,omitempty"`
+	// The name of the custom ISO
+	Name *string `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,36 +78,36 @@ func (o *UpdateCustomIso) SetAccessUrl(v string) {
 	o.AccessUrl = &v
 }
 
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
-func (o *UpdateCustomIso) GetDisplayName() string {
-	if o == nil || IsNil(o.DisplayName) {
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *UpdateCustomIso) GetName() string {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.DisplayName
+	return *o.Name
 }
 
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCustomIso) GetDisplayNameOk() (*string, bool) {
-	if o == nil || IsNil(o.DisplayName) {
+func (o *UpdateCustomIso) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.DisplayName, true
+	return o.Name, true
 }
 
-// HasDisplayName returns a boolean if a field has been set.
-func (o *UpdateCustomIso) HasDisplayName() bool {
-	if o != nil && !IsNil(o.DisplayName) {
+// HasName returns a boolean if a field has been set.
+func (o *UpdateCustomIso) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
-func (o *UpdateCustomIso) SetDisplayName(v string) {
-	o.DisplayName = &v
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *UpdateCustomIso) SetName(v string) {
+	o.Name = &v
 }
 
 func (o UpdateCustomIso) MarshalJSON() ([]byte, error) {
@@ -123,8 +123,8 @@ func (o UpdateCustomIso) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AccessUrl) {
 		toSerialize["accessUrl"] = o.AccessUrl
 	}
-	if !IsNil(o.DisplayName) {
-		toSerialize["displayName"] = o.DisplayName
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -149,7 +149,7 @@ func (o *UpdateCustomIso) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "accessUrl")
-		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 

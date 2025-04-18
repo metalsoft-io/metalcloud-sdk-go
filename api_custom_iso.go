@@ -439,7 +439,7 @@ type CustomIsoAPIGetCustomIsosRequest struct {
 	limit *float32
 	filterId *[]string
 	filterName *[]string
-	filterDisplayName *[]string
+	filterLabel *[]string
 	filterAccessUrl *[]string
 	sortBy *[]string
 	search *string
@@ -470,9 +470,9 @@ func (r CustomIsoAPIGetCustomIsosRequest) FilterName(filterName []string) Custom
 	return r
 }
 
-// Filter by displayName query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.displayName&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.displayName&#x3D;$not:$like:John Doe&amp;filter.displayName&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r CustomIsoAPIGetCustomIsosRequest) FilterDisplayName(filterDisplayName []string) CustomIsoAPIGetCustomIsosRequest {
-	r.filterDisplayName = &filterDisplayName
+// Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r CustomIsoAPIGetCustomIsosRequest) FilterLabel(filterLabel []string) CustomIsoAPIGetCustomIsosRequest {
+	r.filterLabel = &filterLabel
 	return r
 }
 
@@ -494,7 +494,7 @@ func (r CustomIsoAPIGetCustomIsosRequest) Search(search string) CustomIsoAPIGetC
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,name,displayName,accessUrl           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;displayName&lt;/li&gt; &lt;li&gt;accessUrl&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,name,label,accessUrl           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;accessUrl&lt;/li&gt;&lt;/ul&gt;         
 func (r CustomIsoAPIGetCustomIsosRequest) SearchBy(searchBy []string) CustomIsoAPIGetCustomIsosRequest {
 	r.searchBy = &searchBy
 	return r
@@ -568,15 +568,15 @@ func (a *CustomIsoAPIService) GetCustomIsosExecute(r CustomIsoAPIGetCustomIsosRe
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
 		}
 	}
-	if r.filterDisplayName != nil {
-		t := *r.filterDisplayName
+	if r.filterLabel != nil {
+		t := *r.filterLabel
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.displayName", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.displayName", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
 		}
 	}
 	if r.filterAccessUrl != nil {

@@ -27,10 +27,10 @@ type CustomIso struct {
 	UserIdOwner *float32 `json:"userIdOwner,omitempty"`
 	// The ID of the user who last edited the custom ISO
 	ModifiedBy *float32 `json:"modifiedBy,omitempty"`
+	// The label of the custom ISO
+	Label string `json:"label"`
 	// The name of the custom ISO
 	Name string `json:"name"`
-	// The display name of the custom ISO
-	DisplayName string `json:"displayName"`
 	// The type of the custom ISO
 	Type string `json:"type"`
 	// Flag to indicate if the custom ISO is public
@@ -56,11 +56,11 @@ type _CustomIso CustomIso
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomIso(id float32, name string, displayName string, type_ string, isPublic float32, accessUrl string, createdTimestamp string, updatedTimestamp string) *CustomIso {
+func NewCustomIso(id float32, label string, name string, type_ string, isPublic float32, accessUrl string, createdTimestamp string, updatedTimestamp string) *CustomIso {
 	this := CustomIso{}
 	this.Id = id
+	this.Label = label
 	this.Name = name
-	this.DisplayName = displayName
 	this.Type = type_
 	this.IsPublic = isPublic
 	this.AccessUrl = accessUrl
@@ -165,6 +165,30 @@ func (o *CustomIso) SetModifiedBy(v float32) {
 	o.ModifiedBy = &v
 }
 
+// GetLabel returns the Label field value
+func (o *CustomIso) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *CustomIso) GetLabelOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *CustomIso) SetLabel(v string) {
+	o.Label = v
+}
+
 // GetName returns the Name field value
 func (o *CustomIso) GetName() string {
 	if o == nil {
@@ -187,30 +211,6 @@ func (o *CustomIso) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *CustomIso) SetName(v string) {
 	o.Name = v
-}
-
-// GetDisplayName returns the DisplayName field value
-func (o *CustomIso) GetDisplayName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value
-// and a boolean to check if the value has been set.
-func (o *CustomIso) GetDisplayNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DisplayName, true
-}
-
-// SetDisplayName sets field value
-func (o *CustomIso) SetDisplayName(v string) {
-	o.DisplayName = v
 }
 
 // GetType returns the Type field value
@@ -446,8 +446,8 @@ func (o CustomIso) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ModifiedBy) {
 		toSerialize["modifiedBy"] = o.ModifiedBy
 	}
+	toSerialize["label"] = o.Label
 	toSerialize["name"] = o.Name
-	toSerialize["displayName"] = o.DisplayName
 	toSerialize["type"] = o.Type
 	toSerialize["isPublic"] = o.IsPublic
 	toSerialize["accessUrl"] = o.AccessUrl
@@ -476,8 +476,8 @@ func (o *CustomIso) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"id",
+		"label",
 		"name",
-		"displayName",
 		"type",
 		"isPublic",
 		"accessUrl",
@@ -515,8 +515,8 @@ func (o *CustomIso) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "userIdOwner")
 		delete(additionalProperties, "modifiedBy")
+		delete(additionalProperties, "label")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "isPublic")
 		delete(additionalProperties, "accessUrl")

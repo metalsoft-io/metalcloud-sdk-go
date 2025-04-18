@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **InfrastructureId** | **int32** |  | 
 **ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
-**NetworkEndpointGroupId** | Pointer to **int32** |  | [optional] 
 **InstanceCount** | **int32** | The number of instances to be created on the Instance Group. | [default to 1]
 **ServerTypeId** | Pointer to **int32** | The server type ID of the created instances. | [optional] 
 **IpAllocateAuto** | **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [default to 1]
@@ -41,6 +40,7 @@ Name | Type | Description | Notes
 **ResourcePoolId** | Pointer to **int32** | The resource pool assigned to this instance array | [optional] 
 **IsVmGroup** | **int32** | Flag to indicate if the Server Instance Group is belongs to a VM. | 
 **VmInstanceGroupId** | Pointer to **int32** | Id of the VM Instance Group this Server Instance Group belongs to. | [optional] 
+**NetworkEndpointGroupId** | Pointer to **int32** |  | [optional] 
 **Meta** | [**GenericMeta**](GenericMeta.md) |  | 
 **Config** | Pointer to [**ServerInstanceGroupConfiguration**](ServerInstanceGroupConfiguration.md) |  | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -333,31 +333,6 @@ SetExtensionInstanceId sets ExtensionInstanceId field to given value.
 `func (o *ServerInstanceGroup) HasExtensionInstanceId() bool`
 
 HasExtensionInstanceId returns a boolean if a field has been set.
-
-### GetNetworkEndpointGroupId
-
-`func (o *ServerInstanceGroup) GetNetworkEndpointGroupId() int32`
-
-GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field if non-nil, zero value otherwise.
-
-### GetNetworkEndpointGroupIdOk
-
-`func (o *ServerInstanceGroup) GetNetworkEndpointGroupIdOk() (*int32, bool)`
-
-GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetworkEndpointGroupId
-
-`func (o *ServerInstanceGroup) SetNetworkEndpointGroupId(v int32)`
-
-SetNetworkEndpointGroupId sets NetworkEndpointGroupId field to given value.
-
-### HasNetworkEndpointGroupId
-
-`func (o *ServerInstanceGroup) HasNetworkEndpointGroupId() bool`
-
-HasNetworkEndpointGroupId returns a boolean if a field has been set.
 
 ### GetInstanceCount
 
@@ -908,6 +883,31 @@ SetVmInstanceGroupId sets VmInstanceGroupId field to given value.
 `func (o *ServerInstanceGroup) HasVmInstanceGroupId() bool`
 
 HasVmInstanceGroupId returns a boolean if a field has been set.
+
+### GetNetworkEndpointGroupId
+
+`func (o *ServerInstanceGroup) GetNetworkEndpointGroupId() int32`
+
+GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field if non-nil, zero value otherwise.
+
+### GetNetworkEndpointGroupIdOk
+
+`func (o *ServerInstanceGroup) GetNetworkEndpointGroupIdOk() (*int32, bool)`
+
+GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkEndpointGroupId
+
+`func (o *ServerInstanceGroup) SetNetworkEndpointGroupId(v int32)`
+
+SetNetworkEndpointGroupId sets NetworkEndpointGroupId field to given value.
+
+### HasNetworkEndpointGroupId
+
+`func (o *ServerInstanceGroup) HasNetworkEndpointGroupId() bool`
+
+HasNetworkEndpointGroupId returns a boolean if a field has been set.
 
 ### GetMeta
 

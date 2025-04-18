@@ -21,12 +21,12 @@ var _ MappedNullable = &CreateCustomIso{}
 
 // CreateCustomIso struct for CreateCustomIso
 type CreateCustomIso struct {
-	// The name of the custom ISO
-	Name string `json:"name"`
+	// The label of the custom ISO
+	Label string `json:"label"`
 	// The access URL of the custom ISO
 	AccessUrl string `json:"accessUrl"`
-	// The display name of the custom ISO
-	DisplayName *string `json:"displayName,omitempty"`
+	// The name of the custom ISO
+	Name *string `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,9 +36,9 @@ type _CreateCustomIso CreateCustomIso
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateCustomIso(name string, accessUrl string) *CreateCustomIso {
+func NewCreateCustomIso(label string, accessUrl string) *CreateCustomIso {
 	this := CreateCustomIso{}
-	this.Name = name
+	this.Label = label
 	this.AccessUrl = accessUrl
 	return &this
 }
@@ -51,28 +51,28 @@ func NewCreateCustomIsoWithDefaults() *CreateCustomIso {
 	return &this
 }
 
-// GetName returns the Name field value
-func (o *CreateCustomIso) GetName() string {
+// GetLabel returns the Label field value
+func (o *CreateCustomIso) GetLabel() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.Label
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *CreateCustomIso) GetNameOk() (*string, bool) {
+func (o *CreateCustomIso) GetLabelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.Label, true
 }
 
-// SetName sets field value
-func (o *CreateCustomIso) SetName(v string) {
-	o.Name = v
+// SetLabel sets field value
+func (o *CreateCustomIso) SetLabel(v string) {
+	o.Label = v
 }
 
 // GetAccessUrl returns the AccessUrl field value
@@ -99,36 +99,36 @@ func (o *CreateCustomIso) SetAccessUrl(v string) {
 	o.AccessUrl = v
 }
 
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
-func (o *CreateCustomIso) GetDisplayName() string {
-	if o == nil || IsNil(o.DisplayName) {
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *CreateCustomIso) GetName() string {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.DisplayName
+	return *o.Name
 }
 
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateCustomIso) GetDisplayNameOk() (*string, bool) {
-	if o == nil || IsNil(o.DisplayName) {
+func (o *CreateCustomIso) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.DisplayName, true
+	return o.Name, true
 }
 
-// HasDisplayName returns a boolean if a field has been set.
-func (o *CreateCustomIso) HasDisplayName() bool {
-	if o != nil && !IsNil(o.DisplayName) {
+// HasName returns a boolean if a field has been set.
+func (o *CreateCustomIso) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
-func (o *CreateCustomIso) SetDisplayName(v string) {
-	o.DisplayName = &v
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *CreateCustomIso) SetName(v string) {
+	o.Name = &v
 }
 
 func (o CreateCustomIso) MarshalJSON() ([]byte, error) {
@@ -141,10 +141,10 @@ func (o CreateCustomIso) MarshalJSON() ([]byte, error) {
 
 func (o CreateCustomIso) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
+	toSerialize["label"] = o.Label
 	toSerialize["accessUrl"] = o.AccessUrl
-	if !IsNil(o.DisplayName) {
-		toSerialize["displayName"] = o.DisplayName
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -159,7 +159,7 @@ func (o *CreateCustomIso) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
+		"label",
 		"accessUrl",
 	}
 
@@ -190,9 +190,9 @@ func (o *CreateCustomIso) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
+		delete(additionalProperties, "label")
 		delete(additionalProperties, "accessUrl")
-		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 

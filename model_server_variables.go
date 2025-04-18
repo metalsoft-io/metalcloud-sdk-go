@@ -98,9 +98,9 @@ type ServerVariables struct {
 	// Flag to indicate if the server is booting a custom iso.
 	BootingCustomIsoInProgress *float32 `json:"bootingCustomIsoInProgress,omitempty"`
 	// The bios info of the server.
-	BiosInfo *map[string]string `json:"biosInfo,omitempty"`
+	BiosInfo *ServerBiosInfo `json:"biosInfo,omitempty"`
 	// The vendor info of the server.
-	VendorInfo *map[string]string `json:"vendorInfo,omitempty"`
+	VendorInfo *ServerVendorInfo `json:"vendorInfo,omitempty"`
 	// The class of the server.
 	ServerClass string `json:"serverClass"`
 	// The status of the server.
@@ -1362,9 +1362,9 @@ func (o *ServerVariables) SetBootingCustomIsoInProgress(v float32) {
 }
 
 // GetBiosInfo returns the BiosInfo field value if set, zero value otherwise.
-func (o *ServerVariables) GetBiosInfo() map[string]string {
+func (o *ServerVariables) GetBiosInfo() ServerBiosInfo {
 	if o == nil || IsNil(o.BiosInfo) {
-		var ret map[string]string
+		var ret ServerBiosInfo
 		return ret
 	}
 	return *o.BiosInfo
@@ -1372,7 +1372,7 @@ func (o *ServerVariables) GetBiosInfo() map[string]string {
 
 // GetBiosInfoOk returns a tuple with the BiosInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetBiosInfoOk() (*map[string]string, bool) {
+func (o *ServerVariables) GetBiosInfoOk() (*ServerBiosInfo, bool) {
 	if o == nil || IsNil(o.BiosInfo) {
 		return nil, false
 	}
@@ -1388,15 +1388,15 @@ func (o *ServerVariables) HasBiosInfo() bool {
 	return false
 }
 
-// SetBiosInfo gets a reference to the given map[string]string and assigns it to the BiosInfo field.
-func (o *ServerVariables) SetBiosInfo(v map[string]string) {
+// SetBiosInfo gets a reference to the given ServerBiosInfo and assigns it to the BiosInfo field.
+func (o *ServerVariables) SetBiosInfo(v ServerBiosInfo) {
 	o.BiosInfo = &v
 }
 
 // GetVendorInfo returns the VendorInfo field value if set, zero value otherwise.
-func (o *ServerVariables) GetVendorInfo() map[string]string {
+func (o *ServerVariables) GetVendorInfo() ServerVendorInfo {
 	if o == nil || IsNil(o.VendorInfo) {
-		var ret map[string]string
+		var ret ServerVendorInfo
 		return ret
 	}
 	return *o.VendorInfo
@@ -1404,7 +1404,7 @@ func (o *ServerVariables) GetVendorInfo() map[string]string {
 
 // GetVendorInfoOk returns a tuple with the VendorInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerVariables) GetVendorInfoOk() (*map[string]string, bool) {
+func (o *ServerVariables) GetVendorInfoOk() (*ServerVendorInfo, bool) {
 	if o == nil || IsNil(o.VendorInfo) {
 		return nil, false
 	}
@@ -1420,8 +1420,8 @@ func (o *ServerVariables) HasVendorInfo() bool {
 	return false
 }
 
-// SetVendorInfo gets a reference to the given map[string]string and assigns it to the VendorInfo field.
-func (o *ServerVariables) SetVendorInfo(v map[string]string) {
+// SetVendorInfo gets a reference to the given ServerVendorInfo and assigns it to the VendorInfo field.
+func (o *ServerVariables) SetVendorInfo(v ServerVendorInfo) {
 	o.VendorInfo = &v
 }
 
