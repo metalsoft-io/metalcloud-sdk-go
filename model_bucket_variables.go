@@ -40,7 +40,7 @@ type BucketVariables struct {
 	// Infrastructure id of the Bucket
 	InfrastructureId float32 `json:"infrastructureId"`
 	// Infrastructure information
-	Infrastructure ParentInfrastructureDto `json:"infrastructure"`
+	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// Timestamp of the Bucket creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Service status of the Bucket
@@ -66,7 +66,7 @@ type _BucketVariables BucketVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucketVariables(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructureDto, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, config BucketConfiguration) *BucketVariables {
+func NewBucketVariables(sizeGB float32, updatedTimestamp string, label string, subdomain string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, createdTimestamp string, serviceStatus string, subdomainPermanent string, dnsSubdomainId float32, config BucketConfiguration) *BucketVariables {
 	this := BucketVariables{}
 	this.SizeGB = sizeGB
 	this.UpdatedTimestamp = updatedTimestamp
@@ -325,9 +325,9 @@ func (o *BucketVariables) SetInfrastructureId(v float32) {
 }
 
 // GetInfrastructure returns the Infrastructure field value
-func (o *BucketVariables) GetInfrastructure() ParentInfrastructureDto {
+func (o *BucketVariables) GetInfrastructure() ParentInfrastructure {
 	if o == nil {
-		var ret ParentInfrastructureDto
+		var ret ParentInfrastructure
 		return ret
 	}
 
@@ -336,7 +336,7 @@ func (o *BucketVariables) GetInfrastructure() ParentInfrastructureDto {
 
 // GetInfrastructureOk returns a tuple with the Infrastructure field value
 // and a boolean to check if the value has been set.
-func (o *BucketVariables) GetInfrastructureOk() (*ParentInfrastructureDto, bool) {
+func (o *BucketVariables) GetInfrastructureOk() (*ParentInfrastructure, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -344,7 +344,7 @@ func (o *BucketVariables) GetInfrastructureOk() (*ParentInfrastructureDto, bool)
 }
 
 // SetInfrastructure sets field value
-func (o *BucketVariables) SetInfrastructure(v ParentInfrastructureDto) {
+func (o *BucketVariables) SetInfrastructure(v ParentInfrastructure) {
 	o.Infrastructure = v
 }
 

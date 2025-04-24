@@ -39,5 +39,5 @@ wget https://my-metalcloud.com/api/v2/swagger-json -O ./metalcloud-api.json --no
 * Generate the SDK using
 
 ```bash
-openapi-generator-cli generate -g go -i ./metalcloud-api.json -o ./metalcloud-sdk-go -c ./metalcloud-sdk-go-config.json --git-user-id=metalsoft-io --git-repo-id=metalcloud-sdk-go
+openapi-generator-cli generate -g go -i ./metalcloud-api.json -o ./metalcloud-sdk-go -c ./metalcloud-sdk-go-config.json --git-user-id=metalsoft-io --git-repo-id=metalcloud-sdk-go --inline-schema-options ARRAY_ITEM_SUFFIX=DataItem
 ```

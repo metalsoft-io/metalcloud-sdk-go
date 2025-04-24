@@ -416,7 +416,7 @@ import (
 
 func main() {
 	name := "name_example" // string | The provider name
-	authenticationProviderUpdate := *openapiclient.NewAuthenticationProviderUpdate(false, []string{"Domains_example"}) // AuthenticationProviderUpdate | The provider updates
+	authenticationProviderUpdate := *openapiclient.NewAuthenticationProviderUpdate(false) // AuthenticationProviderUpdate | The provider updates
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

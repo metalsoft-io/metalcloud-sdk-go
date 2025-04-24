@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **DNSServers** | Pointer to **[]string** | List of DNS Servers | [optional] 
 **NTPServers** | Pointer to **[]string** | List of NTP Servers | [optional] 
 **NetworkDevicePolicy** | Pointer to [**PartialTypeClass**](PartialTypeClass.md) | Network device policies | [optional] 
-**ServerPolicy** | Pointer to [**ServerPolicyUpdateDto**](ServerPolicyUpdateDto.md) | Server policies | [optional] 
+**ServerPolicy** | Pointer to [**ServerPolicyUpdate**](ServerPolicyUpdate.md) | Server policies | [optional] 
 **ControllerPolicy** | Pointer to [**ControllerPolicy**](ControllerPolicy.md) | Controller policies | [optional] 
 **InfrastructurePolicy** | Pointer to [**InfrastructurePolicy**](InfrastructurePolicy.md) | Infrastructure policies | [optional] 
 
@@ -159,20 +159,20 @@ HasNetworkDevicePolicy returns a boolean if a field has been set.
 
 ### GetServerPolicy
 
-`func (o *SiteConfigUpdate) GetServerPolicy() ServerPolicyUpdateDto`
+`func (o *SiteConfigUpdate) GetServerPolicy() ServerPolicyUpdate`
 
 GetServerPolicy returns the ServerPolicy field if non-nil, zero value otherwise.
 
 ### GetServerPolicyOk
 
-`func (o *SiteConfigUpdate) GetServerPolicyOk() (*ServerPolicyUpdateDto, bool)`
+`func (o *SiteConfigUpdate) GetServerPolicyOk() (*ServerPolicyUpdate, bool)`
 
 GetServerPolicyOk returns a tuple with the ServerPolicy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerPolicy
 
-`func (o *SiteConfigUpdate) SetServerPolicy(v ServerPolicyUpdateDto)`
+`func (o *SiteConfigUpdate) SetServerPolicy(v ServerPolicyUpdate)`
 
 SetServerPolicy sets ServerPolicy field to given value.
 

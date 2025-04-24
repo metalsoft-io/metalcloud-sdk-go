@@ -46,7 +46,7 @@ type SharedDriveVariables struct {
 	// Infrastructure id of the Drive
 	InfrastructureId float32 `json:"infrastructureId"`
 	// Infrastructure information
-	Infrastructure ParentInfrastructureDto `json:"infrastructure"`
+	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// Service status of the Drive
 	ServiceStatus string `json:"serviceStatus"`
 	// Cached information of the real size of the storage in MB.
@@ -83,7 +83,7 @@ type _SharedDriveVariables SharedDriveVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSharedDriveVariables(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructureDto, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string) *SharedDriveVariables {
+func NewSharedDriveVariables(label string, sizeMb float32, storageType string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, storageUpdatedTimestamp string, allocationAffinity string, provisioningProtocol string, config SharedDriveConfiguration, createdTimestamp string) *SharedDriveVariables {
 	this := SharedDriveVariables{}
 	this.Label = label
 	this.SizeMb = sizeMb
@@ -441,9 +441,9 @@ func (o *SharedDriveVariables) SetInfrastructureId(v float32) {
 }
 
 // GetInfrastructure returns the Infrastructure field value
-func (o *SharedDriveVariables) GetInfrastructure() ParentInfrastructureDto {
+func (o *SharedDriveVariables) GetInfrastructure() ParentInfrastructure {
 	if o == nil {
-		var ret ParentInfrastructureDto
+		var ret ParentInfrastructure
 		return ret
 	}
 
@@ -452,7 +452,7 @@ func (o *SharedDriveVariables) GetInfrastructure() ParentInfrastructureDto {
 
 // GetInfrastructureOk returns a tuple with the Infrastructure field value
 // and a boolean to check if the value has been set.
-func (o *SharedDriveVariables) GetInfrastructureOk() (*ParentInfrastructureDto, bool) {
+func (o *SharedDriveVariables) GetInfrastructureOk() (*ParentInfrastructure, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -460,7 +460,7 @@ func (o *SharedDriveVariables) GetInfrastructureOk() (*ParentInfrastructureDto, 
 }
 
 // SetInfrastructure sets field value
-func (o *SharedDriveVariables) SetInfrastructure(v ParentInfrastructureDto) {
+func (o *SharedDriveVariables) SetInfrastructure(v ParentInfrastructure) {
 	o.Infrastructure = v
 }
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** | The site ID | 
 **Revision** | **float32** | Revision number | 
-**Slug** | Pointer to **string** | The site unique slug | [optional] 
+**Slug** | **string** | The site unique slug | 
 **Name** | **string** | The site name | 
 **Location** | Pointer to [**Location**](Location.md) | Location details | [optional] 
 **IsHidden** | Pointer to **bool** | True if the site is hidden | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewSite
 
-`func NewSite(id int32, revision float32, name string, ) *Site`
+`func NewSite(id int32, revision float32, slug string, name string, ) *Site`
 
 NewSite instantiates a new Site object
 This constructor will assign default values to properties that have it defined,
@@ -92,11 +92,6 @@ and a boolean to check if the value has been set.
 
 SetSlug sets Slug field to given value.
 
-### HasSlug
-
-`func (o *Site) HasSlug() bool`
-
-HasSlug returns a boolean if a field has been set.
 
 ### GetName
 

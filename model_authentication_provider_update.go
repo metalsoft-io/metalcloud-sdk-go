@@ -24,7 +24,7 @@ type AuthenticationProviderUpdate struct {
 	// True if the provider is enabled
 	Enabled bool `json:"enabled"`
 	// Permitted domains
-	Domains []string `json:"domains"`
+	Domains []string `json:"domains,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +34,9 @@ type _AuthenticationProviderUpdate AuthenticationProviderUpdate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAuthenticationProviderUpdate(enabled bool, domains []string) *AuthenticationProviderUpdate {
+func NewAuthenticationProviderUpdate(enabled bool) *AuthenticationProviderUpdate {
 	this := AuthenticationProviderUpdate{}
 	this.Enabled = enabled
-	this.Domains = domains
 	return &this
 }
 
@@ -73,26 +72,34 @@ func (o *AuthenticationProviderUpdate) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
-// GetDomains returns the Domains field value
+// GetDomains returns the Domains field value if set, zero value otherwise.
 func (o *AuthenticationProviderUpdate) GetDomains() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Domains) {
 		var ret []string
 		return ret
 	}
-
 	return o.Domains
 }
 
-// GetDomainsOk returns a tuple with the Domains field value
+// GetDomainsOk returns a tuple with the Domains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AuthenticationProviderUpdate) GetDomainsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Domains) {
 		return nil, false
 	}
 	return o.Domains, true
 }
 
-// SetDomains sets field value
+// HasDomains returns a boolean if a field has been set.
+func (o *AuthenticationProviderUpdate) HasDomains() bool {
+	if o != nil && !IsNil(o.Domains) {
+		return true
+	}
+
+	return false
+}
+
+// SetDomains gets a reference to the given []string and assigns it to the Domains field.
 func (o *AuthenticationProviderUpdate) SetDomains(v []string) {
 	o.Domains = v
 }
@@ -108,7 +115,9 @@ func (o AuthenticationProviderUpdate) MarshalJSON() ([]byte, error) {
 func (o AuthenticationProviderUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["enabled"] = o.Enabled
-	toSerialize["domains"] = o.Domains
+	if !IsNil(o.Domains) {
+		toSerialize["domains"] = o.Domains
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -123,7 +132,6 @@ func (o *AuthenticationProviderUpdate) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"enabled",
-		"domains",
 	}
 
 	allProperties := make(map[string]interface{})

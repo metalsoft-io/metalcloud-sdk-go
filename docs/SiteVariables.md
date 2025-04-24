@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** | The site ID | 
 **Revision** | **float32** | Revision number | 
-**Slug** | Pointer to **string** | The site unique slug | [optional] 
+**Slug** | **string** | The site unique slug | 
 **Name** | **string** | The site name | 
 **Location** | Pointer to [**Location**](Location.md) | Location details | [optional] 
 **OwnerId** | Pointer to **int32** | ID of the site owner | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewSiteVariables
 
-`func NewSiteVariables(id int32, revision float32, name string, ) *SiteVariables`
+`func NewSiteVariables(id int32, revision float32, slug string, name string, ) *SiteVariables`
 
 NewSiteVariables instantiates a new SiteVariables object
 This constructor will assign default values to properties that have it defined,
@@ -89,11 +89,6 @@ and a boolean to check if the value has been set.
 
 SetSlug sets Slug field to given value.
 
-### HasSlug
-
-`func (o *SiteVariables) HasSlug() bool`
-
-HasSlug returns a boolean if a field has been set.
 
 ### GetName
 

@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UpdateLogicalNetworkProfile type satisfies the MappedNullable interface at compile time
@@ -20,16 +21,14 @@ var _ MappedNullable = &UpdateLogicalNetworkProfile{}
 
 // UpdateLogicalNetworkProfile struct for UpdateLogicalNetworkProfile
 type UpdateLogicalNetworkProfile struct {
-	// Label for the logical network profile
 	Label *string `json:"label,omitempty"`
-	// Name of the logical network profile
 	Name *string `json:"name,omitempty"`
-	// Description of the logical network profile
-	Description *string `json:"description,omitempty"`
-	// Annotations for the logical network profile
-	Annotations map[string]interface{} `json:"annotations,omitempty"`
-	// Type of the logical network profile
-	LogicalNetworkType *string `json:"logicalNetworkType,omitempty"`
+	Annotations *map[string]string `json:"annotations,omitempty"`
+	Vlan UpdateLogicalNetworkProfileVlanProperties `json:"vlan"`
+	Vxlan UpdateLogicalNetworkProfileVxlanProperties `json:"vxlan"`
+	Ipv4 UpdateLogicalNetworkProfileIpv4Properties `json:"ipv4"`
+	Ipv6 UpdateLogicalNetworkProfileIpv6Properties `json:"ipv6"`
+	RouteDomainId NullableInt32 `json:"routeDomainId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,8 +38,12 @@ type _UpdateLogicalNetworkProfile UpdateLogicalNetworkProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateLogicalNetworkProfile() *UpdateLogicalNetworkProfile {
+func NewUpdateLogicalNetworkProfile(vlan UpdateLogicalNetworkProfileVlanProperties, vxlan UpdateLogicalNetworkProfileVxlanProperties, ipv4 UpdateLogicalNetworkProfileIpv4Properties, ipv6 UpdateLogicalNetworkProfileIpv6Properties) *UpdateLogicalNetworkProfile {
 	this := UpdateLogicalNetworkProfile{}
+	this.Vlan = vlan
+	this.Vxlan = vxlan
+	this.Ipv4 = ipv4
+	this.Ipv6 = ipv6
 	return &this
 }
 
@@ -116,52 +119,20 @@ func (o *UpdateLogicalNetworkProfile) SetName(v string) {
 	o.Name = &v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkProfile) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkProfile) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkProfile) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *UpdateLogicalNetworkProfile) SetDescription(v string) {
-	o.Description = &v
-}
-
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkProfile) GetAnnotations() map[string]interface{} {
+func (o *UpdateLogicalNetworkProfile) GetAnnotations() map[string]string {
 	if o == nil || IsNil(o.Annotations) {
-		var ret map[string]interface{}
+		var ret map[string]string
 		return ret
 	}
-	return o.Annotations
+	return *o.Annotations
 }
 
 // GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkProfile) GetAnnotationsOk() (map[string]interface{}, bool) {
+func (o *UpdateLogicalNetworkProfile) GetAnnotationsOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Annotations) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Annotations, true
 }
@@ -175,41 +146,147 @@ func (o *UpdateLogicalNetworkProfile) HasAnnotations() bool {
 	return false
 }
 
-// SetAnnotations gets a reference to the given map[string]interface{} and assigns it to the Annotations field.
-func (o *UpdateLogicalNetworkProfile) SetAnnotations(v map[string]interface{}) {
-	o.Annotations = v
+// SetAnnotations gets a reference to the given map[string]string and assigns it to the Annotations field.
+func (o *UpdateLogicalNetworkProfile) SetAnnotations(v map[string]string) {
+	o.Annotations = &v
 }
 
-// GetLogicalNetworkType returns the LogicalNetworkType field value if set, zero value otherwise.
-func (o *UpdateLogicalNetworkProfile) GetLogicalNetworkType() string {
-	if o == nil || IsNil(o.LogicalNetworkType) {
-		var ret string
+// GetVlan returns the Vlan field value
+func (o *UpdateLogicalNetworkProfile) GetVlan() UpdateLogicalNetworkProfileVlanProperties {
+	if o == nil {
+		var ret UpdateLogicalNetworkProfileVlanProperties
 		return ret
 	}
-	return *o.LogicalNetworkType
+
+	return o.Vlan
 }
 
-// GetLogicalNetworkTypeOk returns a tuple with the LogicalNetworkType field value if set, nil otherwise
+// GetVlanOk returns a tuple with the Vlan field value
 // and a boolean to check if the value has been set.
-func (o *UpdateLogicalNetworkProfile) GetLogicalNetworkTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.LogicalNetworkType) {
+func (o *UpdateLogicalNetworkProfile) GetVlanOk() (*UpdateLogicalNetworkProfileVlanProperties, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LogicalNetworkType, true
+	return &o.Vlan, true
 }
 
-// HasLogicalNetworkType returns a boolean if a field has been set.
-func (o *UpdateLogicalNetworkProfile) HasLogicalNetworkType() bool {
-	if o != nil && !IsNil(o.LogicalNetworkType) {
+// SetVlan sets field value
+func (o *UpdateLogicalNetworkProfile) SetVlan(v UpdateLogicalNetworkProfileVlanProperties) {
+	o.Vlan = v
+}
+
+// GetVxlan returns the Vxlan field value
+func (o *UpdateLogicalNetworkProfile) GetVxlan() UpdateLogicalNetworkProfileVxlanProperties {
+	if o == nil {
+		var ret UpdateLogicalNetworkProfileVxlanProperties
+		return ret
+	}
+
+	return o.Vxlan
+}
+
+// GetVxlanOk returns a tuple with the Vxlan field value
+// and a boolean to check if the value has been set.
+func (o *UpdateLogicalNetworkProfile) GetVxlanOk() (*UpdateLogicalNetworkProfileVxlanProperties, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Vxlan, true
+}
+
+// SetVxlan sets field value
+func (o *UpdateLogicalNetworkProfile) SetVxlan(v UpdateLogicalNetworkProfileVxlanProperties) {
+	o.Vxlan = v
+}
+
+// GetIpv4 returns the Ipv4 field value
+func (o *UpdateLogicalNetworkProfile) GetIpv4() UpdateLogicalNetworkProfileIpv4Properties {
+	if o == nil {
+		var ret UpdateLogicalNetworkProfileIpv4Properties
+		return ret
+	}
+
+	return o.Ipv4
+}
+
+// GetIpv4Ok returns a tuple with the Ipv4 field value
+// and a boolean to check if the value has been set.
+func (o *UpdateLogicalNetworkProfile) GetIpv4Ok() (*UpdateLogicalNetworkProfileIpv4Properties, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ipv4, true
+}
+
+// SetIpv4 sets field value
+func (o *UpdateLogicalNetworkProfile) SetIpv4(v UpdateLogicalNetworkProfileIpv4Properties) {
+	o.Ipv4 = v
+}
+
+// GetIpv6 returns the Ipv6 field value
+func (o *UpdateLogicalNetworkProfile) GetIpv6() UpdateLogicalNetworkProfileIpv6Properties {
+	if o == nil {
+		var ret UpdateLogicalNetworkProfileIpv6Properties
+		return ret
+	}
+
+	return o.Ipv6
+}
+
+// GetIpv6Ok returns a tuple with the Ipv6 field value
+// and a boolean to check if the value has been set.
+func (o *UpdateLogicalNetworkProfile) GetIpv6Ok() (*UpdateLogicalNetworkProfileIpv6Properties, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ipv6, true
+}
+
+// SetIpv6 sets field value
+func (o *UpdateLogicalNetworkProfile) SetIpv6(v UpdateLogicalNetworkProfileIpv6Properties) {
+	o.Ipv6 = v
+}
+
+// GetRouteDomainId returns the RouteDomainId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateLogicalNetworkProfile) GetRouteDomainId() int32 {
+	if o == nil || IsNil(o.RouteDomainId.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.RouteDomainId.Get()
+}
+
+// GetRouteDomainIdOk returns a tuple with the RouteDomainId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateLogicalNetworkProfile) GetRouteDomainIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RouteDomainId.Get(), o.RouteDomainId.IsSet()
+}
+
+// HasRouteDomainId returns a boolean if a field has been set.
+func (o *UpdateLogicalNetworkProfile) HasRouteDomainId() bool {
+	if o != nil && o.RouteDomainId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetLogicalNetworkType gets a reference to the given string and assigns it to the LogicalNetworkType field.
-func (o *UpdateLogicalNetworkProfile) SetLogicalNetworkType(v string) {
-	o.LogicalNetworkType = &v
+// SetRouteDomainId gets a reference to the given NullableInt32 and assigns it to the RouteDomainId field.
+func (o *UpdateLogicalNetworkProfile) SetRouteDomainId(v int32) {
+	o.RouteDomainId.Set(&v)
+}
+// SetRouteDomainIdNil sets the value for RouteDomainId to be an explicit nil
+func (o *UpdateLogicalNetworkProfile) SetRouteDomainIdNil() {
+	o.RouteDomainId.Set(nil)
+}
+
+// UnsetRouteDomainId ensures that no value is present for RouteDomainId, not even an explicit nil
+func (o *UpdateLogicalNetworkProfile) UnsetRouteDomainId() {
+	o.RouteDomainId.Unset()
 }
 
 func (o UpdateLogicalNetworkProfile) MarshalJSON() ([]byte, error) {
@@ -228,14 +305,15 @@ func (o UpdateLogicalNetworkProfile) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
 	if !IsNil(o.Annotations) {
 		toSerialize["annotations"] = o.Annotations
 	}
-	if !IsNil(o.LogicalNetworkType) {
-		toSerialize["logicalNetworkType"] = o.LogicalNetworkType
+	toSerialize["vlan"] = o.Vlan
+	toSerialize["vxlan"] = o.Vxlan
+	toSerialize["ipv4"] = o.Ipv4
+	toSerialize["ipv6"] = o.Ipv6
+	if o.RouteDomainId.IsSet() {
+		toSerialize["routeDomainId"] = o.RouteDomainId.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -246,6 +324,30 @@ func (o UpdateLogicalNetworkProfile) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *UpdateLogicalNetworkProfile) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"vlan",
+		"vxlan",
+		"ipv4",
+		"ipv6",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varUpdateLogicalNetworkProfile := _UpdateLogicalNetworkProfile{}
 
 	err = json.Unmarshal(data, &varUpdateLogicalNetworkProfile)
@@ -261,9 +363,12 @@ func (o *UpdateLogicalNetworkProfile) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "description")
 		delete(additionalProperties, "annotations")
-		delete(additionalProperties, "logicalNetworkType")
+		delete(additionalProperties, "vlan")
+		delete(additionalProperties, "vxlan")
+		delete(additionalProperties, "ipv4")
+		delete(additionalProperties, "ipv6")
+		delete(additionalProperties, "routeDomainId")
 		o.AdditionalProperties = additionalProperties
 	}
 

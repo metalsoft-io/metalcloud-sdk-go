@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 **GNMISubscriptionEnabled** | **bool** | Whether gNMI subscription is enabled | 
 **SyslogMonitoringEnabled** | **bool** | Whether syslog monitoring is enabled | 
 **LeafSwitchesHaveMlagPairs** | **bool** | Whether leaf switches have MLAG pairs | 
-**MinimumNumberOfSpinesNeededToBootstrapLeafs** | **float32** | Minimum number of spines needed to bootstrap leafs | 
+**MinimumNumberOfSpinesNeededToBootstrapLeafs** | **int32** | Minimum number of spines needed to bootstrap leafs | 
 
 ## Methods
 
 ### NewNetworkDevicePolicy
 
-`func NewNetworkDevicePolicy(zeroTouchRegistrationEnabled bool, gNMISubscriptionEnabled bool, syslogMonitoringEnabled bool, leafSwitchesHaveMlagPairs bool, minimumNumberOfSpinesNeededToBootstrapLeafs float32, ) *NetworkDevicePolicy`
+`func NewNetworkDevicePolicy(zeroTouchRegistrationEnabled bool, gNMISubscriptionEnabled bool, syslogMonitoringEnabled bool, leafSwitchesHaveMlagPairs bool, minimumNumberOfSpinesNeededToBootstrapLeafs int32, ) *NetworkDevicePolicy`
 
 NewNetworkDevicePolicy instantiates a new NetworkDevicePolicy object
 This constructor will assign default values to properties that have it defined,
@@ -111,20 +111,20 @@ SetLeafSwitchesHaveMlagPairs sets LeafSwitchesHaveMlagPairs field to given value
 
 ### GetMinimumNumberOfSpinesNeededToBootstrapLeafs
 
-`func (o *NetworkDevicePolicy) GetMinimumNumberOfSpinesNeededToBootstrapLeafs() float32`
+`func (o *NetworkDevicePolicy) GetMinimumNumberOfSpinesNeededToBootstrapLeafs() int32`
 
 GetMinimumNumberOfSpinesNeededToBootstrapLeafs returns the MinimumNumberOfSpinesNeededToBootstrapLeafs field if non-nil, zero value otherwise.
 
 ### GetMinimumNumberOfSpinesNeededToBootstrapLeafsOk
 
-`func (o *NetworkDevicePolicy) GetMinimumNumberOfSpinesNeededToBootstrapLeafsOk() (*float32, bool)`
+`func (o *NetworkDevicePolicy) GetMinimumNumberOfSpinesNeededToBootstrapLeafsOk() (*int32, bool)`
 
 GetMinimumNumberOfSpinesNeededToBootstrapLeafsOk returns a tuple with the MinimumNumberOfSpinesNeededToBootstrapLeafs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMinimumNumberOfSpinesNeededToBootstrapLeafs
 
-`func (o *NetworkDevicePolicy) SetMinimumNumberOfSpinesNeededToBootstrapLeafs(v float32)`
+`func (o *NetworkDevicePolicy) SetMinimumNumberOfSpinesNeededToBootstrapLeafs(v int32)`
 
 SetMinimumNumberOfSpinesNeededToBootstrapLeafs sets MinimumNumberOfSpinesNeededToBootstrapLeafs field to given value.
 

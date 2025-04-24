@@ -24,6 +24,7 @@ Method | HTTP request | Description
 [**SetPowerToServerInstance**](ServerInstanceAPI.md#SetPowerToServerInstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power-set | Set power to the Server Instance
 [**UpdateServerInstanceConfig**](ServerInstanceAPI.md#UpdateServerInstanceConfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/config | Update Server Instance configuration
 [**UpdateServerInstanceInterfaceConfig**](ServerInstanceAPI.md#UpdateServerInstanceInterfaceConfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId}/config | Update Server Instance Interface configuration
+[**UpdateServerInstanceMeta**](ServerInstanceAPI.md#UpdateServerInstanceMeta) | **Patch** /api/v2/server-instances/{serverInstanceId}/meta | Update an Server Instance meta information
 
 
 
@@ -1492,6 +1493,76 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateServerInstanceMeta
+
+> UpdateServerInstanceMeta(ctx, serverInstanceId).GenericMeta(genericMeta).Execute()
+
+Update an Server Instance meta information
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceId := int32(56) // int32 | 
+	genericMeta := *openapiclient.NewGenericMeta() // GenericMeta | The Server Instance meta information
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ServerInstanceAPI.UpdateServerInstanceMeta(context.Background(), serverInstanceId).GenericMeta(genericMeta).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.UpdateServerInstanceMeta``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateServerInstanceMetaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **genericMeta** | [**GenericMeta**](GenericMeta.md) | The Server Instance meta information | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

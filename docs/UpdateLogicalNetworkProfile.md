@@ -4,17 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **string** | Label for the logical network profile | [optional] 
-**Name** | Pointer to **string** | Name of the logical network profile | [optional] 
-**Description** | Pointer to **string** | Description of the logical network profile | [optional] 
-**Annotations** | Pointer to **map[string]interface{}** | Annotations for the logical network profile | [optional] 
-**LogicalNetworkType** | Pointer to **string** | Type of the logical network profile | [optional] 
+**Label** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Annotations** | Pointer to **map[string]string** |  | [optional] 
+**Vlan** | [**UpdateLogicalNetworkProfileVlanProperties**](UpdateLogicalNetworkProfileVlanProperties.md) |  | 
+**Vxlan** | [**UpdateLogicalNetworkProfileVxlanProperties**](UpdateLogicalNetworkProfileVxlanProperties.md) |  | 
+**Ipv4** | [**UpdateLogicalNetworkProfileIpv4Properties**](UpdateLogicalNetworkProfileIpv4Properties.md) |  | 
+**Ipv6** | [**UpdateLogicalNetworkProfileIpv6Properties**](UpdateLogicalNetworkProfileIpv6Properties.md) |  | 
+**RouteDomainId** | Pointer to **NullableInt32** |  | [optional] 
 
 ## Methods
 
 ### NewUpdateLogicalNetworkProfile
 
-`func NewUpdateLogicalNetworkProfile() *UpdateLogicalNetworkProfile`
+`func NewUpdateLogicalNetworkProfile(vlan UpdateLogicalNetworkProfileVlanProperties, vxlan UpdateLogicalNetworkProfileVxlanProperties, ipv4 UpdateLogicalNetworkProfileIpv4Properties, ipv6 UpdateLogicalNetworkProfileIpv6Properties, ) *UpdateLogicalNetworkProfile`
 
 NewUpdateLogicalNetworkProfile instantiates a new UpdateLogicalNetworkProfile object
 This constructor will assign default values to properties that have it defined,
@@ -79,47 +82,22 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetDescription
-
-`func (o *UpdateLogicalNetworkProfile) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *UpdateLogicalNetworkProfile) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *UpdateLogicalNetworkProfile) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *UpdateLogicalNetworkProfile) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
 ### GetAnnotations
 
-`func (o *UpdateLogicalNetworkProfile) GetAnnotations() map[string]interface{}`
+`func (o *UpdateLogicalNetworkProfile) GetAnnotations() map[string]string`
 
 GetAnnotations returns the Annotations field if non-nil, zero value otherwise.
 
 ### GetAnnotationsOk
 
-`func (o *UpdateLogicalNetworkProfile) GetAnnotationsOk() (*map[string]interface{}, bool)`
+`func (o *UpdateLogicalNetworkProfile) GetAnnotationsOk() (*map[string]string, bool)`
 
 GetAnnotationsOk returns a tuple with the Annotations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAnnotations
 
-`func (o *UpdateLogicalNetworkProfile) SetAnnotations(v map[string]interface{})`
+`func (o *UpdateLogicalNetworkProfile) SetAnnotations(v map[string]string)`
 
 SetAnnotations sets Annotations field to given value.
 
@@ -129,31 +107,121 @@ SetAnnotations sets Annotations field to given value.
 
 HasAnnotations returns a boolean if a field has been set.
 
-### GetLogicalNetworkType
+### GetVlan
 
-`func (o *UpdateLogicalNetworkProfile) GetLogicalNetworkType() string`
+`func (o *UpdateLogicalNetworkProfile) GetVlan() UpdateLogicalNetworkProfileVlanProperties`
 
-GetLogicalNetworkType returns the LogicalNetworkType field if non-nil, zero value otherwise.
+GetVlan returns the Vlan field if non-nil, zero value otherwise.
 
-### GetLogicalNetworkTypeOk
+### GetVlanOk
 
-`func (o *UpdateLogicalNetworkProfile) GetLogicalNetworkTypeOk() (*string, bool)`
+`func (o *UpdateLogicalNetworkProfile) GetVlanOk() (*UpdateLogicalNetworkProfileVlanProperties, bool)`
 
-GetLogicalNetworkTypeOk returns a tuple with the LogicalNetworkType field if it's non-nil, zero value otherwise
+GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLogicalNetworkType
+### SetVlan
 
-`func (o *UpdateLogicalNetworkProfile) SetLogicalNetworkType(v string)`
+`func (o *UpdateLogicalNetworkProfile) SetVlan(v UpdateLogicalNetworkProfileVlanProperties)`
 
-SetLogicalNetworkType sets LogicalNetworkType field to given value.
+SetVlan sets Vlan field to given value.
 
-### HasLogicalNetworkType
 
-`func (o *UpdateLogicalNetworkProfile) HasLogicalNetworkType() bool`
+### GetVxlan
 
-HasLogicalNetworkType returns a boolean if a field has been set.
+`func (o *UpdateLogicalNetworkProfile) GetVxlan() UpdateLogicalNetworkProfileVxlanProperties`
 
+GetVxlan returns the Vxlan field if non-nil, zero value otherwise.
+
+### GetVxlanOk
+
+`func (o *UpdateLogicalNetworkProfile) GetVxlanOk() (*UpdateLogicalNetworkProfileVxlanProperties, bool)`
+
+GetVxlanOk returns a tuple with the Vxlan field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVxlan
+
+`func (o *UpdateLogicalNetworkProfile) SetVxlan(v UpdateLogicalNetworkProfileVxlanProperties)`
+
+SetVxlan sets Vxlan field to given value.
+
+
+### GetIpv4
+
+`func (o *UpdateLogicalNetworkProfile) GetIpv4() UpdateLogicalNetworkProfileIpv4Properties`
+
+GetIpv4 returns the Ipv4 field if non-nil, zero value otherwise.
+
+### GetIpv4Ok
+
+`func (o *UpdateLogicalNetworkProfile) GetIpv4Ok() (*UpdateLogicalNetworkProfileIpv4Properties, bool)`
+
+GetIpv4Ok returns a tuple with the Ipv4 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpv4
+
+`func (o *UpdateLogicalNetworkProfile) SetIpv4(v UpdateLogicalNetworkProfileIpv4Properties)`
+
+SetIpv4 sets Ipv4 field to given value.
+
+
+### GetIpv6
+
+`func (o *UpdateLogicalNetworkProfile) GetIpv6() UpdateLogicalNetworkProfileIpv6Properties`
+
+GetIpv6 returns the Ipv6 field if non-nil, zero value otherwise.
+
+### GetIpv6Ok
+
+`func (o *UpdateLogicalNetworkProfile) GetIpv6Ok() (*UpdateLogicalNetworkProfileIpv6Properties, bool)`
+
+GetIpv6Ok returns a tuple with the Ipv6 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpv6
+
+`func (o *UpdateLogicalNetworkProfile) SetIpv6(v UpdateLogicalNetworkProfileIpv6Properties)`
+
+SetIpv6 sets Ipv6 field to given value.
+
+
+### GetRouteDomainId
+
+`func (o *UpdateLogicalNetworkProfile) GetRouteDomainId() int32`
+
+GetRouteDomainId returns the RouteDomainId field if non-nil, zero value otherwise.
+
+### GetRouteDomainIdOk
+
+`func (o *UpdateLogicalNetworkProfile) GetRouteDomainIdOk() (*int32, bool)`
+
+GetRouteDomainIdOk returns a tuple with the RouteDomainId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRouteDomainId
+
+`func (o *UpdateLogicalNetworkProfile) SetRouteDomainId(v int32)`
+
+SetRouteDomainId sets RouteDomainId field to given value.
+
+### HasRouteDomainId
+
+`func (o *UpdateLogicalNetworkProfile) HasRouteDomainId() bool`
+
+HasRouteDomainId returns a boolean if a field has been set.
+
+### SetRouteDomainIdNil
+
+`func (o *UpdateLogicalNetworkProfile) SetRouteDomainIdNil(b bool)`
+
+ SetRouteDomainIdNil sets the value for RouteDomainId to be an explicit nil
+
+### UnsetRouteDomainId
+`func (o *UpdateLogicalNetworkProfile) UnsetRouteDomainId()`
+
+UnsetRouteDomainId ensures that no value is present for RouteDomainId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

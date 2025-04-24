@@ -26,7 +26,7 @@ type Site struct {
 	// Revision number
 	Revision float32 `json:"revision"`
 	// The site unique slug
-	Slug *string `json:"slug,omitempty"`
+	Slug string `json:"slug"`
 	// The site name
 	Name string `json:"name"`
 	// Location details
@@ -48,10 +48,11 @@ type _Site Site
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSite(id int32, revision float32, name string) *Site {
+func NewSite(id int32, revision float32, slug string, name string) *Site {
 	this := Site{}
 	this.Id = id
 	this.Revision = revision
+	this.Slug = slug
 	this.Name = name
 	return &this
 }
@@ -112,36 +113,28 @@ func (o *Site) SetRevision(v float32) {
 	o.Revision = v
 }
 
-// GetSlug returns the Slug field value if set, zero value otherwise.
+// GetSlug returns the Slug field value
 func (o *Site) GetSlug() string {
-	if o == nil || IsNil(o.Slug) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Slug
+
+	return o.Slug
 }
 
-// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
+// GetSlugOk returns a tuple with the Slug field value
 // and a boolean to check if the value has been set.
 func (o *Site) GetSlugOk() (*string, bool) {
-	if o == nil || IsNil(o.Slug) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Slug, true
+	return &o.Slug, true
 }
 
-// HasSlug returns a boolean if a field has been set.
-func (o *Site) HasSlug() bool {
-	if o != nil && !IsNil(o.Slug) {
-		return true
-	}
-
-	return false
-}
-
-// SetSlug gets a reference to the given string and assigns it to the Slug field.
+// SetSlug sets field value
 func (o *Site) SetSlug(v string) {
-	o.Slug = &v
+	o.Slug = v
 }
 
 // GetName returns the Name field value
@@ -340,9 +333,7 @@ func (o Site) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
-	if !IsNil(o.Slug) {
-		toSerialize["slug"] = o.Slug
-	}
+	toSerialize["slug"] = o.Slug
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Location) {
 		toSerialize["location"] = o.Location
@@ -374,6 +365,7 @@ func (o *Site) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"revision",
+		"slug",
 		"name",
 	}
 

@@ -30,7 +30,7 @@ type NetworkDevicePolicy struct {
 	// Whether leaf switches have MLAG pairs
 	LeafSwitchesHaveMlagPairs bool `json:"leafSwitchesHaveMlagPairs"`
 	// Minimum number of spines needed to bootstrap leafs
-	MinimumNumberOfSpinesNeededToBootstrapLeafs float32 `json:"minimumNumberOfSpinesNeededToBootstrapLeafs"`
+	MinimumNumberOfSpinesNeededToBootstrapLeafs int32 `json:"minimumNumberOfSpinesNeededToBootstrapLeafs"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,7 +40,7 @@ type _NetworkDevicePolicy NetworkDevicePolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevicePolicy(zeroTouchRegistrationEnabled bool, gNMISubscriptionEnabled bool, syslogMonitoringEnabled bool, leafSwitchesHaveMlagPairs bool, minimumNumberOfSpinesNeededToBootstrapLeafs float32) *NetworkDevicePolicy {
+func NewNetworkDevicePolicy(zeroTouchRegistrationEnabled bool, gNMISubscriptionEnabled bool, syslogMonitoringEnabled bool, leafSwitchesHaveMlagPairs bool, minimumNumberOfSpinesNeededToBootstrapLeafs int32) *NetworkDevicePolicy {
 	this := NetworkDevicePolicy{}
 	this.ZeroTouchRegistrationEnabled = zeroTouchRegistrationEnabled
 	this.GNMISubscriptionEnabled = gNMISubscriptionEnabled
@@ -155,9 +155,9 @@ func (o *NetworkDevicePolicy) SetLeafSwitchesHaveMlagPairs(v bool) {
 }
 
 // GetMinimumNumberOfSpinesNeededToBootstrapLeafs returns the MinimumNumberOfSpinesNeededToBootstrapLeafs field value
-func (o *NetworkDevicePolicy) GetMinimumNumberOfSpinesNeededToBootstrapLeafs() float32 {
+func (o *NetworkDevicePolicy) GetMinimumNumberOfSpinesNeededToBootstrapLeafs() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -166,7 +166,7 @@ func (o *NetworkDevicePolicy) GetMinimumNumberOfSpinesNeededToBootstrapLeafs() f
 
 // GetMinimumNumberOfSpinesNeededToBootstrapLeafsOk returns a tuple with the MinimumNumberOfSpinesNeededToBootstrapLeafs field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevicePolicy) GetMinimumNumberOfSpinesNeededToBootstrapLeafsOk() (*float32, bool) {
+func (o *NetworkDevicePolicy) GetMinimumNumberOfSpinesNeededToBootstrapLeafsOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -174,7 +174,7 @@ func (o *NetworkDevicePolicy) GetMinimumNumberOfSpinesNeededToBootstrapLeafsOk()
 }
 
 // SetMinimumNumberOfSpinesNeededToBootstrapLeafs sets field value
-func (o *NetworkDevicePolicy) SetMinimumNumberOfSpinesNeededToBootstrapLeafs(v float32) {
+func (o *NetworkDevicePolicy) SetMinimumNumberOfSpinesNeededToBootstrapLeafs(v int32) {
 	o.MinimumNumberOfSpinesNeededToBootstrapLeafs = v
 }
 

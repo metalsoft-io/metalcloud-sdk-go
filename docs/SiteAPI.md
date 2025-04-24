@@ -38,7 +38,7 @@ import (
 )
 
 func main() {
-	siteCreate := *openapiclient.NewSiteCreate("Reading, UK") // SiteCreate | The Site create object
+	siteCreate := *openapiclient.NewSiteCreate("reading-uk", "Reading, UK") // SiteCreate | The Site create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

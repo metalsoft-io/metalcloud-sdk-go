@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InfrastructureServiceStatus** | [**InfrastructureServiceStatusDto**](InfrastructureServiceStatusDto.md) | Infrastructure service status counts | 
-**InfrastructureDeployOngoingStatusCount** | [**InfrastructureDeployOngoingStatusCountDto**](InfrastructureDeployOngoingStatusCountDto.md) | Infrastructure deploy ongoing status counts | 
+**InfrastructureServiceStatus** | [**InfrastructureServiceStatus**](InfrastructureServiceStatus.md) | Infrastructure service status counts | 
+**InfrastructureDeployOngoingStatusCount** | [**InfrastructureDeployOngoingStatusCount**](InfrastructureDeployOngoingStatusCount.md) | Infrastructure deploy ongoing status counts | 
 **InfrastructureCount** | **float32** | Total count of infrastructures | 
 **OngoingInfrastructureCount** | **float32** | Count of ongoing infrastructures | 
 **InfrastructureCountEmpty** | **float32** | Count of empty infrastructures | 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewInfrastructuresStatistics
 
-`func NewInfrastructuresStatistics(infrastructureServiceStatus InfrastructureServiceStatusDto, infrastructureDeployOngoingStatusCount InfrastructureDeployOngoingStatusCountDto, infrastructureCount float32, ongoingInfrastructureCount float32, infrastructureCountEmpty float32, infrastructureCountEmptyWithSubnets float32, ) *InfrastructuresStatistics`
+`func NewInfrastructuresStatistics(infrastructureServiceStatus InfrastructureServiceStatus, infrastructureDeployOngoingStatusCount InfrastructureDeployOngoingStatusCount, infrastructureCount float32, ongoingInfrastructureCount float32, infrastructureCountEmpty float32, infrastructureCountEmptyWithSubnets float32, ) *InfrastructuresStatistics`
 
 NewInfrastructuresStatistics instantiates a new InfrastructuresStatistics object
 This constructor will assign default values to properties that have it defined,
@@ -32,40 +32,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetInfrastructureServiceStatus
 
-`func (o *InfrastructuresStatistics) GetInfrastructureServiceStatus() InfrastructureServiceStatusDto`
+`func (o *InfrastructuresStatistics) GetInfrastructureServiceStatus() InfrastructureServiceStatus`
 
 GetInfrastructureServiceStatus returns the InfrastructureServiceStatus field if non-nil, zero value otherwise.
 
 ### GetInfrastructureServiceStatusOk
 
-`func (o *InfrastructuresStatistics) GetInfrastructureServiceStatusOk() (*InfrastructureServiceStatusDto, bool)`
+`func (o *InfrastructuresStatistics) GetInfrastructureServiceStatusOk() (*InfrastructureServiceStatus, bool)`
 
 GetInfrastructureServiceStatusOk returns a tuple with the InfrastructureServiceStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureServiceStatus
 
-`func (o *InfrastructuresStatistics) SetInfrastructureServiceStatus(v InfrastructureServiceStatusDto)`
+`func (o *InfrastructuresStatistics) SetInfrastructureServiceStatus(v InfrastructureServiceStatus)`
 
 SetInfrastructureServiceStatus sets InfrastructureServiceStatus field to given value.
 
 
 ### GetInfrastructureDeployOngoingStatusCount
 
-`func (o *InfrastructuresStatistics) GetInfrastructureDeployOngoingStatusCount() InfrastructureDeployOngoingStatusCountDto`
+`func (o *InfrastructuresStatistics) GetInfrastructureDeployOngoingStatusCount() InfrastructureDeployOngoingStatusCount`
 
 GetInfrastructureDeployOngoingStatusCount returns the InfrastructureDeployOngoingStatusCount field if non-nil, zero value otherwise.
 
 ### GetInfrastructureDeployOngoingStatusCountOk
 
-`func (o *InfrastructuresStatistics) GetInfrastructureDeployOngoingStatusCountOk() (*InfrastructureDeployOngoingStatusCountDto, bool)`
+`func (o *InfrastructuresStatistics) GetInfrastructureDeployOngoingStatusCountOk() (*InfrastructureDeployOngoingStatusCount, bool)`
 
 GetInfrastructureDeployOngoingStatusCountOk returns a tuple with the InfrastructureDeployOngoingStatusCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureDeployOngoingStatusCount
 
-`func (o *InfrastructuresStatistics) SetInfrastructureDeployOngoingStatusCount(v InfrastructureDeployOngoingStatusCountDto)`
+`func (o *InfrastructuresStatistics) SetInfrastructureDeployOngoingStatusCount(v InfrastructureDeployOngoingStatusCount)`
 
 SetInfrastructureDeployOngoingStatusCount sets InfrastructureDeployOngoingStatusCount field to given value.
 

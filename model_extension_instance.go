@@ -36,7 +36,7 @@ type ExtensionInstance struct {
 	// The infrastructure ID.
 	InfrastructureId float32 `json:"infrastructureId"`
 	// Infrastructure information
-	Infrastructure ParentInfrastructureDto `json:"infrastructure"`
+	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// The extension ID.
 	ExtensionId float32 `json:"extensionId"`
 	// Service status of the Extension Instance
@@ -66,7 +66,7 @@ type _ExtensionInstance ExtensionInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInstance(revision float32, label string, automaticManagement float32, updatedTimestamp string, id float32, infrastructureId float32, infrastructure ParentInfrastructureDto, extensionId float32, serviceStatus string, inputVariables []ExtensionVariable, outputVariables []ExtensionVariable, config ExtensionInstanceConfiguration, createdTimestamp string) *ExtensionInstance {
+func NewExtensionInstance(revision float32, label string, automaticManagement float32, updatedTimestamp string, id float32, infrastructureId float32, infrastructure ParentInfrastructure, extensionId float32, serviceStatus string, inputVariables []ExtensionVariable, outputVariables []ExtensionVariable, config ExtensionInstanceConfiguration, createdTimestamp string) *ExtensionInstance {
 	this := ExtensionInstance{}
 	this.Revision = revision
 	this.Label = label
@@ -269,9 +269,9 @@ func (o *ExtensionInstance) SetInfrastructureId(v float32) {
 }
 
 // GetInfrastructure returns the Infrastructure field value
-func (o *ExtensionInstance) GetInfrastructure() ParentInfrastructureDto {
+func (o *ExtensionInstance) GetInfrastructure() ParentInfrastructure {
 	if o == nil {
-		var ret ParentInfrastructureDto
+		var ret ParentInfrastructure
 		return ret
 	}
 
@@ -280,7 +280,7 @@ func (o *ExtensionInstance) GetInfrastructure() ParentInfrastructureDto {
 
 // GetInfrastructureOk returns a tuple with the Infrastructure field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstance) GetInfrastructureOk() (*ParentInfrastructureDto, bool) {
+func (o *ExtensionInstance) GetInfrastructureOk() (*ParentInfrastructure, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -288,7 +288,7 @@ func (o *ExtensionInstance) GetInfrastructureOk() (*ParentInfrastructureDto, boo
 }
 
 // SetInfrastructure sets field value
-func (o *ExtensionInstance) SetInfrastructure(v ParentInfrastructureDto) {
+func (o *ExtensionInstance) SetInfrastructure(v ParentInfrastructure) {
 	o.Infrastructure = v
 }
 

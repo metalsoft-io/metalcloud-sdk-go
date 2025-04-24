@@ -30,7 +30,7 @@ type ServerUnmanagedImport struct {
 	// Flag to indicate if the server supports SOL.
 	ServerSupportsOobProvisioning bool `json:"serverSupportsOobProvisioning"`
 	// The interfaces of the server.
-	ServerInterfaces []ServerUnmanagedImportInternalInterfaceDto `json:"serverInterfaces"`
+	ServerInterfaces []ServerUnmanagedImportInternalInterface `json:"serverInterfaces"`
 	// The server Serial Number.
 	ServerSerialNumber *string `json:"serverSerialNumber,omitempty"`
 	// The server UUID.
@@ -50,7 +50,7 @@ type _ServerUnmanagedImport ServerUnmanagedImport
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerUnmanagedImport(managementAddress string, siteId float32, serverTypeId float32, serverSupportsOobProvisioning bool, serverInterfaces []ServerUnmanagedImportInternalInterfaceDto) *ServerUnmanagedImport {
+func NewServerUnmanagedImport(managementAddress string, siteId float32, serverTypeId float32, serverSupportsOobProvisioning bool, serverInterfaces []ServerUnmanagedImportInternalInterface) *ServerUnmanagedImport {
 	this := ServerUnmanagedImport{}
 	this.ManagementAddress = managementAddress
 	this.SiteId = siteId
@@ -165,9 +165,9 @@ func (o *ServerUnmanagedImport) SetServerSupportsOobProvisioning(v bool) {
 }
 
 // GetServerInterfaces returns the ServerInterfaces field value
-func (o *ServerUnmanagedImport) GetServerInterfaces() []ServerUnmanagedImportInternalInterfaceDto {
+func (o *ServerUnmanagedImport) GetServerInterfaces() []ServerUnmanagedImportInternalInterface {
 	if o == nil {
-		var ret []ServerUnmanagedImportInternalInterfaceDto
+		var ret []ServerUnmanagedImportInternalInterface
 		return ret
 	}
 
@@ -176,7 +176,7 @@ func (o *ServerUnmanagedImport) GetServerInterfaces() []ServerUnmanagedImportInt
 
 // GetServerInterfacesOk returns a tuple with the ServerInterfaces field value
 // and a boolean to check if the value has been set.
-func (o *ServerUnmanagedImport) GetServerInterfacesOk() ([]ServerUnmanagedImportInternalInterfaceDto, bool) {
+func (o *ServerUnmanagedImport) GetServerInterfacesOk() ([]ServerUnmanagedImportInternalInterface, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -184,7 +184,7 @@ func (o *ServerUnmanagedImport) GetServerInterfacesOk() ([]ServerUnmanagedImport
 }
 
 // SetServerInterfaces sets field value
-func (o *ServerUnmanagedImport) SetServerInterfaces(v []ServerUnmanagedImportInternalInterfaceDto) {
+func (o *ServerUnmanagedImport) SetServerInterfaces(v []ServerUnmanagedImportInternalInterface) {
 	o.ServerInterfaces = v
 }
 

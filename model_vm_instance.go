@@ -52,7 +52,7 @@ type VMInstance struct {
 	// Id of the Infrastructure.
 	InfrastructureId float32 `json:"infrastructureId"`
 	// Infrastructure information
-	Infrastructure ParentInfrastructureDto `json:"infrastructure"`
+	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// Service status of the VM Instance.
 	ServiceStatus string `json:"serviceStatus"`
 	// Subdomain permanent of the VM Instance.
@@ -80,7 +80,7 @@ type _VMInstance VMInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id float32, revision float32, groupId float32, infrastructureId float32, infrastructure ParentInfrastructureDto, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta, links map[string]interface{}) *VMInstance {
+func NewVMInstance(label string, typeId float32, diskSizeGB float32, ramGB float32, cpuCores float32, updatedTimestamp string, id float32, revision float32, groupId float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, createdTimestamp string, config VMInstanceConfiguration, meta VMInstanceMeta, links map[string]interface{}) *VMInstance {
 	this := VMInstance{}
 	this.Label = label
 	this.TypeId = typeId
@@ -510,9 +510,9 @@ func (o *VMInstance) SetInfrastructureId(v float32) {
 }
 
 // GetInfrastructure returns the Infrastructure field value
-func (o *VMInstance) GetInfrastructure() ParentInfrastructureDto {
+func (o *VMInstance) GetInfrastructure() ParentInfrastructure {
 	if o == nil {
-		var ret ParentInfrastructureDto
+		var ret ParentInfrastructure
 		return ret
 	}
 
@@ -521,7 +521,7 @@ func (o *VMInstance) GetInfrastructure() ParentInfrastructureDto {
 
 // GetInfrastructureOk returns a tuple with the Infrastructure field value
 // and a boolean to check if the value has been set.
-func (o *VMInstance) GetInfrastructureOk() (*ParentInfrastructureDto, bool) {
+func (o *VMInstance) GetInfrastructureOk() (*ParentInfrastructure, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -529,7 +529,7 @@ func (o *VMInstance) GetInfrastructureOk() (*ParentInfrastructureDto, bool) {
 }
 
 // SetInfrastructure sets field value
-func (o *VMInstance) SetInfrastructure(v ParentInfrastructureDto) {
+func (o *VMInstance) SetInfrastructure(v ParentInfrastructure) {
 	o.Infrastructure = v
 }
 

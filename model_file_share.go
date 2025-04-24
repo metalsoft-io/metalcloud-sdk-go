@@ -40,7 +40,7 @@ type FileShare struct {
 	// Infrastructure id of the File Share
 	InfrastructureId float32 `json:"infrastructureId"`
 	// Infrastructure information
-	Infrastructure ParentInfrastructureDto `json:"infrastructure"`
+	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// Timestamp of the File Share creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Service status of the File Share
@@ -66,7 +66,7 @@ type _FileShare FileShare
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFileShare(sizeGB float32, updatedTimestamp string, label string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructureDto, createdTimestamp string, serviceStatus string, config FileShareConfiguration, meta FileShareMeta) *FileShare {
+func NewFileShare(sizeGB float32, updatedTimestamp string, label string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, createdTimestamp string, serviceStatus string, config FileShareConfiguration, meta FileShareMeta) *FileShare {
 	this := FileShare{}
 	this.SizeGB = sizeGB
 	this.UpdatedTimestamp = updatedTimestamp
@@ -331,9 +331,9 @@ func (o *FileShare) SetInfrastructureId(v float32) {
 }
 
 // GetInfrastructure returns the Infrastructure field value
-func (o *FileShare) GetInfrastructure() ParentInfrastructureDto {
+func (o *FileShare) GetInfrastructure() ParentInfrastructure {
 	if o == nil {
-		var ret ParentInfrastructureDto
+		var ret ParentInfrastructure
 		return ret
 	}
 
@@ -342,7 +342,7 @@ func (o *FileShare) GetInfrastructure() ParentInfrastructureDto {
 
 // GetInfrastructureOk returns a tuple with the Infrastructure field value
 // and a boolean to check if the value has been set.
-func (o *FileShare) GetInfrastructureOk() (*ParentInfrastructureDto, bool) {
+func (o *FileShare) GetInfrastructureOk() (*ParentInfrastructure, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -350,7 +350,7 @@ func (o *FileShare) GetInfrastructureOk() (*ParentInfrastructureDto, bool) {
 }
 
 // SetInfrastructure sets field value
-func (o *FileShare) SetInfrastructure(v ParentInfrastructureDto) {
+func (o *FileShare) SetInfrastructure(v ParentInfrastructure) {
 	o.Infrastructure = v
 }
 

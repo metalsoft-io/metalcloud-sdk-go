@@ -31,7 +31,7 @@ type SiteConfigUpdate struct {
 	// Network device policies
 	NetworkDevicePolicy *PartialTypeClass `json:"networkDevicePolicy,omitempty"`
 	// Server policies
-	ServerPolicy *ServerPolicyUpdateDto `json:"serverPolicy,omitempty"`
+	ServerPolicy *ServerPolicyUpdate `json:"serverPolicy,omitempty"`
 	// Controller policies
 	ControllerPolicy *ControllerPolicy `json:"controllerPolicy,omitempty"`
 	// Infrastructure policies
@@ -219,9 +219,9 @@ func (o *SiteConfigUpdate) SetNetworkDevicePolicy(v PartialTypeClass) {
 }
 
 // GetServerPolicy returns the ServerPolicy field value if set, zero value otherwise.
-func (o *SiteConfigUpdate) GetServerPolicy() ServerPolicyUpdateDto {
+func (o *SiteConfigUpdate) GetServerPolicy() ServerPolicyUpdate {
 	if o == nil || IsNil(o.ServerPolicy) {
-		var ret ServerPolicyUpdateDto
+		var ret ServerPolicyUpdate
 		return ret
 	}
 	return *o.ServerPolicy
@@ -229,7 +229,7 @@ func (o *SiteConfigUpdate) GetServerPolicy() ServerPolicyUpdateDto {
 
 // GetServerPolicyOk returns a tuple with the ServerPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SiteConfigUpdate) GetServerPolicyOk() (*ServerPolicyUpdateDto, bool) {
+func (o *SiteConfigUpdate) GetServerPolicyOk() (*ServerPolicyUpdate, bool) {
 	if o == nil || IsNil(o.ServerPolicy) {
 		return nil, false
 	}
@@ -245,8 +245,8 @@ func (o *SiteConfigUpdate) HasServerPolicy() bool {
 	return false
 }
 
-// SetServerPolicy gets a reference to the given ServerPolicyUpdateDto and assigns it to the ServerPolicy field.
-func (o *SiteConfigUpdate) SetServerPolicy(v ServerPolicyUpdateDto) {
+// SetServerPolicy gets a reference to the given ServerPolicyUpdate and assigns it to the ServerPolicy field.
+func (o *SiteConfigUpdate) SetServerPolicy(v ServerPolicyUpdate) {
 	o.ServerPolicy = &v
 }
 

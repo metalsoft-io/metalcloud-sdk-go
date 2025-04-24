@@ -22,7 +22,7 @@ var _ MappedNullable = &SiteCreate{}
 // SiteCreate struct for SiteCreate
 type SiteCreate struct {
 	// The site unique slug
-	Slug *string `json:"slug,omitempty"`
+	Slug string `json:"slug"`
 	// The site name
 	Name string `json:"name"`
 	// Location details
@@ -40,8 +40,9 @@ type _SiteCreate SiteCreate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSiteCreate(name string) *SiteCreate {
+func NewSiteCreate(slug string, name string) *SiteCreate {
 	this := SiteCreate{}
+	this.Slug = slug
 	this.Name = name
 	return &this
 }
@@ -54,36 +55,28 @@ func NewSiteCreateWithDefaults() *SiteCreate {
 	return &this
 }
 
-// GetSlug returns the Slug field value if set, zero value otherwise.
+// GetSlug returns the Slug field value
 func (o *SiteCreate) GetSlug() string {
-	if o == nil || IsNil(o.Slug) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Slug
+
+	return o.Slug
 }
 
-// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
+// GetSlugOk returns a tuple with the Slug field value
 // and a boolean to check if the value has been set.
 func (o *SiteCreate) GetSlugOk() (*string, bool) {
-	if o == nil || IsNil(o.Slug) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Slug, true
+	return &o.Slug, true
 }
 
-// HasSlug returns a boolean if a field has been set.
-func (o *SiteCreate) HasSlug() bool {
-	if o != nil && !IsNil(o.Slug) {
-		return true
-	}
-
-	return false
-}
-
-// SetSlug gets a reference to the given string and assigns it to the Slug field.
+// SetSlug sets field value
 func (o *SiteCreate) SetSlug(v string) {
-	o.Slug = &v
+	o.Slug = v
 }
 
 // GetName returns the Name field value
@@ -216,9 +209,7 @@ func (o SiteCreate) MarshalJSON() ([]byte, error) {
 
 func (o SiteCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Slug) {
-		toSerialize["slug"] = o.Slug
-	}
+	toSerialize["slug"] = o.Slug
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Location) {
 		toSerialize["location"] = o.Location
@@ -242,6 +233,7 @@ func (o *SiteCreate) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"slug",
 		"name",
 	}
 

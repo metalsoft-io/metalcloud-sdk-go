@@ -203,20 +203,59 @@ Class | Method | HTTP request | Description
 *JobAPI* | [**IssueCommandForJob**](docs/JobAPI.md#issuecommandforjob) | **Post** /api/v2/jobs/{jobId}/actions/issue-command | Issues a command for a job that changes the operational state of the job
 *JobAPI* | [**RetryJob**](docs/JobAPI.md#retryjob) | **Post** /api/v2/jobs/{jobId}/actions/retry | Retries a job
 *JobAPI* | [**SkipJob**](docs/JobAPI.md#skipjob) | **Post** /api/v2/jobs/{jobId}/actions/skip | Skips a job
-*LogicalNetworkProfilesAPI* | [**CreateLogicalNetworkProfile**](docs/LogicalNetworkProfilesAPI.md#createlogicalnetworkprofile) | **Post** /api/v2/logical-network-profiles | Create a new logical network profile
-*LogicalNetworkProfilesAPI* | [**DeleteLogicalNetworkProfile**](docs/LogicalNetworkProfilesAPI.md#deletelogicalnetworkprofile) | **Delete** /api/v2/logical-network-profiles/{logicalNetworkProfileId} | Delete a logical network profile
-*LogicalNetworkProfilesAPI* | [**GetAllLogicalNetworkProfiles**](docs/LogicalNetworkProfilesAPI.md#getalllogicalnetworkprofiles) | **Get** /api/v2/logical-network-profiles | Get all logical network profiles
-*LogicalNetworkProfilesAPI* | [**GetLogicalNetworkProfileById**](docs/LogicalNetworkProfilesAPI.md#getlogicalnetworkprofilebyid) | **Get** /api/v2/logical-network-profiles/{logicalNetworkProfileId} | Get a logical network profile by ID
-*LogicalNetworkProfilesAPI* | [**UpdateLogicalNetworkProfile**](docs/LogicalNetworkProfilesAPI.md#updatelogicalnetworkprofile) | **Put** /api/v2/logical-network-profiles/{logicalNetworkProfileId} | Update a logical network profile
-*LogicalNetworksAPI* | [**CreateLogicalNetwork**](docs/LogicalNetworksAPI.md#createlogicalnetwork) | **Post** /api/v2/logical-networks | Create a new logical network
-*LogicalNetworksAPI* | [**DeleteLogicalNetwork**](docs/LogicalNetworksAPI.md#deletelogicalnetwork) | **Delete** /api/v2/logical-networks/{logicalNetworkId} | Delete a logical network
-*LogicalNetworksAPI* | [**GetAllLogicalNetworks**](docs/LogicalNetworksAPI.md#getalllogicalnetworks) | **Get** /api/v2/logical-networks | Get all logical networks
-*LogicalNetworksAPI* | [**GetLogicalNetworkById**](docs/LogicalNetworksAPI.md#getlogicalnetworkbyid) | **Get** /api/v2/logical-networks/{logicalNetworkId} | Get a logical network by ID
-*LogicalNetworksAPI* | [**UpdateLogicalNetwork**](docs/LogicalNetworksAPI.md#updatelogicalnetwork) | **Put** /api/v2/logical-networks/{logicalNetworkId} | Update a logical network
-*NetworkAPI* | [**CreateInfrastructureNetwork**](docs/NetworkAPI.md#createinfrastructurenetwork) | **Post** /api/v2/infrastructures/{infrastructureId}/networks | Creates a new LAN network on the infrastructure
-*NetworkAPI* | [**DeleteInfrastructureNetwork**](docs/NetworkAPI.md#deleteinfrastructurenetwork) | **Delete** /api/v2/infrastructures/{infrastructureId}/networks/{networkId} | Deletes a network from the infrastructure
-*NetworkAPI* | [**GetInfrastructureNetwork**](docs/NetworkAPI.md#getinfrastructurenetwork) | **Get** /api/v2/infrastructures/{infrastructureId}/networks/{networkId} | Gets the specified network from the infrastructure
-*NetworkAPI* | [**GetInfrastructureNetworks**](docs/NetworkAPI.md#getinfrastructurenetworks) | **Get** /api/v2/infrastructures/{infrastructureId}/networks | Retrieves all networks on the infrastructure
+*LogicalNetworkAPI* | [**ApplyProfilesToLogicalNetworkConfig**](docs/LogicalNetworkAPI.md#applyprofilestologicalnetworkconfig) | **Post** /api/v2/logical-networks/{id}/config/actions/apply-profiles | Apply profiles to Logical Network config
+*LogicalNetworkAPI* | [**CreateLogicalNetwork**](docs/LogicalNetworkAPI.md#createlogicalnetwork) | **Post** /api/v2/logical-networks | Create a Logical Network.
+*LogicalNetworkAPI* | [**CreateLogicalNetworkConfigIpv4SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#createlogicalnetworkconfigipv4subnetallocationstrategy) | **Post** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies | Create Ipv4 Subnet allocation strategy.
+*LogicalNetworkAPI* | [**CreateLogicalNetworkConfigIpv6SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#createlogicalnetworkconfigipv6subnetallocationstrategy) | **Post** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies | Create Ipv6 Subnet allocation strategy.
+*LogicalNetworkAPI* | [**CreateLogicalNetworkConfigVlanAllocationStrategy**](docs/LogicalNetworkAPI.md#createlogicalnetworkconfigvlanallocationstrategy) | **Post** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies | Create Vlan allocation strategy.
+*LogicalNetworkAPI* | [**CreateLogicalNetworkConfigVniAllocationStrategy**](docs/LogicalNetworkAPI.md#createlogicalnetworkconfigvniallocationstrategy) | **Post** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies | Create Vni allocation strategy.
+*LogicalNetworkAPI* | [**CreateLogicalNetworkFromProfile**](docs/LogicalNetworkAPI.md#createlogicalnetworkfromprofile) | **Post** /api/v2/logical-networks/actions/create-from-profile | Create a Logical Network from a profile.
+*LogicalNetworkAPI* | [**DeleteLogicalNetwork**](docs/LogicalNetworkAPI.md#deletelogicalnetwork) | **Delete** /api/v2/logical-networks/{id} | Delete a Logical Network.
+*LogicalNetworkAPI* | [**DeleteLogicalNetworkConfigIpv4SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#deletelogicalnetworkconfigipv4subnetallocationstrategy) | **Delete** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Delete Ipv4 Subnet allocation strategy.
+*LogicalNetworkAPI* | [**DeleteLogicalNetworkConfigIpv6SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#deletelogicalnetworkconfigipv6subnetallocationstrategy) | **Delete** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies/{allocationStrategyId} | Delete Ipv6 Subnet allocation strategy.
+*LogicalNetworkAPI* | [**DeleteLogicalNetworkConfigVlanAllocationStrategy**](docs/LogicalNetworkAPI.md#deletelogicalnetworkconfigvlanallocationstrategy) | **Delete** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies/{allocationStrategyId} | Delete Vlan allocation strategy.
+*LogicalNetworkAPI* | [**DeleteLogicalNetworkConfigVniAllocationStrategy**](docs/LogicalNetworkAPI.md#deletelogicalnetworkconfigvniallocationstrategy) | **Delete** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies/{allocationStrategyId} | Delete Vni allocation strategy.
+*LogicalNetworkAPI* | [**GetLogicalNetwork**](docs/LogicalNetworkAPI.md#getlogicalnetwork) | **Get** /api/v2/logical-networks/{id} | Get a Logical Network.
+*LogicalNetworkAPI* | [**GetLogicalNetworkConfig**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfig) | **Get** /api/v2/logical-networks/{id}/config | Get the config for a Logical Network.
+*LogicalNetworkAPI* | [**GetLogicalNetworkConfigIpv4SubnetAllocationStrategies**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigipv4subnetallocationstrategies) | **Get** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies | Get all Ipv4 Subnet allocation strategies.
+*LogicalNetworkAPI* | [**GetLogicalNetworkConfigIpv4SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigipv4subnetallocationstrategy) | **Get** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Get a Ipv4 Subnet allocation strategy.
+*LogicalNetworkAPI* | [**GetLogicalNetworkConfigIpv6SubnetAllocationStrategies**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigipv6subnetallocationstrategies) | **Get** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies | Get all Ipv6 Subnet allocation strategies.
+*LogicalNetworkAPI* | [**GetLogicalNetworkConfigIpv6SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigipv6subnetallocationstrategy) | **Get** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies/{allocationStrategyId} | Get a Ipv6 Subnet allocation strategy.
+*LogicalNetworkAPI* | [**GetLogicalNetworkConfigVlanAllocationStrategies**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigvlanallocationstrategies) | **Get** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies | Get all Vlan allocation strategies.
+*LogicalNetworkAPI* | [**GetLogicalNetworkConfigVlanAllocationStrategy**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigvlanallocationstrategy) | **Get** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies/{allocationStrategyId} | Get a Vlan allocation strategy.
+*LogicalNetworkAPI* | [**GetLogicalNetworkConfigVniAllocationStrategies**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigvniallocationstrategies) | **Get** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies | Get all Vni allocation strategies.
+*LogicalNetworkAPI* | [**GetLogicalNetworkConfigVniAllocationStrategy**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigvniallocationstrategy) | **Get** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies/{allocationStrategyId} | Get a Vni allocation strategy.
+*LogicalNetworkAPI* | [**GetLogicalNetworks**](docs/LogicalNetworkAPI.md#getlogicalnetworks) | **Get** /api/v2/logical-networks | Get all Logical Networks
+*LogicalNetworkAPI* | [**ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#replacelogicalnetworkconfigipv4subnetallocationstrategy) | **Put** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Replace Ipv4 Subnet allocation strategy
+*LogicalNetworkAPI* | [**ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#replacelogicalnetworkconfigipv6subnetallocationstrategy) | **Put** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies/{allocationStrategyId} | Replace Ipv6 Subnet allocation strategy
+*LogicalNetworkAPI* | [**ReplaceLogicalNetworkConfigVlanAllocationStrategy**](docs/LogicalNetworkAPI.md#replacelogicalnetworkconfigvlanallocationstrategy) | **Put** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies/{allocationStrategyId} | Replace Vlan allocation strategy
+*LogicalNetworkAPI* | [**ReplaceLogicalNetworkConfigVniAllocationStrategy**](docs/LogicalNetworkAPI.md#replacelogicalnetworkconfigvniallocationstrategy) | **Put** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies/{allocationStrategyId} | Replace Vni allocation strategy
+*LogicalNetworkAPI* | [**UpdateLogicalNetwork**](docs/LogicalNetworkAPI.md#updatelogicalnetwork) | **Patch** /api/v2/logical-networks/{id} | Update Logical Network
+*LogicalNetworkAPI* | [**UpdateLogicalNetworkConfig**](docs/LogicalNetworkAPI.md#updatelogicalnetworkconfig) | **Patch** /api/v2/logical-networks/{id}/config | Update Logical Network config
+*LogicalNetworkProfileAPI* | [**CreateLogicalNetworkProfile**](docs/LogicalNetworkProfileAPI.md#createlogicalnetworkprofile) | **Post** /api/v2/logical-network-profiles | Create a Logical Network Profile.
+*LogicalNetworkProfileAPI* | [**CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#createlogicalnetworkprofileipv4subnetallocationstrategy) | **Post** /api/v2/logical-network-profiles/{id}/ipv4/subnet-allocation-strategies | Create Ipv4 Subnet allocation strategy.
+*LogicalNetworkProfileAPI* | [**CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#createlogicalnetworkprofileipv6subnetallocationstrategy) | **Post** /api/v2/logical-network-profiles/{id}/ipv6/subnet-allocation-strategies | Create Ipv6 Subnet allocation strategy.
+*LogicalNetworkProfileAPI* | [**CreateLogicalNetworkProfileVniAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#createlogicalnetworkprofilevniallocationstrategy) | **Post** /api/v2/logical-network-profiles/{id}/vxlan/vni-allocation-strategies | Create Vni allocation strategy.
+*LogicalNetworkProfileAPI* | [**DeleteLogicalNetworkProfile**](docs/LogicalNetworkProfileAPI.md#deletelogicalnetworkprofile) | **Delete** /api/v2/logical-network-profiles/{id} | Delete a Logical Network Profile.
+*LogicalNetworkProfileAPI* | [**DeleteLogicalNetworkProfileIpv4SubnetAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#deletelogicalnetworkprofileipv4subnetallocationstrategy) | **Delete** /api/v2/logical-network-profiles/{id}/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Delete Ipv4 Subnet allocation strategy.
+*LogicalNetworkProfileAPI* | [**DeleteLogicalNetworkProfileIpv6SubnetAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#deletelogicalnetworkprofileipv6subnetallocationstrategy) | **Delete** /api/v2/logical-network-profiles/{id}/ipv6/subnet-allocation-strategies/{allocationStrategyId} | Delete Ipv6 Subnet allocation strategy.
+*LogicalNetworkProfileAPI* | [**DeleteLogicalNetworkProfileVlanAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#deletelogicalnetworkprofilevlanallocationstrategy) | **Delete** /api/v2/logical-network-profiles/{id}/vlan/vlan-allocation-strategies/{allocationStrategyId} | Delete Vlan allocation strategy.
+*LogicalNetworkProfileAPI* | [**DeleteLogicalNetworkProfileVniAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#deletelogicalnetworkprofilevniallocationstrategy) | **Delete** /api/v2/logical-network-profiles/{id}/vxlan/vni-allocation-strategies/{allocationStrategyId} | Delete Vni allocation strategy.
+*LogicalNetworkProfileAPI* | [**GetLogicalNetworkProfile**](docs/LogicalNetworkProfileAPI.md#getlogicalnetworkprofile) | **Get** /api/v2/logical-network-profiles/{id} | Get a Logical Network Profile.
+*LogicalNetworkProfileAPI* | [**GetLogicalNetworkProfileIpv4SubnetAllocationStrategies**](docs/LogicalNetworkProfileAPI.md#getlogicalnetworkprofileipv4subnetallocationstrategies) | **Get** /api/v2/logical-network-profiles/{id}/ipv4/subnet-allocation-strategies | Get all Ipv4 Subnet allocation strategies.
+*LogicalNetworkProfileAPI* | [**GetLogicalNetworkProfileIpv4SubnetAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#getlogicalnetworkprofileipv4subnetallocationstrategy) | **Get** /api/v2/logical-network-profiles/{id}/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Get a Ipv4 Subnet allocation strategy.
+*LogicalNetworkProfileAPI* | [**GetLogicalNetworkProfileIpv6SubnetAllocationStrategies**](docs/LogicalNetworkProfileAPI.md#getlogicalnetworkprofileipv6subnetallocationstrategies) | **Get** /api/v2/logical-network-profiles/{id}/ipv6/subnet-allocation-strategies | Get all Ipv6 Subnet allocation strategies.
+*LogicalNetworkProfileAPI* | [**GetLogicalNetworkProfileIpv6SubnetAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#getlogicalnetworkprofileipv6subnetallocationstrategy) | **Get** /api/v2/logical-network-profiles/{id}/ipv6/subnet-allocation-strategies/{allocationStrategyId} | Get a Ipv6 Subnet allocation strategy.
+*LogicalNetworkProfileAPI* | [**GetLogicalNetworkProfileVlanAllocationStrategies**](docs/LogicalNetworkProfileAPI.md#getlogicalnetworkprofilevlanallocationstrategies) | **Get** /api/v2/logical-network-profiles/{id}/vlan/vlan-allocation-strategies | Get all Vlan allocation strategies.
+*LogicalNetworkProfileAPI* | [**GetLogicalNetworkProfileVlanAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#getlogicalnetworkprofilevlanallocationstrategy) | **Get** /api/v2/logical-network-profiles/{id}/vlan/vlan-allocation-strategies/{allocationStrategyId} | Get a Vlan allocation strategy.
+*LogicalNetworkProfileAPI* | [**GetLogicalNetworkProfileVniAllocationStrategies**](docs/LogicalNetworkProfileAPI.md#getlogicalnetworkprofilevniallocationstrategies) | **Get** /api/v2/logical-network-profiles/{id}/vxlan/vni-allocation-strategies | Get all Vni allocation strategies.
+*LogicalNetworkProfileAPI* | [**GetLogicalNetworkProfileVniAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#getlogicalnetworkprofilevniallocationstrategy) | **Get** /api/v2/logical-network-profiles/{id}/vxlan/vni-allocation-strategies/{allocationStrategyId} | Get a Vni allocation strategy.
+*LogicalNetworkProfileAPI* | [**GetLogicalNetworkProfiles**](docs/LogicalNetworkProfileAPI.md#getlogicalnetworkprofiles) | **Get** /api/v2/logical-network-profiles | Get all Logical Network Profiles.
+*LogicalNetworkProfileAPI* | [**ReplaceLogicalNetworkProfileIpv4SubnetAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#replacelogicalnetworkprofileipv4subnetallocationstrategy) | **Put** /api/v2/logical-network-profiles/{id}/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Replace Ipv4 Subnet allocation strategy
+*LogicalNetworkProfileAPI* | [**ReplaceLogicalNetworkProfileIpv6SubnetAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#replacelogicalnetworkprofileipv6subnetallocationstrategy) | **Put** /api/v2/logical-network-profiles/{id}/ipv6/subnet-allocation-strategies/{allocationStrategyId} | Replace Ipv6 Subnet allocation strategy
+*LogicalNetworkProfileAPI* | [**ReplaceLogicalNetworkProfileVlanAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#replacelogicalnetworkprofilevlanallocationstrategy) | **Put** /api/v2/logical-network-profiles/{id}/vlan/vlan-allocation-strategies/{allocationStrategyId} | Replace Vlan allocation strategy
+*LogicalNetworkProfileAPI* | [**ReplaceLogicalNetworkProfileVniAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#replacelogicalnetworkprofilevniallocationstrategy) | **Put** /api/v2/logical-network-profiles/{id}/vxlan/vni-allocation-strategies/{allocationStrategyId} | Replace Vni allocation strategy
+*LogicalNetworkProfileAPI* | [**UpdateLogicalNetworkProfile**](docs/LogicalNetworkProfileAPI.md#updatelogicalnetworkprofile) | **Patch** /api/v2/logical-network-profiles/{id} | Update Logical Network Profile
 *NetworkDeviceAPI* | [**AddNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#addnetworkdevicedefaults) | **Post** /api/v2/network-devices/defaults | Add network device defaults
 *NetworkDeviceAPI* | [**AddTagsToNetworkDevice**](docs/NetworkDeviceAPI.md#addtagstonetworkdevice) | **Post** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Add tags to Network Device
 *NetworkDeviceAPI* | [**ArchiveNetworkDevice**](docs/NetworkDeviceAPI.md#archivenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/archive | Archives a network device
@@ -356,6 +395,7 @@ Class | Method | HTTP request | Description
 *ServerInstanceAPI* | [**SetPowerToServerInstance**](docs/ServerInstanceAPI.md#setpowertoserverinstance) | **Post** /api/v2/server-instances/{serverInstanceId}/actions/power-set | Set power to the Server Instance
 *ServerInstanceAPI* | [**UpdateServerInstanceConfig**](docs/ServerInstanceAPI.md#updateserverinstanceconfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/config | Update Server Instance configuration
 *ServerInstanceAPI* | [**UpdateServerInstanceInterfaceConfig**](docs/ServerInstanceAPI.md#updateserverinstanceinterfaceconfig) | **Patch** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId}/config | Update Server Instance Interface configuration
+*ServerInstanceAPI* | [**UpdateServerInstanceMeta**](docs/ServerInstanceAPI.md#updateserverinstancemeta) | **Patch** /api/v2/server-instances/{serverInstanceId}/meta | Update an Server Instance meta information
 *ServerInstanceGroupAPI* | [**CreateServerInstanceGroup**](docs/ServerInstanceGroupAPI.md#createserverinstancegroup) | **Post** /api/v2/infrastructures/{infrastructureId}/server-instance-groups | Add a Server Instance Group to an infrastructure. By default it will not have any instance.
 *ServerInstanceGroupAPI* | [**CreateServerInstanceGroupLogicalNetworkACL**](docs/ServerInstanceGroupAPI.md#createserverinstancegrouplogicalnetworkacl) | **Post** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections/{connectionId}/security/rules | Create a security rule for a logical network
 *ServerInstanceGroupAPI* | [**CreateServerInstanceGroupNetworkConfigurationConnection**](docs/ServerInstanceGroupAPI.md#createserverinstancegroupnetworkconfigurationconnection) | **Post** /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking/connections | Create a network connection for a server instance group
@@ -538,6 +578,8 @@ Class | Method | HTTP request | Description
  - [AgentConnectedInfo](docs/AgentConnectedInfo.md)
  - [AgentInfo](docs/AgentInfo.md)
  - [AgentIpInfo](docs/AgentIpInfo.md)
+ - [AllocationStrategyKind](docs/AllocationStrategyKind.md)
+ - [ApplyProfilesToLogicalNetworkCandidateDto](docs/ApplyProfilesToLogicalNetworkCandidateDto.md)
  - [AuthenticationProvider](docs/AuthenticationProvider.md)
  - [AuthenticationProviderUpdate](docs/AuthenticationProviderUpdate.md)
  - [AuthenticationProviders](docs/AuthenticationProviders.md)
@@ -547,6 +589,10 @@ Class | Method | HTTP request | Description
  - [AuthenticationRequestPropertiesMySql](docs/AuthenticationRequestPropertiesMySql.md)
  - [AuthenticationRequestPropertiesSaml](docs/AuthenticationRequestPropertiesSaml.md)
  - [AuthenticationUserProvider](docs/AuthenticationUserProvider.md)
+ - [AutoIpv4SubnetAllocationStrategy](docs/AutoIpv4SubnetAllocationStrategy.md)
+ - [AutoIpv6SubnetAllocationStrategy](docs/AutoIpv6SubnetAllocationStrategy.md)
+ - [AutoVlanAllocationStrategy](docs/AutoVlanAllocationStrategy.md)
+ - [AutoVniAllocationStrategy](docs/AutoVniAllocationStrategy.md)
  - [BaselineFilter](docs/BaselineFilter.md)
  - [BaselineLevelType](docs/BaselineLevelType.md)
  - [BatchServerFirmwareUpgrade](docs/BatchServerFirmwareUpgrade.md)
@@ -561,6 +607,10 @@ Class | Method | HTTP request | Description
  - [ChangeUserEmail](docs/ChangeUserEmail.md)
  - [ControllerPolicy](docs/ControllerPolicy.md)
  - [CreateAccount](docs/CreateAccount.md)
+ - [CreateAutoIpv4SubnetAllocationStrategy](docs/CreateAutoIpv4SubnetAllocationStrategy.md)
+ - [CreateAutoIpv6SubnetAllocationStrategy](docs/CreateAutoIpv6SubnetAllocationStrategy.md)
+ - [CreateAutoVlanAllocationStrategy](docs/CreateAutoVlanAllocationStrategy.md)
+ - [CreateAutoVniAllocationStrategy](docs/CreateAutoVniAllocationStrategy.md)
  - [CreateBucket](docs/CreateBucket.md)
  - [CreateCustomIso](docs/CreateCustomIso.md)
  - [CreateExtension](docs/CreateExtension.md)
@@ -569,16 +619,31 @@ Class | Method | HTTP request | Description
  - [CreateFirmwareBaseline](docs/CreateFirmwareBaseline.md)
  - [CreateFirmwareBinary](docs/CreateFirmwareBinary.md)
  - [CreateFirmwareCatalog](docs/CreateFirmwareCatalog.md)
- - [CreateLogicalNetwork](docs/CreateLogicalNetwork.md)
+ - [CreateIpv4SubnetAllocationStrategy](docs/CreateIpv4SubnetAllocationStrategy.md)
+ - [CreateIpv6SubnetAllocationStrategy](docs/CreateIpv6SubnetAllocationStrategy.md)
+ - [CreateLogicalNetwork201Response](docs/CreateLogicalNetwork201Response.md)
  - [CreateLogicalNetworkACL](docs/CreateLogicalNetworkACL.md)
- - [CreateLogicalNetworkProfile](docs/CreateLogicalNetworkProfile.md)
- - [CreateNetwork](docs/CreateNetwork.md)
+ - [CreateLogicalNetworkFromProfileDto](docs/CreateLogicalNetworkFromProfileDto.md)
+ - [CreateLogicalNetworkProfile201Response](docs/CreateLogicalNetworkProfile201Response.md)
+ - [CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response](docs/CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response.md)
+ - [CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest](docs/CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest.md)
+ - [CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response](docs/CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response.md)
+ - [CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest](docs/CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest.md)
+ - [CreateLogicalNetworkProfileRequest](docs/CreateLogicalNetworkProfileRequest.md)
+ - [CreateLogicalNetworkProfileVniAllocationStrategy201Response](docs/CreateLogicalNetworkProfileVniAllocationStrategy201Response.md)
+ - [CreateLogicalNetworkProfileVniAllocationStrategyRequest](docs/CreateLogicalNetworkProfileVniAllocationStrategyRequest.md)
+ - [CreateLogicalNetworkRequest](docs/CreateLogicalNetworkRequest.md)
+ - [CreateManualIpv4SubnetAllocationStrategy](docs/CreateManualIpv4SubnetAllocationStrategy.md)
+ - [CreateManualIpv6SubnetAllocationStrategy](docs/CreateManualIpv6SubnetAllocationStrategy.md)
+ - [CreateManualVlanAllocationStrategy](docs/CreateManualVlanAllocationStrategy.md)
+ - [CreateManualVniAllocationStrategy](docs/CreateManualVniAllocationStrategy.md)
  - [CreateNetworkDevice](docs/CreateNetworkDevice.md)
  - [CreateNetworkDeviceDefaults](docs/CreateNetworkDeviceDefaults.md)
  - [CreateNetworkEndpointGroup](docs/CreateNetworkEndpointGroup.md)
  - [CreateNetworkEndpointGroupLogicalNetwork](docs/CreateNetworkEndpointGroupLogicalNetwork.md)
  - [CreateNetworkFabric](docs/CreateNetworkFabric.md)
  - [CreateResourcePool](docs/CreateResourcePool.md)
+ - [CreateResourceScope](docs/CreateResourceScope.md)
  - [CreateRole](docs/CreateRole.md)
  - [CreateSecret](docs/CreateSecret.md)
  - [CreateServerCleanupPolicy](docs/CreateServerCleanupPolicy.md)
@@ -598,6 +663,19 @@ Class | Method | HTTP request | Description
  - [CreateVMPool](docs/CreateVMPool.md)
  - [CreateVMType](docs/CreateVMType.md)
  - [CreateVariable](docs/CreateVariable.md)
+ - [CreateVlanAllocationStrategy](docs/CreateVlanAllocationStrategy.md)
+ - [CreateVlanLogicalNetwork](docs/CreateVlanLogicalNetwork.md)
+ - [CreateVlanLogicalNetworkIpv4Properties](docs/CreateVlanLogicalNetworkIpv4Properties.md)
+ - [CreateVlanLogicalNetworkIpv6Properties](docs/CreateVlanLogicalNetworkIpv6Properties.md)
+ - [CreateVlanLogicalNetworkProfile](docs/CreateVlanLogicalNetworkProfile.md)
+ - [CreateVlanLogicalNetworkVlanProperties](docs/CreateVlanLogicalNetworkVlanProperties.md)
+ - [CreateVniAllocationStrategy](docs/CreateVniAllocationStrategy.md)
+ - [CreateVxlanLogicalNetwork](docs/CreateVxlanLogicalNetwork.md)
+ - [CreateVxlanLogicalNetworkIpv4Properties](docs/CreateVxlanLogicalNetworkIpv4Properties.md)
+ - [CreateVxlanLogicalNetworkIpv6Properties](docs/CreateVxlanLogicalNetworkIpv6Properties.md)
+ - [CreateVxlanLogicalNetworkProfile](docs/CreateVxlanLogicalNetworkProfile.md)
+ - [CreateVxlanLogicalNetworkVlanProperties](docs/CreateVxlanLogicalNetworkVlanProperties.md)
+ - [CreateVxlanLogicalNetworkVxlanProperties](docs/CreateVxlanLogicalNetworkVxlanProperties.md)
  - [CustomIso](docs/CustomIso.md)
  - [CustomIsoPaginatedList](docs/CustomIsoPaginatedList.md)
  - [CustomVariable](docs/CustomVariable.md)
@@ -670,6 +748,8 @@ Class | Method | HTTP request | Description
  - [GenericGUISettings](docs/GenericGUISettings.md)
  - [GenericMeta](docs/GenericMeta.md)
  - [GenericServiceStatus](docs/GenericServiceStatus.md)
+ - [GetLogicalNetworkConfig200Response](docs/GetLogicalNetworkConfig200Response.md)
+ - [GetLogicalNetworkProfileVlanAllocationStrategy200Response](docs/GetLogicalNetworkProfileVlanAllocationStrategy200Response.md)
  - [GetResourceUtilizationDetailed](docs/GetResourceUtilizationDetailed.md)
  - [GetSiteControllerOneLiner200Response](docs/GetSiteControllerOneLiner200Response.md)
  - [GlobalFirmwareUpgradeConfiguration](docs/GlobalFirmwareUpgradeConfiguration.md)
@@ -677,17 +757,23 @@ Class | Method | HTTP request | Description
  - [InfrastructureConfig](docs/InfrastructureConfig.md)
  - [InfrastructureConfiguration](docs/InfrastructureConfiguration.md)
  - [InfrastructureCreate](docs/InfrastructureCreate.md)
- - [InfrastructureDeployOngoingStatusCountDto](docs/InfrastructureDeployOngoingStatusCountDto.md)
+ - [InfrastructureDeployOngoingStatusCount](docs/InfrastructureDeployOngoingStatusCount.md)
  - [InfrastructureDeployOptions](docs/InfrastructureDeployOptions.md)
  - [InfrastructureDeployShutdownOptions](docs/InfrastructureDeployShutdownOptions.md)
  - [InfrastructureMeta](docs/InfrastructureMeta.md)
  - [InfrastructurePaginatedList](docs/InfrastructurePaginatedList.md)
  - [InfrastructurePolicy](docs/InfrastructurePolicy.md)
  - [InfrastructureResourceUtilizationResponse](docs/InfrastructureResourceUtilizationResponse.md)
- - [InfrastructureServiceStatusDto](docs/InfrastructureServiceStatusDto.md)
+ - [InfrastructureServiceStatus](docs/InfrastructureServiceStatus.md)
  - [InfrastructureVariables](docs/InfrastructureVariables.md)
  - [InfrastructuresStatistics](docs/InfrastructuresStatistics.md)
  - [InstancesSetPowerState](docs/InstancesSetPowerState.md)
+ - [Ipv4SubnetAllocation](docs/Ipv4SubnetAllocation.md)
+ - [Ipv4SubnetAllocationStrategy](docs/Ipv4SubnetAllocationStrategy.md)
+ - [Ipv4SubnetAllocationStrategy1DataItem](docs/Ipv4SubnetAllocationStrategy1DataItem.md)
+ - [Ipv6SubnetAllocation](docs/Ipv6SubnetAllocation.md)
+ - [Ipv6SubnetAllocationStrategy](docs/Ipv6SubnetAllocationStrategy.md)
+ - [Ipv6SubnetAllocationStrategy1DataItem](docs/Ipv6SubnetAllocationStrategy1DataItem.md)
  - [IscsiBootServerInfo](docs/IscsiBootServerInfo.md)
  - [Job](docs/Job.md)
  - [JobArchive](docs/JobArchive.md)
@@ -707,12 +793,14 @@ Class | Method | HTTP request | Description
  - [Link](docs/Link.md)
  - [LinkDuplex](docs/LinkDuplex.md)
  - [Location](docs/Location.md)
- - [LogicalNetwork](docs/LogicalNetwork.md)
  - [LogicalNetworkACL](docs/LogicalNetworkACL.md)
- - [LogicalNetworkPaginatedList](docs/LogicalNetworkPaginatedList.md)
- - [LogicalNetworkProfile](docs/LogicalNetworkProfile.md)
- - [LogicalNetworkProfilePaginatedList](docs/LogicalNetworkProfilePaginatedList.md)
- - [Network](docs/Network.md)
+ - [LogicalNetworkDataItem](docs/LogicalNetworkDataItem.md)
+ - [LogicalNetworkKind](docs/LogicalNetworkKind.md)
+ - [LogicalNetworkProfileDataItem](docs/LogicalNetworkProfileDataItem.md)
+ - [ManualIpv4SubnetAllocationStrategy](docs/ManualIpv4SubnetAllocationStrategy.md)
+ - [ManualIpv6SubnetAllocationStrategy](docs/ManualIpv6SubnetAllocationStrategy.md)
+ - [ManualVlanAllocationStrategy](docs/ManualVlanAllocationStrategy.md)
+ - [ManualVniAllocationStrategy](docs/ManualVniAllocationStrategy.md)
  - [NetworkDevice](docs/NetworkDevice.md)
  - [NetworkDeviceDriver](docs/NetworkDeviceDriver.md)
  - [NetworkDevicePaginatedList](docs/NetworkDevicePaginatedList.md)
@@ -742,9 +830,15 @@ Class | Method | HTTP request | Description
  - [OSTemplateOsCredential](docs/OSTemplateOsCredential.md)
  - [OSTemplatePaginatedList](docs/OSTemplatePaginatedList.md)
  - [OSTemplateUpdate](docs/OSTemplateUpdate.md)
+ - [PaginatedIpv4SubnetAllocationStrategy](docs/PaginatedIpv4SubnetAllocationStrategy.md)
+ - [PaginatedIpv6SubnetAllocationStrategy](docs/PaginatedIpv6SubnetAllocationStrategy.md)
+ - [PaginatedLogicalNetwork](docs/PaginatedLogicalNetwork.md)
+ - [PaginatedLogicalNetworkProfile](docs/PaginatedLogicalNetworkProfile.md)
  - [PaginatedResponseLinks](docs/PaginatedResponseLinks.md)
  - [PaginatedResponseMeta](docs/PaginatedResponseMeta.md)
- - [ParentInfrastructureDto](docs/ParentInfrastructureDto.md)
+ - [PaginatedVlanAllocationStrategy](docs/PaginatedVlanAllocationStrategy.md)
+ - [PaginatedVniAllocationStrategy](docs/PaginatedVniAllocationStrategy.md)
+ - [ParentInfrastructure](docs/ParentInfrastructure.md)
  - [PartialTypeClass](docs/PartialTypeClass.md)
  - [PasswordReset](docs/PasswordReset.md)
  - [Permission](docs/Permission.md)
@@ -757,11 +851,15 @@ Class | Method | HTTP request | Description
  - [RegisterServerResponse](docs/RegisterServerResponse.md)
  - [RegisterStorageResponse](docs/RegisterStorageResponse.md)
  - [RemoteConsoleInfo](docs/RemoteConsoleInfo.md)
+ - [ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest](docs/ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest.md)
  - [Repo](docs/Repo.md)
+ - [ResourceAllocationStatus](docs/ResourceAllocationStatus.md)
  - [ResourcePool](docs/ResourcePool.md)
  - [ResourcePoolPaginatedList](docs/ResourcePoolPaginatedList.md)
  - [ResourcePoolStatistics](docs/ResourcePoolStatistics.md)
  - [ResourcePoolWithStats](docs/ResourcePoolWithStats.md)
+ - [ResourceScope](docs/ResourceScope.md)
+ - [ResourceScopeKind](docs/ResourceScopeKind.md)
  - [Role](docs/Role.md)
  - [RoleList](docs/RoleList.md)
  - [RunExtensionOnPhysicalDevice](docs/RunExtensionOnPhysicalDevice.md)
@@ -824,7 +922,7 @@ Class | Method | HTTP request | Description
  - [ServerMetricsInfo](docs/ServerMetricsInfo.md)
  - [ServerPaginatedList](docs/ServerPaginatedList.md)
  - [ServerPolicy](docs/ServerPolicy.md)
- - [ServerPolicyUpdateDto](docs/ServerPolicyUpdateDto.md)
+ - [ServerPolicyUpdate](docs/ServerPolicyUpdate.md)
  - [ServerPowerSet](docs/ServerPowerSet.md)
  - [ServerStatistics](docs/ServerStatistics.md)
  - [ServerStorageController](docs/ServerStorageController.md)
@@ -836,7 +934,7 @@ Class | Method | HTTP request | Description
  - [ServerTypeUtilizationReport](docs/ServerTypeUtilizationReport.md)
  - [ServerTypeUtilizationReportGrouped](docs/ServerTypeUtilizationReportGrouped.md)
  - [ServerUnmanagedImport](docs/ServerUnmanagedImport.md)
- - [ServerUnmanagedImportInternalInterfaceDto](docs/ServerUnmanagedImportInternalInterfaceDto.md)
+ - [ServerUnmanagedImportInternalInterface](docs/ServerUnmanagedImportInternalInterface.md)
  - [ServerVNCInfo](docs/ServerVNCInfo.md)
  - [ServerVariables](docs/ServerVariables.md)
  - [ServerVendorInfo](docs/ServerVendorInfo.md)
@@ -890,7 +988,12 @@ Class | Method | HTTP request | Description
  - [UpdateInfrastructureMeta](docs/UpdateInfrastructureMeta.md)
  - [UpdateLogicalNetwork](docs/UpdateLogicalNetwork.md)
  - [UpdateLogicalNetworkACL](docs/UpdateLogicalNetworkACL.md)
+ - [UpdateLogicalNetworkConfig](docs/UpdateLogicalNetworkConfig.md)
  - [UpdateLogicalNetworkProfile](docs/UpdateLogicalNetworkProfile.md)
+ - [UpdateLogicalNetworkProfileIpv4Properties](docs/UpdateLogicalNetworkProfileIpv4Properties.md)
+ - [UpdateLogicalNetworkProfileIpv6Properties](docs/UpdateLogicalNetworkProfileIpv6Properties.md)
+ - [UpdateLogicalNetworkProfileVlanProperties](docs/UpdateLogicalNetworkProfileVlanProperties.md)
+ - [UpdateLogicalNetworkProfileVxlanProperties](docs/UpdateLogicalNetworkProfileVxlanProperties.md)
  - [UpdateNetworkDevice](docs/UpdateNetworkDevice.md)
  - [UpdateNetworkEndpointGroup](docs/UpdateNetworkEndpointGroup.md)
  - [UpdateNetworkEndpointGroupLogicalNetwork](docs/UpdateNetworkEndpointGroupLogicalNetwork.md)
@@ -962,7 +1065,41 @@ Class | Method | HTTP request | Description
  - [VariablePaginatedList](docs/VariablePaginatedList.md)
  - [VariableUsageType](docs/VariableUsageType.md)
  - [Version](docs/Version.md)
+ - [VlanAllocation](docs/VlanAllocation.md)
+ - [VlanAllocationGranularityLevel](docs/VlanAllocationGranularityLevel.md)
+ - [VlanAllocationStrategy](docs/VlanAllocationStrategy.md)
+ - [VlanAllocationStrategy1DataItem](docs/VlanAllocationStrategy1DataItem.md)
+ - [VlanLogicalNetwork](docs/VlanLogicalNetwork.md)
+ - [VlanLogicalNetworkConfig](docs/VlanLogicalNetworkConfig.md)
+ - [VlanLogicalNetworkConfigIpv4Properties](docs/VlanLogicalNetworkConfigIpv4Properties.md)
+ - [VlanLogicalNetworkConfigIpv6Properties](docs/VlanLogicalNetworkConfigIpv6Properties.md)
+ - [VlanLogicalNetworkConfigVlanProperties](docs/VlanLogicalNetworkConfigVlanProperties.md)
+ - [VlanLogicalNetworkIpv4Properties](docs/VlanLogicalNetworkIpv4Properties.md)
+ - [VlanLogicalNetworkIpv6Properties](docs/VlanLogicalNetworkIpv6Properties.md)
+ - [VlanLogicalNetworkProfile](docs/VlanLogicalNetworkProfile.md)
+ - [VlanLogicalNetworkProfileIpv4Properties](docs/VlanLogicalNetworkProfileIpv4Properties.md)
+ - [VlanLogicalNetworkProfileIpv6Properties](docs/VlanLogicalNetworkProfileIpv6Properties.md)
+ - [VlanLogicalNetworkProfileVlanProperties](docs/VlanLogicalNetworkProfileVlanProperties.md)
+ - [VlanLogicalNetworkVlanProperties](docs/VlanLogicalNetworkVlanProperties.md)
  - [VmInstanceContextVariables](docs/VmInstanceContextVariables.md)
+ - [VniAllocation](docs/VniAllocation.md)
+ - [VniAllocationStrategy](docs/VniAllocationStrategy.md)
+ - [VniAllocationStrategy1DataItem](docs/VniAllocationStrategy1DataItem.md)
+ - [VxlanLogicalNetwork](docs/VxlanLogicalNetwork.md)
+ - [VxlanLogicalNetworkConfig](docs/VxlanLogicalNetworkConfig.md)
+ - [VxlanLogicalNetworkConfigIpv4Properties](docs/VxlanLogicalNetworkConfigIpv4Properties.md)
+ - [VxlanLogicalNetworkConfigIpv6Properties](docs/VxlanLogicalNetworkConfigIpv6Properties.md)
+ - [VxlanLogicalNetworkConfigVlanProperties](docs/VxlanLogicalNetworkConfigVlanProperties.md)
+ - [VxlanLogicalNetworkConfigVxlanProperties](docs/VxlanLogicalNetworkConfigVxlanProperties.md)
+ - [VxlanLogicalNetworkIpv4Properties](docs/VxlanLogicalNetworkIpv4Properties.md)
+ - [VxlanLogicalNetworkIpv6Properties](docs/VxlanLogicalNetworkIpv6Properties.md)
+ - [VxlanLogicalNetworkProfile](docs/VxlanLogicalNetworkProfile.md)
+ - [VxlanLogicalNetworkProfileIpv4Properties](docs/VxlanLogicalNetworkProfileIpv4Properties.md)
+ - [VxlanLogicalNetworkProfileIpv6Properties](docs/VxlanLogicalNetworkProfileIpv6Properties.md)
+ - [VxlanLogicalNetworkProfileVlanProperties](docs/VxlanLogicalNetworkProfileVlanProperties.md)
+ - [VxlanLogicalNetworkProfileVxlanProperties](docs/VxlanLogicalNetworkProfileVxlanProperties.md)
+ - [VxlanLogicalNetworkVlanProperties](docs/VxlanLogicalNetworkVlanProperties.md)
+ - [VxlanLogicalNetworkVxlanProperties](docs/VxlanLogicalNetworkVxlanProperties.md)
 
 
 ## Documentation For Authorization

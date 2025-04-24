@@ -294,4 +294,17 @@ func Test_sdk_ServerInstanceAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ServerInstanceAPIService UpdateServerInstanceMeta", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverInstanceId int32
+
+		httpRes, err := apiClient.ServerInstanceAPI.UpdateServerInstanceMeta(context.Background(), serverInstanceId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

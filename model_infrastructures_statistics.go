@@ -22,9 +22,9 @@ var _ MappedNullable = &InfrastructuresStatistics{}
 // InfrastructuresStatistics struct for InfrastructuresStatistics
 type InfrastructuresStatistics struct {
 	// Infrastructure service status counts
-	InfrastructureServiceStatus InfrastructureServiceStatusDto `json:"infrastructureServiceStatus"`
+	InfrastructureServiceStatus InfrastructureServiceStatus `json:"infrastructureServiceStatus"`
 	// Infrastructure deploy ongoing status counts
-	InfrastructureDeployOngoingStatusCount InfrastructureDeployOngoingStatusCountDto `json:"infrastructureDeployOngoingStatusCount"`
+	InfrastructureDeployOngoingStatusCount InfrastructureDeployOngoingStatusCount `json:"infrastructureDeployOngoingStatusCount"`
 	// Total count of infrastructures
 	InfrastructureCount float32 `json:"infrastructureCount"`
 	// Count of ongoing infrastructures
@@ -42,7 +42,7 @@ type _InfrastructuresStatistics InfrastructuresStatistics
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfrastructuresStatistics(infrastructureServiceStatus InfrastructureServiceStatusDto, infrastructureDeployOngoingStatusCount InfrastructureDeployOngoingStatusCountDto, infrastructureCount float32, ongoingInfrastructureCount float32, infrastructureCountEmpty float32, infrastructureCountEmptyWithSubnets float32) *InfrastructuresStatistics {
+func NewInfrastructuresStatistics(infrastructureServiceStatus InfrastructureServiceStatus, infrastructureDeployOngoingStatusCount InfrastructureDeployOngoingStatusCount, infrastructureCount float32, ongoingInfrastructureCount float32, infrastructureCountEmpty float32, infrastructureCountEmptyWithSubnets float32) *InfrastructuresStatistics {
 	this := InfrastructuresStatistics{}
 	this.InfrastructureServiceStatus = infrastructureServiceStatus
 	this.InfrastructureDeployOngoingStatusCount = infrastructureDeployOngoingStatusCount
@@ -62,9 +62,9 @@ func NewInfrastructuresStatisticsWithDefaults() *InfrastructuresStatistics {
 }
 
 // GetInfrastructureServiceStatus returns the InfrastructureServiceStatus field value
-func (o *InfrastructuresStatistics) GetInfrastructureServiceStatus() InfrastructureServiceStatusDto {
+func (o *InfrastructuresStatistics) GetInfrastructureServiceStatus() InfrastructureServiceStatus {
 	if o == nil {
-		var ret InfrastructureServiceStatusDto
+		var ret InfrastructureServiceStatus
 		return ret
 	}
 
@@ -73,7 +73,7 @@ func (o *InfrastructuresStatistics) GetInfrastructureServiceStatus() Infrastruct
 
 // GetInfrastructureServiceStatusOk returns a tuple with the InfrastructureServiceStatus field value
 // and a boolean to check if the value has been set.
-func (o *InfrastructuresStatistics) GetInfrastructureServiceStatusOk() (*InfrastructureServiceStatusDto, bool) {
+func (o *InfrastructuresStatistics) GetInfrastructureServiceStatusOk() (*InfrastructureServiceStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -81,14 +81,14 @@ func (o *InfrastructuresStatistics) GetInfrastructureServiceStatusOk() (*Infrast
 }
 
 // SetInfrastructureServiceStatus sets field value
-func (o *InfrastructuresStatistics) SetInfrastructureServiceStatus(v InfrastructureServiceStatusDto) {
+func (o *InfrastructuresStatistics) SetInfrastructureServiceStatus(v InfrastructureServiceStatus) {
 	o.InfrastructureServiceStatus = v
 }
 
 // GetInfrastructureDeployOngoingStatusCount returns the InfrastructureDeployOngoingStatusCount field value
-func (o *InfrastructuresStatistics) GetInfrastructureDeployOngoingStatusCount() InfrastructureDeployOngoingStatusCountDto {
+func (o *InfrastructuresStatistics) GetInfrastructureDeployOngoingStatusCount() InfrastructureDeployOngoingStatusCount {
 	if o == nil {
-		var ret InfrastructureDeployOngoingStatusCountDto
+		var ret InfrastructureDeployOngoingStatusCount
 		return ret
 	}
 
@@ -97,7 +97,7 @@ func (o *InfrastructuresStatistics) GetInfrastructureDeployOngoingStatusCount() 
 
 // GetInfrastructureDeployOngoingStatusCountOk returns a tuple with the InfrastructureDeployOngoingStatusCount field value
 // and a boolean to check if the value has been set.
-func (o *InfrastructuresStatistics) GetInfrastructureDeployOngoingStatusCountOk() (*InfrastructureDeployOngoingStatusCountDto, bool) {
+func (o *InfrastructuresStatistics) GetInfrastructureDeployOngoingStatusCountOk() (*InfrastructureDeployOngoingStatusCount, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -105,7 +105,7 @@ func (o *InfrastructuresStatistics) GetInfrastructureDeployOngoingStatusCountOk(
 }
 
 // SetInfrastructureDeployOngoingStatusCount sets field value
-func (o *InfrastructuresStatistics) SetInfrastructureDeployOngoingStatusCount(v InfrastructureDeployOngoingStatusCountDto) {
+func (o *InfrastructuresStatistics) SetInfrastructureDeployOngoingStatusCount(v InfrastructureDeployOngoingStatusCount) {
 	o.InfrastructureDeployOngoingStatusCount = v
 }
 

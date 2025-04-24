@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Slug** | Pointer to **string** | The site unique slug | [optional] 
+**Slug** | **string** | The site unique slug | 
 **Name** | **string** | The site name | 
 **Location** | Pointer to [**Location**](Location.md) | Location details | [optional] 
 **IsHidden** | Pointer to **bool** | True if the site is hidden | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewSiteCreate
 
-`func NewSiteCreate(name string, ) *SiteCreate`
+`func NewSiteCreate(slug string, name string, ) *SiteCreate`
 
 NewSiteCreate instantiates a new SiteCreate object
 This constructor will assign default values to properties that have it defined,
@@ -48,11 +48,6 @@ and a boolean to check if the value has been set.
 
 SetSlug sets Slug field to given value.
 
-### HasSlug
-
-`func (o *SiteCreate) HasSlug() bool`
-
-HasSlug returns a boolean if a field has been set.
 
 ### GetName
 

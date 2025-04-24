@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Id** | **float32** | Id of the File Share | 
 **Revision** | **float32** | Revision of the File Share | 
 **InfrastructureId** | **float32** | Infrastructure id of the File Share | 
-**Infrastructure** | [**ParentInfrastructureDto**](ParentInfrastructureDto.md) | Infrastructure information | 
+**Infrastructure** | [**ParentInfrastructure**](ParentInfrastructure.md) | Infrastructure information | 
 **CreatedTimestamp** | **string** | Timestamp of the File Share creation. | 
 **ServiceStatus** | **string** | Service status of the File Share | 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the File Share. | [optional] 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewFileShareVariables
 
-`func NewFileShareVariables(sizeGB float32, updatedTimestamp string, label string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructureDto, createdTimestamp string, serviceStatus string, config FileShareConfiguration, ) *FileShareVariables`
+`func NewFileShareVariables(sizeGB float32, updatedTimestamp string, label string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, createdTimestamp string, serviceStatus string, config FileShareConfiguration, ) *FileShareVariables`
 
 NewFileShareVariables instantiates a new FileShareVariables object
 This constructor will assign default values to properties that have it defined,
@@ -238,20 +238,20 @@ SetInfrastructureId sets InfrastructureId field to given value.
 
 ### GetInfrastructure
 
-`func (o *FileShareVariables) GetInfrastructure() ParentInfrastructureDto`
+`func (o *FileShareVariables) GetInfrastructure() ParentInfrastructure`
 
 GetInfrastructure returns the Infrastructure field if non-nil, zero value otherwise.
 
 ### GetInfrastructureOk
 
-`func (o *FileShareVariables) GetInfrastructureOk() (*ParentInfrastructureDto, bool)`
+`func (o *FileShareVariables) GetInfrastructureOk() (*ParentInfrastructure, bool)`
 
 GetInfrastructureOk returns a tuple with the Infrastructure field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructure
 
-`func (o *FileShareVariables) SetInfrastructure(v ParentInfrastructureDto)`
+`func (o *FileShareVariables) SetInfrastructure(v ParentInfrastructure)`
 
 SetInfrastructure sets Infrastructure field to given value.
 

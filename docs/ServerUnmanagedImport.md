@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **SiteId** | **float32** | The site id where the server is located. | 
 **ServerTypeId** | **float32** | The server type id. | 
 **ServerSupportsOobProvisioning** | **bool** | Flag to indicate if the server supports SOL. | 
-**ServerInterfaces** | [**[]ServerUnmanagedImportInternalInterfaceDto**](ServerUnmanagedImportInternalInterfaceDto.md) | The interfaces of the server. | 
+**ServerInterfaces** | [**[]ServerUnmanagedImportInternalInterface**](ServerUnmanagedImportInternalInterface.md) | The interfaces of the server. | 
 **ServerSerialNumber** | Pointer to **string** | The server Serial Number. | [optional] 
 **ServerUUID** | Pointer to **string** | The server UUID. | [optional] 
 **Hostname** | Pointer to **string** | The server hostname. | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewServerUnmanagedImport
 
-`func NewServerUnmanagedImport(managementAddress string, siteId float32, serverTypeId float32, serverSupportsOobProvisioning bool, serverInterfaces []ServerUnmanagedImportInternalInterfaceDto, ) *ServerUnmanagedImport`
+`func NewServerUnmanagedImport(managementAddress string, siteId float32, serverTypeId float32, serverSupportsOobProvisioning bool, serverInterfaces []ServerUnmanagedImportInternalInterface, ) *ServerUnmanagedImport`
 
 NewServerUnmanagedImport instantiates a new ServerUnmanagedImport object
 This constructor will assign default values to properties that have it defined,
@@ -116,20 +116,20 @@ SetServerSupportsOobProvisioning sets ServerSupportsOobProvisioning field to giv
 
 ### GetServerInterfaces
 
-`func (o *ServerUnmanagedImport) GetServerInterfaces() []ServerUnmanagedImportInternalInterfaceDto`
+`func (o *ServerUnmanagedImport) GetServerInterfaces() []ServerUnmanagedImportInternalInterface`
 
 GetServerInterfaces returns the ServerInterfaces field if non-nil, zero value otherwise.
 
 ### GetServerInterfacesOk
 
-`func (o *ServerUnmanagedImport) GetServerInterfacesOk() (*[]ServerUnmanagedImportInternalInterfaceDto, bool)`
+`func (o *ServerUnmanagedImport) GetServerInterfacesOk() (*[]ServerUnmanagedImportInternalInterface, bool)`
 
 GetServerInterfacesOk returns a tuple with the ServerInterfaces field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerInterfaces
 
-`func (o *ServerUnmanagedImport) SetServerInterfaces(v []ServerUnmanagedImportInternalInterfaceDto)`
+`func (o *ServerUnmanagedImport) SetServerInterfaces(v []ServerUnmanagedImportInternalInterface)`
 
 SetServerInterfaces sets ServerInterfaces field to given value.
 
