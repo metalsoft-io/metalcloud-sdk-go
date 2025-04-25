@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	createRole := *openapiclient.NewCreateRole("Label_example") // CreateRole | 
+	createRole := *openapiclient.NewCreateRole("Label_example", []string{"Permissions_example"}) // CreateRole | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -486,7 +486,7 @@ import (
 
 func main() {
 	roleName := "roleName_example" // string | 
-	editRole := *openapiclient.NewEditRole("Label_example") // EditRole | 
+	editRole := *openapiclient.NewEditRole("Label_example", []string{"Permissions_example"}) // EditRole | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

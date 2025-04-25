@@ -30,8 +30,6 @@ type UpdateStorage struct {
 	SharedDrivePriority *float32 `json:"sharedDrivePriority,omitempty"`
 	// Tags
 	Tags []string `json:"tags,omitempty"`
-	// Default QoS to use. The QoS must be defined in the storage.
-	DefaultQoS *string `json:"defaultQoS,omitempty"`
 	// Options for the storage
 	Options *UpdateStorageOptions `json:"options,omitempty"`
 	// The password to use.
@@ -218,38 +216,6 @@ func (o *UpdateStorage) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetDefaultQoS returns the DefaultQoS field value if set, zero value otherwise.
-func (o *UpdateStorage) GetDefaultQoS() string {
-	if o == nil || IsNil(o.DefaultQoS) {
-		var ret string
-		return ret
-	}
-	return *o.DefaultQoS
-}
-
-// GetDefaultQoSOk returns a tuple with the DefaultQoS field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateStorage) GetDefaultQoSOk() (*string, bool) {
-	if o == nil || IsNil(o.DefaultQoS) {
-		return nil, false
-	}
-	return o.DefaultQoS, true
-}
-
-// HasDefaultQoS returns a boolean if a field has been set.
-func (o *UpdateStorage) HasDefaultQoS() bool {
-	if o != nil && !IsNil(o.DefaultQoS) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultQoS gets a reference to the given string and assigns it to the DefaultQoS field.
-func (o *UpdateStorage) SetDefaultQoS(v string) {
-	o.DefaultQoS = &v
-}
-
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *UpdateStorage) GetOptions() UpdateStorageOptions {
 	if o == nil || IsNil(o.Options) {
@@ -339,9 +305,6 @@ func (o UpdateStorage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !IsNil(o.DefaultQoS) {
-		toSerialize["defaultQoS"] = o.DefaultQoS
-	}
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
@@ -375,7 +338,6 @@ func (o *UpdateStorage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "drivePriority")
 		delete(additionalProperties, "sharedDrivePriority")
 		delete(additionalProperties, "tags")
-		delete(additionalProperties, "defaultQoS")
 		delete(additionalProperties, "options")
 		delete(additionalProperties, "password")
 		o.AdditionalProperties = additionalProperties

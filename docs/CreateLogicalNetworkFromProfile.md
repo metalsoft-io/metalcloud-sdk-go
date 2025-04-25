@@ -1,4 +1,4 @@
-# CreateLogicalNetworkFromProfileDto
+# CreateLogicalNetworkFromProfile
 
 ## Properties
 
@@ -12,151 +12,151 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewCreateLogicalNetworkFromProfileDto
+### NewCreateLogicalNetworkFromProfile
 
-`func NewCreateLogicalNetworkFromProfileDto(logicalNetworkProfileId int32, ) *CreateLogicalNetworkFromProfileDto`
+`func NewCreateLogicalNetworkFromProfile(logicalNetworkProfileId int32, ) *CreateLogicalNetworkFromProfile`
 
-NewCreateLogicalNetworkFromProfileDto instantiates a new CreateLogicalNetworkFromProfileDto object
+NewCreateLogicalNetworkFromProfile instantiates a new CreateLogicalNetworkFromProfile object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCreateLogicalNetworkFromProfileDtoWithDefaults
+### NewCreateLogicalNetworkFromProfileWithDefaults
 
-`func NewCreateLogicalNetworkFromProfileDtoWithDefaults() *CreateLogicalNetworkFromProfileDto`
+`func NewCreateLogicalNetworkFromProfileWithDefaults() *CreateLogicalNetworkFromProfile`
 
-NewCreateLogicalNetworkFromProfileDtoWithDefaults instantiates a new CreateLogicalNetworkFromProfileDto object
+NewCreateLogicalNetworkFromProfileWithDefaults instantiates a new CreateLogicalNetworkFromProfile object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetLabel
 
-`func (o *CreateLogicalNetworkFromProfileDto) GetLabel() string`
+`func (o *CreateLogicalNetworkFromProfile) GetLabel() string`
 
 GetLabel returns the Label field if non-nil, zero value otherwise.
 
 ### GetLabelOk
 
-`func (o *CreateLogicalNetworkFromProfileDto) GetLabelOk() (*string, bool)`
+`func (o *CreateLogicalNetworkFromProfile) GetLabelOk() (*string, bool)`
 
 GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLabel
 
-`func (o *CreateLogicalNetworkFromProfileDto) SetLabel(v string)`
+`func (o *CreateLogicalNetworkFromProfile) SetLabel(v string)`
 
 SetLabel sets Label field to given value.
 
 ### HasLabel
 
-`func (o *CreateLogicalNetworkFromProfileDto) HasLabel() bool`
+`func (o *CreateLogicalNetworkFromProfile) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *CreateLogicalNetworkFromProfileDto) GetName() string`
+`func (o *CreateLogicalNetworkFromProfile) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *CreateLogicalNetworkFromProfileDto) GetNameOk() (*string, bool)`
+`func (o *CreateLogicalNetworkFromProfile) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *CreateLogicalNetworkFromProfileDto) SetName(v string)`
+`func (o *CreateLogicalNetworkFromProfile) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *CreateLogicalNetworkFromProfileDto) HasName() bool`
+`func (o *CreateLogicalNetworkFromProfile) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetAnnotations
 
-`func (o *CreateLogicalNetworkFromProfileDto) GetAnnotations() map[string]string`
+`func (o *CreateLogicalNetworkFromProfile) GetAnnotations() map[string]string`
 
 GetAnnotations returns the Annotations field if non-nil, zero value otherwise.
 
 ### GetAnnotationsOk
 
-`func (o *CreateLogicalNetworkFromProfileDto) GetAnnotationsOk() (*map[string]string, bool)`
+`func (o *CreateLogicalNetworkFromProfile) GetAnnotationsOk() (*map[string]string, bool)`
 
 GetAnnotationsOk returns a tuple with the Annotations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAnnotations
 
-`func (o *CreateLogicalNetworkFromProfileDto) SetAnnotations(v map[string]string)`
+`func (o *CreateLogicalNetworkFromProfile) SetAnnotations(v map[string]string)`
 
 SetAnnotations sets Annotations field to given value.
 
 ### HasAnnotations
 
-`func (o *CreateLogicalNetworkFromProfileDto) HasAnnotations() bool`
+`func (o *CreateLogicalNetworkFromProfile) HasAnnotations() bool`
 
 HasAnnotations returns a boolean if a field has been set.
 
 ### GetLogicalNetworkProfileId
 
-`func (o *CreateLogicalNetworkFromProfileDto) GetLogicalNetworkProfileId() int32`
+`func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileId() int32`
 
 GetLogicalNetworkProfileId returns the LogicalNetworkProfileId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkProfileIdOk
 
-`func (o *CreateLogicalNetworkFromProfileDto) GetLogicalNetworkProfileIdOk() (*int32, bool)`
+`func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileIdOk() (*int32, bool)`
 
 GetLogicalNetworkProfileIdOk returns a tuple with the LogicalNetworkProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkProfileId
 
-`func (o *CreateLogicalNetworkFromProfileDto) SetLogicalNetworkProfileId(v int32)`
+`func (o *CreateLogicalNetworkFromProfile) SetLogicalNetworkProfileId(v int32)`
 
 SetLogicalNetworkProfileId sets LogicalNetworkProfileId field to given value.
 
 
 ### GetInfrastructureId
 
-`func (o *CreateLogicalNetworkFromProfileDto) GetInfrastructureId() int32`
+`func (o *CreateLogicalNetworkFromProfile) GetInfrastructureId() int32`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *CreateLogicalNetworkFromProfileDto) GetInfrastructureIdOk() (*int32, bool)`
+`func (o *CreateLogicalNetworkFromProfile) GetInfrastructureIdOk() (*int32, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *CreateLogicalNetworkFromProfileDto) SetInfrastructureId(v int32)`
+`func (o *CreateLogicalNetworkFromProfile) SetInfrastructureId(v int32)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
 ### HasInfrastructureId
 
-`func (o *CreateLogicalNetworkFromProfileDto) HasInfrastructureId() bool`
+`func (o *CreateLogicalNetworkFromProfile) HasInfrastructureId() bool`
 
 HasInfrastructureId returns a boolean if a field has been set.
 
 ### SetInfrastructureIdNil
 
-`func (o *CreateLogicalNetworkFromProfileDto) SetInfrastructureIdNil(b bool)`
+`func (o *CreateLogicalNetworkFromProfile) SetInfrastructureIdNil(b bool)`
 
  SetInfrastructureIdNil sets the value for InfrastructureId to be an explicit nil
 
 ### UnsetInfrastructureId
-`func (o *CreateLogicalNetworkFromProfileDto) UnsetInfrastructureId()`
+`func (o *CreateLogicalNetworkFromProfile) UnsetInfrastructureId()`
 
 UnsetInfrastructureId ensures that no value is present for InfrastructureId, not even an explicit nil
 

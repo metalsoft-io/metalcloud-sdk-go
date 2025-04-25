@@ -69,6 +69,8 @@ type ServerInstance struct {
 	OsInstallImageBuildInfo *ServerInstanceOsInstallImageBuildInfo `json:"osInstallImageBuildInfo,omitempty"`
 	// OS reinstall is required.
 	OsReinstallRequired *int32 `json:"osReinstallRequired,omitempty"`
+	// NVMe Initiator NQN for the Instance.
+	InitiatorNqn *string `json:"initiatorNqn,omitempty"`
 	// iSCSI Initiator IQN for the Instance Interface.
 	IscsiInitiatorIqn *string `json:"iscsiInitiatorIqn,omitempty"`
 	// iSCSI Initiator Username for the Instance Interface.
@@ -905,6 +907,38 @@ func (o *ServerInstance) SetOsReinstallRequired(v int32) {
 	o.OsReinstallRequired = &v
 }
 
+// GetInitiatorNqn returns the InitiatorNqn field value if set, zero value otherwise.
+func (o *ServerInstance) GetInitiatorNqn() string {
+	if o == nil || IsNil(o.InitiatorNqn) {
+		var ret string
+		return ret
+	}
+	return *o.InitiatorNqn
+}
+
+// GetInitiatorNqnOk returns a tuple with the InitiatorNqn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstance) GetInitiatorNqnOk() (*string, bool) {
+	if o == nil || IsNil(o.InitiatorNqn) {
+		return nil, false
+	}
+	return o.InitiatorNqn, true
+}
+
+// HasInitiatorNqn returns a boolean if a field has been set.
+func (o *ServerInstance) HasInitiatorNqn() bool {
+	if o != nil && !IsNil(o.InitiatorNqn) {
+		return true
+	}
+
+	return false
+}
+
+// SetInitiatorNqn gets a reference to the given string and assigns it to the InitiatorNqn field.
+func (o *ServerInstance) SetInitiatorNqn(v string) {
+	o.InitiatorNqn = &v
+}
+
 // GetIscsiInitiatorIqn returns the IscsiInitiatorIqn field value if set, zero value otherwise.
 func (o *ServerInstance) GetIscsiInitiatorIqn() string {
 	if o == nil || IsNil(o.IscsiInitiatorIqn) {
@@ -1194,6 +1228,9 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OsReinstallRequired) {
 		toSerialize["osReinstallRequired"] = o.OsReinstallRequired
 	}
+	if !IsNil(o.InitiatorNqn) {
+		toSerialize["initiatorNqn"] = o.InitiatorNqn
+	}
 	if !IsNil(o.IscsiInitiatorIqn) {
 		toSerialize["iscsiInitiatorIqn"] = o.IscsiInitiatorIqn
 	}
@@ -1292,6 +1329,7 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "osInstallImageBuildError")
 		delete(additionalProperties, "osInstallImageBuildInfo")
 		delete(additionalProperties, "osReinstallRequired")
+		delete(additionalProperties, "initiatorNqn")
 		delete(additionalProperties, "iscsiInitiatorIqn")
 		delete(additionalProperties, "iscsiInitiatorUsername")
 		delete(additionalProperties, "iscsiInitiatorPasswordEncrypted")

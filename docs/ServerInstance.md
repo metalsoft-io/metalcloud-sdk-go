@@ -31,6 +31,7 @@ Name | Type | Description | Notes
 **OsInstallImageBuildError** | Pointer to **string** | Last error message during OS image build. | [optional] 
 **OsInstallImageBuildInfo** | Pointer to [**ServerInstanceOsInstallImageBuildInfo**](ServerInstanceOsInstallImageBuildInfo.md) | Build info regarding the OS image. | [optional] 
 **OsReinstallRequired** | Pointer to **int32** | OS reinstall is required. | [optional] 
+**InitiatorNqn** | Pointer to **string** | NVMe Initiator NQN for the Instance. | [optional] 
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
 **IscsiInitiatorPasswordEncrypted** | Pointer to **string** | iSCSI Initiator Password for the Instance Interface. | [optional] 
@@ -687,6 +688,31 @@ SetOsReinstallRequired sets OsReinstallRequired field to given value.
 `func (o *ServerInstance) HasOsReinstallRequired() bool`
 
 HasOsReinstallRequired returns a boolean if a field has been set.
+
+### GetInitiatorNqn
+
+`func (o *ServerInstance) GetInitiatorNqn() string`
+
+GetInitiatorNqn returns the InitiatorNqn field if non-nil, zero value otherwise.
+
+### GetInitiatorNqnOk
+
+`func (o *ServerInstance) GetInitiatorNqnOk() (*string, bool)`
+
+GetInitiatorNqnOk returns a tuple with the InitiatorNqn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInitiatorNqn
+
+`func (o *ServerInstance) SetInitiatorNqn(v string)`
+
+SetInitiatorNqn sets InitiatorNqn field to given value.
+
+### HasInitiatorNqn
+
+`func (o *ServerInstance) HasInitiatorNqn() bool`
+
+HasInitiatorNqn returns a boolean if a field has been set.
 
 ### GetIscsiInitiatorIqn
 

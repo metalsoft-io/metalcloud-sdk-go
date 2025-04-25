@@ -134,11 +134,11 @@ type UsersAPIAddUserSshKeyRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
 	userId float32
-	createUserSSHKeyDto *CreateUserSSHKeyDto
+	createUserSSHKey *CreateUserSSHKey
 }
 
-func (r UsersAPIAddUserSshKeyRequest) CreateUserSSHKeyDto(createUserSSHKeyDto CreateUserSSHKeyDto) UsersAPIAddUserSshKeyRequest {
-	r.createUserSSHKeyDto = &createUserSSHKeyDto
+func (r UsersAPIAddUserSshKeyRequest) CreateUserSSHKey(createUserSSHKey CreateUserSSHKey) UsersAPIAddUserSshKeyRequest {
+	r.createUserSSHKey = &createUserSSHKey
 	return r
 }
 
@@ -182,8 +182,8 @@ func (a *UsersAPIService) AddUserSshKeyExecute(r UsersAPIAddUserSshKeyRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createUserSSHKeyDto == nil {
-		return localVarReturnValue, nil, reportError("createUserSSHKeyDto is required and must be specified")
+	if r.createUserSSHKey == nil {
+		return localVarReturnValue, nil, reportError("createUserSSHKey is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -204,7 +204,7 @@ func (a *UsersAPIService) AddUserSshKeyExecute(r UsersAPIAddUserSshKeyRequest) (
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createUserSSHKeyDto
+	localVarPostBody = r.createUserSSHKey
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2691,12 +2691,12 @@ type UsersAPIUpdateUserPermissionsRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
 	userId float32
-	updateUserPermissionsDto *UpdateUserPermissionsDto
+	updateUserPermissions *UpdateUserPermissions
 	ifMatch *string
 }
 
-func (r UsersAPIUpdateUserPermissionsRequest) UpdateUserPermissionsDto(updateUserPermissionsDto UpdateUserPermissionsDto) UsersAPIUpdateUserPermissionsRequest {
-	r.updateUserPermissionsDto = &updateUserPermissionsDto
+func (r UsersAPIUpdateUserPermissionsRequest) UpdateUserPermissions(updateUserPermissions UpdateUserPermissions) UsersAPIUpdateUserPermissionsRequest {
+	r.updateUserPermissions = &updateUserPermissions
 	return r
 }
 
@@ -2746,8 +2746,8 @@ func (a *UsersAPIService) UpdateUserPermissionsExecute(r UsersAPIUpdateUserPermi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateUserPermissionsDto == nil {
-		return localVarReturnValue, nil, reportError("updateUserPermissionsDto is required and must be specified")
+	if r.updateUserPermissions == nil {
+		return localVarReturnValue, nil, reportError("updateUserPermissions is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2771,7 +2771,7 @@ func (a *UsersAPIService) UpdateUserPermissionsExecute(r UsersAPIUpdateUserPermi
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.updateUserPermissionsDto
+	localVarPostBody = r.updateUserPermissions
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

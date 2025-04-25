@@ -1,4 +1,4 @@
-# UpdateUserPermissionsDto
+# UpdateUserPermissions
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewUpdateUserPermissionsDto
+### NewUpdateUserPermissions
 
-`func NewUpdateUserPermissionsDto() *UpdateUserPermissionsDto`
+`func NewUpdateUserPermissions() *UpdateUserPermissions`
 
-NewUpdateUserPermissionsDto instantiates a new UpdateUserPermissionsDto object
+NewUpdateUserPermissions instantiates a new UpdateUserPermissions object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUpdateUserPermissionsDtoWithDefaults
+### NewUpdateUserPermissionsWithDefaults
 
-`func NewUpdateUserPermissionsDtoWithDefaults() *UpdateUserPermissionsDto`
+`func NewUpdateUserPermissionsWithDefaults() *UpdateUserPermissions`
 
-NewUpdateUserPermissionsDtoWithDefaults instantiates a new UpdateUserPermissionsDto object
+NewUpdateUserPermissionsWithDefaults instantiates a new UpdateUserPermissions object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAdminPasswordRevealPermissions
 
-`func (o *UpdateUserPermissionsDto) GetAdminPasswordRevealPermissions() AdminPasswordRevealPermissions`
+`func (o *UpdateUserPermissions) GetAdminPasswordRevealPermissions() AdminPasswordRevealPermissions`
 
 GetAdminPasswordRevealPermissions returns the AdminPasswordRevealPermissions field if non-nil, zero value otherwise.
 
 ### GetAdminPasswordRevealPermissionsOk
 
-`func (o *UpdateUserPermissionsDto) GetAdminPasswordRevealPermissionsOk() (*AdminPasswordRevealPermissions, bool)`
+`func (o *UpdateUserPermissions) GetAdminPasswordRevealPermissionsOk() (*AdminPasswordRevealPermissions, bool)`
 
 GetAdminPasswordRevealPermissionsOk returns a tuple with the AdminPasswordRevealPermissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdminPasswordRevealPermissions
 
-`func (o *UpdateUserPermissionsDto) SetAdminPasswordRevealPermissions(v AdminPasswordRevealPermissions)`
+`func (o *UpdateUserPermissions) SetAdminPasswordRevealPermissions(v AdminPasswordRevealPermissions)`
 
 SetAdminPasswordRevealPermissions sets AdminPasswordRevealPermissions field to given value.
 
 ### HasAdminPasswordRevealPermissions
 
-`func (o *UpdateUserPermissionsDto) HasAdminPasswordRevealPermissions() bool`
+`func (o *UpdateUserPermissions) HasAdminPasswordRevealPermissions() bool`
 
 HasAdminPasswordRevealPermissions returns a boolean if a field has been set.
 
 ### GetSpecialPermissions
 
-`func (o *UpdateUserPermissionsDto) GetSpecialPermissions() SpecialPermissions`
+`func (o *UpdateUserPermissions) GetSpecialPermissions() SpecialPermissions`
 
 GetSpecialPermissions returns the SpecialPermissions field if non-nil, zero value otherwise.
 
 ### GetSpecialPermissionsOk
 
-`func (o *UpdateUserPermissionsDto) GetSpecialPermissionsOk() (*SpecialPermissions, bool)`
+`func (o *UpdateUserPermissions) GetSpecialPermissionsOk() (*SpecialPermissions, bool)`
 
 GetSpecialPermissionsOk returns a tuple with the SpecialPermissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpecialPermissions
 
-`func (o *UpdateUserPermissionsDto) SetSpecialPermissions(v SpecialPermissions)`
+`func (o *UpdateUserPermissions) SetSpecialPermissions(v SpecialPermissions)`
 
 SetSpecialPermissions sets SpecialPermissions field to given value.
 
 ### HasSpecialPermissions
 
-`func (o *UpdateUserPermissionsDto) HasSpecialPermissions() bool`
+`func (o *UpdateUserPermissions) HasSpecialPermissions() bool`
 
 HasSpecialPermissions returns a boolean if a field has been set.
 

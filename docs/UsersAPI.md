@@ -104,7 +104,7 @@ Name | Type | Description  | Notes
 
 ## AddUserSshKey
 
-> UserSSHKeys AddUserSshKey(ctx, userId).CreateUserSSHKeyDto(createUserSSHKeyDto).Execute()
+> UserSSHKeys AddUserSshKey(ctx, userId).CreateUserSSHKey(createUserSSHKey).Execute()
 
 Add SSH key for user
 
@@ -122,11 +122,11 @@ import (
 
 func main() {
 	userId := float32(8.14) // float32 | 
-	createUserSSHKeyDto := *openapiclient.NewCreateUserSSHKeyDto("SshKey_example") // CreateUserSSHKeyDto | 
+	createUserSSHKey := *openapiclient.NewCreateUserSSHKey("SshKey_example") // CreateUserSSHKey | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.AddUserSshKey(context.Background(), userId).CreateUserSSHKeyDto(createUserSSHKeyDto).Execute()
+	resp, r, err := apiClient.UsersAPI.AddUserSshKey(context.Background(), userId).CreateUserSSHKey(createUserSSHKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.AddUserSshKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -152,7 +152,7 @@ Other parameters are passed through a pointer to a apiAddUserSshKeyRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createUserSSHKeyDto** | [**CreateUserSSHKeyDto**](CreateUserSSHKeyDto.md) |  | 
+ **createUserSSHKey** | [**CreateUserSSHKey**](CreateUserSSHKey.md) |  | 
 
 ### Return type
 
@@ -1663,7 +1663,7 @@ Name | Type | Description  | Notes
 
 ## UpdateUserPermissions
 
-> UserPermissions UpdateUserPermissions(ctx, userId).UpdateUserPermissionsDto(updateUserPermissionsDto).IfMatch(ifMatch).Execute()
+> UserPermissions UpdateUserPermissions(ctx, userId).UpdateUserPermissions(updateUserPermissions).IfMatch(ifMatch).Execute()
 
 Update user resource permissions
 
@@ -1681,12 +1681,12 @@ import (
 
 func main() {
 	userId := float32(8.14) // float32 | 
-	updateUserPermissionsDto := *openapiclient.NewUpdateUserPermissionsDto() // UpdateUserPermissionsDto | 
+	updateUserPermissions := *openapiclient.NewUpdateUserPermissions() // UpdateUserPermissions | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.UpdateUserPermissions(context.Background(), userId).UpdateUserPermissionsDto(updateUserPermissionsDto).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.UsersAPI.UpdateUserPermissions(context.Background(), userId).UpdateUserPermissions(updateUserPermissions).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UpdateUserPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1712,7 +1712,7 @@ Other parameters are passed through a pointer to a apiUpdateUserPermissionsReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateUserPermissionsDto** | [**UpdateUserPermissionsDto**](UpdateUserPermissionsDto.md) |  | 
+ **updateUserPermissions** | [**UpdateUserPermissions**](UpdateUserPermissions.md) |  | 
  **ifMatch** | **string** | Entity tag | 
 
 ### Return type

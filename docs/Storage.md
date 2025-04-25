@@ -33,7 +33,6 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** | Tags | [optional] 
 **PortGroupAllocationOrder** | Pointer to **map[string]interface{}** | Port group allocation order | [optional] 
 **PortGroupPhysicalPorts** | Pointer to **map[string]interface{}** | Port group physical ports | [optional] 
-**DefaultQoS** | Pointer to **string** | Default QoS to use. The QoS must be defined in the storage. | [optional] 
 **SubnetType** | **string** | Subnet type | 
 **JobStatistics** | Pointer to [**JobGroupStatistics**](JobGroupStatistics.md) |  | [optional] 
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the storage. | [optional] 
@@ -727,31 +726,6 @@ SetPortGroupPhysicalPorts sets PortGroupPhysicalPorts field to given value.
 `func (o *Storage) HasPortGroupPhysicalPorts() bool`
 
 HasPortGroupPhysicalPorts returns a boolean if a field has been set.
-
-### GetDefaultQoS
-
-`func (o *Storage) GetDefaultQoS() string`
-
-GetDefaultQoS returns the DefaultQoS field if non-nil, zero value otherwise.
-
-### GetDefaultQoSOk
-
-`func (o *Storage) GetDefaultQoSOk() (*string, bool)`
-
-GetDefaultQoSOk returns a tuple with the DefaultQoS field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultQoS
-
-`func (o *Storage) SetDefaultQoS(v string)`
-
-SetDefaultQoS sets DefaultQoS field to given value.
-
-### HasDefaultQoS
-
-`func (o *Storage) HasDefaultQoS() bool`
-
-HasDefaultQoS returns a boolean if a field has been set.
 
 ### GetSubnetType
 

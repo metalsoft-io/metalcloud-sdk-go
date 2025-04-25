@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Role label | 
 **Description** | Pointer to **string** | Role description | [optional] 
-**Permissions** | Pointer to **[]string** | List of permissions assigned to the role | [optional] 
+**Permissions** | **[]string** | List of permissions assigned to the role | 
 
 ## Methods
 
 ### NewCreateRole
 
-`func NewCreateRole(label string, ) *CreateRole`
+`func NewCreateRole(label string, permissions []string, ) *CreateRole`
 
 NewCreateRole instantiates a new CreateRole object
 This constructor will assign default values to properties that have it defined,
@@ -91,11 +91,6 @@ and a boolean to check if the value has been set.
 
 SetPermissions sets Permissions field to given value.
 
-### HasPermissions
-
-`func (o *CreateRole) HasPermissions() bool`
-
-HasPermissions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

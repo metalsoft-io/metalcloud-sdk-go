@@ -26,7 +26,7 @@ type EditRole struct {
 	// Role description
 	Description *string `json:"description,omitempty"`
 	// List of permissions assigned to the role
-	Permissions []string `json:"permissions,omitempty"`
+	Permissions []string `json:"permissions"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,9 +36,10 @@ type _EditRole EditRole
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEditRole(label string) *EditRole {
+func NewEditRole(label string, permissions []string) *EditRole {
 	this := EditRole{}
 	this.Label = label
+	this.Permissions = permissions
 	return &this
 }
 
@@ -106,34 +107,26 @@ func (o *EditRole) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetPermissions returns the Permissions field value if set, zero value otherwise.
+// GetPermissions returns the Permissions field value
 func (o *EditRole) GetPermissions() []string {
-	if o == nil || IsNil(o.Permissions) {
+	if o == nil {
 		var ret []string
 		return ret
 	}
+
 	return o.Permissions
 }
 
-// GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
+// GetPermissionsOk returns a tuple with the Permissions field value
 // and a boolean to check if the value has been set.
 func (o *EditRole) GetPermissionsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Permissions) {
+	if o == nil {
 		return nil, false
 	}
 	return o.Permissions, true
 }
 
-// HasPermissions returns a boolean if a field has been set.
-func (o *EditRole) HasPermissions() bool {
-	if o != nil && !IsNil(o.Permissions) {
-		return true
-	}
-
-	return false
-}
-
-// SetPermissions gets a reference to the given []string and assigns it to the Permissions field.
+// SetPermissions sets field value
 func (o *EditRole) SetPermissions(v []string) {
 	o.Permissions = v
 }
@@ -152,9 +145,7 @@ func (o EditRole) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !IsNil(o.Permissions) {
-		toSerialize["permissions"] = o.Permissions
-	}
+	toSerialize["permissions"] = o.Permissions
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -169,6 +160,7 @@ func (o *EditRole) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"label",
+		"permissions",
 	}
 
 	allProperties := make(map[string]interface{})

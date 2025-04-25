@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the CreateLogicalNetworkFromProfileDto type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateLogicalNetworkFromProfileDto{}
+// checks if the CreateLogicalNetworkFromProfile type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateLogicalNetworkFromProfile{}
 
-// CreateLogicalNetworkFromProfileDto struct for CreateLogicalNetworkFromProfileDto
-type CreateLogicalNetworkFromProfileDto struct {
+// CreateLogicalNetworkFromProfile struct for CreateLogicalNetworkFromProfile
+type CreateLogicalNetworkFromProfile struct {
 	Label *string `json:"label,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Annotations *map[string]string `json:"annotations,omitempty"`
@@ -29,28 +29,28 @@ type CreateLogicalNetworkFromProfileDto struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _CreateLogicalNetworkFromProfileDto CreateLogicalNetworkFromProfileDto
+type _CreateLogicalNetworkFromProfile CreateLogicalNetworkFromProfile
 
-// NewCreateLogicalNetworkFromProfileDto instantiates a new CreateLogicalNetworkFromProfileDto object
+// NewCreateLogicalNetworkFromProfile instantiates a new CreateLogicalNetworkFromProfile object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateLogicalNetworkFromProfileDto(logicalNetworkProfileId int32) *CreateLogicalNetworkFromProfileDto {
-	this := CreateLogicalNetworkFromProfileDto{}
+func NewCreateLogicalNetworkFromProfile(logicalNetworkProfileId int32) *CreateLogicalNetworkFromProfile {
+	this := CreateLogicalNetworkFromProfile{}
 	this.LogicalNetworkProfileId = logicalNetworkProfileId
 	return &this
 }
 
-// NewCreateLogicalNetworkFromProfileDtoWithDefaults instantiates a new CreateLogicalNetworkFromProfileDto object
+// NewCreateLogicalNetworkFromProfileWithDefaults instantiates a new CreateLogicalNetworkFromProfile object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateLogicalNetworkFromProfileDtoWithDefaults() *CreateLogicalNetworkFromProfileDto {
-	this := CreateLogicalNetworkFromProfileDto{}
+func NewCreateLogicalNetworkFromProfileWithDefaults() *CreateLogicalNetworkFromProfile {
+	this := CreateLogicalNetworkFromProfile{}
 	return &this
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
-func (o *CreateLogicalNetworkFromProfileDto) GetLabel() string {
+func (o *CreateLogicalNetworkFromProfile) GetLabel() string {
 	if o == nil || IsNil(o.Label) {
 		var ret string
 		return ret
@@ -60,7 +60,7 @@ func (o *CreateLogicalNetworkFromProfileDto) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateLogicalNetworkFromProfileDto) GetLabelOk() (*string, bool) {
+func (o *CreateLogicalNetworkFromProfile) GetLabelOk() (*string, bool) {
 	if o == nil || IsNil(o.Label) {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *CreateLogicalNetworkFromProfileDto) GetLabelOk() (*string, bool) {
 }
 
 // HasLabel returns a boolean if a field has been set.
-func (o *CreateLogicalNetworkFromProfileDto) HasLabel() bool {
+func (o *CreateLogicalNetworkFromProfile) HasLabel() bool {
 	if o != nil && !IsNil(o.Label) {
 		return true
 	}
@@ -77,12 +77,12 @@ func (o *CreateLogicalNetworkFromProfileDto) HasLabel() bool {
 }
 
 // SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *CreateLogicalNetworkFromProfileDto) SetLabel(v string) {
+func (o *CreateLogicalNetworkFromProfile) SetLabel(v string) {
 	o.Label = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *CreateLogicalNetworkFromProfileDto) GetName() string {
+func (o *CreateLogicalNetworkFromProfile) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -92,7 +92,7 @@ func (o *CreateLogicalNetworkFromProfileDto) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateLogicalNetworkFromProfileDto) GetNameOk() (*string, bool) {
+func (o *CreateLogicalNetworkFromProfile) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *CreateLogicalNetworkFromProfileDto) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *CreateLogicalNetworkFromProfileDto) HasName() bool {
+func (o *CreateLogicalNetworkFromProfile) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -109,12 +109,12 @@ func (o *CreateLogicalNetworkFromProfileDto) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *CreateLogicalNetworkFromProfileDto) SetName(v string) {
+func (o *CreateLogicalNetworkFromProfile) SetName(v string) {
 	o.Name = &v
 }
 
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
-func (o *CreateLogicalNetworkFromProfileDto) GetAnnotations() map[string]string {
+func (o *CreateLogicalNetworkFromProfile) GetAnnotations() map[string]string {
 	if o == nil || IsNil(o.Annotations) {
 		var ret map[string]string
 		return ret
@@ -124,7 +124,7 @@ func (o *CreateLogicalNetworkFromProfileDto) GetAnnotations() map[string]string 
 
 // GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateLogicalNetworkFromProfileDto) GetAnnotationsOk() (*map[string]string, bool) {
+func (o *CreateLogicalNetworkFromProfile) GetAnnotationsOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Annotations) {
 		return nil, false
 	}
@@ -132,7 +132,7 @@ func (o *CreateLogicalNetworkFromProfileDto) GetAnnotationsOk() (*map[string]str
 }
 
 // HasAnnotations returns a boolean if a field has been set.
-func (o *CreateLogicalNetworkFromProfileDto) HasAnnotations() bool {
+func (o *CreateLogicalNetworkFromProfile) HasAnnotations() bool {
 	if o != nil && !IsNil(o.Annotations) {
 		return true
 	}
@@ -141,12 +141,12 @@ func (o *CreateLogicalNetworkFromProfileDto) HasAnnotations() bool {
 }
 
 // SetAnnotations gets a reference to the given map[string]string and assigns it to the Annotations field.
-func (o *CreateLogicalNetworkFromProfileDto) SetAnnotations(v map[string]string) {
+func (o *CreateLogicalNetworkFromProfile) SetAnnotations(v map[string]string) {
 	o.Annotations = &v
 }
 
 // GetLogicalNetworkProfileId returns the LogicalNetworkProfileId field value
-func (o *CreateLogicalNetworkFromProfileDto) GetLogicalNetworkProfileId() int32 {
+func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileId() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -157,7 +157,7 @@ func (o *CreateLogicalNetworkFromProfileDto) GetLogicalNetworkProfileId() int32 
 
 // GetLogicalNetworkProfileIdOk returns a tuple with the LogicalNetworkProfileId field value
 // and a boolean to check if the value has been set.
-func (o *CreateLogicalNetworkFromProfileDto) GetLogicalNetworkProfileIdOk() (*int32, bool) {
+func (o *CreateLogicalNetworkFromProfile) GetLogicalNetworkProfileIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -165,12 +165,12 @@ func (o *CreateLogicalNetworkFromProfileDto) GetLogicalNetworkProfileIdOk() (*in
 }
 
 // SetLogicalNetworkProfileId sets field value
-func (o *CreateLogicalNetworkFromProfileDto) SetLogicalNetworkProfileId(v int32) {
+func (o *CreateLogicalNetworkFromProfile) SetLogicalNetworkProfileId(v int32) {
 	o.LogicalNetworkProfileId = v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateLogicalNetworkFromProfileDto) GetInfrastructureId() int32 {
+func (o *CreateLogicalNetworkFromProfile) GetInfrastructureId() int32 {
 	if o == nil || IsNil(o.InfrastructureId.Get()) {
 		var ret int32
 		return ret
@@ -181,7 +181,7 @@ func (o *CreateLogicalNetworkFromProfileDto) GetInfrastructureId() int32 {
 // GetInfrastructureIdOk returns a tuple with the InfrastructureId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateLogicalNetworkFromProfileDto) GetInfrastructureIdOk() (*int32, bool) {
+func (o *CreateLogicalNetworkFromProfile) GetInfrastructureIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -189,7 +189,7 @@ func (o *CreateLogicalNetworkFromProfileDto) GetInfrastructureIdOk() (*int32, bo
 }
 
 // HasInfrastructureId returns a boolean if a field has been set.
-func (o *CreateLogicalNetworkFromProfileDto) HasInfrastructureId() bool {
+func (o *CreateLogicalNetworkFromProfile) HasInfrastructureId() bool {
 	if o != nil && o.InfrastructureId.IsSet() {
 		return true
 	}
@@ -198,20 +198,20 @@ func (o *CreateLogicalNetworkFromProfileDto) HasInfrastructureId() bool {
 }
 
 // SetInfrastructureId gets a reference to the given NullableInt32 and assigns it to the InfrastructureId field.
-func (o *CreateLogicalNetworkFromProfileDto) SetInfrastructureId(v int32) {
+func (o *CreateLogicalNetworkFromProfile) SetInfrastructureId(v int32) {
 	o.InfrastructureId.Set(&v)
 }
 // SetInfrastructureIdNil sets the value for InfrastructureId to be an explicit nil
-func (o *CreateLogicalNetworkFromProfileDto) SetInfrastructureIdNil() {
+func (o *CreateLogicalNetworkFromProfile) SetInfrastructureIdNil() {
 	o.InfrastructureId.Set(nil)
 }
 
 // UnsetInfrastructureId ensures that no value is present for InfrastructureId, not even an explicit nil
-func (o *CreateLogicalNetworkFromProfileDto) UnsetInfrastructureId() {
+func (o *CreateLogicalNetworkFromProfile) UnsetInfrastructureId() {
 	o.InfrastructureId.Unset()
 }
 
-func (o CreateLogicalNetworkFromProfileDto) MarshalJSON() ([]byte, error) {
+func (o CreateLogicalNetworkFromProfile) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -219,7 +219,7 @@ func (o CreateLogicalNetworkFromProfileDto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateLogicalNetworkFromProfileDto) ToMap() (map[string]interface{}, error) {
+func (o CreateLogicalNetworkFromProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
@@ -242,7 +242,7 @@ func (o CreateLogicalNetworkFromProfileDto) ToMap() (map[string]interface{}, err
 	return toSerialize, nil
 }
 
-func (o *CreateLogicalNetworkFromProfileDto) UnmarshalJSON(data []byte) (err error) {
+func (o *CreateLogicalNetworkFromProfile) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -264,15 +264,15 @@ func (o *CreateLogicalNetworkFromProfileDto) UnmarshalJSON(data []byte) (err err
 		}
 	}
 
-	varCreateLogicalNetworkFromProfileDto := _CreateLogicalNetworkFromProfileDto{}
+	varCreateLogicalNetworkFromProfile := _CreateLogicalNetworkFromProfile{}
 
-	err = json.Unmarshal(data, &varCreateLogicalNetworkFromProfileDto)
+	err = json.Unmarshal(data, &varCreateLogicalNetworkFromProfile)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CreateLogicalNetworkFromProfileDto(varCreateLogicalNetworkFromProfileDto)
+	*o = CreateLogicalNetworkFromProfile(varCreateLogicalNetworkFromProfile)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -288,38 +288,38 @@ func (o *CreateLogicalNetworkFromProfileDto) UnmarshalJSON(data []byte) (err err
 	return err
 }
 
-type NullableCreateLogicalNetworkFromProfileDto struct {
-	value *CreateLogicalNetworkFromProfileDto
+type NullableCreateLogicalNetworkFromProfile struct {
+	value *CreateLogicalNetworkFromProfile
 	isSet bool
 }
 
-func (v NullableCreateLogicalNetworkFromProfileDto) Get() *CreateLogicalNetworkFromProfileDto {
+func (v NullableCreateLogicalNetworkFromProfile) Get() *CreateLogicalNetworkFromProfile {
 	return v.value
 }
 
-func (v *NullableCreateLogicalNetworkFromProfileDto) Set(val *CreateLogicalNetworkFromProfileDto) {
+func (v *NullableCreateLogicalNetworkFromProfile) Set(val *CreateLogicalNetworkFromProfile) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateLogicalNetworkFromProfileDto) IsSet() bool {
+func (v NullableCreateLogicalNetworkFromProfile) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateLogicalNetworkFromProfileDto) Unset() {
+func (v *NullableCreateLogicalNetworkFromProfile) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateLogicalNetworkFromProfileDto(val *CreateLogicalNetworkFromProfileDto) *NullableCreateLogicalNetworkFromProfileDto {
-	return &NullableCreateLogicalNetworkFromProfileDto{value: val, isSet: true}
+func NewNullableCreateLogicalNetworkFromProfile(val *CreateLogicalNetworkFromProfile) *NullableCreateLogicalNetworkFromProfile {
+	return &NullableCreateLogicalNetworkFromProfile{value: val, isSet: true}
 }
 
-func (v NullableCreateLogicalNetworkFromProfileDto) MarshalJSON() ([]byte, error) {
+func (v NullableCreateLogicalNetworkFromProfile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateLogicalNetworkFromProfileDto) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateLogicalNetworkFromProfile) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

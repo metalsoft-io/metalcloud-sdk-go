@@ -71,7 +71,7 @@ docs/AgentConnectedInfo.md
 docs/AgentInfo.md
 docs/AgentIpInfo.md
 docs/AllocationStrategyKind.md
-docs/ApplyProfilesToLogicalNetworkCandidateDto.md
+docs/ApplyProfilesToLogicalNetworkConfig.md
 docs/AuthenticationAPI.md
 docs/AuthenticationProvider.md
 docs/AuthenticationProviderUpdate.md
@@ -118,7 +118,7 @@ docs/CreateIpv4SubnetAllocationStrategy.md
 docs/CreateIpv6SubnetAllocationStrategy.md
 docs/CreateLogicalNetwork201Response.md
 docs/CreateLogicalNetworkACL.md
-docs/CreateLogicalNetworkFromProfileDto.md
+docs/CreateLogicalNetworkFromProfile.md
 docs/CreateLogicalNetworkProfile201Response.md
 docs/CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response.md
 docs/CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest.md
@@ -151,7 +151,7 @@ docs/CreateStorage.md
 docs/CreateStorageNetworkDeviceConfiguration.md
 docs/CreateSubnet.md
 docs/CreateUser.md
-docs/CreateUserSSHKeyDto.md
+docs/CreateUserSSHKey.md
 docs/CreateVMInstance.md
 docs/CreateVMInstanceGroup.md
 docs/CreateVMInstanceGroupInterface.md
@@ -407,7 +407,6 @@ docs/ServerFirmwareUpgradePolicyApplyResult.md
 docs/ServerFirmwareUpgradePolicyAudit.md
 docs/ServerFirmwareUpgradePolicyPaginatedList.md
 docs/ServerFirmwareUpgradePolicyRule.md
-docs/ServerGenericEndpointImport.md
 docs/ServerGpuInfo.md
 docs/ServerInstance.md
 docs/ServerInstanceAPI.md
@@ -494,6 +493,7 @@ docs/Subnet.md
 docs/SubnetAPI.md
 docs/SubnetPaginatedList.md
 docs/SwitchPosition.md
+docs/SwitchReplace.md
 docs/SystemAPI.md
 docs/TemplateAsset.md
 docs/TemplateAssetAPI.md
@@ -543,9 +543,8 @@ docs/UpdateStorage.md
 docs/UpdateStorageNetworkDeviceConfiguration.md
 docs/UpdateStorageOptions.md
 docs/UpdateSubnet.md
-docs/UpdateTagsForNetworkDeviceRequest.md
 docs/UpdateUser.md
-docs/UpdateUserPermissionsDto.md
+docs/UpdateUserPermissions.md
 docs/UpdateVM.md
 docs/UpdateVMInstance.md
 docs/UpdateVMInstanceGroup.md
@@ -657,7 +656,7 @@ model_agent_ip_info.go
 model_ai_generate_request.go
 model_ai_generate_response.go
 model_allocation_strategy_kind.go
-model_apply_profiles_to_logical_network_candidate_dto.go
+model_apply_profiles_to_logical_network_config.go
 model_authentication_provider.go
 model_authentication_provider_update.go
 model_authentication_providers.go
@@ -701,7 +700,7 @@ model_create_ipv4_subnet_allocation_strategy.go
 model_create_ipv6_subnet_allocation_strategy.go
 model_create_logical_network_201_response.go
 model_create_logical_network_acl.go
-model_create_logical_network_from_profile_dto.go
+model_create_logical_network_from_profile.go
 model_create_logical_network_profile_201_response.go
 model_create_logical_network_profile_ipv4_subnet_allocation_strategy_201_response.go
 model_create_logical_network_profile_ipv4_subnet_allocation_strategy_request.go
@@ -734,7 +733,7 @@ model_create_storage.go
 model_create_storage_network_device_configuration.go
 model_create_subnet.go
 model_create_user.go
-model_create_user_ssh_key_dto.go
+model_create_user_ssh_key.go
 model_create_variable.go
 model_create_vlan_allocation_strategy.go
 model_create_vlan_logical_network.go
@@ -963,7 +962,6 @@ model_server_firmware_upgrade_policy_apply_result.go
 model_server_firmware_upgrade_policy_audit.go
 model_server_firmware_upgrade_policy_paginated_list.go
 model_server_firmware_upgrade_policy_rule.go
-model_server_generic_endpoint_import.go
 model_server_gpu_info.go
 model_server_instance.go
 model_server_instance_cluster_custom_info.go
@@ -1045,6 +1043,7 @@ model_storage_statistics.go
 model_subnet.go
 model_subnet_paginated_list.go
 model_switch_position.go
+model_switch_replace.go
 model_template_asset.go
 model_template_asset_create.go
 model_template_asset_file.go
@@ -1091,9 +1090,8 @@ model_update_storage.go
 model_update_storage_network_device_configuration.go
 model_update_storage_options.go
 model_update_subnet.go
-model_update_tags_for_network_device_request.go
 model_update_user.go
-model_update_user_permissions_dto.go
+model_update_user_permissions.go
 model_update_variable.go
 model_update_vm.go
 model_update_vm_instance.go

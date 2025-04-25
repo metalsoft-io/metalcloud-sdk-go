@@ -257,7 +257,6 @@ Class | Method | HTTP request | Description
 *LogicalNetworkProfileAPI* | [**ReplaceLogicalNetworkProfileVniAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#replacelogicalnetworkprofilevniallocationstrategy) | **Put** /api/v2/logical-network-profiles/{id}/vxlan/vni-allocation-strategies/{allocationStrategyId} | Replace Vni allocation strategy
 *LogicalNetworkProfileAPI* | [**UpdateLogicalNetworkProfile**](docs/LogicalNetworkProfileAPI.md#updatelogicalnetworkprofile) | **Patch** /api/v2/logical-network-profiles/{id} | Update Logical Network Profile
 *NetworkDeviceAPI* | [**AddNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#addnetworkdevicedefaults) | **Post** /api/v2/network-devices/defaults | Add network device defaults
-*NetworkDeviceAPI* | [**AddTagsToNetworkDevice**](docs/NetworkDeviceAPI.md#addtagstonetworkdevice) | **Post** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Add tags to Network Device
 *NetworkDeviceAPI* | [**ArchiveNetworkDevice**](docs/NetworkDeviceAPI.md#archivenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/archive | Archives a network device
 *NetworkDeviceAPI* | [**ChangeNetworkDeviceStatus**](docs/NetworkDeviceAPI.md#changenetworkdevicestatus) | **Patch** /api/v2/network-devices/{networkDeviceId}/actions/change-status | Change status of a network device
 *NetworkDeviceAPI* | [**CreateNetworkDevice**](docs/NetworkDeviceAPI.md#createnetworkdevice) | **Post** /api/v2/network-devices | Create Network Device
@@ -272,16 +271,13 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**GetNetworkDevicePorts**](docs/NetworkDeviceAPI.md#getnetworkdeviceports) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
 *NetworkDeviceAPI* | [**GetNetworkDeviceStatistics**](docs/NetworkDeviceAPI.md#getnetworkdevicestatistics) | **Get** /api/v2/network-devices/statistics | Get Network Device Statistics
 *NetworkDeviceAPI* | [**GetNetworkDevices**](docs/NetworkDeviceAPI.md#getnetworkdevices) | **Get** /api/v2/network-devices | Get paginated Network Devices
-*NetworkDeviceAPI* | [**GetTagsForNetworkDevice**](docs/NetworkDeviceAPI.md#gettagsfornetworkdevice) | **Get** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Get tags for Network Device
 *NetworkDeviceAPI* | [**ReProvisionNetworkEquipment**](docs/NetworkDeviceAPI.md#reprovisionnetworkequipment) | **Post** /api/v2/network-devices/re-provision | Re-provision network equipment
 *NetworkDeviceAPI* | [**RemoveNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#removenetworkdevicedefaults) | **Delete** /api/v2/network-devices/defaults | Remove network device defaults
-*NetworkDeviceAPI* | [**RemoveTagsFromNetworkDevice**](docs/NetworkDeviceAPI.md#removetagsfromnetworkdevice) | **Patch** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Clear tags from Network Device
 *NetworkDeviceAPI* | [**ReplaceNetworkDevice**](docs/NetworkDeviceAPI.md#replacenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/replace | Replace network device
 *NetworkDeviceAPI* | [**ResetNetworkDevice**](docs/NetworkDeviceAPI.md#resetnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
 *NetworkDeviceAPI* | [**RunExtensionOnNetworkDevice**](docs/NetworkDeviceAPI.md#runextensiononnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
 *NetworkDeviceAPI* | [**SetNetworkDevicePortStatus**](docs/NetworkDeviceAPI.md#setnetworkdeviceportstatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
 *NetworkDeviceAPI* | [**UpdateNetworkDevice**](docs/NetworkDeviceAPI.md#updatenetworkdevice) | **Patch** /api/v2/network-devices/{networkDeviceId} | Update Network Device
-*NetworkDeviceAPI* | [**UpdateTagsForNetworkDevice**](docs/NetworkDeviceAPI.md#updatetagsfornetworkdevice) | **Put** /api/v2/network-devices/network-devices/{networkDeviceId}/tags | Update tags for Network Device
 *NetworkEndpointGroupAPI* | [**AddLogicalNetworksToNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#addlogicalnetworkstonetworkendpointgroup) | **Post** /api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks | Add a list of logical networks to a network endpoint group
 *NetworkEndpointGroupAPI* | [**CreateNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#createnetworkendpointgroup) | **Post** /api/v2/network-endpoint-groups | Create a new network endpoint group
 *NetworkEndpointGroupAPI* | [**DeleteNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#deletenetworkendpointgroup) | **Delete** /api/v2/network-endpoint-groups/{networkEndpointGroupId} | Delete a network endpoint group
@@ -464,7 +460,6 @@ Class | Method | HTTP request | Description
 *TemplateAssetAPI* | [**GetTemplateAsset**](docs/TemplateAssetAPI.md#gettemplateasset) | **Get** /api/v2/template-assets/{templateAssetId} | Get details for an template asset
 *TemplateAssetAPI* | [**GetTemplateAssets**](docs/TemplateAssetAPI.md#gettemplateassets) | **Get** /api/v2/template-assets | Get a list of available template assets
 *TemplateAssetAPI* | [**UpdateTemplateAsset**](docs/TemplateAssetAPI.md#updatetemplateasset) | **Put** /api/v2/template-assets/{templateAssetId} | Update template asset
-*UnmanagedServersAPI* | [**ImportGenericEndpointServer**](docs/UnmanagedServersAPI.md#importgenericendpointserver) | **Post** /api/v2/servers/generic-endpoint/import | Import Generic Endpoint Server
 *UnmanagedServersAPI* | [**ImportUnmanagedServer**](docs/UnmanagedServersAPI.md#importunmanagedserver) | **Post** /api/v2/servers/unmanaged/import | Import Unmanaged Server
 *UserAPI* | [**DisableUser2FA**](docs/UserAPI.md#disableuser2fa) | **Post** /api/v2/user/actions/2fa-disable | Disable 2FA
 *UserAPI* | [**EnableUser2FA**](docs/UserAPI.md#enableuser2fa) | **Post** /api/v2/user/actions/2fa-enable | Enable 2FA
@@ -579,7 +574,7 @@ Class | Method | HTTP request | Description
  - [AgentInfo](docs/AgentInfo.md)
  - [AgentIpInfo](docs/AgentIpInfo.md)
  - [AllocationStrategyKind](docs/AllocationStrategyKind.md)
- - [ApplyProfilesToLogicalNetworkCandidateDto](docs/ApplyProfilesToLogicalNetworkCandidateDto.md)
+ - [ApplyProfilesToLogicalNetworkConfig](docs/ApplyProfilesToLogicalNetworkConfig.md)
  - [AuthenticationProvider](docs/AuthenticationProvider.md)
  - [AuthenticationProviderUpdate](docs/AuthenticationProviderUpdate.md)
  - [AuthenticationProviders](docs/AuthenticationProviders.md)
@@ -623,7 +618,7 @@ Class | Method | HTTP request | Description
  - [CreateIpv6SubnetAllocationStrategy](docs/CreateIpv6SubnetAllocationStrategy.md)
  - [CreateLogicalNetwork201Response](docs/CreateLogicalNetwork201Response.md)
  - [CreateLogicalNetworkACL](docs/CreateLogicalNetworkACL.md)
- - [CreateLogicalNetworkFromProfileDto](docs/CreateLogicalNetworkFromProfileDto.md)
+ - [CreateLogicalNetworkFromProfile](docs/CreateLogicalNetworkFromProfile.md)
  - [CreateLogicalNetworkProfile201Response](docs/CreateLogicalNetworkProfile201Response.md)
  - [CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response](docs/CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy201Response.md)
  - [CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest](docs/CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest.md)
@@ -656,7 +651,7 @@ Class | Method | HTTP request | Description
  - [CreateStorageNetworkDeviceConfiguration](docs/CreateStorageNetworkDeviceConfiguration.md)
  - [CreateSubnet](docs/CreateSubnet.md)
  - [CreateUser](docs/CreateUser.md)
- - [CreateUserSSHKeyDto](docs/CreateUserSSHKeyDto.md)
+ - [CreateUserSSHKey](docs/CreateUserSSHKey.md)
  - [CreateVMInstance](docs/CreateVMInstance.md)
  - [CreateVMInstanceGroup](docs/CreateVMInstanceGroup.md)
  - [CreateVMInstanceGroupInterface](docs/CreateVMInstanceGroupInterface.md)
@@ -886,7 +881,6 @@ Class | Method | HTTP request | Description
  - [ServerFirmwareUpgradePolicyAudit](docs/ServerFirmwareUpgradePolicyAudit.md)
  - [ServerFirmwareUpgradePolicyPaginatedList](docs/ServerFirmwareUpgradePolicyPaginatedList.md)
  - [ServerFirmwareUpgradePolicyRule](docs/ServerFirmwareUpgradePolicyRule.md)
- - [ServerGenericEndpointImport](docs/ServerGenericEndpointImport.md)
  - [ServerGpuInfo](docs/ServerGpuInfo.md)
  - [ServerInstance](docs/ServerInstance.md)
  - [ServerInstanceClusterCustomInfo](docs/ServerInstanceClusterCustomInfo.md)
@@ -967,6 +961,7 @@ Class | Method | HTTP request | Description
  - [Subnet](docs/Subnet.md)
  - [SubnetPaginatedList](docs/SubnetPaginatedList.md)
  - [SwitchPosition](docs/SwitchPosition.md)
+ - [SwitchReplace](docs/SwitchReplace.md)
  - [TemplateAsset](docs/TemplateAsset.md)
  - [TemplateAssetCreate](docs/TemplateAssetCreate.md)
  - [TemplateAssetFile](docs/TemplateAssetFile.md)
@@ -1013,9 +1008,8 @@ Class | Method | HTTP request | Description
  - [UpdateStorageNetworkDeviceConfiguration](docs/UpdateStorageNetworkDeviceConfiguration.md)
  - [UpdateStorageOptions](docs/UpdateStorageOptions.md)
  - [UpdateSubnet](docs/UpdateSubnet.md)
- - [UpdateTagsForNetworkDeviceRequest](docs/UpdateTagsForNetworkDeviceRequest.md)
  - [UpdateUser](docs/UpdateUser.md)
- - [UpdateUserPermissionsDto](docs/UpdateUserPermissionsDto.md)
+ - [UpdateUserPermissions](docs/UpdateUserPermissions.md)
  - [UpdateVM](docs/UpdateVM.md)
  - [UpdateVMInstance](docs/UpdateVMInstance.md)
  - [UpdateVMInstanceGroup](docs/UpdateVMInstanceGroup.md)

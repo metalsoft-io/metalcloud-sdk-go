@@ -40,6 +40,8 @@ type ServerInstanceConfiguration struct {
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// RAID profile for the Instance Interface.
 	RaidProfile *ServerInstanceStorageProfile `json:"raidProfile,omitempty"`
+	// NVMe Initiator NQN for the Instance.
+	InitiatorNqn *string `json:"initiatorNqn,omitempty"`
 	// iSCSI Initiator IQN for the Instance Interface.
 	IscsiInitiatorIqn *string `json:"iscsiInitiatorIqn,omitempty"`
 	// iSCSI Initiator Username for the Instance Interface.
@@ -410,6 +412,38 @@ func (o *ServerInstanceConfiguration) SetRaidProfile(v ServerInstanceStorageProf
 	o.RaidProfile = &v
 }
 
+// GetInitiatorNqn returns the InitiatorNqn field value if set, zero value otherwise.
+func (o *ServerInstanceConfiguration) GetInitiatorNqn() string {
+	if o == nil || IsNil(o.InitiatorNqn) {
+		var ret string
+		return ret
+	}
+	return *o.InitiatorNqn
+}
+
+// GetInitiatorNqnOk returns a tuple with the InitiatorNqn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceConfiguration) GetInitiatorNqnOk() (*string, bool) {
+	if o == nil || IsNil(o.InitiatorNqn) {
+		return nil, false
+	}
+	return o.InitiatorNqn, true
+}
+
+// HasInitiatorNqn returns a boolean if a field has been set.
+func (o *ServerInstanceConfiguration) HasInitiatorNqn() bool {
+	if o != nil && !IsNil(o.InitiatorNqn) {
+		return true
+	}
+
+	return false
+}
+
+// SetInitiatorNqn gets a reference to the given string and assigns it to the InitiatorNqn field.
+func (o *ServerInstanceConfiguration) SetInitiatorNqn(v string) {
+	o.InitiatorNqn = &v
+}
+
 // GetIscsiInitiatorIqn returns the IscsiInitiatorIqn field value if set, zero value otherwise.
 func (o *ServerInstanceConfiguration) GetIscsiInitiatorIqn() string {
 	if o == nil || IsNil(o.IscsiInitiatorIqn) {
@@ -717,6 +751,9 @@ func (o ServerInstanceConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RaidProfile) {
 		toSerialize["raidProfile"] = o.RaidProfile
 	}
+	if !IsNil(o.InitiatorNqn) {
+		toSerialize["initiatorNqn"] = o.InitiatorNqn
+	}
 	if !IsNil(o.IscsiInitiatorIqn) {
 		toSerialize["iscsiInitiatorIqn"] = o.IscsiInitiatorIqn
 	}
@@ -799,6 +836,7 @@ func (o *ServerInstanceConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "instanceWanMlagId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "raidProfile")
+		delete(additionalProperties, "initiatorNqn")
 		delete(additionalProperties, "iscsiInitiatorIqn")
 		delete(additionalProperties, "iscsiInitiatorUsername")
 		delete(additionalProperties, "iscsiInitiatorPasswordEncrypted")

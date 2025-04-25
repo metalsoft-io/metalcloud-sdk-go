@@ -79,8 +79,6 @@ type Storage struct {
 	PortGroupAllocationOrder map[string]interface{} `json:"portGroupAllocationOrder,omitempty"`
 	// Port group physical ports
 	PortGroupPhysicalPorts map[string]interface{} `json:"portGroupPhysicalPorts,omitempty"`
-	// Default QoS to use. The QoS must be defined in the storage.
-	DefaultQoS *string `json:"defaultQoS,omitempty"`
 	// Subnet type
 	SubnetType string `json:"subnetType"`
 	JobStatistics *JobGroupStatistics `json:"jobStatistics,omitempty"`
@@ -962,38 +960,6 @@ func (o *Storage) SetPortGroupPhysicalPorts(v map[string]interface{}) {
 	o.PortGroupPhysicalPorts = v
 }
 
-// GetDefaultQoS returns the DefaultQoS field value if set, zero value otherwise.
-func (o *Storage) GetDefaultQoS() string {
-	if o == nil || IsNil(o.DefaultQoS) {
-		var ret string
-		return ret
-	}
-	return *o.DefaultQoS
-}
-
-// GetDefaultQoSOk returns a tuple with the DefaultQoS field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Storage) GetDefaultQoSOk() (*string, bool) {
-	if o == nil || IsNil(o.DefaultQoS) {
-		return nil, false
-	}
-	return o.DefaultQoS, true
-}
-
-// HasDefaultQoS returns a boolean if a field has been set.
-func (o *Storage) HasDefaultQoS() bool {
-	if o != nil && !IsNil(o.DefaultQoS) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultQoS gets a reference to the given string and assigns it to the DefaultQoS field.
-func (o *Storage) SetDefaultQoS(v string) {
-	o.DefaultQoS = &v
-}
-
 // GetSubnetType returns the SubnetType field value
 func (o *Storage) GetSubnetType() string {
 	if o == nil {
@@ -1189,9 +1155,6 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PortGroupPhysicalPorts) {
 		toSerialize["portGroupPhysicalPorts"] = o.PortGroupPhysicalPorts
 	}
-	if !IsNil(o.DefaultQoS) {
-		toSerialize["defaultQoS"] = o.DefaultQoS
-	}
 	toSerialize["subnetType"] = o.SubnetType
 	if !IsNil(o.JobStatistics) {
 		toSerialize["jobStatistics"] = o.JobStatistics
@@ -1285,7 +1248,6 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "portGroupAllocationOrder")
 		delete(additionalProperties, "portGroupPhysicalPorts")
-		delete(additionalProperties, "defaultQoS")
 		delete(additionalProperties, "subnetType")
 		delete(additionalProperties, "jobStatistics")
 		delete(additionalProperties, "extensionInfo")

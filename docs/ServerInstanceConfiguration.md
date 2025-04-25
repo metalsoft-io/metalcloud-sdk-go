@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **InstanceWanMlagId** | Pointer to **int32** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
 **RaidProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | RAID profile for the Instance Interface. | [optional] 
+**InitiatorNqn** | Pointer to **string** | NVMe Initiator NQN for the Instance. | [optional] 
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
 **IscsiInitiatorPasswordEncrypted** | Pointer to **string** | iSCSI Initiator Password for the Instance Interface. | [optional] 
@@ -298,6 +299,31 @@ SetRaidProfile sets RaidProfile field to given value.
 `func (o *ServerInstanceConfiguration) HasRaidProfile() bool`
 
 HasRaidProfile returns a boolean if a field has been set.
+
+### GetInitiatorNqn
+
+`func (o *ServerInstanceConfiguration) GetInitiatorNqn() string`
+
+GetInitiatorNqn returns the InitiatorNqn field if non-nil, zero value otherwise.
+
+### GetInitiatorNqnOk
+
+`func (o *ServerInstanceConfiguration) GetInitiatorNqnOk() (*string, bool)`
+
+GetInitiatorNqnOk returns a tuple with the InitiatorNqn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInitiatorNqn
+
+`func (o *ServerInstanceConfiguration) SetInitiatorNqn(v string)`
+
+SetInitiatorNqn sets InitiatorNqn field to given value.
+
+### HasInitiatorNqn
+
+`func (o *ServerInstanceConfiguration) HasInitiatorNqn() bool`
+
+HasInitiatorNqn returns a boolean if a field has been set.
 
 ### GetIscsiInitiatorIqn
 

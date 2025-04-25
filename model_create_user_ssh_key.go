@@ -16,38 +16,38 @@ import (
 	"fmt"
 )
 
-// checks if the CreateUserSSHKeyDto type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateUserSSHKeyDto{}
+// checks if the CreateUserSSHKey type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateUserSSHKey{}
 
-// CreateUserSSHKeyDto struct for CreateUserSSHKeyDto
-type CreateUserSSHKeyDto struct {
+// CreateUserSSHKey struct for CreateUserSSHKey
+type CreateUserSSHKey struct {
 	// The SSH key of the user
 	SshKey string `json:"sshKey"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _CreateUserSSHKeyDto CreateUserSSHKeyDto
+type _CreateUserSSHKey CreateUserSSHKey
 
-// NewCreateUserSSHKeyDto instantiates a new CreateUserSSHKeyDto object
+// NewCreateUserSSHKey instantiates a new CreateUserSSHKey object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateUserSSHKeyDto(sshKey string) *CreateUserSSHKeyDto {
-	this := CreateUserSSHKeyDto{}
+func NewCreateUserSSHKey(sshKey string) *CreateUserSSHKey {
+	this := CreateUserSSHKey{}
 	this.SshKey = sshKey
 	return &this
 }
 
-// NewCreateUserSSHKeyDtoWithDefaults instantiates a new CreateUserSSHKeyDto object
+// NewCreateUserSSHKeyWithDefaults instantiates a new CreateUserSSHKey object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateUserSSHKeyDtoWithDefaults() *CreateUserSSHKeyDto {
-	this := CreateUserSSHKeyDto{}
+func NewCreateUserSSHKeyWithDefaults() *CreateUserSSHKey {
+	this := CreateUserSSHKey{}
 	return &this
 }
 
 // GetSshKey returns the SshKey field value
-func (o *CreateUserSSHKeyDto) GetSshKey() string {
+func (o *CreateUserSSHKey) GetSshKey() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -58,7 +58,7 @@ func (o *CreateUserSSHKeyDto) GetSshKey() string {
 
 // GetSshKeyOk returns a tuple with the SshKey field value
 // and a boolean to check if the value has been set.
-func (o *CreateUserSSHKeyDto) GetSshKeyOk() (*string, bool) {
+func (o *CreateUserSSHKey) GetSshKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,11 +66,11 @@ func (o *CreateUserSSHKeyDto) GetSshKeyOk() (*string, bool) {
 }
 
 // SetSshKey sets field value
-func (o *CreateUserSSHKeyDto) SetSshKey(v string) {
+func (o *CreateUserSSHKey) SetSshKey(v string) {
 	o.SshKey = v
 }
 
-func (o CreateUserSSHKeyDto) MarshalJSON() ([]byte, error) {
+func (o CreateUserSSHKey) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,7 +78,7 @@ func (o CreateUserSSHKeyDto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateUserSSHKeyDto) ToMap() (map[string]interface{}, error) {
+func (o CreateUserSSHKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["sshKey"] = o.SshKey
 
@@ -89,7 +89,7 @@ func (o CreateUserSSHKeyDto) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *CreateUserSSHKeyDto) UnmarshalJSON(data []byte) (err error) {
+func (o *CreateUserSSHKey) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -111,15 +111,15 @@ func (o *CreateUserSSHKeyDto) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varCreateUserSSHKeyDto := _CreateUserSSHKeyDto{}
+	varCreateUserSSHKey := _CreateUserSSHKey{}
 
-	err = json.Unmarshal(data, &varCreateUserSSHKeyDto)
+	err = json.Unmarshal(data, &varCreateUserSSHKey)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CreateUserSSHKeyDto(varCreateUserSSHKeyDto)
+	*o = CreateUserSSHKey(varCreateUserSSHKey)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -131,38 +131,38 @@ func (o *CreateUserSSHKeyDto) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableCreateUserSSHKeyDto struct {
-	value *CreateUserSSHKeyDto
+type NullableCreateUserSSHKey struct {
+	value *CreateUserSSHKey
 	isSet bool
 }
 
-func (v NullableCreateUserSSHKeyDto) Get() *CreateUserSSHKeyDto {
+func (v NullableCreateUserSSHKey) Get() *CreateUserSSHKey {
 	return v.value
 }
 
-func (v *NullableCreateUserSSHKeyDto) Set(val *CreateUserSSHKeyDto) {
+func (v *NullableCreateUserSSHKey) Set(val *CreateUserSSHKey) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateUserSSHKeyDto) IsSet() bool {
+func (v NullableCreateUserSSHKey) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateUserSSHKeyDto) Unset() {
+func (v *NullableCreateUserSSHKey) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateUserSSHKeyDto(val *CreateUserSSHKeyDto) *NullableCreateUserSSHKeyDto {
-	return &NullableCreateUserSSHKeyDto{value: val, isSet: true}
+func NewNullableCreateUserSSHKey(val *CreateUserSSHKey) *NullableCreateUserSSHKey {
+	return &NullableCreateUserSSHKey{value: val, isSet: true}
 }
 
-func (v NullableCreateUserSSHKeyDto) MarshalJSON() ([]byte, error) {
+func (v NullableCreateUserSSHKey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateUserSSHKeyDto) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateUserSSHKey) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the UpdateUserPermissionsDto type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateUserPermissionsDto{}
+// checks if the UpdateUserPermissions type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateUserPermissions{}
 
-// UpdateUserPermissionsDto struct for UpdateUserPermissionsDto
-type UpdateUserPermissionsDto struct {
+// UpdateUserPermissions struct for UpdateUserPermissions
+type UpdateUserPermissions struct {
 	// Admin password reveal permissions
 	AdminPasswordRevealPermissions *AdminPasswordRevealPermissions `json:"adminPasswordRevealPermissions,omitempty"`
 	// Special permissions
@@ -27,27 +27,27 @@ type UpdateUserPermissionsDto struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _UpdateUserPermissionsDto UpdateUserPermissionsDto
+type _UpdateUserPermissions UpdateUserPermissions
 
-// NewUpdateUserPermissionsDto instantiates a new UpdateUserPermissionsDto object
+// NewUpdateUserPermissions instantiates a new UpdateUserPermissions object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateUserPermissionsDto() *UpdateUserPermissionsDto {
-	this := UpdateUserPermissionsDto{}
+func NewUpdateUserPermissions() *UpdateUserPermissions {
+	this := UpdateUserPermissions{}
 	return &this
 }
 
-// NewUpdateUserPermissionsDtoWithDefaults instantiates a new UpdateUserPermissionsDto object
+// NewUpdateUserPermissionsWithDefaults instantiates a new UpdateUserPermissions object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateUserPermissionsDtoWithDefaults() *UpdateUserPermissionsDto {
-	this := UpdateUserPermissionsDto{}
+func NewUpdateUserPermissionsWithDefaults() *UpdateUserPermissions {
+	this := UpdateUserPermissions{}
 	return &this
 }
 
 // GetAdminPasswordRevealPermissions returns the AdminPasswordRevealPermissions field value if set, zero value otherwise.
-func (o *UpdateUserPermissionsDto) GetAdminPasswordRevealPermissions() AdminPasswordRevealPermissions {
+func (o *UpdateUserPermissions) GetAdminPasswordRevealPermissions() AdminPasswordRevealPermissions {
 	if o == nil || IsNil(o.AdminPasswordRevealPermissions) {
 		var ret AdminPasswordRevealPermissions
 		return ret
@@ -57,7 +57,7 @@ func (o *UpdateUserPermissionsDto) GetAdminPasswordRevealPermissions() AdminPass
 
 // GetAdminPasswordRevealPermissionsOk returns a tuple with the AdminPasswordRevealPermissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateUserPermissionsDto) GetAdminPasswordRevealPermissionsOk() (*AdminPasswordRevealPermissions, bool) {
+func (o *UpdateUserPermissions) GetAdminPasswordRevealPermissionsOk() (*AdminPasswordRevealPermissions, bool) {
 	if o == nil || IsNil(o.AdminPasswordRevealPermissions) {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *UpdateUserPermissionsDto) GetAdminPasswordRevealPermissionsOk() (*Admin
 }
 
 // HasAdminPasswordRevealPermissions returns a boolean if a field has been set.
-func (o *UpdateUserPermissionsDto) HasAdminPasswordRevealPermissions() bool {
+func (o *UpdateUserPermissions) HasAdminPasswordRevealPermissions() bool {
 	if o != nil && !IsNil(o.AdminPasswordRevealPermissions) {
 		return true
 	}
@@ -74,12 +74,12 @@ func (o *UpdateUserPermissionsDto) HasAdminPasswordRevealPermissions() bool {
 }
 
 // SetAdminPasswordRevealPermissions gets a reference to the given AdminPasswordRevealPermissions and assigns it to the AdminPasswordRevealPermissions field.
-func (o *UpdateUserPermissionsDto) SetAdminPasswordRevealPermissions(v AdminPasswordRevealPermissions) {
+func (o *UpdateUserPermissions) SetAdminPasswordRevealPermissions(v AdminPasswordRevealPermissions) {
 	o.AdminPasswordRevealPermissions = &v
 }
 
 // GetSpecialPermissions returns the SpecialPermissions field value if set, zero value otherwise.
-func (o *UpdateUserPermissionsDto) GetSpecialPermissions() SpecialPermissions {
+func (o *UpdateUserPermissions) GetSpecialPermissions() SpecialPermissions {
 	if o == nil || IsNil(o.SpecialPermissions) {
 		var ret SpecialPermissions
 		return ret
@@ -89,7 +89,7 @@ func (o *UpdateUserPermissionsDto) GetSpecialPermissions() SpecialPermissions {
 
 // GetSpecialPermissionsOk returns a tuple with the SpecialPermissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateUserPermissionsDto) GetSpecialPermissionsOk() (*SpecialPermissions, bool) {
+func (o *UpdateUserPermissions) GetSpecialPermissionsOk() (*SpecialPermissions, bool) {
 	if o == nil || IsNil(o.SpecialPermissions) {
 		return nil, false
 	}
@@ -97,7 +97,7 @@ func (o *UpdateUserPermissionsDto) GetSpecialPermissionsOk() (*SpecialPermission
 }
 
 // HasSpecialPermissions returns a boolean if a field has been set.
-func (o *UpdateUserPermissionsDto) HasSpecialPermissions() bool {
+func (o *UpdateUserPermissions) HasSpecialPermissions() bool {
 	if o != nil && !IsNil(o.SpecialPermissions) {
 		return true
 	}
@@ -106,11 +106,11 @@ func (o *UpdateUserPermissionsDto) HasSpecialPermissions() bool {
 }
 
 // SetSpecialPermissions gets a reference to the given SpecialPermissions and assigns it to the SpecialPermissions field.
-func (o *UpdateUserPermissionsDto) SetSpecialPermissions(v SpecialPermissions) {
+func (o *UpdateUserPermissions) SetSpecialPermissions(v SpecialPermissions) {
 	o.SpecialPermissions = &v
 }
 
-func (o UpdateUserPermissionsDto) MarshalJSON() ([]byte, error) {
+func (o UpdateUserPermissions) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -118,7 +118,7 @@ func (o UpdateUserPermissionsDto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateUserPermissionsDto) ToMap() (map[string]interface{}, error) {
+func (o UpdateUserPermissions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AdminPasswordRevealPermissions) {
 		toSerialize["adminPasswordRevealPermissions"] = o.AdminPasswordRevealPermissions
@@ -134,16 +134,16 @@ func (o UpdateUserPermissionsDto) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *UpdateUserPermissionsDto) UnmarshalJSON(data []byte) (err error) {
-	varUpdateUserPermissionsDto := _UpdateUserPermissionsDto{}
+func (o *UpdateUserPermissions) UnmarshalJSON(data []byte) (err error) {
+	varUpdateUserPermissions := _UpdateUserPermissions{}
 
-	err = json.Unmarshal(data, &varUpdateUserPermissionsDto)
+	err = json.Unmarshal(data, &varUpdateUserPermissions)
 
 	if err != nil {
 		return err
 	}
 
-	*o = UpdateUserPermissionsDto(varUpdateUserPermissionsDto)
+	*o = UpdateUserPermissions(varUpdateUserPermissions)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -156,38 +156,38 @@ func (o *UpdateUserPermissionsDto) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableUpdateUserPermissionsDto struct {
-	value *UpdateUserPermissionsDto
+type NullableUpdateUserPermissions struct {
+	value *UpdateUserPermissions
 	isSet bool
 }
 
-func (v NullableUpdateUserPermissionsDto) Get() *UpdateUserPermissionsDto {
+func (v NullableUpdateUserPermissions) Get() *UpdateUserPermissions {
 	return v.value
 }
 
-func (v *NullableUpdateUserPermissionsDto) Set(val *UpdateUserPermissionsDto) {
+func (v *NullableUpdateUserPermissions) Set(val *UpdateUserPermissions) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateUserPermissionsDto) IsSet() bool {
+func (v NullableUpdateUserPermissions) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateUserPermissionsDto) Unset() {
+func (v *NullableUpdateUserPermissions) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateUserPermissionsDto(val *UpdateUserPermissionsDto) *NullableUpdateUserPermissionsDto {
-	return &NullableUpdateUserPermissionsDto{value: val, isSet: true}
+func NewNullableUpdateUserPermissions(val *UpdateUserPermissions) *NullableUpdateUserPermissions {
+	return &NullableUpdateUserPermissions{value: val, isSet: true}
 }
 
-func (v NullableUpdateUserPermissionsDto) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateUserPermissions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateUserPermissionsDto) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateUserPermissions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

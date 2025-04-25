@@ -1,4 +1,4 @@
-# ApplyProfilesToLogicalNetworkCandidateDto
+# ApplyProfilesToLogicalNetworkConfig
 
 ## Properties
 
@@ -8,56 +8,56 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewApplyProfilesToLogicalNetworkCandidateDto
+### NewApplyProfilesToLogicalNetworkConfig
 
-`func NewApplyProfilesToLogicalNetworkCandidateDto() *ApplyProfilesToLogicalNetworkCandidateDto`
+`func NewApplyProfilesToLogicalNetworkConfig() *ApplyProfilesToLogicalNetworkConfig`
 
-NewApplyProfilesToLogicalNetworkCandidateDto instantiates a new ApplyProfilesToLogicalNetworkCandidateDto object
+NewApplyProfilesToLogicalNetworkConfig instantiates a new ApplyProfilesToLogicalNetworkConfig object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewApplyProfilesToLogicalNetworkCandidateDtoWithDefaults
+### NewApplyProfilesToLogicalNetworkConfigWithDefaults
 
-`func NewApplyProfilesToLogicalNetworkCandidateDtoWithDefaults() *ApplyProfilesToLogicalNetworkCandidateDto`
+`func NewApplyProfilesToLogicalNetworkConfigWithDefaults() *ApplyProfilesToLogicalNetworkConfig`
 
-NewApplyProfilesToLogicalNetworkCandidateDtoWithDefaults instantiates a new ApplyProfilesToLogicalNetworkCandidateDto object
+NewApplyProfilesToLogicalNetworkConfigWithDefaults instantiates a new ApplyProfilesToLogicalNetworkConfig object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetLogicalNetworkProfileId
 
-`func (o *ApplyProfilesToLogicalNetworkCandidateDto) GetLogicalNetworkProfileId() int32`
+`func (o *ApplyProfilesToLogicalNetworkConfig) GetLogicalNetworkProfileId() int32`
 
 GetLogicalNetworkProfileId returns the LogicalNetworkProfileId field if non-nil, zero value otherwise.
 
 ### GetLogicalNetworkProfileIdOk
 
-`func (o *ApplyProfilesToLogicalNetworkCandidateDto) GetLogicalNetworkProfileIdOk() (*int32, bool)`
+`func (o *ApplyProfilesToLogicalNetworkConfig) GetLogicalNetworkProfileIdOk() (*int32, bool)`
 
 GetLogicalNetworkProfileIdOk returns a tuple with the LogicalNetworkProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLogicalNetworkProfileId
 
-`func (o *ApplyProfilesToLogicalNetworkCandidateDto) SetLogicalNetworkProfileId(v int32)`
+`func (o *ApplyProfilesToLogicalNetworkConfig) SetLogicalNetworkProfileId(v int32)`
 
 SetLogicalNetworkProfileId sets LogicalNetworkProfileId field to given value.
 
 ### HasLogicalNetworkProfileId
 
-`func (o *ApplyProfilesToLogicalNetworkCandidateDto) HasLogicalNetworkProfileId() bool`
+`func (o *ApplyProfilesToLogicalNetworkConfig) HasLogicalNetworkProfileId() bool`
 
 HasLogicalNetworkProfileId returns a boolean if a field has been set.
 
 ### SetLogicalNetworkProfileIdNil
 
-`func (o *ApplyProfilesToLogicalNetworkCandidateDto) SetLogicalNetworkProfileIdNil(b bool)`
+`func (o *ApplyProfilesToLogicalNetworkConfig) SetLogicalNetworkProfileIdNil(b bool)`
 
  SetLogicalNetworkProfileIdNil sets the value for LogicalNetworkProfileId to be an explicit nil
 
 ### UnsetLogicalNetworkProfileId
-`func (o *ApplyProfilesToLogicalNetworkCandidateDto) UnsetLogicalNetworkProfileId()`
+`func (o *ApplyProfilesToLogicalNetworkConfig) UnsetLogicalNetworkProfileId()`
 
 UnsetLogicalNetworkProfileId ensures that no value is present for LogicalNetworkProfileId, not even an explicit nil
 
