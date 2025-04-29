@@ -213,8 +213,8 @@ docs/ExtensionInstanceAPI.md
 docs/ExtensionInstanceArray.md
 docs/ExtensionInstanceConfiguration.md
 docs/ExtensionInstancePaginatedList.md
-docs/ExtensionList.md
 docs/ExtensionOutput.md
+docs/ExtensionPaginatedList.md
 docs/ExtensionSharedDrive.md
 docs/ExtensionTask.md
 docs/ExtensionTaskAnsible.md
@@ -353,7 +353,9 @@ docs/PaginatedResponseMeta.md
 docs/PaginatedVlanAllocationStrategy.md
 docs/PaginatedVniAllocationStrategy.md
 docs/ParentInfrastructure.md
-docs/PartialTypeClass.md
+docs/PartialLocation.md
+docs/PartialNetworkDevicePolicy.md
+docs/PartialServerRegistrationBiosProfile.md
 docs/PasswordReset.md
 docs/Permission.md
 docs/PermissionList.md
@@ -446,6 +448,7 @@ docs/ServerPaginatedList.md
 docs/ServerPolicy.md
 docs/ServerPolicyUpdate.md
 docs/ServerPowerSet.md
+docs/ServerRegistrationBiosProfile.md
 docs/ServerStatistics.md
 docs/ServerStorageController.md
 docs/ServerType.md
@@ -790,8 +793,8 @@ model_extension_instance.go
 model_extension_instance_array.go
 model_extension_instance_configuration.go
 model_extension_instance_paginated_list.go
-model_extension_list.go
 model_extension_output.go
+model_extension_paginated_list.go
 model_extension_shared_drive.go
 model_extension_task.go
 model_extension_task_ansible.go
@@ -916,7 +919,9 @@ model_paginated_response_meta.go
 model_paginated_vlan_allocation_strategy.go
 model_paginated_vni_allocation_strategy.go
 model_parent_infrastructure.go
-model_partial_type_class.go
+model_partial_location.go
+model_partial_network_device_policy.go
+model_partial_server_registration_bios_profile.go
 model_password_reset.go
 model_permission.go
 model_permission_list.go
@@ -999,6 +1004,7 @@ model_server_paginated_list.go
 model_server_policy.go
 model_server_policy_update.go
 model_server_power_set.go
+model_server_registration_bios_profile.go
 model_server_statistics.go
 model_server_storage_controller.go
 model_server_type.go

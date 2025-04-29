@@ -22,7 +22,7 @@ var _ MappedNullable = &UpdateSharedDrive{}
 type UpdateSharedDrive struct {
 	// Label of the Drive.
 	Label *string `json:"label,omitempty"`
-	// Disk size in MB for Drive
+	// Disk size in MiB for Drive
 	SizeMb *float32 `json:"sizeMb,omitempty"`
 	// Id of the Logical Network for the Drive.
 	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`

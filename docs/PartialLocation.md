@@ -1,4 +1,4 @@
-# PartialTypeClass
+# PartialLocation
 
 ## Properties
 
@@ -10,95 +10,95 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewPartialTypeClass
+### NewPartialLocation
 
-`func NewPartialTypeClass() *PartialTypeClass`
+`func NewPartialLocation() *PartialLocation`
 
-NewPartialTypeClass instantiates a new PartialTypeClass object
+NewPartialLocation instantiates a new PartialLocation object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewPartialTypeClassWithDefaults
+### NewPartialLocationWithDefaults
 
-`func NewPartialTypeClassWithDefaults() *PartialTypeClass`
+`func NewPartialLocationWithDefaults() *PartialLocation`
 
-NewPartialTypeClassWithDefaults instantiates a new PartialTypeClass object
+NewPartialLocationWithDefaults instantiates a new PartialLocation object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAddress
 
-`func (o *PartialTypeClass) GetAddress() string`
+`func (o *PartialLocation) GetAddress() string`
 
 GetAddress returns the Address field if non-nil, zero value otherwise.
 
 ### GetAddressOk
 
-`func (o *PartialTypeClass) GetAddressOk() (*string, bool)`
+`func (o *PartialLocation) GetAddressOk() (*string, bool)`
 
 GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddress
 
-`func (o *PartialTypeClass) SetAddress(v string)`
+`func (o *PartialLocation) SetAddress(v string)`
 
 SetAddress sets Address field to given value.
 
 ### HasAddress
 
-`func (o *PartialTypeClass) HasAddress() bool`
+`func (o *PartialLocation) HasAddress() bool`
 
 HasAddress returns a boolean if a field has been set.
 
 ### GetLatitude
 
-`func (o *PartialTypeClass) GetLatitude() float32`
+`func (o *PartialLocation) GetLatitude() float32`
 
 GetLatitude returns the Latitude field if non-nil, zero value otherwise.
 
 ### GetLatitudeOk
 
-`func (o *PartialTypeClass) GetLatitudeOk() (*float32, bool)`
+`func (o *PartialLocation) GetLatitudeOk() (*float32, bool)`
 
 GetLatitudeOk returns a tuple with the Latitude field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLatitude
 
-`func (o *PartialTypeClass) SetLatitude(v float32)`
+`func (o *PartialLocation) SetLatitude(v float32)`
 
 SetLatitude sets Latitude field to given value.
 
 ### HasLatitude
 
-`func (o *PartialTypeClass) HasLatitude() bool`
+`func (o *PartialLocation) HasLatitude() bool`
 
 HasLatitude returns a boolean if a field has been set.
 
 ### GetLongitude
 
-`func (o *PartialTypeClass) GetLongitude() float32`
+`func (o *PartialLocation) GetLongitude() float32`
 
 GetLongitude returns the Longitude field if non-nil, zero value otherwise.
 
 ### GetLongitudeOk
 
-`func (o *PartialTypeClass) GetLongitudeOk() (*float32, bool)`
+`func (o *PartialLocation) GetLongitudeOk() (*float32, bool)`
 
 GetLongitudeOk returns a tuple with the Longitude field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLongitude
 
-`func (o *PartialTypeClass) SetLongitude(v float32)`
+`func (o *PartialLocation) SetLongitude(v float32)`
 
 SetLongitude sets Longitude field to given value.
 
 ### HasLongitude
 
-`func (o *PartialTypeClass) HasLongitude() bool`
+`func (o *PartialLocation) HasLongitude() bool`
 
 HasLongitude returns a boolean if a field has been set.
 

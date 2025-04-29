@@ -25,8 +25,6 @@ type ServerVNCInfo struct {
 	ActiveSessions float32 `json:"activeSessions"`
 	// Max active VNC sessions
 	MaxSessions float32 `json:"maxSessions"`
-	// VNC port
-	Port float32 `json:"port"`
 	// VNC timeout
 	Timeout float32 `json:"timeout"`
 	// VNC enabled
@@ -40,11 +38,10 @@ type _ServerVNCInfo ServerVNCInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerVNCInfo(activeSessions float32, maxSessions float32, port float32, timeout float32, enable string) *ServerVNCInfo {
+func NewServerVNCInfo(activeSessions float32, maxSessions float32, timeout float32, enable string) *ServerVNCInfo {
 	this := ServerVNCInfo{}
 	this.ActiveSessions = activeSessions
 	this.MaxSessions = maxSessions
-	this.Port = port
 	this.Timeout = timeout
 	this.Enable = enable
 	return &this
@@ -104,30 +101,6 @@ func (o *ServerVNCInfo) GetMaxSessionsOk() (*float32, bool) {
 // SetMaxSessions sets field value
 func (o *ServerVNCInfo) SetMaxSessions(v float32) {
 	o.MaxSessions = v
-}
-
-// GetPort returns the Port field value
-func (o *ServerVNCInfo) GetPort() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Port
-}
-
-// GetPortOk returns a tuple with the Port field value
-// and a boolean to check if the value has been set.
-func (o *ServerVNCInfo) GetPortOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Port, true
-}
-
-// SetPort sets field value
-func (o *ServerVNCInfo) SetPort(v float32) {
-	o.Port = v
 }
 
 // GetTimeout returns the Timeout field value
@@ -190,7 +163,6 @@ func (o ServerVNCInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["activeSessions"] = o.ActiveSessions
 	toSerialize["maxSessions"] = o.MaxSessions
-	toSerialize["port"] = o.Port
 	toSerialize["timeout"] = o.Timeout
 	toSerialize["enable"] = o.Enable
 
@@ -208,7 +180,6 @@ func (o *ServerVNCInfo) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"activeSessions",
 		"maxSessions",
-		"port",
 		"timeout",
 		"enable",
 	}
@@ -242,7 +213,6 @@ func (o *ServerVNCInfo) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "activeSessions")
 		delete(additionalProperties, "maxSessions")
-		delete(additionalProperties, "port")
 		delete(additionalProperties, "timeout")
 		delete(additionalProperties, "enable")
 		o.AdditionalProperties = additionalProperties

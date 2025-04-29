@@ -44,7 +44,7 @@ type ServerPolicy struct {
 	// Automatically set servers as available
 	AutomaticallySetServersAsAvailable bool `json:"automaticallySetServersAsAvailable"`
 	// Server registration BIOS profile
-	ServerRegistrationBiosProfile []string `json:"serverRegistrationBiosProfile"`
+	ServerRegistrationBiosProfile []ServerRegistrationBiosProfile `json:"serverRegistrationBiosProfile"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,7 +54,7 @@ type _ServerPolicy ServerPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, raidConfigurationEnabled bool, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []string) *ServerPolicy {
+func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, raidConfigurationEnabled bool, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []ServerRegistrationBiosProfile) *ServerPolicy {
 	this := ServerPolicy{}
 	this.RegisterCredentials = registerCredentials
 	this.MinimumNumberOfConnectedInterfaces = minimumNumberOfConnectedInterfaces
@@ -344,9 +344,9 @@ func (o *ServerPolicy) SetAutomaticallySetServersAsAvailable(v bool) {
 }
 
 // GetServerRegistrationBiosProfile returns the ServerRegistrationBiosProfile field value
-func (o *ServerPolicy) GetServerRegistrationBiosProfile() []string {
+func (o *ServerPolicy) GetServerRegistrationBiosProfile() []ServerRegistrationBiosProfile {
 	if o == nil {
-		var ret []string
+		var ret []ServerRegistrationBiosProfile
 		return ret
 	}
 
@@ -355,7 +355,7 @@ func (o *ServerPolicy) GetServerRegistrationBiosProfile() []string {
 
 // GetServerRegistrationBiosProfileOk returns a tuple with the ServerRegistrationBiosProfile field value
 // and a boolean to check if the value has been set.
-func (o *ServerPolicy) GetServerRegistrationBiosProfileOk() ([]string, bool) {
+func (o *ServerPolicy) GetServerRegistrationBiosProfileOk() ([]ServerRegistrationBiosProfile, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -363,7 +363,7 @@ func (o *ServerPolicy) GetServerRegistrationBiosProfileOk() ([]string, bool) {
 }
 
 // SetServerRegistrationBiosProfile sets field value
-func (o *ServerPolicy) SetServerRegistrationBiosProfile(v []string) {
+func (o *ServerPolicy) SetServerRegistrationBiosProfile(v []ServerRegistrationBiosProfile) {
 	o.ServerRegistrationBiosProfile = v
 }
 

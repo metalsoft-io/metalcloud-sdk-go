@@ -46,7 +46,7 @@ type FirmwareCatalog struct {
 	// Timestamp when the catalog was created
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Links to other resources
-	Links map[string]interface{} `json:"links"`
+	Links []Link `json:"links"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,7 +56,7 @@ type _FirmwareCatalog FirmwareCatalog
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareCatalog(id float32, name string, vendor string, updateType string, createdTimestamp string, links map[string]interface{}) *FirmwareCatalog {
+func NewFirmwareCatalog(id float32, name string, vendor string, updateType string, createdTimestamp string, links []Link) *FirmwareCatalog {
 	this := FirmwareCatalog{}
 	this.Id = id
 	this.Name = name
@@ -422,9 +422,9 @@ func (o *FirmwareCatalog) SetCreatedTimestamp(v string) {
 }
 
 // GetLinks returns the Links field value
-func (o *FirmwareCatalog) GetLinks() map[string]interface{} {
+func (o *FirmwareCatalog) GetLinks() []Link {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret []Link
 		return ret
 	}
 
@@ -433,15 +433,15 @@ func (o *FirmwareCatalog) GetLinks() map[string]interface{} {
 
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareCatalog) GetLinksOk() (map[string]interface{}, bool) {
+func (o *FirmwareCatalog) GetLinksOk() ([]Link, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Links, true
 }
 
 // SetLinks sets field value
-func (o *FirmwareCatalog) SetLinks(v map[string]interface{}) {
+func (o *FirmwareCatalog) SetLinks(v []Link) {
 	o.Links = v
 }
 

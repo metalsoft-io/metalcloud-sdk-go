@@ -43,7 +43,7 @@ type ServerPolicyUpdate struct {
 	// Automatically set servers as available
 	AutomaticallySetServersAsAvailable *bool `json:"automaticallySetServersAsAvailable,omitempty"`
 	// Server registration BIOS profile
-	ServerRegistrationBiosProfile []string `json:"serverRegistrationBiosProfile,omitempty"`
+	ServerRegistrationBiosProfile []PartialServerRegistrationBiosProfile `json:"serverRegistrationBiosProfile,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -419,9 +419,9 @@ func (o *ServerPolicyUpdate) SetAutomaticallySetServersAsAvailable(v bool) {
 }
 
 // GetServerRegistrationBiosProfile returns the ServerRegistrationBiosProfile field value if set, zero value otherwise.
-func (o *ServerPolicyUpdate) GetServerRegistrationBiosProfile() []string {
+func (o *ServerPolicyUpdate) GetServerRegistrationBiosProfile() []PartialServerRegistrationBiosProfile {
 	if o == nil || IsNil(o.ServerRegistrationBiosProfile) {
-		var ret []string
+		var ret []PartialServerRegistrationBiosProfile
 		return ret
 	}
 	return o.ServerRegistrationBiosProfile
@@ -429,7 +429,7 @@ func (o *ServerPolicyUpdate) GetServerRegistrationBiosProfile() []string {
 
 // GetServerRegistrationBiosProfileOk returns a tuple with the ServerRegistrationBiosProfile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerPolicyUpdate) GetServerRegistrationBiosProfileOk() ([]string, bool) {
+func (o *ServerPolicyUpdate) GetServerRegistrationBiosProfileOk() ([]PartialServerRegistrationBiosProfile, bool) {
 	if o == nil || IsNil(o.ServerRegistrationBiosProfile) {
 		return nil, false
 	}
@@ -445,8 +445,8 @@ func (o *ServerPolicyUpdate) HasServerRegistrationBiosProfile() bool {
 	return false
 }
 
-// SetServerRegistrationBiosProfile gets a reference to the given []string and assigns it to the ServerRegistrationBiosProfile field.
-func (o *ServerPolicyUpdate) SetServerRegistrationBiosProfile(v []string) {
+// SetServerRegistrationBiosProfile gets a reference to the given []PartialServerRegistrationBiosProfile and assigns it to the ServerRegistrationBiosProfile field.
+func (o *ServerPolicyUpdate) SetServerRegistrationBiosProfile(v []PartialServerRegistrationBiosProfile) {
 	o.ServerRegistrationBiosProfile = v
 }
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the Drive. | 
 **StoragePoolId** | Pointer to **float32** | Id of the storage pool the Drive is assigned to | [optional] 
-**SizeMb** | **float32** | Disk size in MB for Drive | 
+**SizeMb** | **float32** | Disk size in MiB for Drive | 
 **StorageImageName** | Pointer to **string** | The name of the storage image used by the Drive. | [optional] 
 **StorageType** | **string** | Service status of the Drive | [default to "iscsi_ssd"]
 **QoS** | Pointer to **string** | The QoS of the Drive. | [optional] 

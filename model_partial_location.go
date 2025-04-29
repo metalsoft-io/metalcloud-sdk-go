@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the PartialTypeClass type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PartialTypeClass{}
+// checks if the PartialLocation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PartialLocation{}
 
-// PartialTypeClass struct for PartialTypeClass
-type PartialTypeClass struct {
+// PartialLocation struct for PartialLocation
+type PartialLocation struct {
 	// Address of the site
 	Address *string `json:"address,omitempty"`
 	// Latitude of the site
@@ -29,27 +29,27 @@ type PartialTypeClass struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _PartialTypeClass PartialTypeClass
+type _PartialLocation PartialLocation
 
-// NewPartialTypeClass instantiates a new PartialTypeClass object
+// NewPartialLocation instantiates a new PartialLocation object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPartialTypeClass() *PartialTypeClass {
-	this := PartialTypeClass{}
+func NewPartialLocation() *PartialLocation {
+	this := PartialLocation{}
 	return &this
 }
 
-// NewPartialTypeClassWithDefaults instantiates a new PartialTypeClass object
+// NewPartialLocationWithDefaults instantiates a new PartialLocation object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPartialTypeClassWithDefaults() *PartialTypeClass {
-	this := PartialTypeClass{}
+func NewPartialLocationWithDefaults() *PartialLocation {
+	this := PartialLocation{}
 	return &this
 }
 
 // GetAddress returns the Address field value if set, zero value otherwise.
-func (o *PartialTypeClass) GetAddress() string {
+func (o *PartialLocation) GetAddress() string {
 	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
@@ -59,7 +59,7 @@ func (o *PartialTypeClass) GetAddress() string {
 
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialTypeClass) GetAddressOk() (*string, bool) {
+func (o *PartialLocation) GetAddressOk() (*string, bool) {
 	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *PartialTypeClass) GetAddressOk() (*string, bool) {
 }
 
 // HasAddress returns a boolean if a field has been set.
-func (o *PartialTypeClass) HasAddress() bool {
+func (o *PartialLocation) HasAddress() bool {
 	if o != nil && !IsNil(o.Address) {
 		return true
 	}
@@ -76,12 +76,12 @@ func (o *PartialTypeClass) HasAddress() bool {
 }
 
 // SetAddress gets a reference to the given string and assigns it to the Address field.
-func (o *PartialTypeClass) SetAddress(v string) {
+func (o *PartialLocation) SetAddress(v string) {
 	o.Address = &v
 }
 
 // GetLatitude returns the Latitude field value if set, zero value otherwise.
-func (o *PartialTypeClass) GetLatitude() float32 {
+func (o *PartialLocation) GetLatitude() float32 {
 	if o == nil || IsNil(o.Latitude) {
 		var ret float32
 		return ret
@@ -91,7 +91,7 @@ func (o *PartialTypeClass) GetLatitude() float32 {
 
 // GetLatitudeOk returns a tuple with the Latitude field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialTypeClass) GetLatitudeOk() (*float32, bool) {
+func (o *PartialLocation) GetLatitudeOk() (*float32, bool) {
 	if o == nil || IsNil(o.Latitude) {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *PartialTypeClass) GetLatitudeOk() (*float32, bool) {
 }
 
 // HasLatitude returns a boolean if a field has been set.
-func (o *PartialTypeClass) HasLatitude() bool {
+func (o *PartialLocation) HasLatitude() bool {
 	if o != nil && !IsNil(o.Latitude) {
 		return true
 	}
@@ -108,12 +108,12 @@ func (o *PartialTypeClass) HasLatitude() bool {
 }
 
 // SetLatitude gets a reference to the given float32 and assigns it to the Latitude field.
-func (o *PartialTypeClass) SetLatitude(v float32) {
+func (o *PartialLocation) SetLatitude(v float32) {
 	o.Latitude = &v
 }
 
 // GetLongitude returns the Longitude field value if set, zero value otherwise.
-func (o *PartialTypeClass) GetLongitude() float32 {
+func (o *PartialLocation) GetLongitude() float32 {
 	if o == nil || IsNil(o.Longitude) {
 		var ret float32
 		return ret
@@ -123,7 +123,7 @@ func (o *PartialTypeClass) GetLongitude() float32 {
 
 // GetLongitudeOk returns a tuple with the Longitude field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialTypeClass) GetLongitudeOk() (*float32, bool) {
+func (o *PartialLocation) GetLongitudeOk() (*float32, bool) {
 	if o == nil || IsNil(o.Longitude) {
 		return nil, false
 	}
@@ -131,7 +131,7 @@ func (o *PartialTypeClass) GetLongitudeOk() (*float32, bool) {
 }
 
 // HasLongitude returns a boolean if a field has been set.
-func (o *PartialTypeClass) HasLongitude() bool {
+func (o *PartialLocation) HasLongitude() bool {
 	if o != nil && !IsNil(o.Longitude) {
 		return true
 	}
@@ -140,11 +140,11 @@ func (o *PartialTypeClass) HasLongitude() bool {
 }
 
 // SetLongitude gets a reference to the given float32 and assigns it to the Longitude field.
-func (o *PartialTypeClass) SetLongitude(v float32) {
+func (o *PartialLocation) SetLongitude(v float32) {
 	o.Longitude = &v
 }
 
-func (o PartialTypeClass) MarshalJSON() ([]byte, error) {
+func (o PartialLocation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -152,7 +152,7 @@ func (o PartialTypeClass) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PartialTypeClass) ToMap() (map[string]interface{}, error) {
+func (o PartialLocation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
@@ -171,16 +171,16 @@ func (o PartialTypeClass) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *PartialTypeClass) UnmarshalJSON(data []byte) (err error) {
-	varPartialTypeClass := _PartialTypeClass{}
+func (o *PartialLocation) UnmarshalJSON(data []byte) (err error) {
+	varPartialLocation := _PartialLocation{}
 
-	err = json.Unmarshal(data, &varPartialTypeClass)
+	err = json.Unmarshal(data, &varPartialLocation)
 
 	if err != nil {
 		return err
 	}
 
-	*o = PartialTypeClass(varPartialTypeClass)
+	*o = PartialLocation(varPartialLocation)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -194,38 +194,38 @@ func (o *PartialTypeClass) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullablePartialTypeClass struct {
-	value *PartialTypeClass
+type NullablePartialLocation struct {
+	value *PartialLocation
 	isSet bool
 }
 
-func (v NullablePartialTypeClass) Get() *PartialTypeClass {
+func (v NullablePartialLocation) Get() *PartialLocation {
 	return v.value
 }
 
-func (v *NullablePartialTypeClass) Set(val *PartialTypeClass) {
+func (v *NullablePartialLocation) Set(val *PartialLocation) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePartialTypeClass) IsSet() bool {
+func (v NullablePartialLocation) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePartialTypeClass) Unset() {
+func (v *NullablePartialLocation) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePartialTypeClass(val *PartialTypeClass) *NullablePartialTypeClass {
-	return &NullablePartialTypeClass{value: val, isSet: true}
+func NewNullablePartialLocation(val *PartialLocation) *NullablePartialLocation {
+	return &NullablePartialLocation{value: val, isSet: true}
 }
 
-func (v NullablePartialTypeClass) MarshalJSON() ([]byte, error) {
+func (v NullablePartialLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePartialTypeClass) UnmarshalJSON(src []byte) error {
+func (v *NullablePartialLocation) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

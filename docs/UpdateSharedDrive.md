@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | Label of the Drive. | [optional] 
-**SizeMb** | Pointer to **float32** | Disk size in MB for Drive | [optional] 
+**SizeMb** | Pointer to **float32** | Disk size in MiB for Drive | [optional] 
 **LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Drive. | [optional] 
 
 ## Methods

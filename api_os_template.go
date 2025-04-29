@@ -442,6 +442,7 @@ type OSTemplateAPIGetOSTemplatesRequest struct {
 	filterDeviceType *[]string
 	filterLabel *[]string
 	filterOsName *[]string
+	filterInstallOnieStrings *[]string
 	filterStatus *[]string
 	filterVisibility *[]string
 	filterTags *[]string
@@ -481,6 +482,12 @@ func (r OSTemplateAPIGetOSTemplatesRequest) FilterOsName(filterOsName []string) 
 	return r
 }
 
+// Filter by install.onieStrings query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.install.onieStrings&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.install.onieStrings&#x3D;$not:$like:John Doe&amp;filter.install.onieStrings&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r OSTemplateAPIGetOSTemplatesRequest) FilterInstallOnieStrings(filterInstallOnieStrings []string) OSTemplateAPIGetOSTemplatesRequest {
+	r.filterInstallOnieStrings = &filterInstallOnieStrings
+	return r
+}
+
 // Filter by status query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.status&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.status&#x3D;$not:$like:John Doe&amp;filter.status&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
 func (r OSTemplateAPIGetOSTemplatesRequest) FilterStatus(filterStatus []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.filterStatus = &filterStatus
@@ -511,7 +518,7 @@ func (r OSTemplateAPIGetOSTemplatesRequest) Search(search string) OSTemplateAPIG
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,name,label,device.type,os.name           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;device.type&lt;/li&gt; &lt;li&gt;os.name&lt;/li&gt; &lt;li&gt;os.version&lt;/li&gt; &lt;li&gt;visibility&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;createdBy&lt;/li&gt; &lt;li&gt;modifiedBy&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,name,label,device.type,os.name           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;device.type&lt;/li&gt; &lt;li&gt;os.name&lt;/li&gt; &lt;li&gt;os.version&lt;/li&gt; &lt;li&gt;install.onieStrings&lt;/li&gt; &lt;li&gt;visibility&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;createdBy&lt;/li&gt; &lt;li&gt;modifiedBy&lt;/li&gt;&lt;/ul&gt;         
 func (r OSTemplateAPIGetOSTemplatesRequest) SearchBy(searchBy []string) OSTemplateAPIGetOSTemplatesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -600,6 +607,17 @@ func (a *OSTemplateAPIService) GetOSTemplatesExecute(r OSTemplateAPIGetOSTemplat
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.os.name", t, "form", "multi")
+		}
+	}
+	if r.filterInstallOnieStrings != nil {
+		t := *r.filterInstallOnieStrings
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.install.onieStrings", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.install.onieStrings", t, "form", "multi")
 		}
 	}
 	if r.filterStatus != nil {

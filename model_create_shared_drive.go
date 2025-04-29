@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateSharedDrive{}
 
 // CreateSharedDrive struct for CreateSharedDrive
 type CreateSharedDrive struct {
-	// Disk size in MB for Drive
+	// Disk size in MiB for Drive
 	SizeMb float32 `json:"sizeMb"`
 	// Id of the Logical Network for the Drive.
 	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`

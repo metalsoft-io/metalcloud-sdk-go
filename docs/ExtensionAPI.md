@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## GetExtensions
 
-> ExtensionList GetExtensions(ctx).Page(page).Limit(limit).FilterStatus(filterStatus).FilterName(filterName).FilterLabel(filterLabel).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> ExtensionPaginatedList GetExtensions(ctx).Page(page).Limit(limit).FilterStatus(filterStatus).FilterName(filterName).FilterLabel(filterLabel).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get a list of available extensions
 
@@ -256,7 +256,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExtensionAPI.GetExtensions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetExtensions`: ExtensionList
+	// response from `GetExtensions`: ExtensionPaginatedList
 	fmt.Fprintf(os.Stdout, "Response from `ExtensionAPI.GetExtensions`: %v\n", resp)
 }
 ```
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExtensionList**](ExtensionList.md)
+[**ExtensionPaginatedList**](ExtensionPaginatedList.md)
 
 ### Authorization
 

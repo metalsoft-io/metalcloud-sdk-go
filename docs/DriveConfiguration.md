@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **GroupId** | **float32** | Drive Array Id | 
 **InstanceId** | Pointer to **float32** |  | [optional] 
 **StoragePoolId** | Pointer to **float32** | Id of the storage pool the Drive is assigned to | [optional] 
-**SizeMb** | **float32** | Disk size in MB for Drive | 
+**SizeMb** | **float32** | Disk size in MiB for Drive | 
 **StorageImageName** | Pointer to **string** | The name of the storage image used by the Drive. | [optional] 
 **IscsiIndexHex** | Pointer to **string** | The iSCSI Index in hex format of the Drive. | [optional] 
 **TemplateId** | Pointer to **float32** | Template Id | [optional] 

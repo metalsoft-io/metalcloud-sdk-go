@@ -3033,7 +3033,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExtensionList'
+                $ref: '#/components/schemas/ExtensionPaginatedList'
           description: The list of the available extensions
         "401":
           description: Unauthorized
@@ -9171,20 +9171,7 @@ paths:
                     <p>
                        <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$and</li>
-          <li>$or</li>
-          <li>$not</li>
-          <li>$eq</li>
-          <li>$gt</li>
-          <li>$gte</li>
-          <li>$in</li>
-          <li>$null</li>
-          <li>$lt</li>
-          <li>$lte</li>
-          <li>$btw</li>
-          <li>$ilike</li>
-          <li>$sw</li>
-          <li>$contains</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
         name: filter.id
@@ -9202,20 +9189,8 @@ paths:
                     <p>
                        <b>Example: </b> filter.kind=$not:$like:John Doe&filter.kind=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$and</li>
-          <li>$or</li>
-          <li>$not</li>
-          <li>$eq</li>
-          <li>$gt</li>
-          <li>$gte</li>
-          <li>$in</li>
-          <li>$null</li>
-          <li>$lt</li>
-          <li>$lte</li>
-          <li>$btw</li>
-          <li>$ilike</li>
-          <li>$sw</li>
-          <li>$contains</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
         explode: true
         in: query
         name: filter.kind
@@ -9233,20 +9208,7 @@ paths:
                     <p>
                        <b>Example: </b> filter.label=$not:$like:John Doe&filter.label=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$and</li>
-          <li>$or</li>
-          <li>$not</li>
-          <li>$eq</li>
-          <li>$gt</li>
-          <li>$gte</li>
-          <li>$in</li>
-          <li>$null</li>
-          <li>$lt</li>
-          <li>$lte</li>
-          <li>$btw</li>
-          <li>$ilike</li>
-          <li>$sw</li>
-          <li>$contains</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
         name: filter.label
@@ -9264,20 +9226,7 @@ paths:
                     <p>
                        <b>Example: </b> filter.name=$not:$like:John Doe&filter.name=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$and</li>
-          <li>$or</li>
-          <li>$not</li>
-          <li>$eq</li>
-          <li>$gt</li>
-          <li>$gte</li>
-          <li>$in</li>
-          <li>$null</li>
-          <li>$lt</li>
-          <li>$lte</li>
-          <li>$btw</li>
-          <li>$ilike</li>
-          <li>$sw</li>
-          <li>$contains</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
         name: filter.name
@@ -9295,20 +9244,7 @@ paths:
                     <p>
                        <b>Example: </b> filter.fabricId=$not:$like:John Doe&filter.fabricId=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$and</li>
-          <li>$or</li>
-          <li>$not</li>
-          <li>$eq</li>
-          <li>$gt</li>
-          <li>$gte</li>
-          <li>$in</li>
-          <li>$null</li>
-          <li>$lt</li>
-          <li>$lte</li>
-          <li>$btw</li>
-          <li>$ilike</li>
-          <li>$sw</li>
-          <li>$contains</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
         name: filter.fabricId
@@ -10629,20 +10565,7 @@ paths:
                     <p>
                        <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$and</li>
-          <li>$or</li>
-          <li>$not</li>
-          <li>$eq</li>
-          <li>$gt</li>
-          <li>$gte</li>
-          <li>$in</li>
-          <li>$null</li>
-          <li>$lt</li>
-          <li>$lte</li>
-          <li>$btw</li>
-          <li>$ilike</li>
-          <li>$sw</li>
-          <li>$contains</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
         name: filter.id
@@ -10660,20 +10583,8 @@ paths:
                     <p>
                        <b>Example: </b> filter.kind=$not:$like:John Doe&filter.kind=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$and</li>
-          <li>$or</li>
-          <li>$not</li>
-          <li>$eq</li>
-          <li>$gt</li>
-          <li>$gte</li>
-          <li>$in</li>
-          <li>$null</li>
-          <li>$lt</li>
-          <li>$lte</li>
-          <li>$btw</li>
-          <li>$ilike</li>
-          <li>$sw</li>
-          <li>$contains</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
         explode: true
         in: query
         name: filter.kind
@@ -10691,20 +10602,7 @@ paths:
                     <p>
                        <b>Example: </b> filter.label=$not:$like:John Doe&filter.label=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$and</li>
-          <li>$or</li>
-          <li>$not</li>
-          <li>$eq</li>
-          <li>$gt</li>
-          <li>$gte</li>
-          <li>$in</li>
-          <li>$null</li>
-          <li>$lt</li>
-          <li>$lte</li>
-          <li>$btw</li>
-          <li>$ilike</li>
-          <li>$sw</li>
-          <li>$contains</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
         name: filter.label
@@ -10722,20 +10620,7 @@ paths:
                     <p>
                        <b>Example: </b> filter.name=$not:$like:John Doe&filter.name=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$and</li>
-          <li>$or</li>
-          <li>$not</li>
-          <li>$eq</li>
-          <li>$gt</li>
-          <li>$gte</li>
-          <li>$in</li>
-          <li>$null</li>
-          <li>$lt</li>
-          <li>$lte</li>
-          <li>$btw</li>
-          <li>$ilike</li>
-          <li>$sw</li>
-          <li>$contains</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
         name: filter.name
@@ -10753,20 +10638,7 @@ paths:
                     <p>
                        <b>Example: </b> filter.fabricId=$not:$like:John Doe&filter.fabricId=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$and</li>
-          <li>$or</li>
-          <li>$not</li>
-          <li>$eq</li>
-          <li>$gt</li>
-          <li>$gte</li>
-          <li>$in</li>
-          <li>$null</li>
-          <li>$lt</li>
-          <li>$lte</li>
-          <li>$btw</li>
-          <li>$ilike</li>
-          <li>$sw</li>
-          <li>$contains</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
         name: filter.fabricId
@@ -10784,20 +10656,8 @@ paths:
                     <p>
                        <b>Example: </b> filter.infrastructureId=$not:$like:John Doe&filter.infrastructureId=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$and</li>
-          <li>$or</li>
-          <li>$not</li>
-          <li>$eq</li>
-          <li>$gt</li>
-          <li>$gte</li>
-          <li>$in</li>
-          <li>$null</li>
-          <li>$lt</li>
-          <li>$lte</li>
-          <li>$btw</li>
-          <li>$ilike</li>
-          <li>$sw</li>
-          <li>$contains</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$null</li></ul>
         explode: true
         in: query
         name: filter.infrastructureId
@@ -10815,20 +10675,8 @@ paths:
                     <p>
                        <b>Example: </b> filter.serviceStatus=$not:$like:John Doe&filter.serviceStatus=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$and</li>
-          <li>$or</li>
-          <li>$not</li>
-          <li>$eq</li>
-          <li>$gt</li>
-          <li>$gte</li>
-          <li>$in</li>
-          <li>$null</li>
-          <li>$lt</li>
-          <li>$lte</li>
-          <li>$btw</li>
-          <li>$ilike</li>
-          <li>$sw</li>
-          <li>$contains</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
         explode: true
         in: query
         name: filter.serviceStatus
@@ -15345,6 +15193,24 @@ paths:
           type: array
         style: form
       - description: |-
+          Filter by install.onieStrings query param.
+                    <p>
+                       <b>Format: </b> filter.install.onieStrings={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.install.onieStrings=$not:$like:John Doe&filter.install.onieStrings=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.install.onieStrings
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
           Filter by status query param.
                     <p>
                        <b>Format: </b> filter.status={$not}:OPERATION:VALUE
@@ -15446,8 +15312,9 @@ paths:
           \          </p>\n        <p>\n             <b>Default Value: </b> By default\
           \ all fields mentioned below will be used to search by term\n          </p>\n\
           \        <h4>Available Fields</h4><ul><li>id</li>\n<li>name</li>\n<li>label</li>\n\
-          <li>device.type</li>\n<li>os.name</li>\n<li>os.version</li>\n<li>visibility</li>\n\
-          <li>status</li>\n<li>createdBy</li>\n<li>modifiedBy</li></ul>\n        "
+          <li>device.type</li>\n<li>os.name</li>\n<li>os.version</li>\n<li>install.onieStrings</li>\n\
+          <li>visibility</li>\n<li>status</li>\n<li>createdBy</li>\n<li>modifiedBy</li></ul>\n\
+          \        "
         explode: true
         in: query
         name: searchBy
@@ -35660,7 +35527,7 @@ components:
           description: Icon of the extension.
           type: string
       type: object
-    ExtensionList:
+    ExtensionPaginatedList:
       example:
         data:
         - kind: application
@@ -35689,24 +35556,28 @@ components:
           label: incus-6x
           slug: my-app
           status: draft
-        links:
-        - rel: self
-          href: /api/v2/path/to/resource
-        - rel: self
-          href: /api/v2/path/to/resource
+        meta: ""
+        links: ""
       properties:
         data:
           items:
             $ref: '#/components/schemas/ExtensionInfo'
           title: List of extension infos
           type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
         links:
-          description: Reference links
-          items:
-            $ref: '#/components/schemas/Link'
-          type: array
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
       required:
       - data
+      - links
+      - meta
       type: object
     Extension:
       example:
@@ -38450,7 +38321,11 @@ components:
         - metalsoftServerTypesSupported
         vendor: hp
         name: Firmware Catalog A
-        links: "{}"
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
         id: 1
         vendorServerTypesSupported:
         - vendorServerTypesSupported
@@ -38518,7 +38393,9 @@ components:
           type: string
         links:
           description: Links to other resources
-          type: object
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
       required:
       - createdTimestamp
       - id
@@ -38540,7 +38417,11 @@ components:
           - metalsoftServerTypesSupported
           vendor: hp
           name: Firmware Catalog A
-          links: "{}"
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
           id: 1
           vendorServerTypesSupported:
           - vendorServerTypesSupported
@@ -38557,7 +38438,11 @@ components:
           - metalsoftServerTypesSupported
           vendor: hp
           name: Firmware Catalog A
-          links: "{}"
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
           id: 1
           vendorServerTypesSupported:
           - vendorServerTypesSupported
@@ -46199,7 +46084,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-25T13:10:17.734Z
+        createdTimestamp: 2025-04-29T05:51:24.61Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -46208,7 +46093,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-25T13:10:17.735Z
+        updatedTimestamp: 2025-04-29T05:51:24.61Z
         revision: "1"
       properties:
         siteId:
@@ -46225,12 +46110,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-25T13:10:17.734Z
+          example: 2025-04-29T05:51:24.61Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-25T13:10:17.735Z
+          example: 2025-04-29T05:51:24.61Z
           format: date-time
           type: string
         links:
@@ -46252,7 +46137,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-25T13:10:17.734Z
+        - createdTimestamp: 2025-04-29T05:51:24.61Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -46261,9 +46146,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-25T13:10:17.735Z
+          updatedTimestamp: 2025-04-29T05:51:24.61Z
           revision: "1"
-        - createdTimestamp: 2025-04-25T13:10:17.734Z
+        - createdTimestamp: 2025-04-29T05:51:24.61Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -46272,7 +46157,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-25T13:10:17.735Z
+          updatedTimestamp: 2025-04-29T05:51:24.61Z
           revision: "1"
         meta: ""
         links: ""
@@ -46894,7 +46779,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-25T13:10:17.748Z
+        createdTimestamp: 2025-04-29T05:51:24.613Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -46935,7 +46820,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-25T13:10:17.748Z
+        updatedTimestamp: 2025-04-29T05:51:24.613Z
         revision: "1"
         status: draft
       properties:
@@ -46963,12 +46848,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-25T13:10:17.748Z
+          example: 2025-04-29T05:51:24.613Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-25T13:10:17.748Z
+          example: 2025-04-29T05:51:24.613Z
           format: date-time
           type: string
         links:
@@ -47109,7 +46994,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-25T13:10:17.748Z
+          createdTimestamp: 2025-04-29T05:51:24.613Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -47150,7 +47035,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-25T13:10:17.748Z
+          updatedTimestamp: 2025-04-29T05:51:24.613Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -47260,7 +47145,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-25T13:10:17.748Z
+          createdTimestamp: 2025-04-29T05:51:24.613Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -47301,7 +47186,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-25T13:10:17.748Z
+          updatedTimestamp: 2025-04-29T05:51:24.613Z
           revision: "1"
           status: draft
         meta: ""
@@ -47507,7 +47392,7 @@ components:
         method: oob
         readyMethod: wait_for_power_off
         driveType: local_drive
-        onieStrings: x86_64-dell_z9664f-r0
+        onieStrings: "[\"x86_64-dell_z9664f-r0\"]"
       properties:
         method:
           description: |-
@@ -47540,7 +47425,7 @@ components:
           type: string
         onieStrings:
           description: Used for selecting the OS template during network device ZTP
-          example: x86_64-dell_z9664f-r0
+          example: "[\"x86_64-dell_z9664f-r0\"]"
           items:
             maxLength: 255
             type: string
@@ -47662,7 +47547,7 @@ components:
           method: oob
           readyMethod: wait_for_power_off
           driveType: local_drive
-          onieStrings: x86_64-dell_z9664f-r0
+          onieStrings: "[\"x86_64-dell_z9664f-r0\"]"
         createdBy: 6
         name: Ubuntu 24.04 LTS
         modifiedBy: 10
@@ -47833,7 +47718,7 @@ components:
             method: oob
             readyMethod: wait_for_power_off
             driveType: local_drive
-            onieStrings: x86_64-dell_z9664f-r0
+            onieStrings: "[\"x86_64-dell_z9664f-r0\"]"
           createdBy: 6
           name: Ubuntu 24.04 LTS
           modifiedBy: 10
@@ -47874,7 +47759,7 @@ components:
             method: oob
             readyMethod: wait_for_power_off
             driveType: local_drive
-            onieStrings: x86_64-dell_z9664f-r0
+            onieStrings: "[\"x86_64-dell_z9664f-r0\"]"
           createdBy: 6
           name: Ubuntu 24.04 LTS
           modifiedBy: 10
@@ -47930,7 +47815,7 @@ components:
           method: oob
           readyMethod: wait_for_power_off
           driveType: local_drive
-          onieStrings: x86_64-dell_z9664f-r0
+          onieStrings: "[\"x86_64-dell_z9664f-r0\"]"
         name: Ubuntu 24.04 LTS
         description: EKS Anywhere - Admin Machine
         label: eksa
@@ -48007,7 +47892,7 @@ components:
           method: oob
           readyMethod: wait_for_power_off
           driveType: local_drive
-          onieStrings: x86_64-dell_z9664f-r0
+          onieStrings: "[\"x86_64-dell_z9664f-r0\"]"
         name: Ubuntu 24.04 LTS
         description: EKS Anywhere - Admin Machine
         label: eksa
@@ -50054,10 +49939,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-04-25T13:10:17.743Z
+        createdTimestamp: 2025-04-29T05:51:24.612Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-04-25T13:10:17.743Z
+        updatedTimestamp: 2025-04-29T05:51:24.612Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -50131,12 +50016,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-25T13:10:17.743Z
+          example: 2025-04-29T05:51:24.612Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-25T13:10:17.743Z
+          example: 2025-04-29T05:51:24.612Z
           format: date-time
           type: string
         links:
@@ -50386,7 +50271,7 @@ components:
           description: Id of the storage pool the Drive is assigned to
           type: number
         sizeMb:
-          description: Disk size in MB for Drive
+          description: Disk size in MiB for Drive
           type: number
         storageImageName:
           description: The name of the storage image used by the Drive.
@@ -50522,7 +50407,7 @@ components:
           description: Id of the storage pool the Drive is assigned to
           type: number
         sizeMb:
-          description: Disk size in MB for Drive
+          description: Disk size in MiB for Drive
           type: number
         storageImageName:
           description: The name of the storage image used by the Drive.
@@ -51220,6 +51105,31 @@ components:
       - syslogMonitoringEnabled
       - zeroTouchRegistrationEnabled
       type: object
+    ServerRegistrationBiosProfile:
+      properties:
+        attributeName:
+          description: BIOS attribute name
+          type: string
+        attributeValue:
+          description: BIOS attribute value
+          type: string
+        serverVendor:
+          description: Server vendor type
+          enum:
+          - Unknown
+          - Dell
+          - Lenovo
+          - HP
+          - HPE
+          type: string
+        serverModel:
+          description: Server model
+          type: string
+      required:
+      - attributeName
+      - attributeValue
+      - serverVendor
+      type: object
     ServerPolicy:
       properties:
         registerCredentials:
@@ -51258,16 +51168,16 @@ components:
           type: number
         automaticallyAllocateServerTypes:
           description: Automatically allocate server types
-          example: false
+          example: true
           type: boolean
         automaticallySetServersAsAvailable:
           description: Automatically set servers as available
-          example: false
+          example: true
           type: boolean
         serverRegistrationBiosProfile:
           description: Server registration BIOS profile
           items:
-            type: string
+            $ref: '#/components/schemas/ServerRegistrationBiosProfile'
           type: array
       required:
       - automaticallyAllocateServerTypes
@@ -52455,7 +52365,7 @@ components:
           description: Id of the storage pool the Drive is assigned to
           type: number
         sizeMb:
-          description: Disk size in MB for Drive
+          description: Disk size in MiB for Drive
           type: number
         storageImageName:
           description: The name of the storage image used by the Drive.
@@ -52801,7 +52711,7 @@ components:
           description: Id of the storage pool the Drive is assigned to
           type: number
         sizeMb:
-          description: Disk size in MB for Drive
+          description: Disk size in MiB for Drive
           type: number
         storageImageName:
           description: The name of the storage image used by the Drive.
@@ -52898,7 +52808,7 @@ components:
           description: Id of the storage pool the Drive is assigned to
           type: number
         sizeMb:
-          description: Disk size in MB for Drive
+          description: Disk size in MiB for Drive
           type: number
         storageImageName:
           description: The name of the storage image used by the Drive.
@@ -54642,7 +54552,6 @@ components:
     ServerVNCInfo:
       example:
         maxSessions: 2
-        port: 5900
         activeSessions: 1
         enable: Enabled
         timeout: 0
@@ -54654,10 +54563,6 @@ components:
         maxSessions:
           description: Max active VNC sessions
           example: 2
-          type: number
-        port:
-          description: VNC port
-          example: 5900
           type: number
         timeout:
           description: VNC timeout
@@ -54671,7 +54576,6 @@ components:
       - activeSessions
       - enable
       - maxSessions
-      - port
       - timeout
       type: object
     RemoteConsoleInfo:
@@ -55365,7 +55269,7 @@ components:
           description: Id of the storage pool the Drive is assigned to
           type: number
         sizeMb:
-          description: Disk size in MB for Drive
+          description: Disk size in MiB for Drive
           type: number
         storageImageName:
           description: The name of the storage image used by the Drive.
@@ -55574,7 +55478,7 @@ components:
         label: label
       properties:
         sizeMb:
-          description: Disk size in MB for Drive
+          description: Disk size in MiB for Drive
           type: number
         logicalNetworkId:
           description: Id of the Logical Network for the Drive.
@@ -55595,7 +55499,7 @@ components:
           description: Label of the Drive.
           type: string
         sizeMb:
-          description: Disk size in MB for Drive
+          description: Disk size in MiB for Drive
           type: number
         logicalNetworkId:
           description: Id of the Logical Network for the Drive.
@@ -55970,7 +55874,7 @@ components:
       - repo
       - serverPolicy
       type: object
-    PartialTypeClass:
+    PartialLocation:
       properties:
         address:
           description: Address of the site
@@ -55983,6 +55887,46 @@ components:
           description: Longitude of the site
           example: -87.627831
           type: number
+      type: object
+    PartialNetworkDevicePolicy:
+      properties:
+        zeroTouchRegistrationEnabled:
+          description: Whether zero-touch registration is enabled
+          type: boolean
+        gNMISubscriptionEnabled:
+          description: Whether gNMI subscription is enabled
+          type: boolean
+        syslogMonitoringEnabled:
+          description: Whether syslog monitoring is enabled
+          type: boolean
+        leafSwitchesHaveMlagPairs:
+          description: Whether leaf switches have MLAG pairs
+          type: boolean
+        minimumNumberOfSpinesNeededToBootstrapLeafs:
+          description: Minimum number of spines needed to bootstrap leafs
+          example: 0
+          type: integer
+      type: object
+    PartialServerRegistrationBiosProfile:
+      properties:
+        attributeName:
+          description: BIOS attribute name
+          type: string
+        attributeValue:
+          description: BIOS attribute value
+          type: string
+        serverVendor:
+          description: Server vendor type
+          enum:
+          - Unknown
+          - Dell
+          - Lenovo
+          - HP
+          - HPE
+          type: string
+        serverModel:
+          description: Server model
+          type: string
       type: object
     ServerPolicyUpdate:
       properties:
@@ -56022,16 +55966,16 @@ components:
           type: number
         automaticallyAllocateServerTypes:
           description: Automatically allocate server types
-          example: false
+          example: true
           type: boolean
         automaticallySetServersAsAvailable:
           description: Automatically set servers as available
-          example: false
+          example: true
           type: boolean
         serverRegistrationBiosProfile:
           description: Server registration BIOS profile
           items:
-            type: string
+            $ref: '#/components/schemas/PartialServerRegistrationBiosProfile'
           type: array
       type: object
     SiteConfigUpdate:
@@ -56051,7 +55995,7 @@ components:
       properties:
         location:
           allOf:
-          - $ref: '#/components/schemas/PartialTypeClass'
+          - $ref: '#/components/schemas/PartialLocation'
           description: Location details
         repo:
           allOf:
@@ -56069,7 +56013,7 @@ components:
           type: array
         networkDevicePolicy:
           allOf:
-          - $ref: '#/components/schemas/PartialTypeClass'
+          - $ref: '#/components/schemas/PartialNetworkDevicePolicy'
           description: Network device policies
         serverPolicy:
           allOf:

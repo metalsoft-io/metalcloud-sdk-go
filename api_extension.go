@@ -402,7 +402,7 @@ func (r ExtensionAPIGetExtensionsRequest) SearchBy(searchBy []string) ExtensionA
 	return r
 }
 
-func (r ExtensionAPIGetExtensionsRequest) Execute() (*ExtensionList, *http.Response, error) {
+func (r ExtensionAPIGetExtensionsRequest) Execute() (*ExtensionPaginatedList, *http.Response, error) {
 	return r.ApiService.GetExtensionsExecute(r)
 }
 
@@ -422,13 +422,13 @@ func (a *ExtensionAPIService) GetExtensions(ctx context.Context) ExtensionAPIGet
 }
 
 // Execute executes the request
-//  @return ExtensionList
-func (a *ExtensionAPIService) GetExtensionsExecute(r ExtensionAPIGetExtensionsRequest) (*ExtensionList, *http.Response, error) {
+//  @return ExtensionPaginatedList
+func (a *ExtensionAPIService) GetExtensionsExecute(r ExtensionAPIGetExtensionsRequest) (*ExtensionPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ExtensionList
+		localVarReturnValue  *ExtensionPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExtensionAPIService.GetExtensions")

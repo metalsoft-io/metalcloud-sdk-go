@@ -27,7 +27,7 @@ type SharedDriveConfiguration struct {
 	Label string `json:"label"`
 	// Id of the storage pool the Drive is assigned to
 	StoragePoolId *float32 `json:"storagePoolId,omitempty"`
-	// Disk size in MB for Drive
+	// Disk size in MiB for Drive
 	SizeMb float32 `json:"sizeMb"`
 	// The name of the storage image used by the Drive.
 	StorageImageName *string `json:"storageImageName,omitempty"`

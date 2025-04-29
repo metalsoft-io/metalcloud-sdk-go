@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **DefaultServerCleanupPolicyID** | Pointer to **float32** | Default server cleanup policy ID | [optional] 
 **AutomaticallyAllocateServerTypes** | Pointer to **bool** | Automatically allocate server types | [optional] 
 **AutomaticallySetServersAsAvailable** | Pointer to **bool** | Automatically set servers as available | [optional] 
-**ServerRegistrationBiosProfile** | Pointer to **[]string** | Server registration BIOS profile | [optional] 
+**ServerRegistrationBiosProfile** | Pointer to [**[]PartialServerRegistrationBiosProfile**](PartialServerRegistrationBiosProfile.md) | Server registration BIOS profile | [optional] 
 
 ## Methods
 
@@ -313,20 +313,20 @@ HasAutomaticallySetServersAsAvailable returns a boolean if a field has been set.
 
 ### GetServerRegistrationBiosProfile
 
-`func (o *ServerPolicyUpdate) GetServerRegistrationBiosProfile() []string`
+`func (o *ServerPolicyUpdate) GetServerRegistrationBiosProfile() []PartialServerRegistrationBiosProfile`
 
 GetServerRegistrationBiosProfile returns the ServerRegistrationBiosProfile field if non-nil, zero value otherwise.
 
 ### GetServerRegistrationBiosProfileOk
 
-`func (o *ServerPolicyUpdate) GetServerRegistrationBiosProfileOk() (*[]string, bool)`
+`func (o *ServerPolicyUpdate) GetServerRegistrationBiosProfileOk() (*[]PartialServerRegistrationBiosProfile, bool)`
 
 GetServerRegistrationBiosProfileOk returns a tuple with the ServerRegistrationBiosProfile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerRegistrationBiosProfile
 
-`func (o *ServerPolicyUpdate) SetServerRegistrationBiosProfile(v []string)`
+`func (o *ServerPolicyUpdate) SetServerRegistrationBiosProfile(v []PartialServerRegistrationBiosProfile)`
 
 SetServerRegistrationBiosProfile sets ServerRegistrationBiosProfile field to given value.
 

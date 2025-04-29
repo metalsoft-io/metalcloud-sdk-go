@@ -21,7 +21,7 @@ var _ MappedNullable = &SiteConfigUpdate{}
 // SiteConfigUpdate struct for SiteConfigUpdate
 type SiteConfigUpdate struct {
 	// Location details
-	Location *PartialTypeClass `json:"location,omitempty"`
+	Location *PartialLocation `json:"location,omitempty"`
 	// Repository details
 	Repo *Repo `json:"repo,omitempty"`
 	// List of DNS Servers
@@ -29,7 +29,7 @@ type SiteConfigUpdate struct {
 	// List of NTP Servers
 	NTPServers []string `json:"NTPServers,omitempty"`
 	// Network device policies
-	NetworkDevicePolicy *PartialTypeClass `json:"networkDevicePolicy,omitempty"`
+	NetworkDevicePolicy *PartialNetworkDevicePolicy `json:"networkDevicePolicy,omitempty"`
 	// Server policies
 	ServerPolicy *ServerPolicyUpdate `json:"serverPolicy,omitempty"`
 	// Controller policies
@@ -59,9 +59,9 @@ func NewSiteConfigUpdateWithDefaults() *SiteConfigUpdate {
 }
 
 // GetLocation returns the Location field value if set, zero value otherwise.
-func (o *SiteConfigUpdate) GetLocation() PartialTypeClass {
+func (o *SiteConfigUpdate) GetLocation() PartialLocation {
 	if o == nil || IsNil(o.Location) {
-		var ret PartialTypeClass
+		var ret PartialLocation
 		return ret
 	}
 	return *o.Location
@@ -69,7 +69,7 @@ func (o *SiteConfigUpdate) GetLocation() PartialTypeClass {
 
 // GetLocationOk returns a tuple with the Location field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SiteConfigUpdate) GetLocationOk() (*PartialTypeClass, bool) {
+func (o *SiteConfigUpdate) GetLocationOk() (*PartialLocation, bool) {
 	if o == nil || IsNil(o.Location) {
 		return nil, false
 	}
@@ -85,8 +85,8 @@ func (o *SiteConfigUpdate) HasLocation() bool {
 	return false
 }
 
-// SetLocation gets a reference to the given PartialTypeClass and assigns it to the Location field.
-func (o *SiteConfigUpdate) SetLocation(v PartialTypeClass) {
+// SetLocation gets a reference to the given PartialLocation and assigns it to the Location field.
+func (o *SiteConfigUpdate) SetLocation(v PartialLocation) {
 	o.Location = &v
 }
 
@@ -187,9 +187,9 @@ func (o *SiteConfigUpdate) SetNTPServers(v []string) {
 }
 
 // GetNetworkDevicePolicy returns the NetworkDevicePolicy field value if set, zero value otherwise.
-func (o *SiteConfigUpdate) GetNetworkDevicePolicy() PartialTypeClass {
+func (o *SiteConfigUpdate) GetNetworkDevicePolicy() PartialNetworkDevicePolicy {
 	if o == nil || IsNil(o.NetworkDevicePolicy) {
-		var ret PartialTypeClass
+		var ret PartialNetworkDevicePolicy
 		return ret
 	}
 	return *o.NetworkDevicePolicy
@@ -197,7 +197,7 @@ func (o *SiteConfigUpdate) GetNetworkDevicePolicy() PartialTypeClass {
 
 // GetNetworkDevicePolicyOk returns a tuple with the NetworkDevicePolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SiteConfigUpdate) GetNetworkDevicePolicyOk() (*PartialTypeClass, bool) {
+func (o *SiteConfigUpdate) GetNetworkDevicePolicyOk() (*PartialNetworkDevicePolicy, bool) {
 	if o == nil || IsNil(o.NetworkDevicePolicy) {
 		return nil, false
 	}
@@ -213,8 +213,8 @@ func (o *SiteConfigUpdate) HasNetworkDevicePolicy() bool {
 	return false
 }
 
-// SetNetworkDevicePolicy gets a reference to the given PartialTypeClass and assigns it to the NetworkDevicePolicy field.
-func (o *SiteConfigUpdate) SetNetworkDevicePolicy(v PartialTypeClass) {
+// SetNetworkDevicePolicy gets a reference to the given PartialNetworkDevicePolicy and assigns it to the NetworkDevicePolicy field.
+func (o *SiteConfigUpdate) SetNetworkDevicePolicy(v PartialNetworkDevicePolicy) {
 	o.NetworkDevicePolicy = &v
 }
 

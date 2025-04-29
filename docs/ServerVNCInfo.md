@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ActiveSessions** | **float32** | Active VNC sessions | 
 **MaxSessions** | **float32** | Max active VNC sessions | 
-**Port** | **float32** | VNC port | 
 **Timeout** | **float32** | VNC timeout | 
 **Enable** | **string** | VNC enabled | 
 
@@ -14,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewServerVNCInfo
 
-`func NewServerVNCInfo(activeSessions float32, maxSessions float32, port float32, timeout float32, enable string, ) *ServerVNCInfo`
+`func NewServerVNCInfo(activeSessions float32, maxSessions float32, timeout float32, enable string, ) *ServerVNCInfo`
 
 NewServerVNCInfo instantiates a new ServerVNCInfo object
 This constructor will assign default values to properties that have it defined,
@@ -67,26 +66,6 @@ and a boolean to check if the value has been set.
 `func (o *ServerVNCInfo) SetMaxSessions(v float32)`
 
 SetMaxSessions sets MaxSessions field to given value.
-
-
-### GetPort
-
-`func (o *ServerVNCInfo) GetPort() float32`
-
-GetPort returns the Port field if non-nil, zero value otherwise.
-
-### GetPortOk
-
-`func (o *ServerVNCInfo) GetPortOk() (*float32, bool)`
-
-GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPort
-
-`func (o *ServerVNCInfo) SetPort(v float32)`
-
-SetPort sets Port field to given value.
 
 
 ### GetTimeout

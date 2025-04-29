@@ -16,13 +16,13 @@ Name | Type | Description | Notes
 **VendorServerTypesSupported** | Pointer to **[]string** | List of supported server types for which firmware binaries are available | [optional] 
 **VendorConfiguration** | Pointer to **map[string]interface{}** | Vendor configuration | [optional] 
 **CreatedTimestamp** | **string** | Timestamp when the catalog was created | 
-**Links** | **map[string]interface{}** | Links to other resources | 
+**Links** | [**[]Link**](Link.md) | Links to other resources | 
 
 ## Methods
 
 ### NewFirmwareCatalog
 
-`func NewFirmwareCatalog(id float32, name string, vendor string, updateType string, createdTimestamp string, links map[string]interface{}, ) *FirmwareCatalog`
+`func NewFirmwareCatalog(id float32, name string, vendor string, updateType string, createdTimestamp string, links []Link, ) *FirmwareCatalog`
 
 NewFirmwareCatalog instantiates a new FirmwareCatalog object
 This constructor will assign default values to properties that have it defined,
@@ -314,20 +314,20 @@ SetCreatedTimestamp sets CreatedTimestamp field to given value.
 
 ### GetLinks
 
-`func (o *FirmwareCatalog) GetLinks() map[string]interface{}`
+`func (o *FirmwareCatalog) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *FirmwareCatalog) GetLinksOk() (*map[string]interface{}, bool)`
+`func (o *FirmwareCatalog) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *FirmwareCatalog) SetLinks(v map[string]interface{})`
+`func (o *FirmwareCatalog) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 

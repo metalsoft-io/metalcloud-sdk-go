@@ -15,13 +15,13 @@ Name | Type | Description | Notes
 **DefaultServerCleanupPolicyID** | **float32** | Default server cleanup policy ID | 
 **AutomaticallyAllocateServerTypes** | **bool** | Automatically allocate server types | 
 **AutomaticallySetServersAsAvailable** | **bool** | Automatically set servers as available | 
-**ServerRegistrationBiosProfile** | **[]string** | Server registration BIOS profile | 
+**ServerRegistrationBiosProfile** | [**[]ServerRegistrationBiosProfile**](ServerRegistrationBiosProfile.md) | Server registration BIOS profile | 
 
 ## Methods
 
 ### NewServerPolicy
 
-`func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, raidConfigurationEnabled bool, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []string, ) *ServerPolicy`
+`func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, raidConfigurationEnabled bool, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []ServerRegistrationBiosProfile, ) *ServerPolicy`
 
 NewServerPolicy instantiates a new ServerPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -258,20 +258,20 @@ SetAutomaticallySetServersAsAvailable sets AutomaticallySetServersAsAvailable fi
 
 ### GetServerRegistrationBiosProfile
 
-`func (o *ServerPolicy) GetServerRegistrationBiosProfile() []string`
+`func (o *ServerPolicy) GetServerRegistrationBiosProfile() []ServerRegistrationBiosProfile`
 
 GetServerRegistrationBiosProfile returns the ServerRegistrationBiosProfile field if non-nil, zero value otherwise.
 
 ### GetServerRegistrationBiosProfileOk
 
-`func (o *ServerPolicy) GetServerRegistrationBiosProfileOk() (*[]string, bool)`
+`func (o *ServerPolicy) GetServerRegistrationBiosProfileOk() (*[]ServerRegistrationBiosProfile, bool)`
 
 GetServerRegistrationBiosProfileOk returns a tuple with the ServerRegistrationBiosProfile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerRegistrationBiosProfile
 
-`func (o *ServerPolicy) SetServerRegistrationBiosProfile(v []string)`
+`func (o *ServerPolicy) SetServerRegistrationBiosProfile(v []ServerRegistrationBiosProfile)`
 
 SetServerRegistrationBiosProfile sets ServerRegistrationBiosProfile field to given value.
 

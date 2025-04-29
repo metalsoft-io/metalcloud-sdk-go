@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Location** | Pointer to [**PartialTypeClass**](PartialTypeClass.md) | Location details | [optional] 
+**Location** | Pointer to [**PartialLocation**](PartialLocation.md) | Location details | [optional] 
 **Repo** | Pointer to [**Repo**](Repo.md) | Repository details | [optional] 
 **DNSServers** | Pointer to **[]string** | List of DNS Servers | [optional] 
 **NTPServers** | Pointer to **[]string** | List of NTP Servers | [optional] 
-**NetworkDevicePolicy** | Pointer to [**PartialTypeClass**](PartialTypeClass.md) | Network device policies | [optional] 
+**NetworkDevicePolicy** | Pointer to [**PartialNetworkDevicePolicy**](PartialNetworkDevicePolicy.md) | Network device policies | [optional] 
 **ServerPolicy** | Pointer to [**ServerPolicyUpdate**](ServerPolicyUpdate.md) | Server policies | [optional] 
 **ControllerPolicy** | Pointer to [**ControllerPolicy**](ControllerPolicy.md) | Controller policies | [optional] 
 **InfrastructurePolicy** | Pointer to [**InfrastructurePolicy**](InfrastructurePolicy.md) | Infrastructure policies | [optional] 
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLocation
 
-`func (o *SiteConfigUpdate) GetLocation() PartialTypeClass`
+`func (o *SiteConfigUpdate) GetLocation() PartialLocation`
 
 GetLocation returns the Location field if non-nil, zero value otherwise.
 
 ### GetLocationOk
 
-`func (o *SiteConfigUpdate) GetLocationOk() (*PartialTypeClass, bool)`
+`func (o *SiteConfigUpdate) GetLocationOk() (*PartialLocation, bool)`
 
 GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocation
 
-`func (o *SiteConfigUpdate) SetLocation(v PartialTypeClass)`
+`func (o *SiteConfigUpdate) SetLocation(v PartialLocation)`
 
 SetLocation sets Location field to given value.
 
@@ -134,20 +134,20 @@ HasNTPServers returns a boolean if a field has been set.
 
 ### GetNetworkDevicePolicy
 
-`func (o *SiteConfigUpdate) GetNetworkDevicePolicy() PartialTypeClass`
+`func (o *SiteConfigUpdate) GetNetworkDevicePolicy() PartialNetworkDevicePolicy`
 
 GetNetworkDevicePolicy returns the NetworkDevicePolicy field if non-nil, zero value otherwise.
 
 ### GetNetworkDevicePolicyOk
 
-`func (o *SiteConfigUpdate) GetNetworkDevicePolicyOk() (*PartialTypeClass, bool)`
+`func (o *SiteConfigUpdate) GetNetworkDevicePolicyOk() (*PartialNetworkDevicePolicy, bool)`
 
 GetNetworkDevicePolicyOk returns a tuple with the NetworkDevicePolicy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkDevicePolicy
 
-`func (o *SiteConfigUpdate) SetNetworkDevicePolicy(v PartialTypeClass)`
+`func (o *SiteConfigUpdate) SetNetworkDevicePolicy(v PartialNetworkDevicePolicy)`
 
 SetNetworkDevicePolicy sets NetworkDevicePolicy field to given value.
 
