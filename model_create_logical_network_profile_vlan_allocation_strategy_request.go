@@ -16,29 +16,29 @@ import (
 	"fmt"
 )
 
-// ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest - struct for ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest
-type ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest struct {
+// CreateLogicalNetworkProfileVlanAllocationStrategyRequest - struct for CreateLogicalNetworkProfileVlanAllocationStrategyRequest
+type CreateLogicalNetworkProfileVlanAllocationStrategyRequest struct {
 	CreateAutoVlanAllocationStrategy *CreateAutoVlanAllocationStrategy
 	CreateManualVlanAllocationStrategy *CreateManualVlanAllocationStrategy
 }
 
-// CreateAutoVlanAllocationStrategyAsReplaceLogicalNetworkProfileVlanAllocationStrategyRequest is a convenience function that returns CreateAutoVlanAllocationStrategy wrapped in ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest
-func CreateAutoVlanAllocationStrategyAsReplaceLogicalNetworkProfileVlanAllocationStrategyRequest(v *CreateAutoVlanAllocationStrategy) ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest {
-	return ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest{
+// CreateAutoVlanAllocationStrategyAsCreateLogicalNetworkProfileVlanAllocationStrategyRequest is a convenience function that returns CreateAutoVlanAllocationStrategy wrapped in CreateLogicalNetworkProfileVlanAllocationStrategyRequest
+func CreateAutoVlanAllocationStrategyAsCreateLogicalNetworkProfileVlanAllocationStrategyRequest(v *CreateAutoVlanAllocationStrategy) CreateLogicalNetworkProfileVlanAllocationStrategyRequest {
+	return CreateLogicalNetworkProfileVlanAllocationStrategyRequest{
 		CreateAutoVlanAllocationStrategy: v,
 	}
 }
 
-// CreateManualVlanAllocationStrategyAsReplaceLogicalNetworkProfileVlanAllocationStrategyRequest is a convenience function that returns CreateManualVlanAllocationStrategy wrapped in ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest
-func CreateManualVlanAllocationStrategyAsReplaceLogicalNetworkProfileVlanAllocationStrategyRequest(v *CreateManualVlanAllocationStrategy) ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest {
-	return ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest{
+// CreateManualVlanAllocationStrategyAsCreateLogicalNetworkProfileVlanAllocationStrategyRequest is a convenience function that returns CreateManualVlanAllocationStrategy wrapped in CreateLogicalNetworkProfileVlanAllocationStrategyRequest
+func CreateManualVlanAllocationStrategyAsCreateLogicalNetworkProfileVlanAllocationStrategyRequest(v *CreateManualVlanAllocationStrategy) CreateLogicalNetworkProfileVlanAllocationStrategyRequest {
+	return CreateLogicalNetworkProfileVlanAllocationStrategyRequest{
 		CreateManualVlanAllocationStrategy: v,
 	}
 }
 
 
 // Unmarshal JSON data into one of the pointers in the struct
-func (dst *ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) UnmarshalJSON(data []byte) error {
+func (dst *CreateLogicalNetworkProfileVlanAllocationStrategyRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	// use discriminator value to speed up the lookup
 	var jsonDict map[string]interface{}
@@ -55,7 +55,7 @@ func (dst *ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) UnmarshalJ
 			return nil // data stored in dst.CreateAutoVlanAllocationStrategy, return on the first match
 		} else {
 			dst.CreateAutoVlanAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest as CreateAutoVlanAllocationStrategy: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal CreateLogicalNetworkProfileVlanAllocationStrategyRequest as CreateAutoVlanAllocationStrategy: %s", err.Error())
 		}
 	}
 
@@ -67,7 +67,7 @@ func (dst *ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) UnmarshalJ
 			return nil // data stored in dst.CreateManualVlanAllocationStrategy, return on the first match
 		} else {
 			dst.CreateManualVlanAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest as CreateManualVlanAllocationStrategy: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal CreateLogicalNetworkProfileVlanAllocationStrategyRequest as CreateManualVlanAllocationStrategy: %s", err.Error())
 		}
 	}
 
@@ -79,7 +79,7 @@ func (dst *ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) UnmarshalJ
 			return nil // data stored in dst.CreateAutoVlanAllocationStrategy, return on the first match
 		} else {
 			dst.CreateAutoVlanAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest as CreateAutoVlanAllocationStrategy: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal CreateLogicalNetworkProfileVlanAllocationStrategyRequest as CreateAutoVlanAllocationStrategy: %s", err.Error())
 		}
 	}
 
@@ -91,7 +91,7 @@ func (dst *ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) UnmarshalJ
 			return nil // data stored in dst.CreateManualVlanAllocationStrategy, return on the first match
 		} else {
 			dst.CreateManualVlanAllocationStrategy = nil
-			return fmt.Errorf("failed to unmarshal ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest as CreateManualVlanAllocationStrategy: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal CreateLogicalNetworkProfileVlanAllocationStrategyRequest as CreateManualVlanAllocationStrategy: %s", err.Error())
 		}
 	}
 
@@ -99,7 +99,7 @@ func (dst *ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) UnmarshalJ
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) MarshalJSON() ([]byte, error) {
+func (src CreateLogicalNetworkProfileVlanAllocationStrategyRequest) MarshalJSON() ([]byte, error) {
 	if src.CreateAutoVlanAllocationStrategy != nil {
 		return json.Marshal(&src.CreateAutoVlanAllocationStrategy)
 	}
@@ -112,7 +112,7 @@ func (src ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) MarshalJSON
 }
 
 // Get the actual instance
-func (obj *ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) GetActualInstance() (interface{}) {
+func (obj *CreateLogicalNetworkProfileVlanAllocationStrategyRequest) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -129,7 +129,7 @@ func (obj *ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) GetActualI
 }
 
 // Get the actual instance value
-func (obj ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) GetActualInstanceValue() (interface{}) {
+func (obj CreateLogicalNetworkProfileVlanAllocationStrategyRequest) GetActualInstanceValue() (interface{}) {
 	if obj.CreateAutoVlanAllocationStrategy != nil {
 		return *obj.CreateAutoVlanAllocationStrategy
 	}
@@ -142,38 +142,38 @@ func (obj ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) GetActualIn
 	return nil
 }
 
-type NullableReplaceLogicalNetworkProfileVlanAllocationStrategyRequest struct {
-	value *ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest
+type NullableCreateLogicalNetworkProfileVlanAllocationStrategyRequest struct {
+	value *CreateLogicalNetworkProfileVlanAllocationStrategyRequest
 	isSet bool
 }
 
-func (v NullableReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) Get() *ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest {
+func (v NullableCreateLogicalNetworkProfileVlanAllocationStrategyRequest) Get() *CreateLogicalNetworkProfileVlanAllocationStrategyRequest {
 	return v.value
 }
 
-func (v *NullableReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) Set(val *ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) {
+func (v *NullableCreateLogicalNetworkProfileVlanAllocationStrategyRequest) Set(val *CreateLogicalNetworkProfileVlanAllocationStrategyRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) IsSet() bool {
+func (v NullableCreateLogicalNetworkProfileVlanAllocationStrategyRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) Unset() {
+func (v *NullableCreateLogicalNetworkProfileVlanAllocationStrategyRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableReplaceLogicalNetworkProfileVlanAllocationStrategyRequest(val *ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) *NullableReplaceLogicalNetworkProfileVlanAllocationStrategyRequest {
-	return &NullableReplaceLogicalNetworkProfileVlanAllocationStrategyRequest{value: val, isSet: true}
+func NewNullableCreateLogicalNetworkProfileVlanAllocationStrategyRequest(val *CreateLogicalNetworkProfileVlanAllocationStrategyRequest) *NullableCreateLogicalNetworkProfileVlanAllocationStrategyRequest {
+	return &NullableCreateLogicalNetworkProfileVlanAllocationStrategyRequest{value: val, isSet: true}
 }
 
-func (v NullableReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) MarshalJSON() ([]byte, error) {
+func (v NullableCreateLogicalNetworkProfileVlanAllocationStrategyRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateLogicalNetworkProfileVlanAllocationStrategyRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

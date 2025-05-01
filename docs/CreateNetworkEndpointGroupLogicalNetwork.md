@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **LogicalNetworkId** | **string** | The logical network ID. | 
 **Tagged** | **bool** | Whether the logical network is tagged. | 
 **AccessMode** | [**NetworkEndpointGroupAllowedAccessMode**](NetworkEndpointGroupAllowedAccessMode.md) | The access mode of the network endpoint group | 
+**Mtu** | Pointer to **int32** | The MTU of the logical network | [optional] 
 **Redundancy** | Pointer to [**NullableRedundancyConfig**](RedundancyConfig.md) | The redundancy configuration | [optional] 
 
 ## Methods
@@ -87,6 +88,31 @@ and a boolean to check if the value has been set.
 
 SetAccessMode sets AccessMode field to given value.
 
+
+### GetMtu
+
+`func (o *CreateNetworkEndpointGroupLogicalNetwork) GetMtu() int32`
+
+GetMtu returns the Mtu field if non-nil, zero value otherwise.
+
+### GetMtuOk
+
+`func (o *CreateNetworkEndpointGroupLogicalNetwork) GetMtuOk() (*int32, bool)`
+
+GetMtuOk returns a tuple with the Mtu field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMtu
+
+`func (o *CreateNetworkEndpointGroupLogicalNetwork) SetMtu(v int32)`
+
+SetMtu sets Mtu field to given value.
+
+### HasMtu
+
+`func (o *CreateNetworkEndpointGroupLogicalNetwork) HasMtu() bool`
+
+HasMtu returns a boolean if a field has been set.
 
 ### GetRedundancy
 

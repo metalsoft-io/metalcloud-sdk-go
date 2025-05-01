@@ -125,6 +125,8 @@ docs/CreateLogicalNetworkProfileIpv4SubnetAllocationStrategyRequest.md
 docs/CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response.md
 docs/CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest.md
 docs/CreateLogicalNetworkProfileRequest.md
+docs/CreateLogicalNetworkProfileVlanAllocationStrategy201Response.md
+docs/CreateLogicalNetworkProfileVlanAllocationStrategyRequest.md
 docs/CreateLogicalNetworkProfileVniAllocationStrategy201Response.md
 docs/CreateLogicalNetworkProfileVniAllocationStrategyRequest.md
 docs/CreateLogicalNetworkRequest.md
@@ -185,7 +187,6 @@ docs/DriveGroupMeta.md
 docs/DriveGroupVariables.md
 docs/DriveList.md
 docs/DriveMeta.md
-docs/DrivePaginatedList.md
 docs/DriveVariables.md
 docs/EditRole.md
 docs/EthernetFabric.md
@@ -255,7 +256,6 @@ docs/GenericGUISettings.md
 docs/GenericMeta.md
 docs/GenericServiceStatus.md
 docs/GetLogicalNetworkConfig200Response.md
-docs/GetLogicalNetworkProfileVlanAllocationStrategy200Response.md
 docs/GetResourceUtilizationDetailed.md
 docs/GetSiteControllerOneLiner200Response.md
 docs/GlobalFirmwareUpgradeConfiguration.md
@@ -367,7 +367,6 @@ docs/RegisterServer.md
 docs/RegisterServerResponse.md
 docs/RegisterStorageResponse.md
 docs/RemoteConsoleInfo.md
-docs/ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest.md
 docs/Repo.md
 docs/ResourceAllocationStatus.md
 docs/ResourcePool.md
@@ -523,10 +522,6 @@ docs/UpdateLogicalNetwork.md
 docs/UpdateLogicalNetworkACL.md
 docs/UpdateLogicalNetworkConfig.md
 docs/UpdateLogicalNetworkProfile.md
-docs/UpdateLogicalNetworkProfileIpv4Properties.md
-docs/UpdateLogicalNetworkProfileIpv6Properties.md
-docs/UpdateLogicalNetworkProfileVlanProperties.md
-docs/UpdateLogicalNetworkProfileVxlanProperties.md
 docs/UpdateNetworkDevice.md
 docs/UpdateNetworkEndpointGroup.md
 docs/UpdateNetworkEndpointGroupLogicalNetwork.md
@@ -710,6 +705,8 @@ model_create_logical_network_profile_ipv4_subnet_allocation_strategy_request.go
 model_create_logical_network_profile_ipv6_subnet_allocation_strategy_201_response.go
 model_create_logical_network_profile_ipv6_subnet_allocation_strategy_request.go
 model_create_logical_network_profile_request.go
+model_create_logical_network_profile_vlan_allocation_strategy_201_response.go
+model_create_logical_network_profile_vlan_allocation_strategy_request.go
 model_create_logical_network_profile_vni_allocation_strategy_201_response.go
 model_create_logical_network_profile_vni_allocation_strategy_request.go
 model_create_logical_network_request.go
@@ -768,7 +765,6 @@ model_drive_group_meta.go
 model_drive_group_variables.go
 model_drive_list.go
 model_drive_meta.go
-model_drive_paginated_list.go
 model_drive_variables.go
 model_edit_role.go
 model_ethernet_fabric.go
@@ -829,7 +825,6 @@ model_generic_gui_settings.go
 model_generic_meta.go
 model_generic_service_status.go
 model_get_logical_network_config_200_response.go
-model_get_logical_network_profile_vlan_allocation_strategy_200_response.go
 model_get_resource_utilization_detailed.go
 model_get_site_controller_one_liner_200_response.go
 model_global_firmware_upgrade_configuration.go
@@ -933,7 +928,6 @@ model_register_server.go
 model_register_server_response.go
 model_register_storage_response.go
 model_remote_console_info.go
-model_replace_logical_network_profile_vlan_allocation_strategy_request.go
 model_repo.go
 model_resource_allocation_status.go
 model_resource_pool.go
@@ -1073,10 +1067,6 @@ model_update_logical_network.go
 model_update_logical_network_acl.go
 model_update_logical_network_config.go
 model_update_logical_network_profile.go
-model_update_logical_network_profile_ipv4_properties.go
-model_update_logical_network_profile_ipv6_properties.go
-model_update_logical_network_profile_vlan_properties.go
-model_update_logical_network_profile_vxlan_properties.go
 model_update_network_device.go
 model_update_network_endpoint_group.go
 model_update_network_endpoint_group_logical_network.go

@@ -9557,6 +9557,46 @@ paths:
       summary: Get all Vlan allocation strategies.
       tags:
       - Logical Network Profile
+    post:
+      operationId: createLogicalNetworkProfileVlanAllocationStrategy
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createLogicalNetworkProfileVlanAllocationStrategy_request'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createLogicalNetworkProfileVlanAllocationStrategy_201_response'
+          description: Vlan allocation strategy created.
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+        "500":
+          description: Failed to create Vlan allocation strategy.
+      summary: Create Vlan allocation strategy.
+      tags:
+      - Logical Network Profile
   /api/v2/logical-network-profiles/{id}/vlan/vlan-allocation-strategies/{allocationStrategyId}:
     delete:
       operationId: deleteLogicalNetworkProfileVlanAllocationStrategy
@@ -9619,7 +9659,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVlanAllocationStrategy_200_response'
+                $ref: '#/components/schemas/createLogicalNetworkProfileVlanAllocationStrategy_201_response'
           description: The details of the specified Vlan allocation strategy.
         "404":
           description: Vlan allocation strategy not found.
@@ -9657,14 +9697,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfileVlanAllocationStrategy_request'
+              $ref: '#/components/schemas/createLogicalNetworkProfileVlanAllocationStrategy_request'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVlanAllocationStrategy_200_response'
+                $ref: '#/components/schemas/createLogicalNetworkProfileVlanAllocationStrategy_201_response'
           description: Vlan allocation strategy replaced.
         "412":
           description: Precondition failed
@@ -11238,14 +11278,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfileVlanAllocationStrategy_request'
+              $ref: '#/components/schemas/createLogicalNetworkProfileVlanAllocationStrategy_request'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVlanAllocationStrategy_200_response'
+                $ref: '#/components/schemas/createLogicalNetworkProfileVlanAllocationStrategy_201_response'
           description: Vlan allocation strategy created.
           headers:
             ETag:
@@ -11341,7 +11381,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVlanAllocationStrategy_200_response'
+                $ref: '#/components/schemas/createLogicalNetworkProfileVlanAllocationStrategy_201_response'
           description: The details of the specified Vlan allocation strategy.
           headers:
             ETag:
@@ -11393,14 +11433,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/replaceLogicalNetworkProfileVlanAllocationStrategy_request'
+              $ref: '#/components/schemas/createLogicalNetworkProfileVlanAllocationStrategy_request'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkProfileVlanAllocationStrategy_200_response'
+                $ref: '#/components/schemas/createLogicalNetworkProfileVlanAllocationStrategy_201_response'
           description: Vlan allocation strategy replaced.
           headers:
             ETag:
@@ -23661,10 +23701,10 @@ paths:
       summary: Updates a Storage Network Device Configuration
       tags:
       - Storage
-  /api/v2/storages/{storageId}/shared-drives:
+  /api/v2/storages/{storageId}/drives:
     get:
-      description: Returns list of all Shared Drives linked to the specified Storage
-      operationId: getStorageSharedDrives
+      description: Returns list of all Drives linked to the specified Storage
+      operationId: getStorageDrives
       parameters:
       - explode: false
         in: path
@@ -24015,322 +24055,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SharedDrivePaginatedList'
-          description: Returns list of all Shared Drives linked to the specified Storage
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Get all Shared Drives linked to the specified storage
-      tags:
-      - Storage
-  /api/v2/storages/{storageId}/drives:
-    get:
-      description: Returns list of all Drives linked to the specified Storage
-      operationId: getStorageDrives
-      parameters:
-      - explode: false
-        in: path
-        name: storageId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - description: "Page number to retrieve.If you provide invalid value the default\
-          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
-          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
-          \        </p>\n        "
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          type: number
-        style: form
-      - description: "Number of records per page.\n      <p>\n             <b>Example:\
-          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
-          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
-          \         </p>\n\n      If provided value is greater than max value, max\
-          \ value will be applied.\n      "
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          type: number
-        style: form
-      - description: |-
-          Filter by id query param.
-                    <p>
-                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.id
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by instanceId query param.
-                    <p>
-                       <b>Format: </b> filter.instanceId={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.instanceId=$not:$like:John Doe&filter.instanceId=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.instanceId
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by infrastructureId query param.
-                    <p>
-                       <b>Format: </b> filter.infrastructureId={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.infrastructureId=$not:$like:John Doe&filter.infrastructureId=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.infrastructureId
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by serviceStatus query param.
-                    <p>
-                       <b>Format: </b> filter.serviceStatus={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.serviceStatus=$not:$like:John Doe&filter.serviceStatus=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li>
-          <li>$in</li></ul>
-        explode: true
-        in: query
-        name: filter.serviceStatus
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by label query param.
-                    <p>
-                       <b>Format: </b> filter.label={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.label=$not:$like:John Doe&filter.label=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.label
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by subdomain query param.
-                    <p>
-                       <b>Format: </b> filter.subdomain={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.subdomain=$not:$like:John Doe&filter.subdomain=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.subdomain
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by subdomainPermanent query param.
-                    <p>
-                       <b>Format: </b> filter.subdomainPermanent={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.subdomainPermanent=$not:$like:John Doe&filter.subdomainPermanent=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.subdomainPermanent
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by storagePoolId query param.
-                    <p>
-                       <b>Format: </b> filter.storagePoolId={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.storagePoolId=$not:$like:John Doe&filter.storagePoolId=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.storagePoolId
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by provisioningProtocol query param.
-                    <p>
-                       <b>Format: </b> filter.provisioningProtocol={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.provisioningProtocol=$not:$like:John Doe&filter.provisioningProtocol=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.provisioningProtocol
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by config.deployStatus query param.
-                    <p>
-                       <b>Format: </b> filter.config.deployStatus={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.config.deployStatus=$not:$like:John Doe&filter.config.deployStatus=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li>
-          <li>$in</li></ul>
-        explode: true
-        in: query
-        name: filter.config.deployStatus
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by config.deployType query param.
-                    <p>
-                       <b>Format: </b> filter.config.deployType={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.config.deployType=$not:$like:John Doe&filter.config.deployType=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li>
-          <li>$in</li></ul>
-        explode: true
-        in: query
-        name: filter.config.deployType
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
-          \ just provide query param multiple types. The order in url defines an order\
-          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
-          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
-          \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
-          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>storagePoolId</li>\n\
-          <li>infrastructureId</li>\n<li>serviceStatus</li>\n<li>config.deployStatus</li>\n\
-          <li>config.deployType</li></ul>\n      "
-        explode: true
-        in: query
-        name: sortBy
-        required: false
-        schema:
-          items:
-            enum:
-            - id:ASC
-            - id:DESC
-            - storagePoolId:ASC
-            - storagePoolId:DESC
-            - infrastructureId:ASC
-            - infrastructureId:DESC
-            - serviceStatus:ASC
-            - serviceStatus:DESC
-            - config.deployStatus:ASC
-            - config.deployStatus:DESC
-            - config.deployType:ASC
-            - config.deployType:DESC
-            type: string
-          type: array
-        style: form
-      - description: "Search term to filter result values\n        <p>\n         \
-          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
-          \ Value: </b> No default value\n          </p>\n        "
-        explode: true
-        in: query
-        name: search
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: "List of fields to search by term to filter result values\n \
-          \       <p>\n             <b>Example: </b> id,label,subdomain,subdomainPermanent,infrastructureId\n\
-          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
-          \ all fields mentioned below will be used to search by term\n          </p>\n\
-          \        <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>subdomain</li>\n\
-          <li>subdomainPermanent</li>\n<li>infrastructureId</li>\n<li>storagePoolId</li>\n\
-          <li>serviceStatus</li>\n<li>wwn</li>\n<li>networkVlanId</li>\n<li>provisioningProtocol</li>\n\
-          <li>templateId</li>\n<li>config.deployStatus</li>\n<li>config.deployType</li>\n\
-          <li>config.templateId</li></ul>\n        "
-        explode: true
-        in: query
-        name: searchBy
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DrivePaginatedList'
-          description: Returns list of all Shared Drives linked to the specified Storage
+          description: Returns list of all Drives linked to the specified Storage
         "400":
           description: Bad request
         "401":
@@ -42679,9 +42404,6 @@ components:
       - network_device
       type: string
     CreateResourceScope:
-      example:
-        resourceId: 0.8008281904610115
-        kind: ""
       properties:
         kind:
           allOf:
@@ -42693,12 +42415,6 @@ components:
       - resourceId
       type: object
     CreateManualIpv4SubnetAllocationStrategy:
-      example:
-        subnetId: 5
-        kind: ""
-        scope:
-          resourceId: 0.8008281904610115
-          kind: ""
       properties:
         kind:
           allOf:
@@ -42810,12 +42526,6 @@ components:
       - updatedAt
       type: object
     CreateManualIpv6SubnetAllocationStrategy:
-      example:
-        subnetId: 5
-        kind: ""
-        scope:
-          resourceId: 0.8008281904610115
-          kind: ""
       properties:
         kind:
           allOf:
@@ -43040,12 +42750,6 @@ components:
       - updatedAt
       type: object
     CreateManualVniAllocationStrategy:
-      example:
-        vni: 1
-        kind: ""
-        scope:
-          resourceId: 0.8008281904610115
-          kind: ""
       properties:
         kind:
           allOf:
@@ -43071,13 +42775,6 @@ components:
       - scope
       type: object
     CreateManualVlanAllocationStrategy:
-      example:
-        vlanId: 6
-        kind: ""
-        scope:
-          resourceId: 0.8008281904610115
-          kind: ""
-        granularityLevel: ""
       properties:
         kind:
           allOf:
@@ -43277,137 +42974,9 @@ components:
       - links
       - meta
       type: object
-    UpdateLogicalNetworkProfileVlanProperties:
-      example:
-        vlanAllocationStrategies:
-        - vlanId: 6
-          kind: ""
-          scope:
-            resourceId: 0.8008281904610115
-            kind: ""
-          granularityLevel: ""
-        - vlanId: 6
-          kind: ""
-          scope:
-            resourceId: 0.8008281904610115
-            kind: ""
-          granularityLevel: ""
-      properties:
-        vlanAllocationStrategies:
-          items:
-            $ref: '#/components/schemas/CreateVlanAllocationStrategy'
-          type: array
-      type: object
-    UpdateLogicalNetworkProfileVxlanProperties:
-      example:
-        vniAllocationStrategies:
-        - vni: 1
-          kind: ""
-          scope:
-            resourceId: 0.8008281904610115
-            kind: ""
-        - vni: 1
-          kind: ""
-          scope:
-            resourceId: 0.8008281904610115
-            kind: ""
-      properties:
-        vniAllocationStrategies:
-          items:
-            $ref: '#/components/schemas/CreateVniAllocationStrategy'
-          type: array
-      type: object
-    UpdateLogicalNetworkProfileIpv4Properties:
-      example:
-        subnetAllocationStrategies:
-        - subnetId: 5
-          kind: ""
-          scope:
-            resourceId: 0.8008281904610115
-            kind: ""
-        - subnetId: 5
-          kind: ""
-          scope:
-            resourceId: 0.8008281904610115
-            kind: ""
-      properties:
-        subnetAllocationStrategies:
-          items:
-            $ref: '#/components/schemas/CreateIpv4SubnetAllocationStrategy'
-          type: array
-      type: object
-    UpdateLogicalNetworkProfileIpv6Properties:
-      example:
-        subnetAllocationStrategies:
-        - subnetId: 5
-          kind: ""
-          scope:
-            resourceId: 0.8008281904610115
-            kind: ""
-        - subnetId: 5
-          kind: ""
-          scope:
-            resourceId: 0.8008281904610115
-            kind: ""
-      properties:
-        subnetAllocationStrategies:
-          items:
-            $ref: '#/components/schemas/CreateIpv6SubnetAllocationStrategy'
-          type: array
-      type: object
     UpdateLogicalNetworkProfile:
       example:
-        vxlan:
-          vniAllocationStrategies:
-          - vni: 1
-            kind: ""
-            scope:
-              resourceId: 0.8008281904610115
-              kind: ""
-          - vni: 1
-            kind: ""
-            scope:
-              resourceId: 0.8008281904610115
-              kind: ""
-        routeDomainId: 2
-        vlan:
-          vlanAllocationStrategies:
-          - vlanId: 6
-            kind: ""
-            scope:
-              resourceId: 0.8008281904610115
-              kind: ""
-            granularityLevel: ""
-          - vlanId: 6
-            kind: ""
-            scope:
-              resourceId: 0.8008281904610115
-              kind: ""
-            granularityLevel: ""
-        ipv4:
-          subnetAllocationStrategies:
-          - subnetId: 5
-            kind: ""
-            scope:
-              resourceId: 0.8008281904610115
-              kind: ""
-          - subnetId: 5
-            kind: ""
-            scope:
-              resourceId: 0.8008281904610115
-              kind: ""
-        ipv6:
-          subnetAllocationStrategies:
-          - subnetId: 5
-            kind: ""
-            scope:
-              resourceId: 0.8008281904610115
-              kind: ""
-          - subnetId: 5
-            kind: ""
-            scope:
-              resourceId: 0.8008281904610115
-              kind: ""
+        routeDomainId: 0
         name: name
         annotations:
           key: annotations
@@ -43424,22 +42993,9 @@ components:
             nullable: true
             type: string
           type: object
-        vlan:
-          $ref: '#/components/schemas/UpdateLogicalNetworkProfileVlanProperties'
-        vxlan:
-          $ref: '#/components/schemas/UpdateLogicalNetworkProfileVxlanProperties'
-        ipv4:
-          $ref: '#/components/schemas/UpdateLogicalNetworkProfileIpv4Properties'
-        ipv6:
-          $ref: '#/components/schemas/UpdateLogicalNetworkProfileIpv6Properties'
         routeDomainId:
           nullable: true
           type: integer
-      required:
-      - ipv4
-      - ipv6
-      - vlan
-      - vxlan
       type: object
     PaginatedVlanAllocationStrategy:
       example:
@@ -46084,7 +45640,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-29T05:51:24.61Z
+        createdTimestamp: 2025-04-30T11:27:52.531Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -46093,7 +45649,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-29T05:51:24.61Z
+        updatedTimestamp: 2025-04-30T11:27:52.532Z
         revision: "1"
       properties:
         siteId:
@@ -46110,12 +45666,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-29T05:51:24.61Z
+          example: 2025-04-30T11:27:52.531Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-29T05:51:24.61Z
+          example: 2025-04-30T11:27:52.532Z
           format: date-time
           type: string
         links:
@@ -46137,7 +45693,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-29T05:51:24.61Z
+        - createdTimestamp: 2025-04-30T11:27:52.531Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -46146,9 +45702,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-29T05:51:24.61Z
+          updatedTimestamp: 2025-04-30T11:27:52.532Z
           revision: "1"
-        - createdTimestamp: 2025-04-29T05:51:24.61Z
+        - createdTimestamp: 2025-04-30T11:27:52.531Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -46157,7 +45713,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-29T05:51:24.61Z
+          updatedTimestamp: 2025-04-30T11:27:52.532Z
           revision: "1"
         meta: ""
         links: ""
@@ -46272,6 +45828,7 @@ components:
             implementationType: link-aggregation
         accessMode: l2
         networkEndpointGroupId: "1"
+        mtu: 1500
       properties:
         logicalNetworkId:
           description: The logical network ID.
@@ -46286,6 +45843,10 @@ components:
           - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
           description: The access mode of the network endpoint group
           example: l2
+        mtu:
+          description: The MTU of the logical network
+          example: 1500
+          type: integer
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -46326,6 +45887,7 @@ components:
               implementationType: link-aggregation
           accessMode: l2
           networkEndpointGroupId: "1"
+          mtu: 1500
         - logicalNetworkId: "1"
           tagged: true
           links:
@@ -46339,6 +45901,7 @@ components:
               implementationType: link-aggregation
           accessMode: l2
           networkEndpointGroupId: "1"
+          mtu: 1500
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -46367,6 +45930,7 @@ components:
           implementation:
             implementationType: link-aggregation
         accessMode: l2
+        mtu: 1500
       properties:
         logicalNetworkId:
           description: The logical network ID.
@@ -46381,6 +45945,10 @@ components:
           - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
           description: The access mode of the network endpoint group
           example: l2
+        mtu:
+          description: The MTU of the logical network
+          example: 1500
+          type: integer
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -46403,6 +45971,7 @@ components:
           implementation:
             implementationType: link-aggregation
         accessMode: l2
+        mtu: 1500
       properties:
         tagged:
           description: Whether the logical network is tagged.
@@ -46413,6 +45982,10 @@ components:
           - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
           description: The access mode of the network endpoint group
           example: l2
+        mtu:
+          description: The MTU of the logical network
+          example: 1500
+          type: integer
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -46779,7 +46352,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-29T05:51:24.613Z
+        createdTimestamp: 2025-04-30T11:27:52.545Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -46820,7 +46393,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-29T05:51:24.613Z
+        updatedTimestamp: 2025-04-30T11:27:52.545Z
         revision: "1"
         status: draft
       properties:
@@ -46848,12 +46421,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-29T05:51:24.613Z
+          example: 2025-04-30T11:27:52.545Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-29T05:51:24.613Z
+          example: 2025-04-30T11:27:52.545Z
           format: date-time
           type: string
         links:
@@ -46994,7 +46567,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-29T05:51:24.613Z
+          createdTimestamp: 2025-04-30T11:27:52.545Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -47035,7 +46608,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-29T05:51:24.613Z
+          updatedTimestamp: 2025-04-30T11:27:52.545Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -47145,7 +46718,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-29T05:51:24.613Z
+          createdTimestamp: 2025-04-30T11:27:52.545Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -47186,7 +46759,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-29T05:51:24.613Z
+          updatedTimestamp: 2025-04-30T11:27:52.545Z
           revision: "1"
           status: draft
         meta: ""
@@ -49939,10 +49512,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-04-29T05:51:24.612Z
+        createdTimestamp: 2025-04-30T11:27:52.54Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-04-29T05:51:24.612Z
+        updatedTimestamp: 2025-04-30T11:27:52.54Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -50016,12 +49589,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-29T05:51:24.612Z
+          example: 2025-04-30T11:27:52.54Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-29T05:51:24.612Z
+          example: 2025-04-30T11:27:52.54Z
           format: date-time
           type: string
         links:
@@ -53287,6 +52860,7 @@ components:
             implementationType: link-aggregation
         id: "1"
         accessMode: l2
+        mtu: 1500
       properties:
         tagged:
           description: Whether the logical network is tagged.
@@ -53297,6 +52871,10 @@ components:
           - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
           description: The access mode of the network endpoint group
           example: l2
+        mtu:
+          description: The MTU of the logical network
+          example: 1500
+          type: integer
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -53335,6 +52913,7 @@ components:
               implementationType: link-aggregation
           id: "1"
           accessMode: l2
+          mtu: 1500
         - tagged: true
           links:
           - rel: self
@@ -53347,6 +52926,7 @@ components:
               implementationType: link-aggregation
           id: "1"
           accessMode: l2
+          mtu: 1500
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -53375,6 +52955,7 @@ components:
           implementation:
             implementationType: link-aggregation
         accessMode: l2
+        mtu: 1500
       properties:
         logicalNetworkId:
           description: The logical network ID.
@@ -53389,6 +52970,10 @@ components:
           - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
           description: The access mode of the network endpoint group
           example: l2
+        mtu:
+          description: The MTU of the logical network
+          example: 1500
+          type: integer
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -56332,6 +55917,16 @@ components:
           items:
             type: object
           type: array
+        portsNvmeTcp:
+          description: NVMe TCP ports
+          items:
+            type: object
+          type: array
+        portsNvmeFc:
+          description: NVMe FC ports
+          items:
+            type: object
+          type: array
         infoGatherError:
           description: Error message when gathering storage info
           type: string
@@ -57039,7 +56634,6 @@ components:
       - networkDeviceId
       - networkDeviceIdentifier
       - networkDeviceInterfaceIdentifier
-      - networkDeviceInterfaceVlans
       - storageId
       - storagePhysicalInterfaceIdentifier
       type: object
@@ -57069,7 +56663,6 @@ components:
       required:
       - networkDeviceId
       - networkDeviceInterfaceIdentifier
-      - networkDeviceInterfaceVlans
       - storagePhysicalInterfaceIdentifier
       type: object
     UpdateStorageNetworkDeviceConfiguration:
@@ -57091,110 +56684,6 @@ components:
           items:
             type: number
           type: array
-      type: object
-    DrivePaginatedList:
-      example:
-        data:
-        - iscsiIndexHex: iscsiIndexHex
-          groupId: 1
-          sizeMb: 6.027456183070403
-          templateId: 1
-          updatedTimestamp: updatedTimestamp
-          targets:
-          - {}
-          - {}
-          sshKeyPairInternalEncrypted: "{}"
-          storageVirtualSizeCachedMb: 3.616076749251911
-          wwn: wwn
-          storageImageName: storageImageName
-          storageUpdatedTimestamp: storageUpdatedTimestamp
-          instanceId: 1
-          dnsSubdomainPermanentId: 4.145608029883936
-          osAdminPasswordEncrypted: osAdminPasswordEncrypted
-          serviceStatus: ordered
-          osAdminUsername: osAdminUsername
-          networkVlanId: 7.386281948385884
-          operatingSystemInfo: "{}"
-          storagePoolId: 0.8008281904610115
-          id: 5.962133916683182
-          storageRealSizeCachedMb: 7.061401241503109
-          sshPort: 1.4658129805029452
-          provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
-          dnsSubdomainId: 2.027123023002322
-          createdTimestamp: createdTimestamp
-          label: label
-          subdomainPermanent: subdomainPermanent
-          filesystemInfo: "{}"
-          revision: 5.637376656633329
-          clusterCustomInfo: "{}"
-          infrastructureId: 2.3021358869347655
-          infrastructure: ""
-          meta: ""
-          storageType: iscsi_ssd
-          subdomain: subdomain
-          config: ""
-        - iscsiIndexHex: iscsiIndexHex
-          groupId: 1
-          sizeMb: 6.027456183070403
-          templateId: 1
-          updatedTimestamp: updatedTimestamp
-          targets:
-          - {}
-          - {}
-          sshKeyPairInternalEncrypted: "{}"
-          storageVirtualSizeCachedMb: 3.616076749251911
-          wwn: wwn
-          storageImageName: storageImageName
-          storageUpdatedTimestamp: storageUpdatedTimestamp
-          instanceId: 1
-          dnsSubdomainPermanentId: 4.145608029883936
-          osAdminPasswordEncrypted: osAdminPasswordEncrypted
-          serviceStatus: ordered
-          osAdminUsername: osAdminUsername
-          networkVlanId: 7.386281948385884
-          operatingSystemInfo: "{}"
-          storagePoolId: 0.8008281904610115
-          id: 5.962133916683182
-          storageRealSizeCachedMb: 7.061401241503109
-          sshPort: 1.4658129805029452
-          provisioningProtocol: iSCSI
-          storageRealSizeWithSnapshotsCachedMb: 9.301444243932576
-          dnsSubdomainId: 2.027123023002322
-          createdTimestamp: createdTimestamp
-          label: label
-          subdomainPermanent: subdomainPermanent
-          filesystemInfo: "{}"
-          revision: 5.637376656633329
-          clusterCustomInfo: "{}"
-          infrastructureId: 2.3021358869347655
-          infrastructure: ""
-          meta: ""
-          storageType: iscsi_ssd
-          subdomain: subdomain
-          config: ""
-        meta: ""
-        links: ""
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Drive'
-          title: List of drives
-          type: array
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseMeta'
-          description: Metadata about the pagination of the response
-          title: Pagination metadata
-        links:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseLinks'
-          description: Links to navigate through the paginated results
-          title: Pagination links
-      required:
-      - data
-      - links
-      - meta
       type: object
     Subnet:
       example:
@@ -60871,13 +60360,7 @@ components:
       oneOf:
       - $ref: '#/components/schemas/VlanLogicalNetworkProfile'
       - $ref: '#/components/schemas/VxlanLogicalNetworkProfile'
-    getLogicalNetworkProfileVlanAllocationStrategy_200_response:
-      discriminator:
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/ManualVlanAllocationStrategy'
-      - $ref: '#/components/schemas/AutoVlanAllocationStrategy'
-    replaceLogicalNetworkProfileVlanAllocationStrategy_request:
+    createLogicalNetworkProfileVlanAllocationStrategy_request:
       discriminator:
         mapping:
           manual: '#/components/schemas/CreateManualVlanAllocationStrategy'
@@ -60887,6 +60370,12 @@ components:
       - $ref: '#/components/schemas/CreateManualVlanAllocationStrategy'
       - $ref: '#/components/schemas/CreateAutoVlanAllocationStrategy'
       type: object
+    createLogicalNetworkProfileVlanAllocationStrategy_201_response:
+      discriminator:
+        propertyName: kind
+      oneOf:
+      - $ref: '#/components/schemas/ManualVlanAllocationStrategy'
+      - $ref: '#/components/schemas/AutoVlanAllocationStrategy'
     createLogicalNetworkProfileVniAllocationStrategy_request:
       discriminator:
         mapping:

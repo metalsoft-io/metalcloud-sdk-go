@@ -58,6 +58,10 @@ type StorageOptions struct {
 	PortsIscsi []map[string]interface{} `json:"portsIscsi,omitempty"`
 	// SCSI FC ports
 	PortsScsiFc []map[string]interface{} `json:"portsScsiFc,omitempty"`
+	// NVMe TCP ports
+	PortsNvmeTcp []map[string]interface{} `json:"portsNvmeTcp,omitempty"`
+	// NVMe FC ports
+	PortsNvmeFc []map[string]interface{} `json:"portsNvmeFc,omitempty"`
 	// Error message when gathering storage info
 	InfoGatherError *string `json:"infoGatherError,omitempty"`
 	// Error message when configuring storage
@@ -692,6 +696,70 @@ func (o *StorageOptions) SetPortsScsiFc(v []map[string]interface{}) {
 	o.PortsScsiFc = v
 }
 
+// GetPortsNvmeTcp returns the PortsNvmeTcp field value if set, zero value otherwise.
+func (o *StorageOptions) GetPortsNvmeTcp() []map[string]interface{} {
+	if o == nil || IsNil(o.PortsNvmeTcp) {
+		var ret []map[string]interface{}
+		return ret
+	}
+	return o.PortsNvmeTcp
+}
+
+// GetPortsNvmeTcpOk returns a tuple with the PortsNvmeTcp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageOptions) GetPortsNvmeTcpOk() ([]map[string]interface{}, bool) {
+	if o == nil || IsNil(o.PortsNvmeTcp) {
+		return nil, false
+	}
+	return o.PortsNvmeTcp, true
+}
+
+// HasPortsNvmeTcp returns a boolean if a field has been set.
+func (o *StorageOptions) HasPortsNvmeTcp() bool {
+	if o != nil && !IsNil(o.PortsNvmeTcp) {
+		return true
+	}
+
+	return false
+}
+
+// SetPortsNvmeTcp gets a reference to the given []map[string]interface{} and assigns it to the PortsNvmeTcp field.
+func (o *StorageOptions) SetPortsNvmeTcp(v []map[string]interface{}) {
+	o.PortsNvmeTcp = v
+}
+
+// GetPortsNvmeFc returns the PortsNvmeFc field value if set, zero value otherwise.
+func (o *StorageOptions) GetPortsNvmeFc() []map[string]interface{} {
+	if o == nil || IsNil(o.PortsNvmeFc) {
+		var ret []map[string]interface{}
+		return ret
+	}
+	return o.PortsNvmeFc
+}
+
+// GetPortsNvmeFcOk returns a tuple with the PortsNvmeFc field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageOptions) GetPortsNvmeFcOk() ([]map[string]interface{}, bool) {
+	if o == nil || IsNil(o.PortsNvmeFc) {
+		return nil, false
+	}
+	return o.PortsNvmeFc, true
+}
+
+// HasPortsNvmeFc returns a boolean if a field has been set.
+func (o *StorageOptions) HasPortsNvmeFc() bool {
+	if o != nil && !IsNil(o.PortsNvmeFc) {
+		return true
+	}
+
+	return false
+}
+
+// SetPortsNvmeFc gets a reference to the given []map[string]interface{} and assigns it to the PortsNvmeFc field.
+func (o *StorageOptions) SetPortsNvmeFc(v []map[string]interface{}) {
+	o.PortsNvmeFc = v
+}
+
 // GetInfoGatherError returns the InfoGatherError field value if set, zero value otherwise.
 func (o *StorageOptions) GetInfoGatherError() string {
 	if o == nil || IsNil(o.InfoGatherError) {
@@ -823,6 +891,12 @@ func (o StorageOptions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PortsScsiFc) {
 		toSerialize["portsScsiFc"] = o.PortsScsiFc
 	}
+	if !IsNil(o.PortsNvmeTcp) {
+		toSerialize["portsNvmeTcp"] = o.PortsNvmeTcp
+	}
+	if !IsNil(o.PortsNvmeFc) {
+		toSerialize["portsNvmeFc"] = o.PortsNvmeFc
+	}
 	if !IsNil(o.InfoGatherError) {
 		toSerialize["infoGatherError"] = o.InfoGatherError
 	}
@@ -870,6 +944,8 @@ func (o *StorageOptions) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "fibreChannelCapable")
 		delete(additionalProperties, "portsIscsi")
 		delete(additionalProperties, "portsScsiFc")
+		delete(additionalProperties, "portsNvmeTcp")
+		delete(additionalProperties, "portsNvmeFc")
 		delete(additionalProperties, "infoGatherError")
 		delete(additionalProperties, "configureError")
 		o.AdditionalProperties = additionalProperties

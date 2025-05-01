@@ -235,6 +235,7 @@ Class | Method | HTTP request | Description
 *LogicalNetworkProfileAPI* | [**CreateLogicalNetworkProfile**](docs/LogicalNetworkProfileAPI.md#createlogicalnetworkprofile) | **Post** /api/v2/logical-network-profiles | Create a Logical Network Profile.
 *LogicalNetworkProfileAPI* | [**CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#createlogicalnetworkprofileipv4subnetallocationstrategy) | **Post** /api/v2/logical-network-profiles/{id}/ipv4/subnet-allocation-strategies | Create Ipv4 Subnet allocation strategy.
 *LogicalNetworkProfileAPI* | [**CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#createlogicalnetworkprofileipv6subnetallocationstrategy) | **Post** /api/v2/logical-network-profiles/{id}/ipv6/subnet-allocation-strategies | Create Ipv6 Subnet allocation strategy.
+*LogicalNetworkProfileAPI* | [**CreateLogicalNetworkProfileVlanAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#createlogicalnetworkprofilevlanallocationstrategy) | **Post** /api/v2/logical-network-profiles/{id}/vlan/vlan-allocation-strategies | Create Vlan allocation strategy.
 *LogicalNetworkProfileAPI* | [**CreateLogicalNetworkProfileVniAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#createlogicalnetworkprofilevniallocationstrategy) | **Post** /api/v2/logical-network-profiles/{id}/vxlan/vni-allocation-strategies | Create Vni allocation strategy.
 *LogicalNetworkProfileAPI* | [**DeleteLogicalNetworkProfile**](docs/LogicalNetworkProfileAPI.md#deletelogicalnetworkprofile) | **Delete** /api/v2/logical-network-profiles/{id} | Delete a Logical Network Profile.
 *LogicalNetworkProfileAPI* | [**DeleteLogicalNetworkProfileIpv4SubnetAllocationStrategy**](docs/LogicalNetworkProfileAPI.md#deletelogicalnetworkprofileipv4subnetallocationstrategy) | **Delete** /api/v2/logical-network-profiles/{id}/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Delete Ipv4 Subnet allocation strategy.
@@ -444,7 +445,6 @@ Class | Method | HTTP request | Description
 *StorageAPI* | [**GetStorageFileShares**](docs/StorageAPI.md#getstoragefileshares) | **Get** /api/v2/storages/{storageId}/file-shares | Get all File Shares linked to the specified storage
 *StorageAPI* | [**GetStorageIscsiBootServers**](docs/StorageAPI.md#getstorageiscsibootservers) | **Get** /api/v2/storages/{storageId}/iscsi-boot-servers | Returns information about servers which are setup to boot from iSCSI block devices
 *StorageAPI* | [**GetStorageNetworkDeviceConfigurations**](docs/StorageAPI.md#getstoragenetworkdeviceconfigurations) | **Get** /api/v2/storages/{storageId}/network-device-configurations | Retrieves Storage Network Device Configurations
-*StorageAPI* | [**GetStorageSharedDrives**](docs/StorageAPI.md#getstorageshareddrives) | **Get** /api/v2/storages/{storageId}/shared-drives | Get all Shared Drives linked to the specified storage
 *StorageAPI* | [**GetStorageStatistics**](docs/StorageAPI.md#getstoragestatistics) | **Get** /api/v2/storages/statistics | Get Storages statistics
 *StorageAPI* | [**GetStorages**](docs/StorageAPI.md#getstorages) | **Get** /api/v2/storages | Get a list of Storages
 *StorageAPI* | [**UpdateStorage**](docs/StorageAPI.md#updatestorage) | **Patch** /api/v2/storages/{storageId} | Updates a Storage
@@ -625,6 +625,8 @@ Class | Method | HTTP request | Description
  - [CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response](docs/CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response.md)
  - [CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest](docs/CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest.md)
  - [CreateLogicalNetworkProfileRequest](docs/CreateLogicalNetworkProfileRequest.md)
+ - [CreateLogicalNetworkProfileVlanAllocationStrategy201Response](docs/CreateLogicalNetworkProfileVlanAllocationStrategy201Response.md)
+ - [CreateLogicalNetworkProfileVlanAllocationStrategyRequest](docs/CreateLogicalNetworkProfileVlanAllocationStrategyRequest.md)
  - [CreateLogicalNetworkProfileVniAllocationStrategy201Response](docs/CreateLogicalNetworkProfileVniAllocationStrategy201Response.md)
  - [CreateLogicalNetworkProfileVniAllocationStrategyRequest](docs/CreateLogicalNetworkProfileVniAllocationStrategyRequest.md)
  - [CreateLogicalNetworkRequest](docs/CreateLogicalNetworkRequest.md)
@@ -683,7 +685,6 @@ Class | Method | HTTP request | Description
  - [DriveGroupVariables](docs/DriveGroupVariables.md)
  - [DriveList](docs/DriveList.md)
  - [DriveMeta](docs/DriveMeta.md)
- - [DrivePaginatedList](docs/DrivePaginatedList.md)
  - [DriveVariables](docs/DriveVariables.md)
  - [EditRole](docs/EditRole.md)
  - [EthernetFabric](docs/EthernetFabric.md)
@@ -744,7 +745,6 @@ Class | Method | HTTP request | Description
  - [GenericMeta](docs/GenericMeta.md)
  - [GenericServiceStatus](docs/GenericServiceStatus.md)
  - [GetLogicalNetworkConfig200Response](docs/GetLogicalNetworkConfig200Response.md)
- - [GetLogicalNetworkProfileVlanAllocationStrategy200Response](docs/GetLogicalNetworkProfileVlanAllocationStrategy200Response.md)
  - [GetResourceUtilizationDetailed](docs/GetResourceUtilizationDetailed.md)
  - [GetSiteControllerOneLiner200Response](docs/GetSiteControllerOneLiner200Response.md)
  - [GlobalFirmwareUpgradeConfiguration](docs/GlobalFirmwareUpgradeConfiguration.md)
@@ -848,7 +848,6 @@ Class | Method | HTTP request | Description
  - [RegisterServerResponse](docs/RegisterServerResponse.md)
  - [RegisterStorageResponse](docs/RegisterStorageResponse.md)
  - [RemoteConsoleInfo](docs/RemoteConsoleInfo.md)
- - [ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest](docs/ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest.md)
  - [Repo](docs/Repo.md)
  - [ResourceAllocationStatus](docs/ResourceAllocationStatus.md)
  - [ResourcePool](docs/ResourcePool.md)
@@ -988,10 +987,6 @@ Class | Method | HTTP request | Description
  - [UpdateLogicalNetworkACL](docs/UpdateLogicalNetworkACL.md)
  - [UpdateLogicalNetworkConfig](docs/UpdateLogicalNetworkConfig.md)
  - [UpdateLogicalNetworkProfile](docs/UpdateLogicalNetworkProfile.md)
- - [UpdateLogicalNetworkProfileIpv4Properties](docs/UpdateLogicalNetworkProfileIpv4Properties.md)
- - [UpdateLogicalNetworkProfileIpv6Properties](docs/UpdateLogicalNetworkProfileIpv6Properties.md)
- - [UpdateLogicalNetworkProfileVlanProperties](docs/UpdateLogicalNetworkProfileVlanProperties.md)
- - [UpdateLogicalNetworkProfileVxlanProperties](docs/UpdateLogicalNetworkProfileVxlanProperties.md)
  - [UpdateNetworkDevice](docs/UpdateNetworkDevice.md)
  - [UpdateNetworkEndpointGroup](docs/UpdateNetworkEndpointGroup.md)
  - [UpdateNetworkEndpointGroupLogicalNetwork](docs/UpdateNetworkEndpointGroupLogicalNetwork.md)

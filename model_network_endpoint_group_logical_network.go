@@ -27,6 +27,8 @@ type NetworkEndpointGroupLogicalNetwork struct {
 	Tagged bool `json:"tagged"`
 	// The access mode of the network endpoint group
 	AccessMode NetworkEndpointGroupAllowedAccessMode `json:"accessMode"`
+	// The MTU of the logical network
+	Mtu *int32 `json:"mtu,omitempty"`
 	// The redundancy configuration
 	Redundancy NullableRedundancyConfig `json:"redundancy,omitempty"`
 	// Reference links
@@ -129,6 +131,38 @@ func (o *NetworkEndpointGroupLogicalNetwork) GetAccessModeOk() (*NetworkEndpoint
 // SetAccessMode sets field value
 func (o *NetworkEndpointGroupLogicalNetwork) SetAccessMode(v NetworkEndpointGroupAllowedAccessMode) {
 	o.AccessMode = v
+}
+
+// GetMtu returns the Mtu field value if set, zero value otherwise.
+func (o *NetworkEndpointGroupLogicalNetwork) GetMtu() int32 {
+	if o == nil || IsNil(o.Mtu) {
+		var ret int32
+		return ret
+	}
+	return *o.Mtu
+}
+
+// GetMtuOk returns a tuple with the Mtu field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkEndpointGroupLogicalNetwork) GetMtuOk() (*int32, bool) {
+	if o == nil || IsNil(o.Mtu) {
+		return nil, false
+	}
+	return o.Mtu, true
+}
+
+// HasMtu returns a boolean if a field has been set.
+func (o *NetworkEndpointGroupLogicalNetwork) HasMtu() bool {
+	if o != nil && !IsNil(o.Mtu) {
+		return true
+	}
+
+	return false
+}
+
+// SetMtu gets a reference to the given int32 and assigns it to the Mtu field.
+func (o *NetworkEndpointGroupLogicalNetwork) SetMtu(v int32) {
+	o.Mtu = &v
 }
 
 // GetRedundancy returns the Redundancy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -242,6 +276,9 @@ func (o NetworkEndpointGroupLogicalNetwork) ToMap() (map[string]interface{}, err
 	toSerialize["logicalNetworkId"] = o.LogicalNetworkId
 	toSerialize["tagged"] = o.Tagged
 	toSerialize["accessMode"] = o.AccessMode
+	if !IsNil(o.Mtu) {
+		toSerialize["mtu"] = o.Mtu
+	}
 	if o.Redundancy.IsSet() {
 		toSerialize["redundancy"] = o.Redundancy.Get()
 	}
@@ -298,6 +335,7 @@ func (o *NetworkEndpointGroupLogicalNetwork) UnmarshalJSON(data []byte) (err err
 		delete(additionalProperties, "logicalNetworkId")
 		delete(additionalProperties, "tagged")
 		delete(additionalProperties, "accessMode")
+		delete(additionalProperties, "mtu")
 		delete(additionalProperties, "redundancy")
 		delete(additionalProperties, "links")
 		delete(additionalProperties, "networkEndpointGroupId")

@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CreateLogicalNetworkProfile**](LogicalNetworkProfileAPI.md#CreateLogicalNetworkProfile) | **Post** /api/v2/logical-network-profiles | Create a Logical Network Profile.
 [**CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy**](LogicalNetworkProfileAPI.md#CreateLogicalNetworkProfileIpv4SubnetAllocationStrategy) | **Post** /api/v2/logical-network-profiles/{id}/ipv4/subnet-allocation-strategies | Create Ipv4 Subnet allocation strategy.
 [**CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy**](LogicalNetworkProfileAPI.md#CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy) | **Post** /api/v2/logical-network-profiles/{id}/ipv6/subnet-allocation-strategies | Create Ipv6 Subnet allocation strategy.
+[**CreateLogicalNetworkProfileVlanAllocationStrategy**](LogicalNetworkProfileAPI.md#CreateLogicalNetworkProfileVlanAllocationStrategy) | **Post** /api/v2/logical-network-profiles/{id}/vlan/vlan-allocation-strategies | Create Vlan allocation strategy.
 [**CreateLogicalNetworkProfileVniAllocationStrategy**](LogicalNetworkProfileAPI.md#CreateLogicalNetworkProfileVniAllocationStrategy) | **Post** /api/v2/logical-network-profiles/{id}/vxlan/vni-allocation-strategies | Create Vni allocation strategy.
 [**DeleteLogicalNetworkProfile**](LogicalNetworkProfileAPI.md#DeleteLogicalNetworkProfile) | **Delete** /api/v2/logical-network-profiles/{id} | Delete a Logical Network Profile.
 [**DeleteLogicalNetworkProfileIpv4SubnetAllocationStrategy**](LogicalNetworkProfileAPI.md#DeleteLogicalNetworkProfileIpv4SubnetAllocationStrategy) | **Delete** /api/v2/logical-network-profiles/{id}/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Delete Ipv4 Subnet allocation strategy.
@@ -224,6 +225,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response**](CreateLogicalNetworkProfileIpv6SubnetAllocationStrategy201Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateLogicalNetworkProfileVlanAllocationStrategy
+
+> CreateLogicalNetworkProfileVlanAllocationStrategy201Response CreateLogicalNetworkProfileVlanAllocationStrategy(ctx, id).CreateLogicalNetworkProfileVlanAllocationStrategyRequest(createLogicalNetworkProfileVlanAllocationStrategyRequest).IfMatch(ifMatch).Execute()
+
+Create Vlan allocation strategy.
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	id := float32(8.14) // float32 | 
+	createLogicalNetworkProfileVlanAllocationStrategyRequest := openapiclient.createLogicalNetworkProfileVlanAllocationStrategy_request{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateLogicalNetworkProfileVlanAllocationStrategyRequest | 
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LogicalNetworkProfileAPI.CreateLogicalNetworkProfileVlanAllocationStrategy(context.Background(), id).CreateLogicalNetworkProfileVlanAllocationStrategyRequest(createLogicalNetworkProfileVlanAllocationStrategyRequest).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkProfileAPI.CreateLogicalNetworkProfileVlanAllocationStrategy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateLogicalNetworkProfileVlanAllocationStrategy`: CreateLogicalNetworkProfileVlanAllocationStrategy201Response
+	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkProfileAPI.CreateLogicalNetworkProfileVlanAllocationStrategy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateLogicalNetworkProfileVlanAllocationStrategyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createLogicalNetworkProfileVlanAllocationStrategyRequest** | [**CreateLogicalNetworkProfileVlanAllocationStrategyRequest**](CreateLogicalNetworkProfileVlanAllocationStrategyRequest.md) |  | 
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**CreateLogicalNetworkProfileVlanAllocationStrategy201Response**](CreateLogicalNetworkProfileVlanAllocationStrategy201Response.md)
 
 ### Authorization
 
@@ -1109,7 +1182,7 @@ No authorization required
 
 ## GetLogicalNetworkProfileVlanAllocationStrategy
 
-> GetLogicalNetworkProfileVlanAllocationStrategy200Response GetLogicalNetworkProfileVlanAllocationStrategy(ctx, id, allocationStrategyId).Execute()
+> CreateLogicalNetworkProfileVlanAllocationStrategy201Response GetLogicalNetworkProfileVlanAllocationStrategy(ctx, id, allocationStrategyId).Execute()
 
 Get a Vlan allocation strategy.
 
@@ -1136,7 +1209,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkProfileAPI.GetLogicalNetworkProfileVlanAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkProfileVlanAllocationStrategy`: GetLogicalNetworkProfileVlanAllocationStrategy200Response
+	// response from `GetLogicalNetworkProfileVlanAllocationStrategy`: CreateLogicalNetworkProfileVlanAllocationStrategy201Response
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkProfileAPI.GetLogicalNetworkProfileVlanAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -1162,7 +1235,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetLogicalNetworkProfileVlanAllocationStrategy200Response**](GetLogicalNetworkProfileVlanAllocationStrategy200Response.md)
+[**CreateLogicalNetworkProfileVlanAllocationStrategy201Response**](CreateLogicalNetworkProfileVlanAllocationStrategy201Response.md)
 
 ### Authorization
 
@@ -1561,7 +1634,7 @@ No authorization required
 
 ## ReplaceLogicalNetworkProfileVlanAllocationStrategy
 
-> GetLogicalNetworkProfileVlanAllocationStrategy200Response ReplaceLogicalNetworkProfileVlanAllocationStrategy(ctx, id, allocationStrategyId).ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest(replaceLogicalNetworkProfileVlanAllocationStrategyRequest).IfMatch(ifMatch).Execute()
+> CreateLogicalNetworkProfileVlanAllocationStrategy201Response ReplaceLogicalNetworkProfileVlanAllocationStrategy(ctx, id, allocationStrategyId).CreateLogicalNetworkProfileVlanAllocationStrategyRequest(createLogicalNetworkProfileVlanAllocationStrategyRequest).IfMatch(ifMatch).Execute()
 
 Replace Vlan allocation strategy
 
@@ -1580,17 +1653,17 @@ import (
 func main() {
 	id := float32(8.14) // float32 | 
 	allocationStrategyId := float32(8.14) // float32 | 
-	replaceLogicalNetworkProfileVlanAllocationStrategyRequest := openapiclient.replaceLogicalNetworkProfileVlanAllocationStrategy_request{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest | 
+	createLogicalNetworkProfileVlanAllocationStrategyRequest := openapiclient.createLogicalNetworkProfileVlanAllocationStrategy_request{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))} // CreateLogicalNetworkProfileVlanAllocationStrategyRequest | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkProfileAPI.ReplaceLogicalNetworkProfileVlanAllocationStrategy(context.Background(), id, allocationStrategyId).ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest(replaceLogicalNetworkProfileVlanAllocationStrategyRequest).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.LogicalNetworkProfileAPI.ReplaceLogicalNetworkProfileVlanAllocationStrategy(context.Background(), id, allocationStrategyId).CreateLogicalNetworkProfileVlanAllocationStrategyRequest(createLogicalNetworkProfileVlanAllocationStrategyRequest).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkProfileAPI.ReplaceLogicalNetworkProfileVlanAllocationStrategy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ReplaceLogicalNetworkProfileVlanAllocationStrategy`: GetLogicalNetworkProfileVlanAllocationStrategy200Response
+	// response from `ReplaceLogicalNetworkProfileVlanAllocationStrategy`: CreateLogicalNetworkProfileVlanAllocationStrategy201Response
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkProfileAPI.ReplaceLogicalNetworkProfileVlanAllocationStrategy`: %v\n", resp)
 }
 ```
@@ -1613,12 +1686,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **replaceLogicalNetworkProfileVlanAllocationStrategyRequest** | [**ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest**](ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest.md) |  | 
+ **createLogicalNetworkProfileVlanAllocationStrategyRequest** | [**CreateLogicalNetworkProfileVlanAllocationStrategyRequest**](CreateLogicalNetworkProfileVlanAllocationStrategyRequest.md) |  | 
  **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 
-[**GetLogicalNetworkProfileVlanAllocationStrategy200Response**](GetLogicalNetworkProfileVlanAllocationStrategy200Response.md)
+[**CreateLogicalNetworkProfileVlanAllocationStrategy201Response**](CreateLogicalNetworkProfileVlanAllocationStrategy201Response.md)
 
 ### Authorization
 
@@ -1729,7 +1802,7 @@ import (
 
 func main() {
 	id := float32(8.14) // float32 | 
-	updateLogicalNetworkProfile := *openapiclient.NewUpdateLogicalNetworkProfile(*openapiclient.NewUpdateLogicalNetworkProfileVlanProperties(), *openapiclient.NewUpdateLogicalNetworkProfileVxlanProperties(), *openapiclient.NewUpdateLogicalNetworkProfileIpv4Properties(), *openapiclient.NewUpdateLogicalNetworkProfileIpv6Properties()) // UpdateLogicalNetworkProfile | 
+	updateLogicalNetworkProfile := *openapiclient.NewUpdateLogicalNetworkProfile() // UpdateLogicalNetworkProfile | 
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()

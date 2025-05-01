@@ -62,6 +62,20 @@ func Test_sdk_LogicalNetworkProfileAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test LogicalNetworkProfileAPIService CreateLogicalNetworkProfileVlanAllocationStrategy", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+
+		resp, httpRes, err := apiClient.LogicalNetworkProfileAPI.CreateLogicalNetworkProfileVlanAllocationStrategy(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test LogicalNetworkProfileAPIService CreateLogicalNetworkProfileVniAllocationStrategy", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

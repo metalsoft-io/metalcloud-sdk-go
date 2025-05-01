@@ -1,4 +1,4 @@
-# GetLogicalNetworkProfileVlanAllocationStrategy200Response
+# CreateLogicalNetworkProfileVlanAllocationStrategy201Response
 
 ## Properties
 
@@ -14,169 +14,169 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewGetLogicalNetworkProfileVlanAllocationStrategy200Response
+### NewCreateLogicalNetworkProfileVlanAllocationStrategy201Response
 
-`func NewGetLogicalNetworkProfileVlanAllocationStrategy200Response(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, granularityLevel NullableVlanAllocationGranularityLevel, vlanId int32, ) *GetLogicalNetworkProfileVlanAllocationStrategy200Response`
+`func NewCreateLogicalNetworkProfileVlanAllocationStrategy201Response(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, granularityLevel NullableVlanAllocationGranularityLevel, vlanId int32, ) *CreateLogicalNetworkProfileVlanAllocationStrategy201Response`
 
-NewGetLogicalNetworkProfileVlanAllocationStrategy200Response instantiates a new GetLogicalNetworkProfileVlanAllocationStrategy200Response object
+NewCreateLogicalNetworkProfileVlanAllocationStrategy201Response instantiates a new CreateLogicalNetworkProfileVlanAllocationStrategy201Response object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewGetLogicalNetworkProfileVlanAllocationStrategy200ResponseWithDefaults
+### NewCreateLogicalNetworkProfileVlanAllocationStrategy201ResponseWithDefaults
 
-`func NewGetLogicalNetworkProfileVlanAllocationStrategy200ResponseWithDefaults() *GetLogicalNetworkProfileVlanAllocationStrategy200Response`
+`func NewCreateLogicalNetworkProfileVlanAllocationStrategy201ResponseWithDefaults() *CreateLogicalNetworkProfileVlanAllocationStrategy201Response`
 
-NewGetLogicalNetworkProfileVlanAllocationStrategy200ResponseWithDefaults instantiates a new GetLogicalNetworkProfileVlanAllocationStrategy200Response object
+NewCreateLogicalNetworkProfileVlanAllocationStrategy201ResponseWithDefaults instantiates a new CreateLogicalNetworkProfileVlanAllocationStrategy201Response object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetId() int32`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetId() int32`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetIdOk() (*int32, bool)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetIdOk() (*int32, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) SetId(v int32)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) SetId(v int32)`
 
 SetId sets Id field to given value.
 
 
 ### GetCreatedAt
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetCreatedAt() time.Time`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) SetCreatedAt(v time.Time)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetUpdatedAt
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetUpdatedAt() time.Time`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) SetUpdatedAt(v time.Time)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
 
 ### GetKind
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetKind() AllocationStrategyKind`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetKind() AllocationStrategyKind`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetKindOk() (*AllocationStrategyKind, bool)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetKindOk() (*AllocationStrategyKind, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) SetKind(v AllocationStrategyKind)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) SetKind(v AllocationStrategyKind)`
 
 SetKind sets Kind field to given value.
 
 
 ### GetScope
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetScope() ResourceScope`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetScope() ResourceScope`
 
 GetScope returns the Scope field if non-nil, zero value otherwise.
 
 ### GetScopeOk
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetScopeOk() (*ResourceScope, bool)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetScopeOk() (*ResourceScope, bool)`
 
 GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetScope
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) SetScope(v ResourceScope)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) SetScope(v ResourceScope)`
 
 SetScope sets Scope field to given value.
 
 
 ### GetGranularityLevel
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetGranularityLevel() VlanAllocationGranularityLevel`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetGranularityLevel() VlanAllocationGranularityLevel`
 
 GetGranularityLevel returns the GranularityLevel field if non-nil, zero value otherwise.
 
 ### GetGranularityLevelOk
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetGranularityLevelOk() (*VlanAllocationGranularityLevel, bool)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetGranularityLevelOk() (*VlanAllocationGranularityLevel, bool)`
 
 GetGranularityLevelOk returns a tuple with the GranularityLevel field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGranularityLevel
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) SetGranularityLevel(v VlanAllocationGranularityLevel)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) SetGranularityLevel(v VlanAllocationGranularityLevel)`
 
 SetGranularityLevel sets GranularityLevel field to given value.
 
 
 ### SetGranularityLevelNil
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) SetGranularityLevelNil(b bool)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) SetGranularityLevelNil(b bool)`
 
  SetGranularityLevelNil sets the value for GranularityLevel to be an explicit nil
 
 ### UnsetGranularityLevel
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) UnsetGranularityLevel()`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) UnsetGranularityLevel()`
 
 UnsetGranularityLevel ensures that no value is present for GranularityLevel, not even an explicit nil
 ### GetVlanId
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetVlanId() int32`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetVlanId() int32`
 
 GetVlanId returns the VlanId field if non-nil, zero value otherwise.
 
 ### GetVlanIdOk
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) GetVlanIdOk() (*int32, bool)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) GetVlanIdOk() (*int32, bool)`
 
 GetVlanIdOk returns a tuple with the VlanId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlanId
 
-`func (o *GetLogicalNetworkProfileVlanAllocationStrategy200Response) SetVlanId(v int32)`
+`func (o *CreateLogicalNetworkProfileVlanAllocationStrategy201Response) SetVlanId(v int32)`
 
 SetVlanId sets VlanId field to given value.
 

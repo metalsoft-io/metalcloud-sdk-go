@@ -23,6 +23,8 @@ Name | Type | Description | Notes
 **FibreChannelCapable** | Pointer to **float32** | Fibre channel capable | [optional] 
 **PortsIscsi** | Pointer to **[]map[string]interface{}** | ISCSI ports | [optional] 
 **PortsScsiFc** | Pointer to **[]map[string]interface{}** | SCSI FC ports | [optional] 
+**PortsNvmeTcp** | Pointer to **[]map[string]interface{}** | NVMe TCP ports | [optional] 
+**PortsNvmeFc** | Pointer to **[]map[string]interface{}** | NVMe FC ports | [optional] 
 **InfoGatherError** | Pointer to **string** | Error message when gathering storage info | [optional] 
 **ConfigureError** | Pointer to **string** | Error message when configuring storage | [optional] 
 
@@ -519,6 +521,56 @@ SetPortsScsiFc sets PortsScsiFc field to given value.
 `func (o *StorageOptions) HasPortsScsiFc() bool`
 
 HasPortsScsiFc returns a boolean if a field has been set.
+
+### GetPortsNvmeTcp
+
+`func (o *StorageOptions) GetPortsNvmeTcp() []map[string]interface{}`
+
+GetPortsNvmeTcp returns the PortsNvmeTcp field if non-nil, zero value otherwise.
+
+### GetPortsNvmeTcpOk
+
+`func (o *StorageOptions) GetPortsNvmeTcpOk() (*[]map[string]interface{}, bool)`
+
+GetPortsNvmeTcpOk returns a tuple with the PortsNvmeTcp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPortsNvmeTcp
+
+`func (o *StorageOptions) SetPortsNvmeTcp(v []map[string]interface{})`
+
+SetPortsNvmeTcp sets PortsNvmeTcp field to given value.
+
+### HasPortsNvmeTcp
+
+`func (o *StorageOptions) HasPortsNvmeTcp() bool`
+
+HasPortsNvmeTcp returns a boolean if a field has been set.
+
+### GetPortsNvmeFc
+
+`func (o *StorageOptions) GetPortsNvmeFc() []map[string]interface{}`
+
+GetPortsNvmeFc returns the PortsNvmeFc field if non-nil, zero value otherwise.
+
+### GetPortsNvmeFcOk
+
+`func (o *StorageOptions) GetPortsNvmeFcOk() (*[]map[string]interface{}, bool)`
+
+GetPortsNvmeFcOk returns a tuple with the PortsNvmeFc field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPortsNvmeFc
+
+`func (o *StorageOptions) SetPortsNvmeFc(v []map[string]interface{})`
+
+SetPortsNvmeFc sets PortsNvmeFc field to given value.
+
+### HasPortsNvmeFc
+
+`func (o *StorageOptions) HasPortsNvmeFc() bool`
+
+HasPortsNvmeFc returns a boolean if a field has been set.
 
 ### GetInfoGatherError
 

@@ -10,13 +10,13 @@ Name | Type | Description | Notes
 **StoragePhysicalInterfaceIdentifier** | **string** | Identifier of the storage physical interface | 
 **NetworkDeviceIdentifier** | **string** | Identifier of the network device | 
 **NetworkDeviceInterfaceIdentifier** | **string** | Identifier of the network device interface | 
-**NetworkDeviceInterfaceVlans** | **[]float32** | Array of VLANS for the network device interface | 
+**NetworkDeviceInterfaceVlans** | Pointer to **[]float32** | Array of VLANS for the network device interface | [optional] 
 
 ## Methods
 
 ### NewStorageNetworkDeviceConfiguration
 
-`func NewStorageNetworkDeviceConfiguration(id float32, storageId float32, networkDeviceId float32, storagePhysicalInterfaceIdentifier string, networkDeviceIdentifier string, networkDeviceInterfaceIdentifier string, networkDeviceInterfaceVlans []float32, ) *StorageNetworkDeviceConfiguration`
+`func NewStorageNetworkDeviceConfiguration(id float32, storageId float32, networkDeviceId float32, storagePhysicalInterfaceIdentifier string, networkDeviceIdentifier string, networkDeviceInterfaceIdentifier string, ) *StorageNetworkDeviceConfiguration`
 
 NewStorageNetworkDeviceConfiguration instantiates a new StorageNetworkDeviceConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -170,6 +170,11 @@ and a boolean to check if the value has been set.
 
 SetNetworkDeviceInterfaceVlans sets NetworkDeviceInterfaceVlans field to given value.
 
+### HasNetworkDeviceInterfaceVlans
+
+`func (o *StorageNetworkDeviceConfiguration) HasNetworkDeviceInterfaceVlans() bool`
+
+HasNetworkDeviceInterfaceVlans returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

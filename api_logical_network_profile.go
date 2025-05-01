@@ -377,6 +377,128 @@ func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileIpv6SubnetA
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest struct {
+	ctx context.Context
+	ApiService *LogicalNetworkProfileAPIService
+	id float32
+	createLogicalNetworkProfileVlanAllocationStrategyRequest *CreateLogicalNetworkProfileVlanAllocationStrategyRequest
+	ifMatch *string
+}
+
+func (r LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest) CreateLogicalNetworkProfileVlanAllocationStrategyRequest(createLogicalNetworkProfileVlanAllocationStrategyRequest CreateLogicalNetworkProfileVlanAllocationStrategyRequest) LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest {
+	r.createLogicalNetworkProfileVlanAllocationStrategyRequest = &createLogicalNetworkProfileVlanAllocationStrategyRequest
+	return r
+}
+
+// Entity tag
+func (r LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest) IfMatch(ifMatch string) LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileVlanAllocationStrategy201Response, *http.Response, error) {
+	return r.ApiService.CreateLogicalNetworkProfileVlanAllocationStrategyExecute(r)
+}
+
+/*
+CreateLogicalNetworkProfileVlanAllocationStrategy Create Vlan allocation strategy.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest
+*/
+func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileVlanAllocationStrategy(ctx context.Context, id float32) LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest {
+	return LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return CreateLogicalNetworkProfileVlanAllocationStrategy201Response
+func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileVlanAllocationStrategyExecute(r LogicalNetworkProfileAPICreateLogicalNetworkProfileVlanAllocationStrategyRequest) (*CreateLogicalNetworkProfileVlanAllocationStrategy201Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CreateLogicalNetworkProfileVlanAllocationStrategy201Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkProfileAPIService.CreateLogicalNetworkProfileVlanAllocationStrategy")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/logical-network-profiles/{id}/vlan/vlan-allocation-strategies"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createLogicalNetworkProfileVlanAllocationStrategyRequest == nil {
+		return localVarReturnValue, nil, reportError("createLogicalNetworkProfileVlanAllocationStrategyRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.createLogicalNetworkProfileVlanAllocationStrategyRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type LogicalNetworkProfileAPICreateLogicalNetworkProfileVniAllocationStrategyRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
@@ -1858,7 +1980,7 @@ type LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategyReque
 	allocationStrategyId float32
 }
 
-func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategyRequest) Execute() (*GetLogicalNetworkProfileVlanAllocationStrategy200Response, *http.Response, error) {
+func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileVlanAllocationStrategy201Response, *http.Response, error) {
 	return r.ApiService.GetLogicalNetworkProfileVlanAllocationStrategyExecute(r)
 }
 
@@ -1880,13 +2002,13 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVlanAllocation
 }
 
 // Execute executes the request
-//  @return GetLogicalNetworkProfileVlanAllocationStrategy200Response
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVlanAllocationStrategyExecute(r LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategyRequest) (*GetLogicalNetworkProfileVlanAllocationStrategy200Response, *http.Response, error) {
+//  @return CreateLogicalNetworkProfileVlanAllocationStrategy201Response
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileVlanAllocationStrategyExecute(r LogicalNetworkProfileAPIGetLogicalNetworkProfileVlanAllocationStrategyRequest) (*CreateLogicalNetworkProfileVlanAllocationStrategy201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetLogicalNetworkProfileVlanAllocationStrategy200Response
+		localVarReturnValue  *CreateLogicalNetworkProfileVlanAllocationStrategy201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkProfileAPIService.GetLogicalNetworkProfileVlanAllocationStrategy")
@@ -2746,12 +2868,12 @@ type LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyR
 	ApiService *LogicalNetworkProfileAPIService
 	id float32
 	allocationStrategyId float32
-	replaceLogicalNetworkProfileVlanAllocationStrategyRequest *ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest
+	createLogicalNetworkProfileVlanAllocationStrategyRequest *CreateLogicalNetworkProfileVlanAllocationStrategyRequest
 	ifMatch *string
 }
 
-func (r LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest(replaceLogicalNetworkProfileVlanAllocationStrategyRequest ReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyRequest {
-	r.replaceLogicalNetworkProfileVlanAllocationStrategyRequest = &replaceLogicalNetworkProfileVlanAllocationStrategyRequest
+func (r LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) CreateLogicalNetworkProfileVlanAllocationStrategyRequest(createLogicalNetworkProfileVlanAllocationStrategyRequest CreateLogicalNetworkProfileVlanAllocationStrategyRequest) LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyRequest {
+	r.createLogicalNetworkProfileVlanAllocationStrategyRequest = &createLogicalNetworkProfileVlanAllocationStrategyRequest
 	return r
 }
 
@@ -2761,7 +2883,7 @@ func (r LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrate
 	return r
 }
 
-func (r LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) Execute() (*GetLogicalNetworkProfileVlanAllocationStrategy200Response, *http.Response, error) {
+func (r LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) Execute() (*CreateLogicalNetworkProfileVlanAllocationStrategy201Response, *http.Response, error) {
 	return r.ApiService.ReplaceLogicalNetworkProfileVlanAllocationStrategyExecute(r)
 }
 
@@ -2783,13 +2905,13 @@ func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileVlanAlloca
 }
 
 // Execute executes the request
-//  @return GetLogicalNetworkProfileVlanAllocationStrategy200Response
-func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileVlanAllocationStrategyExecute(r LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) (*GetLogicalNetworkProfileVlanAllocationStrategy200Response, *http.Response, error) {
+//  @return CreateLogicalNetworkProfileVlanAllocationStrategy201Response
+func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileVlanAllocationStrategyExecute(r LogicalNetworkProfileAPIReplaceLogicalNetworkProfileVlanAllocationStrategyRequest) (*CreateLogicalNetworkProfileVlanAllocationStrategy201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetLogicalNetworkProfileVlanAllocationStrategy200Response
+		localVarReturnValue  *CreateLogicalNetworkProfileVlanAllocationStrategy201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkProfileAPIService.ReplaceLogicalNetworkProfileVlanAllocationStrategy")
@@ -2804,8 +2926,8 @@ func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileVlanAlloca
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.replaceLogicalNetworkProfileVlanAllocationStrategyRequest == nil {
-		return localVarReturnValue, nil, reportError("replaceLogicalNetworkProfileVlanAllocationStrategyRequest is required and must be specified")
+	if r.createLogicalNetworkProfileVlanAllocationStrategyRequest == nil {
+		return localVarReturnValue, nil, reportError("createLogicalNetworkProfileVlanAllocationStrategyRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2829,7 +2951,7 @@ func (a *LogicalNetworkProfileAPIService) ReplaceLogicalNetworkProfileVlanAlloca
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.replaceLogicalNetworkProfileVlanAllocationStrategyRequest
+	localVarPostBody = r.createLogicalNetworkProfileVlanAllocationStrategyRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

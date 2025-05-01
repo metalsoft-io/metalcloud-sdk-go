@@ -28,7 +28,7 @@ type CreateStorageNetworkDeviceConfiguration struct {
 	// Identifier of the network device interface
 	NetworkDeviceInterfaceIdentifier string `json:"networkDeviceInterfaceIdentifier"`
 	// Array of VLANS for the network device interface
-	NetworkDeviceInterfaceVlans []float32 `json:"networkDeviceInterfaceVlans"`
+	NetworkDeviceInterfaceVlans []float32 `json:"networkDeviceInterfaceVlans,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,12 +38,11 @@ type _CreateStorageNetworkDeviceConfiguration CreateStorageNetworkDeviceConfigur
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateStorageNetworkDeviceConfiguration(networkDeviceId float32, storagePhysicalInterfaceIdentifier string, networkDeviceInterfaceIdentifier string, networkDeviceInterfaceVlans []float32) *CreateStorageNetworkDeviceConfiguration {
+func NewCreateStorageNetworkDeviceConfiguration(networkDeviceId float32, storagePhysicalInterfaceIdentifier string, networkDeviceInterfaceIdentifier string) *CreateStorageNetworkDeviceConfiguration {
 	this := CreateStorageNetworkDeviceConfiguration{}
 	this.NetworkDeviceId = networkDeviceId
 	this.StoragePhysicalInterfaceIdentifier = storagePhysicalInterfaceIdentifier
 	this.NetworkDeviceInterfaceIdentifier = networkDeviceInterfaceIdentifier
-	this.NetworkDeviceInterfaceVlans = networkDeviceInterfaceVlans
 	return &this
 }
 
@@ -127,26 +126,34 @@ func (o *CreateStorageNetworkDeviceConfiguration) SetNetworkDeviceInterfaceIdent
 	o.NetworkDeviceInterfaceIdentifier = v
 }
 
-// GetNetworkDeviceInterfaceVlans returns the NetworkDeviceInterfaceVlans field value
+// GetNetworkDeviceInterfaceVlans returns the NetworkDeviceInterfaceVlans field value if set, zero value otherwise.
 func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkDeviceInterfaceVlans() []float32 {
-	if o == nil {
+	if o == nil || IsNil(o.NetworkDeviceInterfaceVlans) {
 		var ret []float32
 		return ret
 	}
-
 	return o.NetworkDeviceInterfaceVlans
 }
 
-// GetNetworkDeviceInterfaceVlansOk returns a tuple with the NetworkDeviceInterfaceVlans field value
+// GetNetworkDeviceInterfaceVlansOk returns a tuple with the NetworkDeviceInterfaceVlans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateStorageNetworkDeviceConfiguration) GetNetworkDeviceInterfaceVlansOk() ([]float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NetworkDeviceInterfaceVlans) {
 		return nil, false
 	}
 	return o.NetworkDeviceInterfaceVlans, true
 }
 
-// SetNetworkDeviceInterfaceVlans sets field value
+// HasNetworkDeviceInterfaceVlans returns a boolean if a field has been set.
+func (o *CreateStorageNetworkDeviceConfiguration) HasNetworkDeviceInterfaceVlans() bool {
+	if o != nil && !IsNil(o.NetworkDeviceInterfaceVlans) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDeviceInterfaceVlans gets a reference to the given []float32 and assigns it to the NetworkDeviceInterfaceVlans field.
 func (o *CreateStorageNetworkDeviceConfiguration) SetNetworkDeviceInterfaceVlans(v []float32) {
 	o.NetworkDeviceInterfaceVlans = v
 }
@@ -164,7 +171,9 @@ func (o CreateStorageNetworkDeviceConfiguration) ToMap() (map[string]interface{}
 	toSerialize["networkDeviceId"] = o.NetworkDeviceId
 	toSerialize["storagePhysicalInterfaceIdentifier"] = o.StoragePhysicalInterfaceIdentifier
 	toSerialize["networkDeviceInterfaceIdentifier"] = o.NetworkDeviceInterfaceIdentifier
-	toSerialize["networkDeviceInterfaceVlans"] = o.NetworkDeviceInterfaceVlans
+	if !IsNil(o.NetworkDeviceInterfaceVlans) {
+		toSerialize["networkDeviceInterfaceVlans"] = o.NetworkDeviceInterfaceVlans
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -181,7 +190,6 @@ func (o *CreateStorageNetworkDeviceConfiguration) UnmarshalJSON(data []byte) (er
 		"networkDeviceId",
 		"storagePhysicalInterfaceIdentifier",
 		"networkDeviceInterfaceIdentifier",
-		"networkDeviceInterfaceVlans",
 	}
 
 	allProperties := make(map[string]interface{})

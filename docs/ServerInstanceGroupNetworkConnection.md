@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Tagged** | **bool** | Whether the logical network is tagged. | 
 **AccessMode** | [**NetworkEndpointGroupAllowedAccessMode**](NetworkEndpointGroupAllowedAccessMode.md) | The access mode of the network endpoint group | 
+**Mtu** | Pointer to **int32** | The MTU of the logical network | [optional] 
 **Redundancy** | Pointer to [**NullableRedundancyConfig**](RedundancyConfig.md) | The redundancy configuration | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 **Id** | **string** | The network connection ID. | 
@@ -68,6 +69,31 @@ and a boolean to check if the value has been set.
 
 SetAccessMode sets AccessMode field to given value.
 
+
+### GetMtu
+
+`func (o *ServerInstanceGroupNetworkConnection) GetMtu() int32`
+
+GetMtu returns the Mtu field if non-nil, zero value otherwise.
+
+### GetMtuOk
+
+`func (o *ServerInstanceGroupNetworkConnection) GetMtuOk() (*int32, bool)`
+
+GetMtuOk returns a tuple with the Mtu field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMtu
+
+`func (o *ServerInstanceGroupNetworkConnection) SetMtu(v int32)`
+
+SetMtu sets Mtu field to given value.
+
+### HasMtu
+
+`func (o *ServerInstanceGroupNetworkConnection) HasMtu() bool`
+
+HasMtu returns a boolean if a field has been set.
 
 ### GetRedundancy
 
