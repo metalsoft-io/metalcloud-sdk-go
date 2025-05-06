@@ -2711,7 +2711,7 @@ func (r LogicalNetworkAPIGetLogicalNetworksRequest) Page(page float32) LogicalNe
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 5000           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
 func (r LogicalNetworkAPIGetLogicalNetworksRequest) Limit(limit float32) LogicalNetworkAPIGetLogicalNetworksRequest {
 	r.limit = &limit
 	return r

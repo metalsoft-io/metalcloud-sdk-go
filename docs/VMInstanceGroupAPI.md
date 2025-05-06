@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ApplyVMTypeOnVMInstanceGroup**](VMInstanceGroupAPI.md#ApplyVMTypeOnVMInstanceGroup) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/actions/apply-type/{vmTypeId} | Applies a VM Type to a VM Instance Group
 [**CreateVMInstanceGroup**](VMInstanceGroupAPI.md#CreateVMInstanceGroup) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups | Creates a VM Instance Group
-[**CreateVMInterfaceOnVMInstanceGroup**](VMInstanceGroupAPI.md#CreateVMInterfaceOnVMInstanceGroup) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/interfaces | Creates a new Virtual Interface for the VM Instance Group
 [**DeleteVMInstanceGroup**](VMInstanceGroupAPI.md#DeleteVMInstanceGroup) | **Delete** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId} | Deletes a VM Instance Group
 [**GetInfrastructureVMInstanceGroup**](VMInstanceGroupAPI.md#GetInfrastructureVMInstanceGroup) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId} | Get VM Instance Group information
 [**GetInfrastructureVMInstanceGroups**](VMInstanceGroupAPI.md#GetInfrastructureVMInstanceGroups) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups | Get all VM Instance Groups on the infrastructure
@@ -154,81 +153,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VMInstanceGroup**](VMInstanceGroup.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateVMInterfaceOnVMInstanceGroup
-
-> VMInstanceGroupInterface CreateVMInterfaceOnVMInstanceGroup(ctx, infrastructureId, vmInstanceGroupId).CreateVMInstanceGroupInterface(createVMInstanceGroupInterface).Execute()
-
-Creates a new Virtual Interface for the VM Instance Group
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	infrastructureId := float32(8.14) // float32 | 
-	vmInstanceGroupId := float32(8.14) // float32 | 
-	createVMInstanceGroupInterface := *openapiclient.NewCreateVMInstanceGroupInterface() // CreateVMInstanceGroupInterface | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VMInstanceGroupAPI.CreateVMInterfaceOnVMInstanceGroup(context.Background(), infrastructureId, vmInstanceGroupId).CreateVMInstanceGroupInterface(createVMInstanceGroupInterface).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VMInstanceGroupAPI.CreateVMInterfaceOnVMInstanceGroup``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateVMInterfaceOnVMInstanceGroup`: VMInstanceGroupInterface
-	fmt.Fprintf(os.Stdout, "Response from `VMInstanceGroupAPI.CreateVMInterfaceOnVMInstanceGroup`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**infrastructureId** | **float32** |  | 
-**vmInstanceGroupId** | **float32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateVMInterfaceOnVMInstanceGroupRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **createVMInstanceGroupInterface** | [**CreateVMInstanceGroupInterface**](CreateVMInstanceGroupInterface.md) |  | 
-
-### Return type
-
-[**VMInstanceGroupInterface**](VMInstanceGroupInterface.md)
 
 ### Authorization
 

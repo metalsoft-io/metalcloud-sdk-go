@@ -1105,108 +1105,95 @@ func (a *NetworkDeviceAPIService) GetNetworkDeviceDefaultsExecute(r NetworkDevic
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type NetworkDeviceAPIGetNetworkDeviceInventoryPortsRequest struct {
-	ctx context.Context
-	ApiService *NetworkDeviceAPIService
-	networkDeviceId float32
-}
-
-func (r NetworkDeviceAPIGetNetworkDeviceInventoryPortsRequest) Execute() (*http.Response, error) {
-	return r.ApiService.GetNetworkDeviceInventoryPortsExecute(r)
-}
-
-/*
-GetNetworkDeviceInventoryPorts Get all ports for network device from the inventory (cached)
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkDeviceId
- @return NetworkDeviceAPIGetNetworkDeviceInventoryPortsRequest
-*/
-func (a *NetworkDeviceAPIService) GetNetworkDeviceInventoryPorts(ctx context.Context, networkDeviceId float32) NetworkDeviceAPIGetNetworkDeviceInventoryPortsRequest {
-	return NetworkDeviceAPIGetNetworkDeviceInventoryPortsRequest{
-		ApiService: a,
-		ctx: ctx,
-		networkDeviceId: networkDeviceId,
-	}
-}
-
-// Execute executes the request
-func (a *NetworkDeviceAPIService) GetNetworkDeviceInventoryPortsExecute(r NetworkDeviceAPIGetNetworkDeviceInventoryPortsRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetNetworkDeviceInventoryPorts")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/ports"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
 type NetworkDeviceAPIGetNetworkDevicePortsRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
 	networkDeviceId float32
+	page *float32
+	limit *float32
+	filterInterfaceId *[]string
+	filterNetworkDeviceId *[]string
+	filterInterfaceName *[]string
+	filterServerId *[]string
+	filterServerInterfaceId *[]string
+	filterDirtyBit *[]string
+	sortBy *[]string
+	search *string
+	searchBy *[]string
 }
 
-func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) Execute() (*NetworkDevicePorts, *http.Response, error) {
+// Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
+func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) Page(page float32) NetworkDeviceAPIGetNetworkDevicePortsRequest {
+	r.page = &page
+	return r
+}
+
+// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) Limit(limit float32) NetworkDeviceAPIGetNetworkDevicePortsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Filter by interfaceId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.interfaceId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.interfaceId&#x3D;$not:$like:John Doe&amp;filter.interfaceId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) FilterInterfaceId(filterInterfaceId []string) NetworkDeviceAPIGetNetworkDevicePortsRequest {
+	r.filterInterfaceId = &filterInterfaceId
+	return r
+}
+
+// Filter by networkDeviceId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.networkDeviceId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.networkDeviceId&#x3D;$not:$like:John Doe&amp;filter.networkDeviceId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) FilterNetworkDeviceId(filterNetworkDeviceId []string) NetworkDeviceAPIGetNetworkDevicePortsRequest {
+	r.filterNetworkDeviceId = &filterNetworkDeviceId
+	return r
+}
+
+// Filter by interfaceName query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.interfaceName&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.interfaceName&#x3D;$not:$like:John Doe&amp;filter.interfaceName&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) FilterInterfaceName(filterInterfaceName []string) NetworkDeviceAPIGetNetworkDevicePortsRequest {
+	r.filterInterfaceName = &filterInterfaceName
+	return r
+}
+
+// Filter by serverId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverId&#x3D;$not:$like:John Doe&amp;filter.serverId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) FilterServerId(filterServerId []string) NetworkDeviceAPIGetNetworkDevicePortsRequest {
+	r.filterServerId = &filterServerId
+	return r
+}
+
+// Filter by serverInterfaceId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serverInterfaceId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serverInterfaceId&#x3D;$not:$like:John Doe&amp;filter.serverInterfaceId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) FilterServerInterfaceId(filterServerInterfaceId []string) NetworkDeviceAPIGetNetworkDevicePortsRequest {
+	r.filterServerInterfaceId = &filterServerInterfaceId
+	return r
+}
+
+// Filter by dirtyBit query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.dirtyBit&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.dirtyBit&#x3D;$not:$like:John Doe&amp;filter.dirtyBit&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) FilterDirtyBit(filterDirtyBit []string) NetworkDeviceAPIGetNetworkDevicePortsRequest {
+	r.filterDirtyBit = &filterDirtyBit
+	return r
+}
+
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; interfaceId:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;interfaceId&lt;/li&gt; &lt;li&gt;networkDeviceId&lt;/li&gt; &lt;li&gt;serverId&lt;/li&gt; &lt;li&gt;cachedUpdatedTimestamp&lt;/li&gt;&lt;/ul&gt;       
+func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) SortBy(sortBy []string) NetworkDeviceAPIGetNetworkDevicePortsRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) Search(search string) NetworkDeviceAPIGetNetworkDevicePortsRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; interfaceName,macAddress,lldpInformation           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;interfaceName&lt;/li&gt; &lt;li&gt;macAddress&lt;/li&gt; &lt;li&gt;lldpInformation&lt;/li&gt;&lt;/ul&gt;         
+func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) SearchBy(searchBy []string) NetworkDeviceAPIGetNetworkDevicePortsRequest {
+	r.searchBy = &searchBy
+	return r
+}
+
+func (r NetworkDeviceAPIGetNetworkDevicePortsRequest) Execute() (*NetworkDeviceInterfacesPaginatedList, *http.Response, error) {
 	return r.ApiService.GetNetworkDevicePortsExecute(r)
 }
 
 /*
-GetNetworkDevicePorts Port statistics for network device directly from the device
+GetNetworkDevicePorts Get paginated ports for a network device from the database
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param networkDeviceId
@@ -1221,13 +1208,13 @@ func (a *NetworkDeviceAPIService) GetNetworkDevicePorts(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return NetworkDevicePorts
-func (a *NetworkDeviceAPIService) GetNetworkDevicePortsExecute(r NetworkDeviceAPIGetNetworkDevicePortsRequest) (*NetworkDevicePorts, *http.Response, error) {
+//  @return NetworkDeviceInterfacesPaginatedList
+func (a *NetworkDeviceAPIService) GetNetworkDevicePortsExecute(r NetworkDeviceAPIGetNetworkDevicePortsRequest) (*NetworkDeviceInterfacesPaginatedList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NetworkDevicePorts
+		localVarReturnValue  *NetworkDeviceInterfacesPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetNetworkDevicePorts")
@@ -1235,13 +1222,110 @@ func (a *NetworkDeviceAPIService) GetNetworkDevicePortsExecute(r NetworkDeviceAP
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/actions/ports"
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/ports"
 	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.filterInterfaceId != nil {
+		t := *r.filterInterfaceId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.interfaceId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.interfaceId", t, "form", "multi")
+		}
+	}
+	if r.filterNetworkDeviceId != nil {
+		t := *r.filterNetworkDeviceId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkDeviceId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.networkDeviceId", t, "form", "multi")
+		}
+	}
+	if r.filterInterfaceName != nil {
+		t := *r.filterInterfaceName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.interfaceName", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.interfaceName", t, "form", "multi")
+		}
+	}
+	if r.filterServerId != nil {
+		t := *r.filterServerId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverId", t, "form", "multi")
+		}
+	}
+	if r.filterServerInterfaceId != nil {
+		t := *r.filterServerInterfaceId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverInterfaceId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serverInterfaceId", t, "form", "multi")
+		}
+	}
+	if r.filterDirtyBit != nil {
+		t := *r.filterDirtyBit
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.dirtyBit", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.dirtyBit", t, "form", "multi")
+		}
+	}
+	if r.sortBy != nil {
+		t := *r.sortBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1387,7 +1471,7 @@ type NetworkDeviceAPIGetNetworkDevicesRequest struct {
 	ApiService *NetworkDeviceAPIService
 	page *float32
 	limit *float32
-	filterSwitchId *[]string
+	filterId *[]string
 	filterStatus *[]string
 	filterDatacenterName *[]string
 	filterChassisIdentifier *[]string
@@ -1413,9 +1497,9 @@ func (r NetworkDeviceAPIGetNetworkDevicesRequest) Limit(limit float32) NetworkDe
 	return r
 }
 
-// Filter by switchId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.switchId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.switchId&#x3D;$not:$like:John Doe&amp;filter.switchId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r NetworkDeviceAPIGetNetworkDevicesRequest) FilterSwitchId(filterSwitchId []string) NetworkDeviceAPIGetNetworkDevicesRequest {
-	r.filterSwitchId = &filterSwitchId
+// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r NetworkDeviceAPIGetNetworkDevicesRequest) FilterId(filterId []string) NetworkDeviceAPIGetNetworkDevicesRequest {
+	r.filterId = &filterId
 	return r
 }
 
@@ -1529,15 +1613,15 @@ func (a *NetworkDeviceAPIService) GetNetworkDevicesExecute(r NetworkDeviceAPIGet
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
-	if r.filterSwitchId != nil {
-		t := *r.filterSwitchId
+	if r.filterId != nil {
+		t := *r.filterId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.switchId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.switchId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
 	if r.filterStatus != nil {
@@ -1707,6 +1791,107 @@ func (a *NetworkDeviceAPIService) GetNetworkDevicesExecute(r NetworkDeviceAPIGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type NetworkDeviceAPIGetPortsRequest struct {
+	ctx context.Context
+	ApiService *NetworkDeviceAPIService
+	networkDeviceId float32
+}
+
+func (r NetworkDeviceAPIGetPortsRequest) Execute() (*NetworkDevicePorts, *http.Response, error) {
+	return r.ApiService.GetPortsExecute(r)
+}
+
+/*
+GetPorts Port statistics for network device directly from the device
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return NetworkDeviceAPIGetPortsRequest
+*/
+func (a *NetworkDeviceAPIService) GetPorts(ctx context.Context, networkDeviceId float32) NetworkDeviceAPIGetPortsRequest {
+	return NetworkDeviceAPIGetPortsRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkDevicePorts
+func (a *NetworkDeviceAPIService) GetPortsExecute(r NetworkDeviceAPIGetPortsRequest) (*NetworkDevicePorts, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkDevicePorts
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetPorts")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/actions/ports"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type NetworkDeviceAPIReProvisionNetworkEquipmentRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
@@ -1821,13 +2006,7 @@ func (a *NetworkDeviceAPIService) ReProvisionNetworkEquipmentExecute(r NetworkDe
 type NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
-	requestBody *[]float32
-}
-
-// Network device defaults IDs
-func (r NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest) RequestBody(requestBody []float32) NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest {
-	r.requestBody = &requestBody
-	return r
+	id float32
 }
 
 func (r NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest) Execute() (*http.Response, error) {
@@ -1838,12 +2017,14 @@ func (r NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest) Execute() (*http.Res
 RemoveNetworkDeviceDefaults Remove network device defaults
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The ID of the network device default to remove
  @return NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest
 */
-func (a *NetworkDeviceAPIService) RemoveNetworkDeviceDefaults(ctx context.Context) NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest {
+func (a *NetworkDeviceAPIService) RemoveNetworkDeviceDefaults(ctx context.Context, id float32) NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest {
 	return NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest{
 		ApiService: a,
 		ctx: ctx,
+		id: id,
 	}
 }
 
@@ -1860,17 +2041,15 @@ func (a *NetworkDeviceAPIService) RemoveNetworkDeviceDefaultsExecute(r NetworkDe
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/network-devices/defaults"
+	localVarPath := localBasePath + "/api/v2/network-devices/defaults/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.requestBody == nil {
-		return nil, reportError("requestBody is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1886,8 +2065,6 @@ func (a *NetworkDeviceAPIService) RemoveNetworkDeviceDefaultsExecute(r NetworkDe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

@@ -156,7 +156,6 @@ docs/CreateUser.md
 docs/CreateUserSSHKey.md
 docs/CreateVMInstance.md
 docs/CreateVMInstanceGroup.md
-docs/CreateVMInstanceGroupInterface.md
 docs/CreateVMPool.md
 docs/CreateVMType.md
 docs/CreateVariable.md
@@ -314,6 +313,8 @@ docs/ManualVniAllocationStrategy.md
 docs/NetworkDevice.md
 docs/NetworkDeviceAPI.md
 docs/NetworkDeviceDriver.md
+docs/NetworkDeviceInterfaceDto.md
+docs/NetworkDeviceInterfacesPaginatedList.md
 docs/NetworkDevicePaginatedList.md
 docs/NetworkDevicePolicy.md
 docs/NetworkDevicePort.md
@@ -743,7 +744,6 @@ model_create_vlan_logical_network_profile.go
 model_create_vlan_logical_network_vlan_properties.go
 model_create_vm_instance.go
 model_create_vm_instance_group.go
-model_create_vm_instance_group_interface.go
 model_create_vm_pool.go
 model_create_vm_type.go
 model_create_vni_allocation_strategy.go
@@ -878,6 +878,8 @@ model_manual_vlan_allocation_strategy.go
 model_manual_vni_allocation_strategy.go
 model_network_device.go
 model_network_device_driver.go
+model_network_device_interface_dto.go
+model_network_device_interfaces_paginated_list.go
 model_network_device_paginated_list.go
 model_network_device_policy.go
 model_network_device_port.go

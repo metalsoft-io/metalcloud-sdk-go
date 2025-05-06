@@ -39,6 +39,32 @@ type GenerateSiteControllerOneliner struct {
 	ImagesTag string `json:"imagesTag"`
 	// MS Tunnel Secret for secure connections
 	MsTunnelSecret string `json:"msTunnelSecret"`
+	// Enable OOB HTTP proxy capability
+	OobHttpProxy bool `json:"oobHttpProxy"`
+	// Enable inband HTTP proxy capability
+	InbandHttpProxy bool `json:"inbandHttpProxy"`
+	// Enable file transfer capability
+	FileTransfer bool `json:"fileTransfer"`
+	// Enable inband file transfer capability
+	InbandFileTransfer bool `json:"inbandFileTransfer"`
+	// Enable switch subscription capability
+	SwitchSubscription bool `json:"switchSubscription"`
+	// Enable command execution capability
+	CommandExecution bool `json:"commandExecution"`
+	// Enable NETCONF capability
+	Netconf bool `json:"netconf"`
+	// Enable VNC capability
+	Vnc bool `json:"vnc"`
+	// Enable SPICE capability
+	Spice bool `json:"spice"`
+	// Enable syslog capability
+	Syslog bool `json:"syslog"`
+	// Enable DHCP OOB capability
+	DhcpOob bool `json:"dhcpOob"`
+	// Enable Ansible runner capability
+	AnsibleRunner bool `json:"ansibleRunner"`
+	// Second IP address
+	SecondIp *string `json:"secondIp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,7 +74,7 @@ type _GenerateSiteControllerOneliner GenerateSiteControllerOneliner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string) *GenerateSiteControllerOneliner {
+func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool) *GenerateSiteControllerOneliner {
 	this := GenerateSiteControllerOneliner{}
 	this.UsePodman = usePodman
 	this.InbandMode = inbandMode
@@ -59,6 +85,18 @@ func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEn
 	this.SslHostname = sslHostname
 	this.ImagesTag = imagesTag
 	this.MsTunnelSecret = msTunnelSecret
+	this.OobHttpProxy = oobHttpProxy
+	this.InbandHttpProxy = inbandHttpProxy
+	this.FileTransfer = fileTransfer
+	this.InbandFileTransfer = inbandFileTransfer
+	this.SwitchSubscription = switchSubscription
+	this.CommandExecution = commandExecution
+	this.Netconf = netconf
+	this.Vnc = vnc
+	this.Spice = spice
+	this.Syslog = syslog
+	this.DhcpOob = dhcpOob
+	this.AnsibleRunner = ansibleRunner
 	return &this
 }
 
@@ -79,6 +117,30 @@ func NewGenerateSiteControllerOnelinerWithDefaults() *GenerateSiteControllerOnel
 	this.GitHubTag = gitHubTag
 	var localScript bool = false
 	this.LocalScript = localScript
+	var oobHttpProxy bool = false
+	this.OobHttpProxy = oobHttpProxy
+	var inbandHttpProxy bool = false
+	this.InbandHttpProxy = inbandHttpProxy
+	var fileTransfer bool = false
+	this.FileTransfer = fileTransfer
+	var inbandFileTransfer bool = false
+	this.InbandFileTransfer = inbandFileTransfer
+	var switchSubscription bool = false
+	this.SwitchSubscription = switchSubscription
+	var commandExecution bool = false
+	this.CommandExecution = commandExecution
+	var netconf bool = false
+	this.Netconf = netconf
+	var vnc bool = false
+	this.Vnc = vnc
+	var spice bool = false
+	this.Spice = spice
+	var syslog bool = false
+	this.Syslog = syslog
+	var dhcpOob bool = false
+	this.DhcpOob = dhcpOob
+	var ansibleRunner bool = false
+	this.AnsibleRunner = ansibleRunner
 	return &this
 }
 
@@ -298,6 +360,326 @@ func (o *GenerateSiteControllerOneliner) SetMsTunnelSecret(v string) {
 	o.MsTunnelSecret = v
 }
 
+// GetOobHttpProxy returns the OobHttpProxy field value
+func (o *GenerateSiteControllerOneliner) GetOobHttpProxy() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.OobHttpProxy
+}
+
+// GetOobHttpProxyOk returns a tuple with the OobHttpProxy field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetOobHttpProxyOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.OobHttpProxy, true
+}
+
+// SetOobHttpProxy sets field value
+func (o *GenerateSiteControllerOneliner) SetOobHttpProxy(v bool) {
+	o.OobHttpProxy = v
+}
+
+// GetInbandHttpProxy returns the InbandHttpProxy field value
+func (o *GenerateSiteControllerOneliner) GetInbandHttpProxy() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.InbandHttpProxy
+}
+
+// GetInbandHttpProxyOk returns a tuple with the InbandHttpProxy field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetInbandHttpProxyOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InbandHttpProxy, true
+}
+
+// SetInbandHttpProxy sets field value
+func (o *GenerateSiteControllerOneliner) SetInbandHttpProxy(v bool) {
+	o.InbandHttpProxy = v
+}
+
+// GetFileTransfer returns the FileTransfer field value
+func (o *GenerateSiteControllerOneliner) GetFileTransfer() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.FileTransfer
+}
+
+// GetFileTransferOk returns a tuple with the FileTransfer field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetFileTransferOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.FileTransfer, true
+}
+
+// SetFileTransfer sets field value
+func (o *GenerateSiteControllerOneliner) SetFileTransfer(v bool) {
+	o.FileTransfer = v
+}
+
+// GetInbandFileTransfer returns the InbandFileTransfer field value
+func (o *GenerateSiteControllerOneliner) GetInbandFileTransfer() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.InbandFileTransfer
+}
+
+// GetInbandFileTransferOk returns a tuple with the InbandFileTransfer field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetInbandFileTransferOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InbandFileTransfer, true
+}
+
+// SetInbandFileTransfer sets field value
+func (o *GenerateSiteControllerOneliner) SetInbandFileTransfer(v bool) {
+	o.InbandFileTransfer = v
+}
+
+// GetSwitchSubscription returns the SwitchSubscription field value
+func (o *GenerateSiteControllerOneliner) GetSwitchSubscription() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SwitchSubscription
+}
+
+// GetSwitchSubscriptionOk returns a tuple with the SwitchSubscription field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetSwitchSubscriptionOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SwitchSubscription, true
+}
+
+// SetSwitchSubscription sets field value
+func (o *GenerateSiteControllerOneliner) SetSwitchSubscription(v bool) {
+	o.SwitchSubscription = v
+}
+
+// GetCommandExecution returns the CommandExecution field value
+func (o *GenerateSiteControllerOneliner) GetCommandExecution() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.CommandExecution
+}
+
+// GetCommandExecutionOk returns a tuple with the CommandExecution field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetCommandExecutionOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CommandExecution, true
+}
+
+// SetCommandExecution sets field value
+func (o *GenerateSiteControllerOneliner) SetCommandExecution(v bool) {
+	o.CommandExecution = v
+}
+
+// GetNetconf returns the Netconf field value
+func (o *GenerateSiteControllerOneliner) GetNetconf() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Netconf
+}
+
+// GetNetconfOk returns a tuple with the Netconf field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetNetconfOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Netconf, true
+}
+
+// SetNetconf sets field value
+func (o *GenerateSiteControllerOneliner) SetNetconf(v bool) {
+	o.Netconf = v
+}
+
+// GetVnc returns the Vnc field value
+func (o *GenerateSiteControllerOneliner) GetVnc() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Vnc
+}
+
+// GetVncOk returns a tuple with the Vnc field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetVncOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Vnc, true
+}
+
+// SetVnc sets field value
+func (o *GenerateSiteControllerOneliner) SetVnc(v bool) {
+	o.Vnc = v
+}
+
+// GetSpice returns the Spice field value
+func (o *GenerateSiteControllerOneliner) GetSpice() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Spice
+}
+
+// GetSpiceOk returns a tuple with the Spice field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetSpiceOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Spice, true
+}
+
+// SetSpice sets field value
+func (o *GenerateSiteControllerOneliner) SetSpice(v bool) {
+	o.Spice = v
+}
+
+// GetSyslog returns the Syslog field value
+func (o *GenerateSiteControllerOneliner) GetSyslog() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Syslog
+}
+
+// GetSyslogOk returns a tuple with the Syslog field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetSyslogOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Syslog, true
+}
+
+// SetSyslog sets field value
+func (o *GenerateSiteControllerOneliner) SetSyslog(v bool) {
+	o.Syslog = v
+}
+
+// GetDhcpOob returns the DhcpOob field value
+func (o *GenerateSiteControllerOneliner) GetDhcpOob() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.DhcpOob
+}
+
+// GetDhcpOobOk returns a tuple with the DhcpOob field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetDhcpOobOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DhcpOob, true
+}
+
+// SetDhcpOob sets field value
+func (o *GenerateSiteControllerOneliner) SetDhcpOob(v bool) {
+	o.DhcpOob = v
+}
+
+// GetAnsibleRunner returns the AnsibleRunner field value
+func (o *GenerateSiteControllerOneliner) GetAnsibleRunner() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.AnsibleRunner
+}
+
+// GetAnsibleRunnerOk returns a tuple with the AnsibleRunner field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetAnsibleRunnerOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AnsibleRunner, true
+}
+
+// SetAnsibleRunner sets field value
+func (o *GenerateSiteControllerOneliner) SetAnsibleRunner(v bool) {
+	o.AnsibleRunner = v
+}
+
+// GetSecondIp returns the SecondIp field value if set, zero value otherwise.
+func (o *GenerateSiteControllerOneliner) GetSecondIp() string {
+	if o == nil || IsNil(o.SecondIp) {
+		var ret string
+		return ret
+	}
+	return *o.SecondIp
+}
+
+// GetSecondIpOk returns a tuple with the SecondIp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetSecondIpOk() (*string, bool) {
+	if o == nil || IsNil(o.SecondIp) {
+		return nil, false
+	}
+	return o.SecondIp, true
+}
+
+// HasSecondIp returns a boolean if a field has been set.
+func (o *GenerateSiteControllerOneliner) HasSecondIp() bool {
+	if o != nil && !IsNil(o.SecondIp) {
+		return true
+	}
+
+	return false
+}
+
+// SetSecondIp gets a reference to the given string and assigns it to the SecondIp field.
+func (o *GenerateSiteControllerOneliner) SetSecondIp(v string) {
+	o.SecondIp = &v
+}
+
 func (o GenerateSiteControllerOneliner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -317,6 +699,21 @@ func (o GenerateSiteControllerOneliner) ToMap() (map[string]interface{}, error) 
 	toSerialize["sslHostname"] = o.SslHostname
 	toSerialize["imagesTag"] = o.ImagesTag
 	toSerialize["msTunnelSecret"] = o.MsTunnelSecret
+	toSerialize["oobHttpProxy"] = o.OobHttpProxy
+	toSerialize["inbandHttpProxy"] = o.InbandHttpProxy
+	toSerialize["fileTransfer"] = o.FileTransfer
+	toSerialize["inbandFileTransfer"] = o.InbandFileTransfer
+	toSerialize["switchSubscription"] = o.SwitchSubscription
+	toSerialize["commandExecution"] = o.CommandExecution
+	toSerialize["netconf"] = o.Netconf
+	toSerialize["vnc"] = o.Vnc
+	toSerialize["spice"] = o.Spice
+	toSerialize["syslog"] = o.Syslog
+	toSerialize["dhcpOob"] = o.DhcpOob
+	toSerialize["ansibleRunner"] = o.AnsibleRunner
+	if !IsNil(o.SecondIp) {
+		toSerialize["secondIp"] = o.SecondIp
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -339,6 +736,18 @@ func (o *GenerateSiteControllerOneliner) UnmarshalJSON(data []byte) (err error) 
 		"sslHostname",
 		"imagesTag",
 		"msTunnelSecret",
+		"oobHttpProxy",
+		"inbandHttpProxy",
+		"fileTransfer",
+		"inbandFileTransfer",
+		"switchSubscription",
+		"commandExecution",
+		"netconf",
+		"vnc",
+		"spice",
+		"syslog",
+		"dhcpOob",
+		"ansibleRunner",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -377,6 +786,19 @@ func (o *GenerateSiteControllerOneliner) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "sslHostname")
 		delete(additionalProperties, "imagesTag")
 		delete(additionalProperties, "msTunnelSecret")
+		delete(additionalProperties, "oobHttpProxy")
+		delete(additionalProperties, "inbandHttpProxy")
+		delete(additionalProperties, "fileTransfer")
+		delete(additionalProperties, "inbandFileTransfer")
+		delete(additionalProperties, "switchSubscription")
+		delete(additionalProperties, "commandExecution")
+		delete(additionalProperties, "netconf")
+		delete(additionalProperties, "vnc")
+		delete(additionalProperties, "spice")
+		delete(additionalProperties, "syslog")
+		delete(additionalProperties, "dhcpOob")
+		delete(additionalProperties, "ansibleRunner")
+		delete(additionalProperties, "secondIp")
 		o.AdditionalProperties = additionalProperties
 	}
 

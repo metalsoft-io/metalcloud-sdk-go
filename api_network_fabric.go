@@ -454,7 +454,7 @@ type NetworkFabricAPIGetFabricNetworkDevicesRequest struct {
 	networkFabricId int32
 	page *float32
 	limit *float32
-	filterSwitchId *[]string
+	filterId *[]string
 	filterStatus *[]string
 	filterDatacenterName *[]string
 	filterChassisIdentifier *[]string
@@ -480,9 +480,9 @@ func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) Limit(limit float32) Net
 	return r
 }
 
-// Filter by switchId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.switchId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.switchId&#x3D;$not:$like:John Doe&amp;filter.switchId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
-func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) FilterSwitchId(filterSwitchId []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
-	r.filterSwitchId = &filterSwitchId
+// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r NetworkFabricAPIGetFabricNetworkDevicesRequest) FilterId(filterId []string) NetworkFabricAPIGetFabricNetworkDevicesRequest {
+	r.filterId = &filterId
 	return r
 }
 
@@ -599,15 +599,15 @@ func (a *NetworkFabricAPIService) GetFabricNetworkDevicesExecute(r NetworkFabric
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
-	if r.filterSwitchId != nil {
-		t := *r.filterSwitchId
+	if r.filterId != nil {
+		t := *r.filterId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.switchId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.switchId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
 	if r.filterStatus != nil {

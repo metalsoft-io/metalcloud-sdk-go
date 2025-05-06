@@ -268,12 +268,12 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**GetNetworkDevice**](docs/NetworkDeviceAPI.md#getnetworkdevice) | **Get** /api/v2/network-devices/{networkDeviceId} | Get Network Device
 *NetworkDeviceAPI* | [**GetNetworkDeviceCredentials**](docs/NetworkDeviceAPI.md#getnetworkdevicecredentials) | **Get** /api/v2/network-devices/{networkDeviceId}/credentials | Get Network Device credentials
 *NetworkDeviceAPI* | [**GetNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#getnetworkdevicedefaults) | **Get** /api/v2/network-devices/defaults/{siteId} | Get network device defaults for a site
-*NetworkDeviceAPI* | [**GetNetworkDeviceInventoryPorts**](docs/NetworkDeviceAPI.md#getnetworkdeviceinventoryports) | **Get** /api/v2/network-devices/{networkDeviceId}/ports | Get all ports for network device from the inventory (cached)
-*NetworkDeviceAPI* | [**GetNetworkDevicePorts**](docs/NetworkDeviceAPI.md#getnetworkdeviceports) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
+*NetworkDeviceAPI* | [**GetNetworkDevicePorts**](docs/NetworkDeviceAPI.md#getnetworkdeviceports) | **Get** /api/v2/network-devices/{networkDeviceId}/ports | Get paginated ports for a network device from the database
 *NetworkDeviceAPI* | [**GetNetworkDeviceStatistics**](docs/NetworkDeviceAPI.md#getnetworkdevicestatistics) | **Get** /api/v2/network-devices/statistics | Get Network Device Statistics
 *NetworkDeviceAPI* | [**GetNetworkDevices**](docs/NetworkDeviceAPI.md#getnetworkdevices) | **Get** /api/v2/network-devices | Get paginated Network Devices
+*NetworkDeviceAPI* | [**GetPorts**](docs/NetworkDeviceAPI.md#getports) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
 *NetworkDeviceAPI* | [**ReProvisionNetworkEquipment**](docs/NetworkDeviceAPI.md#reprovisionnetworkequipment) | **Post** /api/v2/network-devices/re-provision | Re-provision network equipment
-*NetworkDeviceAPI* | [**RemoveNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#removenetworkdevicedefaults) | **Delete** /api/v2/network-devices/defaults | Remove network device defaults
+*NetworkDeviceAPI* | [**RemoveNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#removenetworkdevicedefaults) | **Delete** /api/v2/network-devices/defaults/{id} | Remove network device defaults
 *NetworkDeviceAPI* | [**ReplaceNetworkDevice**](docs/NetworkDeviceAPI.md#replacenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/replace | Replace network device
 *NetworkDeviceAPI* | [**ResetNetworkDevice**](docs/NetworkDeviceAPI.md#resetnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
 *NetworkDeviceAPI* | [**RunExtensionOnNetworkDevice**](docs/NetworkDeviceAPI.md#runextensiononnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
@@ -518,7 +518,6 @@ Class | Method | HTTP request | Description
 *VMInstanceAPI* | [**UpdateVMInstanceConfig**](docs/VMInstanceAPI.md#updatevminstanceconfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/config | Updates VM Instance config information
 *VMInstanceGroupAPI* | [**ApplyVMTypeOnVMInstanceGroup**](docs/VMInstanceGroupAPI.md#applyvmtypeonvminstancegroup) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/actions/apply-type/{vmTypeId} | Applies a VM Type to a VM Instance Group
 *VMInstanceGroupAPI* | [**CreateVMInstanceGroup**](docs/VMInstanceGroupAPI.md#createvminstancegroup) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups | Creates a VM Instance Group
-*VMInstanceGroupAPI* | [**CreateVMInterfaceOnVMInstanceGroup**](docs/VMInstanceGroupAPI.md#createvminterfaceonvminstancegroup) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/interfaces | Creates a new Virtual Interface for the VM Instance Group
 *VMInstanceGroupAPI* | [**DeleteVMInstanceGroup**](docs/VMInstanceGroupAPI.md#deletevminstancegroup) | **Delete** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId} | Deletes a VM Instance Group
 *VMInstanceGroupAPI* | [**GetInfrastructureVMInstanceGroup**](docs/VMInstanceGroupAPI.md#getinfrastructurevminstancegroup) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId} | Get VM Instance Group information
 *VMInstanceGroupAPI* | [**GetInfrastructureVMInstanceGroups**](docs/VMInstanceGroupAPI.md#getinfrastructurevminstancegroups) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups | Get all VM Instance Groups on the infrastructure
@@ -656,7 +655,6 @@ Class | Method | HTTP request | Description
  - [CreateUserSSHKey](docs/CreateUserSSHKey.md)
  - [CreateVMInstance](docs/CreateVMInstance.md)
  - [CreateVMInstanceGroup](docs/CreateVMInstanceGroup.md)
- - [CreateVMInstanceGroupInterface](docs/CreateVMInstanceGroupInterface.md)
  - [CreateVMPool](docs/CreateVMPool.md)
  - [CreateVMType](docs/CreateVMType.md)
  - [CreateVariable](docs/CreateVariable.md)
@@ -798,6 +796,8 @@ Class | Method | HTTP request | Description
  - [ManualVniAllocationStrategy](docs/ManualVniAllocationStrategy.md)
  - [NetworkDevice](docs/NetworkDevice.md)
  - [NetworkDeviceDriver](docs/NetworkDeviceDriver.md)
+ - [NetworkDeviceInterfaceDto](docs/NetworkDeviceInterfaceDto.md)
+ - [NetworkDeviceInterfacesPaginatedList](docs/NetworkDeviceInterfacesPaginatedList.md)
  - [NetworkDevicePaginatedList](docs/NetworkDevicePaginatedList.md)
  - [NetworkDevicePolicy](docs/NetworkDevicePolicy.md)
  - [NetworkDevicePort](docs/NetworkDevicePort.md)

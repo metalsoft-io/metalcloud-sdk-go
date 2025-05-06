@@ -9153,8 +9153,8 @@ paths:
         style: form
       - description: "Number of records per page.\n      <p>\n             <b>Example:\
           \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
-          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
-          \         </p>\n\n      If provided value is greater than max value, max\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 5000\n\
+          \          </p>\n\n      If provided value is greater than max value, max\
           \ value will be applied.\n      "
         explode: true
         in: query
@@ -10587,8 +10587,8 @@ paths:
         style: form
       - description: "Number of records per page.\n      <p>\n             <b>Example:\
           \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
-          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
-          \         </p>\n\n      If provided value is greater than max value, max\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 5000\n\
+          \          </p>\n\n      If provided value is greater than max value, max\
           \ value will be applied.\n      "
         explode: true
         in: query
@@ -12565,12 +12565,12 @@ paths:
           type: number
         style: form
       - description: |-
-          Filter by switchId query param.
+          Filter by id query param.
                     <p>
-                       <b>Format: </b> filter.switchId={$not}:OPERATION:VALUE
+                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
                     </p>
                     <p>
-                       <b>Example: </b> filter.switchId=$not:$like:John Doe&filter.switchId=like:John
+                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
                     </p>
                     <h4>Available Operations</h4><ul><li>$and</li>
           <li>$or</li>
@@ -12588,7 +12588,7 @@ paths:
           <li>$contains</li></ul>
         explode: true
         in: query
-        name: filter.switchId
+        name: filter.id
         required: false
         schema:
           items:
@@ -13298,33 +13298,6 @@ paths:
       tags:
       - Network Device
   /api/v2/network-devices/defaults:
-    delete:
-      operationId: removeNetworkDeviceDefaults
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                type: number
-              type: array
-        description: Network device defaults IDs
-        required: true
-      responses:
-        "204":
-          description: Network device defaults removed
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Remove network device defaults
-      tags:
-      - Network Device
     post:
       operationId: addNetworkDeviceDefaults
       parameters: []
@@ -13350,9 +13323,36 @@ paths:
       summary: Add network device defaults
       tags:
       - Network Device
+  /api/v2/network-devices/defaults/{id}:
+    delete:
+      operationId: removeNetworkDeviceDefaults
+      parameters:
+      - description: The ID of the network device default to remove
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: Network device defaults removed
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Remove network device defaults
+      tags:
+      - Network Device
   /api/v2/network-devices/{networkDeviceId}/actions/ports:
     post:
-      operationId: getNetworkDevicePorts
+      operationId: getPorts
       parameters:
       - explode: false
         in: path
@@ -13382,7 +13382,7 @@ paths:
       - Network Device
   /api/v2/network-devices/{networkDeviceId}/ports:
     get:
-      operationId: getNetworkDeviceInventoryPorts
+      operationId: getNetworkDevicePorts
       parameters:
       - explode: false
         in: path
@@ -13391,9 +13391,273 @@ paths:
         schema:
           type: number
         style: simple
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by interfaceId query param.
+                    <p>
+                       <b>Format: </b> filter.interfaceId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.interfaceId=$not:$like:John Doe&filter.interfaceId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.interfaceId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by networkDeviceId query param.
+                    <p>
+                       <b>Format: </b> filter.networkDeviceId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.networkDeviceId=$not:$like:John Doe&filter.networkDeviceId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.networkDeviceId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by interfaceName query param.
+                    <p>
+                       <b>Format: </b> filter.interfaceName={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.interfaceName=$not:$like:John Doe&filter.interfaceName=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.interfaceName
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by serverId query param.
+                    <p>
+                       <b>Format: </b> filter.serverId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.serverId=$not:$like:John Doe&filter.serverId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.serverId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by serverInterfaceId query param.
+                    <p>
+                       <b>Format: </b> filter.serverInterfaceId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.serverInterfaceId=$not:$like:John Doe&filter.serverInterfaceId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.serverInterfaceId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by dirtyBit query param.
+                    <p>
+                       <b>Format: </b> filter.dirtyBit={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.dirtyBit=$not:$like:John Doe&filter.dirtyBit=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.dirtyBit
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> interfaceId:ASC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>interfaceId</li>\n\
+          <li>networkDeviceId</li>\n<li>serverId</li>\n<li>cachedUpdatedTimestamp</li></ul>\n\
+          \      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - interfaceId:ASC
+            - interfaceId:DESC
+            - networkDeviceId:ASC
+            - networkDeviceId:DESC
+            - serverId:ASC
+            - serverId:DESC
+            - cachedUpdatedTimestamp:ASC
+            - cachedUpdatedTimestamp:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> interfaceName,macAddress,lldpInformation\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
+          \ all fields mentioned below will be used to search by term\n          </p>\n\
+          \        <h4>Available Fields</h4><ul><li>interfaceName</li>\n<li>macAddress</li>\n\
+          <li>lldpInformation</li></ul>\n        "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
-          description: Ports found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkDeviceInterfacesPaginatedList'
+          description: Paginated list of ports
         "401":
           description: Unauthorized
         "403":
@@ -13403,7 +13667,7 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Get all ports for network device from the inventory (cached)
+      summary: Get paginated ports for a network device from the database
       tags:
       - Network Device
   /api/v2/network-devices/{networkDeviceId}/actions/set-port-status:
@@ -14720,12 +14984,12 @@ paths:
           type: number
         style: form
       - description: |-
-          Filter by switchId query param.
+          Filter by id query param.
                     <p>
-                       <b>Format: </b> filter.switchId={$not}:OPERATION:VALUE
+                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
                     </p>
                     <p>
-                       <b>Example: </b> filter.switchId=$not:$like:John Doe&filter.switchId=like:John
+                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
                     </p>
                     <h4>Available Operations</h4><ul><li>$and</li>
           <li>$or</li>
@@ -14743,7 +15007,7 @@ paths:
           <li>$contains</li></ul>
         explode: true
         in: query
-        name: filter.switchId
+        name: filter.id
         required: false
         schema:
           items:
@@ -28519,53 +28783,6 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Get all VM Instance Group Interfaces on the VM Instance Group
-      tags:
-      - VM Instance Group
-    post:
-      description: Creates a new Virtual Interface for the VM Instance Group
-      operationId: createVMInterfaceOnVMInstanceGroup
-      parameters:
-      - explode: false
-        in: path
-        name: infrastructureId
-        required: true
-        schema:
-          type: number
-        style: simple
-      - explode: false
-        in: path
-        name: vmInstanceGroupId
-        required: true
-        schema:
-          type: number
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateVMInstanceGroupInterface'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VMInstanceGroupInterface'
-          description: Virtual Interface created successfully.
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not found
-        "409":
-          description: Conflict
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Creates a new Virtual Interface for the VM Instance Group
       tags:
       - VM Instance Group
   /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/interfaces/{vmInstanceGroupInterfaceId}:
@@ -45600,6 +45817,141 @@ components:
       - ports
       - switch_id
       type: object
+    NetworkDeviceInterfaceDto:
+      example:
+        serverInterfaceId: 1.4658129805029452
+        cachedUpdatedTimestamp: cachedUpdatedTimestamp
+        lldpInformation: lldpInformation
+        serverId: 5.962133916683182
+        lagIdentifier: 6.027456183070403
+        macAddress: macAddress
+        networkDeviceId: networkDeviceId
+        interfaceIndex: 0.8008281904610115
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        interfaceId: interfaceId
+        interfaceName: interfaceName
+        dirtyBit: 5.637376656633329
+        interfaceLLDPInformationServerInterface: "{}"
+        driverDumpCachedJson: "{}"
+      properties:
+        interfaceId:
+          description: The ID of the network equipment interface
+          type: string
+        networkDeviceId:
+          description: The ID of the network device
+          type: string
+        interfaceName:
+          description: The name of the network equipment interface
+          maxLength: 50
+          type: string
+        interfaceIndex:
+          description: The index of the network interface
+          type: number
+        lagIdentifier:
+          description: LAG identifier
+          type: number
+        serverInterfaceId:
+          description: The server interface ID
+          type: number
+        serverId:
+          description: The server ID
+          type: number
+        dirtyBit:
+          description: Dirty bit flag
+          type: number
+        lldpInformation:
+          description: LLDP information
+          type: string
+        macAddress:
+          description: MAC address
+          type: string
+        driverDumpCachedJson:
+          description: Driver dump cached JSON
+          type: object
+        cachedUpdatedTimestamp:
+          description: Cached update timestamp
+          type: string
+        interfaceLLDPInformationServerInterface:
+          description: LLDP information of server interface in JSON format
+          type: object
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - cachedUpdatedTimestamp
+      - dirtyBit
+      - interfaceId
+      - interfaceName
+      - networkDeviceId
+      type: object
+    NetworkDeviceInterfacesPaginatedList:
+      example:
+        data:
+        - serverInterfaceId: 1.4658129805029452
+          cachedUpdatedTimestamp: cachedUpdatedTimestamp
+          lldpInformation: lldpInformation
+          serverId: 5.962133916683182
+          lagIdentifier: 6.027456183070403
+          macAddress: macAddress
+          networkDeviceId: networkDeviceId
+          interfaceIndex: 0.8008281904610115
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          interfaceId: interfaceId
+          interfaceName: interfaceName
+          dirtyBit: 5.637376656633329
+          interfaceLLDPInformationServerInterface: "{}"
+          driverDumpCachedJson: "{}"
+        - serverInterfaceId: 1.4658129805029452
+          cachedUpdatedTimestamp: cachedUpdatedTimestamp
+          lldpInformation: lldpInformation
+          serverId: 5.962133916683182
+          lagIdentifier: 6.027456183070403
+          macAddress: macAddress
+          networkDeviceId: networkDeviceId
+          interfaceIndex: 0.8008281904610115
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          interfaceId: interfaceId
+          interfaceName: interfaceName
+          dirtyBit: 5.637376656633329
+          interfaceLLDPInformationServerInterface: "{}"
+          driverDumpCachedJson: "{}"
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/NetworkDeviceInterfaceDto'
+          title: List of network device interfaces
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
     NetworkDevicePortStatus:
       example:
         ports:
@@ -45640,7 +45992,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-04-30T11:27:52.531Z
+        createdTimestamp: 2025-05-05T19:53:37.166Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -45649,7 +46001,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-30T11:27:52.532Z
+        updatedTimestamp: 2025-05-05T19:53:37.166Z
         revision: "1"
       properties:
         siteId:
@@ -45666,12 +46018,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-30T11:27:52.531Z
+          example: 2025-05-05T19:53:37.166Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-30T11:27:52.532Z
+          example: 2025-05-05T19:53:37.166Z
           format: date-time
           type: string
         links:
@@ -45693,7 +46045,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-04-30T11:27:52.531Z
+        - createdTimestamp: 2025-05-05T19:53:37.166Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -45702,9 +46054,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-30T11:27:52.532Z
+          updatedTimestamp: 2025-05-05T19:53:37.166Z
           revision: "1"
-        - createdTimestamp: 2025-04-30T11:27:52.531Z
+        - createdTimestamp: 2025-05-05T19:53:37.166Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -45713,7 +46065,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-30T11:27:52.532Z
+          updatedTimestamp: 2025-05-05T19:53:37.166Z
           revision: "1"
         meta: ""
         links: ""
@@ -46352,7 +46704,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-04-30T11:27:52.545Z
+        createdTimestamp: 2025-05-05T19:53:37.189Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -46393,7 +46745,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-04-30T11:27:52.545Z
+        updatedTimestamp: 2025-05-05T19:53:37.189Z
         revision: "1"
         status: draft
       properties:
@@ -46421,12 +46773,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-30T11:27:52.545Z
+          example: 2025-05-05T19:53:37.189Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-30T11:27:52.545Z
+          example: 2025-05-05T19:53:37.189Z
           format: date-time
           type: string
         links:
@@ -46567,7 +46919,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-30T11:27:52.545Z
+          createdTimestamp: 2025-05-05T19:53:37.189Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -46608,7 +46960,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-30T11:27:52.545Z
+          updatedTimestamp: 2025-05-05T19:53:37.189Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -46718,7 +47070,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-04-30T11:27:52.545Z
+          createdTimestamp: 2025-05-05T19:53:37.189Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -46759,7 +47111,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-04-30T11:27:52.545Z
+          updatedTimestamp: 2025-05-05T19:53:37.189Z
           revision: "1"
           status: draft
         meta: ""
@@ -49512,10 +49864,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-04-30T11:27:52.54Z
+        createdTimestamp: 2025-05-05T19:53:37.183Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-04-30T11:27:52.54Z
+        updatedTimestamp: 2025-05-05T19:53:37.183Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -49589,12 +49941,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-04-30T11:27:52.54Z
+          example: 2025-05-05T19:53:37.183Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-04-30T11:27:52.54Z
+          example: 2025-05-05T19:53:37.183Z
           format: date-time
           type: string
         links:
@@ -55791,14 +56143,27 @@ components:
     GenerateSiteControllerOneliner:
       example:
         registry: registry.metalsoft.dev
-        imagesTag: v6.4.0
+        inbandHttpProxy: false
+        fileTransfer: false
         gitHubTag: main
-        msTunnelSecret: your-secure-tunnel-token
+        ansibleRunner: false
+        oobHttpProxy: false
+        spice: false
+        secondIp: secondIp
+        vnc: false
         sslHostname: api.example.com
+        syslog: false
         inbandMode: false
         dockerEnv: false
         usePodman: false
+        switchSubscription: false
+        imagesTag: v6.4.0
+        msTunnelSecret: your-secure-tunnel-token
+        inbandFileTransfer: false
+        commandExecution: false
+        netconf: false
         localScript: false
+        dhcpOob: false
       properties:
         usePodman:
           default: false
@@ -55837,16 +56202,79 @@ components:
           description: MS Tunnel Secret for secure connections
           example: your-secure-tunnel-token
           type: string
+        oobHttpProxy:
+          default: false
+          description: Enable OOB HTTP proxy capability
+          type: boolean
+        inbandHttpProxy:
+          default: false
+          description: Enable inband HTTP proxy capability
+          type: boolean
+        fileTransfer:
+          default: false
+          description: Enable file transfer capability
+          type: boolean
+        inbandFileTransfer:
+          default: false
+          description: Enable inband file transfer capability
+          type: boolean
+        switchSubscription:
+          default: false
+          description: Enable switch subscription capability
+          type: boolean
+        commandExecution:
+          default: false
+          description: Enable command execution capability
+          type: boolean
+        netconf:
+          default: false
+          description: Enable NETCONF capability
+          type: boolean
+        vnc:
+          default: false
+          description: Enable VNC capability
+          type: boolean
+        spice:
+          default: false
+          description: Enable SPICE capability
+          type: boolean
+        syslog:
+          default: false
+          description: Enable syslog capability
+          type: boolean
+        dhcpOob:
+          default: false
+          description: Enable DHCP OOB capability
+          type: boolean
+        ansibleRunner:
+          default: false
+          description: Enable Ansible runner capability
+          type: boolean
+        secondIp:
+          description: Second IP address
+          type: string
       required:
+      - ansibleRunner
+      - commandExecution
+      - dhcpOob
       - dockerEnv
+      - fileTransfer
       - gitHubTag
       - imagesTag
+      - inbandFileTransfer
+      - inbandHttpProxy
       - inbandMode
       - localScript
       - msTunnelSecret
+      - netconf
+      - oobHttpProxy
       - registry
+      - spice
       - sslHostname
+      - switchSubscription
+      - syslog
       - usePodman
+      - vnc
       type: object
     StorageOptions:
       properties:
@@ -55947,7 +56375,7 @@ components:
         inMaintenance: 2.027123023002322
         managementHost: managementHost
         passwordEncrypted: passwordEncrypted
-        type: iscsi_ssd
+        type: iscsi
         totalCapacity: 5.637376656633329
         targetIQN: targetIQN
         options: ""
@@ -56023,9 +56451,8 @@ components:
         type:
           description: Storage type
           enum:
-          - iscsi_ssd
-          - iscsi_hdd
-          - dummy
+          - iscsi
+          - nvme_tcp
           type: string
         status:
           description: Storage status
@@ -56145,7 +56572,7 @@ components:
           inMaintenance: 2.027123023002322
           managementHost: managementHost
           passwordEncrypted: passwordEncrypted
-          type: iscsi_ssd
+          type: iscsi
           totalCapacity: 5.637376656633329
           targetIQN: targetIQN
           options: ""
@@ -56193,7 +56620,7 @@ components:
           inMaintenance: 2.027123023002322
           managementHost: managementHost
           passwordEncrypted: passwordEncrypted
-          type: iscsi_ssd
+          type: iscsi
           totalCapacity: 5.637376656633329
           targetIQN: targetIQN
           options: ""
@@ -56338,7 +56765,7 @@ components:
         portGroupAllocationOrder: "{}"
         inMaintenance: 5.962133916683182
         managementHost: managementHost
-        type: iscsi_ssd
+        type: iscsi
         userId: 0.8008281904610115
         sharedDrivePriority: 7.061401241503109
         tags:
@@ -56389,9 +56816,8 @@ components:
         type:
           description: Storage type
           enum:
-          - iscsi_ssd
-          - iscsi_hdd
-          - dummy
+          - iscsi
+          - nvme_tcp
           type: string
         name:
           description: Name of the storage
@@ -59186,15 +59612,6 @@ components:
       - revision
       - serviceStatus
       - updatedTimestamp
-      type: object
-    CreateVMInstanceGroupInterface:
-      example:
-        networkId: 0.8008281904610115
-      properties:
-        networkId:
-          description: Network ID for the interface. Can be null if the interface
-            is not connected to any network
-          type: number
       type: object
     VMPool:
       example:
