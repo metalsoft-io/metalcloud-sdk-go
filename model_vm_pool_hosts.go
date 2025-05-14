@@ -43,18 +43,6 @@ type VMPoolHosts struct {
 	Status string `json:"status"`
 	// Description of the VM Pool Host
 	Description *string `json:"description,omitempty"`
-	// Total RAM GB of the VM Pool Host
-	TotalRamGB float32 `json:"totalRamGB"`
-	// Free RAM GB of the VM Pool Host
-	FreeRamGB float32 `json:"freeRamGB"`
-	// Used RAM GB of the VM Pool Host
-	UsedRamGB float32 `json:"usedRamGB"`
-	// Total Space GB of the VM Pool Host
-	TotalSpaceGB float32 `json:"totalSpaceGB"`
-	// Used Space GB of the VM Pool Host
-	UsedSpaceGB float32 `json:"usedSpaceGB"`
-	// Free Space GB of the VM Pool Host
-	FreeSpaceGB float32 `json:"freeSpaceGB"`
 	// Timestamp when the VM Pool Host was updated
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Links to other resources
@@ -68,7 +56,7 @@ type _VMPoolHosts VMPoolHosts
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolHosts(id float32, name string, address string, port float32, poolId float32, roles []string, failureDomain string, architecture string, database float32, status string, totalRamGB float32, freeRamGB float32, usedRamGB float32, totalSpaceGB float32, usedSpaceGB float32, freeSpaceGB float32, updatedTimestamp string, links map[string]interface{}) *VMPoolHosts {
+func NewVMPoolHosts(id float32, name string, address string, port float32, poolId float32, roles []string, failureDomain string, architecture string, database float32, status string, updatedTimestamp string, links map[string]interface{}) *VMPoolHosts {
 	this := VMPoolHosts{}
 	this.Id = id
 	this.Name = name
@@ -80,12 +68,6 @@ func NewVMPoolHosts(id float32, name string, address string, port float32, poolI
 	this.Architecture = architecture
 	this.Database = database
 	this.Status = status
-	this.TotalRamGB = totalRamGB
-	this.FreeRamGB = freeRamGB
-	this.UsedRamGB = usedRamGB
-	this.TotalSpaceGB = totalSpaceGB
-	this.UsedSpaceGB = usedSpaceGB
-	this.FreeSpaceGB = freeSpaceGB
 	this.UpdatedTimestamp = updatedTimestamp
 	this.Links = links
 	return &this
@@ -371,150 +353,6 @@ func (o *VMPoolHosts) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetTotalRamGB returns the TotalRamGB field value
-func (o *VMPoolHosts) GetTotalRamGB() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.TotalRamGB
-}
-
-// GetTotalRamGBOk returns a tuple with the TotalRamGB field value
-// and a boolean to check if the value has been set.
-func (o *VMPoolHosts) GetTotalRamGBOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.TotalRamGB, true
-}
-
-// SetTotalRamGB sets field value
-func (o *VMPoolHosts) SetTotalRamGB(v float32) {
-	o.TotalRamGB = v
-}
-
-// GetFreeRamGB returns the FreeRamGB field value
-func (o *VMPoolHosts) GetFreeRamGB() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.FreeRamGB
-}
-
-// GetFreeRamGBOk returns a tuple with the FreeRamGB field value
-// and a boolean to check if the value has been set.
-func (o *VMPoolHosts) GetFreeRamGBOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FreeRamGB, true
-}
-
-// SetFreeRamGB sets field value
-func (o *VMPoolHosts) SetFreeRamGB(v float32) {
-	o.FreeRamGB = v
-}
-
-// GetUsedRamGB returns the UsedRamGB field value
-func (o *VMPoolHosts) GetUsedRamGB() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.UsedRamGB
-}
-
-// GetUsedRamGBOk returns a tuple with the UsedRamGB field value
-// and a boolean to check if the value has been set.
-func (o *VMPoolHosts) GetUsedRamGBOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UsedRamGB, true
-}
-
-// SetUsedRamGB sets field value
-func (o *VMPoolHosts) SetUsedRamGB(v float32) {
-	o.UsedRamGB = v
-}
-
-// GetTotalSpaceGB returns the TotalSpaceGB field value
-func (o *VMPoolHosts) GetTotalSpaceGB() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.TotalSpaceGB
-}
-
-// GetTotalSpaceGBOk returns a tuple with the TotalSpaceGB field value
-// and a boolean to check if the value has been set.
-func (o *VMPoolHosts) GetTotalSpaceGBOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.TotalSpaceGB, true
-}
-
-// SetTotalSpaceGB sets field value
-func (o *VMPoolHosts) SetTotalSpaceGB(v float32) {
-	o.TotalSpaceGB = v
-}
-
-// GetUsedSpaceGB returns the UsedSpaceGB field value
-func (o *VMPoolHosts) GetUsedSpaceGB() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.UsedSpaceGB
-}
-
-// GetUsedSpaceGBOk returns a tuple with the UsedSpaceGB field value
-// and a boolean to check if the value has been set.
-func (o *VMPoolHosts) GetUsedSpaceGBOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UsedSpaceGB, true
-}
-
-// SetUsedSpaceGB sets field value
-func (o *VMPoolHosts) SetUsedSpaceGB(v float32) {
-	o.UsedSpaceGB = v
-}
-
-// GetFreeSpaceGB returns the FreeSpaceGB field value
-func (o *VMPoolHosts) GetFreeSpaceGB() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.FreeSpaceGB
-}
-
-// GetFreeSpaceGBOk returns a tuple with the FreeSpaceGB field value
-// and a boolean to check if the value has been set.
-func (o *VMPoolHosts) GetFreeSpaceGBOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FreeSpaceGB, true
-}
-
-// SetFreeSpaceGB sets field value
-func (o *VMPoolHosts) SetFreeSpaceGB(v float32) {
-	o.FreeSpaceGB = v
-}
-
 // GetUpdatedTimestamp returns the UpdatedTimestamp field value
 func (o *VMPoolHosts) GetUpdatedTimestamp() string {
 	if o == nil {
@@ -586,12 +424,6 @@ func (o VMPoolHosts) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["totalRamGB"] = o.TotalRamGB
-	toSerialize["freeRamGB"] = o.FreeRamGB
-	toSerialize["usedRamGB"] = o.UsedRamGB
-	toSerialize["totalSpaceGB"] = o.TotalSpaceGB
-	toSerialize["usedSpaceGB"] = o.UsedSpaceGB
-	toSerialize["freeSpaceGB"] = o.FreeSpaceGB
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	toSerialize["links"] = o.Links
 
@@ -617,12 +449,6 @@ func (o *VMPoolHosts) UnmarshalJSON(data []byte) (err error) {
 		"architecture",
 		"database",
 		"status",
-		"totalRamGB",
-		"freeRamGB",
-		"usedRamGB",
-		"totalSpaceGB",
-		"usedSpaceGB",
-		"freeSpaceGB",
 		"updatedTimestamp",
 		"links",
 	}
@@ -665,12 +491,6 @@ func (o *VMPoolHosts) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "database")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "description")
-		delete(additionalProperties, "totalRamGB")
-		delete(additionalProperties, "freeRamGB")
-		delete(additionalProperties, "usedRamGB")
-		delete(additionalProperties, "totalSpaceGB")
-		delete(additionalProperties, "usedSpaceGB")
-		delete(additionalProperties, "freeSpaceGB")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties

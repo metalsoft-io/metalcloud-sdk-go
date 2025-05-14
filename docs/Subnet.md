@@ -8,27 +8,25 @@ Name | Type | Description | Notes
 **Revision** | **float32** | Revision of the Subnet | 
 **Label** | Pointer to **string** |  | [optional] 
 **Name** | **string** | Name of the Subnet | 
-**IpVersion** | **string** | IP version | 
+**Tags** | **map[string]interface{}** |  | 
+**Annotations** | **map[string]interface{}** |  | 
+**CreatedAt** | **string** |  | 
+**UpdatedAt** | **string** |  | 
 **ParentSubnetId** | **float32** | ID of the parent subnet | 
+**IpVersion** | **string** | IP version | 
 **NetworkAddress** | **string** |  | 
 **PrefixLength** | **float32** |  | 
 **Netmask** | **string** |  | 
-**Gateway** | **string** |  | 
+**DefaultGateway** | **string** |  | 
 **IsPool** | **bool** |  | 
-**VrfId** | **float32** |  | 
 **AllocationDenylist** | **[]string** |  | 
-**AllowedChildOverlapConditions** | **[]string** |  | 
-**Tags** | **map[string]interface{}** |  | 
-**Metadata** | **map[string]interface{}** |  | 
-**CreatedAt** | **string** |  | 
-**UpdatedAt** | **string** |  | 
-**Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
+**ChildOverlapAllowRules** | **[]string** |  | 
 
 ## Methods
 
 ### NewSubnet
 
-`func NewSubnet(id float32, revision float32, name string, ipVersion string, parentSubnetId float32, networkAddress string, prefixLength float32, netmask string, gateway string, isPool bool, vrfId float32, allocationDenylist []string, allowedChildOverlapConditions []string, tags map[string]interface{}, metadata map[string]interface{}, createdAt string, updatedAt string, ) *Subnet`
+`func NewSubnet(id float32, revision float32, name string, tags map[string]interface{}, annotations map[string]interface{}, createdAt string, updatedAt string, parentSubnetId float32, ipVersion string, networkAddress string, prefixLength float32, netmask string, defaultGateway string, isPool bool, allocationDenylist []string, childOverlapAllowRules []string, ) *Subnet`
 
 NewSubnet instantiates a new Subnet object
 This constructor will assign default values to properties that have it defined,
@@ -128,24 +126,84 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetIpVersion
+### GetTags
 
-`func (o *Subnet) GetIpVersion() string`
+`func (o *Subnet) GetTags() map[string]interface{}`
 
-GetIpVersion returns the IpVersion field if non-nil, zero value otherwise.
+GetTags returns the Tags field if non-nil, zero value otherwise.
 
-### GetIpVersionOk
+### GetTagsOk
 
-`func (o *Subnet) GetIpVersionOk() (*string, bool)`
+`func (o *Subnet) GetTagsOk() (*map[string]interface{}, bool)`
 
-GetIpVersionOk returns a tuple with the IpVersion field if it's non-nil, zero value otherwise
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIpVersion
+### SetTags
 
-`func (o *Subnet) SetIpVersion(v string)`
+`func (o *Subnet) SetTags(v map[string]interface{})`
 
-SetIpVersion sets IpVersion field to given value.
+SetTags sets Tags field to given value.
+
+
+### GetAnnotations
+
+`func (o *Subnet) GetAnnotations() map[string]interface{}`
+
+GetAnnotations returns the Annotations field if non-nil, zero value otherwise.
+
+### GetAnnotationsOk
+
+`func (o *Subnet) GetAnnotationsOk() (*map[string]interface{}, bool)`
+
+GetAnnotationsOk returns a tuple with the Annotations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAnnotations
+
+`func (o *Subnet) SetAnnotations(v map[string]interface{})`
+
+SetAnnotations sets Annotations field to given value.
+
+
+### GetCreatedAt
+
+`func (o *Subnet) GetCreatedAt() string`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Subnet) GetCreatedAtOk() (*string, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Subnet) SetCreatedAt(v string)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
+### GetUpdatedAt
+
+`func (o *Subnet) GetUpdatedAt() string`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *Subnet) GetUpdatedAtOk() (*string, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *Subnet) SetUpdatedAt(v string)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
 
 
 ### GetParentSubnetId
@@ -166,6 +224,26 @@ and a boolean to check if the value has been set.
 `func (o *Subnet) SetParentSubnetId(v float32)`
 
 SetParentSubnetId sets ParentSubnetId field to given value.
+
+
+### GetIpVersion
+
+`func (o *Subnet) GetIpVersion() string`
+
+GetIpVersion returns the IpVersion field if non-nil, zero value otherwise.
+
+### GetIpVersionOk
+
+`func (o *Subnet) GetIpVersionOk() (*string, bool)`
+
+GetIpVersionOk returns a tuple with the IpVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpVersion
+
+`func (o *Subnet) SetIpVersion(v string)`
+
+SetIpVersion sets IpVersion field to given value.
 
 
 ### GetNetworkAddress
@@ -228,24 +306,24 @@ and a boolean to check if the value has been set.
 SetNetmask sets Netmask field to given value.
 
 
-### GetGateway
+### GetDefaultGateway
 
-`func (o *Subnet) GetGateway() string`
+`func (o *Subnet) GetDefaultGateway() string`
 
-GetGateway returns the Gateway field if non-nil, zero value otherwise.
+GetDefaultGateway returns the DefaultGateway field if non-nil, zero value otherwise.
 
-### GetGatewayOk
+### GetDefaultGatewayOk
 
-`func (o *Subnet) GetGatewayOk() (*string, bool)`
+`func (o *Subnet) GetDefaultGatewayOk() (*string, bool)`
 
-GetGatewayOk returns a tuple with the Gateway field if it's non-nil, zero value otherwise
+GetDefaultGatewayOk returns a tuple with the DefaultGateway field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGateway
+### SetDefaultGateway
 
-`func (o *Subnet) SetGateway(v string)`
+`func (o *Subnet) SetDefaultGateway(v string)`
 
-SetGateway sets Gateway field to given value.
+SetDefaultGateway sets DefaultGateway field to given value.
 
 
 ### GetIsPool
@@ -268,26 +346,6 @@ and a boolean to check if the value has been set.
 SetIsPool sets IsPool field to given value.
 
 
-### GetVrfId
-
-`func (o *Subnet) GetVrfId() float32`
-
-GetVrfId returns the VrfId field if non-nil, zero value otherwise.
-
-### GetVrfIdOk
-
-`func (o *Subnet) GetVrfIdOk() (*float32, bool)`
-
-GetVrfIdOk returns a tuple with the VrfId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVrfId
-
-`func (o *Subnet) SetVrfId(v float32)`
-
-SetVrfId sets VrfId field to given value.
-
-
 ### GetAllocationDenylist
 
 `func (o *Subnet) GetAllocationDenylist() []string`
@@ -308,130 +366,25 @@ and a boolean to check if the value has been set.
 SetAllocationDenylist sets AllocationDenylist field to given value.
 
 
-### GetAllowedChildOverlapConditions
+### GetChildOverlapAllowRules
 
-`func (o *Subnet) GetAllowedChildOverlapConditions() []string`
+`func (o *Subnet) GetChildOverlapAllowRules() []string`
 
-GetAllowedChildOverlapConditions returns the AllowedChildOverlapConditions field if non-nil, zero value otherwise.
+GetChildOverlapAllowRules returns the ChildOverlapAllowRules field if non-nil, zero value otherwise.
 
-### GetAllowedChildOverlapConditionsOk
+### GetChildOverlapAllowRulesOk
 
-`func (o *Subnet) GetAllowedChildOverlapConditionsOk() (*[]string, bool)`
+`func (o *Subnet) GetChildOverlapAllowRulesOk() (*[]string, bool)`
 
-GetAllowedChildOverlapConditionsOk returns a tuple with the AllowedChildOverlapConditions field if it's non-nil, zero value otherwise
+GetChildOverlapAllowRulesOk returns a tuple with the ChildOverlapAllowRules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAllowedChildOverlapConditions
+### SetChildOverlapAllowRules
 
-`func (o *Subnet) SetAllowedChildOverlapConditions(v []string)`
+`func (o *Subnet) SetChildOverlapAllowRules(v []string)`
 
-SetAllowedChildOverlapConditions sets AllowedChildOverlapConditions field to given value.
+SetChildOverlapAllowRules sets ChildOverlapAllowRules field to given value.
 
-
-### GetTags
-
-`func (o *Subnet) GetTags() map[string]interface{}`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *Subnet) GetTagsOk() (*map[string]interface{}, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *Subnet) SetTags(v map[string]interface{})`
-
-SetTags sets Tags field to given value.
-
-
-### GetMetadata
-
-`func (o *Subnet) GetMetadata() map[string]interface{}`
-
-GetMetadata returns the Metadata field if non-nil, zero value otherwise.
-
-### GetMetadataOk
-
-`func (o *Subnet) GetMetadataOk() (*map[string]interface{}, bool)`
-
-GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMetadata
-
-`func (o *Subnet) SetMetadata(v map[string]interface{})`
-
-SetMetadata sets Metadata field to given value.
-
-
-### GetCreatedAt
-
-`func (o *Subnet) GetCreatedAt() string`
-
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
-
-### GetCreatedAtOk
-
-`func (o *Subnet) GetCreatedAtOk() (*string, bool)`
-
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedAt
-
-`func (o *Subnet) SetCreatedAt(v string)`
-
-SetCreatedAt sets CreatedAt field to given value.
-
-
-### GetUpdatedAt
-
-`func (o *Subnet) GetUpdatedAt() string`
-
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
-
-### GetUpdatedAtOk
-
-`func (o *Subnet) GetUpdatedAtOk() (*string, bool)`
-
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedAt
-
-`func (o *Subnet) SetUpdatedAt(v string)`
-
-SetUpdatedAt sets UpdatedAt field to given value.
-
-
-### GetLinks
-
-`func (o *Subnet) GetLinks() []Link`
-
-GetLinks returns the Links field if non-nil, zero value otherwise.
-
-### GetLinksOk
-
-`func (o *Subnet) GetLinksOk() (*[]Link, bool)`
-
-GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLinks
-
-`func (o *Subnet) SetLinks(v []Link)`
-
-SetLinks sets Links field to given value.
-
-### HasLinks
-
-`func (o *Subnet) HasLinks() bool`
-
-HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

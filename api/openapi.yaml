@@ -1321,6 +1321,24 @@ paths:
           type: array
         style: form
       - description: |-
+          Filter by logicalNetworkId query param.
+                    <p>
+                       <b>Format: </b> filter.logicalNetworkId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.logicalNetworkId=$not:$like:John Doe&filter.logicalNetworkId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.logicalNetworkId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
           Filter by config.deployStatus query param.
                     <p>
                        <b>Format: </b> filter.config.deployStatus={$not}:OPERATION:VALUE
@@ -1352,6 +1370,24 @@ paths:
         explode: true
         in: query
         name: filter.config.deployType
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by config.logicalNetworkId query param.
+                    <p>
+                       <b>Format: </b> filter.config.logicalNetworkId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.config.logicalNetworkId=$not:$like:John Doe&filter.config.logicalNetworkId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.config.logicalNetworkId
         required: false
         schema:
           items:
@@ -1404,8 +1440,9 @@ paths:
           \ all fields mentioned below will be used to search by term\n          </p>\n\
           \        <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>subdomain</li>\n\
           <li>subdomainPermanent</li>\n<li>storagePoolId</li>\n<li>serviceStatus</li>\n\
-          <li>infrastructureId</li>\n<li>config.deployStatus</li>\n<li>config.deployType</li></ul>\n\
-          \        "
+          <li>infrastructureId</li>\n<li>logicalNetworkId</li>\n<li>config.deployStatus</li>\n\
+          <li>config.deployType</li>\n<li>config.logicalNetworkId</li></ul>\n    \
+          \    "
         explode: true
         in: query
         name: searchBy
@@ -2236,6 +2273,261 @@ paths:
       summary: Boot Custom Iso into Server
       tags:
       - Custom Iso
+  /api/v2/email-templates:
+    get:
+      description: Returns list of all Email Templates
+      operationId: getEmailTemplates
+      parameters:
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by id query param.
+                    <p>
+                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.id
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by name query param.
+                    <p>
+                       <b>Format: </b> filter.name={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.name=$not:$like:John Doe&filter.name=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.name
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li></ul>\n \
+          \     "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> id,name\n          </p>\n   \
+          \     <p>\n             <b>Default Value: </b> By default all fields mentioned\
+          \ below will be used to search by term\n          </p>\n        <h4>Available\
+          \ Fields</h4><ul><li>id</li>\n<li>name</li></ul>\n        "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailTemplateList'
+          description: Retrieves a list of Email Templates.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          description: Failed to retrieve Email Templates.
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all Email Templates
+      tags:
+      - Email Template
+    post:
+      operationId: createEmailTemplate
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailTemplateCreate'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailTemplate'
+          description: EmailTemplate created.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          description: Failed to create EmailTemplate.
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Creates an Email Template.
+      tags:
+      - Email Template
+  /api/v2/email-templates/{emailTemplateName}:
+    delete:
+      operationId: deleteEmailTemplate
+      parameters:
+      - explode: false
+        in: path
+        name: emailTemplateName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Email Template deleted
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Email Template not found
+        "500":
+          description: Failed to delete Email Template
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete Email Template
+      tags:
+      - Email Template
+    get:
+      operationId: getEmailTemplateByName
+      parameters:
+      - explode: false
+        in: path
+        name: emailTemplateName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailTemplate'
+          description: Email template
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Email Template not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get Email Template by Name
+      tags:
+      - Email Template
+    patch:
+      operationId: EmailTemplatesController_patchEmailTemplate
+      parameters:
+      - explode: false
+        in: path
+        name: emailTemplateName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailTemplateUpdate'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailTemplate'
+          description: EmailTemplate updated
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: EmailTemplate not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update a EmailTemplate
+      tags:
+      - Email Template
   /api/v2/events:
     get:
       description: Returns list of all Events
@@ -3465,6 +3757,24 @@ paths:
           type: array
         style: form
       - description: |-
+          Filter by logicalNetworkId query param.
+                    <p>
+                       <b>Format: </b> filter.logicalNetworkId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.logicalNetworkId=$not:$like:John Doe&filter.logicalNetworkId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.logicalNetworkId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
           Filter by config.deployStatus query param.
                     <p>
                        <b>Format: </b> filter.config.deployStatus={$not}:OPERATION:VALUE
@@ -3496,6 +3806,24 @@ paths:
         explode: true
         in: query
         name: filter.config.deployType
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by config.logicalNetworkId query param.
+                    <p>
+                       <b>Format: </b> filter.config.logicalNetworkId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.config.logicalNetworkId=$not:$like:John Doe&filter.config.logicalNetworkId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.config.logicalNetworkId
         required: false
         schema:
           items:
@@ -3548,8 +3876,9 @@ paths:
           \ all fields mentioned below will be used to search by term\n          </p>\n\
           \        <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>subdomain</li>\n\
           <li>subdomainPermanent</li>\n<li>storagePoolId</li>\n<li>serviceStatus</li>\n\
-          <li>infrastructureId</li>\n<li>config.deployStatus</li>\n<li>config.deployType</li></ul>\n\
-          \        "
+          <li>infrastructureId</li>\n<li>logicalNetworkId</li>\n<li>config.deployStatus</li>\n\
+          <li>config.deployType</li>\n<li>config.logicalNetworkId</li></ul>\n    \
+          \    "
         explode: true
         in: query
         name: searchBy
@@ -5822,7 +6151,7 @@ paths:
       - Firmware Policy
   /api/v2/firmware/search/baseline:
     post:
-      description: Returns a list of firmware catalogs
+      description: Returns a list of firmware baselines
       operationId: searchFirmwareBaselines
       parameters: []
       requestBody:
@@ -5836,8 +6165,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FirmwareCatalogPaginatedList'
-          description: The list of Firmware Catalogs
+                $ref: '#/components/schemas/IServerFirmwareBinaryResponse'
+          description: The list of Firmware Baselines
         "401":
           description: Unauthorized
         "403":
@@ -9153,8 +9482,8 @@ paths:
         style: form
       - description: "Number of records per page.\n      <p>\n             <b>Example:\
           \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
-          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 5000\n\
-          \          </p>\n\n      If provided value is greater than max value, max\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> -1\n  \
+          \        </p>\n\n      If provided value is greater than max value, max\
           \ value will be applied.\n      "
         explode: true
         in: query
@@ -9171,7 +9500,8 @@ paths:
                     <p>
                        <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
         explode: true
         in: query
         name: filter.id
@@ -9244,7 +9574,8 @@ paths:
                     <p>
                        <b>Example: </b> filter.fabricId=$not:$like:John Doe&filter.fabricId=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
         explode: true
         in: query
         name: filter.fabricId
@@ -9305,8 +9636,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedLogicalNetworkProfile'
           description: Retrieves a list of Logical Network Profiles.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "500":
           description: Failed to retrieve Logical Network Profiles.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Get all Logical Network Profiles.
       tags:
       - Logical Network Profile
@@ -9326,8 +9664,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfile_201_response'
           description: Logical Network Profile created.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "500":
           description: Failed to create Logical Network Profile.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Create a Logical Network Profile.
       tags:
       - Logical Network Profile
@@ -9353,6 +9698,10 @@ paths:
       responses:
         "204":
           description: Successfully deleted Logical Network Profile.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "404":
           description: Logical Network Profile not found.
         "412":
@@ -9361,6 +9710,9 @@ paths:
           description: Precondition required
         "500":
           description: Failed to delete Logical Network Profile.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Delete a Logical Network Profile.
       tags:
       - Logical Network Profile
@@ -9381,10 +9733,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfile_201_response'
           description: The details of the specified Logical Network Profile.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "404":
           description: Logical Network Profile not found.
         "500":
           description: Failed to retrieve the Logical Network Profile.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Get a Logical Network Profile.
       tags:
       - Logical Network Profile
@@ -9419,6 +9778,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfile_201_response'
           description: Logical Network Profile updated.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "404":
           description: Logical Network Profile not found.
         "412":
@@ -9427,6 +9790,9 @@ paths:
           description: Precondition required
         "500":
           description: Failed to update Logical Network Profile.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Update Logical Network Profile
       tags:
       - Logical Network Profile
@@ -9552,8 +9918,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedVlanAllocationStrategy'
           description: Retrieves a list of Vlan allocation strategies.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "500":
           description: Failed to retrieve Vlan allocation strategies.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Get all Vlan allocation strategies.
       tags:
       - Logical Network Profile
@@ -9588,12 +9961,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfileVlanAllocationStrategy_201_response'
           description: Vlan allocation strategy created.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "412":
           description: Precondition failed
         "428":
           description: Precondition required
         "500":
           description: Failed to create Vlan allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Create Vlan allocation strategy.
       tags:
       - Logical Network Profile
@@ -9626,6 +10006,10 @@ paths:
       responses:
         "204":
           description: Successfully deleted Vlan allocation strategy.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "404":
           description: Vlan allocation strategy not found.
         "412":
@@ -9634,6 +10018,9 @@ paths:
           description: Precondition required
         "500":
           description: Failed to delete Vlan allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Delete Vlan allocation strategy.
       tags:
       - Logical Network Profile
@@ -9661,10 +10048,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfileVlanAllocationStrategy_201_response'
           description: The details of the specified Vlan allocation strategy.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "404":
           description: Vlan allocation strategy not found.
         "500":
           description: Failed to retrieve the Vlan allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Get a Vlan allocation strategy.
       tags:
       - Logical Network Profile
@@ -9706,12 +10100,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfileVlanAllocationStrategy_201_response'
           description: Vlan allocation strategy replaced.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "412":
           description: Precondition failed
         "428":
           description: Precondition required
         "500":
           description: Failed to replace Vlan allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Replace Vlan allocation strategy
       tags:
       - Logical Network Profile
@@ -9837,8 +10238,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedVniAllocationStrategy'
           description: Retrieves a list of Vni allocation strategies.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "500":
           description: Failed to retrieve Vni allocation strategies.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Get all Vni allocation strategies.
       tags:
       - Logical Network Profile
@@ -9873,12 +10281,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfileVniAllocationStrategy_201_response'
           description: Vni allocation strategy created.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "412":
           description: Precondition failed
         "428":
           description: Precondition required
         "500":
           description: Failed to create Vni allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Create Vni allocation strategy.
       tags:
       - Logical Network Profile
@@ -9911,6 +10326,10 @@ paths:
       responses:
         "204":
           description: Successfully deleted Vni allocation strategy.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "404":
           description: Vni allocation strategy not found.
         "412":
@@ -9919,6 +10338,9 @@ paths:
           description: Precondition required
         "500":
           description: Failed to delete Vni allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Delete Vni allocation strategy.
       tags:
       - Logical Network Profile
@@ -9946,10 +10368,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfileVniAllocationStrategy_201_response'
           description: The details of the specified Vni allocation strategy.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "404":
           description: Vni allocation strategy not found.
         "500":
           description: Failed to retrieve the Vni allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Get a Vni allocation strategy.
       tags:
       - Logical Network Profile
@@ -9991,12 +10420,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfileVniAllocationStrategy_201_response'
           description: Vni allocation strategy replaced.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "412":
           description: Precondition failed
         "428":
           description: Precondition required
         "500":
           description: Failed to replace Vni allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Replace Vni allocation strategy
       tags:
       - Logical Network Profile
@@ -10122,8 +10558,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedIpv4SubnetAllocationStrategy'
           description: Retrieves a list of Ipv4 Subnet allocation strategies.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "500":
           description: Failed to retrieve Ipv4 Subnet allocation strategies.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Get all Ipv4 Subnet allocation strategies.
       tags:
       - Logical Network Profile
@@ -10158,12 +10601,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfileIpv4SubnetAllocationStrategy_201_response'
           description: Ipv4 Subnet allocation strategy created.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "412":
           description: Precondition failed
         "428":
           description: Precondition required
         "500":
           description: Failed to create Ipv4 Subnet allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Create Ipv4 Subnet allocation strategy.
       tags:
       - Logical Network Profile
@@ -10196,6 +10646,10 @@ paths:
       responses:
         "204":
           description: Successfully deleted Ipv4 Subnet allocation strategy.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "404":
           description: Ipv4 Subnet allocation strategy not found.
         "412":
@@ -10204,6 +10658,9 @@ paths:
           description: Precondition required
         "500":
           description: Failed to delete Ipv4 Subnet allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Delete Ipv4 Subnet allocation strategy.
       tags:
       - Logical Network Profile
@@ -10231,10 +10688,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfileIpv4SubnetAllocationStrategy_201_response'
           description: The details of the specified Ipv4 Subnet allocation strategy.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "404":
           description: Ipv4 Subnet allocation strategy not found.
         "500":
           description: Failed to retrieve the Ipv4 Subnet allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Get a Ipv4 Subnet allocation strategy.
       tags:
       - Logical Network Profile
@@ -10276,12 +10740,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfileIpv4SubnetAllocationStrategy_201_response'
           description: Ipv4 Subnet allocation strategy replaced.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "412":
           description: Precondition failed
         "428":
           description: Precondition required
         "500":
           description: Failed to replace Ipv4 Subnet allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Replace Ipv4 Subnet allocation strategy
       tags:
       - Logical Network Profile
@@ -10407,8 +10878,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedIpv6SubnetAllocationStrategy'
           description: Retrieves a list of Ipv6 Subnet allocation strategies.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "500":
           description: Failed to retrieve Ipv6 Subnet allocation strategies.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Get all Ipv6 Subnet allocation strategies.
       tags:
       - Logical Network Profile
@@ -10443,12 +10921,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfileIpv6SubnetAllocationStrategy_201_response'
           description: Ipv6 Subnet allocation strategy created.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "412":
           description: Precondition failed
         "428":
           description: Precondition required
         "500":
           description: Failed to create Ipv6 Subnet allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Create Ipv6 Subnet allocation strategy.
       tags:
       - Logical Network Profile
@@ -10481,6 +10966,10 @@ paths:
       responses:
         "204":
           description: Successfully deleted Ipv6 Subnet allocation strategy.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "404":
           description: Ipv6 Subnet allocation strategy not found.
         "412":
@@ -10489,6 +10978,9 @@ paths:
           description: Precondition required
         "500":
           description: Failed to delete Ipv6 Subnet allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Delete Ipv6 Subnet allocation strategy.
       tags:
       - Logical Network Profile
@@ -10516,10 +11008,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfileIpv6SubnetAllocationStrategy_201_response'
           description: The details of the specified Ipv6 Subnet allocation strategy.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "404":
           description: Ipv6 Subnet allocation strategy not found.
         "500":
           description: Failed to retrieve the Ipv6 Subnet allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Get a Ipv6 Subnet allocation strategy.
       tags:
       - Logical Network Profile
@@ -10561,12 +11060,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/createLogicalNetworkProfileIpv6SubnetAllocationStrategy_201_response'
           description: Ipv6 Subnet allocation strategy replaced.
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "412":
           description: Precondition failed
         "428":
           description: Precondition required
         "500":
           description: Failed to replace Ipv6 Subnet allocation strategy.
+      security:
+      - JWT: []
+      - apiKey: []
       summary: Replace Ipv6 Subnet allocation strategy
       tags:
       - Logical Network Profile
@@ -10587,8 +11093,8 @@ paths:
         style: form
       - description: "Number of records per page.\n      <p>\n             <b>Example:\
           \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
-          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 5000\n\
-          \          </p>\n\n      If provided value is greater than max value, max\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> -1\n  \
+          \        </p>\n\n      If provided value is greater than max value, max\
           \ value will be applied.\n      "
         explode: true
         in: query
@@ -10605,7 +11111,8 @@ paths:
                     <p>
                        <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
         explode: true
         in: query
         name: filter.id
@@ -10678,7 +11185,8 @@ paths:
                     <p>
                        <b>Example: </b> filter.fabricId=$not:$like:John Doe&filter.fabricId=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
         explode: true
         in: query
         name: filter.fabricId
@@ -10720,6 +11228,44 @@ paths:
         explode: true
         in: query
         name: filter.serviceStatus
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by config.deployStatus query param.
+                    <p>
+                       <b>Format: </b> filter.config.deployStatus={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.config.deployStatus=$not:$like:John Doe&filter.config.deployStatus=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.config.deployStatus
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by config.deployType query param.
+                    <p>
+                       <b>Format: </b> filter.config.deployType={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.config.deployType=$not:$like:John Doe&filter.config.deployType=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.config.deployType
         required: false
         schema:
           items:
@@ -13234,35 +13780,6 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Runs an extension of type action on the network device
-      tags:
-      - Network Device
-  /api/v2/network-devices/{networkDeviceId}/iscsi-boot-servers:
-    get:
-      operationId: getIscsiBootServers
-      parameters:
-      - explode: false
-        in: path
-        name: networkDeviceId
-        required: true
-        schema:
-          type: number
-        style: simple
-      responses:
-        "200":
-          description: iSCSI boot servers found
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Network device not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Returns information about servers which are setup to boot from iSCSI
-        block devices. This is useful in the event of a switch device reboot
       tags:
       - Network Device
   /api/v2/network-devices/defaults/{siteId}:
@@ -19998,6 +20515,8 @@ paths:
           description: The Server Instance state does not allow this operation.
         "412":
           description: Precondition failed
+        "424":
+          description: Instance does not have a server associated
         "428":
           description: Precondition required
       security:
@@ -20027,6 +20546,8 @@ paths:
           description: Forbidden
         "404":
           description: Server Instance not found
+        "424":
+          description: Instance does not have a server associated
       security:
       - JWT: []
       - apiKey: []
@@ -20118,6 +20639,44 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Get server instance variables
+      tags:
+      - Server Instance
+  /api/v2/server-instances/{serverInstanceId}/os-installation-data:
+    get:
+      operationId: getServerInstanceOSInstallationData
+      parameters:
+      - explode: false
+        in: path
+        name: serverInstanceId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Filter by variable usage
+        explode: true
+        in: query
+        name: usage
+        required: false
+        schema:
+          $ref: '#/components/schemas/VariableUsageType'
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerInstanceContextOSInstallationData'
+          description: The server instance OS installation data
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Server instance not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get server instance OS installation data
       tags:
       - Server Instance
   /api/v2/server-instance-groups/{serverInstanceGroupId}/config/networking:
@@ -23526,8 +24085,8 @@ paths:
       - Storage
   /api/v2/storages/statistics:
     get:
-      description: Returns Storages statistics
-      operationId: getStorageStatistics
+      description: Returns statistics for all Storages
+      operationId: getStoragesStatistics
       parameters:
       - description: Include storages in maintenance.
         explode: true
@@ -23558,8 +24117,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StorageStatistics'
-          description: Returns Storages statistics
+                $ref: '#/components/schemas/StoragesStatistics'
+          description: Returns statistics for all Storages
         "401":
           description: Unauthorized
         "403":
@@ -23567,7 +24126,7 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Get Storages statistics
+      summary: Get statistics for all Storages
       tags:
       - Storage
   /api/v2/storages/{storageId}:
@@ -23737,73 +24296,6 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Get Storage credentials
-      tags:
-      - Storage
-  /api/v2/storages/{storageId}/iscsi-boot-servers:
-    get:
-      description: Returns information about servers which are setup to boot from
-        iSCSI block devices
-      operationId: getStorageIscsiBootServers
-      parameters:
-      - explode: false
-        in: path
-        name: storageId
-        required: true
-        schema:
-          type: number
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/IscsiBootServerInfo'
-                type: array
-          description: The servers that can boot iSCSI block devices attached on this
-            storage
-        "400":
-          description: Bad request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not found
-        "409":
-          description: Conflict
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Returns information about servers which are setup to boot from iSCSI
-        block devices
-      tags:
-      - Storage
-  /api/v2/storages/{storageId}/actions/update-cache:
-    post:
-      description: Execute a Storage action
-      operationId: executeStorageAction
-      parameters:
-      - explode: false
-        in: path
-        name: storageId
-        required: true
-        schema:
-          type: number
-        style: simple
-      responses:
-        "204":
-          description: The storage action was successfully executed
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not found
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Execute a Storage action
       tags:
       - Storage
   /api/v2/storages/{storageId}/network-device-configurations:
@@ -24852,6 +25344,35 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Get all Buckets linked to the specified storage
+      tags:
+      - Storage
+  /api/v2/storages/{storageId}/statistics:
+    get:
+      description: Returns Storages statistics
+      operationId: getStorageStatistics
+      parameters:
+      - explode: false
+        in: path
+        name: storageId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageStatistics'
+          description: Returns Storages statistics
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get Storages statistics
       tags:
       - Storage
   /api/v2/subnets:
@@ -26481,6 +27002,44 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Get user limits
+      tags:
+      - Users
+  /api/v2/users/{userId}/default-limits:
+    get:
+      description: Returns the default limits of a user
+      operationId: getDefaultUserLimits
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserLimits'
+          description: Returns the default limits of a user
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get default user limits
       tags:
       - Users
   /api/v2/users/{userId}/actions/change-limits:
@@ -28420,7 +28979,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VMInstanceGroup'
+                $ref: '#/components/schemas/VMInstanceGroupConfiguration'
           description: The VM Instance Group information successfully updated
         "400":
           description: Bad request
@@ -29242,6 +29801,35 @@ paths:
       summary: Updates VM Pool information
       tags:
       - VM Pool
+  /api/v2/vm-pools/{vmPoolId}/statistics:
+    get:
+      description: Returns VM Pool statistics
+      operationId: getVmPoolStatistics
+      parameters:
+      - explode: false
+        in: path
+        name: vmPoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VMPoolStatistics'
+          description: Returns VM Pool statistics
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get VM Pool statistics
+      tags:
+      - VM Pool
   /api/v2/vm-pools/{vmPoolId}/credentials:
     get:
       description: Returns VM Pool credentials
@@ -29701,6 +30289,46 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Retrieves a VM Cluster Host
+      tags:
+      - VM Pool
+  /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/statistics:
+    get:
+      description: Returns VM Cluster Host Statistics
+      operationId: getVMPoolClusterHostStatistics
+      parameters:
+      - explode: false
+        in: path
+        name: vmPoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: vmPoolClusterHostId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VMPoolStatistics'
+          description: Returns a VM Cluster Host
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Retrieves VM Cluster Host Statistics
       tags:
       - VM Pool
   /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces:
@@ -31557,6 +32185,7 @@ components:
       example:
         lastLoginTimestamp: lastLoginTimestamp
         accountId: 0.8008281904610115
+        emailStatus: not_verified
         accessLevel: accessLevel
         displayName: displayName
         isArchived: true
@@ -31573,6 +32202,12 @@ components:
       properties:
         displayName:
           description: The display name of the user
+          type: string
+        emailStatus:
+          description: The email status of the user
+          enum:
+          - not_verified
+          - verified
           type: string
         language:
           description: The language of the user
@@ -31614,6 +32249,7 @@ components:
       - createdTimestamp
       - displayName
       - email
+      - emailStatus
       - id
       - isArchived
       - language
@@ -31625,6 +32261,7 @@ components:
         data:
         - lastLoginTimestamp: lastLoginTimestamp
           accountId: 0.8008281904610115
+          emailStatus: not_verified
           accessLevel: accessLevel
           displayName: displayName
           isArchived: true
@@ -31640,6 +32277,7 @@ components:
           revision: 1.4658129805029452
         - lastLoginTimestamp: lastLoginTimestamp
           accountId: 0.8008281904610115
+          emailStatus: not_verified
           accessLevel: accessLevel
           displayName: displayName
           isArchived: true
@@ -31733,11 +32371,17 @@ components:
       type: object
     AuthenticationRequestPropertiesLdap:
       properties:
-        data:
-          description: The data for the LDAP authentication request.
-          type: object
+        email:
+          description: The email of the user
+          example: test.email@metalsoft.io
+          type: string
+        password:
+          description: The password of the user
+          example: secret-password
+          type: string
       required:
-      - data
+      - email
+      - password
       type: object
     AuthenticationRequest:
       example:
@@ -33170,6 +33814,168 @@ components:
       required:
       - jobGroupId
       - jobId
+      type: object
+    EmailTemplate:
+      example:
+        subject: Account recovery - verification email
+        name: MAIL_PASSWORD_RESET
+        description: Email template for resetting the password
+        html: "<h1>Password Reset</h1><p>Click <a href='{{reset_link}}'>here</a> to\
+          \ reset your password.</p>"
+        id: 1
+        text: "Click the link below to reset your password: {{reset_link}}"
+        revision: 1
+      properties:
+        id:
+          description: The email template ID
+          example: 1
+          type: integer
+        revision:
+          description: Revision number
+          example: 1
+          type: number
+        name:
+          description: Email template name
+          enum:
+          - MAIL_CONFIRM_LOGIN_EMAIL_ADDRESS
+          - MAIL_CONFIRM_NEW_LOGIN_EMAIL_ADDRESS
+          - MAIL_PASSWORD_RESET
+          - MAIL_SYSLOG_NOTIFICATION
+          example: MAIL_PASSWORD_RESET
+          type: string
+        subject:
+          description: Email template subject
+          example: Account recovery - verification email
+          type: string
+        description:
+          description: Email template description
+          example: Email template for resetting the password
+          type: string
+        text:
+          description: Email template text
+          example: "Click the link below to reset your password: {{reset_link}}"
+          type: string
+        html:
+          description: Email template html
+          example: "<h1>Password Reset</h1><p>Click <a href='{{reset_link}}'>here</a>\
+            \ to reset your password.</p>"
+          type: string
+      required:
+      - html
+      - id
+      - name
+      - revision
+      - subject
+      - text
+      type: object
+    EmailTemplateList:
+      example:
+        data:
+        - subject: Account recovery - verification email
+          name: MAIL_PASSWORD_RESET
+          description: Email template for resetting the password
+          html: "<h1>Password Reset</h1><p>Click <a href='{{reset_link}}'>here</a>\
+            \ to reset your password.</p>"
+          id: 1
+          text: "Click the link below to reset your password: {{reset_link}}"
+          revision: 1
+        - subject: Account recovery - verification email
+          name: MAIL_PASSWORD_RESET
+          description: Email template for resetting the password
+          html: "<h1>Password Reset</h1><p>Click <a href='{{reset_link}}'>here</a>\
+            \ to reset your password.</p>"
+          id: 1
+          text: "Click the link below to reset your password: {{reset_link}}"
+          revision: 1
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/EmailTemplate'
+          title: List of email templates
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
+    EmailTemplateCreate:
+      example:
+        subject: Account recovery - verification email
+        name: MAIL_PASSWORD_RESET
+        description: Email template for resetting the password
+        html: "<h1>Password Reset</h1><p>Click <a href='{{reset_link}}'>here</a> to\
+          \ reset your password.</p>"
+        text: "Click the link below to reset your password: {{reset_link}}"
+      properties:
+        name:
+          description: Email template name
+          enum:
+          - MAIL_CONFIRM_LOGIN_EMAIL_ADDRESS
+          - MAIL_CONFIRM_NEW_LOGIN_EMAIL_ADDRESS
+          - MAIL_PASSWORD_RESET
+          - MAIL_SYSLOG_NOTIFICATION
+          example: MAIL_PASSWORD_RESET
+          type: string
+        subject:
+          description: Email template subject
+          example: Account recovery - verification email
+          type: string
+        description:
+          description: Email template description
+          example: Email template for resetting the password
+          type: string
+        text:
+          description: Email template text
+          example: "Click the link below to reset your password: {{reset_link}}"
+          type: string
+        html:
+          description: Email template html
+          example: "<h1>Password Reset</h1><p>Click <a href='{{reset_link}}'>here</a>\
+            \ to reset your password.</p>"
+          type: string
+      required:
+      - html
+      - name
+      - subject
+      - text
+      type: object
+    EmailTemplateUpdate:
+      example:
+        subject: Account recovery - verification email
+        description: Email template for resetting the password
+        html: "<h1>Password Reset</h1><p>Click <a href='{{reset_link}}'>here</a> to\
+          \ reset your password.</p>"
+        text: "Click the link below to reset your password: {{reset_link}}"
+      properties:
+        subject:
+          description: Email template subject
+          example: Account recovery - verification email
+          type: string
+        description:
+          description: Email template description
+          example: Email template for resetting the password
+          type: string
+        text:
+          description: Email template text
+          example: "Click the link below to reset your password: {{reset_link}}"
+          type: string
+        html:
+          description: Email template html
+          example: "<h1>Password Reset</h1><p>Click <a href='{{reset_link}}'>here</a>\
+            \ to reset your password.</p>"
+          type: string
       type: object
     Event:
       example:
@@ -39041,6 +39847,9 @@ components:
       - baselineFilter
       - vendor
       type: object
+    IServerFirmwareBinaryResponse:
+      properties: {}
+      type: object
     GenericServiceStatus:
       description: Service status of the Infrastructure
       enum:
@@ -43600,11 +44409,11 @@ components:
               kind: ""
             id: 2
             updatedAt: 2000-01-23T04:56:07.000+00:00
-        id: 5
+        id: 2
         deployType: create
         deployStatus: not_started
         updatedAt: 2000-01-23T04:56:07.000+00:00
-        revision: 2
+        revision: 7
       properties:
         id:
           type: integer
@@ -43684,14 +44493,14 @@ components:
     VlanLogicalNetworkIpv4Properties:
       example:
         subnets:
-        - prefixLength: 7
+        - prefixLength: 9
           scope:
             resourceId: 5.962133916683182
             kind: ""
           networkAddress: networkAddress
           gateway: gateway
           status: ""
-        - prefixLength: 7
+        - prefixLength: 9
           scope:
             resourceId: 5.962133916683182
             kind: ""
@@ -43717,14 +44526,14 @@ components:
     VlanLogicalNetworkIpv6Properties:
       example:
         subnets:
-        - prefixLength: 9
+        - prefixLength: 3
           scope:
             resourceId: 5.962133916683182
             kind: ""
           networkAddress: networkAddress
           gateway: gateway
           status: ""
-        - prefixLength: 9
+        - prefixLength: 3
           scope:
             resourceId: 5.962133916683182
             kind: ""
@@ -43754,8 +44563,9 @@ components:
         annotations:
           key: annotations
         label: label
+        lastLogicalNetworkProfileAppliedAt: 2000-01-23T04:56:07.000+00:00
         revision: 6
-        routeDomainId: 3
+        routeDomainId: 2
         createdAt: 2000-01-23T04:56:07.000+00:00
         infrastructureId: 5
         vlan:
@@ -43775,14 +44585,14 @@ components:
           - null
         ipv4:
           subnets:
-          - prefixLength: 7
+          - prefixLength: 9
             scope:
               resourceId: 5.962133916683182
               kind: ""
             networkAddress: networkAddress
             gateway: gateway
             status: ""
-          - prefixLength: 7
+          - prefixLength: 9
             scope:
               resourceId: 5.962133916683182
               kind: ""
@@ -43795,14 +44605,14 @@ components:
         serviceStatus: ""
         ipv6:
           subnets:
-          - prefixLength: 9
+          - prefixLength: 3
             scope:
               resourceId: 5.962133916683182
               kind: ""
             networkAddress: networkAddress
             gateway: gateway
             status: ""
-          - prefixLength: 9
+          - prefixLength: 3
             scope:
               resourceId: 5.962133916683182
               kind: ""
@@ -43813,6 +44623,7 @@ components:
           - null
           - null
         name: name
+        lastAppliedLogicalNetworkProfileId: 5
         id: 0
         config:
           createdAt: 2000-01-23T04:56:07.000+00:00
@@ -43873,11 +44684,11 @@ components:
                 kind: ""
               id: 2
               updatedAt: 2000-01-23T04:56:07.000+00:00
-          id: 5
+          id: 2
           deployType: create
           deployStatus: not_started
           updatedAt: 2000-01-23T04:56:07.000+00:00
-          revision: 2
+          revision: 7
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -43911,6 +44722,12 @@ components:
         serviceStatus:
           allOf:
           - $ref: '#/components/schemas/GenericServiceStatus'
+        lastAppliedLogicalNetworkProfileId:
+          nullable: true
+          type: integer
+        lastLogicalNetworkProfileAppliedAt:
+          format: date-time
+          type: string
         config:
           $ref: '#/components/schemas/VlanLogicalNetworkConfig'
         vlan:
@@ -43933,6 +44750,8 @@ components:
       - ipv6
       - kind
       - label
+      - lastAppliedLogicalNetworkProfileId
+      - lastLogicalNetworkProfileAppliedAt
       - name
       - revision
       - routeDomainId
@@ -44116,6 +44935,12 @@ components:
         serviceStatus:
           allOf:
           - $ref: '#/components/schemas/GenericServiceStatus'
+        lastAppliedLogicalNetworkProfileId:
+          nullable: true
+          type: integer
+        lastLogicalNetworkProfileAppliedAt:
+          format: date-time
+          type: string
         config:
           $ref: '#/components/schemas/VxlanLogicalNetworkConfig'
         vlan:
@@ -44140,6 +44965,8 @@ components:
       - ipv6
       - kind
       - label
+      - lastAppliedLogicalNetworkProfileId
+      - lastLogicalNetworkProfileAppliedAt
       - name
       - revision
       - routeDomainId
@@ -44205,7 +45032,7 @@ components:
       type: object
     Ipv4SubnetAllocation:
       example:
-        prefixLength: 7
+        prefixLength: 9
         scope:
           resourceId: 5.962133916683182
           kind: ""
@@ -44233,7 +45060,7 @@ components:
       type: object
     Ipv6SubnetAllocation:
       example:
-        prefixLength: 9
+        prefixLength: 3
         scope:
           resourceId: 5.962133916683182
           kind: ""
@@ -44267,8 +45094,9 @@ components:
           annotations:
             key: annotations
           label: label
+          lastLogicalNetworkProfileAppliedAt: 2000-01-23T04:56:07.000+00:00
           revision: 6
-          routeDomainId: 3
+          routeDomainId: 2
           createdAt: 2000-01-23T04:56:07.000+00:00
           infrastructureId: 5
           vlan:
@@ -44288,14 +45116,14 @@ components:
             - null
           ipv4:
             subnets:
-            - prefixLength: 7
+            - prefixLength: 9
               scope:
                 resourceId: 5.962133916683182
                 kind: ""
               networkAddress: networkAddress
               gateway: gateway
               status: ""
-            - prefixLength: 7
+            - prefixLength: 9
               scope:
                 resourceId: 5.962133916683182
                 kind: ""
@@ -44308,14 +45136,14 @@ components:
           serviceStatus: ""
           ipv6:
             subnets:
-            - prefixLength: 9
+            - prefixLength: 3
               scope:
                 resourceId: 5.962133916683182
                 kind: ""
               networkAddress: networkAddress
               gateway: gateway
               status: ""
-            - prefixLength: 9
+            - prefixLength: 3
               scope:
                 resourceId: 5.962133916683182
                 kind: ""
@@ -44326,6 +45154,7 @@ components:
             - null
             - null
           name: name
+          lastAppliedLogicalNetworkProfileId: 5
           id: 0
           config:
             createdAt: 2000-01-23T04:56:07.000+00:00
@@ -44386,19 +45215,20 @@ components:
                   kind: ""
                 id: 2
                 updatedAt: 2000-01-23T04:56:07.000+00:00
-            id: 5
+            id: 2
             deployType: create
             deployStatus: not_started
             updatedAt: 2000-01-23T04:56:07.000+00:00
-            revision: 2
+            revision: 7
           updatedAt: 2000-01-23T04:56:07.000+00:00
         - kind: ""
           fabricId: 1
           annotations:
             key: annotations
           label: label
+          lastLogicalNetworkProfileAppliedAt: 2000-01-23T04:56:07.000+00:00
           revision: 6
-          routeDomainId: 3
+          routeDomainId: 2
           createdAt: 2000-01-23T04:56:07.000+00:00
           infrastructureId: 5
           vlan:
@@ -44418,14 +45248,14 @@ components:
             - null
           ipv4:
             subnets:
-            - prefixLength: 7
+            - prefixLength: 9
               scope:
                 resourceId: 5.962133916683182
                 kind: ""
               networkAddress: networkAddress
               gateway: gateway
               status: ""
-            - prefixLength: 7
+            - prefixLength: 9
               scope:
                 resourceId: 5.962133916683182
                 kind: ""
@@ -44438,14 +45268,14 @@ components:
           serviceStatus: ""
           ipv6:
             subnets:
-            - prefixLength: 9
+            - prefixLength: 3
               scope:
                 resourceId: 5.962133916683182
                 kind: ""
               networkAddress: networkAddress
               gateway: gateway
               status: ""
-            - prefixLength: 9
+            - prefixLength: 3
               scope:
                 resourceId: 5.962133916683182
                 kind: ""
@@ -44456,6 +45286,7 @@ components:
             - null
             - null
           name: name
+          lastAppliedLogicalNetworkProfileId: 5
           id: 0
           config:
             createdAt: 2000-01-23T04:56:07.000+00:00
@@ -44516,11 +45347,11 @@ components:
                   kind: ""
                 id: 2
                 updatedAt: 2000-01-23T04:56:07.000+00:00
-            id: 5
+            id: 2
             deployType: create
             deployStatus: not_started
             updatedAt: 2000-01-23T04:56:07.000+00:00
-            revision: 2
+            revision: 7
           updatedAt: 2000-01-23T04:56:07.000+00:00
         meta: ""
         links: ""
@@ -45992,7 +46823,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-05-05T19:53:37.166Z
+        createdTimestamp: 2025-05-13T17:44:12.134Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -46001,7 +46832,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-05-05T19:53:37.166Z
+        updatedTimestamp: 2025-05-13T17:44:12.134Z
         revision: "1"
       properties:
         siteId:
@@ -46018,12 +46849,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-05T19:53:37.166Z
+          example: 2025-05-13T17:44:12.134Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-05T19:53:37.166Z
+          example: 2025-05-13T17:44:12.134Z
           format: date-time
           type: string
         links:
@@ -46045,7 +46876,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-05-05T19:53:37.166Z
+        - createdTimestamp: 2025-05-13T17:44:12.134Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -46054,9 +46885,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-05T19:53:37.166Z
+          updatedTimestamp: 2025-05-13T17:44:12.134Z
           revision: "1"
-        - createdTimestamp: 2025-05-05T19:53:37.166Z
+        - createdTimestamp: 2025-05-13T17:44:12.134Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -46065,7 +46896,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-05T19:53:37.166Z
+          updatedTimestamp: 2025-05-13T17:44:12.134Z
           revision: "1"
         meta: ""
         links: ""
@@ -46704,7 +47535,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-05-05T19:53:37.189Z
+        createdTimestamp: 2025-05-13T17:44:12.147Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -46745,7 +47576,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-05-05T19:53:37.189Z
+        updatedTimestamp: 2025-05-13T17:44:12.147Z
         revision: "1"
         status: draft
       properties:
@@ -46773,12 +47604,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-05T19:53:37.189Z
+          example: 2025-05-13T17:44:12.147Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-05T19:53:37.189Z
+          example: 2025-05-13T17:44:12.147Z
           format: date-time
           type: string
         links:
@@ -46919,7 +47750,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-05-05T19:53:37.189Z
+          createdTimestamp: 2025-05-13T17:44:12.147Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -46960,7 +47791,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-05T19:53:37.189Z
+          updatedTimestamp: 2025-05-13T17:44:12.147Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -47070,7 +47901,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-05-05T19:53:37.189Z
+          createdTimestamp: 2025-05-13T17:44:12.147Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -47111,7 +47942,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-05T19:53:37.189Z
+          updatedTimestamp: 2025-05-13T17:44:12.147Z
           revision: "1"
           status: draft
         meta: ""
@@ -49864,10 +50695,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-05-05T19:53:37.183Z
+        createdTimestamp: 2025-05-13T17:44:12.142Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-05-05T19:53:37.183Z
+        updatedTimestamp: 2025-05-13T17:44:12.142Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -49941,12 +50772,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-05T19:53:37.183Z
+          example: 2025-05-13T17:44:12.142Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-05T19:53:37.183Z
+          example: 2025-05-13T17:44:12.142Z
           format: date-time
           type: string
         links:
@@ -50169,6 +51000,7 @@ components:
         publicKey:
           description: The SSH key public key.
           example: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDZ...
+          nullable: true
           type: string
       required:
       - publicKey
@@ -51046,6 +51878,8 @@ components:
           - Lenovo
           - HP
           - HPE
+          - Supermicro
+          - Cisco
           type: string
         serverModel:
           description: Server model
@@ -51222,23 +52056,23 @@ components:
       type: object
     ServerInterface:
       example:
-        serverInterfaceId: 6.778324963048013
+        serverInterfaceId: 6.878052220127876
         networkDevice: "{}"
-        aliasIndex: 7.143538047012306
+        aliasIndex: 0.8851374739011653
         networkDeviceInterface: "{}"
-        index: 5.944895607614016
+        index: 6.704019297950036
         description: description
-        serverId: 6.878052220127876
+        serverId: 5.944895607614016
         addOnType: hba
         switchHostname: switchHostname
-        pxeEnabled: 3.353193347011243
+        pxeEnabled: 3.0937452626664474
         macAddress: macAddress
         fibreChannelWwpn: fibreChannelWwpn
         addOnInfo: "{}"
         addOnMac: addOnMac
-        capacityMbps: 6.704019297950036
+        capacityMbps: 3.353193347011243
         switchPortId: switchPortId
-        supportsIscsiBoot: 3.0937452626664474
+        supportsIscsiBoot: 7.143538047012306
       properties:
         serverInterfaceId:
           description: The id of the server interface.
@@ -51304,12 +52138,12 @@ components:
       example:
         serial: serial
         vendor: vendor
-        serverStorageControllerId: 0.10263654006109402
+        serverStorageControllerId: 4.652396432933246
         model: model
-        id: 0.8851374739011653
+        id: 7.058770351582356
         type: none
-        serverId: 7.058770351582356
-        diskSizeGb: 6.519180951018382
+        serverId: 6.519180951018382
+        diskSizeGb: 0.10263654006109402
         status: installed
       properties:
         id:
@@ -51363,9 +52197,9 @@ components:
         name: name
         options: "{}"
         description: description
-        id: 4.652396432933246
+        id: 8.969578798196912
         label: label
-        serverId: 8.969578798196912
+        serverId: 7.740351818741173
       properties:
         id:
           description: The id of the storage controller.
@@ -51512,6 +52346,8 @@ components:
           - Lenovo
           - HP
           - HPE
+          - Supermicro
+          - Cisco
           type: string
         vendorSkuId:
           description: The vendor sku id of the server.
@@ -51585,7 +52421,10 @@ components:
           description: The capacity mbps of the server.
           type: number
         serverDiskWipe:
-          description: Flag to indicate if the disks need to be wiped during BDK boot.
+          description: Flag to indicate if the disks need to be wiped.
+          type: number
+        requiresManualCleaning:
+          description: Flag to indicate if the server requires manual cleaning.
           type: number
         serverDiskCount:
           description: The number of disks of the server.
@@ -53198,6 +54037,544 @@ components:
       - Copy
       - OSAsset
       type: string
+    SiteOSInstallationData:
+      properties:
+        id:
+          description: The site ID
+          example: 1
+          type: integer
+        slug:
+          description: The site unique slug
+          example: reading-uk
+          type: string
+        name:
+          description: The site name
+          example: "Reading, UK"
+          type: string
+      required:
+      - id
+      - name
+      - slug
+      type: object
+    SiteConfigOSInstallationData:
+      properties:
+        repoURL:
+          description: Repository details
+          type: string
+        DNSServers:
+          description: List of DNS Servers
+          items:
+            type: string
+          type: array
+        NTPServers:
+          description: List of NTP Servers
+          items:
+            type: string
+          type: array
+      required:
+      - DNSServers
+      - NTPServers
+      - repoURL
+      type: object
+    ServerOSInstallationData:
+      properties:
+        serverId:
+          description: The id of the server.
+          type: number
+        serverTypeId:
+          description: The id of the server type.
+          type: number
+        serverUUID:
+          description: The UUID of the server.
+          type: string
+        serialNumber:
+          description: The Serial Number of the server.
+          type: string
+        managementAddress:
+          description: The Management Address of the server.
+          type: string
+        username:
+          description: The username to use.
+          type: string
+        passwordEncrypted:
+          description: The encrypted password.
+          type: string
+        diskCount:
+          description: The disk count of the server.
+          type: number
+        bmcMacAddress:
+          description: The MAC address of the server.
+          type: string
+        vendor:
+          description: The vendor of the server.
+          enum:
+          - Unknown
+          - Dell
+          - Lenovo
+          - HP
+          - HPE
+          - Supermicro
+          - Cisco
+          type: string
+        vendorSkuId:
+          description: The vendor sku id of the server.
+          type: string
+        model:
+          description: The model of the server.
+          type: string
+        rackName:
+          description: The chassis rack name of the server.
+          type: string
+        interfaces:
+          description: The interfaces of the server.
+          items:
+            $ref: '#/components/schemas/ServerInterface'
+          type: array
+        disks:
+          description: The disks of the server.
+          items:
+            $ref: '#/components/schemas/ServerDisk'
+          type: array
+        storageControllers:
+          description: The storage controllers of the server.
+          items:
+            $ref: '#/components/schemas/ServerStorageController'
+          type: array
+        tags:
+          description: Tags for the Server.
+          items:
+            type: string
+          type: array
+      required:
+      - passwordEncrypted
+      - serverId
+      type: object
+    ServerInstanceOSInstallationData:
+      properties:
+        id:
+          description: The Product Instance ID.
+          example: 1
+          type: integer
+        label:
+          description: The Product Instance label. Will be automatically generated
+            if not provided.
+          maxLength: 63
+          type: string
+        subdomainPermanent:
+          description: Subdomain permanent of the Product Instance.
+          type: string
+        customVariables:
+          type: object
+        raidProfile:
+          allOf:
+          - $ref: '#/components/schemas/ServerInstanceStorageProfile'
+          description: RAID profile for the Instance Interface.
+        isVmInstance:
+          description: Flag to indicate if this is a VM instance
+          type: integer
+        clusterCustomInfo:
+          $ref: '#/components/schemas/ServerInstanceClusterCustomInfo'
+        initiatorNqn:
+          description: NVMe Initiator NQN for the Instance.
+          type: string
+        iscsiInitiatorIqn:
+          description: iSCSI Initiator IQN for the Instance Interface.
+          type: string
+        iscsiInitiatorUsername:
+          description: iSCSI Initiator Username for the Instance Interface.
+          type: string
+        iscsiInitiatorPasswordEncrypted:
+          description: iSCSI Initiator Password for the Instance Interface.
+          type: string
+      required:
+      - id
+      - isVmInstance
+      - label
+      type: object
+    ServerInstanceGroupOSInstallationData:
+      properties:
+        id:
+          description: The Product Instance ID.
+          example: 1
+          type: integer
+        label:
+          description: The Product Instance label. Will be automatically generated
+            if not provided.
+          maxLength: 63
+          type: string
+        subdomainPermanent:
+          description: Subdomain permanent of the Product Instance.
+          type: string
+        serverGroupName:
+          example: server-instance-group-name
+          maxLength: 255
+          type: string
+        customVariables:
+          description: Object containing custom variables and variable overrides.
+          type: object
+        isVmGroup:
+          description: Flag to indicate if the Server Instance Group is belongs to
+            a VM.
+          type: integer
+      required:
+      - id
+      - isVmGroup
+      - label
+      type: object
+    InfrastructureOSInstallationData:
+      properties:
+        label:
+          type: string
+        customVariables:
+          description: Custom variables in JSON format.
+          type: object
+      required:
+      - label
+      type: object
+    ServerInstanceContextOSInstallationData:
+      example:
+        driveGroups:
+        - dnsSubdomainId: 5.637376656633329
+          createdTimestamp: createdTimestamp
+          extensionInstanceId: 1
+          label: label
+          subdomainPermanent: subdomainPermanent
+          templateId: 1
+          allocationAffinity: same_storage
+          filesystemInfo: "{}"
+          updatedTimestamp: updatedTimestamp
+          revision: 5.962133916683182
+          expandWithServerInstanceGroup: 1
+          containerClusterId: 1
+          dnsSubdomainPermanentId: 2.3021358869347655
+          infrastructureId: 0.8008281904610115
+          qoS: qoS
+          serviceStatus: ordered
+          storageType: iscsi_ssd
+          subdomain: subdomain
+          serverInstanceGroupId: 1
+          id: 1.4658129805029452
+          driveSizeMbDefault: 6.027456183070403
+          config: ""
+        - dnsSubdomainId: 5.637376656633329
+          createdTimestamp: createdTimestamp
+          extensionInstanceId: 1
+          label: label
+          subdomainPermanent: subdomainPermanent
+          templateId: 1
+          allocationAffinity: same_storage
+          filesystemInfo: "{}"
+          updatedTimestamp: updatedTimestamp
+          revision: 5.962133916683182
+          expandWithServerInstanceGroup: 1
+          containerClusterId: 1
+          dnsSubdomainPermanentId: 2.3021358869347655
+          infrastructureId: 0.8008281904610115
+          qoS: qoS
+          serviceStatus: ordered
+          storageType: iscsi_ssd
+          subdomain: subdomain
+          serverInstanceGroupId: 1
+          id: 1.4658129805029452
+          driveSizeMbDefault: 6.027456183070403
+          config: ""
+        server: ""
+        fileShares:
+        - sizeGB: 4.965218492984954
+          dnsSubdomainId: 9.018348186070783
+          logicalNetworkId: 9.965781217890562
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          updatedTimestamp: updatedTimestamp
+          revision: 6.683562403749608
+          endpoint: endpoint
+          infrastructureId: 8.762042012749001
+          infrastructure: ""
+          serviceStatus: ordered
+          networkVlanId: 6.438423552598547
+          subdomain: subdomain
+          storagePoolId: 5.025004791520295
+          id: 9.369310271410669
+          config: ""
+        - sizeGB: 4.965218492984954
+          dnsSubdomainId: 9.018348186070783
+          logicalNetworkId: 9.965781217890562
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          updatedTimestamp: updatedTimestamp
+          revision: 6.683562403749608
+          endpoint: endpoint
+          infrastructureId: 8.762042012749001
+          infrastructure: ""
+          serviceStatus: ordered
+          networkVlanId: 6.438423552598547
+          subdomain: subdomain
+          storagePoolId: 5.025004791520295
+          id: 9.369310271410669
+          config: ""
+        variables: "{}"
+        sharedDrives:
+        - logicalNetworkId: 3.0937452626664474
+          sizeMb: 3.353193347011243
+          updatedTimestamp: updatedTimestamp
+          targets:
+          - {}
+          - {}
+          storageVirtualSizeCachedMb: 4.652396432933246
+          wwn: wwn
+          storageImageName: storageImageName
+          storageUpdatedTimestamp: storageUpdatedTimestamp
+          dnsSubdomainPermanentId: 7.740351818741173
+          serviceStatus: ordered
+          storagePoolId: 6.704019297950036
+          id: 7.143538047012306
+          storageRealSizeCachedMb: 6.519180951018382
+          provisioningProtocol: iSCSI
+          storageRealSizeWithSnapshotsCachedMb: 0.10263654006109402
+          dnsSubdomainId: 8.969578798196912
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          allocationAffinity: same_storage
+          revision: 0.8851374739011653
+          qoS: qoS
+          infrastructureId: 7.058770351582356
+          infrastructure: ""
+          storageType: iscsi_ssd
+          subdomain: subdomain
+          config: ""
+        - logicalNetworkId: 3.0937452626664474
+          sizeMb: 3.353193347011243
+          updatedTimestamp: updatedTimestamp
+          targets:
+          - {}
+          - {}
+          storageVirtualSizeCachedMb: 4.652396432933246
+          wwn: wwn
+          storageImageName: storageImageName
+          storageUpdatedTimestamp: storageUpdatedTimestamp
+          dnsSubdomainPermanentId: 7.740351818741173
+          serviceStatus: ordered
+          storagePoolId: 6.704019297950036
+          id: 7.143538047012306
+          storageRealSizeCachedMb: 6.519180951018382
+          provisioningProtocol: iSCSI
+          storageRealSizeWithSnapshotsCachedMb: 0.10263654006109402
+          dnsSubdomainId: 8.969578798196912
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          allocationAffinity: same_storage
+          revision: 0.8851374739011653
+          qoS: qoS
+          infrastructureId: 7.058770351582356
+          infrastructure: ""
+          storageType: iscsi_ssd
+          subdomain: subdomain
+          config: ""
+        serverInstance: ""
+        buckets:
+        - accessKeyId: accessKeyId
+          sizeGB: 3.5571952270680973
+          dnsSubdomainId: 5.944895607614016
+          logicalNetworkId: 1.284659006116532
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          updatedTimestamp: updatedTimestamp
+          revision: 6.778324963048013
+          endpoint: endpoint
+          infrastructureId: 6.878052220127876
+          infrastructure: ""
+          serviceStatus: ordered
+          subdomain: subdomain
+          storagePoolId: 6.965117697638846
+          id: 2.8841621266687802
+          secretKeyEncrypted: secretKeyEncrypted
+          config: ""
+        - accessKeyId: accessKeyId
+          sizeGB: 3.5571952270680973
+          dnsSubdomainId: 5.944895607614016
+          logicalNetworkId: 1.284659006116532
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          updatedTimestamp: updatedTimestamp
+          revision: 6.778324963048013
+          endpoint: endpoint
+          infrastructureId: 6.878052220127876
+          infrastructure: ""
+          serviceStatus: ordered
+          subdomain: subdomain
+          storagePoolId: 6.965117697638846
+          id: 2.8841621266687802
+          secretKeyEncrypted: secretKeyEncrypted
+          config: ""
+        managementSSHKey: managementSSHKey
+        secrets: "{}"
+        site: ""
+        serverInstanceGroup: ""
+        drives:
+        - iscsiIndexHex: iscsiIndexHex
+          groupId: 1
+          sizeMb: 9.301444243932576
+          templateId: 1
+          updatedTimestamp: updatedTimestamp
+          targets:
+          - {}
+          - {}
+          sshKeyPairInternalEncrypted: "{}"
+          storageVirtualSizeCachedMb: 1.4894159098541704
+          wwn: wwn
+          storageImageName: storageImageName
+          storageUpdatedTimestamp: storageUpdatedTimestamp
+          instanceId: 1
+          dnsSubdomainPermanentId: 7.457744773683766
+          osAdminPasswordEncrypted: osAdminPasswordEncrypted
+          serviceStatus: ordered
+          osAdminUsername: osAdminUsername
+          networkVlanId: 1.1730742509559433
+          operatingSystemInfo: "{}"
+          storagePoolId: 7.061401241503109
+          id: 2.027123023002322
+          storageRealSizeCachedMb: 1.2315135367772556
+          sshPort: 3.616076749251911
+          provisioningProtocol: iSCSI
+          storageRealSizeWithSnapshotsCachedMb: 1.0246457001441578
+          dnsSubdomainId: 6.84685269835264
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          filesystemInfo: "{}"
+          revision: 4.145608029883936
+          clusterCustomInfo: "{}"
+          infrastructureId: 7.386281948385884
+          infrastructure: ""
+          storageType: iscsi_ssd
+          subdomain: subdomain
+          config: ""
+        - iscsiIndexHex: iscsiIndexHex
+          groupId: 1
+          sizeMb: 9.301444243932576
+          templateId: 1
+          updatedTimestamp: updatedTimestamp
+          targets:
+          - {}
+          - {}
+          sshKeyPairInternalEncrypted: "{}"
+          storageVirtualSizeCachedMb: 1.4894159098541704
+          wwn: wwn
+          storageImageName: storageImageName
+          storageUpdatedTimestamp: storageUpdatedTimestamp
+          instanceId: 1
+          dnsSubdomainPermanentId: 7.457744773683766
+          osAdminPasswordEncrypted: osAdminPasswordEncrypted
+          serviceStatus: ordered
+          osAdminUsername: osAdminUsername
+          networkVlanId: 1.1730742509559433
+          operatingSystemInfo: "{}"
+          storagePoolId: 7.061401241503109
+          id: 2.027123023002322
+          storageRealSizeCachedMb: 1.2315135367772556
+          sshPort: 3.616076749251911
+          provisioningProtocol: iSCSI
+          storageRealSizeWithSnapshotsCachedMb: 1.0246457001441578
+          dnsSubdomainId: 6.84685269835264
+          createdTimestamp: createdTimestamp
+          label: label
+          subdomainPermanent: subdomainPermanent
+          filesystemInfo: "{}"
+          revision: 4.145608029883936
+          clusterCustomInfo: "{}"
+          infrastructureId: 7.386281948385884
+          infrastructure: ""
+          storageType: iscsi_ssd
+          subdomain: subdomain
+          config: ""
+        infrastructure: ""
+        siteConfig: ""
+        userSSHKeys:
+        - userSSHKeys
+        - userSSHKeys
+      properties:
+        site:
+          allOf:
+          - $ref: '#/components/schemas/SiteOSInstallationData'
+          description: The site OS installation data.
+        siteConfig:
+          allOf:
+          - $ref: '#/components/schemas/SiteConfigOSInstallationData'
+          description: The site config OS installation data.
+        server:
+          allOf:
+          - $ref: '#/components/schemas/ServerOSInstallationData'
+          description: The server OS installation data.
+        serverInstance:
+          allOf:
+          - $ref: '#/components/schemas/ServerInstanceOSInstallationData'
+          description: The server instance OS installation data.
+        serverInstanceGroup:
+          allOf:
+          - $ref: '#/components/schemas/ServerInstanceGroupOSInstallationData'
+          description: The server instance group OS installation data.
+        infrastructure:
+          allOf:
+          - $ref: '#/components/schemas/InfrastructureOSInstallationData'
+          description: The infrastructure OS installation data.
+        driveGroups:
+          description: The server instance drive groups OS installation data.
+          items:
+            $ref: '#/components/schemas/DriveGroupVariables'
+          type: array
+        drives:
+          description: The server instance drives OS installation data.
+          items:
+            $ref: '#/components/schemas/DriveVariables'
+          type: array
+        fileShares:
+          description: The server instance file shares OS installation data.
+          items:
+            $ref: '#/components/schemas/FileShareVariables'
+          type: array
+        buckets:
+          description: The server instance buckets OS installation data.
+          items:
+            $ref: '#/components/schemas/BucketVariables'
+          type: array
+        sharedDrives:
+          description: The server instance shared drives OS installation data.
+          items:
+            $ref: '#/components/schemas/SharedDriveVariables'
+          type: array
+        variables:
+          description: Additional variables
+          type: object
+        secrets:
+          description: Secrets
+          type: object
+        userSSHKeys:
+          description: Infrastructure owner SSH keys
+          items:
+            type: string
+          type: array
+        managementSSHKey:
+          description: Management SSH key
+          type: string
+      required:
+      - buckets
+      - driveGroups
+      - drives
+      - fileShares
+      - infrastructure
+      - server
+      - serverInstance
+      - serverInstanceGroup
+      - sharedDrives
+      - site
+      - siteConfig
+      type: object
     ServerInstanceGroupNetworkConnection:
       example:
         tagged: true
@@ -53378,6 +54755,8 @@ components:
           - Lenovo
           - HP
           - HPE
+          - Supermicro
+          - Cisco
           type: string
         model:
           description: The model of the server.
@@ -53477,6 +54856,7 @@ components:
       example:
         datacenterName: datacenterName
         bootingCustomIsoInProgress: 6.683562403749608
+        requiresManualCleaning: 6.438423552598547
         mgmtSnmpPasswordEncrypted: mgmtSnmpPasswordEncrypted
         serverSupportsOobProvisioning: 9.369310271410669
         passwordEncrypted: passwordEncrypted
@@ -53495,7 +54875,7 @@ components:
           href: /api/v2/path/to/resource
         bmcMacAddress: bmcMacAddress
         bootLastUpdateTimestamp: bootLastUpdateTimestamp
-        gpuCount: 3.5571952270680973
+        gpuCount: 6.965117697638846
         serverSupportsSol: 5.025004791520295
         vncPasswordEncrypted: vncPasswordEncrypted
         vncPort: 6.84685269835264
@@ -53516,7 +54896,7 @@ components:
         - tags
         serverCleanupPolicyId: 1.1730742509559433
         serverDiskWipe: 9.018348186070783
-        resourcePoolId: 7.740351818741173
+        resourcePoolId: 3.0205796992916243
         processorCpuMark: 9.301444243932576
         ramGbytes: 5.962133916683182
         instanceCustomInfo: "{}"
@@ -53525,25 +54905,25 @@ components:
         serverTypeId: 6.027456183070403
         requiresReRegister: 4.965218492984954
         serverStatus: registering
-        serverDiskCount: 6.438423552598547
+        serverDiskCount: 3.5571952270680973
         disks:
         - serial: serial
           vendor: vendor
-          serverStorageControllerId: 0.10263654006109402
+          serverStorageControllerId: 4.652396432933246
           model: model
-          id: 0.8851374739011653
+          id: 7.058770351582356
           type: none
-          serverId: 7.058770351582356
-          diskSizeGb: 6.519180951018382
+          serverId: 6.519180951018382
+          diskSizeGb: 0.10263654006109402
           status: installed
         - serial: serial
           vendor: vendor
-          serverStorageControllerId: 0.10263654006109402
+          serverStorageControllerId: 4.652396432933246
           model: model
-          id: 0.8851374739011653
+          id: 7.058770351582356
           type: none
-          serverId: 7.058770351582356
-          diskSizeGb: 6.519180951018382
+          serverId: 6.519180951018382
+          diskSizeGb: 0.10263654006109402
           status: installed
         vendorInfo: ""
         bdkDebug: 7.386281948385884
@@ -53575,66 +54955,66 @@ components:
         processorCoreCount: 7.061401241503109
         vendor: Unknown
         serverSupportsVirtualMedia: 9.965781217890562
-        supportsFcProvisioning: 6.965117697638846
+        supportsFcProvisioning: 1.284659006116532
         storageControllers:
         - mode: HBA
           name: name
           options: "{}"
           description: description
-          id: 4.652396432933246
+          id: 8.969578798196912
           label: label
-          serverId: 8.969578798196912
+          serverId: 7.740351818741173
         - mode: HBA
           name: name
           options: "{}"
           description: description
-          id: 4.652396432933246
+          id: 8.969578798196912
           label: label
-          serverId: 8.969578798196912
+          serverId: 7.740351818741173
         processorName: processorName
         rackPositionUpperUnit: rackPositionUpperUnit
         managementAddress: managementAddress
-        ipmiCredentialsNeedUpdate: 2.8841621266687802
+        ipmiCredentialsNeedUpdate: 6.778324963048013
         interfaces:
-        - serverInterfaceId: 6.778324963048013
+        - serverInterfaceId: 6.878052220127876
           networkDevice: "{}"
-          aliasIndex: 7.143538047012306
+          aliasIndex: 0.8851374739011653
           networkDeviceInterface: "{}"
-          index: 5.944895607614016
+          index: 6.704019297950036
           description: description
-          serverId: 6.878052220127876
+          serverId: 5.944895607614016
           addOnType: hba
           switchHostname: switchHostname
-          pxeEnabled: 3.353193347011243
+          pxeEnabled: 3.0937452626664474
           macAddress: macAddress
           fibreChannelWwpn: fibreChannelWwpn
           addOnInfo: "{}"
           addOnMac: addOnMac
-          capacityMbps: 6.704019297950036
+          capacityMbps: 3.353193347011243
           switchPortId: switchPortId
-          supportsIscsiBoot: 3.0937452626664474
-        - serverInterfaceId: 6.778324963048013
+          supportsIscsiBoot: 7.143538047012306
+        - serverInterfaceId: 6.878052220127876
           networkDevice: "{}"
-          aliasIndex: 7.143538047012306
+          aliasIndex: 0.8851374739011653
           networkDeviceInterface: "{}"
-          index: 5.944895607614016
+          index: 6.704019297950036
           description: description
-          serverId: 6.878052220127876
+          serverId: 5.944895607614016
           addOnType: hba
           switchHostname: switchHostname
-          pxeEnabled: 3.353193347011243
+          pxeEnabled: 3.0937452626664474
           macAddress: macAddress
           fibreChannelWwpn: fibreChannelWwpn
           addOnInfo: "{}"
           addOnMac: addOnMac
-          capacityMbps: 6.704019297950036
+          capacityMbps: 3.353193347011243
           switchPortId: switchPortId
-          supportsIscsiBoot: 3.0937452626664474
+          supportsIscsiBoot: 7.143538047012306
         serverCapacityMbps: 8.762042012749001
         processorCount: 5.637376656633329
         serverComments: serverComments
         serverAllocationTimestamp: serverAllocationTimestamp
-        chassisRackId: 1.284659006116532
+        chassisRackId: 2.8841621266687802
         mgmtSnmpPort: 4.145608029883936
         powerStatusLastUpdateTimestamp: powerStatusLastUpdateTimestamp
         administrationState: managed
@@ -53735,6 +55115,8 @@ components:
           - Lenovo
           - HP
           - HPE
+          - Supermicro
+          - Cisco
           type: string
         vendorSkuId:
           description: The vendor sku id of the server.
@@ -53808,7 +55190,10 @@ components:
           description: The capacity mbps of the server.
           type: number
         serverDiskWipe:
-          description: Flag to indicate if the disks need to be wiped during BDK boot.
+          description: Flag to indicate if the disks need to be wiped.
+          type: number
+        requiresManualCleaning:
+          description: Flag to indicate if the server requires manual cleaning.
           type: number
         serverDiskCount:
           description: The number of disks of the server.
@@ -53943,6 +55328,7 @@ components:
         data:
         - datacenterName: datacenterName
           bootingCustomIsoInProgress: 6.683562403749608
+          requiresManualCleaning: 6.438423552598547
           mgmtSnmpPasswordEncrypted: mgmtSnmpPasswordEncrypted
           serverSupportsOobProvisioning: 9.369310271410669
           passwordEncrypted: passwordEncrypted
@@ -53961,7 +55347,7 @@ components:
             href: /api/v2/path/to/resource
           bmcMacAddress: bmcMacAddress
           bootLastUpdateTimestamp: bootLastUpdateTimestamp
-          gpuCount: 3.5571952270680973
+          gpuCount: 6.965117697638846
           serverSupportsSol: 5.025004791520295
           vncPasswordEncrypted: vncPasswordEncrypted
           vncPort: 6.84685269835264
@@ -53982,7 +55368,7 @@ components:
           - tags
           serverCleanupPolicyId: 1.1730742509559433
           serverDiskWipe: 9.018348186070783
-          resourcePoolId: 7.740351818741173
+          resourcePoolId: 3.0205796992916243
           processorCpuMark: 9.301444243932576
           ramGbytes: 5.962133916683182
           instanceCustomInfo: "{}"
@@ -53991,25 +55377,25 @@ components:
           serverTypeId: 6.027456183070403
           requiresReRegister: 4.965218492984954
           serverStatus: registering
-          serverDiskCount: 6.438423552598547
+          serverDiskCount: 3.5571952270680973
           disks:
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 0.10263654006109402
+            serverStorageControllerId: 4.652396432933246
             model: model
-            id: 0.8851374739011653
+            id: 7.058770351582356
             type: none
-            serverId: 7.058770351582356
-            diskSizeGb: 6.519180951018382
+            serverId: 6.519180951018382
+            diskSizeGb: 0.10263654006109402
             status: installed
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 0.10263654006109402
+            serverStorageControllerId: 4.652396432933246
             model: model
-            id: 0.8851374739011653
+            id: 7.058770351582356
             type: none
-            serverId: 7.058770351582356
-            diskSizeGb: 6.519180951018382
+            serverId: 6.519180951018382
+            diskSizeGb: 0.10263654006109402
             status: installed
           vendorInfo: ""
           bdkDebug: 7.386281948385884
@@ -54041,66 +55427,66 @@ components:
           processorCoreCount: 7.061401241503109
           vendor: Unknown
           serverSupportsVirtualMedia: 9.965781217890562
-          supportsFcProvisioning: 6.965117697638846
+          supportsFcProvisioning: 1.284659006116532
           storageControllers:
           - mode: HBA
             name: name
             options: "{}"
             description: description
-            id: 4.652396432933246
+            id: 8.969578798196912
             label: label
-            serverId: 8.969578798196912
+            serverId: 7.740351818741173
           - mode: HBA
             name: name
             options: "{}"
             description: description
-            id: 4.652396432933246
+            id: 8.969578798196912
             label: label
-            serverId: 8.969578798196912
+            serverId: 7.740351818741173
           processorName: processorName
           rackPositionUpperUnit: rackPositionUpperUnit
           managementAddress: managementAddress
-          ipmiCredentialsNeedUpdate: 2.8841621266687802
+          ipmiCredentialsNeedUpdate: 6.778324963048013
           interfaces:
-          - serverInterfaceId: 6.778324963048013
+          - serverInterfaceId: 6.878052220127876
             networkDevice: "{}"
-            aliasIndex: 7.143538047012306
+            aliasIndex: 0.8851374739011653
             networkDeviceInterface: "{}"
-            index: 5.944895607614016
+            index: 6.704019297950036
             description: description
-            serverId: 6.878052220127876
+            serverId: 5.944895607614016
             addOnType: hba
             switchHostname: switchHostname
-            pxeEnabled: 3.353193347011243
+            pxeEnabled: 3.0937452626664474
             macAddress: macAddress
             fibreChannelWwpn: fibreChannelWwpn
             addOnInfo: "{}"
             addOnMac: addOnMac
-            capacityMbps: 6.704019297950036
+            capacityMbps: 3.353193347011243
             switchPortId: switchPortId
-            supportsIscsiBoot: 3.0937452626664474
-          - serverInterfaceId: 6.778324963048013
+            supportsIscsiBoot: 7.143538047012306
+          - serverInterfaceId: 6.878052220127876
             networkDevice: "{}"
-            aliasIndex: 7.143538047012306
+            aliasIndex: 0.8851374739011653
             networkDeviceInterface: "{}"
-            index: 5.944895607614016
+            index: 6.704019297950036
             description: description
-            serverId: 6.878052220127876
+            serverId: 5.944895607614016
             addOnType: hba
             switchHostname: switchHostname
-            pxeEnabled: 3.353193347011243
+            pxeEnabled: 3.0937452626664474
             macAddress: macAddress
             fibreChannelWwpn: fibreChannelWwpn
             addOnInfo: "{}"
             addOnMac: addOnMac
-            capacityMbps: 6.704019297950036
+            capacityMbps: 3.353193347011243
             switchPortId: switchPortId
-            supportsIscsiBoot: 3.0937452626664474
+            supportsIscsiBoot: 7.143538047012306
           serverCapacityMbps: 8.762042012749001
           processorCount: 5.637376656633329
           serverComments: serverComments
           serverAllocationTimestamp: serverAllocationTimestamp
-          chassisRackId: 1.284659006116532
+          chassisRackId: 2.8841621266687802
           mgmtSnmpPort: 4.145608029883936
           powerStatusLastUpdateTimestamp: powerStatusLastUpdateTimestamp
           administrationState: managed
@@ -54111,6 +55497,7 @@ components:
           allocationInfo: ""
         - datacenterName: datacenterName
           bootingCustomIsoInProgress: 6.683562403749608
+          requiresManualCleaning: 6.438423552598547
           mgmtSnmpPasswordEncrypted: mgmtSnmpPasswordEncrypted
           serverSupportsOobProvisioning: 9.369310271410669
           passwordEncrypted: passwordEncrypted
@@ -54129,7 +55516,7 @@ components:
             href: /api/v2/path/to/resource
           bmcMacAddress: bmcMacAddress
           bootLastUpdateTimestamp: bootLastUpdateTimestamp
-          gpuCount: 3.5571952270680973
+          gpuCount: 6.965117697638846
           serverSupportsSol: 5.025004791520295
           vncPasswordEncrypted: vncPasswordEncrypted
           vncPort: 6.84685269835264
@@ -54150,7 +55537,7 @@ components:
           - tags
           serverCleanupPolicyId: 1.1730742509559433
           serverDiskWipe: 9.018348186070783
-          resourcePoolId: 7.740351818741173
+          resourcePoolId: 3.0205796992916243
           processorCpuMark: 9.301444243932576
           ramGbytes: 5.962133916683182
           instanceCustomInfo: "{}"
@@ -54159,25 +55546,25 @@ components:
           serverTypeId: 6.027456183070403
           requiresReRegister: 4.965218492984954
           serverStatus: registering
-          serverDiskCount: 6.438423552598547
+          serverDiskCount: 3.5571952270680973
           disks:
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 0.10263654006109402
+            serverStorageControllerId: 4.652396432933246
             model: model
-            id: 0.8851374739011653
+            id: 7.058770351582356
             type: none
-            serverId: 7.058770351582356
-            diskSizeGb: 6.519180951018382
+            serverId: 6.519180951018382
+            diskSizeGb: 0.10263654006109402
             status: installed
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 0.10263654006109402
+            serverStorageControllerId: 4.652396432933246
             model: model
-            id: 0.8851374739011653
+            id: 7.058770351582356
             type: none
-            serverId: 7.058770351582356
-            diskSizeGb: 6.519180951018382
+            serverId: 6.519180951018382
+            diskSizeGb: 0.10263654006109402
             status: installed
           vendorInfo: ""
           bdkDebug: 7.386281948385884
@@ -54209,66 +55596,66 @@ components:
           processorCoreCount: 7.061401241503109
           vendor: Unknown
           serverSupportsVirtualMedia: 9.965781217890562
-          supportsFcProvisioning: 6.965117697638846
+          supportsFcProvisioning: 1.284659006116532
           storageControllers:
           - mode: HBA
             name: name
             options: "{}"
             description: description
-            id: 4.652396432933246
+            id: 8.969578798196912
             label: label
-            serverId: 8.969578798196912
+            serverId: 7.740351818741173
           - mode: HBA
             name: name
             options: "{}"
             description: description
-            id: 4.652396432933246
+            id: 8.969578798196912
             label: label
-            serverId: 8.969578798196912
+            serverId: 7.740351818741173
           processorName: processorName
           rackPositionUpperUnit: rackPositionUpperUnit
           managementAddress: managementAddress
-          ipmiCredentialsNeedUpdate: 2.8841621266687802
+          ipmiCredentialsNeedUpdate: 6.778324963048013
           interfaces:
-          - serverInterfaceId: 6.778324963048013
+          - serverInterfaceId: 6.878052220127876
             networkDevice: "{}"
-            aliasIndex: 7.143538047012306
+            aliasIndex: 0.8851374739011653
             networkDeviceInterface: "{}"
-            index: 5.944895607614016
+            index: 6.704019297950036
             description: description
-            serverId: 6.878052220127876
+            serverId: 5.944895607614016
             addOnType: hba
             switchHostname: switchHostname
-            pxeEnabled: 3.353193347011243
+            pxeEnabled: 3.0937452626664474
             macAddress: macAddress
             fibreChannelWwpn: fibreChannelWwpn
             addOnInfo: "{}"
             addOnMac: addOnMac
-            capacityMbps: 6.704019297950036
+            capacityMbps: 3.353193347011243
             switchPortId: switchPortId
-            supportsIscsiBoot: 3.0937452626664474
-          - serverInterfaceId: 6.778324963048013
+            supportsIscsiBoot: 7.143538047012306
+          - serverInterfaceId: 6.878052220127876
             networkDevice: "{}"
-            aliasIndex: 7.143538047012306
+            aliasIndex: 0.8851374739011653
             networkDeviceInterface: "{}"
-            index: 5.944895607614016
+            index: 6.704019297950036
             description: description
-            serverId: 6.878052220127876
+            serverId: 5.944895607614016
             addOnType: hba
             switchHostname: switchHostname
-            pxeEnabled: 3.353193347011243
+            pxeEnabled: 3.0937452626664474
             macAddress: macAddress
             fibreChannelWwpn: fibreChannelWwpn
             addOnInfo: "{}"
             addOnMac: addOnMac
-            capacityMbps: 6.704019297950036
+            capacityMbps: 3.353193347011243
             switchPortId: switchPortId
-            supportsIscsiBoot: 3.0937452626664474
+            supportsIscsiBoot: 7.143538047012306
           serverCapacityMbps: 8.762042012749001
           processorCount: 5.637376656633329
           serverComments: serverComments
           serverAllocationTimestamp: serverAllocationTimestamp
-          chassisRackId: 1.284659006116532
+          chassisRackId: 2.8841621266687802
           mgmtSnmpPort: 4.145608029883936
           powerStatusLastUpdateTimestamp: powerStatusLastUpdateTimestamp
           administrationState: managed
@@ -55860,6 +57247,8 @@ components:
           - Lenovo
           - HP
           - HPE
+          - Supermicro
+          - Cisco
           type: string
         serverModel:
           description: Server model
@@ -56372,21 +57761,20 @@ components:
           jobsThrownError: 1
           groupCreatedTimestamp: 2022-01-01T00:00:00Z
         datacenterName: datacenterName
-        inMaintenance: 2.027123023002322
+        inMaintenance: 2.3021358869347655
         managementHost: managementHost
         passwordEncrypted: passwordEncrypted
         type: iscsi
-        totalCapacity: 5.637376656633329
         targetIQN: targetIQN
         options: ""
-        drivePriority: 7.386281948385884
+        drivePriority: 9.301444243932576
         links:
         - rel: self
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
         id: 0.8008281904610115
-        iscsiPort: 3.616076749251911
+        iscsiPort: 5.637376656633329
         portGroupPhysicalPorts: "{}"
         alternateSanIPs:
         - alternateSanIPs
@@ -56394,17 +57782,14 @@ components:
         portGroupAllocationOrder: "{}"
         extensionInfo: ""
         userId: 1.4658129805029452
-        freeCapacity: 7.061401241503109
         revision: 6.027456183070403
-        sharedDrivePriority: 1.2315135367772556
+        sharedDrivePriority: 3.616076749251911
         tags:
         - tags
         - tags
         technologies:
         - block
-        usableCapacity: 2.3021358869347655
-        virtualUsedCapacity: 9.301444243932576
-        isExperimental: 4.145608029883936
+        isExperimental: 7.061401241503109
         driver: power_flex
         name: name
         siteId: 5.962133916683182
@@ -56462,18 +57847,6 @@ components:
           - pending
           - ready
           type: string
-        totalCapacity:
-          description: Total capacity in MB
-          type: number
-        usableCapacity:
-          description: Usable capacity in MB
-          type: number
-        freeCapacity:
-          description: Free capacity in MB
-          type: number
-        virtualUsedCapacity:
-          description: Virtual used capacity in MB
-          type: number
         name:
           description: Name of the storage
           type: string
@@ -56569,21 +57942,20 @@ components:
             jobsThrownError: 1
             groupCreatedTimestamp: 2022-01-01T00:00:00Z
           datacenterName: datacenterName
-          inMaintenance: 2.027123023002322
+          inMaintenance: 2.3021358869347655
           managementHost: managementHost
           passwordEncrypted: passwordEncrypted
           type: iscsi
-          totalCapacity: 5.637376656633329
           targetIQN: targetIQN
           options: ""
-          drivePriority: 7.386281948385884
+          drivePriority: 9.301444243932576
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          iscsiPort: 3.616076749251911
+          iscsiPort: 5.637376656633329
           portGroupPhysicalPorts: "{}"
           alternateSanIPs:
           - alternateSanIPs
@@ -56591,17 +57963,14 @@ components:
           portGroupAllocationOrder: "{}"
           extensionInfo: ""
           userId: 1.4658129805029452
-          freeCapacity: 7.061401241503109
           revision: 6.027456183070403
-          sharedDrivePriority: 1.2315135367772556
+          sharedDrivePriority: 3.616076749251911
           tags:
           - tags
           - tags
           technologies:
           - block
-          usableCapacity: 2.3021358869347655
-          virtualUsedCapacity: 9.301444243932576
-          isExperimental: 4.145608029883936
+          isExperimental: 7.061401241503109
           driver: power_flex
           name: name
           siteId: 5.962133916683182
@@ -56617,21 +57986,20 @@ components:
             jobsThrownError: 1
             groupCreatedTimestamp: 2022-01-01T00:00:00Z
           datacenterName: datacenterName
-          inMaintenance: 2.027123023002322
+          inMaintenance: 2.3021358869347655
           managementHost: managementHost
           passwordEncrypted: passwordEncrypted
           type: iscsi
-          totalCapacity: 5.637376656633329
           targetIQN: targetIQN
           options: ""
-          drivePriority: 7.386281948385884
+          drivePriority: 9.301444243932576
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          iscsiPort: 3.616076749251911
+          iscsiPort: 5.637376656633329
           portGroupPhysicalPorts: "{}"
           alternateSanIPs:
           - alternateSanIPs
@@ -56639,17 +58007,14 @@ components:
           portGroupAllocationOrder: "{}"
           extensionInfo: ""
           userId: 1.4658129805029452
-          freeCapacity: 7.061401241503109
           revision: 6.027456183070403
-          sharedDrivePriority: 1.2315135367772556
+          sharedDrivePriority: 3.616076749251911
           tags:
           - tags
           - tags
           technologies:
           - block
-          usableCapacity: 2.3021358869347655
-          virtualUsedCapacity: 9.301444243932576
-          isExperimental: 4.145608029883936
+          isExperimental: 7.061401241503109
           driver: power_flex
           name: name
           siteId: 5.962133916683182
@@ -56680,7 +58045,7 @@ components:
       - links
       - meta
       type: object
-    StorageStatistics:
+    StoragesStatistics:
       example:
         activeCount: 9.301444243932576
         types: "{}"
@@ -56956,70 +58321,6 @@ components:
       - password
       - username
       type: object
-    IscsiBootServerInfo:
-      example:
-        instanceSubdomain: instanceSubdomain
-        instanceId: 6.027456183070403
-        infrastructureId: 1.4658129805029452
-        serverDiskCount: 5.637376656633329
-        instanceSubdomainPermanent: instanceSubdomainPermanent
-        infrastructureLabel: infrastructureLabel
-        userDisplayName: userDisplayName
-        userEmail: userEmail
-        serverPowerStatus: unknown
-        serverId: 0.8008281904610115
-        userId: 5.962133916683182
-      properties:
-        serverId:
-          description: Id of the Server
-          type: number
-        instanceId:
-          description: Id of the Instance
-          type: number
-        instanceSubdomain:
-          description: Instance subdomain
-          type: string
-        instanceSubdomainPermanent:
-          description: Instance permanent subdomain
-          type: string
-        infrastructureLabel:
-          description: Infrastructure label
-          type: string
-        infrastructureId:
-          description: Id of the Infrastructure
-          type: number
-        userId:
-          description: Id of the User
-          type: number
-        userEmail:
-          description: User email
-          type: string
-        userDisplayName:
-          description: User display name
-          type: string
-        serverDiskCount:
-          description: Server disk count
-          type: number
-        serverPowerStatus:
-          description: Server power status
-          enum:
-          - unknown
-          - "on"
-          - "off"
-          type: string
-      required:
-      - infrastructureId
-      - infrastructureLabel
-      - instanceId
-      - instanceSubdomain
-      - instanceSubdomainPermanent
-      - serverDiskCount
-      - serverId
-      - serverPowerStatus
-      - userDisplayName
-      - userEmail
-      - userId
-      type: object
     StorageNetworkDeviceConfiguration:
       example:
         storagePhysicalInterfaceIdentifier: storagePhysicalInterfaceIdentifier
@@ -57111,34 +58412,48 @@ components:
             type: number
           type: array
       type: object
+    StorageStatistics:
+      example:
+        usedSpaceGB: 6.027456183070403
+        freeSpaceGB: 1.4658129805029452
+        totalSpaceGB: 0.8008281904610115
+      properties:
+        totalSpaceGB:
+          description: Total capacity in GB
+          type: number
+        usedSpaceGB:
+          description: Total used space in GB
+          type: number
+        freeSpaceGB:
+          description: Total free space in GB
+          type: number
+      required:
+      - freeSpaceGB
+      - totalSpaceGB
+      - usedSpaceGB
+      type: object
     Subnet:
       example:
         isPool: true
-        metadata: "{}"
         allocationDenylist:
         - allocationDenylist
         - allocationDenylist
-        allowedChildOverlapConditions:
-        - allowedChildOverlapConditions
-        - allowedChildOverlapConditions
+        childOverlapAllowRules:
+        - childOverlapAllowRules
+        - childOverlapAllowRules
+        annotations: "{}"
         parentSubnetId: 1.4658129805029452
         label: label
         networkAddress: networkAddress
+        defaultGateway: defaultGateway
         revision: 6.027456183070403
         tags: "{}"
         prefixLength: 5.962133916683182
-        vrfId: 5.637376656633329
         createdAt: createdAt
         ipVersion: ipVersion
         netmask: netmask
         name: name
-        links:
-        - rel: self
-          href: /api/v2/path/to/resource
-        - rel: self
-          href: /api/v2/path/to/resource
         id: 0.8008281904610115
-        gateway: gateway
         updatedAt: updatedAt
       properties:
         id:
@@ -57152,54 +58467,47 @@ components:
         name:
           description: Name of the Subnet
           type: string
-        ipVersion:
-          description: IP version
+        tags:
+          type: object
+        annotations:
+          type: object
+        createdAt:
+          type: string
+        updatedAt:
           type: string
         parentSubnetId:
           description: ID of the parent subnet
           type: number
+        ipVersion:
+          description: IP version
+          type: string
         networkAddress:
           type: string
         prefixLength:
           type: number
         netmask:
           type: string
-        gateway:
+        defaultGateway:
           type: string
         isPool:
           type: boolean
-        vrfId:
-          type: number
         allocationDenylist:
           items:
             type: string
           type: array
-        allowedChildOverlapConditions:
+        childOverlapAllowRules:
           items:
             type: string
           type: array
-        tags:
-          type: object
-        metadata:
-          type: object
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-        links:
-          description: Reference links
-          items:
-            $ref: '#/components/schemas/Link'
-          type: array
       required:
       - allocationDenylist
-      - allowedChildOverlapConditions
+      - annotations
+      - childOverlapAllowRules
       - createdAt
-      - gateway
+      - defaultGateway
       - id
       - ipVersion
       - isPool
-      - metadata
       - name
       - netmask
       - networkAddress
@@ -57208,64 +58516,51 @@ components:
       - revision
       - tags
       - updatedAt
-      - vrfId
       type: object
     SubnetPaginatedList:
       example:
         data:
         - isPool: true
-          metadata: "{}"
           allocationDenylist:
           - allocationDenylist
           - allocationDenylist
-          allowedChildOverlapConditions:
-          - allowedChildOverlapConditions
-          - allowedChildOverlapConditions
+          childOverlapAllowRules:
+          - childOverlapAllowRules
+          - childOverlapAllowRules
+          annotations: "{}"
           parentSubnetId: 1.4658129805029452
           label: label
           networkAddress: networkAddress
+          defaultGateway: defaultGateway
           revision: 6.027456183070403
           tags: "{}"
           prefixLength: 5.962133916683182
-          vrfId: 5.637376656633329
           createdAt: createdAt
           ipVersion: ipVersion
           netmask: netmask
           name: name
-          links:
-          - rel: self
-            href: /api/v2/path/to/resource
-          - rel: self
-            href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          gateway: gateway
           updatedAt: updatedAt
         - isPool: true
-          metadata: "{}"
           allocationDenylist:
           - allocationDenylist
           - allocationDenylist
-          allowedChildOverlapConditions:
-          - allowedChildOverlapConditions
-          - allowedChildOverlapConditions
+          childOverlapAllowRules:
+          - childOverlapAllowRules
+          - childOverlapAllowRules
+          annotations: "{}"
           parentSubnetId: 1.4658129805029452
           label: label
           networkAddress: networkAddress
+          defaultGateway: defaultGateway
           revision: 6.027456183070403
           tags: "{}"
           prefixLength: 5.962133916683182
-          vrfId: 5.637376656633329
           createdAt: createdAt
           ipVersion: ipVersion
           netmask: netmask
           name: name
-          links:
-          - rel: self
-            href: /api/v2/path/to/resource
-          - rel: self
-            href: /api/v2/path/to/resource
           id: 0.8008281904610115
-          gateway: gateway
           updatedAt: updatedAt
         meta: ""
         links: ""
@@ -57294,19 +58589,18 @@ components:
       example:
         prefixLength: 6.027456183070403
         isPool: true
-        vrfId: 1.4658129805029452
-        metadata: "{}"
         allocationDenylist:
         - allocationDenylist
         - allocationDenylist
-        allowedChildOverlapConditions:
-        - allowedChildOverlapConditions
-        - allowedChildOverlapConditions
+        childOverlapAllowRules:
+        - childOverlapAllowRules
+        - childOverlapAllowRules
         name: name
+        annotations: "{}"
         parentSubnetId: 0.8008281904610115
         label: label
         networkAddress: networkAddress
-        gateway: gateway
+        defaultGateway: defaultGateway
         tags: "{}"
       properties:
         label:
@@ -57314,6 +58608,10 @@ components:
         name:
           description: Name of the Subnet
           type: string
+        tags:
+          type: object
+        annotations:
+          type: object
         parentSubnetId:
           description: ID of the parent subnet
           type: number
@@ -57321,71 +58619,49 @@ components:
           type: string
         prefixLength:
           type: number
-        gateway:
+        defaultGateway:
           type: string
         isPool:
           type: boolean
-        vrfId:
-          type: number
         allocationDenylist:
           items:
             type: string
           type: array
-        allowedChildOverlapConditions:
+        childOverlapAllowRules:
           items:
             type: string
           type: array
-        tags:
-          type: object
-        metadata:
-          type: object
-      required:
-      - allocationDenylist
-      - allowedChildOverlapConditions
-      - gateway
-      - isPool
-      - metadata
-      - name
-      - networkAddress
-      - parentSubnetId
-      - prefixLength
-      - tags
-      - vrfId
       type: object
     UpdateSubnet:
       example:
-        metadata: "{}"
         allocationDenylist:
         - allocationDenylist
         - allocationDenylist
-        allowedChildOverlapConditions:
-        - allowedChildOverlapConditions
-        - allowedChildOverlapConditions
+        childOverlapAllowRules:
+        - childOverlapAllowRules
+        - childOverlapAllowRules
         name: name
+        annotations: "{}"
         label: label
-        revision: 0.8008281904610115
         tags: "{}"
       properties:
-        revision:
-          description: Revision of the Subnet
-          type: number
         label:
           type: string
         name:
           description: Name of the Subnet
           type: string
+        tags:
+          type: object
+        annotations:
+          type: object
         allocationDenylist:
           items:
             type: string
           type: array
-        allowedChildOverlapConditions:
+        childOverlapAllowRules:
           items:
             type: string
           type: array
-        tags:
-          type: object
-        metadata:
-          type: object
       type: object
     Version:
       example:
@@ -57998,6 +59274,7 @@ components:
         data:
         - lastLoginTimestamp: lastLoginTimestamp
           accountId: 0.8008281904610115
+          emailStatus: not_verified
           accessLevel: accessLevel
           displayName: displayName
           isArchived: true
@@ -58013,6 +59290,7 @@ components:
           revision: 1.4658129805029452
         - lastLoginTimestamp: lastLoginTimestamp
           accountId: 0.8008281904610115
+          emailStatus: not_verified
           accessLevel: accessLevel
           displayName: displayName
           isArchived: true
@@ -59615,14 +60893,9 @@ components:
       type: object
     VMPool:
       example:
-        totalRamGB: 1.4658129805029452
         datacenterName: datacenterName
-        usedRamGB: 5.962133916683182
         inMaintenance: 1
         managementHost: managementHost
-        usedSpaceGB: 7.061401241503109
-        freeSpaceGB: 9.301444243932576
-        freeRamGB: 5.637376656633329
         createdTimestamp: createdTimestamp
         certificate: certificate
         description: description
@@ -59639,7 +60912,6 @@ components:
         externalIdentifier: externalIdentifier
         links: "{}"
         id: 1
-        totalSpaceGB: 2.3021358869347655
         status: active
       properties:
         id:
@@ -59685,24 +60957,6 @@ components:
         externalIdentifier:
           description: External identifier of the VM Pool
           type: string
-        totalRamGB:
-          description: Number of total RAM GB in the VM Pool
-          type: number
-        usedRamGB:
-          description: Number of used RAM GB in the VM Pool
-          type: number
-        freeRamGB:
-          description: Number of free RAM GB in the VM Pool
-          type: number
-        totalSpaceGB:
-          description: Number of total disk space GB in the VM Pool
-          type: number
-        usedSpaceGB:
-          description: Number of used disk space GB in the VM Pool
-          type: number
-        freeSpaceGB:
-          description: Number of free disk space GB in the VM Pool
-          type: number
         inMaintenance:
           description: "Flag to indicate if the VM Pool is in maintenance mode. 1\
             \ for true, 0 for false. Default is 0."
@@ -59731,8 +60985,6 @@ components:
       - certificate
       - createdTimestamp
       - datacenterName
-      - freeRamGB
-      - freeSpaceGB
       - id
       - links
       - managementHost
@@ -59741,24 +60993,15 @@ components:
       - privateKeyEncrypted
       - siteId
       - status
-      - totalRamGB
-      - totalSpaceGB
       - type
       - updatedTimestamp
-      - usedRamGB
-      - usedSpaceGB
       type: object
     VMPoolPaginatedList:
       example:
         data:
-        - totalRamGB: 1.4658129805029452
-          datacenterName: datacenterName
-          usedRamGB: 5.962133916683182
+        - datacenterName: datacenterName
           inMaintenance: 1
           managementHost: managementHost
-          usedSpaceGB: 7.061401241503109
-          freeSpaceGB: 9.301444243932576
-          freeRamGB: 5.637376656633329
           createdTimestamp: createdTimestamp
           certificate: certificate
           description: description
@@ -59775,16 +61018,10 @@ components:
           externalIdentifier: externalIdentifier
           links: "{}"
           id: 1
-          totalSpaceGB: 2.3021358869347655
           status: active
-        - totalRamGB: 1.4658129805029452
-          datacenterName: datacenterName
-          usedRamGB: 5.962133916683182
+        - datacenterName: datacenterName
           inMaintenance: 1
           managementHost: managementHost
-          usedSpaceGB: 7.061401241503109
-          freeSpaceGB: 9.301444243932576
-          freeRamGB: 5.637376656633329
           createdTimestamp: createdTimestamp
           certificate: certificate
           description: description
@@ -59801,7 +61038,6 @@ components:
           externalIdentifier: externalIdentifier
           links: "{}"
           id: 1
-          totalSpaceGB: 2.3021358869347655
           status: active
         meta: ""
         links: ""
@@ -59936,6 +61172,41 @@ components:
           description: Private key of the VM Pool
           type: string
       type: object
+    VMPoolStatistics:
+      example:
+        totalRamGB: 0.8008281904610115
+        usedRamGB: 1.4658129805029452
+        usedSpaceGB: 5.637376656633329
+        freeSpaceGB: 2.3021358869347655
+        freeRamGB: 6.027456183070403
+        totalSpaceGB: 5.962133916683182
+      properties:
+        totalRamGB:
+          description: Total RAM in GB
+          type: number
+        freeRamGB:
+          description: Free RAM in GB
+          type: number
+        usedRamGB:
+          description: Used RAM in GB
+          type: number
+        totalSpaceGB:
+          description: Total disk space in GB
+          type: number
+        usedSpaceGB:
+          description: Used disk space in GB
+          type: number
+        freeSpaceGB:
+          description: Free disk space in GB
+          type: number
+      required:
+      - freeRamGB
+      - freeSpaceGB
+      - totalRamGB
+      - totalSpaceGB
+      - usedRamGB
+      - usedSpaceGB
+      type: object
     VMPoolCredentials:
       properties: {}
       type: object
@@ -60049,16 +61320,11 @@ components:
       type: object
     VMPoolHosts:
       example:
-        totalRamGB: 6.027456183070403
         address: address
-        usedRamGB: 5.962133916683182
         failureDomain: failureDomain
-        usedSpaceGB: 2.3021358869347655
-        freeSpaceGB: 7.061401241503109
         roles:
         - roles
         - roles
-        freeRamGB: 1.4658129805029452
         description: description
         updatedTimestamp: updatedTimestamp
         database: 0.8008281904610115
@@ -60067,7 +61333,6 @@ components:
         poolId: 1
         links: "{}"
         id: 1
-        totalSpaceGB: 5.637376656633329
         architecture: architecture
         status: status
       properties:
@@ -60109,24 +61374,6 @@ components:
         description:
           description: Description of the VM Pool Host
           type: string
-        totalRamGB:
-          description: Total RAM GB of the VM Pool Host
-          type: number
-        freeRamGB:
-          description: Free RAM GB of the VM Pool Host
-          type: number
-        usedRamGB:
-          description: Used RAM GB of the VM Pool Host
-          type: number
-        totalSpaceGB:
-          description: Total Space GB of the VM Pool Host
-          type: number
-        usedSpaceGB:
-          description: Used Space GB of the VM Pool Host
-          type: number
-        freeSpaceGB:
-          description: Free Space GB of the VM Pool Host
-          type: number
         updatedTimestamp:
           description: Timestamp when the VM Pool Host was updated
           type: string
@@ -60138,8 +61385,6 @@ components:
       - architecture
       - database
       - failureDomain
-      - freeRamGB
-      - freeSpaceGB
       - id
       - links
       - name
@@ -60147,25 +61392,16 @@ components:
       - port
       - roles
       - status
-      - totalRamGB
-      - totalSpaceGB
       - updatedTimestamp
-      - usedRamGB
-      - usedSpaceGB
       type: object
     VMPoolHostsPaginatedList:
       example:
         data:
-        - totalRamGB: 6.027456183070403
-          address: address
-          usedRamGB: 5.962133916683182
+        - address: address
           failureDomain: failureDomain
-          usedSpaceGB: 2.3021358869347655
-          freeSpaceGB: 7.061401241503109
           roles:
           - roles
           - roles
-          freeRamGB: 1.4658129805029452
           description: description
           updatedTimestamp: updatedTimestamp
           database: 0.8008281904610115
@@ -60174,19 +61410,13 @@ components:
           poolId: 1
           links: "{}"
           id: 1
-          totalSpaceGB: 5.637376656633329
           architecture: architecture
           status: status
-        - totalRamGB: 6.027456183070403
-          address: address
-          usedRamGB: 5.962133916683182
+        - address: address
           failureDomain: failureDomain
-          usedSpaceGB: 2.3021358869347655
-          freeSpaceGB: 7.061401241503109
           roles:
           - roles
           - roles
-          freeRamGB: 1.4658129805029452
           description: description
           updatedTimestamp: updatedTimestamp
           database: 0.8008281904610115
@@ -60195,7 +61425,6 @@ components:
           poolId: 1
           links: "{}"
           id: 1
-          totalSpaceGB: 5.637376656633329
           architecture: architecture
           status: status
         meta: ""

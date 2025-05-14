@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DisplayName** | **string** | The display name of the user | 
+**EmailStatus** | **string** | The email status of the user | 
 **Language** | **string** | The language of the user | 
 **LastLoginTimestamp** | **string** | The timestamp when the user logged in last | 
 **AccessLevel** | **string** | The access level of the user | 
@@ -20,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewUserInfo
 
-`func NewUserInfo(displayName string, language string, lastLoginTimestamp string, accessLevel string, isArchived bool, id float32, revision float32, email string, createdTimestamp string, ) *UserInfo`
+`func NewUserInfo(displayName string, emailStatus string, language string, lastLoginTimestamp string, accessLevel string, isArchived bool, id float32, revision float32, email string, createdTimestamp string, ) *UserInfo`
 
 NewUserInfo instantiates a new UserInfo object
 This constructor will assign default values to properties that have it defined,
@@ -53,6 +54,26 @@ and a boolean to check if the value has been set.
 `func (o *UserInfo) SetDisplayName(v string)`
 
 SetDisplayName sets DisplayName field to given value.
+
+
+### GetEmailStatus
+
+`func (o *UserInfo) GetEmailStatus() string`
+
+GetEmailStatus returns the EmailStatus field if non-nil, zero value otherwise.
+
+### GetEmailStatusOk
+
+`func (o *UserInfo) GetEmailStatusOk() (*string, bool)`
+
+GetEmailStatusOk returns a tuple with the EmailStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmailStatus
+
+`func (o *UserInfo) SetEmailStatus(v string)`
+
+SetEmailStatus sets EmailStatus field to given value.
 
 
 ### GetLanguage

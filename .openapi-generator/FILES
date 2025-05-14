@@ -8,6 +8,7 @@ api_bucket.go
 api_configuration.go
 api_custom_iso.go
 api_drive.go
+api_email_template.go
 api_event.go
 api_extension.go
 api_extension_instance.go
@@ -188,6 +189,11 @@ docs/DriveList.md
 docs/DriveMeta.md
 docs/DriveVariables.md
 docs/EditRole.md
+docs/EmailTemplate.md
+docs/EmailTemplateAPI.md
+docs/EmailTemplateCreate.md
+docs/EmailTemplateList.md
+docs/EmailTemplateUpdate.md
 docs/EthernetFabric.md
 docs/Event.md
 docs/EventAPI.md
@@ -267,6 +273,7 @@ docs/InfrastructureDeployOngoingStatusCount.md
 docs/InfrastructureDeployOptions.md
 docs/InfrastructureDeployShutdownOptions.md
 docs/InfrastructureMeta.md
+docs/InfrastructureOSInstallationData.md
 docs/InfrastructurePaginatedList.md
 docs/InfrastructurePolicy.md
 docs/InfrastructureResourceUtilizationResponse.md
@@ -280,7 +287,6 @@ docs/Ipv4SubnetAllocationStrategy1DataItem.md
 docs/Ipv6SubnetAllocation.md
 docs/Ipv6SubnetAllocationStrategy.md
 docs/Ipv6SubnetAllocationStrategy1DataItem.md
-docs/IscsiBootServerInfo.md
 docs/Job.md
 docs/JobAPI.md
 docs/JobArchive.md
@@ -414,6 +420,7 @@ docs/ServerInstance.md
 docs/ServerInstanceAPI.md
 docs/ServerInstanceClusterCustomInfo.md
 docs/ServerInstanceConfiguration.md
+docs/ServerInstanceContextOSInstallationData.md
 docs/ServerInstanceContextVariables.md
 docs/ServerInstanceCreate.md
 docs/ServerInstanceGroup.md
@@ -425,6 +432,7 @@ docs/ServerInstanceGroupInterfaceConfiguration.md
 docs/ServerInstanceGroupInterfacePaginatedList.md
 docs/ServerInstanceGroupNetworkConnection.md
 docs/ServerInstanceGroupNetworkConnectionsList.md
+docs/ServerInstanceGroupOSInstallationData.md
 docs/ServerInstanceGroupPaginatedList.md
 docs/ServerInstanceGroupUpdate.md
 docs/ServerInstanceGroupVariables.md
@@ -432,6 +440,7 @@ docs/ServerInstanceInterface.md
 docs/ServerInstanceInterfaceConfiguration.md
 docs/ServerInstanceInterfacePaginatedList.md
 docs/ServerInstanceInterfaceUpdate.md
+docs/ServerInstanceOSInstallationData.md
 docs/ServerInstanceOsInstallImageBuildInfo.md
 docs/ServerInstancePaginatedList.md
 docs/ServerInstancePowerSet.md
@@ -444,6 +453,7 @@ docs/ServerInstanceUpdate.md
 docs/ServerInstanceVariables.md
 docs/ServerInterface.md
 docs/ServerMetricsInfo.md
+docs/ServerOSInstallationData.md
 docs/ServerPaginatedList.md
 docs/ServerPolicy.md
 docs/ServerPolicyUpdate.md
@@ -476,10 +486,12 @@ docs/SharedDriveVariables.md
 docs/Site.md
 docs/SiteAPI.md
 docs/SiteConfig.md
+docs/SiteConfigOSInstallationData.md
 docs/SiteConfigUpdate.md
 docs/SiteConfigVariables.md
 docs/SiteControllerSeenAliveStatus.md
 docs/SiteCreate.md
+docs/SiteOSInstallationData.md
 docs/SitePaginatedList.md
 docs/SiteStatistics.md
 docs/SiteUpdate.md
@@ -492,6 +504,7 @@ docs/StorageNetworkDeviceConfiguration.md
 docs/StorageOptions.md
 docs/StoragePaginatedList.md
 docs/StorageStatistics.md
+docs/StoragesStatistics.md
 docs/Subnet.md
 docs/SubnetAPI.md
 docs/SubnetPaginatedList.md
@@ -593,6 +606,7 @@ docs/VMPoolHostInterfaces.md
 docs/VMPoolHosts.md
 docs/VMPoolHostsPaginatedList.md
 docs/VMPoolPaginatedList.md
+docs/VMPoolStatistics.md
 docs/VMType.md
 docs/VMTypeAPI.md
 docs/VMTypePaginatedList.md
@@ -767,6 +781,10 @@ model_drive_list.go
 model_drive_meta.go
 model_drive_variables.go
 model_edit_role.go
+model_email_template.go
+model_email_template_create.go
+model_email_template_list.go
+model_email_template_update.go
 model_ethernet_fabric.go
 model_event.go
 model_event_paginated_list.go
@@ -836,6 +854,7 @@ model_infrastructure_deploy_ongoing_status_count.go
 model_infrastructure_deploy_options.go
 model_infrastructure_deploy_shutdown_options.go
 model_infrastructure_meta.go
+model_infrastructure_os_installation_data.go
 model_infrastructure_paginated_list.go
 model_infrastructure_policy.go
 model_infrastructure_resource_utilization_response.go
@@ -849,7 +868,6 @@ model_ipv4_subnet_allocation_strategy_1_data_item.go
 model_ipv6_subnet_allocation.go
 model_ipv6_subnet_allocation_strategy.go
 model_ipv6_subnet_allocation_strategy_1_data_item.go
-model_iscsi_boot_server_info.go
 model_job.go
 model_job_archive.go
 model_job_archive_paginated_list.go
@@ -967,6 +985,7 @@ model_server_gpu_info.go
 model_server_instance.go
 model_server_instance_cluster_custom_info.go
 model_server_instance_configuration.go
+model_server_instance_context_os_installation_data.go
 model_server_instance_context_variables.go
 model_server_instance_create.go
 model_server_instance_group.go
@@ -977,6 +996,7 @@ model_server_instance_group_interface_configuration.go
 model_server_instance_group_interface_paginated_list.go
 model_server_instance_group_network_connection.go
 model_server_instance_group_network_connections_list.go
+model_server_instance_group_os_installation_data.go
 model_server_instance_group_paginated_list.go
 model_server_instance_group_update.go
 model_server_instance_group_variables.go
@@ -985,6 +1005,7 @@ model_server_instance_interface_configuration.go
 model_server_instance_interface_paginated_list.go
 model_server_instance_interface_update.go
 model_server_instance_os_install_image_build_info.go
+model_server_instance_os_installation_data.go
 model_server_instance_paginated_list.go
 model_server_instance_power_set.go
 model_server_instance_reinstall_os.go
@@ -996,6 +1017,7 @@ model_server_instance_update.go
 model_server_instance_variables.go
 model_server_interface.go
 model_server_metrics_info.go
+model_server_os_installation_data.go
 model_server_paginated_list.go
 model_server_policy.go
 model_server_policy_update.go
@@ -1026,10 +1048,12 @@ model_shared_drive_paginated_list.go
 model_shared_drive_variables.go
 model_site.go
 model_site_config.go
+model_site_config_os_installation_data.go
 model_site_config_update.go
 model_site_config_variables.go
 model_site_controller_seen_alive_status.go
 model_site_create.go
+model_site_os_installation_data.go
 model_site_paginated_list.go
 model_site_statistics.go
 model_site_update.go
@@ -1042,6 +1066,7 @@ model_storage_network_device_configuration.go
 model_storage_options.go
 model_storage_paginated_list.go
 model_storage_statistics.go
+model_storages_statistics.go
 model_subnet.go
 model_subnet_paginated_list.go
 model_switch_position.go
@@ -1154,6 +1179,7 @@ model_vm_pool_host_interfaces.go
 model_vm_pool_hosts.go
 model_vm_pool_hosts_paginated_list.go
 model_vm_pool_paginated_list.go
+model_vm_pool_statistics.go
 model_vm_type.go
 model_vm_type_paginated_list.go
 model_vni_allocation.go
@@ -1182,6 +1208,7 @@ test/api_bucket_test.go
 test/api_configuration_test.go
 test/api_custom_iso_test.go
 test/api_drive_test.go
+test/api_email_template_test.go
 test/api_event_test.go
 test/api_extension_instance_test.go
 test/api_extension_test.go

@@ -39,14 +39,6 @@ type Storage struct {
 	Type string `json:"type"`
 	// Storage status
 	Status string `json:"status"`
-	// Total capacity in MB
-	TotalCapacity *float32 `json:"totalCapacity,omitempty"`
-	// Usable capacity in MB
-	UsableCapacity *float32 `json:"usableCapacity,omitempty"`
-	// Free capacity in MB
-	FreeCapacity *float32 `json:"freeCapacity,omitempty"`
-	// Virtual used capacity in MB
-	VirtualUsedCapacity *float32 `json:"virtualUsedCapacity,omitempty"`
 	// Name of the storage
 	Name string `json:"name"`
 	// ISCSI host
@@ -342,134 +334,6 @@ func (o *Storage) GetStatusOk() (*string, bool) {
 // SetStatus sets field value
 func (o *Storage) SetStatus(v string) {
 	o.Status = v
-}
-
-// GetTotalCapacity returns the TotalCapacity field value if set, zero value otherwise.
-func (o *Storage) GetTotalCapacity() float32 {
-	if o == nil || IsNil(o.TotalCapacity) {
-		var ret float32
-		return ret
-	}
-	return *o.TotalCapacity
-}
-
-// GetTotalCapacityOk returns a tuple with the TotalCapacity field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Storage) GetTotalCapacityOk() (*float32, bool) {
-	if o == nil || IsNil(o.TotalCapacity) {
-		return nil, false
-	}
-	return o.TotalCapacity, true
-}
-
-// HasTotalCapacity returns a boolean if a field has been set.
-func (o *Storage) HasTotalCapacity() bool {
-	if o != nil && !IsNil(o.TotalCapacity) {
-		return true
-	}
-
-	return false
-}
-
-// SetTotalCapacity gets a reference to the given float32 and assigns it to the TotalCapacity field.
-func (o *Storage) SetTotalCapacity(v float32) {
-	o.TotalCapacity = &v
-}
-
-// GetUsableCapacity returns the UsableCapacity field value if set, zero value otherwise.
-func (o *Storage) GetUsableCapacity() float32 {
-	if o == nil || IsNil(o.UsableCapacity) {
-		var ret float32
-		return ret
-	}
-	return *o.UsableCapacity
-}
-
-// GetUsableCapacityOk returns a tuple with the UsableCapacity field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Storage) GetUsableCapacityOk() (*float32, bool) {
-	if o == nil || IsNil(o.UsableCapacity) {
-		return nil, false
-	}
-	return o.UsableCapacity, true
-}
-
-// HasUsableCapacity returns a boolean if a field has been set.
-func (o *Storage) HasUsableCapacity() bool {
-	if o != nil && !IsNil(o.UsableCapacity) {
-		return true
-	}
-
-	return false
-}
-
-// SetUsableCapacity gets a reference to the given float32 and assigns it to the UsableCapacity field.
-func (o *Storage) SetUsableCapacity(v float32) {
-	o.UsableCapacity = &v
-}
-
-// GetFreeCapacity returns the FreeCapacity field value if set, zero value otherwise.
-func (o *Storage) GetFreeCapacity() float32 {
-	if o == nil || IsNil(o.FreeCapacity) {
-		var ret float32
-		return ret
-	}
-	return *o.FreeCapacity
-}
-
-// GetFreeCapacityOk returns a tuple with the FreeCapacity field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Storage) GetFreeCapacityOk() (*float32, bool) {
-	if o == nil || IsNil(o.FreeCapacity) {
-		return nil, false
-	}
-	return o.FreeCapacity, true
-}
-
-// HasFreeCapacity returns a boolean if a field has been set.
-func (o *Storage) HasFreeCapacity() bool {
-	if o != nil && !IsNil(o.FreeCapacity) {
-		return true
-	}
-
-	return false
-}
-
-// SetFreeCapacity gets a reference to the given float32 and assigns it to the FreeCapacity field.
-func (o *Storage) SetFreeCapacity(v float32) {
-	o.FreeCapacity = &v
-}
-
-// GetVirtualUsedCapacity returns the VirtualUsedCapacity field value if set, zero value otherwise.
-func (o *Storage) GetVirtualUsedCapacity() float32 {
-	if o == nil || IsNil(o.VirtualUsedCapacity) {
-		var ret float32
-		return ret
-	}
-	return *o.VirtualUsedCapacity
-}
-
-// GetVirtualUsedCapacityOk returns a tuple with the VirtualUsedCapacity field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Storage) GetVirtualUsedCapacityOk() (*float32, bool) {
-	if o == nil || IsNil(o.VirtualUsedCapacity) {
-		return nil, false
-	}
-	return o.VirtualUsedCapacity, true
-}
-
-// HasVirtualUsedCapacity returns a boolean if a field has been set.
-func (o *Storage) HasVirtualUsedCapacity() bool {
-	if o != nil && !IsNil(o.VirtualUsedCapacity) {
-		return true
-	}
-
-	return false
-}
-
-// SetVirtualUsedCapacity gets a reference to the given float32 and assigns it to the VirtualUsedCapacity field.
-func (o *Storage) SetVirtualUsedCapacity(v float32) {
-	o.VirtualUsedCapacity = &v
 }
 
 // GetName returns the Name field value
@@ -1101,18 +965,6 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 	toSerialize["technologies"] = o.Technologies
 	toSerialize["type"] = o.Type
 	toSerialize["status"] = o.Status
-	if !IsNil(o.TotalCapacity) {
-		toSerialize["totalCapacity"] = o.TotalCapacity
-	}
-	if !IsNil(o.UsableCapacity) {
-		toSerialize["usableCapacity"] = o.UsableCapacity
-	}
-	if !IsNil(o.FreeCapacity) {
-		toSerialize["freeCapacity"] = o.FreeCapacity
-	}
-	if !IsNil(o.VirtualUsedCapacity) {
-		toSerialize["virtualUsedCapacity"] = o.VirtualUsedCapacity
-	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.IscsiHost) {
 		toSerialize["iscsiHost"] = o.IscsiHost
@@ -1228,10 +1080,6 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "technologies")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "status")
-		delete(additionalProperties, "totalCapacity")
-		delete(additionalProperties, "usableCapacity")
-		delete(additionalProperties, "freeCapacity")
-		delete(additionalProperties, "virtualUsedCapacity")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "iscsiHost")
 		delete(additionalProperties, "iscsiPort")

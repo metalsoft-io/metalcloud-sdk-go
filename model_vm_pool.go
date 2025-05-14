@@ -45,18 +45,6 @@ type VMPool struct {
 	Status string `json:"status"`
 	// External identifier of the VM Pool
 	ExternalIdentifier *string `json:"externalIdentifier,omitempty"`
-	// Number of total RAM GB in the VM Pool
-	TotalRamGB float32 `json:"totalRamGB"`
-	// Number of used RAM GB in the VM Pool
-	UsedRamGB float32 `json:"usedRamGB"`
-	// Number of free RAM GB in the VM Pool
-	FreeRamGB float32 `json:"freeRamGB"`
-	// Number of total disk space GB in the VM Pool
-	TotalSpaceGB float32 `json:"totalSpaceGB"`
-	// Number of used disk space GB in the VM Pool
-	UsedSpaceGB float32 `json:"usedSpaceGB"`
-	// Number of free disk space GB in the VM Pool
-	FreeSpaceGB float32 `json:"freeSpaceGB"`
 	// Flag to indicate if the VM Pool is in maintenance mode. 1 for true, 0 for false. Default is 0.
 	InMaintenance *float32 `json:"inMaintenance,omitempty"`
 	// Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0.
@@ -78,7 +66,7 @@ type _VMPool VMPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, certificate string, privateKeyEncrypted string, status string, totalRamGB float32, usedRamGB float32, freeRamGB float32, totalSpaceGB float32, usedSpaceGB float32, freeSpaceGB float32, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *VMPool {
+func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, certificate string, privateKeyEncrypted string, status string, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *VMPool {
 	this := VMPool{}
 	this.Id = id
 	this.SiteId = siteId
@@ -90,12 +78,6 @@ func NewVMPool(id float32, siteId float32, datacenterName string, managementHost
 	this.Certificate = certificate
 	this.PrivateKeyEncrypted = privateKeyEncrypted
 	this.Status = status
-	this.TotalRamGB = totalRamGB
-	this.UsedRamGB = usedRamGB
-	this.FreeRamGB = freeRamGB
-	this.TotalSpaceGB = totalSpaceGB
-	this.UsedSpaceGB = usedSpaceGB
-	this.FreeSpaceGB = freeSpaceGB
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
 	this.Links = links
@@ -414,150 +396,6 @@ func (o *VMPool) SetExternalIdentifier(v string) {
 	o.ExternalIdentifier = &v
 }
 
-// GetTotalRamGB returns the TotalRamGB field value
-func (o *VMPool) GetTotalRamGB() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.TotalRamGB
-}
-
-// GetTotalRamGBOk returns a tuple with the TotalRamGB field value
-// and a boolean to check if the value has been set.
-func (o *VMPool) GetTotalRamGBOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.TotalRamGB, true
-}
-
-// SetTotalRamGB sets field value
-func (o *VMPool) SetTotalRamGB(v float32) {
-	o.TotalRamGB = v
-}
-
-// GetUsedRamGB returns the UsedRamGB field value
-func (o *VMPool) GetUsedRamGB() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.UsedRamGB
-}
-
-// GetUsedRamGBOk returns a tuple with the UsedRamGB field value
-// and a boolean to check if the value has been set.
-func (o *VMPool) GetUsedRamGBOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UsedRamGB, true
-}
-
-// SetUsedRamGB sets field value
-func (o *VMPool) SetUsedRamGB(v float32) {
-	o.UsedRamGB = v
-}
-
-// GetFreeRamGB returns the FreeRamGB field value
-func (o *VMPool) GetFreeRamGB() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.FreeRamGB
-}
-
-// GetFreeRamGBOk returns a tuple with the FreeRamGB field value
-// and a boolean to check if the value has been set.
-func (o *VMPool) GetFreeRamGBOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FreeRamGB, true
-}
-
-// SetFreeRamGB sets field value
-func (o *VMPool) SetFreeRamGB(v float32) {
-	o.FreeRamGB = v
-}
-
-// GetTotalSpaceGB returns the TotalSpaceGB field value
-func (o *VMPool) GetTotalSpaceGB() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.TotalSpaceGB
-}
-
-// GetTotalSpaceGBOk returns a tuple with the TotalSpaceGB field value
-// and a boolean to check if the value has been set.
-func (o *VMPool) GetTotalSpaceGBOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.TotalSpaceGB, true
-}
-
-// SetTotalSpaceGB sets field value
-func (o *VMPool) SetTotalSpaceGB(v float32) {
-	o.TotalSpaceGB = v
-}
-
-// GetUsedSpaceGB returns the UsedSpaceGB field value
-func (o *VMPool) GetUsedSpaceGB() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.UsedSpaceGB
-}
-
-// GetUsedSpaceGBOk returns a tuple with the UsedSpaceGB field value
-// and a boolean to check if the value has been set.
-func (o *VMPool) GetUsedSpaceGBOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UsedSpaceGB, true
-}
-
-// SetUsedSpaceGB sets field value
-func (o *VMPool) SetUsedSpaceGB(v float32) {
-	o.UsedSpaceGB = v
-}
-
-// GetFreeSpaceGB returns the FreeSpaceGB field value
-func (o *VMPool) GetFreeSpaceGB() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.FreeSpaceGB
-}
-
-// GetFreeSpaceGBOk returns a tuple with the FreeSpaceGB field value
-// and a boolean to check if the value has been set.
-func (o *VMPool) GetFreeSpaceGBOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FreeSpaceGB, true
-}
-
-// SetFreeSpaceGB sets field value
-func (o *VMPool) SetFreeSpaceGB(v float32) {
-	o.FreeSpaceGB = v
-}
-
 // GetInMaintenance returns the InMaintenance field value if set, zero value otherwise.
 func (o *VMPool) GetInMaintenance() float32 {
 	if o == nil || IsNil(o.InMaintenance) {
@@ -752,12 +590,6 @@ func (o VMPool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExternalIdentifier) {
 		toSerialize["externalIdentifier"] = o.ExternalIdentifier
 	}
-	toSerialize["totalRamGB"] = o.TotalRamGB
-	toSerialize["usedRamGB"] = o.UsedRamGB
-	toSerialize["freeRamGB"] = o.FreeRamGB
-	toSerialize["totalSpaceGB"] = o.TotalSpaceGB
-	toSerialize["usedSpaceGB"] = o.UsedSpaceGB
-	toSerialize["freeSpaceGB"] = o.FreeSpaceGB
 	if !IsNil(o.InMaintenance) {
 		toSerialize["inMaintenance"] = o.InMaintenance
 	}
@@ -793,12 +625,6 @@ func (o *VMPool) UnmarshalJSON(data []byte) (err error) {
 		"certificate",
 		"privateKeyEncrypted",
 		"status",
-		"totalRamGB",
-		"usedRamGB",
-		"freeRamGB",
-		"totalSpaceGB",
-		"usedSpaceGB",
-		"freeSpaceGB",
 		"createdTimestamp",
 		"updatedTimestamp",
 		"links",
@@ -843,12 +669,6 @@ func (o *VMPool) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "privateKeyEncrypted")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "externalIdentifier")
-		delete(additionalProperties, "totalRamGB")
-		delete(additionalProperties, "usedRamGB")
-		delete(additionalProperties, "freeRamGB")
-		delete(additionalProperties, "totalSpaceGB")
-		delete(additionalProperties, "usedSpaceGB")
-		delete(additionalProperties, "freeSpaceGB")
 		delete(additionalProperties, "inMaintenance")
 		delete(additionalProperties, "isExperimental")
 		delete(additionalProperties, "createdTimestamp")

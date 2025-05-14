@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	createSubnet := *openapiclient.NewCreateSubnet("Name_example", float32(123), "NetworkAddress_example", float32(123), "Gateway_example", false, float32(123), []string{"AllocationDenylist_example"}, []string{"AllowedChildOverlapConditions_example"}, map[string]interface{}(123), map[string]interface{}(123)) // CreateSubnet | The Subnet to create
+	createSubnet := *openapiclient.NewCreateSubnet() // CreateSubnet | The Subnet to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

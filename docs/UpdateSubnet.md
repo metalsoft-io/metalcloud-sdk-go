@@ -4,13 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revision** | Pointer to **float32** | Revision of the Subnet | [optional] 
 **Label** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** | Name of the Subnet | [optional] 
-**AllocationDenylist** | Pointer to **[]string** |  | [optional] 
-**AllowedChildOverlapConditions** | Pointer to **[]string** |  | [optional] 
 **Tags** | Pointer to **map[string]interface{}** |  | [optional] 
-**Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Annotations** | Pointer to **map[string]interface{}** |  | [optional] 
+**AllocationDenylist** | Pointer to **[]string** |  | [optional] 
+**ChildOverlapAllowRules** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -30,31 +29,6 @@ will change when the set of required properties is changed
 NewUpdateSubnetWithDefaults instantiates a new UpdateSubnet object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetRevision
-
-`func (o *UpdateSubnet) GetRevision() float32`
-
-GetRevision returns the Revision field if non-nil, zero value otherwise.
-
-### GetRevisionOk
-
-`func (o *UpdateSubnet) GetRevisionOk() (*float32, bool)`
-
-GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRevision
-
-`func (o *UpdateSubnet) SetRevision(v float32)`
-
-SetRevision sets Revision field to given value.
-
-### HasRevision
-
-`func (o *UpdateSubnet) HasRevision() bool`
-
-HasRevision returns a boolean if a field has been set.
 
 ### GetLabel
 
@@ -106,56 +80,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetAllocationDenylist
-
-`func (o *UpdateSubnet) GetAllocationDenylist() []string`
-
-GetAllocationDenylist returns the AllocationDenylist field if non-nil, zero value otherwise.
-
-### GetAllocationDenylistOk
-
-`func (o *UpdateSubnet) GetAllocationDenylistOk() (*[]string, bool)`
-
-GetAllocationDenylistOk returns a tuple with the AllocationDenylist field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAllocationDenylist
-
-`func (o *UpdateSubnet) SetAllocationDenylist(v []string)`
-
-SetAllocationDenylist sets AllocationDenylist field to given value.
-
-### HasAllocationDenylist
-
-`func (o *UpdateSubnet) HasAllocationDenylist() bool`
-
-HasAllocationDenylist returns a boolean if a field has been set.
-
-### GetAllowedChildOverlapConditions
-
-`func (o *UpdateSubnet) GetAllowedChildOverlapConditions() []string`
-
-GetAllowedChildOverlapConditions returns the AllowedChildOverlapConditions field if non-nil, zero value otherwise.
-
-### GetAllowedChildOverlapConditionsOk
-
-`func (o *UpdateSubnet) GetAllowedChildOverlapConditionsOk() (*[]string, bool)`
-
-GetAllowedChildOverlapConditionsOk returns a tuple with the AllowedChildOverlapConditions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAllowedChildOverlapConditions
-
-`func (o *UpdateSubnet) SetAllowedChildOverlapConditions(v []string)`
-
-SetAllowedChildOverlapConditions sets AllowedChildOverlapConditions field to given value.
-
-### HasAllowedChildOverlapConditions
-
-`func (o *UpdateSubnet) HasAllowedChildOverlapConditions() bool`
-
-HasAllowedChildOverlapConditions returns a boolean if a field has been set.
-
 ### GetTags
 
 `func (o *UpdateSubnet) GetTags() map[string]interface{}`
@@ -181,30 +105,80 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
-### GetMetadata
+### GetAnnotations
 
-`func (o *UpdateSubnet) GetMetadata() map[string]interface{}`
+`func (o *UpdateSubnet) GetAnnotations() map[string]interface{}`
 
-GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+GetAnnotations returns the Annotations field if non-nil, zero value otherwise.
 
-### GetMetadataOk
+### GetAnnotationsOk
 
-`func (o *UpdateSubnet) GetMetadataOk() (*map[string]interface{}, bool)`
+`func (o *UpdateSubnet) GetAnnotationsOk() (*map[string]interface{}, bool)`
 
-GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+GetAnnotationsOk returns a tuple with the Annotations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMetadata
+### SetAnnotations
 
-`func (o *UpdateSubnet) SetMetadata(v map[string]interface{})`
+`func (o *UpdateSubnet) SetAnnotations(v map[string]interface{})`
 
-SetMetadata sets Metadata field to given value.
+SetAnnotations sets Annotations field to given value.
 
-### HasMetadata
+### HasAnnotations
 
-`func (o *UpdateSubnet) HasMetadata() bool`
+`func (o *UpdateSubnet) HasAnnotations() bool`
 
-HasMetadata returns a boolean if a field has been set.
+HasAnnotations returns a boolean if a field has been set.
+
+### GetAllocationDenylist
+
+`func (o *UpdateSubnet) GetAllocationDenylist() []string`
+
+GetAllocationDenylist returns the AllocationDenylist field if non-nil, zero value otherwise.
+
+### GetAllocationDenylistOk
+
+`func (o *UpdateSubnet) GetAllocationDenylistOk() (*[]string, bool)`
+
+GetAllocationDenylistOk returns a tuple with the AllocationDenylist field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllocationDenylist
+
+`func (o *UpdateSubnet) SetAllocationDenylist(v []string)`
+
+SetAllocationDenylist sets AllocationDenylist field to given value.
+
+### HasAllocationDenylist
+
+`func (o *UpdateSubnet) HasAllocationDenylist() bool`
+
+HasAllocationDenylist returns a boolean if a field has been set.
+
+### GetChildOverlapAllowRules
+
+`func (o *UpdateSubnet) GetChildOverlapAllowRules() []string`
+
+GetChildOverlapAllowRules returns the ChildOverlapAllowRules field if non-nil, zero value otherwise.
+
+### GetChildOverlapAllowRulesOk
+
+`func (o *UpdateSubnet) GetChildOverlapAllowRulesOk() (*[]string, bool)`
+
+GetChildOverlapAllowRulesOk returns a tuple with the ChildOverlapAllowRules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChildOverlapAllowRules
+
+`func (o *UpdateSubnet) SetChildOverlapAllowRules(v []string)`
+
+SetChildOverlapAllowRules sets ChildOverlapAllowRules field to given value.
+
+### HasChildOverlapAllowRules
+
+`func (o *UpdateSubnet) HasChildOverlapAllowRules() bool`
+
+HasChildOverlapAllowRules returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

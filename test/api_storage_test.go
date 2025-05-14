@@ -74,19 +74,6 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test StorageAPIService ExecuteStorageAction", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var storageId float32
-
-		httpRes, err := apiClient.StorageAPI.ExecuteStorageAction(context.Background(), storageId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test StorageAPIService GetStorage", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -157,20 +144,6 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test StorageAPIService GetStorageIscsiBootServers", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var storageId float32
-
-		resp, httpRes, err := apiClient.StorageAPI.GetStorageIscsiBootServers(context.Background(), storageId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test StorageAPIService GetStorageNetworkDeviceConfigurations", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -189,7 +162,9 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.StorageAPI.GetStorageStatistics(context.Background()).Execute()
+		var storageId float32
+
+		resp, httpRes, err := apiClient.StorageAPI.GetStorageStatistics(context.Background(), storageId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -202,6 +177,18 @@ func Test_sdk_StorageAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.StorageAPI.GetStorages(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test StorageAPIService GetStoragesStatistics", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.StorageAPI.GetStoragesStatistics(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

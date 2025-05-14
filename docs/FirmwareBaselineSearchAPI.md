@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## SearchFirmwareBaselines
 
-> FirmwareCatalogPaginatedList SearchFirmwareBaselines(ctx).SearchFirmwareBinary(searchFirmwareBinary).Execute()
+> map[string]interface{} SearchFirmwareBaselines(ctx).SearchFirmwareBinary(searchFirmwareBinary).Execute()
 
 Search Firmware Baselines
 
@@ -38,7 +38,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBaselineSearchAPI.SearchFirmwareBaselines``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SearchFirmwareBaselines`: FirmwareCatalogPaginatedList
+	// response from `SearchFirmwareBaselines`: map[string]interface{}
 	fmt.Fprintf(os.Stdout, "Response from `FirmwareBaselineSearchAPI.SearchFirmwareBaselines`: %v\n", resp)
 }
 ```
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FirmwareCatalogPaginatedList**](FirmwareCatalogPaginatedList.md)
+**map[string]interface{}**
 
 ### Authorization
 

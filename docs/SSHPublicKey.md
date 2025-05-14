@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PublicKey** | **string** | The SSH key public key. | 
+**PublicKey** | **NullableString** | The SSH key public key. | 
 
 ## Methods
 
 ### NewSSHPublicKey
 
-`func NewSSHPublicKey(publicKey string, ) *SSHPublicKey`
+`func NewSSHPublicKey(publicKey NullableString, ) *SSHPublicKey`
 
 NewSSHPublicKey instantiates a new SSHPublicKey object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,16 @@ and a boolean to check if the value has been set.
 SetPublicKey sets PublicKey field to given value.
 
 
+### SetPublicKeyNil
+
+`func (o *SSHPublicKey) SetPublicKeyNil(b bool)`
+
+ SetPublicKeyNil sets the value for PublicKey to be an explicit nil
+
+### UnsetPublicKey
+`func (o *SSHPublicKey) UnsetPublicKey()`
+
+UnsetPublicKey ensures that no value is present for PublicKey, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

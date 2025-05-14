@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **string** | The email of the user | 
 **Password** | **string** | The password of the user | 
-**Data** | **map[string]interface{}** | The data for the LDAP authentication request. | 
+**Data** | **map[string]interface{}** | The data for the SAML authentication request. | 
 
 ## Methods
 

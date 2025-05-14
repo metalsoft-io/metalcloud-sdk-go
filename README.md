@@ -127,6 +127,11 @@ Class | Method | HTTP request | Description
 *DriveAPI* | [**PatchDriveConfig**](docs/DriveAPI.md#patchdriveconfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/config | Updates the config of a Drive
 *DriveAPI* | [**PatchDriveMeta**](docs/DriveAPI.md#patchdrivemeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/meta | Updates the meta of a Drive
 *DriveAPI* | [**UpdateDriveServerInstanceGroupHostsBulk**](docs/DriveAPI.md#updatedriveserverinstancegrouphostsbulk) | **Post** /api/v2/infrastructures/{infrastructureId}/drives/{driveId}/actions/modify-server-instance-group-hosts-bulk | Updates Server Instance Group Hosts on the Drive
+*EmailTemplateAPI* | [**CreateEmailTemplate**](docs/EmailTemplateAPI.md#createemailtemplate) | **Post** /api/v2/email-templates | Creates an Email Template.
+*EmailTemplateAPI* | [**DeleteEmailTemplate**](docs/EmailTemplateAPI.md#deleteemailtemplate) | **Delete** /api/v2/email-templates/{emailTemplateName} | Delete Email Template
+*EmailTemplateAPI* | [**EmailTemplatesControllerPatchEmailTemplate**](docs/EmailTemplateAPI.md#emailtemplatescontrollerpatchemailtemplate) | **Patch** /api/v2/email-templates/{emailTemplateName} | Update a EmailTemplate
+*EmailTemplateAPI* | [**GetEmailTemplateByName**](docs/EmailTemplateAPI.md#getemailtemplatebyname) | **Get** /api/v2/email-templates/{emailTemplateName} | Get Email Template by Name
+*EmailTemplateAPI* | [**GetEmailTemplates**](docs/EmailTemplateAPI.md#getemailtemplates) | **Get** /api/v2/email-templates | Get all Email Templates
 *EventAPI* | [**GetEvent**](docs/EventAPI.md#getevent) | **Get** /api/v2/events/{eventId} | Get Event information
 *EventAPI* | [**GetEvents**](docs/EventAPI.md#getevents) | **Get** /api/v2/events | Get all Events
 *ExtensionAPI* | [**ArchiveExtension**](docs/ExtensionAPI.md#archiveextension) | **Post** /api/v2/extensions/{extensionId}/actions/archive | Archive published extension
@@ -264,7 +269,6 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**DeleteNetworkDevice**](docs/NetworkDeviceAPI.md#deletenetworkdevice) | **Delete** /api/v2/network-devices/{networkDeviceId} | Delete Network Device
 *NetworkDeviceAPI* | [**DiscoverNetworkDevice**](docs/NetworkDeviceAPI.md#discovernetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/discover | Discover network device interfaces, hardware and software configuration
 *NetworkDeviceAPI* | [**EnableNetworkDeviceSyslog**](docs/NetworkDeviceAPI.md#enablenetworkdevicesyslog) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/syslog-subscribe | Enables remote syslog for a network device
-*NetworkDeviceAPI* | [**GetIscsiBootServers**](docs/NetworkDeviceAPI.md#getiscsibootservers) | **Get** /api/v2/network-devices/{networkDeviceId}/iscsi-boot-servers | Returns information about servers which are setup to boot from iSCSI block devices. This is useful in the event of a switch device reboot
 *NetworkDeviceAPI* | [**GetNetworkDevice**](docs/NetworkDeviceAPI.md#getnetworkdevice) | **Get** /api/v2/network-devices/{networkDeviceId} | Get Network Device
 *NetworkDeviceAPI* | [**GetNetworkDeviceCredentials**](docs/NetworkDeviceAPI.md#getnetworkdevicecredentials) | **Get** /api/v2/network-devices/{networkDeviceId}/credentials | Get Network Device credentials
 *NetworkDeviceAPI* | [**GetNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#getnetworkdevicedefaults) | **Get** /api/v2/network-devices/defaults/{siteId} | Get network device defaults for a site
@@ -383,6 +387,7 @@ Class | Method | HTTP request | Description
 *ServerInstanceAPI* | [**GetServerInstanceDrives**](docs/ServerInstanceAPI.md#getserverinstancedrives) | **Get** /api/v2/server-instances/{serverInstanceId}/drives | Get Server Instance Drives
 *ServerInstanceAPI* | [**GetServerInstanceInterface**](docs/ServerInstanceAPI.md#getserverinstanceinterface) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId} | Get Server Instance Interface details
 *ServerInstanceAPI* | [**GetServerInstanceInterfaces**](docs/ServerInstanceAPI.md#getserverinstanceinterfaces) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces | Get Server Instance Interfaces
+*ServerInstanceAPI* | [**GetServerInstanceOSInstallationData**](docs/ServerInstanceAPI.md#getserverinstanceosinstallationdata) | **Get** /api/v2/server-instances/{serverInstanceId}/os-installation-data | Get server instance OS installation data
 *ServerInstanceAPI* | [**GetServerInstanceStatistics**](docs/ServerInstanceAPI.md#getserverinstancestatistics) | **Get** /api/v2/server-instances/statistics | Get Server Instance counters
 *ServerInstanceAPI* | [**GetServerInstanceVariables**](docs/ServerInstanceAPI.md#getserverinstancevariables) | **Get** /api/v2/server-instances/{serverInstanceId}/variables | Get server instance variables
 *ServerInstanceAPI* | [**GetServerInstances**](docs/ServerInstanceAPI.md#getserverinstances) | **Get** /api/v2/server-instances | List Server Instances
@@ -437,16 +442,15 @@ Class | Method | HTTP request | Description
 *StorageAPI* | [**CreateStorageNetworkDeviceConfiguration**](docs/StorageAPI.md#createstoragenetworkdeviceconfiguration) | **Post** /api/v2/storages/{storageId}/network-device-configurations | Creates a Storage Network Device Configuration
 *StorageAPI* | [**DeleteStorage**](docs/StorageAPI.md#deletestorage) | **Delete** /api/v2/storages/{storageId} | Deletes a Storage
 *StorageAPI* | [**DeleteStorageNetworkDeviceConfiguration**](docs/StorageAPI.md#deletestoragenetworkdeviceconfiguration) | **Delete** /api/v2/storages/{storageId}/network-device-configurations/{storageNetworkDeviceConfigurationId} | Deletes a Storage Network Device Configuration
-*StorageAPI* | [**ExecuteStorageAction**](docs/StorageAPI.md#executestorageaction) | **Post** /api/v2/storages/{storageId}/actions/update-cache | Execute a Storage action
 *StorageAPI* | [**GetStorage**](docs/StorageAPI.md#getstorage) | **Get** /api/v2/storages/{storageId} | Retrieves a Storage
 *StorageAPI* | [**GetStorageBuckets**](docs/StorageAPI.md#getstoragebuckets) | **Get** /api/v2/storages/{storageId}/buckets | Get all Buckets linked to the specified storage
 *StorageAPI* | [**GetStorageCredentials**](docs/StorageAPI.md#getstoragecredentials) | **Get** /api/v2/storages/{storageId}/credentials | Get Storage credentials
 *StorageAPI* | [**GetStorageDrives**](docs/StorageAPI.md#getstoragedrives) | **Get** /api/v2/storages/{storageId}/drives | Get all Drives linked to the specified storage
 *StorageAPI* | [**GetStorageFileShares**](docs/StorageAPI.md#getstoragefileshares) | **Get** /api/v2/storages/{storageId}/file-shares | Get all File Shares linked to the specified storage
-*StorageAPI* | [**GetStorageIscsiBootServers**](docs/StorageAPI.md#getstorageiscsibootservers) | **Get** /api/v2/storages/{storageId}/iscsi-boot-servers | Returns information about servers which are setup to boot from iSCSI block devices
 *StorageAPI* | [**GetStorageNetworkDeviceConfigurations**](docs/StorageAPI.md#getstoragenetworkdeviceconfigurations) | **Get** /api/v2/storages/{storageId}/network-device-configurations | Retrieves Storage Network Device Configurations
-*StorageAPI* | [**GetStorageStatistics**](docs/StorageAPI.md#getstoragestatistics) | **Get** /api/v2/storages/statistics | Get Storages statistics
+*StorageAPI* | [**GetStorageStatistics**](docs/StorageAPI.md#getstoragestatistics) | **Get** /api/v2/storages/{storageId}/statistics | Get Storages statistics
 *StorageAPI* | [**GetStorages**](docs/StorageAPI.md#getstorages) | **Get** /api/v2/storages | Get a list of Storages
+*StorageAPI* | [**GetStoragesStatistics**](docs/StorageAPI.md#getstoragesstatistics) | **Get** /api/v2/storages/statistics | Get statistics for all Storages
 *StorageAPI* | [**UpdateStorage**](docs/StorageAPI.md#updatestorage) | **Patch** /api/v2/storages/{storageId} | Updates a Storage
 *StorageAPI* | [**UpdateStorageNetworkDeviceConfiguration**](docs/StorageAPI.md#updatestoragenetworkdeviceconfiguration) | **Patch** /api/v2/storages/{storageId}/network-device-configurations/{storageNetworkDeviceConfigurationId} | Updates a Storage Network Device Configuration
 *SubnetAPI* | [**CreateSubnet**](docs/SubnetAPI.md#createsubnet) | **Post** /api/v2/subnets | Create a subnet.
@@ -478,6 +482,7 @@ Class | Method | HTTP request | Description
 *UsersAPI* | [**ChangeUserAccount**](docs/UsersAPI.md#changeuseraccount) | **Post** /api/v2/users/{userId}/actions/change-account | Change account for user
 *UsersAPI* | [**CreateUserAuthorized**](docs/UsersAPI.md#createuserauthorized) | **Post** /api/v2/users | Creates another user
 *UsersAPI* | [**DeleteUserSshKey**](docs/UsersAPI.md#deleteusersshkey) | **Delete** /api/v2/users/{userId}/ssh-keys/{keyId} | Delete SSH key for user
+*UsersAPI* | [**GetDefaultUserLimits**](docs/UsersAPI.md#getdefaultuserlimits) | **Get** /api/v2/users/{userId}/default-limits | Get default user limits
 *UsersAPI* | [**GetUser**](docs/UsersAPI.md#getuser) | **Get** /api/v2/users/{userId} | Get user
 *UsersAPI* | [**GetUserChildDelegates**](docs/UsersAPI.md#getuserchilddelegates) | **Get** /api/v2/users/{userId}/child-delegates | Get user child delegates by ID
 *UsersAPI* | [**GetUserConfiguration**](docs/UsersAPI.md#getuserconfiguration) | **Get** /api/v2/users/{userId}/config | Get user configuration by ID
@@ -533,11 +538,13 @@ Class | Method | HTTP request | Description
 *VMPoolAPI* | [**GetVMPoolClusterHost**](docs/VMPoolAPI.md#getvmpoolclusterhost) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId} | Retrieves a VM Cluster Host
 *VMPoolAPI* | [**GetVMPoolClusterHostInterface**](docs/VMPoolAPI.md#getvmpoolclusterhostinterface) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId} | Retrieves a VM Cluster Host Interface
 *VMPoolAPI* | [**GetVMPoolClusterHostInterfaces**](docs/VMPoolAPI.md#getvmpoolclusterhostinterfaces) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces | Retrieves a list of VM Cluster Host Interfaces
+*VMPoolAPI* | [**GetVMPoolClusterHostStatistics**](docs/VMPoolAPI.md#getvmpoolclusterhoststatistics) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/statistics | Retrieves VM Cluster Host Statistics
 *VMPoolAPI* | [**GetVMPoolClusterHostVMs**](docs/VMPoolAPI.md#getvmpoolclusterhostvms) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/vms | Retrieves a list of VM Cluster Host VMs
 *VMPoolAPI* | [**GetVMPoolClusterHosts**](docs/VMPoolAPI.md#getvmpoolclusterhosts) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts | Get list of VM Cluster Hosts linked to the VM Pool
 *VMPoolAPI* | [**GetVMPoolCredentials**](docs/VMPoolAPI.md#getvmpoolcredentials) | **Get** /api/v2/vm-pools/{vmPoolId}/credentials | Get VM Pool credentials
 *VMPoolAPI* | [**GetVMPoolVMs**](docs/VMPoolAPI.md#getvmpoolvms) | **Get** /api/v2/vm-pools/{vmPoolId}/vms | Returns all VMs linked to the VM Pool
 *VMPoolAPI* | [**GetVMPools**](docs/VMPoolAPI.md#getvmpools) | **Get** /api/v2/vm-pools | Get all VM Pools
+*VMPoolAPI* | [**GetVmPoolStatistics**](docs/VMPoolAPI.md#getvmpoolstatistics) | **Get** /api/v2/vm-pools/{vmPoolId}/statistics | Get VM Pool statistics
 *VMPoolAPI* | [**UpdateVMPool**](docs/VMPoolAPI.md#updatevmpool) | **Patch** /api/v2/vm-pools/{vmPoolId} | Updates VM Pool information
 *VMPoolAPI* | [**UpdateVMPoolClusterHostInterface**](docs/VMPoolAPI.md#updatevmpoolclusterhostinterface) | **Patch** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId} | Updates a VM Cluster Host Interface
 *VMTypeAPI* | [**CreateVMType**](docs/VMTypeAPI.md#createvmtype) | **Post** /api/v2/vm-types | Creates a VM Type
@@ -685,6 +692,10 @@ Class | Method | HTTP request | Description
  - [DriveMeta](docs/DriveMeta.md)
  - [DriveVariables](docs/DriveVariables.md)
  - [EditRole](docs/EditRole.md)
+ - [EmailTemplate](docs/EmailTemplate.md)
+ - [EmailTemplateCreate](docs/EmailTemplateCreate.md)
+ - [EmailTemplateList](docs/EmailTemplateList.md)
+ - [EmailTemplateUpdate](docs/EmailTemplateUpdate.md)
  - [EthernetFabric](docs/EthernetFabric.md)
  - [Event](docs/Event.md)
  - [EventPaginatedList](docs/EventPaginatedList.md)
@@ -754,6 +765,7 @@ Class | Method | HTTP request | Description
  - [InfrastructureDeployOptions](docs/InfrastructureDeployOptions.md)
  - [InfrastructureDeployShutdownOptions](docs/InfrastructureDeployShutdownOptions.md)
  - [InfrastructureMeta](docs/InfrastructureMeta.md)
+ - [InfrastructureOSInstallationData](docs/InfrastructureOSInstallationData.md)
  - [InfrastructurePaginatedList](docs/InfrastructurePaginatedList.md)
  - [InfrastructurePolicy](docs/InfrastructurePolicy.md)
  - [InfrastructureResourceUtilizationResponse](docs/InfrastructureResourceUtilizationResponse.md)
@@ -767,7 +779,6 @@ Class | Method | HTTP request | Description
  - [Ipv6SubnetAllocation](docs/Ipv6SubnetAllocation.md)
  - [Ipv6SubnetAllocationStrategy](docs/Ipv6SubnetAllocationStrategy.md)
  - [Ipv6SubnetAllocationStrategy1DataItem](docs/Ipv6SubnetAllocationStrategy1DataItem.md)
- - [IscsiBootServerInfo](docs/IscsiBootServerInfo.md)
  - [Job](docs/Job.md)
  - [JobArchive](docs/JobArchive.md)
  - [JobArchivePaginatedList](docs/JobArchivePaginatedList.md)
@@ -886,6 +897,7 @@ Class | Method | HTTP request | Description
  - [ServerInstance](docs/ServerInstance.md)
  - [ServerInstanceClusterCustomInfo](docs/ServerInstanceClusterCustomInfo.md)
  - [ServerInstanceConfiguration](docs/ServerInstanceConfiguration.md)
+ - [ServerInstanceContextOSInstallationData](docs/ServerInstanceContextOSInstallationData.md)
  - [ServerInstanceContextVariables](docs/ServerInstanceContextVariables.md)
  - [ServerInstanceCreate](docs/ServerInstanceCreate.md)
  - [ServerInstanceGroup](docs/ServerInstanceGroup.md)
@@ -896,6 +908,7 @@ Class | Method | HTTP request | Description
  - [ServerInstanceGroupInterfacePaginatedList](docs/ServerInstanceGroupInterfacePaginatedList.md)
  - [ServerInstanceGroupNetworkConnection](docs/ServerInstanceGroupNetworkConnection.md)
  - [ServerInstanceGroupNetworkConnectionsList](docs/ServerInstanceGroupNetworkConnectionsList.md)
+ - [ServerInstanceGroupOSInstallationData](docs/ServerInstanceGroupOSInstallationData.md)
  - [ServerInstanceGroupPaginatedList](docs/ServerInstanceGroupPaginatedList.md)
  - [ServerInstanceGroupUpdate](docs/ServerInstanceGroupUpdate.md)
  - [ServerInstanceGroupVariables](docs/ServerInstanceGroupVariables.md)
@@ -903,6 +916,7 @@ Class | Method | HTTP request | Description
  - [ServerInstanceInterfaceConfiguration](docs/ServerInstanceInterfaceConfiguration.md)
  - [ServerInstanceInterfacePaginatedList](docs/ServerInstanceInterfacePaginatedList.md)
  - [ServerInstanceInterfaceUpdate](docs/ServerInstanceInterfaceUpdate.md)
+ - [ServerInstanceOSInstallationData](docs/ServerInstanceOSInstallationData.md)
  - [ServerInstanceOsInstallImageBuildInfo](docs/ServerInstanceOsInstallImageBuildInfo.md)
  - [ServerInstancePaginatedList](docs/ServerInstancePaginatedList.md)
  - [ServerInstancePowerSet](docs/ServerInstancePowerSet.md)
@@ -915,6 +929,7 @@ Class | Method | HTTP request | Description
  - [ServerInstanceVariables](docs/ServerInstanceVariables.md)
  - [ServerInterface](docs/ServerInterface.md)
  - [ServerMetricsInfo](docs/ServerMetricsInfo.md)
+ - [ServerOSInstallationData](docs/ServerOSInstallationData.md)
  - [ServerPaginatedList](docs/ServerPaginatedList.md)
  - [ServerPolicy](docs/ServerPolicy.md)
  - [ServerPolicyUpdate](docs/ServerPolicyUpdate.md)
@@ -945,10 +960,12 @@ Class | Method | HTTP request | Description
  - [SharedDriveVariables](docs/SharedDriveVariables.md)
  - [Site](docs/Site.md)
  - [SiteConfig](docs/SiteConfig.md)
+ - [SiteConfigOSInstallationData](docs/SiteConfigOSInstallationData.md)
  - [SiteConfigUpdate](docs/SiteConfigUpdate.md)
  - [SiteConfigVariables](docs/SiteConfigVariables.md)
  - [SiteControllerSeenAliveStatus](docs/SiteControllerSeenAliveStatus.md)
  - [SiteCreate](docs/SiteCreate.md)
+ - [SiteOSInstallationData](docs/SiteOSInstallationData.md)
  - [SitePaginatedList](docs/SitePaginatedList.md)
  - [SiteStatistics](docs/SiteStatistics.md)
  - [SiteUpdate](docs/SiteUpdate.md)
@@ -960,6 +977,7 @@ Class | Method | HTTP request | Description
  - [StorageOptions](docs/StorageOptions.md)
  - [StoragePaginatedList](docs/StoragePaginatedList.md)
  - [StorageStatistics](docs/StorageStatistics.md)
+ - [StoragesStatistics](docs/StoragesStatistics.md)
  - [Subnet](docs/Subnet.md)
  - [SubnetPaginatedList](docs/SubnetPaginatedList.md)
  - [SwitchPosition](docs/SwitchPosition.md)
@@ -1051,6 +1069,7 @@ Class | Method | HTTP request | Description
  - [VMPoolHosts](docs/VMPoolHosts.md)
  - [VMPoolHostsPaginatedList](docs/VMPoolHostsPaginatedList.md)
  - [VMPoolPaginatedList](docs/VMPoolPaginatedList.md)
+ - [VMPoolStatistics](docs/VMPoolStatistics.md)
  - [VMType](docs/VMType.md)
  - [VMTypePaginatedList](docs/VMTypePaginatedList.md)
  - [Variable](docs/Variable.md)

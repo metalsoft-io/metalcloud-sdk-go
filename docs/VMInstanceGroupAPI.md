@@ -794,7 +794,7 @@ Name | Type | Description  | Notes
 
 ## UpdateVMInstanceGroupConfig
 
-> VMInstanceGroup UpdateVMInstanceGroupConfig(ctx, infrastructureId, vmInstanceGroupId).UpdateVMInstanceGroup(updateVMInstanceGroup).IfMatch(ifMatch).Execute()
+> VMInstanceGroupConfiguration UpdateVMInstanceGroupConfig(ctx, infrastructureId, vmInstanceGroupId).UpdateVMInstanceGroup(updateVMInstanceGroup).IfMatch(ifMatch).Execute()
 
 Updates VM Instance Group information
 
@@ -825,7 +825,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VMInstanceGroupAPI.UpdateVMInstanceGroupConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateVMInstanceGroupConfig`: VMInstanceGroup
+	// response from `UpdateVMInstanceGroupConfig`: VMInstanceGroupConfiguration
 	fmt.Fprintf(os.Stdout, "Response from `VMInstanceGroupAPI.UpdateVMInstanceGroupConfig`: %v\n", resp)
 }
 ```
@@ -853,7 +853,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VMInstanceGroup**](VMInstanceGroup.md)
+[**VMInstanceGroupConfiguration**](VMInstanceGroupConfiguration.md)
 
 ### Authorization
 

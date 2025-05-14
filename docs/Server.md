@@ -48,7 +48,8 @@ Name | Type | Description | Notes
 **ServerStatus** | **string** | The status of the server. | 
 **ServerComments** | Pointer to **string** | The comments of the server. | [optional] 
 **ServerCapacityMbps** | Pointer to **float32** | The capacity mbps of the server. | [optional] 
-**ServerDiskWipe** | Pointer to **float32** | Flag to indicate if the disks need to be wiped during BDK boot. | [optional] 
+**ServerDiskWipe** | Pointer to **float32** | Flag to indicate if the disks need to be wiped. | [optional] 
+**RequiresManualCleaning** | Pointer to **float32** | Flag to indicate if the server requires manual cleaning. | [optional] 
 **ServerDiskCount** | Pointer to **float32** | The number of disks of the server. | [optional] 
 **AdministrationState** | **string** | The administration state of the server. | 
 **ServerDhcpStatus** | **string** | The DHCP status of the server. | 
@@ -1176,6 +1177,31 @@ SetServerDiskWipe sets ServerDiskWipe field to given value.
 `func (o *Server) HasServerDiskWipe() bool`
 
 HasServerDiskWipe returns a boolean if a field has been set.
+
+### GetRequiresManualCleaning
+
+`func (o *Server) GetRequiresManualCleaning() float32`
+
+GetRequiresManualCleaning returns the RequiresManualCleaning field if non-nil, zero value otherwise.
+
+### GetRequiresManualCleaningOk
+
+`func (o *Server) GetRequiresManualCleaningOk() (*float32, bool)`
+
+GetRequiresManualCleaningOk returns a tuple with the RequiresManualCleaning field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequiresManualCleaning
+
+`func (o *Server) SetRequiresManualCleaning(v float32)`
+
+SetRequiresManualCleaning sets RequiresManualCleaning field to given value.
+
+### HasRequiresManualCleaning
+
+`func (o *Server) HasRequiresManualCleaning() bool`
+
+HasRequiresManualCleaning returns a boolean if a field has been set.
 
 ### GetServerDiskCount
 

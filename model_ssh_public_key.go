@@ -22,7 +22,7 @@ var _ MappedNullable = &SSHPublicKey{}
 // SSHPublicKey struct for SSHPublicKey
 type SSHPublicKey struct {
 	// The SSH key public key.
-	PublicKey string `json:"publicKey"`
+	PublicKey NullableString `json:"publicKey"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _SSHPublicKey SSHPublicKey
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSSHPublicKey(publicKey string) *SSHPublicKey {
+func NewSSHPublicKey(publicKey NullableString) *SSHPublicKey {
 	this := SSHPublicKey{}
 	this.PublicKey = publicKey
 	return &this
@@ -47,27 +47,29 @@ func NewSSHPublicKeyWithDefaults() *SSHPublicKey {
 }
 
 // GetPublicKey returns the PublicKey field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *SSHPublicKey) GetPublicKey() string {
-	if o == nil {
+	if o == nil || o.PublicKey.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.PublicKey
+	return *o.PublicKey.Get()
 }
 
 // GetPublicKeyOk returns a tuple with the PublicKey field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SSHPublicKey) GetPublicKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PublicKey, true
+	return o.PublicKey.Get(), o.PublicKey.IsSet()
 }
 
 // SetPublicKey sets field value
 func (o *SSHPublicKey) SetPublicKey(v string) {
-	o.PublicKey = v
+	o.PublicKey.Set(&v)
 }
 
 func (o SSHPublicKey) MarshalJSON() ([]byte, error) {
@@ -80,7 +82,7 @@ func (o SSHPublicKey) MarshalJSON() ([]byte, error) {
 
 func (o SSHPublicKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["publicKey"] = o.PublicKey
+	toSerialize["publicKey"] = o.PublicKey.Get()
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value

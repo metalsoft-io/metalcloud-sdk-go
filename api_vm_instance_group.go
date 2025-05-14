@@ -1474,7 +1474,7 @@ func (r VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest) IfMatch(ifMatch st
 	return r
 }
 
-func (r VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest) Execute() (*VMInstanceGroup, *http.Response, error) {
+func (r VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest) Execute() (*VMInstanceGroupConfiguration, *http.Response, error) {
 	return r.ApiService.UpdateVMInstanceGroupConfigExecute(r)
 }
 
@@ -1498,13 +1498,13 @@ func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupConfig(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return VMInstanceGroup
-func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupConfigExecute(r VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest) (*VMInstanceGroup, *http.Response, error) {
+//  @return VMInstanceGroupConfiguration
+func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupConfigExecute(r VMInstanceGroupAPIUpdateVMInstanceGroupConfigRequest) (*VMInstanceGroupConfiguration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *VMInstanceGroup
+		localVarReturnValue  *VMInstanceGroupConfiguration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.UpdateVMInstanceGroupConfig")

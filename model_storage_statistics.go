@@ -21,24 +21,12 @@ var _ MappedNullable = &StorageStatistics{}
 
 // StorageStatistics struct for StorageStatistics
 type StorageStatistics struct {
-	// Number of storages in maintenance
-	MaintenanceCount float32 `json:"maintenanceCount"`
-	// Number of experimental storages
-	ExperimentalCount float32 `json:"experimentalCount"`
-	// Number of storages low on space
-	LowSpaceCount float32 `json:"lowSpaceCount"`
-	// Total used space across all storages
-	UsedSpace float32 `json:"usedSpace"`
-	// Total free space across all storages
-	FreeSpace float32 `json:"freeSpace"`
-	// Number of storages by type
-	Types map[string]interface{} `json:"types"`
-	// Number of storages in pending state
-	PendingCount float32 `json:"pendingCount"`
-	// Number of storages in ready state
-	ReadyCount float32 `json:"readyCount"`
-	// Number of storages in active state
-	ActiveCount float32 `json:"activeCount"`
+	// Total capacity in GB
+	TotalSpaceGB float32 `json:"totalSpaceGB"`
+	// Total used space in GB
+	UsedSpaceGB float32 `json:"usedSpaceGB"`
+	// Total free space in GB
+	FreeSpaceGB float32 `json:"freeSpaceGB"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,17 +36,11 @@ type _StorageStatistics StorageStatistics
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorageStatistics(maintenanceCount float32, experimentalCount float32, lowSpaceCount float32, usedSpace float32, freeSpace float32, types map[string]interface{}, pendingCount float32, readyCount float32, activeCount float32) *StorageStatistics {
+func NewStorageStatistics(totalSpaceGB float32, usedSpaceGB float32, freeSpaceGB float32) *StorageStatistics {
 	this := StorageStatistics{}
-	this.MaintenanceCount = maintenanceCount
-	this.ExperimentalCount = experimentalCount
-	this.LowSpaceCount = lowSpaceCount
-	this.UsedSpace = usedSpace
-	this.FreeSpace = freeSpace
-	this.Types = types
-	this.PendingCount = pendingCount
-	this.ReadyCount = readyCount
-	this.ActiveCount = activeCount
+	this.TotalSpaceGB = totalSpaceGB
+	this.UsedSpaceGB = usedSpaceGB
+	this.FreeSpaceGB = freeSpaceGB
 	return &this
 }
 
@@ -70,220 +52,76 @@ func NewStorageStatisticsWithDefaults() *StorageStatistics {
 	return &this
 }
 
-// GetMaintenanceCount returns the MaintenanceCount field value
-func (o *StorageStatistics) GetMaintenanceCount() float32 {
+// GetTotalSpaceGB returns the TotalSpaceGB field value
+func (o *StorageStatistics) GetTotalSpaceGB() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.MaintenanceCount
+	return o.TotalSpaceGB
 }
 
-// GetMaintenanceCountOk returns a tuple with the MaintenanceCount field value
+// GetTotalSpaceGBOk returns a tuple with the TotalSpaceGB field value
 // and a boolean to check if the value has been set.
-func (o *StorageStatistics) GetMaintenanceCountOk() (*float32, bool) {
+func (o *StorageStatistics) GetTotalSpaceGBOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.MaintenanceCount, true
+	return &o.TotalSpaceGB, true
 }
 
-// SetMaintenanceCount sets field value
-func (o *StorageStatistics) SetMaintenanceCount(v float32) {
-	o.MaintenanceCount = v
+// SetTotalSpaceGB sets field value
+func (o *StorageStatistics) SetTotalSpaceGB(v float32) {
+	o.TotalSpaceGB = v
 }
 
-// GetExperimentalCount returns the ExperimentalCount field value
-func (o *StorageStatistics) GetExperimentalCount() float32 {
+// GetUsedSpaceGB returns the UsedSpaceGB field value
+func (o *StorageStatistics) GetUsedSpaceGB() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.ExperimentalCount
+	return o.UsedSpaceGB
 }
 
-// GetExperimentalCountOk returns a tuple with the ExperimentalCount field value
+// GetUsedSpaceGBOk returns a tuple with the UsedSpaceGB field value
 // and a boolean to check if the value has been set.
-func (o *StorageStatistics) GetExperimentalCountOk() (*float32, bool) {
+func (o *StorageStatistics) GetUsedSpaceGBOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ExperimentalCount, true
+	return &o.UsedSpaceGB, true
 }
 
-// SetExperimentalCount sets field value
-func (o *StorageStatistics) SetExperimentalCount(v float32) {
-	o.ExperimentalCount = v
+// SetUsedSpaceGB sets field value
+func (o *StorageStatistics) SetUsedSpaceGB(v float32) {
+	o.UsedSpaceGB = v
 }
 
-// GetLowSpaceCount returns the LowSpaceCount field value
-func (o *StorageStatistics) GetLowSpaceCount() float32 {
+// GetFreeSpaceGB returns the FreeSpaceGB field value
+func (o *StorageStatistics) GetFreeSpaceGB() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.LowSpaceCount
+	return o.FreeSpaceGB
 }
 
-// GetLowSpaceCountOk returns a tuple with the LowSpaceCount field value
+// GetFreeSpaceGBOk returns a tuple with the FreeSpaceGB field value
 // and a boolean to check if the value has been set.
-func (o *StorageStatistics) GetLowSpaceCountOk() (*float32, bool) {
+func (o *StorageStatistics) GetFreeSpaceGBOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LowSpaceCount, true
+	return &o.FreeSpaceGB, true
 }
 
-// SetLowSpaceCount sets field value
-func (o *StorageStatistics) SetLowSpaceCount(v float32) {
-	o.LowSpaceCount = v
-}
-
-// GetUsedSpace returns the UsedSpace field value
-func (o *StorageStatistics) GetUsedSpace() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.UsedSpace
-}
-
-// GetUsedSpaceOk returns a tuple with the UsedSpace field value
-// and a boolean to check if the value has been set.
-func (o *StorageStatistics) GetUsedSpaceOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UsedSpace, true
-}
-
-// SetUsedSpace sets field value
-func (o *StorageStatistics) SetUsedSpace(v float32) {
-	o.UsedSpace = v
-}
-
-// GetFreeSpace returns the FreeSpace field value
-func (o *StorageStatistics) GetFreeSpace() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.FreeSpace
-}
-
-// GetFreeSpaceOk returns a tuple with the FreeSpace field value
-// and a boolean to check if the value has been set.
-func (o *StorageStatistics) GetFreeSpaceOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FreeSpace, true
-}
-
-// SetFreeSpace sets field value
-func (o *StorageStatistics) SetFreeSpace(v float32) {
-	o.FreeSpace = v
-}
-
-// GetTypes returns the Types field value
-func (o *StorageStatistics) GetTypes() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-
-	return o.Types
-}
-
-// GetTypesOk returns a tuple with the Types field value
-// and a boolean to check if the value has been set.
-func (o *StorageStatistics) GetTypesOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
-	}
-	return o.Types, true
-}
-
-// SetTypes sets field value
-func (o *StorageStatistics) SetTypes(v map[string]interface{}) {
-	o.Types = v
-}
-
-// GetPendingCount returns the PendingCount field value
-func (o *StorageStatistics) GetPendingCount() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.PendingCount
-}
-
-// GetPendingCountOk returns a tuple with the PendingCount field value
-// and a boolean to check if the value has been set.
-func (o *StorageStatistics) GetPendingCountOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.PendingCount, true
-}
-
-// SetPendingCount sets field value
-func (o *StorageStatistics) SetPendingCount(v float32) {
-	o.PendingCount = v
-}
-
-// GetReadyCount returns the ReadyCount field value
-func (o *StorageStatistics) GetReadyCount() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.ReadyCount
-}
-
-// GetReadyCountOk returns a tuple with the ReadyCount field value
-// and a boolean to check if the value has been set.
-func (o *StorageStatistics) GetReadyCountOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ReadyCount, true
-}
-
-// SetReadyCount sets field value
-func (o *StorageStatistics) SetReadyCount(v float32) {
-	o.ReadyCount = v
-}
-
-// GetActiveCount returns the ActiveCount field value
-func (o *StorageStatistics) GetActiveCount() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.ActiveCount
-}
-
-// GetActiveCountOk returns a tuple with the ActiveCount field value
-// and a boolean to check if the value has been set.
-func (o *StorageStatistics) GetActiveCountOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ActiveCount, true
-}
-
-// SetActiveCount sets field value
-func (o *StorageStatistics) SetActiveCount(v float32) {
-	o.ActiveCount = v
+// SetFreeSpaceGB sets field value
+func (o *StorageStatistics) SetFreeSpaceGB(v float32) {
+	o.FreeSpaceGB = v
 }
 
 func (o StorageStatistics) MarshalJSON() ([]byte, error) {
@@ -296,15 +134,9 @@ func (o StorageStatistics) MarshalJSON() ([]byte, error) {
 
 func (o StorageStatistics) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["maintenanceCount"] = o.MaintenanceCount
-	toSerialize["experimentalCount"] = o.ExperimentalCount
-	toSerialize["lowSpaceCount"] = o.LowSpaceCount
-	toSerialize["usedSpace"] = o.UsedSpace
-	toSerialize["freeSpace"] = o.FreeSpace
-	toSerialize["types"] = o.Types
-	toSerialize["pendingCount"] = o.PendingCount
-	toSerialize["readyCount"] = o.ReadyCount
-	toSerialize["activeCount"] = o.ActiveCount
+	toSerialize["totalSpaceGB"] = o.TotalSpaceGB
+	toSerialize["usedSpaceGB"] = o.UsedSpaceGB
+	toSerialize["freeSpaceGB"] = o.FreeSpaceGB
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -318,15 +150,9 @@ func (o *StorageStatistics) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"maintenanceCount",
-		"experimentalCount",
-		"lowSpaceCount",
-		"usedSpace",
-		"freeSpace",
-		"types",
-		"pendingCount",
-		"readyCount",
-		"activeCount",
+		"totalSpaceGB",
+		"usedSpaceGB",
+		"freeSpaceGB",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -356,15 +182,9 @@ func (o *StorageStatistics) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "maintenanceCount")
-		delete(additionalProperties, "experimentalCount")
-		delete(additionalProperties, "lowSpaceCount")
-		delete(additionalProperties, "usedSpace")
-		delete(additionalProperties, "freeSpace")
-		delete(additionalProperties, "types")
-		delete(additionalProperties, "pendingCount")
-		delete(additionalProperties, "readyCount")
-		delete(additionalProperties, "activeCount")
+		delete(additionalProperties, "totalSpaceGB")
+		delete(additionalProperties, "usedSpaceGB")
+		delete(additionalProperties, "freeSpaceGB")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**GetServerInstanceDrives**](ServerInstanceAPI.md#GetServerInstanceDrives) | **Get** /api/v2/server-instances/{serverInstanceId}/drives | Get Server Instance Drives
 [**GetServerInstanceInterface**](ServerInstanceAPI.md#GetServerInstanceInterface) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces/{interfaceId} | Get Server Instance Interface details
 [**GetServerInstanceInterfaces**](ServerInstanceAPI.md#GetServerInstanceInterfaces) | **Get** /api/v2/server-instances/{serverInstanceId}/interfaces | Get Server Instance Interfaces
+[**GetServerInstanceOSInstallationData**](ServerInstanceAPI.md#GetServerInstanceOSInstallationData) | **Get** /api/v2/server-instances/{serverInstanceId}/os-installation-data | Get server instance OS installation data
 [**GetServerInstanceStatistics**](ServerInstanceAPI.md#GetServerInstanceStatistics) | **Get** /api/v2/server-instances/statistics | Get Server Instance counters
 [**GetServerInstanceVariables**](ServerInstanceAPI.md#GetServerInstanceVariables) | **Get** /api/v2/server-instances/{serverInstanceId}/variables | Get server instance variables
 [**GetServerInstances**](ServerInstanceAPI.md#GetServerInstances) | **Get** /api/v2/server-instances | List Server Instances
@@ -830,6 +831,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ServerInstanceInterfacePaginatedList**](ServerInstanceInterfacePaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServerInstanceOSInstallationData
+
+> ServerInstanceContextOSInstallationData GetServerInstanceOSInstallationData(ctx, serverInstanceId).Usage(usage).Execute()
+
+Get server instance OS installation data
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverInstanceId := int32(56) // int32 | 
+	usage := openapiclient.VariableUsageType("HTTPRequest") // VariableUsageType | Filter by variable usage (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerInstanceAPI.GetServerInstanceOSInstallationData(context.Background(), serverInstanceId).Usage(usage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetServerInstanceOSInstallationData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServerInstanceOSInstallationData`: ServerInstanceContextOSInstallationData
+	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.GetServerInstanceOSInstallationData`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverInstanceId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServerInstanceOSInstallationDataRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **usage** | [**VariableUsageType**](VariableUsageType.md) | Filter by variable usage | 
+
+### Return type
+
+[**ServerInstanceContextOSInstallationData**](ServerInstanceContextOSInstallationData.md)
 
 ### Authorization
 

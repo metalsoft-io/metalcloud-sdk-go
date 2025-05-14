@@ -33,6 +33,8 @@ type VlanLogicalNetwork struct {
 	FabricId int32 `json:"fabricId"`
 	InfrastructureId NullableInt32 `json:"infrastructureId"`
 	ServiceStatus GenericServiceStatus `json:"serviceStatus"`
+	LastAppliedLogicalNetworkProfileId NullableInt32 `json:"lastAppliedLogicalNetworkProfileId"`
+	LastLogicalNetworkProfileAppliedAt time.Time `json:"lastLogicalNetworkProfileAppliedAt"`
 	Config VlanLogicalNetworkConfig `json:"config"`
 	Vlan VlanLogicalNetworkVlanProperties `json:"vlan"`
 	Ipv4 VlanLogicalNetworkIpv4Properties `json:"ipv4"`
@@ -47,7 +49,7 @@ type _VlanLogicalNetwork VlanLogicalNetwork
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVlanLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, config VlanLogicalNetworkConfig, vlan VlanLogicalNetworkVlanProperties, ipv4 VlanLogicalNetworkIpv4Properties, ipv6 VlanLogicalNetworkIpv6Properties, routeDomainId NullableInt32) *VlanLogicalNetwork {
+func NewVlanLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config VlanLogicalNetworkConfig, vlan VlanLogicalNetworkVlanProperties, ipv4 VlanLogicalNetworkIpv4Properties, ipv6 VlanLogicalNetworkIpv6Properties, routeDomainId NullableInt32) *VlanLogicalNetwork {
 	this := VlanLogicalNetwork{}
 	this.Id = id
 	this.Label = label
@@ -60,6 +62,8 @@ func NewVlanLogicalNetwork(id int32, label string, name string, annotations map[
 	this.FabricId = fabricId
 	this.InfrastructureId = infrastructureId
 	this.ServiceStatus = serviceStatus
+	this.LastAppliedLogicalNetworkProfileId = lastAppliedLogicalNetworkProfileId
+	this.LastLogicalNetworkProfileAppliedAt = lastLogicalNetworkProfileAppliedAt
 	this.Config = config
 	this.Vlan = vlan
 	this.Ipv4 = ipv4
@@ -342,6 +346,56 @@ func (o *VlanLogicalNetwork) SetServiceStatus(v GenericServiceStatus) {
 	o.ServiceStatus = v
 }
 
+// GetLastAppliedLogicalNetworkProfileId returns the LastAppliedLogicalNetworkProfileId field value
+// If the value is explicit nil, the zero value for int32 will be returned
+func (o *VlanLogicalNetwork) GetLastAppliedLogicalNetworkProfileId() int32 {
+	if o == nil || o.LastAppliedLogicalNetworkProfileId.Get() == nil {
+		var ret int32
+		return ret
+	}
+
+	return *o.LastAppliedLogicalNetworkProfileId.Get()
+}
+
+// GetLastAppliedLogicalNetworkProfileIdOk returns a tuple with the LastAppliedLogicalNetworkProfileId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *VlanLogicalNetwork) GetLastAppliedLogicalNetworkProfileIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LastAppliedLogicalNetworkProfileId.Get(), o.LastAppliedLogicalNetworkProfileId.IsSet()
+}
+
+// SetLastAppliedLogicalNetworkProfileId sets field value
+func (o *VlanLogicalNetwork) SetLastAppliedLogicalNetworkProfileId(v int32) {
+	o.LastAppliedLogicalNetworkProfileId.Set(&v)
+}
+
+// GetLastLogicalNetworkProfileAppliedAt returns the LastLogicalNetworkProfileAppliedAt field value
+func (o *VlanLogicalNetwork) GetLastLogicalNetworkProfileAppliedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.LastLogicalNetworkProfileAppliedAt
+}
+
+// GetLastLogicalNetworkProfileAppliedAtOk returns a tuple with the LastLogicalNetworkProfileAppliedAt field value
+// and a boolean to check if the value has been set.
+func (o *VlanLogicalNetwork) GetLastLogicalNetworkProfileAppliedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastLogicalNetworkProfileAppliedAt, true
+}
+
+// SetLastLogicalNetworkProfileAppliedAt sets field value
+func (o *VlanLogicalNetwork) SetLastLogicalNetworkProfileAppliedAt(v time.Time) {
+	o.LastLogicalNetworkProfileAppliedAt = v
+}
+
 // GetConfig returns the Config field value
 func (o *VlanLogicalNetwork) GetConfig() VlanLogicalNetworkConfig {
 	if o == nil {
@@ -485,6 +539,8 @@ func (o VlanLogicalNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize["fabricId"] = o.FabricId
 	toSerialize["infrastructureId"] = o.InfrastructureId.Get()
 	toSerialize["serviceStatus"] = o.ServiceStatus
+	toSerialize["lastAppliedLogicalNetworkProfileId"] = o.LastAppliedLogicalNetworkProfileId.Get()
+	toSerialize["lastLogicalNetworkProfileAppliedAt"] = o.LastLogicalNetworkProfileAppliedAt
 	toSerialize["config"] = o.Config
 	toSerialize["vlan"] = o.Vlan
 	toSerialize["ipv4"] = o.Ipv4
@@ -514,6 +570,8 @@ func (o *VlanLogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 		"fabricId",
 		"infrastructureId",
 		"serviceStatus",
+		"lastAppliedLogicalNetworkProfileId",
+		"lastLogicalNetworkProfileAppliedAt",
 		"config",
 		"vlan",
 		"ipv4",
@@ -559,6 +617,8 @@ func (o *VlanLogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "fabricId")
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "serviceStatus")
+		delete(additionalProperties, "lastAppliedLogicalNetworkProfileId")
+		delete(additionalProperties, "lastLogicalNetworkProfileAppliedAt")
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "vlan")
 		delete(additionalProperties, "ipv4")

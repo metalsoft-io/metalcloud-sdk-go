@@ -10,11 +10,13 @@ Method | HTTP request | Description
 [**GetVMPoolClusterHost**](VMPoolAPI.md#GetVMPoolClusterHost) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId} | Retrieves a VM Cluster Host
 [**GetVMPoolClusterHostInterface**](VMPoolAPI.md#GetVMPoolClusterHostInterface) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId} | Retrieves a VM Cluster Host Interface
 [**GetVMPoolClusterHostInterfaces**](VMPoolAPI.md#GetVMPoolClusterHostInterfaces) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces | Retrieves a list of VM Cluster Host Interfaces
+[**GetVMPoolClusterHostStatistics**](VMPoolAPI.md#GetVMPoolClusterHostStatistics) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/statistics | Retrieves VM Cluster Host Statistics
 [**GetVMPoolClusterHostVMs**](VMPoolAPI.md#GetVMPoolClusterHostVMs) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/vms | Retrieves a list of VM Cluster Host VMs
 [**GetVMPoolClusterHosts**](VMPoolAPI.md#GetVMPoolClusterHosts) | **Get** /api/v2/vm-pools/{vmPoolId}/cluster-hosts | Get list of VM Cluster Hosts linked to the VM Pool
 [**GetVMPoolCredentials**](VMPoolAPI.md#GetVMPoolCredentials) | **Get** /api/v2/vm-pools/{vmPoolId}/credentials | Get VM Pool credentials
 [**GetVMPoolVMs**](VMPoolAPI.md#GetVMPoolVMs) | **Get** /api/v2/vm-pools/{vmPoolId}/vms | Returns all VMs linked to the VM Pool
 [**GetVMPools**](VMPoolAPI.md#GetVMPools) | **Get** /api/v2/vm-pools | Get all VM Pools
+[**GetVmPoolStatistics**](VMPoolAPI.md#GetVmPoolStatistics) | **Get** /api/v2/vm-pools/{vmPoolId}/statistics | Get VM Pool statistics
 [**UpdateVMPool**](VMPoolAPI.md#UpdateVMPool) | **Patch** /api/v2/vm-pools/{vmPoolId} | Updates VM Pool information
 [**UpdateVMPoolClusterHostInterface**](VMPoolAPI.md#UpdateVMPoolClusterHostInterface) | **Patch** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId} | Updates a VM Cluster Host Interface
 
@@ -446,6 +448,79 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetVMPoolClusterHostStatistics
+
+> VMPoolStatistics GetVMPoolClusterHostStatistics(ctx, vmPoolId, vmPoolClusterHostId).Execute()
+
+Retrieves VM Cluster Host Statistics
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	vmPoolId := float32(8.14) // float32 | 
+	vmPoolClusterHostId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VMPoolAPI.GetVMPoolClusterHostStatistics(context.Background(), vmPoolId, vmPoolClusterHostId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMPoolAPI.GetVMPoolClusterHostStatistics``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVMPoolClusterHostStatistics`: VMPoolStatistics
+	fmt.Fprintf(os.Stdout, "Response from `VMPoolAPI.GetVMPoolClusterHostStatistics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**vmPoolId** | **float32** |  | 
+**vmPoolClusterHostId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVMPoolClusterHostStatisticsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**VMPoolStatistics**](VMPoolStatistics.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetVMPoolClusterHostVMs
 
 > VMPaginatedList GetVMPoolClusterHostVMs(ctx, vmPoolId, vmPoolClusterHostId).Page(page).Limit(limit).FilterId(filterId).FilterName(filterName).FilterAddress(filterAddress).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
@@ -848,6 +923,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VMPoolPaginatedList**](VMPoolPaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetVmPoolStatistics
+
+> VMPoolStatistics GetVmPoolStatistics(ctx, vmPoolId).Execute()
+
+Get VM Pool statistics
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	vmPoolId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VMPoolAPI.GetVmPoolStatistics(context.Background(), vmPoolId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMPoolAPI.GetVmPoolStatistics``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVmPoolStatistics`: VMPoolStatistics
+	fmt.Fprintf(os.Stdout, "Response from `VMPoolAPI.GetVmPoolStatistics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**vmPoolId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVmPoolStatisticsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**VMPoolStatistics**](VMPoolStatistics.md)
 
 ### Authorization
 

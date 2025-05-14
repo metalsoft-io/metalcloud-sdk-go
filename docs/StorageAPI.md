@@ -8,16 +8,15 @@ Method | HTTP request | Description
 [**CreateStorageNetworkDeviceConfiguration**](StorageAPI.md#CreateStorageNetworkDeviceConfiguration) | **Post** /api/v2/storages/{storageId}/network-device-configurations | Creates a Storage Network Device Configuration
 [**DeleteStorage**](StorageAPI.md#DeleteStorage) | **Delete** /api/v2/storages/{storageId} | Deletes a Storage
 [**DeleteStorageNetworkDeviceConfiguration**](StorageAPI.md#DeleteStorageNetworkDeviceConfiguration) | **Delete** /api/v2/storages/{storageId}/network-device-configurations/{storageNetworkDeviceConfigurationId} | Deletes a Storage Network Device Configuration
-[**ExecuteStorageAction**](StorageAPI.md#ExecuteStorageAction) | **Post** /api/v2/storages/{storageId}/actions/update-cache | Execute a Storage action
 [**GetStorage**](StorageAPI.md#GetStorage) | **Get** /api/v2/storages/{storageId} | Retrieves a Storage
 [**GetStorageBuckets**](StorageAPI.md#GetStorageBuckets) | **Get** /api/v2/storages/{storageId}/buckets | Get all Buckets linked to the specified storage
 [**GetStorageCredentials**](StorageAPI.md#GetStorageCredentials) | **Get** /api/v2/storages/{storageId}/credentials | Get Storage credentials
 [**GetStorageDrives**](StorageAPI.md#GetStorageDrives) | **Get** /api/v2/storages/{storageId}/drives | Get all Drives linked to the specified storage
 [**GetStorageFileShares**](StorageAPI.md#GetStorageFileShares) | **Get** /api/v2/storages/{storageId}/file-shares | Get all File Shares linked to the specified storage
-[**GetStorageIscsiBootServers**](StorageAPI.md#GetStorageIscsiBootServers) | **Get** /api/v2/storages/{storageId}/iscsi-boot-servers | Returns information about servers which are setup to boot from iSCSI block devices
 [**GetStorageNetworkDeviceConfigurations**](StorageAPI.md#GetStorageNetworkDeviceConfigurations) | **Get** /api/v2/storages/{storageId}/network-device-configurations | Retrieves Storage Network Device Configurations
-[**GetStorageStatistics**](StorageAPI.md#GetStorageStatistics) | **Get** /api/v2/storages/statistics | Get Storages statistics
+[**GetStorageStatistics**](StorageAPI.md#GetStorageStatistics) | **Get** /api/v2/storages/{storageId}/statistics | Get Storages statistics
 [**GetStorages**](StorageAPI.md#GetStorages) | **Get** /api/v2/storages | Get a list of Storages
+[**GetStoragesStatistics**](StorageAPI.md#GetStoragesStatistics) | **Get** /api/v2/storages/statistics | Get statistics for all Storages
 [**UpdateStorage**](StorageAPI.md#UpdateStorage) | **Patch** /api/v2/storages/{storageId} | Updates a Storage
 [**UpdateStorageNetworkDeviceConfiguration**](StorageAPI.md#UpdateStorageNetworkDeviceConfiguration) | **Patch** /api/v2/storages/{storageId}/network-device-configurations/{storageNetworkDeviceConfigurationId} | Updates a Storage Network Device Configuration
 
@@ -280,74 +279,6 @@ Other parameters are passed through a pointer to a apiDeleteStorageNetworkDevice
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ExecuteStorageAction
-
-> ExecuteStorageAction(ctx, storageId).Execute()
-
-Execute a Storage action
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	storageId := float32(8.14) // float32 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.StorageAPI.ExecuteStorageAction(context.Background(), storageId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.ExecuteStorageAction``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**storageId** | **float32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiExecuteStorageActionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
 
 
 ### Return type
@@ -808,76 +739,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetStorageIscsiBootServers
-
-> []IscsiBootServerInfo GetStorageIscsiBootServers(ctx, storageId).Execute()
-
-Returns information about servers which are setup to boot from iSCSI block devices
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	storageId := float32(8.14) // float32 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageAPI.GetStorageIscsiBootServers(context.Background(), storageId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStorageIscsiBootServers``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetStorageIscsiBootServers`: []IscsiBootServerInfo
-	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.GetStorageIscsiBootServers`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**storageId** | **float32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetStorageIscsiBootServersRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**[]IscsiBootServerInfo**](IscsiBootServerInfo.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetStorageNetworkDeviceConfigurations
 
 > []StorageNetworkDeviceConfiguration GetStorageNetworkDeviceConfigurations(ctx, storageId).Execute()
@@ -950,7 +811,7 @@ Name | Type | Description  | Notes
 
 ## GetStorageStatistics
 
-> StorageStatistics GetStorageStatistics(ctx).IncludeMaintenance(includeMaintenance).IncludeExperimental(includeExperimental).MinimumSpace(minimumSpace).Execute()
+> StorageStatistics GetStorageStatistics(ctx, storageId).Execute()
 
 Get Storages statistics
 
@@ -969,13 +830,11 @@ import (
 )
 
 func main() {
-	includeMaintenance := "includeMaintenance_example" // string | Include storages in maintenance. (optional)
-	includeExperimental := "includeExperimental_example" // string | Include experimental storages. (optional)
-	minimumSpace := float32(8.14) // float32 | Minimum space. (optional)
+	storageId := float32(8.14) // float32 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageAPI.GetStorageStatistics(context.Background()).IncludeMaintenance(includeMaintenance).IncludeExperimental(includeExperimental).MinimumSpace(minimumSpace).Execute()
+	resp, r, err := apiClient.StorageAPI.GetStorageStatistics(context.Background(), storageId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStorageStatistics``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -988,6 +847,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**storageId** | **float32** |  | 
 
 ### Other Parameters
 
@@ -996,9 +859,7 @@ Other parameters are passed through a pointer to a apiGetStorageStatisticsReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **includeMaintenance** | **string** | Include storages in maintenance. | 
- **includeExperimental** | **string** | Include experimental storages. | 
- **minimumSpace** | **float32** | Minimum space. | 
+
 
 ### Return type
 
@@ -1085,6 +946,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**StoragePaginatedList**](StoragePaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetStoragesStatistics
+
+> StoragesStatistics GetStoragesStatistics(ctx).IncludeMaintenance(includeMaintenance).IncludeExperimental(includeExperimental).MinimumSpace(minimumSpace).Execute()
+
+Get statistics for all Storages
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	includeMaintenance := "includeMaintenance_example" // string | Include storages in maintenance. (optional)
+	includeExperimental := "includeExperimental_example" // string | Include experimental storages. (optional)
+	minimumSpace := float32(8.14) // float32 | Minimum space. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StorageAPI.GetStoragesStatistics(context.Background()).IncludeMaintenance(includeMaintenance).IncludeExperimental(includeExperimental).MinimumSpace(minimumSpace).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStoragesStatistics``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetStoragesStatistics`: StoragesStatistics
+	fmt.Fprintf(os.Stdout, "Response from `StorageAPI.GetStoragesStatistics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetStoragesStatisticsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **includeMaintenance** | **string** | Include storages in maintenance. | 
+ **includeExperimental** | **string** | Include experimental storages. | 
+ **minimumSpace** | **float32** | Minimum space. | 
+
+### Return type
+
+[**StoragesStatistics**](StoragesStatistics.md)
 
 ### Authorization
 

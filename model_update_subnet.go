@@ -20,15 +20,13 @@ var _ MappedNullable = &UpdateSubnet{}
 
 // UpdateSubnet struct for UpdateSubnet
 type UpdateSubnet struct {
-	// Revision of the Subnet
-	Revision *float32 `json:"revision,omitempty"`
 	Label *string `json:"label,omitempty"`
 	// Name of the Subnet
 	Name *string `json:"name,omitempty"`
-	AllocationDenylist []string `json:"allocationDenylist,omitempty"`
-	AllowedChildOverlapConditions []string `json:"allowedChildOverlapConditions,omitempty"`
 	Tags map[string]interface{} `json:"tags,omitempty"`
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Annotations map[string]interface{} `json:"annotations,omitempty"`
+	AllocationDenylist []string `json:"allocationDenylist,omitempty"`
+	ChildOverlapAllowRules []string `json:"childOverlapAllowRules,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,38 +47,6 @@ func NewUpdateSubnet() *UpdateSubnet {
 func NewUpdateSubnetWithDefaults() *UpdateSubnet {
 	this := UpdateSubnet{}
 	return &this
-}
-
-// GetRevision returns the Revision field value if set, zero value otherwise.
-func (o *UpdateSubnet) GetRevision() float32 {
-	if o == nil || IsNil(o.Revision) {
-		var ret float32
-		return ret
-	}
-	return *o.Revision
-}
-
-// GetRevisionOk returns a tuple with the Revision field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateSubnet) GetRevisionOk() (*float32, bool) {
-	if o == nil || IsNil(o.Revision) {
-		return nil, false
-	}
-	return o.Revision, true
-}
-
-// HasRevision returns a boolean if a field has been set.
-func (o *UpdateSubnet) HasRevision() bool {
-	if o != nil && !IsNil(o.Revision) {
-		return true
-	}
-
-	return false
-}
-
-// SetRevision gets a reference to the given float32 and assigns it to the Revision field.
-func (o *UpdateSubnet) SetRevision(v float32) {
-	o.Revision = &v
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
@@ -147,70 +113,6 @@ func (o *UpdateSubnet) SetName(v string) {
 	o.Name = &v
 }
 
-// GetAllocationDenylist returns the AllocationDenylist field value if set, zero value otherwise.
-func (o *UpdateSubnet) GetAllocationDenylist() []string {
-	if o == nil || IsNil(o.AllocationDenylist) {
-		var ret []string
-		return ret
-	}
-	return o.AllocationDenylist
-}
-
-// GetAllocationDenylistOk returns a tuple with the AllocationDenylist field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateSubnet) GetAllocationDenylistOk() ([]string, bool) {
-	if o == nil || IsNil(o.AllocationDenylist) {
-		return nil, false
-	}
-	return o.AllocationDenylist, true
-}
-
-// HasAllocationDenylist returns a boolean if a field has been set.
-func (o *UpdateSubnet) HasAllocationDenylist() bool {
-	if o != nil && !IsNil(o.AllocationDenylist) {
-		return true
-	}
-
-	return false
-}
-
-// SetAllocationDenylist gets a reference to the given []string and assigns it to the AllocationDenylist field.
-func (o *UpdateSubnet) SetAllocationDenylist(v []string) {
-	o.AllocationDenylist = v
-}
-
-// GetAllowedChildOverlapConditions returns the AllowedChildOverlapConditions field value if set, zero value otherwise.
-func (o *UpdateSubnet) GetAllowedChildOverlapConditions() []string {
-	if o == nil || IsNil(o.AllowedChildOverlapConditions) {
-		var ret []string
-		return ret
-	}
-	return o.AllowedChildOverlapConditions
-}
-
-// GetAllowedChildOverlapConditionsOk returns a tuple with the AllowedChildOverlapConditions field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateSubnet) GetAllowedChildOverlapConditionsOk() ([]string, bool) {
-	if o == nil || IsNil(o.AllowedChildOverlapConditions) {
-		return nil, false
-	}
-	return o.AllowedChildOverlapConditions, true
-}
-
-// HasAllowedChildOverlapConditions returns a boolean if a field has been set.
-func (o *UpdateSubnet) HasAllowedChildOverlapConditions() bool {
-	if o != nil && !IsNil(o.AllowedChildOverlapConditions) {
-		return true
-	}
-
-	return false
-}
-
-// SetAllowedChildOverlapConditions gets a reference to the given []string and assigns it to the AllowedChildOverlapConditions field.
-func (o *UpdateSubnet) SetAllowedChildOverlapConditions(v []string) {
-	o.AllowedChildOverlapConditions = v
-}
-
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *UpdateSubnet) GetTags() map[string]interface{} {
 	if o == nil || IsNil(o.Tags) {
@@ -243,36 +145,100 @@ func (o *UpdateSubnet) SetTags(v map[string]interface{}) {
 	o.Tags = v
 }
 
-// GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *UpdateSubnet) GetMetadata() map[string]interface{} {
-	if o == nil || IsNil(o.Metadata) {
+// GetAnnotations returns the Annotations field value if set, zero value otherwise.
+func (o *UpdateSubnet) GetAnnotations() map[string]interface{} {
+	if o == nil || IsNil(o.Annotations) {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.Metadata
+	return o.Annotations
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSubnet) GetMetadataOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Metadata) {
+func (o *UpdateSubnet) GetAnnotationsOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Annotations) {
 		return map[string]interface{}{}, false
 	}
-	return o.Metadata, true
+	return o.Annotations, true
 }
 
-// HasMetadata returns a boolean if a field has been set.
-func (o *UpdateSubnet) HasMetadata() bool {
-	if o != nil && !IsNil(o.Metadata) {
+// HasAnnotations returns a boolean if a field has been set.
+func (o *UpdateSubnet) HasAnnotations() bool {
+	if o != nil && !IsNil(o.Annotations) {
 		return true
 	}
 
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
-func (o *UpdateSubnet) SetMetadata(v map[string]interface{}) {
-	o.Metadata = v
+// SetAnnotations gets a reference to the given map[string]interface{} and assigns it to the Annotations field.
+func (o *UpdateSubnet) SetAnnotations(v map[string]interface{}) {
+	o.Annotations = v
+}
+
+// GetAllocationDenylist returns the AllocationDenylist field value if set, zero value otherwise.
+func (o *UpdateSubnet) GetAllocationDenylist() []string {
+	if o == nil || IsNil(o.AllocationDenylist) {
+		var ret []string
+		return ret
+	}
+	return o.AllocationDenylist
+}
+
+// GetAllocationDenylistOk returns a tuple with the AllocationDenylist field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSubnet) GetAllocationDenylistOk() ([]string, bool) {
+	if o == nil || IsNil(o.AllocationDenylist) {
+		return nil, false
+	}
+	return o.AllocationDenylist, true
+}
+
+// HasAllocationDenylist returns a boolean if a field has been set.
+func (o *UpdateSubnet) HasAllocationDenylist() bool {
+	if o != nil && !IsNil(o.AllocationDenylist) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllocationDenylist gets a reference to the given []string and assigns it to the AllocationDenylist field.
+func (o *UpdateSubnet) SetAllocationDenylist(v []string) {
+	o.AllocationDenylist = v
+}
+
+// GetChildOverlapAllowRules returns the ChildOverlapAllowRules field value if set, zero value otherwise.
+func (o *UpdateSubnet) GetChildOverlapAllowRules() []string {
+	if o == nil || IsNil(o.ChildOverlapAllowRules) {
+		var ret []string
+		return ret
+	}
+	return o.ChildOverlapAllowRules
+}
+
+// GetChildOverlapAllowRulesOk returns a tuple with the ChildOverlapAllowRules field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSubnet) GetChildOverlapAllowRulesOk() ([]string, bool) {
+	if o == nil || IsNil(o.ChildOverlapAllowRules) {
+		return nil, false
+	}
+	return o.ChildOverlapAllowRules, true
+}
+
+// HasChildOverlapAllowRules returns a boolean if a field has been set.
+func (o *UpdateSubnet) HasChildOverlapAllowRules() bool {
+	if o != nil && !IsNil(o.ChildOverlapAllowRules) {
+		return true
+	}
+
+	return false
+}
+
+// SetChildOverlapAllowRules gets a reference to the given []string and assigns it to the ChildOverlapAllowRules field.
+func (o *UpdateSubnet) SetChildOverlapAllowRules(v []string) {
+	o.ChildOverlapAllowRules = v
 }
 
 func (o UpdateSubnet) MarshalJSON() ([]byte, error) {
@@ -285,26 +251,23 @@ func (o UpdateSubnet) MarshalJSON() ([]byte, error) {
 
 func (o UpdateSubnet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Revision) {
-		toSerialize["revision"] = o.Revision
-	}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !IsNil(o.AllocationDenylist) {
-		toSerialize["allocationDenylist"] = o.AllocationDenylist
-	}
-	if !IsNil(o.AllowedChildOverlapConditions) {
-		toSerialize["allowedChildOverlapConditions"] = o.AllowedChildOverlapConditions
-	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !IsNil(o.Metadata) {
-		toSerialize["metadata"] = o.Metadata
+	if !IsNil(o.Annotations) {
+		toSerialize["annotations"] = o.Annotations
+	}
+	if !IsNil(o.AllocationDenylist) {
+		toSerialize["allocationDenylist"] = o.AllocationDenylist
+	}
+	if !IsNil(o.ChildOverlapAllowRules) {
+		toSerialize["childOverlapAllowRules"] = o.ChildOverlapAllowRules
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -328,13 +291,12 @@ func (o *UpdateSubnet) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "revision")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "allocationDenylist")
-		delete(additionalProperties, "allowedChildOverlapConditions")
 		delete(additionalProperties, "tags")
-		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "annotations")
+		delete(additionalProperties, "allocationDenylist")
+		delete(additionalProperties, "childOverlapAllowRules")
 		o.AdditionalProperties = additionalProperties
 	}
 

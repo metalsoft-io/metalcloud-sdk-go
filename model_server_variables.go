@@ -109,8 +109,10 @@ type ServerVariables struct {
 	ServerComments *string `json:"serverComments,omitempty"`
 	// The capacity mbps of the server.
 	ServerCapacityMbps *float32 `json:"serverCapacityMbps,omitempty"`
-	// Flag to indicate if the disks need to be wiped during BDK boot.
+	// Flag to indicate if the disks need to be wiped.
 	ServerDiskWipe *float32 `json:"serverDiskWipe,omitempty"`
+	// Flag to indicate if the server requires manual cleaning.
+	RequiresManualCleaning *float32 `json:"requiresManualCleaning,omitempty"`
 	// The number of disks of the server.
 	ServerDiskCount *float32 `json:"serverDiskCount,omitempty"`
 	// The administration state of the server.
@@ -1569,6 +1571,38 @@ func (o *ServerVariables) SetServerDiskWipe(v float32) {
 	o.ServerDiskWipe = &v
 }
 
+// GetRequiresManualCleaning returns the RequiresManualCleaning field value if set, zero value otherwise.
+func (o *ServerVariables) GetRequiresManualCleaning() float32 {
+	if o == nil || IsNil(o.RequiresManualCleaning) {
+		var ret float32
+		return ret
+	}
+	return *o.RequiresManualCleaning
+}
+
+// GetRequiresManualCleaningOk returns a tuple with the RequiresManualCleaning field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerVariables) GetRequiresManualCleaningOk() (*float32, bool) {
+	if o == nil || IsNil(o.RequiresManualCleaning) {
+		return nil, false
+	}
+	return o.RequiresManualCleaning, true
+}
+
+// HasRequiresManualCleaning returns a boolean if a field has been set.
+func (o *ServerVariables) HasRequiresManualCleaning() bool {
+	if o != nil && !IsNil(o.RequiresManualCleaning) {
+		return true
+	}
+
+	return false
+}
+
+// SetRequiresManualCleaning gets a reference to the given float32 and assigns it to the RequiresManualCleaning field.
+func (o *ServerVariables) SetRequiresManualCleaning(v float32) {
+	o.RequiresManualCleaning = &v
+}
+
 // GetServerDiskCount returns the ServerDiskCount field value if set, zero value otherwise.
 func (o *ServerVariables) GetServerDiskCount() float32 {
 	if o == nil || IsNil(o.ServerDiskCount) {
@@ -2512,6 +2546,9 @@ func (o ServerVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServerDiskWipe) {
 		toSerialize["serverDiskWipe"] = o.ServerDiskWipe
 	}
+	if !IsNil(o.RequiresManualCleaning) {
+		toSerialize["requiresManualCleaning"] = o.RequiresManualCleaning
+	}
 	if !IsNil(o.ServerDiskCount) {
 		toSerialize["serverDiskCount"] = o.ServerDiskCount
 	}
@@ -2683,6 +2720,7 @@ func (o *ServerVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serverComments")
 		delete(additionalProperties, "serverCapacityMbps")
 		delete(additionalProperties, "serverDiskWipe")
+		delete(additionalProperties, "requiresManualCleaning")
 		delete(additionalProperties, "serverDiskCount")
 		delete(additionalProperties, "administrationState")
 		delete(additionalProperties, "serverDhcpStatus")

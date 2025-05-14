@@ -64,6 +64,8 @@ type APIClient struct {
 
 	DriveAPI *DriveAPIService
 
+	EmailTemplateAPI *EmailTemplateAPIService
+
 	EventAPI *EventAPIService
 
 	ExtensionAPI *ExtensionAPIService
@@ -170,6 +172,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ConfigurationAPI = (*ConfigurationAPIService)(&c.common)
 	c.CustomIsoAPI = (*CustomIsoAPIService)(&c.common)
 	c.DriveAPI = (*DriveAPIService)(&c.common)
+	c.EmailTemplateAPI = (*EmailTemplateAPIService)(&c.common)
 	c.EventAPI = (*EventAPIService)(&c.common)
 	c.ExtensionAPI = (*ExtensionAPIService)(&c.common)
 	c.ExtensionInstanceAPI = (*ExtensionInstanceAPIService)(&c.common)

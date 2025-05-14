@@ -438,98 +438,6 @@ func (a *StorageAPIService) DeleteStorageNetworkDeviceConfigurationExecute(r Sto
 	return localVarHTTPResponse, nil
 }
 
-type StorageAPIExecuteStorageActionRequest struct {
-	ctx context.Context
-	ApiService *StorageAPIService
-	storageId float32
-}
-
-func (r StorageAPIExecuteStorageActionRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ExecuteStorageActionExecute(r)
-}
-
-/*
-ExecuteStorageAction Execute a Storage action
-
-Execute a Storage action
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param storageId
- @return StorageAPIExecuteStorageActionRequest
-*/
-func (a *StorageAPIService) ExecuteStorageAction(ctx context.Context, storageId float32) StorageAPIExecuteStorageActionRequest {
-	return StorageAPIExecuteStorageActionRequest{
-		ApiService: a,
-		ctx: ctx,
-		storageId: storageId,
-	}
-}
-
-// Execute executes the request
-func (a *StorageAPIService) ExecuteStorageActionExecute(r StorageAPIExecuteStorageActionRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.ExecuteStorageAction")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/storages/{storageId}/actions/update-cache"
-	localVarPath = strings.Replace(localVarPath, "{"+"storageId"+"}", url.PathEscape(parameterValueToString(r.storageId, "storageId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
 type StorageAPIGetStorageRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
@@ -1783,109 +1691,6 @@ func (a *StorageAPIService) GetStorageFileSharesExecute(r StorageAPIGetStorageFi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type StorageAPIGetStorageIscsiBootServersRequest struct {
-	ctx context.Context
-	ApiService *StorageAPIService
-	storageId float32
-}
-
-func (r StorageAPIGetStorageIscsiBootServersRequest) Execute() ([]IscsiBootServerInfo, *http.Response, error) {
-	return r.ApiService.GetStorageIscsiBootServersExecute(r)
-}
-
-/*
-GetStorageIscsiBootServers Returns information about servers which are setup to boot from iSCSI block devices
-
-Returns information about servers which are setup to boot from iSCSI block devices
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param storageId
- @return StorageAPIGetStorageIscsiBootServersRequest
-*/
-func (a *StorageAPIService) GetStorageIscsiBootServers(ctx context.Context, storageId float32) StorageAPIGetStorageIscsiBootServersRequest {
-	return StorageAPIGetStorageIscsiBootServersRequest{
-		ApiService: a,
-		ctx: ctx,
-		storageId: storageId,
-	}
-}
-
-// Execute executes the request
-//  @return []IscsiBootServerInfo
-func (a *StorageAPIService) GetStorageIscsiBootServersExecute(r StorageAPIGetStorageIscsiBootServersRequest) ([]IscsiBootServerInfo, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []IscsiBootServerInfo
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStorageIscsiBootServers")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/storages/{storageId}/iscsi-boot-servers"
-	localVarPath = strings.Replace(localVarPath, "{"+"storageId"+"}", url.PathEscape(parameterValueToString(r.storageId, "storageId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type StorageAPIGetStorageNetworkDeviceConfigurationsRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
@@ -1992,27 +1797,7 @@ func (a *StorageAPIService) GetStorageNetworkDeviceConfigurationsExecute(r Stora
 type StorageAPIGetStorageStatisticsRequest struct {
 	ctx context.Context
 	ApiService *StorageAPIService
-	includeMaintenance *string
-	includeExperimental *string
-	minimumSpace *float32
-}
-
-// Include storages in maintenance.
-func (r StorageAPIGetStorageStatisticsRequest) IncludeMaintenance(includeMaintenance string) StorageAPIGetStorageStatisticsRequest {
-	r.includeMaintenance = &includeMaintenance
-	return r
-}
-
-// Include experimental storages.
-func (r StorageAPIGetStorageStatisticsRequest) IncludeExperimental(includeExperimental string) StorageAPIGetStorageStatisticsRequest {
-	r.includeExperimental = &includeExperimental
-	return r
-}
-
-// Minimum space.
-func (r StorageAPIGetStorageStatisticsRequest) MinimumSpace(minimumSpace float32) StorageAPIGetStorageStatisticsRequest {
-	r.minimumSpace = &minimumSpace
-	return r
+	storageId float32
 }
 
 func (r StorageAPIGetStorageStatisticsRequest) Execute() (*StorageStatistics, *http.Response, error) {
@@ -2025,12 +1810,14 @@ GetStorageStatistics Get Storages statistics
 Returns Storages statistics
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param storageId
  @return StorageAPIGetStorageStatisticsRequest
 */
-func (a *StorageAPIService) GetStorageStatistics(ctx context.Context) StorageAPIGetStorageStatisticsRequest {
+func (a *StorageAPIService) GetStorageStatistics(ctx context.Context, storageId float32) StorageAPIGetStorageStatisticsRequest {
 	return StorageAPIGetStorageStatisticsRequest{
 		ApiService: a,
 		ctx: ctx,
+		storageId: storageId,
 	}
 }
 
@@ -2049,21 +1836,13 @@ func (a *StorageAPIService) GetStorageStatisticsExecute(r StorageAPIGetStorageSt
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/storages/statistics"
+	localVarPath := localBasePath + "/api/v2/storages/{storageId}/statistics"
+	localVarPath = strings.Replace(localVarPath, "{"+"storageId"+"}", url.PathEscape(parameterValueToString(r.storageId, "storageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.includeMaintenance != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "includeMaintenance", r.includeMaintenance, "form", "")
-	}
-	if r.includeExperimental != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "includeExperimental", r.includeExperimental, "form", "")
-	}
-	if r.minimumSpace != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "minimumSpace", r.minimumSpace, "form", "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2300,6 +2079,135 @@ func (a *StorageAPIService) GetStoragesExecute(r StorageAPIGetStoragesRequest) (
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
 		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type StorageAPIGetStoragesStatisticsRequest struct {
+	ctx context.Context
+	ApiService *StorageAPIService
+	includeMaintenance *string
+	includeExperimental *string
+	minimumSpace *float32
+}
+
+// Include storages in maintenance.
+func (r StorageAPIGetStoragesStatisticsRequest) IncludeMaintenance(includeMaintenance string) StorageAPIGetStoragesStatisticsRequest {
+	r.includeMaintenance = &includeMaintenance
+	return r
+}
+
+// Include experimental storages.
+func (r StorageAPIGetStoragesStatisticsRequest) IncludeExperimental(includeExperimental string) StorageAPIGetStoragesStatisticsRequest {
+	r.includeExperimental = &includeExperimental
+	return r
+}
+
+// Minimum space.
+func (r StorageAPIGetStoragesStatisticsRequest) MinimumSpace(minimumSpace float32) StorageAPIGetStoragesStatisticsRequest {
+	r.minimumSpace = &minimumSpace
+	return r
+}
+
+func (r StorageAPIGetStoragesStatisticsRequest) Execute() (*StoragesStatistics, *http.Response, error) {
+	return r.ApiService.GetStoragesStatisticsExecute(r)
+}
+
+/*
+GetStoragesStatistics Get statistics for all Storages
+
+Returns statistics for all Storages
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return StorageAPIGetStoragesStatisticsRequest
+*/
+func (a *StorageAPIService) GetStoragesStatistics(ctx context.Context) StorageAPIGetStoragesStatisticsRequest {
+	return StorageAPIGetStoragesStatisticsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return StoragesStatistics
+func (a *StorageAPIService) GetStoragesStatisticsExecute(r StorageAPIGetStoragesStatisticsRequest) (*StoragesStatistics, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *StoragesStatistics
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStoragesStatistics")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/storages/statistics"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.includeMaintenance != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeMaintenance", r.includeMaintenance, "form", "")
+	}
+	if r.includeExperimental != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeExperimental", r.includeExperimental, "form", "")
+	}
+	if r.minimumSpace != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "minimumSpace", r.minimumSpace, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

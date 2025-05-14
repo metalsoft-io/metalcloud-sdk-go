@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **FabricId** | **int32** |  | 
 **InfrastructureId** | **NullableInt32** |  | 
 **ServiceStatus** | [**GenericServiceStatus**](GenericServiceStatus.md) |  | 
+**LastAppliedLogicalNetworkProfileId** | **NullableInt32** |  | 
+**LastLogicalNetworkProfileAppliedAt** | **time.Time** |  | 
 **Config** | [**VlanLogicalNetworkConfig**](VlanLogicalNetworkConfig.md) |  | 
 **Vlan** | [**VlanLogicalNetworkVlanProperties**](VlanLogicalNetworkVlanProperties.md) |  | 
 **Ipv4** | [**VlanLogicalNetworkIpv4Properties**](VlanLogicalNetworkIpv4Properties.md) |  | 
@@ -25,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewVlanLogicalNetwork
 
-`func NewVlanLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, config VlanLogicalNetworkConfig, vlan VlanLogicalNetworkVlanProperties, ipv4 VlanLogicalNetworkIpv4Properties, ipv6 VlanLogicalNetworkIpv6Properties, routeDomainId NullableInt32, ) *VlanLogicalNetwork`
+`func NewVlanLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config VlanLogicalNetworkConfig, vlan VlanLogicalNetworkVlanProperties, ipv4 VlanLogicalNetworkIpv4Properties, ipv6 VlanLogicalNetworkIpv6Properties, routeDomainId NullableInt32, ) *VlanLogicalNetwork`
 
 NewVlanLogicalNetwork instantiates a new VlanLogicalNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -268,6 +270,56 @@ and a boolean to check if the value has been set.
 `func (o *VlanLogicalNetwork) SetServiceStatus(v GenericServiceStatus)`
 
 SetServiceStatus sets ServiceStatus field to given value.
+
+
+### GetLastAppliedLogicalNetworkProfileId
+
+`func (o *VlanLogicalNetwork) GetLastAppliedLogicalNetworkProfileId() int32`
+
+GetLastAppliedLogicalNetworkProfileId returns the LastAppliedLogicalNetworkProfileId field if non-nil, zero value otherwise.
+
+### GetLastAppliedLogicalNetworkProfileIdOk
+
+`func (o *VlanLogicalNetwork) GetLastAppliedLogicalNetworkProfileIdOk() (*int32, bool)`
+
+GetLastAppliedLogicalNetworkProfileIdOk returns a tuple with the LastAppliedLogicalNetworkProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastAppliedLogicalNetworkProfileId
+
+`func (o *VlanLogicalNetwork) SetLastAppliedLogicalNetworkProfileId(v int32)`
+
+SetLastAppliedLogicalNetworkProfileId sets LastAppliedLogicalNetworkProfileId field to given value.
+
+
+### SetLastAppliedLogicalNetworkProfileIdNil
+
+`func (o *VlanLogicalNetwork) SetLastAppliedLogicalNetworkProfileIdNil(b bool)`
+
+ SetLastAppliedLogicalNetworkProfileIdNil sets the value for LastAppliedLogicalNetworkProfileId to be an explicit nil
+
+### UnsetLastAppliedLogicalNetworkProfileId
+`func (o *VlanLogicalNetwork) UnsetLastAppliedLogicalNetworkProfileId()`
+
+UnsetLastAppliedLogicalNetworkProfileId ensures that no value is present for LastAppliedLogicalNetworkProfileId, not even an explicit nil
+### GetLastLogicalNetworkProfileAppliedAt
+
+`func (o *VlanLogicalNetwork) GetLastLogicalNetworkProfileAppliedAt() time.Time`
+
+GetLastLogicalNetworkProfileAppliedAt returns the LastLogicalNetworkProfileAppliedAt field if non-nil, zero value otherwise.
+
+### GetLastLogicalNetworkProfileAppliedAtOk
+
+`func (o *VlanLogicalNetwork) GetLastLogicalNetworkProfileAppliedAtOk() (*time.Time, bool)`
+
+GetLastLogicalNetworkProfileAppliedAtOk returns a tuple with the LastLogicalNetworkProfileAppliedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastLogicalNetworkProfileAppliedAt
+
+`func (o *VlanLogicalNetwork) SetLastLogicalNetworkProfileAppliedAt(v time.Time)`
+
+SetLastLogicalNetworkProfileAppliedAt sets LastLogicalNetworkProfileAppliedAt field to given value.
 
 
 ### GetConfig

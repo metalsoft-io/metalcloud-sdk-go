@@ -23,6 +23,8 @@ var _ MappedNullable = &UserInfo{}
 type UserInfo struct {
 	// The display name of the user
 	DisplayName string `json:"displayName"`
+	// The email status of the user
+	EmailStatus string `json:"emailStatus"`
 	// The language of the user
 	Language string `json:"language"`
 	// The timestamp when the user logged in last
@@ -52,9 +54,10 @@ type _UserInfo UserInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserInfo(displayName string, language string, lastLoginTimestamp string, accessLevel string, isArchived bool, id float32, revision float32, email string, createdTimestamp string) *UserInfo {
+func NewUserInfo(displayName string, emailStatus string, language string, lastLoginTimestamp string, accessLevel string, isArchived bool, id float32, revision float32, email string, createdTimestamp string) *UserInfo {
 	this := UserInfo{}
 	this.DisplayName = displayName
+	this.EmailStatus = emailStatus
 	this.Language = language
 	this.LastLoginTimestamp = lastLoginTimestamp
 	this.AccessLevel = accessLevel
@@ -96,6 +99,30 @@ func (o *UserInfo) GetDisplayNameOk() (*string, bool) {
 // SetDisplayName sets field value
 func (o *UserInfo) SetDisplayName(v string) {
 	o.DisplayName = v
+}
+
+// GetEmailStatus returns the EmailStatus field value
+func (o *UserInfo) GetEmailStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EmailStatus
+}
+
+// GetEmailStatusOk returns a tuple with the EmailStatus field value
+// and a boolean to check if the value has been set.
+func (o *UserInfo) GetEmailStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EmailStatus, true
+}
+
+// SetEmailStatus sets field value
+func (o *UserInfo) SetEmailStatus(v string) {
+	o.EmailStatus = v
 }
 
 // GetLanguage returns the Language field value
@@ -365,6 +392,7 @@ func (o UserInfo) MarshalJSON() ([]byte, error) {
 func (o UserInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["displayName"] = o.DisplayName
+	toSerialize["emailStatus"] = o.EmailStatus
 	toSerialize["language"] = o.Language
 	toSerialize["lastLoginTimestamp"] = o.LastLoginTimestamp
 	toSerialize["accessLevel"] = o.AccessLevel
@@ -393,6 +421,7 @@ func (o *UserInfo) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"displayName",
+		"emailStatus",
 		"language",
 		"lastLoginTimestamp",
 		"accessLevel",
@@ -431,6 +460,7 @@ func (o *UserInfo) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "emailStatus")
 		delete(additionalProperties, "language")
 		delete(additionalProperties, "lastLoginTimestamp")
 		delete(additionalProperties, "accessLevel")

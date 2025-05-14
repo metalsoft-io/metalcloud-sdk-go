@@ -16,12 +16,6 @@ Name | Type | Description | Notes
 **PrivateKeyEncrypted** | **string** | Private key of the VM Pool | 
 **Status** | **string** | Status of the VM Pool | 
 **ExternalIdentifier** | Pointer to **string** | External identifier of the VM Pool | [optional] 
-**TotalRamGB** | **float32** | Number of total RAM GB in the VM Pool | 
-**UsedRamGB** | **float32** | Number of used RAM GB in the VM Pool | 
-**FreeRamGB** | **float32** | Number of free RAM GB in the VM Pool | 
-**TotalSpaceGB** | **float32** | Number of total disk space GB in the VM Pool | 
-**UsedSpaceGB** | **float32** | Number of used disk space GB in the VM Pool | 
-**FreeSpaceGB** | **float32** | Number of free disk space GB in the VM Pool | 
 **InMaintenance** | Pointer to **float32** | Flag to indicate if the VM Pool is in maintenance mode. 1 for true, 0 for false. Default is 0. | [optional] 
 **IsExperimental** | Pointer to **float32** | Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0. | [optional] 
 **CreatedTimestamp** | **string** | Timestamp when the VM Pool was created | 
@@ -33,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewVMPool
 
-`func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, certificate string, privateKeyEncrypted string, status string, totalRamGB float32, usedRamGB float32, freeRamGB float32, totalSpaceGB float32, usedSpaceGB float32, freeSpaceGB float32, createdTimestamp string, updatedTimestamp string, links map[string]interface{}, ) *VMPool`
+`func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, certificate string, privateKeyEncrypted string, status string, createdTimestamp string, updatedTimestamp string, links map[string]interface{}, ) *VMPool`
 
 NewVMPool instantiates a new VMPool object
 This constructor will assign default values to properties that have it defined,
@@ -297,126 +291,6 @@ SetExternalIdentifier sets ExternalIdentifier field to given value.
 `func (o *VMPool) HasExternalIdentifier() bool`
 
 HasExternalIdentifier returns a boolean if a field has been set.
-
-### GetTotalRamGB
-
-`func (o *VMPool) GetTotalRamGB() float32`
-
-GetTotalRamGB returns the TotalRamGB field if non-nil, zero value otherwise.
-
-### GetTotalRamGBOk
-
-`func (o *VMPool) GetTotalRamGBOk() (*float32, bool)`
-
-GetTotalRamGBOk returns a tuple with the TotalRamGB field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTotalRamGB
-
-`func (o *VMPool) SetTotalRamGB(v float32)`
-
-SetTotalRamGB sets TotalRamGB field to given value.
-
-
-### GetUsedRamGB
-
-`func (o *VMPool) GetUsedRamGB() float32`
-
-GetUsedRamGB returns the UsedRamGB field if non-nil, zero value otherwise.
-
-### GetUsedRamGBOk
-
-`func (o *VMPool) GetUsedRamGBOk() (*float32, bool)`
-
-GetUsedRamGBOk returns a tuple with the UsedRamGB field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUsedRamGB
-
-`func (o *VMPool) SetUsedRamGB(v float32)`
-
-SetUsedRamGB sets UsedRamGB field to given value.
-
-
-### GetFreeRamGB
-
-`func (o *VMPool) GetFreeRamGB() float32`
-
-GetFreeRamGB returns the FreeRamGB field if non-nil, zero value otherwise.
-
-### GetFreeRamGBOk
-
-`func (o *VMPool) GetFreeRamGBOk() (*float32, bool)`
-
-GetFreeRamGBOk returns a tuple with the FreeRamGB field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFreeRamGB
-
-`func (o *VMPool) SetFreeRamGB(v float32)`
-
-SetFreeRamGB sets FreeRamGB field to given value.
-
-
-### GetTotalSpaceGB
-
-`func (o *VMPool) GetTotalSpaceGB() float32`
-
-GetTotalSpaceGB returns the TotalSpaceGB field if non-nil, zero value otherwise.
-
-### GetTotalSpaceGBOk
-
-`func (o *VMPool) GetTotalSpaceGBOk() (*float32, bool)`
-
-GetTotalSpaceGBOk returns a tuple with the TotalSpaceGB field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTotalSpaceGB
-
-`func (o *VMPool) SetTotalSpaceGB(v float32)`
-
-SetTotalSpaceGB sets TotalSpaceGB field to given value.
-
-
-### GetUsedSpaceGB
-
-`func (o *VMPool) GetUsedSpaceGB() float32`
-
-GetUsedSpaceGB returns the UsedSpaceGB field if non-nil, zero value otherwise.
-
-### GetUsedSpaceGBOk
-
-`func (o *VMPool) GetUsedSpaceGBOk() (*float32, bool)`
-
-GetUsedSpaceGBOk returns a tuple with the UsedSpaceGB field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUsedSpaceGB
-
-`func (o *VMPool) SetUsedSpaceGB(v float32)`
-
-SetUsedSpaceGB sets UsedSpaceGB field to given value.
-
-
-### GetFreeSpaceGB
-
-`func (o *VMPool) GetFreeSpaceGB() float32`
-
-GetFreeSpaceGB returns the FreeSpaceGB field if non-nil, zero value otherwise.
-
-### GetFreeSpaceGBOk
-
-`func (o *VMPool) GetFreeSpaceGBOk() (*float32, bool)`
-
-GetFreeSpaceGBOk returns a tuple with the FreeSpaceGB field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFreeSpaceGB
-
-`func (o *VMPool) SetFreeSpaceGB(v float32)`
-
-SetFreeSpaceGB sets FreeSpaceGB field to given value.
-
 
 ### GetInMaintenance
 

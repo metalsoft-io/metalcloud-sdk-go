@@ -21,8 +21,10 @@ var _ MappedNullable = &AuthenticationRequestPropertiesLdap{}
 
 // AuthenticationRequestPropertiesLdap struct for AuthenticationRequestPropertiesLdap
 type AuthenticationRequestPropertiesLdap struct {
-	// The data for the LDAP authentication request.
-	Data map[string]interface{} `json:"data"`
+	// The email of the user
+	Email string `json:"email"`
+	// The password of the user
+	Password string `json:"password"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,9 +34,10 @@ type _AuthenticationRequestPropertiesLdap AuthenticationRequestPropertiesLdap
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAuthenticationRequestPropertiesLdap(data map[string]interface{}) *AuthenticationRequestPropertiesLdap {
+func NewAuthenticationRequestPropertiesLdap(email string, password string) *AuthenticationRequestPropertiesLdap {
 	this := AuthenticationRequestPropertiesLdap{}
-	this.Data = data
+	this.Email = email
+	this.Password = password
 	return &this
 }
 
@@ -46,28 +49,52 @@ func NewAuthenticationRequestPropertiesLdapWithDefaults() *AuthenticationRequest
 	return &this
 }
 
-// GetData returns the Data field value
-func (o *AuthenticationRequestPropertiesLdap) GetData() map[string]interface{} {
+// GetEmail returns the Email field value
+func (o *AuthenticationRequestPropertiesLdap) GetEmail() string {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
 
-	return o.Data
+	return o.Email
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetEmailOk returns a tuple with the Email field value
 // and a boolean to check if the value has been set.
-func (o *AuthenticationRequestPropertiesLdap) GetDataOk() (map[string]interface{}, bool) {
+func (o *AuthenticationRequestPropertiesLdap) GetEmailOk() (*string, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Data, true
+	return &o.Email, true
 }
 
-// SetData sets field value
-func (o *AuthenticationRequestPropertiesLdap) SetData(v map[string]interface{}) {
-	o.Data = v
+// SetEmail sets field value
+func (o *AuthenticationRequestPropertiesLdap) SetEmail(v string) {
+	o.Email = v
+}
+
+// GetPassword returns the Password field value
+func (o *AuthenticationRequestPropertiesLdap) GetPassword() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Password
+}
+
+// GetPasswordOk returns a tuple with the Password field value
+// and a boolean to check if the value has been set.
+func (o *AuthenticationRequestPropertiesLdap) GetPasswordOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Password, true
+}
+
+// SetPassword sets field value
+func (o *AuthenticationRequestPropertiesLdap) SetPassword(v string) {
+	o.Password = v
 }
 
 func (o AuthenticationRequestPropertiesLdap) MarshalJSON() ([]byte, error) {
@@ -80,7 +107,8 @@ func (o AuthenticationRequestPropertiesLdap) MarshalJSON() ([]byte, error) {
 
 func (o AuthenticationRequestPropertiesLdap) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["data"] = o.Data
+	toSerialize["email"] = o.Email
+	toSerialize["password"] = o.Password
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -94,7 +122,8 @@ func (o *AuthenticationRequestPropertiesLdap) UnmarshalJSON(data []byte) (err er
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"data",
+		"email",
+		"password",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -124,7 +153,8 @@ func (o *AuthenticationRequestPropertiesLdap) UnmarshalJSON(data []byte) (err er
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "data")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "password")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -656,6 +656,113 @@ func (a *VMPoolAPIService) GetVMPoolClusterHostInterfacesExecute(r VMPoolAPIGetV
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type VMPoolAPIGetVMPoolClusterHostStatisticsRequest struct {
+	ctx context.Context
+	ApiService *VMPoolAPIService
+	vmPoolId float32
+	vmPoolClusterHostId float32
+}
+
+func (r VMPoolAPIGetVMPoolClusterHostStatisticsRequest) Execute() (*VMPoolStatistics, *http.Response, error) {
+	return r.ApiService.GetVMPoolClusterHostStatisticsExecute(r)
+}
+
+/*
+GetVMPoolClusterHostStatistics Retrieves VM Cluster Host Statistics
+
+Returns VM Cluster Host Statistics
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param vmPoolId
+ @param vmPoolClusterHostId
+ @return VMPoolAPIGetVMPoolClusterHostStatisticsRequest
+*/
+func (a *VMPoolAPIService) GetVMPoolClusterHostStatistics(ctx context.Context, vmPoolId float32, vmPoolClusterHostId float32) VMPoolAPIGetVMPoolClusterHostStatisticsRequest {
+	return VMPoolAPIGetVMPoolClusterHostStatisticsRequest{
+		ApiService: a,
+		ctx: ctx,
+		vmPoolId: vmPoolId,
+		vmPoolClusterHostId: vmPoolClusterHostId,
+	}
+}
+
+// Execute executes the request
+//  @return VMPoolStatistics
+func (a *VMPoolAPIService) GetVMPoolClusterHostStatisticsExecute(r VMPoolAPIGetVMPoolClusterHostStatisticsRequest) (*VMPoolStatistics, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMPoolStatistics
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMPoolAPIService.GetVMPoolClusterHostStatistics")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/statistics"
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolId"+"}", url.PathEscape(parameterValueToString(r.vmPoolId, "vmPoolId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolClusterHostId"+"}", url.PathEscape(parameterValueToString(r.vmPoolClusterHostId, "vmPoolClusterHostId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type VMPoolAPIGetVMPoolClusterHostVMsRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
@@ -1651,6 +1758,109 @@ func (a *VMPoolAPIService) GetVMPoolsExecute(r VMPoolAPIGetVMPoolsRequest) (*VMP
 			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
 		}
 	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type VMPoolAPIGetVmPoolStatisticsRequest struct {
+	ctx context.Context
+	ApiService *VMPoolAPIService
+	vmPoolId float32
+}
+
+func (r VMPoolAPIGetVmPoolStatisticsRequest) Execute() (*VMPoolStatistics, *http.Response, error) {
+	return r.ApiService.GetVmPoolStatisticsExecute(r)
+}
+
+/*
+GetVmPoolStatistics Get VM Pool statistics
+
+Returns VM Pool statistics
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param vmPoolId
+ @return VMPoolAPIGetVmPoolStatisticsRequest
+*/
+func (a *VMPoolAPIService) GetVmPoolStatistics(ctx context.Context, vmPoolId float32) VMPoolAPIGetVmPoolStatisticsRequest {
+	return VMPoolAPIGetVmPoolStatisticsRequest{
+		ApiService: a,
+		ctx: ctx,
+		vmPoolId: vmPoolId,
+	}
+}
+
+// Execute executes the request
+//  @return VMPoolStatistics
+func (a *VMPoolAPIService) GetVmPoolStatisticsExecute(r VMPoolAPIGetVmPoolStatisticsRequest) (*VMPoolStatistics, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMPoolStatistics
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMPoolAPIService.GetVmPoolStatistics")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/vm-pools/{vmPoolId}/statistics"
+	localVarPath = strings.Replace(localVarPath, "{"+"vmPoolId"+"}", url.PathEscape(parameterValueToString(r.vmPoolId, "vmPoolId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

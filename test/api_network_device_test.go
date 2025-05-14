@@ -110,19 +110,6 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test NetworkDeviceAPIService GetIscsiBootServers", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var networkDeviceId float32
-
-		httpRes, err := apiClient.NetworkDeviceAPI.GetIscsiBootServers(context.Background(), networkDeviceId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test NetworkDeviceAPIService GetNetworkDevice", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

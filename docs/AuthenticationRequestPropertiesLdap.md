@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | **map[string]interface{}** | The data for the LDAP authentication request. | 
+**Email** | **string** | The email of the user | 
+**Password** | **string** | The password of the user | 
 
 ## Methods
 
 ### NewAuthenticationRequestPropertiesLdap
 
-`func NewAuthenticationRequestPropertiesLdap(data map[string]interface{}, ) *AuthenticationRequestPropertiesLdap`
+`func NewAuthenticationRequestPropertiesLdap(email string, password string, ) *AuthenticationRequestPropertiesLdap`
 
 NewAuthenticationRequestPropertiesLdap instantiates a new AuthenticationRequestPropertiesLdap object
 This constructor will assign default values to properties that have it defined,
@@ -25,24 +26,44 @@ NewAuthenticationRequestPropertiesLdapWithDefaults instantiates a new Authentica
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetData
+### GetEmail
 
-`func (o *AuthenticationRequestPropertiesLdap) GetData() map[string]interface{}`
+`func (o *AuthenticationRequestPropertiesLdap) GetEmail() string`
 
-GetData returns the Data field if non-nil, zero value otherwise.
+GetEmail returns the Email field if non-nil, zero value otherwise.
 
-### GetDataOk
+### GetEmailOk
 
-`func (o *AuthenticationRequestPropertiesLdap) GetDataOk() (*map[string]interface{}, bool)`
+`func (o *AuthenticationRequestPropertiesLdap) GetEmailOk() (*string, bool)`
 
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetData
+### SetEmail
 
-`func (o *AuthenticationRequestPropertiesLdap) SetData(v map[string]interface{})`
+`func (o *AuthenticationRequestPropertiesLdap) SetEmail(v string)`
 
-SetData sets Data field to given value.
+SetEmail sets Email field to given value.
+
+
+### GetPassword
+
+`func (o *AuthenticationRequestPropertiesLdap) GetPassword() string`
+
+GetPassword returns the Password field if non-nil, zero value otherwise.
+
+### GetPasswordOk
+
+`func (o *AuthenticationRequestPropertiesLdap) GetPasswordOk() (*string, bool)`
+
+GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPassword
+
+`func (o *AuthenticationRequestPropertiesLdap) SetPassword(v string)`
+
+SetPassword sets Password field to given value.
 
 
 

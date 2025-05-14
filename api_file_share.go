@@ -680,8 +680,10 @@ type FileShareAPIGetInfrastructureFileSharesRequest struct {
 	filterSubdomainPermanent *[]string
 	filterServiceStatus *[]string
 	filterStoragePoolId *[]string
+	filterLogicalNetworkId *[]string
 	filterConfigDeployStatus *[]string
 	filterConfigDeployType *[]string
+	filterConfigLogicalNetworkId *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -735,6 +737,12 @@ func (r FileShareAPIGetInfrastructureFileSharesRequest) FilterStoragePoolId(filt
 	return r
 }
 
+// Filter by logicalNetworkId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.logicalNetworkId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.logicalNetworkId&#x3D;$not:$like:John Doe&amp;filter.logicalNetworkId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r FileShareAPIGetInfrastructureFileSharesRequest) FilterLogicalNetworkId(filterLogicalNetworkId []string) FileShareAPIGetInfrastructureFileSharesRequest {
+	r.filterLogicalNetworkId = &filterLogicalNetworkId
+	return r
+}
+
 // Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
 func (r FileShareAPIGetInfrastructureFileSharesRequest) FilterConfigDeployStatus(filterConfigDeployStatus []string) FileShareAPIGetInfrastructureFileSharesRequest {
 	r.filterConfigDeployStatus = &filterConfigDeployStatus
@@ -744,6 +752,12 @@ func (r FileShareAPIGetInfrastructureFileSharesRequest) FilterConfigDeployStatus
 // Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
 func (r FileShareAPIGetInfrastructureFileSharesRequest) FilterConfigDeployType(filterConfigDeployType []string) FileShareAPIGetInfrastructureFileSharesRequest {
 	r.filterConfigDeployType = &filterConfigDeployType
+	return r
+}
+
+// Filter by config.logicalNetworkId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.logicalNetworkId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.logicalNetworkId&#x3D;$not:$like:John Doe&amp;filter.config.logicalNetworkId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r FileShareAPIGetInfrastructureFileSharesRequest) FilterConfigLogicalNetworkId(filterConfigLogicalNetworkId []string) FileShareAPIGetInfrastructureFileSharesRequest {
+	r.filterConfigLogicalNetworkId = &filterConfigLogicalNetworkId
 	return r
 }
 
@@ -759,7 +773,7 @@ func (r FileShareAPIGetInfrastructureFileSharesRequest) Search(search string) Fi
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,subdomain,subdomainPermanent,storagePoolId           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;subdomain&lt;/li&gt; &lt;li&gt;subdomainPermanent&lt;/li&gt; &lt;li&gt;storagePoolId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,subdomain,subdomainPermanent,storagePoolId           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;subdomain&lt;/li&gt; &lt;li&gt;subdomainPermanent&lt;/li&gt; &lt;li&gt;storagePoolId&lt;/li&gt; &lt;li&gt;serviceStatus&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;logicalNetworkId&lt;/li&gt; &lt;li&gt;config.deployStatus&lt;/li&gt; &lt;li&gt;config.deployType&lt;/li&gt; &lt;li&gt;config.logicalNetworkId&lt;/li&gt;&lt;/ul&gt;         
 func (r FileShareAPIGetInfrastructureFileSharesRequest) SearchBy(searchBy []string) FileShareAPIGetInfrastructureFileSharesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -880,6 +894,17 @@ func (a *FileShareAPIService) GetInfrastructureFileSharesExecute(r FileShareAPIG
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.storagePoolId", t, "form", "multi")
 		}
 	}
+	if r.filterLogicalNetworkId != nil {
+		t := *r.filterLogicalNetworkId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.logicalNetworkId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.logicalNetworkId", t, "form", "multi")
+		}
+	}
 	if r.filterConfigDeployStatus != nil {
 		t := *r.filterConfigDeployStatus
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -900,6 +925,17 @@ func (a *FileShareAPIService) GetInfrastructureFileSharesExecute(r FileShareAPIG
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", t, "form", "multi")
+		}
+	}
+	if r.filterConfigLogicalNetworkId != nil {
+		t := *r.filterConfigLogicalNetworkId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.logicalNetworkId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.logicalNetworkId", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {
