@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **DhcpOption82ToIPMapping** | Pointer to **map[string]interface{}** | Option82 to IP mapping | [optional] 
 **DhcpBmcMacAddressWhitelistEnabled** | Pointer to **bool** | Whether to enable DHCP BMC MAC address whitelist | [optional] 
 **DhcpBmcMacAddressWhitelist** | Pointer to **[]string** | List of DHCP BMC MAC address whitelist | [optional] 
-**RaidConfigurationEnabled** | Pointer to **bool** | Whether RAID configuration is enabled | [optional] 
 **DisableTpmAfterRegistration** | Pointer to **bool** | Whether to disable TPM after registration | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Whether syslog monitoring is enabled | [optional] 
 **DefaultServerCleanupPolicyID** | Pointer to **float32** | Default server cleanup policy ID | [optional] 
@@ -160,31 +159,6 @@ SetDhcpBmcMacAddressWhitelist sets DhcpBmcMacAddressWhitelist field to given val
 `func (o *ServerPolicyUpdate) HasDhcpBmcMacAddressWhitelist() bool`
 
 HasDhcpBmcMacAddressWhitelist returns a boolean if a field has been set.
-
-### GetRaidConfigurationEnabled
-
-`func (o *ServerPolicyUpdate) GetRaidConfigurationEnabled() bool`
-
-GetRaidConfigurationEnabled returns the RaidConfigurationEnabled field if non-nil, zero value otherwise.
-
-### GetRaidConfigurationEnabledOk
-
-`func (o *ServerPolicyUpdate) GetRaidConfigurationEnabledOk() (*bool, bool)`
-
-GetRaidConfigurationEnabledOk returns a tuple with the RaidConfigurationEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRaidConfigurationEnabled
-
-`func (o *ServerPolicyUpdate) SetRaidConfigurationEnabled(v bool)`
-
-SetRaidConfigurationEnabled sets RaidConfigurationEnabled field to given value.
-
-### HasRaidConfigurationEnabled
-
-`func (o *ServerPolicyUpdate) HasRaidConfigurationEnabled() bool`
-
-HasRaidConfigurationEnabled returns a boolean if a field has been set.
 
 ### GetDisableTpmAfterRegistration
 

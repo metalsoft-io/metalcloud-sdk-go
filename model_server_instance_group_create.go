@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ServerInstanceGroupCreate type satisfies the MappedNullable interface at compile time
@@ -26,8 +27,6 @@ type ServerInstanceGroupCreate struct {
 	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`
 	// The number of instances to be created on the Instance Group.
 	InstanceCount *int32 `json:"instanceCount,omitempty"`
-	// The server type ID of the created instances.
-	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
 	// Automatically allocate IP addresses to child Instance`s Instance Interface elements.
 	IpAllocateAuto *int32 `json:"ipAllocateAuto,omitempty"`
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
@@ -61,6 +60,8 @@ type ServerInstanceGroupCreate struct {
 	// The resource pool assigned to this instance array
 	ResourcePoolId *int32 `json:"resourcePoolId,omitempty"`
 	Tags []string `json:"tags,omitempty"`
+	// The server type ID that will be assigned to newly created instances.
+	DefaultServerTypeId int32 `json:"defaultServerTypeId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -70,7 +71,7 @@ type _ServerInstanceGroupCreate ServerInstanceGroupCreate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroupCreate() *ServerInstanceGroupCreate {
+func NewServerInstanceGroupCreate(defaultServerTypeId int32) *ServerInstanceGroupCreate {
 	this := ServerInstanceGroupCreate{}
 	var instanceCount int32 = 1
 	this.InstanceCount = &instanceCount
@@ -92,6 +93,7 @@ func NewServerInstanceGroupCreate() *ServerInstanceGroupCreate {
 	this.DiskSizeMbytes = &diskSizeMbytes
 	var virtualInterfacesEnabled int32 = 0
 	this.VirtualInterfacesEnabled = &virtualInterfacesEnabled
+	this.DefaultServerTypeId = defaultServerTypeId
 	return &this
 }
 
@@ -249,38 +251,6 @@ func (o *ServerInstanceGroupCreate) HasInstanceCount() bool {
 // SetInstanceCount gets a reference to the given int32 and assigns it to the InstanceCount field.
 func (o *ServerInstanceGroupCreate) SetInstanceCount(v int32) {
 	o.InstanceCount = &v
-}
-
-// GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupCreate) GetServerTypeId() int32 {
-	if o == nil || IsNil(o.ServerTypeId) {
-		var ret int32
-		return ret
-	}
-	return *o.ServerTypeId
-}
-
-// GetServerTypeIdOk returns a tuple with the ServerTypeId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupCreate) GetServerTypeIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.ServerTypeId) {
-		return nil, false
-	}
-	return o.ServerTypeId, true
-}
-
-// HasServerTypeId returns a boolean if a field has been set.
-func (o *ServerInstanceGroupCreate) HasServerTypeId() bool {
-	if o != nil && !IsNil(o.ServerTypeId) {
-		return true
-	}
-
-	return false
-}
-
-// SetServerTypeId gets a reference to the given int32 and assigns it to the ServerTypeId field.
-func (o *ServerInstanceGroupCreate) SetServerTypeId(v int32) {
-	o.ServerTypeId = &v
 }
 
 // GetIpAllocateAuto returns the IpAllocateAuto field value if set, zero value otherwise.
@@ -827,6 +797,30 @@ func (o *ServerInstanceGroupCreate) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetDefaultServerTypeId returns the DefaultServerTypeId field value
+func (o *ServerInstanceGroupCreate) GetDefaultServerTypeId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.DefaultServerTypeId
+}
+
+// GetDefaultServerTypeIdOk returns a tuple with the DefaultServerTypeId field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupCreate) GetDefaultServerTypeIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DefaultServerTypeId, true
+}
+
+// SetDefaultServerTypeId sets field value
+func (o *ServerInstanceGroupCreate) SetDefaultServerTypeId(v int32) {
+	o.DefaultServerTypeId = v
+}
+
 func (o ServerInstanceGroupCreate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -848,9 +842,6 @@ func (o ServerInstanceGroupCreate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.InstanceCount) {
 		toSerialize["instanceCount"] = o.InstanceCount
-	}
-	if !IsNil(o.ServerTypeId) {
-		toSerialize["serverTypeId"] = o.ServerTypeId
 	}
 	if !IsNil(o.IpAllocateAuto) {
 		toSerialize["ipAllocateAuto"] = o.IpAllocateAuto
@@ -903,6 +894,7 @@ func (o ServerInstanceGroupCreate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
+	toSerialize["defaultServerTypeId"] = o.DefaultServerTypeId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -912,6 +904,27 @@ func (o ServerInstanceGroupCreate) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ServerInstanceGroupCreate) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"defaultServerTypeId",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varServerInstanceGroupCreate := _ServerInstanceGroupCreate{}
 
 	err = json.Unmarshal(data, &varServerInstanceGroupCreate)
@@ -929,7 +942,6 @@ func (o *ServerInstanceGroupCreate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "instanceCount")
-		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "ipAllocateAuto")
 		delete(additionalProperties, "ipv4SubnetCreateAuto")
 		delete(additionalProperties, "osTemplateId")
@@ -947,6 +959,7 @@ func (o *ServerInstanceGroupCreate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkEquipmentForceSubnetPoolIpv4WanId")
 		delete(additionalProperties, "resourcePoolId")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "defaultServerTypeId")
 		o.AdditionalProperties = additionalProperties
 	}
 

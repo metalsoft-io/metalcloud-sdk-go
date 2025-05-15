@@ -21,6 +21,7 @@ var _ MappedNullable = &VlanAllocation{}
 
 // VlanAllocation struct for VlanAllocation
 type VlanAllocation struct {
+	Id int32 `json:"id"`
 	Scope ResourceScope `json:"scope"`
 	Status ResourceAllocationStatus `json:"status"`
 	VlanId int32 `json:"vlanId"`
@@ -33,8 +34,9 @@ type _VlanAllocation VlanAllocation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVlanAllocation(scope ResourceScope, status ResourceAllocationStatus, vlanId int32) *VlanAllocation {
+func NewVlanAllocation(id int32, scope ResourceScope, status ResourceAllocationStatus, vlanId int32) *VlanAllocation {
 	this := VlanAllocation{}
+	this.Id = id
 	this.Scope = scope
 	this.Status = status
 	this.VlanId = vlanId
@@ -47,6 +49,30 @@ func NewVlanAllocation(scope ResourceScope, status ResourceAllocationStatus, vla
 func NewVlanAllocationWithDefaults() *VlanAllocation {
 	this := VlanAllocation{}
 	return &this
+}
+
+// GetId returns the Id field value
+func (o *VlanAllocation) GetId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *VlanAllocation) GetIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *VlanAllocation) SetId(v int32) {
+	o.Id = v
 }
 
 // GetScope returns the Scope field value
@@ -131,6 +157,7 @@ func (o VlanAllocation) MarshalJSON() ([]byte, error) {
 
 func (o VlanAllocation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
 	toSerialize["scope"] = o.Scope
 	toSerialize["status"] = o.Status
 	toSerialize["vlanId"] = o.VlanId
@@ -147,6 +174,7 @@ func (o *VlanAllocation) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"id",
 		"scope",
 		"status",
 		"vlanId",
@@ -179,6 +207,7 @@ func (o *VlanAllocation) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
 		delete(additionalProperties, "scope")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "vlanId")

@@ -29,7 +29,7 @@ type ServerDisk struct {
 	Model string `json:"model"`
 	// The size of the disk in GB
 	DiskSizeGb float32 `json:"diskSizeGb"`
-	// The serial of the disk
+	// The serial number of the disk
 	Serial string `json:"serial"`
 	// The vendor of the disk
 	Vendor string `json:"vendor"`

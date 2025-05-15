@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | **int32** |  | 
 **Scope** | [**ResourceScope**](ResourceScope.md) |  | 
 **Status** | [**ResourceAllocationStatus**](ResourceAllocationStatus.md) |  | 
 **VlanId** | **int32** |  | 
@@ -12,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewVlanAllocation
 
-`func NewVlanAllocation(scope ResourceScope, status ResourceAllocationStatus, vlanId int32, ) *VlanAllocation`
+`func NewVlanAllocation(id int32, scope ResourceScope, status ResourceAllocationStatus, vlanId int32, ) *VlanAllocation`
 
 NewVlanAllocation instantiates a new VlanAllocation object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +27,26 @@ will change when the set of required properties is changed
 NewVlanAllocationWithDefaults instantiates a new VlanAllocation object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *VlanAllocation) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *VlanAllocation) GetIdOk() (*int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *VlanAllocation) SetId(v int32)`
+
+SetId sets Id field to given value.
+
 
 ### GetScope
 

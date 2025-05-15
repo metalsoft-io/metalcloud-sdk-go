@@ -50,7 +50,7 @@ import (
 
 func main() {
 	infrastructureId := int32(56) // int32 | 
-	serverInstanceGroupCreate := *openapiclient.NewServerInstanceGroupCreate() // ServerInstanceGroupCreate | The Server Instance Group to create
+	serverInstanceGroupCreate := *openapiclient.NewServerInstanceGroupCreate(int32(5)) // ServerInstanceGroupCreate | The Server Instance Group to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

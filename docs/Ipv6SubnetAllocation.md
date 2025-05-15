@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | **int32** |  | 
 **Scope** | [**ResourceScope**](ResourceScope.md) |  | 
 **Status** | [**ResourceAllocationStatus**](ResourceAllocationStatus.md) |  | 
 **NetworkAddress** | **string** |  | 
@@ -14,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewIpv6SubnetAllocation
 
-`func NewIpv6SubnetAllocation(scope ResourceScope, status ResourceAllocationStatus, networkAddress string, prefixLength int32, gateway string, ) *Ipv6SubnetAllocation`
+`func NewIpv6SubnetAllocation(id int32, scope ResourceScope, status ResourceAllocationStatus, networkAddress string, prefixLength int32, gateway string, ) *Ipv6SubnetAllocation`
 
 NewIpv6SubnetAllocation instantiates a new Ipv6SubnetAllocation object
 This constructor will assign default values to properties that have it defined,
@@ -28,6 +29,26 @@ will change when the set of required properties is changed
 NewIpv6SubnetAllocationWithDefaults instantiates a new Ipv6SubnetAllocation object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *Ipv6SubnetAllocation) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Ipv6SubnetAllocation) GetIdOk() (*int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Ipv6SubnetAllocation) SetId(v int32)`
+
+SetId sets Id field to given value.
+
 
 ### GetScope
 

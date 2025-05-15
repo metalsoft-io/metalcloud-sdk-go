@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **InfrastructureId** | **int32** |  | 
 **ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
 **InstanceCount** | **int32** | The number of instances to be created on the Instance Group. | [default to 1]
-**ServerTypeId** | Pointer to **int32** | The server type ID of the created instances. | [optional] 
+**DefaultServerTypeId** | **int32** | The server type ID that will be assigned to newly created instances. | 
 **IpAllocateAuto** | **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [default to 1]
 **Ipv4SubnetCreateAuto** | **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [default to 1]
 **FirmwarePolicyIds** | Pointer to **[]float32** | Array of firmware policy ids containing associated firmware policies. | [optional] 
@@ -49,7 +49,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceGroup
 
-`func NewServerInstanceGroup(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, meta GenericMeta, ) *ServerInstanceGroup`
+`func NewServerInstanceGroup(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, defaultServerTypeId int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, meta GenericMeta, ) *ServerInstanceGroup`
 
 NewServerInstanceGroup instantiates a new ServerInstanceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -354,30 +354,25 @@ and a boolean to check if the value has been set.
 SetInstanceCount sets InstanceCount field to given value.
 
 
-### GetServerTypeId
+### GetDefaultServerTypeId
 
-`func (o *ServerInstanceGroup) GetServerTypeId() int32`
+`func (o *ServerInstanceGroup) GetDefaultServerTypeId() int32`
 
-GetServerTypeId returns the ServerTypeId field if non-nil, zero value otherwise.
+GetDefaultServerTypeId returns the DefaultServerTypeId field if non-nil, zero value otherwise.
 
-### GetServerTypeIdOk
+### GetDefaultServerTypeIdOk
 
-`func (o *ServerInstanceGroup) GetServerTypeIdOk() (*int32, bool)`
+`func (o *ServerInstanceGroup) GetDefaultServerTypeIdOk() (*int32, bool)`
 
-GetServerTypeIdOk returns a tuple with the ServerTypeId field if it's non-nil, zero value otherwise
+GetDefaultServerTypeIdOk returns a tuple with the DefaultServerTypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServerTypeId
+### SetDefaultServerTypeId
 
-`func (o *ServerInstanceGroup) SetServerTypeId(v int32)`
+`func (o *ServerInstanceGroup) SetDefaultServerTypeId(v int32)`
 
-SetServerTypeId sets ServerTypeId field to given value.
+SetDefaultServerTypeId sets DefaultServerTypeId field to given value.
 
-### HasServerTypeId
-
-`func (o *ServerInstanceGroup) HasServerTypeId() bool`
-
-HasServerTypeId returns a boolean if a field has been set.
 
 ### GetIpAllocateAuto
 

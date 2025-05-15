@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
 **InstanceCount** | Pointer to **int32** | The number of instances to be created on the Instance Group. | [optional] [default to 1]
-**ServerTypeId** | Pointer to **int32** | The server type ID of the created instances. | [optional] 
 **IpAllocateAuto** | Pointer to **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [optional] [default to 1]
 **Ipv4SubnetCreateAuto** | Pointer to **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [optional] [default to 1]
 **OsTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the Instance Group have local disks. | [optional] 
@@ -26,12 +25,13 @@ Name | Type | Description | Notes
 **NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group. | [optional] 
 **ResourcePoolId** | Pointer to **int32** | The resource pool assigned to this instance array | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
+**DefaultServerTypeId** | **int32** | The server type ID that will be assigned to newly created instances. | 
 
 ## Methods
 
 ### NewServerInstanceGroupCreate
 
-`func NewServerInstanceGroupCreate() *ServerInstanceGroupCreate`
+`func NewServerInstanceGroupCreate(defaultServerTypeId int32, ) *ServerInstanceGroupCreate`
 
 NewServerInstanceGroupCreate instantiates a new ServerInstanceGroupCreate object
 This constructor will assign default values to properties that have it defined,
@@ -145,31 +145,6 @@ SetInstanceCount sets InstanceCount field to given value.
 `func (o *ServerInstanceGroupCreate) HasInstanceCount() bool`
 
 HasInstanceCount returns a boolean if a field has been set.
-
-### GetServerTypeId
-
-`func (o *ServerInstanceGroupCreate) GetServerTypeId() int32`
-
-GetServerTypeId returns the ServerTypeId field if non-nil, zero value otherwise.
-
-### GetServerTypeIdOk
-
-`func (o *ServerInstanceGroupCreate) GetServerTypeIdOk() (*int32, bool)`
-
-GetServerTypeIdOk returns a tuple with the ServerTypeId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetServerTypeId
-
-`func (o *ServerInstanceGroupCreate) SetServerTypeId(v int32)`
-
-SetServerTypeId sets ServerTypeId field to given value.
-
-### HasServerTypeId
-
-`func (o *ServerInstanceGroupCreate) HasServerTypeId() bool`
-
-HasServerTypeId returns a boolean if a field has been set.
 
 ### GetIpAllocateAuto
 
@@ -595,6 +570,26 @@ SetTags sets Tags field to given value.
 `func (o *ServerInstanceGroupCreate) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetDefaultServerTypeId
+
+`func (o *ServerInstanceGroupCreate) GetDefaultServerTypeId() int32`
+
+GetDefaultServerTypeId returns the DefaultServerTypeId field if non-nil, zero value otherwise.
+
+### GetDefaultServerTypeIdOk
+
+`func (o *ServerInstanceGroupCreate) GetDefaultServerTypeIdOk() (*int32, bool)`
+
+GetDefaultServerTypeIdOk returns a tuple with the DefaultServerTypeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultServerTypeId
+
+`func (o *ServerInstanceGroupCreate) SetDefaultServerTypeId(v int32)`
+
+SetDefaultServerTypeId sets DefaultServerTypeId field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

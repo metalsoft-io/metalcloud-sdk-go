@@ -25,8 +25,6 @@ type ServerInstanceGroupUpdate struct {
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	// The number of instances to be created on the Instance Group.
 	InstanceCount *int32 `json:"instanceCount,omitempty"`
-	// The server type ID of the created instances.
-	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
 	// Automatically allocate IP addresses to child Instance`s Instance Interface elements.
 	IpAllocateAuto *int32 `json:"ipAllocateAuto,omitempty"`
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
@@ -57,6 +55,8 @@ type ServerInstanceGroupUpdate struct {
 	OverrideIpv4WanVlanId *int32 `json:"overrideIpv4WanVlanId,omitempty"`
 	// ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group.
 	NetworkEquipmentForceSubnetPoolIpv4WanId *int32 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
+	// The server type ID that will be assigned to newly created instances.
+	DefaultServerTypeId *int32 `json:"defaultServerTypeId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -213,38 +213,6 @@ func (o *ServerInstanceGroupUpdate) HasInstanceCount() bool {
 // SetInstanceCount gets a reference to the given int32 and assigns it to the InstanceCount field.
 func (o *ServerInstanceGroupUpdate) SetInstanceCount(v int32) {
 	o.InstanceCount = &v
-}
-
-// GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupUpdate) GetServerTypeId() int32 {
-	if o == nil || IsNil(o.ServerTypeId) {
-		var ret int32
-		return ret
-	}
-	return *o.ServerTypeId
-}
-
-// GetServerTypeIdOk returns a tuple with the ServerTypeId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupUpdate) GetServerTypeIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.ServerTypeId) {
-		return nil, false
-	}
-	return o.ServerTypeId, true
-}
-
-// HasServerTypeId returns a boolean if a field has been set.
-func (o *ServerInstanceGroupUpdate) HasServerTypeId() bool {
-	if o != nil && !IsNil(o.ServerTypeId) {
-		return true
-	}
-
-	return false
-}
-
-// SetServerTypeId gets a reference to the given int32 and assigns it to the ServerTypeId field.
-func (o *ServerInstanceGroupUpdate) SetServerTypeId(v int32) {
-	o.ServerTypeId = &v
 }
 
 // GetIpAllocateAuto returns the IpAllocateAuto field value if set, zero value otherwise.
@@ -727,6 +695,38 @@ func (o *ServerInstanceGroupUpdate) SetNetworkEquipmentForceSubnetPoolIpv4WanId(
 	o.NetworkEquipmentForceSubnetPoolIpv4WanId = &v
 }
 
+// GetDefaultServerTypeId returns the DefaultServerTypeId field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetDefaultServerTypeId() int32 {
+	if o == nil || IsNil(o.DefaultServerTypeId) {
+		var ret int32
+		return ret
+	}
+	return *o.DefaultServerTypeId
+}
+
+// GetDefaultServerTypeIdOk returns a tuple with the DefaultServerTypeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupUpdate) GetDefaultServerTypeIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.DefaultServerTypeId) {
+		return nil, false
+	}
+	return o.DefaultServerTypeId, true
+}
+
+// HasDefaultServerTypeId returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasDefaultServerTypeId() bool {
+	if o != nil && !IsNil(o.DefaultServerTypeId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultServerTypeId gets a reference to the given int32 and assigns it to the DefaultServerTypeId field.
+func (o *ServerInstanceGroupUpdate) SetDefaultServerTypeId(v int32) {
+	o.DefaultServerTypeId = &v
+}
+
 func (o ServerInstanceGroupUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -745,9 +745,6 @@ func (o ServerInstanceGroupUpdate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.InstanceCount) {
 		toSerialize["instanceCount"] = o.InstanceCount
-	}
-	if !IsNil(o.ServerTypeId) {
-		toSerialize["serverTypeId"] = o.ServerTypeId
 	}
 	if !IsNil(o.IpAllocateAuto) {
 		toSerialize["ipAllocateAuto"] = o.IpAllocateAuto
@@ -794,6 +791,9 @@ func (o ServerInstanceGroupUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NetworkEquipmentForceSubnetPoolIpv4WanId) {
 		toSerialize["networkEquipmentForceSubnetPoolIpv4WanId"] = o.NetworkEquipmentForceSubnetPoolIpv4WanId
 	}
+	if !IsNil(o.DefaultServerTypeId) {
+		toSerialize["defaultServerTypeId"] = o.DefaultServerTypeId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -819,7 +819,6 @@ func (o *ServerInstanceGroupUpdate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "instanceCount")
-		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "ipAllocateAuto")
 		delete(additionalProperties, "ipv4SubnetCreateAuto")
 		delete(additionalProperties, "osTemplateId")
@@ -835,6 +834,7 @@ func (o *ServerInstanceGroupUpdate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "additionalWanIpv4Json")
 		delete(additionalProperties, "overrideIpv4WanVlanId")
 		delete(additionalProperties, "networkEquipmentForceSubnetPoolIpv4WanId")
+		delete(additionalProperties, "defaultServerTypeId")
 		o.AdditionalProperties = additionalProperties
 	}
 

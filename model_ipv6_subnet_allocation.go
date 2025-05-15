@@ -21,6 +21,7 @@ var _ MappedNullable = &Ipv6SubnetAllocation{}
 
 // Ipv6SubnetAllocation struct for Ipv6SubnetAllocation
 type Ipv6SubnetAllocation struct {
+	Id int32 `json:"id"`
 	Scope ResourceScope `json:"scope"`
 	Status ResourceAllocationStatus `json:"status"`
 	NetworkAddress string `json:"networkAddress"`
@@ -35,8 +36,9 @@ type _Ipv6SubnetAllocation Ipv6SubnetAllocation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIpv6SubnetAllocation(scope ResourceScope, status ResourceAllocationStatus, networkAddress string, prefixLength int32, gateway string) *Ipv6SubnetAllocation {
+func NewIpv6SubnetAllocation(id int32, scope ResourceScope, status ResourceAllocationStatus, networkAddress string, prefixLength int32, gateway string) *Ipv6SubnetAllocation {
 	this := Ipv6SubnetAllocation{}
+	this.Id = id
 	this.Scope = scope
 	this.Status = status
 	this.NetworkAddress = networkAddress
@@ -51,6 +53,30 @@ func NewIpv6SubnetAllocation(scope ResourceScope, status ResourceAllocationStatu
 func NewIpv6SubnetAllocationWithDefaults() *Ipv6SubnetAllocation {
 	this := Ipv6SubnetAllocation{}
 	return &this
+}
+
+// GetId returns the Id field value
+func (o *Ipv6SubnetAllocation) GetId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Ipv6SubnetAllocation) GetIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *Ipv6SubnetAllocation) SetId(v int32) {
+	o.Id = v
 }
 
 // GetScope returns the Scope field value
@@ -183,6 +209,7 @@ func (o Ipv6SubnetAllocation) MarshalJSON() ([]byte, error) {
 
 func (o Ipv6SubnetAllocation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
 	toSerialize["scope"] = o.Scope
 	toSerialize["status"] = o.Status
 	toSerialize["networkAddress"] = o.NetworkAddress
@@ -201,6 +228,7 @@ func (o *Ipv6SubnetAllocation) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"id",
 		"scope",
 		"status",
 		"networkAddress",
@@ -235,6 +263,7 @@ func (o *Ipv6SubnetAllocation) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
 		delete(additionalProperties, "scope")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "networkAddress")

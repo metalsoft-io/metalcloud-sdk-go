@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **DhcpOption82ToIPMapping** | **map[string]interface{}** | Option82 to IP mapping | 
 **DhcpBmcMacAddressWhitelistEnabled** | **bool** | Whether to enable DHCP BMC MAC address whitelist | 
 **DhcpBmcMacAddressWhitelist** | **[]string** | List of DHCP BMC MAC address whitelist | 
-**RaidConfigurationEnabled** | **bool** | Whether RAID configuration is enabled | 
 **DisableTpmAfterRegistration** | **bool** | Whether to disable TPM after registration | 
 **SyslogMonitoringEnabled** | **bool** | Whether syslog monitoring is enabled | 
 **DefaultServerCleanupPolicyID** | **float32** | Default server cleanup policy ID | 
@@ -21,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewServerPolicy
 
-`func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, raidConfigurationEnabled bool, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []ServerRegistrationBiosProfile, ) *ServerPolicy`
+`func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []ServerRegistrationBiosProfile, ) *ServerPolicy`
 
 NewServerPolicy instantiates a new ServerPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -134,26 +133,6 @@ and a boolean to check if the value has been set.
 `func (o *ServerPolicy) SetDhcpBmcMacAddressWhitelist(v []string)`
 
 SetDhcpBmcMacAddressWhitelist sets DhcpBmcMacAddressWhitelist field to given value.
-
-
-### GetRaidConfigurationEnabled
-
-`func (o *ServerPolicy) GetRaidConfigurationEnabled() bool`
-
-GetRaidConfigurationEnabled returns the RaidConfigurationEnabled field if non-nil, zero value otherwise.
-
-### GetRaidConfigurationEnabledOk
-
-`func (o *ServerPolicy) GetRaidConfigurationEnabledOk() (*bool, bool)`
-
-GetRaidConfigurationEnabledOk returns a tuple with the RaidConfigurationEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRaidConfigurationEnabled
-
-`func (o *ServerPolicy) SetRaidConfigurationEnabled(v bool)`
-
-SetRaidConfigurationEnabled sets RaidConfigurationEnabled field to given value.
 
 
 ### GetDisableTpmAfterRegistration

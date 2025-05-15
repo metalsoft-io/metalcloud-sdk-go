@@ -31,8 +31,6 @@ type ServerPolicy struct {
 	DhcpBmcMacAddressWhitelistEnabled bool `json:"dhcpBmcMacAddressWhitelistEnabled"`
 	// List of DHCP BMC MAC address whitelist
 	DhcpBmcMacAddressWhitelist []string `json:"dhcpBmcMacAddressWhitelist"`
-	// Whether RAID configuration is enabled
-	RaidConfigurationEnabled bool `json:"raidConfigurationEnabled"`
 	// Whether to disable TPM after registration
 	DisableTpmAfterRegistration bool `json:"disableTpmAfterRegistration"`
 	// Whether syslog monitoring is enabled
@@ -54,14 +52,13 @@ type _ServerPolicy ServerPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, raidConfigurationEnabled bool, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []ServerRegistrationBiosProfile) *ServerPolicy {
+func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []ServerRegistrationBiosProfile) *ServerPolicy {
 	this := ServerPolicy{}
 	this.RegisterCredentials = registerCredentials
 	this.MinimumNumberOfConnectedInterfaces = minimumNumberOfConnectedInterfaces
 	this.DhcpOption82ToIPMapping = dhcpOption82ToIPMapping
 	this.DhcpBmcMacAddressWhitelistEnabled = dhcpBmcMacAddressWhitelistEnabled
 	this.DhcpBmcMacAddressWhitelist = dhcpBmcMacAddressWhitelist
-	this.RaidConfigurationEnabled = raidConfigurationEnabled
 	this.DisableTpmAfterRegistration = disableTpmAfterRegistration
 	this.SyslogMonitoringEnabled = syslogMonitoringEnabled
 	this.DefaultServerCleanupPolicyID = defaultServerCleanupPolicyID
@@ -197,30 +194,6 @@ func (o *ServerPolicy) GetDhcpBmcMacAddressWhitelistOk() ([]string, bool) {
 // SetDhcpBmcMacAddressWhitelist sets field value
 func (o *ServerPolicy) SetDhcpBmcMacAddressWhitelist(v []string) {
 	o.DhcpBmcMacAddressWhitelist = v
-}
-
-// GetRaidConfigurationEnabled returns the RaidConfigurationEnabled field value
-func (o *ServerPolicy) GetRaidConfigurationEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.RaidConfigurationEnabled
-}
-
-// GetRaidConfigurationEnabledOk returns a tuple with the RaidConfigurationEnabled field value
-// and a boolean to check if the value has been set.
-func (o *ServerPolicy) GetRaidConfigurationEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RaidConfigurationEnabled, true
-}
-
-// SetRaidConfigurationEnabled sets field value
-func (o *ServerPolicy) SetRaidConfigurationEnabled(v bool) {
-	o.RaidConfigurationEnabled = v
 }
 
 // GetDisableTpmAfterRegistration returns the DisableTpmAfterRegistration field value
@@ -382,7 +355,6 @@ func (o ServerPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize["dhcpOption82ToIPMapping"] = o.DhcpOption82ToIPMapping
 	toSerialize["dhcpBmcMacAddressWhitelistEnabled"] = o.DhcpBmcMacAddressWhitelistEnabled
 	toSerialize["dhcpBmcMacAddressWhitelist"] = o.DhcpBmcMacAddressWhitelist
-	toSerialize["raidConfigurationEnabled"] = o.RaidConfigurationEnabled
 	toSerialize["disableTpmAfterRegistration"] = o.DisableTpmAfterRegistration
 	toSerialize["syslogMonitoringEnabled"] = o.SyslogMonitoringEnabled
 	toSerialize["defaultServerCleanupPolicyID"] = o.DefaultServerCleanupPolicyID
@@ -407,7 +379,6 @@ func (o *ServerPolicy) UnmarshalJSON(data []byte) (err error) {
 		"dhcpOption82ToIPMapping",
 		"dhcpBmcMacAddressWhitelistEnabled",
 		"dhcpBmcMacAddressWhitelist",
-		"raidConfigurationEnabled",
 		"disableTpmAfterRegistration",
 		"syslogMonitoringEnabled",
 		"defaultServerCleanupPolicyID",
@@ -448,7 +419,6 @@ func (o *ServerPolicy) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dhcpOption82ToIPMapping")
 		delete(additionalProperties, "dhcpBmcMacAddressWhitelistEnabled")
 		delete(additionalProperties, "dhcpBmcMacAddressWhitelist")
-		delete(additionalProperties, "raidConfigurationEnabled")
 		delete(additionalProperties, "disableTpmAfterRegistration")
 		delete(additionalProperties, "syslogMonitoringEnabled")
 		delete(additionalProperties, "defaultServerCleanupPolicyID")

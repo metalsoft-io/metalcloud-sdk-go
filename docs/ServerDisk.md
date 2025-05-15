@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **ServerId** | **float32** | The id of the server. | 
 **Model** | **string** | The model of the disk | 
 **DiskSizeGb** | **float32** | The size of the disk in GB | 
-**Serial** | **string** | The serial of the disk | 
+**Serial** | **string** | The serial number of the disk | 
 **Vendor** | **string** | The vendor of the disk | 
 **Status** | **string** | The status of the disk | 
 **Type** | **string** | The type of the disk | 

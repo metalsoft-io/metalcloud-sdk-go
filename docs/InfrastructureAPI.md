@@ -1107,7 +1107,7 @@ import (
 
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
-	updateInfrastructureMeta := *openapiclient.NewUpdateInfrastructureMeta() // UpdateInfrastructureMeta | The infrastructure metadata to update
+	updateInfrastructureMeta := *openapiclient.NewUpdateInfrastructureMeta("Name_example") // UpdateInfrastructureMeta | The infrastructure metadata to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

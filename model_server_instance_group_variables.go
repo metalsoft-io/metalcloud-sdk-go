@@ -44,8 +44,8 @@ type ServerInstanceGroupVariables struct {
 	ExtensionInstanceId *int32 `json:"extensionInstanceId,omitempty"`
 	// The number of instances to be created on the Instance Group.
 	InstanceCount int32 `json:"instanceCount"`
-	// The server type ID of the created instances.
-	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
+	// The server type ID that will be assigned to newly created instances.
+	DefaultServerTypeId int32 `json:"defaultServerTypeId"`
 	// Automatically allocate IP addresses to child Instance`s Instance Interface elements.
 	IpAllocateAuto int32 `json:"ipAllocateAuto"`
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
@@ -99,7 +99,7 @@ type _ServerInstanceGroupVariables ServerInstanceGroupVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroupVariables(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32) *ServerInstanceGroupVariables {
+func NewServerInstanceGroupVariables(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, defaultServerTypeId int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32) *ServerInstanceGroupVariables {
 	this := ServerInstanceGroupVariables{}
 	this.Id = id
 	this.Revision = revision
@@ -108,6 +108,7 @@ func NewServerInstanceGroupVariables(id int32, revision int32, label string, cre
 	this.UpdatedTimestamp = updatedTimestamp
 	this.InfrastructureId = infrastructureId
 	this.InstanceCount = instanceCount
+	this.DefaultServerTypeId = defaultServerTypeId
 	this.IpAllocateAuto = ipAllocateAuto
 	this.Ipv4SubnetCreateAuto = ipv4SubnetCreateAuto
 	this.ProcessorCount = processorCount
@@ -512,36 +513,28 @@ func (o *ServerInstanceGroupVariables) SetInstanceCount(v int32) {
 	o.InstanceCount = v
 }
 
-// GetServerTypeId returns the ServerTypeId field value if set, zero value otherwise.
-func (o *ServerInstanceGroupVariables) GetServerTypeId() int32 {
-	if o == nil || IsNil(o.ServerTypeId) {
+// GetDefaultServerTypeId returns the DefaultServerTypeId field value
+func (o *ServerInstanceGroupVariables) GetDefaultServerTypeId() int32 {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.ServerTypeId
+
+	return o.DefaultServerTypeId
 }
 
-// GetServerTypeIdOk returns a tuple with the ServerTypeId field value if set, nil otherwise
+// GetDefaultServerTypeIdOk returns a tuple with the DefaultServerTypeId field value
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupVariables) GetServerTypeIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.ServerTypeId) {
+func (o *ServerInstanceGroupVariables) GetDefaultServerTypeIdOk() (*int32, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ServerTypeId, true
+	return &o.DefaultServerTypeId, true
 }
 
-// HasServerTypeId returns a boolean if a field has been set.
-func (o *ServerInstanceGroupVariables) HasServerTypeId() bool {
-	if o != nil && !IsNil(o.ServerTypeId) {
-		return true
-	}
-
-	return false
-}
-
-// SetServerTypeId gets a reference to the given int32 and assigns it to the ServerTypeId field.
-func (o *ServerInstanceGroupVariables) SetServerTypeId(v int32) {
-	o.ServerTypeId = &v
+// SetDefaultServerTypeId sets field value
+func (o *ServerInstanceGroupVariables) SetDefaultServerTypeId(v int32) {
+	o.DefaultServerTypeId = v
 }
 
 // GetIpAllocateAuto returns the IpAllocateAuto field value
@@ -1260,9 +1253,7 @@ func (o ServerInstanceGroupVariables) ToMap() (map[string]interface{}, error) {
 		toSerialize["extensionInstanceId"] = o.ExtensionInstanceId
 	}
 	toSerialize["instanceCount"] = o.InstanceCount
-	if !IsNil(o.ServerTypeId) {
-		toSerialize["serverTypeId"] = o.ServerTypeId
-	}
+	toSerialize["defaultServerTypeId"] = o.DefaultServerTypeId
 	toSerialize["ipAllocateAuto"] = o.IpAllocateAuto
 	toSerialize["ipv4SubnetCreateAuto"] = o.Ipv4SubnetCreateAuto
 	if o.FirmwarePolicyIds != nil {
@@ -1333,6 +1324,7 @@ func (o *ServerInstanceGroupVariables) UnmarshalJSON(data []byte) (err error) {
 		"updatedTimestamp",
 		"infrastructureId",
 		"instanceCount",
+		"defaultServerTypeId",
 		"ipAllocateAuto",
 		"ipv4SubnetCreateAuto",
 		"processorCount",
@@ -1386,7 +1378,7 @@ func (o *ServerInstanceGroupVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "instanceCount")
-		delete(additionalProperties, "serverTypeId")
+		delete(additionalProperties, "defaultServerTypeId")
 		delete(additionalProperties, "ipAllocateAuto")
 		delete(additionalProperties, "ipv4SubnetCreateAuto")
 		delete(additionalProperties, "firmwarePolicyIds")

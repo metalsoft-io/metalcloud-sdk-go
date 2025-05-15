@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the InfrastructureMeta type satisfies the MappedNullable interface at compile time
@@ -23,6 +24,8 @@ type InfrastructureMeta struct {
 	GuiSettings *GenericGUISettings `json:"guiSettings,omitempty"`
 	// Tags for the Infrastructure.
 	Tags []string `json:"tags,omitempty"`
+	// name of the Infrastructure
+	Name string `json:"name"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,8 +35,9 @@ type _InfrastructureMeta InfrastructureMeta
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfrastructureMeta() *InfrastructureMeta {
+func NewInfrastructureMeta(name string) *InfrastructureMeta {
 	this := InfrastructureMeta{}
+	this.Name = name
 	return &this
 }
 
@@ -109,6 +113,30 @@ func (o *InfrastructureMeta) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetName returns the Name field value
+func (o *InfrastructureMeta) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *InfrastructureMeta) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *InfrastructureMeta) SetName(v string) {
+	o.Name = v
+}
+
 func (o InfrastructureMeta) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -125,6 +153,7 @@ func (o InfrastructureMeta) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
+	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -134,6 +163,27 @@ func (o InfrastructureMeta) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *InfrastructureMeta) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varInfrastructureMeta := _InfrastructureMeta{}
 
 	err = json.Unmarshal(data, &varInfrastructureMeta)
@@ -149,6 +199,7 @@ func (o *InfrastructureMeta) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "guiSettings")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 

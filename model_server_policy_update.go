@@ -30,8 +30,6 @@ type ServerPolicyUpdate struct {
 	DhcpBmcMacAddressWhitelistEnabled *bool `json:"dhcpBmcMacAddressWhitelistEnabled,omitempty"`
 	// List of DHCP BMC MAC address whitelist
 	DhcpBmcMacAddressWhitelist []string `json:"dhcpBmcMacAddressWhitelist,omitempty"`
-	// Whether RAID configuration is enabled
-	RaidConfigurationEnabled *bool `json:"raidConfigurationEnabled,omitempty"`
 	// Whether to disable TPM after registration
 	DisableTpmAfterRegistration *bool `json:"disableTpmAfterRegistration,omitempty"`
 	// Whether syslog monitoring is enabled
@@ -224,38 +222,6 @@ func (o *ServerPolicyUpdate) HasDhcpBmcMacAddressWhitelist() bool {
 // SetDhcpBmcMacAddressWhitelist gets a reference to the given []string and assigns it to the DhcpBmcMacAddressWhitelist field.
 func (o *ServerPolicyUpdate) SetDhcpBmcMacAddressWhitelist(v []string) {
 	o.DhcpBmcMacAddressWhitelist = v
-}
-
-// GetRaidConfigurationEnabled returns the RaidConfigurationEnabled field value if set, zero value otherwise.
-func (o *ServerPolicyUpdate) GetRaidConfigurationEnabled() bool {
-	if o == nil || IsNil(o.RaidConfigurationEnabled) {
-		var ret bool
-		return ret
-	}
-	return *o.RaidConfigurationEnabled
-}
-
-// GetRaidConfigurationEnabledOk returns a tuple with the RaidConfigurationEnabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerPolicyUpdate) GetRaidConfigurationEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.RaidConfigurationEnabled) {
-		return nil, false
-	}
-	return o.RaidConfigurationEnabled, true
-}
-
-// HasRaidConfigurationEnabled returns a boolean if a field has been set.
-func (o *ServerPolicyUpdate) HasRaidConfigurationEnabled() bool {
-	if o != nil && !IsNil(o.RaidConfigurationEnabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetRaidConfigurationEnabled gets a reference to the given bool and assigns it to the RaidConfigurationEnabled field.
-func (o *ServerPolicyUpdate) SetRaidConfigurationEnabled(v bool) {
-	o.RaidConfigurationEnabled = &v
 }
 
 // GetDisableTpmAfterRegistration returns the DisableTpmAfterRegistration field value if set, zero value otherwise.
@@ -475,9 +441,6 @@ func (o ServerPolicyUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DhcpBmcMacAddressWhitelist) {
 		toSerialize["dhcpBmcMacAddressWhitelist"] = o.DhcpBmcMacAddressWhitelist
 	}
-	if !IsNil(o.RaidConfigurationEnabled) {
-		toSerialize["raidConfigurationEnabled"] = o.RaidConfigurationEnabled
-	}
 	if !IsNil(o.DisableTpmAfterRegistration) {
 		toSerialize["disableTpmAfterRegistration"] = o.DisableTpmAfterRegistration
 	}
@@ -523,7 +486,6 @@ func (o *ServerPolicyUpdate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dhcpOption82ToIPMapping")
 		delete(additionalProperties, "dhcpBmcMacAddressWhitelistEnabled")
 		delete(additionalProperties, "dhcpBmcMacAddressWhitelist")
-		delete(additionalProperties, "raidConfigurationEnabled")
 		delete(additionalProperties, "disableTpmAfterRegistration")
 		delete(additionalProperties, "syslogMonitoringEnabled")
 		delete(additionalProperties, "defaultServerCleanupPolicyID")

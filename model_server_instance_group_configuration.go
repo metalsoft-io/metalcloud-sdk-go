@@ -32,6 +32,8 @@ type ServerInstanceGroupConfiguration struct {
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	// The number of instances to be created on the Instance Group.
 	InstanceCount int32 `json:"instanceCount"`
+	// The server type ID that will be assigned to newly created instances.
+	DefaultServerTypeId int32 `json:"defaultServerTypeId"`
 	// Automatically allocate IP addresses to child Instance`s Instance Interface elements.
 	IpAllocateAuto int32 `json:"ipAllocateAuto"`
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
@@ -84,12 +86,13 @@ type _ServerInstanceGroupConfiguration ServerInstanceGroupConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroupConfiguration(revision int32, label string, updatedTimestamp string, instanceCount int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, deployType string, deployStatus string) *ServerInstanceGroupConfiguration {
+func NewServerInstanceGroupConfiguration(revision int32, label string, updatedTimestamp string, instanceCount int32, defaultServerTypeId int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, deployType string, deployStatus string) *ServerInstanceGroupConfiguration {
 	this := ServerInstanceGroupConfiguration{}
 	this.Revision = revision
 	this.Label = label
 	this.UpdatedTimestamp = updatedTimestamp
 	this.InstanceCount = instanceCount
+	this.DefaultServerTypeId = defaultServerTypeId
 	this.IpAllocateAuto = ipAllocateAuto
 	this.Ipv4SubnetCreateAuto = ipv4SubnetCreateAuto
 	this.ProcessorCount = processorCount
@@ -296,6 +299,30 @@ func (o *ServerInstanceGroupConfiguration) GetInstanceCountOk() (*int32, bool) {
 // SetInstanceCount sets field value
 func (o *ServerInstanceGroupConfiguration) SetInstanceCount(v int32) {
 	o.InstanceCount = v
+}
+
+// GetDefaultServerTypeId returns the DefaultServerTypeId field value
+func (o *ServerInstanceGroupConfiguration) GetDefaultServerTypeId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.DefaultServerTypeId
+}
+
+// GetDefaultServerTypeIdOk returns a tuple with the DefaultServerTypeId field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupConfiguration) GetDefaultServerTypeIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DefaultServerTypeId, true
+}
+
+// SetDefaultServerTypeId sets field value
+func (o *ServerInstanceGroupConfiguration) SetDefaultServerTypeId(v int32) {
+	o.DefaultServerTypeId = v
 }
 
 // GetIpAllocateAuto returns the IpAllocateAuto field value
@@ -935,6 +962,7 @@ func (o ServerInstanceGroupConfiguration) ToMap() (map[string]interface{}, error
 		toSerialize["serverGroupName"] = o.ServerGroupName
 	}
 	toSerialize["instanceCount"] = o.InstanceCount
+	toSerialize["defaultServerTypeId"] = o.DefaultServerTypeId
 	toSerialize["ipAllocateAuto"] = o.IpAllocateAuto
 	toSerialize["ipv4SubnetCreateAuto"] = o.Ipv4SubnetCreateAuto
 	if o.FirmwarePolicyIds != nil {
@@ -996,6 +1024,7 @@ func (o *ServerInstanceGroupConfiguration) UnmarshalJSON(data []byte) (err error
 		"label",
 		"updatedTimestamp",
 		"instanceCount",
+		"defaultServerTypeId",
 		"ipAllocateAuto",
 		"ipv4SubnetCreateAuto",
 		"processorCount",
@@ -1042,6 +1071,7 @@ func (o *ServerInstanceGroupConfiguration) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "subdomain")
 		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "instanceCount")
+		delete(additionalProperties, "defaultServerTypeId")
 		delete(additionalProperties, "ipAllocateAuto")
 		delete(additionalProperties, "ipv4SubnetCreateAuto")
 		delete(additionalProperties, "firmwarePolicyIds")
