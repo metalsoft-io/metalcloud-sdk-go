@@ -1038,7 +1038,7 @@ func (r BucketAPIUpdateBucketRequest) IfMatch(ifMatch string) BucketAPIUpdateBuc
 	return r
 }
 
-func (r BucketAPIUpdateBucketRequest) Execute() (*Bucket, *http.Response, error) {
+func (r BucketAPIUpdateBucketRequest) Execute() (*BucketConfiguration, *http.Response, error) {
 	return r.ApiService.UpdateBucketExecute(r)
 }
 
@@ -1062,13 +1062,13 @@ func (a *BucketAPIService) UpdateBucket(ctx context.Context, infrastructureId fl
 }
 
 // Execute executes the request
-//  @return Bucket
-func (a *BucketAPIService) UpdateBucketExecute(r BucketAPIUpdateBucketRequest) (*Bucket, *http.Response, error) {
+//  @return BucketConfiguration
+func (a *BucketAPIService) UpdateBucketExecute(r BucketAPIUpdateBucketRequest) (*BucketConfiguration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Bucket
+		localVarReturnValue  *BucketConfiguration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BucketAPIService.UpdateBucket")

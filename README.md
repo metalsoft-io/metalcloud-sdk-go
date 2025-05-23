@@ -181,6 +181,7 @@ Class | Method | HTTP request | Description
 *FirmwarePolicyAPI* | [**UpdateFirmwarePolicy**](docs/FirmwarePolicyAPI.md#updatefirmwarepolicy) | **Patch** /api/v2/firmware/policies/{firmwarePolicyId} | Updates a Firmware Policy
 *FirmwarePolicyAPI* | [**UpdateGlobalFirmwareConfiguration**](docs/FirmwarePolicyAPI.md#updateglobalfirmwareconfiguration) | **Patch** /api/v2/firmware/configuration | Updates Global Firmware Policy Configuration
 *InfrastructureAPI* | [**AddInfrastructureUser**](docs/InfrastructureAPI.md#addinfrastructureuser) | **Post** /api/v2/infrastructures/{infrastructureId}/users | Adds a user to the specified infrastructure
+*InfrastructureAPI* | [**CancelDeployInfrastructure**](docs/InfrastructureAPI.md#canceldeployinfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/cancel-deploy | Cancels the specified infrastructure deployment
 *InfrastructureAPI* | [**CreateInfrastructure**](docs/InfrastructureAPI.md#createinfrastructure) | **Post** /api/v2/infrastructures | Creates a new infrastructure
 *InfrastructureAPI* | [**DeleteInfrastructure**](docs/InfrastructureAPI.md#deleteinfrastructure) | **Delete** /api/v2/infrastructures/{infrastructureId} | Deletes the specified infrastructure
 *InfrastructureAPI* | [**DeployInfrastructure**](docs/InfrastructureAPI.md#deployinfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/deploy | Deploys the specified infrastructure
@@ -347,6 +348,7 @@ Class | Method | HTTP request | Description
 *ServerAPI* | [**GetServerVNCInfo**](docs/ServerAPI.md#getservervncinfo) | **Get** /api/v2/servers/{serverId}/vnc-info | Get VNC information
 *ServerAPI* | [**GetServers**](docs/ServerAPI.md#getservers) | **Get** /api/v2/servers | Get a list of Servers
 *ServerAPI* | [**GetServersStatistics**](docs/ServerAPI.md#getserversstatistics) | **Get** /api/v2/servers/statistics | Get Servers statistics
+*ServerAPI* | [**IdentifyServer**](docs/ServerAPI.md#identifyserver) | **Post** /api/v2/servers/{serverId}/actions/identify-server | identify the server chassis by blinking the LED
 *ServerAPI* | [**ReRegisterServer**](docs/ServerAPI.md#reregisterserver) | **Post** /api/v2/servers/{serverId}/actions/re-register | Re-register a server
 *ServerAPI* | [**RegisterServer**](docs/ServerAPI.md#registerserver) | **Post** /api/v2/servers | Initialize server registration
 *ServerAPI* | [**ResetServerToFactoryDefaults**](docs/ServerAPI.md#resetservertofactorydefaults) | **Post** /api/v2/servers/{serverId}/actions/factory-reset | Resets a server to factory defaults
@@ -457,7 +459,7 @@ Class | Method | HTTP request | Description
 *SubnetAPI* | [**DeleteSubnet**](docs/SubnetAPI.md#deletesubnet) | **Delete** /api/v2/subnets/{subnetId} | Delete Subnet
 *SubnetAPI* | [**GetSubnet**](docs/SubnetAPI.md#getsubnet) | **Get** /api/v2/subnets/{subnetId} | Retrieves the Subnet information
 *SubnetAPI* | [**GetSubnets**](docs/SubnetAPI.md#getsubnets) | **Get** /api/v2/subnets | List all Subnets
-*SubnetAPI* | [**UpdateSubnet**](docs/SubnetAPI.md#updatesubnet) | **Patch** /api/v2/subnets/{subnetId}/config | Updates Subnet
+*SubnetAPI* | [**UpdateSubnet**](docs/SubnetAPI.md#updatesubnet) | **Patch** /api/v2/subnets/{subnetId} | Updates Subnet
 *SystemAPI* | [**GetVersion**](docs/SystemAPI.md#getversion) | **Get** /api/v2/version | Get MetalSoft system version
 *TemplateAssetAPI* | [**CreateTemplateAsset**](docs/TemplateAssetAPI.md#createtemplateasset) | **Post** /api/v2/template-assets | Create template asset
 *TemplateAssetAPI* | [**DeleteTemplateAsset**](docs/TemplateAssetAPI.md#deletetemplateasset) | **Delete** /api/v2/template-assets/{templateAssetId} | Delete template asset
@@ -473,6 +475,7 @@ Class | Method | HTTP request | Description
 *UserAPI* | [**InitiatePasswordReset**](docs/UserAPI.md#initiatepasswordreset) | **Post** /api/v2/user/actions/initiate-password-reset | Initiate reset user password
 *UserAPI* | [**RegenerateUserApiKey**](docs/UserAPI.md#regenerateuserapikey) | **Post** /api/v2/user/actions/regenerate-api-key | Regenerate user API key
 *UserAPI* | [**RegenerateUserJwtSalt**](docs/UserAPI.md#regenerateuserjwtsalt) | **Post** /api/v2/user/actions/regenerate-jwt-salt | Regenerate user JWT salt. Also logs out all user sessions.
+*UserAPI* | [**ResendEmailVerification**](docs/UserAPI.md#resendemailverification) | **Post** /api/v2/user/actions/resend-email-verification | Resend email verification
 *UserAPI* | [**UpdateUserPassword**](docs/UserAPI.md#updateuserpassword) | **Post** /api/v2/user/actions/change-password | Change user password
 *UserAPI* | [**UserControllerHandleEmailVerify**](docs/UserAPI.md#usercontrollerhandleemailverify) | **Get** /api/v2/user/actions/verify-email | Handle user email verify action
 *UserAPI* | [**UserControllerHandleUserResetPassword**](docs/UserAPI.md#usercontrollerhandleuserresetpassword) | **Get** /api/v2/user/actions/reset-password | Handle user reset password action
@@ -530,6 +533,7 @@ Class | Method | HTTP request | Description
 *VMInstanceGroupAPI* | [**GetVMInstanceGroupInterfaceInfo**](docs/VMInstanceGroupAPI.md#getvminstancegroupinterfaceinfo) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/interfaces/{vmInstanceGroupInterfaceId} | Get VM Instance Group Interface information
 *VMInstanceGroupAPI* | [**GetVMInstanceGroupInterfaces**](docs/VMInstanceGroupAPI.md#getvminstancegroupinterfaces) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/interfaces | Get all VM Instance Group Interfaces on the VM Instance Group
 *VMInstanceGroupAPI* | [**GetVMInstanceGroupVMInstances**](docs/VMInstanceGroupAPI.md#getvminstancegroupvminstances) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/vm-instances | Get the VM Instances of VM Instance Group
+*VMInstanceGroupAPI* | [**GetVmInstanceGroupNetworkConfiguration**](docs/VMInstanceGroupAPI.md#getvminstancegroupnetworkconfiguration) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking | Get vm instance group network configuration
 *VMInstanceGroupAPI* | [**PatchVMInstanceGroupMeta**](docs/VMInstanceGroupAPI.md#patchvminstancegroupmeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/meta | Updates the meta of a VM Instance Group
 *VMInstanceGroupAPI* | [**UpdateVMInstanceGroupConfig**](docs/VMInstanceGroupAPI.md#updatevminstancegroupconfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config | Updates VM Instance Group information
 *VMPoolAPI* | [**CreateVMPool**](docs/VMPoolAPI.md#createvmpool) | **Post** /api/v2/vm-pools | Creates a VM Pool
@@ -574,6 +578,7 @@ Class | Method | HTTP request | Description
  - [AccountLimits](docs/AccountLimits.md)
  - [AccountPaginatedList](docs/AccountPaginatedList.md)
  - [AddUserToInfrastructure](docs/AddUserToInfrastructure.md)
+ - [AddressRange](docs/AddressRange.md)
  - [AdminPasswordRevealPermissions](docs/AdminPasswordRevealPermissions.md)
  - [AgentCapabilities](docs/AgentCapabilities.md)
  - [AgentConnectedInfo](docs/AgentConnectedInfo.md)
@@ -681,6 +686,7 @@ Class | Method | HTTP request | Description
  - [CustomIso](docs/CustomIso.md)
  - [CustomIsoPaginatedList](docs/CustomIsoPaginatedList.md)
  - [CustomVariable](docs/CustomVariable.md)
+ - [DellComponentFilter](docs/DellComponentFilter.md)
  - [Drive](docs/Drive.md)
  - [DriveConfiguration](docs/DriveConfiguration.md)
  - [DriveGroup](docs/DriveGroup.md)
@@ -743,6 +749,7 @@ Class | Method | HTTP request | Description
  - [FirmwareBaselinePaginatedList](docs/FirmwareBaselinePaginatedList.md)
  - [FirmwareBinary](docs/FirmwareBinary.md)
  - [FirmwareBinaryPaginatedList](docs/FirmwareBinaryPaginatedList.md)
+ - [FirmwareBinaryResponse](docs/FirmwareBinaryResponse.md)
  - [FirmwareBinaryUpdateSeverity](docs/FirmwareBinaryUpdateSeverity.md)
  - [FirmwareCatalog](docs/FirmwareCatalog.md)
  - [FirmwareCatalogPaginatedList](docs/FirmwareCatalogPaginatedList.md)
@@ -757,6 +764,8 @@ Class | Method | HTTP request | Description
  - [GetResourceUtilizationDetailed](docs/GetResourceUtilizationDetailed.md)
  - [GetSiteControllerOneLiner200Response](docs/GetSiteControllerOneLiner200Response.md)
  - [GlobalFirmwareUpgradeConfiguration](docs/GlobalFirmwareUpgradeConfiguration.md)
+ - [HpComponentFilter](docs/HpComponentFilter.md)
+ - [IServerFirmwareBinaryResponse](docs/IServerFirmwareBinaryResponse.md)
  - [Infrastructure](docs/Infrastructure.md)
  - [InfrastructureConfig](docs/InfrastructureConfig.md)
  - [InfrastructureConfiguration](docs/InfrastructureConfiguration.md)
@@ -772,7 +781,16 @@ Class | Method | HTTP request | Description
  - [InfrastructureServiceStatus](docs/InfrastructureServiceStatus.md)
  - [InfrastructureVariables](docs/InfrastructureVariables.md)
  - [InfrastructuresStatistics](docs/InfrastructuresStatistics.md)
+ - [InstanceInterfaceIpv4AddressVariables](docs/InstanceInterfaceIpv4AddressVariables.md)
+ - [InstanceInterfaceIpv6AddressVariables](docs/InstanceInterfaceIpv6AddressVariables.md)
+ - [InstanceInterfaceLinkVariables](docs/InstanceInterfaceLinkVariables.md)
+ - [InstanceInterfaceMemberVariables](docs/InstanceInterfaceMemberVariables.md)
+ - [InstanceInterfaceNetworkVariables](docs/InstanceInterfaceNetworkVariables.md)
+ - [InstanceInterfaceRouteVariables](docs/InstanceInterfaceRouteVariables.md)
+ - [InstanceInterfaceType](docs/InstanceInterfaceType.md)
+ - [InstanceNetworkVariables](docs/InstanceNetworkVariables.md)
  - [InstancesSetPowerState](docs/InstancesSetPowerState.md)
+ - [IpVersion](docs/IpVersion.md)
  - [Ipv4SubnetAllocation](docs/Ipv4SubnetAllocation.md)
  - [Ipv4SubnetAllocationStrategy](docs/Ipv4SubnetAllocationStrategy.md)
  - [Ipv4SubnetAllocationStrategy1DataItem](docs/Ipv4SubnetAllocationStrategy1DataItem.md)
@@ -793,6 +811,7 @@ Class | Method | HTTP request | Description
  - [JobPaginatedList](docs/JobPaginatedList.md)
  - [JobRetryInfo](docs/JobRetryInfo.md)
  - [JobStatistics](docs/JobStatistics.md)
+ - [LenovoComponentFilter](docs/LenovoComponentFilter.md)
  - [LicenseInstallments](docs/LicenseInstallments.md)
  - [Link](docs/Link.md)
  - [LinkDuplex](docs/LinkDuplex.md)
@@ -860,6 +879,7 @@ Class | Method | HTTP request | Description
  - [RegisterStorageResponse](docs/RegisterStorageResponse.md)
  - [RemoteConsoleInfo](docs/RemoteConsoleInfo.md)
  - [Repo](docs/Repo.md)
+ - [ResendUserVerificationEmail](docs/ResendUserVerificationEmail.md)
  - [ResourceAllocationStatus](docs/ResourceAllocationStatus.md)
  - [ResourcePool](docs/ResourcePool.md)
  - [ResourcePoolPaginatedList](docs/ResourcePoolPaginatedList.md)
@@ -873,6 +893,7 @@ Class | Method | HTTP request | Description
  - [SSHPublicKey](docs/SSHPublicKey.md)
  - [ScheduleFirmwareUpgrade](docs/ScheduleFirmwareUpgrade.md)
  - [SearchFirmwareBinary](docs/SearchFirmwareBinary.md)
+ - [SearchFirmwareBinaryServerComponentFilter](docs/SearchFirmwareBinaryServerComponentFilter.md)
  - [Secret](docs/Secret.md)
  - [SecretPaginatedList](docs/SecretPaginatedList.md)
  - [Server](docs/Server.md)

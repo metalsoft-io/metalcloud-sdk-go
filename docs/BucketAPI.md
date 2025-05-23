@@ -550,7 +550,7 @@ Name | Type | Description  | Notes
 
 ## UpdateBucket
 
-> Bucket UpdateBucket(ctx, infrastructureId, bucketId).UpdateBucket(updateBucket).IfMatch(ifMatch).Execute()
+> BucketConfiguration UpdateBucket(ctx, infrastructureId, bucketId).UpdateBucket(updateBucket).IfMatch(ifMatch).Execute()
 
 Updates Bucket information
 
@@ -581,7 +581,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BucketAPI.UpdateBucket``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateBucket`: Bucket
+	// response from `UpdateBucket`: BucketConfiguration
 	fmt.Fprintf(os.Stdout, "Response from `BucketAPI.UpdateBucket`: %v\n", resp)
 }
 ```
@@ -609,7 +609,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Bucket**](Bucket.md)
+[**BucketConfiguration**](BucketConfiguration.md)
 
 ### Authorization
 

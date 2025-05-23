@@ -43,6 +43,8 @@ type VmInstanceContextVariables struct {
 	Buckets []BucketVariables `json:"buckets"`
 	// The server instance shared drives variables.
 	SharedDrives []SharedDriveVariables `json:"sharedDrives"`
+	// The server instance network variables.
+	Network []InstanceNetworkVariables `json:"network"`
 	// Additional variables
 	Variables map[string]interface{} `json:"variables,omitempty"`
 	// Secrets
@@ -60,7 +62,7 @@ type _VmInstanceContextVariables VmInstanceContextVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVmInstanceContextVariables(site SiteVariables, siteConfig SiteConfigVariables, server ServerVariables, serverInstance ServerInstanceVariables, serverInstanceGroup ServerInstanceGroupVariables, infrastructure InfrastructureVariables, driveGroups []DriveGroupVariables, drives []DriveVariables, fileShares []FileShareVariables, buckets []BucketVariables, sharedDrives []SharedDriveVariables) *VmInstanceContextVariables {
+func NewVmInstanceContextVariables(site SiteVariables, siteConfig SiteConfigVariables, server ServerVariables, serverInstance ServerInstanceVariables, serverInstanceGroup ServerInstanceGroupVariables, infrastructure InfrastructureVariables, driveGroups []DriveGroupVariables, drives []DriveVariables, fileShares []FileShareVariables, buckets []BucketVariables, sharedDrives []SharedDriveVariables, network []InstanceNetworkVariables) *VmInstanceContextVariables {
 	this := VmInstanceContextVariables{}
 	this.Site = site
 	this.SiteConfig = siteConfig
@@ -73,6 +75,7 @@ func NewVmInstanceContextVariables(site SiteVariables, siteConfig SiteConfigVari
 	this.FileShares = fileShares
 	this.Buckets = buckets
 	this.SharedDrives = sharedDrives
+	this.Network = network
 	return &this
 }
 
@@ -348,6 +351,30 @@ func (o *VmInstanceContextVariables) SetSharedDrives(v []SharedDriveVariables) {
 	o.SharedDrives = v
 }
 
+// GetNetwork returns the Network field value
+func (o *VmInstanceContextVariables) GetNetwork() []InstanceNetworkVariables {
+	if o == nil {
+		var ret []InstanceNetworkVariables
+		return ret
+	}
+
+	return o.Network
+}
+
+// GetNetworkOk returns a tuple with the Network field value
+// and a boolean to check if the value has been set.
+func (o *VmInstanceContextVariables) GetNetworkOk() ([]InstanceNetworkVariables, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Network, true
+}
+
+// SetNetwork sets field value
+func (o *VmInstanceContextVariables) SetNetwork(v []InstanceNetworkVariables) {
+	o.Network = v
+}
+
 // GetVariables returns the Variables field value if set, zero value otherwise.
 func (o *VmInstanceContextVariables) GetVariables() map[string]interface{} {
 	if o == nil || IsNil(o.Variables) {
@@ -497,6 +524,7 @@ func (o VmInstanceContextVariables) ToMap() (map[string]interface{}, error) {
 	toSerialize["fileShares"] = o.FileShares
 	toSerialize["buckets"] = o.Buckets
 	toSerialize["sharedDrives"] = o.SharedDrives
+	toSerialize["network"] = o.Network
 	if !IsNil(o.Variables) {
 		toSerialize["variables"] = o.Variables
 	}
@@ -533,6 +561,7 @@ func (o *VmInstanceContextVariables) UnmarshalJSON(data []byte) (err error) {
 		"fileShares",
 		"buckets",
 		"sharedDrives",
+		"network",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -573,6 +602,7 @@ func (o *VmInstanceContextVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "fileShares")
 		delete(additionalProperties, "buckets")
 		delete(additionalProperties, "sharedDrives")
+		delete(additionalProperties, "network")
 		delete(additionalProperties, "variables")
 		delete(additionalProperties, "secrets")
 		delete(additionalProperties, "userSSHKeys")

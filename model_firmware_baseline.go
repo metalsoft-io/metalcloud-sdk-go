@@ -28,10 +28,6 @@ type FirmwareBaseline struct {
 	Catalog []string `json:"catalog,omitempty"`
 	Level BaselineLevelType `json:"level"`
 	LevelFilter []string `json:"levelFilter"`
-	// Timestamp when the baseline was created
-	CreatedTimestamp string `json:"createdTimestamp"`
-	// Links to other resources
-	Links map[string]interface{} `json:"links"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,14 +37,12 @@ type _FirmwareBaseline FirmwareBaseline
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareBaseline(id float32, name string, level BaselineLevelType, levelFilter []string, createdTimestamp string, links map[string]interface{}) *FirmwareBaseline {
+func NewFirmwareBaseline(id float32, name string, level BaselineLevelType, levelFilter []string) *FirmwareBaseline {
 	this := FirmwareBaseline{}
 	this.Id = id
 	this.Name = name
 	this.Level = level
 	this.LevelFilter = levelFilter
-	this.CreatedTimestamp = createdTimestamp
-	this.Links = links
 	return &this
 }
 
@@ -220,54 +214,6 @@ func (o *FirmwareBaseline) SetLevelFilter(v []string) {
 	o.LevelFilter = v
 }
 
-// GetCreatedTimestamp returns the CreatedTimestamp field value
-func (o *FirmwareBaseline) GetCreatedTimestamp() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CreatedTimestamp
-}
-
-// GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
-// and a boolean to check if the value has been set.
-func (o *FirmwareBaseline) GetCreatedTimestampOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CreatedTimestamp, true
-}
-
-// SetCreatedTimestamp sets field value
-func (o *FirmwareBaseline) SetCreatedTimestamp(v string) {
-	o.CreatedTimestamp = v
-}
-
-// GetLinks returns the Links field value
-func (o *FirmwareBaseline) GetLinks() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-
-	return o.Links
-}
-
-// GetLinksOk returns a tuple with the Links field value
-// and a boolean to check if the value has been set.
-func (o *FirmwareBaseline) GetLinksOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
-	}
-	return o.Links, true
-}
-
-// SetLinks sets field value
-func (o *FirmwareBaseline) SetLinks(v map[string]interface{}) {
-	o.Links = v
-}
-
 func (o FirmwareBaseline) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -288,8 +234,6 @@ func (o FirmwareBaseline) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["level"] = o.Level
 	toSerialize["levelFilter"] = o.LevelFilter
-	toSerialize["createdTimestamp"] = o.CreatedTimestamp
-	toSerialize["links"] = o.Links
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -307,8 +251,6 @@ func (o *FirmwareBaseline) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"level",
 		"levelFilter",
-		"createdTimestamp",
-		"links",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -344,8 +286,6 @@ func (o *FirmwareBaseline) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "catalog")
 		delete(additionalProperties, "level")
 		delete(additionalProperties, "levelFilter")
-		delete(additionalProperties, "createdTimestamp")
-		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}
 

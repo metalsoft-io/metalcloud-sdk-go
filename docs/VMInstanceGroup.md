@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Id** | **float32** | Id of the VM Instance Group. | 
 **Revision** | **float32** | Revision of the VM Instance Group State | 
 **InfrastructureId** | **float32** | Id of the Infrastructure. | 
+**NetworkEndpointGroupId** | Pointer to **int32** | The network endpoint group identifier | [optional] 
 **Infrastructure** | [**ParentInfrastructure**](ParentInfrastructure.md) | Infrastructure information | 
 **ServiceStatus** | **string** | Status of the VM Instance Group. | 
 **DiskSizeGB** | **float32** | Disk size in GB for each VM Instance in the VM Instance Group. | 
@@ -216,6 +217,31 @@ and a boolean to check if the value has been set.
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
+
+### GetNetworkEndpointGroupId
+
+`func (o *VMInstanceGroup) GetNetworkEndpointGroupId() int32`
+
+GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field if non-nil, zero value otherwise.
+
+### GetNetworkEndpointGroupIdOk
+
+`func (o *VMInstanceGroup) GetNetworkEndpointGroupIdOk() (*int32, bool)`
+
+GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkEndpointGroupId
+
+`func (o *VMInstanceGroup) SetNetworkEndpointGroupId(v int32)`
+
+SetNetworkEndpointGroupId sets NetworkEndpointGroupId field to given value.
+
+### HasNetworkEndpointGroupId
+
+`func (o *VMInstanceGroup) HasNetworkEndpointGroupId() bool`
+
+HasNetworkEndpointGroupId returns a boolean if a field has been set.
 
 ### GetInfrastructure
 

@@ -5,22 +5,22 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** | Name of the Subnet | [optional] 
-**Tags** | Pointer to **map[string]interface{}** |  | [optional] 
-**Annotations** | Pointer to **map[string]interface{}** |  | [optional] 
-**ParentSubnetId** | Pointer to **float32** | ID of the parent subnet | [optional] 
-**NetworkAddress** | Pointer to **string** |  | [optional] 
-**PrefixLength** | Pointer to **float32** |  | [optional] 
-**DefaultGateway** | Pointer to **string** |  | [optional] 
-**IsPool** | Pointer to **bool** |  | [optional] 
-**AllocationDenylist** | Pointer to **[]string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Annotations** | Pointer to **map[string]string** |  | [optional] 
+**Tags** | Pointer to **map[string]string** |  | [optional] 
+**ParentSubnetId** | Pointer to **int32** |  | [optional] 
+**NetworkAddress** | **string** |  | 
+**PrefixLength** | **int32** |  | 
+**DefaultGatewayAddress** | Pointer to **string** |  | [optional] 
+**IsPool** | **bool** |  | 
+**AllocationDenylist** | Pointer to [**[]AddressRange**](AddressRange.md) |  | [optional] 
 **ChildOverlapAllowRules** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
 ### NewCreateSubnet
 
-`func NewCreateSubnet() *CreateSubnet`
+`func NewCreateSubnet(networkAddress string, prefixLength int32, isPool bool, ) *CreateSubnet`
 
 NewCreateSubnet instantiates a new CreateSubnet object
 This constructor will assign default values to properties that have it defined,
@@ -85,47 +85,22 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetTags
-
-`func (o *CreateSubnet) GetTags() map[string]interface{}`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *CreateSubnet) GetTagsOk() (*map[string]interface{}, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *CreateSubnet) SetTags(v map[string]interface{})`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *CreateSubnet) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
-
 ### GetAnnotations
 
-`func (o *CreateSubnet) GetAnnotations() map[string]interface{}`
+`func (o *CreateSubnet) GetAnnotations() map[string]string`
 
 GetAnnotations returns the Annotations field if non-nil, zero value otherwise.
 
 ### GetAnnotationsOk
 
-`func (o *CreateSubnet) GetAnnotationsOk() (*map[string]interface{}, bool)`
+`func (o *CreateSubnet) GetAnnotationsOk() (*map[string]string, bool)`
 
 GetAnnotationsOk returns a tuple with the Annotations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAnnotations
 
-`func (o *CreateSubnet) SetAnnotations(v map[string]interface{})`
+`func (o *CreateSubnet) SetAnnotations(v map[string]string)`
 
 SetAnnotations sets Annotations field to given value.
 
@@ -135,22 +110,47 @@ SetAnnotations sets Annotations field to given value.
 
 HasAnnotations returns a boolean if a field has been set.
 
+### GetTags
+
+`func (o *CreateSubnet) GetTags() map[string]string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *CreateSubnet) GetTagsOk() (*map[string]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *CreateSubnet) SetTags(v map[string]string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *CreateSubnet) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
 ### GetParentSubnetId
 
-`func (o *CreateSubnet) GetParentSubnetId() float32`
+`func (o *CreateSubnet) GetParentSubnetId() int32`
 
 GetParentSubnetId returns the ParentSubnetId field if non-nil, zero value otherwise.
 
 ### GetParentSubnetIdOk
 
-`func (o *CreateSubnet) GetParentSubnetIdOk() (*float32, bool)`
+`func (o *CreateSubnet) GetParentSubnetIdOk() (*int32, bool)`
 
 GetParentSubnetIdOk returns a tuple with the ParentSubnetId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentSubnetId
 
-`func (o *CreateSubnet) SetParentSubnetId(v float32)`
+`func (o *CreateSubnet) SetParentSubnetId(v int32)`
 
 SetParentSubnetId sets ParentSubnetId field to given value.
 
@@ -179,61 +179,51 @@ and a boolean to check if the value has been set.
 
 SetNetworkAddress sets NetworkAddress field to given value.
 
-### HasNetworkAddress
-
-`func (o *CreateSubnet) HasNetworkAddress() bool`
-
-HasNetworkAddress returns a boolean if a field has been set.
 
 ### GetPrefixLength
 
-`func (o *CreateSubnet) GetPrefixLength() float32`
+`func (o *CreateSubnet) GetPrefixLength() int32`
 
 GetPrefixLength returns the PrefixLength field if non-nil, zero value otherwise.
 
 ### GetPrefixLengthOk
 
-`func (o *CreateSubnet) GetPrefixLengthOk() (*float32, bool)`
+`func (o *CreateSubnet) GetPrefixLengthOk() (*int32, bool)`
 
 GetPrefixLengthOk returns a tuple with the PrefixLength field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrefixLength
 
-`func (o *CreateSubnet) SetPrefixLength(v float32)`
+`func (o *CreateSubnet) SetPrefixLength(v int32)`
 
 SetPrefixLength sets PrefixLength field to given value.
 
-### HasPrefixLength
 
-`func (o *CreateSubnet) HasPrefixLength() bool`
+### GetDefaultGatewayAddress
 
-HasPrefixLength returns a boolean if a field has been set.
+`func (o *CreateSubnet) GetDefaultGatewayAddress() string`
 
-### GetDefaultGateway
+GetDefaultGatewayAddress returns the DefaultGatewayAddress field if non-nil, zero value otherwise.
 
-`func (o *CreateSubnet) GetDefaultGateway() string`
+### GetDefaultGatewayAddressOk
 
-GetDefaultGateway returns the DefaultGateway field if non-nil, zero value otherwise.
+`func (o *CreateSubnet) GetDefaultGatewayAddressOk() (*string, bool)`
 
-### GetDefaultGatewayOk
-
-`func (o *CreateSubnet) GetDefaultGatewayOk() (*string, bool)`
-
-GetDefaultGatewayOk returns a tuple with the DefaultGateway field if it's non-nil, zero value otherwise
+GetDefaultGatewayAddressOk returns a tuple with the DefaultGatewayAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDefaultGateway
+### SetDefaultGatewayAddress
 
-`func (o *CreateSubnet) SetDefaultGateway(v string)`
+`func (o *CreateSubnet) SetDefaultGatewayAddress(v string)`
 
-SetDefaultGateway sets DefaultGateway field to given value.
+SetDefaultGatewayAddress sets DefaultGatewayAddress field to given value.
 
-### HasDefaultGateway
+### HasDefaultGatewayAddress
 
-`func (o *CreateSubnet) HasDefaultGateway() bool`
+`func (o *CreateSubnet) HasDefaultGatewayAddress() bool`
 
-HasDefaultGateway returns a boolean if a field has been set.
+HasDefaultGatewayAddress returns a boolean if a field has been set.
 
 ### GetIsPool
 
@@ -254,28 +244,23 @@ and a boolean to check if the value has been set.
 
 SetIsPool sets IsPool field to given value.
 
-### HasIsPool
-
-`func (o *CreateSubnet) HasIsPool() bool`
-
-HasIsPool returns a boolean if a field has been set.
 
 ### GetAllocationDenylist
 
-`func (o *CreateSubnet) GetAllocationDenylist() []string`
+`func (o *CreateSubnet) GetAllocationDenylist() []AddressRange`
 
 GetAllocationDenylist returns the AllocationDenylist field if non-nil, zero value otherwise.
 
 ### GetAllocationDenylistOk
 
-`func (o *CreateSubnet) GetAllocationDenylistOk() (*[]string, bool)`
+`func (o *CreateSubnet) GetAllocationDenylistOk() (*[]AddressRange, bool)`
 
 GetAllocationDenylistOk returns a tuple with the AllocationDenylist field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAllocationDenylist
 
-`func (o *CreateSubnet) SetAllocationDenylist(v []string)`
+`func (o *CreateSubnet) SetAllocationDenylist(v []AddressRange)`
 
 SetAllocationDenylist sets AllocationDenylist field to given value.
 

@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**GetVMInstanceGroupInterfaceInfo**](VMInstanceGroupAPI.md#GetVMInstanceGroupInterfaceInfo) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/interfaces/{vmInstanceGroupInterfaceId} | Get VM Instance Group Interface information
 [**GetVMInstanceGroupInterfaces**](VMInstanceGroupAPI.md#GetVMInstanceGroupInterfaces) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/interfaces | Get all VM Instance Group Interfaces on the VM Instance Group
 [**GetVMInstanceGroupVMInstances**](VMInstanceGroupAPI.md#GetVMInstanceGroupVMInstances) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/vm-instances | Get the VM Instances of VM Instance Group
+[**GetVmInstanceGroupNetworkConfiguration**](VMInstanceGroupAPI.md#GetVmInstanceGroupNetworkConfiguration) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking | Get vm instance group network configuration
 [**PatchVMInstanceGroupMeta**](VMInstanceGroupAPI.md#PatchVMInstanceGroupMeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/meta | Updates the meta of a VM Instance Group
 [**UpdateVMInstanceGroupConfig**](VMInstanceGroupAPI.md#UpdateVMInstanceGroupConfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config | Updates VM Instance Group information
 
@@ -704,6 +705,79 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VMInstancePaginatedList**](VMInstancePaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetVmInstanceGroupNetworkConfiguration
+
+> NetworkEndpointGroup GetVmInstanceGroupNetworkConfiguration(ctx, infrastructureId, vmInstanceGroupId).Execute()
+
+Get vm instance group network configuration
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := int32(56) // int32 | 
+	vmInstanceGroupId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VMInstanceGroupAPI.GetVmInstanceGroupNetworkConfiguration(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMInstanceGroupAPI.GetVmInstanceGroupNetworkConfiguration``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVmInstanceGroupNetworkConfiguration`: NetworkEndpointGroup
+	fmt.Fprintf(os.Stdout, "Response from `VMInstanceGroupAPI.GetVmInstanceGroupNetworkConfiguration`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **int32** |  | 
+**vmInstanceGroupId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVmInstanceGroupNetworkConfigurationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**NetworkEndpointGroup**](NetworkEndpointGroup.md)
 
 ### Authorization
 

@@ -624,7 +624,7 @@ Name | Type | Description  | Notes
 
 ## UpdateFileShareConfig
 
-> FileShare UpdateFileShareConfig(ctx, infrastructureId, fileShareId).UpdateFileShare(updateFileShare).IfMatch(ifMatch).Execute()
+> FileShareConfiguration UpdateFileShareConfig(ctx, infrastructureId, fileShareId).UpdateFileShare(updateFileShare).IfMatch(ifMatch).Execute()
 
 Updates File Share config information
 
@@ -655,7 +655,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FileShareAPI.UpdateFileShareConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateFileShareConfig`: FileShare
+	// response from `UpdateFileShareConfig`: FileShareConfiguration
 	fmt.Fprintf(os.Stdout, "Response from `FileShareAPI.UpdateFileShareConfig`: %v\n", resp)
 }
 ```
@@ -683,7 +683,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FileShare**](FileShare.md)
+[**FileShareConfiguration**](FileShareConfiguration.md)
 
 ### Authorization
 

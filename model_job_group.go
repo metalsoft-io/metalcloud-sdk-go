@@ -49,6 +49,8 @@ type JobGroup struct {
 	VmPoolId *int32 `json:"vmPoolId,omitempty"`
 	// Storage Pool Id
 	StorageId *int32 `json:"storageId,omitempty"`
+	// Cancel reason of the group
+	CancelReason *string `json:"cancelReason,omitempty"`
 	// Links to other resources
 	Links map[string]interface{} `json:"links"`
 	AdditionalProperties map[string]interface{}
@@ -494,6 +496,38 @@ func (o *JobGroup) SetStorageId(v int32) {
 	o.StorageId = &v
 }
 
+// GetCancelReason returns the CancelReason field value if set, zero value otherwise.
+func (o *JobGroup) GetCancelReason() string {
+	if o == nil || IsNil(o.CancelReason) {
+		var ret string
+		return ret
+	}
+	return *o.CancelReason
+}
+
+// GetCancelReasonOk returns a tuple with the CancelReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *JobGroup) GetCancelReasonOk() (*string, bool) {
+	if o == nil || IsNil(o.CancelReason) {
+		return nil, false
+	}
+	return o.CancelReason, true
+}
+
+// HasCancelReason returns a boolean if a field has been set.
+func (o *JobGroup) HasCancelReason() bool {
+	if o != nil && !IsNil(o.CancelReason) {
+		return true
+	}
+
+	return false
+}
+
+// SetCancelReason gets a reference to the given string and assigns it to the CancelReason field.
+func (o *JobGroup) SetCancelReason(v string) {
+	o.CancelReason = &v
+}
+
 // GetLinks returns the Links field value
 func (o *JobGroup) GetLinks() map[string]interface{} {
 	if o == nil {
@@ -562,6 +596,9 @@ func (o JobGroup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StorageId) {
 		toSerialize["storageId"] = o.StorageId
 	}
+	if !IsNil(o.CancelReason) {
+		toSerialize["cancelReason"] = o.CancelReason
+	}
 	toSerialize["links"] = o.Links
 
 	for key, value := range o.AdditionalProperties {
@@ -624,6 +661,7 @@ func (o *JobGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkDeviceId")
 		delete(additionalProperties, "vmPoolId")
 		delete(additionalProperties, "storageId")
+		delete(additionalProperties, "cancelReason")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

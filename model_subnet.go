@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"time"
 	"fmt"
 )
 
@@ -21,27 +22,22 @@ var _ MappedNullable = &Subnet{}
 
 // Subnet struct for Subnet
 type Subnet struct {
-	// Id of the Subnet
-	Id float32 `json:"id"`
-	// Revision of the Subnet
-	Revision float32 `json:"revision"`
-	Label *string `json:"label,omitempty"`
-	// Name of the Subnet
+	Id int32 `json:"id"`
+	Label string `json:"label"`
 	Name string `json:"name"`
-	Tags map[string]interface{} `json:"tags"`
-	Annotations map[string]interface{} `json:"annotations"`
-	CreatedAt string `json:"createdAt"`
-	UpdatedAt string `json:"updatedAt"`
-	// ID of the parent subnet
-	ParentSubnetId float32 `json:"parentSubnetId"`
-	// IP version
-	IpVersion string `json:"ipVersion"`
+	Annotations map[string]string `json:"annotations"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
+	Revision int32 `json:"revision"`
+	Tags map[string]string `json:"tags"`
+	ParentSubnetId int32 `json:"parentSubnetId"`
+	IpVersion IpVersion `json:"ipVersion"`
 	NetworkAddress string `json:"networkAddress"`
-	PrefixLength float32 `json:"prefixLength"`
+	PrefixLength int32 `json:"prefixLength"`
 	Netmask string `json:"netmask"`
-	DefaultGateway string `json:"defaultGateway"`
+	DefaultGatewayAddress string `json:"defaultGatewayAddress"`
 	IsPool bool `json:"isPool"`
-	AllocationDenylist []string `json:"allocationDenylist"`
+	AllocationDenylist []AddressRange `json:"allocationDenylist"`
 	ChildOverlapAllowRules []string `json:"childOverlapAllowRules"`
 	AdditionalProperties map[string]interface{}
 }
@@ -52,21 +48,22 @@ type _Subnet Subnet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubnet(id float32, revision float32, name string, tags map[string]interface{}, annotations map[string]interface{}, createdAt string, updatedAt string, parentSubnetId float32, ipVersion string, networkAddress string, prefixLength float32, netmask string, defaultGateway string, isPool bool, allocationDenylist []string, childOverlapAllowRules []string) *Subnet {
+func NewSubnet(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, tags map[string]string, parentSubnetId int32, ipVersion IpVersion, networkAddress string, prefixLength int32, netmask string, defaultGatewayAddress string, isPool bool, allocationDenylist []AddressRange, childOverlapAllowRules []string) *Subnet {
 	this := Subnet{}
 	this.Id = id
-	this.Revision = revision
+	this.Label = label
 	this.Name = name
-	this.Tags = tags
 	this.Annotations = annotations
 	this.CreatedAt = createdAt
 	this.UpdatedAt = updatedAt
+	this.Revision = revision
+	this.Tags = tags
 	this.ParentSubnetId = parentSubnetId
 	this.IpVersion = ipVersion
 	this.NetworkAddress = networkAddress
 	this.PrefixLength = prefixLength
 	this.Netmask = netmask
-	this.DefaultGateway = defaultGateway
+	this.DefaultGatewayAddress = defaultGatewayAddress
 	this.IsPool = isPool
 	this.AllocationDenylist = allocationDenylist
 	this.ChildOverlapAllowRules = childOverlapAllowRules
@@ -82,9 +79,9 @@ func NewSubnetWithDefaults() *Subnet {
 }
 
 // GetId returns the Id field value
-func (o *Subnet) GetId() float32 {
+func (o *Subnet) GetId() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -93,7 +90,7 @@ func (o *Subnet) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Subnet) GetIdOk() (*float32, bool) {
+func (o *Subnet) GetIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -101,64 +98,32 @@ func (o *Subnet) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *Subnet) SetId(v float32) {
+func (o *Subnet) SetId(v int32) {
 	o.Id = v
 }
 
-// GetRevision returns the Revision field value
-func (o *Subnet) GetRevision() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Revision
-}
-
-// GetRevisionOk returns a tuple with the Revision field value
-// and a boolean to check if the value has been set.
-func (o *Subnet) GetRevisionOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Revision, true
-}
-
-// SetRevision sets field value
-func (o *Subnet) SetRevision(v float32) {
-	o.Revision = v
-}
-
-// GetLabel returns the Label field value if set, zero value otherwise.
+// GetLabel returns the Label field value
 func (o *Subnet) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Label
+
+	return o.Label
 }
 
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
 func (o *Subnet) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Label, true
+	return &o.Label, true
 }
 
-// HasLabel returns a boolean if a field has been set.
-func (o *Subnet) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
+// SetLabel sets field value
 func (o *Subnet) SetLabel(v string) {
-	o.Label = &v
+	o.Label = v
 }
 
 // GetName returns the Name field value
@@ -185,34 +150,10 @@ func (o *Subnet) SetName(v string) {
 	o.Name = v
 }
 
-// GetTags returns the Tags field value
-func (o *Subnet) GetTags() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value
-// and a boolean to check if the value has been set.
-func (o *Subnet) GetTagsOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
-	}
-	return o.Tags, true
-}
-
-// SetTags sets field value
-func (o *Subnet) SetTags(v map[string]interface{}) {
-	o.Tags = v
-}
-
 // GetAnnotations returns the Annotations field value
-func (o *Subnet) GetAnnotations() map[string]interface{} {
+func (o *Subnet) GetAnnotations() map[string]string {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret map[string]string
 		return ret
 	}
 
@@ -221,22 +162,22 @@ func (o *Subnet) GetAnnotations() map[string]interface{} {
 
 // GetAnnotationsOk returns a tuple with the Annotations field value
 // and a boolean to check if the value has been set.
-func (o *Subnet) GetAnnotationsOk() (map[string]interface{}, bool) {
+func (o *Subnet) GetAnnotationsOk() (*map[string]string, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Annotations, true
+	return &o.Annotations, true
 }
 
 // SetAnnotations sets field value
-func (o *Subnet) SetAnnotations(v map[string]interface{}) {
+func (o *Subnet) SetAnnotations(v map[string]string) {
 	o.Annotations = v
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *Subnet) GetCreatedAt() string {
+func (o *Subnet) GetCreatedAt() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -245,7 +186,7 @@ func (o *Subnet) GetCreatedAt() string {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *Subnet) GetCreatedAtOk() (*string, bool) {
+func (o *Subnet) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -253,14 +194,14 @@ func (o *Subnet) GetCreatedAtOk() (*string, bool) {
 }
 
 // SetCreatedAt sets field value
-func (o *Subnet) SetCreatedAt(v string) {
+func (o *Subnet) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value
-func (o *Subnet) GetUpdatedAt() string {
+func (o *Subnet) GetUpdatedAt() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -269,7 +210,7 @@ func (o *Subnet) GetUpdatedAt() string {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
-func (o *Subnet) GetUpdatedAtOk() (*string, bool) {
+func (o *Subnet) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -277,14 +218,62 @@ func (o *Subnet) GetUpdatedAtOk() (*string, bool) {
 }
 
 // SetUpdatedAt sets field value
-func (o *Subnet) SetUpdatedAt(v string) {
+func (o *Subnet) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
-// GetParentSubnetId returns the ParentSubnetId field value
-func (o *Subnet) GetParentSubnetId() float32 {
+// GetRevision returns the Revision field value
+func (o *Subnet) GetRevision() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
+		return ret
+	}
+
+	return o.Revision
+}
+
+// GetRevisionOk returns a tuple with the Revision field value
+// and a boolean to check if the value has been set.
+func (o *Subnet) GetRevisionOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Revision, true
+}
+
+// SetRevision sets field value
+func (o *Subnet) SetRevision(v int32) {
+	o.Revision = v
+}
+
+// GetTags returns the Tags field value
+func (o *Subnet) GetTags() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value
+// and a boolean to check if the value has been set.
+func (o *Subnet) GetTagsOk() (*map[string]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Tags, true
+}
+
+// SetTags sets field value
+func (o *Subnet) SetTags(v map[string]string) {
+	o.Tags = v
+}
+
+// GetParentSubnetId returns the ParentSubnetId field value
+func (o *Subnet) GetParentSubnetId() int32 {
+	if o == nil {
+		var ret int32
 		return ret
 	}
 
@@ -293,7 +282,7 @@ func (o *Subnet) GetParentSubnetId() float32 {
 
 // GetParentSubnetIdOk returns a tuple with the ParentSubnetId field value
 // and a boolean to check if the value has been set.
-func (o *Subnet) GetParentSubnetIdOk() (*float32, bool) {
+func (o *Subnet) GetParentSubnetIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -301,14 +290,14 @@ func (o *Subnet) GetParentSubnetIdOk() (*float32, bool) {
 }
 
 // SetParentSubnetId sets field value
-func (o *Subnet) SetParentSubnetId(v float32) {
+func (o *Subnet) SetParentSubnetId(v int32) {
 	o.ParentSubnetId = v
 }
 
 // GetIpVersion returns the IpVersion field value
-func (o *Subnet) GetIpVersion() string {
+func (o *Subnet) GetIpVersion() IpVersion {
 	if o == nil {
-		var ret string
+		var ret IpVersion
 		return ret
 	}
 
@@ -317,7 +306,7 @@ func (o *Subnet) GetIpVersion() string {
 
 // GetIpVersionOk returns a tuple with the IpVersion field value
 // and a boolean to check if the value has been set.
-func (o *Subnet) GetIpVersionOk() (*string, bool) {
+func (o *Subnet) GetIpVersionOk() (*IpVersion, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -325,7 +314,7 @@ func (o *Subnet) GetIpVersionOk() (*string, bool) {
 }
 
 // SetIpVersion sets field value
-func (o *Subnet) SetIpVersion(v string) {
+func (o *Subnet) SetIpVersion(v IpVersion) {
 	o.IpVersion = v
 }
 
@@ -354,9 +343,9 @@ func (o *Subnet) SetNetworkAddress(v string) {
 }
 
 // GetPrefixLength returns the PrefixLength field value
-func (o *Subnet) GetPrefixLength() float32 {
+func (o *Subnet) GetPrefixLength() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -365,7 +354,7 @@ func (o *Subnet) GetPrefixLength() float32 {
 
 // GetPrefixLengthOk returns a tuple with the PrefixLength field value
 // and a boolean to check if the value has been set.
-func (o *Subnet) GetPrefixLengthOk() (*float32, bool) {
+func (o *Subnet) GetPrefixLengthOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -373,7 +362,7 @@ func (o *Subnet) GetPrefixLengthOk() (*float32, bool) {
 }
 
 // SetPrefixLength sets field value
-func (o *Subnet) SetPrefixLength(v float32) {
+func (o *Subnet) SetPrefixLength(v int32) {
 	o.PrefixLength = v
 }
 
@@ -401,28 +390,28 @@ func (o *Subnet) SetNetmask(v string) {
 	o.Netmask = v
 }
 
-// GetDefaultGateway returns the DefaultGateway field value
-func (o *Subnet) GetDefaultGateway() string {
+// GetDefaultGatewayAddress returns the DefaultGatewayAddress field value
+func (o *Subnet) GetDefaultGatewayAddress() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.DefaultGateway
+	return o.DefaultGatewayAddress
 }
 
-// GetDefaultGatewayOk returns a tuple with the DefaultGateway field value
+// GetDefaultGatewayAddressOk returns a tuple with the DefaultGatewayAddress field value
 // and a boolean to check if the value has been set.
-func (o *Subnet) GetDefaultGatewayOk() (*string, bool) {
+func (o *Subnet) GetDefaultGatewayAddressOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DefaultGateway, true
+	return &o.DefaultGatewayAddress, true
 }
 
-// SetDefaultGateway sets field value
-func (o *Subnet) SetDefaultGateway(v string) {
-	o.DefaultGateway = v
+// SetDefaultGatewayAddress sets field value
+func (o *Subnet) SetDefaultGatewayAddress(v string) {
+	o.DefaultGatewayAddress = v
 }
 
 // GetIsPool returns the IsPool field value
@@ -450,9 +439,9 @@ func (o *Subnet) SetIsPool(v bool) {
 }
 
 // GetAllocationDenylist returns the AllocationDenylist field value
-func (o *Subnet) GetAllocationDenylist() []string {
+func (o *Subnet) GetAllocationDenylist() []AddressRange {
 	if o == nil {
-		var ret []string
+		var ret []AddressRange
 		return ret
 	}
 
@@ -461,7 +450,7 @@ func (o *Subnet) GetAllocationDenylist() []string {
 
 // GetAllocationDenylistOk returns a tuple with the AllocationDenylist field value
 // and a boolean to check if the value has been set.
-func (o *Subnet) GetAllocationDenylistOk() ([]string, bool) {
+func (o *Subnet) GetAllocationDenylistOk() ([]AddressRange, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -469,7 +458,7 @@ func (o *Subnet) GetAllocationDenylistOk() ([]string, bool) {
 }
 
 // SetAllocationDenylist sets field value
-func (o *Subnet) SetAllocationDenylist(v []string) {
+func (o *Subnet) SetAllocationDenylist(v []AddressRange) {
 	o.AllocationDenylist = v
 }
 
@@ -508,21 +497,19 @@ func (o Subnet) MarshalJSON() ([]byte, error) {
 func (o Subnet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
-	toSerialize["revision"] = o.Revision
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
+	toSerialize["label"] = o.Label
 	toSerialize["name"] = o.Name
-	toSerialize["tags"] = o.Tags
 	toSerialize["annotations"] = o.Annotations
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["updatedAt"] = o.UpdatedAt
+	toSerialize["revision"] = o.Revision
+	toSerialize["tags"] = o.Tags
 	toSerialize["parentSubnetId"] = o.ParentSubnetId
 	toSerialize["ipVersion"] = o.IpVersion
 	toSerialize["networkAddress"] = o.NetworkAddress
 	toSerialize["prefixLength"] = o.PrefixLength
 	toSerialize["netmask"] = o.Netmask
-	toSerialize["defaultGateway"] = o.DefaultGateway
+	toSerialize["defaultGatewayAddress"] = o.DefaultGatewayAddress
 	toSerialize["isPool"] = o.IsPool
 	toSerialize["allocationDenylist"] = o.AllocationDenylist
 	toSerialize["childOverlapAllowRules"] = o.ChildOverlapAllowRules
@@ -540,18 +527,19 @@ func (o *Subnet) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"id",
-		"revision",
+		"label",
 		"name",
-		"tags",
 		"annotations",
 		"createdAt",
 		"updatedAt",
+		"revision",
+		"tags",
 		"parentSubnetId",
 		"ipVersion",
 		"networkAddress",
 		"prefixLength",
 		"netmask",
-		"defaultGateway",
+		"defaultGatewayAddress",
 		"isPool",
 		"allocationDenylist",
 		"childOverlapAllowRules",
@@ -585,19 +573,19 @@ func (o *Subnet) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "id")
-		delete(additionalProperties, "revision")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "tags")
 		delete(additionalProperties, "annotations")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "updatedAt")
+		delete(additionalProperties, "revision")
+		delete(additionalProperties, "tags")
 		delete(additionalProperties, "parentSubnetId")
 		delete(additionalProperties, "ipVersion")
 		delete(additionalProperties, "networkAddress")
 		delete(additionalProperties, "prefixLength")
 		delete(additionalProperties, "netmask")
-		delete(additionalProperties, "defaultGateway")
+		delete(additionalProperties, "defaultGatewayAddress")
 		delete(additionalProperties, "isPool")
 		delete(additionalProperties, "allocationDenylist")
 		delete(additionalProperties, "childOverlapAllowRules")

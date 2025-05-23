@@ -66,6 +66,7 @@ docs/AccountConfig.md
 docs/AccountLimits.md
 docs/AccountPaginatedList.md
 docs/AddUserToInfrastructure.md
+docs/AddressRange.md
 docs/AdminPasswordRevealPermissions.md
 docs/AgentCapabilities.md
 docs/AgentConnectedInfo.md
@@ -177,6 +178,7 @@ docs/CustomIso.md
 docs/CustomIsoAPI.md
 docs/CustomIsoPaginatedList.md
 docs/CustomVariable.md
+docs/DellComponentFilter.md
 docs/Drive.md
 docs/DriveAPI.md
 docs/DriveConfiguration.md
@@ -248,6 +250,7 @@ docs/FirmwareBaselineSearchAPI.md
 docs/FirmwareBinary.md
 docs/FirmwareBinaryAPI.md
 docs/FirmwareBinaryPaginatedList.md
+docs/FirmwareBinaryResponse.md
 docs/FirmwareBinaryUpdateSeverity.md
 docs/FirmwareCatalog.md
 docs/FirmwareCatalogAPI.md
@@ -264,6 +267,8 @@ docs/GetLogicalNetworkConfig200Response.md
 docs/GetResourceUtilizationDetailed.md
 docs/GetSiteControllerOneLiner200Response.md
 docs/GlobalFirmwareUpgradeConfiguration.md
+docs/HpComponentFilter.md
+docs/IServerFirmwareBinaryResponse.md
 docs/Infrastructure.md
 docs/InfrastructureAPI.md
 docs/InfrastructureConfig.md
@@ -280,7 +285,16 @@ docs/InfrastructureResourceUtilizationResponse.md
 docs/InfrastructureServiceStatus.md
 docs/InfrastructureVariables.md
 docs/InfrastructuresStatistics.md
+docs/InstanceInterfaceIpv4AddressVariables.md
+docs/InstanceInterfaceIpv6AddressVariables.md
+docs/InstanceInterfaceLinkVariables.md
+docs/InstanceInterfaceMemberVariables.md
+docs/InstanceInterfaceNetworkVariables.md
+docs/InstanceInterfaceRouteVariables.md
+docs/InstanceInterfaceType.md
+docs/InstanceNetworkVariables.md
 docs/InstancesSetPowerState.md
+docs/IpVersion.md
 docs/Ipv4SubnetAllocation.md
 docs/Ipv4SubnetAllocationStrategy.md
 docs/Ipv4SubnetAllocationStrategy1DataItem.md
@@ -302,6 +316,7 @@ docs/JobInfo.md
 docs/JobPaginatedList.md
 docs/JobRetryInfo.md
 docs/JobStatistics.md
+docs/LenovoComponentFilter.md
 docs/LicenseInstallments.md
 docs/Link.md
 docs/LinkDuplex.md
@@ -375,6 +390,7 @@ docs/RegisterServerResponse.md
 docs/RegisterStorageResponse.md
 docs/RemoteConsoleInfo.md
 docs/Repo.md
+docs/ResendUserVerificationEmail.md
 docs/ResourceAllocationStatus.md
 docs/ResourcePool.md
 docs/ResourcePoolAPI.md
@@ -389,6 +405,7 @@ docs/RunExtensionOnPhysicalDevice.md
 docs/SSHPublicKey.md
 docs/ScheduleFirmwareUpgrade.md
 docs/SearchFirmwareBinary.md
+docs/SearchFirmwareBinaryServerComponentFilter.md
 docs/Secret.md
 docs/SecretPaginatedList.md
 docs/SecretsAPI.md
@@ -661,6 +678,7 @@ model_acl_enforcement_point.go
 model_acl_forwarding_action.go
 model_acl_type.go
 model_add_user_to_infrastructure.go
+model_address_range.go
 model_admin_password_reveal_permissions.go
 model_agent_capabilities.go
 model_agent_connected_info.go
@@ -770,6 +788,7 @@ model_create_vxlan_logical_network_vxlan_properties.go
 model_custom_iso.go
 model_custom_iso_paginated_list.go
 model_custom_variable.go
+model_dell_component_filter.go
 model_drive.go
 model_drive_configuration.go
 model_drive_group.go
@@ -832,6 +851,7 @@ model_firmware_baseline.go
 model_firmware_baseline_paginated_list.go
 model_firmware_binary.go
 model_firmware_binary_paginated_list.go
+model_firmware_binary_response.go
 model_firmware_binary_update_severity.go
 model_firmware_catalog.go
 model_firmware_catalog_paginated_list.go
@@ -846,6 +866,8 @@ model_get_logical_network_config_200_response.go
 model_get_resource_utilization_detailed.go
 model_get_site_controller_one_liner_200_response.go
 model_global_firmware_upgrade_configuration.go
+model_hp_component_filter.go
+model_i_server_firmware_binary_response.go
 model_infrastructure.go
 model_infrastructure_config.go
 model_infrastructure_configuration.go
@@ -861,7 +883,16 @@ model_infrastructure_resource_utilization_response.go
 model_infrastructure_service_status.go
 model_infrastructure_variables.go
 model_infrastructures_statistics.go
+model_instance_interface_ipv4_address_variables.go
+model_instance_interface_ipv6_address_variables.go
+model_instance_interface_link_variables.go
+model_instance_interface_member_variables.go
+model_instance_interface_network_variables.go
+model_instance_interface_route_variables.go
+model_instance_interface_type.go
+model_instance_network_variables.go
 model_instances_set_power_state.go
+model_ip_version.go
 model_ipv4_subnet_allocation.go
 model_ipv4_subnet_allocation_strategy.go
 model_ipv4_subnet_allocation_strategy_1_data_item.go
@@ -882,6 +913,7 @@ model_job_info.go
 model_job_paginated_list.go
 model_job_retry_info.go
 model_job_statistics.go
+model_lenovo_component_filter.go
 model_license_installments.go
 model_link.go
 model_link_duplex.go
@@ -949,6 +981,7 @@ model_register_server_response.go
 model_register_storage_response.go
 model_remote_console_info.go
 model_repo.go
+model_resend_user_verification_email.go
 model_resource_allocation_status.go
 model_resource_pool.go
 model_resource_pool_paginated_list.go
@@ -961,6 +994,7 @@ model_role_list.go
 model_run_extension_on_physical_device.go
 model_schedule_firmware_upgrade.go
 model_search_firmware_binary.go
+model_search_firmware_binary_server_component_filter.go
 model_secret.go
 model_secret_paginated_list.go
 model_server.go

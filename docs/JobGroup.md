@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **NetworkDeviceId** | Pointer to **int32** | Network device Id | [optional] 
 **VmPoolId** | Pointer to **int32** | VM Pool Id | [optional] 
 **StorageId** | Pointer to **int32** | Storage Pool Id | [optional] 
+**CancelReason** | Pointer to **string** | Cancel reason of the group | [optional] 
 **Links** | **map[string]interface{}** | Links to other resources | 
 
 ## Methods
@@ -368,6 +369,31 @@ SetStorageId sets StorageId field to given value.
 `func (o *JobGroup) HasStorageId() bool`
 
 HasStorageId returns a boolean if a field has been set.
+
+### GetCancelReason
+
+`func (o *JobGroup) GetCancelReason() string`
+
+GetCancelReason returns the CancelReason field if non-nil, zero value otherwise.
+
+### GetCancelReasonOk
+
+`func (o *JobGroup) GetCancelReasonOk() (*string, bool)`
+
+GetCancelReasonOk returns a tuple with the CancelReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCancelReason
+
+`func (o *JobGroup) SetCancelReason(v string)`
+
+SetCancelReason sets CancelReason field to given value.
+
+### HasCancelReason
+
+`func (o *JobGroup) HasCancelReason() bool`
+
+HasCancelReason returns a boolean if a field has been set.
 
 ### GetLinks
 

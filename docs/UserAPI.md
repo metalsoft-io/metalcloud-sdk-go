@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**InitiatePasswordReset**](UserAPI.md#InitiatePasswordReset) | **Post** /api/v2/user/actions/initiate-password-reset | Initiate reset user password
 [**RegenerateUserApiKey**](UserAPI.md#RegenerateUserApiKey) | **Post** /api/v2/user/actions/regenerate-api-key | Regenerate user API key
 [**RegenerateUserJwtSalt**](UserAPI.md#RegenerateUserJwtSalt) | **Post** /api/v2/user/actions/regenerate-jwt-salt | Regenerate user JWT salt. Also logs out all user sessions.
+[**ResendEmailVerification**](UserAPI.md#ResendEmailVerification) | **Post** /api/v2/user/actions/resend-email-verification | Resend email verification
 [**UpdateUserPassword**](UserAPI.md#UpdateUserPassword) | **Post** /api/v2/user/actions/change-password | Change user password
 [**UserControllerHandleEmailVerify**](UserAPI.md#UserControllerHandleEmailVerify) | **Get** /api/v2/user/actions/verify-email | Handle user email verify action
 [**UserControllerHandleUserResetPassword**](UserAPI.md#UserControllerHandleUserResetPassword) | **Get** /api/v2/user/actions/reset-password | Handle user reset password action
@@ -511,6 +512,70 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ResendEmailVerification
+
+> User ResendEmailVerification(ctx).ResendUserVerificationEmail(resendUserVerificationEmail).Execute()
+
+Resend email verification
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	resendUserVerificationEmail := *openapiclient.NewResendUserVerificationEmail() // ResendUserVerificationEmail | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UserAPI.ResendEmailVerification(context.Background()).ResendUserVerificationEmail(resendUserVerificationEmail).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.ResendEmailVerification``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ResendEmailVerification`: User
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.ResendEmailVerification`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiResendEmailVerificationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resendUserVerificationEmail** | [**ResendUserVerificationEmail**](ResendUserVerificationEmail.md) |  | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

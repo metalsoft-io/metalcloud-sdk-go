@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **FileShares** | [**[]FileShareVariables**](FileShareVariables.md) | The server instance file shares variables. | 
 **Buckets** | [**[]BucketVariables**](BucketVariables.md) | The server instance buckets variables. | 
 **SharedDrives** | [**[]SharedDriveVariables**](SharedDriveVariables.md) | The server instance shared drives variables. | 
+**Network** | [**[]InstanceNetworkVariables**](InstanceNetworkVariables.md) | The server instance network variables. | 
 **Variables** | Pointer to **map[string]interface{}** | Additional variables | [optional] 
 **Secrets** | Pointer to **map[string]interface{}** | Secrets | [optional] 
 **UserSSHKeys** | Pointer to **[]string** | Infrastructure owner SSH keys | [optional] 
@@ -24,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewVmInstanceContextVariables
 
-`func NewVmInstanceContextVariables(site SiteVariables, siteConfig SiteConfigVariables, server ServerVariables, serverInstance ServerInstanceVariables, serverInstanceGroup ServerInstanceGroupVariables, infrastructure InfrastructureVariables, driveGroups []DriveGroupVariables, drives []DriveVariables, fileShares []FileShareVariables, buckets []BucketVariables, sharedDrives []SharedDriveVariables, ) *VmInstanceContextVariables`
+`func NewVmInstanceContextVariables(site SiteVariables, siteConfig SiteConfigVariables, server ServerVariables, serverInstance ServerInstanceVariables, serverInstanceGroup ServerInstanceGroupVariables, infrastructure InfrastructureVariables, driveGroups []DriveGroupVariables, drives []DriveVariables, fileShares []FileShareVariables, buckets []BucketVariables, sharedDrives []SharedDriveVariables, network []InstanceNetworkVariables, ) *VmInstanceContextVariables`
 
 NewVmInstanceContextVariables instantiates a new VmInstanceContextVariables object
 This constructor will assign default values to properties that have it defined,
@@ -257,6 +258,26 @@ and a boolean to check if the value has been set.
 `func (o *VmInstanceContextVariables) SetSharedDrives(v []SharedDriveVariables)`
 
 SetSharedDrives sets SharedDrives field to given value.
+
+
+### GetNetwork
+
+`func (o *VmInstanceContextVariables) GetNetwork() []InstanceNetworkVariables`
+
+GetNetwork returns the Network field if non-nil, zero value otherwise.
+
+### GetNetworkOk
+
+`func (o *VmInstanceContextVariables) GetNetworkOk() (*[]InstanceNetworkVariables, bool)`
+
+GetNetworkOk returns a tuple with the Network field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetwork
+
+`func (o *VmInstanceContextVariables) SetNetwork(v []InstanceNetworkVariables)`
+
+SetNetwork sets Network field to given value.
 
 
 ### GetVariables

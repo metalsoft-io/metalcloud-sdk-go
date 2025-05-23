@@ -34,7 +34,7 @@ func (r FirmwareBaselineSearchAPISearchFirmwareBaselinesRequest) SearchFirmwareB
 	return r
 }
 
-func (r FirmwareBaselineSearchAPISearchFirmwareBaselinesRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r FirmwareBaselineSearchAPISearchFirmwareBaselinesRequest) Execute() (*IServerFirmwareBinaryResponse, *http.Response, error) {
 	return r.ApiService.SearchFirmwareBaselinesExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *FirmwareBaselineSearchAPIService) SearchFirmwareBaselines(ctx context.C
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *FirmwareBaselineSearchAPIService) SearchFirmwareBaselinesExecute(r FirmwareBaselineSearchAPISearchFirmwareBaselinesRequest) (map[string]interface{}, *http.Response, error) {
+//  @return IServerFirmwareBinaryResponse
+func (a *FirmwareBaselineSearchAPIService) SearchFirmwareBaselinesExecute(r FirmwareBaselineSearchAPISearchFirmwareBaselinesRequest) (*IServerFirmwareBinaryResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *IServerFirmwareBinaryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareBaselineSearchAPIService.SearchFirmwareBaselines")

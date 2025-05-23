@@ -156,6 +156,21 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test VMInstanceGroupAPIService GetVmInstanceGroupNetworkConfiguration", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId int32
+		var vmInstanceGroupId int32
+
+		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVmInstanceGroupNetworkConfiguration(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test VMInstanceGroupAPIService PatchVMInstanceGroupMeta", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

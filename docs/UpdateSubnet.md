@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** | Name of the Subnet | [optional] 
-**Tags** | Pointer to **map[string]interface{}** |  | [optional] 
-**Annotations** | Pointer to **map[string]interface{}** |  | [optional] 
-**AllocationDenylist** | Pointer to **[]string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Annotations** | Pointer to **map[string]string** |  | [optional] 
+**Tags** | Pointer to **map[string]string** |  | [optional] 
+**AllocationDenylist** | Pointer to [**[]AddressRange**](AddressRange.md) |  | [optional] 
 **ChildOverlapAllowRules** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -80,47 +80,22 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetTags
-
-`func (o *UpdateSubnet) GetTags() map[string]interface{}`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *UpdateSubnet) GetTagsOk() (*map[string]interface{}, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *UpdateSubnet) SetTags(v map[string]interface{})`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *UpdateSubnet) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
-
 ### GetAnnotations
 
-`func (o *UpdateSubnet) GetAnnotations() map[string]interface{}`
+`func (o *UpdateSubnet) GetAnnotations() map[string]string`
 
 GetAnnotations returns the Annotations field if non-nil, zero value otherwise.
 
 ### GetAnnotationsOk
 
-`func (o *UpdateSubnet) GetAnnotationsOk() (*map[string]interface{}, bool)`
+`func (o *UpdateSubnet) GetAnnotationsOk() (*map[string]string, bool)`
 
 GetAnnotationsOk returns a tuple with the Annotations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAnnotations
 
-`func (o *UpdateSubnet) SetAnnotations(v map[string]interface{})`
+`func (o *UpdateSubnet) SetAnnotations(v map[string]string)`
 
 SetAnnotations sets Annotations field to given value.
 
@@ -130,22 +105,47 @@ SetAnnotations sets Annotations field to given value.
 
 HasAnnotations returns a boolean if a field has been set.
 
+### GetTags
+
+`func (o *UpdateSubnet) GetTags() map[string]string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *UpdateSubnet) GetTagsOk() (*map[string]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *UpdateSubnet) SetTags(v map[string]string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *UpdateSubnet) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
 ### GetAllocationDenylist
 
-`func (o *UpdateSubnet) GetAllocationDenylist() []string`
+`func (o *UpdateSubnet) GetAllocationDenylist() []AddressRange`
 
 GetAllocationDenylist returns the AllocationDenylist field if non-nil, zero value otherwise.
 
 ### GetAllocationDenylistOk
 
-`func (o *UpdateSubnet) GetAllocationDenylistOk() (*[]string, bool)`
+`func (o *UpdateSubnet) GetAllocationDenylistOk() (*[]AddressRange, bool)`
 
 GetAllocationDenylistOk returns a tuple with the AllocationDenylist field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAllocationDenylist
 
-`func (o *UpdateSubnet) SetAllocationDenylist(v []string)`
+`func (o *UpdateSubnet) SetAllocationDenylist(v []AddressRange)`
 
 SetAllocationDenylist sets AllocationDenylist field to given value.
 

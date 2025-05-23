@@ -37,7 +37,7 @@ func (r SubnetAPICreateSubnetRequest) CreateSubnet(createSubnet CreateSubnet) Su
 	return r
 }
 
-func (r SubnetAPICreateSubnetRequest) Execute() (*CreateSubnet, *http.Response, error) {
+func (r SubnetAPICreateSubnetRequest) Execute() (*Subnet, *http.Response, error) {
 	return r.ApiService.CreateSubnetExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *SubnetAPIService) CreateSubnet(ctx context.Context) SubnetAPICreateSubn
 }
 
 // Execute executes the request
-//  @return CreateSubnet
-func (a *SubnetAPIService) CreateSubnetExecute(r SubnetAPICreateSubnetRequest) (*CreateSubnet, *http.Response, error) {
+//  @return Subnet
+func (a *SubnetAPIService) CreateSubnetExecute(r SubnetAPICreateSubnetRequest) (*Subnet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateSubnet
+		localVarReturnValue  *Subnet
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubnetAPIService.CreateSubnet")
@@ -187,6 +187,9 @@ func (a *SubnetAPIService) DeleteSubnetExecute(r SubnetAPIDeleteSubnetRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.ifMatch == nil {
+		return nil, reportError("ifMatch is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -205,9 +208,7 @@ func (a *SubnetAPIService) DeleteSubnetExecute(r SubnetAPIDeleteSubnetRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ifMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
-	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -345,7 +346,13 @@ type SubnetAPIGetSubnetsRequest struct {
 	page *float32
 	limit *float32
 	filterId *[]string
+	filterLabel *[]string
+	filterName *[]string
+	filterIpVersion *[]string
+	filterParentSubnetId *[]string
 	sortBy *[]string
+	search *string
+	searchBy *[]string
 }
 
 // Page number to retrieve.If you provide invalid value the default page number will applied         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 1           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1           &lt;/p&gt;         
@@ -354,21 +361,57 @@ func (r SubnetAPIGetSubnetsRequest) Page(page float32) SubnetAPIGetSubnetsReques
 	return r
 }
 
-// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 100           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
+// Number of records per page.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; 20           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; 1000           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Max Value: &lt;/b&gt; 5000           &lt;/p&gt;        If provided value is greater than max value, max value will be applied.       
 func (r SubnetAPIGetSubnetsRequest) Limit(limit float32) SubnetAPIGetSubnetsRequest {
 	r.limit = &limit
 	return r
 }
 
-// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt;&lt;/ul&gt;
 func (r SubnetAPIGetSubnetsRequest) FilterId(filterId []string) SubnetAPIGetSubnetsRequest {
 	r.filterId = &filterId
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default sorting specified, the result order is not guaranteed           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;       
+// Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r SubnetAPIGetSubnetsRequest) FilterLabel(filterLabel []string) SubnetAPIGetSubnetsRequest {
+	r.filterLabel = &filterLabel
+	return r
+}
+
+// Filter by name query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.name&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.name&#x3D;$not:$like:John Doe&amp;filter.name&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r SubnetAPIGetSubnetsRequest) FilterName(filterName []string) SubnetAPIGetSubnetsRequest {
+	r.filterName = &filterName
+	return r
+}
+
+// Filter by ipVersion query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.ipVersion&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.ipVersion&#x3D;$not:$like:John Doe&amp;filter.ipVersion&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r SubnetAPIGetSubnetsRequest) FilterIpVersion(filterIpVersion []string) SubnetAPIGetSubnetsRequest {
+	r.filterIpVersion = &filterIpVersion
+	return r
+}
+
+// Filter by parentSubnetId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.parentSubnetId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.parentSubnetId&#x3D;$not:$like:John Doe&amp;filter.parentSubnetId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt;&lt;/ul&gt;
+func (r SubnetAPIGetSubnetsRequest) FilterParentSubnetId(filterParentSubnetId []string) SubnetAPIGetSubnetsRequest {
+	r.filterParentSubnetId = &filterParentSubnetId
+	return r
+}
+
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:ASC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt;&lt;/ul&gt;       
 func (r SubnetAPIGetSubnetsRequest) SortBy(sortBy []string) SubnetAPIGetSubnetsRequest {
 	r.sortBy = &sortBy
+	return r
+}
+
+// Search term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; John           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; No default value           &lt;/p&gt;         
+func (r SubnetAPIGetSubnetsRequest) Search(search string) SubnetAPIGetSubnetsRequest {
+	r.search = &search
+	return r
+}
+
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,label,name           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;label&lt;/li&gt; &lt;li&gt;name&lt;/li&gt;&lt;/ul&gt;         
+func (r SubnetAPIGetSubnetsRequest) SearchBy(searchBy []string) SubnetAPIGetSubnetsRequest {
+	r.searchBy = &searchBy
 	return r
 }
 
@@ -429,6 +472,50 @@ func (a *SubnetAPIService) GetSubnetsExecute(r SubnetAPIGetSubnetsRequest) (*Sub
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
+	if r.filterLabel != nil {
+		t := *r.filterLabel
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
+		}
+	}
+	if r.filterName != nil {
+		t := *r.filterName
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.name", t, "form", "multi")
+		}
+	}
+	if r.filterIpVersion != nil {
+		t := *r.filterIpVersion
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.ipVersion", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.ipVersion", t, "form", "multi")
+		}
+	}
+	if r.filterParentSubnetId != nil {
+		t := *r.filterParentSubnetId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.parentSubnetId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.parentSubnetId", t, "form", "multi")
+		}
+	}
 	if r.sortBy != nil {
 		t := *r.sortBy
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -438,6 +525,20 @@ func (a *SubnetAPIService) GetSubnetsExecute(r SubnetAPIGetSubnetsRequest) (*Sub
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", t, "form", "multi")
+		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.searchBy != nil {
+		t := *r.searchBy
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "searchBy", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -498,19 +599,19 @@ type SubnetAPIUpdateSubnetRequest struct {
 	ctx context.Context
 	ApiService *SubnetAPIService
 	subnetId int32
-	updateSubnet *UpdateSubnet
 	ifMatch *string
-}
-
-// The Subnet changes
-func (r SubnetAPIUpdateSubnetRequest) UpdateSubnet(updateSubnet UpdateSubnet) SubnetAPIUpdateSubnetRequest {
-	r.updateSubnet = &updateSubnet
-	return r
+	updateSubnet *UpdateSubnet
 }
 
 // Entity tag
 func (r SubnetAPIUpdateSubnetRequest) IfMatch(ifMatch string) SubnetAPIUpdateSubnetRequest {
 	r.ifMatch = &ifMatch
+	return r
+}
+
+// The Subnet changes
+func (r SubnetAPIUpdateSubnetRequest) UpdateSubnet(updateSubnet UpdateSubnet) SubnetAPIUpdateSubnetRequest {
+	r.updateSubnet = &updateSubnet
 	return r
 }
 
@@ -550,12 +651,15 @@ func (a *SubnetAPIService) UpdateSubnetExecute(r SubnetAPIUpdateSubnetRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/subnets/{subnetId}/config"
+	localVarPath := localBasePath + "/api/v2/subnets/{subnetId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"subnetId"+"}", url.PathEscape(parameterValueToString(r.subnetId, "subnetId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.ifMatch == nil {
+		return localVarReturnValue, nil, reportError("ifMatch is required and must be specified")
+	}
 	if r.updateSubnet == nil {
 		return localVarReturnValue, nil, reportError("updateSubnet is required and must be specified")
 	}
@@ -577,9 +681,7 @@ func (a *SubnetAPIService) UpdateSubnetExecute(r SubnetAPIUpdateSubnetRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ifMatch != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
-	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	// body params
 	localVarPostBody = r.updateSubnet
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

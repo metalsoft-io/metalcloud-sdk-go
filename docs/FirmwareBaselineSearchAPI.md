@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## SearchFirmwareBaselines
 
-> map[string]interface{} SearchFirmwareBaselines(ctx).SearchFirmwareBinary(searchFirmwareBinary).Execute()
+> IServerFirmwareBinaryResponse SearchFirmwareBaselines(ctx).SearchFirmwareBinary(searchFirmwareBinary).Execute()
 
 Search Firmware Baselines
 
@@ -38,7 +38,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirmwareBaselineSearchAPI.SearchFirmwareBaselines``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SearchFirmwareBaselines`: map[string]interface{}
+	// response from `SearchFirmwareBaselines`: IServerFirmwareBinaryResponse
 	fmt.Fprintf(os.Stdout, "Response from `FirmwareBaselineSearchAPI.SearchFirmwareBaselines`: %v\n", resp)
 }
 ```
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**IServerFirmwareBinaryResponse**](IServerFirmwareBinaryResponse.md)
 
 ### Authorization
 

@@ -10,14 +10,12 @@ Name | Type | Description | Notes
 **Catalog** | Pointer to **[]string** |  | [optional] 
 **Level** | [**BaselineLevelType**](BaselineLevelType.md) |  | 
 **LevelFilter** | **[]string** |  | 
-**CreatedTimestamp** | **string** | Timestamp when the baseline was created | 
-**Links** | **map[string]interface{}** | Links to other resources | 
 
 ## Methods
 
 ### NewFirmwareBaseline
 
-`func NewFirmwareBaseline(id float32, name string, level BaselineLevelType, levelFilter []string, createdTimestamp string, links map[string]interface{}, ) *FirmwareBaseline`
+`func NewFirmwareBaseline(id float32, name string, level BaselineLevelType, levelFilter []string, ) *FirmwareBaseline`
 
 NewFirmwareBaseline instantiates a new FirmwareBaseline object
 This constructor will assign default values to properties that have it defined,
@@ -160,46 +158,6 @@ and a boolean to check if the value has been set.
 `func (o *FirmwareBaseline) SetLevelFilter(v []string)`
 
 SetLevelFilter sets LevelFilter field to given value.
-
-
-### GetCreatedTimestamp
-
-`func (o *FirmwareBaseline) GetCreatedTimestamp() string`
-
-GetCreatedTimestamp returns the CreatedTimestamp field if non-nil, zero value otherwise.
-
-### GetCreatedTimestampOk
-
-`func (o *FirmwareBaseline) GetCreatedTimestampOk() (*string, bool)`
-
-GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedTimestamp
-
-`func (o *FirmwareBaseline) SetCreatedTimestamp(v string)`
-
-SetCreatedTimestamp sets CreatedTimestamp field to given value.
-
-
-### GetLinks
-
-`func (o *FirmwareBaseline) GetLinks() map[string]interface{}`
-
-GetLinks returns the Links field if non-nil, zero value otherwise.
-
-### GetLinksOk
-
-`func (o *FirmwareBaseline) GetLinksOk() (*map[string]interface{}, bool)`
-
-GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLinks
-
-`func (o *FirmwareBaseline) SetLinks(v map[string]interface{})`
-
-SetLinks sets Links field to given value.
 
 
 

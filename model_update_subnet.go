@@ -21,11 +21,10 @@ var _ MappedNullable = &UpdateSubnet{}
 // UpdateSubnet struct for UpdateSubnet
 type UpdateSubnet struct {
 	Label *string `json:"label,omitempty"`
-	// Name of the Subnet
 	Name *string `json:"name,omitempty"`
-	Tags map[string]interface{} `json:"tags,omitempty"`
-	Annotations map[string]interface{} `json:"annotations,omitempty"`
-	AllocationDenylist []string `json:"allocationDenylist,omitempty"`
+	Annotations *map[string]string `json:"annotations,omitempty"`
+	Tags *map[string]string `json:"tags,omitempty"`
+	AllocationDenylist []AddressRange `json:"allocationDenylist,omitempty"`
 	ChildOverlapAllowRules []string `json:"childOverlapAllowRules,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -113,52 +112,20 @@ func (o *UpdateSubnet) SetName(v string) {
 	o.Name = &v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *UpdateSubnet) GetTags() map[string]interface{} {
-	if o == nil || IsNil(o.Tags) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateSubnet) GetTagsOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return map[string]interface{}{}, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *UpdateSubnet) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given map[string]interface{} and assigns it to the Tags field.
-func (o *UpdateSubnet) SetTags(v map[string]interface{}) {
-	o.Tags = v
-}
-
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
-func (o *UpdateSubnet) GetAnnotations() map[string]interface{} {
+func (o *UpdateSubnet) GetAnnotations() map[string]string {
 	if o == nil || IsNil(o.Annotations) {
-		var ret map[string]interface{}
+		var ret map[string]string
 		return ret
 	}
-	return o.Annotations
+	return *o.Annotations
 }
 
 // GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSubnet) GetAnnotationsOk() (map[string]interface{}, bool) {
+func (o *UpdateSubnet) GetAnnotationsOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Annotations) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Annotations, true
 }
@@ -172,15 +139,47 @@ func (o *UpdateSubnet) HasAnnotations() bool {
 	return false
 }
 
-// SetAnnotations gets a reference to the given map[string]interface{} and assigns it to the Annotations field.
-func (o *UpdateSubnet) SetAnnotations(v map[string]interface{}) {
-	o.Annotations = v
+// SetAnnotations gets a reference to the given map[string]string and assigns it to the Annotations field.
+func (o *UpdateSubnet) SetAnnotations(v map[string]string) {
+	o.Annotations = &v
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *UpdateSubnet) GetTags() map[string]string {
+	if o == nil || IsNil(o.Tags) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSubnet) GetTagsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *UpdateSubnet) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given map[string]string and assigns it to the Tags field.
+func (o *UpdateSubnet) SetTags(v map[string]string) {
+	o.Tags = &v
 }
 
 // GetAllocationDenylist returns the AllocationDenylist field value if set, zero value otherwise.
-func (o *UpdateSubnet) GetAllocationDenylist() []string {
+func (o *UpdateSubnet) GetAllocationDenylist() []AddressRange {
 	if o == nil || IsNil(o.AllocationDenylist) {
-		var ret []string
+		var ret []AddressRange
 		return ret
 	}
 	return o.AllocationDenylist
@@ -188,7 +187,7 @@ func (o *UpdateSubnet) GetAllocationDenylist() []string {
 
 // GetAllocationDenylistOk returns a tuple with the AllocationDenylist field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSubnet) GetAllocationDenylistOk() ([]string, bool) {
+func (o *UpdateSubnet) GetAllocationDenylistOk() ([]AddressRange, bool) {
 	if o == nil || IsNil(o.AllocationDenylist) {
 		return nil, false
 	}
@@ -204,8 +203,8 @@ func (o *UpdateSubnet) HasAllocationDenylist() bool {
 	return false
 }
 
-// SetAllocationDenylist gets a reference to the given []string and assigns it to the AllocationDenylist field.
-func (o *UpdateSubnet) SetAllocationDenylist(v []string) {
+// SetAllocationDenylist gets a reference to the given []AddressRange and assigns it to the AllocationDenylist field.
+func (o *UpdateSubnet) SetAllocationDenylist(v []AddressRange) {
 	o.AllocationDenylist = v
 }
 
@@ -257,11 +256,11 @@ func (o UpdateSubnet) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
 	if !IsNil(o.Annotations) {
 		toSerialize["annotations"] = o.Annotations
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 	if !IsNil(o.AllocationDenylist) {
 		toSerialize["allocationDenylist"] = o.AllocationDenylist
@@ -293,8 +292,8 @@ func (o *UpdateSubnet) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "tags")
 		delete(additionalProperties, "annotations")
+		delete(additionalProperties, "tags")
 		delete(additionalProperties, "allocationDenylist")
 		delete(additionalProperties, "childOverlapAllowRules")
 		o.AdditionalProperties = additionalProperties

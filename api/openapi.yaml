@@ -1686,7 +1686,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Bucket'
+                $ref: '#/components/schemas/BucketConfiguration'
           description: The Bucket information successfully updated
           headers:
             ETag:
@@ -4126,7 +4126,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FileShare'
+                $ref: '#/components/schemas/FileShareConfiguration'
           description: The File Share config information successfully updated
           headers:
             ETag:
@@ -6919,6 +6919,39 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Deploys the specified infrastructure
+      tags:
+      - Infrastructure
+  /api/v2/infrastructures/{infrastructureId}/actions/cancel-deploy:
+    post:
+      description: Cancels the specified infrastructure deployment
+      operationId: cancelDeployInfrastructure
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Infrastructure'
+          description: Cancels the specified infrastructure deployment
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Cancels the specified infrastructure deployment
       tags:
       - Infrastructure
   /api/v2/infrastructures/{infrastructureId}/actions/revert:
@@ -22009,6 +22042,35 @@ paths:
       summary: Sets the power state of a server
       tags:
       - Server
+  /api/v2/servers/{serverId}/actions/identify-server:
+    post:
+      description: identify the server chassis by blinking the LED
+      operationId: identifyServer
+      parameters:
+      - explode: false
+        in: path
+        name: serverId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: identify the server by blinking the LED
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: identify the server chassis by blinking the LED
+      tags:
+      - Server
   /api/v2/server-types:
     get:
       description: Returns a list of Server Types
@@ -25393,8 +25455,8 @@ paths:
         style: form
       - description: "Number of records per page.\n      <p>\n             <b>Example:\
           \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
-          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
-          \         </p>\n\n      If provided value is greater than max value, max\
+          \ 1000\n          </p>\n      <p>\n             <b>Max Value: </b> 5000\n\
+          \          </p>\n\n      If provided value is greater than max value, max\
           \ value will be applied.\n      "
         explode: true
         in: query
@@ -25411,10 +25473,85 @@ paths:
                     <p>
                        <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li>
+          <li>$gt</li></ul>
         explode: true
         in: query
         name: filter.id
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by label query param.
+                    <p>
+                       <b>Format: </b> filter.label={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.label=$not:$like:John Doe&filter.label=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.label
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by name query param.
+                    <p>
+                       <b>Format: </b> filter.name={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.name=$not:$like:John Doe&filter.name=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.name
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by ipVersion query param.
+                    <p>
+                       <b>Format: </b> filter.ipVersion={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.ipVersion=$not:$like:John Doe&filter.ipVersion=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.ipVersion
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by parentSubnetId query param.
+                    <p>
+                       <b>Format: </b> filter.parentSubnetId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.parentSubnetId=$not:$like:John Doe&filter.parentSubnetId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$null</li></ul>
+        explode: true
+        in: query
+        name: filter.parentSubnetId
         required: false
         schema:
           items:
@@ -25425,9 +25562,9 @@ paths:
           \ just provide query param multiple types. The order in url defines an order\
           \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
           \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
-          \          </p>\n      <p>\n             <b>Default Value: </b> No default\
-          \ sorting specified, the result order is not guaranteed\n          </p>\n\
-          \      <h4>Available Fields</h4><ul><li>id</li></ul>\n      "
+          \          </p>\n      <p>\n             <b>Default Value: </b> id:ASC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li></ul>\n \
+          \     "
         explode: true
         in: query
         name: sortBy
@@ -25437,6 +25574,31 @@ paths:
             enum:
             - id:ASC
             - id:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> id,label,name\n          </p>\n\
+          \        <p>\n             <b>Default Value: </b> By default all fields\
+          \ mentioned below will be used to search by term\n          </p>\n     \
+          \   <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>name</li></ul>\n\
+          \        "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -25451,6 +25613,8 @@ paths:
           description: Unauthorized
         "403":
           description: Forbidden
+        "500":
+          description: Failed to retrieve Subnets.
       security:
       - JWT: []
       - apiKey: []
@@ -25472,7 +25636,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateSubnet'
+                $ref: '#/components/schemas/Subnet'
           description: The details of created subnet
           headers:
             Location:
@@ -25515,7 +25679,7 @@ paths:
         explode: false
         in: header
         name: If-Match
-        required: false
+        required: true
         schema:
           type: string
         style: simple
@@ -25531,9 +25695,9 @@ paths:
         "409":
           description: Conflict
         "412":
-          description: Precondition failed
+          description: Precondition failed (ETag mismatch)
         "428":
-          description: Precondition required
+          description: Precondition required (If-Match header)
       security:
       - JWT: []
       - apiKey: []
@@ -25581,7 +25745,6 @@ paths:
       summary: Retrieves the Subnet information
       tags:
       - Subnet
-  /api/v2/subnets/{subnetId}/config:
     patch:
       description: Updates the specified Subnet
       operationId: updateSubnet
@@ -25597,7 +25760,7 @@ paths:
         explode: false
         in: header
         name: If-Match
-        required: false
+        required: true
         schema:
           type: string
         style: simple
@@ -25633,9 +25796,9 @@ paths:
         "409":
           description: Conflict
         "412":
-          description: Precondition failed
+          description: Precondition failed (ETag mismatch)
         "428":
-          description: Precondition required
+          description: Precondition required (If-Match header)
       security:
       - JWT: []
       - apiKey: []
@@ -26111,14 +26274,43 @@ paths:
           description: Forbidden
         "404":
           description: User not found
-        "412":
-          description: Precondition failed
-        "428":
-          description: Precondition required
       security:
       - JWT: []
       - apiKey: []
       summary: Initiates the user email change
+      tags:
+      - User
+  /api/v2/user/actions/resend-email-verification:
+    post:
+      operationId: resendEmailVerification
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendUserVerificationEmail'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Email verification URL successfully sent.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: User already verified
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Resend email verification
       tags:
       - User
   /api/v2/user/api-key:
@@ -29385,6 +29577,52 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Get VM Instance Group Interface information
+      tags:
+      - VM Instance Group
+  /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking:
+    get:
+      description: Returns the network configuration of the specified vm instance
+        group
+      operationId: getVmInstanceGroupNetworkConfiguration
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: vmInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkEndpointGroup'
+          description: The network configuration of the specified vm instance group
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: VM instance group not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get vm instance group network configuration
       tags:
       - VM Instance Group
   /api/v2/vm-pools:
@@ -38542,13 +38780,11 @@ components:
         - "1"
         - "2"
         - "3"
-        createdTimestamp: 2025-01-07T12:00:00Z
         name: Data center baseline name
         description: "Baseline for all servers from Dell, Lenovo, HP in datacenter"
         levelFilter:
         - datacenter1
         - datacenter2
-        links: "{}"
         id: 1
       properties:
         id:
@@ -38587,19 +38823,10 @@ components:
           title: "Filter applicable to baseline level, specified as an array of string\
             \ values"
           type: array
-        createdTimestamp:
-          description: Timestamp when the baseline was created
-          example: 2025-01-07T12:00:00Z
-          type: string
-        links:
-          description: Links to other resources
-          type: object
       required:
-      - createdTimestamp
       - id
       - level
       - levelFilter
-      - links
       - name
       type: object
     FirmwareBaselinePaginatedList:
@@ -38610,26 +38837,22 @@ components:
           - "1"
           - "2"
           - "3"
-          createdTimestamp: 2025-01-07T12:00:00Z
           name: Data center baseline name
           description: "Baseline for all servers from Dell, Lenovo, HP in datacenter"
           levelFilter:
           - datacenter1
           - datacenter2
-          links: "{}"
           id: 1
         - level: datacenter
           catalog:
           - "1"
           - "2"
           - "3"
-          createdTimestamp: 2025-01-07T12:00:00Z
           name: Data center baseline name
           description: "Baseline for all servers from Dell, Lenovo, HP in datacenter"
           levelFilter:
           - datacenter1
           - datacenter2
-          links: "{}"
           id: 1
         meta: ""
         links: ""
@@ -39775,6 +39998,86 @@ components:
       - failedToSchedule
       - scheduled
       type: object
+    DellComponentFilter:
+      properties:
+        vendor:
+          description: Discriminator field set to dell
+          enum:
+          - dell
+          type: string
+        id:
+          description: ID of the Dell component filter
+          type: number
+        componentId:
+          description: Component ID for Dell
+          type: string
+        serverBrand:
+          description: Server brand for Dell
+          type: string
+        serverModel:
+          description: Server model for Dell
+          type: string
+      required:
+      - componentId
+      - id
+      - serverBrand
+      - serverModel
+      - vendor
+      type: object
+    LenovoComponentFilter:
+      properties:
+        vendor:
+          description: Discriminator field set to lenovo
+          enum:
+          - lenovo
+          type: string
+        id:
+          description: ID of the Lenovo component filter
+          type: number
+        submodel:
+          description: Submodel for Lenovo
+          type: string
+        serialNumber:
+          description: Serial number for Lenovo
+          type: string
+        componentName:
+          description: Component name for Lenovo
+          enum:
+          - bmc
+          - uefi
+          - lxpm
+          type: string
+      required:
+      - componentName
+      - id
+      - serialNumber
+      - submodel
+      - vendor
+      type: object
+    HpComponentFilter:
+      properties:
+        vendor:
+          description: Discriminator field set to hp
+          enum:
+          - hp
+          type: string
+        id:
+          description: ID of the HP component filter
+          type: number
+        deviceClass:
+          description: Device class for HP
+          type: string
+        targets:
+          description: Targets for HP
+          items:
+            type: string
+          type: array
+      required:
+      - deviceClass
+      - id
+      - targets
+      - vendor
+      type: object
     BaselineFilter:
       properties:
         datacenter:
@@ -39811,10 +40114,22 @@ components:
       example:
         vendor: dell
         serverComponentFilter:
-        - id: 1
+        - vendor: dell
+          id: 1
           componentId: "1544834"
           serverBrand: Dell
           serverModel: R740
+        - vendor: lenovo
+          id: 2
+          submodel: X1
+          serialNumber: SN12345
+          componentName: bmc
+        - vendor: hp
+          id: 3
+          deviceClass: Storage
+          targets:
+          - Target1
+          - Target2
         baselineFilter:
           datacenter:
           - omega-dc
@@ -39832,23 +40147,148 @@ components:
             - omega-dc
           title: Baseline filter
         serverComponentFilter:
-          description: "Array of vendor component filters, structure is specific per\
-            \ vendor"
-          example:
-          - id: 1
-            componentId: "1544834"
-            serverBrand: Dell
-            serverModel: R740
-          items:
-            type: string
-          title: Server component filter
-          type: array
+          $ref: '#/components/schemas/SearchFirmwareBinary_serverComponentFilter'
       required:
       - baselineFilter
       - vendor
       type: object
+    FirmwareBinaryResponse:
+      properties:
+        id:
+          description: Unique identifier for the firmware binary
+          example: 1
+          type: number
+        catalogId:
+          description: Unique identifier for the firmware catalog
+          example: 10
+          type: number
+        externalId:
+          description: External/vendor identifier for the firmware binary
+          example: EXTERNAL-1234
+          type: string
+        vendorInfoUrl:
+          description: Vendor URL with information about the firmware binary
+          example: https://vendor.com/firmware-info
+          type: string
+        vendorDownloadUrl:
+          description: Vendor download URL for the firmware binary
+          example: https://vendor.com/download
+          type: string
+        cacheDownloadUrl:
+          description: Local cache download URL for the firmware binary
+          example: https://local-cache/download
+          type: string
+        name:
+          description: Name of the firmware binary as specified by the vendor
+          example: FirmwareBinary123
+          type: string
+        packageId:
+          description: Vendor package identifier
+          example: PKG-123
+          type: string
+        packageVersion:
+          description: Vendor package version
+          example: v1.2.3
+          type: string
+        rebootRequired:
+          description: Indicates if a reboot is required for this binary
+          example: true
+          type: boolean
+        updateSeverity:
+          description: Severity of the firmware update
+          enum:
+          - critical
+          - recommended
+          - optional
+          - unknown
+          example: critical
+          type: string
+        vendorSupportedDevices:
+          description: Vendor specific record for supported devices
+          example:
+            deviceType: NIC
+            model: Intel X710
+          type: object
+        vendorSupportedSystems:
+          description: Vendor specific records for supported systems
+          example:
+          - systemType: Server
+            model: Dell R740
+          items:
+            type: object
+          type: array
+        vendor:
+          description: Vendor specific record containing all other firmware binary
+            information
+          example:
+            metadata: details about the firmware
+          type: object
+        vendorReleaseTimestamp:
+          description: Vendor release timestamp for the firmware binary
+          example: 2025-01-01T10:00:00Z
+          type: string
+        createdTimestamp:
+          description: Timestamp when the firmware binary was created
+          example: 2025-01-07T12:00:00Z
+          type: string
+        catalog:
+          allOf:
+          - $ref: '#/components/schemas/FirmwareCatalog'
+          description: Associated firmware catalog
+      required:
+      - catalogId
+      - createdTimestamp
+      - id
+      - name
+      - packageVersion
+      - rebootRequired
+      - updateSeverity
+      - vendor
+      - vendorDownloadUrl
+      - vendorSupportedDevices
+      - vendorSupportedSystems
+      type: object
     IServerFirmwareBinaryResponse:
-      properties: {}
+      example:
+        baseline:
+          id: 1
+          name: Baseline 1
+          description: Example baseline
+        componentBinaries:
+          "1":
+          - id: 1
+            catalogId: 10
+            name: FirmwareBinary123
+            vendorDownloadUrl: https://vendor.com/download
+            packageVersion: v1.2.3
+            rebootRequired: true
+            updateSeverity: critical
+      properties:
+        baseline:
+          allOf:
+          - $ref: '#/components/schemas/FirmwareBaseline'
+          description: Baseline information (may omit links and createdTimestamp fields)
+          example:
+            id: 1
+            name: Baseline 1
+            description: Example baseline
+        componentBinaries:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/FirmwareBinaryResponse'
+            type: array
+          description: Mapping of component IDs (as strings) to arrays of firmware
+            binaries
+          example:
+            "1":
+            - id: 1
+              catalogId: 10
+              name: FirmwareBinary123
+              vendorDownloadUrl: https://vendor.com/download
+              packageVersion: v1.2.3
+              rebootRequired: true
+              updateSeverity: critical
+          type: object
       type: object
     GenericServiceStatus:
       description: Service status of the Infrastructure
@@ -42861,6 +43301,7 @@ components:
         context: "{}"
         links: "{}"
         id: 0
+        cancelReason: cancelReason
         storageId: 9
       properties:
         id:
@@ -42908,6 +43349,9 @@ components:
         storageId:
           description: Storage Pool Id
           type: integer
+        cancelReason:
+          description: Cancel reason of the group
+          type: string
         links:
           description: Links to other resources
           type: object
@@ -42935,6 +43379,7 @@ components:
           context: "{}"
           links: "{}"
           id: 0
+          cancelReason: cancelReason
           storageId: 9
         - createdTimestamp: createdTimestamp
           description: description
@@ -42950,6 +43395,7 @@ components:
           context: "{}"
           links: "{}"
           id: 0
+          cancelReason: cancelReason
           storageId: 9
         meta: ""
         links: ""
@@ -46895,7 +47341,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-05-15T14:07:03.834Z
+        createdTimestamp: 2025-05-22T18:05:11.654Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -46904,7 +47350,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-05-15T14:07:03.834Z
+        updatedTimestamp: 2025-05-22T18:05:11.655Z
         revision: "1"
       properties:
         siteId:
@@ -46921,12 +47367,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-15T14:07:03.834Z
+          example: 2025-05-22T18:05:11.654Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-15T14:07:03.834Z
+          example: 2025-05-22T18:05:11.655Z
           format: date-time
           type: string
         links:
@@ -46948,7 +47394,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-05-15T14:07:03.834Z
+        - createdTimestamp: 2025-05-22T18:05:11.654Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -46957,9 +47403,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-15T14:07:03.834Z
+          updatedTimestamp: 2025-05-22T18:05:11.655Z
           revision: "1"
-        - createdTimestamp: 2025-05-15T14:07:03.834Z
+        - createdTimestamp: 2025-05-22T18:05:11.654Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -46968,7 +47414,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-15T14:07:03.834Z
+          updatedTimestamp: 2025-05-22T18:05:11.655Z
           revision: "1"
         meta: ""
         links: ""
@@ -47607,7 +48053,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-05-15T14:07:03.85Z
+        createdTimestamp: 2025-05-22T18:05:11.685Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -47648,7 +48094,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-05-15T14:07:03.851Z
+        updatedTimestamp: 2025-05-22T18:05:11.685Z
         revision: "1"
         status: draft
       properties:
@@ -47676,12 +48122,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-15T14:07:03.85Z
+          example: 2025-05-22T18:05:11.685Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-15T14:07:03.851Z
+          example: 2025-05-22T18:05:11.685Z
           format: date-time
           type: string
         links:
@@ -47822,7 +48268,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-05-15T14:07:03.85Z
+          createdTimestamp: 2025-05-22T18:05:11.685Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -47863,7 +48309,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-15T14:07:03.851Z
+          updatedTimestamp: 2025-05-22T18:05:11.685Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -47973,7 +48419,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-05-15T14:07:03.85Z
+          createdTimestamp: 2025-05-22T18:05:11.685Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -48014,7 +48460,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-15T14:07:03.851Z
+          updatedTimestamp: 2025-05-22T18:05:11.685Z
           revision: "1"
           status: draft
         meta: ""
@@ -50767,10 +51213,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-05-15T14:07:03.845Z
+        createdTimestamp: 2025-05-22T18:05:11.671Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-05-15T14:07:03.845Z
+        updatedTimestamp: 2025-05-22T18:05:11.672Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -50844,12 +51290,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-15T14:07:03.845Z
+          example: 2025-05-22T18:05:11.671Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-15T14:07:03.845Z
+          example: 2025-05-22T18:05:11.672Z
           format: date-time
           type: string
         links:
@@ -53752,6 +54198,264 @@ components:
       - storageUpdatedTimestamp
       - updatedTimestamp
       type: object
+    InstanceInterfaceType:
+      enum:
+      - physical
+      - bond
+      - vlan
+      type: string
+    InstanceInterfaceIpv4AddressVariables:
+      example:
+        netmask: netmask
+        ip: ip
+        cidr: cidr
+        maskBits: 3.2588565619047607
+      properties:
+        ip:
+          type: string
+        cidr:
+          type: string
+        netmask:
+          type: string
+        maskBits:
+          type: number
+      required:
+      - cidr
+      - ip
+      - maskBits
+      - netmask
+      type: object
+    InstanceInterfaceIpv6AddressVariables:
+      example:
+        netmask: netmask
+        ip: ip
+        cidr: cidr
+        maskBits: 4.078845849666752
+      properties:
+        ip:
+          type: string
+        cidr:
+          type: string
+        netmask:
+          type: string
+        maskBits:
+          type: number
+      required:
+      - cidr
+      - ip
+      - maskBits
+      - netmask
+      type: object
+    InstanceInterfaceRouteVariables:
+      example:
+        to: to
+        via: via
+      properties:
+        to:
+          type: string
+        via:
+          type: string
+      required:
+      - to
+      - via
+      type: object
+    InstanceInterfaceMemberVariables:
+      example:
+        interfaceType: ""
+        id: 0.2025324113236393
+      properties:
+        id:
+          type: number
+        interfaceType:
+          allOf:
+          - $ref: '#/components/schemas/InstanceInterfaceType'
+      required:
+      - id
+      - interfaceType
+      type: object
+    InstanceInterfaceLinkVariables:
+      example:
+        interfaceType: ""
+        id: 6.628464275087742
+      properties:
+        id:
+          type: number
+        interfaceType:
+          allOf:
+          - $ref: '#/components/schemas/InstanceInterfaceType'
+      required:
+      - id
+      - interfaceType
+      type: object
+    InstanceInterfaceNetworkVariables:
+      example:
+        ipv4Addresses:
+        - netmask: netmask
+          ip: ip
+          cidr: cidr
+          maskBits: 3.2588565619047607
+        - netmask: netmask
+          ip: ip
+          cidr: cidr
+          maskBits: 3.2588565619047607
+        interfaceType: ""
+        routes:
+        - to: to
+          via: via
+        - to: to
+          via: via
+        logicalNetworkId: 3.0205796992916243
+        macAddress: macAddress
+        vlanId: 5.533258397034986
+        members:
+        - interfaceType: ""
+          id: 0.2025324113236393
+        - interfaceType: ""
+          id: 0.2025324113236393
+        typeInterfaceId: 3.0576100241049344
+        links:
+        - interfaceType: ""
+          id: 6.628464275087742
+        - interfaceType: ""
+          id: 6.628464275087742
+        ipv6Addresses:
+        - netmask: netmask
+          ip: ip
+          cidr: cidr
+          maskBits: 4.078845849666752
+        - netmask: netmask
+          ip: ip
+          cidr: cidr
+          maskBits: 4.078845849666752
+        mtu: 7.04836565559697
+      properties:
+        interfaceType:
+          allOf:
+          - $ref: '#/components/schemas/InstanceInterfaceType'
+        logicalNetworkId:
+          type: number
+        typeInterfaceId:
+          type: number
+        macAddress:
+          type: string
+        mtu:
+          type: number
+        vlanId:
+          type: number
+        ipv4Addresses:
+          items:
+            $ref: '#/components/schemas/InstanceInterfaceIpv4AddressVariables'
+          type: array
+        ipv6Addresses:
+          items:
+            $ref: '#/components/schemas/InstanceInterfaceIpv6AddressVariables'
+          type: array
+        routes:
+          items:
+            $ref: '#/components/schemas/InstanceInterfaceRouteVariables'
+          type: array
+        members:
+          items:
+            $ref: '#/components/schemas/InstanceInterfaceMemberVariables'
+          type: array
+        links:
+          items:
+            $ref: '#/components/schemas/InstanceInterfaceLinkVariables'
+          type: array
+      required:
+      - interfaceType
+      - typeInterfaceId
+      type: object
+    InstanceNetworkVariables:
+      example:
+        interfaces:
+        - ipv4Addresses:
+          - netmask: netmask
+            ip: ip
+            cidr: cidr
+            maskBits: 3.2588565619047607
+          - netmask: netmask
+            ip: ip
+            cidr: cidr
+            maskBits: 3.2588565619047607
+          interfaceType: ""
+          routes:
+          - to: to
+            via: via
+          - to: to
+            via: via
+          logicalNetworkId: 3.0205796992916243
+          macAddress: macAddress
+          vlanId: 5.533258397034986
+          members:
+          - interfaceType: ""
+            id: 0.2025324113236393
+          - interfaceType: ""
+            id: 0.2025324113236393
+          typeInterfaceId: 3.0576100241049344
+          links:
+          - interfaceType: ""
+            id: 6.628464275087742
+          - interfaceType: ""
+            id: 6.628464275087742
+          ipv6Addresses:
+          - netmask: netmask
+            ip: ip
+            cidr: cidr
+            maskBits: 4.078845849666752
+          - netmask: netmask
+            ip: ip
+            cidr: cidr
+            maskBits: 4.078845849666752
+          mtu: 7.04836565559697
+        - ipv4Addresses:
+          - netmask: netmask
+            ip: ip
+            cidr: cidr
+            maskBits: 3.2588565619047607
+          - netmask: netmask
+            ip: ip
+            cidr: cidr
+            maskBits: 3.2588565619047607
+          interfaceType: ""
+          routes:
+          - to: to
+            via: via
+          - to: to
+            via: via
+          logicalNetworkId: 3.0205796992916243
+          macAddress: macAddress
+          vlanId: 5.533258397034986
+          members:
+          - interfaceType: ""
+            id: 0.2025324113236393
+          - interfaceType: ""
+            id: 0.2025324113236393
+          typeInterfaceId: 3.0576100241049344
+          links:
+          - interfaceType: ""
+            id: 6.628464275087742
+          - interfaceType: ""
+            id: 6.628464275087742
+          ipv6Addresses:
+          - netmask: netmask
+            ip: ip
+            cidr: cidr
+            maskBits: 4.078845849666752
+          - netmask: netmask
+            ip: ip
+            cidr: cidr
+            maskBits: 4.078845849666752
+          mtu: 7.04836565559697
+      properties:
+        interfaces:
+          description: Network variables for the instance interfaces.
+          items:
+            $ref: '#/components/schemas/InstanceInterfaceNetworkVariables'
+          type: array
+      required:
+      - interfaces
+      type: object
     ServerInstanceContextVariables:
       example:
         driveGroups:
@@ -53935,6 +54639,165 @@ components:
           config: ""
         managementSSHKey: managementSSHKey
         secrets: "{}"
+        network:
+        - interfaces:
+          - ipv4Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            interfaceType: ""
+            routes:
+            - to: to
+              via: via
+            - to: to
+              via: via
+            logicalNetworkId: 3.0205796992916243
+            macAddress: macAddress
+            vlanId: 5.533258397034986
+            members:
+            - interfaceType: ""
+              id: 0.2025324113236393
+            - interfaceType: ""
+              id: 0.2025324113236393
+            typeInterfaceId: 3.0576100241049344
+            links:
+            - interfaceType: ""
+              id: 6.628464275087742
+            - interfaceType: ""
+              id: 6.628464275087742
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
+          - ipv4Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            interfaceType: ""
+            routes:
+            - to: to
+              via: via
+            - to: to
+              via: via
+            logicalNetworkId: 3.0205796992916243
+            macAddress: macAddress
+            vlanId: 5.533258397034986
+            members:
+            - interfaceType: ""
+              id: 0.2025324113236393
+            - interfaceType: ""
+              id: 0.2025324113236393
+            typeInterfaceId: 3.0576100241049344
+            links:
+            - interfaceType: ""
+              id: 6.628464275087742
+            - interfaceType: ""
+              id: 6.628464275087742
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
+        - interfaces:
+          - ipv4Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            interfaceType: ""
+            routes:
+            - to: to
+              via: via
+            - to: to
+              via: via
+            logicalNetworkId: 3.0205796992916243
+            macAddress: macAddress
+            vlanId: 5.533258397034986
+            members:
+            - interfaceType: ""
+              id: 0.2025324113236393
+            - interfaceType: ""
+              id: 0.2025324113236393
+            typeInterfaceId: 3.0576100241049344
+            links:
+            - interfaceType: ""
+              id: 6.628464275087742
+            - interfaceType: ""
+              id: 6.628464275087742
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
+          - ipv4Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            interfaceType: ""
+            routes:
+            - to: to
+              via: via
+            - to: to
+              via: via
+            logicalNetworkId: 3.0205796992916243
+            macAddress: macAddress
+            vlanId: 5.533258397034986
+            members:
+            - interfaceType: ""
+              id: 0.2025324113236393
+            - interfaceType: ""
+              id: 0.2025324113236393
+            typeInterfaceId: 3.0576100241049344
+            links:
+            - interfaceType: ""
+              id: 6.628464275087742
+            - interfaceType: ""
+              id: 6.628464275087742
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
         site: ""
         serverInstanceGroup: ""
         drives:
@@ -54069,6 +54932,11 @@ components:
           items:
             $ref: '#/components/schemas/SharedDriveVariables'
           type: array
+        network:
+          description: The server instance network variables.
+          items:
+            $ref: '#/components/schemas/InstanceNetworkVariables'
+          type: array
         variables:
           description: Additional variables
           type: object
@@ -54089,6 +54957,7 @@ components:
       - drives
       - fileShares
       - infrastructure
+      - network
       - server
       - serverInstance
       - serverInstanceGroup
@@ -58498,68 +59367,81 @@ components:
       - totalSpaceGB
       - usedSpaceGB
       type: object
+    IpVersion:
+      enum:
+      - ipv4
+      - ipv6
+      type: string
     Subnet:
       example:
         isPool: true
         allocationDenylist:
-        - allocationDenylist
-        - allocationDenylist
+        - startAddress: startAddress
+          endAddress: endAddress
+        - startAddress: startAddress
+          endAddress: endAddress
         childOverlapAllowRules:
         - childOverlapAllowRules
         - childOverlapAllowRules
-        annotations: "{}"
-        parentSubnetId: 1.4658129805029452
+        annotations:
+          key: annotations
+        parentSubnetId: 1
         label: label
         networkAddress: networkAddress
-        defaultGateway: defaultGateway
-        revision: 6.027456183070403
-        tags: "{}"
-        prefixLength: 5.962133916683182
-        createdAt: createdAt
-        ipVersion: ipVersion
+        revision: 6
+        tags:
+          key: tags
+        prefixLength: 5
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        ipVersion: ""
         netmask: netmask
         name: name
-        id: 0.8008281904610115
-        updatedAt: updatedAt
+        id: 0
+        defaultGatewayAddress: defaultGatewayAddress
+        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Id of the Subnet
-          type: number
-        revision:
-          description: Revision of the Subnet
-          type: number
+          type: integer
         label:
+          maxLength: 63
           type: string
         name:
-          description: Name of the Subnet
+          maxLength: 63
           type: string
-        tags:
-          type: object
         annotations:
+          additionalProperties:
+            type: string
           type: object
         createdAt:
+          format: date-time
           type: string
         updatedAt:
+          format: date-time
           type: string
+        revision:
+          type: integer
+        tags:
+          additionalProperties:
+            type: string
+          type: object
         parentSubnetId:
-          description: ID of the parent subnet
-          type: number
+          type: integer
         ipVersion:
-          description: IP version
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/IpVersion'
         networkAddress:
           type: string
         prefixLength:
-          type: number
+          type: integer
         netmask:
           type: string
-        defaultGateway:
+        defaultGatewayAddress:
           type: string
         isPool:
           type: boolean
         allocationDenylist:
           items:
-            type: string
+            $ref: '#/components/schemas/AddressRange'
           type: array
         childOverlapAllowRules:
           items:
@@ -58570,10 +59452,11 @@ components:
       - annotations
       - childOverlapAllowRules
       - createdAt
-      - defaultGateway
+      - defaultGatewayAddress
       - id
       - ipVersion
       - isPool
+      - label
       - name
       - netmask
       - networkAddress
@@ -58588,46 +59471,54 @@ components:
         data:
         - isPool: true
           allocationDenylist:
-          - allocationDenylist
-          - allocationDenylist
+          - startAddress: startAddress
+            endAddress: endAddress
+          - startAddress: startAddress
+            endAddress: endAddress
           childOverlapAllowRules:
           - childOverlapAllowRules
           - childOverlapAllowRules
-          annotations: "{}"
-          parentSubnetId: 1.4658129805029452
+          annotations:
+            key: annotations
+          parentSubnetId: 1
           label: label
           networkAddress: networkAddress
-          defaultGateway: defaultGateway
-          revision: 6.027456183070403
-          tags: "{}"
-          prefixLength: 5.962133916683182
-          createdAt: createdAt
-          ipVersion: ipVersion
+          revision: 6
+          tags:
+            key: tags
+          prefixLength: 5
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          ipVersion: ""
           netmask: netmask
           name: name
-          id: 0.8008281904610115
-          updatedAt: updatedAt
+          id: 0
+          defaultGatewayAddress: defaultGatewayAddress
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         - isPool: true
           allocationDenylist:
-          - allocationDenylist
-          - allocationDenylist
+          - startAddress: startAddress
+            endAddress: endAddress
+          - startAddress: startAddress
+            endAddress: endAddress
           childOverlapAllowRules:
           - childOverlapAllowRules
           - childOverlapAllowRules
-          annotations: "{}"
-          parentSubnetId: 1.4658129805029452
+          annotations:
+            key: annotations
+          parentSubnetId: 1
           label: label
           networkAddress: networkAddress
-          defaultGateway: defaultGateway
-          revision: 6.027456183070403
-          tags: "{}"
-          prefixLength: 5.962133916683182
-          createdAt: createdAt
-          ipVersion: ipVersion
+          revision: 6
+          tags:
+            key: tags
+          prefixLength: 5
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          ipVersion: ""
           netmask: netmask
           name: name
-          id: 0.8008281904610115
-          updatedAt: updatedAt
+          id: 0
+          defaultGatewayAddress: defaultGatewayAddress
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         meta: ""
         links: ""
       properties:
@@ -58651,78 +59542,114 @@ components:
       - links
       - meta
       type: object
+    AddressRange:
+      example:
+        startAddress: startAddress
+        endAddress: endAddress
+      properties:
+        startAddress:
+          type: string
+        endAddress:
+          type: string
+      required:
+      - endAddress
+      - startAddress
+      type: object
     CreateSubnet:
       example:
-        prefixLength: 6.027456183070403
+        prefixLength: 6
         isPool: true
         allocationDenylist:
-        - allocationDenylist
-        - allocationDenylist
+        - startAddress: startAddress
+          endAddress: endAddress
+        - startAddress: startAddress
+          endAddress: endAddress
         childOverlapAllowRules:
         - childOverlapAllowRules
         - childOverlapAllowRules
         name: name
-        annotations: "{}"
-        parentSubnetId: 0.8008281904610115
+        annotations:
+          key: annotations
+        parentSubnetId: 0
         label: label
+        defaultGatewayAddress: defaultGatewayAddress
         networkAddress: networkAddress
-        defaultGateway: defaultGateway
-        tags: "{}"
+        tags:
+          key: tags
       properties:
         label:
+          maxLength: 63
           type: string
         name:
-          description: Name of the Subnet
+          maxLength: 63
           type: string
-        tags:
-          type: object
         annotations:
+          additionalProperties:
+            type: string
+          type: object
+        tags:
+          additionalProperties:
+            type: string
           type: object
         parentSubnetId:
-          description: ID of the parent subnet
-          type: number
+          type: integer
         networkAddress:
           type: string
         prefixLength:
-          type: number
-        defaultGateway:
+          type: integer
+        defaultGatewayAddress:
           type: string
         isPool:
           type: boolean
         allocationDenylist:
           items:
-            type: string
+            $ref: '#/components/schemas/AddressRange'
           type: array
         childOverlapAllowRules:
           items:
             type: string
           type: array
+      required:
+      - isPool
+      - networkAddress
+      - prefixLength
       type: object
     UpdateSubnet:
       example:
         allocationDenylist:
-        - allocationDenylist
-        - allocationDenylist
+        - startAddress: startAddress
+          endAddress: endAddress
+        - startAddress: startAddress
+          endAddress: endAddress
         childOverlapAllowRules:
         - childOverlapAllowRules
         - childOverlapAllowRules
         name: name
-        annotations: "{}"
+        annotations:
+          key: annotations
         label: label
-        tags: "{}"
+        tags:
+          key: tags
       properties:
         label:
+          maxLength: 63
           type: string
         name:
-          description: Name of the Subnet
+          maxLength: 63
           type: string
-        tags:
-          type: object
         annotations:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        tags:
+          additionalProperties:
+            nullable: true
+            type: string
           type: object
         allocationDenylist:
           items:
-            type: string
+            $ref: '#/components/schemas/AddressRange'
           type: array
         childOverlapAllowRules:
           items:
@@ -59177,6 +60104,14 @@ components:
           type: string
       required:
       - email
+      type: object
+    ResendUserVerificationEmail:
+      example:
+        redirectUrl: redirectUrl
+      properties:
+        redirectUrl:
+          description: The redirect URL after email verification
+          type: string
       type: object
     UserApiKey:
       example:
@@ -59868,14 +60803,15 @@ components:
       type: object
     VMInstanceGroup:
       example:
-        dnsSubdomainId: 2.3021358869347655
+        dnsSubdomainId: 7.061401241503109
         createdTimestamp: createdTimestamp
         label: label
         subdomainPermanent: subdomainPermanent
+        networkEndpointGroupId: 5
         updatedTimestamp: updatedTimestamp
         customVariables: "{}"
         revision: 1.4658129805029452
-        dnsSubdomainPermanentId: 7.061401241503109
+        dnsSubdomainPermanentId: 9.301444243932576
         infrastructureId: 5.962133916683182
         instanceCount: 0.8008281904610115
         infrastructure: ""
@@ -59885,7 +60821,7 @@ components:
         links: "{}"
         id: 6.027456183070403
         config: ""
-        diskSizeGB: 5.637376656633329
+        diskSizeGB: 2.3021358869347655
       properties:
         label:
           description: Name of the VM Instance Group.
@@ -59911,6 +60847,9 @@ components:
         infrastructureId:
           description: Id of the Infrastructure.
           type: number
+        networkEndpointGroupId:
+          description: The network endpoint group identifier
+          type: integer
         infrastructure:
           allOf:
           - $ref: '#/components/schemas/ParentInfrastructure'
@@ -59967,14 +60906,15 @@ components:
     VMInstanceGroupPaginatedList:
       example:
         data:
-        - dnsSubdomainId: 2.3021358869347655
+        - dnsSubdomainId: 7.061401241503109
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
+          networkEndpointGroupId: 5
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
           revision: 1.4658129805029452
-          dnsSubdomainPermanentId: 7.061401241503109
+          dnsSubdomainPermanentId: 9.301444243932576
           infrastructureId: 5.962133916683182
           instanceCount: 0.8008281904610115
           infrastructure: ""
@@ -59984,15 +60924,16 @@ components:
           links: "{}"
           id: 6.027456183070403
           config: ""
-          diskSizeGB: 5.637376656633329
-        - dnsSubdomainId: 2.3021358869347655
+          diskSizeGB: 2.3021358869347655
+        - dnsSubdomainId: 7.061401241503109
           createdTimestamp: createdTimestamp
           label: label
           subdomainPermanent: subdomainPermanent
+          networkEndpointGroupId: 5
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
           revision: 1.4658129805029452
-          dnsSubdomainPermanentId: 7.061401241503109
+          dnsSubdomainPermanentId: 9.301444243932576
           infrastructureId: 5.962133916683182
           instanceCount: 0.8008281904610115
           infrastructure: ""
@@ -60002,7 +60943,7 @@ components:
           links: "{}"
           id: 6.027456183070403
           config: ""
-          diskSizeGB: 5.637376656633329
+          diskSizeGB: 2.3021358869347655
         meta: ""
         links: ""
       properties:
@@ -60580,6 +61521,165 @@ components:
           config: ""
         managementSSHKey: managementSSHKey
         secrets: "{}"
+        network:
+        - interfaces:
+          - ipv4Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            interfaceType: ""
+            routes:
+            - to: to
+              via: via
+            - to: to
+              via: via
+            logicalNetworkId: 3.0205796992916243
+            macAddress: macAddress
+            vlanId: 5.533258397034986
+            members:
+            - interfaceType: ""
+              id: 0.2025324113236393
+            - interfaceType: ""
+              id: 0.2025324113236393
+            typeInterfaceId: 3.0576100241049344
+            links:
+            - interfaceType: ""
+              id: 6.628464275087742
+            - interfaceType: ""
+              id: 6.628464275087742
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
+          - ipv4Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            interfaceType: ""
+            routes:
+            - to: to
+              via: via
+            - to: to
+              via: via
+            logicalNetworkId: 3.0205796992916243
+            macAddress: macAddress
+            vlanId: 5.533258397034986
+            members:
+            - interfaceType: ""
+              id: 0.2025324113236393
+            - interfaceType: ""
+              id: 0.2025324113236393
+            typeInterfaceId: 3.0576100241049344
+            links:
+            - interfaceType: ""
+              id: 6.628464275087742
+            - interfaceType: ""
+              id: 6.628464275087742
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
+        - interfaces:
+          - ipv4Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            interfaceType: ""
+            routes:
+            - to: to
+              via: via
+            - to: to
+              via: via
+            logicalNetworkId: 3.0205796992916243
+            macAddress: macAddress
+            vlanId: 5.533258397034986
+            members:
+            - interfaceType: ""
+              id: 0.2025324113236393
+            - interfaceType: ""
+              id: 0.2025324113236393
+            typeInterfaceId: 3.0576100241049344
+            links:
+            - interfaceType: ""
+              id: 6.628464275087742
+            - interfaceType: ""
+              id: 6.628464275087742
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
+          - ipv4Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            interfaceType: ""
+            routes:
+            - to: to
+              via: via
+            - to: to
+              via: via
+            logicalNetworkId: 3.0205796992916243
+            macAddress: macAddress
+            vlanId: 5.533258397034986
+            members:
+            - interfaceType: ""
+              id: 0.2025324113236393
+            - interfaceType: ""
+              id: 0.2025324113236393
+            typeInterfaceId: 3.0576100241049344
+            links:
+            - interfaceType: ""
+              id: 6.628464275087742
+            - interfaceType: ""
+              id: 6.628464275087742
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
         site: ""
         serverInstanceGroup: ""
         drives:
@@ -60714,6 +61814,11 @@ components:
           items:
             $ref: '#/components/schemas/SharedDriveVariables'
           type: array
+        network:
+          description: The server instance network variables.
+          items:
+            $ref: '#/components/schemas/InstanceNetworkVariables'
+          type: array
         variables:
           description: Additional variables
           type: object
@@ -60734,6 +61839,7 @@ components:
       - drives
       - fileShares
       - infrastructure
+      - network
       - server
       - serverInstance
       - serverInstanceGroup
@@ -62197,6 +63303,35 @@ components:
       oneOf:
       - $ref: '#/components/schemas/ExtensionTaskAnsible'
       - $ref: '#/components/schemas/ExtensionTaskWebhook'
+    SearchFirmwareBinary_serverComponentFilter:
+      description: Input options for server component filters.
+      discriminator:
+        mapping:
+          dell: '#/components/schemas/DellComponentFilter'
+          lenovo: '#/components/schemas/LenovoComponentFilter'
+          hp: '#/components/schemas/HpComponentFilter'
+        propertyName: vendor
+      example:
+      - vendor: dell
+        id: 1
+        componentId: "1544834"
+        serverBrand: Dell
+        serverModel: R740
+      - vendor: lenovo
+        id: 2
+        submodel: X1
+        serialNumber: SN12345
+        componentName: bmc
+      - vendor: hp
+        id: 3
+        deviceClass: Storage
+        targets:
+        - Target1
+        - Target2
+      oneOf:
+      - $ref: '#/components/schemas/DellComponentFilter'
+      - $ref: '#/components/schemas/LenovoComponentFilter'
+      - $ref: '#/components/schemas/HpComponentFilter'
     CreateVlanAllocationStrategy:
       discriminator:
         mapping:

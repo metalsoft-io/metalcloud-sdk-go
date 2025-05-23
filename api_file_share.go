@@ -1154,7 +1154,7 @@ func (r FileShareAPIUpdateFileShareConfigRequest) IfMatch(ifMatch string) FileSh
 	return r
 }
 
-func (r FileShareAPIUpdateFileShareConfigRequest) Execute() (*FileShare, *http.Response, error) {
+func (r FileShareAPIUpdateFileShareConfigRequest) Execute() (*FileShareConfiguration, *http.Response, error) {
 	return r.ApiService.UpdateFileShareConfigExecute(r)
 }
 
@@ -1178,13 +1178,13 @@ func (a *FileShareAPIService) UpdateFileShareConfig(ctx context.Context, infrast
 }
 
 // Execute executes the request
-//  @return FileShare
-func (a *FileShareAPIService) UpdateFileShareConfigExecute(r FileShareAPIUpdateFileShareConfigRequest) (*FileShare, *http.Response, error) {
+//  @return FileShareConfiguration
+func (a *FileShareAPIService) UpdateFileShareConfigExecute(r FileShareAPIUpdateFileShareConfigRequest) (*FileShareConfiguration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FileShare
+		localVarReturnValue  *FileShareConfiguration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FileShareAPIService.UpdateFileShareConfig")

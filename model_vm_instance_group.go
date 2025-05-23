@@ -36,6 +36,8 @@ type VMInstanceGroup struct {
 	Revision float32 `json:"revision"`
 	// Id of the Infrastructure.
 	InfrastructureId float32 `json:"infrastructureId"`
+	// The network endpoint group identifier
+	NetworkEndpointGroupId *int32 `json:"networkEndpointGroupId,omitempty"`
 	// Infrastructure information
 	Infrastructure ParentInfrastructure `json:"infrastructure"`
 	// Status of the VM Instance Group.
@@ -308,6 +310,38 @@ func (o *VMInstanceGroup) GetInfrastructureIdOk() (*float32, bool) {
 // SetInfrastructureId sets field value
 func (o *VMInstanceGroup) SetInfrastructureId(v float32) {
 	o.InfrastructureId = v
+}
+
+// GetNetworkEndpointGroupId returns the NetworkEndpointGroupId field value if set, zero value otherwise.
+func (o *VMInstanceGroup) GetNetworkEndpointGroupId() int32 {
+	if o == nil || IsNil(o.NetworkEndpointGroupId) {
+		var ret int32
+		return ret
+	}
+	return *o.NetworkEndpointGroupId
+}
+
+// GetNetworkEndpointGroupIdOk returns a tuple with the NetworkEndpointGroupId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMInstanceGroup) GetNetworkEndpointGroupIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.NetworkEndpointGroupId) {
+		return nil, false
+	}
+	return o.NetworkEndpointGroupId, true
+}
+
+// HasNetworkEndpointGroupId returns a boolean if a field has been set.
+func (o *VMInstanceGroup) HasNetworkEndpointGroupId() bool {
+	if o != nil && !IsNil(o.NetworkEndpointGroupId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkEndpointGroupId gets a reference to the given int32 and assigns it to the NetworkEndpointGroupId field.
+func (o *VMInstanceGroup) SetNetworkEndpointGroupId(v int32) {
+	o.NetworkEndpointGroupId = &v
 }
 
 // GetInfrastructure returns the Infrastructure field value
@@ -598,6 +632,9 @@ func (o VMInstanceGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
 	toSerialize["infrastructureId"] = o.InfrastructureId
+	if !IsNil(o.NetworkEndpointGroupId) {
+		toSerialize["networkEndpointGroupId"] = o.NetworkEndpointGroupId
+	}
 	toSerialize["infrastructure"] = o.Infrastructure
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	toSerialize["diskSizeGB"] = o.DiskSizeGB
@@ -676,6 +713,7 @@ func (o *VMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "infrastructureId")
+		delete(additionalProperties, "networkEndpointGroupId")
 		delete(additionalProperties, "infrastructure")
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "diskSizeGB")

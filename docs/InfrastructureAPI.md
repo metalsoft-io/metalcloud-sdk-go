@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AddInfrastructureUser**](InfrastructureAPI.md#AddInfrastructureUser) | **Post** /api/v2/infrastructures/{infrastructureId}/users | Adds a user to the specified infrastructure
+[**CancelDeployInfrastructure**](InfrastructureAPI.md#CancelDeployInfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/cancel-deploy | Cancels the specified infrastructure deployment
 [**CreateInfrastructure**](InfrastructureAPI.md#CreateInfrastructure) | **Post** /api/v2/infrastructures | Creates a new infrastructure
 [**DeleteInfrastructure**](InfrastructureAPI.md#DeleteInfrastructure) | **Delete** /api/v2/infrastructures/{infrastructureId} | Deletes the specified infrastructure
 [**DeployInfrastructure**](InfrastructureAPI.md#DeployInfrastructure) | **Post** /api/v2/infrastructures/{infrastructureId}/actions/deploy | Deploys the specified infrastructure
@@ -87,6 +88,76 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CancelDeployInfrastructure
+
+> Infrastructure CancelDeployInfrastructure(ctx, infrastructureId).Execute()
+
+Cancels the specified infrastructure deployment
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfrastructureAPI.CancelDeployInfrastructure(context.Background(), infrastructureId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.CancelDeployInfrastructure``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CancelDeployInfrastructure`: Infrastructure
+	fmt.Fprintf(os.Stdout, "Response from `InfrastructureAPI.CancelDeployInfrastructure`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCancelDeployInfrastructureRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**Infrastructure**](Infrastructure.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

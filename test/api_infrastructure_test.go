@@ -35,6 +35,20 @@ func Test_sdk_InfrastructureAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test InfrastructureAPIService CancelDeployInfrastructure", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId float32
+
+		resp, httpRes, err := apiClient.InfrastructureAPI.CancelDeployInfrastructure(context.Background(), infrastructureId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test InfrastructureAPIService CreateInfrastructure", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
