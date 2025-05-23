@@ -158,6 +158,7 @@ docs/CreateUser.md
 docs/CreateUserSSHKey.md
 docs/CreateVMInstance.md
 docs/CreateVMInstanceGroup.md
+docs/CreateVMInstanceGroupNetworkConnection.md
 docs/CreateVMPool.md
 docs/CreateVMType.md
 docs/CreateVariable.md
@@ -578,6 +579,7 @@ docs/UpdateVM.md
 docs/UpdateVMInstance.md
 docs/UpdateVMInstanceGroup.md
 docs/UpdateVMInstanceGroupMeta.md
+docs/UpdateVMInstanceGroupNetworkConnection.md
 docs/UpdateVMInstanceMeta.md
 docs/UpdateVMPool.md
 docs/UpdateVMPoolHostInterface.md
@@ -613,6 +615,8 @@ docs/VMInstanceGroupInterface.md
 docs/VMInstanceGroupInterfaceConfiguration.md
 docs/VMInstanceGroupInterfaceMeta.md
 docs/VMInstanceGroupMeta.md
+docs/VMInstanceGroupNetworkConnection.md
+docs/VMInstanceGroupNetworkConnectionsList.md
 docs/VMInstanceGroupPaginatedList.md
 docs/VMInstanceMeta.md
 docs/VMInstancePaginatedList.md
@@ -776,6 +780,7 @@ model_create_vlan_logical_network_profile.go
 model_create_vlan_logical_network_vlan_properties.go
 model_create_vm_instance.go
 model_create_vm_instance_group.go
+model_create_vm_instance_group_network_connection.go
 model_create_vm_pool.go
 model_create_vm_type.go
 model_create_vni_allocation_strategy.go
@@ -1154,6 +1159,7 @@ model_update_vm.go
 model_update_vm_instance.go
 model_update_vm_instance_group.go
 model_update_vm_instance_group_meta.go
+model_update_vm_instance_group_network_connection.go
 model_update_vm_instance_meta.go
 model_update_vm_pool.go
 model_update_vm_pool_host_interface.go
@@ -1204,6 +1210,8 @@ model_vm_instance_group_interface.go
 model_vm_instance_group_interface_configuration.go
 model_vm_instance_group_interface_meta.go
 model_vm_instance_group_meta.go
+model_vm_instance_group_network_connection.go
+model_vm_instance_group_network_connections_list.go
 model_vm_instance_group_paginated_list.go
 model_vm_instance_meta.go
 model_vm_instance_paginated_list.go

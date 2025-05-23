@@ -475,7 +475,6 @@ Class | Method | HTTP request | Description
 *UserAPI* | [**InitiatePasswordReset**](docs/UserAPI.md#initiatepasswordreset) | **Post** /api/v2/user/actions/initiate-password-reset | Initiate reset user password
 *UserAPI* | [**RegenerateUserApiKey**](docs/UserAPI.md#regenerateuserapikey) | **Post** /api/v2/user/actions/regenerate-api-key | Regenerate user API key
 *UserAPI* | [**RegenerateUserJwtSalt**](docs/UserAPI.md#regenerateuserjwtsalt) | **Post** /api/v2/user/actions/regenerate-jwt-salt | Regenerate user JWT salt. Also logs out all user sessions.
-*UserAPI* | [**ResendEmailVerification**](docs/UserAPI.md#resendemailverification) | **Post** /api/v2/user/actions/resend-email-verification | Resend email verification
 *UserAPI* | [**UpdateUserPassword**](docs/UserAPI.md#updateuserpassword) | **Post** /api/v2/user/actions/change-password | Change user password
 *UserAPI* | [**UserControllerHandleEmailVerify**](docs/UserAPI.md#usercontrollerhandleemailverify) | **Get** /api/v2/user/actions/verify-email | Handle user email verify action
 *UserAPI* | [**UserControllerHandleUserResetPassword**](docs/UserAPI.md#usercontrollerhandleuserresetpassword) | **Get** /api/v2/user/actions/reset-password | Handle user reset password action
@@ -497,6 +496,7 @@ Class | Method | HTTP request | Description
 *UsersAPI* | [**GetUserSuspendReasons**](docs/UsersAPI.md#getusersuspendreasons) | **Get** /api/v2/users/{userId}/suspend-reasons | Get user suspend reasons by ID
 *UsersAPI* | [**GetUsers**](docs/UsersAPI.md#getusers) | **Get** /api/v2/users | Get users
 *UsersAPI* | [**RemoveUserDelegate**](docs/UsersAPI.md#removeuserdelegate) | **Post** /api/v2/users/{userId}/actions/remove-delegate/{delegateId} | Remove a delegate from a user
+*UsersAPI* | [**ResendEmailVerification**](docs/UsersAPI.md#resendemailverification) | **Post** /api/v2/users/{userId}/actions/resend-email-verification | Resend email verification
 *UsersAPI* | [**SuspendUser**](docs/UsersAPI.md#suspenduser) | **Post** /api/v2/users/{userId}/actions/suspend | Suspend a user
 *UsersAPI* | [**UnarchiveUser**](docs/UsersAPI.md#unarchiveuser) | **Post** /api/v2/users/{userId}/actions/unarchive | Unarchive user
 *UsersAPI* | [**UnsuspendUser**](docs/UsersAPI.md#unsuspenduser) | **Post** /api/v2/users/{userId}/actions/unsuspend | Unsuspend a user
@@ -526,16 +526,21 @@ Class | Method | HTTP request | Description
 *VMInstanceAPI* | [**UpdateVMInstanceConfig**](docs/VMInstanceAPI.md#updatevminstanceconfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instances/{vmInstanceId}/config | Updates VM Instance config information
 *VMInstanceGroupAPI* | [**ApplyVMTypeOnVMInstanceGroup**](docs/VMInstanceGroupAPI.md#applyvmtypeonvminstancegroup) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/actions/apply-type/{vmTypeId} | Applies a VM Type to a VM Instance Group
 *VMInstanceGroupAPI* | [**CreateVMInstanceGroup**](docs/VMInstanceGroupAPI.md#createvminstancegroup) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups | Creates a VM Instance Group
+*VMInstanceGroupAPI* | [**CreateVMInstanceGroupNetworkConfigurationConnection**](docs/VMInstanceGroupAPI.md#createvminstancegroupnetworkconfigurationconnection) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections | Create a network connection for a VM instance group
 *VMInstanceGroupAPI* | [**DeleteVMInstanceGroup**](docs/VMInstanceGroupAPI.md#deletevminstancegroup) | **Delete** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId} | Deletes a VM Instance Group
+*VMInstanceGroupAPI* | [**DeleteVMInstanceGroupNetworkConfigurationConnection**](docs/VMInstanceGroupAPI.md#deletevminstancegroupnetworkconfigurationconnection) | **Delete** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections/{connectionId} | Delete a network connection for a VM instance group
 *VMInstanceGroupAPI* | [**GetInfrastructureVMInstanceGroup**](docs/VMInstanceGroupAPI.md#getinfrastructurevminstancegroup) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId} | Get VM Instance Group information
 *VMInstanceGroupAPI* | [**GetInfrastructureVMInstanceGroups**](docs/VMInstanceGroupAPI.md#getinfrastructurevminstancegroups) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups | Get all VM Instance Groups on the infrastructure
 *VMInstanceGroupAPI* | [**GetVMInstanceGroupConfigInfo**](docs/VMInstanceGroupAPI.md#getvminstancegroupconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config | Get configuration information about the specified VM Instance Group
 *VMInstanceGroupAPI* | [**GetVMInstanceGroupInterfaceInfo**](docs/VMInstanceGroupAPI.md#getvminstancegroupinterfaceinfo) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/interfaces/{vmInstanceGroupInterfaceId} | Get VM Instance Group Interface information
 *VMInstanceGroupAPI* | [**GetVMInstanceGroupInterfaces**](docs/VMInstanceGroupAPI.md#getvminstancegroupinterfaces) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/interfaces | Get all VM Instance Group Interfaces on the VM Instance Group
+*VMInstanceGroupAPI* | [**GetVMInstanceGroupNetworkConfigurationConnectionById**](docs/VMInstanceGroupAPI.md#getvminstancegroupnetworkconfigurationconnectionbyid) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections/{connectionId} | Get VM instance group network configuration connection by id
+*VMInstanceGroupAPI* | [**GetVMInstanceGroupNetworkConfigurationConnections**](docs/VMInstanceGroupAPI.md#getvminstancegroupnetworkconfigurationconnections) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections | Get VM instance group&#39;s network connections
 *VMInstanceGroupAPI* | [**GetVMInstanceGroupVMInstances**](docs/VMInstanceGroupAPI.md#getvminstancegroupvminstances) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/vm-instances | Get the VM Instances of VM Instance Group
 *VMInstanceGroupAPI* | [**GetVmInstanceGroupNetworkConfiguration**](docs/VMInstanceGroupAPI.md#getvminstancegroupnetworkconfiguration) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking | Get vm instance group network configuration
 *VMInstanceGroupAPI* | [**PatchVMInstanceGroupMeta**](docs/VMInstanceGroupAPI.md#patchvminstancegroupmeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/meta | Updates the meta of a VM Instance Group
 *VMInstanceGroupAPI* | [**UpdateVMInstanceGroupConfig**](docs/VMInstanceGroupAPI.md#updatevminstancegroupconfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config | Updates VM Instance Group information
+*VMInstanceGroupAPI* | [**UpdateVMInstanceGroupNetworkConfigurationConnection**](docs/VMInstanceGroupAPI.md#updatevminstancegroupnetworkconfigurationconnection) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections/{connectionId} | Update a network connection for a VM instance group
 *VMPoolAPI* | [**CreateVMPool**](docs/VMPoolAPI.md#createvmpool) | **Post** /api/v2/vm-pools | Creates a VM Pool
 *VMPoolAPI* | [**DeleteVMPool**](docs/VMPoolAPI.md#deletevmpool) | **Delete** /api/v2/vm-pools/{vmPoolId} | Deletes a VM Pool
 *VMPoolAPI* | [**GetVMPool**](docs/VMPoolAPI.md#getvmpool) | **Get** /api/v2/vm-pools/{vmPoolId} | Get VM Pool information
@@ -667,6 +672,7 @@ Class | Method | HTTP request | Description
  - [CreateUserSSHKey](docs/CreateUserSSHKey.md)
  - [CreateVMInstance](docs/CreateVMInstance.md)
  - [CreateVMInstanceGroup](docs/CreateVMInstanceGroup.md)
+ - [CreateVMInstanceGroupNetworkConnection](docs/CreateVMInstanceGroupNetworkConnection.md)
  - [CreateVMPool](docs/CreateVMPool.md)
  - [CreateVMType](docs/CreateVMType.md)
  - [CreateVariable](docs/CreateVariable.md)
@@ -1051,6 +1057,7 @@ Class | Method | HTTP request | Description
  - [UpdateVMInstance](docs/UpdateVMInstance.md)
  - [UpdateVMInstanceGroup](docs/UpdateVMInstanceGroup.md)
  - [UpdateVMInstanceGroupMeta](docs/UpdateVMInstanceGroupMeta.md)
+ - [UpdateVMInstanceGroupNetworkConnection](docs/UpdateVMInstanceGroupNetworkConnection.md)
  - [UpdateVMInstanceMeta](docs/UpdateVMInstanceMeta.md)
  - [UpdateVMPool](docs/UpdateVMPool.md)
  - [UpdateVMPoolHostInterface](docs/UpdateVMPoolHostInterface.md)
@@ -1081,6 +1088,8 @@ Class | Method | HTTP request | Description
  - [VMInstanceGroupInterfaceConfiguration](docs/VMInstanceGroupInterfaceConfiguration.md)
  - [VMInstanceGroupInterfaceMeta](docs/VMInstanceGroupInterfaceMeta.md)
  - [VMInstanceGroupMeta](docs/VMInstanceGroupMeta.md)
+ - [VMInstanceGroupNetworkConnection](docs/VMInstanceGroupNetworkConnection.md)
+ - [VMInstanceGroupNetworkConnectionsList](docs/VMInstanceGroupNetworkConnectionsList.md)
  - [VMInstanceGroupPaginatedList](docs/VMInstanceGroupPaginatedList.md)
  - [VMInstanceMeta](docs/VMInstanceMeta.md)
  - [VMInstancePaginatedList](docs/VMInstancePaginatedList.md)

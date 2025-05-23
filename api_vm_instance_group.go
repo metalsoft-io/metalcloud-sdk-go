@@ -261,6 +261,123 @@ func (a *VMInstanceGroupAPIService) CreateVMInstanceGroupExecute(r VMInstanceGro
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type VMInstanceGroupAPICreateVMInstanceGroupNetworkConfigurationConnectionRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceGroupAPIService
+	infrastructureId int32
+	vmInstanceGroupId int32
+	createVMInstanceGroupNetworkConnection *CreateVMInstanceGroupNetworkConnection
+}
+
+// The network connection object to create
+func (r VMInstanceGroupAPICreateVMInstanceGroupNetworkConfigurationConnectionRequest) CreateVMInstanceGroupNetworkConnection(createVMInstanceGroupNetworkConnection CreateVMInstanceGroupNetworkConnection) VMInstanceGroupAPICreateVMInstanceGroupNetworkConfigurationConnectionRequest {
+	r.createVMInstanceGroupNetworkConnection = &createVMInstanceGroupNetworkConnection
+	return r
+}
+
+func (r VMInstanceGroupAPICreateVMInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*VMInstanceGroupNetworkConnection, *http.Response, error) {
+	return r.ApiService.CreateVMInstanceGroupNetworkConfigurationConnectionExecute(r)
+}
+
+/*
+CreateVMInstanceGroupNetworkConfigurationConnection Create a network connection for a VM instance group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param vmInstanceGroupId
+ @return VMInstanceGroupAPICreateVMInstanceGroupNetworkConfigurationConnectionRequest
+*/
+func (a *VMInstanceGroupAPIService) CreateVMInstanceGroupNetworkConfigurationConnection(ctx context.Context, infrastructureId int32, vmInstanceGroupId int32) VMInstanceGroupAPICreateVMInstanceGroupNetworkConfigurationConnectionRequest {
+	return VMInstanceGroupAPICreateVMInstanceGroupNetworkConfigurationConnectionRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		vmInstanceGroupId: vmInstanceGroupId,
+	}
+}
+
+// Execute executes the request
+//  @return VMInstanceGroupNetworkConnection
+func (a *VMInstanceGroupAPIService) CreateVMInstanceGroupNetworkConfigurationConnectionExecute(r VMInstanceGroupAPICreateVMInstanceGroupNetworkConfigurationConnectionRequest) (*VMInstanceGroupNetworkConnection, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMInstanceGroupNetworkConnection
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.CreateVMInstanceGroupNetworkConfigurationConnection")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceGroupId, "vmInstanceGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createVMInstanceGroupNetworkConnection == nil {
+		return localVarReturnValue, nil, reportError("createVMInstanceGroupNetworkConnection is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createVMInstanceGroupNetworkConnection
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type VMInstanceGroupAPIDeleteVMInstanceGroupRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
@@ -338,6 +455,104 @@ func (a *VMInstanceGroupAPIService) DeleteVMInstanceGroupExecute(r VMInstanceGro
 	}
 	if r.ifMatch != nil {
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type VMInstanceGroupAPIDeleteVMInstanceGroupNetworkConfigurationConnectionRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceGroupAPIService
+	infrastructureId int32
+	vmInstanceGroupId int32
+	connectionId int32
+}
+
+func (r VMInstanceGroupAPIDeleteVMInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteVMInstanceGroupNetworkConfigurationConnectionExecute(r)
+}
+
+/*
+DeleteVMInstanceGroupNetworkConfigurationConnection Delete a network connection for a VM instance group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param vmInstanceGroupId
+ @param connectionId
+ @return VMInstanceGroupAPIDeleteVMInstanceGroupNetworkConfigurationConnectionRequest
+*/
+func (a *VMInstanceGroupAPIService) DeleteVMInstanceGroupNetworkConfigurationConnection(ctx context.Context, infrastructureId int32, vmInstanceGroupId int32, connectionId int32) VMInstanceGroupAPIDeleteVMInstanceGroupNetworkConfigurationConnectionRequest {
+	return VMInstanceGroupAPIDeleteVMInstanceGroupNetworkConfigurationConnectionRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		vmInstanceGroupId: vmInstanceGroupId,
+		connectionId: connectionId,
+	}
+}
+
+// Execute executes the request
+func (a *VMInstanceGroupAPIService) DeleteVMInstanceGroupNetworkConfigurationConnectionExecute(r VMInstanceGroupAPIDeleteVMInstanceGroupNetworkConfigurationConnectionRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.DeleteVMInstanceGroupNetworkConfigurationConnection")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections/{connectionId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceGroupId, "vmInstanceGroupId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connectionId"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1230,6 +1445,224 @@ func (a *VMInstanceGroupAPIService) GetVMInstanceGroupInterfacesExecute(r VMInst
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionByIdRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceGroupAPIService
+	infrastructureId int32
+	vmInstanceGroupId int32
+	connectionId int32
+}
+
+func (r VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionByIdRequest) Execute() (*VMInstanceGroupNetworkConnection, *http.Response, error) {
+	return r.ApiService.GetVMInstanceGroupNetworkConfigurationConnectionByIdExecute(r)
+}
+
+/*
+GetVMInstanceGroupNetworkConfigurationConnectionById Get VM instance group network configuration connection by id
+
+Returns the connection by id of the specified VM instance group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param vmInstanceGroupId
+ @param connectionId
+ @return VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionByIdRequest
+*/
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupNetworkConfigurationConnectionById(ctx context.Context, infrastructureId int32, vmInstanceGroupId int32, connectionId int32) VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionByIdRequest {
+	return VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionByIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		vmInstanceGroupId: vmInstanceGroupId,
+		connectionId: connectionId,
+	}
+}
+
+// Execute executes the request
+//  @return VMInstanceGroupNetworkConnection
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupNetworkConfigurationConnectionByIdExecute(r VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionByIdRequest) (*VMInstanceGroupNetworkConnection, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMInstanceGroupNetworkConnection
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.GetVMInstanceGroupNetworkConfigurationConnectionById")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections/{connectionId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceGroupId, "vmInstanceGroupId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connectionId"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionsRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceGroupAPIService
+	infrastructureId int32
+	vmInstanceGroupId int32
+}
+
+func (r VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionsRequest) Execute() (*VMInstanceGroupNetworkConnectionsList, *http.Response, error) {
+	return r.ApiService.GetVMInstanceGroupNetworkConfigurationConnectionsExecute(r)
+}
+
+/*
+GetVMInstanceGroupNetworkConfigurationConnections Get VM instance group's network connections
+
+Returns the connections of the specified VM instance group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param vmInstanceGroupId
+ @return VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionsRequest
+*/
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupNetworkConfigurationConnections(ctx context.Context, infrastructureId int32, vmInstanceGroupId int32) VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionsRequest {
+	return VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionsRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		vmInstanceGroupId: vmInstanceGroupId,
+	}
+}
+
+// Execute executes the request
+//  @return VMInstanceGroupNetworkConnectionsList
+func (a *VMInstanceGroupAPIService) GetVMInstanceGroupNetworkConfigurationConnectionsExecute(r VMInstanceGroupAPIGetVMInstanceGroupNetworkConfigurationConnectionsRequest) (*VMInstanceGroupNetworkConnectionsList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMInstanceGroupNetworkConnectionsList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.GetVMInstanceGroupNetworkConfigurationConnections")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceGroupId, "vmInstanceGroupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type VMInstanceGroupAPIGetVMInstanceGroupVMInstancesRequest struct {
 	ctx context.Context
 	ApiService *VMInstanceGroupAPIService
@@ -1652,6 +2085,127 @@ func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupConfigExecute(r VMInsta
 	}
 	// body params
 	localVarPostBody = r.updateVMInstanceGroup
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type VMInstanceGroupAPIUpdateVMInstanceGroupNetworkConfigurationConnectionRequest struct {
+	ctx context.Context
+	ApiService *VMInstanceGroupAPIService
+	infrastructureId int32
+	vmInstanceGroupId int32
+	connectionId int32
+	updateVMInstanceGroupNetworkConnection *UpdateVMInstanceGroupNetworkConnection
+}
+
+// The network connection object to update
+func (r VMInstanceGroupAPIUpdateVMInstanceGroupNetworkConfigurationConnectionRequest) UpdateVMInstanceGroupNetworkConnection(updateVMInstanceGroupNetworkConnection UpdateVMInstanceGroupNetworkConnection) VMInstanceGroupAPIUpdateVMInstanceGroupNetworkConfigurationConnectionRequest {
+	r.updateVMInstanceGroupNetworkConnection = &updateVMInstanceGroupNetworkConnection
+	return r
+}
+
+func (r VMInstanceGroupAPIUpdateVMInstanceGroupNetworkConfigurationConnectionRequest) Execute() (*VMInstanceGroupNetworkConnection, *http.Response, error) {
+	return r.ApiService.UpdateVMInstanceGroupNetworkConfigurationConnectionExecute(r)
+}
+
+/*
+UpdateVMInstanceGroupNetworkConfigurationConnection Update a network connection for a VM instance group
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param infrastructureId
+ @param vmInstanceGroupId
+ @param connectionId
+ @return VMInstanceGroupAPIUpdateVMInstanceGroupNetworkConfigurationConnectionRequest
+*/
+func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupNetworkConfigurationConnection(ctx context.Context, infrastructureId int32, vmInstanceGroupId int32, connectionId int32) VMInstanceGroupAPIUpdateVMInstanceGroupNetworkConfigurationConnectionRequest {
+	return VMInstanceGroupAPIUpdateVMInstanceGroupNetworkConfigurationConnectionRequest{
+		ApiService: a,
+		ctx: ctx,
+		infrastructureId: infrastructureId,
+		vmInstanceGroupId: vmInstanceGroupId,
+		connectionId: connectionId,
+	}
+}
+
+// Execute executes the request
+//  @return VMInstanceGroupNetworkConnection
+func (a *VMInstanceGroupAPIService) UpdateVMInstanceGroupNetworkConfigurationConnectionExecute(r VMInstanceGroupAPIUpdateVMInstanceGroupNetworkConfigurationConnectionRequest) (*VMInstanceGroupNetworkConnection, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VMInstanceGroupNetworkConnection
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMInstanceGroupAPIService.UpdateVMInstanceGroupNetworkConfigurationConnection")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections/{connectionId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"infrastructureId"+"}", url.PathEscape(parameterValueToString(r.infrastructureId, "infrastructureId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmInstanceGroupId"+"}", url.PathEscape(parameterValueToString(r.vmInstanceGroupId, "vmInstanceGroupId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connectionId"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateVMInstanceGroupNetworkConnection == nil {
+		return localVarReturnValue, nil, reportError("updateVMInstanceGroupNetworkConnection is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateVMInstanceGroupNetworkConnection
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

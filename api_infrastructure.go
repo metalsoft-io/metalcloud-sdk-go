@@ -1326,7 +1326,7 @@ func (r InfrastructureAPIGetInfrastructuresRequest) FilterSiteId(filterSiteId []
 	return r
 }
 
-// Filter by userIdOwner query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.userIdOwner&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.userIdOwner&#x3D;$not:$like:John Doe&amp;filter.userIdOwner&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+// Filter by userIdOwner query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.userIdOwner&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.userIdOwner&#x3D;$not:$like:John Doe&amp;filter.userIdOwner&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
 func (r InfrastructureAPIGetInfrastructuresRequest) FilterUserIdOwner(filterUserIdOwner []string) InfrastructureAPIGetInfrastructuresRequest {
 	r.filterUserIdOwner = &filterUserIdOwner
 	return r

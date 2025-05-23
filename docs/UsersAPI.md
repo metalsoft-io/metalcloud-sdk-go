@@ -22,6 +22,7 @@ Method | HTTP request | Description
 [**GetUserSuspendReasons**](UsersAPI.md#GetUserSuspendReasons) | **Get** /api/v2/users/{userId}/suspend-reasons | Get user suspend reasons by ID
 [**GetUsers**](UsersAPI.md#GetUsers) | **Get** /api/v2/users | Get users
 [**RemoveUserDelegate**](UsersAPI.md#RemoveUserDelegate) | **Post** /api/v2/users/{userId}/actions/remove-delegate/{delegateId} | Remove a delegate from a user
+[**ResendEmailVerification**](UsersAPI.md#ResendEmailVerification) | **Post** /api/v2/users/{userId}/actions/resend-email-verification | Resend email verification
 [**SuspendUser**](UsersAPI.md#SuspendUser) | **Post** /api/v2/users/{userId}/actions/suspend | Suspend a user
 [**UnarchiveUser**](UsersAPI.md#UnarchiveUser) | **Post** /api/v2/users/{userId}/actions/unarchive | Unarchive user
 [**UnsuspendUser**](UsersAPI.md#UnsuspendUser) | **Post** /api/v2/users/{userId}/actions/unsuspend | Unsuspend a user
@@ -1295,6 +1296,76 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ResendEmailVerification
+
+> User ResendEmailVerification(ctx, userId).ResendUserVerificationEmail(resendUserVerificationEmail).Execute()
+
+Resend email verification
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	userId := float32(8.14) // float32 | 
+	resendUserVerificationEmail := *openapiclient.NewResendUserVerificationEmail() // ResendUserVerificationEmail | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.ResendEmailVerification(context.Background(), userId).ResendUserVerificationEmail(resendUserVerificationEmail).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.ResendEmailVerification``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ResendEmailVerification`: User
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.ResendEmailVerification`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiResendEmailVerificationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **resendUserVerificationEmail** | [**ResendUserVerificationEmail**](ResendUserVerificationEmail.md) |  | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

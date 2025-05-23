@@ -6249,7 +6249,8 @@ paths:
                     <p>
                        <b>Example: </b> filter.userIdOwner=$not:$like:John Doe&filter.userIdOwner=like:John
                     </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
         explode: true
         in: query
         name: filter.userIdOwner
@@ -26280,39 +26281,6 @@ paths:
       summary: Initiates the user email change
       tags:
       - User
-  /api/v2/user/actions/resend-email-verification:
-    post:
-      operationId: resendEmailVerification
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ResendUserVerificationEmail'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-          description: Email verification URL successfully sent.
-        "400":
-          description: Invalid request sent
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: User not found
-        "409":
-          description: User already verified
-      security:
-      - JWT: []
-      - apiKey: []
-      summary: Resend email verification
-      tags:
-      - User
   /api/v2/user/api-key:
     get:
       operationId: getUserApiKey
@@ -27156,6 +27124,46 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Unarchive user
+      tags:
+      - Users
+  /api/v2/users/{userId}/actions/resend-email-verification:
+    post:
+      operationId: resendEmailVerification
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendUserVerificationEmail'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Email verification URL successfully sent.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: User not found
+        "409":
+          description: User already verified
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Resend email verification
       tags:
       - Users
   /api/v2/users/{userId}/limits:
@@ -29623,6 +29631,240 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Get vm instance group network configuration
+      tags:
+      - VM Instance Group
+  /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections:
+    get:
+      description: Returns the connections of the specified VM instance group
+      operationId: getVMInstanceGroupNetworkConfigurationConnections
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: vmInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VMInstanceGroupNetworkConnectionsList'
+          description: The connections of the specified VM instance group
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: VM instance group not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get VM instance group's network connections
+      tags:
+      - VM Instance Group
+    post:
+      operationId: createVMInstanceGroupNetworkConfigurationConnection
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: vmInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVMInstanceGroupNetworkConnection'
+        description: The network connection object to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VMInstanceGroupNetworkConnection'
+          description: The network connection was successfully created
+          headers:
+            Location:
+              description: New network connection link
+              explode: false
+              schema:
+                type: string
+              style: simple
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Invalid request body
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: VM instance group not found
+        "409":
+          description: Network connection already exists
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a network connection for a VM instance group
+      tags:
+      - VM Instance Group
+  /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections/{connectionId}:
+    delete:
+      operationId: deleteVMInstanceGroupNetworkConfigurationConnection
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: vmInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: The specified network connection was successfully deleted
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: VM instance group or connection not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete a network connection for a VM instance group
+      tags:
+      - VM Instance Group
+    get:
+      description: Returns the connection by id of the specified VM instance group
+      operationId: getVMInstanceGroupNetworkConfigurationConnectionById
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: vmInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VMInstanceGroupNetworkConnection'
+          description: The connection by id of the specified VM instance group
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: VM instance group or connection not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get VM instance group network configuration connection by id
+      tags:
+      - VM Instance Group
+    patch:
+      operationId: updateVMInstanceGroupNetworkConfigurationConnection
+      parameters:
+      - explode: false
+        in: path
+        name: infrastructureId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: vmInstanceGroupId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: connectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateVMInstanceGroupNetworkConnection'
+        description: The network connection object to update
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VMInstanceGroupNetworkConnection'
+          description: The updated network connection object
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: VM instance group or connection not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update a network connection for a VM instance group
       tags:
       - VM Instance Group
   /api/v2/vm-pools:
@@ -47341,7 +47583,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-05-22T18:05:11.654Z
+        createdTimestamp: 2025-05-23T12:59:43.38Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -47350,7 +47592,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-05-22T18:05:11.655Z
+        updatedTimestamp: 2025-05-23T12:59:43.381Z
         revision: "1"
       properties:
         siteId:
@@ -47367,12 +47609,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-22T18:05:11.654Z
+          example: 2025-05-23T12:59:43.38Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-22T18:05:11.655Z
+          example: 2025-05-23T12:59:43.381Z
           format: date-time
           type: string
         links:
@@ -47394,7 +47636,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-05-22T18:05:11.654Z
+        - createdTimestamp: 2025-05-23T12:59:43.38Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -47403,9 +47645,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-22T18:05:11.655Z
+          updatedTimestamp: 2025-05-23T12:59:43.381Z
           revision: "1"
-        - createdTimestamp: 2025-05-22T18:05:11.654Z
+        - createdTimestamp: 2025-05-23T12:59:43.38Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -47414,7 +47656,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-22T18:05:11.655Z
+          updatedTimestamp: 2025-05-23T12:59:43.381Z
           revision: "1"
         meta: ""
         links: ""
@@ -48053,7 +48295,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-05-22T18:05:11.685Z
+        createdTimestamp: 2025-05-23T12:59:43.396Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -48094,7 +48336,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-05-22T18:05:11.685Z
+        updatedTimestamp: 2025-05-23T12:59:43.396Z
         revision: "1"
         status: draft
       properties:
@@ -48122,12 +48364,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-22T18:05:11.685Z
+          example: 2025-05-23T12:59:43.396Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-22T18:05:11.685Z
+          example: 2025-05-23T12:59:43.396Z
           format: date-time
           type: string
         links:
@@ -48268,7 +48510,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-05-22T18:05:11.685Z
+          createdTimestamp: 2025-05-23T12:59:43.396Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -48309,7 +48551,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-22T18:05:11.685Z
+          updatedTimestamp: 2025-05-23T12:59:43.396Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -48419,7 +48661,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-05-22T18:05:11.685Z
+          createdTimestamp: 2025-05-23T12:59:43.396Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -48460,7 +48702,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-22T18:05:11.685Z
+          updatedTimestamp: 2025-05-23T12:59:43.396Z
           revision: "1"
           status: draft
         meta: ""
@@ -51213,10 +51455,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-05-22T18:05:11.671Z
+        createdTimestamp: 2025-05-23T12:59:43.391Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-05-22T18:05:11.672Z
+        updatedTimestamp: 2025-05-23T12:59:43.391Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -51290,12 +51532,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-22T18:05:11.671Z
+          example: 2025-05-23T12:59:43.391Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-22T18:05:11.672Z
+          example: 2025-05-23T12:59:43.391Z
           format: date-time
           type: string
         links:
@@ -60105,14 +60347,6 @@ components:
       required:
       - email
       type: object
-    ResendUserVerificationEmail:
-      example:
-        redirectUrl: redirectUrl
-      properties:
-        redirectUrl:
-          description: The redirect URL after email verification
-          type: string
-      type: object
     UserApiKey:
       example:
         apiKey: 1:qJjpByjLYz7Rgwpv0wN61KlZxL8qgdZ2uJwLw3PWyrVQc4EDTtCs20xe9zFLLU1
@@ -60269,6 +60503,14 @@ components:
           type: number
       required:
       - newAccountId
+      type: object
+    ResendUserVerificationEmail:
+      example:
+        redirectUrl: redirectUrl
+      properties:
+        redirectUrl:
+          description: The redirect URL after email verification
+          type: string
       type: object
     UserList:
       example:
@@ -62062,6 +62304,181 @@ components:
       - revision
       - serviceStatus
       - updatedTimestamp
+      type: object
+    VMInstanceGroupNetworkConnection:
+      example:
+        tagged: true
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        redundancy:
+          mode: active-backup
+          implementation:
+            implementationType: link-aggregation
+        id: "1"
+        accessMode: l2
+        mtu: 1500
+      properties:
+        tagged:
+          description: Whether the logical network is tagged.
+          example: true
+          type: boolean
+        accessMode:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
+          description: The access mode of the network endpoint group
+          example: l2
+        mtu:
+          description: The MTU of the logical network
+          example: 1500
+          type: integer
+        redundancy:
+          allOf:
+          - $ref: '#/components/schemas/RedundancyConfig'
+          description: The redundancy configuration
+          example:
+            mode: active-backup
+            implementation:
+              implementationType: link-aggregation
+          nullable: true
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+        id:
+          description: The network connection ID.
+          example: "1"
+          type: string
+      required:
+      - accessMode
+      - id
+      - tagged
+      type: object
+    VMInstanceGroupNetworkConnectionsList:
+      example:
+        data:
+        - tagged: true
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          redundancy:
+            mode: active-backup
+            implementation:
+              implementationType: link-aggregation
+          id: "1"
+          accessMode: l2
+          mtu: 1500
+        - tagged: true
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          redundancy:
+            mode: active-backup
+            implementation:
+              implementationType: link-aggregation
+          id: "1"
+          accessMode: l2
+          mtu: 1500
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/VMInstanceGroupNetworkConnection'
+          title: List of vm instance group network connections
+          type: array
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - data
+      type: object
+    CreateVMInstanceGroupNetworkConnection:
+      example:
+        logicalNetworkId: "1"
+        tagged: true
+        redundancy:
+          mode: active-backup
+          implementation:
+            implementationType: link-aggregation
+        accessMode: l2
+        mtu: 1500
+      properties:
+        logicalNetworkId:
+          description: The logical network ID.
+          example: "1"
+          type: string
+        tagged:
+          description: Whether the logical network is tagged.
+          example: true
+          type: boolean
+        accessMode:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
+          description: The access mode of the network endpoint group
+          example: l2
+        mtu:
+          description: The MTU of the logical network
+          example: 1500
+          type: integer
+        redundancy:
+          allOf:
+          - $ref: '#/components/schemas/RedundancyConfig'
+          description: The redundancy configuration
+          example:
+            mode: active-backup
+            implementation:
+              implementationType: link-aggregation
+          nullable: true
+      required:
+      - accessMode
+      - logicalNetworkId
+      - tagged
+      type: object
+    UpdateVMInstanceGroupNetworkConnection:
+      example:
+        tagged: true
+        redundancy:
+          mode: active-backup
+          implementation:
+            implementationType: link-aggregation
+        accessMode: l2
+        mtu: 1500
+      properties:
+        tagged:
+          description: Whether the logical network is tagged.
+          example: true
+          type: boolean
+        accessMode:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
+          description: The access mode of the network endpoint group
+          example: l2
+        mtu:
+          description: The MTU of the logical network
+          example: 1500
+          type: integer
+        redundancy:
+          allOf:
+          - $ref: '#/components/schemas/RedundancyConfig'
+          description: The redundancy configuration
+          example:
+            mode: active-backup
+            implementation:
+              implementationType: link-aggregation
+          nullable: true
       type: object
     VMPool:
       example:

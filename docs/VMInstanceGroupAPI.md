@@ -6,16 +6,21 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ApplyVMTypeOnVMInstanceGroup**](VMInstanceGroupAPI.md#ApplyVMTypeOnVMInstanceGroup) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/actions/apply-type/{vmTypeId} | Applies a VM Type to a VM Instance Group
 [**CreateVMInstanceGroup**](VMInstanceGroupAPI.md#CreateVMInstanceGroup) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups | Creates a VM Instance Group
+[**CreateVMInstanceGroupNetworkConfigurationConnection**](VMInstanceGroupAPI.md#CreateVMInstanceGroupNetworkConfigurationConnection) | **Post** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections | Create a network connection for a VM instance group
 [**DeleteVMInstanceGroup**](VMInstanceGroupAPI.md#DeleteVMInstanceGroup) | **Delete** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId} | Deletes a VM Instance Group
+[**DeleteVMInstanceGroupNetworkConfigurationConnection**](VMInstanceGroupAPI.md#DeleteVMInstanceGroupNetworkConfigurationConnection) | **Delete** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections/{connectionId} | Delete a network connection for a VM instance group
 [**GetInfrastructureVMInstanceGroup**](VMInstanceGroupAPI.md#GetInfrastructureVMInstanceGroup) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId} | Get VM Instance Group information
 [**GetInfrastructureVMInstanceGroups**](VMInstanceGroupAPI.md#GetInfrastructureVMInstanceGroups) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups | Get all VM Instance Groups on the infrastructure
 [**GetVMInstanceGroupConfigInfo**](VMInstanceGroupAPI.md#GetVMInstanceGroupConfigInfo) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config | Get configuration information about the specified VM Instance Group
 [**GetVMInstanceGroupInterfaceInfo**](VMInstanceGroupAPI.md#GetVMInstanceGroupInterfaceInfo) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/interfaces/{vmInstanceGroupInterfaceId} | Get VM Instance Group Interface information
 [**GetVMInstanceGroupInterfaces**](VMInstanceGroupAPI.md#GetVMInstanceGroupInterfaces) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/interfaces | Get all VM Instance Group Interfaces on the VM Instance Group
+[**GetVMInstanceGroupNetworkConfigurationConnectionById**](VMInstanceGroupAPI.md#GetVMInstanceGroupNetworkConfigurationConnectionById) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections/{connectionId} | Get VM instance group network configuration connection by id
+[**GetVMInstanceGroupNetworkConfigurationConnections**](VMInstanceGroupAPI.md#GetVMInstanceGroupNetworkConfigurationConnections) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections | Get VM instance group&#39;s network connections
 [**GetVMInstanceGroupVMInstances**](VMInstanceGroupAPI.md#GetVMInstanceGroupVMInstances) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/vm-instances | Get the VM Instances of VM Instance Group
 [**GetVmInstanceGroupNetworkConfiguration**](VMInstanceGroupAPI.md#GetVmInstanceGroupNetworkConfiguration) | **Get** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking | Get vm instance group network configuration
 [**PatchVMInstanceGroupMeta**](VMInstanceGroupAPI.md#PatchVMInstanceGroupMeta) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/meta | Updates the meta of a VM Instance Group
 [**UpdateVMInstanceGroupConfig**](VMInstanceGroupAPI.md#UpdateVMInstanceGroupConfig) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config | Updates VM Instance Group information
+[**UpdateVMInstanceGroupNetworkConfigurationConnection**](VMInstanceGroupAPI.md#UpdateVMInstanceGroupNetworkConfigurationConnection) | **Patch** /api/v2/infrastructures/{infrastructureId}/vm-instance-groups/{vmInstanceGroupId}/config/networking/connections/{connectionId} | Update a network connection for a VM instance group
 
 
 
@@ -169,6 +174,79 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateVMInstanceGroupNetworkConfigurationConnection
+
+> VMInstanceGroupNetworkConnection CreateVMInstanceGroupNetworkConfigurationConnection(ctx, infrastructureId, vmInstanceGroupId).CreateVMInstanceGroupNetworkConnection(createVMInstanceGroupNetworkConnection).Execute()
+
+Create a network connection for a VM instance group
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := int32(56) // int32 | 
+	vmInstanceGroupId := int32(56) // int32 | 
+	createVMInstanceGroupNetworkConnection := *openapiclient.NewCreateVMInstanceGroupNetworkConnection("1", true, openapiclient.NetworkEndpointGroupAllowedAccessMode("l2")) // CreateVMInstanceGroupNetworkConnection | The network connection object to create
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VMInstanceGroupAPI.CreateVMInstanceGroupNetworkConfigurationConnection(context.Background(), infrastructureId, vmInstanceGroupId).CreateVMInstanceGroupNetworkConnection(createVMInstanceGroupNetworkConnection).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMInstanceGroupAPI.CreateVMInstanceGroupNetworkConfigurationConnection``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateVMInstanceGroupNetworkConfigurationConnection`: VMInstanceGroupNetworkConnection
+	fmt.Fprintf(os.Stdout, "Response from `VMInstanceGroupAPI.CreateVMInstanceGroupNetworkConfigurationConnection`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **int32** |  | 
+**vmInstanceGroupId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVMInstanceGroupNetworkConfigurationConnectionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **createVMInstanceGroupNetworkConnection** | [**CreateVMInstanceGroupNetworkConnection**](CreateVMInstanceGroupNetworkConnection.md) | The network connection object to create | 
+
+### Return type
+
+[**VMInstanceGroupNetworkConnection**](VMInstanceGroupNetworkConnection.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteVMInstanceGroup
 
 > DeleteVMInstanceGroup(ctx, infrastructureId, vmInstanceGroupId).IfMatch(ifMatch).Execute()
@@ -223,6 +301,78 @@ Name | Type | Description  | Notes
 
 
  **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteVMInstanceGroupNetworkConfigurationConnection
+
+> DeleteVMInstanceGroupNetworkConfigurationConnection(ctx, infrastructureId, vmInstanceGroupId, connectionId).Execute()
+
+Delete a network connection for a VM instance group
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := int32(56) // int32 | 
+	vmInstanceGroupId := int32(56) // int32 | 
+	connectionId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.VMInstanceGroupAPI.DeleteVMInstanceGroupNetworkConfigurationConnection(context.Background(), infrastructureId, vmInstanceGroupId, connectionId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMInstanceGroupAPI.DeleteVMInstanceGroupNetworkConfigurationConnection``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **int32** |  | 
+**vmInstanceGroupId** | **int32** |  | 
+**connectionId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteVMInstanceGroupNetworkConfigurationConnectionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
 
 ### Return type
 
@@ -647,6 +797,155 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetVMInstanceGroupNetworkConfigurationConnectionById
+
+> VMInstanceGroupNetworkConnection GetVMInstanceGroupNetworkConfigurationConnectionById(ctx, infrastructureId, vmInstanceGroupId, connectionId).Execute()
+
+Get VM instance group network configuration connection by id
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := int32(56) // int32 | 
+	vmInstanceGroupId := int32(56) // int32 | 
+	connectionId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupNetworkConfigurationConnectionById(context.Background(), infrastructureId, vmInstanceGroupId, connectionId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMInstanceGroupAPI.GetVMInstanceGroupNetworkConfigurationConnectionById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVMInstanceGroupNetworkConfigurationConnectionById`: VMInstanceGroupNetworkConnection
+	fmt.Fprintf(os.Stdout, "Response from `VMInstanceGroupAPI.GetVMInstanceGroupNetworkConfigurationConnectionById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **int32** |  | 
+**vmInstanceGroupId** | **int32** |  | 
+**connectionId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVMInstanceGroupNetworkConfigurationConnectionByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+### Return type
+
+[**VMInstanceGroupNetworkConnection**](VMInstanceGroupNetworkConnection.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetVMInstanceGroupNetworkConfigurationConnections
+
+> VMInstanceGroupNetworkConnectionsList GetVMInstanceGroupNetworkConfigurationConnections(ctx, infrastructureId, vmInstanceGroupId).Execute()
+
+Get VM instance group's network connections
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := int32(56) // int32 | 
+	vmInstanceGroupId := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupNetworkConfigurationConnections(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMInstanceGroupAPI.GetVMInstanceGroupNetworkConfigurationConnections``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVMInstanceGroupNetworkConfigurationConnections`: VMInstanceGroupNetworkConnectionsList
+	fmt.Fprintf(os.Stdout, "Response from `VMInstanceGroupAPI.GetVMInstanceGroupNetworkConfigurationConnections`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **int32** |  | 
+**vmInstanceGroupId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVMInstanceGroupNetworkConfigurationConnectionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**VMInstanceGroupNetworkConnectionsList**](VMInstanceGroupNetworkConnectionsList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetVMInstanceGroupVMInstances
 
 > VMInstancePaginatedList GetVMInstanceGroupVMInstances(ctx, infrastructureId, vmInstanceGroupId).Execute()
@@ -928,6 +1227,82 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VMInstanceGroupConfiguration**](VMInstanceGroupConfiguration.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateVMInstanceGroupNetworkConfigurationConnection
+
+> VMInstanceGroupNetworkConnection UpdateVMInstanceGroupNetworkConfigurationConnection(ctx, infrastructureId, vmInstanceGroupId, connectionId).UpdateVMInstanceGroupNetworkConnection(updateVMInstanceGroupNetworkConnection).Execute()
+
+Update a network connection for a VM instance group
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	infrastructureId := int32(56) // int32 | 
+	vmInstanceGroupId := int32(56) // int32 | 
+	connectionId := int32(56) // int32 | 
+	updateVMInstanceGroupNetworkConnection := *openapiclient.NewUpdateVMInstanceGroupNetworkConnection() // UpdateVMInstanceGroupNetworkConnection | The network connection object to update
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.VMInstanceGroupAPI.UpdateVMInstanceGroupNetworkConfigurationConnection(context.Background(), infrastructureId, vmInstanceGroupId, connectionId).UpdateVMInstanceGroupNetworkConnection(updateVMInstanceGroupNetworkConnection).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMInstanceGroupAPI.UpdateVMInstanceGroupNetworkConfigurationConnection``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateVMInstanceGroupNetworkConfigurationConnection`: VMInstanceGroupNetworkConnection
+	fmt.Fprintf(os.Stdout, "Response from `VMInstanceGroupAPI.UpdateVMInstanceGroupNetworkConfigurationConnection`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**infrastructureId** | **int32** |  | 
+**vmInstanceGroupId** | **int32** |  | 
+**connectionId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateVMInstanceGroupNetworkConfigurationConnectionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **updateVMInstanceGroupNetworkConnection** | [**UpdateVMInstanceGroupNetworkConnection**](UpdateVMInstanceGroupNetworkConnection.md) | The network connection object to update | 
+
+### Return type
+
+[**VMInstanceGroupNetworkConnection**](VMInstanceGroupNetworkConnection.md)
 
 ### Authorization
 

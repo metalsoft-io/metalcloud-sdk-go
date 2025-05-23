@@ -52,6 +52,21 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test VMInstanceGroupAPIService CreateVMInstanceGroupNetworkConfigurationConnection", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId int32
+		var vmInstanceGroupId int32
+
+		resp, httpRes, err := apiClient.VMInstanceGroupAPI.CreateVMInstanceGroupNetworkConfigurationConnection(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test VMInstanceGroupAPIService DeleteVMInstanceGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -60,6 +75,21 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 		var vmInstanceGroupId float32
 
 		httpRes, err := apiClient.VMInstanceGroupAPI.DeleteVMInstanceGroup(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMInstanceGroupAPIService DeleteVMInstanceGroupNetworkConfigurationConnection", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId int32
+		var vmInstanceGroupId int32
+		var connectionId int32
+
+		httpRes, err := apiClient.VMInstanceGroupAPI.DeleteVMInstanceGroupNetworkConfigurationConnection(context.Background(), infrastructureId, vmInstanceGroupId, connectionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -141,6 +171,37 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test VMInstanceGroupAPIService GetVMInstanceGroupNetworkConfigurationConnectionById", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId int32
+		var vmInstanceGroupId int32
+		var connectionId int32
+
+		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupNetworkConfigurationConnectionById(context.Background(), infrastructureId, vmInstanceGroupId, connectionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMInstanceGroupAPIService GetVMInstanceGroupNetworkConfigurationConnections", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId int32
+		var vmInstanceGroupId int32
+
+		resp, httpRes, err := apiClient.VMInstanceGroupAPI.GetVMInstanceGroupNetworkConfigurationConnections(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test VMInstanceGroupAPIService GetVMInstanceGroupVMInstances", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -194,6 +255,22 @@ func Test_sdk_VMInstanceGroupAPIService(t *testing.T) {
 		var vmInstanceGroupId float32
 
 		resp, httpRes, err := apiClient.VMInstanceGroupAPI.UpdateVMInstanceGroupConfig(context.Background(), infrastructureId, vmInstanceGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VMInstanceGroupAPIService UpdateVMInstanceGroupNetworkConfigurationConnection", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var infrastructureId int32
+		var vmInstanceGroupId int32
+		var connectionId int32
+
+		resp, httpRes, err := apiClient.VMInstanceGroupAPI.UpdateVMInstanceGroupNetworkConfigurationConnection(context.Background(), infrastructureId, vmInstanceGroupId, connectionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
