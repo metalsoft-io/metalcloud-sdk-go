@@ -4,9 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fabric** | Pointer to **string** | Fabric of the switch interface | [optional] 
-**SwitchId** | Pointer to **float32** | Id of the switch | [optional] 
-**SwitchInterfaceName** | Pointer to **float32** | Name of the switch interface | [optional] 
+**NetworkDeviceId** | Pointer to **float32** | Id of the network device | [optional] 
+**NetworkDeviceInterfaceName** | Pointer to **float32** | Name of the network device interface | [optional] 
 
 ## Methods
 
@@ -27,80 +26,55 @@ NewUpdateVMPoolHostInterfaceWithDefaults instantiates a new UpdateVMPoolHostInte
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetFabric
+### GetNetworkDeviceId
 
-`func (o *UpdateVMPoolHostInterface) GetFabric() string`
+`func (o *UpdateVMPoolHostInterface) GetNetworkDeviceId() float32`
 
-GetFabric returns the Fabric field if non-nil, zero value otherwise.
+GetNetworkDeviceId returns the NetworkDeviceId field if non-nil, zero value otherwise.
 
-### GetFabricOk
+### GetNetworkDeviceIdOk
 
-`func (o *UpdateVMPoolHostInterface) GetFabricOk() (*string, bool)`
+`func (o *UpdateVMPoolHostInterface) GetNetworkDeviceIdOk() (*float32, bool)`
 
-GetFabricOk returns a tuple with the Fabric field if it's non-nil, zero value otherwise
+GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFabric
+### SetNetworkDeviceId
 
-`func (o *UpdateVMPoolHostInterface) SetFabric(v string)`
+`func (o *UpdateVMPoolHostInterface) SetNetworkDeviceId(v float32)`
 
-SetFabric sets Fabric field to given value.
+SetNetworkDeviceId sets NetworkDeviceId field to given value.
 
-### HasFabric
+### HasNetworkDeviceId
 
-`func (o *UpdateVMPoolHostInterface) HasFabric() bool`
+`func (o *UpdateVMPoolHostInterface) HasNetworkDeviceId() bool`
 
-HasFabric returns a boolean if a field has been set.
+HasNetworkDeviceId returns a boolean if a field has been set.
 
-### GetSwitchId
+### GetNetworkDeviceInterfaceName
 
-`func (o *UpdateVMPoolHostInterface) GetSwitchId() float32`
+`func (o *UpdateVMPoolHostInterface) GetNetworkDeviceInterfaceName() float32`
 
-GetSwitchId returns the SwitchId field if non-nil, zero value otherwise.
+GetNetworkDeviceInterfaceName returns the NetworkDeviceInterfaceName field if non-nil, zero value otherwise.
 
-### GetSwitchIdOk
+### GetNetworkDeviceInterfaceNameOk
 
-`func (o *UpdateVMPoolHostInterface) GetSwitchIdOk() (*float32, bool)`
+`func (o *UpdateVMPoolHostInterface) GetNetworkDeviceInterfaceNameOk() (*float32, bool)`
 
-GetSwitchIdOk returns a tuple with the SwitchId field if it's non-nil, zero value otherwise
+GetNetworkDeviceInterfaceNameOk returns a tuple with the NetworkDeviceInterfaceName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSwitchId
+### SetNetworkDeviceInterfaceName
 
-`func (o *UpdateVMPoolHostInterface) SetSwitchId(v float32)`
+`func (o *UpdateVMPoolHostInterface) SetNetworkDeviceInterfaceName(v float32)`
 
-SetSwitchId sets SwitchId field to given value.
+SetNetworkDeviceInterfaceName sets NetworkDeviceInterfaceName field to given value.
 
-### HasSwitchId
+### HasNetworkDeviceInterfaceName
 
-`func (o *UpdateVMPoolHostInterface) HasSwitchId() bool`
+`func (o *UpdateVMPoolHostInterface) HasNetworkDeviceInterfaceName() bool`
 
-HasSwitchId returns a boolean if a field has been set.
-
-### GetSwitchInterfaceName
-
-`func (o *UpdateVMPoolHostInterface) GetSwitchInterfaceName() float32`
-
-GetSwitchInterfaceName returns the SwitchInterfaceName field if non-nil, zero value otherwise.
-
-### GetSwitchInterfaceNameOk
-
-`func (o *UpdateVMPoolHostInterface) GetSwitchInterfaceNameOk() (*float32, bool)`
-
-GetSwitchInterfaceNameOk returns a tuple with the SwitchInterfaceName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSwitchInterfaceName
-
-`func (o *UpdateVMPoolHostInterface) SetSwitchInterfaceName(v float32)`
-
-SetSwitchInterfaceName sets SwitchInterfaceName field to given value.
-
-### HasSwitchInterfaceName
-
-`func (o *UpdateVMPoolHostInterface) HasSwitchInterfaceName() bool`
-
-HasSwitchInterfaceName returns a boolean if a field has been set.
+HasNetworkDeviceInterfaceName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -3273,6 +3273,24 @@ paths:
             type: string
           type: array
         style: form
+      - description: |-
+          Filter by isPublic query param.
+                    <p>
+                       <b>Format: </b> filter.isPublic={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.isPublic=$not:$like:John Doe&filter.isPublic=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.isPublic
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
           \ just provide query param multiple types. The order in url defines an order\
           \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
@@ -3522,6 +3540,54 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Publish draft extension
+      tags:
+      - Extension
+  /api/v2/extensions/{extensionId}/actions/make-public:
+    post:
+      description: Makes the extension public.
+      operationId: makePublicExtension
+      parameters:
+      - explode: false
+        in: path
+        name: extensionId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: The extension was made public successfully
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Extension not found
+        "409":
+          description: The extension state does not allow this operation.
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Makes extension public
       tags:
       - Extension
   /api/v2/extensions/{extensionId}/actions/archive:
@@ -20617,7 +20683,7 @@ paths:
         description: reinstall OS options
         required: true
       responses:
-        "200":
+        "202":
           description: flag was changed successfully
         "401":
           description: Unauthorized
@@ -21392,6 +21458,57 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Initialize server registration
+      tags:
+      - Server
+  /api/v2/servers/actions/register-production:
+    post:
+      description: Collects the production server information and registers it in
+        the system without modifying the server
+      operationId: registerProductionServer
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterServer'
+        description: The production server registration information
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterServerResponse'
+          description: Production server registration initiated
+          headers:
+            Location:
+              description: New Server link
+              explode: false
+              schema:
+                type: string
+              style: simple
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "409":
+          description: Conflict
+        "422":
+          description: Unprocessable Entity
+        "500":
+          description: Internal Server Error
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Initialize a production (live) server
       tags:
       - Server
   /api/v2/servers/{serverId}/actions/re-register:
@@ -34659,6 +34776,7 @@ components:
           - 542
           - 539
           - 540
+          - 545
           - 446
           - 447
           - 448
@@ -34827,6 +34945,8 @@ components:
           - 381
           - 307
           - 525
+          - 138
+          - 546
           - 497
           - 306
           - 444
@@ -35843,50 +35963,10 @@ components:
       - options
       - taskType
       type: object
-    ExtensionActions:
+    InfrastructureExtensionActions:
       example:
-        preDeploy:
-        - taskType: ExtensionTaskAnsible
-          options:
-            executionTimeout: 0
-            executionTimeoutTick: 0
-            asset: asset
-            version: version
-            playbook: playbook
-          label: label
-        - taskType: ExtensionTaskAnsible
-          options:
-            executionTimeout: 0
-            executionTimeoutTick: 0
-            asset: asset
-            version: version
-            playbook: playbook
-          label: label
-        - taskType: ExtensionTaskAnsible
-          options:
-            executionTimeout: 0
-            executionTimeoutTick: 0
-            asset: asset
-            version: version
-            playbook: playbook
-          label: label
-        - taskType: ExtensionTaskAnsible
-          options:
-            executionTimeout: 0
-            executionTimeoutTick: 0
-            asset: asset
-            version: version
-            playbook: playbook
-          label: label
-        - taskType: ExtensionTaskAnsible
-          options:
-            executionTimeout: 0
-            executionTimeoutTick: 0
-            asset: asset
-            version: version
-            playbook: playbook
-          label: label
-        postDeploy:
+        stage: preDeploy
+        tasks:
         - taskType: ExtensionTaskAnsible
           options:
             executionTimeout: 0
@@ -35928,18 +36008,81 @@ components:
             playbook: playbook
           label: label
       properties:
-        preDeploy:
-          description: Pre-deploy tasks.
+        stage:
+          description: Stage of the action.
+          enum:
+          - preDeploy
+          - postDeploy
+          type: string
+        tasks:
+          description: Tasks.
           items:
             $ref: '#/components/schemas/ExtensionTask'
           maxItems: 12
           type: array
-        postDeploy:
-          description: Post-deploy tasks.
+      required:
+      - stage
+      type: object
+    AssetExtensionActions:
+      example:
+        stage: serverRegistered
+        tasks:
+        - taskType: ExtensionTaskAnsible
+          options:
+            executionTimeout: 0
+            executionTimeoutTick: 0
+            asset: asset
+            version: version
+            playbook: playbook
+          label: label
+        - taskType: ExtensionTaskAnsible
+          options:
+            executionTimeout: 0
+            executionTimeoutTick: 0
+            asset: asset
+            version: version
+            playbook: playbook
+          label: label
+        - taskType: ExtensionTaskAnsible
+          options:
+            executionTimeout: 0
+            executionTimeoutTick: 0
+            asset: asset
+            version: version
+            playbook: playbook
+          label: label
+        - taskType: ExtensionTaskAnsible
+          options:
+            executionTimeout: 0
+            executionTimeoutTick: 0
+            asset: asset
+            version: version
+            playbook: playbook
+          label: label
+        - taskType: ExtensionTaskAnsible
+          options:
+            executionTimeout: 0
+            executionTimeoutTick: 0
+            asset: asset
+            version: version
+            playbook: playbook
+          label: label
+      properties:
+        stage:
+          description: Stage of the action.
+          enum:
+          - serverRegistered
+          - serverDecommissioned
+          - switchRegistered
+          type: string
+        tasks:
+          description: Tasks.
           items:
             $ref: '#/components/schemas/ExtensionTask'
           maxItems: 12
           type: array
+      required:
+      - stage
       type: object
     ExtensionDefinition:
       example:
@@ -35965,7 +36108,8 @@ components:
           outputType: outputType
           label: label
         onCreate:
-          preDeploy:
+        - stage: preDeploy
+          tasks:
           - taskType: ExtensionTaskAnsible
             options:
               executionTimeout: 0
@@ -36006,7 +36150,134 @@ components:
               version: version
               playbook: playbook
             label: label
-          postDeploy:
+        - stage: preDeploy
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+        - stage: preDeploy
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+        - stage: preDeploy
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+        - stage: preDeploy
+          tasks:
           - taskType: ExtensionTaskAnsible
             options:
               executionTimeout: 0
@@ -36102,7 +36373,8 @@ components:
           - osTemplates
           - osTemplates
         onEdit:
-          preDeploy:
+        - stage: preDeploy
+          tasks:
           - taskType: ExtensionTaskAnsible
             options:
               executionTimeout: 0
@@ -36143,7 +36415,134 @@ components:
               version: version
               playbook: playbook
             label: label
-          postDeploy:
+        - stage: preDeploy
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+        - stage: preDeploy
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+        - stage: preDeploy
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+        - stage: preDeploy
+          tasks:
           - taskType: ExtensionTaskAnsible
             options:
               executionTimeout: 0
@@ -36185,7 +36584,8 @@ components:
               playbook: playbook
             label: label
         onDelete:
-          preDeploy:
+        - stage: preDeploy
+          tasks:
           - taskType: ExtensionTaskAnsible
             options:
               executionTimeout: 0
@@ -36226,7 +36626,134 @@ components:
               version: version
               playbook: playbook
             label: label
-          postDeploy:
+        - stage: preDeploy
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+        - stage: preDeploy
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+        - stage: preDeploy
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+        - stage: preDeploy
+          tasks:
           - taskType: ExtensionTaskAnsible
             options:
               executionTimeout: 0
@@ -36467,10 +36994,221 @@ components:
             label: label
           - sizeGb: 10
             label: label
+        onAssetChange:
+        - stage: serverRegistered
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+        - stage: serverRegistered
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+        - stage: serverRegistered
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+        - stage: serverRegistered
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+        - stage: serverRegistered
+          tasks:
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
+          - taskType: ExtensionTaskAnsible
+            options:
+              executionTimeout: 0
+              executionTimeoutTick: 0
+              asset: asset
+              version: version
+              playbook: playbook
+            label: label
         extensionType: extensionType
         name: name
         extensionVersion: extensionVersion
-        tasks:
+        actions:
         - taskType: ExtensionTaskAnsible
           options:
             executionTimeout: 0
@@ -36570,15 +37308,31 @@ components:
           maxItems: 12
           type: array
         onCreate:
-          $ref: '#/components/schemas/ExtensionActions'
+          items:
+            $ref: '#/components/schemas/InfrastructureExtensionActions'
+          maxItems: 12
+          type: array
         onEdit:
-          $ref: '#/components/schemas/ExtensionActions'
+          items:
+            $ref: '#/components/schemas/InfrastructureExtensionActions'
+          maxItems: 12
+          type: array
         onDelete:
-          $ref: '#/components/schemas/ExtensionActions'
-        tasks:
-          description: Tasks. Only for extensions of kind action
+          items:
+            $ref: '#/components/schemas/InfrastructureExtensionActions'
+          maxItems: 12
+          type: array
+        actions:
+          description: Actions. Only for extensions of kind action
           items:
             $ref: '#/components/schemas/ExtensionTask'
+          maxItems: 12
+          type: array
+        onAssetChange:
+          description: Tasks to be executed when an asset changes. Only for extensions
+            of kind workflow
+          items:
+            $ref: '#/components/schemas/AssetExtensionActions'
           maxItems: 12
           type: array
       required:
@@ -36696,6 +37450,7 @@ components:
         name: My App
         icon: icon
         description: My App Description
+        isPublic: true
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -36746,6 +37501,11 @@ components:
           - workflow
           example: application
           type: string
+        isPublic:
+          default: false
+          description: Is the extension public
+          example: true
+          type: boolean
         links:
           description: Reference links
           items:
@@ -36762,6 +37522,7 @@ components:
           name: My App
           icon: icon
           description: My App Description
+          isPublic: true
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -36775,6 +37536,7 @@ components:
           name: My App
           icon: icon
           description: My App Description
+          isPublic: true
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -36812,6 +37574,7 @@ components:
         kind: application
         name: My App
         description: My App Description
+        isPublic: true
         definition:
           outputs:
           - template: template
@@ -36835,7 +37598,8 @@ components:
             outputType: outputType
             label: label
           onCreate:
-            preDeploy:
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -36876,7 +37640,134 @@ components:
                 version: version
                 playbook: playbook
               label: label
-            postDeploy:
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -36972,7 +37863,8 @@ components:
             - osTemplates
             - osTemplates
           onEdit:
-            preDeploy:
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -37013,7 +37905,134 @@ components:
                 version: version
                 playbook: playbook
               label: label
-            postDeploy:
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -37055,7 +38074,8 @@ components:
                 playbook: playbook
               label: label
           onDelete:
-            preDeploy:
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -37096,7 +38116,134 @@ components:
                 version: version
                 playbook: playbook
               label: label
-            postDeploy:
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -37337,10 +38484,221 @@ components:
               label: label
             - sizeGb: 10
               label: label
+          onAssetChange:
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
           extensionType: extensionType
           name: name
           extensionVersion: extensionVersion
-          tasks:
+          actions:
           - taskType: ExtensionTaskAnsible
             options:
               executionTimeout: 0
@@ -37436,6 +38794,11 @@ components:
           - workflow
           example: application
           type: string
+        isPublic:
+          default: false
+          description: Is the extension public
+          example: true
+          type: boolean
         definition:
           $ref: '#/components/schemas/ExtensionDefinition'
         links:
@@ -37480,7 +38843,8 @@ components:
             outputType: outputType
             label: label
           onCreate:
-            preDeploy:
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -37521,7 +38885,134 @@ components:
                 version: version
                 playbook: playbook
               label: label
-            postDeploy:
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -37617,7 +39108,8 @@ components:
             - osTemplates
             - osTemplates
           onEdit:
-            preDeploy:
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -37658,7 +39150,134 @@ components:
                 version: version
                 playbook: playbook
               label: label
-            postDeploy:
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -37700,7 +39319,8 @@ components:
                 playbook: playbook
               label: label
           onDelete:
-            preDeploy:
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -37741,7 +39361,134 @@ components:
                 version: version
                 playbook: playbook
               label: label
-            postDeploy:
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -37982,10 +39729,221 @@ components:
               label: label
             - sizeGb: 10
               label: label
+          onAssetChange:
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
           extensionType: extensionType
           name: name
           extensionVersion: extensionVersion
-          tasks:
+          actions:
           - taskType: ExtensionTaskAnsible
             options:
               executionTimeout: 0
@@ -38087,7 +40045,8 @@ components:
             outputType: outputType
             label: label
           onCreate:
-            preDeploy:
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -38128,7 +40087,134 @@ components:
                 version: version
                 playbook: playbook
               label: label
-            postDeploy:
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -38224,7 +40310,8 @@ components:
             - osTemplates
             - osTemplates
           onEdit:
-            preDeploy:
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -38265,7 +40352,134 @@ components:
                 version: version
                 playbook: playbook
               label: label
-            postDeploy:
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -38307,7 +40521,8 @@ components:
                 playbook: playbook
               label: label
           onDelete:
-            preDeploy:
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -38348,7 +40563,134 @@ components:
                 version: version
                 playbook: playbook
               label: label
-            postDeploy:
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: preDeploy
+            tasks:
             - taskType: ExtensionTaskAnsible
               options:
                 executionTimeout: 0
@@ -38589,10 +40931,221 @@ components:
               label: label
             - sizeGb: 10
               label: label
+          onAssetChange:
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+          - stage: serverRegistered
+            tasks:
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
+            - taskType: ExtensionTaskAnsible
+              options:
+                executionTimeout: 0
+                executionTimeoutTick: 0
+                asset: asset
+                version: version
+                playbook: playbook
+              label: label
           extensionType: extensionType
           name: name
           extensionVersion: extensionVersion
-          tasks:
+          actions:
           - taskType: ExtensionTaskAnsible
             options:
               executionTimeout: 0
@@ -46233,6 +48786,7 @@ components:
       - cisco_aci51
       - nexus9000
       - cumulus42
+      - arista_eos
       - dell_s4048
       - hp5800
       - hp5900
@@ -47583,7 +50137,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-05-23T12:59:43.38Z
+        createdTimestamp: 2025-05-27T13:42:08.347Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -47592,7 +50146,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-05-23T12:59:43.381Z
+        updatedTimestamp: 2025-05-27T13:42:08.348Z
         revision: "1"
       properties:
         siteId:
@@ -47609,12 +50163,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-23T12:59:43.38Z
+          example: 2025-05-27T13:42:08.347Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-23T12:59:43.381Z
+          example: 2025-05-27T13:42:08.348Z
           format: date-time
           type: string
         links:
@@ -47636,7 +50190,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-05-23T12:59:43.38Z
+        - createdTimestamp: 2025-05-27T13:42:08.347Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -47645,9 +50199,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-23T12:59:43.381Z
+          updatedTimestamp: 2025-05-27T13:42:08.348Z
           revision: "1"
-        - createdTimestamp: 2025-05-23T12:59:43.38Z
+        - createdTimestamp: 2025-05-27T13:42:08.347Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -47656,7 +50210,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-23T12:59:43.381Z
+          updatedTimestamp: 2025-05-27T13:42:08.348Z
           revision: "1"
         meta: ""
         links: ""
@@ -48295,7 +50849,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-05-23T12:59:43.396Z
+        createdTimestamp: 2025-05-27T13:42:08.404Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -48336,7 +50890,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-05-23T12:59:43.396Z
+        updatedTimestamp: 2025-05-27T13:42:08.404Z
         revision: "1"
         status: draft
       properties:
@@ -48364,12 +50918,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-23T12:59:43.396Z
+          example: 2025-05-27T13:42:08.404Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-23T12:59:43.396Z
+          example: 2025-05-27T13:42:08.404Z
           format: date-time
           type: string
         links:
@@ -48510,7 +51064,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-05-23T12:59:43.396Z
+          createdTimestamp: 2025-05-27T13:42:08.404Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -48551,7 +51105,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-23T12:59:43.396Z
+          updatedTimestamp: 2025-05-27T13:42:08.404Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -48661,7 +51215,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-05-23T12:59:43.396Z
+          createdTimestamp: 2025-05-27T13:42:08.404Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -48702,7 +51256,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-23T12:59:43.396Z
+          updatedTimestamp: 2025-05-27T13:42:08.404Z
           revision: "1"
           status: draft
         meta: ""
@@ -51455,10 +54009,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-05-23T12:59:43.391Z
+        createdTimestamp: 2025-05-27T13:42:08.377Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-05-23T12:59:43.391Z
+        updatedTimestamp: 2025-05-27T13:42:08.377Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -51532,12 +54086,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-23T12:59:43.391Z
+          example: 2025-05-27T13:42:08.377Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-23T12:59:43.391Z
+          example: 2025-05-27T13:42:08.377Z
           format: date-time
           type: string
         links:
@@ -62797,7 +65351,19 @@ components:
       - usedSpaceGB
       type: object
     VMPoolCredentials:
-      properties: {}
+      example:
+        privateKey: privateKey
+        certificate: certificate
+      properties:
+        certificate:
+          description: Certificate of the VM Pool
+          type: string
+        privateKey:
+          description: Private key of the VM Pool
+          type: string
+      required:
+      - certificate
+      - privateKey
       type: object
     VMPaginatedList:
       example:
@@ -63042,7 +65608,6 @@ components:
     VMPoolHostInterfaces:
       example:
         macAddress: macAddress
-        fabric: lan
         name: name
         hostId: 1
         links: "{}"
@@ -63062,18 +65627,10 @@ components:
         macAddress:
           description: MAC Address of the VM Pool Host Interface
           type: string
-        fabric:
-          description: Fabric of the VM Pool Host Interface
-          enum:
-          - lan
-          - wan
-          - san
-          type: string
         links:
           description: Links to other resources
           type: object
       required:
-      - fabric
       - hostId
       - id
       - links
@@ -63082,18 +65639,14 @@ components:
       type: object
     UpdateVMPoolHostInterface:
       example:
-        switchInterfaceName: 6.027456183070403
-        switchId: 0.8008281904610115
-        fabric: fabric
+        networkDeviceId: 0.8008281904610115
+        networkDeviceInterfaceName: 6.027456183070403
       properties:
-        fabric:
-          description: Fabric of the switch interface
-          type: string
-        switchId:
-          description: Id of the switch
+        networkDeviceId:
+          description: Id of the network device
           type: number
-        switchInterfaceName:
-          description: Name of the switch interface
+        networkDeviceInterfaceName:
+          description: Name of the network device interface
           type: number
       type: object
     VMType:

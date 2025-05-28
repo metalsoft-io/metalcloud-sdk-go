@@ -8,14 +8,13 @@ Name | Type | Description | Notes
 **HostId** | **float32** | VM Pool Host ID | 
 **Name** | **string** | Name of the VM Pool Host Interface | 
 **MacAddress** | **string** | MAC Address of the VM Pool Host Interface | 
-**Fabric** | **string** | Fabric of the VM Pool Host Interface | 
 **Links** | **map[string]interface{}** | Links to other resources | 
 
 ## Methods
 
 ### NewVMPoolHostInterfaces
 
-`func NewVMPoolHostInterfaces(id float32, hostId float32, name string, macAddress string, fabric string, links map[string]interface{}, ) *VMPoolHostInterfaces`
+`func NewVMPoolHostInterfaces(id float32, hostId float32, name string, macAddress string, links map[string]interface{}, ) *VMPoolHostInterfaces`
 
 NewVMPoolHostInterfaces instantiates a new VMPoolHostInterfaces object
 This constructor will assign default values to properties that have it defined,
@@ -108,26 +107,6 @@ and a boolean to check if the value has been set.
 `func (o *VMPoolHostInterfaces) SetMacAddress(v string)`
 
 SetMacAddress sets MacAddress field to given value.
-
-
-### GetFabric
-
-`func (o *VMPoolHostInterfaces) GetFabric() string`
-
-GetFabric returns the Fabric field if non-nil, zero value otherwise.
-
-### GetFabricOk
-
-`func (o *VMPoolHostInterfaces) GetFabricOk() (*string, bool)`
-
-GetFabricOk returns a tuple with the Fabric field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFabric
-
-`func (o *VMPoolHostInterfaces) SetFabric(v string)`
-
-SetFabric sets Fabric field to given value.
 
 
 ### GetLinks

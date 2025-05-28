@@ -698,7 +698,7 @@ Name | Type | Description  | Notes
 
 ## GetVMPoolCredentials
 
-> map[string]interface{} GetVMPoolCredentials(ctx, vmPoolId).Execute()
+> VMPoolCredentials GetVMPoolCredentials(ctx, vmPoolId).Execute()
 
 Get VM Pool credentials
 
@@ -726,7 +726,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VMPoolAPI.GetVMPoolCredentials``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetVMPoolCredentials`: map[string]interface{}
+	// response from `GetVMPoolCredentials`: VMPoolCredentials
 	fmt.Fprintf(os.Stdout, "Response from `VMPoolAPI.GetVMPoolCredentials`: %v\n", resp)
 }
 ```
@@ -750,7 +750,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**VMPoolCredentials**](VMPoolCredentials.md)
 
 ### Authorization
 

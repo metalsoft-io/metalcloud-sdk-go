@@ -24,6 +24,7 @@ const (
 	NETWORKDEVICEDRIVER_CISCO_ACI51 NetworkDeviceDriver = "cisco_aci51"
 	NETWORKDEVICEDRIVER_NEXUS9000 NetworkDeviceDriver = "nexus9000"
 	NETWORKDEVICEDRIVER_CUMULUS42 NetworkDeviceDriver = "cumulus42"
+	NETWORKDEVICEDRIVER_ARISTA_EOS NetworkDeviceDriver = "arista_eos"
 	NETWORKDEVICEDRIVER_DELL_S4048 NetworkDeviceDriver = "dell_s4048"
 	NETWORKDEVICEDRIVER_HP5800 NetworkDeviceDriver = "hp5800"
 	NETWORKDEVICEDRIVER_HP5900 NetworkDeviceDriver = "hp5900"
@@ -39,6 +40,7 @@ var AllowedNetworkDeviceDriverEnumValues = []NetworkDeviceDriver{
 	"cisco_aci51",
 	"nexus9000",
 	"cumulus42",
+	"arista_eos",
 	"dell_s4048",
 	"hp5800",
 	"hp5900",

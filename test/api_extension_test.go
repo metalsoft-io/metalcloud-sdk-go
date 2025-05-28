@@ -73,6 +73,19 @@ func Test_sdk_ExtensionAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ExtensionAPIService MakePublicExtension", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var extensionId float32
+
+		httpRes, err := apiClient.ExtensionAPI.MakePublicExtension(context.Background(), extensionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ExtensionAPIService PublishExtension", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

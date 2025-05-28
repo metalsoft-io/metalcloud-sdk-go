@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**GetServersStatistics**](ServerAPI.md#GetServersStatistics) | **Get** /api/v2/servers/statistics | Get Servers statistics
 [**IdentifyServer**](ServerAPI.md#IdentifyServer) | **Post** /api/v2/servers/{serverId}/actions/identify-server | identify the server chassis by blinking the LED
 [**ReRegisterServer**](ServerAPI.md#ReRegisterServer) | **Post** /api/v2/servers/{serverId}/actions/re-register | Re-register a server
+[**RegisterProductionServer**](ServerAPI.md#RegisterProductionServer) | **Post** /api/v2/servers/actions/register-production | Initialize a production (live) server
 [**RegisterServer**](ServerAPI.md#RegisterServer) | **Post** /api/v2/servers | Initialize server registration
 [**ResetServerToFactoryDefaults**](ServerAPI.md#ResetServerToFactoryDefaults) | **Post** /api/v2/servers/{serverId}/actions/factory-reset | Resets a server to factory defaults
 [**SetServerPowerState**](ServerAPI.md#SetServerPowerState) | **Post** /api/v2/servers/{serverId}/actions/set-power | Sets the power state of a server
@@ -954,6 +955,72 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RegisterProductionServer
+
+> RegisterServerResponse RegisterProductionServer(ctx).RegisterServer(registerServer).Execute()
+
+Initialize a production (live) server
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	registerServer := *openapiclient.NewRegisterServer(float32(123)) // RegisterServer | The production server registration information
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ServerAPI.RegisterProductionServer(context.Background()).RegisterServer(registerServer).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.RegisterProductionServer``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RegisterProductionServer`: RegisterServerResponse
+	fmt.Fprintf(os.Stdout, "Response from `ServerAPI.RegisterProductionServer`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRegisterProductionServerRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **registerServer** | [**RegisterServer**](RegisterServer.md) | The production server registration information | 
+
+### Return type
+
+[**RegisterServerResponse**](RegisterServerResponse.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

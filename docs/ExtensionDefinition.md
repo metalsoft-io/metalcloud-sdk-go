@@ -18,10 +18,11 @@ Name | Type | Description | Notes
 **Outputs** | [**[]ExtensionOutput**](ExtensionOutput.md) | List of outputs for the platform service. | 
 **Infrastructure** | Pointer to [**ExtensionInfrastructure**](ExtensionInfrastructure.md) |  | [optional] 
 **Assets** | [**[]ExtensionAsset**](ExtensionAsset.md) | List of assets for the platform service. | 
-**OnCreate** | Pointer to [**ExtensionActions**](ExtensionActions.md) |  | [optional] 
-**OnEdit** | Pointer to [**ExtensionActions**](ExtensionActions.md) |  | [optional] 
-**OnDelete** | Pointer to [**ExtensionActions**](ExtensionActions.md) |  | [optional] 
-**Tasks** | Pointer to [**[]ExtensionTask**](ExtensionTask.md) | Tasks. Only for extensions of kind action | [optional] 
+**OnCreate** | Pointer to [**[]InfrastructureExtensionActions**](InfrastructureExtensionActions.md) |  | [optional] 
+**OnEdit** | Pointer to [**[]InfrastructureExtensionActions**](InfrastructureExtensionActions.md) |  | [optional] 
+**OnDelete** | Pointer to [**[]InfrastructureExtensionActions**](InfrastructureExtensionActions.md) |  | [optional] 
+**Actions** | Pointer to [**[]ExtensionTask**](ExtensionTask.md) | Actions. Only for extensions of kind action | [optional] 
+**OnAssetChange** | Pointer to [**[]AssetExtensionActions**](AssetExtensionActions.md) | Tasks to be executed when an asset changes. Only for extensions of kind workflow | [optional] 
 
 ## Methods
 
@@ -334,20 +335,20 @@ SetAssets sets Assets field to given value.
 
 ### GetOnCreate
 
-`func (o *ExtensionDefinition) GetOnCreate() ExtensionActions`
+`func (o *ExtensionDefinition) GetOnCreate() []InfrastructureExtensionActions`
 
 GetOnCreate returns the OnCreate field if non-nil, zero value otherwise.
 
 ### GetOnCreateOk
 
-`func (o *ExtensionDefinition) GetOnCreateOk() (*ExtensionActions, bool)`
+`func (o *ExtensionDefinition) GetOnCreateOk() (*[]InfrastructureExtensionActions, bool)`
 
 GetOnCreateOk returns a tuple with the OnCreate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOnCreate
 
-`func (o *ExtensionDefinition) SetOnCreate(v ExtensionActions)`
+`func (o *ExtensionDefinition) SetOnCreate(v []InfrastructureExtensionActions)`
 
 SetOnCreate sets OnCreate field to given value.
 
@@ -359,20 +360,20 @@ HasOnCreate returns a boolean if a field has been set.
 
 ### GetOnEdit
 
-`func (o *ExtensionDefinition) GetOnEdit() ExtensionActions`
+`func (o *ExtensionDefinition) GetOnEdit() []InfrastructureExtensionActions`
 
 GetOnEdit returns the OnEdit field if non-nil, zero value otherwise.
 
 ### GetOnEditOk
 
-`func (o *ExtensionDefinition) GetOnEditOk() (*ExtensionActions, bool)`
+`func (o *ExtensionDefinition) GetOnEditOk() (*[]InfrastructureExtensionActions, bool)`
 
 GetOnEditOk returns a tuple with the OnEdit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOnEdit
 
-`func (o *ExtensionDefinition) SetOnEdit(v ExtensionActions)`
+`func (o *ExtensionDefinition) SetOnEdit(v []InfrastructureExtensionActions)`
 
 SetOnEdit sets OnEdit field to given value.
 
@@ -384,20 +385,20 @@ HasOnEdit returns a boolean if a field has been set.
 
 ### GetOnDelete
 
-`func (o *ExtensionDefinition) GetOnDelete() ExtensionActions`
+`func (o *ExtensionDefinition) GetOnDelete() []InfrastructureExtensionActions`
 
 GetOnDelete returns the OnDelete field if non-nil, zero value otherwise.
 
 ### GetOnDeleteOk
 
-`func (o *ExtensionDefinition) GetOnDeleteOk() (*ExtensionActions, bool)`
+`func (o *ExtensionDefinition) GetOnDeleteOk() (*[]InfrastructureExtensionActions, bool)`
 
 GetOnDeleteOk returns a tuple with the OnDelete field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOnDelete
 
-`func (o *ExtensionDefinition) SetOnDelete(v ExtensionActions)`
+`func (o *ExtensionDefinition) SetOnDelete(v []InfrastructureExtensionActions)`
 
 SetOnDelete sets OnDelete field to given value.
 
@@ -407,30 +408,55 @@ SetOnDelete sets OnDelete field to given value.
 
 HasOnDelete returns a boolean if a field has been set.
 
-### GetTasks
+### GetActions
 
-`func (o *ExtensionDefinition) GetTasks() []ExtensionTask`
+`func (o *ExtensionDefinition) GetActions() []ExtensionTask`
 
-GetTasks returns the Tasks field if non-nil, zero value otherwise.
+GetActions returns the Actions field if non-nil, zero value otherwise.
 
-### GetTasksOk
+### GetActionsOk
 
-`func (o *ExtensionDefinition) GetTasksOk() (*[]ExtensionTask, bool)`
+`func (o *ExtensionDefinition) GetActionsOk() (*[]ExtensionTask, bool)`
 
-GetTasksOk returns a tuple with the Tasks field if it's non-nil, zero value otherwise
+GetActionsOk returns a tuple with the Actions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTasks
+### SetActions
 
-`func (o *ExtensionDefinition) SetTasks(v []ExtensionTask)`
+`func (o *ExtensionDefinition) SetActions(v []ExtensionTask)`
 
-SetTasks sets Tasks field to given value.
+SetActions sets Actions field to given value.
 
-### HasTasks
+### HasActions
 
-`func (o *ExtensionDefinition) HasTasks() bool`
+`func (o *ExtensionDefinition) HasActions() bool`
 
-HasTasks returns a boolean if a field has been set.
+HasActions returns a boolean if a field has been set.
+
+### GetOnAssetChange
+
+`func (o *ExtensionDefinition) GetOnAssetChange() []AssetExtensionActions`
+
+GetOnAssetChange returns the OnAssetChange field if non-nil, zero value otherwise.
+
+### GetOnAssetChangeOk
+
+`func (o *ExtensionDefinition) GetOnAssetChangeOk() (*[]AssetExtensionActions, bool)`
+
+GetOnAssetChangeOk returns a tuple with the OnAssetChange field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnAssetChange
+
+`func (o *ExtensionDefinition) SetOnAssetChange(v []AssetExtensionActions)`
+
+SetOnAssetChange sets OnAssetChange field to given value.
+
+### HasOnAssetChange
+
+`func (o *ExtensionDefinition) HasOnAssetChange() bool`
+
+HasOnAssetChange returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

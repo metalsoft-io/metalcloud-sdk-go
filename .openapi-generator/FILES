@@ -74,6 +74,7 @@ docs/AgentInfo.md
 docs/AgentIpInfo.md
 docs/AllocationStrategyKind.md
 docs/ApplyProfilesToLogicalNetworkConfig.md
+docs/AssetExtensionActions.md
 docs/AuthenticationAPI.md
 docs/AuthenticationProvider.md
 docs/AuthenticationProviderUpdate.md
@@ -203,7 +204,6 @@ docs/EventAPI.md
 docs/EventPaginatedList.md
 docs/Extension.md
 docs/ExtensionAPI.md
-docs/ExtensionActions.md
 docs/ExtensionAsset.md
 docs/ExtensionDefinition.md
 docs/ExtensionDependency.md
@@ -278,6 +278,7 @@ docs/InfrastructureCreate.md
 docs/InfrastructureDeployOngoingStatusCount.md
 docs/InfrastructureDeployOptions.md
 docs/InfrastructureDeployShutdownOptions.md
+docs/InfrastructureExtensionActions.md
 docs/InfrastructureMeta.md
 docs/InfrastructureOSInstallationData.md
 docs/InfrastructurePaginatedList.md
@@ -623,6 +624,7 @@ docs/VMInstancePaginatedList.md
 docs/VMPaginatedList.md
 docs/VMPool.md
 docs/VMPoolAPI.md
+docs/VMPoolCredentials.md
 docs/VMPoolHostInterfaces.md
 docs/VMPoolHosts.md
 docs/VMPoolHostsPaginatedList.md
@@ -692,6 +694,7 @@ model_ai_generate_request.go
 model_ai_generate_response.go
 model_allocation_strategy_kind.go
 model_apply_profiles_to_logical_network_config.go
+model_asset_extension_actions.go
 model_authentication_provider.go
 model_authentication_provider_update.go
 model_authentication_providers.go
@@ -813,7 +816,6 @@ model_ethernet_fabric.go
 model_event.go
 model_event_paginated_list.go
 model_extension.go
-model_extension_actions.go
 model_extension_asset.go
 model_extension_definition.go
 model_extension_dependency.go
@@ -880,6 +882,7 @@ model_infrastructure_create.go
 model_infrastructure_deploy_ongoing_status_count.go
 model_infrastructure_deploy_options.go
 model_infrastructure_deploy_shutdown_options.go
+model_infrastructure_extension_actions.go
 model_infrastructure_meta.go
 model_infrastructure_os_installation_data.go
 model_infrastructure_paginated_list.go
@@ -1217,6 +1220,7 @@ model_vm_instance_meta.go
 model_vm_instance_paginated_list.go
 model_vm_paginated_list.go
 model_vm_pool.go
+model_vm_pool_credentials.go
 model_vm_pool_host_interfaces.go
 model_vm_pool_hosts.go
 model_vm_pool_hosts_paginated_list.go

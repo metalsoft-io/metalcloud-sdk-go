@@ -29,8 +29,6 @@ type VMPoolHostInterfaces struct {
 	Name string `json:"name"`
 	// MAC Address of the VM Pool Host Interface
 	MacAddress string `json:"macAddress"`
-	// Fabric of the VM Pool Host Interface
-	Fabric string `json:"fabric"`
 	// Links to other resources
 	Links map[string]interface{} `json:"links"`
 	AdditionalProperties map[string]interface{}
@@ -42,13 +40,12 @@ type _VMPoolHostInterfaces VMPoolHostInterfaces
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolHostInterfaces(id float32, hostId float32, name string, macAddress string, fabric string, links map[string]interface{}) *VMPoolHostInterfaces {
+func NewVMPoolHostInterfaces(id float32, hostId float32, name string, macAddress string, links map[string]interface{}) *VMPoolHostInterfaces {
 	this := VMPoolHostInterfaces{}
 	this.Id = id
 	this.HostId = hostId
 	this.Name = name
 	this.MacAddress = macAddress
-	this.Fabric = fabric
 	this.Links = links
 	return &this
 }
@@ -157,30 +154,6 @@ func (o *VMPoolHostInterfaces) SetMacAddress(v string) {
 	o.MacAddress = v
 }
 
-// GetFabric returns the Fabric field value
-func (o *VMPoolHostInterfaces) GetFabric() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Fabric
-}
-
-// GetFabricOk returns a tuple with the Fabric field value
-// and a boolean to check if the value has been set.
-func (o *VMPoolHostInterfaces) GetFabricOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Fabric, true
-}
-
-// SetFabric sets field value
-func (o *VMPoolHostInterfaces) SetFabric(v string) {
-	o.Fabric = v
-}
-
 // GetLinks returns the Links field value
 func (o *VMPoolHostInterfaces) GetLinks() map[string]interface{} {
 	if o == nil {
@@ -219,7 +192,6 @@ func (o VMPoolHostInterfaces) ToMap() (map[string]interface{}, error) {
 	toSerialize["hostId"] = o.HostId
 	toSerialize["name"] = o.Name
 	toSerialize["macAddress"] = o.MacAddress
-	toSerialize["fabric"] = o.Fabric
 	toSerialize["links"] = o.Links
 
 	for key, value := range o.AdditionalProperties {
@@ -238,7 +210,6 @@ func (o *VMPoolHostInterfaces) UnmarshalJSON(data []byte) (err error) {
 		"hostId",
 		"name",
 		"macAddress",
-		"fabric",
 		"links",
 	}
 
@@ -273,7 +244,6 @@ func (o *VMPoolHostInterfaces) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "hostId")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "macAddress")
-		delete(additionalProperties, "fabric")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

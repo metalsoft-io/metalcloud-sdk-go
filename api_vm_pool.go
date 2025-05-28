@@ -1219,7 +1219,7 @@ type VMPoolAPIGetVMPoolCredentialsRequest struct {
 	vmPoolId float32
 }
 
-func (r VMPoolAPIGetVMPoolCredentialsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r VMPoolAPIGetVMPoolCredentialsRequest) Execute() (*VMPoolCredentials, *http.Response, error) {
 	return r.ApiService.GetVMPoolCredentialsExecute(r)
 }
 
@@ -1241,13 +1241,13 @@ func (a *VMPoolAPIService) GetVMPoolCredentials(ctx context.Context, vmPoolId fl
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *VMPoolAPIService) GetVMPoolCredentialsExecute(r VMPoolAPIGetVMPoolCredentialsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return VMPoolCredentials
+func (a *VMPoolAPIService) GetVMPoolCredentialsExecute(r VMPoolAPIGetVMPoolCredentialsRequest) (*VMPoolCredentials, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *VMPoolCredentials
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VMPoolAPIService.GetVMPoolCredentials")

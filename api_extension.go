@@ -349,6 +349,7 @@ type ExtensionAPIGetExtensionsRequest struct {
 	filterStatus *[]string
 	filterName *[]string
 	filterLabel *[]string
+	filterIsPublic *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -381,6 +382,12 @@ func (r ExtensionAPIGetExtensionsRequest) FilterName(filterName []string) Extens
 // Filter by label query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.label&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.label&#x3D;$not:$like:John Doe&amp;filter.label&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt;&lt;/ul&gt;
 func (r ExtensionAPIGetExtensionsRequest) FilterLabel(filterLabel []string) ExtensionAPIGetExtensionsRequest {
 	r.filterLabel = &filterLabel
+	return r
+}
+
+// Filter by isPublic query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.isPublic&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.isPublic&#x3D;$not:$like:John Doe&amp;filter.isPublic&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ExtensionAPIGetExtensionsRequest) FilterIsPublic(filterIsPublic []string) ExtensionAPIGetExtensionsRequest {
+	r.filterIsPublic = &filterIsPublic
 	return r
 }
 
@@ -481,6 +488,17 @@ func (a *ExtensionAPIService) GetExtensionsExecute(r ExtensionAPIGetExtensionsRe
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.label", t, "form", "multi")
 		}
 	}
+	if r.filterIsPublic != nil {
+		t := *r.filterIsPublic
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.isPublic", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.isPublic", t, "form", "multi")
+		}
+	}
 	if r.sortBy != nil {
 		t := *r.sortBy
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -558,6 +576,108 @@ func (a *ExtensionAPIService) GetExtensionsExecute(r ExtensionAPIGetExtensionsRe
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ExtensionAPIMakePublicExtensionRequest struct {
+	ctx context.Context
+	ApiService *ExtensionAPIService
+	extensionId float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r ExtensionAPIMakePublicExtensionRequest) IfMatch(ifMatch string) ExtensionAPIMakePublicExtensionRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ExtensionAPIMakePublicExtensionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.MakePublicExtensionExecute(r)
+}
+
+/*
+MakePublicExtension Makes extension public
+
+Makes the extension public.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param extensionId
+ @return ExtensionAPIMakePublicExtensionRequest
+*/
+func (a *ExtensionAPIService) MakePublicExtension(ctx context.Context, extensionId float32) ExtensionAPIMakePublicExtensionRequest {
+	return ExtensionAPIMakePublicExtensionRequest{
+		ApiService: a,
+		ctx: ctx,
+		extensionId: extensionId,
+	}
+}
+
+// Execute executes the request
+func (a *ExtensionAPIService) MakePublicExtensionExecute(r ExtensionAPIMakePublicExtensionRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExtensionAPIService.MakePublicExtension")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/extensions/{extensionId}/actions/make-public"
+	localVarPath = strings.Replace(localVarPath, "{"+"extensionId"+"}", url.PathEscape(parameterValueToString(r.extensionId, "extensionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type ExtensionAPIPublishExtensionRequest struct {

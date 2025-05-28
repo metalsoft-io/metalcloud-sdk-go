@@ -20,12 +20,10 @@ var _ MappedNullable = &UpdateVMPoolHostInterface{}
 
 // UpdateVMPoolHostInterface struct for UpdateVMPoolHostInterface
 type UpdateVMPoolHostInterface struct {
-	// Fabric of the switch interface
-	Fabric *string `json:"fabric,omitempty"`
-	// Id of the switch
-	SwitchId *float32 `json:"switchId,omitempty"`
-	// Name of the switch interface
-	SwitchInterfaceName *float32 `json:"switchInterfaceName,omitempty"`
+	// Id of the network device
+	NetworkDeviceId *float32 `json:"networkDeviceId,omitempty"`
+	// Name of the network device interface
+	NetworkDeviceInterfaceName *float32 `json:"networkDeviceInterfaceName,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,100 +46,68 @@ func NewUpdateVMPoolHostInterfaceWithDefaults() *UpdateVMPoolHostInterface {
 	return &this
 }
 
-// GetFabric returns the Fabric field value if set, zero value otherwise.
-func (o *UpdateVMPoolHostInterface) GetFabric() string {
-	if o == nil || IsNil(o.Fabric) {
-		var ret string
-		return ret
-	}
-	return *o.Fabric
-}
-
-// GetFabricOk returns a tuple with the Fabric field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVMPoolHostInterface) GetFabricOk() (*string, bool) {
-	if o == nil || IsNil(o.Fabric) {
-		return nil, false
-	}
-	return o.Fabric, true
-}
-
-// HasFabric returns a boolean if a field has been set.
-func (o *UpdateVMPoolHostInterface) HasFabric() bool {
-	if o != nil && !IsNil(o.Fabric) {
-		return true
-	}
-
-	return false
-}
-
-// SetFabric gets a reference to the given string and assigns it to the Fabric field.
-func (o *UpdateVMPoolHostInterface) SetFabric(v string) {
-	o.Fabric = &v
-}
-
-// GetSwitchId returns the SwitchId field value if set, zero value otherwise.
-func (o *UpdateVMPoolHostInterface) GetSwitchId() float32 {
-	if o == nil || IsNil(o.SwitchId) {
+// GetNetworkDeviceId returns the NetworkDeviceId field value if set, zero value otherwise.
+func (o *UpdateVMPoolHostInterface) GetNetworkDeviceId() float32 {
+	if o == nil || IsNil(o.NetworkDeviceId) {
 		var ret float32
 		return ret
 	}
-	return *o.SwitchId
+	return *o.NetworkDeviceId
 }
 
-// GetSwitchIdOk returns a tuple with the SwitchId field value if set, nil otherwise
+// GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMPoolHostInterface) GetSwitchIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.SwitchId) {
+func (o *UpdateVMPoolHostInterface) GetNetworkDeviceIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.NetworkDeviceId) {
 		return nil, false
 	}
-	return o.SwitchId, true
+	return o.NetworkDeviceId, true
 }
 
-// HasSwitchId returns a boolean if a field has been set.
-func (o *UpdateVMPoolHostInterface) HasSwitchId() bool {
-	if o != nil && !IsNil(o.SwitchId) {
+// HasNetworkDeviceId returns a boolean if a field has been set.
+func (o *UpdateVMPoolHostInterface) HasNetworkDeviceId() bool {
+	if o != nil && !IsNil(o.NetworkDeviceId) {
 		return true
 	}
 
 	return false
 }
 
-// SetSwitchId gets a reference to the given float32 and assigns it to the SwitchId field.
-func (o *UpdateVMPoolHostInterface) SetSwitchId(v float32) {
-	o.SwitchId = &v
+// SetNetworkDeviceId gets a reference to the given float32 and assigns it to the NetworkDeviceId field.
+func (o *UpdateVMPoolHostInterface) SetNetworkDeviceId(v float32) {
+	o.NetworkDeviceId = &v
 }
 
-// GetSwitchInterfaceName returns the SwitchInterfaceName field value if set, zero value otherwise.
-func (o *UpdateVMPoolHostInterface) GetSwitchInterfaceName() float32 {
-	if o == nil || IsNil(o.SwitchInterfaceName) {
+// GetNetworkDeviceInterfaceName returns the NetworkDeviceInterfaceName field value if set, zero value otherwise.
+func (o *UpdateVMPoolHostInterface) GetNetworkDeviceInterfaceName() float32 {
+	if o == nil || IsNil(o.NetworkDeviceInterfaceName) {
 		var ret float32
 		return ret
 	}
-	return *o.SwitchInterfaceName
+	return *o.NetworkDeviceInterfaceName
 }
 
-// GetSwitchInterfaceNameOk returns a tuple with the SwitchInterfaceName field value if set, nil otherwise
+// GetNetworkDeviceInterfaceNameOk returns a tuple with the NetworkDeviceInterfaceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMPoolHostInterface) GetSwitchInterfaceNameOk() (*float32, bool) {
-	if o == nil || IsNil(o.SwitchInterfaceName) {
+func (o *UpdateVMPoolHostInterface) GetNetworkDeviceInterfaceNameOk() (*float32, bool) {
+	if o == nil || IsNil(o.NetworkDeviceInterfaceName) {
 		return nil, false
 	}
-	return o.SwitchInterfaceName, true
+	return o.NetworkDeviceInterfaceName, true
 }
 
-// HasSwitchInterfaceName returns a boolean if a field has been set.
-func (o *UpdateVMPoolHostInterface) HasSwitchInterfaceName() bool {
-	if o != nil && !IsNil(o.SwitchInterfaceName) {
+// HasNetworkDeviceInterfaceName returns a boolean if a field has been set.
+func (o *UpdateVMPoolHostInterface) HasNetworkDeviceInterfaceName() bool {
+	if o != nil && !IsNil(o.NetworkDeviceInterfaceName) {
 		return true
 	}
 
 	return false
 }
 
-// SetSwitchInterfaceName gets a reference to the given float32 and assigns it to the SwitchInterfaceName field.
-func (o *UpdateVMPoolHostInterface) SetSwitchInterfaceName(v float32) {
-	o.SwitchInterfaceName = &v
+// SetNetworkDeviceInterfaceName gets a reference to the given float32 and assigns it to the NetworkDeviceInterfaceName field.
+func (o *UpdateVMPoolHostInterface) SetNetworkDeviceInterfaceName(v float32) {
+	o.NetworkDeviceInterfaceName = &v
 }
 
 func (o UpdateVMPoolHostInterface) MarshalJSON() ([]byte, error) {
@@ -154,14 +120,11 @@ func (o UpdateVMPoolHostInterface) MarshalJSON() ([]byte, error) {
 
 func (o UpdateVMPoolHostInterface) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Fabric) {
-		toSerialize["fabric"] = o.Fabric
+	if !IsNil(o.NetworkDeviceId) {
+		toSerialize["networkDeviceId"] = o.NetworkDeviceId
 	}
-	if !IsNil(o.SwitchId) {
-		toSerialize["switchId"] = o.SwitchId
-	}
-	if !IsNil(o.SwitchInterfaceName) {
-		toSerialize["switchInterfaceName"] = o.SwitchInterfaceName
+	if !IsNil(o.NetworkDeviceInterfaceName) {
+		toSerialize["networkDeviceInterfaceName"] = o.NetworkDeviceInterfaceName
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -185,9 +148,8 @@ func (o *UpdateVMPoolHostInterface) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "fabric")
-		delete(additionalProperties, "switchId")
-		delete(additionalProperties, "switchInterfaceName")
+		delete(additionalProperties, "networkDeviceId")
+		delete(additionalProperties, "networkDeviceInterfaceName")
 		o.AdditionalProperties = additionalProperties
 	}
 

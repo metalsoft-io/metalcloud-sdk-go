@@ -47,11 +47,13 @@ type ExtensionDefinition struct {
 	Infrastructure *ExtensionInfrastructure `json:"infrastructure,omitempty"`
 	// List of assets for the platform service.
 	Assets []ExtensionAsset `json:"assets"`
-	OnCreate *ExtensionActions `json:"onCreate,omitempty"`
-	OnEdit *ExtensionActions `json:"onEdit,omitempty"`
-	OnDelete *ExtensionActions `json:"onDelete,omitempty"`
-	// Tasks. Only for extensions of kind action
-	Tasks []ExtensionTask `json:"tasks,omitempty"`
+	OnCreate []InfrastructureExtensionActions `json:"onCreate,omitempty"`
+	OnEdit []InfrastructureExtensionActions `json:"onEdit,omitempty"`
+	OnDelete []InfrastructureExtensionActions `json:"onDelete,omitempty"`
+	// Actions. Only for extensions of kind action
+	Actions []ExtensionTask `json:"actions,omitempty"`
+	// Tasks to be executed when an asset changes. Only for extensions of kind workflow
+	OnAssetChange []AssetExtensionActions `json:"onAssetChange,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -439,17 +441,17 @@ func (o *ExtensionDefinition) SetAssets(v []ExtensionAsset) {
 }
 
 // GetOnCreate returns the OnCreate field value if set, zero value otherwise.
-func (o *ExtensionDefinition) GetOnCreate() ExtensionActions {
+func (o *ExtensionDefinition) GetOnCreate() []InfrastructureExtensionActions {
 	if o == nil || IsNil(o.OnCreate) {
-		var ret ExtensionActions
+		var ret []InfrastructureExtensionActions
 		return ret
 	}
-	return *o.OnCreate
+	return o.OnCreate
 }
 
 // GetOnCreateOk returns a tuple with the OnCreate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionDefinition) GetOnCreateOk() (*ExtensionActions, bool) {
+func (o *ExtensionDefinition) GetOnCreateOk() ([]InfrastructureExtensionActions, bool) {
 	if o == nil || IsNil(o.OnCreate) {
 		return nil, false
 	}
@@ -465,23 +467,23 @@ func (o *ExtensionDefinition) HasOnCreate() bool {
 	return false
 }
 
-// SetOnCreate gets a reference to the given ExtensionActions and assigns it to the OnCreate field.
-func (o *ExtensionDefinition) SetOnCreate(v ExtensionActions) {
-	o.OnCreate = &v
+// SetOnCreate gets a reference to the given []InfrastructureExtensionActions and assigns it to the OnCreate field.
+func (o *ExtensionDefinition) SetOnCreate(v []InfrastructureExtensionActions) {
+	o.OnCreate = v
 }
 
 // GetOnEdit returns the OnEdit field value if set, zero value otherwise.
-func (o *ExtensionDefinition) GetOnEdit() ExtensionActions {
+func (o *ExtensionDefinition) GetOnEdit() []InfrastructureExtensionActions {
 	if o == nil || IsNil(o.OnEdit) {
-		var ret ExtensionActions
+		var ret []InfrastructureExtensionActions
 		return ret
 	}
-	return *o.OnEdit
+	return o.OnEdit
 }
 
 // GetOnEditOk returns a tuple with the OnEdit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionDefinition) GetOnEditOk() (*ExtensionActions, bool) {
+func (o *ExtensionDefinition) GetOnEditOk() ([]InfrastructureExtensionActions, bool) {
 	if o == nil || IsNil(o.OnEdit) {
 		return nil, false
 	}
@@ -497,23 +499,23 @@ func (o *ExtensionDefinition) HasOnEdit() bool {
 	return false
 }
 
-// SetOnEdit gets a reference to the given ExtensionActions and assigns it to the OnEdit field.
-func (o *ExtensionDefinition) SetOnEdit(v ExtensionActions) {
-	o.OnEdit = &v
+// SetOnEdit gets a reference to the given []InfrastructureExtensionActions and assigns it to the OnEdit field.
+func (o *ExtensionDefinition) SetOnEdit(v []InfrastructureExtensionActions) {
+	o.OnEdit = v
 }
 
 // GetOnDelete returns the OnDelete field value if set, zero value otherwise.
-func (o *ExtensionDefinition) GetOnDelete() ExtensionActions {
+func (o *ExtensionDefinition) GetOnDelete() []InfrastructureExtensionActions {
 	if o == nil || IsNil(o.OnDelete) {
-		var ret ExtensionActions
+		var ret []InfrastructureExtensionActions
 		return ret
 	}
-	return *o.OnDelete
+	return o.OnDelete
 }
 
 // GetOnDeleteOk returns a tuple with the OnDelete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionDefinition) GetOnDeleteOk() (*ExtensionActions, bool) {
+func (o *ExtensionDefinition) GetOnDeleteOk() ([]InfrastructureExtensionActions, bool) {
 	if o == nil || IsNil(o.OnDelete) {
 		return nil, false
 	}
@@ -529,41 +531,73 @@ func (o *ExtensionDefinition) HasOnDelete() bool {
 	return false
 }
 
-// SetOnDelete gets a reference to the given ExtensionActions and assigns it to the OnDelete field.
-func (o *ExtensionDefinition) SetOnDelete(v ExtensionActions) {
-	o.OnDelete = &v
+// SetOnDelete gets a reference to the given []InfrastructureExtensionActions and assigns it to the OnDelete field.
+func (o *ExtensionDefinition) SetOnDelete(v []InfrastructureExtensionActions) {
+	o.OnDelete = v
 }
 
-// GetTasks returns the Tasks field value if set, zero value otherwise.
-func (o *ExtensionDefinition) GetTasks() []ExtensionTask {
-	if o == nil || IsNil(o.Tasks) {
+// GetActions returns the Actions field value if set, zero value otherwise.
+func (o *ExtensionDefinition) GetActions() []ExtensionTask {
+	if o == nil || IsNil(o.Actions) {
 		var ret []ExtensionTask
 		return ret
 	}
-	return o.Tasks
+	return o.Actions
 }
 
-// GetTasksOk returns a tuple with the Tasks field value if set, nil otherwise
+// GetActionsOk returns a tuple with the Actions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionDefinition) GetTasksOk() ([]ExtensionTask, bool) {
-	if o == nil || IsNil(o.Tasks) {
+func (o *ExtensionDefinition) GetActionsOk() ([]ExtensionTask, bool) {
+	if o == nil || IsNil(o.Actions) {
 		return nil, false
 	}
-	return o.Tasks, true
+	return o.Actions, true
 }
 
-// HasTasks returns a boolean if a field has been set.
-func (o *ExtensionDefinition) HasTasks() bool {
-	if o != nil && !IsNil(o.Tasks) {
+// HasActions returns a boolean if a field has been set.
+func (o *ExtensionDefinition) HasActions() bool {
+	if o != nil && !IsNil(o.Actions) {
 		return true
 	}
 
 	return false
 }
 
-// SetTasks gets a reference to the given []ExtensionTask and assigns it to the Tasks field.
-func (o *ExtensionDefinition) SetTasks(v []ExtensionTask) {
-	o.Tasks = v
+// SetActions gets a reference to the given []ExtensionTask and assigns it to the Actions field.
+func (o *ExtensionDefinition) SetActions(v []ExtensionTask) {
+	o.Actions = v
+}
+
+// GetOnAssetChange returns the OnAssetChange field value if set, zero value otherwise.
+func (o *ExtensionDefinition) GetOnAssetChange() []AssetExtensionActions {
+	if o == nil || IsNil(o.OnAssetChange) {
+		var ret []AssetExtensionActions
+		return ret
+	}
+	return o.OnAssetChange
+}
+
+// GetOnAssetChangeOk returns a tuple with the OnAssetChange field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionDefinition) GetOnAssetChangeOk() ([]AssetExtensionActions, bool) {
+	if o == nil || IsNil(o.OnAssetChange) {
+		return nil, false
+	}
+	return o.OnAssetChange, true
+}
+
+// HasOnAssetChange returns a boolean if a field has been set.
+func (o *ExtensionDefinition) HasOnAssetChange() bool {
+	if o != nil && !IsNil(o.OnAssetChange) {
+		return true
+	}
+
+	return false
+}
+
+// SetOnAssetChange gets a reference to the given []AssetExtensionActions and assigns it to the OnAssetChange field.
+func (o *ExtensionDefinition) SetOnAssetChange(v []AssetExtensionActions) {
+	o.OnAssetChange = v
 }
 
 func (o ExtensionDefinition) MarshalJSON() ([]byte, error) {
@@ -603,8 +637,11 @@ func (o ExtensionDefinition) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OnDelete) {
 		toSerialize["onDelete"] = o.OnDelete
 	}
-	if !IsNil(o.Tasks) {
-		toSerialize["tasks"] = o.Tasks
+	if !IsNil(o.Actions) {
+		toSerialize["actions"] = o.Actions
+	}
+	if !IsNil(o.OnAssetChange) {
+		toSerialize["onAssetChange"] = o.OnAssetChange
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -677,7 +714,8 @@ func (o *ExtensionDefinition) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "onCreate")
 		delete(additionalProperties, "onEdit")
 		delete(additionalProperties, "onDelete")
-		delete(additionalProperties, "tasks")
+		delete(additionalProperties, "actions")
+		delete(additionalProperties, "onAssetChange")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -138,6 +138,7 @@ Class | Method | HTTP request | Description
 *ExtensionAPI* | [**CreateExtension**](docs/ExtensionAPI.md#createextension) | **Post** /api/v2/extensions | Create extension
 *ExtensionAPI* | [**GetExtension**](docs/ExtensionAPI.md#getextension) | **Get** /api/v2/extensions/{extensionId} | Get details for an extension
 *ExtensionAPI* | [**GetExtensions**](docs/ExtensionAPI.md#getextensions) | **Get** /api/v2/extensions | Get a list of available extensions
+*ExtensionAPI* | [**MakePublicExtension**](docs/ExtensionAPI.md#makepublicextension) | **Post** /api/v2/extensions/{extensionId}/actions/make-public | Makes extension public
 *ExtensionAPI* | [**PublishExtension**](docs/ExtensionAPI.md#publishextension) | **Post** /api/v2/extensions/{extensionId}/actions/publish | Publish draft extension
 *ExtensionAPI* | [**UpdateExtension**](docs/ExtensionAPI.md#updateextension) | **Patch** /api/v2/extensions/{extensionId} | Update extension
 *ExtensionInstanceAPI* | [**CreateExtensionInstance**](docs/ExtensionInstanceAPI.md#createextensioninstance) | **Post** /api/v2/infrastructures/{infrastructureId}/extension-instances | Add extension instance to an infrastructure
@@ -350,6 +351,7 @@ Class | Method | HTTP request | Description
 *ServerAPI* | [**GetServersStatistics**](docs/ServerAPI.md#getserversstatistics) | **Get** /api/v2/servers/statistics | Get Servers statistics
 *ServerAPI* | [**IdentifyServer**](docs/ServerAPI.md#identifyserver) | **Post** /api/v2/servers/{serverId}/actions/identify-server | identify the server chassis by blinking the LED
 *ServerAPI* | [**ReRegisterServer**](docs/ServerAPI.md#reregisterserver) | **Post** /api/v2/servers/{serverId}/actions/re-register | Re-register a server
+*ServerAPI* | [**RegisterProductionServer**](docs/ServerAPI.md#registerproductionserver) | **Post** /api/v2/servers/actions/register-production | Initialize a production (live) server
 *ServerAPI* | [**RegisterServer**](docs/ServerAPI.md#registerserver) | **Post** /api/v2/servers | Initialize server registration
 *ServerAPI* | [**ResetServerToFactoryDefaults**](docs/ServerAPI.md#resetservertofactorydefaults) | **Post** /api/v2/servers/{serverId}/actions/factory-reset | Resets a server to factory defaults
 *ServerAPI* | [**SetServerPowerState**](docs/ServerAPI.md#setserverpowerstate) | **Post** /api/v2/servers/{serverId}/actions/set-power | Sets the power state of a server
@@ -591,6 +593,7 @@ Class | Method | HTTP request | Description
  - [AgentIpInfo](docs/AgentIpInfo.md)
  - [AllocationStrategyKind](docs/AllocationStrategyKind.md)
  - [ApplyProfilesToLogicalNetworkConfig](docs/ApplyProfilesToLogicalNetworkConfig.md)
+ - [AssetExtensionActions](docs/AssetExtensionActions.md)
  - [AuthenticationProvider](docs/AuthenticationProvider.md)
  - [AuthenticationProviderUpdate](docs/AuthenticationProviderUpdate.md)
  - [AuthenticationProviders](docs/AuthenticationProviders.md)
@@ -712,7 +715,6 @@ Class | Method | HTTP request | Description
  - [Event](docs/Event.md)
  - [EventPaginatedList](docs/EventPaginatedList.md)
  - [Extension](docs/Extension.md)
- - [ExtensionActions](docs/ExtensionActions.md)
  - [ExtensionAsset](docs/ExtensionAsset.md)
  - [ExtensionDefinition](docs/ExtensionDefinition.md)
  - [ExtensionDependency](docs/ExtensionDependency.md)
@@ -779,6 +781,7 @@ Class | Method | HTTP request | Description
  - [InfrastructureDeployOngoingStatusCount](docs/InfrastructureDeployOngoingStatusCount.md)
  - [InfrastructureDeployOptions](docs/InfrastructureDeployOptions.md)
  - [InfrastructureDeployShutdownOptions](docs/InfrastructureDeployShutdownOptions.md)
+ - [InfrastructureExtensionActions](docs/InfrastructureExtensionActions.md)
  - [InfrastructureMeta](docs/InfrastructureMeta.md)
  - [InfrastructureOSInstallationData](docs/InfrastructureOSInstallationData.md)
  - [InfrastructurePaginatedList](docs/InfrastructurePaginatedList.md)
@@ -1095,6 +1098,7 @@ Class | Method | HTTP request | Description
  - [VMInstancePaginatedList](docs/VMInstancePaginatedList.md)
  - [VMPaginatedList](docs/VMPaginatedList.md)
  - [VMPool](docs/VMPool.md)
+ - [VMPoolCredentials](docs/VMPoolCredentials.md)
  - [VMPoolHostInterfaces](docs/VMPoolHostInterfaces.md)
  - [VMPoolHosts](docs/VMPoolHosts.md)
  - [VMPoolHostsPaginatedList](docs/VMPoolHostsPaginatedList.md)

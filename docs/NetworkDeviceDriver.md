@@ -9,6 +9,8 @@
 
 * `CUMULUS42` (value: `"cumulus42"`)
 
+* `ARISTA_EOS` (value: `"arista_eos"`)
+
 * `DELL_S4048` (value: `"dell_s4048"`)
 
 * `HP5800` (value: `"hp5800"`)

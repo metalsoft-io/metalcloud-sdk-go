@@ -37,6 +37,8 @@ type Extension struct {
 	Status string `json:"status"`
 	// Extension kind
 	Kind string `json:"kind"`
+	// Is the extension public
+	IsPublic *bool `json:"isPublic,omitempty"`
 	Definition ExtensionDefinition `json:"definition"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
@@ -57,6 +59,8 @@ func NewExtension(id float32, revision float32, name string, description string,
 	this.Description = description
 	this.Status = status
 	this.Kind = kind
+	var isPublic bool = false
+	this.IsPublic = &isPublic
 	this.Definition = definition
 	return &this
 }
@@ -66,6 +70,8 @@ func NewExtension(id float32, revision float32, name string, description string,
 // but it doesn't guarantee that properties required by API are set
 func NewExtensionWithDefaults() *Extension {
 	this := Extension{}
+	var isPublic bool = false
+	this.IsPublic = &isPublic
 	return &this
 }
 
@@ -277,6 +283,38 @@ func (o *Extension) SetKind(v string) {
 	o.Kind = v
 }
 
+// GetIsPublic returns the IsPublic field value if set, zero value otherwise.
+func (o *Extension) GetIsPublic() bool {
+	if o == nil || IsNil(o.IsPublic) {
+		var ret bool
+		return ret
+	}
+	return *o.IsPublic
+}
+
+// GetIsPublicOk returns a tuple with the IsPublic field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Extension) GetIsPublicOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsPublic) {
+		return nil, false
+	}
+	return o.IsPublic, true
+}
+
+// HasIsPublic returns a boolean if a field has been set.
+func (o *Extension) HasIsPublic() bool {
+	if o != nil && !IsNil(o.IsPublic) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsPublic gets a reference to the given bool and assigns it to the IsPublic field.
+func (o *Extension) SetIsPublic(v bool) {
+	o.IsPublic = &v
+}
+
 // GetDefinition returns the Definition field value
 func (o *Extension) GetDefinition() ExtensionDefinition {
 	if o == nil {
@@ -355,6 +393,9 @@ func (o Extension) ToMap() (map[string]interface{}, error) {
 	toSerialize["description"] = o.Description
 	toSerialize["status"] = o.Status
 	toSerialize["kind"] = o.Kind
+	if !IsNil(o.IsPublic) {
+		toSerialize["isPublic"] = o.IsPublic
+	}
 	toSerialize["definition"] = o.Definition
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
@@ -416,6 +457,7 @@ func (o *Extension) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "kind")
+		delete(additionalProperties, "isPublic")
 		delete(additionalProperties, "definition")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
