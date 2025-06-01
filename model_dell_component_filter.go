@@ -27,8 +27,6 @@ type DellComponentFilter struct {
 	Id float32 `json:"id"`
 	// Component ID for Dell
 	ComponentId string `json:"componentId"`
-	// Server brand for Dell
-	ServerBrand string `json:"serverBrand"`
 	// Server model for Dell
 	ServerModel string `json:"serverModel"`
 	AdditionalProperties map[string]interface{}
@@ -40,12 +38,11 @@ type _DellComponentFilter DellComponentFilter
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDellComponentFilter(vendor string, id float32, componentId string, serverBrand string, serverModel string) *DellComponentFilter {
+func NewDellComponentFilter(vendor string, id float32, componentId string, serverModel string) *DellComponentFilter {
 	this := DellComponentFilter{}
 	this.Vendor = vendor
 	this.Id = id
 	this.ComponentId = componentId
-	this.ServerBrand = serverBrand
 	this.ServerModel = serverModel
 	return &this
 }
@@ -130,30 +127,6 @@ func (o *DellComponentFilter) SetComponentId(v string) {
 	o.ComponentId = v
 }
 
-// GetServerBrand returns the ServerBrand field value
-func (o *DellComponentFilter) GetServerBrand() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ServerBrand
-}
-
-// GetServerBrandOk returns a tuple with the ServerBrand field value
-// and a boolean to check if the value has been set.
-func (o *DellComponentFilter) GetServerBrandOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ServerBrand, true
-}
-
-// SetServerBrand sets field value
-func (o *DellComponentFilter) SetServerBrand(v string) {
-	o.ServerBrand = v
-}
-
 // GetServerModel returns the ServerModel field value
 func (o *DellComponentFilter) GetServerModel() string {
 	if o == nil {
@@ -191,7 +164,6 @@ func (o DellComponentFilter) ToMap() (map[string]interface{}, error) {
 	toSerialize["vendor"] = o.Vendor
 	toSerialize["id"] = o.Id
 	toSerialize["componentId"] = o.ComponentId
-	toSerialize["serverBrand"] = o.ServerBrand
 	toSerialize["serverModel"] = o.ServerModel
 
 	for key, value := range o.AdditionalProperties {
@@ -209,7 +181,6 @@ func (o *DellComponentFilter) UnmarshalJSON(data []byte) (err error) {
 		"vendor",
 		"id",
 		"componentId",
-		"serverBrand",
 		"serverModel",
 	}
 
@@ -243,7 +214,6 @@ func (o *DellComponentFilter) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vendor")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "componentId")
-		delete(additionalProperties, "serverBrand")
 		delete(additionalProperties, "serverModel")
 		o.AdditionalProperties = additionalProperties
 	}

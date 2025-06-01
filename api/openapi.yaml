@@ -930,6 +930,42 @@ paths:
       summary: User login
       tags:
       - Authentication
+  /api/v2/login-saml:
+    post:
+      description: SAML URL callback used by the identity provider to authenticate
+        the user and establish a session.
+      operationId: login-saml
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Any'
+        description: The SAML response
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Returns a user
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Invalid authentication request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      summary: User SAML login callback URL
+      tags:
+      - Authentication
   /api/v2/login-2fa:
     post:
       description: Authenticates the user credentials and establishes a session with
@@ -1049,27 +1085,6 @@ paths:
         "404":
           description: Authentication provider not found
       summary: Retrieve authentication provider for an email
-      tags:
-      - Authentication
-  /api/v2/authentication-providers:
-    get:
-      description: Returns all available authentication providers.
-      operationId: getAuthenticationProviders
-      parameters: []
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthenticationProviders'
-          description: Returned authentication providers
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Authentication providers not found
-      summary: Retrieve all authentication providers
       tags:
       - Authentication
   /api/v2/sign-up:
@@ -32958,14 +32973,6 @@ components:
       - email
       - password
       type: object
-    AuthenticationRequestPropertiesSaml:
-      properties:
-        data:
-          description: The data for the SAML authentication request.
-          type: object
-      required:
-      - data
-      type: object
     AuthenticationRequestPropertiesLdap:
       properties:
         email:
@@ -32982,19 +32989,16 @@ components:
       type: object
     AuthenticationRequest:
       example:
-        provider: mysql
+        provider: 0.8008281904610115
         properties:
           password: secret-password
           email: test.email@metalsoft.io
       properties:
         provider:
-          default: mysql
           description: Type of the authentication request.
           enum:
-          - mysql
-          - ldap
-          - saml
-          type: string
+          - null
+          type: number
         properties:
           $ref: '#/components/schemas/AuthenticationRequest_properties'
       required:
@@ -33828,6 +33832,9 @@ components:
       - provider
       - revision
       type: object
+    Any:
+      properties: {}
+      type: object
     TwoFactorAuthenticationToken:
       example:
         token: token
@@ -33841,6 +33848,7 @@ components:
     AuthenticationUserProvider:
       example:
         provider: mysql
+        ssoEntryPoint: https://saml.example.com
       properties:
         provider:
           description: The provider name
@@ -33850,37 +33858,12 @@ components:
           - saml
           example: mysql
           type: string
-      required:
-      - provider
-      type: object
-    AuthenticationProviders:
-      example:
-        ldap: true
-        ssoEntryPoint: https://saml.example.com
-        saml: true
-        mysql: true
-      properties:
-        ldap:
-          description: Whether or not the application allows LDAP authentication
-          example: true
-          type: boolean
-        mysql:
-          description: Whether or not the application allows MYSQL authentication
-          example: true
-          type: boolean
-        saml:
-          description: Whether or not the application allows SAML authentication
-          example: true
-          type: boolean
         ssoEntryPoint:
-          description: The entry point for SAML authentication
+          description: The SSO entry point URL for SAML authentication
           example: https://saml.example.com
           type: string
       required:
-      - ldap
-      - mysql
-      - saml
-      - ssoEntryPoint
+      - provider
       type: object
     CreateUser:
       example:
@@ -35955,6 +35938,7 @@ components:
           enum:
           - ExtensionTaskAnsible
           - ExtensionTaskWebhook
+          - ExtensionTaskSsh
           type: string
         options:
           $ref: '#/components/schemas/ExtensionTask_options'
@@ -37440,9 +37424,63 @@ components:
           description: Webhook task endpoint.
           maxLength: 128
           type: string
-        requestTemplate:
-          description: Webhook task request body template.
+        method:
+          description: Webhook task request method.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
           type: string
+        headers:
+          description: Request headers for the webhook task.
+          type: object
+        requestTemplate:
+          description: Request template for the webhook task.
+          type: string
+        expectedResponseStatuses:
+          description: Expected response statuses for the webhook task.
+          items:
+            type: number
+          type: array
+      required:
+      - endpoint
+      - method
+      - requestTemplate
+      type: object
+    ExtensionTaskSsh:
+      properties:
+        host:
+          description: Host to execute the SSH command on.
+          maxLength: 255
+          type: string
+        port:
+          description: Port to connect to the host via SSH.
+          maximum: 65535
+          minimum: 1
+          type: integer
+        username:
+          description: Username for SSH connection.
+          maxLength: 255
+          type: string
+        password:
+          description: Password for SSH connection.
+          maxLength: 255
+          type: string
+        timeout:
+          description: Timeout for the SSH command execution in seconds.
+          maximum: 30000
+          minimum: 1
+          type: integer
+        commandTemplate:
+          description: Command template to execute via SSH.
+          type: string
+      required:
+      - commandTemplate
+      - host
+      - port
+      - timeout
       type: object
     ExtensionInfo:
       example:
@@ -42085,7 +42123,7 @@ components:
         metalsoftServerTypesSupported:
         - metalsoftServerTypesSupported
         - metalsoftServerTypesSupported
-        vendor: hp
+        vendor: dell
         name: Firmware Catalog A
         links:
         - rel: self
@@ -42113,11 +42151,11 @@ components:
           example: Description for Firmware Catalog A
           type: string
         vendor:
-          description: "Firmware catalog vendor: dell, hp, lenovo"
+          description: "Firmware catalog vendor: dell, lenovo, hp"
           enum:
-          - hp
           - dell
           - lenovo
+          - hp
           type: string
         vendorId:
           description: Vendor identifier for the catalog
@@ -42181,7 +42219,7 @@ components:
           metalsoftServerTypesSupported:
           - metalsoftServerTypesSupported
           - metalsoftServerTypesSupported
-          vendor: hp
+          vendor: dell
           name: Firmware Catalog A
           links:
           - rel: self
@@ -42202,7 +42240,7 @@ components:
           metalsoftServerTypesSupported:
           - metalsoftServerTypesSupported
           - metalsoftServerTypesSupported
-          vendor: hp
+          vendor: dell
           name: Firmware Catalog A
           links:
           - rel: self
@@ -42238,7 +42276,7 @@ components:
       - links
       - meta
       type: object
-    FirmwareVendorType:
+    ServerFirmwareCatalogVendor:
       enum:
       - dell
       - lenovo
@@ -42285,7 +42323,7 @@ components:
           type: string
         vendor:
           allOf:
-          - $ref: '#/components/schemas/FirmwareVendorType'
+          - $ref: '#/components/schemas/ServerFirmwareCatalogVendor'
           example: dell
           title: Firmware catalog vendor
         updateType:
@@ -42378,7 +42416,7 @@ components:
           type: string
         vendor:
           allOf:
-          - $ref: '#/components/schemas/FirmwareVendorType'
+          - $ref: '#/components/schemas/ServerFirmwareCatalogVendor'
           example: dell
           title: Firmware catalog vendor
         updateType:
@@ -42806,16 +42844,12 @@ components:
         componentId:
           description: Component ID for Dell
           type: string
-        serverBrand:
-          description: Server brand for Dell
-          type: string
         serverModel:
           description: Server model for Dell
           type: string
       required:
       - componentId
       - id
-      - serverBrand
       - serverModel
       - vendor
       type: object
@@ -42849,10 +42883,10 @@ components:
       - submodel
       - vendor
       type: object
-    HpComponentFilter:
+    HpeComponentFilter:
       properties:
         vendor:
-          description: Discriminator field set to hp
+          description: Discriminator field set to hpe
           enum:
           - hp
           type: string
@@ -42931,7 +42965,7 @@ components:
       properties:
         vendor:
           allOf:
-          - $ref: '#/components/schemas/FirmwareVendorType'
+          - $ref: '#/components/schemas/ServerFirmwareCatalogVendor'
           example: dell
           title: Firmware vendor
         baselineFilter:
@@ -50137,7 +50171,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-05-27T13:42:08.347Z
+        createdTimestamp: 2025-05-30T10:28:33.886Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -50146,7 +50180,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-05-27T13:42:08.348Z
+        updatedTimestamp: 2025-05-30T10:28:33.886Z
         revision: "1"
       properties:
         siteId:
@@ -50163,12 +50197,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-27T13:42:08.347Z
+          example: 2025-05-30T10:28:33.886Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-27T13:42:08.348Z
+          example: 2025-05-30T10:28:33.886Z
           format: date-time
           type: string
         links:
@@ -50190,7 +50224,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-05-27T13:42:08.347Z
+        - createdTimestamp: 2025-05-30T10:28:33.886Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -50199,9 +50233,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-27T13:42:08.348Z
+          updatedTimestamp: 2025-05-30T10:28:33.886Z
           revision: "1"
-        - createdTimestamp: 2025-05-27T13:42:08.347Z
+        - createdTimestamp: 2025-05-30T10:28:33.886Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -50210,7 +50244,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-27T13:42:08.348Z
+          updatedTimestamp: 2025-05-30T10:28:33.886Z
           revision: "1"
         meta: ""
         links: ""
@@ -50849,7 +50883,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-05-27T13:42:08.404Z
+        createdTimestamp: 2025-05-30T10:28:33.905Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -50890,7 +50924,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-05-27T13:42:08.404Z
+        updatedTimestamp: 2025-05-30T10:28:33.905Z
         revision: "1"
         status: draft
       properties:
@@ -50918,12 +50952,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-27T13:42:08.404Z
+          example: 2025-05-30T10:28:33.905Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-27T13:42:08.404Z
+          example: 2025-05-30T10:28:33.905Z
           format: date-time
           type: string
         links:
@@ -51064,7 +51098,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-05-27T13:42:08.404Z
+          createdTimestamp: 2025-05-30T10:28:33.905Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -51105,7 +51139,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-27T13:42:08.404Z
+          updatedTimestamp: 2025-05-30T10:28:33.905Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -51215,7 +51249,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-05-27T13:42:08.404Z
+          createdTimestamp: 2025-05-30T10:28:33.905Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -51256,7 +51290,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-27T13:42:08.404Z
+          updatedTimestamp: 2025-05-30T10:28:33.905Z
           revision: "1"
           status: draft
         meta: ""
@@ -52055,7 +52089,7 @@ components:
       type: object
     AuthenticationProvider:
       example:
-        name: ldap
+        name: mysql
         domains:
         - domains
         - domains
@@ -52063,7 +52097,11 @@ components:
       properties:
         name:
           description: Authentication provider name
-          example: ldap
+          enum:
+          - mysql
+          - ldap
+          - saml
+          example: mysql
           type: string
         enabled:
           description: True if the provider is enabled
@@ -54009,10 +54047,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-05-27T13:42:08.377Z
+        createdTimestamp: 2025-05-30T10:28:33.898Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-05-27T13:42:08.377Z
+        updatedTimestamp: 2025-05-30T10:28:33.898Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -54086,12 +54124,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-27T13:42:08.377Z
+          example: 2025-05-30T10:28:33.898Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-27T13:42:08.377Z
+          example: 2025-05-30T10:28:33.898Z
           format: date-time
           type: string
         links:
@@ -66245,7 +66283,6 @@ components:
       description: Input options.
       oneOf:
       - $ref: '#/components/schemas/AuthenticationRequestPropertiesMySql'
-      - $ref: '#/components/schemas/AuthenticationRequestPropertiesSaml'
       - $ref: '#/components/schemas/AuthenticationRequestPropertiesLdap'
     ExtensionInput_options:
       description: Input options.
@@ -66269,17 +66306,19 @@ components:
         mapping:
           ExtensionTaskAnsible: '#/components/schemas/ExtensionTaskAnsible'
           ExtensionTaskWebhook: '#/components/schemas/ExtensionTaskWebhook'
+          ExtensionTaskSsh: '#/components/schemas/ExtensionTaskSsh'
         propertyName: taskType
       oneOf:
       - $ref: '#/components/schemas/ExtensionTaskAnsible'
       - $ref: '#/components/schemas/ExtensionTaskWebhook'
+      - $ref: '#/components/schemas/ExtensionTaskSsh'
     SearchFirmwareBinary_serverComponentFilter:
       description: Input options for server component filters.
       discriminator:
         mapping:
           dell: '#/components/schemas/DellComponentFilter'
           lenovo: '#/components/schemas/LenovoComponentFilter'
-          hp: '#/components/schemas/HpComponentFilter'
+          hp: '#/components/schemas/HpeComponentFilter'
         propertyName: vendor
       example:
       - vendor: dell
@@ -66301,7 +66340,7 @@ components:
       oneOf:
       - $ref: '#/components/schemas/DellComponentFilter'
       - $ref: '#/components/schemas/LenovoComponentFilter'
-      - $ref: '#/components/schemas/HpComponentFilter'
+      - $ref: '#/components/schemas/HpeComponentFilter'
     CreateVlanAllocationStrategy:
       discriminator:
         mapping:

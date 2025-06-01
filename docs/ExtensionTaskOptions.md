@@ -9,14 +9,23 @@ Name | Type | Description | Notes
 **ExecutionTimeout** | Pointer to **int32** | Execution Timeout. | [optional] 
 **ExecutionTimeoutTick** | Pointer to **int32** | Execution Timeout Tick. | [optional] 
 **Version** | Pointer to **string** | Version. | [optional] 
-**Endpoint** | Pointer to **string** | Webhook task endpoint. | [optional] 
-**RequestTemplate** | Pointer to **string** | Webhook task request body template. | [optional] 
+**Endpoint** | **string** | Webhook task endpoint. | 
+**Method** | **string** | Webhook task request method. | 
+**Headers** | Pointer to **map[string]interface{}** | Request headers for the webhook task. | [optional] 
+**RequestTemplate** | **string** | Request template for the webhook task. | 
+**ExpectedResponseStatuses** | Pointer to **[]float32** | Expected response statuses for the webhook task. | [optional] 
+**Host** | **string** | Host to execute the SSH command on. | 
+**Port** | **int32** | Port to connect to the host via SSH. | 
+**Username** | Pointer to **string** | Username for SSH connection. | [optional] 
+**Password** | Pointer to **string** | Password for SSH connection. | [optional] 
+**Timeout** | **int32** | Timeout for the SSH command execution in seconds. | 
+**CommandTemplate** | **string** | Command template to execute via SSH. | 
 
 ## Methods
 
 ### NewExtensionTaskOptions
 
-`func NewExtensionTaskOptions() *ExtensionTaskOptions`
+`func NewExtensionTaskOptions(endpoint string, method string, requestTemplate string, host string, port int32, timeout int32, commandTemplate string, ) *ExtensionTaskOptions`
 
 NewExtensionTaskOptions instantiates a new ExtensionTaskOptions object
 This constructor will assign default values to properties that have it defined,
@@ -175,11 +184,51 @@ and a boolean to check if the value has been set.
 
 SetEndpoint sets Endpoint field to given value.
 
-### HasEndpoint
 
-`func (o *ExtensionTaskOptions) HasEndpoint() bool`
+### GetMethod
 
-HasEndpoint returns a boolean if a field has been set.
+`func (o *ExtensionTaskOptions) GetMethod() string`
+
+GetMethod returns the Method field if non-nil, zero value otherwise.
+
+### GetMethodOk
+
+`func (o *ExtensionTaskOptions) GetMethodOk() (*string, bool)`
+
+GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMethod
+
+`func (o *ExtensionTaskOptions) SetMethod(v string)`
+
+SetMethod sets Method field to given value.
+
+
+### GetHeaders
+
+`func (o *ExtensionTaskOptions) GetHeaders() map[string]interface{}`
+
+GetHeaders returns the Headers field if non-nil, zero value otherwise.
+
+### GetHeadersOk
+
+`func (o *ExtensionTaskOptions) GetHeadersOk() (*map[string]interface{}, bool)`
+
+GetHeadersOk returns a tuple with the Headers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHeaders
+
+`func (o *ExtensionTaskOptions) SetHeaders(v map[string]interface{})`
+
+SetHeaders sets Headers field to given value.
+
+### HasHeaders
+
+`func (o *ExtensionTaskOptions) HasHeaders() bool`
+
+HasHeaders returns a boolean if a field has been set.
 
 ### GetRequestTemplate
 
@@ -200,11 +249,161 @@ and a boolean to check if the value has been set.
 
 SetRequestTemplate sets RequestTemplate field to given value.
 
-### HasRequestTemplate
 
-`func (o *ExtensionTaskOptions) HasRequestTemplate() bool`
+### GetExpectedResponseStatuses
 
-HasRequestTemplate returns a boolean if a field has been set.
+`func (o *ExtensionTaskOptions) GetExpectedResponseStatuses() []float32`
+
+GetExpectedResponseStatuses returns the ExpectedResponseStatuses field if non-nil, zero value otherwise.
+
+### GetExpectedResponseStatusesOk
+
+`func (o *ExtensionTaskOptions) GetExpectedResponseStatusesOk() (*[]float32, bool)`
+
+GetExpectedResponseStatusesOk returns a tuple with the ExpectedResponseStatuses field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpectedResponseStatuses
+
+`func (o *ExtensionTaskOptions) SetExpectedResponseStatuses(v []float32)`
+
+SetExpectedResponseStatuses sets ExpectedResponseStatuses field to given value.
+
+### HasExpectedResponseStatuses
+
+`func (o *ExtensionTaskOptions) HasExpectedResponseStatuses() bool`
+
+HasExpectedResponseStatuses returns a boolean if a field has been set.
+
+### GetHost
+
+`func (o *ExtensionTaskOptions) GetHost() string`
+
+GetHost returns the Host field if non-nil, zero value otherwise.
+
+### GetHostOk
+
+`func (o *ExtensionTaskOptions) GetHostOk() (*string, bool)`
+
+GetHostOk returns a tuple with the Host field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHost
+
+`func (o *ExtensionTaskOptions) SetHost(v string)`
+
+SetHost sets Host field to given value.
+
+
+### GetPort
+
+`func (o *ExtensionTaskOptions) GetPort() int32`
+
+GetPort returns the Port field if non-nil, zero value otherwise.
+
+### GetPortOk
+
+`func (o *ExtensionTaskOptions) GetPortOk() (*int32, bool)`
+
+GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPort
+
+`func (o *ExtensionTaskOptions) SetPort(v int32)`
+
+SetPort sets Port field to given value.
+
+
+### GetUsername
+
+`func (o *ExtensionTaskOptions) GetUsername() string`
+
+GetUsername returns the Username field if non-nil, zero value otherwise.
+
+### GetUsernameOk
+
+`func (o *ExtensionTaskOptions) GetUsernameOk() (*string, bool)`
+
+GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUsername
+
+`func (o *ExtensionTaskOptions) SetUsername(v string)`
+
+SetUsername sets Username field to given value.
+
+### HasUsername
+
+`func (o *ExtensionTaskOptions) HasUsername() bool`
+
+HasUsername returns a boolean if a field has been set.
+
+### GetPassword
+
+`func (o *ExtensionTaskOptions) GetPassword() string`
+
+GetPassword returns the Password field if non-nil, zero value otherwise.
+
+### GetPasswordOk
+
+`func (o *ExtensionTaskOptions) GetPasswordOk() (*string, bool)`
+
+GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPassword
+
+`func (o *ExtensionTaskOptions) SetPassword(v string)`
+
+SetPassword sets Password field to given value.
+
+### HasPassword
+
+`func (o *ExtensionTaskOptions) HasPassword() bool`
+
+HasPassword returns a boolean if a field has been set.
+
+### GetTimeout
+
+`func (o *ExtensionTaskOptions) GetTimeout() int32`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *ExtensionTaskOptions) GetTimeoutOk() (*int32, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *ExtensionTaskOptions) SetTimeout(v int32)`
+
+SetTimeout sets Timeout field to given value.
+
+
+### GetCommandTemplate
+
+`func (o *ExtensionTaskOptions) GetCommandTemplate() string`
+
+GetCommandTemplate returns the CommandTemplate field if non-nil, zero value otherwise.
+
+### GetCommandTemplateOk
+
+`func (o *ExtensionTaskOptions) GetCommandTemplateOk() (*string, bool)`
+
+GetCommandTemplateOk returns a tuple with the CommandTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommandTemplate
+
+`func (o *ExtensionTaskOptions) SetCommandTemplate(v string)`
+
+SetCommandTemplate sets CommandTemplate field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

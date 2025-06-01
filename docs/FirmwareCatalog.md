@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **float32** | Unique identifier for the firmware catalog | 
 **Name** | **string** | Name of the catalog, must be unique | 
 **Description** | Pointer to **string** | User description of the catalog | [optional] 
-**Vendor** | **string** | Firmware catalog vendor: dell, hp, lenovo | 
+**Vendor** | **string** | Firmware catalog vendor: dell, lenovo, hp | 
 **VendorId** | Pointer to **string** | Vendor identifier for the catalog | [optional] 
 **VendorUrl** | Pointer to **string** | Vendor URL for the firmware catalog | [optional] 
 **VendorReleaseTimestamp** | Pointer to **string** | Vendor release timestamp for the catalog | [optional] 

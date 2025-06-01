@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-	searchFirmwareBinary := *openapiclient.NewSearchFirmwareBinary(openapiclient.FirmwareVendorType("dell"), *openapiclient.NewBaselineFilter()) // SearchFirmwareBinary | 
+	searchFirmwareBinary := *openapiclient.NewSearchFirmwareBinary(openapiclient.ServerFirmwareCatalogVendor("dell"), *openapiclient.NewBaselineFilter()) // SearchFirmwareBinary | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -21,7 +21,7 @@ var _ MappedNullable = &SearchFirmwareBinary{}
 
 // SearchFirmwareBinary struct for SearchFirmwareBinary
 type SearchFirmwareBinary struct {
-	Vendor FirmwareVendorType `json:"vendor"`
+	Vendor ServerFirmwareCatalogVendor `json:"vendor"`
 	BaselineFilter BaselineFilter `json:"baselineFilter"`
 	ServerComponentFilter *SearchFirmwareBinaryServerComponentFilter `json:"serverComponentFilter,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -33,7 +33,7 @@ type _SearchFirmwareBinary SearchFirmwareBinary
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSearchFirmwareBinary(vendor FirmwareVendorType, baselineFilter BaselineFilter) *SearchFirmwareBinary {
+func NewSearchFirmwareBinary(vendor ServerFirmwareCatalogVendor, baselineFilter BaselineFilter) *SearchFirmwareBinary {
 	this := SearchFirmwareBinary{}
 	this.Vendor = vendor
 	this.BaselineFilter = baselineFilter
@@ -49,9 +49,9 @@ func NewSearchFirmwareBinaryWithDefaults() *SearchFirmwareBinary {
 }
 
 // GetVendor returns the Vendor field value
-func (o *SearchFirmwareBinary) GetVendor() FirmwareVendorType {
+func (o *SearchFirmwareBinary) GetVendor() ServerFirmwareCatalogVendor {
 	if o == nil {
-		var ret FirmwareVendorType
+		var ret ServerFirmwareCatalogVendor
 		return ret
 	}
 
@@ -60,7 +60,7 @@ func (o *SearchFirmwareBinary) GetVendor() FirmwareVendorType {
 
 // GetVendorOk returns a tuple with the Vendor field value
 // and a boolean to check if the value has been set.
-func (o *SearchFirmwareBinary) GetVendorOk() (*FirmwareVendorType, bool) {
+func (o *SearchFirmwareBinary) GetVendorOk() (*ServerFirmwareCatalogVendor, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *SearchFirmwareBinary) GetVendorOk() (*FirmwareVendorType, bool) {
 }
 
 // SetVendor sets field value
-func (o *SearchFirmwareBinary) SetVendor(v FirmwareVendorType) {
+func (o *SearchFirmwareBinary) SetVendor(v ServerFirmwareCatalogVendor) {
 	o.Vendor = v
 }
 

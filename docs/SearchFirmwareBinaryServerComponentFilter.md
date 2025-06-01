@@ -4,10 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vendor** | **string** | Discriminator field set to hp | 
+**Vendor** | **string** | Discriminator field set to hpe | 
 **Id** | **float32** | ID of the HP component filter | 
 **ComponentId** | **string** | Component ID for Dell | 
-**ServerBrand** | **string** | Server brand for Dell | 
 **ServerModel** | **string** | Server model for Dell | 
 **Submodel** | **string** | Submodel for Lenovo | 
 **SerialNumber** | **string** | Serial number for Lenovo | 
@@ -19,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewSearchFirmwareBinaryServerComponentFilter
 
-`func NewSearchFirmwareBinaryServerComponentFilter(vendor string, id float32, componentId string, serverBrand string, serverModel string, submodel string, serialNumber string, componentName string, deviceClass string, targets []string, ) *SearchFirmwareBinaryServerComponentFilter`
+`func NewSearchFirmwareBinaryServerComponentFilter(vendor string, id float32, componentId string, serverModel string, submodel string, serialNumber string, componentName string, deviceClass string, targets []string, ) *SearchFirmwareBinaryServerComponentFilter`
 
 NewSearchFirmwareBinaryServerComponentFilter instantiates a new SearchFirmwareBinaryServerComponentFilter object
 This constructor will assign default values to properties that have it defined,
@@ -92,26 +91,6 @@ and a boolean to check if the value has been set.
 `func (o *SearchFirmwareBinaryServerComponentFilter) SetComponentId(v string)`
 
 SetComponentId sets ComponentId field to given value.
-
-
-### GetServerBrand
-
-`func (o *SearchFirmwareBinaryServerComponentFilter) GetServerBrand() string`
-
-GetServerBrand returns the ServerBrand field if non-nil, zero value otherwise.
-
-### GetServerBrandOk
-
-`func (o *SearchFirmwareBinaryServerComponentFilter) GetServerBrandOk() (*string, bool)`
-
-GetServerBrandOk returns a tuple with the ServerBrand field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetServerBrand
-
-`func (o *SearchFirmwareBinaryServerComponentFilter) SetServerBrand(v string)`
-
-SetServerBrand sets ServerBrand field to given value.
 
 
 ### GetServerModel

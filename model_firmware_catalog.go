@@ -27,7 +27,7 @@ type FirmwareCatalog struct {
 	Name string `json:"name"`
 	// User description of the catalog
 	Description *string `json:"description,omitempty"`
-	// Firmware catalog vendor: dell, hp, lenovo
+	// Firmware catalog vendor: dell, lenovo, hp
 	Vendor string `json:"vendor"`
 	// Vendor identifier for the catalog
 	VendorId *string `json:"vendorId,omitempty"`

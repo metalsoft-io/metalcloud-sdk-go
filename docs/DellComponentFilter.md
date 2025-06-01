@@ -7,14 +7,13 @@ Name | Type | Description | Notes
 **Vendor** | **string** | Discriminator field set to dell | 
 **Id** | **float32** | ID of the Dell component filter | 
 **ComponentId** | **string** | Component ID for Dell | 
-**ServerBrand** | **string** | Server brand for Dell | 
 **ServerModel** | **string** | Server model for Dell | 
 
 ## Methods
 
 ### NewDellComponentFilter
 
-`func NewDellComponentFilter(vendor string, id float32, componentId string, serverBrand string, serverModel string, ) *DellComponentFilter`
+`func NewDellComponentFilter(vendor string, id float32, componentId string, serverModel string, ) *DellComponentFilter`
 
 NewDellComponentFilter instantiates a new DellComponentFilter object
 This constructor will assign default values to properties that have it defined,
@@ -87,26 +86,6 @@ and a boolean to check if the value has been set.
 `func (o *DellComponentFilter) SetComponentId(v string)`
 
 SetComponentId sets ComponentId field to given value.
-
-
-### GetServerBrand
-
-`func (o *DellComponentFilter) GetServerBrand() string`
-
-GetServerBrand returns the ServerBrand field if non-nil, zero value otherwise.
-
-### GetServerBrandOk
-
-`func (o *DellComponentFilter) GetServerBrandOk() (*string, bool)`
-
-GetServerBrandOk returns a tuple with the ServerBrand field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetServerBrand
-
-`func (o *DellComponentFilter) SetServerBrand(v string)`
-
-SetServerBrand sets ServerBrand field to given value.
 
 
 ### GetServerModel

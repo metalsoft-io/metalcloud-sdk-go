@@ -91,11 +91,11 @@ Class | Method | HTTP request | Description
 *AccountAPI* | [**UpdateAccountConfig**](docs/AccountAPI.md#updateaccountconfig) | **Patch** /api/v2/accounts/{accountId}/config | Update account configuration
 *AccountAPI* | [**UpdateAccountLimits**](docs/AccountAPI.md#updateaccountlimits) | **Patch** /api/v2/accounts/{accountId}/actions/change-limits | Update account limits
 *AuthenticationAPI* | [**GetAuthenticationProvider**](docs/AuthenticationAPI.md#getauthenticationprovider) | **Get** /api/v2/authentication-provider | Retrieve authentication provider for an email
-*AuthenticationAPI* | [**GetAuthenticationProviders**](docs/AuthenticationAPI.md#getauthenticationproviders) | **Get** /api/v2/authentication-providers | Retrieve all authentication providers
 *AuthenticationAPI* | [**GetCurrentUser**](docs/AuthenticationAPI.md#getcurrentuser) | **Get** /api/v2/user | Get current user
 *AuthenticationAPI* | [**GetPublicSignupDisabled**](docs/AuthenticationAPI.md#getpublicsignupdisabled) | **Get** /api/v2/public-signup-disabled | Check if public signup is disabled
 *AuthenticationAPI* | [**Login**](docs/AuthenticationAPI.md#login) | **Post** /api/v2/login | User login
 *AuthenticationAPI* | [**Login2FA**](docs/AuthenticationAPI.md#login2fa) | **Post** /api/v2/login-2fa | User login with 2FA
+*AuthenticationAPI* | [**LoginSaml**](docs/AuthenticationAPI.md#loginsaml) | **Post** /api/v2/login-saml | User SAML login callback URL
 *AuthenticationAPI* | [**Logout**](docs/AuthenticationAPI.md#logout) | **Post** /api/v2/logout | Logout user
 *AuthenticationAPI* | [**SignUp**](docs/AuthenticationAPI.md#signup) | **Post** /api/v2/sign-up | Sign up
 *BucketAPI* | [**CreateInfrastructureBucket**](docs/BucketAPI.md#createinfrastructurebucket) | **Post** /api/v2/infrastructures/{infrastructureId}/buckets | Creates a Bucket
@@ -596,12 +596,10 @@ Class | Method | HTTP request | Description
  - [AssetExtensionActions](docs/AssetExtensionActions.md)
  - [AuthenticationProvider](docs/AuthenticationProvider.md)
  - [AuthenticationProviderUpdate](docs/AuthenticationProviderUpdate.md)
- - [AuthenticationProviders](docs/AuthenticationProviders.md)
  - [AuthenticationRequest](docs/AuthenticationRequest.md)
  - [AuthenticationRequestProperties](docs/AuthenticationRequestProperties.md)
  - [AuthenticationRequestPropertiesLdap](docs/AuthenticationRequestPropertiesLdap.md)
  - [AuthenticationRequestPropertiesMySql](docs/AuthenticationRequestPropertiesMySql.md)
- - [AuthenticationRequestPropertiesSaml](docs/AuthenticationRequestPropertiesSaml.md)
  - [AuthenticationUserProvider](docs/AuthenticationUserProvider.md)
  - [AutoIpv4SubnetAllocationStrategy](docs/AutoIpv4SubnetAllocationStrategy.md)
  - [AutoIpv6SubnetAllocationStrategy](docs/AutoIpv6SubnetAllocationStrategy.md)
@@ -738,6 +736,7 @@ Class | Method | HTTP request | Description
  - [ExtensionTask](docs/ExtensionTask.md)
  - [ExtensionTaskAnsible](docs/ExtensionTaskAnsible.md)
  - [ExtensionTaskOptions](docs/ExtensionTaskOptions.md)
+ - [ExtensionTaskSsh](docs/ExtensionTaskSsh.md)
  - [ExtensionTaskWebhook](docs/ExtensionTaskWebhook.md)
  - [ExtensionVariable](docs/ExtensionVariable.md)
  - [FabricStatus](docs/FabricStatus.md)
@@ -762,7 +761,6 @@ Class | Method | HTTP request | Description
  - [FirmwareCatalog](docs/FirmwareCatalog.md)
  - [FirmwareCatalogPaginatedList](docs/FirmwareCatalogPaginatedList.md)
  - [FirmwareUpgrade](docs/FirmwareUpgrade.md)
- - [FirmwareVendorType](docs/FirmwareVendorType.md)
  - [GenerateFirmwareUpgradeAudit](docs/GenerateFirmwareUpgradeAudit.md)
  - [GenerateSiteControllerOneliner](docs/GenerateSiteControllerOneliner.md)
  - [GenericGUISettings](docs/GenericGUISettings.md)
@@ -772,7 +770,7 @@ Class | Method | HTTP request | Description
  - [GetResourceUtilizationDetailed](docs/GetResourceUtilizationDetailed.md)
  - [GetSiteControllerOneLiner200Response](docs/GetSiteControllerOneLiner200Response.md)
  - [GlobalFirmwareUpgradeConfiguration](docs/GlobalFirmwareUpgradeConfiguration.md)
- - [HpComponentFilter](docs/HpComponentFilter.md)
+ - [HpeComponentFilter](docs/HpeComponentFilter.md)
  - [IServerFirmwareBinaryResponse](docs/IServerFirmwareBinaryResponse.md)
  - [Infrastructure](docs/Infrastructure.md)
  - [InfrastructureConfig](docs/InfrastructureConfig.md)
@@ -918,6 +916,7 @@ Class | Method | HTTP request | Description
  - [ServerDefaultCredentialsCredentials](docs/ServerDefaultCredentialsCredentials.md)
  - [ServerDefaultCredentialsPaginatedList](docs/ServerDefaultCredentialsPaginatedList.md)
  - [ServerDisk](docs/ServerDisk.md)
+ - [ServerFirmwareCatalogVendor](docs/ServerFirmwareCatalogVendor.md)
  - [ServerFirmwareUpgradePolicy](docs/ServerFirmwareUpgradePolicy.md)
  - [ServerFirmwareUpgradePolicyApplyResult](docs/ServerFirmwareUpgradePolicyApplyResult.md)
  - [ServerFirmwareUpgradePolicyAudit](docs/ServerFirmwareUpgradePolicyAudit.md)

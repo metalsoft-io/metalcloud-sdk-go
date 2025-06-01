@@ -78,12 +78,10 @@ docs/AssetExtensionActions.md
 docs/AuthenticationAPI.md
 docs/AuthenticationProvider.md
 docs/AuthenticationProviderUpdate.md
-docs/AuthenticationProviders.md
 docs/AuthenticationRequest.md
 docs/AuthenticationRequestProperties.md
 docs/AuthenticationRequestPropertiesLdap.md
 docs/AuthenticationRequestPropertiesMySql.md
-docs/AuthenticationRequestPropertiesSaml.md
 docs/AuthenticationUserProvider.md
 docs/AutoIpv4SubnetAllocationStrategy.md
 docs/AutoIpv6SubnetAllocationStrategy.md
@@ -228,6 +226,7 @@ docs/ExtensionSharedDrive.md
 docs/ExtensionTask.md
 docs/ExtensionTaskAnsible.md
 docs/ExtensionTaskOptions.md
+docs/ExtensionTaskSsh.md
 docs/ExtensionTaskWebhook.md
 docs/ExtensionVariable.md
 docs/FabricStatus.md
@@ -258,7 +257,6 @@ docs/FirmwareCatalogAPI.md
 docs/FirmwareCatalogPaginatedList.md
 docs/FirmwarePolicyAPI.md
 docs/FirmwareUpgrade.md
-docs/FirmwareVendorType.md
 docs/GenerateFirmwareUpgradeAudit.md
 docs/GenerateSiteControllerOneliner.md
 docs/GenericGUISettings.md
@@ -268,7 +266,7 @@ docs/GetLogicalNetworkConfig200Response.md
 docs/GetResourceUtilizationDetailed.md
 docs/GetSiteControllerOneLiner200Response.md
 docs/GlobalFirmwareUpgradeConfiguration.md
-docs/HpComponentFilter.md
+docs/HpeComponentFilter.md
 docs/IServerFirmwareBinaryResponse.md
 docs/Infrastructure.md
 docs/InfrastructureAPI.md
@@ -429,6 +427,7 @@ docs/ServerDefaultCredentialsCredentials.md
 docs/ServerDefaultCredentialsPaginatedList.md
 docs/ServerDisk.md
 docs/ServerFirmwareAPI.md
+docs/ServerFirmwareCatalogVendor.md
 docs/ServerFirmwareUpgradePolicy.md
 docs/ServerFirmwareUpgradePolicyApplyResult.md
 docs/ServerFirmwareUpgradePolicyAudit.md
@@ -697,12 +696,10 @@ model_apply_profiles_to_logical_network_config.go
 model_asset_extension_actions.go
 model_authentication_provider.go
 model_authentication_provider_update.go
-model_authentication_providers.go
 model_authentication_request.go
 model_authentication_request_properties.go
 model_authentication_request_properties_ldap.go
 model_authentication_request_properties_my_sql.go
-model_authentication_request_properties_saml.go
 model_authentication_user_provider.go
 model_auto_ipv4_subnet_allocation_strategy.go
 model_auto_ipv6_subnet_allocation_strategy.go
@@ -839,6 +836,7 @@ model_extension_shared_drive.go
 model_extension_task.go
 model_extension_task_ansible.go
 model_extension_task_options.go
+model_extension_task_ssh.go
 model_extension_task_webhook.go
 model_extension_variable.go
 model_fabric_status.go
@@ -863,7 +861,6 @@ model_firmware_binary_update_severity.go
 model_firmware_catalog.go
 model_firmware_catalog_paginated_list.go
 model_firmware_upgrade.go
-model_firmware_vendor_type.go
 model_generate_firmware_upgrade_audit.go
 model_generate_site_controller_oneliner.go
 model_generic_gui_settings.go
@@ -873,7 +870,7 @@ model_get_logical_network_config_200_response.go
 model_get_resource_utilization_detailed.go
 model_get_site_controller_one_liner_200_response.go
 model_global_firmware_upgrade_configuration.go
-model_hp_component_filter.go
+model_hpe_component_filter.go
 model_i_server_firmware_binary_response.go
 model_infrastructure.go
 model_infrastructure_config.go
@@ -1018,6 +1015,7 @@ model_server_default_credentials.go
 model_server_default_credentials_credentials.go
 model_server_default_credentials_paginated_list.go
 model_server_disk.go
+model_server_firmware_catalog_vendor.go
 model_server_firmware_upgrade_policy.go
 model_server_firmware_upgrade_policy_apply_result.go
 model_server_firmware_upgrade_policy_audit.go

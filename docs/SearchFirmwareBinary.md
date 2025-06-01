@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vendor** | [**FirmwareVendorType**](FirmwareVendorType.md) |  | 
+**Vendor** | [**ServerFirmwareCatalogVendor**](ServerFirmwareCatalogVendor.md) |  | 
 **BaselineFilter** | [**BaselineFilter**](BaselineFilter.md) |  | 
 **ServerComponentFilter** | Pointer to [**SearchFirmwareBinaryServerComponentFilter**](SearchFirmwareBinaryServerComponentFilter.md) |  | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewSearchFirmwareBinary
 
-`func NewSearchFirmwareBinary(vendor FirmwareVendorType, baselineFilter BaselineFilter, ) *SearchFirmwareBinary`
+`func NewSearchFirmwareBinary(vendor ServerFirmwareCatalogVendor, baselineFilter BaselineFilter, ) *SearchFirmwareBinary`
 
 NewSearchFirmwareBinary instantiates a new SearchFirmwareBinary object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVendor
 
-`func (o *SearchFirmwareBinary) GetVendor() FirmwareVendorType`
+`func (o *SearchFirmwareBinary) GetVendor() ServerFirmwareCatalogVendor`
 
 GetVendor returns the Vendor field if non-nil, zero value otherwise.
 
 ### GetVendorOk
 
-`func (o *SearchFirmwareBinary) GetVendorOk() (*FirmwareVendorType, bool)`
+`func (o *SearchFirmwareBinary) GetVendorOk() (*ServerFirmwareCatalogVendor, bool)`
 
 GetVendorOk returns a tuple with the Vendor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVendor
 
-`func (o *SearchFirmwareBinary) SetVendor(v FirmwareVendorType)`
+`func (o *SearchFirmwareBinary) SetVendor(v ServerFirmwareCatalogVendor)`
 
 SetVendor sets Vendor field to given value.
 

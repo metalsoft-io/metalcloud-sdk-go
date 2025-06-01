@@ -20,7 +20,6 @@ import (
 type AuthenticationRequestProperties struct {
 	AuthenticationRequestPropertiesLdap *AuthenticationRequestPropertiesLdap
 	AuthenticationRequestPropertiesMySql *AuthenticationRequestPropertiesMySql
-	AuthenticationRequestPropertiesSaml *AuthenticationRequestPropertiesSaml
 }
 
 // AuthenticationRequestPropertiesLdapAsAuthenticationRequestProperties is a convenience function that returns AuthenticationRequestPropertiesLdap wrapped in AuthenticationRequestProperties
@@ -34,13 +33,6 @@ func AuthenticationRequestPropertiesLdapAsAuthenticationRequestProperties(v *Aut
 func AuthenticationRequestPropertiesMySqlAsAuthenticationRequestProperties(v *AuthenticationRequestPropertiesMySql) AuthenticationRequestProperties {
 	return AuthenticationRequestProperties{
 		AuthenticationRequestPropertiesMySql: v,
-	}
-}
-
-// AuthenticationRequestPropertiesSamlAsAuthenticationRequestProperties is a convenience function that returns AuthenticationRequestPropertiesSaml wrapped in AuthenticationRequestProperties
-func AuthenticationRequestPropertiesSamlAsAuthenticationRequestProperties(v *AuthenticationRequestPropertiesSaml) AuthenticationRequestProperties {
-	return AuthenticationRequestProperties{
-		AuthenticationRequestPropertiesSaml: v,
 	}
 }
 
@@ -75,24 +67,10 @@ func (dst *AuthenticationRequestProperties) UnmarshalJSON(data []byte) error {
 		dst.AuthenticationRequestPropertiesMySql = nil
 	}
 
-	// try to unmarshal data into AuthenticationRequestPropertiesSaml
-	err = json.Unmarshal(data, &dst.AuthenticationRequestPropertiesSaml)
-	if err == nil {
-		jsonAuthenticationRequestPropertiesSaml, _ := json.Marshal(dst.AuthenticationRequestPropertiesSaml)
-		if string(jsonAuthenticationRequestPropertiesSaml) == "{}" { // empty struct
-			dst.AuthenticationRequestPropertiesSaml = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.AuthenticationRequestPropertiesSaml = nil
-	}
-
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.AuthenticationRequestPropertiesLdap = nil
 		dst.AuthenticationRequestPropertiesMySql = nil
-		dst.AuthenticationRequestPropertiesSaml = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(AuthenticationRequestProperties)")
 	} else if match == 1 {
@@ -112,10 +90,6 @@ func (src AuthenticationRequestProperties) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.AuthenticationRequestPropertiesMySql)
 	}
 
-	if src.AuthenticationRequestPropertiesSaml != nil {
-		return json.Marshal(&src.AuthenticationRequestPropertiesSaml)
-	}
-
 	return nil, nil // no data in oneOf schemas
 }
 
@@ -132,10 +106,6 @@ func (obj *AuthenticationRequestProperties) GetActualInstance() (interface{}) {
 		return obj.AuthenticationRequestPropertiesMySql
 	}
 
-	if obj.AuthenticationRequestPropertiesSaml != nil {
-		return obj.AuthenticationRequestPropertiesSaml
-	}
-
 	// all schemas are nil
 	return nil
 }
@@ -148,10 +118,6 @@ func (obj AuthenticationRequestProperties) GetActualInstanceValue() (interface{}
 
 	if obj.AuthenticationRequestPropertiesMySql != nil {
 		return *obj.AuthenticationRequestPropertiesMySql
-	}
-
-	if obj.AuthenticationRequestPropertiesSaml != nil {
-		return *obj.AuthenticationRequestPropertiesSaml
 	}
 
 	// all schemas are nil

@@ -16,12 +16,12 @@ import (
 	"fmt"
 )
 
-// checks if the HpComponentFilter type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &HpComponentFilter{}
+// checks if the HpeComponentFilter type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HpeComponentFilter{}
 
-// HpComponentFilter struct for HpComponentFilter
-type HpComponentFilter struct {
-	// Discriminator field set to hp
+// HpeComponentFilter struct for HpeComponentFilter
+type HpeComponentFilter struct {
+	// Discriminator field set to hpe
 	Vendor string `json:"vendor"`
 	// ID of the HP component filter
 	Id float32 `json:"id"`
@@ -32,14 +32,14 @@ type HpComponentFilter struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _HpComponentFilter HpComponentFilter
+type _HpeComponentFilter HpeComponentFilter
 
-// NewHpComponentFilter instantiates a new HpComponentFilter object
+// NewHpeComponentFilter instantiates a new HpeComponentFilter object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHpComponentFilter(vendor string, id float32, deviceClass string, targets []string) *HpComponentFilter {
-	this := HpComponentFilter{}
+func NewHpeComponentFilter(vendor string, id float32, deviceClass string, targets []string) *HpeComponentFilter {
+	this := HpeComponentFilter{}
 	this.Vendor = vendor
 	this.Id = id
 	this.DeviceClass = deviceClass
@@ -47,16 +47,16 @@ func NewHpComponentFilter(vendor string, id float32, deviceClass string, targets
 	return &this
 }
 
-// NewHpComponentFilterWithDefaults instantiates a new HpComponentFilter object
+// NewHpeComponentFilterWithDefaults instantiates a new HpeComponentFilter object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewHpComponentFilterWithDefaults() *HpComponentFilter {
-	this := HpComponentFilter{}
+func NewHpeComponentFilterWithDefaults() *HpeComponentFilter {
+	this := HpeComponentFilter{}
 	return &this
 }
 
 // GetVendor returns the Vendor field value
-func (o *HpComponentFilter) GetVendor() string {
+func (o *HpeComponentFilter) GetVendor() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -67,7 +67,7 @@ func (o *HpComponentFilter) GetVendor() string {
 
 // GetVendorOk returns a tuple with the Vendor field value
 // and a boolean to check if the value has been set.
-func (o *HpComponentFilter) GetVendorOk() (*string, bool) {
+func (o *HpeComponentFilter) GetVendorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,12 +75,12 @@ func (o *HpComponentFilter) GetVendorOk() (*string, bool) {
 }
 
 // SetVendor sets field value
-func (o *HpComponentFilter) SetVendor(v string) {
+func (o *HpeComponentFilter) SetVendor(v string) {
 	o.Vendor = v
 }
 
 // GetId returns the Id field value
-func (o *HpComponentFilter) GetId() float32 {
+func (o *HpeComponentFilter) GetId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -91,7 +91,7 @@ func (o *HpComponentFilter) GetId() float32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *HpComponentFilter) GetIdOk() (*float32, bool) {
+func (o *HpeComponentFilter) GetIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,12 +99,12 @@ func (o *HpComponentFilter) GetIdOk() (*float32, bool) {
 }
 
 // SetId sets field value
-func (o *HpComponentFilter) SetId(v float32) {
+func (o *HpeComponentFilter) SetId(v float32) {
 	o.Id = v
 }
 
 // GetDeviceClass returns the DeviceClass field value
-func (o *HpComponentFilter) GetDeviceClass() string {
+func (o *HpeComponentFilter) GetDeviceClass() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -115,7 +115,7 @@ func (o *HpComponentFilter) GetDeviceClass() string {
 
 // GetDeviceClassOk returns a tuple with the DeviceClass field value
 // and a boolean to check if the value has been set.
-func (o *HpComponentFilter) GetDeviceClassOk() (*string, bool) {
+func (o *HpeComponentFilter) GetDeviceClassOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -123,12 +123,12 @@ func (o *HpComponentFilter) GetDeviceClassOk() (*string, bool) {
 }
 
 // SetDeviceClass sets field value
-func (o *HpComponentFilter) SetDeviceClass(v string) {
+func (o *HpeComponentFilter) SetDeviceClass(v string) {
 	o.DeviceClass = v
 }
 
 // GetTargets returns the Targets field value
-func (o *HpComponentFilter) GetTargets() []string {
+func (o *HpeComponentFilter) GetTargets() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -139,7 +139,7 @@ func (o *HpComponentFilter) GetTargets() []string {
 
 // GetTargetsOk returns a tuple with the Targets field value
 // and a boolean to check if the value has been set.
-func (o *HpComponentFilter) GetTargetsOk() ([]string, bool) {
+func (o *HpeComponentFilter) GetTargetsOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -147,11 +147,11 @@ func (o *HpComponentFilter) GetTargetsOk() ([]string, bool) {
 }
 
 // SetTargets sets field value
-func (o *HpComponentFilter) SetTargets(v []string) {
+func (o *HpeComponentFilter) SetTargets(v []string) {
 	o.Targets = v
 }
 
-func (o HpComponentFilter) MarshalJSON() ([]byte, error) {
+func (o HpeComponentFilter) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -159,7 +159,7 @@ func (o HpComponentFilter) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o HpComponentFilter) ToMap() (map[string]interface{}, error) {
+func (o HpeComponentFilter) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["vendor"] = o.Vendor
 	toSerialize["id"] = o.Id
@@ -173,7 +173,7 @@ func (o HpComponentFilter) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *HpComponentFilter) UnmarshalJSON(data []byte) (err error) {
+func (o *HpeComponentFilter) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -198,15 +198,15 @@ func (o *HpComponentFilter) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varHpComponentFilter := _HpComponentFilter{}
+	varHpeComponentFilter := _HpeComponentFilter{}
 
-	err = json.Unmarshal(data, &varHpComponentFilter)
+	err = json.Unmarshal(data, &varHpeComponentFilter)
 
 	if err != nil {
 		return err
 	}
 
-	*o = HpComponentFilter(varHpComponentFilter)
+	*o = HpeComponentFilter(varHpeComponentFilter)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -221,38 +221,38 @@ func (o *HpComponentFilter) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableHpComponentFilter struct {
-	value *HpComponentFilter
+type NullableHpeComponentFilter struct {
+	value *HpeComponentFilter
 	isSet bool
 }
 
-func (v NullableHpComponentFilter) Get() *HpComponentFilter {
+func (v NullableHpeComponentFilter) Get() *HpeComponentFilter {
 	return v.value
 }
 
-func (v *NullableHpComponentFilter) Set(val *HpComponentFilter) {
+func (v *NullableHpeComponentFilter) Set(val *HpeComponentFilter) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableHpComponentFilter) IsSet() bool {
+func (v NullableHpeComponentFilter) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableHpComponentFilter) Unset() {
+func (v *NullableHpeComponentFilter) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableHpComponentFilter(val *HpComponentFilter) *NullableHpComponentFilter {
-	return &NullableHpComponentFilter{value: val, isSet: true}
+func NewNullableHpeComponentFilter(val *HpeComponentFilter) *NullableHpeComponentFilter {
+	return &NullableHpeComponentFilter{value: val, isSet: true}
 }
 
-func (v NullableHpComponentFilter) MarshalJSON() ([]byte, error) {
+func (v NullableHpeComponentFilter) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableHpComponentFilter) UnmarshalJSON(src []byte) error {
+func (v *NullableHpeComponentFilter) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

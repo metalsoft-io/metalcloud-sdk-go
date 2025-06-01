@@ -19,6 +19,7 @@ import (
 // ExtensionTaskOptions - Task options.
 type ExtensionTaskOptions struct {
 	ExtensionTaskAnsible *ExtensionTaskAnsible
+	ExtensionTaskSsh *ExtensionTaskSsh
 	ExtensionTaskWebhook *ExtensionTaskWebhook
 }
 
@@ -26,6 +27,13 @@ type ExtensionTaskOptions struct {
 func ExtensionTaskAnsibleAsExtensionTaskOptions(v *ExtensionTaskAnsible) ExtensionTaskOptions {
 	return ExtensionTaskOptions{
 		ExtensionTaskAnsible: v,
+	}
+}
+
+// ExtensionTaskSshAsExtensionTaskOptions is a convenience function that returns ExtensionTaskSsh wrapped in ExtensionTaskOptions
+func ExtensionTaskSshAsExtensionTaskOptions(v *ExtensionTaskSsh) ExtensionTaskOptions {
+	return ExtensionTaskOptions{
+		ExtensionTaskSsh: v,
 	}
 }
 
@@ -59,6 +67,18 @@ func (dst *ExtensionTaskOptions) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'ExtensionTaskSsh'
+	if jsonDict["taskType"] == "ExtensionTaskSsh" {
+		// try to unmarshal JSON data into ExtensionTaskSsh
+		err = json.Unmarshal(data, &dst.ExtensionTaskSsh)
+		if err == nil {
+			return nil // data stored in dst.ExtensionTaskSsh, return on the first match
+		} else {
+			dst.ExtensionTaskSsh = nil
+			return fmt.Errorf("failed to unmarshal ExtensionTaskOptions as ExtensionTaskSsh: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'ExtensionTaskWebhook'
 	if jsonDict["taskType"] == "ExtensionTaskWebhook" {
 		// try to unmarshal JSON data into ExtensionTaskWebhook
@@ -80,6 +100,10 @@ func (src ExtensionTaskOptions) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.ExtensionTaskAnsible)
 	}
 
+	if src.ExtensionTaskSsh != nil {
+		return json.Marshal(&src.ExtensionTaskSsh)
+	}
+
 	if src.ExtensionTaskWebhook != nil {
 		return json.Marshal(&src.ExtensionTaskWebhook)
 	}
@@ -96,6 +120,10 @@ func (obj *ExtensionTaskOptions) GetActualInstance() (interface{}) {
 		return obj.ExtensionTaskAnsible
 	}
 
+	if obj.ExtensionTaskSsh != nil {
+		return obj.ExtensionTaskSsh
+	}
+
 	if obj.ExtensionTaskWebhook != nil {
 		return obj.ExtensionTaskWebhook
 	}
@@ -108,6 +136,10 @@ func (obj *ExtensionTaskOptions) GetActualInstance() (interface{}) {
 func (obj ExtensionTaskOptions) GetActualInstanceValue() (interface{}) {
 	if obj.ExtensionTaskAnsible != nil {
 		return *obj.ExtensionTaskAnsible
+	}
+
+	if obj.ExtensionTaskSsh != nil {
+		return *obj.ExtensionTaskSsh
 	}
 
 	if obj.ExtensionTaskWebhook != nil {

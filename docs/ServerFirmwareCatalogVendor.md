@@ -1,4 +1,4 @@
-# FirmwareVendorType
+# ServerFirmwareCatalogVendor
 
 ## Enum
 

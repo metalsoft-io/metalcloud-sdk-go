@@ -6,13 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **string** | The email of the user | 
 **Password** | **string** | The password of the user | 
-**Data** | **map[string]interface{}** | The data for the SAML authentication request. | 
 
 ## Methods
 
 ### NewAuthenticationRequestProperties
 
-`func NewAuthenticationRequestProperties(email string, password string, data map[string]interface{}, ) *AuthenticationRequestProperties`
+`func NewAuthenticationRequestProperties(email string, password string, ) *AuthenticationRequestProperties`
 
 NewAuthenticationRequestProperties instantiates a new AuthenticationRequestProperties object
 This constructor will assign default values to properties that have it defined,
@@ -65,26 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *AuthenticationRequestProperties) SetPassword(v string)`
 
 SetPassword sets Password field to given value.
-
-
-### GetData
-
-`func (o *AuthenticationRequestProperties) GetData() map[string]interface{}`
-
-GetData returns the Data field if non-nil, zero value otherwise.
-
-### GetDataOk
-
-`func (o *AuthenticationRequestProperties) GetDataOk() (*map[string]interface{}, bool)`
-
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetData
-
-`func (o *AuthenticationRequestProperties) SetData(v map[string]interface{})`
-
-SetData sets Data field to given value.
 
 
 

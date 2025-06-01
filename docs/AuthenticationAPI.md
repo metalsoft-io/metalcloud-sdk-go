@@ -5,11 +5,11 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetAuthenticationProvider**](AuthenticationAPI.md#GetAuthenticationProvider) | **Get** /api/v2/authentication-provider | Retrieve authentication provider for an email
-[**GetAuthenticationProviders**](AuthenticationAPI.md#GetAuthenticationProviders) | **Get** /api/v2/authentication-providers | Retrieve all authentication providers
 [**GetCurrentUser**](AuthenticationAPI.md#GetCurrentUser) | **Get** /api/v2/user | Get current user
 [**GetPublicSignupDisabled**](AuthenticationAPI.md#GetPublicSignupDisabled) | **Get** /api/v2/public-signup-disabled | Check if public signup is disabled
 [**Login**](AuthenticationAPI.md#Login) | **Post** /api/v2/login | User login
 [**Login2FA**](AuthenticationAPI.md#Login2FA) | **Post** /api/v2/login-2fa | User login with 2FA
+[**LoginSaml**](AuthenticationAPI.md#LoginSaml) | **Post** /api/v2/login-saml | User SAML login callback URL
 [**Logout**](AuthenticationAPI.md#Logout) | **Post** /api/v2/logout | Logout user
 [**SignUp**](AuthenticationAPI.md#SignUp) | **Post** /api/v2/sign-up | Sign up
 
@@ -66,67 +66,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AuthenticationUserProvider**](AuthenticationUserProvider.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetAuthenticationProviders
-
-> AuthenticationProviders GetAuthenticationProviders(ctx).Execute()
-
-Retrieve all authentication providers
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthenticationAPI.GetAuthenticationProviders(context.Background()).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.GetAuthenticationProviders``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetAuthenticationProviders`: AuthenticationProviders
-	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.GetAuthenticationProviders`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAuthenticationProvidersRequest struct via the builder pattern
-
-
-### Return type
-
-[**AuthenticationProviders**](AuthenticationProviders.md)
 
 ### Authorization
 
@@ -290,7 +229,7 @@ import (
 )
 
 func main() {
-	authenticationRequest := *openapiclient.NewAuthenticationRequest("Provider_example", openapiclient.AuthenticationRequest_properties{AuthenticationRequestPropertiesLdap: openapiclient.NewAuthenticationRequestPropertiesLdap("test.email@metalsoft.io", "secret-password")}) // AuthenticationRequest | The authentication request
+	authenticationRequest := *openapiclient.NewAuthenticationRequest(NullableFloat32(123), openapiclient.AuthenticationRequest_properties{AuthenticationRequestPropertiesLdap: openapiclient.NewAuthenticationRequestPropertiesLdap("test.email@metalsoft.io", "secret-password")}) // AuthenticationRequest | The authentication request
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -382,6 +321,72 @@ Other parameters are passed through a pointer to a apiLogin2FARequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **twoFactorAuthenticationToken** | [**TwoFactorAuthenticationToken**](TwoFactorAuthenticationToken.md) | The 2FA token request | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## LoginSaml
+
+> User LoginSaml(ctx).Body(body).Execute()
+
+User SAML login callback URL
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	body := map[string]interface{}{ ... } // map[string]interface{} | The SAML response
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthenticationAPI.LoginSaml(context.Background()).Body(body).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.LoginSaml``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `LoginSaml`: User
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.LoginSaml`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiLoginSamlRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **map[string]interface{}** | The SAML response | 
 
 ### Return type
 

@@ -23,6 +23,8 @@ var _ MappedNullable = &AuthenticationUserProvider{}
 type AuthenticationUserProvider struct {
 	// The provider name
 	Provider string `json:"provider"`
+	// The SSO entry point URL for SAML authentication
+	SsoEntryPoint *string `json:"ssoEntryPoint,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -70,6 +72,38 @@ func (o *AuthenticationUserProvider) SetProvider(v string) {
 	o.Provider = v
 }
 
+// GetSsoEntryPoint returns the SsoEntryPoint field value if set, zero value otherwise.
+func (o *AuthenticationUserProvider) GetSsoEntryPoint() string {
+	if o == nil || IsNil(o.SsoEntryPoint) {
+		var ret string
+		return ret
+	}
+	return *o.SsoEntryPoint
+}
+
+// GetSsoEntryPointOk returns a tuple with the SsoEntryPoint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuthenticationUserProvider) GetSsoEntryPointOk() (*string, bool) {
+	if o == nil || IsNil(o.SsoEntryPoint) {
+		return nil, false
+	}
+	return o.SsoEntryPoint, true
+}
+
+// HasSsoEntryPoint returns a boolean if a field has been set.
+func (o *AuthenticationUserProvider) HasSsoEntryPoint() bool {
+	if o != nil && !IsNil(o.SsoEntryPoint) {
+		return true
+	}
+
+	return false
+}
+
+// SetSsoEntryPoint gets a reference to the given string and assigns it to the SsoEntryPoint field.
+func (o *AuthenticationUserProvider) SetSsoEntryPoint(v string) {
+	o.SsoEntryPoint = &v
+}
+
 func (o AuthenticationUserProvider) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -81,6 +115,9 @@ func (o AuthenticationUserProvider) MarshalJSON() ([]byte, error) {
 func (o AuthenticationUserProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["provider"] = o.Provider
+	if !IsNil(o.SsoEntryPoint) {
+		toSerialize["ssoEntryPoint"] = o.SsoEntryPoint
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -125,6 +162,7 @@ func (o *AuthenticationUserProvider) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "provider")
+		delete(additionalProperties, "ssoEntryPoint")
 		o.AdditionalProperties = additionalProperties
 	}
 

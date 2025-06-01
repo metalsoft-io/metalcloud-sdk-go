@@ -23,7 +23,7 @@ var _ MappedNullable = &UpdateFirmwareCatalog{}
 type UpdateFirmwareCatalog struct {
 	Name string `json:"name"`
 	Description *string `json:"description,omitempty"`
-	Vendor FirmwareVendorType `json:"vendor"`
+	Vendor ServerFirmwareCatalogVendor `json:"vendor"`
 	UpdateType CatalogUpdateType `json:"updateType"`
 	VendorId *string `json:"vendorId,omitempty"`
 	VendorUrl *string `json:"vendorUrl,omitempty"`
@@ -42,7 +42,7 @@ type _UpdateFirmwareCatalog UpdateFirmwareCatalog
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateFirmwareCatalog(name string, vendor FirmwareVendorType, updateType CatalogUpdateType) *UpdateFirmwareCatalog {
+func NewUpdateFirmwareCatalog(name string, vendor ServerFirmwareCatalogVendor, updateType CatalogUpdateType) *UpdateFirmwareCatalog {
 	this := UpdateFirmwareCatalog{}
 	this.Name = name
 	this.Vendor = vendor
@@ -115,9 +115,9 @@ func (o *UpdateFirmwareCatalog) SetDescription(v string) {
 }
 
 // GetVendor returns the Vendor field value
-func (o *UpdateFirmwareCatalog) GetVendor() FirmwareVendorType {
+func (o *UpdateFirmwareCatalog) GetVendor() ServerFirmwareCatalogVendor {
 	if o == nil {
-		var ret FirmwareVendorType
+		var ret ServerFirmwareCatalogVendor
 		return ret
 	}
 
@@ -126,7 +126,7 @@ func (o *UpdateFirmwareCatalog) GetVendor() FirmwareVendorType {
 
 // GetVendorOk returns a tuple with the Vendor field value
 // and a boolean to check if the value has been set.
-func (o *UpdateFirmwareCatalog) GetVendorOk() (*FirmwareVendorType, bool) {
+func (o *UpdateFirmwareCatalog) GetVendorOk() (*ServerFirmwareCatalogVendor, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -134,7 +134,7 @@ func (o *UpdateFirmwareCatalog) GetVendorOk() (*FirmwareVendorType, bool) {
 }
 
 // SetVendor sets field value
-func (o *UpdateFirmwareCatalog) SetVendor(v FirmwareVendorType) {
+func (o *UpdateFirmwareCatalog) SetVendor(v ServerFirmwareCatalogVendor) {
 	o.Vendor = v
 }
 

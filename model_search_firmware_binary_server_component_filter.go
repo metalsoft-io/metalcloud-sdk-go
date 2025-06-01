@@ -19,7 +19,7 @@ import (
 // SearchFirmwareBinaryServerComponentFilter - Input options for server component filters.
 type SearchFirmwareBinaryServerComponentFilter struct {
 	DellComponentFilter *DellComponentFilter
-	HpComponentFilter *HpComponentFilter
+	HpeComponentFilter *HpeComponentFilter
 	LenovoComponentFilter *LenovoComponentFilter
 }
 
@@ -30,10 +30,10 @@ func DellComponentFilterAsSearchFirmwareBinaryServerComponentFilter(v *DellCompo
 	}
 }
 
-// HpComponentFilterAsSearchFirmwareBinaryServerComponentFilter is a convenience function that returns HpComponentFilter wrapped in SearchFirmwareBinaryServerComponentFilter
-func HpComponentFilterAsSearchFirmwareBinaryServerComponentFilter(v *HpComponentFilter) SearchFirmwareBinaryServerComponentFilter {
+// HpeComponentFilterAsSearchFirmwareBinaryServerComponentFilter is a convenience function that returns HpeComponentFilter wrapped in SearchFirmwareBinaryServerComponentFilter
+func HpeComponentFilterAsSearchFirmwareBinaryServerComponentFilter(v *HpeComponentFilter) SearchFirmwareBinaryServerComponentFilter {
 	return SearchFirmwareBinaryServerComponentFilter{
-		HpComponentFilter: v,
+		HpeComponentFilter: v,
 	}
 }
 
@@ -69,13 +69,13 @@ func (dst *SearchFirmwareBinaryServerComponentFilter) UnmarshalJSON(data []byte)
 
 	// check if the discriminator value is 'hp'
 	if jsonDict["vendor"] == "hp" {
-		// try to unmarshal JSON data into HpComponentFilter
-		err = json.Unmarshal(data, &dst.HpComponentFilter)
+		// try to unmarshal JSON data into HpeComponentFilter
+		err = json.Unmarshal(data, &dst.HpeComponentFilter)
 		if err == nil {
-			return nil // data stored in dst.HpComponentFilter, return on the first match
+			return nil // data stored in dst.HpeComponentFilter, return on the first match
 		} else {
-			dst.HpComponentFilter = nil
-			return fmt.Errorf("failed to unmarshal SearchFirmwareBinaryServerComponentFilter as HpComponentFilter: %s", err.Error())
+			dst.HpeComponentFilter = nil
+			return fmt.Errorf("failed to unmarshal SearchFirmwareBinaryServerComponentFilter as HpeComponentFilter: %s", err.Error())
 		}
 	}
 
@@ -103,15 +103,15 @@ func (dst *SearchFirmwareBinaryServerComponentFilter) UnmarshalJSON(data []byte)
 		}
 	}
 
-	// check if the discriminator value is 'HpComponentFilter'
-	if jsonDict["vendor"] == "HpComponentFilter" {
-		// try to unmarshal JSON data into HpComponentFilter
-		err = json.Unmarshal(data, &dst.HpComponentFilter)
+	// check if the discriminator value is 'HpeComponentFilter'
+	if jsonDict["vendor"] == "HpeComponentFilter" {
+		// try to unmarshal JSON data into HpeComponentFilter
+		err = json.Unmarshal(data, &dst.HpeComponentFilter)
 		if err == nil {
-			return nil // data stored in dst.HpComponentFilter, return on the first match
+			return nil // data stored in dst.HpeComponentFilter, return on the first match
 		} else {
-			dst.HpComponentFilter = nil
-			return fmt.Errorf("failed to unmarshal SearchFirmwareBinaryServerComponentFilter as HpComponentFilter: %s", err.Error())
+			dst.HpeComponentFilter = nil
+			return fmt.Errorf("failed to unmarshal SearchFirmwareBinaryServerComponentFilter as HpeComponentFilter: %s", err.Error())
 		}
 	}
 
@@ -136,8 +136,8 @@ func (src SearchFirmwareBinaryServerComponentFilter) MarshalJSON() ([]byte, erro
 		return json.Marshal(&src.DellComponentFilter)
 	}
 
-	if src.HpComponentFilter != nil {
-		return json.Marshal(&src.HpComponentFilter)
+	if src.HpeComponentFilter != nil {
+		return json.Marshal(&src.HpeComponentFilter)
 	}
 
 	if src.LenovoComponentFilter != nil {
@@ -156,8 +156,8 @@ func (obj *SearchFirmwareBinaryServerComponentFilter) GetActualInstance() (inter
 		return obj.DellComponentFilter
 	}
 
-	if obj.HpComponentFilter != nil {
-		return obj.HpComponentFilter
+	if obj.HpeComponentFilter != nil {
+		return obj.HpeComponentFilter
 	}
 
 	if obj.LenovoComponentFilter != nil {
@@ -174,8 +174,8 @@ func (obj SearchFirmwareBinaryServerComponentFilter) GetActualInstanceValue() (i
 		return *obj.DellComponentFilter
 	}
 
-	if obj.HpComponentFilter != nil {
-		return *obj.HpComponentFilter
+	if obj.HpeComponentFilter != nil {
+		return *obj.HpeComponentFilter
 	}
 
 	if obj.LenovoComponentFilter != nil {
