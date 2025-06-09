@@ -47,6 +47,10 @@ type ServerOSInstallationData struct {
 	Model *string `json:"model,omitempty"`
 	// The chassis rack name of the server.
 	RackName *string `json:"rackName,omitempty"`
+	// The GPU count of the server.
+	GpuCount *float32 `json:"gpuCount,omitempty"`
+	// The GPU info of the server.
+	GpuInfo []ServerGpuInfo `json:"gpuInfo,omitempty"`
 	// The interfaces of the server.
 	Interfaces []ServerInterface `json:"interfaces,omitempty"`
 	// The disks of the server.
@@ -479,6 +483,70 @@ func (o *ServerOSInstallationData) SetRackName(v string) {
 	o.RackName = &v
 }
 
+// GetGpuCount returns the GpuCount field value if set, zero value otherwise.
+func (o *ServerOSInstallationData) GetGpuCount() float32 {
+	if o == nil || IsNil(o.GpuCount) {
+		var ret float32
+		return ret
+	}
+	return *o.GpuCount
+}
+
+// GetGpuCountOk returns a tuple with the GpuCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerOSInstallationData) GetGpuCountOk() (*float32, bool) {
+	if o == nil || IsNil(o.GpuCount) {
+		return nil, false
+	}
+	return o.GpuCount, true
+}
+
+// HasGpuCount returns a boolean if a field has been set.
+func (o *ServerOSInstallationData) HasGpuCount() bool {
+	if o != nil && !IsNil(o.GpuCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetGpuCount gets a reference to the given float32 and assigns it to the GpuCount field.
+func (o *ServerOSInstallationData) SetGpuCount(v float32) {
+	o.GpuCount = &v
+}
+
+// GetGpuInfo returns the GpuInfo field value if set, zero value otherwise.
+func (o *ServerOSInstallationData) GetGpuInfo() []ServerGpuInfo {
+	if o == nil || IsNil(o.GpuInfo) {
+		var ret []ServerGpuInfo
+		return ret
+	}
+	return o.GpuInfo
+}
+
+// GetGpuInfoOk returns a tuple with the GpuInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerOSInstallationData) GetGpuInfoOk() ([]ServerGpuInfo, bool) {
+	if o == nil || IsNil(o.GpuInfo) {
+		return nil, false
+	}
+	return o.GpuInfo, true
+}
+
+// HasGpuInfo returns a boolean if a field has been set.
+func (o *ServerOSInstallationData) HasGpuInfo() bool {
+	if o != nil && !IsNil(o.GpuInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetGpuInfo gets a reference to the given []ServerGpuInfo and assigns it to the GpuInfo field.
+func (o *ServerOSInstallationData) SetGpuInfo(v []ServerGpuInfo) {
+	o.GpuInfo = v
+}
+
 // GetInterfaces returns the Interfaces field value if set, zero value otherwise.
 func (o *ServerOSInstallationData) GetInterfaces() []ServerInterface {
 	if o == nil || IsNil(o.Interfaces) {
@@ -652,6 +720,12 @@ func (o ServerOSInstallationData) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RackName) {
 		toSerialize["rackName"] = o.RackName
 	}
+	if !IsNil(o.GpuCount) {
+		toSerialize["gpuCount"] = o.GpuCount
+	}
+	if !IsNil(o.GpuInfo) {
+		toSerialize["gpuInfo"] = o.GpuInfo
+	}
 	if !IsNil(o.Interfaces) {
 		toSerialize["interfaces"] = o.Interfaces
 	}
@@ -721,6 +795,8 @@ func (o *ServerOSInstallationData) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vendorSkuId")
 		delete(additionalProperties, "model")
 		delete(additionalProperties, "rackName")
+		delete(additionalProperties, "gpuCount")
+		delete(additionalProperties, "gpuInfo")
 		delete(additionalProperties, "interfaces")
 		delete(additionalProperties, "disks")
 		delete(additionalProperties, "storageControllers")

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**JobId** | **float32** | The id of the job. | 
+**JobId** | Pointer to **float32** | The id of the job. | [optional] 
 **JobGroupId** | **float32** | The id of the job group. | 
 
 ## Methods
 
 ### NewJobInfo
 
-`func NewJobInfo(jobId float32, jobGroupId float32, ) *JobInfo`
+`func NewJobInfo(jobGroupId float32, ) *JobInfo`
 
 NewJobInfo instantiates a new JobInfo object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetJobId sets JobId field to given value.
 
+### HasJobId
+
+`func (o *JobInfo) HasJobId() bool`
+
+HasJobId returns a boolean if a field has been set.
 
 ### GetJobGroupId
 

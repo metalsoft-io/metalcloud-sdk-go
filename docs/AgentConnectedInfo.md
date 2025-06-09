@@ -10,12 +10,13 @@ Name | Type | Description | Notes
 **Timestamp** | **string** | Connection timestamp | 
 **Capabilities** | [**AgentCapabilities**](AgentCapabilities.md) | Agent capabilities | 
 **IpInfo** | [**AgentIpInfo**](AgentIpInfo.md) | IP information | 
+**NfsHost** | **string** | NFS host | 
 
 ## Methods
 
 ### NewAgentConnectedInfo
 
-`func NewAgentConnectedInfo(agentId string, hostname string, applicationName string, timestamp string, capabilities AgentCapabilities, ipInfo AgentIpInfo, ) *AgentConnectedInfo`
+`func NewAgentConnectedInfo(agentId string, hostname string, applicationName string, timestamp string, capabilities AgentCapabilities, ipInfo AgentIpInfo, nfsHost string, ) *AgentConnectedInfo`
 
 NewAgentConnectedInfo instantiates a new AgentConnectedInfo object
 This constructor will assign default values to properties that have it defined,
@@ -148,6 +149,26 @@ and a boolean to check if the value has been set.
 `func (o *AgentConnectedInfo) SetIpInfo(v AgentIpInfo)`
 
 SetIpInfo sets IpInfo field to given value.
+
+
+### GetNfsHost
+
+`func (o *AgentConnectedInfo) GetNfsHost() string`
+
+GetNfsHost returns the NfsHost field if non-nil, zero value otherwise.
+
+### GetNfsHostOk
+
+`func (o *AgentConnectedInfo) GetNfsHostOk() (*string, bool)`
+
+GetNfsHostOk returns a tuple with the NfsHost field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNfsHost
+
+`func (o *AgentConnectedInfo) SetNfsHost(v string)`
+
+SetNfsHost sets NfsHost field to given value.
 
 
 

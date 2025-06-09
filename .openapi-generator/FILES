@@ -7,6 +7,8 @@ api_authentication.go
 api_bucket.go
 api_configuration.go
 api_custom_iso.go
+api_dns_record_set.go
+api_dns_zone.go
 api_drive.go
 api_email_template.go
 api_event.go
@@ -109,6 +111,7 @@ docs/CreateAutoVlanAllocationStrategy.md
 docs/CreateAutoVniAllocationStrategy.md
 docs/CreateBucket.md
 docs/CreateCustomIso.md
+docs/CreateDnsZoneDto.md
 docs/CreateExtension.md
 docs/CreateExtensionInstance.md
 docs/CreateFileShare.md
@@ -178,7 +181,13 @@ docs/CustomIso.md
 docs/CustomIsoAPI.md
 docs/CustomIsoPaginatedList.md
 docs/CustomVariable.md
+docs/DNSRecordSetAPI.md
+docs/DNSRecordSetPaginatedList.md
+docs/DNSZoneAPI.md
+docs/DNSZonePaginatedList.md
 docs/DellComponentFilter.md
+docs/DnsRecordSet.md
+docs/DnsZoneDto.md
 docs/Drive.md
 docs/DriveAPI.md
 docs/DriveConfiguration.md
@@ -283,6 +292,7 @@ docs/InfrastructurePaginatedList.md
 docs/InfrastructurePolicy.md
 docs/InfrastructureResourceUtilizationResponse.md
 docs/InfrastructureServiceStatus.md
+docs/InfrastructureStatistics.md
 docs/InfrastructureVariables.md
 docs/InfrastructuresStatistics.md
 docs/InstanceInterfaceIpv4AddressVariables.md
@@ -385,6 +395,8 @@ docs/PublicSignupDisabled.md
 docs/ReRegisterServerResponse.md
 docs/RedundancyConfig.md
 docs/RedundancyImplementation.md
+docs/RegisterProductionServer.md
+docs/RegisterProductionServerSettings.md
 docs/RegisterServer.md
 docs/RegisterServerResponse.md
 docs/RegisterStorageResponse.md
@@ -459,6 +471,7 @@ docs/ServerInstanceInterfaceConfiguration.md
 docs/ServerInstanceInterfacePaginatedList.md
 docs/ServerInstanceInterfaceUpdate.md
 docs/ServerInstanceOSInstallationData.md
+docs/ServerInstanceOsCredentialInstallationData.md
 docs/ServerInstanceOsInstallImageBuildInfo.md
 docs/ServerInstancePaginatedList.md
 docs/ServerInstancePowerSet.md
@@ -487,6 +500,7 @@ docs/ServerTypeStatisticsBatch.md
 docs/ServerTypeStatisticsBatchOptions.md
 docs/ServerTypeUtilizationReport.md
 docs/ServerTypeUtilizationReportGrouped.md
+docs/ServerTypesForUsage.md
 docs/ServerUnmanagedImport.md
 docs/ServerUnmanagedImportInternalInterface.md
 docs/ServerVNCInfo.md
@@ -541,6 +555,7 @@ docs/UpdateAccount.md
 docs/UpdateBucket.md
 docs/UpdateBucketMeta.md
 docs/UpdateCustomIso.md
+docs/UpdateDnsZoneDto.md
 docs/UpdateExtension.md
 docs/UpdateExtensionInstance.md
 docs/UpdateFileShare.md
@@ -725,6 +740,7 @@ model_create_auto_vlan_allocation_strategy.go
 model_create_auto_vni_allocation_strategy.go
 model_create_bucket.go
 model_create_custom_iso.go
+model_create_dns_zone_dto.go
 model_create_extension.go
 model_create_extension_instance.go
 model_create_file_share.go
@@ -794,6 +810,10 @@ model_custom_iso.go
 model_custom_iso_paginated_list.go
 model_custom_variable.go
 model_dell_component_filter.go
+model_dns_record_set.go
+model_dns_record_set_paginated_list.go
+model_dns_zone_dto.go
+model_dns_zone_paginated_list.go
 model_drive.go
 model_drive_configuration.go
 model_drive_group.go
@@ -886,6 +906,7 @@ model_infrastructure_paginated_list.go
 model_infrastructure_policy.go
 model_infrastructure_resource_utilization_response.go
 model_infrastructure_service_status.go
+model_infrastructure_statistics.go
 model_infrastructure_variables.go
 model_infrastructures_statistics.go
 model_instance_interface_ipv4_address_variables.go
@@ -981,6 +1002,8 @@ model_public_signup_disabled.go
 model_re_register_server_response.go
 model_redundancy_config.go
 model_redundancy_implementation.go
+model_register_production_server.go
+model_register_production_server_settings.go
 model_register_server.go
 model_register_server_response.go
 model_register_storage_response.go
@@ -1044,6 +1067,7 @@ model_server_instance_interface.go
 model_server_instance_interface_configuration.go
 model_server_instance_interface_paginated_list.go
 model_server_instance_interface_update.go
+model_server_instance_os_credential_installation_data.go
 model_server_instance_os_install_image_build_info.go
 model_server_instance_os_installation_data.go
 model_server_instance_paginated_list.go
@@ -1072,6 +1096,7 @@ model_server_type_statistics_batch.go
 model_server_type_statistics_batch_options.go
 model_server_type_utilization_report.go
 model_server_type_utilization_report_grouped.go
+model_server_types_for_usage.go
 model_server_unmanaged_import.go
 model_server_unmanaged_import_internal_interface.go
 model_server_variables.go
@@ -1121,6 +1146,7 @@ model_update_account.go
 model_update_bucket.go
 model_update_bucket_meta.go
 model_update_custom_iso.go
+model_update_dns_zone_dto.go
 model_update_extension.go
 model_update_extension_instance.go
 model_update_file_share.go
@@ -1251,6 +1277,8 @@ test/api_authentication_test.go
 test/api_bucket_test.go
 test/api_configuration_test.go
 test/api_custom_iso_test.go
+test/api_dns_record_set_test.go
+test/api_dns_zone_test.go
 test/api_drive_test.go
 test/api_email_template_test.go
 test/api_event_test.go

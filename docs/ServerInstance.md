@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **InstanceWanMlagId** | Pointer to **int32** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
 **PreferredServerIds** | Pointer to **[]float32** |  | [optional] 
-**RaidProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | RAID profile for the Instance Interface. | [optional] 
+**CustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Custom Storage Profile for the Instance. | [optional] 
 **ServiceStatus** | **string** | Current status of the server instance. | 
 **IsVmInstance** | **int32** | Flag to indicate if this is a VM instance | 
 **VmInstanceId** | Pointer to **int32** | The id of the linked VM instance | [optional] 
@@ -449,30 +449,30 @@ SetPreferredServerIds sets PreferredServerIds field to given value.
 
 HasPreferredServerIds returns a boolean if a field has been set.
 
-### GetRaidProfile
+### GetCustomStorageProfile
 
-`func (o *ServerInstance) GetRaidProfile() ServerInstanceStorageProfile`
+`func (o *ServerInstance) GetCustomStorageProfile() ServerInstanceStorageProfile`
 
-GetRaidProfile returns the RaidProfile field if non-nil, zero value otherwise.
+GetCustomStorageProfile returns the CustomStorageProfile field if non-nil, zero value otherwise.
 
-### GetRaidProfileOk
+### GetCustomStorageProfileOk
 
-`func (o *ServerInstance) GetRaidProfileOk() (*ServerInstanceStorageProfile, bool)`
+`func (o *ServerInstance) GetCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool)`
 
-GetRaidProfileOk returns a tuple with the RaidProfile field if it's non-nil, zero value otherwise
+GetCustomStorageProfileOk returns a tuple with the CustomStorageProfile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRaidProfile
+### SetCustomStorageProfile
 
-`func (o *ServerInstance) SetRaidProfile(v ServerInstanceStorageProfile)`
+`func (o *ServerInstance) SetCustomStorageProfile(v ServerInstanceStorageProfile)`
 
-SetRaidProfile sets RaidProfile field to given value.
+SetCustomStorageProfile sets CustomStorageProfile field to given value.
 
-### HasRaidProfile
+### HasCustomStorageProfile
 
-`func (o *ServerInstance) HasRaidProfile() bool`
+`func (o *ServerInstance) HasCustomStorageProfile() bool`
 
-HasRaidProfile returns a boolean if a field has been set.
+HasCustomStorageProfile returns a boolean if a field has been set.
 
 ### GetServiceStatus
 

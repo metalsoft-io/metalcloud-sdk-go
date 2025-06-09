@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **VendorSkuId** | Pointer to **string** | The vendor sku id of the server. | [optional] 
 **Model** | Pointer to **string** | The model of the server. | [optional] 
 **RackName** | Pointer to **string** | The chassis rack name of the server. | [optional] 
+**GpuCount** | Pointer to **float32** | The GPU count of the server. | [optional] 
+**GpuInfo** | Pointer to [**[]ServerGpuInfo**](ServerGpuInfo.md) | The GPU info of the server. | [optional] 
 **Interfaces** | Pointer to [**[]ServerInterface**](ServerInterface.md) | The interfaces of the server. | [optional] 
 **Disks** | Pointer to [**[]ServerDisk**](ServerDisk.md) | The disks of the server. | [optional] 
 **StorageControllers** | Pointer to [**[]ServerStorageController**](ServerStorageController.md) | The storage controllers of the server. | [optional] 
@@ -355,6 +357,56 @@ SetRackName sets RackName field to given value.
 `func (o *ServerOSInstallationData) HasRackName() bool`
 
 HasRackName returns a boolean if a field has been set.
+
+### GetGpuCount
+
+`func (o *ServerOSInstallationData) GetGpuCount() float32`
+
+GetGpuCount returns the GpuCount field if non-nil, zero value otherwise.
+
+### GetGpuCountOk
+
+`func (o *ServerOSInstallationData) GetGpuCountOk() (*float32, bool)`
+
+GetGpuCountOk returns a tuple with the GpuCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGpuCount
+
+`func (o *ServerOSInstallationData) SetGpuCount(v float32)`
+
+SetGpuCount sets GpuCount field to given value.
+
+### HasGpuCount
+
+`func (o *ServerOSInstallationData) HasGpuCount() bool`
+
+HasGpuCount returns a boolean if a field has been set.
+
+### GetGpuInfo
+
+`func (o *ServerOSInstallationData) GetGpuInfo() []ServerGpuInfo`
+
+GetGpuInfo returns the GpuInfo field if non-nil, zero value otherwise.
+
+### GetGpuInfoOk
+
+`func (o *ServerOSInstallationData) GetGpuInfoOk() (*[]ServerGpuInfo, bool)`
+
+GetGpuInfoOk returns a tuple with the GpuInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGpuInfo
+
+`func (o *ServerOSInstallationData) SetGpuInfo(v []ServerGpuInfo)`
+
+SetGpuInfo sets GpuInfo field to given value.
+
+### HasGpuInfo
+
+`func (o *ServerOSInstallationData) HasGpuInfo() bool`
+
+HasGpuInfo returns a boolean if a field has been set.
 
 ### GetInterfaces
 

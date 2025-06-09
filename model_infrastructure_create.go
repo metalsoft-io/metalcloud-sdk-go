@@ -28,8 +28,6 @@ type InfrastructureCreate struct {
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// User ID of the owner of the Infrastructure.
 	UserIdOwner *float32 `json:"userIdOwner,omitempty"`
-	// Description of the infrastructure.
-	Description *string `json:"description,omitempty"`
 	Meta *InfrastructureMeta `json:"meta,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -167,38 +165,6 @@ func (o *InfrastructureCreate) SetUserIdOwner(v float32) {
 	o.UserIdOwner = &v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *InfrastructureCreate) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InfrastructureCreate) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *InfrastructureCreate) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *InfrastructureCreate) SetDescription(v string) {
-	o.Description = &v
-}
-
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *InfrastructureCreate) GetMeta() InfrastructureMeta {
 	if o == nil || IsNil(o.Meta) {
@@ -248,9 +214,6 @@ func (o InfrastructureCreate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.UserIdOwner) {
 		toSerialize["userIdOwner"] = o.UserIdOwner
-	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
 	}
 	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
@@ -303,7 +266,6 @@ func (o *InfrastructureCreate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "userIdOwner")
-		delete(additionalProperties, "description")
 		delete(additionalProperties, "meta")
 		o.AdditionalProperties = additionalProperties
 	}

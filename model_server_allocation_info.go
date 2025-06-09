@@ -23,6 +23,10 @@ var _ MappedNullable = &ServerAllocationInfo{}
 type ServerAllocationInfo struct {
 	// The id of the instance.
 	InstanceId float32 `json:"instanceId"`
+	// The label of the instance.
+	InstanceLabel string `json:"instanceLabel"`
+	// The label of the instance group.
+	InstanceGroupLabel string `json:"instanceGroupLabel"`
 	// The id of the extension instance.
 	ExtensionInstanceId *float32 `json:"extensionInstanceId,omitempty"`
 	// The infrastructure of the instance.
@@ -38,9 +42,11 @@ type _ServerAllocationInfo ServerAllocationInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerAllocationInfo(instanceId float32, infrastructure map[string]interface{}) *ServerAllocationInfo {
+func NewServerAllocationInfo(instanceId float32, instanceLabel string, instanceGroupLabel string, infrastructure map[string]interface{}) *ServerAllocationInfo {
 	this := ServerAllocationInfo{}
 	this.InstanceId = instanceId
+	this.InstanceLabel = instanceLabel
+	this.InstanceGroupLabel = instanceGroupLabel
 	this.Infrastructure = infrastructure
 	return &this
 }
@@ -75,6 +81,54 @@ func (o *ServerAllocationInfo) GetInstanceIdOk() (*float32, bool) {
 // SetInstanceId sets field value
 func (o *ServerAllocationInfo) SetInstanceId(v float32) {
 	o.InstanceId = v
+}
+
+// GetInstanceLabel returns the InstanceLabel field value
+func (o *ServerAllocationInfo) GetInstanceLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.InstanceLabel
+}
+
+// GetInstanceLabelOk returns a tuple with the InstanceLabel field value
+// and a boolean to check if the value has been set.
+func (o *ServerAllocationInfo) GetInstanceLabelOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InstanceLabel, true
+}
+
+// SetInstanceLabel sets field value
+func (o *ServerAllocationInfo) SetInstanceLabel(v string) {
+	o.InstanceLabel = v
+}
+
+// GetInstanceGroupLabel returns the InstanceGroupLabel field value
+func (o *ServerAllocationInfo) GetInstanceGroupLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.InstanceGroupLabel
+}
+
+// GetInstanceGroupLabelOk returns a tuple with the InstanceGroupLabel field value
+// and a boolean to check if the value has been set.
+func (o *ServerAllocationInfo) GetInstanceGroupLabelOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InstanceGroupLabel, true
+}
+
+// SetInstanceGroupLabel sets field value
+func (o *ServerAllocationInfo) SetInstanceGroupLabel(v string) {
+	o.InstanceGroupLabel = v
 }
 
 // GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise.
@@ -176,6 +230,8 @@ func (o ServerAllocationInfo) MarshalJSON() ([]byte, error) {
 func (o ServerAllocationInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["instanceId"] = o.InstanceId
+	toSerialize["instanceLabel"] = o.InstanceLabel
+	toSerialize["instanceGroupLabel"] = o.InstanceGroupLabel
 	if !IsNil(o.ExtensionInstanceId) {
 		toSerialize["extensionInstanceId"] = o.ExtensionInstanceId
 	}
@@ -197,6 +253,8 @@ func (o *ServerAllocationInfo) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"instanceId",
+		"instanceLabel",
+		"instanceGroupLabel",
 		"infrastructure",
 	}
 
@@ -228,6 +286,8 @@ func (o *ServerAllocationInfo) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "instanceId")
+		delete(additionalProperties, "instanceLabel")
+		delete(additionalProperties, "instanceGroupLabel")
 		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "infrastructure")
 		delete(additionalProperties, "osTemplateId")

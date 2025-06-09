@@ -26,7 +26,7 @@ type ServerInstanceStorageProfileController struct {
 	// The mode of the Storage Controller.
 	Mode string `json:"mode"`
 	// The information for each Volume of the Storage Controller.
-	Volumes []ServerInstanceStorageProfileControllerVolume `json:"volumes,omitempty"`
+	Volumes []ServerInstanceStorageProfileControllerVolume `json:"volumes"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,10 +36,11 @@ type _ServerInstanceStorageProfileController ServerInstanceStorageProfileControl
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceStorageProfileController(id string, mode string) *ServerInstanceStorageProfileController {
+func NewServerInstanceStorageProfileController(id string, mode string, volumes []ServerInstanceStorageProfileControllerVolume) *ServerInstanceStorageProfileController {
 	this := ServerInstanceStorageProfileController{}
 	this.Id = id
 	this.Mode = mode
+	this.Volumes = volumes
 	return &this
 }
 
@@ -99,34 +100,26 @@ func (o *ServerInstanceStorageProfileController) SetMode(v string) {
 	o.Mode = v
 }
 
-// GetVolumes returns the Volumes field value if set, zero value otherwise.
+// GetVolumes returns the Volumes field value
 func (o *ServerInstanceStorageProfileController) GetVolumes() []ServerInstanceStorageProfileControllerVolume {
-	if o == nil || IsNil(o.Volumes) {
+	if o == nil {
 		var ret []ServerInstanceStorageProfileControllerVolume
 		return ret
 	}
+
 	return o.Volumes
 }
 
-// GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
+// GetVolumesOk returns a tuple with the Volumes field value
 // and a boolean to check if the value has been set.
 func (o *ServerInstanceStorageProfileController) GetVolumesOk() ([]ServerInstanceStorageProfileControllerVolume, bool) {
-	if o == nil || IsNil(o.Volumes) {
+	if o == nil {
 		return nil, false
 	}
 	return o.Volumes, true
 }
 
-// HasVolumes returns a boolean if a field has been set.
-func (o *ServerInstanceStorageProfileController) HasVolumes() bool {
-	if o != nil && !IsNil(o.Volumes) {
-		return true
-	}
-
-	return false
-}
-
-// SetVolumes gets a reference to the given []ServerInstanceStorageProfileControllerVolume and assigns it to the Volumes field.
+// SetVolumes sets field value
 func (o *ServerInstanceStorageProfileController) SetVolumes(v []ServerInstanceStorageProfileControllerVolume) {
 	o.Volumes = v
 }
@@ -143,9 +136,7 @@ func (o ServerInstanceStorageProfileController) ToMap() (map[string]interface{},
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["mode"] = o.Mode
-	if !IsNil(o.Volumes) {
-		toSerialize["volumes"] = o.Volumes
-	}
+	toSerialize["volumes"] = o.Volumes
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -161,6 +152,7 @@ func (o *ServerInstanceStorageProfileController) UnmarshalJSON(data []byte) (err
 	requiredProperties := []string{
 		"id",
 		"mode",
+		"volumes",
 	}
 
 	allProperties := make(map[string]interface{})

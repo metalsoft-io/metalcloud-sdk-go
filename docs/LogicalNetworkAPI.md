@@ -526,7 +526,7 @@ Name | Type | Description  | Notes
 
 ## DeleteLogicalNetwork
 
-> DeleteLogicalNetwork(ctx, id).Execute()
+> DeleteLogicalNetwork(ctx, id).IfMatch(ifMatch).Execute()
 
 Delete a Logical Network.
 
@@ -544,10 +544,11 @@ import (
 
 func main() {
 	id := float32(8.14) // float32 | 
+	ifMatch := "ifMatch_example" // string | Entity tag
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.LogicalNetworkAPI.DeleteLogicalNetwork(context.Background(), id).Execute()
+	r, err := apiClient.LogicalNetworkAPI.DeleteLogicalNetwork(context.Background(), id).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.DeleteLogicalNetwork``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -571,6 +572,7 @@ Other parameters are passed through a pointer to a apiDeleteLogicalNetworkReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **ifMatch** | **string** | Entity tag | 
 
 ### Return type
 

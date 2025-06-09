@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **Ipv4SubnetsCountActive** | Pointer to **float32** | Number of active IPv4 subnets. | [optional] 
 **Ipv6SubnetsCountActive** | Pointer to **float32** | Number of active IPv6 subnets. | [optional] 
 **Ipv4UnusedIpAddresses** | Pointer to **float32** | Number of unused IPv4 addresses. | [optional] 
-**Description** | Pointer to **string** | Description of the infrastructure. | [optional] 
 **Settings** | Pointer to **map[string]interface{}** | Settings in JSON format. | [optional] 
 **IsApiPrivate** | Pointer to **float32** | Whether the infrastructure API is private. | [optional] 
 **ExperimentalPriority** | Pointer to **string** | Experimental priority. | [optional] 
@@ -273,31 +272,6 @@ SetIpv4UnusedIpAddresses sets Ipv4UnusedIpAddresses field to given value.
 `func (o *InfrastructureVariables) HasIpv4UnusedIpAddresses() bool`
 
 HasIpv4UnusedIpAddresses returns a boolean if a field has been set.
-
-### GetDescription
-
-`func (o *InfrastructureVariables) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *InfrastructureVariables) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *InfrastructureVariables) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *InfrastructureVariables) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
 
 ### GetSettings
 

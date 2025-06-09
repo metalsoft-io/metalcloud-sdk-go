@@ -117,6 +117,15 @@ Class | Method | HTTP request | Description
 *CustomIsoAPI* | [**GetCustomIsos**](docs/CustomIsoAPI.md#getcustomisos) | **Get** /api/v2/custom-isos | Get all Custom Isos
 *CustomIsoAPI* | [**MakeCustomIsoPublic**](docs/CustomIsoAPI.md#makecustomisopublic) | **Post** /api/v2/custom-isos/{customIsoId}/actions/make-public | Make Custom Iso public
 *CustomIsoAPI* | [**UpdateCustomIso**](docs/CustomIsoAPI.md#updatecustomiso) | **Patch** /api/v2/custom-isos/{customIsoId} | Updates Custom Iso information
+*DNSRecordSetAPI* | [**ListDNSRecordSets**](docs/DNSRecordSetAPI.md#listdnsrecordsets) | **Get** /api/v2/dns-recordsets | List all RecordSets
+*DNSZoneAPI* | [**CreateDNSZone**](docs/DNSZoneAPI.md#creatednszone) | **Post** /api/v2/dns-zones | Create a new DNS Zone
+*DNSZoneAPI* | [**DeleteDNSZone**](docs/DNSZoneAPI.md#deletednszone) | **Delete** /api/v2/dns-zones/{dnsZoneId} | Delete a DNS Zone by ID
+*DNSZoneAPI* | [**GetDNSRecordSetById**](docs/DNSZoneAPI.md#getdnsrecordsetbyid) | **Get** /api/v2/dns-zones/{id}/recordsets/{recordSetId} | Get a DNS RecordSet by ID
+*DNSZoneAPI* | [**GetDNSZoneById**](docs/DNSZoneAPI.md#getdnszonebyid) | **Get** /api/v2/dns-zones/{dnsZoneId} | Get a DNS Zone by ID
+*DNSZoneAPI* | [**GetDNSZoneNameservers**](docs/DNSZoneAPI.md#getdnszonenameservers) | **Get** /api/v2/dns-zones/{dnsZoneId}/nameservers | Get the nameservers of a DNS zone
+*DNSZoneAPI* | [**GetDNSZones**](docs/DNSZoneAPI.md#getdnszones) | **Get** /api/v2/dns-zones | Get all DNS Zones
+*DNSZoneAPI* | [**ListDNSRecordSetsByZoneId**](docs/DNSZoneAPI.md#listdnsrecordsetsbyzoneid) | **Get** /api/v2/dns-zones/{id}/recordsets | List RecordSets in a DNS zone by ID
+*DNSZoneAPI* | [**UpdateDNSZone**](docs/DNSZoneAPI.md#updatednszone) | **Patch** /api/v2/dns-zones/{dnsZoneId} | Update a DNS Zone by ID
 *DriveAPI* | [**CreateDrive**](docs/DriveAPI.md#createdrive) | **Post** /api/v2/infrastructures/{infrastructureId}/drives | Create a new Drive
 *DriveAPI* | [**DeleteDrive**](docs/DriveAPI.md#deletedrive) | **Delete** /api/v2/infrastructures/{infrastructureId}/drives/{driveId} | Deletes a Drive
 *DriveAPI* | [**GetDrive**](docs/DriveAPI.md#getdrive) | **Get** /api/v2/drives/{driveId} | Get Drive information
@@ -625,6 +634,7 @@ Class | Method | HTTP request | Description
  - [CreateAutoVniAllocationStrategy](docs/CreateAutoVniAllocationStrategy.md)
  - [CreateBucket](docs/CreateBucket.md)
  - [CreateCustomIso](docs/CreateCustomIso.md)
+ - [CreateDnsZoneDto](docs/CreateDnsZoneDto.md)
  - [CreateExtension](docs/CreateExtension.md)
  - [CreateExtensionInstance](docs/CreateExtensionInstance.md)
  - [CreateFileShare](docs/CreateFileShare.md)
@@ -693,7 +703,11 @@ Class | Method | HTTP request | Description
  - [CustomIso](docs/CustomIso.md)
  - [CustomIsoPaginatedList](docs/CustomIsoPaginatedList.md)
  - [CustomVariable](docs/CustomVariable.md)
+ - [DNSRecordSetPaginatedList](docs/DNSRecordSetPaginatedList.md)
+ - [DNSZonePaginatedList](docs/DNSZonePaginatedList.md)
  - [DellComponentFilter](docs/DellComponentFilter.md)
+ - [DnsRecordSet](docs/DnsRecordSet.md)
+ - [DnsZoneDto](docs/DnsZoneDto.md)
  - [Drive](docs/Drive.md)
  - [DriveConfiguration](docs/DriveConfiguration.md)
  - [DriveGroup](docs/DriveGroup.md)
@@ -786,6 +800,7 @@ Class | Method | HTTP request | Description
  - [InfrastructurePolicy](docs/InfrastructurePolicy.md)
  - [InfrastructureResourceUtilizationResponse](docs/InfrastructureResourceUtilizationResponse.md)
  - [InfrastructureServiceStatus](docs/InfrastructureServiceStatus.md)
+ - [InfrastructureStatistics](docs/InfrastructureStatistics.md)
  - [InfrastructureVariables](docs/InfrastructureVariables.md)
  - [InfrastructuresStatistics](docs/InfrastructuresStatistics.md)
  - [InstanceInterfaceIpv4AddressVariables](docs/InstanceInterfaceIpv4AddressVariables.md)
@@ -881,6 +896,8 @@ Class | Method | HTTP request | Description
  - [ReRegisterServerResponse](docs/ReRegisterServerResponse.md)
  - [RedundancyConfig](docs/RedundancyConfig.md)
  - [RedundancyImplementation](docs/RedundancyImplementation.md)
+ - [RegisterProductionServer](docs/RegisterProductionServer.md)
+ - [RegisterProductionServerSettings](docs/RegisterProductionServerSettings.md)
  - [RegisterServer](docs/RegisterServer.md)
  - [RegisterServerResponse](docs/RegisterServerResponse.md)
  - [RegisterStorageResponse](docs/RegisterStorageResponse.md)
@@ -946,6 +963,7 @@ Class | Method | HTTP request | Description
  - [ServerInstanceInterfacePaginatedList](docs/ServerInstanceInterfacePaginatedList.md)
  - [ServerInstanceInterfaceUpdate](docs/ServerInstanceInterfaceUpdate.md)
  - [ServerInstanceOSInstallationData](docs/ServerInstanceOSInstallationData.md)
+ - [ServerInstanceOsCredentialInstallationData](docs/ServerInstanceOsCredentialInstallationData.md)
  - [ServerInstanceOsInstallImageBuildInfo](docs/ServerInstanceOsInstallImageBuildInfo.md)
  - [ServerInstancePaginatedList](docs/ServerInstancePaginatedList.md)
  - [ServerInstancePowerSet](docs/ServerInstancePowerSet.md)
@@ -973,6 +991,7 @@ Class | Method | HTTP request | Description
  - [ServerTypeStatisticsBatchOptions](docs/ServerTypeStatisticsBatchOptions.md)
  - [ServerTypeUtilizationReport](docs/ServerTypeUtilizationReport.md)
  - [ServerTypeUtilizationReportGrouped](docs/ServerTypeUtilizationReportGrouped.md)
+ - [ServerTypesForUsage](docs/ServerTypesForUsage.md)
  - [ServerUnmanagedImport](docs/ServerUnmanagedImport.md)
  - [ServerUnmanagedImportInternalInterface](docs/ServerUnmanagedImportInternalInterface.md)
  - [ServerVNCInfo](docs/ServerVNCInfo.md)
@@ -1021,6 +1040,7 @@ Class | Method | HTTP request | Description
  - [UpdateBucket](docs/UpdateBucket.md)
  - [UpdateBucketMeta](docs/UpdateBucketMeta.md)
  - [UpdateCustomIso](docs/UpdateCustomIso.md)
+ - [UpdateDnsZoneDto](docs/UpdateDnsZoneDto.md)
  - [UpdateExtension](docs/UpdateExtension.md)
  - [UpdateExtensionInstance](docs/UpdateExtensionInstance.md)
  - [UpdateFileShare](docs/UpdateFileShare.md)

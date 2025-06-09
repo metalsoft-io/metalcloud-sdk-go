@@ -860,6 +860,13 @@ type LogicalNetworkAPIDeleteLogicalNetworkRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkAPIService
 	id float32
+	ifMatch *string
+}
+
+// Entity tag
+func (r LogicalNetworkAPIDeleteLogicalNetworkRequest) IfMatch(ifMatch string) LogicalNetworkAPIDeleteLogicalNetworkRequest {
+	r.ifMatch = &ifMatch
+	return r
 }
 
 func (r LogicalNetworkAPIDeleteLogicalNetworkRequest) Execute() (*http.Response, error) {
@@ -900,6 +907,9 @@ func (a *LogicalNetworkAPIService) DeleteLogicalNetworkExecute(r LogicalNetworkA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.ifMatch == nil {
+		return nil, reportError("ifMatch is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -918,6 +928,7 @@ func (a *LogicalNetworkAPIService) DeleteLogicalNetworkExecute(r LogicalNetworkA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "If-Match", r.ifMatch, "simple", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

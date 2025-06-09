@@ -62,6 +62,10 @@ type APIClient struct {
 
 	CustomIsoAPI *CustomIsoAPIService
 
+	DNSRecordSetAPI *DNSRecordSetAPIService
+
+	DNSZoneAPI *DNSZoneAPIService
+
 	DriveAPI *DriveAPIService
 
 	EmailTemplateAPI *EmailTemplateAPIService
@@ -171,6 +175,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.BucketAPI = (*BucketAPIService)(&c.common)
 	c.ConfigurationAPI = (*ConfigurationAPIService)(&c.common)
 	c.CustomIsoAPI = (*CustomIsoAPIService)(&c.common)
+	c.DNSRecordSetAPI = (*DNSRecordSetAPIService)(&c.common)
+	c.DNSZoneAPI = (*DNSZoneAPIService)(&c.common)
 	c.DriveAPI = (*DriveAPIService)(&c.common)
 	c.EmailTemplateAPI = (*EmailTemplateAPIService)(&c.common)
 	c.EventAPI = (*EventAPIService)(&c.common)

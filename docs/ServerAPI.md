@@ -964,7 +964,7 @@ Name | Type | Description  | Notes
 
 ## RegisterProductionServer
 
-> RegisterServerResponse RegisterProductionServer(ctx).RegisterServer(registerServer).Execute()
+> RegisterServerResponse RegisterProductionServer(ctx).RegisterProductionServer(registerProductionServer).Execute()
 
 Initialize a production (live) server
 
@@ -983,11 +983,11 @@ import (
 )
 
 func main() {
-	registerServer := *openapiclient.NewRegisterServer(float32(123)) // RegisterServer | The production server registration information
+	registerProductionServer := *openapiclient.NewRegisterProductionServer(float32(123), *openapiclient.NewRegisterProductionServerSettings(float32(123))) // RegisterProductionServer | The production server registration information
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerAPI.RegisterProductionServer(context.Background()).RegisterServer(registerServer).Execute()
+	resp, r, err := apiClient.ServerAPI.RegisterProductionServer(context.Background()).RegisterProductionServer(registerProductionServer).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.RegisterProductionServer``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1008,7 +1008,7 @@ Other parameters are passed through a pointer to a apiRegisterProductionServerRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **registerServer** | [**RegisterServer**](RegisterServer.md) | The production server registration information | 
+ **registerProductionServer** | [**RegisterProductionServer**](RegisterProductionServer.md) | The production server registration information | 
 
 ### Return type
 

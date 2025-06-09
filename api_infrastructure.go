@@ -979,7 +979,7 @@ type InfrastructureAPIGetInfrastructureStatisticsRequest struct {
 	infrastructureId float32
 }
 
-func (r InfrastructureAPIGetInfrastructureStatisticsRequest) Execute() (*JobGroupStatistics, *http.Response, error) {
+func (r InfrastructureAPIGetInfrastructureStatisticsRequest) Execute() (*InfrastructureStatistics, *http.Response, error) {
 	return r.ApiService.GetInfrastructureStatisticsExecute(r)
 }
 
@@ -1001,13 +1001,13 @@ func (a *InfrastructureAPIService) GetInfrastructureStatistics(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return JobGroupStatistics
-func (a *InfrastructureAPIService) GetInfrastructureStatisticsExecute(r InfrastructureAPIGetInfrastructureStatisticsRequest) (*JobGroupStatistics, *http.Response, error) {
+//  @return InfrastructureStatistics
+func (a *InfrastructureAPIService) GetInfrastructureStatisticsExecute(r InfrastructureAPIGetInfrastructureStatisticsRequest) (*InfrastructureStatistics, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *JobGroupStatistics
+		localVarReturnValue  *InfrastructureStatistics
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InfrastructureAPIService.GetInfrastructureStatistics")

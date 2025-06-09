@@ -29,10 +29,10 @@ type ServerInstanceOSInstallationData struct {
 	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// RAID profile for the Instance Interface.
-	RaidProfile *ServerInstanceStorageProfile `json:"raidProfile,omitempty"`
+	CustomStorageProfile *ServerInstanceStorageProfile `json:"customStorageProfile,omitempty"`
 	// Flag to indicate if this is a VM instance
 	IsVmInstance int32 `json:"isVmInstance"`
-	ClusterCustomInfo *ServerInstanceClusterCustomInfo `json:"clusterCustomInfo,omitempty"`
+	OsCredentials *ServerInstanceOsCredentialInstallationData `json:"osCredentials,omitempty"`
 	// NVMe Initiator NQN for the Instance.
 	InitiatorNqn *string `json:"initiatorNqn,omitempty"`
 	// iSCSI Initiator IQN for the Instance Interface.
@@ -178,36 +178,36 @@ func (o *ServerInstanceOSInstallationData) SetCustomVariables(v map[string]inter
 	o.CustomVariables = v
 }
 
-// GetRaidProfile returns the RaidProfile field value if set, zero value otherwise.
-func (o *ServerInstanceOSInstallationData) GetRaidProfile() ServerInstanceStorageProfile {
-	if o == nil || IsNil(o.RaidProfile) {
+// GetCustomStorageProfile returns the CustomStorageProfile field value if set, zero value otherwise.
+func (o *ServerInstanceOSInstallationData) GetCustomStorageProfile() ServerInstanceStorageProfile {
+	if o == nil || IsNil(o.CustomStorageProfile) {
 		var ret ServerInstanceStorageProfile
 		return ret
 	}
-	return *o.RaidProfile
+	return *o.CustomStorageProfile
 }
 
-// GetRaidProfileOk returns a tuple with the RaidProfile field value if set, nil otherwise
+// GetCustomStorageProfileOk returns a tuple with the CustomStorageProfile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceOSInstallationData) GetRaidProfileOk() (*ServerInstanceStorageProfile, bool) {
-	if o == nil || IsNil(o.RaidProfile) {
+func (o *ServerInstanceOSInstallationData) GetCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool) {
+	if o == nil || IsNil(o.CustomStorageProfile) {
 		return nil, false
 	}
-	return o.RaidProfile, true
+	return o.CustomStorageProfile, true
 }
 
-// HasRaidProfile returns a boolean if a field has been set.
-func (o *ServerInstanceOSInstallationData) HasRaidProfile() bool {
-	if o != nil && !IsNil(o.RaidProfile) {
+// HasCustomStorageProfile returns a boolean if a field has been set.
+func (o *ServerInstanceOSInstallationData) HasCustomStorageProfile() bool {
+	if o != nil && !IsNil(o.CustomStorageProfile) {
 		return true
 	}
 
 	return false
 }
 
-// SetRaidProfile gets a reference to the given ServerInstanceStorageProfile and assigns it to the RaidProfile field.
-func (o *ServerInstanceOSInstallationData) SetRaidProfile(v ServerInstanceStorageProfile) {
-	o.RaidProfile = &v
+// SetCustomStorageProfile gets a reference to the given ServerInstanceStorageProfile and assigns it to the CustomStorageProfile field.
+func (o *ServerInstanceOSInstallationData) SetCustomStorageProfile(v ServerInstanceStorageProfile) {
+	o.CustomStorageProfile = &v
 }
 
 // GetIsVmInstance returns the IsVmInstance field value
@@ -234,36 +234,36 @@ func (o *ServerInstanceOSInstallationData) SetIsVmInstance(v int32) {
 	o.IsVmInstance = v
 }
 
-// GetClusterCustomInfo returns the ClusterCustomInfo field value if set, zero value otherwise.
-func (o *ServerInstanceOSInstallationData) GetClusterCustomInfo() ServerInstanceClusterCustomInfo {
-	if o == nil || IsNil(o.ClusterCustomInfo) {
-		var ret ServerInstanceClusterCustomInfo
+// GetOsCredentials returns the OsCredentials field value if set, zero value otherwise.
+func (o *ServerInstanceOSInstallationData) GetOsCredentials() ServerInstanceOsCredentialInstallationData {
+	if o == nil || IsNil(o.OsCredentials) {
+		var ret ServerInstanceOsCredentialInstallationData
 		return ret
 	}
-	return *o.ClusterCustomInfo
+	return *o.OsCredentials
 }
 
-// GetClusterCustomInfoOk returns a tuple with the ClusterCustomInfo field value if set, nil otherwise
+// GetOsCredentialsOk returns a tuple with the OsCredentials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceOSInstallationData) GetClusterCustomInfoOk() (*ServerInstanceClusterCustomInfo, bool) {
-	if o == nil || IsNil(o.ClusterCustomInfo) {
+func (o *ServerInstanceOSInstallationData) GetOsCredentialsOk() (*ServerInstanceOsCredentialInstallationData, bool) {
+	if o == nil || IsNil(o.OsCredentials) {
 		return nil, false
 	}
-	return o.ClusterCustomInfo, true
+	return o.OsCredentials, true
 }
 
-// HasClusterCustomInfo returns a boolean if a field has been set.
-func (o *ServerInstanceOSInstallationData) HasClusterCustomInfo() bool {
-	if o != nil && !IsNil(o.ClusterCustomInfo) {
+// HasOsCredentials returns a boolean if a field has been set.
+func (o *ServerInstanceOSInstallationData) HasOsCredentials() bool {
+	if o != nil && !IsNil(o.OsCredentials) {
 		return true
 	}
 
 	return false
 }
 
-// SetClusterCustomInfo gets a reference to the given ServerInstanceClusterCustomInfo and assigns it to the ClusterCustomInfo field.
-func (o *ServerInstanceOSInstallationData) SetClusterCustomInfo(v ServerInstanceClusterCustomInfo) {
-	o.ClusterCustomInfo = &v
+// SetOsCredentials gets a reference to the given ServerInstanceOsCredentialInstallationData and assigns it to the OsCredentials field.
+func (o *ServerInstanceOSInstallationData) SetOsCredentials(v ServerInstanceOsCredentialInstallationData) {
+	o.OsCredentials = &v
 }
 
 // GetInitiatorNqn returns the InitiatorNqn field value if set, zero value otherwise.
@@ -412,12 +412,12 @@ func (o ServerInstanceOSInstallationData) ToMap() (map[string]interface{}, error
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
 	}
-	if !IsNil(o.RaidProfile) {
-		toSerialize["raidProfile"] = o.RaidProfile
+	if !IsNil(o.CustomStorageProfile) {
+		toSerialize["customStorageProfile"] = o.CustomStorageProfile
 	}
 	toSerialize["isVmInstance"] = o.IsVmInstance
-	if !IsNil(o.ClusterCustomInfo) {
-		toSerialize["clusterCustomInfo"] = o.ClusterCustomInfo
+	if !IsNil(o.OsCredentials) {
+		toSerialize["osCredentials"] = o.OsCredentials
 	}
 	if !IsNil(o.InitiatorNqn) {
 		toSerialize["initiatorNqn"] = o.InitiatorNqn
@@ -480,9 +480,9 @@ func (o *ServerInstanceOSInstallationData) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "customVariables")
-		delete(additionalProperties, "raidProfile")
+		delete(additionalProperties, "customStorageProfile")
 		delete(additionalProperties, "isVmInstance")
-		delete(additionalProperties, "clusterCustomInfo")
+		delete(additionalProperties, "osCredentials")
 		delete(additionalProperties, "initiatorNqn")
 		delete(additionalProperties, "iscsiInitiatorIqn")
 		delete(additionalProperties, "iscsiInitiatorUsername")

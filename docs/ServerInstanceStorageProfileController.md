@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The id of the Storage Controller. | 
 **Mode** | **string** | The mode of the Storage Controller. | 
-**Volumes** | Pointer to [**[]ServerInstanceStorageProfileControllerVolume**](ServerInstanceStorageProfileControllerVolume.md) | The information for each Volume of the Storage Controller. | [optional] 
+**Volumes** | [**[]ServerInstanceStorageProfileControllerVolume**](ServerInstanceStorageProfileControllerVolume.md) | The information for each Volume of the Storage Controller. | 
 
 ## Methods
 
 ### NewServerInstanceStorageProfileController
 
-`func NewServerInstanceStorageProfileController(id string, mode string, ) *ServerInstanceStorageProfileController`
+`func NewServerInstanceStorageProfileController(id string, mode string, volumes []ServerInstanceStorageProfileControllerVolume, ) *ServerInstanceStorageProfileController`
 
 NewServerInstanceStorageProfileController instantiates a new ServerInstanceStorageProfileController object
 This constructor will assign default values to properties that have it defined,
@@ -86,11 +86,6 @@ and a boolean to check if the value has been set.
 
 SetVolumes sets Volumes field to given value.
 
-### HasVolumes
-
-`func (o *ServerInstanceStorageProfileController) HasVolumes() bool`
-
-HasVolumes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

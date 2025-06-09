@@ -1691,12 +1691,12 @@ func (a *ServerAPIService) ReRegisterServerExecute(r ServerAPIReRegisterServerRe
 type ServerAPIRegisterProductionServerRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService
-	registerServer *RegisterServer
+	registerProductionServer *RegisterProductionServer
 }
 
 // The production server registration information
-func (r ServerAPIRegisterProductionServerRequest) RegisterServer(registerServer RegisterServer) ServerAPIRegisterProductionServerRequest {
-	r.registerServer = &registerServer
+func (r ServerAPIRegisterProductionServerRequest) RegisterProductionServer(registerProductionServer RegisterProductionServer) ServerAPIRegisterProductionServerRequest {
+	r.registerProductionServer = &registerProductionServer
 	return r
 }
 
@@ -1739,8 +1739,8 @@ func (a *ServerAPIService) RegisterProductionServerExecute(r ServerAPIRegisterPr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.registerServer == nil {
-		return localVarReturnValue, nil, reportError("registerServer is required and must be specified")
+	if r.registerProductionServer == nil {
+		return localVarReturnValue, nil, reportError("registerProductionServer is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1761,7 +1761,7 @@ func (a *ServerAPIService) RegisterProductionServerExecute(r ServerAPIRegisterPr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.registerServer
+	localVarPostBody = r.registerProductionServer
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

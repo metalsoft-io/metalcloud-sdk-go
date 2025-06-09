@@ -639,7 +639,7 @@ Name | Type | Description  | Notes
 
 ## GetInfrastructureStatistics
 
-> JobGroupStatistics GetInfrastructureStatistics(ctx, infrastructureId).Execute()
+> InfrastructureStatistics GetInfrastructureStatistics(ctx, infrastructureId).Execute()
 
 Retrieves statistics for the specified infrastructure
 
@@ -667,7 +667,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `InfrastructureAPI.GetInfrastructureStatistics``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetInfrastructureStatistics`: JobGroupStatistics
+	// response from `GetInfrastructureStatistics`: InfrastructureStatistics
 	fmt.Fprintf(os.Stdout, "Response from `InfrastructureAPI.GetInfrastructureStatistics`: %v\n", resp)
 }
 ```
@@ -691,7 +691,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**JobGroupStatistics**](JobGroupStatistics.md)
+[**InfrastructureStatistics**](InfrastructureStatistics.md)
 
 ### Authorization
 

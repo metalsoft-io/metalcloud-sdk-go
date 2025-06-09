@@ -22,13 +22,13 @@ var _ MappedNullable = &ServerUnmanagedImport{}
 // ServerUnmanagedImport struct for ServerUnmanagedImport
 type ServerUnmanagedImport struct {
 	// The management address of the server.
-	ManagementAddress string `json:"managementAddress"`
+	ManagementAddress *string `json:"managementAddress,omitempty"`
 	// The site id where the server is located.
 	SiteId float32 `json:"siteId"`
 	// The server type id.
 	ServerTypeId float32 `json:"serverTypeId"`
 	// Flag to indicate if the server supports SOL.
-	ServerSupportsOobProvisioning bool `json:"serverSupportsOobProvisioning"`
+	ServerSupportsOobProvisioning *bool `json:"serverSupportsOobProvisioning,omitempty"`
 	// The interfaces of the server.
 	ServerInterfaces []ServerUnmanagedImportInternalInterface `json:"serverInterfaces"`
 	// The server Serial Number.
@@ -50,12 +50,10 @@ type _ServerUnmanagedImport ServerUnmanagedImport
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerUnmanagedImport(managementAddress string, siteId float32, serverTypeId float32, serverSupportsOobProvisioning bool, serverInterfaces []ServerUnmanagedImportInternalInterface) *ServerUnmanagedImport {
+func NewServerUnmanagedImport(siteId float32, serverTypeId float32, serverInterfaces []ServerUnmanagedImportInternalInterface) *ServerUnmanagedImport {
 	this := ServerUnmanagedImport{}
-	this.ManagementAddress = managementAddress
 	this.SiteId = siteId
 	this.ServerTypeId = serverTypeId
-	this.ServerSupportsOobProvisioning = serverSupportsOobProvisioning
 	this.ServerInterfaces = serverInterfaces
 	return &this
 }
@@ -68,28 +66,36 @@ func NewServerUnmanagedImportWithDefaults() *ServerUnmanagedImport {
 	return &this
 }
 
-// GetManagementAddress returns the ManagementAddress field value
+// GetManagementAddress returns the ManagementAddress field value if set, zero value otherwise.
 func (o *ServerUnmanagedImport) GetManagementAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.ManagementAddress) {
 		var ret string
 		return ret
 	}
-
-	return o.ManagementAddress
+	return *o.ManagementAddress
 }
 
-// GetManagementAddressOk returns a tuple with the ManagementAddress field value
+// GetManagementAddressOk returns a tuple with the ManagementAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerUnmanagedImport) GetManagementAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ManagementAddress) {
 		return nil, false
 	}
-	return &o.ManagementAddress, true
+	return o.ManagementAddress, true
 }
 
-// SetManagementAddress sets field value
+// HasManagementAddress returns a boolean if a field has been set.
+func (o *ServerUnmanagedImport) HasManagementAddress() bool {
+	if o != nil && !IsNil(o.ManagementAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetManagementAddress gets a reference to the given string and assigns it to the ManagementAddress field.
 func (o *ServerUnmanagedImport) SetManagementAddress(v string) {
-	o.ManagementAddress = v
+	o.ManagementAddress = &v
 }
 
 // GetSiteId returns the SiteId field value
@@ -140,28 +146,36 @@ func (o *ServerUnmanagedImport) SetServerTypeId(v float32) {
 	o.ServerTypeId = v
 }
 
-// GetServerSupportsOobProvisioning returns the ServerSupportsOobProvisioning field value
+// GetServerSupportsOobProvisioning returns the ServerSupportsOobProvisioning field value if set, zero value otherwise.
 func (o *ServerUnmanagedImport) GetServerSupportsOobProvisioning() bool {
-	if o == nil {
+	if o == nil || IsNil(o.ServerSupportsOobProvisioning) {
 		var ret bool
 		return ret
 	}
-
-	return o.ServerSupportsOobProvisioning
+	return *o.ServerSupportsOobProvisioning
 }
 
-// GetServerSupportsOobProvisioningOk returns a tuple with the ServerSupportsOobProvisioning field value
+// GetServerSupportsOobProvisioningOk returns a tuple with the ServerSupportsOobProvisioning field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerUnmanagedImport) GetServerSupportsOobProvisioningOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ServerSupportsOobProvisioning) {
 		return nil, false
 	}
-	return &o.ServerSupportsOobProvisioning, true
+	return o.ServerSupportsOobProvisioning, true
 }
 
-// SetServerSupportsOobProvisioning sets field value
+// HasServerSupportsOobProvisioning returns a boolean if a field has been set.
+func (o *ServerUnmanagedImport) HasServerSupportsOobProvisioning() bool {
+	if o != nil && !IsNil(o.ServerSupportsOobProvisioning) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerSupportsOobProvisioning gets a reference to the given bool and assigns it to the ServerSupportsOobProvisioning field.
 func (o *ServerUnmanagedImport) SetServerSupportsOobProvisioning(v bool) {
-	o.ServerSupportsOobProvisioning = v
+	o.ServerSupportsOobProvisioning = &v
 }
 
 // GetServerInterfaces returns the ServerInterfaces field value
@@ -358,10 +372,14 @@ func (o ServerUnmanagedImport) MarshalJSON() ([]byte, error) {
 
 func (o ServerUnmanagedImport) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["managementAddress"] = o.ManagementAddress
+	if !IsNil(o.ManagementAddress) {
+		toSerialize["managementAddress"] = o.ManagementAddress
+	}
 	toSerialize["siteId"] = o.SiteId
 	toSerialize["serverTypeId"] = o.ServerTypeId
-	toSerialize["serverSupportsOobProvisioning"] = o.ServerSupportsOobProvisioning
+	if !IsNil(o.ServerSupportsOobProvisioning) {
+		toSerialize["serverSupportsOobProvisioning"] = o.ServerSupportsOobProvisioning
+	}
 	toSerialize["serverInterfaces"] = o.ServerInterfaces
 	if !IsNil(o.ServerSerialNumber) {
 		toSerialize["serverSerialNumber"] = o.ServerSerialNumber
@@ -391,10 +409,8 @@ func (o *ServerUnmanagedImport) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"managementAddress",
 		"siteId",
 		"serverTypeId",
-		"serverSupportsOobProvisioning",
 		"serverInterfaces",
 	}
 

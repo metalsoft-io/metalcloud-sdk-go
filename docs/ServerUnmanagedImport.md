@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ManagementAddress** | **string** | The management address of the server. | 
+**ManagementAddress** | Pointer to **string** | The management address of the server. | [optional] 
 **SiteId** | **float32** | The site id where the server is located. | 
 **ServerTypeId** | **float32** | The server type id. | 
-**ServerSupportsOobProvisioning** | **bool** | Flag to indicate if the server supports SOL. | 
+**ServerSupportsOobProvisioning** | Pointer to **bool** | Flag to indicate if the server supports SOL. | [optional] 
 **ServerInterfaces** | [**[]ServerUnmanagedImportInternalInterface**](ServerUnmanagedImportInternalInterface.md) | The interfaces of the server. | 
 **ServerSerialNumber** | Pointer to **string** | The server Serial Number. | [optional] 
 **ServerUUID** | Pointer to **string** | The server UUID. | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewServerUnmanagedImport
 
-`func NewServerUnmanagedImport(managementAddress string, siteId float32, serverTypeId float32, serverSupportsOobProvisioning bool, serverInterfaces []ServerUnmanagedImportInternalInterface, ) *ServerUnmanagedImport`
+`func NewServerUnmanagedImport(siteId float32, serverTypeId float32, serverInterfaces []ServerUnmanagedImportInternalInterface, ) *ServerUnmanagedImport`
 
 NewServerUnmanagedImport instantiates a new ServerUnmanagedImport object
 This constructor will assign default values to properties that have it defined,
@@ -53,6 +53,11 @@ and a boolean to check if the value has been set.
 
 SetManagementAddress sets ManagementAddress field to given value.
 
+### HasManagementAddress
+
+`func (o *ServerUnmanagedImport) HasManagementAddress() bool`
+
+HasManagementAddress returns a boolean if a field has been set.
 
 ### GetSiteId
 
@@ -113,6 +118,11 @@ and a boolean to check if the value has been set.
 
 SetServerSupportsOobProvisioning sets ServerSupportsOobProvisioning field to given value.
 
+### HasServerSupportsOobProvisioning
+
+`func (o *ServerUnmanagedImport) HasServerSupportsOobProvisioning() bool`
+
+HasServerSupportsOobProvisioning returns a boolean if a field has been set.
 
 ### GetServerInterfaces
 

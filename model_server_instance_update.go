@@ -26,6 +26,9 @@ type ServerInstanceUpdate struct {
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
 	// The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal. 
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
+	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
+	// Custom Storage Profile for the Instance.
+	CustomStorageProfile *ServerInstanceStorageProfile `json:"customStorageProfile,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -144,6 +147,70 @@ func (o *ServerInstanceUpdate) SetOsTemplateId(v int32) {
 	o.OsTemplateId = &v
 }
 
+// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
+func (o *ServerInstanceUpdate) GetCustomVariables() map[string]interface{} {
+	if o == nil || IsNil(o.CustomVariables) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.CustomVariables
+}
+
+// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceUpdate) GetCustomVariablesOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.CustomVariables) {
+		return map[string]interface{}{}, false
+	}
+	return o.CustomVariables, true
+}
+
+// HasCustomVariables returns a boolean if a field has been set.
+func (o *ServerInstanceUpdate) HasCustomVariables() bool {
+	if o != nil && !IsNil(o.CustomVariables) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
+func (o *ServerInstanceUpdate) SetCustomVariables(v map[string]interface{}) {
+	o.CustomVariables = v
+}
+
+// GetCustomStorageProfile returns the CustomStorageProfile field value if set, zero value otherwise.
+func (o *ServerInstanceUpdate) GetCustomStorageProfile() ServerInstanceStorageProfile {
+	if o == nil || IsNil(o.CustomStorageProfile) {
+		var ret ServerInstanceStorageProfile
+		return ret
+	}
+	return *o.CustomStorageProfile
+}
+
+// GetCustomStorageProfileOk returns a tuple with the CustomStorageProfile field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceUpdate) GetCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool) {
+	if o == nil || IsNil(o.CustomStorageProfile) {
+		return nil, false
+	}
+	return o.CustomStorageProfile, true
+}
+
+// HasCustomStorageProfile returns a boolean if a field has been set.
+func (o *ServerInstanceUpdate) HasCustomStorageProfile() bool {
+	if o != nil && !IsNil(o.CustomStorageProfile) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomStorageProfile gets a reference to the given ServerInstanceStorageProfile and assigns it to the CustomStorageProfile field.
+func (o *ServerInstanceUpdate) SetCustomStorageProfile(v ServerInstanceStorageProfile) {
+	o.CustomStorageProfile = &v
+}
+
 func (o ServerInstanceUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -162,6 +229,12 @@ func (o ServerInstanceUpdate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.OsTemplateId) {
 		toSerialize["osTemplateId"] = o.OsTemplateId
+	}
+	if !IsNil(o.CustomVariables) {
+		toSerialize["customVariables"] = o.CustomVariables
+	}
+	if !IsNil(o.CustomStorageProfile) {
+		toSerialize["customStorageProfile"] = o.CustomStorageProfile
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -188,6 +261,8 @@ func (o *ServerInstanceUpdate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "osTemplateId")
+		delete(additionalProperties, "customVariables")
+		delete(additionalProperties, "customStorageProfile")
 		o.AdditionalProperties = additionalProperties
 	}
 

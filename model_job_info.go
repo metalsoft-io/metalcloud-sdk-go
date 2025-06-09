@@ -22,7 +22,7 @@ var _ MappedNullable = &JobInfo{}
 // JobInfo struct for JobInfo
 type JobInfo struct {
 	// The id of the job.
-	JobId float32 `json:"jobId"`
+	JobId *float32 `json:"jobId,omitempty"`
 	// The id of the job group.
 	JobGroupId float32 `json:"jobGroupId"`
 	AdditionalProperties map[string]interface{}
@@ -34,9 +34,8 @@ type _JobInfo JobInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJobInfo(jobId float32, jobGroupId float32) *JobInfo {
+func NewJobInfo(jobGroupId float32) *JobInfo {
 	this := JobInfo{}
-	this.JobId = jobId
 	this.JobGroupId = jobGroupId
 	return &this
 }
@@ -49,28 +48,36 @@ func NewJobInfoWithDefaults() *JobInfo {
 	return &this
 }
 
-// GetJobId returns the JobId field value
+// GetJobId returns the JobId field value if set, zero value otherwise.
 func (o *JobInfo) GetJobId() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.JobId) {
 		var ret float32
 		return ret
 	}
-
-	return o.JobId
+	return *o.JobId
 }
 
-// GetJobIdOk returns a tuple with the JobId field value
+// GetJobIdOk returns a tuple with the JobId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *JobInfo) GetJobIdOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.JobId) {
 		return nil, false
 	}
-	return &o.JobId, true
+	return o.JobId, true
 }
 
-// SetJobId sets field value
+// HasJobId returns a boolean if a field has been set.
+func (o *JobInfo) HasJobId() bool {
+	if o != nil && !IsNil(o.JobId) {
+		return true
+	}
+
+	return false
+}
+
+// SetJobId gets a reference to the given float32 and assigns it to the JobId field.
 func (o *JobInfo) SetJobId(v float32) {
-	o.JobId = v
+	o.JobId = &v
 }
 
 // GetJobGroupId returns the JobGroupId field value
@@ -107,7 +114,9 @@ func (o JobInfo) MarshalJSON() ([]byte, error) {
 
 func (o JobInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["jobId"] = o.JobId
+	if !IsNil(o.JobId) {
+		toSerialize["jobId"] = o.JobId
+	}
 	toSerialize["jobGroupId"] = o.JobGroupId
 
 	for key, value := range o.AdditionalProperties {
@@ -122,7 +131,6 @@ func (o *JobInfo) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"jobId",
 		"jobGroupId",
 	}
 

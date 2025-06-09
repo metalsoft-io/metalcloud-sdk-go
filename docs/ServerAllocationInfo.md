@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InstanceId** | **float32** | The id of the instance. | 
+**InstanceLabel** | **string** | The label of the instance. | 
+**InstanceGroupLabel** | **string** | The label of the instance group. | 
 **ExtensionInstanceId** | Pointer to **float32** | The id of the extension instance. | [optional] 
 **Infrastructure** | **map[string]interface{}** | The infrastructure of the instance. | 
 **OsTemplateId** | Pointer to **float32** | The id of the os template used by the instance. | [optional] 
@@ -13,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewServerAllocationInfo
 
-`func NewServerAllocationInfo(instanceId float32, infrastructure map[string]interface{}, ) *ServerAllocationInfo`
+`func NewServerAllocationInfo(instanceId float32, instanceLabel string, instanceGroupLabel string, infrastructure map[string]interface{}, ) *ServerAllocationInfo`
 
 NewServerAllocationInfo instantiates a new ServerAllocationInfo object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +48,46 @@ and a boolean to check if the value has been set.
 `func (o *ServerAllocationInfo) SetInstanceId(v float32)`
 
 SetInstanceId sets InstanceId field to given value.
+
+
+### GetInstanceLabel
+
+`func (o *ServerAllocationInfo) GetInstanceLabel() string`
+
+GetInstanceLabel returns the InstanceLabel field if non-nil, zero value otherwise.
+
+### GetInstanceLabelOk
+
+`func (o *ServerAllocationInfo) GetInstanceLabelOk() (*string, bool)`
+
+GetInstanceLabelOk returns a tuple with the InstanceLabel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceLabel
+
+`func (o *ServerAllocationInfo) SetInstanceLabel(v string)`
+
+SetInstanceLabel sets InstanceLabel field to given value.
+
+
+### GetInstanceGroupLabel
+
+`func (o *ServerAllocationInfo) GetInstanceGroupLabel() string`
+
+GetInstanceGroupLabel returns the InstanceGroupLabel field if non-nil, zero value otherwise.
+
+### GetInstanceGroupLabelOk
+
+`func (o *ServerAllocationInfo) GetInstanceGroupLabelOk() (*string, bool)`
+
+GetInstanceGroupLabelOk returns a tuple with the InstanceGroupLabel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceGroupLabel
+
+`func (o *ServerAllocationInfo) SetInstanceGroupLabel(v string)`
+
+SetInstanceGroupLabel sets InstanceGroupLabel field to given value.
 
 
 ### GetExtensionInstanceId

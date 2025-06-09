@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Product Instance. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
-**RaidProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | RAID profile for the Instance Interface. | [optional] 
+**CustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | RAID profile for the Instance Interface. | [optional] 
 **IsVmInstance** | **int32** | Flag to indicate if this is a VM instance | 
-**ClusterCustomInfo** | Pointer to [**ServerInstanceClusterCustomInfo**](ServerInstanceClusterCustomInfo.md) |  | [optional] 
+**OsCredentials** | Pointer to [**ServerInstanceOsCredentialInstallationData**](ServerInstanceOsCredentialInstallationData.md) |  | [optional] 
 **InitiatorNqn** | Pointer to **string** | NVMe Initiator NQN for the Instance. | [optional] 
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
@@ -125,30 +125,30 @@ SetCustomVariables sets CustomVariables field to given value.
 
 HasCustomVariables returns a boolean if a field has been set.
 
-### GetRaidProfile
+### GetCustomStorageProfile
 
-`func (o *ServerInstanceOSInstallationData) GetRaidProfile() ServerInstanceStorageProfile`
+`func (o *ServerInstanceOSInstallationData) GetCustomStorageProfile() ServerInstanceStorageProfile`
 
-GetRaidProfile returns the RaidProfile field if non-nil, zero value otherwise.
+GetCustomStorageProfile returns the CustomStorageProfile field if non-nil, zero value otherwise.
 
-### GetRaidProfileOk
+### GetCustomStorageProfileOk
 
-`func (o *ServerInstanceOSInstallationData) GetRaidProfileOk() (*ServerInstanceStorageProfile, bool)`
+`func (o *ServerInstanceOSInstallationData) GetCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool)`
 
-GetRaidProfileOk returns a tuple with the RaidProfile field if it's non-nil, zero value otherwise
+GetCustomStorageProfileOk returns a tuple with the CustomStorageProfile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRaidProfile
+### SetCustomStorageProfile
 
-`func (o *ServerInstanceOSInstallationData) SetRaidProfile(v ServerInstanceStorageProfile)`
+`func (o *ServerInstanceOSInstallationData) SetCustomStorageProfile(v ServerInstanceStorageProfile)`
 
-SetRaidProfile sets RaidProfile field to given value.
+SetCustomStorageProfile sets CustomStorageProfile field to given value.
 
-### HasRaidProfile
+### HasCustomStorageProfile
 
-`func (o *ServerInstanceOSInstallationData) HasRaidProfile() bool`
+`func (o *ServerInstanceOSInstallationData) HasCustomStorageProfile() bool`
 
-HasRaidProfile returns a boolean if a field has been set.
+HasCustomStorageProfile returns a boolean if a field has been set.
 
 ### GetIsVmInstance
 
@@ -170,30 +170,30 @@ and a boolean to check if the value has been set.
 SetIsVmInstance sets IsVmInstance field to given value.
 
 
-### GetClusterCustomInfo
+### GetOsCredentials
 
-`func (o *ServerInstanceOSInstallationData) GetClusterCustomInfo() ServerInstanceClusterCustomInfo`
+`func (o *ServerInstanceOSInstallationData) GetOsCredentials() ServerInstanceOsCredentialInstallationData`
 
-GetClusterCustomInfo returns the ClusterCustomInfo field if non-nil, zero value otherwise.
+GetOsCredentials returns the OsCredentials field if non-nil, zero value otherwise.
 
-### GetClusterCustomInfoOk
+### GetOsCredentialsOk
 
-`func (o *ServerInstanceOSInstallationData) GetClusterCustomInfoOk() (*ServerInstanceClusterCustomInfo, bool)`
+`func (o *ServerInstanceOSInstallationData) GetOsCredentialsOk() (*ServerInstanceOsCredentialInstallationData, bool)`
 
-GetClusterCustomInfoOk returns a tuple with the ClusterCustomInfo field if it's non-nil, zero value otherwise
+GetOsCredentialsOk returns a tuple with the OsCredentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetClusterCustomInfo
+### SetOsCredentials
 
-`func (o *ServerInstanceOSInstallationData) SetClusterCustomInfo(v ServerInstanceClusterCustomInfo)`
+`func (o *ServerInstanceOSInstallationData) SetOsCredentials(v ServerInstanceOsCredentialInstallationData)`
 
-SetClusterCustomInfo sets ClusterCustomInfo field to given value.
+SetOsCredentials sets OsCredentials field to given value.
 
-### HasClusterCustomInfo
+### HasOsCredentials
 
-`func (o *ServerInstanceOSInstallationData) HasClusterCustomInfo() bool`
+`func (o *ServerInstanceOSInstallationData) HasOsCredentials() bool`
 
-HasClusterCustomInfo returns a boolean if a field has been set.
+HasOsCredentials returns a boolean if a field has been set.
 
 ### GetInitiatorNqn
 

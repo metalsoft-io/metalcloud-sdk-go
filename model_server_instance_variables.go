@@ -50,8 +50,8 @@ type ServerInstanceVariables struct {
 	InstanceWanMlagId *int32 `json:"instanceWanMlagId,omitempty"`
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	PreferredServerIds []float32 `json:"preferredServerIds,omitempty"`
-	// RAID profile for the Instance Interface.
-	RaidProfile *ServerInstanceStorageProfile `json:"raidProfile,omitempty"`
+	// Custom Storage Profile for the Instance.
+	CustomStorageProfile *ServerInstanceStorageProfile `json:"customStorageProfile,omitempty"`
 	// Current status of the server instance.
 	ServiceStatus string `json:"serviceStatus"`
 	// Flag to indicate if this is a VM instance
@@ -599,36 +599,36 @@ func (o *ServerInstanceVariables) SetPreferredServerIds(v []float32) {
 	o.PreferredServerIds = v
 }
 
-// GetRaidProfile returns the RaidProfile field value if set, zero value otherwise.
-func (o *ServerInstanceVariables) GetRaidProfile() ServerInstanceStorageProfile {
-	if o == nil || IsNil(o.RaidProfile) {
+// GetCustomStorageProfile returns the CustomStorageProfile field value if set, zero value otherwise.
+func (o *ServerInstanceVariables) GetCustomStorageProfile() ServerInstanceStorageProfile {
+	if o == nil || IsNil(o.CustomStorageProfile) {
 		var ret ServerInstanceStorageProfile
 		return ret
 	}
-	return *o.RaidProfile
+	return *o.CustomStorageProfile
 }
 
-// GetRaidProfileOk returns a tuple with the RaidProfile field value if set, nil otherwise
+// GetCustomStorageProfileOk returns a tuple with the CustomStorageProfile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceVariables) GetRaidProfileOk() (*ServerInstanceStorageProfile, bool) {
-	if o == nil || IsNil(o.RaidProfile) {
+func (o *ServerInstanceVariables) GetCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool) {
+	if o == nil || IsNil(o.CustomStorageProfile) {
 		return nil, false
 	}
-	return o.RaidProfile, true
+	return o.CustomStorageProfile, true
 }
 
-// HasRaidProfile returns a boolean if a field has been set.
-func (o *ServerInstanceVariables) HasRaidProfile() bool {
-	if o != nil && !IsNil(o.RaidProfile) {
+// HasCustomStorageProfile returns a boolean if a field has been set.
+func (o *ServerInstanceVariables) HasCustomStorageProfile() bool {
+	if o != nil && !IsNil(o.CustomStorageProfile) {
 		return true
 	}
 
 	return false
 }
 
-// SetRaidProfile gets a reference to the given ServerInstanceStorageProfile and assigns it to the RaidProfile field.
-func (o *ServerInstanceVariables) SetRaidProfile(v ServerInstanceStorageProfile) {
-	o.RaidProfile = &v
+// SetCustomStorageProfile gets a reference to the given ServerInstanceStorageProfile and assigns it to the CustomStorageProfile field.
+func (o *ServerInstanceVariables) SetCustomStorageProfile(v ServerInstanceStorageProfile) {
+	o.CustomStorageProfile = &v
 }
 
 // GetServiceStatus returns the ServiceStatus field value
@@ -1142,8 +1142,8 @@ func (o ServerInstanceVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PreferredServerIds) {
 		toSerialize["preferredServerIds"] = o.PreferredServerIds
 	}
-	if !IsNil(o.RaidProfile) {
-		toSerialize["raidProfile"] = o.RaidProfile
+	if !IsNil(o.CustomStorageProfile) {
+		toSerialize["customStorageProfile"] = o.CustomStorageProfile
 	}
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	toSerialize["isVmInstance"] = o.IsVmInstance
@@ -1254,7 +1254,7 @@ func (o *ServerInstanceVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "instanceWanMlagId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "preferredServerIds")
-		delete(additionalProperties, "raidProfile")
+		delete(additionalProperties, "customStorageProfile")
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "isVmInstance")
 		delete(additionalProperties, "vmInstanceId")

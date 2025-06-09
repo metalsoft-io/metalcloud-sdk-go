@@ -24,6 +24,8 @@ type SiteConfigUpdate struct {
 	Location *PartialLocation `json:"location,omitempty"`
 	// Repository details
 	Repo *Repo `json:"repo,omitempty"`
+	// ID of the DNS zone associated with the site
+	DnsZoneId *int32 `json:"dnsZoneId,omitempty"`
 	// List of DNS Servers
 	DNSServers []string `json:"DNSServers,omitempty"`
 	// List of NTP Servers
@@ -120,6 +122,38 @@ func (o *SiteConfigUpdate) HasRepo() bool {
 // SetRepo gets a reference to the given Repo and assigns it to the Repo field.
 func (o *SiteConfigUpdate) SetRepo(v Repo) {
 	o.Repo = &v
+}
+
+// GetDnsZoneId returns the DnsZoneId field value if set, zero value otherwise.
+func (o *SiteConfigUpdate) GetDnsZoneId() int32 {
+	if o == nil || IsNil(o.DnsZoneId) {
+		var ret int32
+		return ret
+	}
+	return *o.DnsZoneId
+}
+
+// GetDnsZoneIdOk returns a tuple with the DnsZoneId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SiteConfigUpdate) GetDnsZoneIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.DnsZoneId) {
+		return nil, false
+	}
+	return o.DnsZoneId, true
+}
+
+// HasDnsZoneId returns a boolean if a field has been set.
+func (o *SiteConfigUpdate) HasDnsZoneId() bool {
+	if o != nil && !IsNil(o.DnsZoneId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDnsZoneId gets a reference to the given int32 and assigns it to the DnsZoneId field.
+func (o *SiteConfigUpdate) SetDnsZoneId(v int32) {
+	o.DnsZoneId = &v
 }
 
 // GetDNSServers returns the DNSServers field value if set, zero value otherwise.
@@ -330,6 +364,9 @@ func (o SiteConfigUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Repo) {
 		toSerialize["repo"] = o.Repo
 	}
+	if !IsNil(o.DnsZoneId) {
+		toSerialize["dnsZoneId"] = o.DnsZoneId
+	}
 	if !IsNil(o.DNSServers) {
 		toSerialize["DNSServers"] = o.DNSServers
 	}
@@ -372,6 +409,7 @@ func (o *SiteConfigUpdate) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "location")
 		delete(additionalProperties, "repo")
+		delete(additionalProperties, "dnsZoneId")
 		delete(additionalProperties, "DNSServers")
 		delete(additionalProperties, "NTPServers")
 		delete(additionalProperties, "networkDevicePolicy")

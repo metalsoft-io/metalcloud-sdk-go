@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Location** | Pointer to [**PartialLocation**](PartialLocation.md) | Location details | [optional] 
 **Repo** | Pointer to [**Repo**](Repo.md) | Repository details | [optional] 
+**DnsZoneId** | Pointer to **int32** | ID of the DNS zone associated with the site | [optional] 
 **DNSServers** | Pointer to **[]string** | List of DNS Servers | [optional] 
 **NTPServers** | Pointer to **[]string** | List of NTP Servers | [optional] 
 **NetworkDevicePolicy** | Pointer to [**PartialNetworkDevicePolicy**](PartialNetworkDevicePolicy.md) | Network device policies | [optional] 
@@ -81,6 +82,31 @@ SetRepo sets Repo field to given value.
 `func (o *SiteConfigUpdate) HasRepo() bool`
 
 HasRepo returns a boolean if a field has been set.
+
+### GetDnsZoneId
+
+`func (o *SiteConfigUpdate) GetDnsZoneId() int32`
+
+GetDnsZoneId returns the DnsZoneId field if non-nil, zero value otherwise.
+
+### GetDnsZoneIdOk
+
+`func (o *SiteConfigUpdate) GetDnsZoneIdOk() (*int32, bool)`
+
+GetDnsZoneIdOk returns a tuple with the DnsZoneId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsZoneId
+
+`func (o *SiteConfigUpdate) SetDnsZoneId(v int32)`
+
+SetDnsZoneId sets DnsZoneId field to given value.
+
+### HasDnsZoneId
+
+`func (o *SiteConfigUpdate) HasDnsZoneId() bool`
+
+HasDnsZoneId returns a boolean if a field has been set.
 
 ### GetDNSServers
 

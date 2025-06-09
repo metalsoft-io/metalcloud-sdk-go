@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **OsTemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
 **InstanceWanMlagId** | Pointer to **int32** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
-**RaidProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | RAID profile for the Instance Interface. | [optional] 
+**CustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Custom Storage Profile for the Instance. | [optional] 
 **InitiatorNqn** | Pointer to **string** | NVMe Initiator NQN for the Instance. | [optional] 
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
 **IscsiInitiatorUsername** | Pointer to **string** | iSCSI Initiator Username for the Instance Interface. | [optional] 
@@ -275,30 +275,30 @@ SetCustomVariables sets CustomVariables field to given value.
 
 HasCustomVariables returns a boolean if a field has been set.
 
-### GetRaidProfile
+### GetCustomStorageProfile
 
-`func (o *ServerInstanceConfiguration) GetRaidProfile() ServerInstanceStorageProfile`
+`func (o *ServerInstanceConfiguration) GetCustomStorageProfile() ServerInstanceStorageProfile`
 
-GetRaidProfile returns the RaidProfile field if non-nil, zero value otherwise.
+GetCustomStorageProfile returns the CustomStorageProfile field if non-nil, zero value otherwise.
 
-### GetRaidProfileOk
+### GetCustomStorageProfileOk
 
-`func (o *ServerInstanceConfiguration) GetRaidProfileOk() (*ServerInstanceStorageProfile, bool)`
+`func (o *ServerInstanceConfiguration) GetCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool)`
 
-GetRaidProfileOk returns a tuple with the RaidProfile field if it's non-nil, zero value otherwise
+GetCustomStorageProfileOk returns a tuple with the CustomStorageProfile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRaidProfile
+### SetCustomStorageProfile
 
-`func (o *ServerInstanceConfiguration) SetRaidProfile(v ServerInstanceStorageProfile)`
+`func (o *ServerInstanceConfiguration) SetCustomStorageProfile(v ServerInstanceStorageProfile)`
 
-SetRaidProfile sets RaidProfile field to given value.
+SetCustomStorageProfile sets CustomStorageProfile field to given value.
 
-### HasRaidProfile
+### HasCustomStorageProfile
 
-`func (o *ServerInstanceConfiguration) HasRaidProfile() bool`
+`func (o *ServerInstanceConfiguration) HasCustomStorageProfile() bool`
 
-HasRaidProfile returns a boolean if a field has been set.
+HasCustomStorageProfile returns a boolean if a field has been set.
 
 ### GetInitiatorNqn
 

@@ -79,6 +79,10 @@ tags:
   name: Template Asset
 - description: Eli AI assistant operations.
   name: AI
+- description: DNS zone management operations.
+  name: DNS Zone
+- description: List desired DNS record sets.
+  name: DNS RecordSet
 paths:
   /api/v2/accounts:
     get:
@@ -2288,6 +2292,878 @@ paths:
       summary: Boot Custom Iso into Server
       tags:
       - Custom Iso
+  /api/v2/dns-recordsets:
+    get:
+      operationId: listDNSRecordSets
+      parameters:
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by infrastructureId query param.
+                    <p>
+                       <b>Format: </b> filter.infrastructureId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.infrastructureId=$not:$like:John Doe&filter.infrastructureId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.infrastructureId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by name query param.
+                    <p>
+                       <b>Format: </b> filter.name={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.name=$not:$like:John Doe&filter.name=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$ilike</li></ul>
+        explode: true
+        in: query
+        name: filter.name
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by zoneName query param.
+                    <p>
+                       <b>Format: </b> filter.zoneName={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.zoneName=$not:$like:John Doe&filter.zoneName=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.zoneName
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by status query param.
+                    <p>
+                       <b>Format: </b> filter.status={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.status=$not:$like:John Doe&filter.status=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.status
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by tags query param.
+                    <p>
+                       <b>Format: </b> filter.tags={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.tags=$not:$like:John Doe&filter.tags=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$ilike</li>
+          <li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.tags
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> name:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>siteId</li>\n\
+          <li>infrastructureId</li>\n<li>name</li>\n<li>zoneName</li>\n<li>type</li>\n\
+          <li>ttl</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - siteId:ASC
+            - siteId:DESC
+            - infrastructureId:ASC
+            - infrastructureId:DESC
+            - name:ASC
+            - name:DESC
+            - zoneName:ASC
+            - zoneName:DESC
+            - type:ASC
+            - type:DESC
+            - ttl:ASC
+            - ttl:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> id,siteId,infrastructureId,name,zoneName\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
+          \ all fields mentioned below will be used to search by term\n          </p>\n\
+          \        <h4>Available Fields</h4><ul><li>id</li>\n<li>siteId</li>\n<li>infrastructureId</li>\n\
+          <li>name</li>\n<li>zoneName</li></ul>\n        "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "List of fields to select.\n      <p>\n             <b>Example:\
+          \ </b> id,siteId,infrastructureId,name,zoneId\n          </p>\n      <p>\n\
+          \             <b>Default Value: </b> By default all fields returns. If you\
+          \ want to select only some fields, provide them in query param\n       \
+          \   </p>\n      "
+        explode: true
+        in: query
+        name: select
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DNSRecordSetPaginatedList'
+          description: Returns list of DNS RecordSets
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: List all RecordSets
+      tags:
+      - DNS RecordSet
+  /api/v2/dns-zones:
+    get:
+      description: Returns a list of all DNS Zones
+      operationId: getDNSZones
+      parameters:
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by label query param.
+                    <p>
+                       <b>Format: </b> filter.label={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.label=$not:$like:John Doe&filter.label=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$null</li>
+          <li>$ilike</li></ul>
+        explode: true
+        in: query
+        name: filter.label
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by zoneName query param.
+                    <p>
+                       <b>Format: </b> filter.zoneName={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.zoneName=$not:$like:John Doe&filter.zoneName=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.zoneName
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by zoneType query param.
+                    <p>
+                       <b>Format: </b> filter.zoneType={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.zoneType=$not:$like:John Doe&filter.zoneType=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.zoneType
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by status query param.
+                    <p>
+                       <b>Format: </b> filter.status={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.status=$not:$like:John Doe&filter.status=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.status
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by isDefault query param.
+                    <p>
+                       <b>Format: </b> filter.isDefault={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.isDefault=$not:$like:John Doe&filter.isDefault=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.isDefault
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by tags query param.
+                    <p>
+                       <b>Format: </b> filter.tags={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.tags=$not:$like:John Doe&filter.tags=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$ilike</li>
+          <li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.tags
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> label:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n\
+          <li>zoneName</li>\n<li>status</li>\n<li>isDefault</li>\n<li>createdBy</li>\n\
+          <li>updatedBy</li>\n<li>createdAt</li>\n<li>updatedAt</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - label:ASC
+            - label:DESC
+            - zoneName:ASC
+            - zoneName:DESC
+            - status:ASC
+            - status:DESC
+            - isDefault:ASC
+            - isDefault:DESC
+            - createdBy:ASC
+            - createdBy:DESC
+            - updatedBy:ASC
+            - updatedBy:DESC
+            - createdAt:ASC
+            - createdAt:DESC
+            - updatedAt:ASC
+            - updatedAt:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> id,label,zoneName,status,createdBy\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
+          \ all fields mentioned below will be used to search by term\n          </p>\n\
+          \        <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>zoneName</li>\n\
+          <li>status</li>\n<li>createdBy</li>\n<li>updatedBy</li></ul>\n        "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "List of fields to select.\n      <p>\n             <b>Example:\
+          \ </b> id,label,description,zoneName,zoneType\n          </p>\n      <p>\n\
+          \             <b>Default Value: </b> By default all fields returns. If you\
+          \ want to select only some fields, provide them in query param\n       \
+          \   </p>\n      "
+        explode: true
+        in: query
+        name: select
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DNSZonePaginatedList'
+          description: Returns a list of all DNS Zones
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all DNS Zones
+      tags:
+      - DNS Zone
+    post:
+      description: Creates a new DNS Zone
+      operationId: createDNSZone
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDnsZoneDto'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DnsZoneDto'
+          description: The created DNS Zone
+          headers:
+            Location:
+              description: New DNS Zone link
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a new DNS Zone
+      tags:
+      - DNS Zone
+  /api/v2/dns-zones/{dnsZoneId}:
+    delete:
+      description: "Deletes a DNS zone. WARNING: All DNS records in the zone will\
+        \ also be deleted. This operation cannot be undone."
+      operationId: deleteDNSZone
+      parameters:
+      - description: The ID of the DNS Zone
+        explode: false
+        in: path
+        name: dnsZoneId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          description: DNS Zone deleted successfully
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: DNS Zone not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete a DNS Zone by ID
+      tags:
+      - DNS Zone
+    get:
+      description: "Returns the DNS Zone by ID, but not the record sets within the\
+        \ zone."
+      operationId: getDNSZoneById
+      parameters:
+      - description: The ID of the DNS Zone
+        explode: false
+        in: path
+        name: dnsZoneId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DnsZoneDto'
+          description: Returns the DNS Zone by ID
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: DNS Zone not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get a DNS Zone by ID
+      tags:
+      - DNS Zone
+    patch:
+      description: "Updates a DNS Zone by ID, but does not modify DNS records within\
+        \ the zone."
+      operationId: updateDNSZone
+      parameters:
+      - description: The ID of the DNS Zone
+        explode: false
+        in: path
+        name: dnsZoneId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDnsZoneDto'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DnsZoneDto'
+          description: Returns the updated DNS Zone
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: DNS Zone not found
+        "409":
+          description: Conflict
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update a DNS Zone by ID
+      tags:
+      - DNS Zone
+  /api/v2/dns-zones/{dnsZoneId}/nameservers:
+    get:
+      description: Returns the nameservers of the DNS zone
+      operationId: getDNSZoneNameservers
+      parameters:
+      - description: The ID of the DNS Zone
+        explode: false
+        in: path
+        name: dnsZoneId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Returns the nameservers of the DNS zone
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: DNS Zone not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get the nameservers of a DNS zone
+      tags:
+      - DNS Zone
+  /api/v2/dns-zones/{id}/recordsets:
+    get:
+      description: Returns a list of DNS RecordSets in the DNS zone
+      operationId: listDNSRecordSetsByZoneId
+      parameters:
+      - description: The ID of the DNS Zone
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by infrastructureId query param.
+                    <p>
+                       <b>Format: </b> filter.infrastructureId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.infrastructureId=$not:$like:John Doe&filter.infrastructureId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.infrastructureId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by name query param.
+                    <p>
+                       <b>Format: </b> filter.name={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.name=$not:$like:John Doe&filter.name=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$ilike</li></ul>
+        explode: true
+        in: query
+        name: filter.name
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by zoneName query param.
+                    <p>
+                       <b>Format: </b> filter.zoneName={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.zoneName=$not:$like:John Doe&filter.zoneName=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.zoneName
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by status query param.
+                    <p>
+                       <b>Format: </b> filter.status={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.status=$not:$like:John Doe&filter.status=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.status
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by tags query param.
+                    <p>
+                       <b>Format: </b> filter.tags={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.tags=$not:$like:John Doe&filter.tags=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$ilike</li>
+          <li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.tags
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> name:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>siteId</li>\n\
+          <li>infrastructureId</li>\n<li>name</li>\n<li>zoneName</li>\n<li>type</li>\n\
+          <li>ttl</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - siteId:ASC
+            - siteId:DESC
+            - infrastructureId:ASC
+            - infrastructureId:DESC
+            - name:ASC
+            - name:DESC
+            - zoneName:ASC
+            - zoneName:DESC
+            - type:ASC
+            - type:DESC
+            - ttl:ASC
+            - ttl:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> id,siteId,infrastructureId,name,zoneName\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
+          \ all fields mentioned below will be used to search by term\n          </p>\n\
+          \        <h4>Available Fields</h4><ul><li>id</li>\n<li>siteId</li>\n<li>infrastructureId</li>\n\
+          <li>name</li>\n<li>zoneName</li></ul>\n        "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "List of fields to select.\n      <p>\n             <b>Example:\
+          \ </b> id,siteId,infrastructureId,name,zoneId\n          </p>\n      <p>\n\
+          \             <b>Default Value: </b> By default all fields returns. If you\
+          \ want to select only some fields, provide them in query param\n       \
+          \   </p>\n      "
+        explode: true
+        in: query
+        name: select
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DNSRecordSetPaginatedList'
+          description: Returns a list of DNS RecordSets in the DNS zone
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: DNS Zone not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: List RecordSets in a DNS zone by ID
+      tags:
+      - DNS Zone
+  /api/v2/dns-zones/{id}/recordsets/{recordSetId}:
+    get:
+      description: Returns the DNS RecordSet by ID within the DNS zone
+      operationId: getDNSRecordSetById
+      parameters:
+      - description: The ID of the DNS Zone
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: The ID of the DNS RecordSet
+        explode: false
+        in: path
+        name: recordSetId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DnsRecordSet'
+          description: Returns the DNS RecordSet by ID within the DNS zone
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: DNS Zone or RecordSet not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get a DNS RecordSet by ID
+      tags:
+      - DNS Zone
   /api/v2/email-templates:
     get:
       description: Returns list of all Email Templates
@@ -6770,7 +7646,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/JobGroupStatistics'
+                $ref: '#/components/schemas/InfrastructureStatistics'
           description: Retrieved the statistics for the specified infrastructure
         "400":
           description: Bad request
@@ -11524,6 +12400,14 @@ paths:
         required: true
         schema:
           type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: true
+        schema:
+          type: string
         style: simple
       responses:
         "204":
@@ -21485,7 +22369,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegisterServer'
+              $ref: '#/components/schemas/RegisterProductionServer'
         description: The production server registration information
         required: true
       responses:
@@ -29448,6 +30332,190 @@ paths:
         schema:
           type: number
         style: simple
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by label query param.
+                    <p>
+                       <b>Format: </b> filter.label={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.label=$not:$like:John Doe&filter.label=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.label
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by subdomain query param.
+                    <p>
+                       <b>Format: </b> filter.subdomain={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.subdomain=$not:$like:John Doe&filter.subdomain=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.subdomain
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by subdomainPermanent query param.
+                    <p>
+                       <b>Format: </b> filter.subdomainPermanent={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.subdomainPermanent=$not:$like:John Doe&filter.subdomainPermanent=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.subdomainPermanent
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by serviceStatus query param.
+                    <p>
+                       <b>Format: </b> filter.serviceStatus={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.serviceStatus=$not:$like:John Doe&filter.serviceStatus=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.serviceStatus
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by config.deployStatus query param.
+                    <p>
+                       <b>Format: </b> filter.config.deployStatus={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.config.deployStatus=$not:$like:John Doe&filter.config.deployStatus=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.config.deployStatus
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by config.deployType query param.
+                    <p>
+                       <b>Format: </b> filter.config.deployType={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.config.deployType=$not:$like:John Doe&filter.config.deployType=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.config.deployType
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>serviceStatus</li>\n\
+          <li>config.deployStatus</li>\n<li>config.deployType</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - serviceStatus:ASC
+            - serviceStatus:DESC
+            - config.deployStatus:ASC
+            - config.deployStatus:DESC
+            - config.deployType:ASC
+            - config.deployType:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> id,label,subdomain,subdomainPermanent,serviceStatus\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> By default\
+          \ all fields mentioned below will be used to search by term\n          </p>\n\
+          \        <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>subdomain</li>\n\
+          <li>subdomainPermanent</li>\n<li>serviceStatus</li>\n<li>config.deployStatus</li>\n\
+          <li>config.deployType</li></ul>\n        "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -32989,16 +34057,18 @@ components:
       type: object
     AuthenticationRequest:
       example:
-        provider: 0.8008281904610115
+        provider: mysql
         properties:
           password: secret-password
           email: test.email@metalsoft.io
       properties:
         provider:
+          default: mysql
           description: Type of the authentication request.
           enum:
-          - null
-          type: number
+          - mysql
+          - ldap
+          type: string
         properties:
           $ref: '#/components/schemas/AuthenticationRequest_properties'
       required:
@@ -34393,7 +35463,608 @@ components:
           type: number
       required:
       - jobGroupId
-      - jobId
+      type: object
+    DnsRecordSet:
+      example:
+        updatedBy: 10
+        records:
+        - 192.168.0.2
+        type: A
+        ttl: 3600
+        tags: "[\"vcf\"]"
+        revision: 1
+        createdAt: 2024-01-01T00:00:00Z
+        infrastructureId: 2
+        createdBy: 6
+        name: www.example.com
+        siteId: 1
+        zoneId: 4
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        id: 10
+        zoneName: example.com
+        updatedAt: 2024-01-01T00:00:00Z
+      properties:
+        id:
+          description: The DNS Resource Record Set (RRSet) ID
+          example: 10
+          readOnly: true
+          type: integer
+        siteId:
+          description: The site ID
+          example: 1
+          type: integer
+        infrastructureId:
+          description: The infrastructure ID
+          example: 2
+          type: integer
+        zoneId:
+          description: The ID of the DNS zone
+          example: 4
+          type: integer
+        zoneName:
+          description: The name of the DNS zone (without a terminating dot)
+          example: example.com
+          maxLength: 255
+          minLength: 3
+          type: string
+        name:
+          description: DNS Name for the RecordSet
+          example: www.example.com
+          maxLength: 255
+          type: string
+          uniqueItems: true
+        type:
+          description: "The type of DNS record (e.g., A, AAAA, CNAME, NS, PTR, TXT,\
+            \ SOA)"
+          enum:
+          - A
+          - AAAA
+          - CNAME
+          - NS
+          - PTR
+          - SOA
+          - TXT
+          example: A
+          type: string
+        ttl:
+          default: 3600
+          description: TTL (Time to Live) for the DNS Record Set.
+          example: 3600
+          type: integer
+        records:
+          description: The record data for this DNS record set
+          example:
+          - 192.168.0.2
+          items:
+            type: string
+          type: array
+        tags:
+          description: The tags associated with the DNS Record Set
+          example: "[\"vcf\"]"
+          items:
+            maxLength: 255
+            type: string
+          type: array
+        revision:
+          description: The revision number of the DNS Record Set
+          example: 1
+          readOnly: true
+          type: integer
+        createdBy:
+          description: The user ID of the user who created the DNS Record Set
+          example: 6
+          type: integer
+        updatedBy:
+          description: The user ID of the user who last modified the DNS Record Set
+          example: 10
+          type: integer
+        createdAt:
+          description: The date and time the DNS Record Set was created
+          example: 2024-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          description: The date and time the DNS Record Set was last updated
+          example: 2024-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - createdAt
+      - createdBy
+      - id
+      - infrastructureId
+      - name
+      - records
+      - revision
+      - siteId
+      - type
+      - zoneId
+      - zoneName
+      type: object
+    DNSRecordSetPaginatedList:
+      example:
+        data:
+        - updatedBy: 10
+          records:
+          - 192.168.0.2
+          type: A
+          ttl: 3600
+          tags: "[\"vcf\"]"
+          revision: 1
+          createdAt: 2024-01-01T00:00:00Z
+          infrastructureId: 2
+          createdBy: 6
+          name: www.example.com
+          siteId: 1
+          zoneId: 4
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 10
+          zoneName: example.com
+          updatedAt: 2024-01-01T00:00:00Z
+        - updatedBy: 10
+          records:
+          - 192.168.0.2
+          type: A
+          ttl: 3600
+          tags: "[\"vcf\"]"
+          revision: 1
+          createdAt: 2024-01-01T00:00:00Z
+          infrastructureId: 2
+          createdBy: 6
+          name: www.example.com
+          siteId: 1
+          zoneId: 4
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 10
+          zoneName: example.com
+          updatedAt: 2024-01-01T00:00:00Z
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/DnsRecordSet'
+          title: List of dns record sets
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
+    DnsZoneDto:
+      example:
+        updatedBy: 10
+        description: This is a DNS zone for development
+        zoneType: master
+        label: example-com
+        nameServers:
+        - ns1-01.dns-ms.com
+        - ns2-01.dns-ms.com
+        ttl: 3600
+        tags: "[\"metalsoft.io\",\"metal.local\"]"
+        revision: 1
+        createdAt: 2024-01-01T00:00:00Z
+        isDefault: true
+        createdBy: 6
+        soaEmail: admin.example.com
+        soaSerial: 2024010101
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        id: 10
+        zoneName: example.com
+        status: ready
+        updatedAt: 2024-01-01T00:00:00Z
+      properties:
+        id:
+          description: The DNS zone ID
+          example: 10
+          readOnly: true
+          type: integer
+        label:
+          description: The DNS zone label. It must be unique
+          example: example-com
+          maxLength: 255
+          readOnly: true
+          type: string
+          uniqueItems: true
+        description:
+          description: The DNS zone description
+          example: This is a DNS zone for development
+          type: string
+        zoneName:
+          description: |-
+            The name of the DNS zone (without a terminating dot).
+                              The DNS zone name, must be unique
+          example: example.com
+          maxLength: 255
+          minLength: 3
+          type: string
+          uniqueItems: true
+        zoneType:
+          default: master
+          description: |-
+            The type of zone, 'master' is controlled by the application,
+                              'slave' is controlled by an external DNS server.
+          enum:
+          - master
+          - slave
+          example: master
+          type: string
+        soaEmail:
+          default: admin.<zone_name>
+          description: The email address of the DNS zone administrator
+          example: admin.example.com
+          maxLength: 255
+          type: string
+        soaSerial:
+          description: The serial number of the DNS zone
+          example: 2024010101
+          maxLength: 255
+          readOnly: true
+          type: integer
+        ttl:
+          description: TTL (Time to Live) for the DNS zone.
+          example: 3600
+          maxLength: 255
+          type: integer
+        nameServers:
+          description: The name servers for this DNS zone. This is a list of DNS servers
+            that are authoritative for the zone.
+          example:
+          - ns1-01.dns-ms.com
+          - ns2-01.dns-ms.com
+          items:
+            type: string
+          type: array
+        isDefault:
+          description: The default DNS zone to be used in deployments.
+          example: true
+          type: boolean
+        status:
+          default: ready
+          description: |-
+            The status, let the user to decide with DNS zone to delete and when,
+                  and how much to keep them in the history (archived status). Also, it allows the user to
+                  resurrect the archived DNS zone if needed.
+                  Status: READY
+                      - is the initial status of the DNS zone
+                      - the DNS zone is ready for deployment
+                      - the DNS zone can be deleted, use in deployments and updated
+                  Status: ACTIVE
+                      - the DNS zone is part of at least one ongoing deployment
+                      - can't be deleted (the dns service will have validation for this)
+                      - the status can't be changed to ARCHIVED (the dns service will have validation for this)
+                  Status: USED
+                      - the DNS zone is part of at least one finished deployment, that is not deleted, and
+                        there are no ongoing deployments that use this DNS zone
+                      - can't be deleted (the dns service will have validation for this)
+                      - can be updated, deploy or ARCHIVED
+                  Status: ARCHIVED
+                      - the DNS zone is kept in the system for historical reasons
+                      - can't be deleted (the dns service will have validation for this)
+                      - can't be updated or deployed
+                      - the status can be changed to READY or USED, if it needs to be used again or deleted
+          enum:
+          - ready
+          - active
+          - used
+          - archived
+          example: ready
+          type: string
+        tags:
+          description: The tags associated with the DNS zone
+          example: "[\"metalsoft.io\",\"metal.local\"]"
+          items:
+            maxLength: 255
+            type: string
+          type: array
+        revision:
+          description: The revision number of the DNS zone
+          example: 1
+          readOnly: true
+          type: integer
+        createdBy:
+          description: The user ID of the user who created the DNS zone
+          example: 6
+          type: integer
+        updatedBy:
+          description: The user ID of the user who last modified the DNS zone
+          example: 10
+          type: integer
+        createdAt:
+          description: The date and time the DNS zone was created
+          example: 2024-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          description: The date and time the DNS zone was last updated
+          example: 2024-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - createdAt
+      - createdBy
+      - id
+      - isDefault
+      - label
+      - nameServers
+      - revision
+      - soaEmail
+      - soaSerial
+      - status
+      - ttl
+      - zoneName
+      - zoneType
+      type: object
+    DNSZonePaginatedList:
+      example:
+        data:
+        - updatedBy: 10
+          description: This is a DNS zone for development
+          zoneType: master
+          label: example-com
+          nameServers:
+          - ns1-01.dns-ms.com
+          - ns2-01.dns-ms.com
+          ttl: 3600
+          tags: "[\"metalsoft.io\",\"metal.local\"]"
+          revision: 1
+          createdAt: 2024-01-01T00:00:00Z
+          isDefault: true
+          createdBy: 6
+          soaEmail: admin.example.com
+          soaSerial: 2024010101
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 10
+          zoneName: example.com
+          status: ready
+          updatedAt: 2024-01-01T00:00:00Z
+        - updatedBy: 10
+          description: This is a DNS zone for development
+          zoneType: master
+          label: example-com
+          nameServers:
+          - ns1-01.dns-ms.com
+          - ns2-01.dns-ms.com
+          ttl: 3600
+          tags: "[\"metalsoft.io\",\"metal.local\"]"
+          revision: 1
+          createdAt: 2024-01-01T00:00:00Z
+          isDefault: true
+          createdBy: 6
+          soaEmail: admin.example.com
+          soaSerial: 2024010101
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 10
+          zoneName: example.com
+          status: ready
+          updatedAt: 2024-01-01T00:00:00Z
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/DnsZoneDto'
+          title: List of dns zones
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
+    CreateDnsZoneDto:
+      example:
+        isDefault: true
+        soaEmail: admin.example.com
+        description: This is a DNS zone for development
+        zoneType: master
+        zoneName: example.com
+        nameServers:
+        - ns1-01.dns-ms.com
+        - ns2-01.dns-ms.com
+        ttl: 3600
+        tags: "[\"metalsoft.io\",\"metal.local\"]"
+      properties:
+        description:
+          description: The DNS zone description
+          example: This is a DNS zone for development
+          type: string
+        zoneName:
+          description: |-
+            The name of the DNS zone (without a terminating dot).
+                              The DNS zone name must be unique and follow the DNS domain naming conventions.
+          example: example.com
+          maxLength: 255
+          minLength: 3
+          type: string
+          uniqueItems: true
+        zoneType:
+          default: master
+          description: |-
+            The type of zone, 'master' is controlled by the application,
+                              'slave' is controlled by an external DNS server.
+          enum:
+          - master
+          - slave
+          example: master
+          type: string
+        soaEmail:
+          default: admin.<zone_name>
+          description: The email address of the DNS zone administrator
+          example: admin.example.com
+          maxLength: 255
+          type: string
+        ttl:
+          description: TTL (Time to Live) for the DNS zone.
+          example: 3600
+          maxLength: 255
+          type: integer
+        isDefault:
+          description: The default DNS zone to be used in deployments.
+          example: true
+          type: boolean
+        nameServers:
+          description: The name servers for this DNS zone. This is a list of DNS servers
+            that are authoritative for the zone.
+          example:
+          - ns1-01.dns-ms.com
+          - ns2-01.dns-ms.com
+          items:
+            type: string
+          type: array
+        tags:
+          description: The tags associated with the DNS zone
+          example: "[\"metalsoft.io\",\"metal.local\"]"
+          items:
+            maxLength: 255
+            type: string
+          type: array
+      required:
+      - isDefault
+      - nameServers
+      - zoneName
+      type: object
+    UpdateDnsZoneDto:
+      example:
+        soaEmail: admin.example.com
+        description: This is a DNS zone for development
+        zoneType: master
+        nameServers:
+        - ns1-01.dns-ms.com
+        - ns2-01.dns-ms.com
+        ttl: 3600
+        status: ready
+        tags: "[\"metal.local\"]"
+      properties:
+        description:
+          description: The DNS zone description
+          example: This is a DNS zone for development
+          type: string
+        zoneType:
+          default: master
+          description: |-
+            The type of zone, 'master' is controlled by the application,
+                              'slave' is controlled by an external DNS server.
+          enum:
+          - master
+          - slave
+          example: master
+          type: string
+        soaEmail:
+          default: admin.<zone_name>
+          description: The email address of the DNS zone administrator
+          example: admin.example.com
+          maxLength: 255
+          type: string
+        ttl:
+          description: TTL (Time to Live) for the DNS zone.
+          example: 3600
+          maxLength: 255
+          type: integer
+        nameServers:
+          description: The name servers for this DNS zone. This is a list of DNS servers
+            that are authoritative for the zone.
+          example:
+          - ns1-01.dns-ms.com
+          - ns2-01.dns-ms.com
+          items:
+            type: string
+          type: array
+        status:
+          default: ready
+          description: |-
+            The status, let the user to decide with DNS zone to delete and when,
+                  and how much to keep them in the history (archived status). Also, it allows the user to
+                  resurrect the archived DNS zone if needed.
+                  Status: READY
+                      - is the initial status of the DNS zone
+                      - the DNS zone is ready for deployment
+                      - the DNS zone can be deleted, use in deployments and updated
+                  Status: ACTIVE
+                      - the DNS zone is part of at least one ongoing deployment
+                      - can't be deleted (the dns service will have validation for this)
+                      - the status can't be changed to ARCHIVED (the dns service will have validation for this)
+                  Status: USED
+                      - the DNS zone is part of at least one finished deployment, that is not deleted, and
+                        there are no ongoing deployments that use this DNS zone
+                      - can't be deleted (the dns service will have validation for this)
+                      - can be updated, deploy or ARCHIVED
+                  Status: ARCHIVED
+                      - the DNS zone is kept in the system for historical reasons
+                      - can't be deleted (the dns service will have validation for this)
+                      - can't be updated or deployed
+                      - the status can be changed to READY or USED, if it needs to be used again or deleted
+          enum:
+          - ready
+          - active
+          - used
+          - archived
+          example: ready
+          type: string
+        tags:
+          description: The tags associated with the DNS zone
+          example: "[\"metal.local\"]"
+          items:
+            maxLength: 255
+            type: string
+          type: array
       type: object
     EmailTemplate:
       example:
@@ -43194,9 +44865,6 @@ components:
         ipv4UnusedIpAddresses:
           description: Number of unused IPv4 addresses.
           type: number
-        description:
-          description: Description of the infrastructure.
-          type: string
         settings:
           description: Settings in JSON format.
           type: object
@@ -43245,6 +44913,7 @@ components:
     InfrastructureMeta:
       example:
         name: name
+        description: description
         guiSettings:
           rowIndex: 1.4658129805029452
           columnIndex: 5.962133916683182
@@ -43264,6 +44933,9 @@ components:
           type: array
         name:
           description: name of the Infrastructure
+          type: string
+        description:
+          description: Description of the infrastructure.
           type: string
       required:
       - name
@@ -43310,7 +44982,6 @@ components:
       example:
         experimentalPriority: disallow
         datacenterName: datacenterName
-        description: description
         ipv6SubnetsCountActive: 5.637376656633329
         updatedTimestamp: updatedTimestamp
         customVariables: "{}"
@@ -43377,9 +45048,6 @@ components:
         ipv4UnusedIpAddresses:
           description: Number of unused IPv4 addresses.
           type: number
-        description:
-          description: Description of the infrastructure.
-          type: string
         settings:
           description: Settings in JSON format.
           type: object
@@ -43476,7 +45144,6 @@ components:
         data:
         - experimentalPriority: disallow
           datacenterName: datacenterName
-          description: description
           ipv6SubnetsCountActive: 5.637376656633329
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
@@ -43518,7 +45185,6 @@ components:
             groupCreatedTimestamp: 2022-01-01T00:00:00Z
         - experimentalPriority: disallow
           datacenterName: datacenterName
-          description: description
           ipv6SubnetsCountActive: 5.637376656633329
           updatedTimestamp: updatedTimestamp
           customVariables: "{}"
@@ -43659,6 +45325,7 @@ components:
       example:
         meta:
           name: name
+          description: description
           guiSettings:
             rowIndex: 1.4658129805029452
             columnIndex: 5.962133916683182
@@ -43670,7 +45337,6 @@ components:
           - tags
         userIdOwner: 6.027456183070403
         siteId: 0.8008281904610115
-        description: description
         label: label
         customVariables: "{}"
       properties:
@@ -43685,9 +45351,6 @@ components:
         userIdOwner:
           description: User ID of the owner of the Infrastructure.
           type: number
-        description:
-          description: Description of the infrastructure.
-          type: string
         meta:
           $ref: '#/components/schemas/InfrastructureMeta'
       required:
@@ -43710,7 +45373,6 @@ components:
         experimentalPriority: disallow
         datacenterName: datacenterName
         serverTypeIdToPreferredServerIds: "{}"
-        description: description
         ipv6SubnetsCountActive: 3.616076749251911
         updatedTimestamp: updatedTimestamp
         deployType: create
@@ -43803,9 +45465,6 @@ components:
         ipv4UnusedIpAddresses:
           description: Number of unused IPv4 addresses.
           type: number
-        description:
-          description: Description of the infrastructure.
-          type: string
         settings:
           description: Settings in JSON format.
           type: object
@@ -43904,9 +45563,53 @@ components:
       - jobsThrownError
       - jobsTotal
       type: object
+    ServerTypesForUsage:
+      example:
+        serversAvailable: 6.027456183070403
+        name: name
+        id: 0.8008281904610115
+      properties:
+        id:
+          description: Id of the server type
+          type: number
+        name:
+          description: Name of the server type
+          type: string
+        serversAvailable:
+          description: Count of servers available for this server type
+          type: number
+      required:
+      - id
+      - name
+      - serversAvailable
+      type: object
+    InfrastructureStatistics:
+      example:
+        jobGroupStatistics: ""
+        serverTypesForUsage:
+        - serversAvailable: 6.027456183070403
+          name: name
+          id: 0.8008281904610115
+        - serversAvailable: 6.027456183070403
+          name: name
+          id: 0.8008281904610115
+      properties:
+        jobGroupStatistics:
+          allOf:
+          - $ref: '#/components/schemas/JobGroupStatistics'
+          description: Statistics of job group for the infrastructure
+        serverTypesForUsage:
+          description: List of server types statistics
+          items:
+            $ref: '#/components/schemas/ServerTypesForUsage'
+          type: array
+      required:
+      - serverTypesForUsage
+      type: object
     UpdateInfrastructureMeta:
       example:
         name: name
+        description: description
         guiSettings:
           rowIndex: 1.4658129805029452
           columnIndex: 5.962133916683182
@@ -43926,6 +45629,9 @@ components:
           type: array
         name:
           description: name of the Infrastructure
+          type: string
+        description:
+          description: Description of the infrastructure.
           type: string
       required:
       - name
@@ -44960,6 +46666,7 @@ components:
       required:
       - id
       - mode
+      - volumes
       type: object
     ServerInstanceStorageProfile:
       properties:
@@ -44969,6 +46676,8 @@ components:
           items:
             $ref: '#/components/schemas/ServerInstanceStorageProfileController'
           type: array
+      required:
+      - controllers
       type: object
     ServerInstanceClusterCustomInfo:
       example:
@@ -44995,7 +46704,6 @@ components:
         serverTypeId: 5
         initiatorNqn: initiatorNqn
         emptyEdit: 6
-        raidProfile: ""
         groupId: 4
         iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
         controlPanelUrl: controlPanelUrl
@@ -45012,6 +46720,7 @@ components:
         subdomain: subdomain
         infrastructureDeployId: 1
         instanceWanMlagId: 1
+        customStorageProfile: ""
         deployStatus: not_started
       properties:
         revision:
@@ -45048,10 +46757,10 @@ components:
           type: integer
         customVariables:
           type: object
-        raidProfile:
+        customStorageProfile:
           allOf:
           - $ref: '#/components/schemas/ServerInstanceStorageProfile'
-          description: RAID profile for the Instance Interface.
+          description: Custom Storage Profile for the Instance.
         initiatorNqn:
           description: NVMe Initiator NQN for the Instance.
           type: string
@@ -45109,7 +46818,6 @@ components:
         osInstallImageBuildInfo: ""
         osInstallError: osInstallError
         initiatorNqn: initiatorNqn
-        raidProfile: ""
         groupId: 5
         preferredServerIds:
         - 7.061401241503109
@@ -45159,7 +46867,6 @@ components:
           serverTypeId: 5
           initiatorNqn: initiatorNqn
           emptyEdit: 6
-          raidProfile: ""
           groupId: 4
           iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
           controlPanelUrl: controlPanelUrl
@@ -45176,7 +46883,9 @@ components:
           subdomain: subdomain
           infrastructureDeployId: 1
           instanceWanMlagId: 1
+          customStorageProfile: ""
           deployStatus: not_started
+        customStorageProfile: ""
       properties:
         id:
           description: The Product Instance ID.
@@ -45234,10 +46943,10 @@ components:
           items:
             type: number
           type: array
-        raidProfile:
+        customStorageProfile:
           allOf:
           - $ref: '#/components/schemas/ServerInstanceStorageProfile'
-          description: RAID profile for the Instance Interface.
+          description: Custom Storage Profile for the Instance.
         serviceStatus:
           description: Current status of the server instance.
           enum:
@@ -45315,7 +47024,6 @@ components:
           osInstallImageBuildInfo: ""
           osInstallError: osInstallError
           initiatorNqn: initiatorNqn
-          raidProfile: ""
           groupId: 5
           preferredServerIds:
           - 7.061401241503109
@@ -45365,7 +47073,6 @@ components:
             serverTypeId: 5
             initiatorNqn: initiatorNqn
             emptyEdit: 6
-            raidProfile: ""
             groupId: 4
             iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
             controlPanelUrl: controlPanelUrl
@@ -45382,12 +47089,13 @@ components:
             subdomain: subdomain
             infrastructureDeployId: 1
             instanceWanMlagId: 1
+            customStorageProfile: ""
             deployStatus: not_started
+          customStorageProfile: ""
         - serverTypeId: 5
           osInstallImageBuildInfo: ""
           osInstallError: osInstallError
           initiatorNqn: initiatorNqn
-          raidProfile: ""
           groupId: 5
           preferredServerIds:
           - 7.061401241503109
@@ -45437,7 +47145,6 @@ components:
             serverTypeId: 5
             initiatorNqn: initiatorNqn
             emptyEdit: 6
-            raidProfile: ""
             groupId: 4
             iscsiInitiatorPasswordEncrypted: iscsiInitiatorPasswordEncrypted
             controlPanelUrl: controlPanelUrl
@@ -45454,7 +47161,9 @@ components:
             subdomain: subdomain
             infrastructureDeployId: 1
             instanceWanMlagId: 1
+            customStorageProfile: ""
             deployStatus: not_started
+          customStorageProfile: ""
         meta: ""
         links: ""
       properties:
@@ -50171,7 +51880,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-05-30T10:28:33.886Z
+        createdTimestamp: 2025-06-08T12:22:58.484Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -50180,7 +51889,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-05-30T10:28:33.886Z
+        updatedTimestamp: 2025-06-08T12:22:58.484Z
         revision: "1"
       properties:
         siteId:
@@ -50197,12 +51906,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-30T10:28:33.886Z
+          example: 2025-06-08T12:22:58.484Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-30T10:28:33.886Z
+          example: 2025-06-08T12:22:58.484Z
           format: date-time
           type: string
         links:
@@ -50224,7 +51933,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-05-30T10:28:33.886Z
+        - createdTimestamp: 2025-06-08T12:22:58.484Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -50233,9 +51942,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-30T10:28:33.886Z
+          updatedTimestamp: 2025-06-08T12:22:58.484Z
           revision: "1"
-        - createdTimestamp: 2025-05-30T10:28:33.886Z
+        - createdTimestamp: 2025-06-08T12:22:58.484Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -50244,7 +51953,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-30T10:28:33.886Z
+          updatedTimestamp: 2025-06-08T12:22:58.484Z
           revision: "1"
         meta: ""
         links: ""
@@ -50883,7 +52592,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-05-30T10:28:33.905Z
+        createdTimestamp: 2025-06-08T12:22:58.507Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -50924,7 +52633,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-05-30T10:28:33.905Z
+        updatedTimestamp: 2025-06-08T12:22:58.507Z
         revision: "1"
         status: draft
       properties:
@@ -50952,12 +52661,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-30T10:28:33.905Z
+          example: 2025-06-08T12:22:58.507Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-30T10:28:33.905Z
+          example: 2025-06-08T12:22:58.507Z
           format: date-time
           type: string
         links:
@@ -51098,7 +52807,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-05-30T10:28:33.905Z
+          createdTimestamp: 2025-06-08T12:22:58.507Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -51139,7 +52848,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-30T10:28:33.905Z
+          updatedTimestamp: 2025-06-08T12:22:58.507Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -51249,7 +52958,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-05-30T10:28:33.905Z
+          createdTimestamp: 2025-06-08T12:22:58.507Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -51290,7 +52999,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-05-30T10:28:33.905Z
+          updatedTimestamp: 2025-06-08T12:22:58.507Z
           revision: "1"
           status: draft
         meta: ""
@@ -54047,10 +55756,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-05-30T10:28:33.898Z
+        createdTimestamp: 2025-06-08T12:22:58.495Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-05-30T10:28:33.898Z
+        updatedTimestamp: 2025-06-08T12:22:58.495Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -54124,12 +55833,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-05-30T10:28:33.898Z
+          example: 2025-06-08T12:22:58.495Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-05-30T10:28:33.898Z
+          example: 2025-06-08T12:22:58.495Z
           format: date-time
           type: string
         links:
@@ -54328,6 +56037,8 @@ components:
         serverTypeId: 5
         osTemplateId: 1
         label: server-instance-123
+        customVariables: "{}"
+        customStorageProfile: ""
       properties:
         label:
           description: The server instance label.
@@ -54344,6 +56055,12 @@ components:
             continue as normal. '
           example: 1
           type: integer
+        customVariables:
+          type: object
+        customStorageProfile:
+          allOf:
+          - $ref: '#/components/schemas/ServerInstanceStorageProfile'
+          description: Custom Storage Profile for the Instance.
       type: object
     SSHPublicKey:
       example:
@@ -55232,6 +56949,7 @@ components:
           - HPE
           - Supermicro
           - Cisco
+          - BSI
           type: string
         serverModel:
           description: Server model
@@ -55332,6 +57050,10 @@ components:
           allOf:
           - $ref: '#/components/schemas/Repo'
           description: Repository details
+        dnsZoneId:
+          description: ID of the DNS zone associated with the site
+          example: 5
+          type: integer
         DNSServers:
           description: List of DNS Servers
           items:
@@ -55358,15 +57080,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/InfrastructurePolicy'
           description: Infrastructure policies
-      required:
-      - DNSServers
-      - NTPServers
-      - controllerPolicy
-      - infrastructurePolicy
-      - location
-      - networkDevicePolicy
-      - repo
-      - serverPolicy
       type: object
     ServerBiosInfo:
       properties:
@@ -55539,11 +57252,14 @@ components:
       - type
       - vendor
       type: object
+    ServerTypeStorageControllerOptions:
+      properties: {}
+      type: object
     ServerStorageController:
       example:
         mode: HBA
         name: name
-        options: "{}"
+        options: ""
         description: description
         id: 8.969578798196912
         label: label
@@ -55565,8 +57281,9 @@ components:
           description: The description of the storage controller.
           type: string
         options:
+          allOf:
+          - $ref: '#/components/schemas/ServerTypeStorageControllerOptions'
           description: The options of the storage controller.
-          type: object
         mode:
           description: The mode of the storage controller.
           enum:
@@ -55588,6 +57305,12 @@ components:
         instanceId:
           description: The id of the instance.
           type: number
+        instanceLabel:
+          description: The label of the instance.
+          type: string
+        instanceGroupLabel:
+          description: The label of the instance group.
+          type: string
         extensionInstanceId:
           description: The id of the extension instance.
           type: number
@@ -55599,7 +57322,9 @@ components:
           type: number
       required:
       - infrastructure
+      - instanceGroupLabel
       - instanceId
+      - instanceLabel
       type: object
     ServerVariables:
       properties:
@@ -55696,6 +57421,7 @@ components:
           - HPE
           - Supermicro
           - Cisco
+          - BSI
           type: string
         vendorSkuId:
           description: The vendor sku id of the server.
@@ -55955,10 +57681,10 @@ components:
           items:
             type: number
           type: array
-        raidProfile:
+        customStorageProfile:
           allOf:
           - $ref: '#/components/schemas/ServerInstanceStorageProfile'
-          description: RAID profile for the Instance Interface.
+          description: Custom Storage Profile for the Instance.
         serviceStatus:
           description: Current status of the server instance.
           enum:
@@ -56218,9 +57944,6 @@ components:
         ipv4UnusedIpAddresses:
           description: Number of unused IPv4 addresses.
           type: number
-        description:
-          description: Description of the infrastructure.
-          type: string
         settings:
           description: Settings in JSON format.
           type: object
@@ -57887,6 +59610,7 @@ components:
           - HPE
           - Supermicro
           - Cisco
+          - BSI
           type: string
         vendorSkuId:
           description: The vendor sku id of the server.
@@ -57897,6 +59621,14 @@ components:
         rackName:
           description: The chassis rack name of the server.
           type: string
+        gpuCount:
+          description: The GPU count of the server.
+          type: number
+        gpuInfo:
+          description: The GPU info of the server.
+          items:
+            $ref: '#/components/schemas/ServerGpuInfo'
+          type: array
         interfaces:
           description: The interfaces of the server.
           items:
@@ -57921,6 +59653,15 @@ components:
       - passwordEncrypted
       - serverId
       type: object
+    ServerInstanceOsCredentialInstallationData:
+      properties:
+        initialUser:
+          description: Initial os user of the instance.
+          type: string
+        initialPasswordEncrypted:
+          description: Initial os password of the instance.
+          type: string
+      type: object
     ServerInstanceOSInstallationData:
       properties:
         id:
@@ -57937,15 +59678,15 @@ components:
           type: string
         customVariables:
           type: object
-        raidProfile:
+        customStorageProfile:
           allOf:
           - $ref: '#/components/schemas/ServerInstanceStorageProfile'
           description: RAID profile for the Instance Interface.
         isVmInstance:
           description: Flag to indicate if this is a VM instance
           type: integer
-        clusterCustomInfo:
-          $ref: '#/components/schemas/ServerInstanceClusterCustomInfo'
+        osCredentials:
+          $ref: '#/components/schemas/ServerInstanceOsCredentialInstallationData'
         initiatorNqn:
           description: NVMe Initiator NQN for the Instance.
           type: string
@@ -58529,6 +60270,7 @@ components:
           - HPE
           - Supermicro
           - Cisco
+          - BSI
           type: string
         model:
           description: The model of the server.
@@ -58577,6 +60319,74 @@ components:
       required:
       - revision
       - serverId
+      type: object
+    RegisterProductionServerSettings:
+      properties:
+        infrastructureId:
+          description: The id of the infrastructure where the server is located.
+          type: number
+        osTemplateId:
+          description: The id of the template installed on the server.
+          type: number
+      required:
+      - infrastructureId
+      type: object
+    RegisterProductionServer:
+      example:
+        managementAddress: managementAddress
+        settings: ""
+        password: password
+        serialNumber: serialNumber
+        serverUUID: serverUUID
+        vendor: Unknown
+        siteId: 0.8008281904610115
+        model: model
+        bmcMacAddress: bmcMacAddress
+        username: username
+      properties:
+        siteId:
+          description: The site id where the server is located.
+          type: number
+        serverUUID:
+          description: The UUID of the server.
+          type: string
+        serialNumber:
+          description: The Serial Number of the server.
+          type: string
+        managementAddress:
+          description: The Management Address of the server.
+          type: string
+        username:
+          description: The username to use.
+          type: string
+        bmcMacAddress:
+          description: The MAC address of the server.
+          type: string
+        vendor:
+          description: The vendor of the server.
+          enum:
+          - Unknown
+          - Dell
+          - Lenovo
+          - HP
+          - HPE
+          - Supermicro
+          - Cisco
+          - BSI
+          type: string
+        model:
+          description: The model of the server.
+          type: string
+        password:
+          description: The password to use.
+          type: string
+        settings:
+          allOf:
+          - $ref: '#/components/schemas/RegisterProductionServerSettings'
+          description: The additional settings for the production server.
+      required:
+      - settings
+      - siteId
       type: object
     ReRegisterServerResponse:
       example:
@@ -58731,14 +60541,14 @@ components:
         storageControllers:
         - mode: HBA
           name: name
-          options: "{}"
+          options: ""
           description: description
           id: 8.969578798196912
           label: label
           serverId: 7.740351818741173
         - mode: HBA
           name: name
-          options: "{}"
+          options: ""
           description: description
           id: 8.969578798196912
           label: label
@@ -58889,6 +60699,7 @@ components:
           - HPE
           - Supermicro
           - Cisco
+          - BSI
           type: string
         vendorSkuId:
           description: The vendor sku id of the server.
@@ -59203,14 +61014,14 @@ components:
           storageControllers:
           - mode: HBA
             name: name
-            options: "{}"
+            options: ""
             description: description
             id: 8.969578798196912
             label: label
             serverId: 7.740351818741173
           - mode: HBA
             name: name
-            options: "{}"
+            options: ""
             description: description
             id: 8.969578798196912
             label: label
@@ -59372,14 +61183,14 @@ components:
           storageControllers:
           - mode: HBA
             name: name
-            options: "{}"
+            options: ""
             description: description
             id: 8.969578798196912
             label: label
             serverId: 7.740351818741173
           - mode: HBA
             name: name
-            options: "{}"
+            options: ""
             description: description
             id: 8.969578798196912
             label: label
@@ -59700,18 +61511,14 @@ components:
       required:
       - powerCommand
       type: object
-    Map:
-      properties: {}
-      type: object
     ServerTypeDiskGroup:
       example:
-        storageControllers: ""
+        storageControllers: "{}"
       properties:
         storageControllers:
-          allOf:
-          - $ref: '#/components/schemas/Map'
           description: The storage controllers for the server type. Key is the controller
             name and value is the controller information.
+          type: object
       required:
       - storageControllers
       type: object
@@ -59726,7 +61533,7 @@ components:
         processorCoreMhz: 5.962133916683182
         processorCoreCount: 5.637376656633329
         diskGroups:
-          storageControllers: ""
+          storageControllers: "{}"
         forUnmanagedServersOnly: 4.145608029883936
         processorNames:
         - processorNames
@@ -59886,7 +61693,7 @@ components:
           processorCoreMhz: 5.962133916683182
           processorCoreCount: 5.637376656633329
           diskGroups:
-            storageControllers: ""
+            storageControllers: "{}"
           forUnmanagedServersOnly: 4.145608029883936
           processorNames:
           - processorNames
@@ -59928,7 +61735,7 @@ components:
           processorCoreMhz: 5.962133916683182
           processorCoreCount: 5.637376656633329
           diskGroups:
-            storageControllers: ""
+            storageControllers: "{}"
           forUnmanagedServersOnly: 4.145608029883936
           processorNames:
           - processorNames
@@ -60011,7 +61818,7 @@ components:
         processorCoreCount: 5.962133916683182
         bootType: legacy_only
         diskGroups:
-          storageControllers: ""
+          storageControllers: "{}"
         name: name
         forUnmanagedServersOnly: 9.301444243932576
         ramGbytes: 0.8008281904610115
@@ -60922,6 +62729,7 @@ components:
         - NTPServers
         - NTPServers
         location: ""
+        dnsZoneId: 5
         DNSServers:
         - DNSServers
         - DNSServers
@@ -60934,6 +62742,10 @@ components:
           allOf:
           - $ref: '#/components/schemas/Repo'
           description: Repository details
+        dnsZoneId:
+          description: ID of the DNS zone associated with the site
+          example: 5
+          type: integer
         DNSServers:
           description: List of DNS Servers
           items:
@@ -60960,15 +62772,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/InfrastructurePolicy'
           description: Infrastructure policies
-      required:
-      - DNSServers
-      - NTPServers
-      - controllerPolicy
-      - infrastructurePolicy
-      - location
-      - networkDevicePolicy
-      - repo
-      - serverPolicy
       type: object
     PartialLocation:
       properties:
@@ -61021,6 +62824,7 @@ components:
           - HPE
           - Supermicro
           - Cisco
+          - BSI
           type: string
         serverModel:
           description: Server model
@@ -61084,6 +62888,7 @@ components:
         - NTPServers
         - NTPServers
         location: ""
+        dnsZoneId: 5
         DNSServers:
         - DNSServers
         - DNSServers
@@ -61096,6 +62901,10 @@ components:
           allOf:
           - $ref: '#/components/schemas/Repo'
           description: Repository details
+        dnsZoneId:
+          description: ID of the DNS zone associated with the site
+          example: 5
+          type: integer
         DNSServers:
           description: List of DNS Servers
           items:
@@ -61237,12 +63046,16 @@ components:
           allOf:
           - $ref: '#/components/schemas/AgentIpInfo'
           description: IP information
+        nfsHost:
+          description: NFS host
+          type: string
       required:
       - agentId
       - applicationName
       - capabilities
       - hostname
       - ipInfo
+      - nfsHost
       - timestamp
       type: object
     AgentInfo:
@@ -62891,9 +64704,7 @@ components:
           description: The server IPMI password.
           type: string
       required:
-      - managementAddress
       - serverInterfaces
-      - serverSupportsOobProvisioning
       - serverTypeId
       - siteId
       type: object

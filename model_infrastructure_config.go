@@ -53,8 +53,6 @@ type InfrastructureConfig struct {
 	Ipv6SubnetsCountActive *float32 `json:"ipv6SubnetsCountActive,omitempty"`
 	// Number of unused IPv4 addresses.
 	Ipv4UnusedIpAddresses *float32 `json:"ipv4UnusedIpAddresses,omitempty"`
-	// Description of the infrastructure.
-	Description *string `json:"description,omitempty"`
 	// Settings in JSON format.
 	Settings map[string]interface{} `json:"settings,omitempty"`
 	// Whether the infrastructure API is private.
@@ -655,38 +653,6 @@ func (o *InfrastructureConfig) SetIpv4UnusedIpAddresses(v float32) {
 	o.Ipv4UnusedIpAddresses = &v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *InfrastructureConfig) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InfrastructureConfig) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *InfrastructureConfig) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *InfrastructureConfig) SetDescription(v string) {
-	o.Description = &v
-}
-
 // GetSettings returns the Settings field value if set, zero value otherwise.
 func (o *InfrastructureConfig) GetSettings() map[string]interface{} {
 	if o == nil || IsNil(o.Settings) {
@@ -1164,9 +1130,6 @@ func (o InfrastructureConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Ipv4UnusedIpAddresses) {
 		toSerialize["ipv4UnusedIpAddresses"] = o.Ipv4UnusedIpAddresses
 	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
 	if !IsNil(o.Settings) {
 		toSerialize["settings"] = o.Settings
 	}
@@ -1245,7 +1208,6 @@ func (o *InfrastructureConfig) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "ipv4SubnetsCountActive")
 		delete(additionalProperties, "ipv6SubnetsCountActive")
 		delete(additionalProperties, "ipv4UnusedIpAddresses")
-		delete(additionalProperties, "description")
 		delete(additionalProperties, "settings")
 		delete(additionalProperties, "isApiPrivate")
 		delete(additionalProperties, "experimentalPriority")

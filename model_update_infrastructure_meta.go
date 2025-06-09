@@ -26,6 +26,8 @@ type UpdateInfrastructureMeta struct {
 	Tags []string `json:"tags,omitempty"`
 	// name of the Infrastructure
 	Name string `json:"name"`
+	// Description of the infrastructure.
+	Description *string `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -137,6 +139,38 @@ func (o *UpdateInfrastructureMeta) SetName(v string) {
 	o.Name = v
 }
 
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *UpdateInfrastructureMeta) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateInfrastructureMeta) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *UpdateInfrastructureMeta) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *UpdateInfrastructureMeta) SetDescription(v string) {
+	o.Description = &v
+}
+
 func (o UpdateInfrastructureMeta) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -154,6 +188,9 @@ func (o UpdateInfrastructureMeta) ToMap() (map[string]interface{}, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -200,6 +237,7 @@ func (o *UpdateInfrastructureMeta) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "guiSettings")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -38,8 +38,8 @@ type ServerInstanceConfiguration struct {
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
 	InstanceWanMlagId *int32 `json:"instanceWanMlagId,omitempty"`
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
-	// RAID profile for the Instance Interface.
-	RaidProfile *ServerInstanceStorageProfile `json:"raidProfile,omitempty"`
+	// Custom Storage Profile for the Instance.
+	CustomStorageProfile *ServerInstanceStorageProfile `json:"customStorageProfile,omitempty"`
 	// NVMe Initiator NQN for the Instance.
 	InitiatorNqn *string `json:"initiatorNqn,omitempty"`
 	// iSCSI Initiator IQN for the Instance Interface.
@@ -380,36 +380,36 @@ func (o *ServerInstanceConfiguration) SetCustomVariables(v map[string]interface{
 	o.CustomVariables = v
 }
 
-// GetRaidProfile returns the RaidProfile field value if set, zero value otherwise.
-func (o *ServerInstanceConfiguration) GetRaidProfile() ServerInstanceStorageProfile {
-	if o == nil || IsNil(o.RaidProfile) {
+// GetCustomStorageProfile returns the CustomStorageProfile field value if set, zero value otherwise.
+func (o *ServerInstanceConfiguration) GetCustomStorageProfile() ServerInstanceStorageProfile {
+	if o == nil || IsNil(o.CustomStorageProfile) {
 		var ret ServerInstanceStorageProfile
 		return ret
 	}
-	return *o.RaidProfile
+	return *o.CustomStorageProfile
 }
 
-// GetRaidProfileOk returns a tuple with the RaidProfile field value if set, nil otherwise
+// GetCustomStorageProfileOk returns a tuple with the CustomStorageProfile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceConfiguration) GetRaidProfileOk() (*ServerInstanceStorageProfile, bool) {
-	if o == nil || IsNil(o.RaidProfile) {
+func (o *ServerInstanceConfiguration) GetCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool) {
+	if o == nil || IsNil(o.CustomStorageProfile) {
 		return nil, false
 	}
-	return o.RaidProfile, true
+	return o.CustomStorageProfile, true
 }
 
-// HasRaidProfile returns a boolean if a field has been set.
-func (o *ServerInstanceConfiguration) HasRaidProfile() bool {
-	if o != nil && !IsNil(o.RaidProfile) {
+// HasCustomStorageProfile returns a boolean if a field has been set.
+func (o *ServerInstanceConfiguration) HasCustomStorageProfile() bool {
+	if o != nil && !IsNil(o.CustomStorageProfile) {
 		return true
 	}
 
 	return false
 }
 
-// SetRaidProfile gets a reference to the given ServerInstanceStorageProfile and assigns it to the RaidProfile field.
-func (o *ServerInstanceConfiguration) SetRaidProfile(v ServerInstanceStorageProfile) {
-	o.RaidProfile = &v
+// SetCustomStorageProfile gets a reference to the given ServerInstanceStorageProfile and assigns it to the CustomStorageProfile field.
+func (o *ServerInstanceConfiguration) SetCustomStorageProfile(v ServerInstanceStorageProfile) {
+	o.CustomStorageProfile = &v
 }
 
 // GetInitiatorNqn returns the InitiatorNqn field value if set, zero value otherwise.
@@ -748,8 +748,8 @@ func (o ServerInstanceConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
 	}
-	if !IsNil(o.RaidProfile) {
-		toSerialize["raidProfile"] = o.RaidProfile
+	if !IsNil(o.CustomStorageProfile) {
+		toSerialize["customStorageProfile"] = o.CustomStorageProfile
 	}
 	if !IsNil(o.InitiatorNqn) {
 		toSerialize["initiatorNqn"] = o.InitiatorNqn
@@ -835,7 +835,7 @@ func (o *ServerInstanceConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "instanceWanMlagId")
 		delete(additionalProperties, "customVariables")
-		delete(additionalProperties, "raidProfile")
+		delete(additionalProperties, "customStorageProfile")
 		delete(additionalProperties, "initiatorNqn")
 		delete(additionalProperties, "iscsiInitiatorIqn")
 		delete(additionalProperties, "iscsiInitiatorUsername")

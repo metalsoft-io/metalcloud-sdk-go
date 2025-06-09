@@ -33,6 +33,8 @@ type AgentConnectedInfo struct {
 	Capabilities AgentCapabilities `json:"capabilities"`
 	// IP information
 	IpInfo AgentIpInfo `json:"ipInfo"`
+	// NFS host
+	NfsHost string `json:"nfsHost"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -42,7 +44,7 @@ type _AgentConnectedInfo AgentConnectedInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAgentConnectedInfo(agentId string, hostname string, applicationName string, timestamp string, capabilities AgentCapabilities, ipInfo AgentIpInfo) *AgentConnectedInfo {
+func NewAgentConnectedInfo(agentId string, hostname string, applicationName string, timestamp string, capabilities AgentCapabilities, ipInfo AgentIpInfo, nfsHost string) *AgentConnectedInfo {
 	this := AgentConnectedInfo{}
 	this.AgentId = agentId
 	this.Hostname = hostname
@@ -50,6 +52,7 @@ func NewAgentConnectedInfo(agentId string, hostname string, applicationName stri
 	this.Timestamp = timestamp
 	this.Capabilities = capabilities
 	this.IpInfo = ipInfo
+	this.NfsHost = nfsHost
 	return &this
 }
 
@@ -205,6 +208,30 @@ func (o *AgentConnectedInfo) SetIpInfo(v AgentIpInfo) {
 	o.IpInfo = v
 }
 
+// GetNfsHost returns the NfsHost field value
+func (o *AgentConnectedInfo) GetNfsHost() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.NfsHost
+}
+
+// GetNfsHostOk returns a tuple with the NfsHost field value
+// and a boolean to check if the value has been set.
+func (o *AgentConnectedInfo) GetNfsHostOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NfsHost, true
+}
+
+// SetNfsHost sets field value
+func (o *AgentConnectedInfo) SetNfsHost(v string) {
+	o.NfsHost = v
+}
+
 func (o AgentConnectedInfo) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -221,6 +248,7 @@ func (o AgentConnectedInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize["timestamp"] = o.Timestamp
 	toSerialize["capabilities"] = o.Capabilities
 	toSerialize["ipInfo"] = o.IpInfo
+	toSerialize["nfsHost"] = o.NfsHost
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -240,6 +268,7 @@ func (o *AgentConnectedInfo) UnmarshalJSON(data []byte) (err error) {
 		"timestamp",
 		"capabilities",
 		"ipInfo",
+		"nfsHost",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -275,6 +304,7 @@ func (o *AgentConnectedInfo) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "timestamp")
 		delete(additionalProperties, "capabilities")
 		delete(additionalProperties, "ipInfo")
+		delete(additionalProperties, "nfsHost")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Controllers** | Pointer to [**[]ServerInstanceStorageProfileController**](ServerInstanceStorageProfileController.md) | The information for each Storage Controller of the Instance Storage Profile. | [optional] 
+**Controllers** | [**[]ServerInstanceStorageProfileController**](ServerInstanceStorageProfileController.md) | The information for each Storage Controller of the Instance Storage Profile. | 
 
 ## Methods
 
 ### NewServerInstanceStorageProfile
 
-`func NewServerInstanceStorageProfile() *ServerInstanceStorageProfile`
+`func NewServerInstanceStorageProfile(controllers []ServerInstanceStorageProfileController, ) *ServerInstanceStorageProfile`
 
 NewServerInstanceStorageProfile instantiates a new ServerInstanceStorageProfile object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetControllers sets Controllers field to given value.
 
-### HasControllers
-
-`func (o *ServerInstanceStorageProfile) HasControllers() bool`
-
-HasControllers returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -22,7 +22,7 @@ var _ MappedNullable = &AuthenticationRequest{}
 // AuthenticationRequest struct for AuthenticationRequest
 type AuthenticationRequest struct {
 	// Type of the authentication request.
-	Provider NullableFloat32 `json:"provider"`
+	Provider string `json:"provider"`
 	Properties AuthenticationRequestProperties `json:"properties"`
 	AdditionalProperties map[string]interface{}
 }
@@ -33,7 +33,7 @@ type _AuthenticationRequest AuthenticationRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAuthenticationRequest(provider NullableFloat32, properties AuthenticationRequestProperties) *AuthenticationRequest {
+func NewAuthenticationRequest(provider string, properties AuthenticationRequestProperties) *AuthenticationRequest {
 	this := AuthenticationRequest{}
 	this.Provider = provider
 	this.Properties = properties
@@ -45,33 +45,33 @@ func NewAuthenticationRequest(provider NullableFloat32, properties Authenticatio
 // but it doesn't guarantee that properties required by API are set
 func NewAuthenticationRequestWithDefaults() *AuthenticationRequest {
 	this := AuthenticationRequest{}
+	var provider string = "mysql"
+	this.Provider = provider
 	return &this
 }
 
 // GetProvider returns the Provider field value
-// If the value is explicit nil, the zero value for float32 will be returned
-func (o *AuthenticationRequest) GetProvider() float32 {
-	if o == nil || o.Provider.Get() == nil {
-		var ret float32
+func (o *AuthenticationRequest) GetProvider() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
 
-	return *o.Provider.Get()
+	return o.Provider
 }
 
 // GetProviderOk returns a tuple with the Provider field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AuthenticationRequest) GetProviderOk() (*float32, bool) {
+func (o *AuthenticationRequest) GetProviderOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Provider.Get(), o.Provider.IsSet()
+	return &o.Provider, true
 }
 
 // SetProvider sets field value
-func (o *AuthenticationRequest) SetProvider(v float32) {
-	o.Provider.Set(&v)
+func (o *AuthenticationRequest) SetProvider(v string) {
+	o.Provider = v
 }
 
 // GetProperties returns the Properties field value
@@ -108,7 +108,7 @@ func (o AuthenticationRequest) MarshalJSON() ([]byte, error) {
 
 func (o AuthenticationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["provider"] = o.Provider.Get()
+	toSerialize["provider"] = o.Provider
 	toSerialize["properties"] = o.Properties
 
 	for key, value := range o.AdditionalProperties {

@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | The server instance label. | [optional] 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
 **OsTemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
+**CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
+**CustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Custom Storage Profile for the Instance. | [optional] 
 
 ## Methods
 
@@ -101,6 +103,56 @@ SetOsTemplateId sets OsTemplateId field to given value.
 `func (o *ServerInstanceUpdate) HasOsTemplateId() bool`
 
 HasOsTemplateId returns a boolean if a field has been set.
+
+### GetCustomVariables
+
+`func (o *ServerInstanceUpdate) GetCustomVariables() map[string]interface{}`
+
+GetCustomVariables returns the CustomVariables field if non-nil, zero value otherwise.
+
+### GetCustomVariablesOk
+
+`func (o *ServerInstanceUpdate) GetCustomVariablesOk() (*map[string]interface{}, bool)`
+
+GetCustomVariablesOk returns a tuple with the CustomVariables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomVariables
+
+`func (o *ServerInstanceUpdate) SetCustomVariables(v map[string]interface{})`
+
+SetCustomVariables sets CustomVariables field to given value.
+
+### HasCustomVariables
+
+`func (o *ServerInstanceUpdate) HasCustomVariables() bool`
+
+HasCustomVariables returns a boolean if a field has been set.
+
+### GetCustomStorageProfile
+
+`func (o *ServerInstanceUpdate) GetCustomStorageProfile() ServerInstanceStorageProfile`
+
+GetCustomStorageProfile returns the CustomStorageProfile field if non-nil, zero value otherwise.
+
+### GetCustomStorageProfileOk
+
+`func (o *ServerInstanceUpdate) GetCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool)`
+
+GetCustomStorageProfileOk returns a tuple with the CustomStorageProfile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomStorageProfile
+
+`func (o *ServerInstanceUpdate) SetCustomStorageProfile(v ServerInstanceStorageProfile)`
+
+SetCustomStorageProfile sets CustomStorageProfile field to given value.
+
+### HasCustomStorageProfile
+
+`func (o *ServerInstanceUpdate) HasCustomStorageProfile() bool`
+
+HasCustomStorageProfile returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
