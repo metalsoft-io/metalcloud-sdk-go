@@ -9,14 +9,14 @@ Name | Type | Description | Notes
 **Name** | **string** | The name of the storage controller. | 
 **Label** | **string** | The label of the storage controller. | 
 **Description** | **string** | The description of the storage controller. | 
-**Options** | **map[string]interface{}** | The options of the storage controller. | 
+**Options** | [**ServerTypeStorageControllerOptions**](ServerTypeStorageControllerOptions.md) | The options of the storage controller. | 
 **Mode** | **string** | The mode of the storage controller. | 
 
 ## Methods
 
 ### NewServerStorageController
 
-`func NewServerStorageController(id float32, serverId float32, name string, label string, description string, options map[string]interface{}, mode string, ) *ServerStorageController`
+`func NewServerStorageController(id float32, serverId float32, name string, label string, description string, options ServerTypeStorageControllerOptions, mode string, ) *ServerStorageController`
 
 NewServerStorageController instantiates a new ServerStorageController object
 This constructor will assign default values to properties that have it defined,
@@ -133,20 +133,20 @@ SetDescription sets Description field to given value.
 
 ### GetOptions
 
-`func (o *ServerStorageController) GetOptions() map[string]interface{}`
+`func (o *ServerStorageController) GetOptions() ServerTypeStorageControllerOptions`
 
 GetOptions returns the Options field if non-nil, zero value otherwise.
 
 ### GetOptionsOk
 
-`func (o *ServerStorageController) GetOptionsOk() (*map[string]interface{}, bool)`
+`func (o *ServerStorageController) GetOptionsOk() (*ServerTypeStorageControllerOptions, bool)`
 
 GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptions
 
-`func (o *ServerStorageController) SetOptions(v map[string]interface{})`
+`func (o *ServerStorageController) SetOptions(v ServerTypeStorageControllerOptions)`
 
 SetOptions sets Options field to given value.
 

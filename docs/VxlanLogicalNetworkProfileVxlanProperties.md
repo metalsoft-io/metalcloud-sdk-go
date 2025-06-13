@@ -4,14 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vnis** | [**[]VniAllocation**](VniAllocation.md) |  | 
 **VniAllocationStrategies** | [**[]VniAllocationStrategy**](VniAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewVxlanLogicalNetworkProfileVxlanProperties
 
-`func NewVxlanLogicalNetworkProfileVxlanProperties(vnis []VniAllocation, vniAllocationStrategies []VniAllocationStrategy, ) *VxlanLogicalNetworkProfileVxlanProperties`
+`func NewVxlanLogicalNetworkProfileVxlanProperties(vniAllocationStrategies []VniAllocationStrategy, ) *VxlanLogicalNetworkProfileVxlanProperties`
 
 NewVxlanLogicalNetworkProfileVxlanProperties instantiates a new VxlanLogicalNetworkProfileVxlanProperties object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +24,6 @@ will change when the set of required properties is changed
 NewVxlanLogicalNetworkProfileVxlanPropertiesWithDefaults instantiates a new VxlanLogicalNetworkProfileVxlanProperties object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetVnis
-
-`func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVnis() []VniAllocation`
-
-GetVnis returns the Vnis field if non-nil, zero value otherwise.
-
-### GetVnisOk
-
-`func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVnisOk() (*[]VniAllocation, bool)`
-
-GetVnisOk returns a tuple with the Vnis field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVnis
-
-`func (o *VxlanLogicalNetworkProfileVxlanProperties) SetVnis(v []VniAllocation)`
-
-SetVnis sets Vnis field to given value.
-
 
 ### GetVniAllocationStrategies
 

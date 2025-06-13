@@ -28,7 +28,7 @@ type ServerUnmanagedImport struct {
 	// The server type id.
 	ServerTypeId float32 `json:"serverTypeId"`
 	// Flag to indicate if the server supports SOL.
-	ServerSupportsOobProvisioning *bool `json:"serverSupportsOobProvisioning,omitempty"`
+	ServerSupportsOobProvisioning *float32 `json:"serverSupportsOobProvisioning,omitempty"`
 	// The interfaces of the server.
 	ServerInterfaces []ServerUnmanagedImportInternalInterface `json:"serverInterfaces"`
 	// The server Serial Number.
@@ -147,9 +147,9 @@ func (o *ServerUnmanagedImport) SetServerTypeId(v float32) {
 }
 
 // GetServerSupportsOobProvisioning returns the ServerSupportsOobProvisioning field value if set, zero value otherwise.
-func (o *ServerUnmanagedImport) GetServerSupportsOobProvisioning() bool {
+func (o *ServerUnmanagedImport) GetServerSupportsOobProvisioning() float32 {
 	if o == nil || IsNil(o.ServerSupportsOobProvisioning) {
-		var ret bool
+		var ret float32
 		return ret
 	}
 	return *o.ServerSupportsOobProvisioning
@@ -157,7 +157,7 @@ func (o *ServerUnmanagedImport) GetServerSupportsOobProvisioning() bool {
 
 // GetServerSupportsOobProvisioningOk returns a tuple with the ServerSupportsOobProvisioning field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerUnmanagedImport) GetServerSupportsOobProvisioningOk() (*bool, bool) {
+func (o *ServerUnmanagedImport) GetServerSupportsOobProvisioningOk() (*float32, bool) {
 	if o == nil || IsNil(o.ServerSupportsOobProvisioning) {
 		return nil, false
 	}
@@ -173,8 +173,8 @@ func (o *ServerUnmanagedImport) HasServerSupportsOobProvisioning() bool {
 	return false
 }
 
-// SetServerSupportsOobProvisioning gets a reference to the given bool and assigns it to the ServerSupportsOobProvisioning field.
-func (o *ServerUnmanagedImport) SetServerSupportsOobProvisioning(v bool) {
+// SetServerSupportsOobProvisioning gets a reference to the given float32 and assigns it to the ServerSupportsOobProvisioning field.
+func (o *ServerUnmanagedImport) SetServerSupportsOobProvisioning(v float32) {
 	o.ServerSupportsOobProvisioning = &v
 }
 

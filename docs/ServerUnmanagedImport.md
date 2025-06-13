@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ManagementAddress** | Pointer to **string** | The management address of the server. | [optional] 
 **SiteId** | **float32** | The site id where the server is located. | 
 **ServerTypeId** | **float32** | The server type id. | 
-**ServerSupportsOobProvisioning** | Pointer to **bool** | Flag to indicate if the server supports SOL. | [optional] 
+**ServerSupportsOobProvisioning** | Pointer to **float32** | Flag to indicate if the server supports SOL. | [optional] 
 **ServerInterfaces** | [**[]ServerUnmanagedImportInternalInterface**](ServerUnmanagedImportInternalInterface.md) | The interfaces of the server. | 
 **ServerSerialNumber** | Pointer to **string** | The server Serial Number. | [optional] 
 **ServerUUID** | Pointer to **string** | The server UUID. | [optional] 
@@ -101,20 +101,20 @@ SetServerTypeId sets ServerTypeId field to given value.
 
 ### GetServerSupportsOobProvisioning
 
-`func (o *ServerUnmanagedImport) GetServerSupportsOobProvisioning() bool`
+`func (o *ServerUnmanagedImport) GetServerSupportsOobProvisioning() float32`
 
 GetServerSupportsOobProvisioning returns the ServerSupportsOobProvisioning field if non-nil, zero value otherwise.
 
 ### GetServerSupportsOobProvisioningOk
 
-`func (o *ServerUnmanagedImport) GetServerSupportsOobProvisioningOk() (*bool, bool)`
+`func (o *ServerUnmanagedImport) GetServerSupportsOobProvisioningOk() (*float32, bool)`
 
 GetServerSupportsOobProvisioningOk returns a tuple with the ServerSupportsOobProvisioning field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServerSupportsOobProvisioning
 
-`func (o *ServerUnmanagedImport) SetServerSupportsOobProvisioning(v bool)`
+`func (o *ServerUnmanagedImport) SetServerSupportsOobProvisioning(v float32)`
 
 SetServerSupportsOobProvisioning sets ServerSupportsOobProvisioning field to given value.
 

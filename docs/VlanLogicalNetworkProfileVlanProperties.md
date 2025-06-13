@@ -4,14 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vlans** | [**[]VlanAllocation**](VlanAllocation.md) |  | 
 **VlanAllocationStrategies** | [**[]VlanAllocationStrategy**](VlanAllocationStrategy.md) |  | 
 
 ## Methods
 
 ### NewVlanLogicalNetworkProfileVlanProperties
 
-`func NewVlanLogicalNetworkProfileVlanProperties(vlans []VlanAllocation, vlanAllocationStrategies []VlanAllocationStrategy, ) *VlanLogicalNetworkProfileVlanProperties`
+`func NewVlanLogicalNetworkProfileVlanProperties(vlanAllocationStrategies []VlanAllocationStrategy, ) *VlanLogicalNetworkProfileVlanProperties`
 
 NewVlanLogicalNetworkProfileVlanProperties instantiates a new VlanLogicalNetworkProfileVlanProperties object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +24,6 @@ will change when the set of required properties is changed
 NewVlanLogicalNetworkProfileVlanPropertiesWithDefaults instantiates a new VlanLogicalNetworkProfileVlanProperties object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetVlans
-
-`func (o *VlanLogicalNetworkProfileVlanProperties) GetVlans() []VlanAllocation`
-
-GetVlans returns the Vlans field if non-nil, zero value otherwise.
-
-### GetVlansOk
-
-`func (o *VlanLogicalNetworkProfileVlanProperties) GetVlansOk() (*[]VlanAllocation, bool)`
-
-GetVlansOk returns a tuple with the Vlans field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVlans
-
-`func (o *VlanLogicalNetworkProfileVlanProperties) SetVlans(v []VlanAllocation)`
-
-SetVlans sets Vlans field to given value.
-
 
 ### GetVlanAllocationStrategies
 

@@ -22,7 +22,7 @@ var _ MappedNullable = &ServerTypeDiskGroup{}
 // ServerTypeDiskGroup struct for ServerTypeDiskGroup
 type ServerTypeDiskGroup struct {
 	// The storage controllers for the server type. Key is the controller name and value is the controller information.
-	StorageControllers map[string]interface{} `json:"storageControllers"`
+	StorageControllers map[string]ServerTypeStorageController `json:"storageControllers"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +32,7 @@ type _ServerTypeDiskGroup ServerTypeDiskGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerTypeDiskGroup(storageControllers map[string]interface{}) *ServerTypeDiskGroup {
+func NewServerTypeDiskGroup(storageControllers map[string]ServerTypeStorageController) *ServerTypeDiskGroup {
 	this := ServerTypeDiskGroup{}
 	this.StorageControllers = storageControllers
 	return &this
@@ -47,9 +47,9 @@ func NewServerTypeDiskGroupWithDefaults() *ServerTypeDiskGroup {
 }
 
 // GetStorageControllers returns the StorageControllers field value
-func (o *ServerTypeDiskGroup) GetStorageControllers() map[string]interface{} {
+func (o *ServerTypeDiskGroup) GetStorageControllers() map[string]ServerTypeStorageController {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret map[string]ServerTypeStorageController
 		return ret
 	}
 
@@ -58,15 +58,15 @@ func (o *ServerTypeDiskGroup) GetStorageControllers() map[string]interface{} {
 
 // GetStorageControllersOk returns a tuple with the StorageControllers field value
 // and a boolean to check if the value has been set.
-func (o *ServerTypeDiskGroup) GetStorageControllersOk() (map[string]interface{}, bool) {
+func (o *ServerTypeDiskGroup) GetStorageControllersOk() (*map[string]ServerTypeStorageController, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.StorageControllers, true
+	return &o.StorageControllers, true
 }
 
 // SetStorageControllers sets field value
-func (o *ServerTypeDiskGroup) SetStorageControllers(v map[string]interface{}) {
+func (o *ServerTypeDiskGroup) SetStorageControllers(v map[string]ServerTypeStorageController) {
 	o.StorageControllers = v
 }
 

@@ -148,7 +148,7 @@ func (r DNSZoneAPIDeleteDNSZoneRequest) Execute() (*http.Response, error) {
 /*
 DeleteDNSZone Delete a DNS Zone by ID
 
-Deletes a DNS zone. WARNING: All DNS records in the zone will also be deleted. This operation cannot be undone.
+Deletes a DNS zone by ID.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param dnsZoneId The ID of the DNS Zone

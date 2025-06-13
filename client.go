@@ -98,6 +98,8 @@ type APIClient struct {
 
 	NetworkDeviceAPI *NetworkDeviceAPIService
 
+	NetworkDeviceDefaultSecretsAPI *NetworkDeviceDefaultSecretsAPIService
+
 	NetworkEndpointGroupAPI *NetworkEndpointGroupAPIService
 
 	NetworkFabricAPI *NetworkFabricAPIService
@@ -193,6 +195,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LogicalNetworkAPI = (*LogicalNetworkAPIService)(&c.common)
 	c.LogicalNetworkProfileAPI = (*LogicalNetworkProfileAPIService)(&c.common)
 	c.NetworkDeviceAPI = (*NetworkDeviceAPIService)(&c.common)
+	c.NetworkDeviceDefaultSecretsAPI = (*NetworkDeviceDefaultSecretsAPIService)(&c.common)
 	c.NetworkEndpointGroupAPI = (*NetworkEndpointGroupAPIService)(&c.common)
 	c.NetworkFabricAPI = (*NetworkFabricAPIService)(&c.common)
 	c.OSTemplateAPI = (*OSTemplateAPIService)(&c.common)

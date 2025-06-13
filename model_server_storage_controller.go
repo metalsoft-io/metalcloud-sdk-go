@@ -32,7 +32,7 @@ type ServerStorageController struct {
 	// The description of the storage controller.
 	Description string `json:"description"`
 	// The options of the storage controller.
-	Options map[string]interface{} `json:"options"`
+	Options ServerTypeStorageControllerOptions `json:"options"`
 	// The mode of the storage controller.
 	Mode string `json:"mode"`
 	AdditionalProperties map[string]interface{}
@@ -44,7 +44,7 @@ type _ServerStorageController ServerStorageController
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerStorageController(id float32, serverId float32, name string, label string, description string, options map[string]interface{}, mode string) *ServerStorageController {
+func NewServerStorageController(id float32, serverId float32, name string, label string, description string, options ServerTypeStorageControllerOptions, mode string) *ServerStorageController {
 	this := ServerStorageController{}
 	this.Id = id
 	this.ServerId = serverId
@@ -185,9 +185,9 @@ func (o *ServerStorageController) SetDescription(v string) {
 }
 
 // GetOptions returns the Options field value
-func (o *ServerStorageController) GetOptions() map[string]interface{} {
+func (o *ServerStorageController) GetOptions() ServerTypeStorageControllerOptions {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret ServerTypeStorageControllerOptions
 		return ret
 	}
 
@@ -196,15 +196,15 @@ func (o *ServerStorageController) GetOptions() map[string]interface{} {
 
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
-func (o *ServerStorageController) GetOptionsOk() (map[string]interface{}, bool) {
+func (o *ServerStorageController) GetOptionsOk() (*ServerTypeStorageControllerOptions, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Options, true
+	return &o.Options, true
 }
 
 // SetOptions sets field value
-func (o *ServerStorageController) SetOptions(v map[string]interface{}) {
+func (o *ServerStorageController) SetOptions(v ServerTypeStorageControllerOptions) {
 	o.Options = v
 }
 

@@ -294,6 +294,12 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**RunExtensionOnNetworkDevice**](docs/NetworkDeviceAPI.md#runextensiononnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
 *NetworkDeviceAPI* | [**SetNetworkDevicePortStatus**](docs/NetworkDeviceAPI.md#setnetworkdeviceportstatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
 *NetworkDeviceAPI* | [**UpdateNetworkDevice**](docs/NetworkDeviceAPI.md#updatenetworkdevice) | **Patch** /api/v2/network-devices/{networkDeviceId} | Update Network Device
+*NetworkDeviceDefaultSecretsAPI* | [**CreateNetworkDeviceDefaultSecrets**](docs/NetworkDeviceDefaultSecretsAPI.md#createnetworkdevicedefaultsecrets) | **Post** /api/v2/network-devices/default-secrets | Creates a NetworkDevice Default Secrets
+*NetworkDeviceDefaultSecretsAPI* | [**DeleteNetworkDeviceDefaultSecrets**](docs/NetworkDeviceDefaultSecretsAPI.md#deletenetworkdevicedefaultsecrets) | **Delete** /api/v2/network-devices/default-secrets/{networkDeviceDefaultSecretsId} | Deletes a NetworkDevice Default Secrets
+*NetworkDeviceDefaultSecretsAPI* | [**GetNetworkDeviceDefaultSecretsCredentials**](docs/NetworkDeviceDefaultSecretsAPI.md#getnetworkdevicedefaultsecretscredentials) | **Get** /api/v2/network-devices/default-secrets/{networkDeviceDefaultSecretsId}/credentials | Get NetworkDevice Default Secrets unencrypted
+*NetworkDeviceDefaultSecretsAPI* | [**GetNetworkDeviceDefaultSecretsInfo**](docs/NetworkDeviceDefaultSecretsAPI.md#getnetworkdevicedefaultsecretsinfo) | **Get** /api/v2/network-devices/default-secrets/{networkDeviceDefaultSecretsId} | Get NetworkDevice Default Secrets information
+*NetworkDeviceDefaultSecretsAPI* | [**GetNetworkDevicesDefaultSecrets**](docs/NetworkDeviceDefaultSecretsAPI.md#getnetworkdevicesdefaultsecrets) | **Get** /api/v2/network-devices/default-secrets | Get a list of NetworkDevice Default Secrets
+*NetworkDeviceDefaultSecretsAPI* | [**UpdateNetworkDeviceDefaultSecrets**](docs/NetworkDeviceDefaultSecretsAPI.md#updatenetworkdevicedefaultsecrets) | **Patch** /api/v2/network-devices/default-secrets/{networkDeviceDefaultSecretsId} | Updates a NetworkDevice Default Secrets
 *NetworkEndpointGroupAPI* | [**AddLogicalNetworksToNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#addlogicalnetworkstonetworkendpointgroup) | **Post** /api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks | Add a list of logical networks to a network endpoint group
 *NetworkEndpointGroupAPI* | [**CreateNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#createnetworkendpointgroup) | **Post** /api/v2/network-endpoint-groups | Create a new network endpoint group
 *NetworkEndpointGroupAPI* | [**DeleteNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#deletenetworkendpointgroup) | **Delete** /api/v2/network-endpoint-groups/{networkEndpointGroupId} | Delete a network endpoint group
@@ -662,6 +668,7 @@ Class | Method | HTTP request | Description
  - [CreateManualVlanAllocationStrategy](docs/CreateManualVlanAllocationStrategy.md)
  - [CreateManualVniAllocationStrategy](docs/CreateManualVniAllocationStrategy.md)
  - [CreateNetworkDevice](docs/CreateNetworkDevice.md)
+ - [CreateNetworkDeviceDefaultSecretsDto](docs/CreateNetworkDeviceDefaultSecretsDto.md)
  - [CreateNetworkDeviceDefaults](docs/CreateNetworkDeviceDefaults.md)
  - [CreateNetworkEndpointGroup](docs/CreateNetworkEndpointGroup.md)
  - [CreateNetworkEndpointGroupLogicalNetwork](docs/CreateNetworkEndpointGroupLogicalNetwork.md)
@@ -847,6 +854,9 @@ Class | Method | HTTP request | Description
  - [ManualVlanAllocationStrategy](docs/ManualVlanAllocationStrategy.md)
  - [ManualVniAllocationStrategy](docs/ManualVniAllocationStrategy.md)
  - [NetworkDevice](docs/NetworkDevice.md)
+ - [NetworkDeviceDefaultSecrets](docs/NetworkDeviceDefaultSecrets.md)
+ - [NetworkDeviceDefaultSecretsCredentials](docs/NetworkDeviceDefaultSecretsCredentials.md)
+ - [NetworkDeviceDefaultSecretsPaginatedList](docs/NetworkDeviceDefaultSecretsPaginatedList.md)
  - [NetworkDeviceDriver](docs/NetworkDeviceDriver.md)
  - [NetworkDeviceInterfaceDto](docs/NetworkDeviceInterfaceDto.md)
  - [NetworkDeviceInterfacesPaginatedList](docs/NetworkDeviceInterfacesPaginatedList.md)
@@ -986,9 +996,12 @@ Class | Method | HTTP request | Description
  - [ServerStorageController](docs/ServerStorageController.md)
  - [ServerType](docs/ServerType.md)
  - [ServerTypeDiskGroup](docs/ServerTypeDiskGroup.md)
+ - [ServerTypeDisks](docs/ServerTypeDisks.md)
  - [ServerTypePaginatedList](docs/ServerTypePaginatedList.md)
  - [ServerTypeStatisticsBatch](docs/ServerTypeStatisticsBatch.md)
  - [ServerTypeStatisticsBatchOptions](docs/ServerTypeStatisticsBatchOptions.md)
+ - [ServerTypeStorageController](docs/ServerTypeStorageController.md)
+ - [ServerTypeStorageControllerOptions](docs/ServerTypeStorageControllerOptions.md)
  - [ServerTypeUtilizationReport](docs/ServerTypeUtilizationReport.md)
  - [ServerTypeUtilizationReportGrouped](docs/ServerTypeUtilizationReportGrouped.md)
  - [ServerTypesForUsage](docs/ServerTypesForUsage.md)
@@ -1055,6 +1068,7 @@ Class | Method | HTTP request | Description
  - [UpdateLogicalNetworkConfig](docs/UpdateLogicalNetworkConfig.md)
  - [UpdateLogicalNetworkProfile](docs/UpdateLogicalNetworkProfile.md)
  - [UpdateNetworkDevice](docs/UpdateNetworkDevice.md)
+ - [UpdateNetworkDeviceDefaultSecretsDto](docs/UpdateNetworkDeviceDefaultSecretsDto.md)
  - [UpdateNetworkEndpointGroup](docs/UpdateNetworkEndpointGroup.md)
  - [UpdateNetworkEndpointGroupLogicalNetwork](docs/UpdateNetworkEndpointGroupLogicalNetwork.md)
  - [UpdateNetworkFabric](docs/UpdateNetworkFabric.md)

@@ -21,7 +21,6 @@ var _ MappedNullable = &VxlanLogicalNetworkProfileVlanProperties{}
 
 // VxlanLogicalNetworkProfileVlanProperties struct for VxlanLogicalNetworkProfileVlanProperties
 type VxlanLogicalNetworkProfileVlanProperties struct {
-	Vlans []VlanAllocation `json:"vlans"`
 	VlanAllocationStrategies []VlanAllocationStrategy `json:"vlanAllocationStrategies"`
 	AdditionalProperties map[string]interface{}
 }
@@ -32,9 +31,8 @@ type _VxlanLogicalNetworkProfileVlanProperties VxlanLogicalNetworkProfileVlanPro
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVxlanLogicalNetworkProfileVlanProperties(vlans []VlanAllocation, vlanAllocationStrategies []VlanAllocationStrategy) *VxlanLogicalNetworkProfileVlanProperties {
+func NewVxlanLogicalNetworkProfileVlanProperties(vlanAllocationStrategies []VlanAllocationStrategy) *VxlanLogicalNetworkProfileVlanProperties {
 	this := VxlanLogicalNetworkProfileVlanProperties{}
-	this.Vlans = vlans
 	this.VlanAllocationStrategies = vlanAllocationStrategies
 	return &this
 }
@@ -45,30 +43,6 @@ func NewVxlanLogicalNetworkProfileVlanProperties(vlans []VlanAllocation, vlanAll
 func NewVxlanLogicalNetworkProfileVlanPropertiesWithDefaults() *VxlanLogicalNetworkProfileVlanProperties {
 	this := VxlanLogicalNetworkProfileVlanProperties{}
 	return &this
-}
-
-// GetVlans returns the Vlans field value
-func (o *VxlanLogicalNetworkProfileVlanProperties) GetVlans() []VlanAllocation {
-	if o == nil {
-		var ret []VlanAllocation
-		return ret
-	}
-
-	return o.Vlans
-}
-
-// GetVlansOk returns a tuple with the Vlans field value
-// and a boolean to check if the value has been set.
-func (o *VxlanLogicalNetworkProfileVlanProperties) GetVlansOk() ([]VlanAllocation, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Vlans, true
-}
-
-// SetVlans sets field value
-func (o *VxlanLogicalNetworkProfileVlanProperties) SetVlans(v []VlanAllocation) {
-	o.Vlans = v
 }
 
 // GetVlanAllocationStrategies returns the VlanAllocationStrategies field value
@@ -105,7 +79,6 @@ func (o VxlanLogicalNetworkProfileVlanProperties) MarshalJSON() ([]byte, error) 
 
 func (o VxlanLogicalNetworkProfileVlanProperties) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["vlans"] = o.Vlans
 	toSerialize["vlanAllocationStrategies"] = o.VlanAllocationStrategies
 
 	for key, value := range o.AdditionalProperties {
@@ -120,7 +93,6 @@ func (o *VxlanLogicalNetworkProfileVlanProperties) UnmarshalJSON(data []byte) (e
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"vlans",
 		"vlanAllocationStrategies",
 	}
 
@@ -151,7 +123,6 @@ func (o *VxlanLogicalNetworkProfileVlanProperties) UnmarshalJSON(data []byte) (e
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "vlans")
 		delete(additionalProperties, "vlanAllocationStrategies")
 		o.AdditionalProperties = additionalProperties
 	}

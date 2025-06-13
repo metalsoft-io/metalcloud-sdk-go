@@ -21,7 +21,6 @@ var _ MappedNullable = &VxlanLogicalNetworkProfileVxlanProperties{}
 
 // VxlanLogicalNetworkProfileVxlanProperties struct for VxlanLogicalNetworkProfileVxlanProperties
 type VxlanLogicalNetworkProfileVxlanProperties struct {
-	Vnis []VniAllocation `json:"vnis"`
 	VniAllocationStrategies []VniAllocationStrategy `json:"vniAllocationStrategies"`
 	AdditionalProperties map[string]interface{}
 }
@@ -32,9 +31,8 @@ type _VxlanLogicalNetworkProfileVxlanProperties VxlanLogicalNetworkProfileVxlanP
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVxlanLogicalNetworkProfileVxlanProperties(vnis []VniAllocation, vniAllocationStrategies []VniAllocationStrategy) *VxlanLogicalNetworkProfileVxlanProperties {
+func NewVxlanLogicalNetworkProfileVxlanProperties(vniAllocationStrategies []VniAllocationStrategy) *VxlanLogicalNetworkProfileVxlanProperties {
 	this := VxlanLogicalNetworkProfileVxlanProperties{}
-	this.Vnis = vnis
 	this.VniAllocationStrategies = vniAllocationStrategies
 	return &this
 }
@@ -45,30 +43,6 @@ func NewVxlanLogicalNetworkProfileVxlanProperties(vnis []VniAllocation, vniAlloc
 func NewVxlanLogicalNetworkProfileVxlanPropertiesWithDefaults() *VxlanLogicalNetworkProfileVxlanProperties {
 	this := VxlanLogicalNetworkProfileVxlanProperties{}
 	return &this
-}
-
-// GetVnis returns the Vnis field value
-func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVnis() []VniAllocation {
-	if o == nil {
-		var ret []VniAllocation
-		return ret
-	}
-
-	return o.Vnis
-}
-
-// GetVnisOk returns a tuple with the Vnis field value
-// and a boolean to check if the value has been set.
-func (o *VxlanLogicalNetworkProfileVxlanProperties) GetVnisOk() ([]VniAllocation, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Vnis, true
-}
-
-// SetVnis sets field value
-func (o *VxlanLogicalNetworkProfileVxlanProperties) SetVnis(v []VniAllocation) {
-	o.Vnis = v
 }
 
 // GetVniAllocationStrategies returns the VniAllocationStrategies field value
@@ -105,7 +79,6 @@ func (o VxlanLogicalNetworkProfileVxlanProperties) MarshalJSON() ([]byte, error)
 
 func (o VxlanLogicalNetworkProfileVxlanProperties) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["vnis"] = o.Vnis
 	toSerialize["vniAllocationStrategies"] = o.VniAllocationStrategies
 
 	for key, value := range o.AdditionalProperties {
@@ -120,7 +93,6 @@ func (o *VxlanLogicalNetworkProfileVxlanProperties) UnmarshalJSON(data []byte) (
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"vnis",
 		"vniAllocationStrategies",
 	}
 
@@ -151,7 +123,6 @@ func (o *VxlanLogicalNetworkProfileVxlanProperties) UnmarshalJSON(data []byte) (
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "vnis")
 		delete(additionalProperties, "vniAllocationStrategies")
 		o.AdditionalProperties = additionalProperties
 	}

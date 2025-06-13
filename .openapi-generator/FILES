@@ -25,6 +25,7 @@ api_job.go
 api_logical_network.go
 api_logical_network_profile.go
 api_network_device.go
+api_network_device_default_secrets.go
 api_network_endpoint_group.go
 api_network_fabric.go
 api_os_template.go
@@ -139,6 +140,7 @@ docs/CreateManualIpv6SubnetAllocationStrategy.md
 docs/CreateManualVlanAllocationStrategy.md
 docs/CreateManualVniAllocationStrategy.md
 docs/CreateNetworkDevice.md
+docs/CreateNetworkDeviceDefaultSecretsDto.md
 docs/CreateNetworkDeviceDefaults.md
 docs/CreateNetworkEndpointGroup.md
 docs/CreateNetworkEndpointGroupLogicalNetwork.md
@@ -343,6 +345,10 @@ docs/ManualVlanAllocationStrategy.md
 docs/ManualVniAllocationStrategy.md
 docs/NetworkDevice.md
 docs/NetworkDeviceAPI.md
+docs/NetworkDeviceDefaultSecrets.md
+docs/NetworkDeviceDefaultSecretsAPI.md
+docs/NetworkDeviceDefaultSecretsCredentials.md
+docs/NetworkDeviceDefaultSecretsPaginatedList.md
 docs/NetworkDeviceDriver.md
 docs/NetworkDeviceInterfaceDto.md
 docs/NetworkDeviceInterfacesPaginatedList.md
@@ -495,9 +501,12 @@ docs/ServerStorageController.md
 docs/ServerType.md
 docs/ServerTypeAPI.md
 docs/ServerTypeDiskGroup.md
+docs/ServerTypeDisks.md
 docs/ServerTypePaginatedList.md
 docs/ServerTypeStatisticsBatch.md
 docs/ServerTypeStatisticsBatchOptions.md
+docs/ServerTypeStorageController.md
+docs/ServerTypeStorageControllerOptions.md
 docs/ServerTypeUtilizationReport.md
 docs/ServerTypeUtilizationReportGrouped.md
 docs/ServerTypesForUsage.md
@@ -570,6 +579,7 @@ docs/UpdateLogicalNetworkACL.md
 docs/UpdateLogicalNetworkConfig.md
 docs/UpdateLogicalNetworkProfile.md
 docs/UpdateNetworkDevice.md
+docs/UpdateNetworkDeviceDefaultSecretsDto.md
 docs/UpdateNetworkEndpointGroup.md
 docs/UpdateNetworkEndpointGroupLogicalNetwork.md
 docs/UpdateNetworkFabric.md
@@ -768,6 +778,7 @@ model_create_manual_ipv6_subnet_allocation_strategy.go
 model_create_manual_vlan_allocation_strategy.go
 model_create_manual_vni_allocation_strategy.go
 model_create_network_device.go
+model_create_network_device_default_secrets_dto.go
 model_create_network_device_defaults.go
 model_create_network_endpoint_group.go
 model_create_network_endpoint_group_logical_network.go
@@ -953,6 +964,9 @@ model_manual_ipv6_subnet_allocation_strategy.go
 model_manual_vlan_allocation_strategy.go
 model_manual_vni_allocation_strategy.go
 model_network_device.go
+model_network_device_default_secrets.go
+model_network_device_default_secrets_credentials.go
+model_network_device_default_secrets_paginated_list.go
 model_network_device_driver.go
 model_network_device_interface_dto.go
 model_network_device_interfaces_paginated_list.go
@@ -1091,9 +1105,12 @@ model_server_statistics.go
 model_server_storage_controller.go
 model_server_type.go
 model_server_type_disk_group.go
+model_server_type_disks.go
 model_server_type_paginated_list.go
 model_server_type_statistics_batch.go
 model_server_type_statistics_batch_options.go
+model_server_type_storage_controller.go
+model_server_type_storage_controller_options.go
 model_server_type_utilization_report.go
 model_server_type_utilization_report_grouped.go
 model_server_types_for_usage.go
@@ -1161,6 +1178,7 @@ model_update_logical_network_acl.go
 model_update_logical_network_config.go
 model_update_logical_network_profile.go
 model_update_network_device.go
+model_update_network_device_default_secrets_dto.go
 model_update_network_endpoint_group.go
 model_update_network_endpoint_group_logical_network.go
 model_update_network_fabric.go
@@ -1294,6 +1312,7 @@ test/api_infrastructure_test.go
 test/api_job_test.go
 test/api_logical_network_profile_test.go
 test/api_logical_network_test.go
+test/api_network_device_default_secrets_test.go
 test/api_network_device_test.go
 test/api_network_endpoint_group_test.go
 test/api_network_fabric_test.go
