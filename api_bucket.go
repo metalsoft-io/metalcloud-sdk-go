@@ -461,7 +461,7 @@ type BucketAPIGetBucketCredentialsRequest struct {
 	bucketId float32
 }
 
-func (r BucketAPIGetBucketCredentialsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r BucketAPIGetBucketCredentialsRequest) Execute() (*BucketCredentials, *http.Response, error) {
 	return r.ApiService.GetBucketCredentialsExecute(r)
 }
 
@@ -485,13 +485,13 @@ func (a *BucketAPIService) GetBucketCredentials(ctx context.Context, infrastruct
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *BucketAPIService) GetBucketCredentialsExecute(r BucketAPIGetBucketCredentialsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return BucketCredentials
+func (a *BucketAPIService) GetBucketCredentialsExecute(r BucketAPIGetBucketCredentialsRequest) (*BucketCredentials, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *BucketCredentials
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BucketAPIService.GetBucketCredentials")

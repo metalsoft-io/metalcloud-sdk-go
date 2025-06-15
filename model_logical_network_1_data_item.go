@@ -16,29 +16,29 @@ import (
 	"fmt"
 )
 
-// LogicalNetworkDataItem - struct for LogicalNetworkDataItem
-type LogicalNetworkDataItem struct {
+// LogicalNetwork1DataItem - struct for LogicalNetwork1DataItem
+type LogicalNetwork1DataItem struct {
 	VlanLogicalNetwork *VlanLogicalNetwork
 	VxlanLogicalNetwork *VxlanLogicalNetwork
 }
 
-// VlanLogicalNetworkAsLogicalNetworkDataItem is a convenience function that returns VlanLogicalNetwork wrapped in LogicalNetworkDataItem
-func VlanLogicalNetworkAsLogicalNetworkDataItem(v *VlanLogicalNetwork) LogicalNetworkDataItem {
-	return LogicalNetworkDataItem{
+// VlanLogicalNetworkAsLogicalNetwork1DataItem is a convenience function that returns VlanLogicalNetwork wrapped in LogicalNetwork1DataItem
+func VlanLogicalNetworkAsLogicalNetwork1DataItem(v *VlanLogicalNetwork) LogicalNetwork1DataItem {
+	return LogicalNetwork1DataItem{
 		VlanLogicalNetwork: v,
 	}
 }
 
-// VxlanLogicalNetworkAsLogicalNetworkDataItem is a convenience function that returns VxlanLogicalNetwork wrapped in LogicalNetworkDataItem
-func VxlanLogicalNetworkAsLogicalNetworkDataItem(v *VxlanLogicalNetwork) LogicalNetworkDataItem {
-	return LogicalNetworkDataItem{
+// VxlanLogicalNetworkAsLogicalNetwork1DataItem is a convenience function that returns VxlanLogicalNetwork wrapped in LogicalNetwork1DataItem
+func VxlanLogicalNetworkAsLogicalNetwork1DataItem(v *VxlanLogicalNetwork) LogicalNetwork1DataItem {
+	return LogicalNetwork1DataItem{
 		VxlanLogicalNetwork: v,
 	}
 }
 
 
 // Unmarshal JSON data into one of the pointers in the struct
-func (dst *LogicalNetworkDataItem) UnmarshalJSON(data []byte) error {
+func (dst *LogicalNetwork1DataItem) UnmarshalJSON(data []byte) error {
 	var err error
 	// use discriminator value to speed up the lookup
 	var jsonDict map[string]interface{}
@@ -55,7 +55,7 @@ func (dst *LogicalNetworkDataItem) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.VlanLogicalNetwork, return on the first match
 		} else {
 			dst.VlanLogicalNetwork = nil
-			return fmt.Errorf("failed to unmarshal LogicalNetworkDataItem as VlanLogicalNetwork: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal LogicalNetwork1DataItem as VlanLogicalNetwork: %s", err.Error())
 		}
 	}
 
@@ -67,7 +67,7 @@ func (dst *LogicalNetworkDataItem) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.VxlanLogicalNetwork, return on the first match
 		} else {
 			dst.VxlanLogicalNetwork = nil
-			return fmt.Errorf("failed to unmarshal LogicalNetworkDataItem as VxlanLogicalNetwork: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal LogicalNetwork1DataItem as VxlanLogicalNetwork: %s", err.Error())
 		}
 	}
 
@@ -79,7 +79,7 @@ func (dst *LogicalNetworkDataItem) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.VlanLogicalNetwork, return on the first match
 		} else {
 			dst.VlanLogicalNetwork = nil
-			return fmt.Errorf("failed to unmarshal LogicalNetworkDataItem as VlanLogicalNetwork: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal LogicalNetwork1DataItem as VlanLogicalNetwork: %s", err.Error())
 		}
 	}
 
@@ -91,7 +91,7 @@ func (dst *LogicalNetworkDataItem) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.VxlanLogicalNetwork, return on the first match
 		} else {
 			dst.VxlanLogicalNetwork = nil
-			return fmt.Errorf("failed to unmarshal LogicalNetworkDataItem as VxlanLogicalNetwork: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal LogicalNetwork1DataItem as VxlanLogicalNetwork: %s", err.Error())
 		}
 	}
 
@@ -99,7 +99,7 @@ func (dst *LogicalNetworkDataItem) UnmarshalJSON(data []byte) error {
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src LogicalNetworkDataItem) MarshalJSON() ([]byte, error) {
+func (src LogicalNetwork1DataItem) MarshalJSON() ([]byte, error) {
 	if src.VlanLogicalNetwork != nil {
 		return json.Marshal(&src.VlanLogicalNetwork)
 	}
@@ -112,7 +112,7 @@ func (src LogicalNetworkDataItem) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LogicalNetworkDataItem) GetActualInstance() (interface{}) {
+func (obj *LogicalNetwork1DataItem) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -129,7 +129,7 @@ func (obj *LogicalNetworkDataItem) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj LogicalNetworkDataItem) GetActualInstanceValue() (interface{}) {
+func (obj LogicalNetwork1DataItem) GetActualInstanceValue() (interface{}) {
 	if obj.VlanLogicalNetwork != nil {
 		return *obj.VlanLogicalNetwork
 	}
@@ -142,38 +142,38 @@ func (obj LogicalNetworkDataItem) GetActualInstanceValue() (interface{}) {
 	return nil
 }
 
-type NullableLogicalNetworkDataItem struct {
-	value *LogicalNetworkDataItem
+type NullableLogicalNetwork1DataItem struct {
+	value *LogicalNetwork1DataItem
 	isSet bool
 }
 
-func (v NullableLogicalNetworkDataItem) Get() *LogicalNetworkDataItem {
+func (v NullableLogicalNetwork1DataItem) Get() *LogicalNetwork1DataItem {
 	return v.value
 }
 
-func (v *NullableLogicalNetworkDataItem) Set(val *LogicalNetworkDataItem) {
+func (v *NullableLogicalNetwork1DataItem) Set(val *LogicalNetwork1DataItem) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableLogicalNetworkDataItem) IsSet() bool {
+func (v NullableLogicalNetwork1DataItem) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableLogicalNetworkDataItem) Unset() {
+func (v *NullableLogicalNetwork1DataItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableLogicalNetworkDataItem(val *LogicalNetworkDataItem) *NullableLogicalNetworkDataItem {
-	return &NullableLogicalNetworkDataItem{value: val, isSet: true}
+func NewNullableLogicalNetwork1DataItem(val *LogicalNetwork1DataItem) *NullableLogicalNetwork1DataItem {
+	return &NullableLogicalNetwork1DataItem{value: val, isSet: true}
 }
 
-func (v NullableLogicalNetworkDataItem) MarshalJSON() ([]byte, error) {
+func (v NullableLogicalNetwork1DataItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableLogicalNetworkDataItem) UnmarshalJSON(src []byte) error {
+func (v *NullableLogicalNetwork1DataItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

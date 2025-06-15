@@ -24,6 +24,8 @@ type ServerInstanceUpdate struct {
 	Label *string `json:"label,omitempty"`
 	// The server type ID.
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
+	// The subdomain of the server instance.
+	Hostname *string `json:"hostname,omitempty"`
 	// The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal. 
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
@@ -113,6 +115,38 @@ func (o *ServerInstanceUpdate) HasServerTypeId() bool {
 // SetServerTypeId gets a reference to the given int32 and assigns it to the ServerTypeId field.
 func (o *ServerInstanceUpdate) SetServerTypeId(v int32) {
 	o.ServerTypeId = &v
+}
+
+// GetHostname returns the Hostname field value if set, zero value otherwise.
+func (o *ServerInstanceUpdate) GetHostname() string {
+	if o == nil || IsNil(o.Hostname) {
+		var ret string
+		return ret
+	}
+	return *o.Hostname
+}
+
+// GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceUpdate) GetHostnameOk() (*string, bool) {
+	if o == nil || IsNil(o.Hostname) {
+		return nil, false
+	}
+	return o.Hostname, true
+}
+
+// HasHostname returns a boolean if a field has been set.
+func (o *ServerInstanceUpdate) HasHostname() bool {
+	if o != nil && !IsNil(o.Hostname) {
+		return true
+	}
+
+	return false
+}
+
+// SetHostname gets a reference to the given string and assigns it to the Hostname field.
+func (o *ServerInstanceUpdate) SetHostname(v string) {
+	o.Hostname = &v
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
@@ -227,6 +261,9 @@ func (o ServerInstanceUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServerTypeId) {
 		toSerialize["serverTypeId"] = o.ServerTypeId
 	}
+	if !IsNil(o.Hostname) {
+		toSerialize["hostname"] = o.Hostname
+	}
 	if !IsNil(o.OsTemplateId) {
 		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
@@ -260,6 +297,7 @@ func (o *ServerInstanceUpdate) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "serverTypeId")
+		delete(additionalProperties, "hostname")
 		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "customStorageProfile")

@@ -304,7 +304,7 @@ Name | Type | Description  | Notes
 
 ## GetBucketCredentials
 
-> map[string]interface{} GetBucketCredentials(ctx, infrastructureId, bucketId).Execute()
+> BucketCredentials GetBucketCredentials(ctx, infrastructureId, bucketId).Execute()
 
 Get Bucket credentials
 
@@ -333,7 +333,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `BucketAPI.GetBucketCredentials``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetBucketCredentials`: map[string]interface{}
+	// response from `GetBucketCredentials`: BucketCredentials
 	fmt.Fprintf(os.Stdout, "Response from `BucketAPI.GetBucketCredentials`: %v\n", resp)
 }
 ```
@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**BucketCredentials**](BucketCredentials.md)
 
 ### Authorization
 

@@ -1,4 +1,4 @@
-# LogicalNetworkDataItem
+# LogicalNetwork1DataItem
 
 ## Properties
 
@@ -26,429 +26,429 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewLogicalNetworkDataItem
+### NewLogicalNetwork1DataItem
 
-`func NewLogicalNetworkDataItem(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config VxlanLogicalNetworkConfig, vlan VxlanLogicalNetworkVlanProperties, ipv4 VxlanLogicalNetworkIpv4Properties, ipv6 VxlanLogicalNetworkIpv6Properties, routeDomainId NullableInt32, vxlan VxlanLogicalNetworkVxlanProperties, ) *LogicalNetworkDataItem`
+`func NewLogicalNetwork1DataItem(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config VxlanLogicalNetworkConfig, vlan VxlanLogicalNetworkVlanProperties, ipv4 VxlanLogicalNetworkIpv4Properties, ipv6 VxlanLogicalNetworkIpv6Properties, routeDomainId NullableInt32, vxlan VxlanLogicalNetworkVxlanProperties, ) *LogicalNetwork1DataItem`
 
-NewLogicalNetworkDataItem instantiates a new LogicalNetworkDataItem object
+NewLogicalNetwork1DataItem instantiates a new LogicalNetwork1DataItem object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewLogicalNetworkDataItemWithDefaults
+### NewLogicalNetwork1DataItemWithDefaults
 
-`func NewLogicalNetworkDataItemWithDefaults() *LogicalNetworkDataItem`
+`func NewLogicalNetwork1DataItemWithDefaults() *LogicalNetwork1DataItem`
 
-NewLogicalNetworkDataItemWithDefaults instantiates a new LogicalNetworkDataItem object
+NewLogicalNetwork1DataItemWithDefaults instantiates a new LogicalNetwork1DataItem object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *LogicalNetworkDataItem) GetId() int32`
+`func (o *LogicalNetwork1DataItem) GetId() int32`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *LogicalNetworkDataItem) GetIdOk() (*int32, bool)`
+`func (o *LogicalNetwork1DataItem) GetIdOk() (*int32, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *LogicalNetworkDataItem) SetId(v int32)`
+`func (o *LogicalNetwork1DataItem) SetId(v int32)`
 
 SetId sets Id field to given value.
 
 
 ### GetLabel
 
-`func (o *LogicalNetworkDataItem) GetLabel() string`
+`func (o *LogicalNetwork1DataItem) GetLabel() string`
 
 GetLabel returns the Label field if non-nil, zero value otherwise.
 
 ### GetLabelOk
 
-`func (o *LogicalNetworkDataItem) GetLabelOk() (*string, bool)`
+`func (o *LogicalNetwork1DataItem) GetLabelOk() (*string, bool)`
 
 GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLabel
 
-`func (o *LogicalNetworkDataItem) SetLabel(v string)`
+`func (o *LogicalNetwork1DataItem) SetLabel(v string)`
 
 SetLabel sets Label field to given value.
 
 
 ### GetName
 
-`func (o *LogicalNetworkDataItem) GetName() string`
+`func (o *LogicalNetwork1DataItem) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *LogicalNetworkDataItem) GetNameOk() (*string, bool)`
+`func (o *LogicalNetwork1DataItem) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *LogicalNetworkDataItem) SetName(v string)`
+`func (o *LogicalNetwork1DataItem) SetName(v string)`
 
 SetName sets Name field to given value.
 
 
 ### GetAnnotations
 
-`func (o *LogicalNetworkDataItem) GetAnnotations() map[string]string`
+`func (o *LogicalNetwork1DataItem) GetAnnotations() map[string]string`
 
 GetAnnotations returns the Annotations field if non-nil, zero value otherwise.
 
 ### GetAnnotationsOk
 
-`func (o *LogicalNetworkDataItem) GetAnnotationsOk() (*map[string]string, bool)`
+`func (o *LogicalNetwork1DataItem) GetAnnotationsOk() (*map[string]string, bool)`
 
 GetAnnotationsOk returns a tuple with the Annotations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAnnotations
 
-`func (o *LogicalNetworkDataItem) SetAnnotations(v map[string]string)`
+`func (o *LogicalNetwork1DataItem) SetAnnotations(v map[string]string)`
 
 SetAnnotations sets Annotations field to given value.
 
 
 ### GetCreatedAt
 
-`func (o *LogicalNetworkDataItem) GetCreatedAt() time.Time`
+`func (o *LogicalNetwork1DataItem) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *LogicalNetworkDataItem) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *LogicalNetwork1DataItem) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *LogicalNetworkDataItem) SetCreatedAt(v time.Time)`
+`func (o *LogicalNetwork1DataItem) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetUpdatedAt
 
-`func (o *LogicalNetworkDataItem) GetUpdatedAt() time.Time`
+`func (o *LogicalNetwork1DataItem) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *LogicalNetworkDataItem) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *LogicalNetwork1DataItem) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *LogicalNetworkDataItem) SetUpdatedAt(v time.Time)`
+`func (o *LogicalNetwork1DataItem) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
 
 ### GetRevision
 
-`func (o *LogicalNetworkDataItem) GetRevision() int32`
+`func (o *LogicalNetwork1DataItem) GetRevision() int32`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *LogicalNetworkDataItem) GetRevisionOk() (*int32, bool)`
+`func (o *LogicalNetwork1DataItem) GetRevisionOk() (*int32, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *LogicalNetworkDataItem) SetRevision(v int32)`
+`func (o *LogicalNetwork1DataItem) SetRevision(v int32)`
 
 SetRevision sets Revision field to given value.
 
 
 ### GetKind
 
-`func (o *LogicalNetworkDataItem) GetKind() LogicalNetworkKind`
+`func (o *LogicalNetwork1DataItem) GetKind() LogicalNetworkKind`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *LogicalNetworkDataItem) GetKindOk() (*LogicalNetworkKind, bool)`
+`func (o *LogicalNetwork1DataItem) GetKindOk() (*LogicalNetworkKind, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *LogicalNetworkDataItem) SetKind(v LogicalNetworkKind)`
+`func (o *LogicalNetwork1DataItem) SetKind(v LogicalNetworkKind)`
 
 SetKind sets Kind field to given value.
 
 
 ### GetFabricId
 
-`func (o *LogicalNetworkDataItem) GetFabricId() int32`
+`func (o *LogicalNetwork1DataItem) GetFabricId() int32`
 
 GetFabricId returns the FabricId field if non-nil, zero value otherwise.
 
 ### GetFabricIdOk
 
-`func (o *LogicalNetworkDataItem) GetFabricIdOk() (*int32, bool)`
+`func (o *LogicalNetwork1DataItem) GetFabricIdOk() (*int32, bool)`
 
 GetFabricIdOk returns a tuple with the FabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFabricId
 
-`func (o *LogicalNetworkDataItem) SetFabricId(v int32)`
+`func (o *LogicalNetwork1DataItem) SetFabricId(v int32)`
 
 SetFabricId sets FabricId field to given value.
 
 
 ### GetInfrastructureId
 
-`func (o *LogicalNetworkDataItem) GetInfrastructureId() int32`
+`func (o *LogicalNetwork1DataItem) GetInfrastructureId() int32`
 
 GetInfrastructureId returns the InfrastructureId field if non-nil, zero value otherwise.
 
 ### GetInfrastructureIdOk
 
-`func (o *LogicalNetworkDataItem) GetInfrastructureIdOk() (*int32, bool)`
+`func (o *LogicalNetwork1DataItem) GetInfrastructureIdOk() (*int32, bool)`
 
 GetInfrastructureIdOk returns a tuple with the InfrastructureId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfrastructureId
 
-`func (o *LogicalNetworkDataItem) SetInfrastructureId(v int32)`
+`func (o *LogicalNetwork1DataItem) SetInfrastructureId(v int32)`
 
 SetInfrastructureId sets InfrastructureId field to given value.
 
 
 ### SetInfrastructureIdNil
 
-`func (o *LogicalNetworkDataItem) SetInfrastructureIdNil(b bool)`
+`func (o *LogicalNetwork1DataItem) SetInfrastructureIdNil(b bool)`
 
  SetInfrastructureIdNil sets the value for InfrastructureId to be an explicit nil
 
 ### UnsetInfrastructureId
-`func (o *LogicalNetworkDataItem) UnsetInfrastructureId()`
+`func (o *LogicalNetwork1DataItem) UnsetInfrastructureId()`
 
 UnsetInfrastructureId ensures that no value is present for InfrastructureId, not even an explicit nil
 ### GetServiceStatus
 
-`func (o *LogicalNetworkDataItem) GetServiceStatus() GenericServiceStatus`
+`func (o *LogicalNetwork1DataItem) GetServiceStatus() GenericServiceStatus`
 
 GetServiceStatus returns the ServiceStatus field if non-nil, zero value otherwise.
 
 ### GetServiceStatusOk
 
-`func (o *LogicalNetworkDataItem) GetServiceStatusOk() (*GenericServiceStatus, bool)`
+`func (o *LogicalNetwork1DataItem) GetServiceStatusOk() (*GenericServiceStatus, bool)`
 
 GetServiceStatusOk returns a tuple with the ServiceStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServiceStatus
 
-`func (o *LogicalNetworkDataItem) SetServiceStatus(v GenericServiceStatus)`
+`func (o *LogicalNetwork1DataItem) SetServiceStatus(v GenericServiceStatus)`
 
 SetServiceStatus sets ServiceStatus field to given value.
 
 
 ### GetLastAppliedLogicalNetworkProfileId
 
-`func (o *LogicalNetworkDataItem) GetLastAppliedLogicalNetworkProfileId() int32`
+`func (o *LogicalNetwork1DataItem) GetLastAppliedLogicalNetworkProfileId() int32`
 
 GetLastAppliedLogicalNetworkProfileId returns the LastAppliedLogicalNetworkProfileId field if non-nil, zero value otherwise.
 
 ### GetLastAppliedLogicalNetworkProfileIdOk
 
-`func (o *LogicalNetworkDataItem) GetLastAppliedLogicalNetworkProfileIdOk() (*int32, bool)`
+`func (o *LogicalNetwork1DataItem) GetLastAppliedLogicalNetworkProfileIdOk() (*int32, bool)`
 
 GetLastAppliedLogicalNetworkProfileIdOk returns a tuple with the LastAppliedLogicalNetworkProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastAppliedLogicalNetworkProfileId
 
-`func (o *LogicalNetworkDataItem) SetLastAppliedLogicalNetworkProfileId(v int32)`
+`func (o *LogicalNetwork1DataItem) SetLastAppliedLogicalNetworkProfileId(v int32)`
 
 SetLastAppliedLogicalNetworkProfileId sets LastAppliedLogicalNetworkProfileId field to given value.
 
 
 ### SetLastAppliedLogicalNetworkProfileIdNil
 
-`func (o *LogicalNetworkDataItem) SetLastAppliedLogicalNetworkProfileIdNil(b bool)`
+`func (o *LogicalNetwork1DataItem) SetLastAppliedLogicalNetworkProfileIdNil(b bool)`
 
  SetLastAppliedLogicalNetworkProfileIdNil sets the value for LastAppliedLogicalNetworkProfileId to be an explicit nil
 
 ### UnsetLastAppliedLogicalNetworkProfileId
-`func (o *LogicalNetworkDataItem) UnsetLastAppliedLogicalNetworkProfileId()`
+`func (o *LogicalNetwork1DataItem) UnsetLastAppliedLogicalNetworkProfileId()`
 
 UnsetLastAppliedLogicalNetworkProfileId ensures that no value is present for LastAppliedLogicalNetworkProfileId, not even an explicit nil
 ### GetLastLogicalNetworkProfileAppliedAt
 
-`func (o *LogicalNetworkDataItem) GetLastLogicalNetworkProfileAppliedAt() time.Time`
+`func (o *LogicalNetwork1DataItem) GetLastLogicalNetworkProfileAppliedAt() time.Time`
 
 GetLastLogicalNetworkProfileAppliedAt returns the LastLogicalNetworkProfileAppliedAt field if non-nil, zero value otherwise.
 
 ### GetLastLogicalNetworkProfileAppliedAtOk
 
-`func (o *LogicalNetworkDataItem) GetLastLogicalNetworkProfileAppliedAtOk() (*time.Time, bool)`
+`func (o *LogicalNetwork1DataItem) GetLastLogicalNetworkProfileAppliedAtOk() (*time.Time, bool)`
 
 GetLastLogicalNetworkProfileAppliedAtOk returns a tuple with the LastLogicalNetworkProfileAppliedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastLogicalNetworkProfileAppliedAt
 
-`func (o *LogicalNetworkDataItem) SetLastLogicalNetworkProfileAppliedAt(v time.Time)`
+`func (o *LogicalNetwork1DataItem) SetLastLogicalNetworkProfileAppliedAt(v time.Time)`
 
 SetLastLogicalNetworkProfileAppliedAt sets LastLogicalNetworkProfileAppliedAt field to given value.
 
 
 ### GetConfig
 
-`func (o *LogicalNetworkDataItem) GetConfig() VxlanLogicalNetworkConfig`
+`func (o *LogicalNetwork1DataItem) GetConfig() VxlanLogicalNetworkConfig`
 
 GetConfig returns the Config field if non-nil, zero value otherwise.
 
 ### GetConfigOk
 
-`func (o *LogicalNetworkDataItem) GetConfigOk() (*VxlanLogicalNetworkConfig, bool)`
+`func (o *LogicalNetwork1DataItem) GetConfigOk() (*VxlanLogicalNetworkConfig, bool)`
 
 GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfig
 
-`func (o *LogicalNetworkDataItem) SetConfig(v VxlanLogicalNetworkConfig)`
+`func (o *LogicalNetwork1DataItem) SetConfig(v VxlanLogicalNetworkConfig)`
 
 SetConfig sets Config field to given value.
 
 
 ### GetVlan
 
-`func (o *LogicalNetworkDataItem) GetVlan() VxlanLogicalNetworkVlanProperties`
+`func (o *LogicalNetwork1DataItem) GetVlan() VxlanLogicalNetworkVlanProperties`
 
 GetVlan returns the Vlan field if non-nil, zero value otherwise.
 
 ### GetVlanOk
 
-`func (o *LogicalNetworkDataItem) GetVlanOk() (*VxlanLogicalNetworkVlanProperties, bool)`
+`func (o *LogicalNetwork1DataItem) GetVlanOk() (*VxlanLogicalNetworkVlanProperties, bool)`
 
 GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlan
 
-`func (o *LogicalNetworkDataItem) SetVlan(v VxlanLogicalNetworkVlanProperties)`
+`func (o *LogicalNetwork1DataItem) SetVlan(v VxlanLogicalNetworkVlanProperties)`
 
 SetVlan sets Vlan field to given value.
 
 
 ### GetIpv4
 
-`func (o *LogicalNetworkDataItem) GetIpv4() VxlanLogicalNetworkIpv4Properties`
+`func (o *LogicalNetwork1DataItem) GetIpv4() VxlanLogicalNetworkIpv4Properties`
 
 GetIpv4 returns the Ipv4 field if non-nil, zero value otherwise.
 
 ### GetIpv4Ok
 
-`func (o *LogicalNetworkDataItem) GetIpv4Ok() (*VxlanLogicalNetworkIpv4Properties, bool)`
+`func (o *LogicalNetwork1DataItem) GetIpv4Ok() (*VxlanLogicalNetworkIpv4Properties, bool)`
 
 GetIpv4Ok returns a tuple with the Ipv4 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpv4
 
-`func (o *LogicalNetworkDataItem) SetIpv4(v VxlanLogicalNetworkIpv4Properties)`
+`func (o *LogicalNetwork1DataItem) SetIpv4(v VxlanLogicalNetworkIpv4Properties)`
 
 SetIpv4 sets Ipv4 field to given value.
 
 
 ### GetIpv6
 
-`func (o *LogicalNetworkDataItem) GetIpv6() VxlanLogicalNetworkIpv6Properties`
+`func (o *LogicalNetwork1DataItem) GetIpv6() VxlanLogicalNetworkIpv6Properties`
 
 GetIpv6 returns the Ipv6 field if non-nil, zero value otherwise.
 
 ### GetIpv6Ok
 
-`func (o *LogicalNetworkDataItem) GetIpv6Ok() (*VxlanLogicalNetworkIpv6Properties, bool)`
+`func (o *LogicalNetwork1DataItem) GetIpv6Ok() (*VxlanLogicalNetworkIpv6Properties, bool)`
 
 GetIpv6Ok returns a tuple with the Ipv6 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpv6
 
-`func (o *LogicalNetworkDataItem) SetIpv6(v VxlanLogicalNetworkIpv6Properties)`
+`func (o *LogicalNetwork1DataItem) SetIpv6(v VxlanLogicalNetworkIpv6Properties)`
 
 SetIpv6 sets Ipv6 field to given value.
 
 
 ### GetRouteDomainId
 
-`func (o *LogicalNetworkDataItem) GetRouteDomainId() int32`
+`func (o *LogicalNetwork1DataItem) GetRouteDomainId() int32`
 
 GetRouteDomainId returns the RouteDomainId field if non-nil, zero value otherwise.
 
 ### GetRouteDomainIdOk
 
-`func (o *LogicalNetworkDataItem) GetRouteDomainIdOk() (*int32, bool)`
+`func (o *LogicalNetwork1DataItem) GetRouteDomainIdOk() (*int32, bool)`
 
 GetRouteDomainIdOk returns a tuple with the RouteDomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRouteDomainId
 
-`func (o *LogicalNetworkDataItem) SetRouteDomainId(v int32)`
+`func (o *LogicalNetwork1DataItem) SetRouteDomainId(v int32)`
 
 SetRouteDomainId sets RouteDomainId field to given value.
 
 
 ### SetRouteDomainIdNil
 
-`func (o *LogicalNetworkDataItem) SetRouteDomainIdNil(b bool)`
+`func (o *LogicalNetwork1DataItem) SetRouteDomainIdNil(b bool)`
 
  SetRouteDomainIdNil sets the value for RouteDomainId to be an explicit nil
 
 ### UnsetRouteDomainId
-`func (o *LogicalNetworkDataItem) UnsetRouteDomainId()`
+`func (o *LogicalNetwork1DataItem) UnsetRouteDomainId()`
 
 UnsetRouteDomainId ensures that no value is present for RouteDomainId, not even an explicit nil
 ### GetVxlan
 
-`func (o *LogicalNetworkDataItem) GetVxlan() VxlanLogicalNetworkVxlanProperties`
+`func (o *LogicalNetwork1DataItem) GetVxlan() VxlanLogicalNetworkVxlanProperties`
 
 GetVxlan returns the Vxlan field if non-nil, zero value otherwise.
 
 ### GetVxlanOk
 
-`func (o *LogicalNetworkDataItem) GetVxlanOk() (*VxlanLogicalNetworkVxlanProperties, bool)`
+`func (o *LogicalNetwork1DataItem) GetVxlanOk() (*VxlanLogicalNetworkVxlanProperties, bool)`
 
 GetVxlanOk returns a tuple with the Vxlan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVxlan
 
-`func (o *LogicalNetworkDataItem) SetVxlan(v VxlanLogicalNetworkVxlanProperties)`
+`func (o *LogicalNetwork1DataItem) SetVxlan(v VxlanLogicalNetworkVxlanProperties)`
 
 SetVxlan sets Vxlan field to given value.
 

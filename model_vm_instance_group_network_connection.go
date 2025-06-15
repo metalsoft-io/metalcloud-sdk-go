@@ -29,6 +29,8 @@ type VMInstanceGroupNetworkConnection struct {
 	Mtu *int32 `json:"mtu,omitempty"`
 	// The redundancy configuration
 	Redundancy NullableRedundancyConfig `json:"redundancy,omitempty"`
+	// DNS records that are supposed to be provisioned for the server instance group.
+	Dns NullableDnsRecordsEndpointGroupLogicalNetworkDto `json:"dns,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	// The network connection ID.
@@ -180,6 +182,48 @@ func (o *VMInstanceGroupNetworkConnection) UnsetRedundancy() {
 	o.Redundancy.Unset()
 }
 
+// GetDns returns the Dns field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *VMInstanceGroupNetworkConnection) GetDns() DnsRecordsEndpointGroupLogicalNetworkDto {
+	if o == nil || IsNil(o.Dns.Get()) {
+		var ret DnsRecordsEndpointGroupLogicalNetworkDto
+		return ret
+	}
+	return *o.Dns.Get()
+}
+
+// GetDnsOk returns a tuple with the Dns field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *VMInstanceGroupNetworkConnection) GetDnsOk() (*DnsRecordsEndpointGroupLogicalNetworkDto, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Dns.Get(), o.Dns.IsSet()
+}
+
+// HasDns returns a boolean if a field has been set.
+func (o *VMInstanceGroupNetworkConnection) HasDns() bool {
+	if o != nil && o.Dns.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDns gets a reference to the given NullableDnsRecordsEndpointGroupLogicalNetworkDto and assigns it to the Dns field.
+func (o *VMInstanceGroupNetworkConnection) SetDns(v DnsRecordsEndpointGroupLogicalNetworkDto) {
+	o.Dns.Set(&v)
+}
+// SetDnsNil sets the value for Dns to be an explicit nil
+func (o *VMInstanceGroupNetworkConnection) SetDnsNil() {
+	o.Dns.Set(nil)
+}
+
+// UnsetDns ensures that no value is present for Dns, not even an explicit nil
+func (o *VMInstanceGroupNetworkConnection) UnsetDns() {
+	o.Dns.Unset()
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *VMInstanceGroupNetworkConnection) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -254,6 +298,9 @@ func (o VMInstanceGroupNetworkConnection) ToMap() (map[string]interface{}, error
 	if o.Redundancy.IsSet() {
 		toSerialize["redundancy"] = o.Redundancy.Get()
 	}
+	if o.Dns.IsSet() {
+		toSerialize["dns"] = o.Dns.Get()
+	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -307,6 +354,7 @@ func (o *VMInstanceGroupNetworkConnection) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "accessMode")
 		delete(additionalProperties, "mtu")
 		delete(additionalProperties, "redundancy")
+		delete(additionalProperties, "dns")
 		delete(additionalProperties, "links")
 		delete(additionalProperties, "id")
 		o.AdditionalProperties = additionalProperties

@@ -32,6 +32,10 @@ type ServerInstanceOSInstallationData struct {
 	CustomStorageProfile *ServerInstanceStorageProfile `json:"customStorageProfile,omitempty"`
 	// Flag to indicate if this is a VM instance
 	IsVmInstance int32 `json:"isVmInstance"`
+	// The subdomain of the server instance.
+	Hostname string `json:"hostname"`
+	// The subdomain of the server instance.
+	Fqdn string `json:"fqdn"`
 	OsCredentials *ServerInstanceOsCredentialInstallationData `json:"osCredentials,omitempty"`
 	// NVMe Initiator NQN for the Instance.
 	InitiatorNqn *string `json:"initiatorNqn,omitempty"`
@@ -50,11 +54,13 @@ type _ServerInstanceOSInstallationData ServerInstanceOSInstallationData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32) *ServerInstanceOSInstallationData {
+func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, hostname string, fqdn string) *ServerInstanceOSInstallationData {
 	this := ServerInstanceOSInstallationData{}
 	this.Id = id
 	this.Label = label
 	this.IsVmInstance = isVmInstance
+	this.Hostname = hostname
+	this.Fqdn = fqdn
 	return &this
 }
 
@@ -232,6 +238,54 @@ func (o *ServerInstanceOSInstallationData) GetIsVmInstanceOk() (*int32, bool) {
 // SetIsVmInstance sets field value
 func (o *ServerInstanceOSInstallationData) SetIsVmInstance(v int32) {
 	o.IsVmInstance = v
+}
+
+// GetHostname returns the Hostname field value
+func (o *ServerInstanceOSInstallationData) GetHostname() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Hostname
+}
+
+// GetHostnameOk returns a tuple with the Hostname field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceOSInstallationData) GetHostnameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Hostname, true
+}
+
+// SetHostname sets field value
+func (o *ServerInstanceOSInstallationData) SetHostname(v string) {
+	o.Hostname = v
+}
+
+// GetFqdn returns the Fqdn field value
+func (o *ServerInstanceOSInstallationData) GetFqdn() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Fqdn
+}
+
+// GetFqdnOk returns a tuple with the Fqdn field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceOSInstallationData) GetFqdnOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Fqdn, true
+}
+
+// SetFqdn sets field value
+func (o *ServerInstanceOSInstallationData) SetFqdn(v string) {
+	o.Fqdn = v
 }
 
 // GetOsCredentials returns the OsCredentials field value if set, zero value otherwise.
@@ -416,6 +470,8 @@ func (o ServerInstanceOSInstallationData) ToMap() (map[string]interface{}, error
 		toSerialize["customStorageProfile"] = o.CustomStorageProfile
 	}
 	toSerialize["isVmInstance"] = o.IsVmInstance
+	toSerialize["hostname"] = o.Hostname
+	toSerialize["fqdn"] = o.Fqdn
 	if !IsNil(o.OsCredentials) {
 		toSerialize["osCredentials"] = o.OsCredentials
 	}
@@ -447,6 +503,8 @@ func (o *ServerInstanceOSInstallationData) UnmarshalJSON(data []byte) (err error
 		"id",
 		"label",
 		"isVmInstance",
+		"hostname",
+		"fqdn",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -482,6 +540,8 @@ func (o *ServerInstanceOSInstallationData) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "customStorageProfile")
 		delete(additionalProperties, "isVmInstance")
+		delete(additionalProperties, "hostname")
+		delete(additionalProperties, "fqdn")
 		delete(additionalProperties, "osCredentials")
 		delete(additionalProperties, "initiatorNqn")
 		delete(additionalProperties, "iscsiInitiatorIqn")

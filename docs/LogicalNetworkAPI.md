@@ -38,7 +38,7 @@ Method | HTTP request | Description
 
 ## ApplyProfilesToLogicalNetworkConfig
 
-> GetLogicalNetworkConfig200Response ApplyProfilesToLogicalNetworkConfig(ctx, id).IfMatch(ifMatch).ApplyProfilesToLogicalNetworkConfig(applyProfilesToLogicalNetworkConfig).Execute()
+> LogicalNetworkConfig ApplyProfilesToLogicalNetworkConfig(ctx, id).IfMatch(ifMatch).ApplyProfilesToLogicalNetworkConfig(applyProfilesToLogicalNetworkConfig).Execute()
 
 Apply profiles to Logical Network config
 
@@ -66,7 +66,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.ApplyProfilesToLogicalNetworkConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ApplyProfilesToLogicalNetworkConfig`: GetLogicalNetworkConfig200Response
+	// response from `ApplyProfilesToLogicalNetworkConfig`: LogicalNetworkConfig
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.ApplyProfilesToLogicalNetworkConfig`: %v\n", resp)
 }
 ```
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetLogicalNetworkConfig200Response**](GetLogicalNetworkConfig200Response.md)
+[**LogicalNetworkConfig**](LogicalNetworkConfig.md)
 
 ### Authorization
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 ## CreateLogicalNetwork
 
-> CreateLogicalNetwork201Response CreateLogicalNetwork(ctx).CreateLogicalNetworkRequest(createLogicalNetworkRequest).Execute()
+> LogicalNetwork CreateLogicalNetwork(ctx).CreateLogicalNetwork(createLogicalNetwork).Execute()
 
 Create a Logical Network.
 
@@ -127,16 +127,16 @@ import (
 )
 
 func main() {
-	createLogicalNetworkRequest := openapiclient.createLogicalNetwork_request{CreateVlanLogicalNetwork: openapiclient.NewCreateVlanLogicalNetwork(openapiclient.LogicalNetworkKind("vlan"), int32(123), *openapiclient.NewCreateVlanLogicalNetworkVlanProperties([]openapiclient.CreateVlanAllocationStrategy{openapiclient.CreateVlanAllocationStrategy{CreateAutoVlanAllocationStrategy: openapiclient.NewCreateAutoVlanAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)))}}), *openapiclient.NewCreateVlanLogicalNetworkIpv4Properties([]openapiclient.CreateIpv4SubnetAllocationStrategy{openapiclient.CreateIpv4SubnetAllocationStrategy{CreateAutoIpv4SubnetAllocationStrategy: openapiclient.NewCreateAutoIpv4SubnetAllocationStrategy(openapiclient.AllocationStrategyKind("manual"), *openapiclient.NewCreateResourceScope(openapiclient.ResourceScopeKind("global"), float32(123)), []int32{int32(123)}, int32(123))}}))} // CreateLogicalNetworkRequest | 
+	createLogicalNetwork := *openapiclient.NewCreateLogicalNetwork(openapiclient.LogicalNetworkKind("vlan"), int32(123)) // CreateLogicalNetwork | The logical network to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetwork(context.Background()).CreateLogicalNetworkRequest(createLogicalNetworkRequest).Execute()
+	resp, r, err := apiClient.LogicalNetworkAPI.CreateLogicalNetwork(context.Background()).CreateLogicalNetwork(createLogicalNetwork).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.CreateLogicalNetwork``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetwork`: CreateLogicalNetwork201Response
+	// response from `CreateLogicalNetwork`: LogicalNetwork
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.CreateLogicalNetwork`: %v\n", resp)
 }
 ```
@@ -152,11 +152,11 @@ Other parameters are passed through a pointer to a apiCreateLogicalNetworkReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createLogicalNetworkRequest** | [**CreateLogicalNetworkRequest**](CreateLogicalNetworkRequest.md) |  | 
+ **createLogicalNetwork** | [**CreateLogicalNetwork**](CreateLogicalNetwork.md) | The logical network to create | 
 
 ### Return type
 
-[**CreateLogicalNetwork201Response**](CreateLogicalNetwork201Response.md)
+[**LogicalNetwork**](LogicalNetwork.md)
 
 ### Authorization
 
@@ -462,7 +462,7 @@ Name | Type | Description  | Notes
 
 ## CreateLogicalNetworkFromProfile
 
-> CreateLogicalNetwork201Response CreateLogicalNetworkFromProfile(ctx).CreateLogicalNetworkFromProfile(createLogicalNetworkFromProfile).Execute()
+> LogicalNetwork CreateLogicalNetworkFromProfile(ctx).CreateLogicalNetworkFromProfile(createLogicalNetworkFromProfile).Execute()
 
 Create a Logical Network from a profile.
 
@@ -488,7 +488,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.CreateLogicalNetworkFromProfile``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLogicalNetworkFromProfile`: CreateLogicalNetwork201Response
+	// response from `CreateLogicalNetworkFromProfile`: LogicalNetwork
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.CreateLogicalNetworkFromProfile`: %v\n", resp)
 }
 ```
@@ -508,7 +508,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateLogicalNetwork201Response**](CreateLogicalNetwork201Response.md)
+[**LogicalNetwork**](LogicalNetwork.md)
 
 ### Authorization
 
@@ -878,7 +878,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetwork
 
-> CreateLogicalNetwork201Response GetLogicalNetwork(ctx, id).Execute()
+> LogicalNetwork GetLogicalNetwork(ctx, id).Execute()
 
 Get a Logical Network.
 
@@ -904,7 +904,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetwork``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetwork`: CreateLogicalNetwork201Response
+	// response from `GetLogicalNetwork`: LogicalNetwork
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetwork`: %v\n", resp)
 }
 ```
@@ -928,7 +928,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateLogicalNetwork201Response**](CreateLogicalNetwork201Response.md)
+[**LogicalNetwork**](LogicalNetwork.md)
 
 ### Authorization
 
@@ -946,7 +946,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworkConfig
 
-> GetLogicalNetworkConfig200Response GetLogicalNetworkConfig(ctx, id).Execute()
+> LogicalNetworkConfig GetLogicalNetworkConfig(ctx, id).Execute()
 
 Get the config for a Logical Network.
 
@@ -972,7 +972,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworkConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworkConfig`: GetLogicalNetworkConfig200Response
+	// response from `GetLogicalNetworkConfig`: LogicalNetworkConfig
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworkConfig`: %v\n", resp)
 }
 ```
@@ -996,7 +996,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetLogicalNetworkConfig200Response**](GetLogicalNetworkConfig200Response.md)
+[**LogicalNetworkConfig**](LogicalNetworkConfig.md)
 
 ### Authorization
 
@@ -1610,7 +1610,7 @@ Name | Type | Description  | Notes
 
 ## GetLogicalNetworks
 
-> PaginatedLogicalNetwork GetLogicalNetworks(ctx).Page(page).Limit(limit).FilterId(filterId).FilterKind(filterKind).FilterLabel(filterLabel).FilterName(filterName).FilterFabricId(filterFabricId).FilterInfrastructureId(filterInfrastructureId).FilterServiceStatus(filterServiceStatus).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
+> PaginatedLogicalNetworkList GetLogicalNetworks(ctx).Page(page).Limit(limit).FilterId(filterId).FilterKind(filterKind).FilterLabel(filterLabel).FilterName(filterName).FilterFabricId(filterFabricId).FilterInfrastructureId(filterInfrastructureId).FilterServiceStatus(filterServiceStatus).FilterConfigDeployStatus(filterConfigDeployStatus).FilterConfigDeployType(filterConfigDeployType).SortBy(sortBy).Search(search).SearchBy(searchBy).Execute()
 
 Get all Logical Networks
 
@@ -1649,7 +1649,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.GetLogicalNetworks``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetLogicalNetworks`: PaginatedLogicalNetwork
+	// response from `GetLogicalNetworks`: PaginatedLogicalNetworkList
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.GetLogicalNetworks`: %v\n", resp)
 }
 ```
@@ -1682,7 +1682,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedLogicalNetwork**](PaginatedLogicalNetwork.md)
+[**PaginatedLogicalNetworkList**](PaginatedLogicalNetworkList.md)
 
 ### Authorization
 
@@ -2000,7 +2000,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLogicalNetwork
 
-> CreateLogicalNetwork201Response UpdateLogicalNetwork(ctx, id).IfMatch(ifMatch).UpdateLogicalNetwork(updateLogicalNetwork).Execute()
+> LogicalNetwork UpdateLogicalNetwork(ctx, id).IfMatch(ifMatch).UpdateLogicalNetwork(updateLogicalNetwork).Execute()
 
 Update Logical Network
 
@@ -2028,7 +2028,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.UpdateLogicalNetwork``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateLogicalNetwork`: CreateLogicalNetwork201Response
+	// response from `UpdateLogicalNetwork`: LogicalNetwork
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.UpdateLogicalNetwork`: %v\n", resp)
 }
 ```
@@ -2054,7 +2054,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateLogicalNetwork201Response**](CreateLogicalNetwork201Response.md)
+[**LogicalNetwork**](LogicalNetwork.md)
 
 ### Authorization
 
@@ -2072,7 +2072,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLogicalNetworkConfig
 
-> GetLogicalNetworkConfig200Response UpdateLogicalNetworkConfig(ctx, id).IfMatch(ifMatch).UpdateLogicalNetworkConfig(updateLogicalNetworkConfig).Execute()
+> LogicalNetworkConfig UpdateLogicalNetworkConfig(ctx, id).IfMatch(ifMatch).UpdateLogicalNetworkConfig(updateLogicalNetworkConfig).Execute()
 
 Update Logical Network config
 
@@ -2100,7 +2100,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogicalNetworkAPI.UpdateLogicalNetworkConfig``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateLogicalNetworkConfig`: GetLogicalNetworkConfig200Response
+	// response from `UpdateLogicalNetworkConfig`: LogicalNetworkConfig
 	fmt.Fprintf(os.Stdout, "Response from `LogicalNetworkAPI.UpdateLogicalNetworkConfig`: %v\n", resp)
 }
 ```
@@ -2126,7 +2126,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetLogicalNetworkConfig200Response**](GetLogicalNetworkConfig200Response.md)
+[**LogicalNetworkConfig**](LogicalNetworkConfig.md)
 
 ### Authorization
 

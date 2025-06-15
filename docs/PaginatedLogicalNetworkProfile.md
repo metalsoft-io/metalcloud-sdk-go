@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]LogicalNetworkProfileDataItem**](LogicalNetworkProfileDataItem.md) |  | 
+**Data** | [**[]LogicalNetworkProfile1DataItem**](LogicalNetworkProfile1DataItem.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
 **Links** | [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewPaginatedLogicalNetworkProfile
 
-`func NewPaginatedLogicalNetworkProfile(data []LogicalNetworkProfileDataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedLogicalNetworkProfile`
+`func NewPaginatedLogicalNetworkProfile(data []LogicalNetworkProfile1DataItem, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *PaginatedLogicalNetworkProfile`
 
 NewPaginatedLogicalNetworkProfile instantiates a new PaginatedLogicalNetworkProfile object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *PaginatedLogicalNetworkProfile) GetData() []LogicalNetworkProfileDataItem`
+`func (o *PaginatedLogicalNetworkProfile) GetData() []LogicalNetworkProfile1DataItem`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *PaginatedLogicalNetworkProfile) GetDataOk() (*[]LogicalNetworkProfileDataItem, bool)`
+`func (o *PaginatedLogicalNetworkProfile) GetDataOk() (*[]LogicalNetworkProfile1DataItem, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *PaginatedLogicalNetworkProfile) SetData(v []LogicalNetworkProfileDataItem)`
+`func (o *PaginatedLogicalNetworkProfile) SetData(v []LogicalNetworkProfile1DataItem)`
 
 SetData sets Data field to given value.
 

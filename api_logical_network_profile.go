@@ -28,15 +28,15 @@ type LogicalNetworkProfileAPIService service
 type LogicalNetworkProfileAPICreateLogicalNetworkProfileRequest struct {
 	ctx context.Context
 	ApiService *LogicalNetworkProfileAPIService
-	createLogicalNetworkProfileRequest *CreateLogicalNetworkProfileRequest
+	createLogicalNetworkProfile *CreateLogicalNetworkProfile
 }
 
-func (r LogicalNetworkProfileAPICreateLogicalNetworkProfileRequest) CreateLogicalNetworkProfileRequest(createLogicalNetworkProfileRequest CreateLogicalNetworkProfileRequest) LogicalNetworkProfileAPICreateLogicalNetworkProfileRequest {
-	r.createLogicalNetworkProfileRequest = &createLogicalNetworkProfileRequest
+func (r LogicalNetworkProfileAPICreateLogicalNetworkProfileRequest) CreateLogicalNetworkProfile(createLogicalNetworkProfile CreateLogicalNetworkProfile) LogicalNetworkProfileAPICreateLogicalNetworkProfileRequest {
+	r.createLogicalNetworkProfile = &createLogicalNetworkProfile
 	return r
 }
 
-func (r LogicalNetworkProfileAPICreateLogicalNetworkProfileRequest) Execute() (*CreateLogicalNetworkProfile201Response, *http.Response, error) {
+func (r LogicalNetworkProfileAPICreateLogicalNetworkProfileRequest) Execute() (*LogicalNetworkProfile, *http.Response, error) {
 	return r.ApiService.CreateLogicalNetworkProfileExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfile(ctx contex
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfile201Response
-func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileExecute(r LogicalNetworkProfileAPICreateLogicalNetworkProfileRequest) (*CreateLogicalNetworkProfile201Response, *http.Response, error) {
+//  @return LogicalNetworkProfile
+func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileExecute(r LogicalNetworkProfileAPICreateLogicalNetworkProfileRequest) (*LogicalNetworkProfile, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfile201Response
+		localVarReturnValue  *LogicalNetworkProfile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkProfileAPIService.CreateLogicalNetworkProfile")
@@ -73,8 +73,8 @@ func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileExecute(r L
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createLogicalNetworkProfileRequest == nil {
-		return localVarReturnValue, nil, reportError("createLogicalNetworkProfileRequest is required and must be specified")
+	if r.createLogicalNetworkProfile == nil {
+		return localVarReturnValue, nil, reportError("createLogicalNetworkProfile is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -95,7 +95,7 @@ func (a *LogicalNetworkProfileAPIService) CreateLogicalNetworkProfileExecute(r L
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createLogicalNetworkProfileRequest
+	localVarPostBody = r.createLogicalNetworkProfile
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1143,7 +1143,7 @@ type LogicalNetworkProfileAPIGetLogicalNetworkProfileRequest struct {
 	id float32
 }
 
-func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileRequest) Execute() (*CreateLogicalNetworkProfile201Response, *http.Response, error) {
+func (r LogicalNetworkProfileAPIGetLogicalNetworkProfileRequest) Execute() (*LogicalNetworkProfile, *http.Response, error) {
 	return r.ApiService.GetLogicalNetworkProfileExecute(r)
 }
 
@@ -1163,13 +1163,13 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfile(ctx context.C
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfile201Response
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileExecute(r LogicalNetworkProfileAPIGetLogicalNetworkProfileRequest) (*CreateLogicalNetworkProfile201Response, *http.Response, error) {
+//  @return LogicalNetworkProfile
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfileExecute(r LogicalNetworkProfileAPIGetLogicalNetworkProfileRequest) (*LogicalNetworkProfile, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfile201Response
+		localVarReturnValue  *LogicalNetworkProfile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkProfileAPIService.GetLogicalNetworkProfile")
@@ -2433,7 +2433,7 @@ func (r LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest) SearchBy(searc
 	return r
 }
 
-func (r LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest) Execute() (*PaginatedLogicalNetworkProfile, *http.Response, error) {
+func (r LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest) Execute() (*PaginatedLogicalNetworkProfileList, *http.Response, error) {
 	return r.ApiService.GetLogicalNetworkProfilesExecute(r)
 }
 
@@ -2451,13 +2451,13 @@ func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfiles(ctx context.
 }
 
 // Execute executes the request
-//  @return PaginatedLogicalNetworkProfile
-func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfilesExecute(r LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest) (*PaginatedLogicalNetworkProfile, *http.Response, error) {
+//  @return PaginatedLogicalNetworkProfileList
+func (a *LogicalNetworkProfileAPIService) GetLogicalNetworkProfilesExecute(r LogicalNetworkProfileAPIGetLogicalNetworkProfilesRequest) (*PaginatedLogicalNetworkProfileList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedLogicalNetworkProfile
+		localVarReturnValue  *PaginatedLogicalNetworkProfileList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkProfileAPIService.GetLogicalNetworkProfiles")
@@ -3134,7 +3134,7 @@ func (r LogicalNetworkProfileAPIUpdateLogicalNetworkProfileRequest) IfMatch(ifMa
 	return r
 }
 
-func (r LogicalNetworkProfileAPIUpdateLogicalNetworkProfileRequest) Execute() (*CreateLogicalNetworkProfile201Response, *http.Response, error) {
+func (r LogicalNetworkProfileAPIUpdateLogicalNetworkProfileRequest) Execute() (*LogicalNetworkProfile, *http.Response, error) {
 	return r.ApiService.UpdateLogicalNetworkProfileExecute(r)
 }
 
@@ -3154,13 +3154,13 @@ func (a *LogicalNetworkProfileAPIService) UpdateLogicalNetworkProfile(ctx contex
 }
 
 // Execute executes the request
-//  @return CreateLogicalNetworkProfile201Response
-func (a *LogicalNetworkProfileAPIService) UpdateLogicalNetworkProfileExecute(r LogicalNetworkProfileAPIUpdateLogicalNetworkProfileRequest) (*CreateLogicalNetworkProfile201Response, *http.Response, error) {
+//  @return LogicalNetworkProfile
+func (a *LogicalNetworkProfileAPIService) UpdateLogicalNetworkProfileExecute(r LogicalNetworkProfileAPIUpdateLogicalNetworkProfileRequest) (*LogicalNetworkProfile, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateLogicalNetworkProfile201Response
+		localVarReturnValue  *LogicalNetworkProfile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogicalNetworkProfileAPIService.UpdateLogicalNetworkProfile")

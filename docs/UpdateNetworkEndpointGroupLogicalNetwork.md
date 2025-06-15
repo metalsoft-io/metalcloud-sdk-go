@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **AccessMode** | Pointer to [**NetworkEndpointGroupAllowedAccessMode**](NetworkEndpointGroupAllowedAccessMode.md) | The access mode of the network endpoint group | [optional] 
 **Mtu** | Pointer to **int32** | The MTU of the logical network | [optional] 
 **Redundancy** | Pointer to [**NullableRedundancyConfig**](RedundancyConfig.md) | The redundancy configuration | [optional] 
+**Dns** | Pointer to [**NullableDnsRecordsEndpointGroupLogicalNetworkDto**](DnsRecordsEndpointGroupLogicalNetworkDto.md) | DNS records configuration for the server instance group. | [optional] 
 
 ## Methods
 
@@ -138,6 +139,41 @@ HasRedundancy returns a boolean if a field has been set.
 `func (o *UpdateNetworkEndpointGroupLogicalNetwork) UnsetRedundancy()`
 
 UnsetRedundancy ensures that no value is present for Redundancy, not even an explicit nil
+### GetDns
+
+`func (o *UpdateNetworkEndpointGroupLogicalNetwork) GetDns() DnsRecordsEndpointGroupLogicalNetworkDto`
+
+GetDns returns the Dns field if non-nil, zero value otherwise.
+
+### GetDnsOk
+
+`func (o *UpdateNetworkEndpointGroupLogicalNetwork) GetDnsOk() (*DnsRecordsEndpointGroupLogicalNetworkDto, bool)`
+
+GetDnsOk returns a tuple with the Dns field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDns
+
+`func (o *UpdateNetworkEndpointGroupLogicalNetwork) SetDns(v DnsRecordsEndpointGroupLogicalNetworkDto)`
+
+SetDns sets Dns field to given value.
+
+### HasDns
+
+`func (o *UpdateNetworkEndpointGroupLogicalNetwork) HasDns() bool`
+
+HasDns returns a boolean if a field has been set.
+
+### SetDnsNil
+
+`func (o *UpdateNetworkEndpointGroupLogicalNetwork) SetDnsNil(b bool)`
+
+ SetDnsNil sets the value for Dns to be an explicit nil
+
+### UnsetDns
+`func (o *UpdateNetworkEndpointGroupLogicalNetwork) UnsetDns()`
+
+UnsetDns ensures that no value is present for Dns, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

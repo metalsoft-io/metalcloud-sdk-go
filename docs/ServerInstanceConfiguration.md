@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **GroupId** | **int32** |  | 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
 **ServerId** | Pointer to **int32** | The ID of the server assigned to the instance. | [optional] 
+**Hostname** | Pointer to **string** | The subdomain of the server instance. | [optional] 
 **OsTemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
 **InstanceWanMlagId** | Pointer to **int32** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -199,6 +200,31 @@ SetServerId sets ServerId field to given value.
 `func (o *ServerInstanceConfiguration) HasServerId() bool`
 
 HasServerId returns a boolean if a field has been set.
+
+### GetHostname
+
+`func (o *ServerInstanceConfiguration) GetHostname() string`
+
+GetHostname returns the Hostname field if non-nil, zero value otherwise.
+
+### GetHostnameOk
+
+`func (o *ServerInstanceConfiguration) GetHostnameOk() (*string, bool)`
+
+GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHostname
+
+`func (o *ServerInstanceConfiguration) SetHostname(v string)`
+
+SetHostname sets Hostname field to given value.
+
+### HasHostname
+
+`func (o *ServerInstanceConfiguration) HasHostname() bool`
+
+HasHostname returns a boolean if a field has been set.
 
 ### GetOsTemplateId
 

@@ -25,6 +25,8 @@ type ServerInstanceCreate struct {
 	GroupId *int32 `json:"groupId,omitempty"`
 	// The server type ID.
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
+	// The subdomain of the server instance.
+	Hostname *string `json:"hostname,omitempty"`
 	// The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal. 
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
 	Tags []string `json:"tags,omitempty"`
@@ -146,6 +148,38 @@ func (o *ServerInstanceCreate) SetServerTypeId(v int32) {
 	o.ServerTypeId = &v
 }
 
+// GetHostname returns the Hostname field value if set, zero value otherwise.
+func (o *ServerInstanceCreate) GetHostname() string {
+	if o == nil || IsNil(o.Hostname) {
+		var ret string
+		return ret
+	}
+	return *o.Hostname
+}
+
+// GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceCreate) GetHostnameOk() (*string, bool) {
+	if o == nil || IsNil(o.Hostname) {
+		return nil, false
+	}
+	return o.Hostname, true
+}
+
+// HasHostname returns a boolean if a field has been set.
+func (o *ServerInstanceCreate) HasHostname() bool {
+	if o != nil && !IsNil(o.Hostname) {
+		return true
+	}
+
+	return false
+}
+
+// SetHostname gets a reference to the given string and assigns it to the Hostname field.
+func (o *ServerInstanceCreate) SetHostname(v string) {
+	o.Hostname = &v
+}
+
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
 func (o *ServerInstanceCreate) GetOsTemplateId() int32 {
 	if o == nil || IsNil(o.OsTemplateId) {
@@ -229,6 +263,9 @@ func (o ServerInstanceCreate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServerTypeId) {
 		toSerialize["serverTypeId"] = o.ServerTypeId
 	}
+	if !IsNil(o.Hostname) {
+		toSerialize["hostname"] = o.Hostname
+	}
 	if !IsNil(o.OsTemplateId) {
 		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
@@ -260,6 +297,7 @@ func (o *ServerInstanceCreate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "groupId")
 		delete(additionalProperties, "serverTypeId")
+		delete(additionalProperties, "hostname")
 		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties

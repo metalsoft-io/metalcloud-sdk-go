@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | The Product Instance label. Will be automatically generated if not provided. | [optional] 
 **GroupId** | Pointer to **int32** |  | [optional] 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
+**Hostname** | Pointer to **string** | The subdomain of the server instance. | [optional] 
 **OsTemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 
@@ -103,6 +104,31 @@ SetServerTypeId sets ServerTypeId field to given value.
 `func (o *ServerInstanceCreate) HasServerTypeId() bool`
 
 HasServerTypeId returns a boolean if a field has been set.
+
+### GetHostname
+
+`func (o *ServerInstanceCreate) GetHostname() string`
+
+GetHostname returns the Hostname field if non-nil, zero value otherwise.
+
+### GetHostnameOk
+
+`func (o *ServerInstanceCreate) GetHostnameOk() (*string, bool)`
+
+GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHostname
+
+`func (o *ServerInstanceCreate) SetHostname(v string)`
+
+SetHostname sets Hostname field to given value.
+
+### HasHostname
+
+`func (o *ServerInstanceCreate) HasHostname() bool`
+
+HasHostname returns a boolean if a field has been set.
 
 ### GetOsTemplateId
 

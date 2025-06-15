@@ -1,4 +1,4 @@
-# LogicalNetworkProfileDataItem
+# LogicalNetworkProfile
 
 ## Properties
 
@@ -13,321 +13,346 @@ Name | Type | Description | Notes
 **Revision** | **int32** |  | 
 **Kind** | [**LogicalNetworkKind**](LogicalNetworkKind.md) |  | 
 **FabricId** | **int32** |  | 
-**Vlan** | [**VxlanLogicalNetworkProfileVlanProperties**](VxlanLogicalNetworkProfileVlanProperties.md) |  | 
-**Ipv4** | [**VxlanLogicalNetworkProfileIpv4Properties**](VxlanLogicalNetworkProfileIpv4Properties.md) |  | 
-**Ipv6** | [**VxlanLogicalNetworkProfileIpv6Properties**](VxlanLogicalNetworkProfileIpv6Properties.md) |  | 
-**RouteDomainId** | **NullableInt32** |  | 
-**Vxlan** | [**VxlanLogicalNetworkProfileVxlanProperties**](VxlanLogicalNetworkProfileVxlanProperties.md) |  | 
+**Vlan** | Pointer to [**LogicalNetworkProfileVlanProperties**](LogicalNetworkProfileVlanProperties.md) |  | [optional] 
+**Vxlan** | Pointer to [**LogicalNetworkProfileVxlanProperties**](LogicalNetworkProfileVxlanProperties.md) |  | [optional] 
+**Ipv4** | Pointer to [**LogicalNetworkProfileIpv4Properties**](LogicalNetworkProfileIpv4Properties.md) |  | [optional] 
+**Ipv6** | Pointer to [**LogicalNetworkProfileIpv6Properties**](LogicalNetworkProfileIpv6Properties.md) |  | [optional] 
+**RouteDomainId** | Pointer to **NullableInt32** |  | [optional] 
 
 ## Methods
 
-### NewLogicalNetworkProfileDataItem
+### NewLogicalNetworkProfile
 
-`func NewLogicalNetworkProfileDataItem(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, vlan VxlanLogicalNetworkProfileVlanProperties, ipv4 VxlanLogicalNetworkProfileIpv4Properties, ipv6 VxlanLogicalNetworkProfileIpv6Properties, routeDomainId NullableInt32, vxlan VxlanLogicalNetworkProfileVxlanProperties, ) *LogicalNetworkProfileDataItem`
+`func NewLogicalNetworkProfile(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, ) *LogicalNetworkProfile`
 
-NewLogicalNetworkProfileDataItem instantiates a new LogicalNetworkProfileDataItem object
+NewLogicalNetworkProfile instantiates a new LogicalNetworkProfile object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewLogicalNetworkProfileDataItemWithDefaults
+### NewLogicalNetworkProfileWithDefaults
 
-`func NewLogicalNetworkProfileDataItemWithDefaults() *LogicalNetworkProfileDataItem`
+`func NewLogicalNetworkProfileWithDefaults() *LogicalNetworkProfile`
 
-NewLogicalNetworkProfileDataItemWithDefaults instantiates a new LogicalNetworkProfileDataItem object
+NewLogicalNetworkProfileWithDefaults instantiates a new LogicalNetworkProfile object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *LogicalNetworkProfileDataItem) GetId() int32`
+`func (o *LogicalNetworkProfile) GetId() int32`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *LogicalNetworkProfileDataItem) GetIdOk() (*int32, bool)`
+`func (o *LogicalNetworkProfile) GetIdOk() (*int32, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *LogicalNetworkProfileDataItem) SetId(v int32)`
+`func (o *LogicalNetworkProfile) SetId(v int32)`
 
 SetId sets Id field to given value.
 
 
 ### GetLabel
 
-`func (o *LogicalNetworkProfileDataItem) GetLabel() string`
+`func (o *LogicalNetworkProfile) GetLabel() string`
 
 GetLabel returns the Label field if non-nil, zero value otherwise.
 
 ### GetLabelOk
 
-`func (o *LogicalNetworkProfileDataItem) GetLabelOk() (*string, bool)`
+`func (o *LogicalNetworkProfile) GetLabelOk() (*string, bool)`
 
 GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLabel
 
-`func (o *LogicalNetworkProfileDataItem) SetLabel(v string)`
+`func (o *LogicalNetworkProfile) SetLabel(v string)`
 
 SetLabel sets Label field to given value.
 
 
 ### GetName
 
-`func (o *LogicalNetworkProfileDataItem) GetName() string`
+`func (o *LogicalNetworkProfile) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *LogicalNetworkProfileDataItem) GetNameOk() (*string, bool)`
+`func (o *LogicalNetworkProfile) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *LogicalNetworkProfileDataItem) SetName(v string)`
+`func (o *LogicalNetworkProfile) SetName(v string)`
 
 SetName sets Name field to given value.
 
 
 ### GetAnnotations
 
-`func (o *LogicalNetworkProfileDataItem) GetAnnotations() map[string]string`
+`func (o *LogicalNetworkProfile) GetAnnotations() map[string]string`
 
 GetAnnotations returns the Annotations field if non-nil, zero value otherwise.
 
 ### GetAnnotationsOk
 
-`func (o *LogicalNetworkProfileDataItem) GetAnnotationsOk() (*map[string]string, bool)`
+`func (o *LogicalNetworkProfile) GetAnnotationsOk() (*map[string]string, bool)`
 
 GetAnnotationsOk returns a tuple with the Annotations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAnnotations
 
-`func (o *LogicalNetworkProfileDataItem) SetAnnotations(v map[string]string)`
+`func (o *LogicalNetworkProfile) SetAnnotations(v map[string]string)`
 
 SetAnnotations sets Annotations field to given value.
 
 
 ### GetCreatedAt
 
-`func (o *LogicalNetworkProfileDataItem) GetCreatedAt() time.Time`
+`func (o *LogicalNetworkProfile) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *LogicalNetworkProfileDataItem) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *LogicalNetworkProfile) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *LogicalNetworkProfileDataItem) SetCreatedAt(v time.Time)`
+`func (o *LogicalNetworkProfile) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetUpdatedAt
 
-`func (o *LogicalNetworkProfileDataItem) GetUpdatedAt() time.Time`
+`func (o *LogicalNetworkProfile) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *LogicalNetworkProfileDataItem) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *LogicalNetworkProfile) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *LogicalNetworkProfileDataItem) SetUpdatedAt(v time.Time)`
+`func (o *LogicalNetworkProfile) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
 
 ### GetRevision
 
-`func (o *LogicalNetworkProfileDataItem) GetRevision() int32`
+`func (o *LogicalNetworkProfile) GetRevision() int32`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *LogicalNetworkProfileDataItem) GetRevisionOk() (*int32, bool)`
+`func (o *LogicalNetworkProfile) GetRevisionOk() (*int32, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *LogicalNetworkProfileDataItem) SetRevision(v int32)`
+`func (o *LogicalNetworkProfile) SetRevision(v int32)`
 
 SetRevision sets Revision field to given value.
 
 
 ### GetKind
 
-`func (o *LogicalNetworkProfileDataItem) GetKind() LogicalNetworkKind`
+`func (o *LogicalNetworkProfile) GetKind() LogicalNetworkKind`
 
 GetKind returns the Kind field if non-nil, zero value otherwise.
 
 ### GetKindOk
 
-`func (o *LogicalNetworkProfileDataItem) GetKindOk() (*LogicalNetworkKind, bool)`
+`func (o *LogicalNetworkProfile) GetKindOk() (*LogicalNetworkKind, bool)`
 
 GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKind
 
-`func (o *LogicalNetworkProfileDataItem) SetKind(v LogicalNetworkKind)`
+`func (o *LogicalNetworkProfile) SetKind(v LogicalNetworkKind)`
 
 SetKind sets Kind field to given value.
 
 
 ### GetFabricId
 
-`func (o *LogicalNetworkProfileDataItem) GetFabricId() int32`
+`func (o *LogicalNetworkProfile) GetFabricId() int32`
 
 GetFabricId returns the FabricId field if non-nil, zero value otherwise.
 
 ### GetFabricIdOk
 
-`func (o *LogicalNetworkProfileDataItem) GetFabricIdOk() (*int32, bool)`
+`func (o *LogicalNetworkProfile) GetFabricIdOk() (*int32, bool)`
 
 GetFabricIdOk returns a tuple with the FabricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFabricId
 
-`func (o *LogicalNetworkProfileDataItem) SetFabricId(v int32)`
+`func (o *LogicalNetworkProfile) SetFabricId(v int32)`
 
 SetFabricId sets FabricId field to given value.
 
 
 ### GetVlan
 
-`func (o *LogicalNetworkProfileDataItem) GetVlan() VxlanLogicalNetworkProfileVlanProperties`
+`func (o *LogicalNetworkProfile) GetVlan() LogicalNetworkProfileVlanProperties`
 
 GetVlan returns the Vlan field if non-nil, zero value otherwise.
 
 ### GetVlanOk
 
-`func (o *LogicalNetworkProfileDataItem) GetVlanOk() (*VxlanLogicalNetworkProfileVlanProperties, bool)`
+`func (o *LogicalNetworkProfile) GetVlanOk() (*LogicalNetworkProfileVlanProperties, bool)`
 
 GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlan
 
-`func (o *LogicalNetworkProfileDataItem) SetVlan(v VxlanLogicalNetworkProfileVlanProperties)`
+`func (o *LogicalNetworkProfile) SetVlan(v LogicalNetworkProfileVlanProperties)`
 
 SetVlan sets Vlan field to given value.
 
+### HasVlan
 
-### GetIpv4
+`func (o *LogicalNetworkProfile) HasVlan() bool`
 
-`func (o *LogicalNetworkProfileDataItem) GetIpv4() VxlanLogicalNetworkProfileIpv4Properties`
+HasVlan returns a boolean if a field has been set.
 
-GetIpv4 returns the Ipv4 field if non-nil, zero value otherwise.
-
-### GetIpv4Ok
-
-`func (o *LogicalNetworkProfileDataItem) GetIpv4Ok() (*VxlanLogicalNetworkProfileIpv4Properties, bool)`
-
-GetIpv4Ok returns a tuple with the Ipv4 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIpv4
-
-`func (o *LogicalNetworkProfileDataItem) SetIpv4(v VxlanLogicalNetworkProfileIpv4Properties)`
-
-SetIpv4 sets Ipv4 field to given value.
-
-
-### GetIpv6
-
-`func (o *LogicalNetworkProfileDataItem) GetIpv6() VxlanLogicalNetworkProfileIpv6Properties`
-
-GetIpv6 returns the Ipv6 field if non-nil, zero value otherwise.
-
-### GetIpv6Ok
-
-`func (o *LogicalNetworkProfileDataItem) GetIpv6Ok() (*VxlanLogicalNetworkProfileIpv6Properties, bool)`
-
-GetIpv6Ok returns a tuple with the Ipv6 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIpv6
-
-`func (o *LogicalNetworkProfileDataItem) SetIpv6(v VxlanLogicalNetworkProfileIpv6Properties)`
-
-SetIpv6 sets Ipv6 field to given value.
-
-
-### GetRouteDomainId
-
-`func (o *LogicalNetworkProfileDataItem) GetRouteDomainId() int32`
-
-GetRouteDomainId returns the RouteDomainId field if non-nil, zero value otherwise.
-
-### GetRouteDomainIdOk
-
-`func (o *LogicalNetworkProfileDataItem) GetRouteDomainIdOk() (*int32, bool)`
-
-GetRouteDomainIdOk returns a tuple with the RouteDomainId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRouteDomainId
-
-`func (o *LogicalNetworkProfileDataItem) SetRouteDomainId(v int32)`
-
-SetRouteDomainId sets RouteDomainId field to given value.
-
-
-### SetRouteDomainIdNil
-
-`func (o *LogicalNetworkProfileDataItem) SetRouteDomainIdNil(b bool)`
-
- SetRouteDomainIdNil sets the value for RouteDomainId to be an explicit nil
-
-### UnsetRouteDomainId
-`func (o *LogicalNetworkProfileDataItem) UnsetRouteDomainId()`
-
-UnsetRouteDomainId ensures that no value is present for RouteDomainId, not even an explicit nil
 ### GetVxlan
 
-`func (o *LogicalNetworkProfileDataItem) GetVxlan() VxlanLogicalNetworkProfileVxlanProperties`
+`func (o *LogicalNetworkProfile) GetVxlan() LogicalNetworkProfileVxlanProperties`
 
 GetVxlan returns the Vxlan field if non-nil, zero value otherwise.
 
 ### GetVxlanOk
 
-`func (o *LogicalNetworkProfileDataItem) GetVxlanOk() (*VxlanLogicalNetworkProfileVxlanProperties, bool)`
+`func (o *LogicalNetworkProfile) GetVxlanOk() (*LogicalNetworkProfileVxlanProperties, bool)`
 
 GetVxlanOk returns a tuple with the Vxlan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVxlan
 
-`func (o *LogicalNetworkProfileDataItem) SetVxlan(v VxlanLogicalNetworkProfileVxlanProperties)`
+`func (o *LogicalNetworkProfile) SetVxlan(v LogicalNetworkProfileVxlanProperties)`
 
 SetVxlan sets Vxlan field to given value.
 
+### HasVxlan
 
+`func (o *LogicalNetworkProfile) HasVxlan() bool`
+
+HasVxlan returns a boolean if a field has been set.
+
+### GetIpv4
+
+`func (o *LogicalNetworkProfile) GetIpv4() LogicalNetworkProfileIpv4Properties`
+
+GetIpv4 returns the Ipv4 field if non-nil, zero value otherwise.
+
+### GetIpv4Ok
+
+`func (o *LogicalNetworkProfile) GetIpv4Ok() (*LogicalNetworkProfileIpv4Properties, bool)`
+
+GetIpv4Ok returns a tuple with the Ipv4 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpv4
+
+`func (o *LogicalNetworkProfile) SetIpv4(v LogicalNetworkProfileIpv4Properties)`
+
+SetIpv4 sets Ipv4 field to given value.
+
+### HasIpv4
+
+`func (o *LogicalNetworkProfile) HasIpv4() bool`
+
+HasIpv4 returns a boolean if a field has been set.
+
+### GetIpv6
+
+`func (o *LogicalNetworkProfile) GetIpv6() LogicalNetworkProfileIpv6Properties`
+
+GetIpv6 returns the Ipv6 field if non-nil, zero value otherwise.
+
+### GetIpv6Ok
+
+`func (o *LogicalNetworkProfile) GetIpv6Ok() (*LogicalNetworkProfileIpv6Properties, bool)`
+
+GetIpv6Ok returns a tuple with the Ipv6 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpv6
+
+`func (o *LogicalNetworkProfile) SetIpv6(v LogicalNetworkProfileIpv6Properties)`
+
+SetIpv6 sets Ipv6 field to given value.
+
+### HasIpv6
+
+`func (o *LogicalNetworkProfile) HasIpv6() bool`
+
+HasIpv6 returns a boolean if a field has been set.
+
+### GetRouteDomainId
+
+`func (o *LogicalNetworkProfile) GetRouteDomainId() int32`
+
+GetRouteDomainId returns the RouteDomainId field if non-nil, zero value otherwise.
+
+### GetRouteDomainIdOk
+
+`func (o *LogicalNetworkProfile) GetRouteDomainIdOk() (*int32, bool)`
+
+GetRouteDomainIdOk returns a tuple with the RouteDomainId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRouteDomainId
+
+`func (o *LogicalNetworkProfile) SetRouteDomainId(v int32)`
+
+SetRouteDomainId sets RouteDomainId field to given value.
+
+### HasRouteDomainId
+
+`func (o *LogicalNetworkProfile) HasRouteDomainId() bool`
+
+HasRouteDomainId returns a boolean if a field has been set.
+
+### SetRouteDomainIdNil
+
+`func (o *LogicalNetworkProfile) SetRouteDomainIdNil(b bool)`
+
+ SetRouteDomainIdNil sets the value for RouteDomainId to be an explicit nil
+
+### UnsetRouteDomainId
+`func (o *LogicalNetworkProfile) UnsetRouteDomainId()`
+
+UnsetRouteDomainId ensures that no value is present for RouteDomainId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

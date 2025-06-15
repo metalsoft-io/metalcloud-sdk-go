@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **IpAllocateAuto** | **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [default to 1]
 **Ipv4SubnetCreateAuto** | **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [default to 1]
 **FirmwarePolicyIds** | Pointer to **[]float32** | Array of firmware policy ids containing associated firmware policies. | [optional] 
+**Hostname** | Pointer to **string** | Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \&quot;server-instance-group\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \&quot;dnsLoadBalancingRecord\&quot; is true. It will be automatically suffixed with the server instance group ID (e.g., \&quot;-34\&quot;) to ensure the uniqueness of the resulting DNS name. | [optional] 
 **OsTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the Instance Group have local disks. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Object containing custom variables and variable overrides. | [optional] 
 **ProcessorCount** | **int32** | The CPU count on each instance. | [default to 1]
@@ -278,6 +279,31 @@ HasFirmwarePolicyIds returns a boolean if a field has been set.
 `func (o *ServerInstanceGroupConfiguration) UnsetFirmwarePolicyIds()`
 
 UnsetFirmwarePolicyIds ensures that no value is present for FirmwarePolicyIds, not even an explicit nil
+### GetHostname
+
+`func (o *ServerInstanceGroupConfiguration) GetHostname() string`
+
+GetHostname returns the Hostname field if non-nil, zero value otherwise.
+
+### GetHostnameOk
+
+`func (o *ServerInstanceGroupConfiguration) GetHostnameOk() (*string, bool)`
+
+GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHostname
+
+`func (o *ServerInstanceGroupConfiguration) SetHostname(v string)`
+
+SetHostname sets Hostname field to given value.
+
+### HasHostname
+
+`func (o *ServerInstanceGroupConfiguration) HasHostname() bool`
+
+HasHostname returns a boolean if a field has been set.
+
 ### GetOsTemplateId
 
 `func (o *ServerInstanceGroupConfiguration) GetOsTemplateId() int32`

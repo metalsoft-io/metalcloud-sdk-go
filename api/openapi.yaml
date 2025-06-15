@@ -10626,7 +10626,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaginatedLogicalNetworkProfile'
+                $ref: '#/components/schemas/PaginatedLogicalNetworkProfileList'
           description: Retrieves a list of Logical Network Profiles.
         "401":
           description: Unauthorized
@@ -10647,14 +10647,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createLogicalNetworkProfile_request'
+              $ref: '#/components/schemas/CreateLogicalNetworkProfile'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createLogicalNetworkProfile_201_response'
+                $ref: '#/components/schemas/LogicalNetworkProfile'
           description: Logical Network Profile created.
         "401":
           description: Unauthorized
@@ -10723,7 +10723,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createLogicalNetworkProfile_201_response'
+                $ref: '#/components/schemas/LogicalNetworkProfile'
           description: The details of the specified Logical Network Profile.
         "401":
           description: Unauthorized
@@ -10768,7 +10768,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createLogicalNetworkProfile_201_response'
+                $ref: '#/components/schemas/LogicalNetworkProfile'
           description: Logical Network Profile updated.
         "401":
           description: Unauthorized
@@ -12313,7 +12313,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaginatedLogicalNetwork'
+                $ref: '#/components/schemas/PaginatedLogicalNetworkList'
           description: Retrieves a list of Logical Networks.
         "401":
           description: Unauthorized
@@ -12334,14 +12334,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createLogicalNetwork_request'
+              $ref: '#/components/schemas/CreateLogicalNetwork'
+        description: The logical network to create
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createLogicalNetwork_201_response'
+                $ref: '#/components/schemas/LogicalNetwork'
           description: Logical Network created.
           headers:
             ETag:
@@ -12377,7 +12378,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createLogicalNetwork_201_response'
+                $ref: '#/components/schemas/LogicalNetwork'
           description: Logical Network created.
         "401":
           description: Unauthorized
@@ -12442,7 +12443,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createLogicalNetwork_201_response'
+                $ref: '#/components/schemas/LogicalNetwork'
           description: The details of the specified Logical Network.
           headers:
             ETag:
@@ -12494,7 +12495,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createLogicalNetwork_201_response'
+                $ref: '#/components/schemas/LogicalNetwork'
           description: Logical Network updated.
           headers:
             ETag:
@@ -12537,7 +12538,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkConfig_200_response'
+                $ref: '#/components/schemas/LogicalNetworkConfig'
           description: The details of the specified Logical Network config.
         "401":
           description: Unauthorized
@@ -12582,7 +12583,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkConfig_200_response'
+                $ref: '#/components/schemas/LogicalNetworkConfig'
           description: The details of the specified Logical Network config.
           headers:
             ETag:
@@ -12639,7 +12640,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getLogicalNetworkConfig_200_response'
+                $ref: '#/components/schemas/LogicalNetworkConfig'
           description: The details of the specified Logical Network config.
           headers:
             ETag:
@@ -22602,6 +22603,24 @@ paths:
         explode: true
         in: query
         name: filter.instance.infrastructure.infrastructureId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by instance.infrastructure.userIdOwner query param.
+                    <p>
+                       <b>Format: </b> filter.instance.infrastructure.userIdOwner={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.instance.infrastructure.userIdOwner=$not:$like:John Doe&filter.instance.infrastructure.userIdOwner=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.instance.infrastructure.userIdOwner
         required: false
         schema:
           items:
@@ -35658,7 +35677,19 @@ components:
           $ref: '#/components/schemas/GenericGUISettings'
       type: object
     BucketCredentials:
-      properties: {}
+      example:
+        accessKeyId: accessKeyId
+        secretKey: secretKey
+      properties:
+        accessKeyId:
+          description: Access Key ID for the Bucket.
+          type: string
+        secretKey:
+          description: Secret Key for the Bucket.
+          type: string
+      required:
+      - accessKeyId
+      - secretKey
       type: object
     Object:
       properties: {}
@@ -46201,6 +46232,7 @@ components:
         deployType: create
         processorCoreMhz: 6
         defaultServerTypeId: 5
+        hostname: my-custom-hostname-34
         dnsSubdomainChangeId: 6
         processorCoreCount: 6
         infrastructureDeployId: 0
@@ -46268,6 +46300,19 @@ components:
             type: number
           nullable: true
           type: array
+        hostname:
+          description: "Custom hostname for the DNS Load Balancing record. If set,\
+            \ this will be used as the DNS Load Balancing record name instead of the\
+            \ default \"server-instance-group\". The hostname must be a valid DNS\
+            \ subdomain and can only contain alphanumeric characters, hyphens, and\
+            \ underscores. This will only take effect if the property \"dnsLoadBalancingRecord\"\
+            \ is true. It will be automatically suffixed with the server instance\
+            \ group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS\
+            \ name."
+          example: my-custom-hostname-34
+          maxLength: 63
+          minLength: 1
+          type: string
         osTemplateId:
           description: The volume template ID (or name) to use if the servers in the
             Instance Group have local disks.
@@ -46383,6 +46428,7 @@ components:
         isVmGroup: 9
         processorCoreMhz: 7
         defaultServerTypeId: 5
+        hostname: my-custom-hostname-34
         dnsSubdomainPermanentId: 6
         processorCoreCount: 4
         serviceStatus: ordered
@@ -46439,6 +46485,7 @@ components:
           deployType: create
           processorCoreMhz: 6
           defaultServerTypeId: 5
+          hostname: my-custom-hostname-34
           dnsSubdomainChangeId: 6
           processorCoreCount: 6
           infrastructureDeployId: 0
@@ -46526,6 +46573,19 @@ components:
             type: number
           nullable: true
           type: array
+        hostname:
+          description: "Custom hostname for the DNS Load Balancing record. If set,\
+            \ this will be used as the DNS Load Balancing record name instead of the\
+            \ default \"server-instance-group\". The hostname must be a valid DNS\
+            \ subdomain and can only contain alphanumeric characters, hyphens, and\
+            \ underscores. This will only take effect if the property \"dnsLoadBalancingRecord\"\
+            \ is true. It will be automatically suffixed with the server instance\
+            \ group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS\
+            \ name."
+          example: my-custom-hostname-34
+          maxLength: 63
+          minLength: 1
+          type: string
         osTemplateId:
           description: The volume template ID (or name) to use if the servers in the
             Instance Group have local disks.
@@ -46652,6 +46712,7 @@ components:
           isVmGroup: 9
           processorCoreMhz: 7
           defaultServerTypeId: 5
+          hostname: my-custom-hostname-34
           dnsSubdomainPermanentId: 6
           processorCoreCount: 4
           serviceStatus: ordered
@@ -46708,6 +46769,7 @@ components:
             deployType: create
             processorCoreMhz: 6
             defaultServerTypeId: 5
+            hostname: my-custom-hostname-34
             dnsSubdomainChangeId: 6
             processorCoreCount: 6
             infrastructureDeployId: 0
@@ -46742,6 +46804,7 @@ components:
           isVmGroup: 9
           processorCoreMhz: 7
           defaultServerTypeId: 5
+          hostname: my-custom-hostname-34
           dnsSubdomainPermanentId: 6
           processorCoreCount: 4
           serviceStatus: ordered
@@ -46798,6 +46861,7 @@ components:
             deployType: create
             processorCoreMhz: 6
             defaultServerTypeId: 5
+            hostname: my-custom-hostname-34
             dnsSubdomainChangeId: 6
             processorCoreCount: 6
             infrastructureDeployId: 0
@@ -46864,6 +46928,7 @@ components:
         networkEquipmentForceSubnetPoolIpv4WanId: 1
         processorCoreMhz: 9
         diskSizeMbytes: 4
+        hostname: my-custom-hostname-34
         defaultServerTypeId: 5
         instanceCount: 6
         processorCoreCount: 7
@@ -46897,6 +46962,19 @@ components:
           description: Automatically create or expand Subnet elements until the necessary
             IPv4 addresses are allocated.
           type: integer
+        hostname:
+          description: "Custom hostname for the DNS Load Balancing record. If set,\
+            \ this will be used as the DNS Load Balancing record name instead of the\
+            \ default \"server-instance-group\". The hostname must be a valid DNS\
+            \ subdomain and can only contain alphanumeric characters, hyphens, and\
+            \ underscores. This will only take effect if the property \"dnsLoadBalancingRecord\"\
+            \ is true. It will be automatically suffixed with the server instance\
+            \ group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS\
+            \ name."
+          example: my-custom-hostname-34
+          maxLength: 63
+          minLength: 1
+          type: string
         osTemplateId:
           description: The volume template ID (or name) to use if the servers in the
             Instance Group have local disks.
@@ -47071,6 +47149,7 @@ components:
         customVariables: "{}"
         deployType: create
         revision: 1
+        hostname: server-instance-123
         iscsiInitiatorUsername: iscsiInitiatorUsername
         iscsiInitiatorIqn: iscsiInitiatorIqn
         dnsSubdomainChangeId: 1
@@ -47105,6 +47184,11 @@ components:
         serverId:
           description: The ID of the server assigned to the instance.
           type: integer
+        hostname:
+          description: The subdomain of the server instance.
+          example: server-instance-123
+          maxLength: 63
+          type: string
         osTemplateId:
           description: 'The template id of the operating system to deploy on the server.
             Can be null in which case no OS will be deployed but all operations will
@@ -47184,6 +47268,7 @@ components:
         serverId: 5
         osInstallImageUrl: osInstallImageUrl
         customVariables: "{}"
+        hostname: server-instance-123
         dnsSubdomainPermanentId: 6
         iscsiInitiatorIqn: iscsiInitiatorIqn
         serviceStatus: ordered
@@ -47234,6 +47319,7 @@ components:
           customVariables: "{}"
           deployType: create
           revision: 1
+          hostname: server-instance-123
           iscsiInitiatorUsername: iscsiInitiatorUsername
           iscsiInitiatorIqn: iscsiInitiatorIqn
           dnsSubdomainChangeId: 1
@@ -47287,6 +47373,11 @@ components:
         serverId:
           description: The ID of the server assigned to the instance.
           type: integer
+        hostname:
+          description: The subdomain of the server instance.
+          example: server-instance-123
+          maxLength: 63
+          type: string
         osTemplateId:
           description: 'The template id of the operating system to deploy on the server.
             Can be null in which case no OS will be deployed but all operations will
@@ -47390,6 +47481,7 @@ components:
           serverId: 5
           osInstallImageUrl: osInstallImageUrl
           customVariables: "{}"
+          hostname: server-instance-123
           dnsSubdomainPermanentId: 6
           iscsiInitiatorIqn: iscsiInitiatorIqn
           serviceStatus: ordered
@@ -47440,6 +47532,7 @@ components:
             customVariables: "{}"
             deployType: create
             revision: 1
+            hostname: server-instance-123
             iscsiInitiatorUsername: iscsiInitiatorUsername
             iscsiInitiatorIqn: iscsiInitiatorIqn
             dnsSubdomainChangeId: 1
@@ -47462,6 +47555,7 @@ components:
           serverId: 5
           osInstallImageUrl: osInstallImageUrl
           customVariables: "{}"
+          hostname: server-instance-123
           dnsSubdomainPermanentId: 6
           iscsiInitiatorIqn: iscsiInitiatorIqn
           serviceStatus: ordered
@@ -47512,6 +47606,7 @@ components:
             customVariables: "{}"
             deployType: create
             revision: 1
+            hostname: server-instance-123
             iscsiInitiatorUsername: iscsiInitiatorUsername
             iscsiInitiatorIqn: iscsiInitiatorIqn
             dnsSubdomainChangeId: 1
@@ -47548,6 +47643,7 @@ components:
     ServerInstanceCreate:
       example:
         serverTypeId: 5
+        hostname: server-instance-123
         groupId: 0
         osTemplateId: 1
         label: label
@@ -47566,6 +47662,11 @@ components:
           description: The server type ID.
           example: 5
           type: integer
+        hostname:
+          description: The subdomain of the server instance.
+          example: server-instance-123
+          maxLength: 63
+          type: string
         osTemplateId:
           description: 'The template id of the operating system to deploy on the server.
             Can be null in which case no OS will be deployed but all operations will
@@ -48452,26 +48553,6 @@ components:
       - vxlan
       type: object
     VlanLogicalNetworkProfileVlanProperties:
-      example:
-        vlanAllocationStrategies:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          vlanId: 2
-          kind: ""
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          granularityLevel: ""
-          id: 5
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          vlanId: 2
-          kind: ""
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          granularityLevel: ""
-          id: 5
-          updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         vlanAllocationStrategies:
           items:
@@ -48481,24 +48562,6 @@ components:
       - vlanAllocationStrategies
       type: object
     VlanLogicalNetworkProfileIpv4Properties:
-      example:
-        subnetAllocationStrategies:
-        - subnetId: 9
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          kind: ""
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 7
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        - subnetId: 9
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          kind: ""
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 7
-          updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         subnetAllocationStrategies:
           items:
@@ -48508,24 +48571,6 @@ components:
       - subnetAllocationStrategies
       type: object
     VlanLogicalNetworkProfileIpv6Properties:
-      example:
-        subnetAllocationStrategies:
-        - subnetId: 2
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          kind: ""
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 3
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        - subnetId: 2
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          kind: ""
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 3
-          updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         subnetAllocationStrategies:
           items:
@@ -48535,74 +48580,6 @@ components:
       - subnetAllocationStrategies
       type: object
     VlanLogicalNetworkProfile:
-      example:
-        kind: ""
-        fabricId: 1
-        annotations:
-          key: annotations
-        label: label
-        revision: 6
-        routeDomainId: 4
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        vlan:
-          vlanAllocationStrategies:
-          - createdAt: 2000-01-23T04:56:07.000+00:00
-            vlanId: 2
-            kind: ""
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            granularityLevel: ""
-            id: 5
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-          - createdAt: 2000-01-23T04:56:07.000+00:00
-            vlanId: 2
-            kind: ""
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            granularityLevel: ""
-            id: 5
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-        ipv4:
-          subnetAllocationStrategies:
-          - subnetId: 9
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            kind: ""
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 7
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-          - subnetId: 9
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            kind: ""
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 7
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-        ipv6:
-          subnetAllocationStrategies:
-          - subnetId: 2
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            kind: ""
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 3
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-          - subnetId: 2
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            kind: ""
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 3
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-        name: name
-        id: 0
-        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           type: integer
@@ -48760,6 +48737,9 @@ components:
       - network_device
       type: string
     CreateResourceScope:
+      example:
+        resourceId: 6.027456183070403
+        kind: ""
       properties:
         kind:
           allOf:
@@ -48771,6 +48751,12 @@ components:
       - resourceId
       type: object
     CreateManualIpv4SubnetAllocationStrategy:
+      example:
+        subnetId: 5
+        kind: ""
+        scope:
+          resourceId: 6.027456183070403
+          kind: ""
       properties:
         kind:
           allOf:
@@ -48819,13 +48805,13 @@ components:
       type: object
     ManualIpv4SubnetAllocationStrategy:
       example:
-        subnetId: 9
+        subnetId: 2
         createdAt: 2000-01-23T04:56:07.000+00:00
         kind: ""
         scope:
           resourceId: 5.637376656633329
           kind: ""
-        id: 7
+        id: 3
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -48882,6 +48868,12 @@ components:
       - updatedAt
       type: object
     CreateManualIpv6SubnetAllocationStrategy:
+      example:
+        subnetId: 2
+        kind: ""
+        scope:
+          resourceId: 6.027456183070403
+          kind: ""
       properties:
         kind:
           allOf:
@@ -48916,13 +48908,13 @@ components:
       type: object
     ManualIpv6SubnetAllocationStrategy:
       example:
-        subnetId: 2
+        subnetId: 7
         createdAt: 2000-01-23T04:56:07.000+00:00
         kind: ""
         scope:
           resourceId: 5.637376656633329
           kind: ""
-        id: 3
+        id: 4
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -49051,13 +49043,13 @@ components:
       type: object
     ManualVniAllocationStrategy:
       example:
-        vni: 6
+        vni: 9
         createdAt: 2000-01-23T04:56:07.000+00:00
         kind: ""
         scope:
           resourceId: 5.637376656633329
           kind: ""
-        id: 0
+        id: 7
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -49106,6 +49098,12 @@ components:
       - updatedAt
       type: object
     CreateManualVniAllocationStrategy:
+      example:
+        vni: 5
+        kind: ""
+        scope:
+          resourceId: 6.027456183070403
+          kind: ""
       properties:
         kind:
           allOf:
@@ -49131,6 +49129,13 @@ components:
       - scope
       type: object
     CreateManualVlanAllocationStrategy:
+      example:
+        vlanId: 1
+        kind: ""
+        scope:
+          resourceId: 6.027456183070403
+          kind: ""
+        granularityLevel: ""
       properties:
         kind:
           allOf:
@@ -49149,148 +49154,10 @@ components:
       - vlanId
       type: object
     PaginatedLogicalNetworkProfile:
-      example:
-        data:
-        - kind: ""
-          fabricId: 1
-          annotations:
-            key: annotations
-          label: label
-          revision: 6
-          routeDomainId: 4
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          vlan:
-            vlanAllocationStrategies:
-            - createdAt: 2000-01-23T04:56:07.000+00:00
-              vlanId: 2
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              granularityLevel: ""
-              id: 5
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-            - createdAt: 2000-01-23T04:56:07.000+00:00
-              vlanId: 2
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              granularityLevel: ""
-              id: 5
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-          ipv4:
-            subnetAllocationStrategies:
-            - subnetId: 9
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 7
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-            - subnetId: 9
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 7
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-          ipv6:
-            subnetAllocationStrategies:
-            - subnetId: 2
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 3
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-            - subnetId: 2
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 3
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-          name: name
-          id: 0
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        - kind: ""
-          fabricId: 1
-          annotations:
-            key: annotations
-          label: label
-          revision: 6
-          routeDomainId: 4
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          vlan:
-            vlanAllocationStrategies:
-            - createdAt: 2000-01-23T04:56:07.000+00:00
-              vlanId: 2
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              granularityLevel: ""
-              id: 5
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-            - createdAt: 2000-01-23T04:56:07.000+00:00
-              vlanId: 2
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              granularityLevel: ""
-              id: 5
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-          ipv4:
-            subnetAllocationStrategies:
-            - subnetId: 9
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 7
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-            - subnetId: 9
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 7
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-          ipv6:
-            subnetAllocationStrategies:
-            - subnetId: 2
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 3
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-            - subnetId: 2
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 3
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-          name: name
-          id: 0
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        meta: ""
-        links: ""
       properties:
         data:
           items:
-            $ref: '#/components/schemas/LogicalNetworkProfileDataItem'
+            $ref: '#/components/schemas/LogicalNetworkProfile_1DataItem'
           title: LogicalNetworkProfile
           type: array
         meta:
@@ -49307,6 +49174,623 @@ components:
       - data
       - links
       - meta
+      type: object
+    LogicalNetworkProfileVlanProperties:
+      example:
+        vlanAllocationStrategies:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          vlanId: 2
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          granularityLevel: ""
+          id: 5
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          vlanId: 2
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          granularityLevel: ""
+          id: 5
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        vlanAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/VlanAllocationStrategy'
+          type: array
+      required:
+      - vlanAllocationStrategies
+      type: object
+    LogicalNetworkProfileVxlanProperties:
+      example:
+        vniAllocationStrategies:
+        - vni: 9
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 7
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - vni: 9
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 7
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        vniAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/VniAllocationStrategy'
+          type: array
+      required:
+      - vniAllocationStrategies
+      type: object
+    LogicalNetworkProfileIpv4Properties:
+      example:
+        subnetAllocationStrategies:
+        - subnetId: 2
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 3
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - subnetId: 2
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 3
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        subnetAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
+          type: array
+      required:
+      - subnetAllocationStrategies
+      type: object
+    LogicalNetworkProfileIpv6Properties:
+      example:
+        subnetAllocationStrategies:
+        - subnetId: 7
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 4
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - subnetId: 7
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 4
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        subnetAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
+          type: array
+      required:
+      - subnetAllocationStrategies
+      type: object
+    LogicalNetworkProfile:
+      example:
+        vxlan:
+          vniAllocationStrategies:
+          - vni: 9
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 7
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          - vni: 9
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 7
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+        kind: ""
+        fabricId: 1
+        annotations:
+          key: annotations
+        label: label
+        revision: 6
+        routeDomainId: 1
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        vlan:
+          vlanAllocationStrategies:
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            vlanId: 2
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            granularityLevel: ""
+            id: 5
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            vlanId: 2
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            granularityLevel: ""
+            id: 5
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+        ipv4:
+          subnetAllocationStrategies:
+          - subnetId: 2
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 3
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          - subnetId: 2
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 3
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+        ipv6:
+          subnetAllocationStrategies:
+          - subnetId: 7
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 4
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          - subnetId: 7
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 4
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+        name: name
+        id: 0
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: integer
+        label:
+          maxLength: 63
+          type: string
+        name:
+          maxLength: 63
+          type: string
+        annotations:
+          additionalProperties:
+            type: string
+          type: object
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        revision:
+          type: integer
+        kind:
+          allOf:
+          - $ref: '#/components/schemas/LogicalNetworkKind'
+        fabricId:
+          type: integer
+        vlan:
+          $ref: '#/components/schemas/LogicalNetworkProfileVlanProperties'
+        vxlan:
+          $ref: '#/components/schemas/LogicalNetworkProfileVxlanProperties'
+        ipv4:
+          $ref: '#/components/schemas/LogicalNetworkProfileIpv4Properties'
+        ipv6:
+          $ref: '#/components/schemas/LogicalNetworkProfileIpv6Properties'
+        routeDomainId:
+          nullable: true
+          type: integer
+      required:
+      - annotations
+      - createdAt
+      - fabricId
+      - id
+      - kind
+      - label
+      - name
+      - revision
+      - updatedAt
+      type: object
+    PaginatedLogicalNetworkProfileList:
+      example:
+        data:
+        - vxlan:
+            vniAllocationStrategies:
+            - vni: 9
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 7
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - vni: 9
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 7
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          fabricId: 1
+          annotations:
+            key: annotations
+          label: label
+          revision: 6
+          routeDomainId: 1
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          vlan:
+            vlanAllocationStrategies:
+            - createdAt: 2000-01-23T04:56:07.000+00:00
+              vlanId: 2
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              granularityLevel: ""
+              id: 5
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - createdAt: 2000-01-23T04:56:07.000+00:00
+              vlanId: 2
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              granularityLevel: ""
+              id: 5
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+          ipv4:
+            subnetAllocationStrategies:
+            - subnetId: 2
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 3
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - subnetId: 2
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 3
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+          ipv6:
+            subnetAllocationStrategies:
+            - subnetId: 7
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 4
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - subnetId: 7
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 4
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          id: 0
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - vxlan:
+            vniAllocationStrategies:
+            - vni: 9
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 7
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - vni: 9
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 7
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          fabricId: 1
+          annotations:
+            key: annotations
+          label: label
+          revision: 6
+          routeDomainId: 1
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          vlan:
+            vlanAllocationStrategies:
+            - createdAt: 2000-01-23T04:56:07.000+00:00
+              vlanId: 2
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              granularityLevel: ""
+              id: 5
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - createdAt: 2000-01-23T04:56:07.000+00:00
+              vlanId: 2
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              granularityLevel: ""
+              id: 5
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+          ipv4:
+            subnetAllocationStrategies:
+            - subnetId: 2
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 3
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - subnetId: 2
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 3
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+          ipv6:
+            subnetAllocationStrategies:
+            - subnetId: 7
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 4
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - subnetId: 7
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 4
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          id: 0
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/LogicalNetworkProfile'
+          title: List of logical network profile exts
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
+    CreateLogicalNetworkVlanProperties:
+      example:
+        vlanAllocationStrategies:
+        - vlanId: 1
+          kind: ""
+          scope:
+            resourceId: 6.027456183070403
+            kind: ""
+          granularityLevel: ""
+        - vlanId: 1
+          kind: ""
+          scope:
+            resourceId: 6.027456183070403
+            kind: ""
+          granularityLevel: ""
+      properties:
+        vlanAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/CreateVlanAllocationStrategy'
+          type: array
+      required:
+      - vlanAllocationStrategies
+      type: object
+    CreateLogicalNetworkVxlanProperties:
+      example:
+        vniAllocationStrategies:
+        - vni: 5
+          kind: ""
+          scope:
+            resourceId: 6.027456183070403
+            kind: ""
+        - vni: 5
+          kind: ""
+          scope:
+            resourceId: 6.027456183070403
+            kind: ""
+      properties:
+        vniAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/CreateVniAllocationStrategy'
+          type: array
+      required:
+      - vniAllocationStrategies
+      type: object
+    CreateLogicalNetworkIpv4Properties:
+      example:
+        subnetAllocationStrategies:
+        - subnetId: 5
+          kind: ""
+          scope:
+            resourceId: 6.027456183070403
+            kind: ""
+        - subnetId: 5
+          kind: ""
+          scope:
+            resourceId: 6.027456183070403
+            kind: ""
+      properties:
+        subnetAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/CreateIpv4SubnetAllocationStrategy'
+          type: array
+      required:
+      - subnetAllocationStrategies
+      type: object
+    CreateLogicalNetworkIpv6Properties:
+      example:
+        subnetAllocationStrategies:
+        - subnetId: 2
+          kind: ""
+          scope:
+            resourceId: 6.027456183070403
+            kind: ""
+        - subnetId: 2
+          kind: ""
+          scope:
+            resourceId: 6.027456183070403
+            kind: ""
+      properties:
+        subnetAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/CreateIpv6SubnetAllocationStrategy'
+          type: array
+      required:
+      - subnetAllocationStrategies
+      type: object
+    CreateLogicalNetworkProfile:
+      example:
+        vxlan:
+          vniAllocationStrategies:
+          - vni: 5
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+          - vni: 5
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+        routeDomainId: 7
+        vlan:
+          vlanAllocationStrategies:
+          - vlanId: 1
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+            granularityLevel: ""
+          - vlanId: 1
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+            granularityLevel: ""
+        ipv4:
+          subnetAllocationStrategies:
+          - subnetId: 5
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+          - subnetId: 5
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+        kind: ""
+        fabricId: 0
+        ipv6:
+          subnetAllocationStrategies:
+          - subnetId: 2
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+          - subnetId: 2
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+        name: name
+        annotations:
+          key: annotations
+        label: label
+      properties:
+        label:
+          maxLength: 63
+          type: string
+        name:
+          maxLength: 63
+          type: string
+        annotations:
+          additionalProperties:
+            type: string
+          type: object
+        kind:
+          allOf:
+          - $ref: '#/components/schemas/LogicalNetworkKind'
+        fabricId:
+          type: integer
+        vlan:
+          $ref: '#/components/schemas/CreateLogicalNetworkVlanProperties'
+        vxlan:
+          $ref: '#/components/schemas/CreateLogicalNetworkVxlanProperties'
+        ipv4:
+          $ref: '#/components/schemas/CreateLogicalNetworkIpv4Properties'
+        ipv6:
+          $ref: '#/components/schemas/CreateLogicalNetworkIpv6Properties'
+        routeDomainId:
+          nullable: true
+          type: integer
+      required:
+      - fabricId
+      - kind
       type: object
     UpdateLogicalNetworkProfile:
       example:
@@ -49378,21 +49862,21 @@ components:
     PaginatedVniAllocationStrategy:
       example:
         data:
-        - vni: 6
+        - vni: 9
           createdAt: 2000-01-23T04:56:07.000+00:00
           kind: ""
           scope:
             resourceId: 5.637376656633329
             kind: ""
-          id: 0
+          id: 7
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        - vni: 6
+        - vni: 9
           createdAt: 2000-01-23T04:56:07.000+00:00
           kind: ""
           scope:
             resourceId: 5.637376656633329
             kind: ""
-          id: 0
+          id: 7
           updatedAt: 2000-01-23T04:56:07.000+00:00
         meta: ""
         links: ""
@@ -49420,21 +49904,21 @@ components:
     PaginatedIpv4SubnetAllocationStrategy:
       example:
         data:
-        - subnetId: 9
+        - subnetId: 2
           createdAt: 2000-01-23T04:56:07.000+00:00
           kind: ""
           scope:
             resourceId: 5.637376656633329
             kind: ""
-          id: 7
+          id: 3
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        - subnetId: 9
+        - subnetId: 2
           createdAt: 2000-01-23T04:56:07.000+00:00
           kind: ""
           scope:
             resourceId: 5.637376656633329
             kind: ""
-          id: 7
+          id: 3
           updatedAt: 2000-01-23T04:56:07.000+00:00
         meta: ""
         links: ""
@@ -49462,21 +49946,21 @@ components:
     PaginatedIpv6SubnetAllocationStrategy:
       example:
         data:
-        - subnetId: 2
+        - subnetId: 7
           createdAt: 2000-01-23T04:56:07.000+00:00
           kind: ""
           scope:
             resourceId: 5.637376656633329
             kind: ""
-          id: 3
+          id: 4
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        - subnetId: 2
+        - subnetId: 7
           createdAt: 2000-01-23T04:56:07.000+00:00
           kind: ""
           scope:
             resourceId: 5.637376656633329
             kind: ""
-          id: 3
+          id: 4
           updatedAt: 2000-01-23T04:56:07.000+00:00
         meta: ""
         links: ""
@@ -49575,26 +50059,6 @@ components:
       - vxlan
       type: object
     VlanLogicalNetworkConfigVlanProperties:
-      example:
-        vlanAllocationStrategies:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          vlanId: 2
-          kind: ""
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          granularityLevel: ""
-          id: 5
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          vlanId: 2
-          kind: ""
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          granularityLevel: ""
-          id: 5
-          updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         vlanAllocationStrategies:
           items:
@@ -49604,24 +50068,6 @@ components:
       - vlanAllocationStrategies
       type: object
     VlanLogicalNetworkConfigIpv4Properties:
-      example:
-        subnetAllocationStrategies:
-        - subnetId: 9
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          kind: ""
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 7
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        - subnetId: 9
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          kind: ""
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 7
-          updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         subnetAllocationStrategies:
           items:
@@ -49631,24 +50077,6 @@ components:
       - subnetAllocationStrategies
       type: object
     VlanLogicalNetworkConfigIpv6Properties:
-      example:
-        subnetAllocationStrategies:
-        - subnetId: 2
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          kind: ""
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 3
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        - subnetId: 2
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          kind: ""
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 3
-          updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         subnetAllocationStrategies:
           items:
@@ -49658,70 +50086,6 @@ components:
       - subnetAllocationStrategies
       type: object
     VlanLogicalNetworkConfig:
-      example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        vlan:
-          vlanAllocationStrategies:
-          - createdAt: 2000-01-23T04:56:07.000+00:00
-            vlanId: 2
-            kind: ""
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            granularityLevel: ""
-            id: 5
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-          - createdAt: 2000-01-23T04:56:07.000+00:00
-            vlanId: 2
-            kind: ""
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            granularityLevel: ""
-            id: 5
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-        ipv4:
-          subnetAllocationStrategies:
-          - subnetId: 9
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            kind: ""
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 7
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-          - subnetId: 9
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            kind: ""
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 7
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-        kind: ""
-        ipv6:
-          subnetAllocationStrategies:
-          - subnetId: 2
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            kind: ""
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 3
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-          - subnetId: 2
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            kind: ""
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 3
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-        id: 2
-        deployType: create
-        deployStatus: not_started
-        updatedAt: 2000-01-23T04:56:07.000+00:00
-        revision: 7
       properties:
         id:
           type: integer
@@ -49770,23 +50134,6 @@ components:
       - vlan
       type: object
     VlanLogicalNetworkVlanProperties:
-      example:
-        vlans:
-        - vlanId: 3
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 9
-          status: ""
-        - vlanId: 3
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 9
-          status: ""
-        vlanAllocationStrategies:
-        - null
-        - null
       properties:
         vlans:
           items:
@@ -49801,27 +50148,6 @@ components:
       - vlans
       type: object
     VlanLogicalNetworkIpv4Properties:
-      example:
-        subnets:
-        - prefixLength: 4
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 2
-          networkAddress: networkAddress
-          gateway: gateway
-          status: ""
-        - prefixLength: 4
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 2
-          networkAddress: networkAddress
-          gateway: gateway
-          status: ""
-        subnetAllocationStrategies:
-        - null
-        - null
       properties:
         subnets:
           items:
@@ -49836,27 +50162,6 @@ components:
       - subnets
       type: object
     VlanLogicalNetworkIpv6Properties:
-      example:
-        subnets:
-        - prefixLength: 1
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 7
-          networkAddress: networkAddress
-          gateway: gateway
-          status: ""
-        - prefixLength: 1
-          scope:
-            resourceId: 5.637376656633329
-            kind: ""
-          id: 7
-          networkAddress: networkAddress
-          gateway: gateway
-          status: ""
-        subnetAllocationStrategies:
-        - null
-        - null
       properties:
         subnets:
           items:
@@ -49871,145 +50176,6 @@ components:
       - subnets
       type: object
     VlanLogicalNetwork:
-      example:
-        kind: ""
-        fabricId: 1
-        annotations:
-          key: annotations
-        label: label
-        lastLogicalNetworkProfileAppliedAt: 2000-01-23T04:56:07.000+00:00
-        revision: 6
-        routeDomainId: 1
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        infrastructureId: 5
-        vlan:
-          vlans:
-          - vlanId: 3
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 9
-            status: ""
-          - vlanId: 3
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 9
-            status: ""
-          vlanAllocationStrategies:
-          - null
-          - null
-        ipv4:
-          subnets:
-          - prefixLength: 4
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 2
-            networkAddress: networkAddress
-            gateway: gateway
-            status: ""
-          - prefixLength: 4
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 2
-            networkAddress: networkAddress
-            gateway: gateway
-            status: ""
-          subnetAllocationStrategies:
-          - null
-          - null
-        serviceStatus: ""
-        ipv6:
-          subnets:
-          - prefixLength: 1
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 7
-            networkAddress: networkAddress
-            gateway: gateway
-            status: ""
-          - prefixLength: 1
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            id: 7
-            networkAddress: networkAddress
-            gateway: gateway
-            status: ""
-          subnetAllocationStrategies:
-          - null
-          - null
-        name: name
-        lastAppliedLogicalNetworkProfileId: 5
-        id: 0
-        config:
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          vlan:
-            vlanAllocationStrategies:
-            - createdAt: 2000-01-23T04:56:07.000+00:00
-              vlanId: 2
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              granularityLevel: ""
-              id: 5
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-            - createdAt: 2000-01-23T04:56:07.000+00:00
-              vlanId: 2
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              granularityLevel: ""
-              id: 5
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-          ipv4:
-            subnetAllocationStrategies:
-            - subnetId: 9
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 7
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-            - subnetId: 9
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 7
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-          kind: ""
-          ipv6:
-            subnetAllocationStrategies:
-            - subnetId: 2
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 3
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-            - subnetId: 2
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              kind: ""
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 3
-              updatedAt: 2000-01-23T04:56:07.000+00:00
-          id: 2
-          deployType: create
-          deployStatus: not_started
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-          revision: 7
-        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           type: integer
@@ -50341,6 +50507,13 @@ components:
       - vlanId
       type: object
     VniAllocation:
+      example:
+        vni: 4
+        scope:
+          resourceId: 5.637376656633329
+          kind: ""
+        id: 2
+        status: ""
       properties:
         id:
           type: integer
@@ -50358,38 +50531,6 @@ components:
       - vni
       type: object
     Ipv4SubnetAllocation:
-      example:
-        prefixLength: 4
-        scope:
-          resourceId: 5.637376656633329
-          kind: ""
-        id: 2
-        networkAddress: networkAddress
-        gateway: gateway
-        status: ""
-      properties:
-        id:
-          type: integer
-        scope:
-          $ref: '#/components/schemas/ResourceScope'
-        status:
-          allOf:
-          - $ref: '#/components/schemas/ResourceAllocationStatus'
-        networkAddress:
-          type: string
-        prefixLength:
-          type: integer
-        gateway:
-          type: string
-      required:
-      - gateway
-      - id
-      - networkAddress
-      - prefixLength
-      - scope
-      - status
-      type: object
-    Ipv6SubnetAllocation:
       example:
         prefixLength: 1
         scope:
@@ -50421,291 +50562,43 @@ components:
       - scope
       - status
       type: object
-    PaginatedLogicalNetwork:
+    Ipv6SubnetAllocation:
       example:
-        data:
-        - kind: ""
-          fabricId: 1
-          annotations:
-            key: annotations
-          label: label
-          lastLogicalNetworkProfileAppliedAt: 2000-01-23T04:56:07.000+00:00
-          revision: 6
-          routeDomainId: 1
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          infrastructureId: 5
-          vlan:
-            vlans:
-            - vlanId: 3
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 9
-              status: ""
-            - vlanId: 3
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 9
-              status: ""
-            vlanAllocationStrategies:
-            - null
-            - null
-          ipv4:
-            subnets:
-            - prefixLength: 4
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 2
-              networkAddress: networkAddress
-              gateway: gateway
-              status: ""
-            - prefixLength: 4
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 2
-              networkAddress: networkAddress
-              gateway: gateway
-              status: ""
-            subnetAllocationStrategies:
-            - null
-            - null
-          serviceStatus: ""
-          ipv6:
-            subnets:
-            - prefixLength: 1
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 7
-              networkAddress: networkAddress
-              gateway: gateway
-              status: ""
-            - prefixLength: 1
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 7
-              networkAddress: networkAddress
-              gateway: gateway
-              status: ""
-            subnetAllocationStrategies:
-            - null
-            - null
-          name: name
-          lastAppliedLogicalNetworkProfileId: 5
-          id: 0
-          config:
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            vlan:
-              vlanAllocationStrategies:
-              - createdAt: 2000-01-23T04:56:07.000+00:00
-                vlanId: 2
-                kind: ""
-                scope:
-                  resourceId: 5.637376656633329
-                  kind: ""
-                granularityLevel: ""
-                id: 5
-                updatedAt: 2000-01-23T04:56:07.000+00:00
-              - createdAt: 2000-01-23T04:56:07.000+00:00
-                vlanId: 2
-                kind: ""
-                scope:
-                  resourceId: 5.637376656633329
-                  kind: ""
-                granularityLevel: ""
-                id: 5
-                updatedAt: 2000-01-23T04:56:07.000+00:00
-            ipv4:
-              subnetAllocationStrategies:
-              - subnetId: 9
-                createdAt: 2000-01-23T04:56:07.000+00:00
-                kind: ""
-                scope:
-                  resourceId: 5.637376656633329
-                  kind: ""
-                id: 7
-                updatedAt: 2000-01-23T04:56:07.000+00:00
-              - subnetId: 9
-                createdAt: 2000-01-23T04:56:07.000+00:00
-                kind: ""
-                scope:
-                  resourceId: 5.637376656633329
-                  kind: ""
-                id: 7
-                updatedAt: 2000-01-23T04:56:07.000+00:00
-            kind: ""
-            ipv6:
-              subnetAllocationStrategies:
-              - subnetId: 2
-                createdAt: 2000-01-23T04:56:07.000+00:00
-                kind: ""
-                scope:
-                  resourceId: 5.637376656633329
-                  kind: ""
-                id: 3
-                updatedAt: 2000-01-23T04:56:07.000+00:00
-              - subnetId: 2
-                createdAt: 2000-01-23T04:56:07.000+00:00
-                kind: ""
-                scope:
-                  resourceId: 5.637376656633329
-                  kind: ""
-                id: 3
-                updatedAt: 2000-01-23T04:56:07.000+00:00
-            id: 2
-            deployType: create
-            deployStatus: not_started
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-            revision: 7
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        - kind: ""
-          fabricId: 1
-          annotations:
-            key: annotations
-          label: label
-          lastLogicalNetworkProfileAppliedAt: 2000-01-23T04:56:07.000+00:00
-          revision: 6
-          routeDomainId: 1
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          infrastructureId: 5
-          vlan:
-            vlans:
-            - vlanId: 3
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 9
-              status: ""
-            - vlanId: 3
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 9
-              status: ""
-            vlanAllocationStrategies:
-            - null
-            - null
-          ipv4:
-            subnets:
-            - prefixLength: 4
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 2
-              networkAddress: networkAddress
-              gateway: gateway
-              status: ""
-            - prefixLength: 4
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 2
-              networkAddress: networkAddress
-              gateway: gateway
-              status: ""
-            subnetAllocationStrategies:
-            - null
-            - null
-          serviceStatus: ""
-          ipv6:
-            subnets:
-            - prefixLength: 1
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 7
-              networkAddress: networkAddress
-              gateway: gateway
-              status: ""
-            - prefixLength: 1
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              id: 7
-              networkAddress: networkAddress
-              gateway: gateway
-              status: ""
-            subnetAllocationStrategies:
-            - null
-            - null
-          name: name
-          lastAppliedLogicalNetworkProfileId: 5
-          id: 0
-          config:
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            vlan:
-              vlanAllocationStrategies:
-              - createdAt: 2000-01-23T04:56:07.000+00:00
-                vlanId: 2
-                kind: ""
-                scope:
-                  resourceId: 5.637376656633329
-                  kind: ""
-                granularityLevel: ""
-                id: 5
-                updatedAt: 2000-01-23T04:56:07.000+00:00
-              - createdAt: 2000-01-23T04:56:07.000+00:00
-                vlanId: 2
-                kind: ""
-                scope:
-                  resourceId: 5.637376656633329
-                  kind: ""
-                granularityLevel: ""
-                id: 5
-                updatedAt: 2000-01-23T04:56:07.000+00:00
-            ipv4:
-              subnetAllocationStrategies:
-              - subnetId: 9
-                createdAt: 2000-01-23T04:56:07.000+00:00
-                kind: ""
-                scope:
-                  resourceId: 5.637376656633329
-                  kind: ""
-                id: 7
-                updatedAt: 2000-01-23T04:56:07.000+00:00
-              - subnetId: 9
-                createdAt: 2000-01-23T04:56:07.000+00:00
-                kind: ""
-                scope:
-                  resourceId: 5.637376656633329
-                  kind: ""
-                id: 7
-                updatedAt: 2000-01-23T04:56:07.000+00:00
-            kind: ""
-            ipv6:
-              subnetAllocationStrategies:
-              - subnetId: 2
-                createdAt: 2000-01-23T04:56:07.000+00:00
-                kind: ""
-                scope:
-                  resourceId: 5.637376656633329
-                  kind: ""
-                id: 3
-                updatedAt: 2000-01-23T04:56:07.000+00:00
-              - subnetId: 2
-                createdAt: 2000-01-23T04:56:07.000+00:00
-                kind: ""
-                scope:
-                  resourceId: 5.637376656633329
-                  kind: ""
-                id: 3
-                updatedAt: 2000-01-23T04:56:07.000+00:00
-            id: 2
-            deployType: create
-            deployStatus: not_started
-            updatedAt: 2000-01-23T04:56:07.000+00:00
-            revision: 7
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        meta: ""
-        links: ""
+        prefixLength: 1
+        scope:
+          resourceId: 5.637376656633329
+          kind: ""
+        id: 1
+        networkAddress: networkAddress
+        gateway: gateway
+        status: ""
+      properties:
+        id:
+          type: integer
+        scope:
+          $ref: '#/components/schemas/ResourceScope'
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ResourceAllocationStatus'
+        networkAddress:
+          type: string
+        prefixLength:
+          type: integer
+        gateway:
+          type: string
+      required:
+      - gateway
+      - id
+      - networkAddress
+      - prefixLength
+      - scope
+      - status
+      type: object
+    PaginatedLogicalNetwork:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/LogicalNetworkDataItem'
+            $ref: '#/components/schemas/LogicalNetwork_1DataItem'
           title: LogicalNetwork
           type: array
         meta:
@@ -50757,6 +50650,1085 @@ components:
         logicalNetworkProfileId:
           nullable: true
           type: integer
+      type: object
+    LogicalNetworkConfigVlanProperties:
+      example:
+        vlanAllocationStrategies:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          vlanId: 2
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          granularityLevel: ""
+          id: 5
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          vlanId: 2
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          granularityLevel: ""
+          id: 5
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        vlanAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/VlanAllocationStrategy'
+          type: array
+      required:
+      - vlanAllocationStrategies
+      type: object
+    LogicalNetworkConfigVxlanProperties:
+      example:
+        vniAllocationStrategies:
+        - vni: 9
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 7
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - vni: 9
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 7
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        vniAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/VniAllocationStrategy'
+          type: array
+      required:
+      - vniAllocationStrategies
+      type: object
+    LogicalNetworkConfigIpv4Properties:
+      example:
+        subnetAllocationStrategies:
+        - subnetId: 2
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 3
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - subnetId: 2
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 3
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        subnetAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
+          type: array
+      required:
+      - subnetAllocationStrategies
+      type: object
+    LogicalNetworkConfigIpv6Properties:
+      example:
+        subnetAllocationStrategies:
+        - subnetId: 7
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 4
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - subnetId: 7
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 4
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        subnetAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
+          type: array
+      required:
+      - subnetAllocationStrategies
+      type: object
+    LogicalNetworkConfig:
+      example:
+        vxlan:
+          vniAllocationStrategies:
+          - vni: 9
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 7
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          - vni: 9
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 7
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        vlan:
+          vlanAllocationStrategies:
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            vlanId: 2
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            granularityLevel: ""
+            id: 5
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            vlanId: 2
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            granularityLevel: ""
+            id: 5
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+        ipv4:
+          subnetAllocationStrategies:
+          - subnetId: 2
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 3
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          - subnetId: 2
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 3
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+        kind: ""
+        ipv6:
+          subnetAllocationStrategies:
+          - subnetId: 7
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 4
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          - subnetId: 7
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 4
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+        id: 2
+        deployType: create
+        deployStatus: not_started
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+        revision: 7
+      properties:
+        id:
+          type: integer
+        deployType:
+          enum:
+          - create
+          - delete
+          - edit
+          - start
+          - stop
+          - suspend
+          type: string
+        deployStatus:
+          enum:
+          - not_started
+          - ongoing
+          - finished
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        revision:
+          type: integer
+        kind:
+          allOf:
+          - $ref: '#/components/schemas/LogicalNetworkKind'
+        vlan:
+          $ref: '#/components/schemas/LogicalNetworkConfigVlanProperties'
+        vxlan:
+          $ref: '#/components/schemas/LogicalNetworkConfigVxlanProperties'
+        ipv4:
+          $ref: '#/components/schemas/LogicalNetworkConfigIpv4Properties'
+        ipv6:
+          $ref: '#/components/schemas/LogicalNetworkConfigIpv6Properties'
+      required:
+      - createdAt
+      - deployStatus
+      - deployType
+      - id
+      - kind
+      - revision
+      - updatedAt
+      type: object
+    LogicalNetworkVlanProperties:
+      example:
+        vlans:
+        - vlanId: 3
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 9
+          status: ""
+        - vlanId: 3
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 9
+          status: ""
+        vlanAllocationStrategies:
+        - null
+        - null
+      properties:
+        vlans:
+          items:
+            $ref: '#/components/schemas/VlanAllocation'
+          type: array
+        vlanAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/VlanAllocationStrategy'
+          type: array
+      required:
+      - vlanAllocationStrategies
+      - vlans
+      type: object
+    LogicalNetworkVxlanProperties:
+      example:
+        vnis:
+        - vni: 4
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 2
+          status: ""
+        - vni: 4
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 2
+          status: ""
+        vniAllocationStrategies:
+        - null
+        - null
+      properties:
+        vnis:
+          items:
+            $ref: '#/components/schemas/VniAllocation'
+          type: array
+        vniAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/VniAllocationStrategy'
+          type: array
+      required:
+      - vniAllocationStrategies
+      - vnis
+      type: object
+    LogicalNetworkIpv4Properties:
+      example:
+        subnets:
+        - prefixLength: 1
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 7
+          networkAddress: networkAddress
+          gateway: gateway
+          status: ""
+        - prefixLength: 1
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 7
+          networkAddress: networkAddress
+          gateway: gateway
+          status: ""
+        subnetAllocationStrategies:
+        - null
+        - null
+      properties:
+        subnets:
+          items:
+            $ref: '#/components/schemas/Ipv4SubnetAllocation'
+          type: array
+        subnetAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/Ipv4SubnetAllocationStrategy'
+          type: array
+      required:
+      - subnetAllocationStrategies
+      - subnets
+      type: object
+    LogicalNetworkIpv6Properties:
+      example:
+        subnets:
+        - prefixLength: 1
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 1
+          networkAddress: networkAddress
+          gateway: gateway
+          status: ""
+        - prefixLength: 1
+          scope:
+            resourceId: 5.637376656633329
+            kind: ""
+          id: 1
+          networkAddress: networkAddress
+          gateway: gateway
+          status: ""
+        subnetAllocationStrategies:
+        - null
+        - null
+      properties:
+        subnets:
+          items:
+            $ref: '#/components/schemas/Ipv6SubnetAllocation'
+          type: array
+        subnetAllocationStrategies:
+          items:
+            $ref: '#/components/schemas/Ipv6SubnetAllocationStrategy'
+          type: array
+      required:
+      - subnetAllocationStrategies
+      - subnets
+      type: object
+    LogicalNetwork:
+      example:
+        vxlan:
+          vnis:
+          - vni: 4
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 2
+            status: ""
+          - vni: 4
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 2
+            status: ""
+          vniAllocationStrategies:
+          - null
+          - null
+        kind: ""
+        fabricId: 1
+        annotations:
+          key: annotations
+        label: label
+        lastLogicalNetworkProfileAppliedAt: 2000-01-23T04:56:07.000+00:00
+        revision: 6
+        routeDomainId: 6
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        infrastructureId: 5
+        vlan:
+          vlans:
+          - vlanId: 3
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 9
+            status: ""
+          - vlanId: 3
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 9
+            status: ""
+          vlanAllocationStrategies:
+          - null
+          - null
+        ipv4:
+          subnets:
+          - prefixLength: 1
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 7
+            networkAddress: networkAddress
+            gateway: gateway
+            status: ""
+          - prefixLength: 1
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 7
+            networkAddress: networkAddress
+            gateway: gateway
+            status: ""
+          subnetAllocationStrategies:
+          - null
+          - null
+        serviceStatus: ""
+        ipv6:
+          subnets:
+          - prefixLength: 1
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 1
+            networkAddress: networkAddress
+            gateway: gateway
+            status: ""
+          - prefixLength: 1
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            id: 1
+            networkAddress: networkAddress
+            gateway: gateway
+            status: ""
+          subnetAllocationStrategies:
+          - null
+          - null
+        name: name
+        lastAppliedLogicalNetworkProfileId: 5
+        id: 0
+        config:
+          vxlan:
+            vniAllocationStrategies:
+            - vni: 9
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 7
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - vni: 9
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 7
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          vlan:
+            vlanAllocationStrategies:
+            - createdAt: 2000-01-23T04:56:07.000+00:00
+              vlanId: 2
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              granularityLevel: ""
+              id: 5
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - createdAt: 2000-01-23T04:56:07.000+00:00
+              vlanId: 2
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              granularityLevel: ""
+              id: 5
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+          ipv4:
+            subnetAllocationStrategies:
+            - subnetId: 2
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 3
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - subnetId: 2
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 3
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+          kind: ""
+          ipv6:
+            subnetAllocationStrategies:
+            - subnetId: 7
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 4
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - subnetId: 7
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              kind: ""
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 4
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+          id: 2
+          deployType: create
+          deployStatus: not_started
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          revision: 7
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: integer
+        label:
+          maxLength: 63
+          type: string
+        name:
+          maxLength: 63
+          type: string
+        annotations:
+          additionalProperties:
+            type: string
+          type: object
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        revision:
+          type: integer
+        kind:
+          allOf:
+          - $ref: '#/components/schemas/LogicalNetworkKind'
+        fabricId:
+          type: integer
+        infrastructureId:
+          nullable: true
+          type: integer
+        serviceStatus:
+          allOf:
+          - $ref: '#/components/schemas/GenericServiceStatus'
+        lastAppliedLogicalNetworkProfileId:
+          nullable: true
+          type: integer
+        lastLogicalNetworkProfileAppliedAt:
+          format: date-time
+          type: string
+        config:
+          $ref: '#/components/schemas/LogicalNetworkConfig'
+        vlan:
+          $ref: '#/components/schemas/LogicalNetworkVlanProperties'
+        vxlan:
+          $ref: '#/components/schemas/LogicalNetworkVxlanProperties'
+        ipv4:
+          $ref: '#/components/schemas/LogicalNetworkIpv4Properties'
+        ipv6:
+          $ref: '#/components/schemas/LogicalNetworkIpv6Properties'
+        routeDomainId:
+          nullable: true
+          type: integer
+      required:
+      - annotations
+      - config
+      - createdAt
+      - fabricId
+      - id
+      - infrastructureId
+      - kind
+      - label
+      - lastAppliedLogicalNetworkProfileId
+      - lastLogicalNetworkProfileAppliedAt
+      - name
+      - revision
+      - serviceStatus
+      - updatedAt
+      type: object
+    PaginatedLogicalNetworkList:
+      example:
+        data:
+        - vxlan:
+            vnis:
+            - vni: 4
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 2
+              status: ""
+            - vni: 4
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 2
+              status: ""
+            vniAllocationStrategies:
+            - null
+            - null
+          kind: ""
+          fabricId: 1
+          annotations:
+            key: annotations
+          label: label
+          lastLogicalNetworkProfileAppliedAt: 2000-01-23T04:56:07.000+00:00
+          revision: 6
+          routeDomainId: 6
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          infrastructureId: 5
+          vlan:
+            vlans:
+            - vlanId: 3
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 9
+              status: ""
+            - vlanId: 3
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 9
+              status: ""
+            vlanAllocationStrategies:
+            - null
+            - null
+          ipv4:
+            subnets:
+            - prefixLength: 1
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 7
+              networkAddress: networkAddress
+              gateway: gateway
+              status: ""
+            - prefixLength: 1
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 7
+              networkAddress: networkAddress
+              gateway: gateway
+              status: ""
+            subnetAllocationStrategies:
+            - null
+            - null
+          serviceStatus: ""
+          ipv6:
+            subnets:
+            - prefixLength: 1
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 1
+              networkAddress: networkAddress
+              gateway: gateway
+              status: ""
+            - prefixLength: 1
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 1
+              networkAddress: networkAddress
+              gateway: gateway
+              status: ""
+            subnetAllocationStrategies:
+            - null
+            - null
+          name: name
+          lastAppliedLogicalNetworkProfileId: 5
+          id: 0
+          config:
+            vxlan:
+              vniAllocationStrategies:
+              - vni: 9
+                createdAt: 2000-01-23T04:56:07.000+00:00
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                id: 7
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+              - vni: 9
+                createdAt: 2000-01-23T04:56:07.000+00:00
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                id: 7
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            vlan:
+              vlanAllocationStrategies:
+              - createdAt: 2000-01-23T04:56:07.000+00:00
+                vlanId: 2
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                granularityLevel: ""
+                id: 5
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+              - createdAt: 2000-01-23T04:56:07.000+00:00
+                vlanId: 2
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                granularityLevel: ""
+                id: 5
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+            ipv4:
+              subnetAllocationStrategies:
+              - subnetId: 2
+                createdAt: 2000-01-23T04:56:07.000+00:00
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                id: 3
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+              - subnetId: 2
+                createdAt: 2000-01-23T04:56:07.000+00:00
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                id: 3
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            ipv6:
+              subnetAllocationStrategies:
+              - subnetId: 7
+                createdAt: 2000-01-23T04:56:07.000+00:00
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                id: 4
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+              - subnetId: 7
+                createdAt: 2000-01-23T04:56:07.000+00:00
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                id: 4
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+            id: 2
+            deployType: create
+            deployStatus: not_started
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+            revision: 7
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - vxlan:
+            vnis:
+            - vni: 4
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 2
+              status: ""
+            - vni: 4
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 2
+              status: ""
+            vniAllocationStrategies:
+            - null
+            - null
+          kind: ""
+          fabricId: 1
+          annotations:
+            key: annotations
+          label: label
+          lastLogicalNetworkProfileAppliedAt: 2000-01-23T04:56:07.000+00:00
+          revision: 6
+          routeDomainId: 6
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          infrastructureId: 5
+          vlan:
+            vlans:
+            - vlanId: 3
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 9
+              status: ""
+            - vlanId: 3
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 9
+              status: ""
+            vlanAllocationStrategies:
+            - null
+            - null
+          ipv4:
+            subnets:
+            - prefixLength: 1
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 7
+              networkAddress: networkAddress
+              gateway: gateway
+              status: ""
+            - prefixLength: 1
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 7
+              networkAddress: networkAddress
+              gateway: gateway
+              status: ""
+            subnetAllocationStrategies:
+            - null
+            - null
+          serviceStatus: ""
+          ipv6:
+            subnets:
+            - prefixLength: 1
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 1
+              networkAddress: networkAddress
+              gateway: gateway
+              status: ""
+            - prefixLength: 1
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              id: 1
+              networkAddress: networkAddress
+              gateway: gateway
+              status: ""
+            subnetAllocationStrategies:
+            - null
+            - null
+          name: name
+          lastAppliedLogicalNetworkProfileId: 5
+          id: 0
+          config:
+            vxlan:
+              vniAllocationStrategies:
+              - vni: 9
+                createdAt: 2000-01-23T04:56:07.000+00:00
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                id: 7
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+              - vni: 9
+                createdAt: 2000-01-23T04:56:07.000+00:00
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                id: 7
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            vlan:
+              vlanAllocationStrategies:
+              - createdAt: 2000-01-23T04:56:07.000+00:00
+                vlanId: 2
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                granularityLevel: ""
+                id: 5
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+              - createdAt: 2000-01-23T04:56:07.000+00:00
+                vlanId: 2
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                granularityLevel: ""
+                id: 5
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+            ipv4:
+              subnetAllocationStrategies:
+              - subnetId: 2
+                createdAt: 2000-01-23T04:56:07.000+00:00
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                id: 3
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+              - subnetId: 2
+                createdAt: 2000-01-23T04:56:07.000+00:00
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                id: 3
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+            kind: ""
+            ipv6:
+              subnetAllocationStrategies:
+              - subnetId: 7
+                createdAt: 2000-01-23T04:56:07.000+00:00
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                id: 4
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+              - subnetId: 7
+                createdAt: 2000-01-23T04:56:07.000+00:00
+                kind: ""
+                scope:
+                  resourceId: 5.637376656633329
+                  kind: ""
+                id: 4
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+            id: 2
+            deployType: create
+            deployStatus: not_started
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+            revision: 7
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/LogicalNetwork'
+          title: List of logical network exts
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
+    CreateLogicalNetwork:
+      example:
+        vxlan:
+          vniAllocationStrategies:
+          - vni: 5
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+          - vni: 5
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+        routeDomainId: 1
+        infrastructureId: 6
+        vlan:
+          vlanAllocationStrategies:
+          - vlanId: 1
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+            granularityLevel: ""
+          - vlanId: 1
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+            granularityLevel: ""
+        ipv4:
+          subnetAllocationStrategies:
+          - subnetId: 5
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+          - subnetId: 5
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+        kind: ""
+        fabricId: 0
+        ipv6:
+          subnetAllocationStrategies:
+          - subnetId: 2
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+          - subnetId: 2
+            kind: ""
+            scope:
+              resourceId: 6.027456183070403
+              kind: ""
+        name: name
+        annotations:
+          key: annotations
+        label: label
+      properties:
+        label:
+          maxLength: 63
+          type: string
+        name:
+          maxLength: 63
+          type: string
+        annotations:
+          additionalProperties:
+            type: string
+          type: object
+        kind:
+          allOf:
+          - $ref: '#/components/schemas/LogicalNetworkKind'
+        fabricId:
+          type: integer
+        infrastructureId:
+          nullable: true
+          type: integer
+        vlan:
+          $ref: '#/components/schemas/CreateLogicalNetworkVlanProperties'
+        vxlan:
+          $ref: '#/components/schemas/CreateLogicalNetworkVxlanProperties'
+        ipv4:
+          $ref: '#/components/schemas/CreateLogicalNetworkIpv4Properties'
+        ipv6:
+          $ref: '#/components/schemas/CreateLogicalNetworkIpv6Properties'
+        routeDomainId:
+          nullable: true
+          type: integer
+      required:
+      - fabricId
+      - kind
       type: object
     UpdateLogicalNetwork:
       example:
@@ -52325,7 +53297,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-06-13T06:54:24.93Z
+        createdTimestamp: 2025-06-15T09:59:46.598Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -52334,7 +53306,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-06-13T06:54:24.931Z
+        updatedTimestamp: 2025-06-15T09:59:46.598Z
         revision: "1"
       properties:
         siteId:
@@ -52351,12 +53323,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-13T06:54:24.93Z
+          example: 2025-06-15T09:59:46.598Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-13T06:54:24.931Z
+          example: 2025-06-15T09:59:46.598Z
           format: date-time
           type: string
         links:
@@ -52378,7 +53350,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-06-13T06:54:24.93Z
+        - createdTimestamp: 2025-06-15T09:59:46.598Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -52387,9 +53359,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-06-13T06:54:24.931Z
+          updatedTimestamp: 2025-06-15T09:59:46.598Z
           revision: "1"
-        - createdTimestamp: 2025-06-13T06:54:24.93Z
+        - createdTimestamp: 2025-06-15T09:59:46.598Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -52398,7 +53370,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-06-13T06:54:24.931Z
+          updatedTimestamp: 2025-06-15T09:59:46.598Z
           revision: "1"
         meta: ""
         links: ""
@@ -52498,10 +53470,36 @@ components:
       required:
       - mode
       type: object
+    dnsRecordsEndpointGroupLogicalNetworkDto:
+      properties:
+        provisionInstanceDnsRecords:
+          default: false
+          description: "If true, DNS records (type A and PTR) will be created for\
+            \ each server instance that is part of this server instance group. The\
+            \ DNS record will be created with the default \"hostname\" of <server-instance>\
+            \ suffixed with the server instance ID (e.g., \"server-instance-24\")\
+            \ plus the DNS zone name. If the \"hostname\" property is set on the server\
+            \ instance, it will use that value to construct the DNS record name."
+          type: boolean
+        provisionLoadBalancingDnsRecord:
+          default: false
+          description: "Flag to indicate if for the server instance group should create\
+            \ a DNS Load Balancing record. If true, a DNS Load Balancing record (type\
+            \ A) will be created that points to all server instances that are part\
+            \ of this server instance group. The DNS Load Balancing record will be\
+            \ created with the default \"hostname\" of <server-instance-group> suffixed\
+            \ with the server instance group ID (e.g., \"server-instance-group-34\"\
+            ) plus the DNS zone name. If the \"hostname\" property is set, it will\
+            \ use that value to construct the DNS Load Balancing record name."
+          type: boolean
+      type: object
     NetworkEndpointGroupLogicalNetwork:
       example:
         logicalNetworkId: "1"
         tagged: true
+        dns:
+          serverInstanceDnsRecords: true
+          loadBalancingDnsRecord: false
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -52541,6 +53539,15 @@ components:
             implementation:
               implementationType: link-aggregation
           nullable: true
+        dns:
+          allOf:
+          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          description: DNS records that are supposed to be provisioned for the server
+            instance group.
+          example:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
+          nullable: true
         links:
           description: Reference links
           items:
@@ -52561,6 +53568,9 @@ components:
         data:
         - logicalNetworkId: "1"
           tagged: true
+          dns:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -52575,6 +53585,9 @@ components:
           mtu: 1500
         - logicalNetworkId: "1"
           tagged: true
+          dns:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -52610,6 +53623,9 @@ components:
       example:
         logicalNetworkId: "1"
         tagged: true
+        dns:
+          serverInstanceDnsRecords: true
+          loadBalancingDnsRecord: false
         redundancy:
           mode: active-backup
           implementation:
@@ -52643,6 +53659,15 @@ components:
             implementation:
               implementationType: link-aggregation
           nullable: true
+        dns:
+          allOf:
+          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          description: DNS records that are supposed to be provisioned for the server
+            instance group.
+          example:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
+          nullable: true
       required:
       - accessMode
       - logicalNetworkId
@@ -52651,6 +53676,9 @@ components:
     UpdateNetworkEndpointGroupLogicalNetwork:
       example:
         tagged: true
+        dns:
+          serverInstanceDnsRecords: true
+          loadBalancingDnsRecord: false
         redundancy:
           mode: active-backup
           implementation:
@@ -52679,6 +53707,14 @@ components:
             mode: active-backup
             implementation:
               implementationType: link-aggregation
+          nullable: true
+        dns:
+          allOf:
+          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          description: DNS records configuration for the server instance group.
+          example:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
           nullable: true
       type: object
     FabricType:
@@ -53037,7 +54073,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-06-13T06:54:24.947Z
+        createdTimestamp: 2025-06-15T09:59:46.615Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -53078,7 +54114,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-06-13T06:54:24.947Z
+        updatedTimestamp: 2025-06-15T09:59:46.615Z
         revision: "1"
         status: draft
       properties:
@@ -53106,12 +54142,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-13T06:54:24.947Z
+          example: 2025-06-15T09:59:46.615Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-13T06:54:24.947Z
+          example: 2025-06-15T09:59:46.615Z
           format: date-time
           type: string
         links:
@@ -53252,7 +54288,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-06-13T06:54:24.947Z
+          createdTimestamp: 2025-06-15T09:59:46.615Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -53293,7 +54329,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-06-13T06:54:24.947Z
+          updatedTimestamp: 2025-06-15T09:59:46.615Z
           revision: "1"
           status: draft
         - networkEquipment:
@@ -53403,7 +54439,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-06-13T06:54:24.947Z
+          createdTimestamp: 2025-06-15T09:59:46.615Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -53444,7 +54480,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-06-13T06:54:24.947Z
+          updatedTimestamp: 2025-06-15T09:59:46.615Z
           revision: "1"
           status: draft
         meta: ""
@@ -55509,6 +56545,7 @@ components:
         networkEquipmentForceSubnetPoolIpv4WanId: 1
         processorCoreMhz: 7
         diskSizeMbytes: 2
+        hostname: my-custom-hostname-34
         defaultServerTypeId: 5
         instanceCount: 0
         processorCoreCount: 2
@@ -55539,6 +56576,19 @@ components:
           description: Automatically create or expand Subnet elements until the necessary
             IPv4 addresses are allocated.
           type: integer
+        hostname:
+          description: "Custom hostname for the DNS Load Balancing record. If set,\
+            \ this will be used as the DNS Load Balancing record name instead of the\
+            \ default \"server-instance-group\". The hostname must be a valid DNS\
+            \ subdomain and can only contain alphanumeric characters, hyphens, and\
+            \ underscores. This will only take effect if the property \"dnsLoadBalancingRecord\"\
+            \ is true. It will be automatically suffixed with the server instance\
+            \ group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS\
+            \ name."
+          example: my-custom-hostname-34
+          maxLength: 63
+          minLength: 1
+          type: string
         osTemplateId:
           description: The volume template ID (or name) to use if the servers in the
             Instance Group have local disks.
@@ -56201,10 +57251,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-06-13T06:54:24.941Z
+        createdTimestamp: 2025-06-15T09:59:46.609Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-06-13T06:54:24.941Z
+        updatedTimestamp: 2025-06-15T09:59:46.609Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -56278,12 +57328,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-13T06:54:24.941Z
+          example: 2025-06-15T09:59:46.609Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-13T06:54:24.941Z
+          example: 2025-06-15T09:59:46.609Z
           format: date-time
           type: string
         links:
@@ -56480,6 +57530,7 @@ components:
     ServerInstanceUpdate:
       example:
         serverTypeId: 5
+        hostname: server-instance-123
         osTemplateId: 1
         label: server-instance-123
         customVariables: "{}"
@@ -56494,6 +57545,11 @@ components:
           description: The server type ID.
           example: 5
           type: integer
+        hostname:
+          description: The subdomain of the server instance.
+          example: server-instance-123
+          maxLength: 63
+          type: string
         osTemplateId:
           description: 'The template id of the operating system to deploy on the server.
             Can be null in which case no OS will be deployed but all operations will
@@ -58133,6 +59189,11 @@ components:
         serverId:
           description: The ID of the server assigned to the instance.
           type: integer
+        hostname:
+          description: The subdomain of the server instance.
+          example: server-instance-123
+          maxLength: 63
+          type: string
         osTemplateId:
           description: 'The template id of the operating system to deploy on the server.
             Can be null in which case no OS will be deployed but all operations will
@@ -58279,6 +59340,19 @@ components:
             type: number
           nullable: true
           type: array
+        hostname:
+          description: "Custom hostname for the DNS Load Balancing record. If set,\
+            \ this will be used as the DNS Load Balancing record name instead of the\
+            \ default \"server-instance-group\". The hostname must be a valid DNS\
+            \ subdomain and can only contain alphanumeric characters, hyphens, and\
+            \ underscores. This will only take effect if the property \"dnsLoadBalancingRecord\"\
+            \ is true. It will be automatically suffixed with the server instance\
+            \ group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS\
+            \ name."
+          example: my-custom-hostname-34
+          maxLength: 63
+          minLength: 1
+          type: string
         osTemplateId:
           description: The volume template ID (or name) to use if the servers in the
             Instance Group have local disks.
@@ -60151,6 +61225,15 @@ components:
         isVmInstance:
           description: Flag to indicate if this is a VM instance
           type: integer
+        hostname:
+          description: The subdomain of the server instance.
+          example: server-instance-123
+          maxLength: 63
+          type: string
+        fqdn:
+          description: The subdomain of the server instance.
+          example: server-instance-123
+          type: string
         osCredentials:
           $ref: '#/components/schemas/ServerInstanceOsCredentialInstallationData'
         initiatorNqn:
@@ -60166,6 +61249,8 @@ components:
           description: iSCSI Initiator Password for the Instance Interface.
           type: string
       required:
+      - fqdn
+      - hostname
       - id
       - isVmInstance
       - label
@@ -60557,6 +61642,9 @@ components:
     ServerInstanceGroupNetworkConnection:
       example:
         tagged: true
+        dns:
+          serverInstanceDnsRecords: true
+          loadBalancingDnsRecord: false
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -60592,6 +61680,15 @@ components:
             implementation:
               implementationType: link-aggregation
           nullable: true
+        dns:
+          allOf:
+          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          description: DNS records that are supposed to be provisioned for the server
+            instance group.
+          example:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
+          nullable: true
         links:
           description: Reference links
           items:
@@ -60610,6 +61707,9 @@ components:
       example:
         data:
         - tagged: true
+          dns:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -60623,6 +61723,9 @@ components:
           accessMode: l2
           mtu: 1500
         - tagged: true
+          dns:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -60658,6 +61761,9 @@ components:
       example:
         logicalNetworkId: "1"
         tagged: true
+        dns:
+          serverInstanceDnsRecords: true
+          loadBalancingDnsRecord: false
         redundancy:
           mode: active-backup
           implementation:
@@ -60690,6 +61796,15 @@ components:
             mode: active-backup
             implementation:
               implementationType: link-aggregation
+          nullable: true
+        dns:
+          allOf:
+          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          description: DNS records that are supposed to be provisioned for the server
+            instance group.
+          example:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
           nullable: true
       required:
       - accessMode
@@ -67277,6 +68392,9 @@ components:
     VMInstanceGroupNetworkConnection:
       example:
         tagged: true
+        dns:
+          serverInstanceDnsRecords: true
+          loadBalancingDnsRecord: false
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -67312,6 +68430,15 @@ components:
             implementation:
               implementationType: link-aggregation
           nullable: true
+        dns:
+          allOf:
+          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          description: DNS records that are supposed to be provisioned for the server
+            instance group.
+          example:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
+          nullable: true
         links:
           description: Reference links
           items:
@@ -67330,6 +68457,9 @@ components:
       example:
         data:
         - tagged: true
+          dns:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -67343,6 +68473,9 @@ components:
           accessMode: l2
           mtu: 1500
         - tagged: true
+          dns:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -67378,6 +68511,9 @@ components:
       example:
         logicalNetworkId: "1"
         tagged: true
+        dns:
+          serverInstanceDnsRecords: true
+          loadBalancingDnsRecord: false
         redundancy:
           mode: active-backup
           implementation:
@@ -67411,6 +68547,15 @@ components:
             implementation:
               implementationType: link-aggregation
           nullable: true
+        dns:
+          allOf:
+          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          description: DNS records that are supposed to be provisioned for the server
+            instance group.
+          example:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
+          nullable: true
       required:
       - accessMode
       - logicalNetworkId
@@ -67419,6 +68564,9 @@ components:
     UpdateVMInstanceGroupNetworkConnection:
       example:
         tagged: true
+        dns:
+          serverInstanceDnsRecords: true
+          loadBalancingDnsRecord: false
         redundancy:
           mode: active-backup
           implementation:
@@ -67447,6 +68595,14 @@ components:
             mode: active-backup
             implementation:
               implementationType: link-aggregation
+          nullable: true
+        dns:
+          allOf:
+          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          description: DNS records configuration for the server instance group.
+          example:
+            serverInstanceDnsRecords: true
+            loadBalancingDnsRecord: false
           nullable: true
       type: object
     VMPool:
@@ -68547,22 +69703,6 @@ components:
       required:
       - value
       type: object
-    createLogicalNetworkProfile_request:
-      discriminator:
-        mapping:
-          vlan: '#/components/schemas/CreateVlanLogicalNetworkProfile'
-          vxlan: '#/components/schemas/CreateVxlanLogicalNetworkProfile'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/CreateVlanLogicalNetworkProfile'
-      - $ref: '#/components/schemas/CreateVxlanLogicalNetworkProfile'
-      type: object
-    createLogicalNetworkProfile_201_response:
-      discriminator:
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/VlanLogicalNetworkProfile'
-      - $ref: '#/components/schemas/VxlanLogicalNetworkProfile'
     createLogicalNetworkProfileVlanAllocationStrategy_request:
       discriminator:
         mapping:
@@ -68627,28 +69767,6 @@ components:
       oneOf:
       - $ref: '#/components/schemas/ManualIpv6SubnetAllocationStrategy'
       - $ref: '#/components/schemas/AutoIpv6SubnetAllocationStrategy'
-    createLogicalNetwork_request:
-      discriminator:
-        mapping:
-          vlan: '#/components/schemas/CreateVlanLogicalNetwork'
-          vxlan: '#/components/schemas/CreateVxlanLogicalNetwork'
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/CreateVlanLogicalNetwork'
-      - $ref: '#/components/schemas/CreateVxlanLogicalNetwork'
-      type: object
-    createLogicalNetwork_201_response:
-      discriminator:
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/VlanLogicalNetwork'
-      - $ref: '#/components/schemas/VxlanLogicalNetwork'
-    getLogicalNetworkConfig_200_response:
-      discriminator:
-        propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/VlanLogicalNetworkConfig'
-      - $ref: '#/components/schemas/VxlanLogicalNetworkConfig'
     getSiteControllerOneLiner_200_response:
       example:
         command: command
@@ -68798,7 +69916,7 @@ components:
       - $ref: '#/components/schemas/ManualVniAllocationStrategy'
       - $ref: '#/components/schemas/AutoVniAllocationStrategy'
       title: VniAllocationStrategy
-    LogicalNetworkProfileDataItem:
+    LogicalNetworkProfile_1DataItem:
       discriminator:
         mapping:
           vlan: '#/components/schemas/VlanLogicalNetworkProfile'
@@ -68843,7 +69961,7 @@ components:
       oneOf:
       - $ref: '#/components/schemas/ManualIpv6SubnetAllocationStrategy'
       - $ref: '#/components/schemas/AutoIpv6SubnetAllocationStrategy'
-    LogicalNetworkDataItem:
+    LogicalNetwork_1DataItem:
       discriminator:
         mapping:
           vlan: '#/components/schemas/VlanLogicalNetwork'

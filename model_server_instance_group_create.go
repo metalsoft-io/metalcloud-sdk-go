@@ -31,6 +31,8 @@ type ServerInstanceGroupCreate struct {
 	IpAllocateAuto *int32 `json:"ipAllocateAuto,omitempty"`
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
 	Ipv4SubnetCreateAuto *int32 `json:"ipv4SubnetCreateAuto,omitempty"`
+	// Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \"server-instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"dnsLoadBalancingRecord\" is true. It will be automatically suffixed with the server instance group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
+	Hostname *string `json:"hostname,omitempty"`
 	// The volume template ID (or name) to use if the servers in the Instance Group have local disks.
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
 	// Object containing custom variables and variable overrides.
@@ -315,6 +317,38 @@ func (o *ServerInstanceGroupCreate) HasIpv4SubnetCreateAuto() bool {
 // SetIpv4SubnetCreateAuto gets a reference to the given int32 and assigns it to the Ipv4SubnetCreateAuto field.
 func (o *ServerInstanceGroupCreate) SetIpv4SubnetCreateAuto(v int32) {
 	o.Ipv4SubnetCreateAuto = &v
+}
+
+// GetHostname returns the Hostname field value if set, zero value otherwise.
+func (o *ServerInstanceGroupCreate) GetHostname() string {
+	if o == nil || IsNil(o.Hostname) {
+		var ret string
+		return ret
+	}
+	return *o.Hostname
+}
+
+// GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupCreate) GetHostnameOk() (*string, bool) {
+	if o == nil || IsNil(o.Hostname) {
+		return nil, false
+	}
+	return o.Hostname, true
+}
+
+// HasHostname returns a boolean if a field has been set.
+func (o *ServerInstanceGroupCreate) HasHostname() bool {
+	if o != nil && !IsNil(o.Hostname) {
+		return true
+	}
+
+	return false
+}
+
+// SetHostname gets a reference to the given string and assigns it to the Hostname field.
+func (o *ServerInstanceGroupCreate) SetHostname(v string) {
+	o.Hostname = &v
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
@@ -849,6 +883,9 @@ func (o ServerInstanceGroupCreate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Ipv4SubnetCreateAuto) {
 		toSerialize["ipv4SubnetCreateAuto"] = o.Ipv4SubnetCreateAuto
 	}
+	if !IsNil(o.Hostname) {
+		toSerialize["hostname"] = o.Hostname
+	}
 	if !IsNil(o.OsTemplateId) {
 		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
@@ -944,6 +981,7 @@ func (o *ServerInstanceGroupCreate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "instanceCount")
 		delete(additionalProperties, "ipAllocateAuto")
 		delete(additionalProperties, "ipv4SubnetCreateAuto")
+		delete(additionalProperties, "hostname")
 		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "processorCount")

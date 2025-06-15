@@ -31,6 +31,8 @@ type CreateVMInstanceGroupNetworkConnection struct {
 	Mtu *int32 `json:"mtu,omitempty"`
 	// The redundancy configuration
 	Redundancy NullableRedundancyConfig `json:"redundancy,omitempty"`
+	// DNS records that are supposed to be provisioned for the server instance group.
+	Dns NullableDnsRecordsEndpointGroupLogicalNetworkDto `json:"dns,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -202,6 +204,48 @@ func (o *CreateVMInstanceGroupNetworkConnection) UnsetRedundancy() {
 	o.Redundancy.Unset()
 }
 
+// GetDns returns the Dns field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateVMInstanceGroupNetworkConnection) GetDns() DnsRecordsEndpointGroupLogicalNetworkDto {
+	if o == nil || IsNil(o.Dns.Get()) {
+		var ret DnsRecordsEndpointGroupLogicalNetworkDto
+		return ret
+	}
+	return *o.Dns.Get()
+}
+
+// GetDnsOk returns a tuple with the Dns field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateVMInstanceGroupNetworkConnection) GetDnsOk() (*DnsRecordsEndpointGroupLogicalNetworkDto, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Dns.Get(), o.Dns.IsSet()
+}
+
+// HasDns returns a boolean if a field has been set.
+func (o *CreateVMInstanceGroupNetworkConnection) HasDns() bool {
+	if o != nil && o.Dns.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDns gets a reference to the given NullableDnsRecordsEndpointGroupLogicalNetworkDto and assigns it to the Dns field.
+func (o *CreateVMInstanceGroupNetworkConnection) SetDns(v DnsRecordsEndpointGroupLogicalNetworkDto) {
+	o.Dns.Set(&v)
+}
+// SetDnsNil sets the value for Dns to be an explicit nil
+func (o *CreateVMInstanceGroupNetworkConnection) SetDnsNil() {
+	o.Dns.Set(nil)
+}
+
+// UnsetDns ensures that no value is present for Dns, not even an explicit nil
+func (o *CreateVMInstanceGroupNetworkConnection) UnsetDns() {
+	o.Dns.Unset()
+}
+
 func (o CreateVMInstanceGroupNetworkConnection) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -220,6 +264,9 @@ func (o CreateVMInstanceGroupNetworkConnection) ToMap() (map[string]interface{},
 	}
 	if o.Redundancy.IsSet() {
 		toSerialize["redundancy"] = o.Redundancy.Get()
+	}
+	if o.Dns.IsSet() {
+		toSerialize["dns"] = o.Dns.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -271,6 +318,7 @@ func (o *CreateVMInstanceGroupNetworkConnection) UnmarshalJSON(data []byte) (err
 		delete(additionalProperties, "accessMode")
 		delete(additionalProperties, "mtu")
 		delete(additionalProperties, "redundancy")
+		delete(additionalProperties, "dns")
 		o.AdditionalProperties = additionalProperties
 	}
 

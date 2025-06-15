@@ -16,29 +16,29 @@ import (
 	"fmt"
 )
 
-// LogicalNetworkProfileDataItem - struct for LogicalNetworkProfileDataItem
-type LogicalNetworkProfileDataItem struct {
+// LogicalNetworkProfile1DataItem - struct for LogicalNetworkProfile1DataItem
+type LogicalNetworkProfile1DataItem struct {
 	VlanLogicalNetworkProfile *VlanLogicalNetworkProfile
 	VxlanLogicalNetworkProfile *VxlanLogicalNetworkProfile
 }
 
-// VlanLogicalNetworkProfileAsLogicalNetworkProfileDataItem is a convenience function that returns VlanLogicalNetworkProfile wrapped in LogicalNetworkProfileDataItem
-func VlanLogicalNetworkProfileAsLogicalNetworkProfileDataItem(v *VlanLogicalNetworkProfile) LogicalNetworkProfileDataItem {
-	return LogicalNetworkProfileDataItem{
+// VlanLogicalNetworkProfileAsLogicalNetworkProfile1DataItem is a convenience function that returns VlanLogicalNetworkProfile wrapped in LogicalNetworkProfile1DataItem
+func VlanLogicalNetworkProfileAsLogicalNetworkProfile1DataItem(v *VlanLogicalNetworkProfile) LogicalNetworkProfile1DataItem {
+	return LogicalNetworkProfile1DataItem{
 		VlanLogicalNetworkProfile: v,
 	}
 }
 
-// VxlanLogicalNetworkProfileAsLogicalNetworkProfileDataItem is a convenience function that returns VxlanLogicalNetworkProfile wrapped in LogicalNetworkProfileDataItem
-func VxlanLogicalNetworkProfileAsLogicalNetworkProfileDataItem(v *VxlanLogicalNetworkProfile) LogicalNetworkProfileDataItem {
-	return LogicalNetworkProfileDataItem{
+// VxlanLogicalNetworkProfileAsLogicalNetworkProfile1DataItem is a convenience function that returns VxlanLogicalNetworkProfile wrapped in LogicalNetworkProfile1DataItem
+func VxlanLogicalNetworkProfileAsLogicalNetworkProfile1DataItem(v *VxlanLogicalNetworkProfile) LogicalNetworkProfile1DataItem {
+	return LogicalNetworkProfile1DataItem{
 		VxlanLogicalNetworkProfile: v,
 	}
 }
 
 
 // Unmarshal JSON data into one of the pointers in the struct
-func (dst *LogicalNetworkProfileDataItem) UnmarshalJSON(data []byte) error {
+func (dst *LogicalNetworkProfile1DataItem) UnmarshalJSON(data []byte) error {
 	var err error
 	// use discriminator value to speed up the lookup
 	var jsonDict map[string]interface{}
@@ -55,7 +55,7 @@ func (dst *LogicalNetworkProfileDataItem) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.VlanLogicalNetworkProfile, return on the first match
 		} else {
 			dst.VlanLogicalNetworkProfile = nil
-			return fmt.Errorf("failed to unmarshal LogicalNetworkProfileDataItem as VlanLogicalNetworkProfile: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal LogicalNetworkProfile1DataItem as VlanLogicalNetworkProfile: %s", err.Error())
 		}
 	}
 
@@ -67,7 +67,7 @@ func (dst *LogicalNetworkProfileDataItem) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.VxlanLogicalNetworkProfile, return on the first match
 		} else {
 			dst.VxlanLogicalNetworkProfile = nil
-			return fmt.Errorf("failed to unmarshal LogicalNetworkProfileDataItem as VxlanLogicalNetworkProfile: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal LogicalNetworkProfile1DataItem as VxlanLogicalNetworkProfile: %s", err.Error())
 		}
 	}
 
@@ -79,7 +79,7 @@ func (dst *LogicalNetworkProfileDataItem) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.VlanLogicalNetworkProfile, return on the first match
 		} else {
 			dst.VlanLogicalNetworkProfile = nil
-			return fmt.Errorf("failed to unmarshal LogicalNetworkProfileDataItem as VlanLogicalNetworkProfile: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal LogicalNetworkProfile1DataItem as VlanLogicalNetworkProfile: %s", err.Error())
 		}
 	}
 
@@ -91,7 +91,7 @@ func (dst *LogicalNetworkProfileDataItem) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.VxlanLogicalNetworkProfile, return on the first match
 		} else {
 			dst.VxlanLogicalNetworkProfile = nil
-			return fmt.Errorf("failed to unmarshal LogicalNetworkProfileDataItem as VxlanLogicalNetworkProfile: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal LogicalNetworkProfile1DataItem as VxlanLogicalNetworkProfile: %s", err.Error())
 		}
 	}
 
@@ -99,7 +99,7 @@ func (dst *LogicalNetworkProfileDataItem) UnmarshalJSON(data []byte) error {
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src LogicalNetworkProfileDataItem) MarshalJSON() ([]byte, error) {
+func (src LogicalNetworkProfile1DataItem) MarshalJSON() ([]byte, error) {
 	if src.VlanLogicalNetworkProfile != nil {
 		return json.Marshal(&src.VlanLogicalNetworkProfile)
 	}
@@ -112,7 +112,7 @@ func (src LogicalNetworkProfileDataItem) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LogicalNetworkProfileDataItem) GetActualInstance() (interface{}) {
+func (obj *LogicalNetworkProfile1DataItem) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -129,7 +129,7 @@ func (obj *LogicalNetworkProfileDataItem) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj LogicalNetworkProfileDataItem) GetActualInstanceValue() (interface{}) {
+func (obj LogicalNetworkProfile1DataItem) GetActualInstanceValue() (interface{}) {
 	if obj.VlanLogicalNetworkProfile != nil {
 		return *obj.VlanLogicalNetworkProfile
 	}
@@ -142,38 +142,38 @@ func (obj LogicalNetworkProfileDataItem) GetActualInstanceValue() (interface{}) 
 	return nil
 }
 
-type NullableLogicalNetworkProfileDataItem struct {
-	value *LogicalNetworkProfileDataItem
+type NullableLogicalNetworkProfile1DataItem struct {
+	value *LogicalNetworkProfile1DataItem
 	isSet bool
 }
 
-func (v NullableLogicalNetworkProfileDataItem) Get() *LogicalNetworkProfileDataItem {
+func (v NullableLogicalNetworkProfile1DataItem) Get() *LogicalNetworkProfile1DataItem {
 	return v.value
 }
 
-func (v *NullableLogicalNetworkProfileDataItem) Set(val *LogicalNetworkProfileDataItem) {
+func (v *NullableLogicalNetworkProfile1DataItem) Set(val *LogicalNetworkProfile1DataItem) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableLogicalNetworkProfileDataItem) IsSet() bool {
+func (v NullableLogicalNetworkProfile1DataItem) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableLogicalNetworkProfileDataItem) Unset() {
+func (v *NullableLogicalNetworkProfile1DataItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableLogicalNetworkProfileDataItem(val *LogicalNetworkProfileDataItem) *NullableLogicalNetworkProfileDataItem {
-	return &NullableLogicalNetworkProfileDataItem{value: val, isSet: true}
+func NewNullableLogicalNetworkProfile1DataItem(val *LogicalNetworkProfile1DataItem) *NullableLogicalNetworkProfile1DataItem {
+	return &NullableLogicalNetworkProfile1DataItem{value: val, isSet: true}
 }
 
-func (v NullableLogicalNetworkProfileDataItem) MarshalJSON() ([]byte, error) {
+func (v NullableLogicalNetworkProfile1DataItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableLogicalNetworkProfileDataItem) UnmarshalJSON(src []byte) error {
+func (v *NullableLogicalNetworkProfile1DataItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

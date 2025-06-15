@@ -40,6 +40,8 @@ type ServerInstanceGroupConfiguration struct {
 	Ipv4SubnetCreateAuto int32 `json:"ipv4SubnetCreateAuto"`
 	// Array of firmware policy ids containing associated firmware policies.
 	FirmwarePolicyIds []float32 `json:"firmwarePolicyIds,omitempty"`
+	// Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \"server-instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"dnsLoadBalancingRecord\" is true. It will be automatically suffixed with the server instance group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
+	Hostname *string `json:"hostname,omitempty"`
 	// The volume template ID (or name) to use if the servers in the Instance Group have local disks.
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
 	// Object containing custom variables and variable overrides.
@@ -404,6 +406,38 @@ func (o *ServerInstanceGroupConfiguration) HasFirmwarePolicyIds() bool {
 // SetFirmwarePolicyIds gets a reference to the given []float32 and assigns it to the FirmwarePolicyIds field.
 func (o *ServerInstanceGroupConfiguration) SetFirmwarePolicyIds(v []float32) {
 	o.FirmwarePolicyIds = v
+}
+
+// GetHostname returns the Hostname field value if set, zero value otherwise.
+func (o *ServerInstanceGroupConfiguration) GetHostname() string {
+	if o == nil || IsNil(o.Hostname) {
+		var ret string
+		return ret
+	}
+	return *o.Hostname
+}
+
+// GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupConfiguration) GetHostnameOk() (*string, bool) {
+	if o == nil || IsNil(o.Hostname) {
+		return nil, false
+	}
+	return o.Hostname, true
+}
+
+// HasHostname returns a boolean if a field has been set.
+func (o *ServerInstanceGroupConfiguration) HasHostname() bool {
+	if o != nil && !IsNil(o.Hostname) {
+		return true
+	}
+
+	return false
+}
+
+// SetHostname gets a reference to the given string and assigns it to the Hostname field.
+func (o *ServerInstanceGroupConfiguration) SetHostname(v string) {
+	o.Hostname = &v
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
@@ -968,6 +1002,9 @@ func (o ServerInstanceGroupConfiguration) ToMap() (map[string]interface{}, error
 	if o.FirmwarePolicyIds != nil {
 		toSerialize["firmwarePolicyIds"] = o.FirmwarePolicyIds
 	}
+	if !IsNil(o.Hostname) {
+		toSerialize["hostname"] = o.Hostname
+	}
 	if !IsNil(o.OsTemplateId) {
 		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
@@ -1075,6 +1112,7 @@ func (o *ServerInstanceGroupConfiguration) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "ipAllocateAuto")
 		delete(additionalProperties, "ipv4SubnetCreateAuto")
 		delete(additionalProperties, "firmwarePolicyIds")
+		delete(additionalProperties, "hostname")
 		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "processorCount")
