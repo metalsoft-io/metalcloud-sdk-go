@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **SizeGB** | **float32** | Disk size in GB for File Share | 
 **LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the File Share. | [optional] 
 **Label** | Pointer to **string** | Display name of the File Share. | [optional] 
+**Meta** | Pointer to [**FileShareMeta**](FileShareMeta.md) |  | [optional] 
 
 ## Methods
 
@@ -96,6 +97,31 @@ SetLabel sets Label field to given value.
 `func (o *CreateFileShare) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
+
+### GetMeta
+
+`func (o *CreateFileShare) GetMeta() FileShareMeta`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *CreateFileShare) GetMetaOk() (*FileShareMeta, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *CreateFileShare) SetMeta(v FileShareMeta)`
+
+SetMeta sets Meta field to given value.
+
+### HasMeta
+
+`func (o *CreateFileShare) HasMeta() bool`
+
+HasMeta returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

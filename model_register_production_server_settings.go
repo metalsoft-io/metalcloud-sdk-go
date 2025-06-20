@@ -25,6 +25,8 @@ type RegisterProductionServerSettings struct {
 	InfrastructureId float32 `json:"infrastructureId"`
 	// The id of the template installed on the server.
 	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
+	// Interface to network device connection settings.
+	InterfaceConnection *ServerInterfaceConnection `json:"interfaceConnection,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -104,6 +106,38 @@ func (o *RegisterProductionServerSettings) SetOsTemplateId(v float32) {
 	o.OsTemplateId = &v
 }
 
+// GetInterfaceConnection returns the InterfaceConnection field value if set, zero value otherwise.
+func (o *RegisterProductionServerSettings) GetInterfaceConnection() ServerInterfaceConnection {
+	if o == nil || IsNil(o.InterfaceConnection) {
+		var ret ServerInterfaceConnection
+		return ret
+	}
+	return *o.InterfaceConnection
+}
+
+// GetInterfaceConnectionOk returns a tuple with the InterfaceConnection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegisterProductionServerSettings) GetInterfaceConnectionOk() (*ServerInterfaceConnection, bool) {
+	if o == nil || IsNil(o.InterfaceConnection) {
+		return nil, false
+	}
+	return o.InterfaceConnection, true
+}
+
+// HasInterfaceConnection returns a boolean if a field has been set.
+func (o *RegisterProductionServerSettings) HasInterfaceConnection() bool {
+	if o != nil && !IsNil(o.InterfaceConnection) {
+		return true
+	}
+
+	return false
+}
+
+// SetInterfaceConnection gets a reference to the given ServerInterfaceConnection and assigns it to the InterfaceConnection field.
+func (o *RegisterProductionServerSettings) SetInterfaceConnection(v ServerInterfaceConnection) {
+	o.InterfaceConnection = &v
+}
+
 func (o RegisterProductionServerSettings) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -117,6 +151,9 @@ func (o RegisterProductionServerSettings) ToMap() (map[string]interface{}, error
 	toSerialize["infrastructureId"] = o.InfrastructureId
 	if !IsNil(o.OsTemplateId) {
 		toSerialize["osTemplateId"] = o.OsTemplateId
+	}
+	if !IsNil(o.InterfaceConnection) {
+		toSerialize["interfaceConnection"] = o.InterfaceConnection
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -163,6 +200,7 @@ func (o *RegisterProductionServerSettings) UnmarshalJSON(data []byte) (err error
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "osTemplateId")
+		delete(additionalProperties, "interfaceConnection")
 		o.AdditionalProperties = additionalProperties
 	}
 

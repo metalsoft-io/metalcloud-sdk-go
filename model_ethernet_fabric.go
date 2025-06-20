@@ -33,6 +33,8 @@ type EthernetFabric struct {
 	ZeroTouchEnabled *bool `json:"zeroTouchEnabled,omitempty"`
 	// ASN ranges in the format \"start-end\", where each range is an ordered pair with values between 1 and 4294967295.
 	AsnRanges []string `json:"asnRanges,omitempty"`
+	AsnAllocationStrategy *AsnAllocationStrategy `json:"asnAllocationStrategy,omitempty"`
+	BgpNumbering *BgpNumberingType `json:"bgpNumbering,omitempty"`
 	// Default VLAN ID. Must be a number between 1 and 4096.
 	DefaultVlan *int32 `json:"defaultVlan,omitempty"`
 	// Extra internal IPs allocated per subnet; valid range is between 1 and 1000.
@@ -262,6 +264,70 @@ func (o *EthernetFabric) HasAsnRanges() bool {
 // SetAsnRanges gets a reference to the given []string and assigns it to the AsnRanges field.
 func (o *EthernetFabric) SetAsnRanges(v []string) {
 	o.AsnRanges = v
+}
+
+// GetAsnAllocationStrategy returns the AsnAllocationStrategy field value if set, zero value otherwise.
+func (o *EthernetFabric) GetAsnAllocationStrategy() AsnAllocationStrategy {
+	if o == nil || IsNil(o.AsnAllocationStrategy) {
+		var ret AsnAllocationStrategy
+		return ret
+	}
+	return *o.AsnAllocationStrategy
+}
+
+// GetAsnAllocationStrategyOk returns a tuple with the AsnAllocationStrategy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EthernetFabric) GetAsnAllocationStrategyOk() (*AsnAllocationStrategy, bool) {
+	if o == nil || IsNil(o.AsnAllocationStrategy) {
+		return nil, false
+	}
+	return o.AsnAllocationStrategy, true
+}
+
+// HasAsnAllocationStrategy returns a boolean if a field has been set.
+func (o *EthernetFabric) HasAsnAllocationStrategy() bool {
+	if o != nil && !IsNil(o.AsnAllocationStrategy) {
+		return true
+	}
+
+	return false
+}
+
+// SetAsnAllocationStrategy gets a reference to the given AsnAllocationStrategy and assigns it to the AsnAllocationStrategy field.
+func (o *EthernetFabric) SetAsnAllocationStrategy(v AsnAllocationStrategy) {
+	o.AsnAllocationStrategy = &v
+}
+
+// GetBgpNumbering returns the BgpNumbering field value if set, zero value otherwise.
+func (o *EthernetFabric) GetBgpNumbering() BgpNumberingType {
+	if o == nil || IsNil(o.BgpNumbering) {
+		var ret BgpNumberingType
+		return ret
+	}
+	return *o.BgpNumbering
+}
+
+// GetBgpNumberingOk returns a tuple with the BgpNumbering field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EthernetFabric) GetBgpNumberingOk() (*BgpNumberingType, bool) {
+	if o == nil || IsNil(o.BgpNumbering) {
+		return nil, false
+	}
+	return o.BgpNumbering, true
+}
+
+// HasBgpNumbering returns a boolean if a field has been set.
+func (o *EthernetFabric) HasBgpNumbering() bool {
+	if o != nil && !IsNil(o.BgpNumbering) {
+		return true
+	}
+
+	return false
+}
+
+// SetBgpNumbering gets a reference to the given BgpNumberingType and assigns it to the BgpNumbering field.
+func (o *EthernetFabric) SetBgpNumbering(v BgpNumberingType) {
+	o.BgpNumbering = &v
 }
 
 // GetDefaultVlan returns the DefaultVlan field value if set, zero value otherwise.
@@ -674,6 +740,12 @@ func (o EthernetFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AsnRanges) {
 		toSerialize["asnRanges"] = o.AsnRanges
 	}
+	if !IsNil(o.AsnAllocationStrategy) {
+		toSerialize["asnAllocationStrategy"] = o.AsnAllocationStrategy
+	}
+	if !IsNil(o.BgpNumbering) {
+		toSerialize["bgpNumbering"] = o.BgpNumbering
+	}
 	if !IsNil(o.DefaultVlan) {
 		toSerialize["defaultVlan"] = o.DefaultVlan
 	}
@@ -759,6 +831,8 @@ func (o *EthernetFabric) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "syslogMonitoringEnabled")
 		delete(additionalProperties, "zeroTouchEnabled")
 		delete(additionalProperties, "asnRanges")
+		delete(additionalProperties, "asnAllocationStrategy")
+		delete(additionalProperties, "bgpNumbering")
 		delete(additionalProperties, "defaultVlan")
 		delete(additionalProperties, "extraInternalIPsPerSubnet")
 		delete(additionalProperties, "lagRanges")

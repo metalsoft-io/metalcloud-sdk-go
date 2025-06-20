@@ -202,11 +202,13 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test NetworkDeviceAPIService ReProvisionNetworkEquipment", func(t *testing.T) {
+	t.Run("Test NetworkDeviceAPIService ReProvisionNetworkDevice", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.NetworkDeviceAPI.ReProvisionNetworkEquipment(context.Background()).Execute()
+		var networkDeviceId float32
+
+		resp, httpRes, err := apiClient.NetworkDeviceAPI.ReProvisionNetworkDevice(context.Background(), networkDeviceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

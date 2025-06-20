@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **UpdatedAt** | **time.Time** |  | 
 **Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
 **Scope** | [**ResourceScope**](ResourceScope.md) |  | 
+**GatewayPlacement** | [**SubnetGatewayPlacement**](SubnetGatewayPlacement.md) |  | [default to SUBNETGATEWAYPLACEMENT_DEFAULT]
 **SubnetId** | **int32** |  | 
 **SubnetPoolIds** | **[]int32** |  | 
 **PrefixLength** | **int32** |  | 
@@ -17,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewIpv6SubnetAllocationStrategy
 
-`func NewIpv6SubnetAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, subnetId int32, subnetPoolIds []int32, prefixLength int32, ) *Ipv6SubnetAllocationStrategy`
+`func NewIpv6SubnetAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, gatewayPlacement SubnetGatewayPlacement, subnetId int32, subnetPoolIds []int32, prefixLength int32, ) *Ipv6SubnetAllocationStrategy`
 
 NewIpv6SubnetAllocationStrategy instantiates a new Ipv6SubnetAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -130,6 +131,26 @@ and a boolean to check if the value has been set.
 `func (o *Ipv6SubnetAllocationStrategy) SetScope(v ResourceScope)`
 
 SetScope sets Scope field to given value.
+
+
+### GetGatewayPlacement
+
+`func (o *Ipv6SubnetAllocationStrategy) GetGatewayPlacement() SubnetGatewayPlacement`
+
+GetGatewayPlacement returns the GatewayPlacement field if non-nil, zero value otherwise.
+
+### GetGatewayPlacementOk
+
+`func (o *Ipv6SubnetAllocationStrategy) GetGatewayPlacementOk() (*SubnetGatewayPlacement, bool)`
+
+GetGatewayPlacementOk returns a tuple with the GatewayPlacement field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGatewayPlacement
+
+`func (o *Ipv6SubnetAllocationStrategy) SetGatewayPlacement(v SubnetGatewayPlacement)`
+
+SetGatewayPlacement sets GatewayPlacement field to given value.
 
 
 ### GetSubnetId

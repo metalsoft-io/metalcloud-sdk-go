@@ -39,8 +39,6 @@ type ServerInstanceGroupInterface struct {
 	DnsSubdomainId *int32 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the Product Instance
 	DnsSubdomainPermanentId *int32 `json:"dnsSubdomainPermanentId,omitempty"`
-	// GUI settings in JSON format.
-	Meta *GenericGUISettings `json:"meta,omitempty"`
 	InfrastructureId int32 `json:"infrastructureId"`
 	GroupId int32 `json:"groupId"`
 	// The index of the interface (0-based) on this server.
@@ -331,38 +329,6 @@ func (o *ServerInstanceGroupInterface) SetDnsSubdomainPermanentId(v int32) {
 	o.DnsSubdomainPermanentId = &v
 }
 
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ServerInstanceGroupInterface) GetMeta() GenericGUISettings {
-	if o == nil || IsNil(o.Meta) {
-		var ret GenericGUISettings
-		return ret
-	}
-	return *o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupInterface) GetMetaOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.Meta) {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ServerInstanceGroupInterface) HasMeta() bool {
-	if o != nil && !IsNil(o.Meta) {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given GenericGUISettings and assigns it to the Meta field.
-func (o *ServerInstanceGroupInterface) SetMeta(v GenericGUISettings) {
-	o.Meta = &v
-}
-
 // GetInfrastructureId returns the InfrastructureId field value
 func (o *ServerInstanceGroupInterface) GetInfrastructureId() int32 {
 	if o == nil {
@@ -582,9 +548,6 @@ func (o ServerInstanceGroupInterface) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DnsSubdomainPermanentId) {
 		toSerialize["dnsSubdomainPermanentId"] = o.DnsSubdomainPermanentId
 	}
-	if !IsNil(o.Meta) {
-		toSerialize["meta"] = o.Meta
-	}
 	toSerialize["infrastructureId"] = o.InfrastructureId
 	toSerialize["groupId"] = o.GroupId
 	toSerialize["index"] = o.Index
@@ -658,7 +621,6 @@ func (o *ServerInstanceGroupInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "dnsSubdomainPermanentId")
-		delete(additionalProperties, "meta")
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "groupId")
 		delete(additionalProperties, "index")

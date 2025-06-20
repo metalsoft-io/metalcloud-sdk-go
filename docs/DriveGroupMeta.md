@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GuiSettings** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
+**Name** | **string** | Name of the Drive Group | 
 **Tags** | Pointer to **[]string** | Tags for the Drive Group. | [optional] 
 
 ## Methods
 
 ### NewDriveGroupMeta
 
-`func NewDriveGroupMeta() *DriveGroupMeta`
+`func NewDriveGroupMeta(name string, ) *DriveGroupMeta`
 
 NewDriveGroupMeta instantiates a new DriveGroupMeta object
 This constructor will assign default values to properties that have it defined,
@@ -26,30 +26,25 @@ NewDriveGroupMetaWithDefaults instantiates a new DriveGroupMeta object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetGuiSettings
+### GetName
 
-`func (o *DriveGroupMeta) GetGuiSettings() GenericGUISettings`
+`func (o *DriveGroupMeta) GetName() string`
 
-GetGuiSettings returns the GuiSettings field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetGuiSettingsOk
+### GetNameOk
 
-`func (o *DriveGroupMeta) GetGuiSettingsOk() (*GenericGUISettings, bool)`
+`func (o *DriveGroupMeta) GetNameOk() (*string, bool)`
 
-GetGuiSettingsOk returns a tuple with the GuiSettings field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGuiSettings
+### SetName
 
-`func (o *DriveGroupMeta) SetGuiSettings(v GenericGUISettings)`
+`func (o *DriveGroupMeta) SetName(v string)`
 
-SetGuiSettings sets GuiSettings field to given value.
+SetName sets Name field to given value.
 
-### HasGuiSettings
-
-`func (o *DriveGroupMeta) HasGuiSettings() bool`
-
-HasGuiSettings returns a boolean if a field has been set.
 
 ### GetTags
 

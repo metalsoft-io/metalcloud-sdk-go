@@ -23,6 +23,7 @@ var _ MappedNullable = &CreateAutoIpv4SubnetAllocationStrategy{}
 type CreateAutoIpv4SubnetAllocationStrategy struct {
 	Kind AllocationStrategyKind `json:"kind"`
 	Scope CreateResourceScope `json:"scope"`
+	GatewayPlacement *SubnetGatewayPlacement `json:"gatewayPlacement,omitempty"`
 	SubnetPoolIds []int32 `json:"subnetPoolIds"`
 	PrefixLength int32 `json:"prefixLength"`
 	AdditionalProperties map[string]interface{}
@@ -38,6 +39,8 @@ func NewCreateAutoIpv4SubnetAllocationStrategy(kind AllocationStrategyKind, scop
 	this := CreateAutoIpv4SubnetAllocationStrategy{}
 	this.Kind = kind
 	this.Scope = scope
+	var gatewayPlacement SubnetGatewayPlacement = SUBNETGATEWAYPLACEMENT_DEFAULT
+	this.GatewayPlacement = &gatewayPlacement
 	this.SubnetPoolIds = subnetPoolIds
 	this.PrefixLength = prefixLength
 	return &this
@@ -48,6 +51,8 @@ func NewCreateAutoIpv4SubnetAllocationStrategy(kind AllocationStrategyKind, scop
 // but it doesn't guarantee that properties required by API are set
 func NewCreateAutoIpv4SubnetAllocationStrategyWithDefaults() *CreateAutoIpv4SubnetAllocationStrategy {
 	this := CreateAutoIpv4SubnetAllocationStrategy{}
+	var gatewayPlacement SubnetGatewayPlacement = SUBNETGATEWAYPLACEMENT_DEFAULT
+	this.GatewayPlacement = &gatewayPlacement
 	return &this
 }
 
@@ -97,6 +102,38 @@ func (o *CreateAutoIpv4SubnetAllocationStrategy) GetScopeOk() (*CreateResourceSc
 // SetScope sets field value
 func (o *CreateAutoIpv4SubnetAllocationStrategy) SetScope(v CreateResourceScope) {
 	o.Scope = v
+}
+
+// GetGatewayPlacement returns the GatewayPlacement field value if set, zero value otherwise.
+func (o *CreateAutoIpv4SubnetAllocationStrategy) GetGatewayPlacement() SubnetGatewayPlacement {
+	if o == nil || IsNil(o.GatewayPlacement) {
+		var ret SubnetGatewayPlacement
+		return ret
+	}
+	return *o.GatewayPlacement
+}
+
+// GetGatewayPlacementOk returns a tuple with the GatewayPlacement field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAutoIpv4SubnetAllocationStrategy) GetGatewayPlacementOk() (*SubnetGatewayPlacement, bool) {
+	if o == nil || IsNil(o.GatewayPlacement) {
+		return nil, false
+	}
+	return o.GatewayPlacement, true
+}
+
+// HasGatewayPlacement returns a boolean if a field has been set.
+func (o *CreateAutoIpv4SubnetAllocationStrategy) HasGatewayPlacement() bool {
+	if o != nil && !IsNil(o.GatewayPlacement) {
+		return true
+	}
+
+	return false
+}
+
+// SetGatewayPlacement gets a reference to the given SubnetGatewayPlacement and assigns it to the GatewayPlacement field.
+func (o *CreateAutoIpv4SubnetAllocationStrategy) SetGatewayPlacement(v SubnetGatewayPlacement) {
+	o.GatewayPlacement = &v
 }
 
 // GetSubnetPoolIds returns the SubnetPoolIds field value
@@ -159,6 +196,9 @@ func (o CreateAutoIpv4SubnetAllocationStrategy) ToMap() (map[string]interface{},
 	toSerialize := map[string]interface{}{}
 	toSerialize["kind"] = o.Kind
 	toSerialize["scope"] = o.Scope
+	if !IsNil(o.GatewayPlacement) {
+		toSerialize["gatewayPlacement"] = o.GatewayPlacement
+	}
 	toSerialize["subnetPoolIds"] = o.SubnetPoolIds
 	toSerialize["prefixLength"] = o.PrefixLength
 
@@ -209,6 +249,7 @@ func (o *CreateAutoIpv4SubnetAllocationStrategy) UnmarshalJSON(data []byte) (err
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "kind")
 		delete(additionalProperties, "scope")
+		delete(additionalProperties, "gatewayPlacement")
 		delete(additionalProperties, "subnetPoolIds")
 		delete(additionalProperties, "prefixLength")
 		o.AdditionalProperties = additionalProperties

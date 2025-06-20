@@ -32,6 +32,8 @@ type ServerInstanceGroupOSInstallationData struct {
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// Flag to indicate if the Server Instance Group is belongs to a VM.
 	IsVmGroup int32 `json:"isVmGroup"`
+	// Flag to indicate if the Server Instance Group is an Endpoint Instance Group.
+	IsEndpointInstanceGroup int32 `json:"isEndpointInstanceGroup"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,11 +43,12 @@ type _ServerInstanceGroupOSInstallationData ServerInstanceGroupOSInstallationDat
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroupOSInstallationData(id int32, label string, isVmGroup int32) *ServerInstanceGroupOSInstallationData {
+func NewServerInstanceGroupOSInstallationData(id int32, label string, isVmGroup int32, isEndpointInstanceGroup int32) *ServerInstanceGroupOSInstallationData {
 	this := ServerInstanceGroupOSInstallationData{}
 	this.Id = id
 	this.Label = label
 	this.IsVmGroup = isVmGroup
+	this.IsEndpointInstanceGroup = isEndpointInstanceGroup
 	return &this
 }
 
@@ -225,6 +228,30 @@ func (o *ServerInstanceGroupOSInstallationData) SetIsVmGroup(v int32) {
 	o.IsVmGroup = v
 }
 
+// GetIsEndpointInstanceGroup returns the IsEndpointInstanceGroup field value
+func (o *ServerInstanceGroupOSInstallationData) GetIsEndpointInstanceGroup() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.IsEndpointInstanceGroup
+}
+
+// GetIsEndpointInstanceGroupOk returns a tuple with the IsEndpointInstanceGroup field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupOSInstallationData) GetIsEndpointInstanceGroupOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsEndpointInstanceGroup, true
+}
+
+// SetIsEndpointInstanceGroup sets field value
+func (o *ServerInstanceGroupOSInstallationData) SetIsEndpointInstanceGroup(v int32) {
+	o.IsEndpointInstanceGroup = v
+}
+
 func (o ServerInstanceGroupOSInstallationData) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -247,6 +274,7 @@ func (o ServerInstanceGroupOSInstallationData) ToMap() (map[string]interface{}, 
 		toSerialize["customVariables"] = o.CustomVariables
 	}
 	toSerialize["isVmGroup"] = o.IsVmGroup
+	toSerialize["isEndpointInstanceGroup"] = o.IsEndpointInstanceGroup
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -263,6 +291,7 @@ func (o *ServerInstanceGroupOSInstallationData) UnmarshalJSON(data []byte) (err 
 		"id",
 		"label",
 		"isVmGroup",
+		"isEndpointInstanceGroup",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -298,6 +327,7 @@ func (o *ServerInstanceGroupOSInstallationData) UnmarshalJSON(data []byte) (err 
 		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "isVmGroup")
+		delete(additionalProperties, "isEndpointInstanceGroup")
 		o.AdditionalProperties = additionalProperties
 	}
 

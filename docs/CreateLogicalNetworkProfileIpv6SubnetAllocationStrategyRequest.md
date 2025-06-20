@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
 **Scope** | [**CreateResourceScope**](CreateResourceScope.md) |  | 
+**GatewayPlacement** | Pointer to [**SubnetGatewayPlacement**](SubnetGatewayPlacement.md) |  | [optional] [default to SUBNETGATEWAYPLACEMENT_DEFAULT]
 **SubnetId** | **int32** |  | 
 **SubnetPoolIds** | **[]int32** |  | 
 **PrefixLength** | **int32** |  | 
@@ -68,6 +69,31 @@ and a boolean to check if the value has been set.
 
 SetScope sets Scope field to given value.
 
+
+### GetGatewayPlacement
+
+`func (o *CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest) GetGatewayPlacement() SubnetGatewayPlacement`
+
+GetGatewayPlacement returns the GatewayPlacement field if non-nil, zero value otherwise.
+
+### GetGatewayPlacementOk
+
+`func (o *CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest) GetGatewayPlacementOk() (*SubnetGatewayPlacement, bool)`
+
+GetGatewayPlacementOk returns a tuple with the GatewayPlacement field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGatewayPlacement
+
+`func (o *CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest) SetGatewayPlacement(v SubnetGatewayPlacement)`
+
+SetGatewayPlacement sets GatewayPlacement field to given value.
+
+### HasGatewayPlacement
+
+`func (o *CreateLogicalNetworkProfileIpv6SubnetAllocationStrategyRequest) HasGatewayPlacement() bool`
+
+HasGatewayPlacement returns a boolean if a field has been set.
 
 ### GetSubnetId
 

@@ -10,12 +10,13 @@ Name | Type | Description | Notes
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Object containing custom variables and variable overrides. | [optional] 
 **IsVmGroup** | **int32** | Flag to indicate if the Server Instance Group is belongs to a VM. | 
+**IsEndpointInstanceGroup** | **int32** | Flag to indicate if the Server Instance Group is an Endpoint Instance Group. | 
 
 ## Methods
 
 ### NewServerInstanceGroupOSInstallationData
 
-`func NewServerInstanceGroupOSInstallationData(id int32, label string, isVmGroup int32, ) *ServerInstanceGroupOSInstallationData`
+`func NewServerInstanceGroupOSInstallationData(id int32, label string, isVmGroup int32, isEndpointInstanceGroup int32, ) *ServerInstanceGroupOSInstallationData`
 
 NewServerInstanceGroupOSInstallationData instantiates a new ServerInstanceGroupOSInstallationData object
 This constructor will assign default values to properties that have it defined,
@@ -163,6 +164,26 @@ and a boolean to check if the value has been set.
 `func (o *ServerInstanceGroupOSInstallationData) SetIsVmGroup(v int32)`
 
 SetIsVmGroup sets IsVmGroup field to given value.
+
+
+### GetIsEndpointInstanceGroup
+
+`func (o *ServerInstanceGroupOSInstallationData) GetIsEndpointInstanceGroup() int32`
+
+GetIsEndpointInstanceGroup returns the IsEndpointInstanceGroup field if non-nil, zero value otherwise.
+
+### GetIsEndpointInstanceGroupOk
+
+`func (o *ServerInstanceGroupOSInstallationData) GetIsEndpointInstanceGroupOk() (*int32, bool)`
+
+GetIsEndpointInstanceGroupOk returns a tuple with the IsEndpointInstanceGroup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsEndpointInstanceGroup
+
+`func (o *ServerInstanceGroupOSInstallationData) SetIsEndpointInstanceGroup(v int32)`
+
+SetIsEndpointInstanceGroup sets IsEndpointInstanceGroup field to given value.
 
 
 

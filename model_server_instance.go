@@ -45,7 +45,7 @@ type ServerInstance struct {
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
 	// The ID of the server assigned to the instance.
 	ServerId *int32 `json:"serverId,omitempty"`
-	// The subdomain of the server instance.
+	// Custom hostname for the DNS record name. If set, this will be used as part of the DNS record name instead of the default \"instance\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"provisionInstanceDnsRecords\" is true. It will be automatically suffixed with the server instance ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
 	Hostname *string `json:"hostname,omitempty"`
 	// The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal. 
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
@@ -60,6 +60,8 @@ type ServerInstance struct {
 	IsVmInstance int32 `json:"isVmInstance"`
 	// The id of the linked VM instance
 	VmInstanceId *int32 `json:"vmInstanceId,omitempty"`
+	// Flag to indicate if this is an Endpoint Instance
+	IsEndpointInstance int32 `json:"isEndpointInstance"`
 	ClusterCustomInfo *ServerInstanceClusterCustomInfo `json:"clusterCustomInfo,omitempty"`
 	// Last error message during OS install.
 	OsInstallError *string `json:"osInstallError,omitempty"`
@@ -94,7 +96,7 @@ type _ServerInstance ServerInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance int32, meta GenericMeta) *ServerInstance {
+func NewServerInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance int32, isEndpointInstance int32, meta GenericMeta) *ServerInstance {
 	this := ServerInstance{}
 	this.Id = id
 	this.Revision = revision
@@ -105,6 +107,7 @@ func NewServerInstance(id int32, revision int32, label string, createdTimestamp 
 	this.GroupId = groupId
 	this.ServiceStatus = serviceStatus
 	this.IsVmInstance = isVmInstance
+	this.IsEndpointInstance = isEndpointInstance
 	this.Meta = meta
 	return &this
 }
@@ -749,6 +752,30 @@ func (o *ServerInstance) SetVmInstanceId(v int32) {
 	o.VmInstanceId = &v
 }
 
+// GetIsEndpointInstance returns the IsEndpointInstance field value
+func (o *ServerInstance) GetIsEndpointInstance() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.IsEndpointInstance
+}
+
+// GetIsEndpointInstanceOk returns a tuple with the IsEndpointInstance field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstance) GetIsEndpointInstanceOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsEndpointInstance, true
+}
+
+// SetIsEndpointInstance sets field value
+func (o *ServerInstance) SetIsEndpointInstance(v int32) {
+	o.IsEndpointInstance = v
+}
+
 // GetClusterCustomInfo returns the ClusterCustomInfo field value if set, zero value otherwise.
 func (o *ServerInstance) GetClusterCustomInfo() ServerInstanceClusterCustomInfo {
 	if o == nil || IsNil(o.ClusterCustomInfo) {
@@ -1247,6 +1274,7 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VmInstanceId) {
 		toSerialize["vmInstanceId"] = o.VmInstanceId
 	}
+	toSerialize["isEndpointInstance"] = o.IsEndpointInstance
 	if !IsNil(o.ClusterCustomInfo) {
 		toSerialize["clusterCustomInfo"] = o.ClusterCustomInfo
 	}
@@ -1309,6 +1337,7 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 		"groupId",
 		"serviceStatus",
 		"isVmInstance",
+		"isEndpointInstance",
 		"meta",
 	}
 
@@ -1361,6 +1390,7 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "isVmInstance")
 		delete(additionalProperties, "vmInstanceId")
+		delete(additionalProperties, "isEndpointInstance")
 		delete(additionalProperties, "clusterCustomInfo")
 		delete(additionalProperties, "osInstallError")
 		delete(additionalProperties, "osInstallImageUrl")

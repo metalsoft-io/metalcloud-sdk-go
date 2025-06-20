@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InfrastructureId** | **float32** | The id of the infrastructure where the server is located. | 
 **OsTemplateId** | Pointer to **float32** | The id of the template installed on the server. | [optional] 
+**InterfaceConnection** | Pointer to [**ServerInterfaceConnection**](ServerInterfaceConnection.md) | Interface to network device connection settings. | [optional] 
 
 ## Methods
 
@@ -70,6 +71,31 @@ SetOsTemplateId sets OsTemplateId field to given value.
 `func (o *RegisterProductionServerSettings) HasOsTemplateId() bool`
 
 HasOsTemplateId returns a boolean if a field has been set.
+
+### GetInterfaceConnection
+
+`func (o *RegisterProductionServerSettings) GetInterfaceConnection() ServerInterfaceConnection`
+
+GetInterfaceConnection returns the InterfaceConnection field if non-nil, zero value otherwise.
+
+### GetInterfaceConnectionOk
+
+`func (o *RegisterProductionServerSettings) GetInterfaceConnectionOk() (*ServerInterfaceConnection, bool)`
+
+GetInterfaceConnectionOk returns a tuple with the InterfaceConnection field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInterfaceConnection
+
+`func (o *RegisterProductionServerSettings) SetInterfaceConnection(v ServerInterfaceConnection)`
+
+SetInterfaceConnection sets InterfaceConnection field to given value.
+
+### HasInterfaceConnection
+
+`func (o *RegisterProductionServerSettings) HasInterfaceConnection() bool`
+
+HasInterfaceConnection returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

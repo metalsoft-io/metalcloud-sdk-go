@@ -56,6 +56,8 @@ type APIClient struct {
 
 	AuthenticationAPI *AuthenticationAPIService
 
+	BGPTemplateAPI *BGPTemplateAPIService
+
 	BucketAPI *BucketAPIService
 
 	ConfigurationAPI *ConfigurationAPIService
@@ -69,6 +71,12 @@ type APIClient struct {
 	DriveAPI *DriveAPIService
 
 	EmailTemplateAPI *EmailTemplateAPIService
+
+	EndpointAPI *EndpointAPIService
+
+	EndpointInstanceAPI *EndpointInstanceAPIService
+
+	EndpointInstanceGroupAPI *EndpointInstanceGroupAPIService
 
 	EventAPI *EventAPIService
 
@@ -174,6 +182,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AIAPI = (*AIAPIService)(&c.common)
 	c.AccountAPI = (*AccountAPIService)(&c.common)
 	c.AuthenticationAPI = (*AuthenticationAPIService)(&c.common)
+	c.BGPTemplateAPI = (*BGPTemplateAPIService)(&c.common)
 	c.BucketAPI = (*BucketAPIService)(&c.common)
 	c.ConfigurationAPI = (*ConfigurationAPIService)(&c.common)
 	c.CustomIsoAPI = (*CustomIsoAPIService)(&c.common)
@@ -181,6 +190,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DNSZoneAPI = (*DNSZoneAPIService)(&c.common)
 	c.DriveAPI = (*DriveAPIService)(&c.common)
 	c.EmailTemplateAPI = (*EmailTemplateAPIService)(&c.common)
+	c.EndpointAPI = (*EndpointAPIService)(&c.common)
+	c.EndpointInstanceAPI = (*EndpointInstanceAPIService)(&c.common)
+	c.EndpointInstanceGroupAPI = (*EndpointInstanceGroupAPIService)(&c.common)
 	c.EventAPI = (*EventAPIService)(&c.common)
 	c.ExtensionAPI = (*ExtensionAPIService)(&c.common)
 	c.ExtensionInstanceAPI = (*ExtensionInstanceAPIService)(&c.common)

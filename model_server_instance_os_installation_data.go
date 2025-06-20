@@ -32,6 +32,8 @@ type ServerInstanceOSInstallationData struct {
 	CustomStorageProfile *ServerInstanceStorageProfile `json:"customStorageProfile,omitempty"`
 	// Flag to indicate if this is a VM instance
 	IsVmInstance int32 `json:"isVmInstance"`
+	// Flag to indicate if this is an Endpoint Instance
+	IsEndpointInstance int32 `json:"isEndpointInstance"`
 	// The subdomain of the server instance.
 	Hostname string `json:"hostname"`
 	// The subdomain of the server instance.
@@ -54,11 +56,12 @@ type _ServerInstanceOSInstallationData ServerInstanceOSInstallationData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, hostname string, fqdn string) *ServerInstanceOSInstallationData {
+func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, isEndpointInstance int32, hostname string, fqdn string) *ServerInstanceOSInstallationData {
 	this := ServerInstanceOSInstallationData{}
 	this.Id = id
 	this.Label = label
 	this.IsVmInstance = isVmInstance
+	this.IsEndpointInstance = isEndpointInstance
 	this.Hostname = hostname
 	this.Fqdn = fqdn
 	return &this
@@ -238,6 +241,30 @@ func (o *ServerInstanceOSInstallationData) GetIsVmInstanceOk() (*int32, bool) {
 // SetIsVmInstance sets field value
 func (o *ServerInstanceOSInstallationData) SetIsVmInstance(v int32) {
 	o.IsVmInstance = v
+}
+
+// GetIsEndpointInstance returns the IsEndpointInstance field value
+func (o *ServerInstanceOSInstallationData) GetIsEndpointInstance() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.IsEndpointInstance
+}
+
+// GetIsEndpointInstanceOk returns a tuple with the IsEndpointInstance field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceOSInstallationData) GetIsEndpointInstanceOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsEndpointInstance, true
+}
+
+// SetIsEndpointInstance sets field value
+func (o *ServerInstanceOSInstallationData) SetIsEndpointInstance(v int32) {
+	o.IsEndpointInstance = v
 }
 
 // GetHostname returns the Hostname field value
@@ -470,6 +497,7 @@ func (o ServerInstanceOSInstallationData) ToMap() (map[string]interface{}, error
 		toSerialize["customStorageProfile"] = o.CustomStorageProfile
 	}
 	toSerialize["isVmInstance"] = o.IsVmInstance
+	toSerialize["isEndpointInstance"] = o.IsEndpointInstance
 	toSerialize["hostname"] = o.Hostname
 	toSerialize["fqdn"] = o.Fqdn
 	if !IsNil(o.OsCredentials) {
@@ -503,6 +531,7 @@ func (o *ServerInstanceOSInstallationData) UnmarshalJSON(data []byte) (err error
 		"id",
 		"label",
 		"isVmInstance",
+		"isEndpointInstance",
 		"hostname",
 		"fqdn",
 	}
@@ -540,6 +569,7 @@ func (o *ServerInstanceOSInstallationData) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "customStorageProfile")
 		delete(additionalProperties, "isVmInstance")
+		delete(additionalProperties, "isEndpointInstance")
 		delete(additionalProperties, "hostname")
 		delete(additionalProperties, "fqdn")
 		delete(additionalProperties, "osCredentials")

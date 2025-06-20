@@ -20,7 +20,6 @@ var _ MappedNullable = &UpdateVMInstanceMeta{}
 
 // UpdateVMInstanceMeta struct for UpdateVMInstanceMeta
 type UpdateVMInstanceMeta struct {
-	GuiSettings *GenericGUISettings `json:"guiSettings,omitempty"`
 	// Tags for the VM Instance.
 	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -43,38 +42,6 @@ func NewUpdateVMInstanceMeta() *UpdateVMInstanceMeta {
 func NewUpdateVMInstanceMetaWithDefaults() *UpdateVMInstanceMeta {
 	this := UpdateVMInstanceMeta{}
 	return &this
-}
-
-// GetGuiSettings returns the GuiSettings field value if set, zero value otherwise.
-func (o *UpdateVMInstanceMeta) GetGuiSettings() GenericGUISettings {
-	if o == nil || IsNil(o.GuiSettings) {
-		var ret GenericGUISettings
-		return ret
-	}
-	return *o.GuiSettings
-}
-
-// GetGuiSettingsOk returns a tuple with the GuiSettings field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateVMInstanceMeta) GetGuiSettingsOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.GuiSettings) {
-		return nil, false
-	}
-	return o.GuiSettings, true
-}
-
-// HasGuiSettings returns a boolean if a field has been set.
-func (o *UpdateVMInstanceMeta) HasGuiSettings() bool {
-	if o != nil && !IsNil(o.GuiSettings) {
-		return true
-	}
-
-	return false
-}
-
-// SetGuiSettings gets a reference to the given GenericGUISettings and assigns it to the GuiSettings field.
-func (o *UpdateVMInstanceMeta) SetGuiSettings(v GenericGUISettings) {
-	o.GuiSettings = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -119,9 +86,6 @@ func (o UpdateVMInstanceMeta) MarshalJSON() ([]byte, error) {
 
 func (o UpdateVMInstanceMeta) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.GuiSettings) {
-		toSerialize["guiSettings"] = o.GuiSettings
-	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
@@ -147,7 +111,6 @@ func (o *UpdateVMInstanceMeta) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "guiSettings")
 		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}

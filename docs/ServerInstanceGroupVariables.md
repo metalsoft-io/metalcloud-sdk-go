@@ -18,10 +18,11 @@ Name | Type | Description | Notes
 **ExtensionInstanceId** | Pointer to **int32** |  | [optional] 
 **InstanceCount** | **int32** | The number of instances to be created on the Instance Group. | [default to 1]
 **DefaultServerTypeId** | **int32** | The server type ID that will be assigned to newly created instances. | 
+**DefaultCustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Default Custom Storage Profile for the newly created Instances. | [optional] 
 **IpAllocateAuto** | **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [default to 1]
 **Ipv4SubnetCreateAuto** | **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [default to 1]
 **FirmwarePolicyIds** | Pointer to **[]float32** | Array of firmware policy ids containing associated firmware policies. | [optional] 
-**Hostname** | Pointer to **string** | Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \&quot;server-instance-group\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \&quot;dnsLoadBalancingRecord\&quot; is true. It will be automatically suffixed with the server instance group ID (e.g., \&quot;-34\&quot;) to ensure the uniqueness of the resulting DNS name. | [optional] 
+**Hostname** | Pointer to **string** | Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \&quot;instance-group\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \&quot;provisionLoadBalancingDnsRecord\&quot; is true. It will be automatically suffixed with the server instance group ID (e.g., \&quot;-34\&quot;) to ensure the uniqueness of the resulting DNS name. | [optional] 
 **OsTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the Instance Group have local disks. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Object containing custom variables and variable overrides. | [optional] 
 **ProcessorCount** | **int32** | The CPU count on each instance. | [default to 1]
@@ -40,6 +41,7 @@ Name | Type | Description | Notes
 **ServiceStatus** | **string** | Current status of the Server Instance Group. | 
 **ResourcePoolId** | Pointer to **int32** | The resource pool assigned to this instance array | [optional] 
 **IsVmGroup** | **int32** | Flag to indicate if the Server Instance Group is belongs to a VM. | 
+**IsEndpointInstanceGroup** | **int32** | Flag to indicate if the Server Instance Group is belongs to a Endpoint. | 
 **VmInstanceGroupId** | Pointer to **int32** | Id of the VM Instance Group this Server Instance Group belongs to. | [optional] 
 **NetworkEndpointGroupId** | Pointer to **int32** |  | [optional] 
 **Config** | Pointer to [**ServerInstanceGroupConfiguration**](ServerInstanceGroupConfiguration.md) |  | [optional] 
@@ -48,7 +50,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceGroupVariables
 
-`func NewServerInstanceGroupVariables(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, defaultServerTypeId int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, ) *ServerInstanceGroupVariables`
+`func NewServerInstanceGroupVariables(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, defaultServerTypeId int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, isEndpointInstanceGroup int32, ) *ServerInstanceGroupVariables`
 
 NewServerInstanceGroupVariables instantiates a new ServerInstanceGroupVariables object
 This constructor will assign default values to properties that have it defined,
@@ -372,6 +374,31 @@ and a boolean to check if the value has been set.
 
 SetDefaultServerTypeId sets DefaultServerTypeId field to given value.
 
+
+### GetDefaultCustomStorageProfile
+
+`func (o *ServerInstanceGroupVariables) GetDefaultCustomStorageProfile() ServerInstanceStorageProfile`
+
+GetDefaultCustomStorageProfile returns the DefaultCustomStorageProfile field if non-nil, zero value otherwise.
+
+### GetDefaultCustomStorageProfileOk
+
+`func (o *ServerInstanceGroupVariables) GetDefaultCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool)`
+
+GetDefaultCustomStorageProfileOk returns a tuple with the DefaultCustomStorageProfile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultCustomStorageProfile
+
+`func (o *ServerInstanceGroupVariables) SetDefaultCustomStorageProfile(v ServerInstanceStorageProfile)`
+
+SetDefaultCustomStorageProfile sets DefaultCustomStorageProfile field to given value.
+
+### HasDefaultCustomStorageProfile
+
+`func (o *ServerInstanceGroupVariables) HasDefaultCustomStorageProfile() bool`
+
+HasDefaultCustomStorageProfile returns a boolean if a field has been set.
 
 ### GetIpAllocateAuto
 
@@ -876,6 +903,26 @@ and a boolean to check if the value has been set.
 `func (o *ServerInstanceGroupVariables) SetIsVmGroup(v int32)`
 
 SetIsVmGroup sets IsVmGroup field to given value.
+
+
+### GetIsEndpointInstanceGroup
+
+`func (o *ServerInstanceGroupVariables) GetIsEndpointInstanceGroup() int32`
+
+GetIsEndpointInstanceGroup returns the IsEndpointInstanceGroup field if non-nil, zero value otherwise.
+
+### GetIsEndpointInstanceGroupOk
+
+`func (o *ServerInstanceGroupVariables) GetIsEndpointInstanceGroupOk() (*int32, bool)`
+
+GetIsEndpointInstanceGroupOk returns a tuple with the IsEndpointInstanceGroup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsEndpointInstanceGroup
+
+`func (o *ServerInstanceGroupVariables) SetIsEndpointInstanceGroup(v int32)`
+
+SetIsEndpointInstanceGroup sets IsEndpointInstanceGroup field to given value.
 
 
 ### GetVmInstanceGroupId

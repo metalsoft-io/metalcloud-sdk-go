@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 **Id** | **string** | The network fabric ID. | 
 **Status** | Pointer to [**FabricStatus**](FabricStatus.md) | The status of the network fabric, by default it is in draft mode. | [optional] 
+**DeployId** | Pointer to **int32** | The deploy ID of the network fabric, if it is being deployed. | [optional] 
 **NetworkEquipment** | Pointer to [**[]NetworkDevice**](NetworkDevice.md) | The network equipments in the fabric | [optional] 
 
 ## Methods
@@ -254,6 +255,31 @@ SetStatus sets Status field to given value.
 `func (o *NetworkFabric) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
+
+### GetDeployId
+
+`func (o *NetworkFabric) GetDeployId() int32`
+
+GetDeployId returns the DeployId field if non-nil, zero value otherwise.
+
+### GetDeployIdOk
+
+`func (o *NetworkFabric) GetDeployIdOk() (*int32, bool)`
+
+GetDeployIdOk returns a tuple with the DeployId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeployId
+
+`func (o *NetworkFabric) SetDeployId(v int32)`
+
+SetDeployId sets DeployId field to given value.
+
+### HasDeployId
+
+`func (o *NetworkFabric) HasDeployId() bool`
+
+HasDeployId returns a boolean if a field has been set.
 
 ### GetNetworkEquipment
 

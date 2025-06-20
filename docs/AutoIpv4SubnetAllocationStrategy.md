@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **UpdatedAt** | **time.Time** |  | 
 **Kind** | [**AllocationStrategyKind**](AllocationStrategyKind.md) |  | 
 **Scope** | [**ResourceScope**](ResourceScope.md) |  | 
+**GatewayPlacement** | [**SubnetGatewayPlacement**](SubnetGatewayPlacement.md) |  | [default to SUBNETGATEWAYPLACEMENT_DEFAULT]
 **SubnetPoolIds** | **[]int32** |  | 
 **PrefixLength** | **int32** |  | 
 
@@ -16,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewAutoIpv4SubnetAllocationStrategy
 
-`func NewAutoIpv4SubnetAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, subnetPoolIds []int32, prefixLength int32, ) *AutoIpv4SubnetAllocationStrategy`
+`func NewAutoIpv4SubnetAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, gatewayPlacement SubnetGatewayPlacement, subnetPoolIds []int32, prefixLength int32, ) *AutoIpv4SubnetAllocationStrategy`
 
 NewAutoIpv4SubnetAllocationStrategy instantiates a new AutoIpv4SubnetAllocationStrategy object
 This constructor will assign default values to properties that have it defined,
@@ -129,6 +130,26 @@ and a boolean to check if the value has been set.
 `func (o *AutoIpv4SubnetAllocationStrategy) SetScope(v ResourceScope)`
 
 SetScope sets Scope field to given value.
+
+
+### GetGatewayPlacement
+
+`func (o *AutoIpv4SubnetAllocationStrategy) GetGatewayPlacement() SubnetGatewayPlacement`
+
+GetGatewayPlacement returns the GatewayPlacement field if non-nil, zero value otherwise.
+
+### GetGatewayPlacementOk
+
+`func (o *AutoIpv4SubnetAllocationStrategy) GetGatewayPlacementOk() (*SubnetGatewayPlacement, bool)`
+
+GetGatewayPlacementOk returns a tuple with the GatewayPlacement field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGatewayPlacement
+
+`func (o *AutoIpv4SubnetAllocationStrategy) SetGatewayPlacement(v SubnetGatewayPlacement)`
+
+SetGatewayPlacement sets GatewayPlacement field to given value.
 
 
 ### GetSubnetPoolIds

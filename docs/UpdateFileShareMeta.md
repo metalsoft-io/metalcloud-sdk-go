@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GuiSettings** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) |  | [optional] 
+**Name** | **string** | Name of the File Share | 
 
 ## Methods
 
 ### NewUpdateFileShareMeta
 
-`func NewUpdateFileShareMeta() *UpdateFileShareMeta`
+`func NewUpdateFileShareMeta(name string, ) *UpdateFileShareMeta`
 
 NewUpdateFileShareMeta instantiates a new UpdateFileShareMeta object
 This constructor will assign default values to properties that have it defined,
@@ -25,30 +25,25 @@ NewUpdateFileShareMetaWithDefaults instantiates a new UpdateFileShareMeta object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetGuiSettings
+### GetName
 
-`func (o *UpdateFileShareMeta) GetGuiSettings() GenericGUISettings`
+`func (o *UpdateFileShareMeta) GetName() string`
 
-GetGuiSettings returns the GuiSettings field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetGuiSettingsOk
+### GetNameOk
 
-`func (o *UpdateFileShareMeta) GetGuiSettingsOk() (*GenericGUISettings, bool)`
+`func (o *UpdateFileShareMeta) GetNameOk() (*string, bool)`
 
-GetGuiSettingsOk returns a tuple with the GuiSettings field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGuiSettings
+### SetName
 
-`func (o *UpdateFileShareMeta) SetGuiSettings(v GenericGUISettings)`
+`func (o *UpdateFileShareMeta) SetName(v string)`
 
-SetGuiSettings sets GuiSettings field to given value.
+SetName sets Name field to given value.
 
-### HasGuiSettings
-
-`func (o *UpdateFileShareMeta) HasGuiSettings() bool`
-
-HasGuiSettings returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

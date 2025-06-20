@@ -185,7 +185,7 @@ import (
 )
 
 func main() {
-	infrastructureCreate := *openapiclient.NewInfrastructureCreate("Label_example", float32(123)) // InfrastructureCreate | The infrastructure to create
+	infrastructureCreate := *openapiclient.NewInfrastructureCreate(float32(123)) // InfrastructureCreate | The infrastructure to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

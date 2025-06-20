@@ -25,11 +25,13 @@ type ServerInstanceGroupUpdate struct {
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	// The number of instances to be created on the Instance Group.
 	InstanceCount *int32 `json:"instanceCount,omitempty"`
+	// Default Custom Storage Profile for the newly created Instances.
+	DefaultCustomStorageProfile *ServerInstanceStorageProfile `json:"defaultCustomStorageProfile,omitempty"`
 	// Automatically allocate IP addresses to child Instance`s Instance Interface elements.
 	IpAllocateAuto *int32 `json:"ipAllocateAuto,omitempty"`
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
 	Ipv4SubnetCreateAuto *int32 `json:"ipv4SubnetCreateAuto,omitempty"`
-	// Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \"server-instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"dnsLoadBalancingRecord\" is true. It will be automatically suffixed with the server instance group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
+	// Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \"instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"provisionLoadBalancingDnsRecord\" is true. It will be automatically suffixed with the server instance group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
 	Hostname *string `json:"hostname,omitempty"`
 	// The volume template ID (or name) to use if the servers in the Instance Group have local disks.
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
@@ -215,6 +217,38 @@ func (o *ServerInstanceGroupUpdate) HasInstanceCount() bool {
 // SetInstanceCount gets a reference to the given int32 and assigns it to the InstanceCount field.
 func (o *ServerInstanceGroupUpdate) SetInstanceCount(v int32) {
 	o.InstanceCount = &v
+}
+
+// GetDefaultCustomStorageProfile returns the DefaultCustomStorageProfile field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetDefaultCustomStorageProfile() ServerInstanceStorageProfile {
+	if o == nil || IsNil(o.DefaultCustomStorageProfile) {
+		var ret ServerInstanceStorageProfile
+		return ret
+	}
+	return *o.DefaultCustomStorageProfile
+}
+
+// GetDefaultCustomStorageProfileOk returns a tuple with the DefaultCustomStorageProfile field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupUpdate) GetDefaultCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool) {
+	if o == nil || IsNil(o.DefaultCustomStorageProfile) {
+		return nil, false
+	}
+	return o.DefaultCustomStorageProfile, true
+}
+
+// HasDefaultCustomStorageProfile returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasDefaultCustomStorageProfile() bool {
+	if o != nil && !IsNil(o.DefaultCustomStorageProfile) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultCustomStorageProfile gets a reference to the given ServerInstanceStorageProfile and assigns it to the DefaultCustomStorageProfile field.
+func (o *ServerInstanceGroupUpdate) SetDefaultCustomStorageProfile(v ServerInstanceStorageProfile) {
+	o.DefaultCustomStorageProfile = &v
 }
 
 // GetIpAllocateAuto returns the IpAllocateAuto field value if set, zero value otherwise.
@@ -780,6 +814,9 @@ func (o ServerInstanceGroupUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InstanceCount) {
 		toSerialize["instanceCount"] = o.InstanceCount
 	}
+	if !IsNil(o.DefaultCustomStorageProfile) {
+		toSerialize["defaultCustomStorageProfile"] = o.DefaultCustomStorageProfile
+	}
 	if !IsNil(o.IpAllocateAuto) {
 		toSerialize["ipAllocateAuto"] = o.IpAllocateAuto
 	}
@@ -856,6 +893,7 @@ func (o *ServerInstanceGroupUpdate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "instanceCount")
+		delete(additionalProperties, "defaultCustomStorageProfile")
 		delete(additionalProperties, "ipAllocateAuto")
 		delete(additionalProperties, "ipv4SubnetCreateAuto")
 		delete(additionalProperties, "hostname")

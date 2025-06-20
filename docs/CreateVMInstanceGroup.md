@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **InstanceCount** | Pointer to **float32** |  | [optional] [default to 1]
 **DiskSizeGB** | **float32** | Disk size in GB for each VM Instance in the VM Instance Group. | 
 **TypeId** | **float32** | Id of the VM Type. | 
-**OsTemplateId** | Pointer to **float32** | Id of the template used by the VM Instance Group. | [optional] 
+**OsTemplateId** | **float32** | Id of the template used by the VM Instance Group. | 
 **Tags** | Pointer to **[]string** | Tags for the VM Instance Group. | [optional] 
 
 ## Methods
 
 ### NewCreateVMInstanceGroup
 
-`func NewCreateVMInstanceGroup(diskSizeGB float32, typeId float32, ) *CreateVMInstanceGroup`
+`func NewCreateVMInstanceGroup(diskSizeGB float32, typeId float32, osTemplateId float32, ) *CreateVMInstanceGroup`
 
 NewCreateVMInstanceGroup instantiates a new CreateVMInstanceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -113,11 +113,6 @@ and a boolean to check if the value has been set.
 
 SetOsTemplateId sets OsTemplateId field to given value.
 
-### HasOsTemplateId
-
-`func (o *CreateVMInstanceGroup) HasOsTemplateId() bool`
-
-HasOsTemplateId returns a boolean if a field has been set.
 
 ### GetTags
 

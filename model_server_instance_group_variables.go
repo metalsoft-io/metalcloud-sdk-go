@@ -46,13 +46,15 @@ type ServerInstanceGroupVariables struct {
 	InstanceCount int32 `json:"instanceCount"`
 	// The server type ID that will be assigned to newly created instances.
 	DefaultServerTypeId int32 `json:"defaultServerTypeId"`
+	// Default Custom Storage Profile for the newly created Instances.
+	DefaultCustomStorageProfile *ServerInstanceStorageProfile `json:"defaultCustomStorageProfile,omitempty"`
 	// Automatically allocate IP addresses to child Instance`s Instance Interface elements.
 	IpAllocateAuto int32 `json:"ipAllocateAuto"`
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
 	Ipv4SubnetCreateAuto int32 `json:"ipv4SubnetCreateAuto"`
 	// Array of firmware policy ids containing associated firmware policies.
 	FirmwarePolicyIds []float32 `json:"firmwarePolicyIds,omitempty"`
-	// Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \"server-instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"dnsLoadBalancingRecord\" is true. It will be automatically suffixed with the server instance group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
+	// Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \"instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"provisionLoadBalancingDnsRecord\" is true. It will be automatically suffixed with the server instance group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
 	Hostname *string `json:"hostname,omitempty"`
 	// The volume template ID (or name) to use if the servers in the Instance Group have local disks.
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
@@ -88,6 +90,8 @@ type ServerInstanceGroupVariables struct {
 	ResourcePoolId *int32 `json:"resourcePoolId,omitempty"`
 	// Flag to indicate if the Server Instance Group is belongs to a VM.
 	IsVmGroup int32 `json:"isVmGroup"`
+	// Flag to indicate if the Server Instance Group is belongs to a Endpoint.
+	IsEndpointInstanceGroup int32 `json:"isEndpointInstanceGroup"`
 	// Id of the VM Instance Group this Server Instance Group belongs to.
 	VmInstanceGroupId *int32 `json:"vmInstanceGroupId,omitempty"`
 	NetworkEndpointGroupId *int32 `json:"networkEndpointGroupId,omitempty"`
@@ -101,7 +105,7 @@ type _ServerInstanceGroupVariables ServerInstanceGroupVariables
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceGroupVariables(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, defaultServerTypeId int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32) *ServerInstanceGroupVariables {
+func NewServerInstanceGroupVariables(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, instanceCount int32, defaultServerTypeId int32, ipAllocateAuto int32, ipv4SubnetCreateAuto int32, processorCount int32, processorCoreCount int32, processorCoreMhz int32, diskCount int32, diskSizeMbytes int32, diskTypes []string, virtualInterfacesEnabled int32, serviceStatus string, isVmGroup int32, isEndpointInstanceGroup int32) *ServerInstanceGroupVariables {
 	this := ServerInstanceGroupVariables{}
 	this.Id = id
 	this.Revision = revision
@@ -124,6 +128,7 @@ func NewServerInstanceGroupVariables(id int32, revision int32, label string, cre
 	this.VirtualInterfacesEnabled = virtualInterfacesEnabled
 	this.ServiceStatus = serviceStatus
 	this.IsVmGroup = isVmGroup
+	this.IsEndpointInstanceGroup = isEndpointInstanceGroup
 	return &this
 }
 
@@ -537,6 +542,38 @@ func (o *ServerInstanceGroupVariables) GetDefaultServerTypeIdOk() (*int32, bool)
 // SetDefaultServerTypeId sets field value
 func (o *ServerInstanceGroupVariables) SetDefaultServerTypeId(v int32) {
 	o.DefaultServerTypeId = v
+}
+
+// GetDefaultCustomStorageProfile returns the DefaultCustomStorageProfile field value if set, zero value otherwise.
+func (o *ServerInstanceGroupVariables) GetDefaultCustomStorageProfile() ServerInstanceStorageProfile {
+	if o == nil || IsNil(o.DefaultCustomStorageProfile) {
+		var ret ServerInstanceStorageProfile
+		return ret
+	}
+	return *o.DefaultCustomStorageProfile
+}
+
+// GetDefaultCustomStorageProfileOk returns a tuple with the DefaultCustomStorageProfile field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupVariables) GetDefaultCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool) {
+	if o == nil || IsNil(o.DefaultCustomStorageProfile) {
+		return nil, false
+	}
+	return o.DefaultCustomStorageProfile, true
+}
+
+// HasDefaultCustomStorageProfile returns a boolean if a field has been set.
+func (o *ServerInstanceGroupVariables) HasDefaultCustomStorageProfile() bool {
+	if o != nil && !IsNil(o.DefaultCustomStorageProfile) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultCustomStorageProfile gets a reference to the given ServerInstanceStorageProfile and assigns it to the DefaultCustomStorageProfile field.
+func (o *ServerInstanceGroupVariables) SetDefaultCustomStorageProfile(v ServerInstanceStorageProfile) {
+	o.DefaultCustomStorageProfile = &v
 }
 
 // GetIpAllocateAuto returns the IpAllocateAuto field value
@@ -1156,6 +1193,30 @@ func (o *ServerInstanceGroupVariables) SetIsVmGroup(v int32) {
 	o.IsVmGroup = v
 }
 
+// GetIsEndpointInstanceGroup returns the IsEndpointInstanceGroup field value
+func (o *ServerInstanceGroupVariables) GetIsEndpointInstanceGroup() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.IsEndpointInstanceGroup
+}
+
+// GetIsEndpointInstanceGroupOk returns a tuple with the IsEndpointInstanceGroup field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupVariables) GetIsEndpointInstanceGroupOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsEndpointInstanceGroup, true
+}
+
+// SetIsEndpointInstanceGroup sets field value
+func (o *ServerInstanceGroupVariables) SetIsEndpointInstanceGroup(v int32) {
+	o.IsEndpointInstanceGroup = v
+}
+
 // GetVmInstanceGroupId returns the VmInstanceGroupId field value if set, zero value otherwise.
 func (o *ServerInstanceGroupVariables) GetVmInstanceGroupId() int32 {
 	if o == nil || IsNil(o.VmInstanceGroupId) {
@@ -1288,6 +1349,9 @@ func (o ServerInstanceGroupVariables) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["instanceCount"] = o.InstanceCount
 	toSerialize["defaultServerTypeId"] = o.DefaultServerTypeId
+	if !IsNil(o.DefaultCustomStorageProfile) {
+		toSerialize["defaultCustomStorageProfile"] = o.DefaultCustomStorageProfile
+	}
 	toSerialize["ipAllocateAuto"] = o.IpAllocateAuto
 	toSerialize["ipv4SubnetCreateAuto"] = o.Ipv4SubnetCreateAuto
 	if o.FirmwarePolicyIds != nil {
@@ -1332,6 +1396,7 @@ func (o ServerInstanceGroupVariables) ToMap() (map[string]interface{}, error) {
 		toSerialize["resourcePoolId"] = o.ResourcePoolId
 	}
 	toSerialize["isVmGroup"] = o.IsVmGroup
+	toSerialize["isEndpointInstanceGroup"] = o.IsEndpointInstanceGroup
 	if !IsNil(o.VmInstanceGroupId) {
 		toSerialize["vmInstanceGroupId"] = o.VmInstanceGroupId
 	}
@@ -1373,6 +1438,7 @@ func (o *ServerInstanceGroupVariables) UnmarshalJSON(data []byte) (err error) {
 		"virtualInterfacesEnabled",
 		"serviceStatus",
 		"isVmGroup",
+		"isEndpointInstanceGroup",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -1416,6 +1482,7 @@ func (o *ServerInstanceGroupVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "instanceCount")
 		delete(additionalProperties, "defaultServerTypeId")
+		delete(additionalProperties, "defaultCustomStorageProfile")
 		delete(additionalProperties, "ipAllocateAuto")
 		delete(additionalProperties, "ipv4SubnetCreateAuto")
 		delete(additionalProperties, "firmwarePolicyIds")
@@ -1438,6 +1505,7 @@ func (o *ServerInstanceGroupVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "resourcePoolId")
 		delete(additionalProperties, "isVmGroup")
+		delete(additionalProperties, "isEndpointInstanceGroup")
 		delete(additionalProperties, "vmInstanceGroupId")
 		delete(additionalProperties, "networkEndpointGroupId")
 		delete(additionalProperties, "config")

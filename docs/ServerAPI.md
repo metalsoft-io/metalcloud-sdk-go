@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ArchiveServer**](ServerAPI.md#ArchiveServer) | **Post** /api/v2/servers/{serverId}/actions/archive | Archives a Server
+[**ConnectServerInterface**](ServerAPI.md#ConnectServerInterface) | **Post** /api/v2/servers/{serverId}/actions/connect-interface | Connects a server interface to a switch
 [**DeleteServer**](ServerAPI.md#DeleteServer) | **Delete** /api/v2/servers/{serverId} | Deletes a Server
 [**EnableServerSyslog**](ServerAPI.md#EnableServerSyslog) | **Post** /api/v2/servers/{serverId}/actions/syslog-subscribe | Enables remote syslog for a server
 [**GetServerCapabilities**](ServerAPI.md#GetServerCapabilities) | **Get** /api/v2/servers/{serverId}/capabilities | Get Server capabilities
@@ -90,6 +91,76 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ConnectServerInterface
+
+> ConnectServerInterface(ctx, serverId).ServerConnectInterface(serverConnectInterface).Execute()
+
+Connects a server interface to a switch
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverId := float32(8.14) // float32 | 
+	serverConnectInterface := *openapiclient.NewServerConnectInterface(float32(1), "Ethernet1/1", "switch1.example.com") // ServerConnectInterface | The server interface connection options
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ServerAPI.ConnectServerInterface(context.Background(), serverId).ServerConnectInterface(serverConnectInterface).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.ConnectServerInterface``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiConnectServerInterfaceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **serverConnectInterface** | [**ServerConnectInterface**](ServerConnectInterface.md) | The server interface connection options | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

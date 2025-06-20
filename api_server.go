@@ -127,6 +127,110 @@ func (a *ServerAPIService) ArchiveServerExecute(r ServerAPIArchiveServerRequest)
 	return localVarHTTPResponse, nil
 }
 
+type ServerAPIConnectServerInterfaceRequest struct {
+	ctx context.Context
+	ApiService *ServerAPIService
+	serverId float32
+	serverConnectInterface *ServerConnectInterface
+}
+
+// The server interface connection options
+func (r ServerAPIConnectServerInterfaceRequest) ServerConnectInterface(serverConnectInterface ServerConnectInterface) ServerAPIConnectServerInterfaceRequest {
+	r.serverConnectInterface = &serverConnectInterface
+	return r
+}
+
+func (r ServerAPIConnectServerInterfaceRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ConnectServerInterfaceExecute(r)
+}
+
+/*
+ConnectServerInterface Connects a server interface to a switch
+
+Connects a server interface to a switch
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverId
+ @return ServerAPIConnectServerInterfaceRequest
+*/
+func (a *ServerAPIService) ConnectServerInterface(ctx context.Context, serverId float32) ServerAPIConnectServerInterfaceRequest {
+	return ServerAPIConnectServerInterfaceRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverId: serverId,
+	}
+}
+
+// Execute executes the request
+func (a *ServerAPIService) ConnectServerInterfaceExecute(r ServerAPIConnectServerInterfaceRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerAPIService.ConnectServerInterface")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/servers/{serverId}/actions/connect-interface"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(parameterValueToString(r.serverId, "serverId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.serverConnectInterface == nil {
+		return nil, reportError("serverConnectInterface is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.serverConnectInterface
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ServerAPIDeleteServerRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService

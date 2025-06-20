@@ -27,6 +27,7 @@ type AutoIpv4SubnetAllocationStrategy struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 	Kind AllocationStrategyKind `json:"kind"`
 	Scope ResourceScope `json:"scope"`
+	GatewayPlacement SubnetGatewayPlacement `json:"gatewayPlacement"`
 	SubnetPoolIds []int32 `json:"subnetPoolIds"`
 	PrefixLength int32 `json:"prefixLength"`
 	AdditionalProperties map[string]interface{}
@@ -38,13 +39,14 @@ type _AutoIpv4SubnetAllocationStrategy AutoIpv4SubnetAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAutoIpv4SubnetAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, subnetPoolIds []int32, prefixLength int32) *AutoIpv4SubnetAllocationStrategy {
+func NewAutoIpv4SubnetAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, gatewayPlacement SubnetGatewayPlacement, subnetPoolIds []int32, prefixLength int32) *AutoIpv4SubnetAllocationStrategy {
 	this := AutoIpv4SubnetAllocationStrategy{}
 	this.Id = id
 	this.CreatedAt = createdAt
 	this.UpdatedAt = updatedAt
 	this.Kind = kind
 	this.Scope = scope
+	this.GatewayPlacement = gatewayPlacement
 	this.SubnetPoolIds = subnetPoolIds
 	this.PrefixLength = prefixLength
 	return &this
@@ -55,6 +57,8 @@ func NewAutoIpv4SubnetAllocationStrategy(id int32, createdAt time.Time, updatedA
 // but it doesn't guarantee that properties required by API are set
 func NewAutoIpv4SubnetAllocationStrategyWithDefaults() *AutoIpv4SubnetAllocationStrategy {
 	this := AutoIpv4SubnetAllocationStrategy{}
+	var gatewayPlacement SubnetGatewayPlacement = SUBNETGATEWAYPLACEMENT_DEFAULT
+	this.GatewayPlacement = gatewayPlacement
 	return &this
 }
 
@@ -178,6 +182,30 @@ func (o *AutoIpv4SubnetAllocationStrategy) SetScope(v ResourceScope) {
 	o.Scope = v
 }
 
+// GetGatewayPlacement returns the GatewayPlacement field value
+func (o *AutoIpv4SubnetAllocationStrategy) GetGatewayPlacement() SubnetGatewayPlacement {
+	if o == nil {
+		var ret SubnetGatewayPlacement
+		return ret
+	}
+
+	return o.GatewayPlacement
+}
+
+// GetGatewayPlacementOk returns a tuple with the GatewayPlacement field value
+// and a boolean to check if the value has been set.
+func (o *AutoIpv4SubnetAllocationStrategy) GetGatewayPlacementOk() (*SubnetGatewayPlacement, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.GatewayPlacement, true
+}
+
+// SetGatewayPlacement sets field value
+func (o *AutoIpv4SubnetAllocationStrategy) SetGatewayPlacement(v SubnetGatewayPlacement) {
+	o.GatewayPlacement = v
+}
+
 // GetSubnetPoolIds returns the SubnetPoolIds field value
 func (o *AutoIpv4SubnetAllocationStrategy) GetSubnetPoolIds() []int32 {
 	if o == nil {
@@ -241,6 +269,7 @@ func (o AutoIpv4SubnetAllocationStrategy) ToMap() (map[string]interface{}, error
 	toSerialize["updatedAt"] = o.UpdatedAt
 	toSerialize["kind"] = o.Kind
 	toSerialize["scope"] = o.Scope
+	toSerialize["gatewayPlacement"] = o.GatewayPlacement
 	toSerialize["subnetPoolIds"] = o.SubnetPoolIds
 	toSerialize["prefixLength"] = o.PrefixLength
 
@@ -261,6 +290,7 @@ func (o *AutoIpv4SubnetAllocationStrategy) UnmarshalJSON(data []byte) (err error
 		"updatedAt",
 		"kind",
 		"scope",
+		"gatewayPlacement",
 		"subnetPoolIds",
 		"prefixLength",
 	}
@@ -297,6 +327,7 @@ func (o *AutoIpv4SubnetAllocationStrategy) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "updatedAt")
 		delete(additionalProperties, "kind")
 		delete(additionalProperties, "scope")
+		delete(additionalProperties, "gatewayPlacement")
 		delete(additionalProperties, "subnetPoolIds")
 		delete(additionalProperties, "prefixLength")
 		o.AdditionalProperties = additionalProperties

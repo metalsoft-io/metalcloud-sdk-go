@@ -1802,40 +1802,43 @@ func (a *NetworkDeviceAPIService) GetPortsExecute(r NetworkDeviceAPIGetPortsRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type NetworkDeviceAPIReProvisionNetworkEquipmentRequest struct {
+type NetworkDeviceAPIReProvisionNetworkDeviceRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
-	body *map[string]interface{}
+	networkDeviceId float32
+	networkEquipmentReprovision *NetworkEquipmentReprovision
 }
 
-// The network equipment re-provision options
-func (r NetworkDeviceAPIReProvisionNetworkEquipmentRequest) Body(body map[string]interface{}) NetworkDeviceAPIReProvisionNetworkEquipmentRequest {
-	r.body = &body
+// The network device re-provision options
+func (r NetworkDeviceAPIReProvisionNetworkDeviceRequest) NetworkEquipmentReprovision(networkEquipmentReprovision NetworkEquipmentReprovision) NetworkDeviceAPIReProvisionNetworkDeviceRequest {
+	r.networkEquipmentReprovision = &networkEquipmentReprovision
 	return r
 }
 
-func (r NetworkDeviceAPIReProvisionNetworkEquipmentRequest) Execute() (*JobInfo, *http.Response, error) {
-	return r.ApiService.ReProvisionNetworkEquipmentExecute(r)
+func (r NetworkDeviceAPIReProvisionNetworkDeviceRequest) Execute() (*JobInfo, *http.Response, error) {
+	return r.ApiService.ReProvisionNetworkDeviceExecute(r)
 }
 
 /*
-ReProvisionNetworkEquipment Re-provision network equipment
+ReProvisionNetworkDevice Re-provision network device
 
-Re-provision network equipment
+Re-provision network device
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return NetworkDeviceAPIReProvisionNetworkEquipmentRequest
+ @param networkDeviceId
+ @return NetworkDeviceAPIReProvisionNetworkDeviceRequest
 */
-func (a *NetworkDeviceAPIService) ReProvisionNetworkEquipment(ctx context.Context) NetworkDeviceAPIReProvisionNetworkEquipmentRequest {
-	return NetworkDeviceAPIReProvisionNetworkEquipmentRequest{
+func (a *NetworkDeviceAPIService) ReProvisionNetworkDevice(ctx context.Context, networkDeviceId float32) NetworkDeviceAPIReProvisionNetworkDeviceRequest {
+	return NetworkDeviceAPIReProvisionNetworkDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
+		networkDeviceId: networkDeviceId,
 	}
 }
 
 // Execute executes the request
 //  @return JobInfo
-func (a *NetworkDeviceAPIService) ReProvisionNetworkEquipmentExecute(r NetworkDeviceAPIReProvisionNetworkEquipmentRequest) (*JobInfo, *http.Response, error) {
+func (a *NetworkDeviceAPIService) ReProvisionNetworkDeviceExecute(r NetworkDeviceAPIReProvisionNetworkDeviceRequest) (*JobInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1843,18 +1846,19 @@ func (a *NetworkDeviceAPIService) ReProvisionNetworkEquipmentExecute(r NetworkDe
 		localVarReturnValue  *JobInfo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.ReProvisionNetworkEquipment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.ReProvisionNetworkDevice")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/network-devices/re-provision"
+	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/re-provision"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.networkEquipmentReprovision == nil {
+		return localVarReturnValue, nil, reportError("networkEquipmentReprovision is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1875,7 +1879,7 @@ func (a *NetworkDeviceAPIService) ReProvisionNetworkEquipmentExecute(r NetworkDe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.networkEquipmentReprovision
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

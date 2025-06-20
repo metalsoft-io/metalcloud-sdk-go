@@ -62,6 +62,20 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkFabricAPIService CreateNetworkFabricLink", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.CreateNetworkFabricLink(context.Background(), networkFabricId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkFabricAPIService DeleteNetworkFabric", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -71,6 +85,34 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 		httpRes, err := apiClient.NetworkFabricAPI.DeleteNetworkFabric(context.Background(), networkFabricId).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricAPIService DeleteNetworkFabricLink", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+		var networkFabricLinkId int32
+
+		httpRes, err := apiClient.NetworkFabricAPI.DeleteNetworkFabricLink(context.Background(), networkFabricId, networkFabricLinkId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricAPIService DeployNetworkFabric", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId float32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.DeployNetworkFabric(context.Background(), networkFabricId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -96,6 +138,20 @@ func Test_sdk_NetworkFabricAPIService(t *testing.T) {
 		var networkFabricId float32
 
 		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricById(context.Background(), networkFabricId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NetworkFabricAPIService GetNetworkFabricLinks", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkFabricId int32
+
+		resp, httpRes, err := apiClient.NetworkFabricAPI.GetNetworkFabricLinks(context.Background(), networkFabricId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

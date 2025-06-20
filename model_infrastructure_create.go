@@ -21,7 +21,6 @@ var _ MappedNullable = &InfrastructureCreate{}
 
 // InfrastructureCreate struct for InfrastructureCreate
 type InfrastructureCreate struct {
-	Label string `json:"label"`
 	// The ID of the site where the Infrastructure is located.
 	SiteId float32 `json:"siteId"`
 	// Custom variables in JSON format.
@@ -29,6 +28,8 @@ type InfrastructureCreate struct {
 	// User ID of the owner of the Infrastructure.
 	UserIdOwner *float32 `json:"userIdOwner,omitempty"`
 	Meta *InfrastructureMeta `json:"meta,omitempty"`
+	// Label of the Infrastructure.
+	Label *string `json:"label,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,9 +39,8 @@ type _InfrastructureCreate InfrastructureCreate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfrastructureCreate(label string, siteId float32) *InfrastructureCreate {
+func NewInfrastructureCreate(siteId float32) *InfrastructureCreate {
 	this := InfrastructureCreate{}
-	this.Label = label
 	this.SiteId = siteId
 	return &this
 }
@@ -51,30 +51,6 @@ func NewInfrastructureCreate(label string, siteId float32) *InfrastructureCreate
 func NewInfrastructureCreateWithDefaults() *InfrastructureCreate {
 	this := InfrastructureCreate{}
 	return &this
-}
-
-// GetLabel returns the Label field value
-func (o *InfrastructureCreate) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *InfrastructureCreate) GetLabelOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *InfrastructureCreate) SetLabel(v string) {
-	o.Label = v
 }
 
 // GetSiteId returns the SiteId field value
@@ -197,6 +173,38 @@ func (o *InfrastructureCreate) SetMeta(v InfrastructureMeta) {
 	o.Meta = &v
 }
 
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *InfrastructureCreate) GetLabel() string {
+	if o == nil || IsNil(o.Label) {
+		var ret string
+		return ret
+	}
+	return *o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InfrastructureCreate) GetLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.Label) {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *InfrastructureCreate) HasLabel() bool {
+	if o != nil && !IsNil(o.Label) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *InfrastructureCreate) SetLabel(v string) {
+	o.Label = &v
+}
+
 func (o InfrastructureCreate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -207,7 +215,6 @@ func (o InfrastructureCreate) MarshalJSON() ([]byte, error) {
 
 func (o InfrastructureCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["label"] = o.Label
 	toSerialize["siteId"] = o.SiteId
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
@@ -217,6 +224,9 @@ func (o InfrastructureCreate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Meta) {
 		toSerialize["meta"] = o.Meta
+	}
+	if !IsNil(o.Label) {
+		toSerialize["label"] = o.Label
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -231,7 +241,6 @@ func (o *InfrastructureCreate) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"label",
 		"siteId",
 	}
 
@@ -262,11 +271,11 @@ func (o *InfrastructureCreate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "label")
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "userIdOwner")
 		delete(additionalProperties, "meta")
+		delete(additionalProperties, "label")
 		o.AdditionalProperties = additionalProperties
 	}
 

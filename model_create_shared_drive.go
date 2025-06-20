@@ -27,6 +27,7 @@ type CreateSharedDrive struct {
 	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	// Label of the Drive.
 	Label *string `json:"label,omitempty"`
+	Meta *SharedDriveMeta `json:"meta,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -138,6 +139,38 @@ func (o *CreateSharedDrive) SetLabel(v string) {
 	o.Label = &v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *CreateSharedDrive) GetMeta() SharedDriveMeta {
+	if o == nil || IsNil(o.Meta) {
+		var ret SharedDriveMeta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateSharedDrive) GetMetaOk() (*SharedDriveMeta, bool) {
+	if o == nil || IsNil(o.Meta) {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *CreateSharedDrive) HasMeta() bool {
+	if o != nil && !IsNil(o.Meta) {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given SharedDriveMeta and assigns it to the Meta field.
+func (o *CreateSharedDrive) SetMeta(v SharedDriveMeta) {
+	o.Meta = &v
+}
+
 func (o CreateSharedDrive) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -154,6 +187,9 @@ func (o CreateSharedDrive) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
+	}
+	if !IsNil(o.Meta) {
+		toSerialize["meta"] = o.Meta
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -201,6 +237,7 @@ func (o *CreateSharedDrive) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "sizeMb")
 		delete(additionalProperties, "logicalNetworkId")
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "meta")
 		o.AdditionalProperties = additionalProperties
 	}
 

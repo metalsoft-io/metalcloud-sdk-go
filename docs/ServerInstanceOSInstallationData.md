@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
 **CustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | RAID profile for the Instance Interface. | [optional] 
 **IsVmInstance** | **int32** | Flag to indicate if this is a VM instance | 
+**IsEndpointInstance** | **int32** | Flag to indicate if this is an Endpoint Instance | 
 **Hostname** | **string** | The subdomain of the server instance. | 
 **Fqdn** | **string** | The subdomain of the server instance. | 
 **OsCredentials** | Pointer to [**ServerInstanceOsCredentialInstallationData**](ServerInstanceOsCredentialInstallationData.md) |  | [optional] 
@@ -22,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceOSInstallationData
 
-`func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, hostname string, fqdn string, ) *ServerInstanceOSInstallationData`
+`func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, isEndpointInstance int32, hostname string, fqdn string, ) *ServerInstanceOSInstallationData`
 
 NewServerInstanceOSInstallationData instantiates a new ServerInstanceOSInstallationData object
 This constructor will assign default values to properties that have it defined,
@@ -170,6 +171,26 @@ and a boolean to check if the value has been set.
 `func (o *ServerInstanceOSInstallationData) SetIsVmInstance(v int32)`
 
 SetIsVmInstance sets IsVmInstance field to given value.
+
+
+### GetIsEndpointInstance
+
+`func (o *ServerInstanceOSInstallationData) GetIsEndpointInstance() int32`
+
+GetIsEndpointInstance returns the IsEndpointInstance field if non-nil, zero value otherwise.
+
+### GetIsEndpointInstanceOk
+
+`func (o *ServerInstanceOSInstallationData) GetIsEndpointInstanceOk() (*int32, bool)`
+
+GetIsEndpointInstanceOk returns a tuple with the IsEndpointInstance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsEndpointInstance
+
+`func (o *ServerInstanceOSInstallationData) SetIsEndpointInstance(v int32)`
+
+SetIsEndpointInstance sets IsEndpointInstance field to given value.
 
 
 ### GetHostname

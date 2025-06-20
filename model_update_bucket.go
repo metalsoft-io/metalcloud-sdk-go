@@ -26,7 +26,6 @@ type UpdateBucket struct {
 	Label *string `json:"label,omitempty"`
 	// Id of the Logical Network for the Bucket.
 	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
-	GuiSettings *GenericGUISettings `json:"guiSettings,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -145,38 +144,6 @@ func (o *UpdateBucket) SetLogicalNetworkId(v float32) {
 	o.LogicalNetworkId = &v
 }
 
-// GetGuiSettings returns the GuiSettings field value if set, zero value otherwise.
-func (o *UpdateBucket) GetGuiSettings() GenericGUISettings {
-	if o == nil || IsNil(o.GuiSettings) {
-		var ret GenericGUISettings
-		return ret
-	}
-	return *o.GuiSettings
-}
-
-// GetGuiSettingsOk returns a tuple with the GuiSettings field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateBucket) GetGuiSettingsOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.GuiSettings) {
-		return nil, false
-	}
-	return o.GuiSettings, true
-}
-
-// HasGuiSettings returns a boolean if a field has been set.
-func (o *UpdateBucket) HasGuiSettings() bool {
-	if o != nil && !IsNil(o.GuiSettings) {
-		return true
-	}
-
-	return false
-}
-
-// SetGuiSettings gets a reference to the given GenericGUISettings and assigns it to the GuiSettings field.
-func (o *UpdateBucket) SetGuiSettings(v GenericGUISettings) {
-	o.GuiSettings = &v
-}
-
 func (o UpdateBucket) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -195,9 +162,6 @@ func (o UpdateBucket) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.LogicalNetworkId) {
 		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
-	}
-	if !IsNil(o.GuiSettings) {
-		toSerialize["guiSettings"] = o.GuiSettings
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -224,7 +188,6 @@ func (o *UpdateBucket) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "sizeGB")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "logicalNetworkId")
-		delete(additionalProperties, "guiSettings")
 		o.AdditionalProperties = additionalProperties
 	}
 

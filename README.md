@@ -98,6 +98,11 @@ Class | Method | HTTP request | Description
 *AuthenticationAPI* | [**LoginSaml**](docs/AuthenticationAPI.md#loginsaml) | **Post** /api/v2/login-saml | User SAML login callback URL
 *AuthenticationAPI* | [**Logout**](docs/AuthenticationAPI.md#logout) | **Post** /api/v2/logout | Logout user
 *AuthenticationAPI* | [**SignUp**](docs/AuthenticationAPI.md#signup) | **Post** /api/v2/sign-up | Sign up
+*BGPTemplateAPI* | [**CreateBgpTemplate**](docs/BGPTemplateAPI.md#createbgptemplate) | **Post** /api/v2/bgp-templates | Creates a BGP Template
+*BGPTemplateAPI* | [**DeleteBgpTemplate**](docs/BGPTemplateAPI.md#deletebgptemplate) | **Delete** /api/v2/bgp-templates/{bgpTemplateId} | Deletes a BGP Template
+*BGPTemplateAPI* | [**GetBgpTemplate**](docs/BGPTemplateAPI.md#getbgptemplate) | **Get** /api/v2/bgp-templates/{bgpTemplateId} | Get BGP Template information
+*BGPTemplateAPI* | [**GetBgpTemplates**](docs/BGPTemplateAPI.md#getbgptemplates) | **Get** /api/v2/bgp-templates | Get all BGP Templates
+*BGPTemplateAPI* | [**UpdateBgpTemplate**](docs/BGPTemplateAPI.md#updatebgptemplate) | **Patch** /api/v2/bgp-templates/{bgpTemplateId} | Updates BGP Template information
 *BucketAPI* | [**CreateInfrastructureBucket**](docs/BucketAPI.md#createinfrastructurebucket) | **Post** /api/v2/infrastructures/{infrastructureId}/buckets | Creates a Bucket
 *BucketAPI* | [**DeleteBucket**](docs/BucketAPI.md#deletebucket) | **Delete** /api/v2/infrastructures/{infrastructureId}/buckets/{bucketId} | Deletes a Bucket
 *BucketAPI* | [**GetBucket**](docs/BucketAPI.md#getbucket) | **Get** /api/v2/buckets/{bucketId} | Get Bucket information
@@ -141,6 +146,44 @@ Class | Method | HTTP request | Description
 *EmailTemplateAPI* | [**EmailTemplatesControllerPatchEmailTemplate**](docs/EmailTemplateAPI.md#emailtemplatescontrollerpatchemailtemplate) | **Patch** /api/v2/email-templates/{emailTemplateName} | Update a EmailTemplate
 *EmailTemplateAPI* | [**GetEmailTemplateByName**](docs/EmailTemplateAPI.md#getemailtemplatebyname) | **Get** /api/v2/email-templates/{emailTemplateName} | Get Email Template by Name
 *EmailTemplateAPI* | [**GetEmailTemplates**](docs/EmailTemplateAPI.md#getemailtemplates) | **Get** /api/v2/email-templates | Get all Email Templates
+*EndpointAPI* | [**CreateEndpoint**](docs/EndpointAPI.md#createendpoint) | **Post** /api/v2/endpoints | Create a new endpoint
+*EndpointAPI* | [**CreateEndpointInterface**](docs/EndpointAPI.md#createendpointinterface) | **Post** /api/v2/endpoints/{endpointId}/interfaces | Create a new endpoint interface
+*EndpointAPI* | [**DeleteEndpoint**](docs/EndpointAPI.md#deleteendpoint) | **Delete** /api/v2/endpoints/{endpointId} | Delete endpoint
+*EndpointAPI* | [**DeleteEndpointInterface**](docs/EndpointAPI.md#deleteendpointinterface) | **Delete** /api/v2/endpoints/{endpointId}/interfaces/{endpointInterfaceId} | Delete endpoint interface
+*EndpointAPI* | [**GetEndpointById**](docs/EndpointAPI.md#getendpointbyid) | **Get** /api/v2/endpoints/{endpointId} | Get endpoint details
+*EndpointAPI* | [**GetEndpointInterfaceById**](docs/EndpointAPI.md#getendpointinterfacebyid) | **Get** /api/v2/endpoints/{endpointId}/interfaces/{endpointInterfaceId} | Get endpoint interface details
+*EndpointAPI* | [**GetEndpointInterfaces**](docs/EndpointAPI.md#getendpointinterfaces) | **Get** /api/v2/endpoints/{endpointId}/interfaces | List endpoint interfaces
+*EndpointAPI* | [**GetEndpoints**](docs/EndpointAPI.md#getendpoints) | **Get** /api/v2/endpoints | List endpoints
+*EndpointAPI* | [**UpdateEndpoint**](docs/EndpointAPI.md#updateendpoint) | **Patch** /api/v2/endpoints/{endpointId} | Update endpoint
+*EndpointAPI* | [**UpdateEndpointInterface**](docs/EndpointAPI.md#updateendpointinterface) | **Patch** /api/v2/endpoints/{endpointId}/interfaces/{endpointInterfaceId} | Update endpoint interface
+*EndpointInstanceAPI* | [**CreateEndpointInstance**](docs/EndpointInstanceAPI.md#createendpointinstance) | **Post** /api/v2/infrastructures/{infrastructureId}/endpoint-instances | Add Endpoint Instance to an infrastructure
+*EndpointInstanceAPI* | [**DeleteEndpointInstance**](docs/EndpointInstanceAPI.md#deleteendpointinstance) | **Delete** /api/v2/endpoint-instances/{endpointInstanceId} | Delete Endpoint Instance
+*EndpointInstanceAPI* | [**GetEndpointInstance**](docs/EndpointInstanceAPI.md#getendpointinstance) | **Get** /api/v2/endpoint-instances/{endpointInstanceId} | Get Endpoint Instance details
+*EndpointInstanceAPI* | [**GetEndpointInstanceConfig**](docs/EndpointInstanceAPI.md#getendpointinstanceconfig) | **Get** /api/v2/endpoint-instances/{endpointInstanceId}/config | Get Endpoint Instance config details
+*EndpointInstanceAPI* | [**GetEndpointInstances**](docs/EndpointInstanceAPI.md#getendpointinstances) | **Get** /api/v2/endpoint-instances | List Endpoint Instances
+*EndpointInstanceAPI* | [**GetInfrastructureEndpointInstances**](docs/EndpointInstanceAPI.md#getinfrastructureendpointinstances) | **Get** /api/v2/infrastructures/{infrastructureId}/endpoint-instances | List Endpoint Instances for an infrastructure
+*EndpointInstanceAPI* | [**UpdateEndpointInstanceConfig**](docs/EndpointInstanceAPI.md#updateendpointinstanceconfig) | **Patch** /api/v2/endpoint-instances/{endpointInstanceId}/config | Update Endpoint Instance configuration
+*EndpointInstanceAPI* | [**UpdateEndpointInstanceMeta**](docs/EndpointInstanceAPI.md#updateendpointinstancemeta) | **Patch** /api/v2/endpoint-instances/{endpointInstanceId}/meta | Update an Endpoint Instance meta information
+*EndpointInstanceGroupAPI* | [**CreateEndpointInstanceGroup**](docs/EndpointInstanceGroupAPI.md#createendpointinstancegroup) | **Post** /api/v2/infrastructures/{infrastructureId}/endpoint-instance-groups | Add a Endpoint Instance Group to an infrastructure. By default it will not have any instance.
+*EndpointInstanceGroupAPI* | [**CreateEndpointInstanceGroupLogicalNetworkACL**](docs/EndpointInstanceGroupAPI.md#createendpointinstancegrouplogicalnetworkacl) | **Post** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config/networking/connections/{connectionId}/security/rules | Create a security rule for a logical network
+*EndpointInstanceGroupAPI* | [**CreateEndpointInstanceGroupNetworkConfigurationConnection**](docs/EndpointInstanceGroupAPI.md#createendpointinstancegroupnetworkconfigurationconnection) | **Post** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config/networking/connections | Create a network connection for a endpoint instance group
+*EndpointInstanceGroupAPI* | [**DeleteEndpointInstanceGroup**](docs/EndpointInstanceGroupAPI.md#deleteendpointinstancegroup) | **Delete** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId} | Delete Endpoint Instance Group. Will not take effect if there are instances in this group.
+*EndpointInstanceGroupAPI* | [**DeleteEndpointInstanceGroupLogicalNetworkACL**](docs/EndpointInstanceGroupAPI.md#deleteendpointinstancegrouplogicalnetworkacl) | **Delete** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config/networking/connections/{connectionId}/security/rules/{ruleId} | Delete a security rule for a logical network
+*EndpointInstanceGroupAPI* | [**DeleteEndpointInstanceGroupNetworkConfigurationConnection**](docs/EndpointInstanceGroupAPI.md#deleteendpointinstancegroupnetworkconfigurationconnection) | **Delete** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config/networking/connections/{connectionId} | Delete a network connection for a endpoint instance group
+*EndpointInstanceGroupAPI* | [**GetEndpointInstanceGroup**](docs/EndpointInstanceGroupAPI.md#getendpointinstancegroup) | **Get** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId} | Get Endpoint Instance Groups details
+*EndpointInstanceGroupAPI* | [**GetEndpointInstanceGroupConfig**](docs/EndpointInstanceGroupAPI.md#getendpointinstancegroupconfig) | **Get** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config | Get Endpoint Instance Group config details
+*EndpointInstanceGroupAPI* | [**GetEndpointInstanceGroupEndpointInstances**](docs/EndpointInstanceGroupAPI.md#getendpointinstancegroupendpointinstances) | **Get** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/endpoint-instances | List Endpoint Instances for a Endpoint Instance Group
+*EndpointInstanceGroupAPI* | [**GetEndpointInstanceGroupLogicalNetworkACL**](docs/EndpointInstanceGroupAPI.md#getendpointinstancegrouplogicalnetworkacl) | **Get** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config/networking/connections/{connectionId}/security/rules | Get the security rules for a logical network
+*EndpointInstanceGroupAPI* | [**GetEndpointInstanceGroupLogicalNetworkACLById**](docs/EndpointInstanceGroupAPI.md#getendpointinstancegrouplogicalnetworkaclbyid) | **Get** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config/networking/connections/{connectionId}/security/rules/{ruleId} | Get a security rule for a logical network by id
+*EndpointInstanceGroupAPI* | [**GetEndpointInstanceGroupNetworkConfiguration**](docs/EndpointInstanceGroupAPI.md#getendpointinstancegroupnetworkconfiguration) | **Get** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config/networking | Get endpoint instance group network configuration
+*EndpointInstanceGroupAPI* | [**GetEndpointInstanceGroupNetworkConfigurationConnectionById**](docs/EndpointInstanceGroupAPI.md#getendpointinstancegroupnetworkconfigurationconnectionbyid) | **Get** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config/networking/connections/{connectionId} | Get endpoint instance group network configuration connection by id
+*EndpointInstanceGroupAPI* | [**GetEndpointInstanceGroupNetworkConfigurationConnections**](docs/EndpointInstanceGroupAPI.md#getendpointinstancegroupnetworkconfigurationconnections) | **Get** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config/networking/connections | Get endpoint instance group&#39;s network connections
+*EndpointInstanceGroupAPI* | [**GetInfrastructureEndpointInstanceGroups**](docs/EndpointInstanceGroupAPI.md#getinfrastructureendpointinstancegroups) | **Get** /api/v2/infrastructures/{infrastructureId}/endpoint-instance-groups | List Endpoint Instance Groups for an infrastructure
+*EndpointInstanceGroupAPI* | [**UpdateEndpointInstanceGroupConfig**](docs/EndpointInstanceGroupAPI.md#updateendpointinstancegroupconfig) | **Patch** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config | Updates Endpoint Instance Group configuration
+*EndpointInstanceGroupAPI* | [**UpdateEndpointInstanceGroupLogicalNetworkACL**](docs/EndpointInstanceGroupAPI.md#updateendpointinstancegrouplogicalnetworkacl) | **Patch** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config/networking/connections/{connectionId}/security/rules/{ruleId} | Update a security rule for a logical network
+*EndpointInstanceGroupAPI* | [**UpdateEndpointInstanceGroupMeta**](docs/EndpointInstanceGroupAPI.md#updateendpointinstancegroupmeta) | **Patch** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/meta | Update an Endpoint Instance Group meta information
+*EndpointInstanceGroupAPI* | [**UpdateEndpointInstanceGroupNetworkConfiguration**](docs/EndpointInstanceGroupAPI.md#updateendpointinstancegroupnetworkconfiguration) | **Put** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config/networking | Create or return the network configuration of the specified endpoint instance group
+*EndpointInstanceGroupAPI* | [**UpdateEndpointInstanceGroupNetworkConfigurationConnection**](docs/EndpointInstanceGroupAPI.md#updateendpointinstancegroupnetworkconfigurationconnection) | **Patch** /api/v2/endpoint-instance-groups/{endpointInstanceGroupId}/config/networking/connections/{connectionId} | Update a network connection for a endpoint instance group
 *EventAPI* | [**GetEvent**](docs/EventAPI.md#getevent) | **Get** /api/v2/events/{eventId} | Get Event information
 *EventAPI* | [**GetEvents**](docs/EventAPI.md#getevents) | **Get** /api/v2/events | Get all Events
 *ExtensionAPI* | [**ArchiveExtension**](docs/ExtensionAPI.md#archiveextension) | **Post** /api/v2/extensions/{extensionId}/actions/archive | Archive published extension
@@ -287,7 +330,7 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**GetNetworkDeviceStatistics**](docs/NetworkDeviceAPI.md#getnetworkdevicestatistics) | **Get** /api/v2/network-devices/statistics | Get Network Device Statistics
 *NetworkDeviceAPI* | [**GetNetworkDevices**](docs/NetworkDeviceAPI.md#getnetworkdevices) | **Get** /api/v2/network-devices | Get paginated Network Devices
 *NetworkDeviceAPI* | [**GetPorts**](docs/NetworkDeviceAPI.md#getports) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
-*NetworkDeviceAPI* | [**ReProvisionNetworkEquipment**](docs/NetworkDeviceAPI.md#reprovisionnetworkequipment) | **Post** /api/v2/network-devices/re-provision | Re-provision network equipment
+*NetworkDeviceAPI* | [**ReProvisionNetworkDevice**](docs/NetworkDeviceAPI.md#reprovisionnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/re-provision | Re-provision network device
 *NetworkDeviceAPI* | [**RemoveNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#removenetworkdevicedefaults) | **Delete** /api/v2/network-devices/defaults/{id} | Remove network device defaults
 *NetworkDeviceAPI* | [**ReplaceNetworkDevice**](docs/NetworkDeviceAPI.md#replacenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/replace | Replace network device
 *NetworkDeviceAPI* | [**ResetNetworkDevice**](docs/NetworkDeviceAPI.md#resetnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
@@ -313,9 +356,13 @@ Class | Method | HTTP request | Description
 *NetworkFabricAPI* | [**ActivateNetworkFabric**](docs/NetworkFabricAPI.md#activatenetworkfabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/actions/activate | Activate a network fabric
 *NetworkFabricAPI* | [**AddNetworkDevicesToFabric**](docs/NetworkFabricAPI.md#addnetworkdevicestofabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/network-devices | Add a list of network devices to a fabric
 *NetworkFabricAPI* | [**CreateNetworkFabric**](docs/NetworkFabricAPI.md#createnetworkfabric) | **Post** /api/v2/network-fabrics | Create a new network fabric
+*NetworkFabricAPI* | [**CreateNetworkFabricLink**](docs/NetworkFabricAPI.md#createnetworkfabriclink) | **Post** /api/v2/network-fabrics/{networkFabricId}/links | Create a new network fabric link
 *NetworkFabricAPI* | [**DeleteNetworkFabric**](docs/NetworkFabricAPI.md#deletenetworkfabric) | **Delete** /api/v2/network-fabrics/{networkFabricId} | Delete a network fabric
+*NetworkFabricAPI* | [**DeleteNetworkFabricLink**](docs/NetworkFabricAPI.md#deletenetworkfabriclink) | **Delete** /api/v2/network-fabrics/{networkFabricId}/links/{networkFabricLinkId} | Remove a network fabric link
+*NetworkFabricAPI* | [**DeployNetworkFabric**](docs/NetworkFabricAPI.md#deploynetworkfabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/actions/deploy | Deploys the specified network fabric
 *NetworkFabricAPI* | [**GetFabricNetworkDevices**](docs/NetworkFabricAPI.md#getfabricnetworkdevices) | **Get** /api/v2/network-fabrics/{networkFabricId}/network-devices | Get paginated Network Devices
 *NetworkFabricAPI* | [**GetNetworkFabricById**](docs/NetworkFabricAPI.md#getnetworkfabricbyid) | **Get** /api/v2/network-fabrics/{networkFabricId} | Get a network fabric by ID
+*NetworkFabricAPI* | [**GetNetworkFabricLinks**](docs/NetworkFabricAPI.md#getnetworkfabriclinks) | **Get** /api/v2/network-fabrics/{networkFabricId}/links | Get paginated Network Fabric Links
 *NetworkFabricAPI* | [**GetNetworkFabrics**](docs/NetworkFabricAPI.md#getnetworkfabrics) | **Get** /api/v2/network-fabrics | List all network fabrics
 *NetworkFabricAPI* | [**RemoveNetworkDeviceFromFabric**](docs/NetworkFabricAPI.md#removenetworkdevicefromfabric) | **Delete** /api/v2/network-fabrics/{networkFabricId}/network-devices/{networkDeviceId} | Remove a network device from a fabric
 *NetworkFabricAPI* | [**UpdateNetworkFabric**](docs/NetworkFabricAPI.md#updatenetworkfabric) | **Patch** /api/v2/network-fabrics/{networkFabricId} | Update a network fabric
@@ -354,6 +401,7 @@ Class | Method | HTTP request | Description
 *SecurityAPI* | [**UpdateProvider**](docs/SecurityAPI.md#updateprovider) | **Patch** /api/v2/authentication/providers/{name} | Updates authentication provider
 *SecurityAPI* | [**UpdateRole**](docs/SecurityAPI.md#updaterole) | **Put** /api/v2/roles/{roleName} | Update a role by name
 *ServerAPI* | [**ArchiveServer**](docs/ServerAPI.md#archiveserver) | **Post** /api/v2/servers/{serverId}/actions/archive | Archives a Server
+*ServerAPI* | [**ConnectServerInterface**](docs/ServerAPI.md#connectserverinterface) | **Post** /api/v2/servers/{serverId}/actions/connect-interface | Connects a server interface to a switch
 *ServerAPI* | [**DeleteServer**](docs/ServerAPI.md#deleteserver) | **Delete** /api/v2/servers/{serverId} | Deletes a Server
 *ServerAPI* | [**EnableServerSyslog**](docs/ServerAPI.md#enableserversyslog) | **Post** /api/v2/servers/{serverId}/actions/syslog-subscribe | Enables remote syslog for a server
 *ServerAPI* | [**GetServerCapabilities**](docs/ServerAPI.md#getservercapabilities) | **Get** /api/v2/servers/{serverId}/capabilities | Get Server capabilities
@@ -608,6 +656,7 @@ Class | Method | HTTP request | Description
  - [AgentIpInfo](docs/AgentIpInfo.md)
  - [AllocationStrategyKind](docs/AllocationStrategyKind.md)
  - [ApplyProfilesToLogicalNetworkConfig](docs/ApplyProfilesToLogicalNetworkConfig.md)
+ - [AsnAllocationStrategy](docs/AsnAllocationStrategy.md)
  - [AssetExtensionActions](docs/AssetExtensionActions.md)
  - [AuthenticationProvider](docs/AuthenticationProvider.md)
  - [AuthenticationProviderUpdate](docs/AuthenticationProviderUpdate.md)
@@ -624,6 +673,9 @@ Class | Method | HTTP request | Description
  - [BaselineLevelType](docs/BaselineLevelType.md)
  - [BatchServerFirmwareUpgrade](docs/BatchServerFirmwareUpgrade.md)
  - [BatchServerFirmwareUpgradeResponse](docs/BatchServerFirmwareUpgradeResponse.md)
+ - [BgpNumberingType](docs/BgpNumberingType.md)
+ - [BgpTemplate](docs/BgpTemplate.md)
+ - [BgpTemplatePaginatedList](docs/BgpTemplatePaginatedList.md)
  - [Bucket](docs/Bucket.md)
  - [BucketConfiguration](docs/BucketConfiguration.md)
  - [BucketCredentials](docs/BucketCredentials.md)
@@ -639,9 +691,13 @@ Class | Method | HTTP request | Description
  - [CreateAutoIpv6SubnetAllocationStrategy](docs/CreateAutoIpv6SubnetAllocationStrategy.md)
  - [CreateAutoVlanAllocationStrategy](docs/CreateAutoVlanAllocationStrategy.md)
  - [CreateAutoVniAllocationStrategy](docs/CreateAutoVniAllocationStrategy.md)
+ - [CreateBgpTemplate](docs/CreateBgpTemplate.md)
  - [CreateBucket](docs/CreateBucket.md)
  - [CreateCustomIso](docs/CreateCustomIso.md)
  - [CreateDnsZoneDto](docs/CreateDnsZoneDto.md)
+ - [CreateEndpoint](docs/CreateEndpoint.md)
+ - [CreateEndpointInstanceGroupNetworkConnection](docs/CreateEndpointInstanceGroupNetworkConnection.md)
+ - [CreateEndpointInterface](docs/CreateEndpointInterface.md)
  - [CreateExtension](docs/CreateExtension.md)
  - [CreateExtensionInstance](docs/CreateExtensionInstance.md)
  - [CreateFileShare](docs/CreateFileShare.md)
@@ -676,6 +732,7 @@ Class | Method | HTTP request | Description
  - [CreateNetworkEndpointGroup](docs/CreateNetworkEndpointGroup.md)
  - [CreateNetworkEndpointGroupLogicalNetwork](docs/CreateNetworkEndpointGroupLogicalNetwork.md)
  - [CreateNetworkFabric](docs/CreateNetworkFabric.md)
+ - [CreateNetworkFabricLinkDto](docs/CreateNetworkFabricLinkDto.md)
  - [CreateResourcePool](docs/CreateResourcePool.md)
  - [CreateResourceScope](docs/CreateResourceScope.md)
  - [CreateRole](docs/CreateRole.md)
@@ -734,6 +791,22 @@ Class | Method | HTTP request | Description
  - [EmailTemplateCreate](docs/EmailTemplateCreate.md)
  - [EmailTemplateList](docs/EmailTemplateList.md)
  - [EmailTemplateUpdate](docs/EmailTemplateUpdate.md)
+ - [Endpoint](docs/Endpoint.md)
+ - [EndpointInstance](docs/EndpointInstance.md)
+ - [EndpointInstanceConfiguration](docs/EndpointInstanceConfiguration.md)
+ - [EndpointInstanceCreate](docs/EndpointInstanceCreate.md)
+ - [EndpointInstanceGroup](docs/EndpointInstanceGroup.md)
+ - [EndpointInstanceGroupConfiguration](docs/EndpointInstanceGroupConfiguration.md)
+ - [EndpointInstanceGroupCreate](docs/EndpointInstanceGroupCreate.md)
+ - [EndpointInstanceGroupNetworkConnection](docs/EndpointInstanceGroupNetworkConnection.md)
+ - [EndpointInstanceGroupNetworkConnectionsList](docs/EndpointInstanceGroupNetworkConnectionsList.md)
+ - [EndpointInstanceGroupPaginatedList](docs/EndpointInstanceGroupPaginatedList.md)
+ - [EndpointInstanceGroupUpdate](docs/EndpointInstanceGroupUpdate.md)
+ - [EndpointInstancePaginatedList](docs/EndpointInstancePaginatedList.md)
+ - [EndpointInstanceUpdate](docs/EndpointInstanceUpdate.md)
+ - [EndpointInterface](docs/EndpointInterface.md)
+ - [EndpointInterfacePaginatedList](docs/EndpointInterfacePaginatedList.md)
+ - [EndpointPaginatedList](docs/EndpointPaginatedList.md)
  - [EthernetFabric](docs/EthernetFabric.md)
  - [Event](docs/Event.md)
  - [EventPaginatedList](docs/EventPaginatedList.md)
@@ -893,8 +966,11 @@ Class | Method | HTTP request | Description
  - [NetworkEndpointGroupPaginatedList](docs/NetworkEndpointGroupPaginatedList.md)
  - [NetworkEndpointGroupRedundancyImplementationType](docs/NetworkEndpointGroupRedundancyImplementationType.md)
  - [NetworkEndpointGroupRedundancyMode](docs/NetworkEndpointGroupRedundancyMode.md)
+ - [NetworkEquipmentReprovision](docs/NetworkEquipmentReprovision.md)
  - [NetworkFabric](docs/NetworkFabric.md)
  - [NetworkFabricFabricConfiguration](docs/NetworkFabricFabricConfiguration.md)
+ - [NetworkFabricLinkDto](docs/NetworkFabricLinkDto.md)
+ - [NetworkFabricLinkPaginatedList](docs/NetworkFabricLinkPaginatedList.md)
  - [NetworkFabricPaginatedList](docs/NetworkFabricPaginatedList.md)
  - [OSTemplate](docs/OSTemplate.md)
  - [OSTemplateCreate](docs/OSTemplateCreate.md)
@@ -958,6 +1034,7 @@ Class | Method | HTTP request | Description
  - [ServerCleanupPolicyPaginatedList](docs/ServerCleanupPolicyPaginatedList.md)
  - [ServerComponent](docs/ServerComponent.md)
  - [ServerComponentPaginatedList](docs/ServerComponentPaginatedList.md)
+ - [ServerConnectInterface](docs/ServerConnectInterface.md)
  - [ServerCredentials](docs/ServerCredentials.md)
  - [ServerDefaultCredentials](docs/ServerDefaultCredentials.md)
  - [ServerDefaultCredentialsCredentials](docs/ServerDefaultCredentialsCredentials.md)
@@ -1005,6 +1082,7 @@ Class | Method | HTTP request | Description
  - [ServerInstanceUpdate](docs/ServerInstanceUpdate.md)
  - [ServerInstanceVariables](docs/ServerInstanceVariables.md)
  - [ServerInterface](docs/ServerInterface.md)
+ - [ServerInterfaceConnection](docs/ServerInterfaceConnection.md)
  - [ServerMetricsInfo](docs/ServerMetricsInfo.md)
  - [ServerOSInstallationData](docs/ServerOSInstallationData.md)
  - [ServerPaginatedList](docs/ServerPaginatedList.md)
@@ -1060,6 +1138,7 @@ Class | Method | HTTP request | Description
  - [StorageStatistics](docs/StorageStatistics.md)
  - [StoragesStatistics](docs/StoragesStatistics.md)
  - [Subnet](docs/Subnet.md)
+ - [SubnetGatewayPlacement](docs/SubnetGatewayPlacement.md)
  - [SubnetPaginatedList](docs/SubnetPaginatedList.md)
  - [SwitchPosition](docs/SwitchPosition.md)
  - [SwitchReplace](docs/SwitchReplace.md)
@@ -1070,10 +1149,13 @@ Class | Method | HTTP request | Description
  - [TwoFactorAuthenticationSecret](docs/TwoFactorAuthenticationSecret.md)
  - [TwoFactorAuthenticationToken](docs/TwoFactorAuthenticationToken.md)
  - [UpdateAccount](docs/UpdateAccount.md)
+ - [UpdateBgpTemplate](docs/UpdateBgpTemplate.md)
  - [UpdateBucket](docs/UpdateBucket.md)
  - [UpdateBucketMeta](docs/UpdateBucketMeta.md)
  - [UpdateCustomIso](docs/UpdateCustomIso.md)
  - [UpdateDnsZoneDto](docs/UpdateDnsZoneDto.md)
+ - [UpdateEndpoint](docs/UpdateEndpoint.md)
+ - [UpdateEndpointInterface](docs/UpdateEndpointInterface.md)
  - [UpdateExtension](docs/UpdateExtension.md)
  - [UpdateExtensionInstance](docs/UpdateExtensionInstance.md)
  - [UpdateFileShare](docs/UpdateFileShare.md)
@@ -1142,7 +1224,6 @@ Class | Method | HTTP request | Description
  - [VMInstanceGroupConfiguration](docs/VMInstanceGroupConfiguration.md)
  - [VMInstanceGroupInterface](docs/VMInstanceGroupInterface.md)
  - [VMInstanceGroupInterfaceConfiguration](docs/VMInstanceGroupInterfaceConfiguration.md)
- - [VMInstanceGroupInterfaceMeta](docs/VMInstanceGroupInterfaceMeta.md)
  - [VMInstanceGroupMeta](docs/VMInstanceGroupMeta.md)
  - [VMInstanceGroupNetworkConnection](docs/VMInstanceGroupNetworkConnection.md)
  - [VMInstanceGroupNetworkConnectionsList](docs/VMInstanceGroupNetworkConnectionsList.md)

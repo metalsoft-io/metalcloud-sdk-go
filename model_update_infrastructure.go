@@ -20,9 +20,10 @@ var _ MappedNullable = &UpdateInfrastructure{}
 
 // UpdateInfrastructure struct for UpdateInfrastructure
 type UpdateInfrastructure struct {
-	Label *string `json:"label,omitempty"`
 	// Custom variables in JSON format.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
+	// Label of the Infrastructure.
+	Label *string `json:"label,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,38 +44,6 @@ func NewUpdateInfrastructure() *UpdateInfrastructure {
 func NewUpdateInfrastructureWithDefaults() *UpdateInfrastructure {
 	this := UpdateInfrastructure{}
 	return &this
-}
-
-// GetLabel returns the Label field value if set, zero value otherwise.
-func (o *UpdateInfrastructure) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
-		var ret string
-		return ret
-	}
-	return *o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateInfrastructure) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
-		return nil, false
-	}
-	return o.Label, true
-}
-
-// HasLabel returns a boolean if a field has been set.
-func (o *UpdateInfrastructure) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *UpdateInfrastructure) SetLabel(v string) {
-	o.Label = &v
 }
 
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
@@ -109,6 +78,38 @@ func (o *UpdateInfrastructure) SetCustomVariables(v map[string]interface{}) {
 	o.CustomVariables = v
 }
 
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *UpdateInfrastructure) GetLabel() string {
+	if o == nil || IsNil(o.Label) {
+		var ret string
+		return ret
+	}
+	return *o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateInfrastructure) GetLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.Label) {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *UpdateInfrastructure) HasLabel() bool {
+	if o != nil && !IsNil(o.Label) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *UpdateInfrastructure) SetLabel(v string) {
+	o.Label = &v
+}
+
 func (o UpdateInfrastructure) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -119,11 +120,11 @@ func (o UpdateInfrastructure) MarshalJSON() ([]byte, error) {
 
 func (o UpdateInfrastructure) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
+	}
+	if !IsNil(o.Label) {
+		toSerialize["label"] = o.Label
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -147,8 +148,8 @@ func (o *UpdateInfrastructure) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "label")
 		delete(additionalProperties, "customVariables")
+		delete(additionalProperties, "label")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -41,6 +41,8 @@ type NetworkFabric struct {
 	Id string `json:"id"`
 	// The status of the network fabric, by default it is in draft mode.
 	Status *FabricStatus `json:"status,omitempty"`
+	// The deploy ID of the network fabric, if it is being deployed.
+	DeployId *int32 `json:"deployId,omitempty"`
 	// The network equipments in the fabric
 	NetworkEquipment []NetworkDevice `json:"networkEquipment,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -343,6 +345,38 @@ func (o *NetworkFabric) SetStatus(v FabricStatus) {
 	o.Status = &v
 }
 
+// GetDeployId returns the DeployId field value if set, zero value otherwise.
+func (o *NetworkFabric) GetDeployId() int32 {
+	if o == nil || IsNil(o.DeployId) {
+		var ret int32
+		return ret
+	}
+	return *o.DeployId
+}
+
+// GetDeployIdOk returns a tuple with the DeployId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkFabric) GetDeployIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.DeployId) {
+		return nil, false
+	}
+	return o.DeployId, true
+}
+
+// HasDeployId returns a boolean if a field has been set.
+func (o *NetworkFabric) HasDeployId() bool {
+	if o != nil && !IsNil(o.DeployId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeployId gets a reference to the given int32 and assigns it to the DeployId field.
+func (o *NetworkFabric) SetDeployId(v int32) {
+	o.DeployId = &v
+}
+
 // GetNetworkEquipment returns the NetworkEquipment field value if set, zero value otherwise.
 func (o *NetworkFabric) GetNetworkEquipment() []NetworkDevice {
 	if o == nil || IsNil(o.NetworkEquipment) {
@@ -402,6 +436,9 @@ func (o NetworkFabric) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.DeployId) {
+		toSerialize["deployId"] = o.DeployId
 	}
 	if !IsNil(o.NetworkEquipment) {
 		toSerialize["networkEquipment"] = o.NetworkEquipment
@@ -464,6 +501,7 @@ func (o *NetworkFabric) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "links")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "deployId")
 		delete(additionalProperties, "networkEquipment")
 		o.AdditionalProperties = additionalProperties
 	}

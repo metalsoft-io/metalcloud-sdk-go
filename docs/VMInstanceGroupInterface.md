@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **DnsSubdomainId** | Pointer to **float32** | Id of the DNS subdomain for the VM Instance Group Interface. | [optional] 
 **DnsSubdomainPermanentId** | Pointer to **float32** | Id of the permanent DNS subdomain for the VM Instance Group Interface. | [optional] 
 **Config** | [**VMInstanceGroupInterfaceConfiguration**](VMInstanceGroupInterfaceConfiguration.md) | The current changes to be deployed for the VM Instance Group Interface. | 
-**Meta** | [**VMInstanceGroupInterfaceMeta**](VMInstanceGroupInterfaceMeta.md) | Meta information of the VM Instance Group Interface. | 
+**Meta** | **map[string]interface{}** | Meta information of the VM Instance Group Interface. | 
 **CreatedTimestamp** | **string** | Timestamp of the VM Instance Group Interface creation. | 
 **Links** | **map[string]interface{}** | Links to other resources | 
 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewVMInstanceGroupInterface
 
-`func NewVMInstanceGroupInterface(label string, index float32, updatedTimestamp string, id float32, revision float32, serviceStatus string, groupId float32, infrastructureId float32, config VMInstanceGroupInterfaceConfiguration, meta VMInstanceGroupInterfaceMeta, createdTimestamp string, links map[string]interface{}, ) *VMInstanceGroupInterface`
+`func NewVMInstanceGroupInterface(label string, index float32, updatedTimestamp string, id float32, revision float32, serviceStatus string, groupId float32, infrastructureId float32, config VMInstanceGroupInterfaceConfiguration, meta map[string]interface{}, createdTimestamp string, links map[string]interface{}, ) *VMInstanceGroupInterface`
 
 NewVMInstanceGroupInterface instantiates a new VMInstanceGroupInterface object
 This constructor will assign default values to properties that have it defined,
@@ -348,20 +348,20 @@ SetConfig sets Config field to given value.
 
 ### GetMeta
 
-`func (o *VMInstanceGroupInterface) GetMeta() VMInstanceGroupInterfaceMeta`
+`func (o *VMInstanceGroupInterface) GetMeta() map[string]interface{}`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *VMInstanceGroupInterface) GetMetaOk() (*VMInstanceGroupInterfaceMeta, bool)`
+`func (o *VMInstanceGroupInterface) GetMetaOk() (*map[string]interface{}, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *VMInstanceGroupInterface) SetMeta(v VMInstanceGroupInterfaceMeta)`
+`func (o *VMInstanceGroupInterface) SetMeta(v map[string]interface{})`
 
 SetMeta sets Meta field to given value.
 

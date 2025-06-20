@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **SizeMb** | **float32** | Disk size in MiB for Drive | 
 **LogicalNetworkId** | Pointer to **float32** | Id of the Logical Network for the Drive. | [optional] 
 **Label** | Pointer to **string** | Label of the Drive. | [optional] 
+**Meta** | Pointer to [**SharedDriveMeta**](SharedDriveMeta.md) |  | [optional] 
 
 ## Methods
 
@@ -96,6 +97,31 @@ SetLabel sets Label field to given value.
 `func (o *CreateSharedDrive) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
+
+### GetMeta
+
+`func (o *CreateSharedDrive) GetMeta() SharedDriveMeta`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *CreateSharedDrive) GetMetaOk() (*SharedDriveMeta, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *CreateSharedDrive) SetMeta(v SharedDriveMeta)`
+
+SetMeta sets Meta field to given value.
+
+### HasMeta
+
+`func (o *CreateSharedDrive) HasMeta() bool`
+
+HasMeta returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

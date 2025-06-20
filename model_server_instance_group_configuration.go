@@ -34,13 +34,15 @@ type ServerInstanceGroupConfiguration struct {
 	InstanceCount int32 `json:"instanceCount"`
 	// The server type ID that will be assigned to newly created instances.
 	DefaultServerTypeId int32 `json:"defaultServerTypeId"`
+	// Default Custom Storage Profile for the newly created Instances.
+	DefaultCustomStorageProfile *ServerInstanceStorageProfile `json:"defaultCustomStorageProfile,omitempty"`
 	// Automatically allocate IP addresses to child Instance`s Instance Interface elements.
 	IpAllocateAuto int32 `json:"ipAllocateAuto"`
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
 	Ipv4SubnetCreateAuto int32 `json:"ipv4SubnetCreateAuto"`
 	// Array of firmware policy ids containing associated firmware policies.
 	FirmwarePolicyIds []float32 `json:"firmwarePolicyIds,omitempty"`
-	// Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \"server-instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"dnsLoadBalancingRecord\" is true. It will be automatically suffixed with the server instance group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
+	// Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \"instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"provisionLoadBalancingDnsRecord\" is true. It will be automatically suffixed with the server instance group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
 	Hostname *string `json:"hostname,omitempty"`
 	// The volume template ID (or name) to use if the servers in the Instance Group have local disks.
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
@@ -325,6 +327,38 @@ func (o *ServerInstanceGroupConfiguration) GetDefaultServerTypeIdOk() (*int32, b
 // SetDefaultServerTypeId sets field value
 func (o *ServerInstanceGroupConfiguration) SetDefaultServerTypeId(v int32) {
 	o.DefaultServerTypeId = v
+}
+
+// GetDefaultCustomStorageProfile returns the DefaultCustomStorageProfile field value if set, zero value otherwise.
+func (o *ServerInstanceGroupConfiguration) GetDefaultCustomStorageProfile() ServerInstanceStorageProfile {
+	if o == nil || IsNil(o.DefaultCustomStorageProfile) {
+		var ret ServerInstanceStorageProfile
+		return ret
+	}
+	return *o.DefaultCustomStorageProfile
+}
+
+// GetDefaultCustomStorageProfileOk returns a tuple with the DefaultCustomStorageProfile field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupConfiguration) GetDefaultCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool) {
+	if o == nil || IsNil(o.DefaultCustomStorageProfile) {
+		return nil, false
+	}
+	return o.DefaultCustomStorageProfile, true
+}
+
+// HasDefaultCustomStorageProfile returns a boolean if a field has been set.
+func (o *ServerInstanceGroupConfiguration) HasDefaultCustomStorageProfile() bool {
+	if o != nil && !IsNil(o.DefaultCustomStorageProfile) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultCustomStorageProfile gets a reference to the given ServerInstanceStorageProfile and assigns it to the DefaultCustomStorageProfile field.
+func (o *ServerInstanceGroupConfiguration) SetDefaultCustomStorageProfile(v ServerInstanceStorageProfile) {
+	o.DefaultCustomStorageProfile = &v
 }
 
 // GetIpAllocateAuto returns the IpAllocateAuto field value
@@ -997,6 +1031,9 @@ func (o ServerInstanceGroupConfiguration) ToMap() (map[string]interface{}, error
 	}
 	toSerialize["instanceCount"] = o.InstanceCount
 	toSerialize["defaultServerTypeId"] = o.DefaultServerTypeId
+	if !IsNil(o.DefaultCustomStorageProfile) {
+		toSerialize["defaultCustomStorageProfile"] = o.DefaultCustomStorageProfile
+	}
 	toSerialize["ipAllocateAuto"] = o.IpAllocateAuto
 	toSerialize["ipv4SubnetCreateAuto"] = o.Ipv4SubnetCreateAuto
 	if o.FirmwarePolicyIds != nil {
@@ -1109,6 +1146,7 @@ func (o *ServerInstanceGroupConfiguration) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "instanceCount")
 		delete(additionalProperties, "defaultServerTypeId")
+		delete(additionalProperties, "defaultCustomStorageProfile")
 		delete(additionalProperties, "ipAllocateAuto")
 		delete(additionalProperties, "ipv4SubnetCreateAuto")
 		delete(additionalProperties, "firmwarePolicyIds")

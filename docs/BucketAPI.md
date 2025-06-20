@@ -646,7 +646,7 @@ import (
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
 	bucketId := float32(8.14) // float32 | 
-	updateBucketMeta := *openapiclient.NewUpdateBucketMeta() // UpdateBucketMeta | 
+	updateBucketMeta := *openapiclient.NewUpdateBucketMeta("Name_example") // UpdateBucketMeta | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

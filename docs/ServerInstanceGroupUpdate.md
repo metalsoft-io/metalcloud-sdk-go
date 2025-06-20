@@ -7,9 +7,10 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | The server instance group label. | [optional] 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **InstanceCount** | Pointer to **int32** | The number of instances to be created on the Instance Group. | [optional] [default to 1]
+**DefaultCustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Default Custom Storage Profile for the newly created Instances. | [optional] 
 **IpAllocateAuto** | Pointer to **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [optional] [default to 1]
 **Ipv4SubnetCreateAuto** | Pointer to **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [optional] [default to 1]
-**Hostname** | Pointer to **string** | Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \&quot;server-instance-group\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \&quot;dnsLoadBalancingRecord\&quot; is true. It will be automatically suffixed with the server instance group ID (e.g., \&quot;-34\&quot;) to ensure the uniqueness of the resulting DNS name. | [optional] 
+**Hostname** | Pointer to **string** | Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \&quot;instance-group\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \&quot;provisionLoadBalancingDnsRecord\&quot; is true. It will be automatically suffixed with the server instance group ID (e.g., \&quot;-34\&quot;) to ensure the uniqueness of the resulting DNS name. | [optional] 
 **OsTemplateId** | Pointer to **int32** | The volume template ID (or name) to use if the servers in the Instance Group have local disks. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Object containing custom variables and variable overrides. | [optional] 
 **ProcessorCount** | Pointer to **int32** | The CPU count on each instance. | [optional] [default to 1]
@@ -118,6 +119,31 @@ SetInstanceCount sets InstanceCount field to given value.
 `func (o *ServerInstanceGroupUpdate) HasInstanceCount() bool`
 
 HasInstanceCount returns a boolean if a field has been set.
+
+### GetDefaultCustomStorageProfile
+
+`func (o *ServerInstanceGroupUpdate) GetDefaultCustomStorageProfile() ServerInstanceStorageProfile`
+
+GetDefaultCustomStorageProfile returns the DefaultCustomStorageProfile field if non-nil, zero value otherwise.
+
+### GetDefaultCustomStorageProfileOk
+
+`func (o *ServerInstanceGroupUpdate) GetDefaultCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool)`
+
+GetDefaultCustomStorageProfileOk returns a tuple with the DefaultCustomStorageProfile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultCustomStorageProfile
+
+`func (o *ServerInstanceGroupUpdate) SetDefaultCustomStorageProfile(v ServerInstanceStorageProfile)`
+
+SetDefaultCustomStorageProfile sets DefaultCustomStorageProfile field to given value.
+
+### HasDefaultCustomStorageProfile
+
+`func (o *ServerInstanceGroupUpdate) HasDefaultCustomStorageProfile() bool`
+
+HasDefaultCustomStorageProfile returns a boolean if a field has been set.
 
 ### GetIpAllocateAuto
 

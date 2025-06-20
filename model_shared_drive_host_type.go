@@ -22,13 +22,13 @@ var _ MappedNullable = &SharedDriveHostType{}
 // SharedDriveHostType struct for SharedDriveHostType
 type SharedDriveHostType struct {
 	// Drive Host Ids that will be connected.
-	WillBeConnected []string `json:"willBeConnected"`
+	WillBeConnected []float32 `json:"willBeConnected"`
 	// Drive Host Ids that are connected.
-	Connected []string `json:"connected"`
+	Connected []float32 `json:"connected"`
 	// Drive Host Ids that will be disconnected.
-	WillBeDisconnected []string `json:"willBeDisconnected"`
+	WillBeDisconnected []float32 `json:"willBeDisconnected"`
 	// Drive Host Ids that are disconnected.
-	Disconnected []string `json:"disconnected"`
+	Disconnected []float32 `json:"disconnected"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,7 +38,7 @@ type _SharedDriveHostType SharedDriveHostType
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSharedDriveHostType(willBeConnected []string, connected []string, willBeDisconnected []string, disconnected []string) *SharedDriveHostType {
+func NewSharedDriveHostType(willBeConnected []float32, connected []float32, willBeDisconnected []float32, disconnected []float32) *SharedDriveHostType {
 	this := SharedDriveHostType{}
 	this.WillBeConnected = willBeConnected
 	this.Connected = connected
@@ -56,9 +56,9 @@ func NewSharedDriveHostTypeWithDefaults() *SharedDriveHostType {
 }
 
 // GetWillBeConnected returns the WillBeConnected field value
-func (o *SharedDriveHostType) GetWillBeConnected() []string {
+func (o *SharedDriveHostType) GetWillBeConnected() []float32 {
 	if o == nil {
-		var ret []string
+		var ret []float32
 		return ret
 	}
 
@@ -67,7 +67,7 @@ func (o *SharedDriveHostType) GetWillBeConnected() []string {
 
 // GetWillBeConnectedOk returns a tuple with the WillBeConnected field value
 // and a boolean to check if the value has been set.
-func (o *SharedDriveHostType) GetWillBeConnectedOk() ([]string, bool) {
+func (o *SharedDriveHostType) GetWillBeConnectedOk() ([]float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,14 +75,14 @@ func (o *SharedDriveHostType) GetWillBeConnectedOk() ([]string, bool) {
 }
 
 // SetWillBeConnected sets field value
-func (o *SharedDriveHostType) SetWillBeConnected(v []string) {
+func (o *SharedDriveHostType) SetWillBeConnected(v []float32) {
 	o.WillBeConnected = v
 }
 
 // GetConnected returns the Connected field value
-func (o *SharedDriveHostType) GetConnected() []string {
+func (o *SharedDriveHostType) GetConnected() []float32 {
 	if o == nil {
-		var ret []string
+		var ret []float32
 		return ret
 	}
 
@@ -91,7 +91,7 @@ func (o *SharedDriveHostType) GetConnected() []string {
 
 // GetConnectedOk returns a tuple with the Connected field value
 // and a boolean to check if the value has been set.
-func (o *SharedDriveHostType) GetConnectedOk() ([]string, bool) {
+func (o *SharedDriveHostType) GetConnectedOk() ([]float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,14 +99,14 @@ func (o *SharedDriveHostType) GetConnectedOk() ([]string, bool) {
 }
 
 // SetConnected sets field value
-func (o *SharedDriveHostType) SetConnected(v []string) {
+func (o *SharedDriveHostType) SetConnected(v []float32) {
 	o.Connected = v
 }
 
 // GetWillBeDisconnected returns the WillBeDisconnected field value
-func (o *SharedDriveHostType) GetWillBeDisconnected() []string {
+func (o *SharedDriveHostType) GetWillBeDisconnected() []float32 {
 	if o == nil {
-		var ret []string
+		var ret []float32
 		return ret
 	}
 
@@ -115,7 +115,7 @@ func (o *SharedDriveHostType) GetWillBeDisconnected() []string {
 
 // GetWillBeDisconnectedOk returns a tuple with the WillBeDisconnected field value
 // and a boolean to check if the value has been set.
-func (o *SharedDriveHostType) GetWillBeDisconnectedOk() ([]string, bool) {
+func (o *SharedDriveHostType) GetWillBeDisconnectedOk() ([]float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -123,14 +123,14 @@ func (o *SharedDriveHostType) GetWillBeDisconnectedOk() ([]string, bool) {
 }
 
 // SetWillBeDisconnected sets field value
-func (o *SharedDriveHostType) SetWillBeDisconnected(v []string) {
+func (o *SharedDriveHostType) SetWillBeDisconnected(v []float32) {
 	o.WillBeDisconnected = v
 }
 
 // GetDisconnected returns the Disconnected field value
-func (o *SharedDriveHostType) GetDisconnected() []string {
+func (o *SharedDriveHostType) GetDisconnected() []float32 {
 	if o == nil {
-		var ret []string
+		var ret []float32
 		return ret
 	}
 
@@ -139,7 +139,7 @@ func (o *SharedDriveHostType) GetDisconnected() []string {
 
 // GetDisconnectedOk returns a tuple with the Disconnected field value
 // and a boolean to check if the value has been set.
-func (o *SharedDriveHostType) GetDisconnectedOk() ([]string, bool) {
+func (o *SharedDriveHostType) GetDisconnectedOk() ([]float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -147,7 +147,7 @@ func (o *SharedDriveHostType) GetDisconnectedOk() ([]string, bool) {
 }
 
 // SetDisconnected sets field value
-func (o *SharedDriveHostType) SetDisconnected(v []string) {
+func (o *SharedDriveHostType) SetDisconnected(v []float32) {
 	o.Disconnected = v
 }
 

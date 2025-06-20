@@ -27,6 +27,7 @@ type ManualIpv6SubnetAllocationStrategy struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 	Kind AllocationStrategyKind `json:"kind"`
 	Scope ResourceScope `json:"scope"`
+	GatewayPlacement SubnetGatewayPlacement `json:"gatewayPlacement"`
 	SubnetId int32 `json:"subnetId"`
 	AdditionalProperties map[string]interface{}
 }
@@ -37,13 +38,14 @@ type _ManualIpv6SubnetAllocationStrategy ManualIpv6SubnetAllocationStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManualIpv6SubnetAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, subnetId int32) *ManualIpv6SubnetAllocationStrategy {
+func NewManualIpv6SubnetAllocationStrategy(id int32, createdAt time.Time, updatedAt time.Time, kind AllocationStrategyKind, scope ResourceScope, gatewayPlacement SubnetGatewayPlacement, subnetId int32) *ManualIpv6SubnetAllocationStrategy {
 	this := ManualIpv6SubnetAllocationStrategy{}
 	this.Id = id
 	this.CreatedAt = createdAt
 	this.UpdatedAt = updatedAt
 	this.Kind = kind
 	this.Scope = scope
+	this.GatewayPlacement = gatewayPlacement
 	this.SubnetId = subnetId
 	return &this
 }
@@ -53,6 +55,8 @@ func NewManualIpv6SubnetAllocationStrategy(id int32, createdAt time.Time, update
 // but it doesn't guarantee that properties required by API are set
 func NewManualIpv6SubnetAllocationStrategyWithDefaults() *ManualIpv6SubnetAllocationStrategy {
 	this := ManualIpv6SubnetAllocationStrategy{}
+	var gatewayPlacement SubnetGatewayPlacement = SUBNETGATEWAYPLACEMENT_DEFAULT
+	this.GatewayPlacement = gatewayPlacement
 	return &this
 }
 
@@ -176,6 +180,30 @@ func (o *ManualIpv6SubnetAllocationStrategy) SetScope(v ResourceScope) {
 	o.Scope = v
 }
 
+// GetGatewayPlacement returns the GatewayPlacement field value
+func (o *ManualIpv6SubnetAllocationStrategy) GetGatewayPlacement() SubnetGatewayPlacement {
+	if o == nil {
+		var ret SubnetGatewayPlacement
+		return ret
+	}
+
+	return o.GatewayPlacement
+}
+
+// GetGatewayPlacementOk returns a tuple with the GatewayPlacement field value
+// and a boolean to check if the value has been set.
+func (o *ManualIpv6SubnetAllocationStrategy) GetGatewayPlacementOk() (*SubnetGatewayPlacement, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.GatewayPlacement, true
+}
+
+// SetGatewayPlacement sets field value
+func (o *ManualIpv6SubnetAllocationStrategy) SetGatewayPlacement(v SubnetGatewayPlacement) {
+	o.GatewayPlacement = v
+}
+
 // GetSubnetId returns the SubnetId field value
 func (o *ManualIpv6SubnetAllocationStrategy) GetSubnetId() int32 {
 	if o == nil {
@@ -215,6 +243,7 @@ func (o ManualIpv6SubnetAllocationStrategy) ToMap() (map[string]interface{}, err
 	toSerialize["updatedAt"] = o.UpdatedAt
 	toSerialize["kind"] = o.Kind
 	toSerialize["scope"] = o.Scope
+	toSerialize["gatewayPlacement"] = o.GatewayPlacement
 	toSerialize["subnetId"] = o.SubnetId
 
 	for key, value := range o.AdditionalProperties {
@@ -234,6 +263,7 @@ func (o *ManualIpv6SubnetAllocationStrategy) UnmarshalJSON(data []byte) (err err
 		"updatedAt",
 		"kind",
 		"scope",
+		"gatewayPlacement",
 		"subnetId",
 	}
 
@@ -269,6 +299,7 @@ func (o *ManualIpv6SubnetAllocationStrategy) UnmarshalJSON(data []byte) (err err
 		delete(additionalProperties, "updatedAt")
 		delete(additionalProperties, "kind")
 		delete(additionalProperties, "scope")
+		delete(additionalProperties, "gatewayPlacement")
 		delete(additionalProperties, "subnetId")
 		o.AdditionalProperties = additionalProperties
 	}

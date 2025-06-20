@@ -39,8 +39,6 @@ type ServerInstanceInterface struct {
 	DnsSubdomainId *int32 `json:"dnsSubdomainId,omitempty"`
 	// Id of the permanent DNS subdomain for the Product Instance
 	DnsSubdomainPermanentId *int32 `json:"dnsSubdomainPermanentId,omitempty"`
-	// GUI settings in JSON format.
-	Meta *GenericGUISettings `json:"meta,omitempty"`
 	InfrastructureId int32 `json:"infrastructureId"`
 	InstanceId int32 `json:"instanceId"`
 	// The index of the interface (0-based) on this server.
@@ -338,38 +336,6 @@ func (o *ServerInstanceInterface) HasDnsSubdomainPermanentId() bool {
 // SetDnsSubdomainPermanentId gets a reference to the given int32 and assigns it to the DnsSubdomainPermanentId field.
 func (o *ServerInstanceInterface) SetDnsSubdomainPermanentId(v int32) {
 	o.DnsSubdomainPermanentId = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ServerInstanceInterface) GetMeta() GenericGUISettings {
-	if o == nil || IsNil(o.Meta) {
-		var ret GenericGUISettings
-		return ret
-	}
-	return *o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceInterface) GetMetaOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.Meta) {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ServerInstanceInterface) HasMeta() bool {
-	if o != nil && !IsNil(o.Meta) {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given GenericGUISettings and assigns it to the Meta field.
-func (o *ServerInstanceInterface) SetMeta(v GenericGUISettings) {
-	o.Meta = &v
 }
 
 // GetInfrastructureId returns the InfrastructureId field value
@@ -799,9 +765,6 @@ func (o ServerInstanceInterface) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DnsSubdomainPermanentId) {
 		toSerialize["dnsSubdomainPermanentId"] = o.DnsSubdomainPermanentId
 	}
-	if !IsNil(o.Meta) {
-		toSerialize["meta"] = o.Meta
-	}
 	toSerialize["infrastructureId"] = o.InfrastructureId
 	toSerialize["instanceId"] = o.InstanceId
 	toSerialize["index"] = o.Index
@@ -894,7 +857,6 @@ func (o *ServerInstanceInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "subdomainPermanent")
 		delete(additionalProperties, "dnsSubdomainId")
 		delete(additionalProperties, "dnsSubdomainPermanentId")
-		delete(additionalProperties, "meta")
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "instanceId")
 		delete(additionalProperties, "index")

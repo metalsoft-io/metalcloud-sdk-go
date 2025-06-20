@@ -10,12 +10,13 @@ Name | Type | Description | Notes
 **NetworkAddress** | **string** |  | 
 **PrefixLength** | **int32** |  | 
 **Gateway** | **string** |  | 
+**GatewayPlacement** | [**NullableSubnetGatewayPlacement**](SubnetGatewayPlacement.md) |  | 
 
 ## Methods
 
 ### NewIpv6SubnetAllocation
 
-`func NewIpv6SubnetAllocation(id int32, scope ResourceScope, status ResourceAllocationStatus, networkAddress string, prefixLength int32, gateway string, ) *Ipv6SubnetAllocation`
+`func NewIpv6SubnetAllocation(id int32, scope ResourceScope, status ResourceAllocationStatus, networkAddress string, prefixLength int32, gateway string, gatewayPlacement NullableSubnetGatewayPlacement, ) *Ipv6SubnetAllocation`
 
 NewIpv6SubnetAllocation instantiates a new Ipv6SubnetAllocation object
 This constructor will assign default values to properties that have it defined,
@@ -150,6 +151,36 @@ and a boolean to check if the value has been set.
 SetGateway sets Gateway field to given value.
 
 
+### GetGatewayPlacement
+
+`func (o *Ipv6SubnetAllocation) GetGatewayPlacement() SubnetGatewayPlacement`
+
+GetGatewayPlacement returns the GatewayPlacement field if non-nil, zero value otherwise.
+
+### GetGatewayPlacementOk
+
+`func (o *Ipv6SubnetAllocation) GetGatewayPlacementOk() (*SubnetGatewayPlacement, bool)`
+
+GetGatewayPlacementOk returns a tuple with the GatewayPlacement field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGatewayPlacement
+
+`func (o *Ipv6SubnetAllocation) SetGatewayPlacement(v SubnetGatewayPlacement)`
+
+SetGatewayPlacement sets GatewayPlacement field to given value.
+
+
+### SetGatewayPlacementNil
+
+`func (o *Ipv6SubnetAllocation) SetGatewayPlacementNil(b bool)`
+
+ SetGatewayPlacementNil sets the value for GatewayPlacement to be an explicit nil
+
+### UnsetGatewayPlacement
+`func (o *Ipv6SubnetAllocation) UnsetGatewayPlacement()`
+
+UnsetGatewayPlacement ensures that no value is present for GatewayPlacement, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

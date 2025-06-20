@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Product Instance. | [optional] 
 **DnsSubdomainId** | Pointer to **int32** | Id of the DNS subdomain for the Product Instance | [optional] 
 **DnsSubdomainPermanentId** | Pointer to **int32** | Id of the permanent DNS subdomain for the Product Instance | [optional] 
-**Meta** | Pointer to [**GenericGUISettings**](GenericGUISettings.md) | GUI settings in JSON format. | [optional] 
 **InfrastructureId** | **int32** |  | 
 **GroupId** | **int32** |  | 
 **Index** | **int32** | The index of the interface (0-based) on this server. | 
@@ -240,31 +239,6 @@ SetDnsSubdomainPermanentId sets DnsSubdomainPermanentId field to given value.
 `func (o *ServerInstanceGroupInterface) HasDnsSubdomainPermanentId() bool`
 
 HasDnsSubdomainPermanentId returns a boolean if a field has been set.
-
-### GetMeta
-
-`func (o *ServerInstanceGroupInterface) GetMeta() GenericGUISettings`
-
-GetMeta returns the Meta field if non-nil, zero value otherwise.
-
-### GetMetaOk
-
-`func (o *ServerInstanceGroupInterface) GetMetaOk() (*GenericGUISettings, bool)`
-
-GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMeta
-
-`func (o *ServerInstanceGroupInterface) SetMeta(v GenericGUISettings)`
-
-SetMeta sets Meta field to given value.
-
-### HasMeta
-
-`func (o *ServerInstanceGroupInterface) HasMeta() bool`
-
-HasMeta returns a boolean if a field has been set.
 
 ### GetInfrastructureId
 

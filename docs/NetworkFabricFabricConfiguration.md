@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
 **ZeroTouchEnabled** | Pointer to **bool** | Enables zero-touch provisioning for automatic device configuration. | [optional] 
 **AsnRanges** | Pointer to **[]string** | ASN ranges in the format \&quot;start-end\&quot;, where each range is an ordered pair with values between 1 and 4294967295. | [optional] 
+**AsnAllocationStrategy** | Pointer to [**AsnAllocationStrategy**](AsnAllocationStrategy.md) |  | [optional] 
+**BgpNumbering** | Pointer to [**BgpNumberingType**](BgpNumberingType.md) |  | [optional] 
 **DefaultVlan** | Pointer to **int32** | Default VLAN ID. Must be a number between 1 and 4096. | [optional] 
 **ExtraInternalIPsPerSubnet** | Pointer to **int32** | Extra internal IPs allocated per subnet; valid range is between 1 and 1000. | [optional] 
 **LagRanges** | Pointer to **[]string** | Link Aggregation (LAG) ranges in the format \&quot;start-end\&quot;; each range must be within the bounds of 1 to 4096. | [optional] 
@@ -194,6 +196,56 @@ SetAsnRanges sets AsnRanges field to given value.
 `func (o *NetworkFabricFabricConfiguration) HasAsnRanges() bool`
 
 HasAsnRanges returns a boolean if a field has been set.
+
+### GetAsnAllocationStrategy
+
+`func (o *NetworkFabricFabricConfiguration) GetAsnAllocationStrategy() AsnAllocationStrategy`
+
+GetAsnAllocationStrategy returns the AsnAllocationStrategy field if non-nil, zero value otherwise.
+
+### GetAsnAllocationStrategyOk
+
+`func (o *NetworkFabricFabricConfiguration) GetAsnAllocationStrategyOk() (*AsnAllocationStrategy, bool)`
+
+GetAsnAllocationStrategyOk returns a tuple with the AsnAllocationStrategy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAsnAllocationStrategy
+
+`func (o *NetworkFabricFabricConfiguration) SetAsnAllocationStrategy(v AsnAllocationStrategy)`
+
+SetAsnAllocationStrategy sets AsnAllocationStrategy field to given value.
+
+### HasAsnAllocationStrategy
+
+`func (o *NetworkFabricFabricConfiguration) HasAsnAllocationStrategy() bool`
+
+HasAsnAllocationStrategy returns a boolean if a field has been set.
+
+### GetBgpNumbering
+
+`func (o *NetworkFabricFabricConfiguration) GetBgpNumbering() BgpNumberingType`
+
+GetBgpNumbering returns the BgpNumbering field if non-nil, zero value otherwise.
+
+### GetBgpNumberingOk
+
+`func (o *NetworkFabricFabricConfiguration) GetBgpNumberingOk() (*BgpNumberingType, bool)`
+
+GetBgpNumberingOk returns a tuple with the BgpNumbering field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBgpNumbering
+
+`func (o *NetworkFabricFabricConfiguration) SetBgpNumbering(v BgpNumberingType)`
+
+SetBgpNumbering sets BgpNumbering field to given value.
+
+### HasBgpNumbering
+
+`func (o *NetworkFabricFabricConfiguration) HasBgpNumbering() bool`
+
+HasBgpNumbering returns a boolean if a field has been set.
 
 ### GetDefaultVlan
 

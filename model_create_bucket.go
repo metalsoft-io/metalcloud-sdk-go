@@ -27,6 +27,7 @@ type CreateBucket struct {
 	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
 	// Label of the Bucket.
 	Label *string `json:"label,omitempty"`
+	Meta *BucketMeta `json:"meta,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -138,6 +139,38 @@ func (o *CreateBucket) SetLabel(v string) {
 	o.Label = &v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *CreateBucket) GetMeta() BucketMeta {
+	if o == nil || IsNil(o.Meta) {
+		var ret BucketMeta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateBucket) GetMetaOk() (*BucketMeta, bool) {
+	if o == nil || IsNil(o.Meta) {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *CreateBucket) HasMeta() bool {
+	if o != nil && !IsNil(o.Meta) {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given BucketMeta and assigns it to the Meta field.
+func (o *CreateBucket) SetMeta(v BucketMeta) {
+	o.Meta = &v
+}
+
 func (o CreateBucket) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -154,6 +187,9 @@ func (o CreateBucket) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
+	}
+	if !IsNil(o.Meta) {
+		toSerialize["meta"] = o.Meta
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -201,6 +237,7 @@ func (o *CreateBucket) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "sizeGB")
 		delete(additionalProperties, "logicalNetworkId")
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "meta")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -18,7 +18,7 @@ Method | HTTP request | Description
 [**GetNetworkDeviceStatistics**](NetworkDeviceAPI.md#GetNetworkDeviceStatistics) | **Get** /api/v2/network-devices/statistics | Get Network Device Statistics
 [**GetNetworkDevices**](NetworkDeviceAPI.md#GetNetworkDevices) | **Get** /api/v2/network-devices | Get paginated Network Devices
 [**GetPorts**](NetworkDeviceAPI.md#GetPorts) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
-[**ReProvisionNetworkEquipment**](NetworkDeviceAPI.md#ReProvisionNetworkEquipment) | **Post** /api/v2/network-devices/re-provision | Re-provision network equipment
+[**ReProvisionNetworkDevice**](NetworkDeviceAPI.md#ReProvisionNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/re-provision | Re-provision network device
 [**RemoveNetworkDeviceDefaults**](NetworkDeviceAPI.md#RemoveNetworkDeviceDefaults) | **Delete** /api/v2/network-devices/defaults/{id} | Remove network device defaults
 [**ReplaceNetworkDevice**](NetworkDeviceAPI.md#ReplaceNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/replace | Replace network device
 [**ResetNetworkDevice**](NetworkDeviceAPI.md#ResetNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
@@ -1005,11 +1005,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ReProvisionNetworkEquipment
+## ReProvisionNetworkDevice
 
-> JobInfo ReProvisionNetworkEquipment(ctx).Body(body).Execute()
+> JobInfo ReProvisionNetworkDevice(ctx, networkDeviceId).NetworkEquipmentReprovision(networkEquipmentReprovision).Execute()
 
-Re-provision network equipment
+Re-provision network device
 
 
 
@@ -1026,32 +1026,38 @@ import (
 )
 
 func main() {
-	body := map[string]interface{}{ ... } // map[string]interface{} | The network equipment re-provision options
+	networkDeviceId := float32(8.14) // float32 | 
+	networkEquipmentReprovision := *openapiclient.NewNetworkEquipmentReprovision("ReprovisionType_example") // NetworkEquipmentReprovision | The network device re-provision options
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkDeviceAPI.ReProvisionNetworkEquipment(context.Background()).Body(body).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.ReProvisionNetworkDevice(context.Background(), networkDeviceId).NetworkEquipmentReprovision(networkEquipmentReprovision).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.ReProvisionNetworkEquipment``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.ReProvisionNetworkDevice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ReProvisionNetworkEquipment`: JobInfo
-	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.ReProvisionNetworkEquipment`: %v\n", resp)
+	// response from `ReProvisionNetworkDevice`: JobInfo
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.ReProvisionNetworkDevice`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **float32** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReProvisionNetworkEquipmentRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiReProvisionNetworkDeviceRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **map[string]interface{}** | The network equipment re-provision options | 
+
+ **networkEquipmentReprovision** | [**NetworkEquipmentReprovision**](NetworkEquipmentReprovision.md) | The network device re-provision options | 
 
 ### Return type
 

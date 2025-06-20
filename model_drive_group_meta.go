@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the DriveGroupMeta type satisfies the MappedNullable interface at compile time
@@ -20,7 +21,8 @@ var _ MappedNullable = &DriveGroupMeta{}
 
 // DriveGroupMeta struct for DriveGroupMeta
 type DriveGroupMeta struct {
-	GuiSettings *GenericGUISettings `json:"guiSettings,omitempty"`
+	// Name of the Drive Group
+	Name string `json:"name"`
 	// Tags for the Drive Group.
 	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -32,8 +34,9 @@ type _DriveGroupMeta DriveGroupMeta
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDriveGroupMeta() *DriveGroupMeta {
+func NewDriveGroupMeta(name string) *DriveGroupMeta {
 	this := DriveGroupMeta{}
+	this.Name = name
 	return &this
 }
 
@@ -45,36 +48,28 @@ func NewDriveGroupMetaWithDefaults() *DriveGroupMeta {
 	return &this
 }
 
-// GetGuiSettings returns the GuiSettings field value if set, zero value otherwise.
-func (o *DriveGroupMeta) GetGuiSettings() GenericGUISettings {
-	if o == nil || IsNil(o.GuiSettings) {
-		var ret GenericGUISettings
+// GetName returns the Name field value
+func (o *DriveGroupMeta) GetName() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.GuiSettings
+
+	return o.Name
 }
 
-// GetGuiSettingsOk returns a tuple with the GuiSettings field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *DriveGroupMeta) GetGuiSettingsOk() (*GenericGUISettings, bool) {
-	if o == nil || IsNil(o.GuiSettings) {
+func (o *DriveGroupMeta) GetNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.GuiSettings, true
+	return &o.Name, true
 }
 
-// HasGuiSettings returns a boolean if a field has been set.
-func (o *DriveGroupMeta) HasGuiSettings() bool {
-	if o != nil && !IsNil(o.GuiSettings) {
-		return true
-	}
-
-	return false
-}
-
-// SetGuiSettings gets a reference to the given GenericGUISettings and assigns it to the GuiSettings field.
-func (o *DriveGroupMeta) SetGuiSettings(v GenericGUISettings) {
-	o.GuiSettings = &v
+// SetName sets field value
+func (o *DriveGroupMeta) SetName(v string) {
+	o.Name = v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -119,9 +114,7 @@ func (o DriveGroupMeta) MarshalJSON() ([]byte, error) {
 
 func (o DriveGroupMeta) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.GuiSettings) {
-		toSerialize["guiSettings"] = o.GuiSettings
-	}
+	toSerialize["name"] = o.Name
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
@@ -134,6 +127,27 @@ func (o DriveGroupMeta) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *DriveGroupMeta) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varDriveGroupMeta := _DriveGroupMeta{}
 
 	err = json.Unmarshal(data, &varDriveGroupMeta)
@@ -147,7 +161,7 @@ func (o *DriveGroupMeta) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "guiSettings")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}

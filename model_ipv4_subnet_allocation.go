@@ -27,6 +27,7 @@ type Ipv4SubnetAllocation struct {
 	NetworkAddress string `json:"networkAddress"`
 	PrefixLength int32 `json:"prefixLength"`
 	Gateway string `json:"gateway"`
+	GatewayPlacement NullableSubnetGatewayPlacement `json:"gatewayPlacement"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,7 +37,7 @@ type _Ipv4SubnetAllocation Ipv4SubnetAllocation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIpv4SubnetAllocation(id int32, scope ResourceScope, status ResourceAllocationStatus, networkAddress string, prefixLength int32, gateway string) *Ipv4SubnetAllocation {
+func NewIpv4SubnetAllocation(id int32, scope ResourceScope, status ResourceAllocationStatus, networkAddress string, prefixLength int32, gateway string, gatewayPlacement NullableSubnetGatewayPlacement) *Ipv4SubnetAllocation {
 	this := Ipv4SubnetAllocation{}
 	this.Id = id
 	this.Scope = scope
@@ -44,6 +45,7 @@ func NewIpv4SubnetAllocation(id int32, scope ResourceScope, status ResourceAlloc
 	this.NetworkAddress = networkAddress
 	this.PrefixLength = prefixLength
 	this.Gateway = gateway
+	this.GatewayPlacement = gatewayPlacement
 	return &this
 }
 
@@ -199,6 +201,32 @@ func (o *Ipv4SubnetAllocation) SetGateway(v string) {
 	o.Gateway = v
 }
 
+// GetGatewayPlacement returns the GatewayPlacement field value
+// If the value is explicit nil, the zero value for SubnetGatewayPlacement will be returned
+func (o *Ipv4SubnetAllocation) GetGatewayPlacement() SubnetGatewayPlacement {
+	if o == nil || o.GatewayPlacement.Get() == nil {
+		var ret SubnetGatewayPlacement
+		return ret
+	}
+
+	return *o.GatewayPlacement.Get()
+}
+
+// GetGatewayPlacementOk returns a tuple with the GatewayPlacement field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Ipv4SubnetAllocation) GetGatewayPlacementOk() (*SubnetGatewayPlacement, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GatewayPlacement.Get(), o.GatewayPlacement.IsSet()
+}
+
+// SetGatewayPlacement sets field value
+func (o *Ipv4SubnetAllocation) SetGatewayPlacement(v SubnetGatewayPlacement) {
+	o.GatewayPlacement.Set(&v)
+}
+
 func (o Ipv4SubnetAllocation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -215,6 +243,7 @@ func (o Ipv4SubnetAllocation) ToMap() (map[string]interface{}, error) {
 	toSerialize["networkAddress"] = o.NetworkAddress
 	toSerialize["prefixLength"] = o.PrefixLength
 	toSerialize["gateway"] = o.Gateway
+	toSerialize["gatewayPlacement"] = o.GatewayPlacement.Get()
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -234,6 +263,7 @@ func (o *Ipv4SubnetAllocation) UnmarshalJSON(data []byte) (err error) {
 		"networkAddress",
 		"prefixLength",
 		"gateway",
+		"gatewayPlacement",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -269,6 +299,7 @@ func (o *Ipv4SubnetAllocation) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "networkAddress")
 		delete(additionalProperties, "prefixLength")
 		delete(additionalProperties, "gateway")
+		delete(additionalProperties, "gatewayPlacement")
 		o.AdditionalProperties = additionalProperties
 	}
 

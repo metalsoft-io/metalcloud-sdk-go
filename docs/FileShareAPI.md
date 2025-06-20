@@ -570,7 +570,7 @@ import (
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
 	fileShareId := float32(8.14) // float32 | 
-	updateFileShareMeta := *openapiclient.NewUpdateFileShareMeta() // UpdateFileShareMeta | 
+	updateFileShareMeta := *openapiclient.NewUpdateFileShareMeta("Name_example") // UpdateFileShareMeta | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

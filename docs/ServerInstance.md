@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **GroupId** | **int32** |  | 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
 **ServerId** | Pointer to **int32** | The ID of the server assigned to the instance. | [optional] 
-**Hostname** | Pointer to **string** | The subdomain of the server instance. | [optional] 
+**Hostname** | Pointer to **string** | Custom hostname for the DNS record name. If set, this will be used as part of the DNS record name instead of the default \&quot;instance\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \&quot;provisionInstanceDnsRecords\&quot; is true. It will be automatically suffixed with the server instance ID (e.g., \&quot;-34\&quot;) to ensure the uniqueness of the resulting DNS name. | [optional] 
 **OsTemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
 **InstanceWanMlagId** | Pointer to **int32** |  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **ServiceStatus** | **string** | Current status of the server instance. | 
 **IsVmInstance** | **int32** | Flag to indicate if this is a VM instance | 
 **VmInstanceId** | Pointer to **int32** | The id of the linked VM instance | [optional] 
+**IsEndpointInstance** | **int32** | Flag to indicate if this is an Endpoint Instance | 
 **ClusterCustomInfo** | Pointer to [**ServerInstanceClusterCustomInfo**](ServerInstanceClusterCustomInfo.md) |  | [optional] 
 **OsInstallError** | Pointer to **string** | Last error message during OS install. | [optional] 
 **OsInstallImageUrl** | Pointer to **string** | URL where the OS image is available. | [optional] 
@@ -45,7 +46,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstance
 
-`func NewServerInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance int32, meta GenericMeta, ) *ServerInstance`
+`func NewServerInstance(id int32, revision int32, label string, createdTimestamp string, updatedTimestamp string, infrastructureId int32, groupId int32, serviceStatus string, isVmInstance int32, isEndpointInstance int32, meta GenericMeta, ) *ServerInstance`
 
 NewServerInstance instantiates a new ServerInstance object
 This constructor will assign default values to properties that have it defined,
@@ -564,6 +565,26 @@ SetVmInstanceId sets VmInstanceId field to given value.
 `func (o *ServerInstance) HasVmInstanceId() bool`
 
 HasVmInstanceId returns a boolean if a field has been set.
+
+### GetIsEndpointInstance
+
+`func (o *ServerInstance) GetIsEndpointInstance() int32`
+
+GetIsEndpointInstance returns the IsEndpointInstance field if non-nil, zero value otherwise.
+
+### GetIsEndpointInstanceOk
+
+`func (o *ServerInstance) GetIsEndpointInstanceOk() (*int32, bool)`
+
+GetIsEndpointInstanceOk returns a tuple with the IsEndpointInstance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsEndpointInstance
+
+`func (o *ServerInstance) SetIsEndpointInstance(v int32)`
+
+SetIsEndpointInstance sets IsEndpointInstance field to given value.
+
 
 ### GetClusterCustomInfo
 

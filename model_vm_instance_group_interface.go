@@ -50,7 +50,7 @@ type VMInstanceGroupInterface struct {
 	// The current changes to be deployed for the VM Instance Group Interface.
 	Config VMInstanceGroupInterfaceConfiguration `json:"config"`
 	// Meta information of the VM Instance Group Interface.
-	Meta VMInstanceGroupInterfaceMeta `json:"meta"`
+	Meta map[string]interface{} `json:"meta"`
 	// Timestamp of the VM Instance Group Interface creation.
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// Links to other resources
@@ -64,7 +64,7 @@ type _VMInstanceGroupInterface VMInstanceGroupInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstanceGroupInterface(label string, index float32, updatedTimestamp string, id float32, revision float32, serviceStatus string, groupId float32, infrastructureId float32, config VMInstanceGroupInterfaceConfiguration, meta VMInstanceGroupInterfaceMeta, createdTimestamp string, links map[string]interface{}) *VMInstanceGroupInterface {
+func NewVMInstanceGroupInterface(label string, index float32, updatedTimestamp string, id float32, revision float32, serviceStatus string, groupId float32, infrastructureId float32, config VMInstanceGroupInterfaceConfiguration, meta map[string]interface{}, createdTimestamp string, links map[string]interface{}) *VMInstanceGroupInterface {
 	this := VMInstanceGroupInterface{}
 	this.Label = label
 	this.Index = index
@@ -466,9 +466,9 @@ func (o *VMInstanceGroupInterface) SetConfig(v VMInstanceGroupInterfaceConfigura
 }
 
 // GetMeta returns the Meta field value
-func (o *VMInstanceGroupInterface) GetMeta() VMInstanceGroupInterfaceMeta {
+func (o *VMInstanceGroupInterface) GetMeta() map[string]interface{} {
 	if o == nil {
-		var ret VMInstanceGroupInterfaceMeta
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -477,15 +477,15 @@ func (o *VMInstanceGroupInterface) GetMeta() VMInstanceGroupInterfaceMeta {
 
 // GetMetaOk returns a tuple with the Meta field value
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroupInterface) GetMetaOk() (*VMInstanceGroupInterfaceMeta, bool) {
+func (o *VMInstanceGroupInterface) GetMetaOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Meta, true
+	return o.Meta, true
 }
 
 // SetMeta sets field value
-func (o *VMInstanceGroupInterface) SetMeta(v VMInstanceGroupInterfaceMeta) {
+func (o *VMInstanceGroupInterface) SetMeta(v map[string]interface{}) {
 	o.Meta = v
 }
 

@@ -649,7 +649,7 @@ import (
 func main() {
 	infrastructureId := float32(8.14) // float32 | 
 	driveId := float32(8.14) // float32 | 
-	updateSharedDriveMeta := *openapiclient.NewUpdateSharedDriveMeta() // UpdateSharedDriveMeta | 
+	updateSharedDriveMeta := *openapiclient.NewUpdateSharedDriveMeta("Name_example") // UpdateSharedDriveMeta | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

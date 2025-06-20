@@ -35,6 +35,19 @@ func Test_sdk_ServerAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ServerAPIService ConnectServerInterface", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serverId float32
+
+		httpRes, err := apiClient.ServerAPI.ConnectServerInterface(context.Background(), serverId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ServerAPIService DeleteServer", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
