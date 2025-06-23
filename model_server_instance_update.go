@@ -24,7 +24,7 @@ type ServerInstanceUpdate struct {
 	Label *string `json:"label,omitempty"`
 	// The server type ID.
 	ServerTypeId *int32 `json:"serverTypeId,omitempty"`
-	// Custom hostname for the DNS record name. If set, this will be used as part of the DNS record name instead of the default \"instance\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"provisionInstanceDnsRecords\" is true. It will be automatically suffixed with the server instance ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
+	// Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS record name instead of the default \"instance\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \"provisionInstanceDnsRecords\" is true. 
 	Hostname *string `json:"hostname,omitempty"`
 	// The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal. 
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`

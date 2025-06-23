@@ -498,6 +498,7 @@ Class | Method | HTTP request | Description
 *SiteAPI* | [**CreateSite**](docs/SiteAPI.md#createsite) | **Post** /api/v2/sites | Creates a Site
 *SiteAPI* | [**DecommissionSite**](docs/SiteAPI.md#decommissionsite) | **Post** /api/v2/sites/{siteId}/actions/decommission | Decommissions a Site
 *SiteAPI* | [**GetAgents**](docs/SiteAPI.md#getagents) | **Get** /api/v2/sites/{siteId}/controllers | Get a list of agents for a site
+*SiteAPI* | [**GetRegistryUrls**](docs/SiteAPI.md#getregistryurls) | **Get** /api/v2/sites/controllers/actions/get/registry-urls | Get registry URLs for site controllers
 *SiteAPI* | [**GetSite**](docs/SiteAPI.md#getsite) | **Get** /api/v2/sites/{siteId} | Get Site information
 *SiteAPI* | [**GetSiteConfig**](docs/SiteAPI.md#getsiteconfig) | **Get** /api/v2/sites/{siteId}/config | Get Site Config information
 *SiteAPI* | [**GetSiteControllerOneLiner**](docs/SiteAPI.md#getsitecontrolleroneliner) | **Post** /api/v2/sites/{siteId}/controllers/actions/get/one-liner | Get a one liner to configure a site controller

@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"time"
 	"fmt"
 )
 
@@ -22,12 +21,6 @@ var _ MappedNullable = &CreateNetworkFabricLinkDto{}
 
 // CreateNetworkFabricLinkDto struct for CreateNetworkFabricLinkDto
 type CreateNetworkFabricLinkDto struct {
-	// Entity creation timestamp
-	CreatedTimestamp time.Time `json:"createdTimestamp"`
-	// Entity last update timestamp
-	UpdatedTimestamp time.Time `json:"updatedTimestamp"`
-	// Unique identifier for the network fabric
-	NetworkFabricId float32 `json:"networkFabricId"`
 	// Unique identifier for the network device A interface
 	NetworkDeviceAInterfaceId float32 `json:"networkDeviceAInterfaceId"`
 	// Unique identifier for the network device B interface
@@ -40,8 +33,6 @@ type CreateNetworkFabricLinkDto struct {
 	BgpNumbering string `json:"bgpNumbering"`
 	// BGP link configuration type
 	BgpLinkConfiguration string `json:"bgpLinkConfiguration"`
-	// Status of the network fabric link
-	Status string `json:"status"`
 	// Custom variables for the network fabric link
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -53,18 +44,14 @@ type _CreateNetworkFabricLinkDto CreateNetworkFabricLinkDto
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateNetworkFabricLinkDto(createdTimestamp time.Time, updatedTimestamp time.Time, networkFabricId float32, networkDeviceAInterfaceId float32, networkDeviceBInterfaceId float32, linkType string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, status string) *CreateNetworkFabricLinkDto {
+func NewCreateNetworkFabricLinkDto(networkDeviceAInterfaceId float32, networkDeviceBInterfaceId float32, linkType string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string) *CreateNetworkFabricLinkDto {
 	this := CreateNetworkFabricLinkDto{}
-	this.CreatedTimestamp = createdTimestamp
-	this.UpdatedTimestamp = updatedTimestamp
-	this.NetworkFabricId = networkFabricId
 	this.NetworkDeviceAInterfaceId = networkDeviceAInterfaceId
 	this.NetworkDeviceBInterfaceId = networkDeviceBInterfaceId
 	this.LinkType = linkType
 	this.MlagPair = mlagPair
 	this.BgpNumbering = bgpNumbering
 	this.BgpLinkConfiguration = bgpLinkConfiguration
-	this.Status = status
 	return &this
 }
 
@@ -74,78 +61,6 @@ func NewCreateNetworkFabricLinkDto(createdTimestamp time.Time, updatedTimestamp 
 func NewCreateNetworkFabricLinkDtoWithDefaults() *CreateNetworkFabricLinkDto {
 	this := CreateNetworkFabricLinkDto{}
 	return &this
-}
-
-// GetCreatedTimestamp returns the CreatedTimestamp field value
-func (o *CreateNetworkFabricLinkDto) GetCreatedTimestamp() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.CreatedTimestamp
-}
-
-// GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
-// and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLinkDto) GetCreatedTimestampOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CreatedTimestamp, true
-}
-
-// SetCreatedTimestamp sets field value
-func (o *CreateNetworkFabricLinkDto) SetCreatedTimestamp(v time.Time) {
-	o.CreatedTimestamp = v
-}
-
-// GetUpdatedTimestamp returns the UpdatedTimestamp field value
-func (o *CreateNetworkFabricLinkDto) GetUpdatedTimestamp() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.UpdatedTimestamp
-}
-
-// GetUpdatedTimestampOk returns a tuple with the UpdatedTimestamp field value
-// and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLinkDto) GetUpdatedTimestampOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UpdatedTimestamp, true
-}
-
-// SetUpdatedTimestamp sets field value
-func (o *CreateNetworkFabricLinkDto) SetUpdatedTimestamp(v time.Time) {
-	o.UpdatedTimestamp = v
-}
-
-// GetNetworkFabricId returns the NetworkFabricId field value
-func (o *CreateNetworkFabricLinkDto) GetNetworkFabricId() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.NetworkFabricId
-}
-
-// GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value
-// and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLinkDto) GetNetworkFabricIdOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.NetworkFabricId, true
-}
-
-// SetNetworkFabricId sets field value
-func (o *CreateNetworkFabricLinkDto) SetNetworkFabricId(v float32) {
-	o.NetworkFabricId = v
 }
 
 // GetNetworkDeviceAInterfaceId returns the NetworkDeviceAInterfaceId field value
@@ -292,30 +207,6 @@ func (o *CreateNetworkFabricLinkDto) SetBgpLinkConfiguration(v string) {
 	o.BgpLinkConfiguration = v
 }
 
-// GetStatus returns the Status field value
-func (o *CreateNetworkFabricLinkDto) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLinkDto) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *CreateNetworkFabricLinkDto) SetStatus(v string) {
-	o.Status = v
-}
-
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
 func (o *CreateNetworkFabricLinkDto) GetCustomVariables() map[string]interface{} {
 	if o == nil || IsNil(o.CustomVariables) {
@@ -358,16 +249,12 @@ func (o CreateNetworkFabricLinkDto) MarshalJSON() ([]byte, error) {
 
 func (o CreateNetworkFabricLinkDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["createdTimestamp"] = o.CreatedTimestamp
-	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
-	toSerialize["networkFabricId"] = o.NetworkFabricId
 	toSerialize["networkDeviceAInterfaceId"] = o.NetworkDeviceAInterfaceId
 	toSerialize["networkDeviceBInterfaceId"] = o.NetworkDeviceBInterfaceId
 	toSerialize["linkType"] = o.LinkType
 	toSerialize["mlagPair"] = o.MlagPair
 	toSerialize["bgpNumbering"] = o.BgpNumbering
 	toSerialize["bgpLinkConfiguration"] = o.BgpLinkConfiguration
-	toSerialize["status"] = o.Status
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
 	}
@@ -384,16 +271,12 @@ func (o *CreateNetworkFabricLinkDto) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"createdTimestamp",
-		"updatedTimestamp",
-		"networkFabricId",
 		"networkDeviceAInterfaceId",
 		"networkDeviceBInterfaceId",
 		"linkType",
 		"mlagPair",
 		"bgpNumbering",
 		"bgpLinkConfiguration",
-		"status",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -423,16 +306,12 @@ func (o *CreateNetworkFabricLinkDto) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "createdTimestamp")
-		delete(additionalProperties, "updatedTimestamp")
-		delete(additionalProperties, "networkFabricId")
 		delete(additionalProperties, "networkDeviceAInterfaceId")
 		delete(additionalProperties, "networkDeviceBInterfaceId")
 		delete(additionalProperties, "linkType")
 		delete(additionalProperties, "mlagPair")
 		delete(additionalProperties, "bgpNumbering")
 		delete(additionalProperties, "bgpLinkConfiguration")
-		delete(additionalProperties, "status")
 		delete(additionalProperties, "customVariables")
 		o.AdditionalProperties = additionalProperties
 	}

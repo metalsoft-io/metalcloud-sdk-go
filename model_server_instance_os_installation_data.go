@@ -34,10 +34,8 @@ type ServerInstanceOSInstallationData struct {
 	IsVmInstance int32 `json:"isVmInstance"`
 	// Flag to indicate if this is an Endpoint Instance
 	IsEndpointInstance int32 `json:"isEndpointInstance"`
-	// The subdomain of the server instance.
-	Hostname string `json:"hostname"`
-	// The subdomain of the server instance.
-	Fqdn string `json:"fqdn"`
+	// Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS record name instead of the default \"instance\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \"provisionInstanceDnsRecords\" is true. 
+	Hostname *string `json:"hostname,omitempty"`
 	OsCredentials *ServerInstanceOsCredentialInstallationData `json:"osCredentials,omitempty"`
 	// NVMe Initiator NQN for the Instance.
 	InitiatorNqn *string `json:"initiatorNqn,omitempty"`
@@ -56,14 +54,12 @@ type _ServerInstanceOSInstallationData ServerInstanceOSInstallationData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, isEndpointInstance int32, hostname string, fqdn string) *ServerInstanceOSInstallationData {
+func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, isEndpointInstance int32) *ServerInstanceOSInstallationData {
 	this := ServerInstanceOSInstallationData{}
 	this.Id = id
 	this.Label = label
 	this.IsVmInstance = isVmInstance
 	this.IsEndpointInstance = isEndpointInstance
-	this.Hostname = hostname
-	this.Fqdn = fqdn
 	return &this
 }
 
@@ -267,52 +263,36 @@ func (o *ServerInstanceOSInstallationData) SetIsEndpointInstance(v int32) {
 	o.IsEndpointInstance = v
 }
 
-// GetHostname returns the Hostname field value
+// GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *ServerInstanceOSInstallationData) GetHostname() string {
-	if o == nil {
+	if o == nil || IsNil(o.Hostname) {
 		var ret string
 		return ret
 	}
-
-	return o.Hostname
+	return *o.Hostname
 }
 
-// GetHostnameOk returns a tuple with the Hostname field value
+// GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerInstanceOSInstallationData) GetHostnameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Hostname) {
 		return nil, false
 	}
-	return &o.Hostname, true
+	return o.Hostname, true
 }
 
-// SetHostname sets field value
+// HasHostname returns a boolean if a field has been set.
+func (o *ServerInstanceOSInstallationData) HasHostname() bool {
+	if o != nil && !IsNil(o.Hostname) {
+		return true
+	}
+
+	return false
+}
+
+// SetHostname gets a reference to the given string and assigns it to the Hostname field.
 func (o *ServerInstanceOSInstallationData) SetHostname(v string) {
-	o.Hostname = v
-}
-
-// GetFqdn returns the Fqdn field value
-func (o *ServerInstanceOSInstallationData) GetFqdn() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Fqdn
-}
-
-// GetFqdnOk returns a tuple with the Fqdn field value
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceOSInstallationData) GetFqdnOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Fqdn, true
-}
-
-// SetFqdn sets field value
-func (o *ServerInstanceOSInstallationData) SetFqdn(v string) {
-	o.Fqdn = v
+	o.Hostname = &v
 }
 
 // GetOsCredentials returns the OsCredentials field value if set, zero value otherwise.
@@ -498,8 +478,9 @@ func (o ServerInstanceOSInstallationData) ToMap() (map[string]interface{}, error
 	}
 	toSerialize["isVmInstance"] = o.IsVmInstance
 	toSerialize["isEndpointInstance"] = o.IsEndpointInstance
-	toSerialize["hostname"] = o.Hostname
-	toSerialize["fqdn"] = o.Fqdn
+	if !IsNil(o.Hostname) {
+		toSerialize["hostname"] = o.Hostname
+	}
 	if !IsNil(o.OsCredentials) {
 		toSerialize["osCredentials"] = o.OsCredentials
 	}
@@ -532,8 +513,6 @@ func (o *ServerInstanceOSInstallationData) UnmarshalJSON(data []byte) (err error
 		"label",
 		"isVmInstance",
 		"isEndpointInstance",
-		"hostname",
-		"fqdn",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -571,7 +550,6 @@ func (o *ServerInstanceOSInstallationData) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "isVmInstance")
 		delete(additionalProperties, "isEndpointInstance")
 		delete(additionalProperties, "hostname")
-		delete(additionalProperties, "fqdn")
 		delete(additionalProperties, "osCredentials")
 		delete(additionalProperties, "initiatorNqn")
 		delete(additionalProperties, "iscsiInitiatorIqn")

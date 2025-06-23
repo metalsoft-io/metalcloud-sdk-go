@@ -239,13 +239,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-    "time"
 	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
 )
 
 func main() {
 	networkFabricId := int32(56) // int32 | The ID of the fabric
-	createNetworkFabricLinkDto := *openapiclient.NewCreateNetworkFabricLinkDto(time.Now(), time.Now(), float32(1), float32(1), float32(2), "point-to-point", float32(0), "inherited", "disabled", "draft") // CreateNetworkFabricLinkDto | The network fabric link object
+	createNetworkFabricLinkDto := *openapiclient.NewCreateNetworkFabricLinkDto(float32(1), float32(2), "point-to-point", float32(0), "inherited", "disabled") // CreateNetworkFabricLinkDto | The network fabric link object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

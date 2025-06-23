@@ -11,8 +11,7 @@ Name | Type | Description | Notes
 **CustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | RAID profile for the Instance Interface. | [optional] 
 **IsVmInstance** | **int32** | Flag to indicate if this is a VM instance | 
 **IsEndpointInstance** | **int32** | Flag to indicate if this is an Endpoint Instance | 
-**Hostname** | **string** | The subdomain of the server instance. | 
-**Fqdn** | **string** | The subdomain of the server instance. | 
+**Hostname** | Pointer to **string** | Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS record name instead of the default \&quot;instance\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \&quot;provisionInstanceDnsRecords\&quot; is true.  | [optional] 
 **OsCredentials** | Pointer to [**ServerInstanceOsCredentialInstallationData**](ServerInstanceOsCredentialInstallationData.md) |  | [optional] 
 **InitiatorNqn** | Pointer to **string** | NVMe Initiator NQN for the Instance. | [optional] 
 **IscsiInitiatorIqn** | Pointer to **string** | iSCSI Initiator IQN for the Instance Interface. | [optional] 
@@ -23,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceOSInstallationData
 
-`func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, isEndpointInstance int32, hostname string, fqdn string, ) *ServerInstanceOSInstallationData`
+`func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, isEndpointInstance int32, ) *ServerInstanceOSInstallationData`
 
 NewServerInstanceOSInstallationData instantiates a new ServerInstanceOSInstallationData object
 This constructor will assign default values to properties that have it defined,
@@ -212,26 +211,11 @@ and a boolean to check if the value has been set.
 
 SetHostname sets Hostname field to given value.
 
+### HasHostname
 
-### GetFqdn
+`func (o *ServerInstanceOSInstallationData) HasHostname() bool`
 
-`func (o *ServerInstanceOSInstallationData) GetFqdn() string`
-
-GetFqdn returns the Fqdn field if non-nil, zero value otherwise.
-
-### GetFqdnOk
-
-`func (o *ServerInstanceOSInstallationData) GetFqdnOk() (*string, bool)`
-
-GetFqdnOk returns a tuple with the Fqdn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFqdn
-
-`func (o *ServerInstanceOSInstallationData) SetFqdn(v string)`
-
-SetFqdn sets Fqdn field to given value.
-
+HasHostname returns a boolean if a field has been set.
 
 ### GetOsCredentials
 

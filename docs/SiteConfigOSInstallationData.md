@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RepoURL** | **string** | Repository details | 
+**DnsZoneId** | Pointer to **int32** | ID of the DNS zone associated with the site | [optional] 
 **DNSServers** | **[]string** | List of DNS Servers | 
 **NTPServers** | **[]string** | List of NTP Servers | 
 
@@ -46,6 +47,31 @@ and a boolean to check if the value has been set.
 
 SetRepoURL sets RepoURL field to given value.
 
+
+### GetDnsZoneId
+
+`func (o *SiteConfigOSInstallationData) GetDnsZoneId() int32`
+
+GetDnsZoneId returns the DnsZoneId field if non-nil, zero value otherwise.
+
+### GetDnsZoneIdOk
+
+`func (o *SiteConfigOSInstallationData) GetDnsZoneIdOk() (*int32, bool)`
+
+GetDnsZoneIdOk returns a tuple with the DnsZoneId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsZoneId
+
+`func (o *SiteConfigOSInstallationData) SetDnsZoneId(v int32)`
+
+SetDnsZoneId sets DnsZoneId field to given value.
+
+### HasDnsZoneId
+
+`func (o *SiteConfigOSInstallationData) HasDnsZoneId() bool`
+
+HasDnsZoneId returns a boolean if a field has been set.
 
 ### GetDNSServers
 

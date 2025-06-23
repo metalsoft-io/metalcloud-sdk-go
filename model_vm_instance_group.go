@@ -56,8 +56,8 @@ type VMInstanceGroup struct {
 	Config VMInstanceGroupConfiguration `json:"config"`
 	// Meta information of the VM Instance Group.
 	Meta VMInstanceGroupMeta `json:"meta"`
-	// Links to other resources
-	Links map[string]interface{} `json:"links"`
+	// Reference links
+	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -67,7 +67,7 @@ type _VMInstanceGroup VMInstanceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMInstanceGroup(label string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, diskSizeGB float32, createdTimestamp string, config VMInstanceGroupConfiguration, meta VMInstanceGroupMeta, links map[string]interface{}) *VMInstanceGroup {
+func NewVMInstanceGroup(label string, updatedTimestamp string, id float32, revision float32, infrastructureId float32, infrastructure ParentInfrastructure, serviceStatus string, diskSizeGB float32, createdTimestamp string, config VMInstanceGroupConfiguration, meta VMInstanceGroupMeta) *VMInstanceGroup {
 	this := VMInstanceGroup{}
 	this.Label = label
 	var instanceCount float32 = 1
@@ -82,7 +82,6 @@ func NewVMInstanceGroup(label string, updatedTimestamp string, id float32, revis
 	this.CreatedTimestamp = createdTimestamp
 	this.Config = config
 	this.Meta = meta
-	this.Links = links
 	return &this
 }
 
@@ -584,27 +583,35 @@ func (o *VMInstanceGroup) SetMeta(v VMInstanceGroupMeta) {
 	o.Meta = v
 }
 
-// GetLinks returns the Links field value
-func (o *VMInstanceGroup) GetLinks() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
+// GetLinks returns the Links field value if set, zero value otherwise.
+func (o *VMInstanceGroup) GetLinks() []Link {
+	if o == nil || IsNil(o.Links) {
+		var ret []Link
 		return ret
 	}
-
 	return o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VMInstanceGroup) GetLinksOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+func (o *VMInstanceGroup) GetLinksOk() ([]Link, bool) {
+	if o == nil || IsNil(o.Links) {
+		return nil, false
 	}
 	return o.Links, true
 }
 
-// SetLinks sets field value
-func (o *VMInstanceGroup) SetLinks(v map[string]interface{}) {
+// HasLinks returns a boolean if a field has been set.
+func (o *VMInstanceGroup) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given []Link and assigns it to the Links field.
+func (o *VMInstanceGroup) SetLinks(v []Link) {
 	o.Links = v
 }
 
@@ -650,7 +657,9 @@ func (o VMInstanceGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["config"] = o.Config
 	toSerialize["meta"] = o.Meta
-	toSerialize["links"] = o.Links
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -675,7 +684,6 @@ func (o *VMInstanceGroup) UnmarshalJSON(data []byte) (err error) {
 		"createdTimestamp",
 		"config",
 		"meta",
-		"links",
 	}
 
 	allProperties := make(map[string]interface{})

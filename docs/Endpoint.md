@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SiteId** | **float32** | The ID of the site where the entity is located. | 
 **Name** | **string** | The endpoint name | 
-**Label** | Pointer to **string** | The endpoint unique label | [optional] 
+**Label** | **string** | The endpoint unique label | 
 **ExternalId** | Pointer to **string** | The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID. | [optional] 
 **Revision** | **string** | Revision number of the entity | 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewEndpoint
 
-`func NewEndpoint(siteId float32, name string, revision string, createdTimestamp time.Time, updatedTimestamp time.Time, id string, ) *Endpoint`
+`func NewEndpoint(siteId float32, name string, label string, revision string, createdTimestamp time.Time, updatedTimestamp time.Time, id string, ) *Endpoint`
 
 NewEndpoint instantiates a new Endpoint object
 This constructor will assign default values to properties that have it defined,
@@ -93,11 +93,6 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
-### HasLabel
-
-`func (o *Endpoint) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetExternalId
 

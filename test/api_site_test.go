@@ -61,6 +61,18 @@ func Test_sdk_SiteAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test SiteAPIService GetRegistryUrls", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.SiteAPI.GetRegistryUrls(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SiteAPIService GetSite", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

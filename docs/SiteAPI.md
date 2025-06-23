@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CreateSite**](SiteAPI.md#CreateSite) | **Post** /api/v2/sites | Creates a Site
 [**DecommissionSite**](SiteAPI.md#DecommissionSite) | **Post** /api/v2/sites/{siteId}/actions/decommission | Decommissions a Site
 [**GetAgents**](SiteAPI.md#GetAgents) | **Get** /api/v2/sites/{siteId}/controllers | Get a list of agents for a site
+[**GetRegistryUrls**](SiteAPI.md#GetRegistryUrls) | **Get** /api/v2/sites/controllers/actions/get/registry-urls | Get registry URLs for site controllers
 [**GetSite**](SiteAPI.md#GetSite) | **Get** /api/v2/sites/{siteId} | Get Site information
 [**GetSiteConfig**](SiteAPI.md#GetSiteConfig) | **Get** /api/v2/sites/{siteId}/config | Get Site Config information
 [**GetSiteControllerOneLiner**](SiteAPI.md#GetSiteControllerOneLiner) | **Post** /api/v2/sites/{siteId}/controllers/actions/get/one-liner | Get a one liner to configure a site controller
@@ -208,6 +209,67 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]AgentInfo**](AgentInfo.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetRegistryUrls
+
+> []string GetRegistryUrls(ctx).Execute()
+
+Get registry URLs for site controllers
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SiteAPI.GetRegistryUrls(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SiteAPI.GetRegistryUrls``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetRegistryUrls`: []string
+	fmt.Fprintf(os.Stdout, "Response from `SiteAPI.GetRegistryUrls`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetRegistryUrlsRequest struct via the builder pattern
+
+
+### Return type
+
+**[]string**
 
 ### Authorization
 

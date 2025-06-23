@@ -28671,6 +28671,34 @@ paths:
       summary: Get a one liner to configure a site controller
       tags:
       - Site
+  /api/v2/sites/controllers/actions/get/registry-urls:
+    get:
+      description: Returns a list of registry URLs for site controllers
+      operationId: getRegistryUrls
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Returns a list of registry URLs for site controllers
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get registry URLs for site controllers
+      tags:
+      - Site
   /api/v2/storages:
     get:
       description: Returns a list of Storages
@@ -39073,9 +39101,9 @@ components:
         configuration: "{}"
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-06-20T13:27:07.766Z
+        createdTimestamp: 2025-06-23T13:49:51.563Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-06-20T13:27:07.766Z
+        updatedTimestamp: 2025-06-23T13:49:51.563Z
         preparation: "{}"
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -39160,12 +39188,12 @@ components:
           type: object
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-20T13:27:07.766Z
+          example: 2025-06-23T13:49:51.563Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-20T13:27:07.766Z
+          example: 2025-06-23T13:49:51.563Z
           format: date-time
           type: string
         links:
@@ -39195,9 +39223,9 @@ components:
         - configuration: "{}"
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-06-20T13:27:07.766Z
+          createdTimestamp: 2025-06-23T13:49:51.563Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-06-20T13:27:07.766Z
+          updatedTimestamp: 2025-06-23T13:49:51.563Z
           preparation: "{}"
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -39213,9 +39241,9 @@ components:
         - configuration: "{}"
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-06-20T13:27:07.766Z
+          createdTimestamp: 2025-06-23T13:49:51.563Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-06-20T13:27:07.766Z
+          updatedTimestamp: 2025-06-23T13:49:51.563Z
           preparation: "{}"
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -50022,7 +50050,7 @@ components:
         deployType: create
         processorCoreMhz: 5
         defaultServerTypeId: 5
-        hostname: my-custom-hostname-34
+        hostname: my-custom-hostname
         dnsSubdomainChangeId: 0
         processorCoreCount: 6
         infrastructureDeployId: 4
@@ -50095,15 +50123,13 @@ components:
           nullable: true
           type: array
         hostname:
-          description: "Custom hostname for the DNS Load Balancing record. If set,\
-            \ this will be used as the DNS Load Balancing record name instead of the\
-            \ default \"instance-group\". The hostname must be a valid DNS subdomain\
-            \ and can only contain alphanumeric characters, hyphens, and underscores.\
-            \ This will only take effect if the property \"provisionLoadBalancingDnsRecord\"\
-            \ is true. It will be automatically suffixed with the server instance\
-            \ group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS\
-            \ name."
-          example: my-custom-hostname-34
+          description: "Custom hostname(subdomain) part of the fully qualified domain\
+            \ name (FQDN). If set, this will be used as the subdomain record part\
+            \ of the DNS Load Balancing record name instead of the default \"instance-group\"\
+            . The hostname must be a valid DNS subdomain and can only contain alphanumeric\
+            \ characters and hyphens. This will only take effect if the property \"\
+            provisionLoadBalancingDnsRecord\" is true. "
+          example: my-custom-hostname
           maxLength: 63
           minLength: 1
           type: string
@@ -50223,7 +50249,7 @@ components:
         isVmGroup: 9
         processorCoreMhz: 7
         defaultServerTypeId: 5
-        hostname: my-custom-hostname-34
+        hostname: my-custom-hostname
         dnsSubdomainPermanentId: 6
         processorCoreCount: 4
         serviceStatus: ordered
@@ -50276,7 +50302,7 @@ components:
           deployType: create
           processorCoreMhz: 5
           defaultServerTypeId: 5
-          hostname: my-custom-hostname-34
+          hostname: my-custom-hostname
           dnsSubdomainChangeId: 0
           processorCoreCount: 6
           infrastructureDeployId: 4
@@ -50369,15 +50395,13 @@ components:
           nullable: true
           type: array
         hostname:
-          description: "Custom hostname for the DNS Load Balancing record. If set,\
-            \ this will be used as the DNS Load Balancing record name instead of the\
-            \ default \"instance-group\". The hostname must be a valid DNS subdomain\
-            \ and can only contain alphanumeric characters, hyphens, and underscores.\
-            \ This will only take effect if the property \"provisionLoadBalancingDnsRecord\"\
-            \ is true. It will be automatically suffixed with the server instance\
-            \ group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS\
-            \ name."
-          example: my-custom-hostname-34
+          description: "Custom hostname(subdomain) part of the fully qualified domain\
+            \ name (FQDN). If set, this will be used as the subdomain record part\
+            \ of the DNS Load Balancing record name instead of the default \"instance-group\"\
+            . The hostname must be a valid DNS subdomain and can only contain alphanumeric\
+            \ characters and hyphens. This will only take effect if the property \"\
+            provisionLoadBalancingDnsRecord\" is true. "
+          example: my-custom-hostname
           maxLength: 63
           minLength: 1
           type: string
@@ -50513,7 +50537,7 @@ components:
           isVmGroup: 9
           processorCoreMhz: 7
           defaultServerTypeId: 5
-          hostname: my-custom-hostname-34
+          hostname: my-custom-hostname
           dnsSubdomainPermanentId: 6
           processorCoreCount: 4
           serviceStatus: ordered
@@ -50566,7 +50590,7 @@ components:
             deployType: create
             processorCoreMhz: 5
             defaultServerTypeId: 5
-            hostname: my-custom-hostname-34
+            hostname: my-custom-hostname
             dnsSubdomainChangeId: 0
             processorCoreCount: 6
             infrastructureDeployId: 4
@@ -50602,7 +50626,7 @@ components:
           isVmGroup: 9
           processorCoreMhz: 7
           defaultServerTypeId: 5
-          hostname: my-custom-hostname-34
+          hostname: my-custom-hostname
           dnsSubdomainPermanentId: 6
           processorCoreCount: 4
           serviceStatus: ordered
@@ -50655,7 +50679,7 @@ components:
             deployType: create
             processorCoreMhz: 5
             defaultServerTypeId: 5
-            hostname: my-custom-hostname-34
+            hostname: my-custom-hostname
             dnsSubdomainChangeId: 0
             processorCoreCount: 6
             infrastructureDeployId: 4
@@ -50723,7 +50747,7 @@ components:
         networkEquipmentForceSubnetPoolIpv4WanId: 1
         processorCoreMhz: 9
         diskSizeMbytes: 4
-        hostname: my-custom-hostname-34
+        hostname: my-custom-hostname
         defaultServerTypeId: 5
         instanceCount: 6
         processorCoreCount: 7
@@ -50762,15 +50786,13 @@ components:
             IPv4 addresses are allocated.
           type: integer
         hostname:
-          description: "Custom hostname for the DNS Load Balancing record. If set,\
-            \ this will be used as the DNS Load Balancing record name instead of the\
-            \ default \"instance-group\". The hostname must be a valid DNS subdomain\
-            \ and can only contain alphanumeric characters, hyphens, and underscores.\
-            \ This will only take effect if the property \"provisionLoadBalancingDnsRecord\"\
-            \ is true. It will be automatically suffixed with the server instance\
-            \ group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS\
-            \ name."
-          example: my-custom-hostname-34
+          description: "Custom hostname(subdomain) part of the fully qualified domain\
+            \ name (FQDN). If set, this will be used as the subdomain record part\
+            \ of the DNS Load Balancing record name instead of the default \"instance-group\"\
+            . The hostname must be a valid DNS subdomain and can only contain alphanumeric\
+            \ characters and hyphens. This will only take effect if the property \"\
+            provisionLoadBalancingDnsRecord\" is true. "
+          example: my-custom-hostname
           maxLength: 63
           minLength: 1
           type: string
@@ -50875,7 +50897,7 @@ components:
         customVariables: "{}"
         deployType: create
         revision: 1
-        hostname: instance-34
+        hostname: my-custom-hostname
         iscsiInitiatorUsername: iscsiInitiatorUsername
         iscsiInitiatorIqn: iscsiInitiatorIqn
         dnsSubdomainChangeId: 1
@@ -50911,14 +50933,13 @@ components:
           description: The ID of the server assigned to the instance.
           type: integer
         hostname:
-          description: "Custom hostname for the DNS record name. If set, this will\
-            \ be used as part of the DNS record name instead of the default \"instance\"\
-            . The hostname must be a valid DNS subdomain and can only contain alphanumeric\
-            \ characters, hyphens, and underscores. This will only take effect if\
-            \ the property \"provisionInstanceDnsRecords\" is true. It will be automatically\
-            \ suffixed with the server instance ID (e.g., \"-34\") to ensure the uniqueness\
-            \ of the resulting DNS name."
-          example: instance-34
+          description: "Custom hostname(subdomain) part of the fully qualified domain\
+            \ name (FQDN). If set, this will be used as the subdomain record part\
+            \ of the DNS record name instead of the default \"instance\". The hostname\
+            \ must be a valid DNS subdomain and can only contain alphanumeric characters\
+            \ and hyphens. This will only take effect if the property \"provisionInstanceDnsRecords\"\
+            \ is true. "
+          example: my-custom-hostname
           maxLength: 63
           type: string
         osTemplateId:
@@ -51000,7 +51021,7 @@ components:
         serverId: 5
         osInstallImageUrl: osInstallImageUrl
         customVariables: "{}"
-        hostname: instance-34
+        hostname: my-custom-hostname
         dnsSubdomainPermanentId: 6
         iscsiInitiatorIqn: iscsiInitiatorIqn
         serviceStatus: ordered
@@ -51046,7 +51067,7 @@ components:
           customVariables: "{}"
           deployType: create
           revision: 1
-          hostname: instance-34
+          hostname: my-custom-hostname
           iscsiInitiatorUsername: iscsiInitiatorUsername
           iscsiInitiatorIqn: iscsiInitiatorIqn
           dnsSubdomainChangeId: 1
@@ -51101,14 +51122,13 @@ components:
           description: The ID of the server assigned to the instance.
           type: integer
         hostname:
-          description: "Custom hostname for the DNS record name. If set, this will\
-            \ be used as part of the DNS record name instead of the default \"instance\"\
-            . The hostname must be a valid DNS subdomain and can only contain alphanumeric\
-            \ characters, hyphens, and underscores. This will only take effect if\
-            \ the property \"provisionInstanceDnsRecords\" is true. It will be automatically\
-            \ suffixed with the server instance ID (e.g., \"-34\") to ensure the uniqueness\
-            \ of the resulting DNS name."
-          example: instance-34
+          description: "Custom hostname(subdomain) part of the fully qualified domain\
+            \ name (FQDN). If set, this will be used as the subdomain record part\
+            \ of the DNS record name instead of the default \"instance\". The hostname\
+            \ must be a valid DNS subdomain and can only contain alphanumeric characters\
+            \ and hyphens. This will only take effect if the property \"provisionInstanceDnsRecords\"\
+            \ is true. "
+          example: my-custom-hostname
           maxLength: 63
           type: string
         osTemplateId:
@@ -51218,7 +51238,7 @@ components:
           serverId: 5
           osInstallImageUrl: osInstallImageUrl
           customVariables: "{}"
-          hostname: instance-34
+          hostname: my-custom-hostname
           dnsSubdomainPermanentId: 6
           iscsiInitiatorIqn: iscsiInitiatorIqn
           serviceStatus: ordered
@@ -51264,7 +51284,7 @@ components:
             customVariables: "{}"
             deployType: create
             revision: 1
-            hostname: instance-34
+            hostname: my-custom-hostname
             iscsiInitiatorUsername: iscsiInitiatorUsername
             iscsiInitiatorIqn: iscsiInitiatorIqn
             dnsSubdomainChangeId: 1
@@ -51287,7 +51307,7 @@ components:
           serverId: 5
           osInstallImageUrl: osInstallImageUrl
           customVariables: "{}"
-          hostname: instance-34
+          hostname: my-custom-hostname
           dnsSubdomainPermanentId: 6
           iscsiInitiatorIqn: iscsiInitiatorIqn
           serviceStatus: ordered
@@ -51333,7 +51353,7 @@ components:
             customVariables: "{}"
             deployType: create
             revision: 1
-            hostname: instance-34
+            hostname: my-custom-hostname
             iscsiInitiatorUsername: iscsiInitiatorUsername
             iscsiInitiatorIqn: iscsiInitiatorIqn
             dnsSubdomainChangeId: 1
@@ -51370,7 +51390,7 @@ components:
     ServerInstanceCreate:
       example:
         serverTypeId: 5
-        hostname: instance-34
+        hostname: my-custom-hostname
         groupId: 0
         osTemplateId: 1
         label: label
@@ -51390,14 +51410,13 @@ components:
           example: 5
           type: integer
         hostname:
-          description: "Custom hostname for the DNS record name. If set, this will\
-            \ be used as part of the DNS record name instead of the default \"instance\"\
-            . The hostname must be a valid DNS subdomain and can only contain alphanumeric\
-            \ characters, hyphens, and underscores. This will only take effect if\
-            \ the property \"provisionInstanceDnsRecords\" is true. It will be automatically\
-            \ suffixed with the server instance ID (e.g., \"-34\") to ensure the uniqueness\
-            \ of the resulting DNS name."
-          example: instance-34
+          description: "Custom hostname(subdomain) part of the fully qualified domain\
+            \ name (FQDN). If set, this will be used as the subdomain record part\
+            \ of the DNS record name instead of the default \"instance\". The hostname\
+            \ must be a valid DNS subdomain and can only contain alphanumeric characters\
+            \ and hyphens. This will only take effect if the property \"provisionInstanceDnsRecords\"\
+            \ is true. "
+          example: my-custom-hostname
           maxLength: 63
           type: string
         osTemplateId:
@@ -57832,7 +57851,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-06-20T13:27:07.805Z
+        createdTimestamp: 2025-06-23T13:49:51.598Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -57841,7 +57860,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-06-20T13:27:07.806Z
+        updatedTimestamp: 2025-06-23T13:49:51.598Z
         revision: "1"
       properties:
         siteId:
@@ -57858,12 +57877,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-20T13:27:07.805Z
+          example: 2025-06-23T13:49:51.598Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-20T13:27:07.806Z
+          example: 2025-06-23T13:49:51.598Z
           format: date-time
           type: string
         links:
@@ -57885,7 +57904,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-06-20T13:27:07.805Z
+        - createdTimestamp: 2025-06-23T13:49:51.598Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -57894,9 +57913,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-06-20T13:27:07.806Z
+          updatedTimestamp: 2025-06-23T13:49:51.598Z
           revision: "1"
-        - createdTimestamp: 2025-06-20T13:27:07.805Z
+        - createdTimestamp: 2025-06-23T13:49:51.598Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -57905,7 +57924,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-06-20T13:27:07.806Z
+          updatedTimestamp: 2025-06-23T13:49:51.598Z
           revision: "1"
         meta: ""
         links: ""
@@ -58631,7 +58650,7 @@ components:
           variablesMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
           username: username
-        createdTimestamp: 2025-06-20T13:27:07.762Z
+        createdTimestamp: 2025-06-23T13:49:51.56Z
         name: My Network Fabric
         siteId: 0.8008281904610115
         description: This network fabric is used for corporate office connectivity.
@@ -58674,7 +58693,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-06-20T13:27:07.762Z
+        updatedTimestamp: 2025-06-23T13:49:51.561Z
         deployId: 123
         revision: "1"
         status: draft
@@ -58703,12 +58722,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-20T13:27:07.762Z
+          example: 2025-06-23T13:49:51.56Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-20T13:27:07.762Z
+          example: 2025-06-23T13:49:51.561Z
           format: date-time
           type: string
         links:
@@ -58853,7 +58872,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-06-20T13:27:07.762Z
+          createdTimestamp: 2025-06-23T13:49:51.56Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -58896,7 +58915,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-06-20T13:27:07.762Z
+          updatedTimestamp: 2025-06-23T13:49:51.561Z
           deployId: 123
           revision: "1"
           status: draft
@@ -59007,7 +59026,7 @@ components:
             variablesMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
             username: username
-          createdTimestamp: 2025-06-20T13:27:07.762Z
+          createdTimestamp: 2025-06-23T13:49:51.56Z
           name: My Network Fabric
           siteId: 0.8008281904610115
           description: This network fabric is used for corporate office connectivity.
@@ -59050,7 +59069,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-06-20T13:27:07.762Z
+          updatedTimestamp: 2025-06-23T13:49:51.561Z
           deployId: 123
           revision: "1"
           status: draft
@@ -59220,9 +59239,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-06-20T13:27:07.822Z
+        createdTimestamp: 2025-06-23T13:49:51.607Z
         mlagPair: 0
-        updatedTimestamp: 2025-06-20T13:27:07.823Z
+        updatedTimestamp: 2025-06-23T13:49:51.607Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -59235,12 +59254,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-20T13:27:07.822Z
+          example: 2025-06-23T13:49:51.607Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-20T13:27:07.823Z
+          example: 2025-06-23T13:49:51.607Z
           format: date-time
           type: string
         revision:
@@ -59318,9 +59337,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-06-20T13:27:07.822Z
+          createdTimestamp: 2025-06-23T13:49:51.607Z
           mlagPair: 0
-          updatedTimestamp: 2025-06-20T13:27:07.823Z
+          updatedTimestamp: 2025-06-23T13:49:51.607Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -59331,9 +59350,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-06-20T13:27:07.822Z
+          createdTimestamp: 2025-06-23T13:49:51.607Z
           mlagPair: 0
-          updatedTimestamp: 2025-06-20T13:27:07.823Z
+          updatedTimestamp: 2025-06-23T13:49:51.607Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -59371,29 +59390,11 @@ components:
         networkDeviceAInterfaceId: 1
         networkDeviceBInterfaceId: 2
         bgpLinkConfiguration: disabled
-        createdTimestamp: 2025-06-20T13:27:07.822Z
         mlagPair: 0
-        networkFabricId: 1
         linkType: point-to-point
-        updatedTimestamp: 2025-06-20T13:27:07.823Z
         bgpNumbering: inherited
         customVariables: "{}"
-        status: draft
       properties:
-        createdTimestamp:
-          description: Entity creation timestamp
-          example: 2025-06-20T13:27:07.822Z
-          format: date-time
-          type: string
-        updatedTimestamp:
-          description: Entity last update timestamp
-          example: 2025-06-20T13:27:07.823Z
-          format: date-time
-          type: string
-        networkFabricId:
-          description: Unique identifier for the network fabric
-          example: 1
-          type: number
         networkDeviceAInterfaceId:
           description: Unique identifier for the network device A interface
           example: 1
@@ -59429,27 +59430,16 @@ components:
           - passive
           example: disabled
           type: string
-        status:
-          description: Status of the network fabric link
-          enum:
-          - draft
-          - active
-          example: draft
-          type: string
         customVariables:
           description: Custom variables for the network fabric link
           type: object
       required:
       - bgpLinkConfiguration
       - bgpNumbering
-      - createdTimestamp
       - linkType
       - mlagPair
       - networkDeviceAInterfaceId
       - networkDeviceBInterfaceId
-      - networkFabricId
-      - status
-      - updatedTimestamp
       type: object
     OSTemplateDevice:
       example:
@@ -61355,7 +61345,7 @@ components:
         networkEquipmentForceSubnetPoolIpv4WanId: 1
         processorCoreMhz: 7
         diskSizeMbytes: 2
-        hostname: my-custom-hostname-34
+        hostname: my-custom-hostname
         defaultServerTypeId: 5
         instanceCount: 0
         processorCoreCount: 2
@@ -61391,15 +61381,13 @@ components:
             IPv4 addresses are allocated.
           type: integer
         hostname:
-          description: "Custom hostname for the DNS Load Balancing record. If set,\
-            \ this will be used as the DNS Load Balancing record name instead of the\
-            \ default \"instance-group\". The hostname must be a valid DNS subdomain\
-            \ and can only contain alphanumeric characters, hyphens, and underscores.\
-            \ This will only take effect if the property \"provisionLoadBalancingDnsRecord\"\
-            \ is true. It will be automatically suffixed with the server instance\
-            \ group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS\
-            \ name."
-          example: my-custom-hostname-34
+          description: "Custom hostname(subdomain) part of the fully qualified domain\
+            \ name (FQDN). If set, this will be used as the subdomain record part\
+            \ of the DNS Load Balancing record name instead of the default \"instance-group\"\
+            . The hostname must be a valid DNS subdomain and can only contain alphanumeric\
+            \ characters and hyphens. This will only take effect if the property \"\
+            provisionLoadBalancingDnsRecord\" is true. "
+          example: my-custom-hostname
           maxLength: 63
           minLength: 1
           type: string
@@ -62061,10 +62049,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-06-20T13:27:07.813Z
+        createdTimestamp: 2025-06-23T13:49:51.605Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-06-20T13:27:07.813Z
+        updatedTimestamp: 2025-06-23T13:49:51.605Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -62138,12 +62126,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-20T13:27:07.813Z
+          example: 2025-06-23T13:49:51.605Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-20T13:27:07.813Z
+          example: 2025-06-23T13:49:51.605Z
           format: date-time
           type: string
         links:
@@ -62340,7 +62328,7 @@ components:
     ServerInstanceUpdate:
       example:
         serverTypeId: 5
-        hostname: instance-34
+        hostname: my-custom-hostname
         osTemplateId: 1
         label: server-instance-123
         customVariables: "{}"
@@ -62356,14 +62344,13 @@ components:
           example: 5
           type: integer
         hostname:
-          description: "Custom hostname for the DNS record name. If set, this will\
-            \ be used as part of the DNS record name instead of the default \"instance\"\
-            . The hostname must be a valid DNS subdomain and can only contain alphanumeric\
-            \ characters, hyphens, and underscores. This will only take effect if\
-            \ the property \"provisionInstanceDnsRecords\" is true. It will be automatically\
-            \ suffixed with the server instance ID (e.g., \"-34\") to ensure the uniqueness\
-            \ of the resulting DNS name."
-          example: instance-34
+          description: "Custom hostname(subdomain) part of the fully qualified domain\
+            \ name (FQDN). If set, this will be used as the subdomain record part\
+            \ of the DNS record name instead of the default \"instance\". The hostname\
+            \ must be a valid DNS subdomain and can only contain alphanumeric characters\
+            \ and hyphens. This will only take effect if the property \"provisionInstanceDnsRecords\"\
+            \ is true. "
+          example: my-custom-hostname
           maxLength: 63
           type: string
         osTemplateId:
@@ -64002,14 +63989,13 @@ components:
           description: The ID of the server assigned to the instance.
           type: integer
         hostname:
-          description: "Custom hostname for the DNS record name. If set, this will\
-            \ be used as part of the DNS record name instead of the default \"instance\"\
-            . The hostname must be a valid DNS subdomain and can only contain alphanumeric\
-            \ characters, hyphens, and underscores. This will only take effect if\
-            \ the property \"provisionInstanceDnsRecords\" is true. It will be automatically\
-            \ suffixed with the server instance ID (e.g., \"-34\") to ensure the uniqueness\
-            \ of the resulting DNS name."
-          example: instance-34
+          description: "Custom hostname(subdomain) part of the fully qualified domain\
+            \ name (FQDN). If set, this will be used as the subdomain record part\
+            \ of the DNS record name instead of the default \"instance\". The hostname\
+            \ must be a valid DNS subdomain and can only contain alphanumeric characters\
+            \ and hyphens. This will only take effect if the property \"provisionInstanceDnsRecords\"\
+            \ is true. "
+          example: my-custom-hostname
           maxLength: 63
           type: string
         osTemplateId:
@@ -64167,15 +64153,13 @@ components:
           nullable: true
           type: array
         hostname:
-          description: "Custom hostname for the DNS Load Balancing record. If set,\
-            \ this will be used as the DNS Load Balancing record name instead of the\
-            \ default \"instance-group\". The hostname must be a valid DNS subdomain\
-            \ and can only contain alphanumeric characters, hyphens, and underscores.\
-            \ This will only take effect if the property \"provisionLoadBalancingDnsRecord\"\
-            \ is true. It will be automatically suffixed with the server instance\
-            \ group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS\
-            \ name."
-          example: my-custom-hostname-34
+          description: "Custom hostname(subdomain) part of the fully qualified domain\
+            \ name (FQDN). If set, this will be used as the subdomain record part\
+            \ of the DNS Load Balancing record name instead of the default \"instance-group\"\
+            . The hostname must be a valid DNS subdomain and can only contain alphanumeric\
+            \ characters and hyphens. This will only take effect if the property \"\
+            provisionLoadBalancingDnsRecord\" is true. "
+          example: my-custom-hostname
           maxLength: 63
           minLength: 1
           type: string
@@ -65927,6 +65911,10 @@ components:
         repoURL:
           description: Repository details
           type: string
+        dnsZoneId:
+          description: ID of the DNS zone associated with the site
+          example: 5
+          type: integer
         DNSServers:
           description: List of DNS Servers
           items:
@@ -66060,13 +66048,14 @@ components:
           description: Flag to indicate if this is an Endpoint Instance
           type: integer
         hostname:
-          description: The subdomain of the server instance.
-          example: server-instance-123
+          description: "Custom hostname(subdomain) part of the fully qualified domain\
+            \ name (FQDN). If set, this will be used as the subdomain record part\
+            \ of the DNS record name instead of the default \"instance\". The hostname\
+            \ must be a valid DNS subdomain and can only contain alphanumeric characters\
+            \ and hyphens. This will only take effect if the property \"provisionInstanceDnsRecords\"\
+            \ is true. "
+          example: my-custom-hostname
           maxLength: 63
-          type: string
-        fqdn:
-          description: The subdomain of the server instance.
-          example: server-instance-123
           type: string
         osCredentials:
           $ref: '#/components/schemas/ServerInstanceOsCredentialInstallationData'
@@ -66083,8 +66072,6 @@ components:
           description: iSCSI Initiator Password for the Instance Interface.
           type: string
       required:
-      - fqdn
-      - hostname
       - id
       - isEndpointInstance
       - isVmInstance
@@ -68697,14 +68684,14 @@ components:
       example:
         macAddress: 00:1A:2B:3C:4D:5E
         endpointId: 1
-        createdTimestamp: 2025-06-20T13:27:07.803Z
+        createdTimestamp: 2025-06-23T13:49:51.595Z
         links:
         - rel: self
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-06-20T13:27:07.803Z
+        updatedTimestamp: 2025-06-23T13:49:51.595Z
         networkEquipmentInterfaceId: 1
         revision: "1"
       properties:
@@ -68722,12 +68709,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-20T13:27:07.803Z
+          example: 2025-06-23T13:49:51.595Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-20T13:27:07.803Z
+          example: 2025-06-23T13:49:51.595Z
           format: date-time
           type: string
         links:
@@ -68756,29 +68743,29 @@ components:
         endpointInterfaces:
         - macAddress: 00:1A:2B:3C:4D:5E
           endpointId: 1
-          createdTimestamp: 2025-06-20T13:27:07.803Z
+          createdTimestamp: 2025-06-23T13:49:51.595Z
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-06-20T13:27:07.803Z
+          updatedTimestamp: 2025-06-23T13:49:51.595Z
           networkEquipmentInterfaceId: 1
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           endpointId: 1
-          createdTimestamp: 2025-06-20T13:27:07.803Z
+          createdTimestamp: 2025-06-23T13:49:51.595Z
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-06-20T13:27:07.803Z
+          updatedTimestamp: 2025-06-23T13:49:51.595Z
           networkEquipmentInterfaceId: 1
           revision: "1"
-        createdTimestamp: 2025-06-20T13:27:07.804Z
+        createdTimestamp: 2025-06-23T13:49:51.597Z
         name: Server 1
         siteId: 0.8008281904610115
         externalId: ext-12345
@@ -68789,7 +68776,7 @@ components:
           href: /api/v2/path/to/resource
         label: lan-finance-1
         id: "1"
-        updatedTimestamp: 2025-06-20T13:27:07.804Z
+        updatedTimestamp: 2025-06-23T13:49:51.597Z
         revision: "1"
       properties:
         siteId:
@@ -68818,12 +68805,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-20T13:27:07.804Z
+          example: 2025-06-23T13:49:51.597Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-20T13:27:07.804Z
+          example: 2025-06-23T13:49:51.597Z
           format: date-time
           type: string
         links:
@@ -68843,6 +68830,7 @@ components:
       required:
       - createdTimestamp
       - id
+      - label
       - name
       - revision
       - siteId
@@ -68854,29 +68842,29 @@ components:
         - endpointInterfaces:
           - macAddress: 00:1A:2B:3C:4D:5E
             endpointId: 1
-            createdTimestamp: 2025-06-20T13:27:07.803Z
+            createdTimestamp: 2025-06-23T13:49:51.595Z
             links:
             - rel: self
               href: /api/v2/path/to/resource
             - rel: self
               href: /api/v2/path/to/resource
             id: 1
-            updatedTimestamp: 2025-06-20T13:27:07.803Z
+            updatedTimestamp: 2025-06-23T13:49:51.595Z
             networkEquipmentInterfaceId: 1
             revision: "1"
           - macAddress: 00:1A:2B:3C:4D:5E
             endpointId: 1
-            createdTimestamp: 2025-06-20T13:27:07.803Z
+            createdTimestamp: 2025-06-23T13:49:51.595Z
             links:
             - rel: self
               href: /api/v2/path/to/resource
             - rel: self
               href: /api/v2/path/to/resource
             id: 1
-            updatedTimestamp: 2025-06-20T13:27:07.803Z
+            updatedTimestamp: 2025-06-23T13:49:51.595Z
             networkEquipmentInterfaceId: 1
             revision: "1"
-          createdTimestamp: 2025-06-20T13:27:07.804Z
+          createdTimestamp: 2025-06-23T13:49:51.597Z
           name: Server 1
           siteId: 0.8008281904610115
           externalId: ext-12345
@@ -68887,34 +68875,34 @@ components:
             href: /api/v2/path/to/resource
           label: lan-finance-1
           id: "1"
-          updatedTimestamp: 2025-06-20T13:27:07.804Z
+          updatedTimestamp: 2025-06-23T13:49:51.597Z
           revision: "1"
         - endpointInterfaces:
           - macAddress: 00:1A:2B:3C:4D:5E
             endpointId: 1
-            createdTimestamp: 2025-06-20T13:27:07.803Z
+            createdTimestamp: 2025-06-23T13:49:51.595Z
             links:
             - rel: self
               href: /api/v2/path/to/resource
             - rel: self
               href: /api/v2/path/to/resource
             id: 1
-            updatedTimestamp: 2025-06-20T13:27:07.803Z
+            updatedTimestamp: 2025-06-23T13:49:51.595Z
             networkEquipmentInterfaceId: 1
             revision: "1"
           - macAddress: 00:1A:2B:3C:4D:5E
             endpointId: 1
-            createdTimestamp: 2025-06-20T13:27:07.803Z
+            createdTimestamp: 2025-06-23T13:49:51.595Z
             links:
             - rel: self
               href: /api/v2/path/to/resource
             - rel: self
               href: /api/v2/path/to/resource
             id: 1
-            updatedTimestamp: 2025-06-20T13:27:07.803Z
+            updatedTimestamp: 2025-06-23T13:49:51.595Z
             networkEquipmentInterfaceId: 1
             revision: "1"
-          createdTimestamp: 2025-06-20T13:27:07.804Z
+          createdTimestamp: 2025-06-23T13:49:51.597Z
           name: Server 1
           siteId: 0.8008281904610115
           externalId: ext-12345
@@ -68925,7 +68913,7 @@ components:
             href: /api/v2/path/to/resource
           label: lan-finance-1
           id: "1"
-          updatedTimestamp: 2025-06-20T13:27:07.804Z
+          updatedTimestamp: 2025-06-23T13:49:51.597Z
           revision: "1"
         meta: ""
         links: ""
@@ -68978,6 +68966,7 @@ components:
           example: ext-12345
           type: string
       required:
+      - label
       - name
       - siteId
       type: object
@@ -69003,34 +68992,32 @@ components:
             \ system. Usually either an ethernet MAC address or a UUID."
           example: ext-12345
           type: string
-      required:
-      - name
       type: object
     EndpointInterfacePaginatedList:
       example:
         data:
         - macAddress: 00:1A:2B:3C:4D:5E
           endpointId: 1
-          createdTimestamp: 2025-06-20T13:27:07.803Z
+          createdTimestamp: 2025-06-23T13:49:51.595Z
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-06-20T13:27:07.803Z
+          updatedTimestamp: 2025-06-23T13:49:51.595Z
           networkEquipmentInterfaceId: 1
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           endpointId: 1
-          createdTimestamp: 2025-06-20T13:27:07.803Z
+          createdTimestamp: 2025-06-23T13:49:51.595Z
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-06-20T13:27:07.803Z
+          updatedTimestamp: 2025-06-23T13:49:51.595Z
           networkEquipmentInterfaceId: 1
           revision: "1"
         meta: ""
@@ -72643,7 +72630,11 @@ components:
         serviceStatus: ordered
         meta: ""
         subdomain: subdomain
-        links: "{}"
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
         id: 6.027456183070403
         config: ""
         diskSizeGB: 2.3021358869347655
@@ -72712,8 +72703,10 @@ components:
           - $ref: '#/components/schemas/VMInstanceGroupMeta'
           description: Meta information of the VM Instance Group.
         links:
-          description: Links to other resources
-          type: object
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
       required:
       - config
       - createdTimestamp
@@ -72722,7 +72715,6 @@ components:
       - infrastructure
       - infrastructureId
       - label
-      - links
       - meta
       - revision
       - serviceStatus
@@ -72746,7 +72738,11 @@ components:
           serviceStatus: ordered
           meta: ""
           subdomain: subdomain
-          links: "{}"
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
           id: 6.027456183070403
           config: ""
           diskSizeGB: 2.3021358869347655
@@ -72765,7 +72761,11 @@ components:
           serviceStatus: ordered
           meta: ""
           subdomain: subdomain
-          links: "{}"
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
           id: 6.027456183070403
           config: ""
           diskSizeGB: 2.3021358869347655

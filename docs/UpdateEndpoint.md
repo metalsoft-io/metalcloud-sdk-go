@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | The endpoint name | 
+**Name** | Pointer to **string** | The endpoint name | [optional] 
 **Label** | Pointer to **string** | The endpoint unique label | [optional] 
 **ExternalId** | Pointer to **string** | The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID. | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewUpdateEndpoint
 
-`func NewUpdateEndpoint(name string, ) *UpdateEndpoint`
+`func NewUpdateEndpoint() *UpdateEndpoint`
 
 NewUpdateEndpoint instantiates a new UpdateEndpoint object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *UpdateEndpoint) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetLabel
 

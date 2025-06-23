@@ -27,7 +27,7 @@ type Endpoint struct {
 	// The endpoint name
 	Name string `json:"name"`
 	// The endpoint unique label
-	Label *string `json:"label,omitempty" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
+	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
 	// The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID.
 	ExternalId *string `json:"externalId,omitempty"`
 	// Revision number of the entity
@@ -51,10 +51,11 @@ type _Endpoint Endpoint
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpoint(siteId float32, name string, revision string, createdTimestamp time.Time, updatedTimestamp time.Time, id string) *Endpoint {
+func NewEndpoint(siteId float32, name string, label string, revision string, createdTimestamp time.Time, updatedTimestamp time.Time, id string) *Endpoint {
 	this := Endpoint{}
 	this.SiteId = siteId
 	this.Name = name
+	this.Label = label
 	this.Revision = revision
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
@@ -118,36 +119,28 @@ func (o *Endpoint) SetName(v string) {
 	o.Name = v
 }
 
-// GetLabel returns the Label field value if set, zero value otherwise.
+// GetLabel returns the Label field value
 func (o *Endpoint) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Label
+
+	return o.Label
 }
 
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
 func (o *Endpoint) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Label, true
+	return &o.Label, true
 }
 
-// HasLabel returns a boolean if a field has been set.
-func (o *Endpoint) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
+// SetLabel sets field value
 func (o *Endpoint) SetLabel(v string) {
-	o.Label = &v
+	o.Label = v
 }
 
 // GetExternalId returns the ExternalId field value if set, zero value otherwise.
@@ -354,9 +347,7 @@ func (o Endpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["siteId"] = o.SiteId
 	toSerialize["name"] = o.Name
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
+	toSerialize["label"] = o.Label
 	if !IsNil(o.ExternalId) {
 		toSerialize["externalId"] = o.ExternalId
 	}
@@ -385,6 +376,7 @@ func (o *Endpoint) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"siteId",
 		"name",
+		"label",
 		"revision",
 		"createdTimestamp",
 		"updatedTimestamp",

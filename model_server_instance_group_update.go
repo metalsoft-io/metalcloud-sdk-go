@@ -31,7 +31,7 @@ type ServerInstanceGroupUpdate struct {
 	IpAllocateAuto *int32 `json:"ipAllocateAuto,omitempty"`
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
 	Ipv4SubnetCreateAuto *int32 `json:"ipv4SubnetCreateAuto,omitempty"`
-	// Custom hostname for the DNS Load Balancing record. If set, this will be used as the DNS Load Balancing record name instead of the default \"instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \"provisionLoadBalancingDnsRecord\" is true. It will be automatically suffixed with the server instance group ID (e.g., \"-34\") to ensure the uniqueness of the resulting DNS name.
+	// Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS Load Balancing record name instead of the default \"instance-group\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \"provisionLoadBalancingDnsRecord\" is true. 
 	Hostname *string `json:"hostname,omitempty"`
 	// The volume template ID (or name) to use if the servers in the Instance Group have local disks.
 	OsTemplateId *int32 `json:"osTemplateId,omitempty"`

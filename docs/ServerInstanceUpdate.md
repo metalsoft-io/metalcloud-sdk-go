@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | Pointer to **string** | The server instance label. | [optional] 
 **ServerTypeId** | Pointer to **int32** | The server type ID. | [optional] 
-**Hostname** | Pointer to **string** | Custom hostname for the DNS record name. If set, this will be used as part of the DNS record name instead of the default \&quot;instance\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters, hyphens, and underscores. This will only take effect if the property \&quot;provisionInstanceDnsRecords\&quot; is true. It will be automatically suffixed with the server instance ID (e.g., \&quot;-34\&quot;) to ensure the uniqueness of the resulting DNS name. | [optional] 
+**Hostname** | Pointer to **string** | Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS record name instead of the default \&quot;instance\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \&quot;provisionInstanceDnsRecords\&quot; is true.  | [optional] 
 **OsTemplateId** | Pointer to **int32** | The template id of the operating system to deploy on the server. Can be null in which case no OS will be deployed but all operations will continue as normal.  | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
 **CustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Custom Storage Profile for the Instance. | [optional] 

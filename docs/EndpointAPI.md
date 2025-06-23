@@ -38,7 +38,7 @@ import (
 )
 
 func main() {
-	createEndpoint := *openapiclient.NewCreateEndpoint(float32(123), "Server 1") // CreateEndpoint | The endpoint to create
+	createEndpoint := *openapiclient.NewCreateEndpoint(float32(123), "Server 1", "lan-finance-1") // CreateEndpoint | The endpoint to create
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -629,7 +629,7 @@ import (
 
 func main() {
 	endpointId := int32(56) // int32 | 
-	updateEndpoint := *openapiclient.NewUpdateEndpoint("Server 1") // UpdateEndpoint | The endpoint configuration changes
+	updateEndpoint := *openapiclient.NewUpdateEndpoint() // UpdateEndpoint | The endpoint configuration changes
 	ifMatch := "ifMatch_example" // string | Entity tag (optional)
 
 	configuration := openapiclient.NewConfiguration()

@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SiteId** | **float32** | The ID of the site where the entity is located. | 
 **Name** | **string** | The endpoint name | 
-**Label** | Pointer to **string** | The endpoint unique label | [optional] 
+**Label** | **string** | The endpoint unique label | 
 **ExternalId** | Pointer to **string** | The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID. | [optional] 
 
 ## Methods
 
 ### NewCreateEndpoint
 
-`func NewCreateEndpoint(siteId float32, name string, ) *CreateEndpoint`
+`func NewCreateEndpoint(siteId float32, name string, label string, ) *CreateEndpoint`
 
 NewCreateEndpoint instantiates a new CreateEndpoint object
 This constructor will assign default values to properties that have it defined,
@@ -87,11 +87,6 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
-### HasLabel
-
-`func (o *CreateEndpoint) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 ### GetExternalId
 
