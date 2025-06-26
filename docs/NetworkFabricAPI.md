@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkFabricLink
 
-> NetworkFabricLinkDto CreateNetworkFabricLink(ctx, networkFabricId).CreateNetworkFabricLinkDto(createNetworkFabricLinkDto).Execute()
+> NetworkFabricLinkDto CreateNetworkFabricLink(ctx, networkFabricId).CreateNetworkFabricLink(createNetworkFabricLink).Execute()
 
 Create a new network fabric link
 
@@ -244,11 +244,11 @@ import (
 
 func main() {
 	networkFabricId := int32(56) // int32 | The ID of the fabric
-	createNetworkFabricLinkDto := *openapiclient.NewCreateNetworkFabricLinkDto(float32(1), float32(2), "point-to-point", float32(0), "inherited", "disabled") // CreateNetworkFabricLinkDto | The network fabric link object
+	createNetworkFabricLink := *openapiclient.NewCreateNetworkFabricLink(float32(1), float32(2), "point-to-point", float32(0), "inherited", "disabled") // CreateNetworkFabricLink | The network fabric link object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkFabricAPI.CreateNetworkFabricLink(context.Background(), networkFabricId).CreateNetworkFabricLinkDto(createNetworkFabricLinkDto).Execute()
+	resp, r, err := apiClient.NetworkFabricAPI.CreateNetworkFabricLink(context.Background(), networkFabricId).CreateNetworkFabricLink(createNetworkFabricLink).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.CreateNetworkFabricLink``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -274,7 +274,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkFabricLinkReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkFabricLinkDto** | [**CreateNetworkFabricLinkDto**](CreateNetworkFabricLinkDto.md) | The network fabric link object | 
+ **createNetworkFabricLink** | [**CreateNetworkFabricLink**](CreateNetworkFabricLink.md) | The network fabric link object | 
 
 ### Return type
 

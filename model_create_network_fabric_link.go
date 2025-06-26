@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the CreateNetworkFabricLinkDto type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateNetworkFabricLinkDto{}
+// checks if the CreateNetworkFabricLink type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkFabricLink{}
 
-// CreateNetworkFabricLinkDto struct for CreateNetworkFabricLinkDto
-type CreateNetworkFabricLinkDto struct {
+// CreateNetworkFabricLink struct for CreateNetworkFabricLink
+type CreateNetworkFabricLink struct {
 	// Unique identifier for the network device A interface
 	NetworkDeviceAInterfaceId float32 `json:"networkDeviceAInterfaceId"`
 	// Unique identifier for the network device B interface
@@ -38,14 +38,14 @@ type CreateNetworkFabricLinkDto struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _CreateNetworkFabricLinkDto CreateNetworkFabricLinkDto
+type _CreateNetworkFabricLink CreateNetworkFabricLink
 
-// NewCreateNetworkFabricLinkDto instantiates a new CreateNetworkFabricLinkDto object
+// NewCreateNetworkFabricLink instantiates a new CreateNetworkFabricLink object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateNetworkFabricLinkDto(networkDeviceAInterfaceId float32, networkDeviceBInterfaceId float32, linkType string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string) *CreateNetworkFabricLinkDto {
-	this := CreateNetworkFabricLinkDto{}
+func NewCreateNetworkFabricLink(networkDeviceAInterfaceId float32, networkDeviceBInterfaceId float32, linkType string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string) *CreateNetworkFabricLink {
+	this := CreateNetworkFabricLink{}
 	this.NetworkDeviceAInterfaceId = networkDeviceAInterfaceId
 	this.NetworkDeviceBInterfaceId = networkDeviceBInterfaceId
 	this.LinkType = linkType
@@ -55,16 +55,16 @@ func NewCreateNetworkFabricLinkDto(networkDeviceAInterfaceId float32, networkDev
 	return &this
 }
 
-// NewCreateNetworkFabricLinkDtoWithDefaults instantiates a new CreateNetworkFabricLinkDto object
+// NewCreateNetworkFabricLinkWithDefaults instantiates a new CreateNetworkFabricLink object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateNetworkFabricLinkDtoWithDefaults() *CreateNetworkFabricLinkDto {
-	this := CreateNetworkFabricLinkDto{}
+func NewCreateNetworkFabricLinkWithDefaults() *CreateNetworkFabricLink {
+	this := CreateNetworkFabricLink{}
 	return &this
 }
 
 // GetNetworkDeviceAInterfaceId returns the NetworkDeviceAInterfaceId field value
-func (o *CreateNetworkFabricLinkDto) GetNetworkDeviceAInterfaceId() float32 {
+func (o *CreateNetworkFabricLink) GetNetworkDeviceAInterfaceId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -75,7 +75,7 @@ func (o *CreateNetworkFabricLinkDto) GetNetworkDeviceAInterfaceId() float32 {
 
 // GetNetworkDeviceAInterfaceIdOk returns a tuple with the NetworkDeviceAInterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLinkDto) GetNetworkDeviceAInterfaceIdOk() (*float32, bool) {
+func (o *CreateNetworkFabricLink) GetNetworkDeviceAInterfaceIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -83,12 +83,12 @@ func (o *CreateNetworkFabricLinkDto) GetNetworkDeviceAInterfaceIdOk() (*float32,
 }
 
 // SetNetworkDeviceAInterfaceId sets field value
-func (o *CreateNetworkFabricLinkDto) SetNetworkDeviceAInterfaceId(v float32) {
+func (o *CreateNetworkFabricLink) SetNetworkDeviceAInterfaceId(v float32) {
 	o.NetworkDeviceAInterfaceId = v
 }
 
 // GetNetworkDeviceBInterfaceId returns the NetworkDeviceBInterfaceId field value
-func (o *CreateNetworkFabricLinkDto) GetNetworkDeviceBInterfaceId() float32 {
+func (o *CreateNetworkFabricLink) GetNetworkDeviceBInterfaceId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -99,7 +99,7 @@ func (o *CreateNetworkFabricLinkDto) GetNetworkDeviceBInterfaceId() float32 {
 
 // GetNetworkDeviceBInterfaceIdOk returns a tuple with the NetworkDeviceBInterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLinkDto) GetNetworkDeviceBInterfaceIdOk() (*float32, bool) {
+func (o *CreateNetworkFabricLink) GetNetworkDeviceBInterfaceIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -107,12 +107,12 @@ func (o *CreateNetworkFabricLinkDto) GetNetworkDeviceBInterfaceIdOk() (*float32,
 }
 
 // SetNetworkDeviceBInterfaceId sets field value
-func (o *CreateNetworkFabricLinkDto) SetNetworkDeviceBInterfaceId(v float32) {
+func (o *CreateNetworkFabricLink) SetNetworkDeviceBInterfaceId(v float32) {
 	o.NetworkDeviceBInterfaceId = v
 }
 
 // GetLinkType returns the LinkType field value
-func (o *CreateNetworkFabricLinkDto) GetLinkType() string {
+func (o *CreateNetworkFabricLink) GetLinkType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -123,7 +123,7 @@ func (o *CreateNetworkFabricLinkDto) GetLinkType() string {
 
 // GetLinkTypeOk returns a tuple with the LinkType field value
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLinkDto) GetLinkTypeOk() (*string, bool) {
+func (o *CreateNetworkFabricLink) GetLinkTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -131,12 +131,12 @@ func (o *CreateNetworkFabricLinkDto) GetLinkTypeOk() (*string, bool) {
 }
 
 // SetLinkType sets field value
-func (o *CreateNetworkFabricLinkDto) SetLinkType(v string) {
+func (o *CreateNetworkFabricLink) SetLinkType(v string) {
 	o.LinkType = v
 }
 
 // GetMlagPair returns the MlagPair field value
-func (o *CreateNetworkFabricLinkDto) GetMlagPair() float32 {
+func (o *CreateNetworkFabricLink) GetMlagPair() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -147,7 +147,7 @@ func (o *CreateNetworkFabricLinkDto) GetMlagPair() float32 {
 
 // GetMlagPairOk returns a tuple with the MlagPair field value
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLinkDto) GetMlagPairOk() (*float32, bool) {
+func (o *CreateNetworkFabricLink) GetMlagPairOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -155,12 +155,12 @@ func (o *CreateNetworkFabricLinkDto) GetMlagPairOk() (*float32, bool) {
 }
 
 // SetMlagPair sets field value
-func (o *CreateNetworkFabricLinkDto) SetMlagPair(v float32) {
+func (o *CreateNetworkFabricLink) SetMlagPair(v float32) {
 	o.MlagPair = v
 }
 
 // GetBgpNumbering returns the BgpNumbering field value
-func (o *CreateNetworkFabricLinkDto) GetBgpNumbering() string {
+func (o *CreateNetworkFabricLink) GetBgpNumbering() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -171,7 +171,7 @@ func (o *CreateNetworkFabricLinkDto) GetBgpNumbering() string {
 
 // GetBgpNumberingOk returns a tuple with the BgpNumbering field value
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLinkDto) GetBgpNumberingOk() (*string, bool) {
+func (o *CreateNetworkFabricLink) GetBgpNumberingOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -179,12 +179,12 @@ func (o *CreateNetworkFabricLinkDto) GetBgpNumberingOk() (*string, bool) {
 }
 
 // SetBgpNumbering sets field value
-func (o *CreateNetworkFabricLinkDto) SetBgpNumbering(v string) {
+func (o *CreateNetworkFabricLink) SetBgpNumbering(v string) {
 	o.BgpNumbering = v
 }
 
 // GetBgpLinkConfiguration returns the BgpLinkConfiguration field value
-func (o *CreateNetworkFabricLinkDto) GetBgpLinkConfiguration() string {
+func (o *CreateNetworkFabricLink) GetBgpLinkConfiguration() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -195,7 +195,7 @@ func (o *CreateNetworkFabricLinkDto) GetBgpLinkConfiguration() string {
 
 // GetBgpLinkConfigurationOk returns a tuple with the BgpLinkConfiguration field value
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLinkDto) GetBgpLinkConfigurationOk() (*string, bool) {
+func (o *CreateNetworkFabricLink) GetBgpLinkConfigurationOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -203,12 +203,12 @@ func (o *CreateNetworkFabricLinkDto) GetBgpLinkConfigurationOk() (*string, bool)
 }
 
 // SetBgpLinkConfiguration sets field value
-func (o *CreateNetworkFabricLinkDto) SetBgpLinkConfiguration(v string) {
+func (o *CreateNetworkFabricLink) SetBgpLinkConfiguration(v string) {
 	o.BgpLinkConfiguration = v
 }
 
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
-func (o *CreateNetworkFabricLinkDto) GetCustomVariables() map[string]interface{} {
+func (o *CreateNetworkFabricLink) GetCustomVariables() map[string]interface{} {
 	if o == nil || IsNil(o.CustomVariables) {
 		var ret map[string]interface{}
 		return ret
@@ -218,7 +218,7 @@ func (o *CreateNetworkFabricLinkDto) GetCustomVariables() map[string]interface{}
 
 // GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkFabricLinkDto) GetCustomVariablesOk() (map[string]interface{}, bool) {
+func (o *CreateNetworkFabricLink) GetCustomVariablesOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.CustomVariables) {
 		return map[string]interface{}{}, false
 	}
@@ -226,7 +226,7 @@ func (o *CreateNetworkFabricLinkDto) GetCustomVariablesOk() (map[string]interfac
 }
 
 // HasCustomVariables returns a boolean if a field has been set.
-func (o *CreateNetworkFabricLinkDto) HasCustomVariables() bool {
+func (o *CreateNetworkFabricLink) HasCustomVariables() bool {
 	if o != nil && !IsNil(o.CustomVariables) {
 		return true
 	}
@@ -235,11 +235,11 @@ func (o *CreateNetworkFabricLinkDto) HasCustomVariables() bool {
 }
 
 // SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
-func (o *CreateNetworkFabricLinkDto) SetCustomVariables(v map[string]interface{}) {
+func (o *CreateNetworkFabricLink) SetCustomVariables(v map[string]interface{}) {
 	o.CustomVariables = v
 }
 
-func (o CreateNetworkFabricLinkDto) MarshalJSON() ([]byte, error) {
+func (o CreateNetworkFabricLink) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -247,7 +247,7 @@ func (o CreateNetworkFabricLinkDto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateNetworkFabricLinkDto) ToMap() (map[string]interface{}, error) {
+func (o CreateNetworkFabricLink) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["networkDeviceAInterfaceId"] = o.NetworkDeviceAInterfaceId
 	toSerialize["networkDeviceBInterfaceId"] = o.NetworkDeviceBInterfaceId
@@ -266,7 +266,7 @@ func (o CreateNetworkFabricLinkDto) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *CreateNetworkFabricLinkDto) UnmarshalJSON(data []byte) (err error) {
+func (o *CreateNetworkFabricLink) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -293,15 +293,15 @@ func (o *CreateNetworkFabricLinkDto) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varCreateNetworkFabricLinkDto := _CreateNetworkFabricLinkDto{}
+	varCreateNetworkFabricLink := _CreateNetworkFabricLink{}
 
-	err = json.Unmarshal(data, &varCreateNetworkFabricLinkDto)
+	err = json.Unmarshal(data, &varCreateNetworkFabricLink)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CreateNetworkFabricLinkDto(varCreateNetworkFabricLinkDto)
+	*o = CreateNetworkFabricLink(varCreateNetworkFabricLink)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -319,38 +319,38 @@ func (o *CreateNetworkFabricLinkDto) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableCreateNetworkFabricLinkDto struct {
-	value *CreateNetworkFabricLinkDto
+type NullableCreateNetworkFabricLink struct {
+	value *CreateNetworkFabricLink
 	isSet bool
 }
 
-func (v NullableCreateNetworkFabricLinkDto) Get() *CreateNetworkFabricLinkDto {
+func (v NullableCreateNetworkFabricLink) Get() *CreateNetworkFabricLink {
 	return v.value
 }
 
-func (v *NullableCreateNetworkFabricLinkDto) Set(val *CreateNetworkFabricLinkDto) {
+func (v *NullableCreateNetworkFabricLink) Set(val *CreateNetworkFabricLink) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateNetworkFabricLinkDto) IsSet() bool {
+func (v NullableCreateNetworkFabricLink) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateNetworkFabricLinkDto) Unset() {
+func (v *NullableCreateNetworkFabricLink) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateNetworkFabricLinkDto(val *CreateNetworkFabricLinkDto) *NullableCreateNetworkFabricLinkDto {
-	return &NullableCreateNetworkFabricLinkDto{value: val, isSet: true}
+func NewNullableCreateNetworkFabricLink(val *CreateNetworkFabricLink) *NullableCreateNetworkFabricLink {
+	return &NullableCreateNetworkFabricLink{value: val, isSet: true}
 }
 
-func (v NullableCreateNetworkFabricLinkDto) MarshalJSON() ([]byte, error) {
+func (v NullableCreateNetworkFabricLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateNetworkFabricLinkDto) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateNetworkFabricLink) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

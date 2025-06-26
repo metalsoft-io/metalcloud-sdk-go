@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **BgpNumbering** | Pointer to **string** | BGP numbering | [optional] 
 **BgpLinkConfiguration** | Pointer to **string** | BGP link configuration | [optional] 
 **ExecutionType** | Pointer to **string** | Execution type | [optional] 
-**Preparation** | Pointer to **map[string]interface{}** | Preparation JSON | [optional] 
-**Configuration** | Pointer to **map[string]interface{}** | Configuration JSON | [optional] 
+**Preparation** | Pointer to **string** | Preparation commands in base64 format | [optional] 
+**Configuration** | Pointer to **string** | Configuration commands in base64 format | [optional] 
 
 ## Methods
 
@@ -236,20 +236,20 @@ HasExecutionType returns a boolean if a field has been set.
 
 ### GetPreparation
 
-`func (o *UpdateBgpTemplate) GetPreparation() map[string]interface{}`
+`func (o *UpdateBgpTemplate) GetPreparation() string`
 
 GetPreparation returns the Preparation field if non-nil, zero value otherwise.
 
 ### GetPreparationOk
 
-`func (o *UpdateBgpTemplate) GetPreparationOk() (*map[string]interface{}, bool)`
+`func (o *UpdateBgpTemplate) GetPreparationOk() (*string, bool)`
 
 GetPreparationOk returns a tuple with the Preparation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPreparation
 
-`func (o *UpdateBgpTemplate) SetPreparation(v map[string]interface{})`
+`func (o *UpdateBgpTemplate) SetPreparation(v string)`
 
 SetPreparation sets Preparation field to given value.
 
@@ -261,20 +261,20 @@ HasPreparation returns a boolean if a field has been set.
 
 ### GetConfiguration
 
-`func (o *UpdateBgpTemplate) GetConfiguration() map[string]interface{}`
+`func (o *UpdateBgpTemplate) GetConfiguration() string`
 
 GetConfiguration returns the Configuration field if non-nil, zero value otherwise.
 
 ### GetConfigurationOk
 
-`func (o *UpdateBgpTemplate) GetConfigurationOk() (*map[string]interface{}, bool)`
+`func (o *UpdateBgpTemplate) GetConfigurationOk() (*string, bool)`
 
 GetConfigurationOk returns a tuple with the Configuration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfiguration
 
-`func (o *UpdateBgpTemplate) SetConfiguration(v map[string]interface{})`
+`func (o *UpdateBgpTemplate) SetConfiguration(v string)`
 
 SetConfiguration sets Configuration field to given value.
 

@@ -154,6 +154,7 @@ Class | Method | HTTP request | Description
 *EndpointAPI* | [**GetEndpointInterfaceById**](docs/EndpointAPI.md#getendpointinterfacebyid) | **Get** /api/v2/endpoints/{endpointId}/interfaces/{endpointInterfaceId} | Get endpoint interface details
 *EndpointAPI* | [**GetEndpointInterfaces**](docs/EndpointAPI.md#getendpointinterfaces) | **Get** /api/v2/endpoints/{endpointId}/interfaces | List endpoint interfaces
 *EndpointAPI* | [**GetEndpoints**](docs/EndpointAPI.md#getendpoints) | **Get** /api/v2/endpoints | List endpoints
+*EndpointAPI* | [**GetNetworkDeviceInterfacesAndEndpoints**](docs/EndpointAPI.md#getnetworkdeviceinterfacesandendpoints) | **Get** /api/v2/endpoints/network-devices/{networkDeviceId}/interfaces | List network device interfaces associated with endpoints
 *EndpointAPI* | [**UpdateEndpoint**](docs/EndpointAPI.md#updateendpoint) | **Patch** /api/v2/endpoints/{endpointId} | Update endpoint
 *EndpointAPI* | [**UpdateEndpointInterface**](docs/EndpointAPI.md#updateendpointinterface) | **Patch** /api/v2/endpoints/{endpointId}/interfaces/{endpointInterfaceId} | Update endpoint interface
 *EndpointInstanceAPI* | [**CreateEndpointInstance**](docs/EndpointInstanceAPI.md#createendpointinstance) | **Post** /api/v2/infrastructures/{infrastructureId}/endpoint-instances | Add Endpoint Instance to an infrastructure
@@ -733,7 +734,7 @@ Class | Method | HTTP request | Description
  - [CreateNetworkEndpointGroup](docs/CreateNetworkEndpointGroup.md)
  - [CreateNetworkEndpointGroupLogicalNetwork](docs/CreateNetworkEndpointGroupLogicalNetwork.md)
  - [CreateNetworkFabric](docs/CreateNetworkFabric.md)
- - [CreateNetworkFabricLinkDto](docs/CreateNetworkFabricLinkDto.md)
+ - [CreateNetworkFabricLink](docs/CreateNetworkFabricLink.md)
  - [CreateResourcePool](docs/CreateResourcePool.md)
  - [CreateResourceScope](docs/CreateResourceScope.md)
  - [CreateRole](docs/CreateRole.md)
@@ -950,6 +951,8 @@ Class | Method | HTTP request | Description
  - [NetworkDeviceDefaultSecretsCredentials](docs/NetworkDeviceDefaultSecretsCredentials.md)
  - [NetworkDeviceDefaultSecretsPaginatedList](docs/NetworkDeviceDefaultSecretsPaginatedList.md)
  - [NetworkDeviceDriver](docs/NetworkDeviceDriver.md)
+ - [NetworkDeviceEndpointInterface](docs/NetworkDeviceEndpointInterface.md)
+ - [NetworkDeviceEndpointInterfaces](docs/NetworkDeviceEndpointInterfaces.md)
  - [NetworkDeviceInterfaceDto](docs/NetworkDeviceInterfaceDto.md)
  - [NetworkDeviceInterfacesPaginatedList](docs/NetworkDeviceInterfacesPaginatedList.md)
  - [NetworkDevicePaginatedList](docs/NetworkDevicePaginatedList.md)

@@ -33,6 +33,9 @@ const (
 	NETWORKDEVICEDRIVER_JUNOS NetworkDeviceDriver = "junos"
 	NETWORKDEVICEDRIVER_OS_10 NetworkDeviceDriver = "os_10"
 	NETWORKDEVICEDRIVER_SONIC_ENTERPRISE NetworkDeviceDriver = "sonic_enterprise"
+	NETWORKDEVICEDRIVER_DELL_S4000 NetworkDeviceDriver = "dell_s4000"
+	NETWORKDEVICEDRIVER_DELL_S6010 NetworkDeviceDriver = "dell_s6010"
+	NETWORKDEVICEDRIVER_JUNOS18 NetworkDeviceDriver = "junos18"
 )
 
 // All allowed values of NetworkDeviceDriver enum
@@ -49,6 +52,9 @@ var AllowedNetworkDeviceDriverEnumValues = []NetworkDeviceDriver{
 	"junos",
 	"os_10",
 	"sonic_enterprise",
+	"dell_s4000",
+	"dell_s6010",
+	"junos18",
 }
 
 func (v *NetworkDeviceDriver) UnmarshalJSON(src []byte) error {

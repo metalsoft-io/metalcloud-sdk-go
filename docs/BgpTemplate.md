@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **BgpNumbering** | **string** | BGP numbering | 
 **BgpLinkConfiguration** | **string** | BGP link configuration | 
 **ExecutionType** | **string** | Execution type | 
-**Preparation** | Pointer to **map[string]interface{}** | Preparation JSON | [optional] 
-**Configuration** | Pointer to **map[string]interface{}** | Configuration JSON | [optional] 
+**Preparation** | Pointer to **string** | Preparation commands in base64 format | [optional] 
+**Configuration** | **string** | Configuration commands in base64 format | 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewBgpTemplate
 
-`func NewBgpTemplate(networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, executionType string, createdTimestamp time.Time, updatedTimestamp time.Time, id float32, ) *BgpTemplate`
+`func NewBgpTemplate(networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, executionType string, configuration string, createdTimestamp time.Time, updatedTimestamp time.Time, id float32, ) *BgpTemplate`
 
 NewBgpTemplate instantiates a new BgpTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -200,20 +200,20 @@ SetExecutionType sets ExecutionType field to given value.
 
 ### GetPreparation
 
-`func (o *BgpTemplate) GetPreparation() map[string]interface{}`
+`func (o *BgpTemplate) GetPreparation() string`
 
 GetPreparation returns the Preparation field if non-nil, zero value otherwise.
 
 ### GetPreparationOk
 
-`func (o *BgpTemplate) GetPreparationOk() (*map[string]interface{}, bool)`
+`func (o *BgpTemplate) GetPreparationOk() (*string, bool)`
 
 GetPreparationOk returns a tuple with the Preparation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPreparation
 
-`func (o *BgpTemplate) SetPreparation(v map[string]interface{})`
+`func (o *BgpTemplate) SetPreparation(v string)`
 
 SetPreparation sets Preparation field to given value.
 
@@ -225,28 +225,23 @@ HasPreparation returns a boolean if a field has been set.
 
 ### GetConfiguration
 
-`func (o *BgpTemplate) GetConfiguration() map[string]interface{}`
+`func (o *BgpTemplate) GetConfiguration() string`
 
 GetConfiguration returns the Configuration field if non-nil, zero value otherwise.
 
 ### GetConfigurationOk
 
-`func (o *BgpTemplate) GetConfigurationOk() (*map[string]interface{}, bool)`
+`func (o *BgpTemplate) GetConfigurationOk() (*string, bool)`
 
 GetConfigurationOk returns a tuple with the Configuration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfiguration
 
-`func (o *BgpTemplate) SetConfiguration(v map[string]interface{})`
+`func (o *BgpTemplate) SetConfiguration(v string)`
 
 SetConfiguration sets Configuration field to given value.
 
-### HasConfiguration
-
-`func (o *BgpTemplate) HasConfiguration() bool`
-
-HasConfiguration returns a boolean if a field has been set.
 
 ### GetCreatedTimestamp
 

@@ -37,10 +37,10 @@ type CreateBgpTemplate struct {
 	BgpLinkConfiguration string `json:"bgpLinkConfiguration"`
 	// Execution type
 	ExecutionType string `json:"executionType"`
-	// Preparation JSON
-	Preparation map[string]interface{} `json:"preparation,omitempty"`
-	// Configuration JSON
-	Configuration map[string]interface{} `json:"configuration,omitempty"`
+	// Preparation commands in base64 format
+	Preparation *string `json:"preparation,omitempty"`
+	// Configuration commands in base64 format
+	Configuration string `json:"configuration"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -50,7 +50,7 @@ type _CreateBgpTemplate CreateBgpTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBgpTemplate(networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, executionType string) *CreateBgpTemplate {
+func NewCreateBgpTemplate(networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, executionType string, configuration string) *CreateBgpTemplate {
 	this := CreateBgpTemplate{}
 	this.NetworkType = networkType
 	this.NetworkDeviceDriver = networkDeviceDriver
@@ -60,6 +60,7 @@ func NewCreateBgpTemplate(networkType string, networkDeviceDriver string, networ
 	this.BgpNumbering = bgpNumbering
 	this.BgpLinkConfiguration = bgpLinkConfiguration
 	this.ExecutionType = executionType
+	this.Configuration = configuration
 	return &this
 }
 
@@ -264,19 +265,19 @@ func (o *CreateBgpTemplate) SetExecutionType(v string) {
 }
 
 // GetPreparation returns the Preparation field value if set, zero value otherwise.
-func (o *CreateBgpTemplate) GetPreparation() map[string]interface{} {
+func (o *CreateBgpTemplate) GetPreparation() string {
 	if o == nil || IsNil(o.Preparation) {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
-	return o.Preparation
+	return *o.Preparation
 }
 
 // GetPreparationOk returns a tuple with the Preparation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateBgpTemplate) GetPreparationOk() (map[string]interface{}, bool) {
+func (o *CreateBgpTemplate) GetPreparationOk() (*string, bool) {
 	if o == nil || IsNil(o.Preparation) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Preparation, true
 }
@@ -290,40 +291,32 @@ func (o *CreateBgpTemplate) HasPreparation() bool {
 	return false
 }
 
-// SetPreparation gets a reference to the given map[string]interface{} and assigns it to the Preparation field.
-func (o *CreateBgpTemplate) SetPreparation(v map[string]interface{}) {
-	o.Preparation = v
+// SetPreparation gets a reference to the given string and assigns it to the Preparation field.
+func (o *CreateBgpTemplate) SetPreparation(v string) {
+	o.Preparation = &v
 }
 
-// GetConfiguration returns the Configuration field value if set, zero value otherwise.
-func (o *CreateBgpTemplate) GetConfiguration() map[string]interface{} {
-	if o == nil || IsNil(o.Configuration) {
-		var ret map[string]interface{}
+// GetConfiguration returns the Configuration field value
+func (o *CreateBgpTemplate) GetConfiguration() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
+
 	return o.Configuration
 }
 
-// GetConfigurationOk returns a tuple with the Configuration field value if set, nil otherwise
+// GetConfigurationOk returns a tuple with the Configuration field value
 // and a boolean to check if the value has been set.
-func (o *CreateBgpTemplate) GetConfigurationOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Configuration) {
-		return map[string]interface{}{}, false
+func (o *CreateBgpTemplate) GetConfigurationOk() (*string, bool) {
+	if o == nil {
+		return nil, false
 	}
-	return o.Configuration, true
+	return &o.Configuration, true
 }
 
-// HasConfiguration returns a boolean if a field has been set.
-func (o *CreateBgpTemplate) HasConfiguration() bool {
-	if o != nil && !IsNil(o.Configuration) {
-		return true
-	}
-
-	return false
-}
-
-// SetConfiguration gets a reference to the given map[string]interface{} and assigns it to the Configuration field.
-func (o *CreateBgpTemplate) SetConfiguration(v map[string]interface{}) {
+// SetConfiguration sets field value
+func (o *CreateBgpTemplate) SetConfiguration(v string) {
 	o.Configuration = v
 }
 
@@ -348,9 +341,7 @@ func (o CreateBgpTemplate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Preparation) {
 		toSerialize["preparation"] = o.Preparation
 	}
-	if !IsNil(o.Configuration) {
-		toSerialize["configuration"] = o.Configuration
-	}
+	toSerialize["configuration"] = o.Configuration
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -372,6 +363,7 @@ func (o *CreateBgpTemplate) UnmarshalJSON(data []byte) (err error) {
 		"bgpNumbering",
 		"bgpLinkConfiguration",
 		"executionType",
+		"configuration",
 	}
 
 	allProperties := make(map[string]interface{})

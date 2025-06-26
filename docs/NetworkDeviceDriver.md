@@ -27,6 +27,12 @@
 
 * `SONIC_ENTERPRISE` (value: `"sonic_enterprise"`)
 
+* `DELL_S4000` (value: `"dell_s4000"`)
+
+* `DELL_S6010` (value: `"dell_s6010"`)
+
+* `JUNOS18` (value: `"junos18"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

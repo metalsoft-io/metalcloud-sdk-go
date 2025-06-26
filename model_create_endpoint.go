@@ -29,6 +29,8 @@ type CreateEndpoint struct {
 	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
 	// The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID.
 	ExternalId *string `json:"externalId,omitempty"`
+	// The endpoint interfaces associated with this endpoint
+	EndpointInterfaces []CreateEndpointInterface `json:"endpointInterfaces,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -158,6 +160,38 @@ func (o *CreateEndpoint) SetExternalId(v string) {
 	o.ExternalId = &v
 }
 
+// GetEndpointInterfaces returns the EndpointInterfaces field value if set, zero value otherwise.
+func (o *CreateEndpoint) GetEndpointInterfaces() []CreateEndpointInterface {
+	if o == nil || IsNil(o.EndpointInterfaces) {
+		var ret []CreateEndpointInterface
+		return ret
+	}
+	return o.EndpointInterfaces
+}
+
+// GetEndpointInterfacesOk returns a tuple with the EndpointInterfaces field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateEndpoint) GetEndpointInterfacesOk() ([]CreateEndpointInterface, bool) {
+	if o == nil || IsNil(o.EndpointInterfaces) {
+		return nil, false
+	}
+	return o.EndpointInterfaces, true
+}
+
+// HasEndpointInterfaces returns a boolean if a field has been set.
+func (o *CreateEndpoint) HasEndpointInterfaces() bool {
+	if o != nil && !IsNil(o.EndpointInterfaces) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndpointInterfaces gets a reference to the given []CreateEndpointInterface and assigns it to the EndpointInterfaces field.
+func (o *CreateEndpoint) SetEndpointInterfaces(v []CreateEndpointInterface) {
+	o.EndpointInterfaces = v
+}
+
 func (o CreateEndpoint) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -173,6 +207,9 @@ func (o CreateEndpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize["label"] = o.Label
 	if !IsNil(o.ExternalId) {
 		toSerialize["externalId"] = o.ExternalId
+	}
+	if !IsNil(o.EndpointInterfaces) {
+		toSerialize["endpointInterfaces"] = o.EndpointInterfaces
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -223,6 +260,7 @@ func (o *CreateEndpoint) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "externalId")
+		delete(additionalProperties, "endpointInterfaces")
 		o.AdditionalProperties = additionalProperties
 	}
 

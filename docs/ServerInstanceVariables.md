@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **IsVmInstance** | **int32** | Flag to indicate if this is a VM instance | 
 **VmInstanceId** | Pointer to **int32** | The id of the linked VM instance | [optional] 
 **IsEndpointInstance** | **int32** | Flag to indicate if this is an Endpoint Instance | 
+**EndpointId** | Pointer to **int32** | The id of the Endpoint | [optional] 
 **ClusterCustomInfo** | Pointer to [**ServerInstanceClusterCustomInfo**](ServerInstanceClusterCustomInfo.md) |  | [optional] 
 **OsInstallError** | Pointer to **string** | Last error message during OS install. | [optional] 
 **OsInstallImageUrl** | Pointer to **string** | URL where the OS image is available. | [optional] 
@@ -583,6 +584,31 @@ and a boolean to check if the value has been set.
 
 SetIsEndpointInstance sets IsEndpointInstance field to given value.
 
+
+### GetEndpointId
+
+`func (o *ServerInstanceVariables) GetEndpointId() int32`
+
+GetEndpointId returns the EndpointId field if non-nil, zero value otherwise.
+
+### GetEndpointIdOk
+
+`func (o *ServerInstanceVariables) GetEndpointIdOk() (*int32, bool)`
+
+GetEndpointIdOk returns a tuple with the EndpointId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndpointId
+
+`func (o *ServerInstanceVariables) SetEndpointId(v int32)`
+
+SetEndpointId sets EndpointId field to given value.
+
+### HasEndpointId
+
+`func (o *ServerInstanceVariables) HasEndpointId() bool`
+
+HasEndpointId returns a boolean if a field has been set.
 
 ### GetClusterCustomInfo
 

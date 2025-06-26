@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** | The endpoint name | 
 **Label** | **string** | The endpoint unique label | 
 **ExternalId** | Pointer to **string** | The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID. | [optional] 
+**EndpointInterfaces** | Pointer to [**[]CreateEndpointInterface**](CreateEndpointInterface.md) | The endpoint interfaces associated with this endpoint | [optional] 
 
 ## Methods
 
@@ -112,6 +113,31 @@ SetExternalId sets ExternalId field to given value.
 `func (o *CreateEndpoint) HasExternalId() bool`
 
 HasExternalId returns a boolean if a field has been set.
+
+### GetEndpointInterfaces
+
+`func (o *CreateEndpoint) GetEndpointInterfaces() []CreateEndpointInterface`
+
+GetEndpointInterfaces returns the EndpointInterfaces field if non-nil, zero value otherwise.
+
+### GetEndpointInterfacesOk
+
+`func (o *CreateEndpoint) GetEndpointInterfacesOk() (*[]CreateEndpointInterface, bool)`
+
+GetEndpointInterfacesOk returns a tuple with the EndpointInterfaces field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndpointInterfaces
+
+`func (o *CreateEndpoint) SetEndpointInterfaces(v []CreateEndpointInterface)`
+
+SetEndpointInterfaces sets EndpointInterfaces field to given value.
+
+### HasEndpointInterfaces
+
+`func (o *CreateEndpoint) HasEndpointInterfaces() bool`
+
+HasEndpointInterfaces returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

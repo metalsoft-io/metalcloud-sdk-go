@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	createBgpTemplate := *openapiclient.NewCreateBgpTemplate("NetworkType_example", "NetworkDeviceDriver_example", "NetworkDevicePosition_example", "RemoteNetworkDevicePosition_example", float32(123), "BgpNumbering_example", "BgpLinkConfiguration_example", "ExecutionType_example") // CreateBgpTemplate | The BGP Template create object
+	createBgpTemplate := *openapiclient.NewCreateBgpTemplate("NetworkType_example", "NetworkDeviceDriver_example", "NetworkDevicePosition_example", "RemoteNetworkDevicePosition_example", float32(123), "BgpNumbering_example", "BgpLinkConfiguration_example", "ExecutionType_example", "Configuration_example") // CreateBgpTemplate | The BGP Template create object
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

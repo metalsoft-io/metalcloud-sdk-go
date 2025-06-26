@@ -362,12 +362,12 @@ type NetworkFabricAPICreateNetworkFabricLinkRequest struct {
 	ctx context.Context
 	ApiService *NetworkFabricAPIService
 	networkFabricId int32
-	createNetworkFabricLinkDto *CreateNetworkFabricLinkDto
+	createNetworkFabricLink *CreateNetworkFabricLink
 }
 
 // The network fabric link object
-func (r NetworkFabricAPICreateNetworkFabricLinkRequest) CreateNetworkFabricLinkDto(createNetworkFabricLinkDto CreateNetworkFabricLinkDto) NetworkFabricAPICreateNetworkFabricLinkRequest {
-	r.createNetworkFabricLinkDto = &createNetworkFabricLinkDto
+func (r NetworkFabricAPICreateNetworkFabricLinkRequest) CreateNetworkFabricLink(createNetworkFabricLink CreateNetworkFabricLink) NetworkFabricAPICreateNetworkFabricLinkRequest {
+	r.createNetworkFabricLink = &createNetworkFabricLink
 	return r
 }
 
@@ -411,8 +411,8 @@ func (a *NetworkFabricAPIService) CreateNetworkFabricLinkExecute(r NetworkFabric
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkFabricLinkDto == nil {
-		return localVarReturnValue, nil, reportError("createNetworkFabricLinkDto is required and must be specified")
+	if r.createNetworkFabricLink == nil {
+		return localVarReturnValue, nil, reportError("createNetworkFabricLink is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -433,7 +433,7 @@ func (a *NetworkFabricAPIService) CreateNetworkFabricLinkExecute(r NetworkFabric
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkFabricLinkDto
+	localVarPostBody = r.createNetworkFabricLink
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

@@ -5,21 +5,21 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SiteId** | **float32** | The ID of the site where the entity is located. | 
-**Name** | **string** | The endpoint name | 
-**Label** | **string** | The endpoint unique label | 
-**ExternalId** | Pointer to **string** | The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID. | [optional] 
 **Revision** | **string** | Revision number of the entity | 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
-**Id** | **string** | The network fabric ID. | 
+**Id** | **string** | The network endpoint id. | 
+**Name** | **string** | The endpoint name | 
+**Label** | **string** | The endpoint unique label | 
+**ExternalId** | Pointer to **string** | The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID. | [optional] 
 **EndpointInterfaces** | Pointer to [**[]EndpointInterface**](EndpointInterface.md) | The endpoint interfaces associated with this endpoint | [optional] 
 
 ## Methods
 
 ### NewEndpoint
 
-`func NewEndpoint(siteId float32, name string, label string, revision string, createdTimestamp time.Time, updatedTimestamp time.Time, id string, ) *Endpoint`
+`func NewEndpoint(siteId float32, revision string, createdTimestamp time.Time, updatedTimestamp time.Time, id string, name string, label string, ) *Endpoint`
 
 NewEndpoint instantiates a new Endpoint object
 This constructor will assign default values to properties that have it defined,
@@ -53,71 +53,6 @@ and a boolean to check if the value has been set.
 
 SetSiteId sets SiteId field to given value.
 
-
-### GetName
-
-`func (o *Endpoint) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *Endpoint) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *Endpoint) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetLabel
-
-`func (o *Endpoint) GetLabel() string`
-
-GetLabel returns the Label field if non-nil, zero value otherwise.
-
-### GetLabelOk
-
-`func (o *Endpoint) GetLabelOk() (*string, bool)`
-
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLabel
-
-`func (o *Endpoint) SetLabel(v string)`
-
-SetLabel sets Label field to given value.
-
-
-### GetExternalId
-
-`func (o *Endpoint) GetExternalId() string`
-
-GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
-
-### GetExternalIdOk
-
-`func (o *Endpoint) GetExternalIdOk() (*string, bool)`
-
-GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExternalId
-
-`func (o *Endpoint) SetExternalId(v string)`
-
-SetExternalId sets ExternalId field to given value.
-
-### HasExternalId
-
-`func (o *Endpoint) HasExternalId() bool`
-
-HasExternalId returns a boolean if a field has been set.
 
 ### GetRevision
 
@@ -223,6 +158,71 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+
+### GetName
+
+`func (o *Endpoint) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *Endpoint) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *Endpoint) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetLabel
+
+`func (o *Endpoint) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *Endpoint) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *Endpoint) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+
+### GetExternalId
+
+`func (o *Endpoint) GetExternalId() string`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *Endpoint) GetExternalIdOk() (*string, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *Endpoint) SetExternalId(v string)`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *Endpoint) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
 
 ### GetEndpointInterfaces
 

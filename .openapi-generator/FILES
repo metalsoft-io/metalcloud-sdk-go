@@ -161,7 +161,7 @@ docs/CreateNetworkDeviceDefaults.md
 docs/CreateNetworkEndpointGroup.md
 docs/CreateNetworkEndpointGroupLogicalNetwork.md
 docs/CreateNetworkFabric.md
-docs/CreateNetworkFabricLinkDto.md
+docs/CreateNetworkFabricLink.md
 docs/CreateResourcePool.md
 docs/CreateResourceScope.md
 docs/CreateRole.md
@@ -401,6 +401,8 @@ docs/NetworkDeviceDefaultSecretsAPI.md
 docs/NetworkDeviceDefaultSecretsCredentials.md
 docs/NetworkDeviceDefaultSecretsPaginatedList.md
 docs/NetworkDeviceDriver.md
+docs/NetworkDeviceEndpointInterface.md
+docs/NetworkDeviceEndpointInterfaces.md
 docs/NetworkDeviceInterfaceDto.md
 docs/NetworkDeviceInterfacesPaginatedList.md
 docs/NetworkDevicePaginatedList.md
@@ -855,7 +857,7 @@ model_create_network_device_defaults.go
 model_create_network_endpoint_group.go
 model_create_network_endpoint_group_logical_network.go
 model_create_network_fabric.go
-model_create_network_fabric_link_dto.go
+model_create_network_fabric_link.go
 model_create_resource_pool.go
 model_create_resource_scope.go
 model_create_role.go
@@ -1072,6 +1074,8 @@ model_network_device_default_secrets.go
 model_network_device_default_secrets_credentials.go
 model_network_device_default_secrets_paginated_list.go
 model_network_device_driver.go
+model_network_device_endpoint_interface.go
+model_network_device_endpoint_interfaces.go
 model_network_device_interface_dto.go
 model_network_device_interfaces_paginated_list.go
 model_network_device_paginated_list.go

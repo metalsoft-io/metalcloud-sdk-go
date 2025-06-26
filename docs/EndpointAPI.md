@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**GetEndpointInterfaceById**](EndpointAPI.md#GetEndpointInterfaceById) | **Get** /api/v2/endpoints/{endpointId}/interfaces/{endpointInterfaceId} | Get endpoint interface details
 [**GetEndpointInterfaces**](EndpointAPI.md#GetEndpointInterfaces) | **Get** /api/v2/endpoints/{endpointId}/interfaces | List endpoint interfaces
 [**GetEndpoints**](EndpointAPI.md#GetEndpoints) | **Get** /api/v2/endpoints | List endpoints
+[**GetNetworkDeviceInterfacesAndEndpoints**](EndpointAPI.md#GetNetworkDeviceInterfacesAndEndpoints) | **Get** /api/v2/endpoints/network-devices/{networkDeviceId}/interfaces | List network device interfaces associated with endpoints
 [**UpdateEndpoint**](EndpointAPI.md#UpdateEndpoint) | **Patch** /api/v2/endpoints/{endpointId} | Update endpoint
 [**UpdateEndpointInterface**](EndpointAPI.md#UpdateEndpointInterface) | **Patch** /api/v2/endpoints/{endpointId}/interfaces/{endpointInterfaceId} | Update endpoint interface
 
@@ -592,6 +593,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**EndpointPaginatedList**](EndpointPaginatedList.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetNetworkDeviceInterfacesAndEndpoints
+
+> NetworkDeviceEndpointInterfaces GetNetworkDeviceInterfacesAndEndpoints(ctx, networkDeviceId).Execute()
+
+List network device interfaces associated with endpoints
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EndpointAPI.GetNetworkDeviceInterfacesAndEndpoints(context.Background(), networkDeviceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EndpointAPI.GetNetworkDeviceInterfacesAndEndpoints``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetNetworkDeviceInterfacesAndEndpoints`: NetworkDeviceEndpointInterfaces
+	fmt.Fprintf(os.Stdout, "Response from `EndpointAPI.GetNetworkDeviceInterfacesAndEndpoints`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetNetworkDeviceInterfacesAndEndpointsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**NetworkDeviceEndpointInterfaces**](NetworkDeviceEndpointInterfaces.md)
 
 ### Authorization
 

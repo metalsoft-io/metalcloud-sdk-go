@@ -36,10 +36,10 @@ type UpdateBgpTemplate struct {
 	BgpLinkConfiguration *string `json:"bgpLinkConfiguration,omitempty"`
 	// Execution type
 	ExecutionType *string `json:"executionType,omitempty"`
-	// Preparation JSON
-	Preparation map[string]interface{} `json:"preparation,omitempty"`
-	// Configuration JSON
-	Configuration map[string]interface{} `json:"configuration,omitempty"`
+	// Preparation commands in base64 format
+	Preparation *string `json:"preparation,omitempty"`
+	// Configuration commands in base64 format
+	Configuration *string `json:"configuration,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -319,19 +319,19 @@ func (o *UpdateBgpTemplate) SetExecutionType(v string) {
 }
 
 // GetPreparation returns the Preparation field value if set, zero value otherwise.
-func (o *UpdateBgpTemplate) GetPreparation() map[string]interface{} {
+func (o *UpdateBgpTemplate) GetPreparation() string {
 	if o == nil || IsNil(o.Preparation) {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
-	return o.Preparation
+	return *o.Preparation
 }
 
 // GetPreparationOk returns a tuple with the Preparation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateBgpTemplate) GetPreparationOk() (map[string]interface{}, bool) {
+func (o *UpdateBgpTemplate) GetPreparationOk() (*string, bool) {
 	if o == nil || IsNil(o.Preparation) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Preparation, true
 }
@@ -345,25 +345,25 @@ func (o *UpdateBgpTemplate) HasPreparation() bool {
 	return false
 }
 
-// SetPreparation gets a reference to the given map[string]interface{} and assigns it to the Preparation field.
-func (o *UpdateBgpTemplate) SetPreparation(v map[string]interface{}) {
-	o.Preparation = v
+// SetPreparation gets a reference to the given string and assigns it to the Preparation field.
+func (o *UpdateBgpTemplate) SetPreparation(v string) {
+	o.Preparation = &v
 }
 
 // GetConfiguration returns the Configuration field value if set, zero value otherwise.
-func (o *UpdateBgpTemplate) GetConfiguration() map[string]interface{} {
+func (o *UpdateBgpTemplate) GetConfiguration() string {
 	if o == nil || IsNil(o.Configuration) {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
-	return o.Configuration
+	return *o.Configuration
 }
 
 // GetConfigurationOk returns a tuple with the Configuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateBgpTemplate) GetConfigurationOk() (map[string]interface{}, bool) {
+func (o *UpdateBgpTemplate) GetConfigurationOk() (*string, bool) {
 	if o == nil || IsNil(o.Configuration) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Configuration, true
 }
@@ -377,9 +377,9 @@ func (o *UpdateBgpTemplate) HasConfiguration() bool {
 	return false
 }
 
-// SetConfiguration gets a reference to the given map[string]interface{} and assigns it to the Configuration field.
-func (o *UpdateBgpTemplate) SetConfiguration(v map[string]interface{}) {
-	o.Configuration = v
+// SetConfiguration gets a reference to the given string and assigns it to the Configuration field.
+func (o *UpdateBgpTemplate) SetConfiguration(v string) {
+	o.Configuration = &v
 }
 
 func (o UpdateBgpTemplate) MarshalJSON() ([]byte, error) {

@@ -42,6 +42,8 @@ type ServerInstanceConfiguration struct {
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// Custom Storage Profile for the Instance.
 	CustomStorageProfile *ServerInstanceStorageProfile `json:"customStorageProfile,omitempty"`
+	// The id of the Endpoint
+	EndpointId *int32 `json:"endpointId,omitempty"`
 	// NVMe Initiator NQN for the Instance.
 	InitiatorNqn *string `json:"initiatorNqn,omitempty"`
 	// iSCSI Initiator IQN for the Instance Interface.
@@ -446,6 +448,38 @@ func (o *ServerInstanceConfiguration) SetCustomStorageProfile(v ServerInstanceSt
 	o.CustomStorageProfile = &v
 }
 
+// GetEndpointId returns the EndpointId field value if set, zero value otherwise.
+func (o *ServerInstanceConfiguration) GetEndpointId() int32 {
+	if o == nil || IsNil(o.EndpointId) {
+		var ret int32
+		return ret
+	}
+	return *o.EndpointId
+}
+
+// GetEndpointIdOk returns a tuple with the EndpointId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceConfiguration) GetEndpointIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.EndpointId) {
+		return nil, false
+	}
+	return o.EndpointId, true
+}
+
+// HasEndpointId returns a boolean if a field has been set.
+func (o *ServerInstanceConfiguration) HasEndpointId() bool {
+	if o != nil && !IsNil(o.EndpointId) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndpointId gets a reference to the given int32 and assigns it to the EndpointId field.
+func (o *ServerInstanceConfiguration) SetEndpointId(v int32) {
+	o.EndpointId = &v
+}
+
 // GetInitiatorNqn returns the InitiatorNqn field value if set, zero value otherwise.
 func (o *ServerInstanceConfiguration) GetInitiatorNqn() string {
 	if o == nil || IsNil(o.InitiatorNqn) {
@@ -788,6 +822,9 @@ func (o ServerInstanceConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CustomStorageProfile) {
 		toSerialize["customStorageProfile"] = o.CustomStorageProfile
 	}
+	if !IsNil(o.EndpointId) {
+		toSerialize["endpointId"] = o.EndpointId
+	}
 	if !IsNil(o.InitiatorNqn) {
 		toSerialize["initiatorNqn"] = o.InitiatorNqn
 	}
@@ -874,6 +911,7 @@ func (o *ServerInstanceConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "instanceWanMlagId")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "customStorageProfile")
+		delete(additionalProperties, "endpointId")
 		delete(additionalProperties, "initiatorNqn")
 		delete(additionalProperties, "iscsiInitiatorIqn")
 		delete(additionalProperties, "iscsiInitiatorUsername")

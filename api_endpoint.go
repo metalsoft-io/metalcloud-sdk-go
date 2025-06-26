@@ -1111,6 +1111,107 @@ func (a *EndpointAPIService) GetEndpointsExecute(r EndpointAPIGetEndpointsReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type EndpointAPIGetNetworkDeviceInterfacesAndEndpointsRequest struct {
+	ctx context.Context
+	ApiService *EndpointAPIService
+	networkDeviceId float32
+}
+
+func (r EndpointAPIGetNetworkDeviceInterfacesAndEndpointsRequest) Execute() (*NetworkDeviceEndpointInterfaces, *http.Response, error) {
+	return r.ApiService.GetNetworkDeviceInterfacesAndEndpointsExecute(r)
+}
+
+/*
+GetNetworkDeviceInterfacesAndEndpoints List network device interfaces associated with endpoints
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param networkDeviceId
+ @return EndpointAPIGetNetworkDeviceInterfacesAndEndpointsRequest
+*/
+func (a *EndpointAPIService) GetNetworkDeviceInterfacesAndEndpoints(ctx context.Context, networkDeviceId float32) EndpointAPIGetNetworkDeviceInterfacesAndEndpointsRequest {
+	return EndpointAPIGetNetworkDeviceInterfacesAndEndpointsRequest{
+		ApiService: a,
+		ctx: ctx,
+		networkDeviceId: networkDeviceId,
+	}
+}
+
+// Execute executes the request
+//  @return NetworkDeviceEndpointInterfaces
+func (a *EndpointAPIService) GetNetworkDeviceInterfacesAndEndpointsExecute(r EndpointAPIGetNetworkDeviceInterfacesAndEndpointsRequest) (*NetworkDeviceEndpointInterfaces, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NetworkDeviceEndpointInterfaces
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EndpointAPIService.GetNetworkDeviceInterfacesAndEndpoints")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/endpoints/network-devices/{networkDeviceId}/interfaces"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkDeviceId"+"}", url.PathEscape(parameterValueToString(r.networkDeviceId, "networkDeviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type EndpointAPIUpdateEndpointRequest struct {
 	ctx context.Context
 	ApiService *EndpointAPIService

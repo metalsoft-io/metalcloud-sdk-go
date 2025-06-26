@@ -62,6 +62,8 @@ type ServerInstanceVariables struct {
 	VmInstanceId *int32 `json:"vmInstanceId,omitempty"`
 	// Flag to indicate if this is an Endpoint Instance
 	IsEndpointInstance int32 `json:"isEndpointInstance"`
+	// The id of the Endpoint
+	EndpointId *int32 `json:"endpointId,omitempty"`
 	ClusterCustomInfo *ServerInstanceClusterCustomInfo `json:"clusterCustomInfo,omitempty"`
 	// Last error message during OS install.
 	OsInstallError *string `json:"osInstallError,omitempty"`
@@ -772,6 +774,38 @@ func (o *ServerInstanceVariables) SetIsEndpointInstance(v int32) {
 	o.IsEndpointInstance = v
 }
 
+// GetEndpointId returns the EndpointId field value if set, zero value otherwise.
+func (o *ServerInstanceVariables) GetEndpointId() int32 {
+	if o == nil || IsNil(o.EndpointId) {
+		var ret int32
+		return ret
+	}
+	return *o.EndpointId
+}
+
+// GetEndpointIdOk returns a tuple with the EndpointId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceVariables) GetEndpointIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.EndpointId) {
+		return nil, false
+	}
+	return o.EndpointId, true
+}
+
+// HasEndpointId returns a boolean if a field has been set.
+func (o *ServerInstanceVariables) HasEndpointId() bool {
+	if o != nil && !IsNil(o.EndpointId) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndpointId gets a reference to the given int32 and assigns it to the EndpointId field.
+func (o *ServerInstanceVariables) SetEndpointId(v int32) {
+	o.EndpointId = &v
+}
+
 // GetClusterCustomInfo returns the ClusterCustomInfo field value if set, zero value otherwise.
 func (o *ServerInstanceVariables) GetClusterCustomInfo() ServerInstanceClusterCustomInfo {
 	if o == nil || IsNil(o.ClusterCustomInfo) {
@@ -1215,6 +1249,9 @@ func (o ServerInstanceVariables) ToMap() (map[string]interface{}, error) {
 		toSerialize["vmInstanceId"] = o.VmInstanceId
 	}
 	toSerialize["isEndpointInstance"] = o.IsEndpointInstance
+	if !IsNil(o.EndpointId) {
+		toSerialize["endpointId"] = o.EndpointId
+	}
 	if !IsNil(o.ClusterCustomInfo) {
 		toSerialize["clusterCustomInfo"] = o.ClusterCustomInfo
 	}
@@ -1326,6 +1363,7 @@ func (o *ServerInstanceVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "isVmInstance")
 		delete(additionalProperties, "vmInstanceId")
 		delete(additionalProperties, "isEndpointInstance")
+		delete(additionalProperties, "endpointId")
 		delete(additionalProperties, "clusterCustomInfo")
 		delete(additionalProperties, "osInstallError")
 		delete(additionalProperties, "osInstallImageUrl")
