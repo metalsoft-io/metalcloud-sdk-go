@@ -21,14 +21,14 @@ var _ MappedNullable = &CreateEndpoint{}
 
 // CreateEndpoint struct for CreateEndpoint
 type CreateEndpoint struct {
+	// The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID.
+	ExternalId *string `json:"externalId,omitempty"`
 	// The ID of the site where the entity is located.
 	SiteId float32 `json:"siteId"`
 	// The endpoint name
 	Name string `json:"name"`
 	// The endpoint unique label
 	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
-	// The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID.
-	ExternalId *string `json:"externalId,omitempty"`
 	// The endpoint interfaces associated with this endpoint
 	EndpointInterfaces []CreateEndpointInterface `json:"endpointInterfaces,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -54,6 +54,38 @@ func NewCreateEndpoint(siteId float32, name string, label string) *CreateEndpoin
 func NewCreateEndpointWithDefaults() *CreateEndpoint {
 	this := CreateEndpoint{}
 	return &this
+}
+
+// GetExternalId returns the ExternalId field value if set, zero value otherwise.
+func (o *CreateEndpoint) GetExternalId() string {
+	if o == nil || IsNil(o.ExternalId) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalId
+}
+
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateEndpoint) GetExternalIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ExternalId) {
+		return nil, false
+	}
+	return o.ExternalId, true
+}
+
+// HasExternalId returns a boolean if a field has been set.
+func (o *CreateEndpoint) HasExternalId() bool {
+	if o != nil && !IsNil(o.ExternalId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
+func (o *CreateEndpoint) SetExternalId(v string) {
+	o.ExternalId = &v
 }
 
 // GetSiteId returns the SiteId field value
@@ -128,38 +160,6 @@ func (o *CreateEndpoint) SetLabel(v string) {
 	o.Label = v
 }
 
-// GetExternalId returns the ExternalId field value if set, zero value otherwise.
-func (o *CreateEndpoint) GetExternalId() string {
-	if o == nil || IsNil(o.ExternalId) {
-		var ret string
-		return ret
-	}
-	return *o.ExternalId
-}
-
-// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateEndpoint) GetExternalIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ExternalId) {
-		return nil, false
-	}
-	return o.ExternalId, true
-}
-
-// HasExternalId returns a boolean if a field has been set.
-func (o *CreateEndpoint) HasExternalId() bool {
-	if o != nil && !IsNil(o.ExternalId) {
-		return true
-	}
-
-	return false
-}
-
-// SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
-func (o *CreateEndpoint) SetExternalId(v string) {
-	o.ExternalId = &v
-}
-
 // GetEndpointInterfaces returns the EndpointInterfaces field value if set, zero value otherwise.
 func (o *CreateEndpoint) GetEndpointInterfaces() []CreateEndpointInterface {
 	if o == nil || IsNil(o.EndpointInterfaces) {
@@ -202,12 +202,12 @@ func (o CreateEndpoint) MarshalJSON() ([]byte, error) {
 
 func (o CreateEndpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["siteId"] = o.SiteId
-	toSerialize["name"] = o.Name
-	toSerialize["label"] = o.Label
 	if !IsNil(o.ExternalId) {
 		toSerialize["externalId"] = o.ExternalId
 	}
+	toSerialize["siteId"] = o.SiteId
+	toSerialize["name"] = o.Name
+	toSerialize["label"] = o.Label
 	if !IsNil(o.EndpointInterfaces) {
 		toSerialize["endpointInterfaces"] = o.EndpointInterfaces
 	}
@@ -256,10 +256,10 @@ func (o *CreateEndpoint) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "externalId")
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "label")
-		delete(additionalProperties, "externalId")
 		delete(additionalProperties, "endpointInterfaces")
 		o.AdditionalProperties = additionalProperties
 	}

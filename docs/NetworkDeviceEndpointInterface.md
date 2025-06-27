@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **NetworkDeviceId** | **float32** | Network device id | 
 **NetworkDeviceInterfaceId** | **float32** | Network device interface id | 
 **NetworkDeviceInterfaceName** | Pointer to **string** | Network device interface name | [optional] 
-**EndpointId** | Pointer to **string** | Network endpoint id if the interface is connected to a network endpoint | [optional] 
-**EndpointInterfaceId** | Pointer to **float32** | Endpoint interface id | [optional] 
+**EndpointId** | Pointer to **float32** | Network endpoint id, null if not connected to an existing endpoint | [optional] 
+**EndpointInterfaceId** | Pointer to **float32** | Endpoint interface id, null if not connected to an existing endpoint interface | [optional] 
 
 ## Methods
 
@@ -96,20 +96,20 @@ HasNetworkDeviceInterfaceName returns a boolean if a field has been set.
 
 ### GetEndpointId
 
-`func (o *NetworkDeviceEndpointInterface) GetEndpointId() string`
+`func (o *NetworkDeviceEndpointInterface) GetEndpointId() float32`
 
 GetEndpointId returns the EndpointId field if non-nil, zero value otherwise.
 
 ### GetEndpointIdOk
 
-`func (o *NetworkDeviceEndpointInterface) GetEndpointIdOk() (*string, bool)`
+`func (o *NetworkDeviceEndpointInterface) GetEndpointIdOk() (*float32, bool)`
 
 GetEndpointIdOk returns a tuple with the EndpointId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndpointId
 
-`func (o *NetworkDeviceEndpointInterface) SetEndpointId(v string)`
+`func (o *NetworkDeviceEndpointInterface) SetEndpointId(v float32)`
 
 SetEndpointId sets EndpointId field to given value.
 

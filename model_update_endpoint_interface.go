@@ -20,10 +20,10 @@ var _ MappedNullable = &UpdateEndpointInterface{}
 
 // UpdateEndpointInterface struct for UpdateEndpointInterface
 type UpdateEndpointInterface struct {
-	// Network equipment interface id
-	NetworkEquipmentInterfaceId *float32 `json:"networkEquipmentInterfaceId,omitempty"`
-	// Network equipment interface mac address
+	// Device interface mac address
 	MacAddress *string `json:"macAddress,omitempty"`
+	// Network device interface id
+	NetworkDeviceInterfaceId *float32 `json:"networkDeviceInterfaceId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,38 +44,6 @@ func NewUpdateEndpointInterface() *UpdateEndpointInterface {
 func NewUpdateEndpointInterfaceWithDefaults() *UpdateEndpointInterface {
 	this := UpdateEndpointInterface{}
 	return &this
-}
-
-// GetNetworkEquipmentInterfaceId returns the NetworkEquipmentInterfaceId field value if set, zero value otherwise.
-func (o *UpdateEndpointInterface) GetNetworkEquipmentInterfaceId() float32 {
-	if o == nil || IsNil(o.NetworkEquipmentInterfaceId) {
-		var ret float32
-		return ret
-	}
-	return *o.NetworkEquipmentInterfaceId
-}
-
-// GetNetworkEquipmentInterfaceIdOk returns a tuple with the NetworkEquipmentInterfaceId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateEndpointInterface) GetNetworkEquipmentInterfaceIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.NetworkEquipmentInterfaceId) {
-		return nil, false
-	}
-	return o.NetworkEquipmentInterfaceId, true
-}
-
-// HasNetworkEquipmentInterfaceId returns a boolean if a field has been set.
-func (o *UpdateEndpointInterface) HasNetworkEquipmentInterfaceId() bool {
-	if o != nil && !IsNil(o.NetworkEquipmentInterfaceId) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworkEquipmentInterfaceId gets a reference to the given float32 and assigns it to the NetworkEquipmentInterfaceId field.
-func (o *UpdateEndpointInterface) SetNetworkEquipmentInterfaceId(v float32) {
-	o.NetworkEquipmentInterfaceId = &v
 }
 
 // GetMacAddress returns the MacAddress field value if set, zero value otherwise.
@@ -110,6 +78,38 @@ func (o *UpdateEndpointInterface) SetMacAddress(v string) {
 	o.MacAddress = &v
 }
 
+// GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field value if set, zero value otherwise.
+func (o *UpdateEndpointInterface) GetNetworkDeviceInterfaceId() float32 {
+	if o == nil || IsNil(o.NetworkDeviceInterfaceId) {
+		var ret float32
+		return ret
+	}
+	return *o.NetworkDeviceInterfaceId
+}
+
+// GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateEndpointInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.NetworkDeviceInterfaceId) {
+		return nil, false
+	}
+	return o.NetworkDeviceInterfaceId, true
+}
+
+// HasNetworkDeviceInterfaceId returns a boolean if a field has been set.
+func (o *UpdateEndpointInterface) HasNetworkDeviceInterfaceId() bool {
+	if o != nil && !IsNil(o.NetworkDeviceInterfaceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkDeviceInterfaceId gets a reference to the given float32 and assigns it to the NetworkDeviceInterfaceId field.
+func (o *UpdateEndpointInterface) SetNetworkDeviceInterfaceId(v float32) {
+	o.NetworkDeviceInterfaceId = &v
+}
+
 func (o UpdateEndpointInterface) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -120,11 +120,11 @@ func (o UpdateEndpointInterface) MarshalJSON() ([]byte, error) {
 
 func (o UpdateEndpointInterface) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.NetworkEquipmentInterfaceId) {
-		toSerialize["networkEquipmentInterfaceId"] = o.NetworkEquipmentInterfaceId
-	}
 	if !IsNil(o.MacAddress) {
 		toSerialize["macAddress"] = o.MacAddress
+	}
+	if !IsNil(o.NetworkDeviceInterfaceId) {
+		toSerialize["networkDeviceInterfaceId"] = o.NetworkDeviceInterfaceId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -148,8 +148,8 @@ func (o *UpdateEndpointInterface) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "networkEquipmentInterfaceId")
 		delete(additionalProperties, "macAddress")
+		delete(additionalProperties, "networkDeviceInterfaceId")
 		o.AdditionalProperties = additionalProperties
 	}
 

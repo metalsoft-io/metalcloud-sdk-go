@@ -22,26 +22,24 @@ var _ MappedNullable = &Endpoint{}
 
 // Endpoint struct for Endpoint
 type Endpoint struct {
-	// The ID of the site where the entity is located.
-	SiteId float32 `json:"siteId"`
+	// The network endpoint id.
+	Id string `json:"id"`
 	// Revision number of the entity
 	Revision string `json:"revision"`
+	// The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID.
+	ExternalId *string `json:"externalId,omitempty"`
+	// The ID of the site where the entity is located.
+	SiteId float32 `json:"siteId"`
+	// The endpoint name
+	Name string `json:"name"`
+	// The endpoint unique label
+	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
 	// Entity creation timestamp
 	CreatedTimestamp time.Time `json:"createdTimestamp"`
 	// Entity last update timestamp
 	UpdatedTimestamp time.Time `json:"updatedTimestamp"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
-	// The network endpoint id.
-	Id string `json:"id"`
-	// The endpoint name
-	Name string `json:"name"`
-	// The endpoint unique label
-	Label string `json:"label" validate:"regexp=^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"`
-	// The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID.
-	ExternalId *string `json:"externalId,omitempty"`
-	// The endpoint interfaces associated with this endpoint
-	EndpointInterfaces []EndpointInterface `json:"endpointInterfaces,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,15 +49,15 @@ type _Endpoint Endpoint
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpoint(siteId float32, revision string, createdTimestamp time.Time, updatedTimestamp time.Time, id string, name string, label string) *Endpoint {
+func NewEndpoint(id string, revision string, siteId float32, name string, label string, createdTimestamp time.Time, updatedTimestamp time.Time) *Endpoint {
 	this := Endpoint{}
-	this.SiteId = siteId
-	this.Revision = revision
-	this.CreatedTimestamp = createdTimestamp
-	this.UpdatedTimestamp = updatedTimestamp
 	this.Id = id
+	this.Revision = revision
+	this.SiteId = siteId
 	this.Name = name
 	this.Label = label
+	this.CreatedTimestamp = createdTimestamp
+	this.UpdatedTimestamp = updatedTimestamp
 	return &this
 }
 
@@ -69,6 +67,86 @@ func NewEndpoint(siteId float32, revision string, createdTimestamp time.Time, up
 func NewEndpointWithDefaults() *Endpoint {
 	this := Endpoint{}
 	return &this
+}
+
+// GetId returns the Id field value
+func (o *Endpoint) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Endpoint) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *Endpoint) SetId(v string) {
+	o.Id = v
+}
+
+// GetRevision returns the Revision field value
+func (o *Endpoint) GetRevision() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Revision
+}
+
+// GetRevisionOk returns a tuple with the Revision field value
+// and a boolean to check if the value has been set.
+func (o *Endpoint) GetRevisionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Revision, true
+}
+
+// SetRevision sets field value
+func (o *Endpoint) SetRevision(v string) {
+	o.Revision = v
+}
+
+// GetExternalId returns the ExternalId field value if set, zero value otherwise.
+func (o *Endpoint) GetExternalId() string {
+	if o == nil || IsNil(o.ExternalId) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalId
+}
+
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Endpoint) GetExternalIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ExternalId) {
+		return nil, false
+	}
+	return o.ExternalId, true
+}
+
+// HasExternalId returns a boolean if a field has been set.
+func (o *Endpoint) HasExternalId() bool {
+	if o != nil && !IsNil(o.ExternalId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
+func (o *Endpoint) SetExternalId(v string) {
+	o.ExternalId = &v
 }
 
 // GetSiteId returns the SiteId field value
@@ -95,28 +173,52 @@ func (o *Endpoint) SetSiteId(v float32) {
 	o.SiteId = v
 }
 
-// GetRevision returns the Revision field value
-func (o *Endpoint) GetRevision() string {
+// GetName returns the Name field value
+func (o *Endpoint) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Revision
+	return o.Name
 }
 
-// GetRevisionOk returns a tuple with the Revision field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Endpoint) GetRevisionOk() (*string, bool) {
+func (o *Endpoint) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Revision, true
+	return &o.Name, true
 }
 
-// SetRevision sets field value
-func (o *Endpoint) SetRevision(v string) {
-	o.Revision = v
+// SetName sets field value
+func (o *Endpoint) SetName(v string) {
+	o.Name = v
+}
+
+// GetLabel returns the Label field value
+func (o *Endpoint) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *Endpoint) GetLabelOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *Endpoint) SetLabel(v string) {
+	o.Label = v
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
@@ -199,142 +301,6 @@ func (o *Endpoint) SetLinks(v []Link) {
 	o.Links = v
 }
 
-// GetId returns the Id field value
-func (o *Endpoint) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *Endpoint) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *Endpoint) SetId(v string) {
-	o.Id = v
-}
-
-// GetName returns the Name field value
-func (o *Endpoint) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *Endpoint) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *Endpoint) SetName(v string) {
-	o.Name = v
-}
-
-// GetLabel returns the Label field value
-func (o *Endpoint) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *Endpoint) GetLabelOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *Endpoint) SetLabel(v string) {
-	o.Label = v
-}
-
-// GetExternalId returns the ExternalId field value if set, zero value otherwise.
-func (o *Endpoint) GetExternalId() string {
-	if o == nil || IsNil(o.ExternalId) {
-		var ret string
-		return ret
-	}
-	return *o.ExternalId
-}
-
-// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Endpoint) GetExternalIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ExternalId) {
-		return nil, false
-	}
-	return o.ExternalId, true
-}
-
-// HasExternalId returns a boolean if a field has been set.
-func (o *Endpoint) HasExternalId() bool {
-	if o != nil && !IsNil(o.ExternalId) {
-		return true
-	}
-
-	return false
-}
-
-// SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
-func (o *Endpoint) SetExternalId(v string) {
-	o.ExternalId = &v
-}
-
-// GetEndpointInterfaces returns the EndpointInterfaces field value if set, zero value otherwise.
-func (o *Endpoint) GetEndpointInterfaces() []EndpointInterface {
-	if o == nil || IsNil(o.EndpointInterfaces) {
-		var ret []EndpointInterface
-		return ret
-	}
-	return o.EndpointInterfaces
-}
-
-// GetEndpointInterfacesOk returns a tuple with the EndpointInterfaces field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Endpoint) GetEndpointInterfacesOk() ([]EndpointInterface, bool) {
-	if o == nil || IsNil(o.EndpointInterfaces) {
-		return nil, false
-	}
-	return o.EndpointInterfaces, true
-}
-
-// HasEndpointInterfaces returns a boolean if a field has been set.
-func (o *Endpoint) HasEndpointInterfaces() bool {
-	if o != nil && !IsNil(o.EndpointInterfaces) {
-		return true
-	}
-
-	return false
-}
-
-// SetEndpointInterfaces gets a reference to the given []EndpointInterface and assigns it to the EndpointInterfaces field.
-func (o *Endpoint) SetEndpointInterfaces(v []EndpointInterface) {
-	o.EndpointInterfaces = v
-}
-
 func (o Endpoint) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -345,21 +311,18 @@ func (o Endpoint) MarshalJSON() ([]byte, error) {
 
 func (o Endpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["siteId"] = o.SiteId
+	toSerialize["id"] = o.Id
 	toSerialize["revision"] = o.Revision
+	if !IsNil(o.ExternalId) {
+		toSerialize["externalId"] = o.ExternalId
+	}
+	toSerialize["siteId"] = o.SiteId
+	toSerialize["name"] = o.Name
+	toSerialize["label"] = o.Label
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
-	}
-	toSerialize["id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["label"] = o.Label
-	if !IsNil(o.ExternalId) {
-		toSerialize["externalId"] = o.ExternalId
-	}
-	if !IsNil(o.EndpointInterfaces) {
-		toSerialize["endpointInterfaces"] = o.EndpointInterfaces
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -374,13 +337,13 @@ func (o *Endpoint) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"siteId",
-		"revision",
-		"createdTimestamp",
-		"updatedTimestamp",
 		"id",
+		"revision",
+		"siteId",
 		"name",
 		"label",
+		"createdTimestamp",
+		"updatedTimestamp",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -410,16 +373,15 @@ func (o *Endpoint) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "siteId")
+		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
+		delete(additionalProperties, "externalId")
+		delete(additionalProperties, "siteId")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "label")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "links")
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "label")
-		delete(additionalProperties, "externalId")
-		delete(additionalProperties, "endpointInterfaces")
 		o.AdditionalProperties = additionalProperties
 	}
 

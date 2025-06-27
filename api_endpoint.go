@@ -676,6 +676,9 @@ type EndpointAPIGetEndpointInterfacesRequest struct {
 	page *float32
 	limit *float32
 	filterId *[]string
+	filterMacAddress *[]string
+	filterCreatedTimestamp *[]string
+	filterUpdatedTimestamp *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -696,6 +699,24 @@ func (r EndpointAPIGetEndpointInterfacesRequest) Limit(limit float32) EndpointAP
 // Filter by id query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.id&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.id&#x3D;$not:$like:John Doe&amp;filter.id&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
 func (r EndpointAPIGetEndpointInterfacesRequest) FilterId(filterId []string) EndpointAPIGetEndpointInterfacesRequest {
 	r.filterId = &filterId
+	return r
+}
+
+// Filter by macAddress query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.macAddress&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.macAddress&#x3D;$not:$like:John Doe&amp;filter.macAddress&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r EndpointAPIGetEndpointInterfacesRequest) FilterMacAddress(filterMacAddress []string) EndpointAPIGetEndpointInterfacesRequest {
+	r.filterMacAddress = &filterMacAddress
+	return r
+}
+
+// Filter by createdTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.createdTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.createdTimestamp&#x3D;$not:$like:John Doe&amp;filter.createdTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r EndpointAPIGetEndpointInterfacesRequest) FilterCreatedTimestamp(filterCreatedTimestamp []string) EndpointAPIGetEndpointInterfacesRequest {
+	r.filterCreatedTimestamp = &filterCreatedTimestamp
+	return r
+}
+
+// Filter by updatedTimestamp query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.updatedTimestamp&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.updatedTimestamp&#x3D;$not:$like:John Doe&amp;filter.updatedTimestamp&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
+func (r EndpointAPIGetEndpointInterfacesRequest) FilterUpdatedTimestamp(filterUpdatedTimestamp []string) EndpointAPIGetEndpointInterfacesRequest {
+	r.filterUpdatedTimestamp = &filterUpdatedTimestamp
 	return r
 }
 
@@ -775,6 +796,39 @@ func (a *EndpointAPIService) GetEndpointInterfacesExecute(r EndpointAPIGetEndpoi
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterMacAddress != nil {
+		t := *r.filterMacAddress
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.macAddress", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.macAddress", t, "form", "multi")
+		}
+	}
+	if r.filterCreatedTimestamp != nil {
+		t := *r.filterCreatedTimestamp
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.createdTimestamp", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.createdTimestamp", t, "form", "multi")
+		}
+	}
+	if r.filterUpdatedTimestamp != nil {
+		t := *r.filterUpdatedTimestamp
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.updatedTimestamp", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.updatedTimestamp", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

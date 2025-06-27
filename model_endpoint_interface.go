@@ -22,22 +22,24 @@ var _ MappedNullable = &EndpointInterface{}
 
 // EndpointInterface struct for EndpointInterface
 type EndpointInterface struct {
-	// Network equipment interface id
-	NetworkEquipmentInterfaceId float32 `json:"networkEquipmentInterfaceId"`
-	// Network equipment interface mac address
-	MacAddress *string `json:"macAddress,omitempty"`
-	// Revision number of the entity
+	// Unique identifier for the endpoint interface
+	Id float32 `json:"id"`
+	// Revision number of the endpoint interface
 	Revision string `json:"revision"`
+	// Network device id
+	NetworkDeviceId float32 `json:"networkDeviceId"`
+	// Network device interface id
+	NetworkDeviceInterfaceId float32 `json:"networkDeviceInterfaceId"`
+	// Network device interface name
+	NetworkDeviceInterfaceName string `json:"networkDeviceInterfaceName"`
+	// Device interface mac address
+	MacAddress *string `json:"macAddress,omitempty"`
 	// Entity creation timestamp
 	CreatedTimestamp time.Time `json:"createdTimestamp"`
 	// Entity last update timestamp
 	UpdatedTimestamp time.Time `json:"updatedTimestamp"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
-	// Unique identifier for the endpoint interface
-	Id float32 `json:"id"`
-	// Network equipment interface id
-	EndpointId float32 `json:"endpointId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,14 +49,15 @@ type _EndpointInterface EndpointInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointInterface(networkEquipmentInterfaceId float32, revision string, createdTimestamp time.Time, updatedTimestamp time.Time, id float32, endpointId float32) *EndpointInterface {
+func NewEndpointInterface(id float32, revision string, networkDeviceId float32, networkDeviceInterfaceId float32, networkDeviceInterfaceName string, createdTimestamp time.Time, updatedTimestamp time.Time) *EndpointInterface {
 	this := EndpointInterface{}
-	this.NetworkEquipmentInterfaceId = networkEquipmentInterfaceId
+	this.Id = id
 	this.Revision = revision
+	this.NetworkDeviceId = networkDeviceId
+	this.NetworkDeviceInterfaceId = networkDeviceInterfaceId
+	this.NetworkDeviceInterfaceName = networkDeviceInterfaceName
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
-	this.Id = id
-	this.EndpointId = endpointId
 	return &this
 }
 
@@ -66,28 +69,124 @@ func NewEndpointInterfaceWithDefaults() *EndpointInterface {
 	return &this
 }
 
-// GetNetworkEquipmentInterfaceId returns the NetworkEquipmentInterfaceId field value
-func (o *EndpointInterface) GetNetworkEquipmentInterfaceId() float32 {
+// GetId returns the Id field value
+func (o *EndpointInterface) GetId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.NetworkEquipmentInterfaceId
+	return o.Id
 }
 
-// GetNetworkEquipmentInterfaceIdOk returns a tuple with the NetworkEquipmentInterfaceId field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *EndpointInterface) GetNetworkEquipmentInterfaceIdOk() (*float32, bool) {
+func (o *EndpointInterface) GetIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NetworkEquipmentInterfaceId, true
+	return &o.Id, true
 }
 
-// SetNetworkEquipmentInterfaceId sets field value
-func (o *EndpointInterface) SetNetworkEquipmentInterfaceId(v float32) {
-	o.NetworkEquipmentInterfaceId = v
+// SetId sets field value
+func (o *EndpointInterface) SetId(v float32) {
+	o.Id = v
+}
+
+// GetRevision returns the Revision field value
+func (o *EndpointInterface) GetRevision() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Revision
+}
+
+// GetRevisionOk returns a tuple with the Revision field value
+// and a boolean to check if the value has been set.
+func (o *EndpointInterface) GetRevisionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Revision, true
+}
+
+// SetRevision sets field value
+func (o *EndpointInterface) SetRevision(v string) {
+	o.Revision = v
+}
+
+// GetNetworkDeviceId returns the NetworkDeviceId field value
+func (o *EndpointInterface) GetNetworkDeviceId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.NetworkDeviceId
+}
+
+// GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field value
+// and a boolean to check if the value has been set.
+func (o *EndpointInterface) GetNetworkDeviceIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NetworkDeviceId, true
+}
+
+// SetNetworkDeviceId sets field value
+func (o *EndpointInterface) SetNetworkDeviceId(v float32) {
+	o.NetworkDeviceId = v
+}
+
+// GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field value
+func (o *EndpointInterface) GetNetworkDeviceInterfaceId() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.NetworkDeviceInterfaceId
+}
+
+// GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field value
+// and a boolean to check if the value has been set.
+func (o *EndpointInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NetworkDeviceInterfaceId, true
+}
+
+// SetNetworkDeviceInterfaceId sets field value
+func (o *EndpointInterface) SetNetworkDeviceInterfaceId(v float32) {
+	o.NetworkDeviceInterfaceId = v
+}
+
+// GetNetworkDeviceInterfaceName returns the NetworkDeviceInterfaceName field value
+func (o *EndpointInterface) GetNetworkDeviceInterfaceName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.NetworkDeviceInterfaceName
+}
+
+// GetNetworkDeviceInterfaceNameOk returns a tuple with the NetworkDeviceInterfaceName field value
+// and a boolean to check if the value has been set.
+func (o *EndpointInterface) GetNetworkDeviceInterfaceNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NetworkDeviceInterfaceName, true
+}
+
+// SetNetworkDeviceInterfaceName sets field value
+func (o *EndpointInterface) SetNetworkDeviceInterfaceName(v string) {
+	o.NetworkDeviceInterfaceName = v
 }
 
 // GetMacAddress returns the MacAddress field value if set, zero value otherwise.
@@ -120,30 +219,6 @@ func (o *EndpointInterface) HasMacAddress() bool {
 // SetMacAddress gets a reference to the given string and assigns it to the MacAddress field.
 func (o *EndpointInterface) SetMacAddress(v string) {
 	o.MacAddress = &v
-}
-
-// GetRevision returns the Revision field value
-func (o *EndpointInterface) GetRevision() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Revision
-}
-
-// GetRevisionOk returns a tuple with the Revision field value
-// and a boolean to check if the value has been set.
-func (o *EndpointInterface) GetRevisionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Revision, true
-}
-
-// SetRevision sets field value
-func (o *EndpointInterface) SetRevision(v string) {
-	o.Revision = v
 }
 
 // GetCreatedTimestamp returns the CreatedTimestamp field value
@@ -226,54 +301,6 @@ func (o *EndpointInterface) SetLinks(v []Link) {
 	o.Links = v
 }
 
-// GetId returns the Id field value
-func (o *EndpointInterface) GetId() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *EndpointInterface) GetIdOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *EndpointInterface) SetId(v float32) {
-	o.Id = v
-}
-
-// GetEndpointId returns the EndpointId field value
-func (o *EndpointInterface) GetEndpointId() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.EndpointId
-}
-
-// GetEndpointIdOk returns a tuple with the EndpointId field value
-// and a boolean to check if the value has been set.
-func (o *EndpointInterface) GetEndpointIdOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EndpointId, true
-}
-
-// SetEndpointId sets field value
-func (o *EndpointInterface) SetEndpointId(v float32) {
-	o.EndpointId = v
-}
-
 func (o EndpointInterface) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -284,18 +311,19 @@ func (o EndpointInterface) MarshalJSON() ([]byte, error) {
 
 func (o EndpointInterface) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["networkEquipmentInterfaceId"] = o.NetworkEquipmentInterfaceId
+	toSerialize["id"] = o.Id
+	toSerialize["revision"] = o.Revision
+	toSerialize["networkDeviceId"] = o.NetworkDeviceId
+	toSerialize["networkDeviceInterfaceId"] = o.NetworkDeviceInterfaceId
+	toSerialize["networkDeviceInterfaceName"] = o.NetworkDeviceInterfaceName
 	if !IsNil(o.MacAddress) {
 		toSerialize["macAddress"] = o.MacAddress
 	}
-	toSerialize["revision"] = o.Revision
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
-	toSerialize["id"] = o.Id
-	toSerialize["endpointId"] = o.EndpointId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -309,12 +337,13 @@ func (o *EndpointInterface) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"networkEquipmentInterfaceId",
+		"id",
 		"revision",
+		"networkDeviceId",
+		"networkDeviceInterfaceId",
+		"networkDeviceInterfaceName",
 		"createdTimestamp",
 		"updatedTimestamp",
-		"id",
-		"endpointId",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -344,14 +373,15 @@ func (o *EndpointInterface) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "networkEquipmentInterfaceId")
-		delete(additionalProperties, "macAddress")
+		delete(additionalProperties, "id")
 		delete(additionalProperties, "revision")
+		delete(additionalProperties, "networkDeviceId")
+		delete(additionalProperties, "networkDeviceInterfaceId")
+		delete(additionalProperties, "networkDeviceInterfaceName")
+		delete(additionalProperties, "macAddress")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "links")
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "endpointId")
 		o.AdditionalProperties = additionalProperties
 	}
 

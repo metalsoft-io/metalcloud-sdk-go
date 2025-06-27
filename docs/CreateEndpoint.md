@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ExternalId** | Pointer to **string** | The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID. | [optional] 
 **SiteId** | **float32** | The ID of the site where the entity is located. | 
 **Name** | **string** | The endpoint name | 
 **Label** | **string** | The endpoint unique label | 
-**ExternalId** | Pointer to **string** | The external ID of the endpoint, should be unique across the system. Usually either an ethernet MAC address or a UUID. | [optional] 
 **EndpointInterfaces** | Pointer to [**[]CreateEndpointInterface**](CreateEndpointInterface.md) | The endpoint interfaces associated with this endpoint | [optional] 
 
 ## Methods
@@ -28,6 +28,31 @@ will change when the set of required properties is changed
 NewCreateEndpointWithDefaults instantiates a new CreateEndpoint object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetExternalId
+
+`func (o *CreateEndpoint) GetExternalId() string`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *CreateEndpoint) GetExternalIdOk() (*string, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *CreateEndpoint) SetExternalId(v string)`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *CreateEndpoint) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
 
 ### GetSiteId
 
@@ -88,31 +113,6 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
-
-### GetExternalId
-
-`func (o *CreateEndpoint) GetExternalId() string`
-
-GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
-
-### GetExternalIdOk
-
-`func (o *CreateEndpoint) GetExternalIdOk() (*string, bool)`
-
-GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExternalId
-
-`func (o *CreateEndpoint) SetExternalId(v string)`
-
-SetExternalId sets ExternalId field to given value.
-
-### HasExternalId
-
-`func (o *CreateEndpoint) HasExternalId() bool`
-
-HasExternalId returns a boolean if a field has been set.
 
 ### GetEndpointInterfaces
 

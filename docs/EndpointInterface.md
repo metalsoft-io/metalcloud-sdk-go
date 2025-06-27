@@ -4,20 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NetworkEquipmentInterfaceId** | **float32** | Network equipment interface id | 
-**MacAddress** | Pointer to **string** | Network equipment interface mac address | [optional] 
-**Revision** | **string** | Revision number of the entity | 
+**Id** | **float32** | Unique identifier for the endpoint interface | 
+**Revision** | **string** | Revision number of the endpoint interface | 
+**NetworkDeviceId** | **float32** | Network device id | 
+**NetworkDeviceInterfaceId** | **float32** | Network device interface id | 
+**NetworkDeviceInterfaceName** | **string** | Network device interface name | 
+**MacAddress** | Pointer to **string** | Device interface mac address | [optional] 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
-**Id** | **float32** | Unique identifier for the endpoint interface | 
-**EndpointId** | **float32** | Network equipment interface id | 
 
 ## Methods
 
 ### NewEndpointInterface
 
-`func NewEndpointInterface(networkEquipmentInterfaceId float32, revision string, createdTimestamp time.Time, updatedTimestamp time.Time, id float32, endpointId float32, ) *EndpointInterface`
+`func NewEndpointInterface(id float32, revision string, networkDeviceId float32, networkDeviceInterfaceId float32, networkDeviceInterfaceName string, createdTimestamp time.Time, updatedTimestamp time.Time, ) *EndpointInterface`
 
 NewEndpointInterface instantiates a new EndpointInterface object
 This constructor will assign default values to properties that have it defined,
@@ -32,24 +33,104 @@ NewEndpointInterfaceWithDefaults instantiates a new EndpointInterface object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetNetworkEquipmentInterfaceId
+### GetId
 
-`func (o *EndpointInterface) GetNetworkEquipmentInterfaceId() float32`
+`func (o *EndpointInterface) GetId() float32`
 
-GetNetworkEquipmentInterfaceId returns the NetworkEquipmentInterfaceId field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetNetworkEquipmentInterfaceIdOk
+### GetIdOk
 
-`func (o *EndpointInterface) GetNetworkEquipmentInterfaceIdOk() (*float32, bool)`
+`func (o *EndpointInterface) GetIdOk() (*float32, bool)`
 
-GetNetworkEquipmentInterfaceIdOk returns a tuple with the NetworkEquipmentInterfaceId field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNetworkEquipmentInterfaceId
+### SetId
 
-`func (o *EndpointInterface) SetNetworkEquipmentInterfaceId(v float32)`
+`func (o *EndpointInterface) SetId(v float32)`
 
-SetNetworkEquipmentInterfaceId sets NetworkEquipmentInterfaceId field to given value.
+SetId sets Id field to given value.
+
+
+### GetRevision
+
+`func (o *EndpointInterface) GetRevision() string`
+
+GetRevision returns the Revision field if non-nil, zero value otherwise.
+
+### GetRevisionOk
+
+`func (o *EndpointInterface) GetRevisionOk() (*string, bool)`
+
+GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevision
+
+`func (o *EndpointInterface) SetRevision(v string)`
+
+SetRevision sets Revision field to given value.
+
+
+### GetNetworkDeviceId
+
+`func (o *EndpointInterface) GetNetworkDeviceId() float32`
+
+GetNetworkDeviceId returns the NetworkDeviceId field if non-nil, zero value otherwise.
+
+### GetNetworkDeviceIdOk
+
+`func (o *EndpointInterface) GetNetworkDeviceIdOk() (*float32, bool)`
+
+GetNetworkDeviceIdOk returns a tuple with the NetworkDeviceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDeviceId
+
+`func (o *EndpointInterface) SetNetworkDeviceId(v float32)`
+
+SetNetworkDeviceId sets NetworkDeviceId field to given value.
+
+
+### GetNetworkDeviceInterfaceId
+
+`func (o *EndpointInterface) GetNetworkDeviceInterfaceId() float32`
+
+GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field if non-nil, zero value otherwise.
+
+### GetNetworkDeviceInterfaceIdOk
+
+`func (o *EndpointInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool)`
+
+GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDeviceInterfaceId
+
+`func (o *EndpointInterface) SetNetworkDeviceInterfaceId(v float32)`
+
+SetNetworkDeviceInterfaceId sets NetworkDeviceInterfaceId field to given value.
+
+
+### GetNetworkDeviceInterfaceName
+
+`func (o *EndpointInterface) GetNetworkDeviceInterfaceName() string`
+
+GetNetworkDeviceInterfaceName returns the NetworkDeviceInterfaceName field if non-nil, zero value otherwise.
+
+### GetNetworkDeviceInterfaceNameOk
+
+`func (o *EndpointInterface) GetNetworkDeviceInterfaceNameOk() (*string, bool)`
+
+GetNetworkDeviceInterfaceNameOk returns a tuple with the NetworkDeviceInterfaceName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDeviceInterfaceName
+
+`func (o *EndpointInterface) SetNetworkDeviceInterfaceName(v string)`
+
+SetNetworkDeviceInterfaceName sets NetworkDeviceInterfaceName field to given value.
 
 
 ### GetMacAddress
@@ -76,26 +157,6 @@ SetMacAddress sets MacAddress field to given value.
 `func (o *EndpointInterface) HasMacAddress() bool`
 
 HasMacAddress returns a boolean if a field has been set.
-
-### GetRevision
-
-`func (o *EndpointInterface) GetRevision() string`
-
-GetRevision returns the Revision field if non-nil, zero value otherwise.
-
-### GetRevisionOk
-
-`func (o *EndpointInterface) GetRevisionOk() (*string, bool)`
-
-GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRevision
-
-`func (o *EndpointInterface) SetRevision(v string)`
-
-SetRevision sets Revision field to given value.
-
 
 ### GetCreatedTimestamp
 
@@ -161,46 +222,6 @@ SetLinks sets Links field to given value.
 `func (o *EndpointInterface) HasLinks() bool`
 
 HasLinks returns a boolean if a field has been set.
-
-### GetId
-
-`func (o *EndpointInterface) GetId() float32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *EndpointInterface) GetIdOk() (*float32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *EndpointInterface) SetId(v float32)`
-
-SetId sets Id field to given value.
-
-
-### GetEndpointId
-
-`func (o *EndpointInterface) GetEndpointId() float32`
-
-GetEndpointId returns the EndpointId field if non-nil, zero value otherwise.
-
-### GetEndpointIdOk
-
-`func (o *EndpointInterface) GetEndpointIdOk() (*float32, bool)`
-
-GetEndpointIdOk returns a tuple with the EndpointId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEndpointId
-
-`func (o *EndpointInterface) SetEndpointId(v float32)`
-
-SetEndpointId sets EndpointId field to given value.
-
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

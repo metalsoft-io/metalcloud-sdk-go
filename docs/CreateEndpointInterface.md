@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NetworkEquipmentInterfaceId** | **float32** | Network equipment interface id | 
-**MacAddress** | Pointer to **string** | Network equipment interface mac address | [optional] 
+**NetworkDeviceInterfaceId** | **float32** | Network device interface id | 
+**MacAddress** | Pointer to **string** | Device interface mac address | [optional] 
 
 ## Methods
 
 ### NewCreateEndpointInterface
 
-`func NewCreateEndpointInterface(networkEquipmentInterfaceId float32, ) *CreateEndpointInterface`
+`func NewCreateEndpointInterface(networkDeviceInterfaceId float32, ) *CreateEndpointInterface`
 
 NewCreateEndpointInterface instantiates a new CreateEndpointInterface object
 This constructor will assign default values to properties that have it defined,
@@ -26,24 +26,24 @@ NewCreateEndpointInterfaceWithDefaults instantiates a new CreateEndpointInterfac
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetNetworkEquipmentInterfaceId
+### GetNetworkDeviceInterfaceId
 
-`func (o *CreateEndpointInterface) GetNetworkEquipmentInterfaceId() float32`
+`func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceId() float32`
 
-GetNetworkEquipmentInterfaceId returns the NetworkEquipmentInterfaceId field if non-nil, zero value otherwise.
+GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field if non-nil, zero value otherwise.
 
-### GetNetworkEquipmentInterfaceIdOk
+### GetNetworkDeviceInterfaceIdOk
 
-`func (o *CreateEndpointInterface) GetNetworkEquipmentInterfaceIdOk() (*float32, bool)`
+`func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool)`
 
-GetNetworkEquipmentInterfaceIdOk returns a tuple with the NetworkEquipmentInterfaceId field if it's non-nil, zero value otherwise
+GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNetworkEquipmentInterfaceId
+### SetNetworkDeviceInterfaceId
 
-`func (o *CreateEndpointInterface) SetNetworkEquipmentInterfaceId(v float32)`
+`func (o *CreateEndpointInterface) SetNetworkDeviceInterfaceId(v float32)`
 
-SetNetworkEquipmentInterfaceId sets NetworkEquipmentInterfaceId field to given value.
+SetNetworkDeviceInterfaceId sets NetworkDeviceInterfaceId field to given value.
 
 
 ### GetMacAddress

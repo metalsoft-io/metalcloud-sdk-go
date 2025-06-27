@@ -24,6 +24,7 @@ const (
 	ACLENFORCEMENTPOINT_SVI ACLEnforcementPoint = "svi"
 	ACLENFORCEMENTPOINT_PHYSICAL_INTERFACE_VLAN_SCOPED ACLEnforcementPoint = "physical-interface-vlan-scoped"
 	ACLENFORCEMENTPOINT_PHYSICAL_INTERFACE ACLEnforcementPoint = "physical-interface"
+	ACLENFORCEMENTPOINT_VLAN ACLEnforcementPoint = "vlan"
 )
 
 // All allowed values of ACLEnforcementPoint enum
@@ -31,6 +32,7 @@ var AllowedACLEnforcementPointEnumValues = []ACLEnforcementPoint{
 	"svi",
 	"physical-interface-vlan-scoped",
 	"physical-interface",
+	"vlan",
 }
 
 func (v *ACLEnforcementPoint) UnmarshalJSON(src []byte) error {

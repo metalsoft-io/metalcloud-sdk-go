@@ -27,9 +27,9 @@ type NetworkDeviceEndpointInterface struct {
 	NetworkDeviceInterfaceId float32 `json:"networkDeviceInterfaceId"`
 	// Network device interface name
 	NetworkDeviceInterfaceName *string `json:"networkDeviceInterfaceName,omitempty"`
-	// Network endpoint id if the interface is connected to a network endpoint
-	EndpointId *string `json:"endpointId,omitempty"`
-	// Endpoint interface id
+	// Network endpoint id, null if not connected to an existing endpoint
+	EndpointId *float32 `json:"endpointId,omitempty"`
+	// Endpoint interface id, null if not connected to an existing endpoint interface
 	EndpointInterfaceId *float32 `json:"endpointInterfaceId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -136,9 +136,9 @@ func (o *NetworkDeviceEndpointInterface) SetNetworkDeviceInterfaceName(v string)
 }
 
 // GetEndpointId returns the EndpointId field value if set, zero value otherwise.
-func (o *NetworkDeviceEndpointInterface) GetEndpointId() string {
+func (o *NetworkDeviceEndpointInterface) GetEndpointId() float32 {
 	if o == nil || IsNil(o.EndpointId) {
-		var ret string
+		var ret float32
 		return ret
 	}
 	return *o.EndpointId
@@ -146,7 +146,7 @@ func (o *NetworkDeviceEndpointInterface) GetEndpointId() string {
 
 // GetEndpointIdOk returns a tuple with the EndpointId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkDeviceEndpointInterface) GetEndpointIdOk() (*string, bool) {
+func (o *NetworkDeviceEndpointInterface) GetEndpointIdOk() (*float32, bool) {
 	if o == nil || IsNil(o.EndpointId) {
 		return nil, false
 	}
@@ -162,8 +162,8 @@ func (o *NetworkDeviceEndpointInterface) HasEndpointId() bool {
 	return false
 }
 
-// SetEndpointId gets a reference to the given string and assigns it to the EndpointId field.
-func (o *NetworkDeviceEndpointInterface) SetEndpointId(v string) {
+// SetEndpointId gets a reference to the given float32 and assigns it to the EndpointId field.
+func (o *NetworkDeviceEndpointInterface) SetEndpointId(v float32) {
 	o.EndpointId = &v
 }
 

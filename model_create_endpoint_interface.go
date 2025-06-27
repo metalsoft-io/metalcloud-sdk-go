@@ -21,9 +21,9 @@ var _ MappedNullable = &CreateEndpointInterface{}
 
 // CreateEndpointInterface struct for CreateEndpointInterface
 type CreateEndpointInterface struct {
-	// Network equipment interface id
-	NetworkEquipmentInterfaceId float32 `json:"networkEquipmentInterfaceId"`
-	// Network equipment interface mac address
+	// Network device interface id
+	NetworkDeviceInterfaceId float32 `json:"networkDeviceInterfaceId"`
+	// Device interface mac address
 	MacAddress *string `json:"macAddress,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -34,9 +34,9 @@ type _CreateEndpointInterface CreateEndpointInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateEndpointInterface(networkEquipmentInterfaceId float32) *CreateEndpointInterface {
+func NewCreateEndpointInterface(networkDeviceInterfaceId float32) *CreateEndpointInterface {
 	this := CreateEndpointInterface{}
-	this.NetworkEquipmentInterfaceId = networkEquipmentInterfaceId
+	this.NetworkDeviceInterfaceId = networkDeviceInterfaceId
 	return &this
 }
 
@@ -48,28 +48,28 @@ func NewCreateEndpointInterfaceWithDefaults() *CreateEndpointInterface {
 	return &this
 }
 
-// GetNetworkEquipmentInterfaceId returns the NetworkEquipmentInterfaceId field value
-func (o *CreateEndpointInterface) GetNetworkEquipmentInterfaceId() float32 {
+// GetNetworkDeviceInterfaceId returns the NetworkDeviceInterfaceId field value
+func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceId() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.NetworkEquipmentInterfaceId
+	return o.NetworkDeviceInterfaceId
 }
 
-// GetNetworkEquipmentInterfaceIdOk returns a tuple with the NetworkEquipmentInterfaceId field value
+// GetNetworkDeviceInterfaceIdOk returns a tuple with the NetworkDeviceInterfaceId field value
 // and a boolean to check if the value has been set.
-func (o *CreateEndpointInterface) GetNetworkEquipmentInterfaceIdOk() (*float32, bool) {
+func (o *CreateEndpointInterface) GetNetworkDeviceInterfaceIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NetworkEquipmentInterfaceId, true
+	return &o.NetworkDeviceInterfaceId, true
 }
 
-// SetNetworkEquipmentInterfaceId sets field value
-func (o *CreateEndpointInterface) SetNetworkEquipmentInterfaceId(v float32) {
-	o.NetworkEquipmentInterfaceId = v
+// SetNetworkDeviceInterfaceId sets field value
+func (o *CreateEndpointInterface) SetNetworkDeviceInterfaceId(v float32) {
+	o.NetworkDeviceInterfaceId = v
 }
 
 // GetMacAddress returns the MacAddress field value if set, zero value otherwise.
@@ -114,7 +114,7 @@ func (o CreateEndpointInterface) MarshalJSON() ([]byte, error) {
 
 func (o CreateEndpointInterface) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["networkEquipmentInterfaceId"] = o.NetworkEquipmentInterfaceId
+	toSerialize["networkDeviceInterfaceId"] = o.NetworkDeviceInterfaceId
 	if !IsNil(o.MacAddress) {
 		toSerialize["macAddress"] = o.MacAddress
 	}
@@ -131,7 +131,7 @@ func (o *CreateEndpointInterface) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"networkEquipmentInterfaceId",
+		"networkDeviceInterfaceId",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -161,7 +161,7 @@ func (o *CreateEndpointInterface) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "networkEquipmentInterfaceId")
+		delete(additionalProperties, "networkDeviceInterfaceId")
 		delete(additionalProperties, "macAddress")
 		o.AdditionalProperties = additionalProperties
 	}
