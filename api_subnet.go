@@ -349,6 +349,7 @@ type SubnetAPIGetSubnetsRequest struct {
 	filterLabel *[]string
 	filterName *[]string
 	filterIpVersion *[]string
+	filterIsPool *[]string
 	filterParentSubnetId *[]string
 	sortBy *[]string
 	search *string
@@ -388,6 +389,12 @@ func (r SubnetAPIGetSubnetsRequest) FilterName(filterName []string) SubnetAPIGet
 // Filter by ipVersion query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.ipVersion&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.ipVersion&#x3D;$not:$like:John Doe&amp;filter.ipVersion&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
 func (r SubnetAPIGetSubnetsRequest) FilterIpVersion(filterIpVersion []string) SubnetAPIGetSubnetsRequest {
 	r.filterIpVersion = &filterIpVersion
+	return r
+}
+
+// Filter by isPool query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.isPool&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.isPool&#x3D;$not:$like:John Doe&amp;filter.isPool&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r SubnetAPIGetSubnetsRequest) FilterIsPool(filterIsPool []string) SubnetAPIGetSubnetsRequest {
+	r.filterIsPool = &filterIsPool
 	return r
 }
 
@@ -503,6 +510,17 @@ func (a *SubnetAPIService) GetSubnetsExecute(r SubnetAPIGetSubnetsRequest) (*Sub
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.ipVersion", t, "form", "multi")
+		}
+	}
+	if r.filterIsPool != nil {
+		t := *r.filterIsPool
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.isPool", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.isPool", t, "form", "multi")
 		}
 	}
 	if r.filterParentSubnetId != nil {
