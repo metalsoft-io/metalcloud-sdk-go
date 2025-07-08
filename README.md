@@ -146,6 +146,7 @@ Class | Method | HTTP request | Description
 *EmailTemplateAPI* | [**EmailTemplatesControllerPatchEmailTemplate**](docs/EmailTemplateAPI.md#emailtemplatescontrollerpatchemailtemplate) | **Patch** /api/v2/email-templates/{emailTemplateName} | Update a EmailTemplate
 *EmailTemplateAPI* | [**GetEmailTemplateByName**](docs/EmailTemplateAPI.md#getemailtemplatebyname) | **Get** /api/v2/email-templates/{emailTemplateName} | Get Email Template by Name
 *EmailTemplateAPI* | [**GetEmailTemplates**](docs/EmailTemplateAPI.md#getemailtemplates) | **Get** /api/v2/email-templates | Get all Email Templates
+*EndpointAPI* | [**BulkCreateEndpoints**](docs/EndpointAPI.md#bulkcreateendpoints) | **Post** /api/v2/endpoints/actions/bulk-create | Bulk create endpoints
 *EndpointAPI* | [**CreateEndpoint**](docs/EndpointAPI.md#createendpoint) | **Post** /api/v2/endpoints | Create a new endpoint
 *EndpointAPI* | [**CreateEndpointInterface**](docs/EndpointAPI.md#createendpointinterface) | **Post** /api/v2/endpoints/{endpointId}/interfaces | Create a new endpoint interface
 *EndpointAPI* | [**DeleteEndpoint**](docs/EndpointAPI.md#deleteendpoint) | **Delete** /api/v2/endpoints/{endpointId} | Delete endpoint
@@ -354,6 +355,7 @@ Class | Method | HTTP request | Description
 *NetworkEndpointGroupAPI* | [**RemoveLogicalNetworkFromNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#removelogicalnetworkfromnetworkendpointgroup) | **Delete** /api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks/{logicalNetworkId} | Remove a logical network from a network endpoint group
 *NetworkEndpointGroupAPI* | [**UpdateNetworkEndpointGroup**](docs/NetworkEndpointGroupAPI.md#updatenetworkendpointgroup) | **Patch** /api/v2/network-endpoint-groups/{networkEndpointGroupId} | Update a network endpoint group
 *NetworkEndpointGroupAPI* | [**UpdateNetworkEndpointGroupLogicalNetwork**](docs/NetworkEndpointGroupAPI.md#updatenetworkendpointgrouplogicalnetwork) | **Patch** /api/v2/network-endpoint-groups/{networkEndpointGroupId}/logical-networks/{logicalNetworkId} | Update a logical network in a network endpoint group
+*NetworkFabricAPI* | [**AcceptNetworkFabricDeploy**](docs/NetworkFabricAPI.md#acceptnetworkfabricdeploy) | **Post** /api/v2/network-fabrics/{networkFabricId}/actions/accept-deploy | Accepts the deployment of the specified network fabric
 *NetworkFabricAPI* | [**ActivateNetworkFabric**](docs/NetworkFabricAPI.md#activatenetworkfabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/actions/activate | Activate a network fabric
 *NetworkFabricAPI* | [**AddNetworkDevicesToFabric**](docs/NetworkFabricAPI.md#addnetworkdevicestofabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/network-devices | Add a list of network devices to a fabric
 *NetworkFabricAPI* | [**CreateNetworkFabric**](docs/NetworkFabricAPI.md#createnetworkfabric) | **Post** /api/v2/network-fabrics | Create a new network fabric
@@ -365,6 +367,7 @@ Class | Method | HTTP request | Description
 *NetworkFabricAPI* | [**GetNetworkFabricById**](docs/NetworkFabricAPI.md#getnetworkfabricbyid) | **Get** /api/v2/network-fabrics/{networkFabricId} | Get a network fabric by ID
 *NetworkFabricAPI* | [**GetNetworkFabricLinks**](docs/NetworkFabricAPI.md#getnetworkfabriclinks) | **Get** /api/v2/network-fabrics/{networkFabricId}/links | Get paginated Network Fabric Links
 *NetworkFabricAPI* | [**GetNetworkFabrics**](docs/NetworkFabricAPI.md#getnetworkfabrics) | **Get** /api/v2/network-fabrics | List all network fabrics
+*NetworkFabricAPI* | [**RejectNetworkFabricDeploy**](docs/NetworkFabricAPI.md#rejectnetworkfabricdeploy) | **Post** /api/v2/network-fabrics/{networkFabricId}/actions/reject-deploy | Rejects the deployment of the specified network fabric
 *NetworkFabricAPI* | [**RemoveNetworkDeviceFromFabric**](docs/NetworkFabricAPI.md#removenetworkdevicefromfabric) | **Delete** /api/v2/network-fabrics/{networkFabricId}/network-devices/{networkDeviceId} | Remove a network device from a fabric
 *NetworkFabricAPI* | [**UpdateNetworkFabric**](docs/NetworkFabricAPI.md#updatenetworkfabric) | **Patch** /api/v2/network-fabrics/{networkFabricId} | Update a network fabric
 *OSTemplateAPI* | [**CreateOSTemplate**](docs/OSTemplateAPI.md#createostemplate) | **Post** /api/v2/os-templates | Create OS template
@@ -684,6 +687,7 @@ Class | Method | HTTP request | Description
  - [BucketMeta](docs/BucketMeta.md)
  - [BucketPaginatedList](docs/BucketPaginatedList.md)
  - [BucketVariables](docs/BucketVariables.md)
+ - [BulkCreateEndpoints](docs/BulkCreateEndpoints.md)
  - [CatalogUpdateType](docs/CatalogUpdateType.md)
  - [ChangeUserAccount](docs/ChangeUserAccount.md)
  - [ChangeUserEmail](docs/ChangeUserEmail.md)
@@ -942,6 +946,7 @@ Class | Method | HTTP request | Description
  - [LogicalNetworkProfileVxlanProperties](docs/LogicalNetworkProfileVxlanProperties.md)
  - [LogicalNetworkVlanProperties](docs/LogicalNetworkVlanProperties.md)
  - [LogicalNetworkVxlanProperties](docs/LogicalNetworkVxlanProperties.md)
+ - [LogoutRequest](docs/LogoutRequest.md)
  - [ManualIpv4SubnetAllocationStrategy](docs/ManualIpv4SubnetAllocationStrategy.md)
  - [ManualIpv6SubnetAllocationStrategy](docs/ManualIpv6SubnetAllocationStrategy.md)
  - [ManualVlanAllocationStrategy](docs/ManualVlanAllocationStrategy.md)
@@ -972,6 +977,8 @@ Class | Method | HTTP request | Description
  - [NetworkEndpointGroupRedundancyMode](docs/NetworkEndpointGroupRedundancyMode.md)
  - [NetworkEquipmentReprovision](docs/NetworkEquipmentReprovision.md)
  - [NetworkFabric](docs/NetworkFabric.md)
+ - [NetworkFabricDeployOptions](docs/NetworkFabricDeployOptions.md)
+ - [NetworkFabricDeployPreview](docs/NetworkFabricDeployPreview.md)
  - [NetworkFabricFabricConfiguration](docs/NetworkFabricFabricConfiguration.md)
  - [NetworkFabricLinkDto](docs/NetworkFabricLinkDto.md)
  - [NetworkFabricLinkPaginatedList](docs/NetworkFabricLinkPaginatedList.md)

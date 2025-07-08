@@ -110,6 +110,7 @@ docs/BucketCredentials.md
 docs/BucketMeta.md
 docs/BucketPaginatedList.md
 docs/BucketVariables.md
+docs/BulkCreateEndpoints.md
 docs/CatalogUpdateType.md
 docs/ChangeUserAccount.md
 docs/ChangeUserEmail.md
@@ -390,6 +391,7 @@ docs/LogicalNetworkProfileVlanProperties.md
 docs/LogicalNetworkProfileVxlanProperties.md
 docs/LogicalNetworkVlanProperties.md
 docs/LogicalNetworkVxlanProperties.md
+docs/LogoutRequest.md
 docs/ManualIpv4SubnetAllocationStrategy.md
 docs/ManualIpv6SubnetAllocationStrategy.md
 docs/ManualVlanAllocationStrategy.md
@@ -424,6 +426,8 @@ docs/NetworkEndpointGroupRedundancyMode.md
 docs/NetworkEquipmentReprovision.md
 docs/NetworkFabric.md
 docs/NetworkFabricAPI.md
+docs/NetworkFabricDeployOptions.md
+docs/NetworkFabricDeployPreview.md
 docs/NetworkFabricFabricConfiguration.md
 docs/NetworkFabricLinkDto.md
 docs/NetworkFabricLinkPaginatedList.md
@@ -807,6 +811,7 @@ model_bucket_credentials.go
 model_bucket_meta.go
 model_bucket_paginated_list.go
 model_bucket_variables.go
+model_bulk_create_endpoints.go
 model_catalog_update_type.go
 model_change_user_account.go
 model_change_user_email.go
@@ -1065,6 +1070,7 @@ model_logical_network_profile_vlan_properties.go
 model_logical_network_profile_vxlan_properties.go
 model_logical_network_vlan_properties.go
 model_logical_network_vxlan_properties.go
+model_logout_request.go
 model_manual_ipv4_subnet_allocation_strategy.go
 model_manual_ipv6_subnet_allocation_strategy.go
 model_manual_vlan_allocation_strategy.go
@@ -1095,6 +1101,8 @@ model_network_endpoint_group_redundancy_implementation_type.go
 model_network_endpoint_group_redundancy_mode.go
 model_network_equipment_reprovision.go
 model_network_fabric.go
+model_network_fabric_deploy_options.go
+model_network_fabric_deploy_preview.go
 model_network_fabric_fabric_configuration.go
 model_network_fabric_link_dto.go
 model_network_fabric_link_paginated_list.go

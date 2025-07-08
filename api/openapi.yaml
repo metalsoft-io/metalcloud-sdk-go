@@ -811,6 +811,43 @@ paths:
             type: string
           type: array
         style: form
+      - description: |-
+          Filter by accessLevel query param.
+                    <p>
+                       <b>Format: </b> filter.accessLevel={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.accessLevel=$not:$like:John Doe&filter.accessLevel=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.accessLevel
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by isBillable query param.
+                    <p>
+                       <b>Format: </b> filter.isBillable={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.isBillable=$not:$like:John Doe&filter.isBillable=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.isBillable
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
           \ just provide query param multiple types. The order in url defines an order\
           \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
@@ -1019,6 +1056,10 @@ paths:
       parameters: []
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutRequest'
           description: User successfully logged out
         "401":
           description: Unauthorized
@@ -2017,6 +2058,25 @@ paths:
             type: string
           type: array
         style: form
+      - description: |-
+          Filter by libraryLabel query param.
+                    <p>
+                       <b>Format: </b> filter.libraryLabel={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.libraryLabel=$not:$like:John Doe&filter.libraryLabel=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.libraryLabel
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
           \ just provide query param multiple types. The order in url defines an order\
           \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
@@ -2025,7 +2085,7 @@ paths:
           \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>networkType</li>\n\
           <li>networkDeviceDriver</li>\n<li>networkDevicePosition</li>\n<li>remoteNetworkDevicePosition</li>\n\
           <li>mlagPair</li>\n<li>bgpNumbering</li>\n<li>bgpLinkConfiguration</li>\n\
-          <li>executionType</li></ul>\n      "
+          <li>executionType</li>\n<li>libraryLabel</li></ul>\n      "
         explode: true
         in: query
         name: sortBy
@@ -2051,6 +2111,8 @@ paths:
             - bgpLinkConfiguration:DESC
             - executionType:ASC
             - executionType:DESC
+            - libraryLabel:ASC
+            - libraryLabel:DESC
             type: string
           type: array
         style: form
@@ -2071,7 +2133,7 @@ paths:
           \        <h4>Available Fields</h4><ul><li>id</li>\n<li>networkType</li>\n\
           <li>networkDeviceDriver</li>\n<li>networkDevicePosition</li>\n<li>remoteNetworkDevicePosition</li>\n\
           <li>mlagPair</li>\n<li>bgpNumbering</li>\n<li>bgpLinkConfiguration</li>\n\
-          <li>executionType</li></ul>\n        "
+          <li>executionType</li>\n<li>libraryLabel</li></ul>\n        "
         explode: true
         in: query
         name: searchBy
@@ -18486,6 +18548,13 @@ paths:
         schema:
           type: number
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NetworkFabricDeployOptions'
+        description: Network fabric deploy options
+        required: true
       responses:
         "202":
           content:
@@ -18505,6 +18574,64 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Deploys the specified network fabric
+      tags:
+      - Network Fabric
+  /api/v2/network-fabrics/{networkFabricId}/actions/accept-deploy:
+    post:
+      description: Accepts the deployment of the specified network fabric
+      operationId: acceptNetworkFabricDeploy
+      parameters:
+      - explode: false
+        in: path
+        name: networkFabricId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "202":
+          description: Accepts the deployment of the specified network fabric
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Accepts the deployment of the specified network fabric
+      tags:
+      - Network Fabric
+  /api/v2/network-fabrics/{networkFabricId}/actions/reject-deploy:
+    post:
+      description: Rejects the deployment of the specified network fabric
+      operationId: rejectNetworkFabricDeploy
+      parameters:
+      - explode: false
+        in: path
+        name: networkFabricId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "202":
+          description: Rejects the deployment of the specified network fabric
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Rejects the deployment of the specified network fabric
       tags:
       - Network Fabric
   /api/v2/os-templates:
@@ -25551,6 +25678,35 @@ paths:
       summary: List network device interfaces associated with endpoints
       tags:
       - Endpoint
+  /api/v2/endpoints/actions/bulk-create:
+    post:
+      description: Creates multiple endpoints in a single operation
+      operationId: bulkCreateEndpoints
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkCreateEndpoints'
+        description: An object containing an array of endpoints to create
+        required: true
+      responses:
+        "201":
+          description: The endpoints have been successfully created.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "409":
+          description: One or more endpoints with the same name already exist
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Bulk create endpoints
+      tags:
+      - Endpoint
   /api/v2/endpoints/{endpointId}:
     delete:
       description: Deletes the specified endpoint
@@ -30536,11 +30692,11 @@ paths:
           type: string
         style: form
       - description: "List of fields to search by term to filter result values\n \
-          \       <p>\n             <b>Example: </b> id,label,name\n          </p>\n\
+          \       <p>\n             <b>Example: </b> label,name\n          </p>\n\
           \        <p>\n             <b>Default Value: </b> By default all fields\
           \ mentioned below will be used to search by term\n          </p>\n     \
-          \   <h4>Available Fields</h4><ul><li>id</li>\n<li>label</li>\n<li>name</li></ul>\n\
-          \        "
+          \   <h4>Available Fields</h4><ul><li>label</li>\n<li>name</li></ul>\n  \
+          \      "
         explode: true
         in: query
         name: searchBy
@@ -31614,6 +31770,43 @@ paths:
         explode: true
         in: query
         name: filter.infrastructureIdDefault
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by accessLevel query param.
+                    <p>
+                       <b>Format: </b> filter.accessLevel={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.accessLevel=$not:$like:John Doe&filter.accessLevel=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li></ul>
+        explode: true
+        in: query
+        name: filter.accessLevel
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by isBillable query param.
+                    <p>
+                       <b>Format: </b> filter.isBillable={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.isBillable=$not:$like:John Doe&filter.isBillable=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.isBillable
         required: false
         schema:
           items:
@@ -38846,6 +39039,14 @@ components:
       required:
       - token
       type: object
+    LogoutRequest:
+      example:
+        redirectUrl: redirectUrl
+      properties:
+        redirectUrl:
+          description: The logout redirect URL
+          type: string
+      type: object
     AuthenticationUserProvider:
       example:
         provider: mysql
@@ -39242,9 +39443,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-06-30T14:47:37.019Z
+        createdTimestamp: 2025-07-07T12:18:26.273Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-06-30T14:47:37.019Z
+        updatedTimestamp: 2025-07-07T12:18:26.273Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -39255,6 +39456,7 @@ components:
           href: /api/v2/path/to/resource
         id: 6.027456183070403
         networkType: underlay
+        libraryLabel: libraryLabel
         remoteNetworkDevicePosition: all
         bgpNumbering: numbered
       properties:
@@ -39324,20 +39526,27 @@ components:
           enum:
           - cli
           type: string
+        libraryLabel:
+          description: Library label for the BGP template
+          type: string
         preparation:
-          description: Preparation commands in base64 format
+          description: "Preparation commands in base64 format. It should start with\
+            \ the necessary commands to start configuring the device. Example: sonic-cli\
+            \ configure terminal interface Eth1/1"
           type: string
         configuration:
-          description: Configuration commands in base64 format
+          description: "Configuration commands in base64 format. It should start with\
+            \ the necessary commands to start configuring the device. Example: sonic-cli\
+            \ configure terminal interface Eth1/1"
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-30T14:47:37.019Z
+          example: 2025-07-07T12:18:26.273Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-30T14:47:37.019Z
+          example: 2025-07-07T12:18:26.273Z
           format: date-time
           type: string
         links:
@@ -39355,6 +39564,7 @@ components:
       - createdTimestamp
       - executionType
       - id
+      - libraryLabel
       - mlagPair
       - networkDeviceDriver
       - networkDevicePosition
@@ -39368,9 +39578,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-06-30T14:47:37.019Z
+          createdTimestamp: 2025-07-07T12:18:26.273Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-06-30T14:47:37.019Z
+          updatedTimestamp: 2025-07-07T12:18:26.273Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -39381,14 +39591,15 @@ components:
             href: /api/v2/path/to/resource
           id: 6.027456183070403
           networkType: underlay
+          libraryLabel: libraryLabel
           remoteNetworkDevicePosition: all
           bgpNumbering: numbered
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-06-30T14:47:37.019Z
+          createdTimestamp: 2025-07-07T12:18:26.273Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-06-30T14:47:37.019Z
+          updatedTimestamp: 2025-07-07T12:18:26.273Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -39399,6 +39610,7 @@ components:
             href: /api/v2/path/to/resource
           id: 6.027456183070403
           networkType: underlay
+          libraryLabel: libraryLabel
           remoteNetworkDevicePosition: all
           bgpNumbering: numbered
         meta: ""
@@ -39433,6 +39645,7 @@ components:
         networkDeviceDriver: cisco_aci51
         networkDevicePosition: all
         networkType: underlay
+        libraryLabel: libraryLabel
         remoteNetworkDevicePosition: all
         bgpNumbering: numbered
         preparation: preparation
@@ -39503,17 +39716,25 @@ components:
           enum:
           - cli
           type: string
+        libraryLabel:
+          description: Library label for the BGP template
+          type: string
         preparation:
-          description: Preparation commands in base64 format
+          description: "Preparation commands in base64 format. It should start with\
+            \ the necessary commands to start configuring the device. Example: sonic-cli\
+            \ configure terminal interface Eth1/1"
           type: string
         configuration:
-          description: Configuration commands in base64 format
+          description: "Configuration commands in base64 format. It should start with\
+            \ the necessary commands to start configuring the device. Example: sonic-cli\
+            \ configure terminal interface Eth1/1"
           type: string
       required:
       - bgpLinkConfiguration
       - bgpNumbering
       - configuration
       - executionType
+      - libraryLabel
       - mlagPair
       - networkDeviceDriver
       - networkDevicePosition
@@ -39529,6 +39750,7 @@ components:
         networkDeviceDriver: cisco_aci51
         networkDevicePosition: all
         networkType: underlay
+        libraryLabel: libraryLabel
         remoteNetworkDevicePosition: all
         bgpNumbering: numbered
         preparation: preparation
@@ -39599,11 +39821,18 @@ components:
           enum:
           - cli
           type: string
+        libraryLabel:
+          description: Library label for the BGP template
+          type: string
         preparation:
-          description: Preparation commands in base64 format
+          description: "Preparation commands in base64 format. It should start with\
+            \ the necessary commands to start configuring the device. Example: sonic-cli\
+            \ configure terminal interface Eth1/1"
           type: string
         configuration:
-          description: Configuration commands in base64 format
+          description: "Configuration commands in base64 format. It should start with\
+            \ the necessary commands to start configuring the device. Example: sonic-cli\
+            \ configure terminal interface Eth1/1"
           type: string
       type: object
     Object:
@@ -40762,6 +40991,7 @@ components:
           - 323
           - 253
           - 127
+          - 560
           - 39
           - 262
           - 273
@@ -41037,6 +41267,8 @@ components:
           - 468
           - 543
           - 556
+          - 557
+          - 558
           type: number
         severity:
           description: The severity of the event
@@ -52300,6 +52532,7 @@ components:
         links: "{}"
         storageId: 2
         uniqueIdentifier: uniqueIdentifier
+        requiresConfirmation: false
         functionName: functionName
         retryCount: 1
         createdTimestamp: createdTimestamp
@@ -52397,6 +52630,11 @@ components:
         durationMilliseconds:
           description: The time in milliseconds that the job took to execute
           type: integer
+        requiresConfirmation:
+          default: false
+          description: Whether the job requires confirmation before execution
+          example: false
+          type: boolean
         createdTimestamp:
           description: The timestamp when the job was created
           type: string
@@ -52426,6 +52664,7 @@ components:
       - functionName
       - jobId
       - links
+      - requiresConfirmation
       - retryCount
       - retryMax
       - retryMinSeconds
@@ -52451,6 +52690,7 @@ components:
           links: "{}"
           storageId: 2
           uniqueIdentifier: uniqueIdentifier
+          requiresConfirmation: false
           functionName: functionName
           retryCount: 1
           createdTimestamp: createdTimestamp
@@ -52480,6 +52720,7 @@ components:
           links: "{}"
           storageId: 2
           uniqueIdentifier: uniqueIdentifier
+          requiresConfirmation: false
           functionName: functionName
           retryCount: 1
           createdTimestamp: createdTimestamp
@@ -52533,6 +52774,7 @@ components:
         instanceId: 1
         links: "{}"
         storageId: 2
+        requiresConfirmation: false
         functionName: functionName
         retryCount: 1
         createdTimestamp: createdTimestamp
@@ -52630,6 +52872,11 @@ components:
         durationMilliseconds:
           description: The time in milliseconds that the job took to execute
           type: integer
+        requiresConfirmation:
+          default: false
+          description: Whether the job requires confirmation before execution
+          example: false
+          type: boolean
         createdTimestamp:
           description: The timestamp when the job was created
           type: string
@@ -52656,6 +52903,7 @@ components:
       - functionName
       - jobId
       - links
+      - requiresConfirmation
       - retryCount
       - retryMax
       - retryMinSeconds
@@ -52680,6 +52928,7 @@ components:
           instanceId: 1
           links: "{}"
           storageId: 2
+          requiresConfirmation: false
           functionName: functionName
           retryCount: 1
           createdTimestamp: createdTimestamp
@@ -52708,6 +52957,7 @@ components:
           instanceId: 1
           links: "{}"
           storageId: 2
+          requiresConfirmation: false
           functionName: functionName
           retryCount: 1
           createdTimestamp: createdTimestamp
@@ -58018,7 +58268,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-06-30T14:47:37.077Z
+        createdTimestamp: 2025-07-07T12:18:26.31Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -58027,7 +58277,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-06-30T14:47:37.077Z
+        updatedTimestamp: 2025-07-07T12:18:26.31Z
         revision: "1"
       properties:
         siteId:
@@ -58044,12 +58294,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-30T14:47:37.077Z
+          example: 2025-07-07T12:18:26.31Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-30T14:47:37.077Z
+          example: 2025-07-07T12:18:26.31Z
           format: date-time
           type: string
         links:
@@ -58071,7 +58321,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-06-30T14:47:37.077Z
+        - createdTimestamp: 2025-07-07T12:18:26.31Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -58080,9 +58330,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-06-30T14:47:37.077Z
+          updatedTimestamp: 2025-07-07T12:18:26.31Z
           revision: "1"
-        - createdTimestamp: 2025-06-30T14:47:37.077Z
+        - createdTimestamp: 2025-07-07T12:18:26.31Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -58091,7 +58341,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-06-30T14:47:37.077Z
+          updatedTimestamp: 2025-07-07T12:18:26.31Z
           revision: "1"
         meta: ""
         links: ""
@@ -58455,7 +58705,6 @@ components:
       enum:
       - numbered
       - unnumbered
-      - inherited
       type: string
     EthernetFabric:
       example:
@@ -58489,6 +58738,7 @@ components:
         reservedVlans:
         - 2000-2100
         - 2200-2300
+        libraryLabel: libraryLabel
         bgpNumbering: numbered
         defaultNetworkProfileId: 101
       properties:
@@ -58533,6 +58783,11 @@ components:
           allOf:
           - $ref: '#/components/schemas/BgpNumberingType'
           example: numbered
+        libraryLabel:
+          description: "Library label for the Ethernet fabric configuration, used\
+            \ to identify the BGP templates that can be used for deploy."
+          maxLength: 255
+          type: string
         defaultVlan:
           description: Default VLAN ID. Must be a number between 1 and 4096.
           example: 10
@@ -58708,118 +58963,42 @@ components:
       - draft
       - active
       type: string
+    NetworkFabricDeployPreview:
+      example:
+        networkDeviceId: 101
+        preparationPreview: preparationPreview
+        configurationPreview: configurationPreview
+        bgpTemplateId: 101
+        networkFabricLinkId: 101
+      properties:
+        networkDeviceId:
+          description: Unique identifier for the network device.
+          example: 101
+          type: number
+        networkFabricLinkId:
+          description: Unique identifier for the network fabric link
+          example: 101
+          type: number
+        bgpTemplateId:
+          description: Unique identifier for the BGP template
+          example: 101
+          type: number
+        preparationPreview:
+          description: Preview of the BGP preparation for the network device encoded
+            in base64 format
+          type: string
+        configurationPreview:
+          description: Preview of the BGP configuration for the network device encoded
+            in base64 format
+          type: string
+      required:
+      - bgpTemplateId
+      - networkDeviceId
+      - networkFabricLinkId
+      type: object
     NetworkFabric:
       example:
-        networkEquipment:
-        - bootstrapReadinessCheckInProgress: 9.301444243932576
-          country: country
-          mlagDomainId: 1.2315135367772556
-          vtepAddressIpv4: vtepAddressIpv4
-          datacenterMeta: datacenterMeta
-          vtepAddressIpv6: vtepAddressIpv6
-          managementMacAddress: managementMacAddress
-          isGateway: true
-          identifierString: identifierString
-          links:
-          - rel: self
-            href: /api/v2/path/to/resource
-          - rel: self
-            href: /api/v2/path/to/resource
-          id: id
-          bootstrapReadinessCheckResult: "{}"
-          bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
-          serialNumber: serialNumber
-          extensionInfo: ""
-          loopbackAddressIpv6: loopbackAddressIpv6
-          managementAddressGateway: managementAddressGateway
-          revision: 1
-          tags: tags
-          requiresOsInstall: true
-          driver: sonic_enterprise
-          loopbackAddressIpv4: loopbackAddressIpv4
-          mlagSystemMac: mlagSystemMac
-          rackPositionLowerUnit: 1.4658129805029452
-          position: leaf
-          secretsMaterializedForOSAssets: "{}"
-          status: active
-          quarantineVlan: 1.0246457001441578
-          city: city
-          datacenterRack: datacenterRack
-          description: description
-          datacenterRoom: datacenterRoom
-          rackPositionUpperUnit: 6.027456183070403
-          bootstrapSkipInitialConfiguration: 4.145608029883936
-          defaultMtu: 1.4894159098541704
-          managementAddress: managementAddress
-          subnetOobIndex: 2.027123023002322
-          managementAddressMask: managementAddressMask
-          chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 7.061401241503109
-          syslogEnabled: 5.637376656633329
-          managementPort: 5.962133916683182
-          managementPassword: password
-          subnetOobId: 3.616076749251911
-          siteId: 0.8008281904610115
-          orderIndex: 2.3021358869347655
-          variablesMaterializedForOSAssets: "{}"
-          asn: 7.386281948385884
-          username: username
-        - bootstrapReadinessCheckInProgress: 9.301444243932576
-          country: country
-          mlagDomainId: 1.2315135367772556
-          vtepAddressIpv4: vtepAddressIpv4
-          datacenterMeta: datacenterMeta
-          vtepAddressIpv6: vtepAddressIpv6
-          managementMacAddress: managementMacAddress
-          isGateway: true
-          identifierString: identifierString
-          links:
-          - rel: self
-            href: /api/v2/path/to/resource
-          - rel: self
-            href: /api/v2/path/to/resource
-          id: id
-          bootstrapReadinessCheckResult: "{}"
-          bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
-          serialNumber: serialNumber
-          extensionInfo: ""
-          loopbackAddressIpv6: loopbackAddressIpv6
-          managementAddressGateway: managementAddressGateway
-          revision: 1
-          tags: tags
-          requiresOsInstall: true
-          driver: sonic_enterprise
-          loopbackAddressIpv4: loopbackAddressIpv4
-          mlagSystemMac: mlagSystemMac
-          rackPositionLowerUnit: 1.4658129805029452
-          position: leaf
-          secretsMaterializedForOSAssets: "{}"
-          status: active
-          quarantineVlan: 1.0246457001441578
-          city: city
-          datacenterRack: datacenterRack
-          description: description
-          datacenterRoom: datacenterRoom
-          rackPositionUpperUnit: 6.027456183070403
-          bootstrapSkipInitialConfiguration: 4.145608029883936
-          defaultMtu: 1.4894159098541704
-          managementAddress: managementAddress
-          subnetOobIndex: 2.027123023002322
-          managementAddressMask: managementAddressMask
-          chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 7.061401241503109
-          syslogEnabled: 5.637376656633329
-          managementPort: 5.962133916683182
-          managementPassword: password
-          subnetOobId: 3.616076749251911
-          siteId: 0.8008281904610115
-          orderIndex: 2.3021358869347655
-          variablesMaterializedForOSAssets: "{}"
-          asn: 7.386281948385884
-          username: username
-        createdTimestamp: 2025-06-30T14:47:37.013Z
-        name: My Network Fabric
-        siteId: 0.8008281904610115
+        createdTimestamp: 2025-07-07T12:18:26.269Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -58852,17 +59031,138 @@ components:
           reservedVlans:
           - 2000-2100
           - 2200-2300
+          libraryLabel: libraryLabel
           bgpNumbering: numbered
           defaultNetworkProfileId: 101
+        deployPreview:
+        - networkDeviceId: 101
+          preparationPreview: preparationPreview
+          configurationPreview: configurationPreview
+          bgpTemplateId: 101
+          networkFabricLinkId: 101
+        - networkDeviceId: 101
+          preparationPreview: preparationPreview
+          configurationPreview: configurationPreview
+          bgpTemplateId: 101
+          networkFabricLinkId: 101
+        updatedTimestamp: 2025-07-07T12:18:26.27Z
+        deployId: 123
+        revision: "1"
+        networkEquipment:
+        - bootstrapReadinessCheckInProgress: 9.301444243932576
+          country: country
+          mlagDomainId: 1.2315135367772556
+          vtepAddressIpv4: vtepAddressIpv4
+          datacenterMeta: datacenterMeta
+          vtepAddressIpv6: vtepAddressIpv6
+          managementMacAddress: managementMacAddress
+          isGateway: true
+          identifierString: identifierString
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: id
+          bootstrapReadinessCheckResult: "{}"
+          bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
+          serialNumber: serialNumber
+          extensionInfo: ""
+          loopbackAddressIpv6: loopbackAddressIpv6
+          managementAddressGateway: managementAddressGateway
+          revision: 1
+          tags: tags
+          requiresOsInstall: true
+          driver: sonic_enterprise
+          loopbackAddressIpv4: loopbackAddressIpv4
+          mlagSystemMac: mlagSystemMac
+          rackPositionLowerUnit: 1.4658129805029452
+          position: leaf
+          secretsMaterializedForOSAssets: "{}"
+          status: active
+          quarantineVlan: 1.0246457001441578
+          city: city
+          datacenterRack: datacenterRack
+          description: description
+          datacenterRoom: datacenterRoom
+          rackPositionUpperUnit: 6.027456183070403
+          bootstrapSkipInitialConfiguration: 4.145608029883936
+          defaultMtu: 1.4894159098541704
+          managementAddress: managementAddress
+          subnetOobIndex: 2.027123023002322
+          managementAddressMask: managementAddressMask
+          chassisIdentifier: chassisIdentifier
+          readyForInitialConfiguration: 7.061401241503109
+          syslogEnabled: 5.637376656633329
+          managementPort: 5.962133916683182
+          managementPassword: password
+          subnetOobId: 3.616076749251911
+          siteId: 0.8008281904610115
+          orderIndex: 2.3021358869347655
+          variablesMaterializedForOSAssets: "{}"
+          asn: 7.386281948385884
+          username: username
+        - bootstrapReadinessCheckInProgress: 9.301444243932576
+          country: country
+          mlagDomainId: 1.2315135367772556
+          vtepAddressIpv4: vtepAddressIpv4
+          datacenterMeta: datacenterMeta
+          vtepAddressIpv6: vtepAddressIpv6
+          managementMacAddress: managementMacAddress
+          isGateway: true
+          identifierString: identifierString
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: id
+          bootstrapReadinessCheckResult: "{}"
+          bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
+          serialNumber: serialNumber
+          extensionInfo: ""
+          loopbackAddressIpv6: loopbackAddressIpv6
+          managementAddressGateway: managementAddressGateway
+          revision: 1
+          tags: tags
+          requiresOsInstall: true
+          driver: sonic_enterprise
+          loopbackAddressIpv4: loopbackAddressIpv4
+          mlagSystemMac: mlagSystemMac
+          rackPositionLowerUnit: 1.4658129805029452
+          position: leaf
+          secretsMaterializedForOSAssets: "{}"
+          status: active
+          quarantineVlan: 1.0246457001441578
+          city: city
+          datacenterRack: datacenterRack
+          description: description
+          datacenterRoom: datacenterRoom
+          rackPositionUpperUnit: 6.027456183070403
+          bootstrapSkipInitialConfiguration: 4.145608029883936
+          defaultMtu: 1.4894159098541704
+          managementAddress: managementAddress
+          subnetOobIndex: 2.027123023002322
+          managementAddressMask: managementAddressMask
+          chassisIdentifier: chassisIdentifier
+          readyForInitialConfiguration: 7.061401241503109
+          syslogEnabled: 5.637376656633329
+          managementPort: 5.962133916683182
+          managementPassword: password
+          subnetOobId: 3.616076749251911
+          siteId: 0.8008281904610115
+          orderIndex: 2.3021358869347655
+          variablesMaterializedForOSAssets: "{}"
+          asn: 7.386281948385884
+          username: username
+        name: My Network Fabric
+        siteId: 0.8008281904610115
         links:
         - rel: self
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-06-30T14:47:37.013Z
-        deployId: 123
-        revision: "1"
         status: draft
       properties:
         siteId:
@@ -58889,12 +59189,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-30T14:47:37.013Z
+          example: 2025-07-07T12:18:26.269Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-30T14:47:37.013Z
+          example: 2025-07-07T12:18:26.27Z
           format: date-time
           type: string
         links:
@@ -58916,6 +59216,12 @@ components:
           description: "The deploy ID of the network fabric, if it is being deployed."
           example: 123
           type: integer
+        deployPreview:
+          description: "The deploy preview for the network fabric, if it is being\
+            \ deployed."
+          items:
+            $ref: '#/components/schemas/NetworkFabricDeployPreview'
+          type: array
         networkEquipment:
           description: The network equipments in the fabric
           items:
@@ -58932,116 +59238,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - networkEquipment:
-          - bootstrapReadinessCheckInProgress: 9.301444243932576
-            country: country
-            mlagDomainId: 1.2315135367772556
-            vtepAddressIpv4: vtepAddressIpv4
-            datacenterMeta: datacenterMeta
-            vtepAddressIpv6: vtepAddressIpv6
-            managementMacAddress: managementMacAddress
-            isGateway: true
-            identifierString: identifierString
-            links:
-            - rel: self
-              href: /api/v2/path/to/resource
-            - rel: self
-              href: /api/v2/path/to/resource
-            id: id
-            bootstrapReadinessCheckResult: "{}"
-            bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
-            serialNumber: serialNumber
-            extensionInfo: ""
-            loopbackAddressIpv6: loopbackAddressIpv6
-            managementAddressGateway: managementAddressGateway
-            revision: 1
-            tags: tags
-            requiresOsInstall: true
-            driver: sonic_enterprise
-            loopbackAddressIpv4: loopbackAddressIpv4
-            mlagSystemMac: mlagSystemMac
-            rackPositionLowerUnit: 1.4658129805029452
-            position: leaf
-            secretsMaterializedForOSAssets: "{}"
-            status: active
-            quarantineVlan: 1.0246457001441578
-            city: city
-            datacenterRack: datacenterRack
-            description: description
-            datacenterRoom: datacenterRoom
-            rackPositionUpperUnit: 6.027456183070403
-            bootstrapSkipInitialConfiguration: 4.145608029883936
-            defaultMtu: 1.4894159098541704
-            managementAddress: managementAddress
-            subnetOobIndex: 2.027123023002322
-            managementAddressMask: managementAddressMask
-            chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 7.061401241503109
-            syslogEnabled: 5.637376656633329
-            managementPort: 5.962133916683182
-            managementPassword: password
-            subnetOobId: 3.616076749251911
-            siteId: 0.8008281904610115
-            orderIndex: 2.3021358869347655
-            variablesMaterializedForOSAssets: "{}"
-            asn: 7.386281948385884
-            username: username
-          - bootstrapReadinessCheckInProgress: 9.301444243932576
-            country: country
-            mlagDomainId: 1.2315135367772556
-            vtepAddressIpv4: vtepAddressIpv4
-            datacenterMeta: datacenterMeta
-            vtepAddressIpv6: vtepAddressIpv6
-            managementMacAddress: managementMacAddress
-            isGateway: true
-            identifierString: identifierString
-            links:
-            - rel: self
-              href: /api/v2/path/to/resource
-            - rel: self
-              href: /api/v2/path/to/resource
-            id: id
-            bootstrapReadinessCheckResult: "{}"
-            bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
-            serialNumber: serialNumber
-            extensionInfo: ""
-            loopbackAddressIpv6: loopbackAddressIpv6
-            managementAddressGateway: managementAddressGateway
-            revision: 1
-            tags: tags
-            requiresOsInstall: true
-            driver: sonic_enterprise
-            loopbackAddressIpv4: loopbackAddressIpv4
-            mlagSystemMac: mlagSystemMac
-            rackPositionLowerUnit: 1.4658129805029452
-            position: leaf
-            secretsMaterializedForOSAssets: "{}"
-            status: active
-            quarantineVlan: 1.0246457001441578
-            city: city
-            datacenterRack: datacenterRack
-            description: description
-            datacenterRoom: datacenterRoom
-            rackPositionUpperUnit: 6.027456183070403
-            bootstrapSkipInitialConfiguration: 4.145608029883936
-            defaultMtu: 1.4894159098541704
-            managementAddress: managementAddress
-            subnetOobIndex: 2.027123023002322
-            managementAddressMask: managementAddressMask
-            chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 7.061401241503109
-            syslogEnabled: 5.637376656633329
-            managementPort: 5.962133916683182
-            managementPassword: password
-            subnetOobId: 3.616076749251911
-            siteId: 0.8008281904610115
-            orderIndex: 2.3021358869347655
-            variablesMaterializedForOSAssets: "{}"
-            asn: 7.386281948385884
-            username: username
-          createdTimestamp: 2025-06-30T14:47:37.013Z
-          name: My Network Fabric
-          siteId: 0.8008281904610115
+        - createdTimestamp: 2025-07-07T12:18:26.269Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -59074,128 +59271,140 @@ components:
             reservedVlans:
             - 2000-2100
             - 2200-2300
+            libraryLabel: libraryLabel
             bgpNumbering: numbered
             defaultNetworkProfileId: 101
+          deployPreview:
+          - networkDeviceId: 101
+            preparationPreview: preparationPreview
+            configurationPreview: configurationPreview
+            bgpTemplateId: 101
+            networkFabricLinkId: 101
+          - networkDeviceId: 101
+            preparationPreview: preparationPreview
+            configurationPreview: configurationPreview
+            bgpTemplateId: 101
+            networkFabricLinkId: 101
+          updatedTimestamp: 2025-07-07T12:18:26.27Z
+          deployId: 123
+          revision: "1"
+          networkEquipment:
+          - bootstrapReadinessCheckInProgress: 9.301444243932576
+            country: country
+            mlagDomainId: 1.2315135367772556
+            vtepAddressIpv4: vtepAddressIpv4
+            datacenterMeta: datacenterMeta
+            vtepAddressIpv6: vtepAddressIpv6
+            managementMacAddress: managementMacAddress
+            isGateway: true
+            identifierString: identifierString
+            links:
+            - rel: self
+              href: /api/v2/path/to/resource
+            - rel: self
+              href: /api/v2/path/to/resource
+            id: id
+            bootstrapReadinessCheckResult: "{}"
+            bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
+            serialNumber: serialNumber
+            extensionInfo: ""
+            loopbackAddressIpv6: loopbackAddressIpv6
+            managementAddressGateway: managementAddressGateway
+            revision: 1
+            tags: tags
+            requiresOsInstall: true
+            driver: sonic_enterprise
+            loopbackAddressIpv4: loopbackAddressIpv4
+            mlagSystemMac: mlagSystemMac
+            rackPositionLowerUnit: 1.4658129805029452
+            position: leaf
+            secretsMaterializedForOSAssets: "{}"
+            status: active
+            quarantineVlan: 1.0246457001441578
+            city: city
+            datacenterRack: datacenterRack
+            description: description
+            datacenterRoom: datacenterRoom
+            rackPositionUpperUnit: 6.027456183070403
+            bootstrapSkipInitialConfiguration: 4.145608029883936
+            defaultMtu: 1.4894159098541704
+            managementAddress: managementAddress
+            subnetOobIndex: 2.027123023002322
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
+            syslogEnabled: 5.637376656633329
+            managementPort: 5.962133916683182
+            managementPassword: password
+            subnetOobId: 3.616076749251911
+            siteId: 0.8008281904610115
+            orderIndex: 2.3021358869347655
+            variablesMaterializedForOSAssets: "{}"
+            asn: 7.386281948385884
+            username: username
+          - bootstrapReadinessCheckInProgress: 9.301444243932576
+            country: country
+            mlagDomainId: 1.2315135367772556
+            vtepAddressIpv4: vtepAddressIpv4
+            datacenterMeta: datacenterMeta
+            vtepAddressIpv6: vtepAddressIpv6
+            managementMacAddress: managementMacAddress
+            isGateway: true
+            identifierString: identifierString
+            links:
+            - rel: self
+              href: /api/v2/path/to/resource
+            - rel: self
+              href: /api/v2/path/to/resource
+            id: id
+            bootstrapReadinessCheckResult: "{}"
+            bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
+            serialNumber: serialNumber
+            extensionInfo: ""
+            loopbackAddressIpv6: loopbackAddressIpv6
+            managementAddressGateway: managementAddressGateway
+            revision: 1
+            tags: tags
+            requiresOsInstall: true
+            driver: sonic_enterprise
+            loopbackAddressIpv4: loopbackAddressIpv4
+            mlagSystemMac: mlagSystemMac
+            rackPositionLowerUnit: 1.4658129805029452
+            position: leaf
+            secretsMaterializedForOSAssets: "{}"
+            status: active
+            quarantineVlan: 1.0246457001441578
+            city: city
+            datacenterRack: datacenterRack
+            description: description
+            datacenterRoom: datacenterRoom
+            rackPositionUpperUnit: 6.027456183070403
+            bootstrapSkipInitialConfiguration: 4.145608029883936
+            defaultMtu: 1.4894159098541704
+            managementAddress: managementAddress
+            subnetOobIndex: 2.027123023002322
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
+            syslogEnabled: 5.637376656633329
+            managementPort: 5.962133916683182
+            managementPassword: password
+            subnetOobId: 3.616076749251911
+            siteId: 0.8008281904610115
+            orderIndex: 2.3021358869347655
+            variablesMaterializedForOSAssets: "{}"
+            asn: 7.386281948385884
+            username: username
+          name: My Network Fabric
+          siteId: 0.8008281904610115
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-06-30T14:47:37.013Z
-          deployId: 123
-          revision: "1"
           status: draft
-        - networkEquipment:
-          - bootstrapReadinessCheckInProgress: 9.301444243932576
-            country: country
-            mlagDomainId: 1.2315135367772556
-            vtepAddressIpv4: vtepAddressIpv4
-            datacenterMeta: datacenterMeta
-            vtepAddressIpv6: vtepAddressIpv6
-            managementMacAddress: managementMacAddress
-            isGateway: true
-            identifierString: identifierString
-            links:
-            - rel: self
-              href: /api/v2/path/to/resource
-            - rel: self
-              href: /api/v2/path/to/resource
-            id: id
-            bootstrapReadinessCheckResult: "{}"
-            bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
-            serialNumber: serialNumber
-            extensionInfo: ""
-            loopbackAddressIpv6: loopbackAddressIpv6
-            managementAddressGateway: managementAddressGateway
-            revision: 1
-            tags: tags
-            requiresOsInstall: true
-            driver: sonic_enterprise
-            loopbackAddressIpv4: loopbackAddressIpv4
-            mlagSystemMac: mlagSystemMac
-            rackPositionLowerUnit: 1.4658129805029452
-            position: leaf
-            secretsMaterializedForOSAssets: "{}"
-            status: active
-            quarantineVlan: 1.0246457001441578
-            city: city
-            datacenterRack: datacenterRack
-            description: description
-            datacenterRoom: datacenterRoom
-            rackPositionUpperUnit: 6.027456183070403
-            bootstrapSkipInitialConfiguration: 4.145608029883936
-            defaultMtu: 1.4894159098541704
-            managementAddress: managementAddress
-            subnetOobIndex: 2.027123023002322
-            managementAddressMask: managementAddressMask
-            chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 7.061401241503109
-            syslogEnabled: 5.637376656633329
-            managementPort: 5.962133916683182
-            managementPassword: password
-            subnetOobId: 3.616076749251911
-            siteId: 0.8008281904610115
-            orderIndex: 2.3021358869347655
-            variablesMaterializedForOSAssets: "{}"
-            asn: 7.386281948385884
-            username: username
-          - bootstrapReadinessCheckInProgress: 9.301444243932576
-            country: country
-            mlagDomainId: 1.2315135367772556
-            vtepAddressIpv4: vtepAddressIpv4
-            datacenterMeta: datacenterMeta
-            vtepAddressIpv6: vtepAddressIpv6
-            managementMacAddress: managementMacAddress
-            isGateway: true
-            identifierString: identifierString
-            links:
-            - rel: self
-              href: /api/v2/path/to/resource
-            - rel: self
-              href: /api/v2/path/to/resource
-            id: id
-            bootstrapReadinessCheckResult: "{}"
-            bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
-            serialNumber: serialNumber
-            extensionInfo: ""
-            loopbackAddressIpv6: loopbackAddressIpv6
-            managementAddressGateway: managementAddressGateway
-            revision: 1
-            tags: tags
-            requiresOsInstall: true
-            driver: sonic_enterprise
-            loopbackAddressIpv4: loopbackAddressIpv4
-            mlagSystemMac: mlagSystemMac
-            rackPositionLowerUnit: 1.4658129805029452
-            position: leaf
-            secretsMaterializedForOSAssets: "{}"
-            status: active
-            quarantineVlan: 1.0246457001441578
-            city: city
-            datacenterRack: datacenterRack
-            description: description
-            datacenterRoom: datacenterRoom
-            rackPositionUpperUnit: 6.027456183070403
-            bootstrapSkipInitialConfiguration: 4.145608029883936
-            defaultMtu: 1.4894159098541704
-            managementAddress: managementAddress
-            subnetOobIndex: 2.027123023002322
-            managementAddressMask: managementAddressMask
-            chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 7.061401241503109
-            syslogEnabled: 5.637376656633329
-            managementPort: 5.962133916683182
-            managementPassword: password
-            subnetOobId: 3.616076749251911
-            siteId: 0.8008281904610115
-            orderIndex: 2.3021358869347655
-            variablesMaterializedForOSAssets: "{}"
-            asn: 7.386281948385884
-            username: username
-          createdTimestamp: 2025-06-30T14:47:37.013Z
-          name: My Network Fabric
-          siteId: 0.8008281904610115
+        - createdTimestamp: 2025-07-07T12:18:26.269Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -59228,17 +59437,138 @@ components:
             reservedVlans:
             - 2000-2100
             - 2200-2300
+            libraryLabel: libraryLabel
             bgpNumbering: numbered
             defaultNetworkProfileId: 101
+          deployPreview:
+          - networkDeviceId: 101
+            preparationPreview: preparationPreview
+            configurationPreview: configurationPreview
+            bgpTemplateId: 101
+            networkFabricLinkId: 101
+          - networkDeviceId: 101
+            preparationPreview: preparationPreview
+            configurationPreview: configurationPreview
+            bgpTemplateId: 101
+            networkFabricLinkId: 101
+          updatedTimestamp: 2025-07-07T12:18:26.27Z
+          deployId: 123
+          revision: "1"
+          networkEquipment:
+          - bootstrapReadinessCheckInProgress: 9.301444243932576
+            country: country
+            mlagDomainId: 1.2315135367772556
+            vtepAddressIpv4: vtepAddressIpv4
+            datacenterMeta: datacenterMeta
+            vtepAddressIpv6: vtepAddressIpv6
+            managementMacAddress: managementMacAddress
+            isGateway: true
+            identifierString: identifierString
+            links:
+            - rel: self
+              href: /api/v2/path/to/resource
+            - rel: self
+              href: /api/v2/path/to/resource
+            id: id
+            bootstrapReadinessCheckResult: "{}"
+            bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
+            serialNumber: serialNumber
+            extensionInfo: ""
+            loopbackAddressIpv6: loopbackAddressIpv6
+            managementAddressGateway: managementAddressGateway
+            revision: 1
+            tags: tags
+            requiresOsInstall: true
+            driver: sonic_enterprise
+            loopbackAddressIpv4: loopbackAddressIpv4
+            mlagSystemMac: mlagSystemMac
+            rackPositionLowerUnit: 1.4658129805029452
+            position: leaf
+            secretsMaterializedForOSAssets: "{}"
+            status: active
+            quarantineVlan: 1.0246457001441578
+            city: city
+            datacenterRack: datacenterRack
+            description: description
+            datacenterRoom: datacenterRoom
+            rackPositionUpperUnit: 6.027456183070403
+            bootstrapSkipInitialConfiguration: 4.145608029883936
+            defaultMtu: 1.4894159098541704
+            managementAddress: managementAddress
+            subnetOobIndex: 2.027123023002322
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
+            syslogEnabled: 5.637376656633329
+            managementPort: 5.962133916683182
+            managementPassword: password
+            subnetOobId: 3.616076749251911
+            siteId: 0.8008281904610115
+            orderIndex: 2.3021358869347655
+            variablesMaterializedForOSAssets: "{}"
+            asn: 7.386281948385884
+            username: username
+          - bootstrapReadinessCheckInProgress: 9.301444243932576
+            country: country
+            mlagDomainId: 1.2315135367772556
+            vtepAddressIpv4: vtepAddressIpv4
+            datacenterMeta: datacenterMeta
+            vtepAddressIpv6: vtepAddressIpv6
+            managementMacAddress: managementMacAddress
+            isGateway: true
+            identifierString: identifierString
+            links:
+            - rel: self
+              href: /api/v2/path/to/resource
+            - rel: self
+              href: /api/v2/path/to/resource
+            id: id
+            bootstrapReadinessCheckResult: "{}"
+            bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
+            serialNumber: serialNumber
+            extensionInfo: ""
+            loopbackAddressIpv6: loopbackAddressIpv6
+            managementAddressGateway: managementAddressGateway
+            revision: 1
+            tags: tags
+            requiresOsInstall: true
+            driver: sonic_enterprise
+            loopbackAddressIpv4: loopbackAddressIpv4
+            mlagSystemMac: mlagSystemMac
+            rackPositionLowerUnit: 1.4658129805029452
+            position: leaf
+            secretsMaterializedForOSAssets: "{}"
+            status: active
+            quarantineVlan: 1.0246457001441578
+            city: city
+            datacenterRack: datacenterRack
+            description: description
+            datacenterRoom: datacenterRoom
+            rackPositionUpperUnit: 6.027456183070403
+            bootstrapSkipInitialConfiguration: 4.145608029883936
+            defaultMtu: 1.4894159098541704
+            managementAddress: managementAddress
+            subnetOobIndex: 2.027123023002322
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
+            syslogEnabled: 5.637376656633329
+            managementPort: 5.962133916683182
+            managementPassword: password
+            subnetOobId: 3.616076749251911
+            siteId: 0.8008281904610115
+            orderIndex: 2.3021358869347655
+            variablesMaterializedForOSAssets: "{}"
+            asn: 7.386281948385884
+            username: username
+          name: My Network Fabric
+          siteId: 0.8008281904610115
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-06-30T14:47:37.013Z
-          deployId: 123
-          revision: "1"
           status: draft
         meta: ""
         links: ""
@@ -59299,6 +59629,7 @@ components:
           reservedVlans:
           - 2000-2100
           - 2200-2300
+          libraryLabel: libraryLabel
           bgpNumbering: numbered
           defaultNetworkProfileId: 101
       properties:
@@ -59360,6 +59691,7 @@ components:
           reservedVlans:
           - 2000-2100
           - 2200-2300
+          libraryLabel: libraryLabel
           bgpNumbering: numbered
           defaultNetworkProfileId: 101
       properties:
@@ -59406,9 +59738,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-06-30T14:47:37.089Z
+        createdTimestamp: 2025-07-07T12:18:26.32Z
         mlagPair: 0
-        updatedTimestamp: 2025-06-30T14:47:37.089Z
+        updatedTimestamp: 2025-07-07T12:18:26.32Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -59421,12 +59753,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-30T14:47:37.089Z
+          example: 2025-07-07T12:18:26.32Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-30T14:47:37.089Z
+          example: 2025-07-07T12:18:26.32Z
           format: date-time
           type: string
         revision:
@@ -59463,9 +59795,9 @@ components:
         bgpNumbering:
           description: BGP numbering type for the link
           enum:
+          - inherited
           - numbered
           - unnumbered
-          - inherited
           example: inherited
           type: string
         bgpLinkConfiguration:
@@ -59504,9 +59836,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-06-30T14:47:37.089Z
+          createdTimestamp: 2025-07-07T12:18:26.32Z
           mlagPair: 0
-          updatedTimestamp: 2025-06-30T14:47:37.089Z
+          updatedTimestamp: 2025-07-07T12:18:26.32Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -59517,9 +59849,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-06-30T14:47:37.089Z
+          createdTimestamp: 2025-07-07T12:18:26.32Z
           mlagPair: 0
-          updatedTimestamp: 2025-06-30T14:47:37.089Z
+          updatedTimestamp: 2025-07-07T12:18:26.32Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -59584,9 +59916,9 @@ components:
         bgpNumbering:
           description: BGP numbering type for the link
           enum:
+          - inherited
           - numbered
           - unnumbered
-          - inherited
           example: inherited
           type: string
         bgpLinkConfiguration:
@@ -59607,6 +59939,20 @@ components:
       - mlagPair
       - networkDeviceAInterfaceId
       - networkDeviceBInterfaceId
+      type: object
+    NetworkFabricDeployOptions:
+      example:
+        requireConfirmation: true
+      properties:
+        requireConfirmation:
+          description: "Flag to indicate if the deployment should be confirmed before\
+            \ proceeding with the execution of template on network devices. There\
+            \ will be a confirmation step before the deployment is executed, giving\
+            \ you the chance to review the changes."
+          example: true
+          type: boolean
+      required:
+      - requireConfirmation
       type: object
     OSTemplateDevice:
       example:
@@ -62217,10 +62563,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-06-30T14:47:37.086Z
+        createdTimestamp: 2025-07-07T12:18:26.318Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-06-30T14:47:37.086Z
+        updatedTimestamp: 2025-07-07T12:18:26.318Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -62294,12 +62640,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-30T14:47:37.086Z
+          example: 2025-07-07T12:18:26.318Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-30T14:47:37.086Z
+          example: 2025-07-07T12:18:26.318Z
           format: date-time
           type: string
         links:
@@ -67995,6 +68341,7 @@ components:
         firmwareUpgradeSupported: true
         vncEnabled: true
         firmwareUpgradeApplyOnRebootSupported: true
+        virtualMediaDeviceCount: 1
       properties:
         firmwareUpgradeSupported:
           description: Server supports firmware upgrades
@@ -68004,6 +68351,10 @@ components:
           description: Server supports firmware upgrades on reboot
           example: true
           type: boolean
+        virtualMediaDeviceCount:
+          description: The number of virtual media devices supported by the server
+          example: 1
+          type: number
         vncEnabled:
           description: Server has VNC enabled
           example: true
@@ -68011,6 +68362,7 @@ components:
       required:
       - firmwareUpgradeApplyOnRebootSupported
       - firmwareUpgradeSupported
+      - virtualMediaDeviceCount
       - vncEnabled
       type: object
     ServerCredentials:
@@ -68856,7 +69208,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-06-30T14:47:37.07Z
+        createdTimestamp: 2025-07-07T12:18:26.307Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -68864,7 +69216,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-06-30T14:47:37.071Z
+        updatedTimestamp: 2025-07-07T12:18:26.307Z
         revision: "1"
       properties:
         id:
@@ -68893,12 +69245,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-30T14:47:37.07Z
+          example: 2025-07-07T12:18:26.307Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-30T14:47:37.071Z
+          example: 2025-07-07T12:18:26.307Z
           format: date-time
           type: string
         links:
@@ -68917,7 +69269,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-06-30T14:47:37.074Z
+        createdTimestamp: 2025-07-07T12:18:26.309Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -68928,7 +69280,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-06-30T14:47:37.074Z
+        updatedTimestamp: 2025-07-07T12:18:26.309Z
         revision: "1"
       properties:
         id:
@@ -68962,12 +69314,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-06-30T14:47:37.074Z
+          example: 2025-07-07T12:18:26.309Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-06-30T14:47:37.074Z
+          example: 2025-07-07T12:18:26.309Z
           format: date-time
           type: string
         links:
@@ -68987,7 +69339,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-06-30T14:47:37.074Z
+        - createdTimestamp: 2025-07-07T12:18:26.309Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -68998,9 +69350,9 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-06-30T14:47:37.074Z
+          updatedTimestamp: 2025-07-07T12:18:26.309Z
           revision: "1"
-        - createdTimestamp: 2025-06-30T14:47:37.074Z
+        - createdTimestamp: 2025-07-07T12:18:26.309Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -69011,7 +69363,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-06-30T14:47:37.074Z
+          updatedTimestamp: 2025-07-07T12:18:26.309Z
           revision: "1"
         meta: ""
         links: ""
@@ -69161,6 +69513,36 @@ components:
       - name
       - siteId
       type: object
+    BulkCreateEndpoints:
+      example:
+        endpoints:
+        - endpointInterfaces:
+          - macAddress: 00:1A:2B:3C:4D:5E
+            networkDeviceInterfaceId: 1
+          - macAddress: 00:1A:2B:3C:4D:5E
+            networkDeviceInterfaceId: 1
+          name: Server 1
+          externalId: ext-12345
+          siteId: 0.8008281904610115
+          label: lan-finance-1
+        - endpointInterfaces:
+          - macAddress: 00:1A:2B:3C:4D:5E
+            networkDeviceInterfaceId: 1
+          - macAddress: 00:1A:2B:3C:4D:5E
+            networkDeviceInterfaceId: 1
+          name: Server 1
+          externalId: ext-12345
+          siteId: 0.8008281904610115
+          label: lan-finance-1
+      properties:
+        endpoints:
+          description: The endpoints to import
+          items:
+            $ref: '#/components/schemas/CreateEndpoint'
+          type: array
+      required:
+      - endpoints
+      type: object
     UpdateEndpoint:
       example:
         name: Server 1
@@ -69191,7 +69573,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-06-30T14:47:37.07Z
+          createdTimestamp: 2025-07-07T12:18:26.307Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -69199,12 +69581,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-06-30T14:47:37.071Z
+          updatedTimestamp: 2025-07-07T12:18:26.307Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-06-30T14:47:37.07Z
+          createdTimestamp: 2025-07-07T12:18:26.307Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -69212,7 +69594,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-06-30T14:47:37.071Z
+          updatedTimestamp: 2025-07-07T12:18:26.307Z
           revision: "1"
         meta: ""
         links: ""
@@ -71717,18 +72099,20 @@ components:
             \ 'build_source_image', the 'file.path' is ignored and 'file.url' is required.\n\
             \            - If the template asset 'file.usage' is 'build_component',\
             \ the 'file.path' is the relative ISO location path where the template\
-            \ asset will be copied to.\n        OSTemplateDeviceType 'NETWORK_DEVICE'\
-            \ uses:\n            - If the template asset 'file.usage' is 'source_image',\
-            \ the 'file.url' is the location from where to fetch the Network Operating\
-            \ Systems (NOS) image and \n              the 'file.path' is a composable\
-            \ part of the HTTP URL, expected as a request by the Open Network Install\
-            \ Environment (ONIE) install process.\n            - If the template asset\
-            \ 'file.usage' is 'switch_ztp_config', the 'file.path' is a composable\
-            \ part of the HTTP URL, expected as a request by the ZTP process.\n  \
-            \          - If the template asset 'file.usage' is 'generic', the application\
-            \ code doesn't have any specific logic applied to the template asset.\
-            \ The 'file.path' \n              is a composable part of the HTTP URL,\
-            \ expected as a request by the ZTP process (e.g. Enterprise_SONiC_OS).\n\
+            \ asset will be copied to.\n            - If the template asset 'file.usage'\
+            \ is 'secondary_image', the 'file.url' is the URL of the image which to\
+            \ mount in the 2nd virtual media of the server.\n        OSTemplateDeviceType\
+            \ 'NETWORK_DEVICE' uses:\n            - If the template asset 'file.usage'\
+            \ is 'source_image', the 'file.url' is the location from where to fetch\
+            \ the Network Operating Systems (NOS) image and \n              the 'file.path'\
+            \ is a composable part of the HTTP URL, expected as a request by the Open\
+            \ Network Install Environment (ONIE) install process.\n            - If\
+            \ the template asset 'file.usage' is 'switch_ztp_config', the 'file.path'\
+            \ is a composable part of the HTTP URL, expected as a request by the ZTP\
+            \ process.\n            - If the template asset 'file.usage' is 'generic',\
+            \ the application code doesn't have any specific logic applied to the\
+            \ template asset. The 'file.path' \n              is a composable part\
+            \ of the HTTP URL, expected as a request by the ZTP process (e.g. Enterprise_SONiC_OS).\n\
             \        OSTemplateDeviceType 'VM' uses:\n            - If the template\
             \ asset 'file.usage' is 'metadata_source_image', the template asset contains\
             \ information about the VM image. The 'file.path' is used to \n      \
@@ -71789,29 +72173,33 @@ components:
             \ the 'file.path' is ignored and 'file.url' is required.\n           \
             \ - If the template asset 'file.usage' is 'build_component', the 'file.path'\
             \ is the relative ISO location path where the template asset will be copied\
-            \ to.\n        OSTemplateDeviceType 'NETWORK_DEVICE' uses:\n         \
-            \   - If the template asset 'file.usage' is 'source_image', the 'file.url'\
-            \ is the location from where to fetch the Network Operating Systems (NOS)\
-            \ image and \n              the 'file.path' is a composable part of the\
-            \ HTTP URL, expected as a request by the Open Network Install Environment\
-            \ (ONIE) install process.\n            - If the template asset 'file.usage'\
-            \ is 'switch_ztp_config', the 'file.path' is a composable part of the\
-            \ HTTP URL, expected as a request by the ZTP process.\n            - If\
+            \ to.\n            - If the template asset 'file.usage' is 'secondary_image',\
+            \ the 'file.url' is the URL of the image which to mount in the 2nd virtual\
+            \ media of the server.\n        OSTemplateDeviceType 'NETWORK_DEVICE'\
+            \ uses:\n            - If the template asset 'file.usage' is 'source_image',\
+            \ the 'file.url' is the location from where to fetch the Network Operating\
+            \ Systems (NOS) image and \n              the 'file.path' is a composable\
+            \ part of the HTTP URL, expected as a request by the Open Network Install\
+            \ Environment (ONIE) install process.\n            - If the template asset\
+            \ 'file.usage' is 'switch_ztp_config', the 'file.path' is a composable\
+            \ part of the HTTP URL, expected as a request by the ZTP process.\n  \
+            \          - If the template asset 'file.usage' is 'generic', the application\
+            \ code doesn't have any specific logic applied to the template asset.\
+            \ The 'file.path' \n              is a composable part of the HTTP URL,\
+            \ expected as a request by the ZTP process (e.g. Enterprise_SONiC_OS).\n\
+            \        OSTemplateDeviceType 'VM' uses:\n            - If the template\
+            \ asset 'file.usage' is 'metadata_source_image', the template asset contains\
+            \ information about the VM image. The 'file.path' is used to \n      \
+            \        identify the VM image metadata (e.g. Incus).\n            - If\
             \ the template asset 'file.usage' is 'generic', the application code doesn't\
             \ have any specific logic applied to the template asset. The 'file.path'\
-            \ \n              is a composable part of the HTTP URL, expected as a\
-            \ request by the ZTP process (e.g. Enterprise_SONiC_OS).\n        OSTemplateDeviceType\
-            \ 'VM' uses:\n            - If the template asset 'file.usage' is 'metadata_source_image',\
-            \ the template asset contains information about the VM image. The 'file.path'\
-            \ is used to \n              identify the VM image metadata (e.g. Incus).\n\
-            \            - If the template asset 'file.usage' is 'generic', the application\
-            \ code doesn't have any specific logic applied to the template asset.\
-            \ The 'file.path' is\n              used to identify the role of each\
-            \ of the template asset (e.g. Incus cloud-init: network-config, user-data,\
-            \ vendor-data).\n        "
+            \ is\n              used to identify the role of each of the template\
+            \ asset (e.g. Incus cloud-init: network-config, user-data, vendor-data).\n\
+            \        "
           enum:
           - build_source_image
           - build_component
+          - secondary_image
           - source_image
           - switch_ztp_config
           - metadata_source_image
@@ -71958,6 +72346,7 @@ components:
           enum:
           - build_source_image
           - build_component
+          - secondary_image
           - source_image
           - switch_ztp_config
           - metadata_source_image

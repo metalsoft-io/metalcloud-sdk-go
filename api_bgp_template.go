@@ -345,6 +345,7 @@ type BGPTemplateAPIGetBgpTemplatesRequest struct {
 	filterBgpNumbering *[]string
 	filterBgpLinkConfiguration *[]string
 	filterExecutionType *[]string
+	filterLibraryLabel *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -416,7 +417,13 @@ func (r BGPTemplateAPIGetBgpTemplatesRequest) FilterExecutionType(filterExecutio
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;networkType&lt;/li&gt; &lt;li&gt;networkDeviceDriver&lt;/li&gt; &lt;li&gt;networkDevicePosition&lt;/li&gt; &lt;li&gt;remoteNetworkDevicePosition&lt;/li&gt; &lt;li&gt;mlagPair&lt;/li&gt; &lt;li&gt;bgpNumbering&lt;/li&gt; &lt;li&gt;bgpLinkConfiguration&lt;/li&gt; &lt;li&gt;executionType&lt;/li&gt;&lt;/ul&gt;       
+// Filter by libraryLabel query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.libraryLabel&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.libraryLabel&#x3D;$not:$like:John Doe&amp;filter.libraryLabel&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r BGPTemplateAPIGetBgpTemplatesRequest) FilterLibraryLabel(filterLibraryLabel []string) BGPTemplateAPIGetBgpTemplatesRequest {
+	r.filterLibraryLabel = &filterLibraryLabel
+	return r
+}
+
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;networkType&lt;/li&gt; &lt;li&gt;networkDeviceDriver&lt;/li&gt; &lt;li&gt;networkDevicePosition&lt;/li&gt; &lt;li&gt;remoteNetworkDevicePosition&lt;/li&gt; &lt;li&gt;mlagPair&lt;/li&gt; &lt;li&gt;bgpNumbering&lt;/li&gt; &lt;li&gt;bgpLinkConfiguration&lt;/li&gt; &lt;li&gt;executionType&lt;/li&gt; &lt;li&gt;libraryLabel&lt;/li&gt;&lt;/ul&gt;       
 func (r BGPTemplateAPIGetBgpTemplatesRequest) SortBy(sortBy []string) BGPTemplateAPIGetBgpTemplatesRequest {
 	r.sortBy = &sortBy
 	return r
@@ -428,7 +435,7 @@ func (r BGPTemplateAPIGetBgpTemplatesRequest) Search(search string) BGPTemplateA
 	return r
 }
 
-// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,networkType,networkDeviceDriver,networkDevicePosition,remoteNetworkDevicePosition           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;networkType&lt;/li&gt; &lt;li&gt;networkDeviceDriver&lt;/li&gt; &lt;li&gt;networkDevicePosition&lt;/li&gt; &lt;li&gt;remoteNetworkDevicePosition&lt;/li&gt; &lt;li&gt;mlagPair&lt;/li&gt; &lt;li&gt;bgpNumbering&lt;/li&gt; &lt;li&gt;bgpLinkConfiguration&lt;/li&gt; &lt;li&gt;executionType&lt;/li&gt;&lt;/ul&gt;         
+// List of fields to search by term to filter result values         &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,networkType,networkDeviceDriver,networkDevicePosition,remoteNetworkDevicePosition           &lt;/p&gt;         &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields mentioned below will be used to search by term           &lt;/p&gt;         &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;networkType&lt;/li&gt; &lt;li&gt;networkDeviceDriver&lt;/li&gt; &lt;li&gt;networkDevicePosition&lt;/li&gt; &lt;li&gt;remoteNetworkDevicePosition&lt;/li&gt; &lt;li&gt;mlagPair&lt;/li&gt; &lt;li&gt;bgpNumbering&lt;/li&gt; &lt;li&gt;bgpLinkConfiguration&lt;/li&gt; &lt;li&gt;executionType&lt;/li&gt; &lt;li&gt;libraryLabel&lt;/li&gt;&lt;/ul&gt;         
 func (r BGPTemplateAPIGetBgpTemplatesRequest) SearchBy(searchBy []string) BGPTemplateAPIGetBgpTemplatesRequest {
 	r.searchBy = &searchBy
 	return r
@@ -577,6 +584,17 @@ func (a *BGPTemplateAPIService) GetBgpTemplatesExecute(r BGPTemplateAPIGetBgpTem
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.executionType", t, "form", "multi")
+		}
+	}
+	if r.filterLibraryLabel != nil {
+		t := *r.filterLibraryLabel
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.libraryLabel", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.libraryLabel", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

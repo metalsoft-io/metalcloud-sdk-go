@@ -36,9 +36,11 @@ type UpdateBgpTemplate struct {
 	BgpLinkConfiguration *string `json:"bgpLinkConfiguration,omitempty"`
 	// Execution type
 	ExecutionType *string `json:"executionType,omitempty"`
-	// Preparation commands in base64 format
+	// Library label for the BGP template
+	LibraryLabel *string `json:"libraryLabel,omitempty"`
+	// Preparation commands in base64 format. It should start with the necessary commands to start configuring the device. Example: sonic-cli configure terminal interface Eth1/1
 	Preparation *string `json:"preparation,omitempty"`
-	// Configuration commands in base64 format
+	// Configuration commands in base64 format. It should start with the necessary commands to start configuring the device. Example: sonic-cli configure terminal interface Eth1/1
 	Configuration *string `json:"configuration,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -318,6 +320,38 @@ func (o *UpdateBgpTemplate) SetExecutionType(v string) {
 	o.ExecutionType = &v
 }
 
+// GetLibraryLabel returns the LibraryLabel field value if set, zero value otherwise.
+func (o *UpdateBgpTemplate) GetLibraryLabel() string {
+	if o == nil || IsNil(o.LibraryLabel) {
+		var ret string
+		return ret
+	}
+	return *o.LibraryLabel
+}
+
+// GetLibraryLabelOk returns a tuple with the LibraryLabel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateBgpTemplate) GetLibraryLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.LibraryLabel) {
+		return nil, false
+	}
+	return o.LibraryLabel, true
+}
+
+// HasLibraryLabel returns a boolean if a field has been set.
+func (o *UpdateBgpTemplate) HasLibraryLabel() bool {
+	if o != nil && !IsNil(o.LibraryLabel) {
+		return true
+	}
+
+	return false
+}
+
+// SetLibraryLabel gets a reference to the given string and assigns it to the LibraryLabel field.
+func (o *UpdateBgpTemplate) SetLibraryLabel(v string) {
+	o.LibraryLabel = &v
+}
+
 // GetPreparation returns the Preparation field value if set, zero value otherwise.
 func (o *UpdateBgpTemplate) GetPreparation() string {
 	if o == nil || IsNil(o.Preparation) {
@@ -416,6 +450,9 @@ func (o UpdateBgpTemplate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExecutionType) {
 		toSerialize["executionType"] = o.ExecutionType
 	}
+	if !IsNil(o.LibraryLabel) {
+		toSerialize["libraryLabel"] = o.LibraryLabel
+	}
 	if !IsNil(o.Preparation) {
 		toSerialize["preparation"] = o.Preparation
 	}
@@ -452,6 +489,7 @@ func (o *UpdateBgpTemplate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "bgpNumbering")
 		delete(additionalProperties, "bgpLinkConfiguration")
 		delete(additionalProperties, "executionType")
+		delete(additionalProperties, "libraryLabel")
 		delete(additionalProperties, "preparation")
 		delete(additionalProperties, "configuration")
 		o.AdditionalProperties = additionalProperties

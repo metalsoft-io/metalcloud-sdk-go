@@ -22,6 +22,17 @@ func Test_sdk_EndpointAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test EndpointAPIService BulkCreateEndpoints", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.EndpointAPI.BulkCreateEndpoints(context.Background()).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test EndpointAPIService CreateEndpoint", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

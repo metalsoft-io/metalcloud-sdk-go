@@ -67,6 +67,8 @@ type Job struct {
 	ExtraInfo map[string]interface{} `json:"extraInfo,omitempty"`
 	// The time in milliseconds that the job took to execute
 	DurationMilliseconds *int32 `json:"durationMilliseconds,omitempty"`
+	// Whether the job requires confirmation before execution
+	RequiresConfirmation bool `json:"requiresConfirmation"`
 	// The timestamp when the job was created
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// The timestamp when the job was last updated
@@ -88,7 +90,7 @@ type _Job Job
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJob(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *Job {
+func NewJob(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *Job {
 	this := Job{}
 	this.JobId = jobId
 	this.Type = type_
@@ -98,6 +100,7 @@ func NewJob(jobId int32, type_ string, status string, functionName string, callC
 	this.RetryMax = retryMax
 	this.RetryCount = retryCount
 	this.RetryMinSeconds = retryMinSeconds
+	this.RequiresConfirmation = requiresConfirmation
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
 	this.Links = links
@@ -109,6 +112,8 @@ func NewJob(jobId int32, type_ string, status string, functionName string, callC
 // but it doesn't guarantee that properties required by API are set
 func NewJobWithDefaults() *Job {
 	this := Job{}
+	var requiresConfirmation bool = false
+	this.RequiresConfirmation = requiresConfirmation
 	return &this
 }
 
@@ -784,6 +789,30 @@ func (o *Job) SetDurationMilliseconds(v int32) {
 	o.DurationMilliseconds = &v
 }
 
+// GetRequiresConfirmation returns the RequiresConfirmation field value
+func (o *Job) GetRequiresConfirmation() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.RequiresConfirmation
+}
+
+// GetRequiresConfirmationOk returns a tuple with the RequiresConfirmation field value
+// and a boolean to check if the value has been set.
+func (o *Job) GetRequiresConfirmationOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RequiresConfirmation, true
+}
+
+// SetRequiresConfirmation sets field value
+func (o *Job) SetRequiresConfirmation(v bool) {
+	o.RequiresConfirmation = v
+}
+
 // GetCreatedTimestamp returns the CreatedTimestamp field value
 func (o *Job) GetCreatedTimestamp() string {
 	if o == nil {
@@ -1015,6 +1044,7 @@ func (o Job) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DurationMilliseconds) {
 		toSerialize["durationMilliseconds"] = o.DurationMilliseconds
 	}
+	toSerialize["requiresConfirmation"] = o.RequiresConfirmation
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.StartTimestamp) {
@@ -1048,6 +1078,7 @@ func (o *Job) UnmarshalJSON(data []byte) (err error) {
 		"retryMax",
 		"retryCount",
 		"retryMinSeconds",
+		"requiresConfirmation",
 		"createdTimestamp",
 		"updatedTimestamp",
 		"links",
@@ -1103,6 +1134,7 @@ func (o *Job) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "exception")
 		delete(additionalProperties, "extraInfo")
 		delete(additionalProperties, "durationMilliseconds")
+		delete(additionalProperties, "requiresConfirmation")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "startTimestamp")

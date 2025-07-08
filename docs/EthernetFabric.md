@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **AsnRanges** | Pointer to **[]string** | ASN ranges in the format \&quot;start-end\&quot;, where each range is an ordered pair with values between 1 and 4294967295. | [optional] 
 **AsnAllocationStrategy** | Pointer to [**AsnAllocationStrategy**](AsnAllocationStrategy.md) |  | [optional] 
 **BgpNumbering** | Pointer to [**BgpNumberingType**](BgpNumberingType.md) |  | [optional] 
+**LibraryLabel** | Pointer to **string** | Library label for the Ethernet fabric configuration, used to identify the BGP templates that can be used for deploy. | [optional] 
 **DefaultVlan** | Pointer to **int32** | Default VLAN ID. Must be a number between 1 and 4096. | [optional] 
 **ExtraInternalIPsPerSubnet** | Pointer to **int32** | Extra internal IPs allocated per subnet; valid range is between 1 and 1000. | [optional] 
 **LagRanges** | Pointer to **[]string** | Link Aggregation (LAG) ranges in the format \&quot;start-end\&quot;; each range must be within the bounds of 1 to 4096. | [optional] 
@@ -238,6 +239,31 @@ SetBgpNumbering sets BgpNumbering field to given value.
 `func (o *EthernetFabric) HasBgpNumbering() bool`
 
 HasBgpNumbering returns a boolean if a field has been set.
+
+### GetLibraryLabel
+
+`func (o *EthernetFabric) GetLibraryLabel() string`
+
+GetLibraryLabel returns the LibraryLabel field if non-nil, zero value otherwise.
+
+### GetLibraryLabelOk
+
+`func (o *EthernetFabric) GetLibraryLabelOk() (*string, bool)`
+
+GetLibraryLabelOk returns a tuple with the LibraryLabel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLibraryLabel
+
+`func (o *EthernetFabric) SetLibraryLabel(v string)`
+
+SetLibraryLabel sets LibraryLabel field to given value.
+
+### HasLibraryLabel
+
+`func (o *EthernetFabric) HasLibraryLabel() bool`
+
+HasLibraryLabel returns a boolean if a field has been set.
 
 ### GetDefaultVlan
 

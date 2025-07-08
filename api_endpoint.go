@@ -25,6 +25,106 @@ import (
 // EndpointAPIService EndpointAPI service
 type EndpointAPIService service
 
+type EndpointAPIBulkCreateEndpointsRequest struct {
+	ctx context.Context
+	ApiService *EndpointAPIService
+	bulkCreateEndpoints *BulkCreateEndpoints
+}
+
+// An object containing an array of endpoints to create
+func (r EndpointAPIBulkCreateEndpointsRequest) BulkCreateEndpoints(bulkCreateEndpoints BulkCreateEndpoints) EndpointAPIBulkCreateEndpointsRequest {
+	r.bulkCreateEndpoints = &bulkCreateEndpoints
+	return r
+}
+
+func (r EndpointAPIBulkCreateEndpointsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.BulkCreateEndpointsExecute(r)
+}
+
+/*
+BulkCreateEndpoints Bulk create endpoints
+
+Creates multiple endpoints in a single operation
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return EndpointAPIBulkCreateEndpointsRequest
+*/
+func (a *EndpointAPIService) BulkCreateEndpoints(ctx context.Context) EndpointAPIBulkCreateEndpointsRequest {
+	return EndpointAPIBulkCreateEndpointsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+func (a *EndpointAPIService) BulkCreateEndpointsExecute(r EndpointAPIBulkCreateEndpointsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EndpointAPIService.BulkCreateEndpoints")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/endpoints/actions/bulk-create"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.bulkCreateEndpoints == nil {
+		return nil, reportError("bulkCreateEndpoints is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.bulkCreateEndpoints
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type EndpointAPICreateEndpointRequest struct {
 	ctx context.Context
 	ApiService *EndpointAPIService

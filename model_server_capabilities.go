@@ -25,6 +25,8 @@ type ServerCapabilities struct {
 	FirmwareUpgradeSupported bool `json:"firmwareUpgradeSupported"`
 	// Server supports firmware upgrades on reboot
 	FirmwareUpgradeApplyOnRebootSupported bool `json:"firmwareUpgradeApplyOnRebootSupported"`
+	// The number of virtual media devices supported by the server
+	VirtualMediaDeviceCount float32 `json:"virtualMediaDeviceCount"`
 	// Server has VNC enabled
 	VncEnabled bool `json:"vncEnabled"`
 	AdditionalProperties map[string]interface{}
@@ -36,10 +38,11 @@ type _ServerCapabilities ServerCapabilities
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerCapabilities(firmwareUpgradeSupported bool, firmwareUpgradeApplyOnRebootSupported bool, vncEnabled bool) *ServerCapabilities {
+func NewServerCapabilities(firmwareUpgradeSupported bool, firmwareUpgradeApplyOnRebootSupported bool, virtualMediaDeviceCount float32, vncEnabled bool) *ServerCapabilities {
 	this := ServerCapabilities{}
 	this.FirmwareUpgradeSupported = firmwareUpgradeSupported
 	this.FirmwareUpgradeApplyOnRebootSupported = firmwareUpgradeApplyOnRebootSupported
+	this.VirtualMediaDeviceCount = virtualMediaDeviceCount
 	this.VncEnabled = vncEnabled
 	return &this
 }
@@ -100,6 +103,30 @@ func (o *ServerCapabilities) SetFirmwareUpgradeApplyOnRebootSupported(v bool) {
 	o.FirmwareUpgradeApplyOnRebootSupported = v
 }
 
+// GetVirtualMediaDeviceCount returns the VirtualMediaDeviceCount field value
+func (o *ServerCapabilities) GetVirtualMediaDeviceCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.VirtualMediaDeviceCount
+}
+
+// GetVirtualMediaDeviceCountOk returns a tuple with the VirtualMediaDeviceCount field value
+// and a boolean to check if the value has been set.
+func (o *ServerCapabilities) GetVirtualMediaDeviceCountOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VirtualMediaDeviceCount, true
+}
+
+// SetVirtualMediaDeviceCount sets field value
+func (o *ServerCapabilities) SetVirtualMediaDeviceCount(v float32) {
+	o.VirtualMediaDeviceCount = v
+}
+
 // GetVncEnabled returns the VncEnabled field value
 func (o *ServerCapabilities) GetVncEnabled() bool {
 	if o == nil {
@@ -136,6 +163,7 @@ func (o ServerCapabilities) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["firmwareUpgradeSupported"] = o.FirmwareUpgradeSupported
 	toSerialize["firmwareUpgradeApplyOnRebootSupported"] = o.FirmwareUpgradeApplyOnRebootSupported
+	toSerialize["virtualMediaDeviceCount"] = o.VirtualMediaDeviceCount
 	toSerialize["vncEnabled"] = o.VncEnabled
 
 	for key, value := range o.AdditionalProperties {
@@ -152,6 +180,7 @@ func (o *ServerCapabilities) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"firmwareUpgradeSupported",
 		"firmwareUpgradeApplyOnRebootSupported",
+		"virtualMediaDeviceCount",
 		"vncEnabled",
 	}
 
@@ -184,6 +213,7 @@ func (o *ServerCapabilities) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "firmwareUpgradeSupported")
 		delete(additionalProperties, "firmwareUpgradeApplyOnRebootSupported")
+		delete(additionalProperties, "virtualMediaDeviceCount")
 		delete(additionalProperties, "vncEnabled")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -1726,6 +1726,8 @@ type UsersAPIGetUsersRequest struct {
 	filterAccountId *[]string
 	filterArchived *[]string
 	filterInfrastructureIdDefault *[]string
+	filterAccessLevel *[]string
+	filterIsBillable *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -1776,6 +1778,18 @@ func (r UsersAPIGetUsersRequest) FilterArchived(filterArchived []string) UsersAP
 // Filter by infrastructureIdDefault query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureIdDefault&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureIdDefault&#x3D;$not:$like:John Doe&amp;filter.infrastructureIdDefault&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
 func (r UsersAPIGetUsersRequest) FilterInfrastructureIdDefault(filterInfrastructureIdDefault []string) UsersAPIGetUsersRequest {
 	r.filterInfrastructureIdDefault = &filterInfrastructureIdDefault
+	return r
+}
+
+// Filter by accessLevel query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.accessLevel&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.accessLevel&#x3D;$not:$like:John Doe&amp;filter.accessLevel&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r UsersAPIGetUsersRequest) FilterAccessLevel(filterAccessLevel []string) UsersAPIGetUsersRequest {
+	r.filterAccessLevel = &filterAccessLevel
+	return r
+}
+
+// Filter by isBillable query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.isBillable&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.isBillable&#x3D;$not:$like:John Doe&amp;filter.isBillable&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r UsersAPIGetUsersRequest) FilterIsBillable(filterIsBillable []string) UsersAPIGetUsersRequest {
+	r.filterIsBillable = &filterIsBillable
 	return r
 }
 
@@ -1907,6 +1921,28 @@ func (a *UsersAPIService) GetUsersExecute(r UsersAPIGetUsersRequest) (*UserPagin
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureIdDefault", t, "form", "multi")
+		}
+	}
+	if r.filterAccessLevel != nil {
+		t := *r.filterAccessLevel
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.accessLevel", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.accessLevel", t, "form", "multi")
+		}
+	}
+	if r.filterIsBillable != nil {
+		t := *r.filterIsBillable
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.isBillable", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.isBillable", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

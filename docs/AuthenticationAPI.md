@@ -408,7 +408,7 @@ No authorization required
 
 ## Logout
 
-> Logout(ctx).Execute()
+> LogoutRequest Logout(ctx).Execute()
 
 Logout user
 
@@ -430,11 +430,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.AuthenticationAPI.Logout(context.Background()).Execute()
+	resp, r, err := apiClient.AuthenticationAPI.Logout(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.Logout``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `Logout`: LogoutRequest
+	fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.Logout`: %v\n", resp)
 }
 ```
 
@@ -449,7 +451,7 @@ Other parameters are passed through a pointer to a apiLogoutRequest struct via t
 
 ### Return type
 
- (empty response body)
+[**LogoutRequest**](LogoutRequest.md)
 
 ### Authorization
 
@@ -458,7 +460,7 @@ Other parameters are passed through a pointer to a apiLogoutRequest struct via t
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

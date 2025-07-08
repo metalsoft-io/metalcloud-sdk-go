@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **Exception** | Pointer to **map[string]interface{}** | The exception that was thrown by the function | [optional] 
 **ExtraInfo** | Pointer to **map[string]interface{}** | Extra information about the job | [optional] 
 **DurationMilliseconds** | Pointer to **int32** | The time in milliseconds that the job took to execute | [optional] 
+**RequiresConfirmation** | **bool** | Whether the job requires confirmation before execution | [default to false]
 **CreatedTimestamp** | **string** | The timestamp when the job was created | 
 **UpdatedTimestamp** | **string** | The timestamp when the job was last updated | 
 **StartTimestamp** | Pointer to **string** | The timestamp when the job was started | [optional] 
@@ -38,7 +39,7 @@ Name | Type | Description | Notes
 
 ### NewJob
 
-`func NewJob(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, createdTimestamp string, updatedTimestamp string, links map[string]interface{}, ) *Job`
+`func NewJob(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, createdTimestamp string, updatedTimestamp string, links map[string]interface{}, ) *Job`
 
 NewJob instantiates a new Job object
 This constructor will assign default values to properties that have it defined,
@@ -587,6 +588,26 @@ SetDurationMilliseconds sets DurationMilliseconds field to given value.
 `func (o *Job) HasDurationMilliseconds() bool`
 
 HasDurationMilliseconds returns a boolean if a field has been set.
+
+### GetRequiresConfirmation
+
+`func (o *Job) GetRequiresConfirmation() bool`
+
+GetRequiresConfirmation returns the RequiresConfirmation field if non-nil, zero value otherwise.
+
+### GetRequiresConfirmationOk
+
+`func (o *Job) GetRequiresConfirmationOk() (*bool, bool)`
+
+GetRequiresConfirmationOk returns a tuple with the RequiresConfirmation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequiresConfirmation
+
+`func (o *Job) SetRequiresConfirmation(v bool)`
+
+SetRequiresConfirmation sets RequiresConfirmation field to given value.
+
 
 ### GetCreatedTimestamp
 

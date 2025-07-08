@@ -38,9 +38,11 @@ type BgpTemplate struct {
 	BgpLinkConfiguration string `json:"bgpLinkConfiguration"`
 	// Execution type
 	ExecutionType string `json:"executionType"`
-	// Preparation commands in base64 format
+	// Library label for the BGP template
+	LibraryLabel string `json:"libraryLabel"`
+	// Preparation commands in base64 format. It should start with the necessary commands to start configuring the device. Example: sonic-cli configure terminal interface Eth1/1
 	Preparation *string `json:"preparation,omitempty"`
-	// Configuration commands in base64 format
+	// Configuration commands in base64 format. It should start with the necessary commands to start configuring the device. Example: sonic-cli configure terminal interface Eth1/1
 	Configuration string `json:"configuration"`
 	// Entity creation timestamp
 	CreatedTimestamp time.Time `json:"createdTimestamp"`
@@ -59,7 +61,7 @@ type _BgpTemplate BgpTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBgpTemplate(networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, executionType string, configuration string, createdTimestamp time.Time, updatedTimestamp time.Time, id float32) *BgpTemplate {
+func NewBgpTemplate(networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, executionType string, libraryLabel string, configuration string, createdTimestamp time.Time, updatedTimestamp time.Time, id float32) *BgpTemplate {
 	this := BgpTemplate{}
 	this.NetworkType = networkType
 	this.NetworkDeviceDriver = networkDeviceDriver
@@ -69,6 +71,7 @@ func NewBgpTemplate(networkType string, networkDeviceDriver string, networkDevic
 	this.BgpNumbering = bgpNumbering
 	this.BgpLinkConfiguration = bgpLinkConfiguration
 	this.ExecutionType = executionType
+	this.LibraryLabel = libraryLabel
 	this.Configuration = configuration
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
@@ -276,6 +279,30 @@ func (o *BgpTemplate) SetExecutionType(v string) {
 	o.ExecutionType = v
 }
 
+// GetLibraryLabel returns the LibraryLabel field value
+func (o *BgpTemplate) GetLibraryLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LibraryLabel
+}
+
+// GetLibraryLabelOk returns a tuple with the LibraryLabel field value
+// and a boolean to check if the value has been set.
+func (o *BgpTemplate) GetLibraryLabelOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LibraryLabel, true
+}
+
+// SetLibraryLabel sets field value
+func (o *BgpTemplate) SetLibraryLabel(v string) {
+	o.LibraryLabel = v
+}
+
 // GetPreparation returns the Preparation field value if set, zero value otherwise.
 func (o *BgpTemplate) GetPreparation() string {
 	if o == nil || IsNil(o.Preparation) {
@@ -454,6 +481,7 @@ func (o BgpTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize["bgpNumbering"] = o.BgpNumbering
 	toSerialize["bgpLinkConfiguration"] = o.BgpLinkConfiguration
 	toSerialize["executionType"] = o.ExecutionType
+	toSerialize["libraryLabel"] = o.LibraryLabel
 	if !IsNil(o.Preparation) {
 		toSerialize["preparation"] = o.Preparation
 	}
@@ -485,6 +513,7 @@ func (o *BgpTemplate) UnmarshalJSON(data []byte) (err error) {
 		"bgpNumbering",
 		"bgpLinkConfiguration",
 		"executionType",
+		"libraryLabel",
 		"configuration",
 		"createdTimestamp",
 		"updatedTimestamp",
@@ -526,6 +555,7 @@ func (o *BgpTemplate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "bgpNumbering")
 		delete(additionalProperties, "bgpLinkConfiguration")
 		delete(additionalProperties, "executionType")
+		delete(additionalProperties, "libraryLabel")
 		delete(additionalProperties, "preparation")
 		delete(additionalProperties, "configuration")
 		delete(additionalProperties, "createdTimestamp")

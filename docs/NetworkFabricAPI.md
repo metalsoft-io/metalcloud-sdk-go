@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AcceptNetworkFabricDeploy**](NetworkFabricAPI.md#AcceptNetworkFabricDeploy) | **Post** /api/v2/network-fabrics/{networkFabricId}/actions/accept-deploy | Accepts the deployment of the specified network fabric
 [**ActivateNetworkFabric**](NetworkFabricAPI.md#ActivateNetworkFabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/actions/activate | Activate a network fabric
 [**AddNetworkDevicesToFabric**](NetworkFabricAPI.md#AddNetworkDevicesToFabric) | **Post** /api/v2/network-fabrics/{networkFabricId}/network-devices | Add a list of network devices to a fabric
 [**CreateNetworkFabric**](NetworkFabricAPI.md#CreateNetworkFabric) | **Post** /api/v2/network-fabrics | Create a new network fabric
@@ -15,9 +16,78 @@ Method | HTTP request | Description
 [**GetNetworkFabricById**](NetworkFabricAPI.md#GetNetworkFabricById) | **Get** /api/v2/network-fabrics/{networkFabricId} | Get a network fabric by ID
 [**GetNetworkFabricLinks**](NetworkFabricAPI.md#GetNetworkFabricLinks) | **Get** /api/v2/network-fabrics/{networkFabricId}/links | Get paginated Network Fabric Links
 [**GetNetworkFabrics**](NetworkFabricAPI.md#GetNetworkFabrics) | **Get** /api/v2/network-fabrics | List all network fabrics
+[**RejectNetworkFabricDeploy**](NetworkFabricAPI.md#RejectNetworkFabricDeploy) | **Post** /api/v2/network-fabrics/{networkFabricId}/actions/reject-deploy | Rejects the deployment of the specified network fabric
 [**RemoveNetworkDeviceFromFabric**](NetworkFabricAPI.md#RemoveNetworkDeviceFromFabric) | **Delete** /api/v2/network-fabrics/{networkFabricId}/network-devices/{networkDeviceId} | Remove a network device from a fabric
 [**UpdateNetworkFabric**](NetworkFabricAPI.md#UpdateNetworkFabric) | **Patch** /api/v2/network-fabrics/{networkFabricId} | Update a network fabric
 
+
+
+## AcceptNetworkFabricDeploy
+
+> AcceptNetworkFabricDeploy(ctx, networkFabricId).Execute()
+
+Accepts the deployment of the specified network fabric
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkFabricId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.NetworkFabricAPI.AcceptNetworkFabricDeploy(context.Background(), networkFabricId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.AcceptNetworkFabricDeploy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkFabricId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAcceptNetworkFabricDeployRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## ActivateNetworkFabric
@@ -431,7 +501,7 @@ Name | Type | Description  | Notes
 
 ## DeployNetworkFabric
 
-> JobInfo DeployNetworkFabric(ctx, networkFabricId).Execute()
+> JobInfo DeployNetworkFabric(ctx, networkFabricId).NetworkFabricDeployOptions(networkFabricDeployOptions).Execute()
 
 Deploys the specified network fabric
 
@@ -451,10 +521,11 @@ import (
 
 func main() {
 	networkFabricId := float32(8.14) // float32 | 
+	networkFabricDeployOptions := *openapiclient.NewNetworkFabricDeployOptions(true) // NetworkFabricDeployOptions | Network fabric deploy options
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkFabricAPI.DeployNetworkFabric(context.Background(), networkFabricId).Execute()
+	resp, r, err := apiClient.NetworkFabricAPI.DeployNetworkFabric(context.Background(), networkFabricId).NetworkFabricDeployOptions(networkFabricDeployOptions).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.DeployNetworkFabric``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -480,6 +551,7 @@ Other parameters are passed through a pointer to a apiDeployNetworkFabricRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **networkFabricDeployOptions** | [**NetworkFabricDeployOptions**](NetworkFabricDeployOptions.md) | Network fabric deploy options | 
 
 ### Return type
 
@@ -491,7 +563,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -825,6 +897,74 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RejectNetworkFabricDeploy
+
+> RejectNetworkFabricDeploy(ctx, networkFabricId).Execute()
+
+Rejects the deployment of the specified network fabric
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkFabricId := float32(8.14) // float32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.NetworkFabricAPI.RejectNetworkFabricDeploy(context.Background(), networkFabricId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkFabricAPI.RejectNetworkFabricDeploy``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkFabricId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRejectNetworkFabricDeployRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

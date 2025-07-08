@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**BulkCreateEndpoints**](EndpointAPI.md#BulkCreateEndpoints) | **Post** /api/v2/endpoints/actions/bulk-create | Bulk create endpoints
 [**CreateEndpoint**](EndpointAPI.md#CreateEndpoint) | **Post** /api/v2/endpoints | Create a new endpoint
 [**CreateEndpointInterface**](EndpointAPI.md#CreateEndpointInterface) | **Post** /api/v2/endpoints/{endpointId}/interfaces | Create a new endpoint interface
 [**DeleteEndpoint**](EndpointAPI.md#DeleteEndpoint) | **Delete** /api/v2/endpoints/{endpointId} | Delete endpoint
@@ -16,6 +17,70 @@ Method | HTTP request | Description
 [**UpdateEndpoint**](EndpointAPI.md#UpdateEndpoint) | **Patch** /api/v2/endpoints/{endpointId} | Update endpoint
 [**UpdateEndpointInterface**](EndpointAPI.md#UpdateEndpointInterface) | **Patch** /api/v2/endpoints/{endpointId}/interfaces/{endpointInterfaceId} | Update endpoint interface
 
+
+
+## BulkCreateEndpoints
+
+> BulkCreateEndpoints(ctx).BulkCreateEndpoints(bulkCreateEndpoints).Execute()
+
+Bulk create endpoints
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	bulkCreateEndpoints := *openapiclient.NewBulkCreateEndpoints([]openapiclient.CreateEndpoint{*openapiclient.NewCreateEndpoint(float32(123), "Server 1", "lan-finance-1")}) // BulkCreateEndpoints | An object containing an array of endpoints to create
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.EndpointAPI.BulkCreateEndpoints(context.Background()).BulkCreateEndpoints(bulkCreateEndpoints).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EndpointAPI.BulkCreateEndpoints``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBulkCreateEndpointsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bulkCreateEndpoints** | [**BulkCreateEndpoints**](BulkCreateEndpoints.md) | An object containing an array of endpoints to create | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateEndpoint

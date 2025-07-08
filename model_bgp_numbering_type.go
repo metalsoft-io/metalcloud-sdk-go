@@ -23,14 +23,12 @@ type BgpNumberingType string
 const (
 	BGPNUMBERINGTYPE_NUMBERED BgpNumberingType = "numbered"
 	BGPNUMBERINGTYPE_UNNUMBERED BgpNumberingType = "unnumbered"
-	BGPNUMBERINGTYPE_INHERITED BgpNumberingType = "inherited"
 )
 
 // All allowed values of BgpNumberingType enum
 var AllowedBgpNumberingTypeEnumValues = []BgpNumberingType{
 	"numbered",
 	"unnumbered",
-	"inherited",
 }
 
 func (v *BgpNumberingType) UnmarshalJSON(src []byte) error {

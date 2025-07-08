@@ -12,8 +12,9 @@ Name | Type | Description | Notes
 **BgpNumbering** | Pointer to **string** | BGP numbering | [optional] 
 **BgpLinkConfiguration** | Pointer to **string** | BGP link configuration | [optional] 
 **ExecutionType** | Pointer to **string** | Execution type | [optional] 
-**Preparation** | Pointer to **string** | Preparation commands in base64 format | [optional] 
-**Configuration** | Pointer to **string** | Configuration commands in base64 format | [optional] 
+**LibraryLabel** | Pointer to **string** | Library label for the BGP template | [optional] 
+**Preparation** | Pointer to **string** | Preparation commands in base64 format. It should start with the necessary commands to start configuring the device. Example: sonic-cli configure terminal interface Eth1/1 | [optional] 
+**Configuration** | Pointer to **string** | Configuration commands in base64 format. It should start with the necessary commands to start configuring the device. Example: sonic-cli configure terminal interface Eth1/1 | [optional] 
 
 ## Methods
 
@@ -233,6 +234,31 @@ SetExecutionType sets ExecutionType field to given value.
 `func (o *UpdateBgpTemplate) HasExecutionType() bool`
 
 HasExecutionType returns a boolean if a field has been set.
+
+### GetLibraryLabel
+
+`func (o *UpdateBgpTemplate) GetLibraryLabel() string`
+
+GetLibraryLabel returns the LibraryLabel field if non-nil, zero value otherwise.
+
+### GetLibraryLabelOk
+
+`func (o *UpdateBgpTemplate) GetLibraryLabelOk() (*string, bool)`
+
+GetLibraryLabelOk returns a tuple with the LibraryLabel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLibraryLabel
+
+`func (o *UpdateBgpTemplate) SetLibraryLabel(v string)`
+
+SetLibraryLabel sets LibraryLabel field to given value.
+
+### HasLibraryLabel
+
+`func (o *UpdateBgpTemplate) HasLibraryLabel() bool`
+
+HasLibraryLabel returns a boolean if a field has been set.
 
 ### GetPreparation
 

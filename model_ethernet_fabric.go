@@ -35,6 +35,8 @@ type EthernetFabric struct {
 	AsnRanges []string `json:"asnRanges,omitempty"`
 	AsnAllocationStrategy *AsnAllocationStrategy `json:"asnAllocationStrategy,omitempty"`
 	BgpNumbering *BgpNumberingType `json:"bgpNumbering,omitempty"`
+	// Library label for the Ethernet fabric configuration, used to identify the BGP templates that can be used for deploy.
+	LibraryLabel *string `json:"libraryLabel,omitempty"`
 	// Default VLAN ID. Must be a number between 1 and 4096.
 	DefaultVlan *int32 `json:"defaultVlan,omitempty"`
 	// Extra internal IPs allocated per subnet; valid range is between 1 and 1000.
@@ -328,6 +330,38 @@ func (o *EthernetFabric) HasBgpNumbering() bool {
 // SetBgpNumbering gets a reference to the given BgpNumberingType and assigns it to the BgpNumbering field.
 func (o *EthernetFabric) SetBgpNumbering(v BgpNumberingType) {
 	o.BgpNumbering = &v
+}
+
+// GetLibraryLabel returns the LibraryLabel field value if set, zero value otherwise.
+func (o *EthernetFabric) GetLibraryLabel() string {
+	if o == nil || IsNil(o.LibraryLabel) {
+		var ret string
+		return ret
+	}
+	return *o.LibraryLabel
+}
+
+// GetLibraryLabelOk returns a tuple with the LibraryLabel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EthernetFabric) GetLibraryLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.LibraryLabel) {
+		return nil, false
+	}
+	return o.LibraryLabel, true
+}
+
+// HasLibraryLabel returns a boolean if a field has been set.
+func (o *EthernetFabric) HasLibraryLabel() bool {
+	if o != nil && !IsNil(o.LibraryLabel) {
+		return true
+	}
+
+	return false
+}
+
+// SetLibraryLabel gets a reference to the given string and assigns it to the LibraryLabel field.
+func (o *EthernetFabric) SetLibraryLabel(v string) {
+	o.LibraryLabel = &v
 }
 
 // GetDefaultVlan returns the DefaultVlan field value if set, zero value otherwise.
@@ -746,6 +780,9 @@ func (o EthernetFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BgpNumbering) {
 		toSerialize["bgpNumbering"] = o.BgpNumbering
 	}
+	if !IsNil(o.LibraryLabel) {
+		toSerialize["libraryLabel"] = o.LibraryLabel
+	}
 	if !IsNil(o.DefaultVlan) {
 		toSerialize["defaultVlan"] = o.DefaultVlan
 	}
@@ -833,6 +870,7 @@ func (o *EthernetFabric) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "asnRanges")
 		delete(additionalProperties, "asnAllocationStrategy")
 		delete(additionalProperties, "bgpNumbering")
+		delete(additionalProperties, "libraryLabel")
 		delete(additionalProperties, "defaultVlan")
 		delete(additionalProperties, "extraInternalIPsPerSubnet")
 		delete(additionalProperties, "lagRanges")

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The network fabric ID. | 
 **Status** | Pointer to [**FabricStatus**](FabricStatus.md) | The status of the network fabric, by default it is in draft mode. | [optional] 
 **DeployId** | Pointer to **int32** | The deploy ID of the network fabric, if it is being deployed. | [optional] 
+**DeployPreview** | Pointer to [**[]NetworkFabricDeployPreview**](NetworkFabricDeployPreview.md) | The deploy preview for the network fabric, if it is being deployed. | [optional] 
 **NetworkEquipment** | Pointer to [**[]NetworkDevice**](NetworkDevice.md) | The network equipments in the fabric | [optional] 
 
 ## Methods
@@ -280,6 +281,31 @@ SetDeployId sets DeployId field to given value.
 `func (o *NetworkFabric) HasDeployId() bool`
 
 HasDeployId returns a boolean if a field has been set.
+
+### GetDeployPreview
+
+`func (o *NetworkFabric) GetDeployPreview() []NetworkFabricDeployPreview`
+
+GetDeployPreview returns the DeployPreview field if non-nil, zero value otherwise.
+
+### GetDeployPreviewOk
+
+`func (o *NetworkFabric) GetDeployPreviewOk() (*[]NetworkFabricDeployPreview, bool)`
+
+GetDeployPreviewOk returns a tuple with the DeployPreview field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeployPreview
+
+`func (o *NetworkFabric) SetDeployPreview(v []NetworkFabricDeployPreview)`
+
+SetDeployPreview sets DeployPreview field to given value.
+
+### HasDeployPreview
+
+`func (o *NetworkFabric) HasDeployPreview() bool`
+
+HasDeployPreview returns a boolean if a field has been set.
 
 ### GetNetworkEquipment
 

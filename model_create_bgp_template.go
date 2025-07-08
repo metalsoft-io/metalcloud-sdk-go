@@ -37,9 +37,11 @@ type CreateBgpTemplate struct {
 	BgpLinkConfiguration string `json:"bgpLinkConfiguration"`
 	// Execution type
 	ExecutionType string `json:"executionType"`
-	// Preparation commands in base64 format
+	// Library label for the BGP template
+	LibraryLabel string `json:"libraryLabel"`
+	// Preparation commands in base64 format. It should start with the necessary commands to start configuring the device. Example: sonic-cli configure terminal interface Eth1/1
 	Preparation *string `json:"preparation,omitempty"`
-	// Configuration commands in base64 format
+	// Configuration commands in base64 format. It should start with the necessary commands to start configuring the device. Example: sonic-cli configure terminal interface Eth1/1
 	Configuration string `json:"configuration"`
 	AdditionalProperties map[string]interface{}
 }
@@ -50,7 +52,7 @@ type _CreateBgpTemplate CreateBgpTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBgpTemplate(networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, executionType string, configuration string) *CreateBgpTemplate {
+func NewCreateBgpTemplate(networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, executionType string, libraryLabel string, configuration string) *CreateBgpTemplate {
 	this := CreateBgpTemplate{}
 	this.NetworkType = networkType
 	this.NetworkDeviceDriver = networkDeviceDriver
@@ -60,6 +62,7 @@ func NewCreateBgpTemplate(networkType string, networkDeviceDriver string, networ
 	this.BgpNumbering = bgpNumbering
 	this.BgpLinkConfiguration = bgpLinkConfiguration
 	this.ExecutionType = executionType
+	this.LibraryLabel = libraryLabel
 	this.Configuration = configuration
 	return &this
 }
@@ -264,6 +267,30 @@ func (o *CreateBgpTemplate) SetExecutionType(v string) {
 	o.ExecutionType = v
 }
 
+// GetLibraryLabel returns the LibraryLabel field value
+func (o *CreateBgpTemplate) GetLibraryLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LibraryLabel
+}
+
+// GetLibraryLabelOk returns a tuple with the LibraryLabel field value
+// and a boolean to check if the value has been set.
+func (o *CreateBgpTemplate) GetLibraryLabelOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LibraryLabel, true
+}
+
+// SetLibraryLabel sets field value
+func (o *CreateBgpTemplate) SetLibraryLabel(v string) {
+	o.LibraryLabel = v
+}
+
 // GetPreparation returns the Preparation field value if set, zero value otherwise.
 func (o *CreateBgpTemplate) GetPreparation() string {
 	if o == nil || IsNil(o.Preparation) {
@@ -338,6 +365,7 @@ func (o CreateBgpTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize["bgpNumbering"] = o.BgpNumbering
 	toSerialize["bgpLinkConfiguration"] = o.BgpLinkConfiguration
 	toSerialize["executionType"] = o.ExecutionType
+	toSerialize["libraryLabel"] = o.LibraryLabel
 	if !IsNil(o.Preparation) {
 		toSerialize["preparation"] = o.Preparation
 	}
@@ -363,6 +391,7 @@ func (o *CreateBgpTemplate) UnmarshalJSON(data []byte) (err error) {
 		"bgpNumbering",
 		"bgpLinkConfiguration",
 		"executionType",
+		"libraryLabel",
 		"configuration",
 	}
 
@@ -401,6 +430,7 @@ func (o *CreateBgpTemplate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "bgpNumbering")
 		delete(additionalProperties, "bgpLinkConfiguration")
 		delete(additionalProperties, "executionType")
+		delete(additionalProperties, "libraryLabel")
 		delete(additionalProperties, "preparation")
 		delete(additionalProperties, "configuration")
 		o.AdditionalProperties = additionalProperties

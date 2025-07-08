@@ -12,14 +12,15 @@ Name | Type | Description | Notes
 **BgpNumbering** | **string** | BGP numbering | 
 **BgpLinkConfiguration** | **string** | BGP link configuration | 
 **ExecutionType** | **string** | Execution type | 
-**Preparation** | Pointer to **string** | Preparation commands in base64 format | [optional] 
-**Configuration** | **string** | Configuration commands in base64 format | 
+**LibraryLabel** | **string** | Library label for the BGP template | 
+**Preparation** | Pointer to **string** | Preparation commands in base64 format. It should start with the necessary commands to start configuring the device. Example: sonic-cli configure terminal interface Eth1/1 | [optional] 
+**Configuration** | **string** | Configuration commands in base64 format. It should start with the necessary commands to start configuring the device. Example: sonic-cli configure terminal interface Eth1/1 | 
 
 ## Methods
 
 ### NewCreateBgpTemplate
 
-`func NewCreateBgpTemplate(networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, executionType string, configuration string, ) *CreateBgpTemplate`
+`func NewCreateBgpTemplate(networkType string, networkDeviceDriver string, networkDevicePosition string, remoteNetworkDevicePosition string, mlagPair float32, bgpNumbering string, bgpLinkConfiguration string, executionType string, libraryLabel string, configuration string, ) *CreateBgpTemplate`
 
 NewCreateBgpTemplate instantiates a new CreateBgpTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -192,6 +193,26 @@ and a boolean to check if the value has been set.
 `func (o *CreateBgpTemplate) SetExecutionType(v string)`
 
 SetExecutionType sets ExecutionType field to given value.
+
+
+### GetLibraryLabel
+
+`func (o *CreateBgpTemplate) GetLibraryLabel() string`
+
+GetLibraryLabel returns the LibraryLabel field if non-nil, zero value otherwise.
+
+### GetLibraryLabelOk
+
+`func (o *CreateBgpTemplate) GetLibraryLabelOk() (*string, bool)`
+
+GetLibraryLabelOk returns a tuple with the LibraryLabel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLibraryLabel
+
+`func (o *CreateBgpTemplate) SetLibraryLabel(v string)`
+
+SetLibraryLabel sets LibraryLabel field to given value.
 
 
 ### GetPreparation
