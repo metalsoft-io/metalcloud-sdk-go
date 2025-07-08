@@ -19,13 +19,13 @@ Name | Type | Description | Notes
 **VendorSupportedSystems** | **[]map[string]interface{}** |  | 
 **VendorReleaseTimestamp** | Pointer to **string** |  | [optional] 
 **Vendor** | **map[string]interface{}** |  | 
-**Links** | **map[string]interface{}** | Links to other resources | 
+**Links** | [**[]Link**](Link.md) | Links to other resources | 
 
 ## Methods
 
 ### NewFirmwareBinary
 
-`func NewFirmwareBinary(id float32, catalogId float32, vendorDownloadUrl string, name string, rebootRequired bool, updateSeverity FirmwareBinaryUpdateSeverity, vendorSupportedDevices []map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, links map[string]interface{}, ) *FirmwareBinary`
+`func NewFirmwareBinary(id float32, catalogId float32, vendorDownloadUrl string, name string, rebootRequired bool, updateSeverity FirmwareBinaryUpdateSeverity, vendorSupportedDevices []map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, links []Link, ) *FirmwareBinary`
 
 NewFirmwareBinary instantiates a new FirmwareBinary object
 This constructor will assign default values to properties that have it defined,
@@ -372,20 +372,20 @@ SetVendor sets Vendor field to given value.
 
 ### GetLinks
 
-`func (o *FirmwareBinary) GetLinks() map[string]interface{}`
+`func (o *FirmwareBinary) GetLinks() []Link`
 
 GetLinks returns the Links field if non-nil, zero value otherwise.
 
 ### GetLinksOk
 
-`func (o *FirmwareBinary) GetLinksOk() (*map[string]interface{}, bool)`
+`func (o *FirmwareBinary) GetLinksOk() (*[]Link, bool)`
 
 GetLinksOk returns a tuple with the Links field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinks
 
-`func (o *FirmwareBinary) SetLinks(v map[string]interface{})`
+`func (o *FirmwareBinary) SetLinks(v []Link)`
 
 SetLinks sets Links field to given value.
 

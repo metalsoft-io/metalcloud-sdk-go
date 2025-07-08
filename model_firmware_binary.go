@@ -37,7 +37,7 @@ type FirmwareBinary struct {
 	VendorReleaseTimestamp *string `json:"vendorReleaseTimestamp,omitempty"`
 	Vendor map[string]interface{} `json:"vendor"`
 	// Links to other resources
-	Links map[string]interface{} `json:"links"`
+	Links []Link `json:"links"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,7 +47,7 @@ type _FirmwareBinary FirmwareBinary
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirmwareBinary(id float32, catalogId float32, vendorDownloadUrl string, name string, rebootRequired bool, updateSeverity FirmwareBinaryUpdateSeverity, vendorSupportedDevices []map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, links map[string]interface{}) *FirmwareBinary {
+func NewFirmwareBinary(id float32, catalogId float32, vendorDownloadUrl string, name string, rebootRequired bool, updateSeverity FirmwareBinaryUpdateSeverity, vendorSupportedDevices []map[string]interface{}, vendorSupportedSystems []map[string]interface{}, vendor map[string]interface{}, links []Link) *FirmwareBinary {
 	this := FirmwareBinary{}
 	this.Id = id
 	this.CatalogId = catalogId
@@ -479,9 +479,9 @@ func (o *FirmwareBinary) SetVendor(v map[string]interface{}) {
 }
 
 // GetLinks returns the Links field value
-func (o *FirmwareBinary) GetLinks() map[string]interface{} {
+func (o *FirmwareBinary) GetLinks() []Link {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret []Link
 		return ret
 	}
 
@@ -490,15 +490,15 @@ func (o *FirmwareBinary) GetLinks() map[string]interface{} {
 
 // GetLinksOk returns a tuple with the Links field value
 // and a boolean to check if the value has been set.
-func (o *FirmwareBinary) GetLinksOk() (map[string]interface{}, bool) {
+func (o *FirmwareBinary) GetLinksOk() ([]Link, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Links, true
 }
 
 // SetLinks sets field value
-func (o *FirmwareBinary) SetLinks(v map[string]interface{}) {
+func (o *FirmwareBinary) SetLinks(v []Link) {
 	o.Links = v
 }
 
