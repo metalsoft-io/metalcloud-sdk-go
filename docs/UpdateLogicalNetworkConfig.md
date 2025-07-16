@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Vxlan** | **map[string]interface{}** |  | 
 **Ipv4** | **map[string]interface{}** |  | 
 **Ipv6** | **map[string]interface{}** |  | 
+**Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
 
 ## Methods
 
@@ -108,6 +109,41 @@ and a boolean to check if the value has been set.
 SetIpv6 sets Ipv6 field to given value.
 
 
+### GetMtu
+
+`func (o *UpdateLogicalNetworkConfig) GetMtu() int32`
+
+GetMtu returns the Mtu field if non-nil, zero value otherwise.
+
+### GetMtuOk
+
+`func (o *UpdateLogicalNetworkConfig) GetMtuOk() (*int32, bool)`
+
+GetMtuOk returns a tuple with the Mtu field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMtu
+
+`func (o *UpdateLogicalNetworkConfig) SetMtu(v int32)`
+
+SetMtu sets Mtu field to given value.
+
+### HasMtu
+
+`func (o *UpdateLogicalNetworkConfig) HasMtu() bool`
+
+HasMtu returns a boolean if a field has been set.
+
+### SetMtuNil
+
+`func (o *UpdateLogicalNetworkConfig) SetMtuNil(b bool)`
+
+ SetMtuNil sets the value for Mtu to be an explicit nil
+
+### UnsetMtu
+`func (o *UpdateLogicalNetworkConfig) UnsetMtu()`
+
+UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

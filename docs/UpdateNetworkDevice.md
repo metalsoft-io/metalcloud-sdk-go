@@ -36,7 +36,6 @@ Name | Type | Description | Notes
 **RackPositionLowerUnit** | Pointer to **NullableInt32** | The lower rack unit position where the device is mounted | [optional] 
 **SerialNumber** | Pointer to **string** | The serial number of the network device | [optional] 
 **OrderIndex** | Pointer to **float32** | Order index | [optional] 
-**DefaultMtu** | Pointer to **NullableFloat32** | Default MTU | [optional] 
 **Tags** | Pointer to **[]string** | Tags for categorizing and filtering network devices | [optional] 
 **RequiresOsInstall** | Pointer to **bool** | Indicates if the device requires OS installation before provisioning | [optional] 
 **OverwriteWithHostnameFromFetchedSwitch** | Pointer to **NullableBool** | Whether to overwrite the hostname with the one fetched from the device | [optional] 
@@ -1060,41 +1059,6 @@ SetOrderIndex sets OrderIndex field to given value.
 
 HasOrderIndex returns a boolean if a field has been set.
 
-### GetDefaultMtu
-
-`func (o *UpdateNetworkDevice) GetDefaultMtu() float32`
-
-GetDefaultMtu returns the DefaultMtu field if non-nil, zero value otherwise.
-
-### GetDefaultMtuOk
-
-`func (o *UpdateNetworkDevice) GetDefaultMtuOk() (*float32, bool)`
-
-GetDefaultMtuOk returns a tuple with the DefaultMtu field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultMtu
-
-`func (o *UpdateNetworkDevice) SetDefaultMtu(v float32)`
-
-SetDefaultMtu sets DefaultMtu field to given value.
-
-### HasDefaultMtu
-
-`func (o *UpdateNetworkDevice) HasDefaultMtu() bool`
-
-HasDefaultMtu returns a boolean if a field has been set.
-
-### SetDefaultMtuNil
-
-`func (o *UpdateNetworkDevice) SetDefaultMtuNil(b bool)`
-
- SetDefaultMtuNil sets the value for DefaultMtu to be an explicit nil
-
-### UnsetDefaultMtu
-`func (o *UpdateNetworkDevice) UnsetDefaultMtu()`
-
-UnsetDefaultMtu ensures that no value is present for DefaultMtu, not even an explicit nil
 ### GetTags
 
 `func (o *UpdateNetworkDevice) GetTags() []string`

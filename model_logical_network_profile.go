@@ -36,6 +36,8 @@ type LogicalNetworkProfile struct {
 	Ipv4 *LogicalNetworkProfileIpv4Properties `json:"ipv4,omitempty"`
 	Ipv6 *LogicalNetworkProfileIpv6Properties `json:"ipv6,omitempty"`
 	RouteDomainId NullableInt32 `json:"routeDomainId,omitempty"`
+	// Maximum Transmission Unit (MTU) in bytes
+	Mtu NullableInt32 `json:"mtu,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -453,6 +455,48 @@ func (o *LogicalNetworkProfile) UnsetRouteDomainId() {
 	o.RouteDomainId.Unset()
 }
 
+// GetMtu returns the Mtu field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LogicalNetworkProfile) GetMtu() int32 {
+	if o == nil || IsNil(o.Mtu.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.Mtu.Get()
+}
+
+// GetMtuOk returns a tuple with the Mtu field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LogicalNetworkProfile) GetMtuOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Mtu.Get(), o.Mtu.IsSet()
+}
+
+// HasMtu returns a boolean if a field has been set.
+func (o *LogicalNetworkProfile) HasMtu() bool {
+	if o != nil && o.Mtu.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMtu gets a reference to the given NullableInt32 and assigns it to the Mtu field.
+func (o *LogicalNetworkProfile) SetMtu(v int32) {
+	o.Mtu.Set(&v)
+}
+// SetMtuNil sets the value for Mtu to be an explicit nil
+func (o *LogicalNetworkProfile) SetMtuNil() {
+	o.Mtu.Set(nil)
+}
+
+// UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
+func (o *LogicalNetworkProfile) UnsetMtu() {
+	o.Mtu.Unset()
+}
+
 func (o LogicalNetworkProfile) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -486,6 +530,9 @@ func (o LogicalNetworkProfile) ToMap() (map[string]interface{}, error) {
 	}
 	if o.RouteDomainId.IsSet() {
 		toSerialize["routeDomainId"] = o.RouteDomainId.Get()
+	}
+	if o.Mtu.IsSet() {
+		toSerialize["mtu"] = o.Mtu.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -552,6 +599,7 @@ func (o *LogicalNetworkProfile) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "ipv4")
 		delete(additionalProperties, "ipv6")
 		delete(additionalProperties, "routeDomainId")
+		delete(additionalProperties, "mtu")
 		o.AdditionalProperties = additionalProperties
 	}
 

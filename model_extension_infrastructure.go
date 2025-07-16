@@ -24,6 +24,8 @@ type ExtensionInfrastructure struct {
 	InstanceArrays []ExtensionInstanceArray `json:"instanceArrays,omitempty"`
 	// Shared drive details for the infrastructure requirement.
 	SharedDrives []ExtensionSharedDrive `json:"sharedDrives,omitempty"`
+	// Logical networks for the infrastructure requirement.
+	LogicalNetworks []ExtensionInfrastructureLogicalNetwork `json:"logicalNetworks,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -110,6 +112,38 @@ func (o *ExtensionInfrastructure) SetSharedDrives(v []ExtensionSharedDrive) {
 	o.SharedDrives = v
 }
 
+// GetLogicalNetworks returns the LogicalNetworks field value if set, zero value otherwise.
+func (o *ExtensionInfrastructure) GetLogicalNetworks() []ExtensionInfrastructureLogicalNetwork {
+	if o == nil || IsNil(o.LogicalNetworks) {
+		var ret []ExtensionInfrastructureLogicalNetwork
+		return ret
+	}
+	return o.LogicalNetworks
+}
+
+// GetLogicalNetworksOk returns a tuple with the LogicalNetworks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInfrastructure) GetLogicalNetworksOk() ([]ExtensionInfrastructureLogicalNetwork, bool) {
+	if o == nil || IsNil(o.LogicalNetworks) {
+		return nil, false
+	}
+	return o.LogicalNetworks, true
+}
+
+// HasLogicalNetworks returns a boolean if a field has been set.
+func (o *ExtensionInfrastructure) HasLogicalNetworks() bool {
+	if o != nil && !IsNil(o.LogicalNetworks) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworks gets a reference to the given []ExtensionInfrastructureLogicalNetwork and assigns it to the LogicalNetworks field.
+func (o *ExtensionInfrastructure) SetLogicalNetworks(v []ExtensionInfrastructureLogicalNetwork) {
+	o.LogicalNetworks = v
+}
+
 func (o ExtensionInfrastructure) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -125,6 +159,9 @@ func (o ExtensionInfrastructure) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SharedDrives) {
 		toSerialize["sharedDrives"] = o.SharedDrives
+	}
+	if !IsNil(o.LogicalNetworks) {
+		toSerialize["logicalNetworks"] = o.LogicalNetworks
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -150,6 +187,7 @@ func (o *ExtensionInfrastructure) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "instanceArrays")
 		delete(additionalProperties, "sharedDrives")
+		delete(additionalProperties, "logicalNetworks")
 		o.AdditionalProperties = additionalProperties
 	}
 

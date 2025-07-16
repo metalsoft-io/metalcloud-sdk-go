@@ -32,6 +32,7 @@ type VxlanLogicalNetwork struct {
 	Kind LogicalNetworkKind `json:"kind"`
 	FabricId int32 `json:"fabricId"`
 	InfrastructureId NullableInt32 `json:"infrastructureId"`
+	ExtensionInstanceId NullableInt32 `json:"extensionInstanceId"`
 	ServiceStatus GenericServiceStatus `json:"serviceStatus"`
 	LastAppliedLogicalNetworkProfileId NullableInt32 `json:"lastAppliedLogicalNetworkProfileId"`
 	LastLogicalNetworkProfileAppliedAt time.Time `json:"lastLogicalNetworkProfileAppliedAt"`
@@ -41,6 +42,8 @@ type VxlanLogicalNetwork struct {
 	Ipv4 VxlanLogicalNetworkIpv4Properties `json:"ipv4"`
 	Ipv6 VxlanLogicalNetworkIpv6Properties `json:"ipv6"`
 	RouteDomainId NullableInt32 `json:"routeDomainId"`
+	// Maximum Transmission Unit (MTU) in bytes
+	Mtu NullableInt32 `json:"mtu,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -50,7 +53,7 @@ type _VxlanLogicalNetwork VxlanLogicalNetwork
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVxlanLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config VxlanLogicalNetworkConfig, vlan VxlanLogicalNetworkVlanProperties, vxlan VxlanLogicalNetworkVxlanProperties, ipv4 VxlanLogicalNetworkIpv4Properties, ipv6 VxlanLogicalNetworkIpv6Properties, routeDomainId NullableInt32) *VxlanLogicalNetwork {
+func NewVxlanLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, extensionInstanceId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config VxlanLogicalNetworkConfig, vlan VxlanLogicalNetworkVlanProperties, vxlan VxlanLogicalNetworkVxlanProperties, ipv4 VxlanLogicalNetworkIpv4Properties, ipv6 VxlanLogicalNetworkIpv6Properties, routeDomainId NullableInt32) *VxlanLogicalNetwork {
 	this := VxlanLogicalNetwork{}
 	this.Id = id
 	this.Label = label
@@ -62,6 +65,7 @@ func NewVxlanLogicalNetwork(id int32, label string, name string, annotations map
 	this.Kind = kind
 	this.FabricId = fabricId
 	this.InfrastructureId = infrastructureId
+	this.ExtensionInstanceId = extensionInstanceId
 	this.ServiceStatus = serviceStatus
 	this.LastAppliedLogicalNetworkProfileId = lastAppliedLogicalNetworkProfileId
 	this.LastLogicalNetworkProfileAppliedAt = lastLogicalNetworkProfileAppliedAt
@@ -324,6 +328,32 @@ func (o *VxlanLogicalNetwork) SetInfrastructureId(v int32) {
 	o.InfrastructureId.Set(&v)
 }
 
+// GetExtensionInstanceId returns the ExtensionInstanceId field value
+// If the value is explicit nil, the zero value for int32 will be returned
+func (o *VxlanLogicalNetwork) GetExtensionInstanceId() int32 {
+	if o == nil || o.ExtensionInstanceId.Get() == nil {
+		var ret int32
+		return ret
+	}
+
+	return *o.ExtensionInstanceId.Get()
+}
+
+// GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *VxlanLogicalNetwork) GetExtensionInstanceIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExtensionInstanceId.Get(), o.ExtensionInstanceId.IsSet()
+}
+
+// SetExtensionInstanceId sets field value
+func (o *VxlanLogicalNetwork) SetExtensionInstanceId(v int32) {
+	o.ExtensionInstanceId.Set(&v)
+}
+
 // GetServiceStatus returns the ServiceStatus field value
 func (o *VxlanLogicalNetwork) GetServiceStatus() GenericServiceStatus {
 	if o == nil {
@@ -544,6 +574,48 @@ func (o *VxlanLogicalNetwork) SetRouteDomainId(v int32) {
 	o.RouteDomainId.Set(&v)
 }
 
+// GetMtu returns the Mtu field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *VxlanLogicalNetwork) GetMtu() int32 {
+	if o == nil || IsNil(o.Mtu.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.Mtu.Get()
+}
+
+// GetMtuOk returns a tuple with the Mtu field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *VxlanLogicalNetwork) GetMtuOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Mtu.Get(), o.Mtu.IsSet()
+}
+
+// HasMtu returns a boolean if a field has been set.
+func (o *VxlanLogicalNetwork) HasMtu() bool {
+	if o != nil && o.Mtu.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMtu gets a reference to the given NullableInt32 and assigns it to the Mtu field.
+func (o *VxlanLogicalNetwork) SetMtu(v int32) {
+	o.Mtu.Set(&v)
+}
+// SetMtuNil sets the value for Mtu to be an explicit nil
+func (o *VxlanLogicalNetwork) SetMtuNil() {
+	o.Mtu.Set(nil)
+}
+
+// UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
+func (o *VxlanLogicalNetwork) UnsetMtu() {
+	o.Mtu.Unset()
+}
+
 func (o VxlanLogicalNetwork) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -564,6 +636,7 @@ func (o VxlanLogicalNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize["kind"] = o.Kind
 	toSerialize["fabricId"] = o.FabricId
 	toSerialize["infrastructureId"] = o.InfrastructureId.Get()
+	toSerialize["extensionInstanceId"] = o.ExtensionInstanceId.Get()
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	toSerialize["lastAppliedLogicalNetworkProfileId"] = o.LastAppliedLogicalNetworkProfileId.Get()
 	toSerialize["lastLogicalNetworkProfileAppliedAt"] = o.LastLogicalNetworkProfileAppliedAt
@@ -573,6 +646,9 @@ func (o VxlanLogicalNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize["ipv4"] = o.Ipv4
 	toSerialize["ipv6"] = o.Ipv6
 	toSerialize["routeDomainId"] = o.RouteDomainId.Get()
+	if o.Mtu.IsSet() {
+		toSerialize["mtu"] = o.Mtu.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -596,6 +672,7 @@ func (o *VxlanLogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 		"kind",
 		"fabricId",
 		"infrastructureId",
+		"extensionInstanceId",
 		"serviceStatus",
 		"lastAppliedLogicalNetworkProfileId",
 		"lastLogicalNetworkProfileAppliedAt",
@@ -644,6 +721,7 @@ func (o *VxlanLogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kind")
 		delete(additionalProperties, "fabricId")
 		delete(additionalProperties, "infrastructureId")
+		delete(additionalProperties, "extensionInstanceId")
 		delete(additionalProperties, "serviceStatus")
 		delete(additionalProperties, "lastAppliedLogicalNetworkProfileId")
 		delete(additionalProperties, "lastLogicalNetworkProfileAppliedAt")
@@ -653,6 +731,7 @@ func (o *VxlanLogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "ipv4")
 		delete(additionalProperties, "ipv6")
 		delete(additionalProperties, "routeDomainId")
+		delete(additionalProperties, "mtu")
 		o.AdditionalProperties = additionalProperties
 	}
 

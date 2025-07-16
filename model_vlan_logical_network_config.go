@@ -29,6 +29,8 @@ type VlanLogicalNetworkConfig struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 	Revision int32 `json:"revision"`
 	Kind LogicalNetworkKind `json:"kind"`
+	// Maximum Transmission Unit (MTU) in bytes
+	Mtu NullableInt32 `json:"mtu,omitempty"`
 	Vlan VlanLogicalNetworkConfigVlanProperties `json:"vlan"`
 	Ipv4 VlanLogicalNetworkConfigIpv4Properties `json:"ipv4"`
 	Ipv6 VlanLogicalNetworkConfigIpv6Properties `json:"ipv6"`
@@ -232,6 +234,48 @@ func (o *VlanLogicalNetworkConfig) SetKind(v LogicalNetworkKind) {
 	o.Kind = v
 }
 
+// GetMtu returns the Mtu field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *VlanLogicalNetworkConfig) GetMtu() int32 {
+	if o == nil || IsNil(o.Mtu.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.Mtu.Get()
+}
+
+// GetMtuOk returns a tuple with the Mtu field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *VlanLogicalNetworkConfig) GetMtuOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Mtu.Get(), o.Mtu.IsSet()
+}
+
+// HasMtu returns a boolean if a field has been set.
+func (o *VlanLogicalNetworkConfig) HasMtu() bool {
+	if o != nil && o.Mtu.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMtu gets a reference to the given NullableInt32 and assigns it to the Mtu field.
+func (o *VlanLogicalNetworkConfig) SetMtu(v int32) {
+	o.Mtu.Set(&v)
+}
+// SetMtuNil sets the value for Mtu to be an explicit nil
+func (o *VlanLogicalNetworkConfig) SetMtuNil() {
+	o.Mtu.Set(nil)
+}
+
+// UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
+func (o *VlanLogicalNetworkConfig) UnsetMtu() {
+	o.Mtu.Unset()
+}
+
 // GetVlan returns the Vlan field value
 func (o *VlanLogicalNetworkConfig) GetVlan() VlanLogicalNetworkConfigVlanProperties {
 	if o == nil {
@@ -321,6 +365,9 @@ func (o VlanLogicalNetworkConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize["updatedAt"] = o.UpdatedAt
 	toSerialize["revision"] = o.Revision
 	toSerialize["kind"] = o.Kind
+	if o.Mtu.IsSet() {
+		toSerialize["mtu"] = o.Mtu.Get()
+	}
 	toSerialize["vlan"] = o.Vlan
 	toSerialize["ipv4"] = o.Ipv4
 	toSerialize["ipv6"] = o.Ipv6
@@ -383,6 +430,7 @@ func (o *VlanLogicalNetworkConfig) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "updatedAt")
 		delete(additionalProperties, "revision")
 		delete(additionalProperties, "kind")
+		delete(additionalProperties, "mtu")
 		delete(additionalProperties, "vlan")
 		delete(additionalProperties, "ipv4")
 		delete(additionalProperties, "ipv6")

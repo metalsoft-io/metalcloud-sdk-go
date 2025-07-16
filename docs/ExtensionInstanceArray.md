@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **ConnectedSharedDrives** | Pointer to **[]string** | Connected shared drive arrays. | [optional] 
 **CustomVariables** | Pointer to [**[]CustomVariable**](CustomVariable.md) | Custom variables. The value may be a reference to an input variable. | [optional] 
 **Dependencies** | Pointer to **[]string** | Labels of instance arrays this one depends on. | [optional] 
+**LogicalNetworks** | Pointer to [**[]ExtensionInstanceArrayLogicalNetworkDto**](ExtensionInstanceArrayLogicalNetworkDto.md) | Logical networks for the instance array. | [optional] 
 
 ## Methods
 
@@ -185,6 +186,31 @@ SetDependencies sets Dependencies field to given value.
 `func (o *ExtensionInstanceArray) HasDependencies() bool`
 
 HasDependencies returns a boolean if a field has been set.
+
+### GetLogicalNetworks
+
+`func (o *ExtensionInstanceArray) GetLogicalNetworks() []ExtensionInstanceArrayLogicalNetworkDto`
+
+GetLogicalNetworks returns the LogicalNetworks field if non-nil, zero value otherwise.
+
+### GetLogicalNetworksOk
+
+`func (o *ExtensionInstanceArray) GetLogicalNetworksOk() (*[]ExtensionInstanceArrayLogicalNetworkDto, bool)`
+
+GetLogicalNetworksOk returns a tuple with the LogicalNetworks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogicalNetworks
+
+`func (o *ExtensionInstanceArray) SetLogicalNetworks(v []ExtensionInstanceArrayLogicalNetworkDto)`
+
+SetLogicalNetworks sets LogicalNetworks field to given value.
+
+### HasLogicalNetworks
+
+`func (o *ExtensionInstanceArray) HasLogicalNetworks() bool`
+
+HasLogicalNetworks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

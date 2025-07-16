@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Kind** | [**LogicalNetworkKind**](LogicalNetworkKind.md) |  | 
 **FabricId** | **int32** |  | 
 **InfrastructureId** | **NullableInt32** |  | 
+**ExtensionInstanceId** | **NullableInt32** |  | 
 **ServiceStatus** | [**GenericServiceStatus**](GenericServiceStatus.md) |  | 
 **LastAppliedLogicalNetworkProfileId** | **NullableInt32** |  | 
 **LastLogicalNetworkProfileAppliedAt** | **time.Time** |  | 
@@ -22,12 +23,13 @@ Name | Type | Description | Notes
 **Ipv4** | [**VlanLogicalNetworkIpv4Properties**](VlanLogicalNetworkIpv4Properties.md) |  | 
 **Ipv6** | [**VlanLogicalNetworkIpv6Properties**](VlanLogicalNetworkIpv6Properties.md) |  | 
 **RouteDomainId** | **NullableInt32** |  | 
+**Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
 
 ## Methods
 
 ### NewVlanLogicalNetwork
 
-`func NewVlanLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config VlanLogicalNetworkConfig, vlan VlanLogicalNetworkVlanProperties, ipv4 VlanLogicalNetworkIpv4Properties, ipv6 VlanLogicalNetworkIpv6Properties, routeDomainId NullableInt32, ) *VlanLogicalNetwork`
+`func NewVlanLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, extensionInstanceId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config VlanLogicalNetworkConfig, vlan VlanLogicalNetworkVlanProperties, ipv4 VlanLogicalNetworkIpv4Properties, ipv6 VlanLogicalNetworkIpv6Properties, routeDomainId NullableInt32, ) *VlanLogicalNetwork`
 
 NewVlanLogicalNetwork instantiates a new VlanLogicalNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -252,6 +254,36 @@ SetInfrastructureId sets InfrastructureId field to given value.
 `func (o *VlanLogicalNetwork) UnsetInfrastructureId()`
 
 UnsetInfrastructureId ensures that no value is present for InfrastructureId, not even an explicit nil
+### GetExtensionInstanceId
+
+`func (o *VlanLogicalNetwork) GetExtensionInstanceId() int32`
+
+GetExtensionInstanceId returns the ExtensionInstanceId field if non-nil, zero value otherwise.
+
+### GetExtensionInstanceIdOk
+
+`func (o *VlanLogicalNetwork) GetExtensionInstanceIdOk() (*int32, bool)`
+
+GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtensionInstanceId
+
+`func (o *VlanLogicalNetwork) SetExtensionInstanceId(v int32)`
+
+SetExtensionInstanceId sets ExtensionInstanceId field to given value.
+
+
+### SetExtensionInstanceIdNil
+
+`func (o *VlanLogicalNetwork) SetExtensionInstanceIdNil(b bool)`
+
+ SetExtensionInstanceIdNil sets the value for ExtensionInstanceId to be an explicit nil
+
+### UnsetExtensionInstanceId
+`func (o *VlanLogicalNetwork) UnsetExtensionInstanceId()`
+
+UnsetExtensionInstanceId ensures that no value is present for ExtensionInstanceId, not even an explicit nil
 ### GetServiceStatus
 
 `func (o *VlanLogicalNetwork) GetServiceStatus() GenericServiceStatus`
@@ -432,6 +464,41 @@ SetRouteDomainId sets RouteDomainId field to given value.
 `func (o *VlanLogicalNetwork) UnsetRouteDomainId()`
 
 UnsetRouteDomainId ensures that no value is present for RouteDomainId, not even an explicit nil
+### GetMtu
+
+`func (o *VlanLogicalNetwork) GetMtu() int32`
+
+GetMtu returns the Mtu field if non-nil, zero value otherwise.
+
+### GetMtuOk
+
+`func (o *VlanLogicalNetwork) GetMtuOk() (*int32, bool)`
+
+GetMtuOk returns a tuple with the Mtu field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMtu
+
+`func (o *VlanLogicalNetwork) SetMtu(v int32)`
+
+SetMtu sets Mtu field to given value.
+
+### HasMtu
+
+`func (o *VlanLogicalNetwork) HasMtu() bool`
+
+HasMtu returns a boolean if a field has been set.
+
+### SetMtuNil
+
+`func (o *VlanLogicalNetwork) SetMtuNil(b bool)`
+
+ SetMtuNil sets the value for Mtu to be an explicit nil
+
+### UnsetMtu
+`func (o *VlanLogicalNetwork) UnsetMtu()`
+
+UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

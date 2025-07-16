@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **Ipv4** | [**VxlanLogicalNetworkProfileIpv4Properties**](VxlanLogicalNetworkProfileIpv4Properties.md) |  | 
 **Ipv6** | [**VxlanLogicalNetworkProfileIpv6Properties**](VxlanLogicalNetworkProfileIpv6Properties.md) |  | 
 **RouteDomainId** | **NullableInt32** |  | 
+**Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
 **Vxlan** | [**VxlanLogicalNetworkProfileVxlanProperties**](VxlanLogicalNetworkProfileVxlanProperties.md) |  | 
 
 ## Methods
@@ -308,6 +309,41 @@ SetRouteDomainId sets RouteDomainId field to given value.
 `func (o *LogicalNetworkProfile1DataItem) UnsetRouteDomainId()`
 
 UnsetRouteDomainId ensures that no value is present for RouteDomainId, not even an explicit nil
+### GetMtu
+
+`func (o *LogicalNetworkProfile1DataItem) GetMtu() int32`
+
+GetMtu returns the Mtu field if non-nil, zero value otherwise.
+
+### GetMtuOk
+
+`func (o *LogicalNetworkProfile1DataItem) GetMtuOk() (*int32, bool)`
+
+GetMtuOk returns a tuple with the Mtu field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMtu
+
+`func (o *LogicalNetworkProfile1DataItem) SetMtu(v int32)`
+
+SetMtu sets Mtu field to given value.
+
+### HasMtu
+
+`func (o *LogicalNetworkProfile1DataItem) HasMtu() bool`
+
+HasMtu returns a boolean if a field has been set.
+
+### SetMtuNil
+
+`func (o *LogicalNetworkProfile1DataItem) SetMtuNil(b bool)`
+
+ SetMtuNil sets the value for Mtu to be an explicit nil
+
+### UnsetMtu
+`func (o *LogicalNetworkProfile1DataItem) UnsetMtu()`
+
+UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
 ### GetVxlan
 
 `func (o *LogicalNetworkProfile1DataItem) GetVxlan() VxlanLogicalNetworkProfileVxlanProperties`

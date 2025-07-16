@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **UpdatedAt** | **time.Time** |  | 
 **Revision** | **int32** |  | 
 **Kind** | [**LogicalNetworkKind**](LogicalNetworkKind.md) |  | 
+**Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
 **Vlan** | [**VxlanLogicalNetworkConfigVlanProperties**](VxlanLogicalNetworkConfigVlanProperties.md) |  | 
 **Vxlan** | [**VxlanLogicalNetworkConfigVxlanProperties**](VxlanLogicalNetworkConfigVxlanProperties.md) |  | 
 **Ipv4** | [**VxlanLogicalNetworkConfigIpv4Properties**](VxlanLogicalNetworkConfigIpv4Properties.md) |  | 
@@ -175,6 +176,41 @@ and a boolean to check if the value has been set.
 SetKind sets Kind field to given value.
 
 
+### GetMtu
+
+`func (o *VxlanLogicalNetworkConfig) GetMtu() int32`
+
+GetMtu returns the Mtu field if non-nil, zero value otherwise.
+
+### GetMtuOk
+
+`func (o *VxlanLogicalNetworkConfig) GetMtuOk() (*int32, bool)`
+
+GetMtuOk returns a tuple with the Mtu field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMtu
+
+`func (o *VxlanLogicalNetworkConfig) SetMtu(v int32)`
+
+SetMtu sets Mtu field to given value.
+
+### HasMtu
+
+`func (o *VxlanLogicalNetworkConfig) HasMtu() bool`
+
+HasMtu returns a boolean if a field has been set.
+
+### SetMtuNil
+
+`func (o *VxlanLogicalNetworkConfig) SetMtuNil(b bool)`
+
+ SetMtuNil sets the value for Mtu to be an explicit nil
+
+### UnsetMtu
+`func (o *VxlanLogicalNetworkConfig) UnsetMtu()`
+
+UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
 ### GetVlan
 
 `func (o *VxlanLogicalNetworkConfig) GetVlan() VxlanLogicalNetworkConfigVlanProperties`

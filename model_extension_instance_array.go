@@ -35,6 +35,8 @@ type ExtensionInstanceArray struct {
 	CustomVariables []CustomVariable `json:"customVariables,omitempty"`
 	// Labels of instance arrays this one depends on.
 	Dependencies []string `json:"dependencies,omitempty"`
+	// Logical networks for the instance array.
+	LogicalNetworks []ExtensionInstanceArrayLogicalNetworkDto `json:"logicalNetworks,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -253,6 +255,38 @@ func (o *ExtensionInstanceArray) SetDependencies(v []string) {
 	o.Dependencies = v
 }
 
+// GetLogicalNetworks returns the LogicalNetworks field value if set, zero value otherwise.
+func (o *ExtensionInstanceArray) GetLogicalNetworks() []ExtensionInstanceArrayLogicalNetworkDto {
+	if o == nil || IsNil(o.LogicalNetworks) {
+		var ret []ExtensionInstanceArrayLogicalNetworkDto
+		return ret
+	}
+	return o.LogicalNetworks
+}
+
+// GetLogicalNetworksOk returns a tuple with the LogicalNetworks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInstanceArray) GetLogicalNetworksOk() ([]ExtensionInstanceArrayLogicalNetworkDto, bool) {
+	if o == nil || IsNil(o.LogicalNetworks) {
+		return nil, false
+	}
+	return o.LogicalNetworks, true
+}
+
+// HasLogicalNetworks returns a boolean if a field has been set.
+func (o *ExtensionInstanceArray) HasLogicalNetworks() bool {
+	if o != nil && !IsNil(o.LogicalNetworks) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworks gets a reference to the given []ExtensionInstanceArrayLogicalNetworkDto and assigns it to the LogicalNetworks field.
+func (o *ExtensionInstanceArray) SetLogicalNetworks(v []ExtensionInstanceArrayLogicalNetworkDto) {
+	o.LogicalNetworks = v
+}
+
 func (o ExtensionInstanceArray) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -275,6 +309,9 @@ func (o ExtensionInstanceArray) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Dependencies) {
 		toSerialize["dependencies"] = o.Dependencies
+	}
+	if !IsNil(o.LogicalNetworks) {
+		toSerialize["logicalNetworks"] = o.LogicalNetworks
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -329,6 +366,7 @@ func (o *ExtensionInstanceArray) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "connectedSharedDrives")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "dependencies")
+		delete(additionalProperties, "logicalNetworks")
 		o.AdditionalProperties = additionalProperties
 	}
 

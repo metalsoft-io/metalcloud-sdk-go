@@ -46,7 +46,6 @@ Name | Type | Description | Notes
 **MlagSystemMac** | **string** | MLAG system MAC address | 
 **MlagDomainId** | **float32** | MLAG domain ID | 
 **QuarantineVlan** | **float32** | Quarantine VLAN ID | 
-**DefaultMtu** | **float32** | Default MTU | 
 **VariablesMaterializedForOSAssets** | **map[string]interface{}** | Variables materialized for OS assets | 
 **SecretsMaterializedForOSAssets** | **map[string]interface{}** | Secrets materialized for OS assets | 
 **BootstrapReadinessCheckResult** | **map[string]interface{}** | Bootstrap readiness check result | 
@@ -58,7 +57,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDevice
 
-`func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressMask string, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, defaultMtu float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
+`func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressMask string, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
 
 NewNetworkDevice instantiates a new NetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -921,26 +920,6 @@ and a boolean to check if the value has been set.
 `func (o *NetworkDevice) SetQuarantineVlan(v float32)`
 
 SetQuarantineVlan sets QuarantineVlan field to given value.
-
-
-### GetDefaultMtu
-
-`func (o *NetworkDevice) GetDefaultMtu() float32`
-
-GetDefaultMtu returns the DefaultMtu field if non-nil, zero value otherwise.
-
-### GetDefaultMtuOk
-
-`func (o *NetworkDevice) GetDefaultMtuOk() (*float32, bool)`
-
-GetDefaultMtuOk returns a tuple with the DefaultMtu field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultMtu
-
-`func (o *NetworkDevice) SetDefaultMtu(v float32)`
-
-SetDefaultMtu sets DefaultMtu field to given value.
 
 
 ### GetVariablesMaterializedForOSAssets

@@ -87,6 +87,8 @@ tags:
   name: DNS RecordSet
 - description: BGP template management operations.
   name: BGP Template
+- description: External connection management operations.
+  name: External Connection
 paths:
   /api/v2/accounts:
     get:
@@ -27638,6 +27640,1096 @@ paths:
       summary: Update a network connection for a endpoint instance group
       tags:
       - Endpoint Instance Group
+  /api/v2/external-connections:
+    get:
+      description: Returns list of external connections
+      operationId: getExternalConnections
+      parameters:
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by id query param.
+                    <p>
+                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.id
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by siteId query param.
+                    <p>
+                       <b>Format: </b> filter.siteId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.siteId=$not:$like:John Doe&filter.siteId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.siteId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by externalId query param.
+                    <p>
+                       <b>Format: </b> filter.externalId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.externalId=$not:$like:John Doe&filter.externalId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.externalId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by createdAt query param.
+                    <p>
+                       <b>Format: </b> filter.createdAt={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.createdAt=$not:$like:John Doe&filter.createdAt=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.createdAt
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by updatedAt query param.
+                    <p>
+                       <b>Format: </b> filter.updatedAt={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.updatedAt=$not:$like:John Doe&filter.updatedAt=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.updatedAt
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>createdAt</li>\n\
+          <li>updatedAt</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - createdAt:ASC
+            - createdAt:DESC
+            - updatedAt:ASC
+            - updatedAt:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> name,label\n          </p>\n\
+          \        <p>\n             <b>Default Value: </b> By default all fields\
+          \ mentioned below will be used to search by term\n          </p>\n     \
+          \   <h4>Available Fields</h4><ul><li>name</li>\n<li>label</li></ul>\n  \
+          \      "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnectionPaginatedList'
+          description: The list of external connections
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External connection not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: List external connections
+      tags:
+      - External Connection
+    post:
+      description: Creates a new external connection
+      operationId: createExternalConnection
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExternalConnection'
+        description: The external connection to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnection'
+          description: The details of created external connection
+          headers:
+            Location:
+              description: New external connection link
+              explode: false
+              schema:
+                type: string
+              style: simple
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a new external connection
+      tags:
+      - External Connection
+  /api/v2/external-connections/network-devices/{networkDeviceId}/interfaces:
+    get:
+      operationId: getNetworkDeviceInterfacesAndExternalConnections
+      parameters:
+      - explode: false
+        in: path
+        name: networkDeviceId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkDeviceExternalConnectionInterfaces'
+          description: The list of network device interfaces associated with external
+            connections
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Network device not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: List network device interfaces associated with external connections
+      tags:
+      - External Connection
+  /api/v2/external-connections/{externalConnectionId}:
+    delete:
+      description: Deletes the specified external connection
+      operationId: deleteExternalConnection
+      parameters:
+      - explode: false
+        in: path
+        name: externalConnectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: The specified external connection was successfully deleted
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External connection not found
+        "409":
+          description: Conflict
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete external connection
+      tags:
+      - External Connection
+    get:
+      description: Returns the details of the specified external connection
+      operationId: getExternalConnectionById
+      parameters:
+      - explode: false
+        in: path
+        name: externalConnectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnection'
+          description: The details of the specified external connection
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External connection not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get external connection details
+      tags:
+      - External Connection
+    patch:
+      description: Updates the specified external connection
+      operationId: updateExternalConnection
+      parameters:
+      - explode: false
+        in: path
+        name: externalConnectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateExternalConnection'
+        description: The external connection configuration changes
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnection'
+          description: The specified external connection was successfully updated
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External connection not found
+        "409":
+          description: Conflict
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update external connection
+      tags:
+      - External Connection
+  /api/v2/external-connections/{externalConnectionId}/interfaces:
+    get:
+      description: Returns list of external connection interfaces for the specified
+        external connection
+      operationId: getExternalConnectionInterfaces
+      parameters:
+      - explode: false
+        in: path
+        name: externalConnectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by id query param.
+                    <p>
+                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.id
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by createdAt query param.
+                    <p>
+                       <b>Format: </b> filter.createdAt={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.createdAt=$not:$like:John Doe&filter.createdAt=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.createdAt
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by updatedAt query param.
+                    <p>
+                       <b>Format: </b> filter.updatedAt={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.updatedAt=$not:$like:John Doe&filter.updatedAt=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.updatedAt
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>createdAt</li>\n\
+          <li>updatedAt</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - createdAt:ASC
+            - createdAt:DESC
+            - updatedAt:ASC
+            - updatedAt:DESC
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnectionInterfacePaginatedList'
+          description: The list of externalConnection interfaces
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: ExternalConnection interface not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: List external connection interfaces
+      tags:
+      - External Connection
+    post:
+      description: Creates a new external connection interface for the specified external
+        connection
+      operationId: createExternalConnectionInterface
+      parameters:
+      - explode: false
+        in: path
+        name: externalConnectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExternalConnectionInterface'
+        description: The external connection interface to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnectionInterface'
+          description: The details of created external connection interface
+          headers:
+            Location:
+              description: New external connection interface link
+              explode: false
+              schema:
+                type: string
+              style: simple
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a new external connection interface
+      tags:
+      - External Connection
+  /api/v2/external-connections/{externalConnectionId}/interfaces/{externalConnectionInterfaceId}:
+    delete:
+      description: Deletes the specified external connection interface
+      operationId: deleteExternalConnectionInterface
+      parameters:
+      - explode: false
+        in: path
+        name: externalConnectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: externalConnectionInterfaceId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: The specified external connection interface was successfully
+            deleted
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External connection interface not found
+        "409":
+          description: Conflict
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete external connection interface
+      tags:
+      - External Connection
+    get:
+      description: Returns the details of the specified external connection interface
+      operationId: getExternalConnectionInterfaceById
+      parameters:
+      - explode: false
+        in: path
+        name: externalConnectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: externalConnectionInterfaceId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnectionInterface'
+          description: The details of the specified external connection interface
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External connection interface not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get external connection interface details
+      tags:
+      - External Connection
+    patch:
+      description: Updates the specified external connection interface
+      operationId: updateExternalConnectionInterface
+      parameters:
+      - explode: false
+        in: path
+        name: externalConnectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: externalConnectionInterfaceId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateExternalConnectionInterface'
+        description: The external connection interface configuration changes
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnectionInterface'
+          description: The specified external connection interface was successfully
+            updated
+          headers:
+            ETag:
+              description: Entity tag
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External connection interface not found
+        "409":
+          description: Conflict
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Update external connection interface
+      tags:
+      - External Connection
+  /api/v2/external-connections/{externalConnectionId}/logical-networks:
+    get:
+      description: Returns list of all external connection logical networks for the
+        specified external connection
+      operationId: getExternalConnectionLogicalNetworks
+      parameters:
+      - description: The id of the external connection
+        explode: false
+        in: path
+        name: externalConnectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by id query param.
+                    <p>
+                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.id
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by createdAt query param.
+                    <p>
+                       <b>Format: </b> filter.createdAt={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.createdAt=$not:$like:John Doe&filter.createdAt=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.createdAt
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by updatedAt query param.
+                    <p>
+                       <b>Format: </b> filter.updatedAt={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.updatedAt=$not:$like:John Doe&filter.updatedAt=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.updatedAt
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>createdAt</li>\n\
+          <li>updatedAt</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - createdAt:ASC
+            - createdAt:DESC
+            - updatedAt:ASC
+            - updatedAt:DESC
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnectionLogicalNetworkPaginatedList'
+          description: Returns list of all external connection logical networks
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External connection not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all logical networks of an external connection
+      tags:
+      - External Connection
+    post:
+      operationId: createExternalConnectionLogicalNetwork
+      parameters:
+      - description: The id of the external connection
+        explode: false
+        in: path
+        name: externalConnectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExternalConnectionLogicalNetwork'
+        description: The external connection logical network to create
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnectionLogicalNetwork'
+          description: The external connection logical network has been successfully
+            created.
+        "400":
+          description: Invalid request sent
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "409":
+          description: External connection logical network with the same name already
+            exists
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a new external connection logical network
+      tags:
+      - External Connection
+  /api/v2/external-connections/{externalConnectionId}/logical-networks/{id}:
+    delete:
+      operationId: deleteExternalConnectionLogicalNetwork
+      parameters:
+      - description: The ID of the external connection
+        explode: false
+        in: path
+        name: externalConnectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: The ID of the external connection logical network to delete
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnectionLogicalNetwork'
+          description: Returns an external connection logical network by its id
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External connection logical network or external connection
+            not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Start deletion of an external connection logical network
+      tags:
+      - External Connection
+    get:
+      description: Returns an external connection logical network by its ID
+      operationId: getExternalConnectionLogicalNetworkById
+      parameters:
+      - description: The id of the external connection
+        explode: false
+        in: path
+        name: externalConnectionId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: The ID of the external connection logical network to retrieve
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnectionLogicalNetwork'
+          description: Returns an external connection logical network by its id
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External connection logical network not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get an external connection logical network by ID
+      tags:
+      - External Connection
   /api/v2/drives/{driveId}:
     get:
       description: Returns Drive information
@@ -39443,9 +40535,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-07-08T13:34:50.292Z
+        createdTimestamp: 2025-07-15T13:50:53.364Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-07-08T13:34:50.3Z
+        updatedTimestamp: 2025-07-15T13:50:53.364Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -39541,12 +40633,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-08T13:34:50.292Z
+          example: 2025-07-15T13:50:53.364Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-08T13:34:50.3Z
+          example: 2025-07-15T13:50:53.364Z
           format: date-time
           type: string
         links:
@@ -39578,9 +40670,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-07-08T13:34:50.292Z
+          createdTimestamp: 2025-07-15T13:50:53.364Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-07-08T13:34:50.3Z
+          updatedTimestamp: 2025-07-15T13:50:53.364Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -39597,9 +40689,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-07-08T13:34:50.292Z
+          createdTimestamp: 2025-07-15T13:50:53.364Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-07-08T13:34:50.3Z
+          updatedTimestamp: 2025-07-15T13:50:53.364Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -41833,6 +42925,145 @@ components:
       - name
       - value
       type: object
+    NetworkEndpointGroupAllowedAccessMode:
+      description: The access mode of the network endpoint group
+      enum:
+      - l2
+      type: string
+    NetworkEndpointGroupRedundancyMode:
+      description: The redundancy mode
+      enum:
+      - active-backup
+      - active-active
+      type: string
+    NetworkEndpointGroupRedundancyImplementationType:
+      description: The type of redundancy implementation
+      enum:
+      - link-aggregation
+      - distributed-link-aggregation
+      - ecmp
+      type: string
+    RedundancyImplementation:
+      properties:
+        implementationType:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupRedundancyImplementationType'
+          description: The type of redundancy implementation
+          example: link-aggregation
+      required:
+      - implementationType
+      type: object
+    RedundancyConfig:
+      properties:
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupRedundancyMode'
+          description: The redundancy mode
+          example: active-backup
+        implementation:
+          allOf:
+          - $ref: '#/components/schemas/RedundancyImplementation'
+          description: The redundancy implementation configuration
+          example:
+            implementationType: link-aggregation
+          nullable: true
+      required:
+      - mode
+      type: object
+    dnsRecordsEndpointGroupLogicalNetworkDto:
+      properties:
+        provisionInstanceDnsRecords:
+          default: false
+          description: "If true, DNS records (type A and PTR) will be created for\
+            \ each server instance that is part of this server instance group. The\
+            \ DNS record will be created with the default \"hostname\" of <server-instance>\
+            \ suffixed with the server instance ID (e.g., \"server-instance-24\")\
+            \ plus the DNS zone name. If the \"hostname\" property is set on the server\
+            \ instance, it will use that value to construct the DNS record name."
+          type: boolean
+        provisionLoadBalancingDnsRecord:
+          default: false
+          description: "Flag to indicate if for the server instance group should create\
+            \ a DNS Load Balancing record. If true, a DNS Load Balancing record (type\
+            \ A) will be created that points to all server instances that are part\
+            \ of this server instance group. The DNS Load Balancing record will be\
+            \ created with the default \"hostname\" of <server-instance-group> suffixed\
+            \ with the server instance group ID (e.g., \"server-instance-group-34\"\
+            ) plus the DNS zone name. If the \"hostname\" property is set, it will\
+            \ use that value to construct the DNS Load Balancing record name."
+          type: boolean
+      type: object
+    CreateServerInstanceGroupNetworkConnection:
+      example:
+        logicalNetworkId: "1"
+        tagged: true
+        dns:
+          provisionInstanceDnsRecords: true
+          provisionLoadBalancingDnsRecord: false
+        redundancy:
+          mode: active-backup
+          implementation:
+            implementationType: link-aggregation
+        accessMode: l2
+        mtu: 1500
+      properties:
+        logicalNetworkId:
+          description: The logical network ID.
+          example: "1"
+          type: string
+        tagged:
+          description: Whether the logical network is tagged.
+          example: true
+          type: boolean
+        accessMode:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
+          description: The access mode of the network endpoint group
+          example: l2
+        mtu:
+          description: The MTU of the logical network
+          example: 1500
+          type: integer
+        redundancy:
+          allOf:
+          - $ref: '#/components/schemas/RedundancyConfig'
+          description: The redundancy configuration
+          example:
+            mode: active-backup
+            implementation:
+              implementationType: link-aggregation
+          nullable: true
+        dns:
+          allOf:
+          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          description: DNS records that are supposed to be provisioned for the server
+            instance group.
+          example:
+            provisionInstanceDnsRecords: true
+            provisionLoadBalancingDnsRecord: false
+          nullable: true
+      required:
+      - accessMode
+      - logicalNetworkId
+      - tagged
+      type: object
+    ExtensionInstanceArrayLogicalNetworkDto:
+      example:
+        label: label
+        networkConnection: ""
+      properties:
+        label:
+          description: Label of the logical network.
+          maxLength: 63
+          type: string
+        networkConnection:
+          allOf:
+          - $ref: '#/components/schemas/CreateServerInstanceGroupNetworkConnection'
+          description: Network connection details for the logical network.
+      required:
+      - label
+      - networkConnection
+      type: object
     ExtensionInstanceArray:
       example:
         connectedSharedDrives:
@@ -41844,6 +43075,17 @@ components:
         osTemplate: osTemplate
         instanceCount: instanceCount
         serverType: serverType
+        logicalNetworks:
+        - label: label
+          networkConnection: ""
+        - label: label
+          networkConnection: ""
+        - label: label
+          networkConnection: ""
+        - label: label
+          networkConnection: ""
+        - label: label
+          networkConnection: ""
         label: label
         customVariables:
         - name: name
@@ -41900,6 +43142,12 @@ components:
             type: string
           maxItems: 12
           type: array
+        logicalNetworks:
+          description: Logical networks for the instance array.
+          items:
+            $ref: '#/components/schemas/ExtensionInstanceArrayLogicalNetworkDto'
+          maxItems: 12
+          type: array
       required:
       - instanceCount
       - label
@@ -41923,6 +43171,23 @@ components:
       - label
       - sizeGb
       type: object
+    ExtensionInfrastructureLogicalNetwork:
+      example:
+        profileLabel: profileLabel
+        label: label
+      properties:
+        label:
+          description: Label of the logical network.
+          maxLength: 63
+          type: string
+        profileLabel:
+          description: Logical network profile label.
+          maxLength: 63
+          type: string
+      required:
+      - label
+      - profileLabel
+      type: object
     ExtensionInfrastructure:
       example:
         instanceArrays:
@@ -41935,6 +43200,17 @@ components:
           osTemplate: osTemplate
           instanceCount: instanceCount
           serverType: serverType
+          logicalNetworks:
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
           label: label
           customVariables:
           - name: name
@@ -41962,6 +43238,17 @@ components:
           osTemplate: osTemplate
           instanceCount: instanceCount
           serverType: serverType
+          logicalNetworks:
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
           label: label
           customVariables:
           - name: name
@@ -41989,6 +43276,17 @@ components:
           osTemplate: osTemplate
           instanceCount: instanceCount
           serverType: serverType
+          logicalNetworks:
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
           label: label
           customVariables:
           - name: name
@@ -42016,6 +43314,17 @@ components:
           osTemplate: osTemplate
           instanceCount: instanceCount
           serverType: serverType
+          logicalNetworks:
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
           label: label
           customVariables:
           - name: name
@@ -42043,6 +43352,17 @@ components:
           osTemplate: osTemplate
           instanceCount: instanceCount
           serverType: serverType
+          logicalNetworks:
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
+          - label: label
+            networkConnection: ""
           label: label
           customVariables:
           - name: name
@@ -42071,6 +43391,17 @@ components:
         - sizeGb: 10
           label: label
         - sizeGb: 10
+          label: label
+        logicalNetworks:
+        - profileLabel: profileLabel
+          label: label
+        - profileLabel: profileLabel
+          label: label
+        - profileLabel: profileLabel
+          label: label
+        - profileLabel: profileLabel
+          label: label
+        - profileLabel: profileLabel
           label: label
       properties:
         instanceArrays:
@@ -42083,6 +43414,12 @@ components:
           description: Shared drive details for the infrastructure requirement.
           items:
             $ref: '#/components/schemas/ExtensionSharedDrive'
+          maxItems: 12
+          type: array
+        logicalNetworks:
+          description: Logical networks for the infrastructure requirement.
+          items:
+            $ref: '#/components/schemas/ExtensionInfrastructureLogicalNetwork'
           maxItems: 12
           type: array
       type: object
@@ -42267,6 +43604,11 @@ components:
           enum:
           - serverRegistered
           - switchRegistered
+          - serverInstanceGroupCreateDNS
+          - serverInstanceGroupUpdateDNS
+          - serverInstanceGroupDeleteDNS
+          - serverInstanceUpdateDNS
+          - serverInstanceDeleteDNS
           type: string
         tasks:
           description: Tasks.
@@ -43050,6 +44392,17 @@ components:
             osTemplate: osTemplate
             instanceCount: instanceCount
             serverType: serverType
+            logicalNetworks:
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
             label: label
             customVariables:
             - name: name
@@ -43077,6 +44430,17 @@ components:
             osTemplate: osTemplate
             instanceCount: instanceCount
             serverType: serverType
+            logicalNetworks:
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
             label: label
             customVariables:
             - name: name
@@ -43104,6 +44468,17 @@ components:
             osTemplate: osTemplate
             instanceCount: instanceCount
             serverType: serverType
+            logicalNetworks:
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
             label: label
             customVariables:
             - name: name
@@ -43131,6 +44506,17 @@ components:
             osTemplate: osTemplate
             instanceCount: instanceCount
             serverType: serverType
+            logicalNetworks:
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
             label: label
             customVariables:
             - name: name
@@ -43158,6 +44544,17 @@ components:
             osTemplate: osTemplate
             instanceCount: instanceCount
             serverType: serverType
+            logicalNetworks:
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
+            - label: label
+              networkConnection: ""
             label: label
             customVariables:
             - name: name
@@ -43186,6 +44583,17 @@ components:
           - sizeGb: 10
             label: label
           - sizeGb: 10
+            label: label
+          logicalNetworks:
+          - profileLabel: profileLabel
+            label: label
+          - profileLabel: profileLabel
+            label: label
+          - profileLabel: profileLabel
+            label: label
+          - profileLabel: profileLabel
+            label: label
+          - profileLabel: profileLabel
             label: label
         onAssetChange:
         - stage: serverRegistered
@@ -44594,6 +46002,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -44621,6 +46040,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -44648,6 +46078,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -44675,6 +46116,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -44702,6 +46154,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -44730,6 +46193,17 @@ components:
             - sizeGb: 10
               label: label
             - sizeGb: 10
+              label: label
+            logicalNetworks:
+            - profileLabel: profileLabel
+              label: label
+            - profileLabel: profileLabel
+              label: label
+            - profileLabel: profileLabel
+              label: label
+            - profileLabel: profileLabel
+              label: label
+            - profileLabel: profileLabel
               label: label
           onAssetChange:
           - stage: serverRegistered
@@ -45839,6 +47313,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -45866,6 +47351,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -45893,6 +47389,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -45920,6 +47427,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -45947,6 +47465,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -45975,6 +47504,17 @@ components:
             - sizeGb: 10
               label: label
             - sizeGb: 10
+              label: label
+            logicalNetworks:
+            - profileLabel: profileLabel
+              label: label
+            - profileLabel: profileLabel
+              label: label
+            - profileLabel: profileLabel
+              label: label
+            - profileLabel: profileLabel
+              label: label
+            - profileLabel: profileLabel
               label: label
           onAssetChange:
           - stage: serverRegistered
@@ -47041,6 +48581,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -47068,6 +48619,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -47095,6 +48657,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -47122,6 +48695,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -47149,6 +48733,17 @@ components:
               osTemplate: osTemplate
               instanceCount: instanceCount
               serverType: serverType
+              logicalNetworks:
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
+              - label: label
+                networkConnection: ""
               label: label
               customVariables:
               - name: name
@@ -47177,6 +48772,17 @@ components:
             - sizeGb: 10
               label: label
             - sizeGb: 10
+              label: label
+            logicalNetworks:
+            - profileLabel: profileLabel
+              label: label
+            - profileLabel: profileLabel
+              label: label
+            - profileLabel: profileLabel
+              label: label
+            - profileLabel: profileLabel
+              label: label
+            - profileLabel: profileLabel
               label: label
           onAssetChange:
           - stage: serverRegistered
@@ -53317,6 +54923,11 @@ components:
         routeDomainId:
           nullable: true
           type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
       required:
       - fabricId
       - ipv4
@@ -53387,6 +54998,11 @@ components:
         routeDomainId:
           nullable: true
           type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
       required:
       - fabricId
       - ipv4
@@ -53455,6 +55071,11 @@ components:
         ipv6:
           $ref: '#/components/schemas/VlanLogicalNetworkProfileIpv6Properties'
         routeDomainId:
+          nullable: true
+          type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
           nullable: true
           type: integer
       required:
@@ -53544,6 +55165,11 @@ components:
         ipv6:
           $ref: '#/components/schemas/VxlanLogicalNetworkProfileIpv6Properties'
         routeDomainId:
+          nullable: true
+          type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
           nullable: true
           type: integer
       required:
@@ -54206,6 +55832,7 @@ components:
           key: annotations
         label: label
         revision: 6
+        mtu: 1500
         routeDomainId: 1
         createdAt: 2000-01-23T04:56:07.000+00:00
         vlan:
@@ -54308,6 +55935,11 @@ components:
         routeDomainId:
           nullable: true
           type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
       required:
       - annotations
       - createdAt
@@ -54346,6 +55978,7 @@ components:
             key: annotations
           label: label
           revision: 6
+          mtu: 1500
           routeDomainId: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
           vlan:
@@ -54435,6 +56068,7 @@ components:
             key: annotations
           label: label
           revision: 6
+          mtu: 1500
           routeDomainId: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
           vlan:
@@ -54676,6 +56310,7 @@ components:
         annotations:
           key: annotations
         label: label
+        mtu: 1500
       properties:
         label:
           maxLength: 63
@@ -54703,6 +56338,11 @@ components:
         routeDomainId:
           nullable: true
           type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
       required:
       - fabricId
       - kind
@@ -54714,6 +56354,7 @@ components:
         annotations:
           key: annotations
         label: label
+        mtu: 1500
       properties:
         label:
           maxLength: 63
@@ -54727,6 +56368,11 @@ components:
             type: string
           type: object
         routeDomainId:
+          nullable: true
+          type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
           nullable: true
           type: integer
       type: object
@@ -54933,6 +56579,11 @@ components:
         routeDomainId:
           nullable: true
           type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
       required:
       - fabricId
       - ipv4
@@ -54968,6 +56619,11 @@ components:
         ipv6:
           $ref: '#/components/schemas/CreateVxlanLogicalNetworkIpv6Properties'
         routeDomainId:
+          nullable: true
+          type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
           nullable: true
           type: integer
       required:
@@ -55034,6 +56690,11 @@ components:
         kind:
           allOf:
           - $ref: '#/components/schemas/LogicalNetworkKind'
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
         vlan:
           $ref: '#/components/schemas/VlanLogicalNetworkConfigVlanProperties'
         ipv4:
@@ -55124,6 +56785,9 @@ components:
         infrastructureId:
           nullable: true
           type: integer
+        extensionInstanceId:
+          nullable: true
+          type: integer
         serviceStatus:
           allOf:
           - $ref: '#/components/schemas/GenericServiceStatus'
@@ -55144,10 +56808,16 @@ components:
         routeDomainId:
           nullable: true
           type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
       required:
       - annotations
       - config
       - createdAt
+      - extensionInstanceId
       - fabricId
       - id
       - infrastructureId
@@ -55230,6 +56900,11 @@ components:
         kind:
           allOf:
           - $ref: '#/components/schemas/LogicalNetworkKind'
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
         vlan:
           $ref: '#/components/schemas/VxlanLogicalNetworkConfigVlanProperties'
         vxlan:
@@ -55337,6 +57012,9 @@ components:
         infrastructureId:
           nullable: true
           type: integer
+        extensionInstanceId:
+          nullable: true
+          type: integer
         serviceStatus:
           allOf:
           - $ref: '#/components/schemas/GenericServiceStatus'
@@ -55359,10 +57037,16 @@ components:
         routeDomainId:
           nullable: true
           type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
       required:
       - annotations
       - config
       - createdAt
+      - extensionInstanceId
       - fabricId
       - id
       - infrastructureId
@@ -55403,11 +57087,11 @@ components:
       type: string
     VlanAllocation:
       example:
-        vlanId: 3
+        vlanId: 2
         scope:
           resourceId: 5.637376656633329
           kind: ""
-        id: 9
+        id: 3
         status: ""
       properties:
         id:
@@ -55427,11 +57111,11 @@ components:
       type: object
     VniAllocation:
       example:
-        vni: 4
+        vni: 7
         scope:
           resourceId: 5.637376656633329
           kind: ""
-        id: 2
+        id: 4
         status: ""
       properties:
         id:
@@ -55456,7 +57140,7 @@ components:
           resourceId: 5.637376656633329
           kind: ""
         gatewayPlacement: ""
-        id: 7
+        id: 1
         networkAddress: networkAddress
         gateway: gateway
         status: ""
@@ -55489,7 +57173,7 @@ components:
       type: object
     Ipv6SubnetAllocation:
       example:
-        prefixLength: 1
+        prefixLength: 6
         scope:
           resourceId: 5.637376656633329
           kind: ""
@@ -55555,6 +57239,7 @@ components:
         annotations:
           key: annotations
         label: label
+        mtu: 1500
       properties:
         label:
           maxLength: 63
@@ -55569,6 +57254,11 @@ components:
         logicalNetworkProfileId:
           type: integer
         infrastructureId:
+          nullable: true
+          type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
           nullable: true
           type: integer
       required:
@@ -55778,11 +57468,12 @@ components:
             gatewayPlacement: ""
             id: 4
             updatedAt: 2000-01-23T04:56:07.000+00:00
-        id: 2
+        id: 7
         deployType: create
         deployStatus: not_started
         updatedAt: 2000-01-23T04:56:07.000+00:00
-        revision: 7
+        revision: 9
+        mtu: 1500
       properties:
         id:
           type: integer
@@ -55812,6 +57503,11 @@ components:
         kind:
           allOf:
           - $ref: '#/components/schemas/LogicalNetworkKind'
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
         vlan:
           $ref: '#/components/schemas/LogicalNetworkConfigVlanProperties'
         vxlan:
@@ -55832,17 +57528,17 @@ components:
     LogicalNetworkVlanProperties:
       example:
         vlans:
-        - vlanId: 3
+        - vlanId: 2
           scope:
             resourceId: 5.637376656633329
             kind: ""
-          id: 9
+          id: 3
           status: ""
-        - vlanId: 3
+        - vlanId: 2
           scope:
             resourceId: 5.637376656633329
             kind: ""
-          id: 9
+          id: 3
           status: ""
         vlanAllocationStrategies:
         - null
@@ -55863,17 +57559,17 @@ components:
     LogicalNetworkVxlanProperties:
       example:
         vnis:
-        - vni: 4
+        - vni: 7
           scope:
             resourceId: 5.637376656633329
             kind: ""
-          id: 2
+          id: 4
           status: ""
-        - vni: 4
+        - vni: 7
           scope:
             resourceId: 5.637376656633329
             kind: ""
-          id: 2
+          id: 4
           status: ""
         vniAllocationStrategies:
         - null
@@ -55899,7 +57595,7 @@ components:
             resourceId: 5.637376656633329
             kind: ""
           gatewayPlacement: ""
-          id: 7
+          id: 1
           networkAddress: networkAddress
           gateway: gateway
           status: ""
@@ -55908,7 +57604,7 @@ components:
             resourceId: 5.637376656633329
             kind: ""
           gatewayPlacement: ""
-          id: 7
+          id: 1
           networkAddress: networkAddress
           gateway: gateway
           status: ""
@@ -55931,7 +57627,7 @@ components:
     LogicalNetworkIpv6Properties:
       example:
         subnets:
-        - prefixLength: 1
+        - prefixLength: 6
           scope:
             resourceId: 5.637376656633329
             kind: ""
@@ -55940,7 +57636,7 @@ components:
           networkAddress: networkAddress
           gateway: gateway
           status: ""
-        - prefixLength: 1
+        - prefixLength: 6
           scope:
             resourceId: 5.637376656633329
             kind: ""
@@ -55969,44 +57665,46 @@ components:
       example:
         vxlan:
           vnis:
-          - vni: 4
+          - vni: 7
             scope:
               resourceId: 5.637376656633329
               kind: ""
-            id: 2
+            id: 4
             status: ""
-          - vni: 4
+          - vni: 7
             scope:
               resourceId: 5.637376656633329
               kind: ""
-            id: 2
+            id: 4
             status: ""
           vniAllocationStrategies:
           - null
           - null
         kind: ""
         fabricId: 1
+        extensionInstanceId: 5
         annotations:
           key: annotations
         label: label
         lastLogicalNetworkProfileAppliedAt: 2000-01-23T04:56:07.000+00:00
         revision: 6
-        routeDomainId: 6
+        mtu: 1500
+        routeDomainId: 7
         createdAt: 2000-01-23T04:56:07.000+00:00
         infrastructureId: 5
         vlan:
           vlans:
-          - vlanId: 3
+          - vlanId: 2
             scope:
               resourceId: 5.637376656633329
               kind: ""
-            id: 9
+            id: 3
             status: ""
-          - vlanId: 3
+          - vlanId: 2
             scope:
               resourceId: 5.637376656633329
               kind: ""
-            id: 9
+            id: 3
             status: ""
           vlanAllocationStrategies:
           - null
@@ -56018,25 +57716,10 @@ components:
               resourceId: 5.637376656633329
               kind: ""
             gatewayPlacement: ""
-            id: 7
+            id: 1
             networkAddress: networkAddress
             gateway: gateway
             status: ""
-          - prefixLength: 1
-            scope:
-              resourceId: 5.637376656633329
-              kind: ""
-            gatewayPlacement: ""
-            id: 7
-            networkAddress: networkAddress
-            gateway: gateway
-            status: ""
-          subnetAllocationStrategies:
-          - null
-          - null
-        serviceStatus: ""
-        ipv6:
-          subnets:
           - prefixLength: 1
             scope:
               resourceId: 5.637376656633329
@@ -56046,7 +57729,22 @@ components:
             networkAddress: networkAddress
             gateway: gateway
             status: ""
-          - prefixLength: 1
+          subnetAllocationStrategies:
+          - null
+          - null
+        serviceStatus: ""
+        ipv6:
+          subnets:
+          - prefixLength: 6
+            scope:
+              resourceId: 5.637376656633329
+              kind: ""
+            gatewayPlacement: ""
+            id: 1
+            networkAddress: networkAddress
+            gateway: gateway
+            status: ""
+          - prefixLength: 6
             scope:
               resourceId: 5.637376656633329
               kind: ""
@@ -56059,7 +57757,7 @@ components:
           - null
           - null
         name: name
-        lastAppliedLogicalNetworkProfileId: 5
+        lastAppliedLogicalNetworkProfileId: 2
         id: 0
         config:
           vxlan:
@@ -56142,11 +57840,12 @@ components:
               gatewayPlacement: ""
               id: 4
               updatedAt: 2000-01-23T04:56:07.000+00:00
-          id: 2
+          id: 7
           deployType: create
           deployStatus: not_started
           updatedAt: 2000-01-23T04:56:07.000+00:00
-          revision: 7
+          revision: 9
+          mtu: 1500
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -56177,6 +57876,9 @@ components:
         infrastructureId:
           nullable: true
           type: integer
+        extensionInstanceId:
+          nullable: true
+          type: integer
         serviceStatus:
           allOf:
           - $ref: '#/components/schemas/GenericServiceStatus'
@@ -56199,10 +57901,16 @@ components:
         routeDomainId:
           nullable: true
           type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
       required:
       - annotations
       - config
       - createdAt
+      - extensionInstanceId
       - fabricId
       - id
       - infrastructureId
@@ -56220,44 +57928,46 @@ components:
         data:
         - vxlan:
             vnis:
-            - vni: 4
+            - vni: 7
               scope:
                 resourceId: 5.637376656633329
                 kind: ""
-              id: 2
+              id: 4
               status: ""
-            - vni: 4
+            - vni: 7
               scope:
                 resourceId: 5.637376656633329
                 kind: ""
-              id: 2
+              id: 4
               status: ""
             vniAllocationStrategies:
             - null
             - null
           kind: ""
           fabricId: 1
+          extensionInstanceId: 5
           annotations:
             key: annotations
           label: label
           lastLogicalNetworkProfileAppliedAt: 2000-01-23T04:56:07.000+00:00
           revision: 6
-          routeDomainId: 6
+          mtu: 1500
+          routeDomainId: 7
           createdAt: 2000-01-23T04:56:07.000+00:00
           infrastructureId: 5
           vlan:
             vlans:
-            - vlanId: 3
+            - vlanId: 2
               scope:
                 resourceId: 5.637376656633329
                 kind: ""
-              id: 9
+              id: 3
               status: ""
-            - vlanId: 3
+            - vlanId: 2
               scope:
                 resourceId: 5.637376656633329
                 kind: ""
-              id: 9
+              id: 3
               status: ""
             vlanAllocationStrategies:
             - null
@@ -56269,25 +57979,10 @@ components:
                 resourceId: 5.637376656633329
                 kind: ""
               gatewayPlacement: ""
-              id: 7
+              id: 1
               networkAddress: networkAddress
               gateway: gateway
               status: ""
-            - prefixLength: 1
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              gatewayPlacement: ""
-              id: 7
-              networkAddress: networkAddress
-              gateway: gateway
-              status: ""
-            subnetAllocationStrategies:
-            - null
-            - null
-          serviceStatus: ""
-          ipv6:
-            subnets:
             - prefixLength: 1
               scope:
                 resourceId: 5.637376656633329
@@ -56297,7 +57992,22 @@ components:
               networkAddress: networkAddress
               gateway: gateway
               status: ""
-            - prefixLength: 1
+            subnetAllocationStrategies:
+            - null
+            - null
+          serviceStatus: ""
+          ipv6:
+            subnets:
+            - prefixLength: 6
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              gatewayPlacement: ""
+              id: 1
+              networkAddress: networkAddress
+              gateway: gateway
+              status: ""
+            - prefixLength: 6
               scope:
                 resourceId: 5.637376656633329
                 kind: ""
@@ -56310,7 +58020,7 @@ components:
             - null
             - null
           name: name
-          lastAppliedLogicalNetworkProfileId: 5
+          lastAppliedLogicalNetworkProfileId: 2
           id: 0
           config:
             vxlan:
@@ -56393,52 +58103,55 @@ components:
                 gatewayPlacement: ""
                 id: 4
                 updatedAt: 2000-01-23T04:56:07.000+00:00
-            id: 2
+            id: 7
             deployType: create
             deployStatus: not_started
             updatedAt: 2000-01-23T04:56:07.000+00:00
-            revision: 7
+            revision: 9
+            mtu: 1500
           updatedAt: 2000-01-23T04:56:07.000+00:00
         - vxlan:
             vnis:
-            - vni: 4
+            - vni: 7
               scope:
                 resourceId: 5.637376656633329
                 kind: ""
-              id: 2
+              id: 4
               status: ""
-            - vni: 4
+            - vni: 7
               scope:
                 resourceId: 5.637376656633329
                 kind: ""
-              id: 2
+              id: 4
               status: ""
             vniAllocationStrategies:
             - null
             - null
           kind: ""
           fabricId: 1
+          extensionInstanceId: 5
           annotations:
             key: annotations
           label: label
           lastLogicalNetworkProfileAppliedAt: 2000-01-23T04:56:07.000+00:00
           revision: 6
-          routeDomainId: 6
+          mtu: 1500
+          routeDomainId: 7
           createdAt: 2000-01-23T04:56:07.000+00:00
           infrastructureId: 5
           vlan:
             vlans:
-            - vlanId: 3
+            - vlanId: 2
               scope:
                 resourceId: 5.637376656633329
                 kind: ""
-              id: 9
+              id: 3
               status: ""
-            - vlanId: 3
+            - vlanId: 2
               scope:
                 resourceId: 5.637376656633329
                 kind: ""
-              id: 9
+              id: 3
               status: ""
             vlanAllocationStrategies:
             - null
@@ -56450,25 +58163,10 @@ components:
                 resourceId: 5.637376656633329
                 kind: ""
               gatewayPlacement: ""
-              id: 7
+              id: 1
               networkAddress: networkAddress
               gateway: gateway
               status: ""
-            - prefixLength: 1
-              scope:
-                resourceId: 5.637376656633329
-                kind: ""
-              gatewayPlacement: ""
-              id: 7
-              networkAddress: networkAddress
-              gateway: gateway
-              status: ""
-            subnetAllocationStrategies:
-            - null
-            - null
-          serviceStatus: ""
-          ipv6:
-            subnets:
             - prefixLength: 1
               scope:
                 resourceId: 5.637376656633329
@@ -56478,7 +58176,22 @@ components:
               networkAddress: networkAddress
               gateway: gateway
               status: ""
-            - prefixLength: 1
+            subnetAllocationStrategies:
+            - null
+            - null
+          serviceStatus: ""
+          ipv6:
+            subnets:
+            - prefixLength: 6
+              scope:
+                resourceId: 5.637376656633329
+                kind: ""
+              gatewayPlacement: ""
+              id: 1
+              networkAddress: networkAddress
+              gateway: gateway
+              status: ""
+            - prefixLength: 6
               scope:
                 resourceId: 5.637376656633329
                 kind: ""
@@ -56491,7 +58204,7 @@ components:
             - null
             - null
           name: name
-          lastAppliedLogicalNetworkProfileId: 5
+          lastAppliedLogicalNetworkProfileId: 2
           id: 0
           config:
             vxlan:
@@ -56574,11 +58287,12 @@ components:
                 gatewayPlacement: ""
                 id: 4
                 updatedAt: 2000-01-23T04:56:07.000+00:00
-            id: 2
+            id: 7
             deployType: create
             deployStatus: not_started
             updatedAt: 2000-01-23T04:56:07.000+00:00
-            revision: 7
+            revision: 9
+            mtu: 1500
           updatedAt: 2000-01-23T04:56:07.000+00:00
         meta: ""
         links: ""
@@ -56667,6 +58381,7 @@ components:
         annotations:
           key: annotations
         label: label
+        mtu: 1500
       properties:
         label:
           maxLength: 63
@@ -56697,6 +58412,11 @@ components:
         routeDomainId:
           nullable: true
           type: integer
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
       required:
       - fabricId
       - kind
@@ -56707,6 +58427,7 @@ components:
         annotations:
           key: annotations
         label: label
+        mtu: 1500
       properties:
         label:
           maxLength: 63
@@ -56719,6 +58440,11 @@ components:
             nullable: true
             type: string
           type: object
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
       type: object
     UpdateLogicalNetworkConfigVlanProperties:
       properties: {}
@@ -56738,6 +58464,7 @@ components:
         vlan: "{}"
         ipv4: "{}"
         ipv6: "{}"
+        mtu: 1500
       properties:
         vlan:
           properties: {}
@@ -56751,6 +58478,11 @@ components:
         ipv6:
           properties: {}
           type: object
+        mtu:
+          description: Maximum Transmission Unit (MTU) in bytes
+          example: 1500
+          nullable: true
+          type: integer
       required:
       - ipv4
       - ipv6
@@ -56969,56 +58701,55 @@ components:
         bootstrapReadinessCheckInProgress: 9.301444243932576
         country: country
         mlagDomainId: 1.2315135367772556
+        city: city
+        datacenterRack: datacenterRack
+        description: description
         vtepAddressIpv4: vtepAddressIpv4
         datacenterMeta: datacenterMeta
+        datacenterRoom: datacenterRoom
         vtepAddressIpv6: vtepAddressIpv6
         managementMacAddress: managementMacAddress
         isGateway: true
         identifierString: identifierString
+        rackPositionUpperUnit: 6.027456183070403
         links:
         - rel: self
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
         id: id
+        bootstrapSkipInitialConfiguration: 4.145608029883936
         bootstrapReadinessCheckResult: "{}"
+        managementAddress: managementAddress
         bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
         serialNumber: serialNumber
+        subnetOobIndex: 2.027123023002322
         extensionInfo: ""
+        managementAddressMask: managementAddressMask
+        chassisIdentifier: chassisIdentifier
+        readyForInitialConfiguration: 7.061401241503109
         loopbackAddressIpv6: loopbackAddressIpv6
         managementAddressGateway: managementAddressGateway
         revision: 1
         tags: tags
         requiresOsInstall: true
-        driver: sonic_enterprise
-        loopbackAddressIpv4: loopbackAddressIpv4
-        mlagSystemMac: mlagSystemMac
-        rackPositionLowerUnit: 1.4658129805029452
-        position: leaf
-        secretsMaterializedForOSAssets: "{}"
-        status: active
-        quarantineVlan: 1.0246457001441578
-        city: city
-        datacenterRack: datacenterRack
-        description: description
-        datacenterRoom: datacenterRoom
-        rackPositionUpperUnit: 6.027456183070403
-        bootstrapSkipInitialConfiguration: 4.145608029883936
-        defaultMtu: 1.4894159098541704
-        managementAddress: managementAddress
-        subnetOobIndex: 2.027123023002322
-        managementAddressMask: managementAddressMask
-        chassisIdentifier: chassisIdentifier
-        readyForInitialConfiguration: 7.061401241503109
         syslogEnabled: 5.637376656633329
         managementPort: 5.962133916683182
+        driver: sonic_enterprise
         managementPassword: password
         subnetOobId: 3.616076749251911
+        loopbackAddressIpv4: loopbackAddressIpv4
+        mlagSystemMac: mlagSystemMac
         siteId: 0.8008281904610115
         orderIndex: 2.3021358869347655
         variablesMaterializedForOSAssets: "{}"
+        rackPositionLowerUnit: 1.4658129805029452
+        position: leaf
+        secretsMaterializedForOSAssets: "{}"
         asn: 7.386281948385884
+        status: active
         username: username
+        quarantineVlan: 1.0246457001441578
       properties:
         id:
           description: Unique identifier for the network device.
@@ -57161,9 +58892,6 @@ components:
         quarantineVlan:
           description: Quarantine VLAN ID
           type: number
-        defaultMtu:
-          description: Default MTU
-          type: number
         variablesMaterializedForOSAssets:
           description: Variables materialized for OS assets
           type: object
@@ -57197,7 +58925,6 @@ components:
       - datacenterMeta
       - datacenterRack
       - datacenterRoom
-      - defaultMtu
       - description
       - driver
       - id
@@ -57238,109 +58965,107 @@ components:
         - bootstrapReadinessCheckInProgress: 9.301444243932576
           country: country
           mlagDomainId: 1.2315135367772556
+          city: city
+          datacenterRack: datacenterRack
+          description: description
           vtepAddressIpv4: vtepAddressIpv4
           datacenterMeta: datacenterMeta
+          datacenterRoom: datacenterRoom
           vtepAddressIpv6: vtepAddressIpv6
           managementMacAddress: managementMacAddress
           isGateway: true
           identifierString: identifierString
+          rackPositionUpperUnit: 6.027456183070403
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: id
+          bootstrapSkipInitialConfiguration: 4.145608029883936
           bootstrapReadinessCheckResult: "{}"
+          managementAddress: managementAddress
           bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
           serialNumber: serialNumber
+          subnetOobIndex: 2.027123023002322
           extensionInfo: ""
+          managementAddressMask: managementAddressMask
+          chassisIdentifier: chassisIdentifier
+          readyForInitialConfiguration: 7.061401241503109
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
           tags: tags
           requiresOsInstall: true
-          driver: sonic_enterprise
-          loopbackAddressIpv4: loopbackAddressIpv4
-          mlagSystemMac: mlagSystemMac
-          rackPositionLowerUnit: 1.4658129805029452
-          position: leaf
-          secretsMaterializedForOSAssets: "{}"
-          status: active
-          quarantineVlan: 1.0246457001441578
-          city: city
-          datacenterRack: datacenterRack
-          description: description
-          datacenterRoom: datacenterRoom
-          rackPositionUpperUnit: 6.027456183070403
-          bootstrapSkipInitialConfiguration: 4.145608029883936
-          defaultMtu: 1.4894159098541704
-          managementAddress: managementAddress
-          subnetOobIndex: 2.027123023002322
-          managementAddressMask: managementAddressMask
-          chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 7.061401241503109
           syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
+          driver: sonic_enterprise
           managementPassword: password
           subnetOobId: 3.616076749251911
+          loopbackAddressIpv4: loopbackAddressIpv4
+          mlagSystemMac: mlagSystemMac
           siteId: 0.8008281904610115
           orderIndex: 2.3021358869347655
           variablesMaterializedForOSAssets: "{}"
+          rackPositionLowerUnit: 1.4658129805029452
+          position: leaf
+          secretsMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
+          status: active
           username: username
+          quarantineVlan: 1.0246457001441578
         - bootstrapReadinessCheckInProgress: 9.301444243932576
           country: country
           mlagDomainId: 1.2315135367772556
+          city: city
+          datacenterRack: datacenterRack
+          description: description
           vtepAddressIpv4: vtepAddressIpv4
           datacenterMeta: datacenterMeta
+          datacenterRoom: datacenterRoom
           vtepAddressIpv6: vtepAddressIpv6
           managementMacAddress: managementMacAddress
           isGateway: true
           identifierString: identifierString
+          rackPositionUpperUnit: 6.027456183070403
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: id
+          bootstrapSkipInitialConfiguration: 4.145608029883936
           bootstrapReadinessCheckResult: "{}"
+          managementAddress: managementAddress
           bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
           serialNumber: serialNumber
+          subnetOobIndex: 2.027123023002322
           extensionInfo: ""
+          managementAddressMask: managementAddressMask
+          chassisIdentifier: chassisIdentifier
+          readyForInitialConfiguration: 7.061401241503109
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
           tags: tags
           requiresOsInstall: true
-          driver: sonic_enterprise
-          loopbackAddressIpv4: loopbackAddressIpv4
-          mlagSystemMac: mlagSystemMac
-          rackPositionLowerUnit: 1.4658129805029452
-          position: leaf
-          secretsMaterializedForOSAssets: "{}"
-          status: active
-          quarantineVlan: 1.0246457001441578
-          city: city
-          datacenterRack: datacenterRack
-          description: description
-          datacenterRoom: datacenterRoom
-          rackPositionUpperUnit: 6.027456183070403
-          bootstrapSkipInitialConfiguration: 4.145608029883936
-          defaultMtu: 1.4894159098541704
-          managementAddress: managementAddress
-          subnetOobIndex: 2.027123023002322
-          managementAddressMask: managementAddressMask
-          chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 7.061401241503109
           syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
+          driver: sonic_enterprise
           managementPassword: password
           subnetOobId: 3.616076749251911
+          loopbackAddressIpv4: loopbackAddressIpv4
+          mlagSystemMac: mlagSystemMac
           siteId: 0.8008281904610115
           orderIndex: 2.3021358869347655
           variablesMaterializedForOSAssets: "{}"
+          rackPositionLowerUnit: 1.4658129805029452
+          position: leaf
+          secretsMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
+          status: active
           username: username
+          quarantineVlan: 1.0246457001441578
         meta: ""
         links: ""
       properties:
@@ -57379,7 +59104,6 @@ components:
         overwriteWithHostnameFromFetchedSwitch: false
         identifierString: switch-dc1-rack3-01
         rackPositionUpperUnit: 42
-        defaultMtu: 1500
         managementAddress: 192.168.1.10
         loopbackAddress: 10.0.0.1
         serialNumber: FDO2046A12C
@@ -57563,12 +59287,6 @@ components:
           description: The order index for sorting network devices
           example: 100
           type: number
-        defaultMtu:
-          description: The default Maximum Transmission Unit (MTU) for interfaces
-            on this device
-          example: 1500
-          nullable: true
-          type: number
         tags:
           description: Tags for categorizing and filtering network devices
           example:
@@ -57609,7 +59327,6 @@ components:
         overwriteWithHostnameFromFetchedSwitch: false
         identifierString: switch-dc1-rack3-01
         rackPositionUpperUnit: 42
-        defaultMtu: 1500
         managementAddress: 192.168.1.10
         loopbackAddress: 10.0.0.1
         serialNumber: FDO2046A12C
@@ -57792,11 +59509,6 @@ components:
           description: Order index
           example: 100
           type: number
-        defaultMtu:
-          description: Default MTU
-          example: 1500
-          nullable: true
-          type: number
         tags:
           description: Tags for categorizing and filtering network devices
           example:
@@ -57885,7 +59597,6 @@ components:
         position: position
         mlagPartnerHostname: mlag-host1
         asn: 0.8008281904610115
-        defaultMtu: 1500
       properties:
         datacenterName:
           description: Name of the datacenter
@@ -57943,12 +59654,6 @@ components:
         orderIndex:
           description: Order index used for sorting or prioritization.
           example: 5
-          type: number
-        defaultMtu:
-          description: "Default MTU size, must be between 68 and 10000."
-          example: 1500
-          maximum: 10000
-          minimum: 68
           type: number
         volumeTemplateId:
           description: ID of the volume template associated with the network device.
@@ -58282,7 +59987,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-07-08T13:34:50.311Z
+        createdTimestamp: 2025-07-15T13:50:53.406Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -58291,7 +59996,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-07-08T13:34:50.311Z
+        updatedTimestamp: 2025-07-15T13:50:53.406Z
         revision: "1"
       properties:
         siteId:
@@ -58308,12 +60013,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-08T13:34:50.311Z
+          example: 2025-07-15T13:50:53.406Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-08T13:34:50.311Z
+          example: 2025-07-15T13:50:53.406Z
           format: date-time
           type: string
         links:
@@ -58335,7 +60040,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-08T13:34:50.311Z
+        - createdTimestamp: 2025-07-15T13:50:53.406Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -58344,9 +60049,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-07-08T13:34:50.311Z
+          updatedTimestamp: 2025-07-15T13:50:53.406Z
           revision: "1"
-        - createdTimestamp: 2025-07-08T13:34:50.311Z
+        - createdTimestamp: 2025-07-15T13:50:53.406Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -58355,7 +60060,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-07-08T13:34:50.311Z
+          updatedTimestamp: 2025-07-15T13:50:53.406Z
           revision: "1"
         meta: ""
         links: ""
@@ -58409,74 +60114,6 @@ components:
           description: The name of the network endpoint group
           example: Test Network Endpoint Group
           type: string
-      type: object
-    NetworkEndpointGroupAllowedAccessMode:
-      description: The access mode of the network endpoint group
-      enum:
-      - l2
-      type: string
-    NetworkEndpointGroupRedundancyMode:
-      description: The redundancy mode
-      enum:
-      - active-backup
-      - active-active
-      type: string
-    NetworkEndpointGroupRedundancyImplementationType:
-      description: The type of redundancy implementation
-      enum:
-      - link-aggregation
-      - distributed-link-aggregation
-      - ecmp
-      type: string
-    RedundancyImplementation:
-      properties:
-        implementationType:
-          allOf:
-          - $ref: '#/components/schemas/NetworkEndpointGroupRedundancyImplementationType'
-          description: The type of redundancy implementation
-          example: link-aggregation
-      required:
-      - implementationType
-      type: object
-    RedundancyConfig:
-      properties:
-        mode:
-          allOf:
-          - $ref: '#/components/schemas/NetworkEndpointGroupRedundancyMode'
-          description: The redundancy mode
-          example: active-backup
-        implementation:
-          allOf:
-          - $ref: '#/components/schemas/RedundancyImplementation'
-          description: The redundancy implementation configuration
-          example:
-            implementationType: link-aggregation
-          nullable: true
-      required:
-      - mode
-      type: object
-    dnsRecordsEndpointGroupLogicalNetworkDto:
-      properties:
-        provisionInstanceDnsRecords:
-          default: false
-          description: "If true, DNS records (type A and PTR) will be created for\
-            \ each server instance that is part of this server instance group. The\
-            \ DNS record will be created with the default \"hostname\" of <server-instance>\
-            \ suffixed with the server instance ID (e.g., \"server-instance-24\")\
-            \ plus the DNS zone name. If the \"hostname\" property is set on the server\
-            \ instance, it will use that value to construct the DNS record name."
-          type: boolean
-        provisionLoadBalancingDnsRecord:
-          default: false
-          description: "Flag to indicate if for the server instance group should create\
-            \ a DNS Load Balancing record. If true, a DNS Load Balancing record (type\
-            \ A) will be created that points to all server instances that are part\
-            \ of this server instance group. The DNS Load Balancing record will be\
-            \ created with the default \"hostname\" of <server-instance-group> suffixed\
-            \ with the server instance group ID (e.g., \"server-instance-group-34\"\
-            ) plus the DNS zone name. If the \"hostname\" property is set, it will\
-            \ use that value to construct the DNS Load Balancing record name."
-          type: boolean
       type: object
     NetworkEndpointGroupLogicalNetwork:
       example:
@@ -59012,7 +60649,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-07-08T13:34:50.29Z
+        createdTimestamp: 2025-07-15T13:50:53.36Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -59059,116 +60696,114 @@ components:
           configurationPreview: configurationPreview
           bgpTemplateId: 101
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-07-08T13:34:50.291Z
+        updatedTimestamp: 2025-07-15T13:50:53.36Z
         deployId: 123
         revision: "1"
         networkEquipment:
         - bootstrapReadinessCheckInProgress: 9.301444243932576
           country: country
           mlagDomainId: 1.2315135367772556
+          city: city
+          datacenterRack: datacenterRack
+          description: description
           vtepAddressIpv4: vtepAddressIpv4
           datacenterMeta: datacenterMeta
+          datacenterRoom: datacenterRoom
           vtepAddressIpv6: vtepAddressIpv6
           managementMacAddress: managementMacAddress
           isGateway: true
           identifierString: identifierString
+          rackPositionUpperUnit: 6.027456183070403
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: id
+          bootstrapSkipInitialConfiguration: 4.145608029883936
           bootstrapReadinessCheckResult: "{}"
+          managementAddress: managementAddress
           bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
           serialNumber: serialNumber
+          subnetOobIndex: 2.027123023002322
           extensionInfo: ""
+          managementAddressMask: managementAddressMask
+          chassisIdentifier: chassisIdentifier
+          readyForInitialConfiguration: 7.061401241503109
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
           tags: tags
           requiresOsInstall: true
-          driver: sonic_enterprise
-          loopbackAddressIpv4: loopbackAddressIpv4
-          mlagSystemMac: mlagSystemMac
-          rackPositionLowerUnit: 1.4658129805029452
-          position: leaf
-          secretsMaterializedForOSAssets: "{}"
-          status: active
-          quarantineVlan: 1.0246457001441578
-          city: city
-          datacenterRack: datacenterRack
-          description: description
-          datacenterRoom: datacenterRoom
-          rackPositionUpperUnit: 6.027456183070403
-          bootstrapSkipInitialConfiguration: 4.145608029883936
-          defaultMtu: 1.4894159098541704
-          managementAddress: managementAddress
-          subnetOobIndex: 2.027123023002322
-          managementAddressMask: managementAddressMask
-          chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 7.061401241503109
           syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
+          driver: sonic_enterprise
           managementPassword: password
           subnetOobId: 3.616076749251911
+          loopbackAddressIpv4: loopbackAddressIpv4
+          mlagSystemMac: mlagSystemMac
           siteId: 0.8008281904610115
           orderIndex: 2.3021358869347655
           variablesMaterializedForOSAssets: "{}"
+          rackPositionLowerUnit: 1.4658129805029452
+          position: leaf
+          secretsMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
+          status: active
           username: username
+          quarantineVlan: 1.0246457001441578
         - bootstrapReadinessCheckInProgress: 9.301444243932576
           country: country
           mlagDomainId: 1.2315135367772556
+          city: city
+          datacenterRack: datacenterRack
+          description: description
           vtepAddressIpv4: vtepAddressIpv4
           datacenterMeta: datacenterMeta
+          datacenterRoom: datacenterRoom
           vtepAddressIpv6: vtepAddressIpv6
           managementMacAddress: managementMacAddress
           isGateway: true
           identifierString: identifierString
+          rackPositionUpperUnit: 6.027456183070403
           links:
           - rel: self
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
           id: id
+          bootstrapSkipInitialConfiguration: 4.145608029883936
           bootstrapReadinessCheckResult: "{}"
+          managementAddress: managementAddress
           bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
           serialNumber: serialNumber
+          subnetOobIndex: 2.027123023002322
           extensionInfo: ""
+          managementAddressMask: managementAddressMask
+          chassisIdentifier: chassisIdentifier
+          readyForInitialConfiguration: 7.061401241503109
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
           tags: tags
           requiresOsInstall: true
-          driver: sonic_enterprise
-          loopbackAddressIpv4: loopbackAddressIpv4
-          mlagSystemMac: mlagSystemMac
-          rackPositionLowerUnit: 1.4658129805029452
-          position: leaf
-          secretsMaterializedForOSAssets: "{}"
-          status: active
-          quarantineVlan: 1.0246457001441578
-          city: city
-          datacenterRack: datacenterRack
-          description: description
-          datacenterRoom: datacenterRoom
-          rackPositionUpperUnit: 6.027456183070403
-          bootstrapSkipInitialConfiguration: 4.145608029883936
-          defaultMtu: 1.4894159098541704
-          managementAddress: managementAddress
-          subnetOobIndex: 2.027123023002322
-          managementAddressMask: managementAddressMask
-          chassisIdentifier: chassisIdentifier
-          readyForInitialConfiguration: 7.061401241503109
           syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
+          driver: sonic_enterprise
           managementPassword: password
           subnetOobId: 3.616076749251911
+          loopbackAddressIpv4: loopbackAddressIpv4
+          mlagSystemMac: mlagSystemMac
           siteId: 0.8008281904610115
           orderIndex: 2.3021358869347655
           variablesMaterializedForOSAssets: "{}"
+          rackPositionLowerUnit: 1.4658129805029452
+          position: leaf
+          secretsMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
+          status: active
           username: username
+          quarantineVlan: 1.0246457001441578
         name: My Network Fabric
         siteId: 0.8008281904610115
         links:
@@ -59203,12 +60838,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-08T13:34:50.29Z
+          example: 2025-07-15T13:50:53.36Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-08T13:34:50.291Z
+          example: 2025-07-15T13:50:53.36Z
           format: date-time
           type: string
         links:
@@ -59252,7 +60887,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-08T13:34:50.29Z
+        - createdTimestamp: 2025-07-15T13:50:53.36Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -59299,116 +60934,114 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-07-08T13:34:50.291Z
+          updatedTimestamp: 2025-07-15T13:50:53.36Z
           deployId: 123
           revision: "1"
           networkEquipment:
           - bootstrapReadinessCheckInProgress: 9.301444243932576
             country: country
             mlagDomainId: 1.2315135367772556
+            city: city
+            datacenterRack: datacenterRack
+            description: description
             vtepAddressIpv4: vtepAddressIpv4
             datacenterMeta: datacenterMeta
+            datacenterRoom: datacenterRoom
             vtepAddressIpv6: vtepAddressIpv6
             managementMacAddress: managementMacAddress
             isGateway: true
             identifierString: identifierString
+            rackPositionUpperUnit: 6.027456183070403
             links:
             - rel: self
               href: /api/v2/path/to/resource
             - rel: self
               href: /api/v2/path/to/resource
             id: id
+            bootstrapSkipInitialConfiguration: 4.145608029883936
             bootstrapReadinessCheckResult: "{}"
+            managementAddress: managementAddress
             bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
             serialNumber: serialNumber
+            subnetOobIndex: 2.027123023002322
             extensionInfo: ""
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
             tags: tags
             requiresOsInstall: true
-            driver: sonic_enterprise
-            loopbackAddressIpv4: loopbackAddressIpv4
-            mlagSystemMac: mlagSystemMac
-            rackPositionLowerUnit: 1.4658129805029452
-            position: leaf
-            secretsMaterializedForOSAssets: "{}"
-            status: active
-            quarantineVlan: 1.0246457001441578
-            city: city
-            datacenterRack: datacenterRack
-            description: description
-            datacenterRoom: datacenterRoom
-            rackPositionUpperUnit: 6.027456183070403
-            bootstrapSkipInitialConfiguration: 4.145608029883936
-            defaultMtu: 1.4894159098541704
-            managementAddress: managementAddress
-            subnetOobIndex: 2.027123023002322
-            managementAddressMask: managementAddressMask
-            chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 7.061401241503109
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
+            driver: sonic_enterprise
             managementPassword: password
             subnetOobId: 3.616076749251911
+            loopbackAddressIpv4: loopbackAddressIpv4
+            mlagSystemMac: mlagSystemMac
             siteId: 0.8008281904610115
             orderIndex: 2.3021358869347655
             variablesMaterializedForOSAssets: "{}"
+            rackPositionLowerUnit: 1.4658129805029452
+            position: leaf
+            secretsMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
+            status: active
             username: username
+            quarantineVlan: 1.0246457001441578
           - bootstrapReadinessCheckInProgress: 9.301444243932576
             country: country
             mlagDomainId: 1.2315135367772556
+            city: city
+            datacenterRack: datacenterRack
+            description: description
             vtepAddressIpv4: vtepAddressIpv4
             datacenterMeta: datacenterMeta
+            datacenterRoom: datacenterRoom
             vtepAddressIpv6: vtepAddressIpv6
             managementMacAddress: managementMacAddress
             isGateway: true
             identifierString: identifierString
+            rackPositionUpperUnit: 6.027456183070403
             links:
             - rel: self
               href: /api/v2/path/to/resource
             - rel: self
               href: /api/v2/path/to/resource
             id: id
+            bootstrapSkipInitialConfiguration: 4.145608029883936
             bootstrapReadinessCheckResult: "{}"
+            managementAddress: managementAddress
             bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
             serialNumber: serialNumber
+            subnetOobIndex: 2.027123023002322
             extensionInfo: ""
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
             tags: tags
             requiresOsInstall: true
-            driver: sonic_enterprise
-            loopbackAddressIpv4: loopbackAddressIpv4
-            mlagSystemMac: mlagSystemMac
-            rackPositionLowerUnit: 1.4658129805029452
-            position: leaf
-            secretsMaterializedForOSAssets: "{}"
-            status: active
-            quarantineVlan: 1.0246457001441578
-            city: city
-            datacenterRack: datacenterRack
-            description: description
-            datacenterRoom: datacenterRoom
-            rackPositionUpperUnit: 6.027456183070403
-            bootstrapSkipInitialConfiguration: 4.145608029883936
-            defaultMtu: 1.4894159098541704
-            managementAddress: managementAddress
-            subnetOobIndex: 2.027123023002322
-            managementAddressMask: managementAddressMask
-            chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 7.061401241503109
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
+            driver: sonic_enterprise
             managementPassword: password
             subnetOobId: 3.616076749251911
+            loopbackAddressIpv4: loopbackAddressIpv4
+            mlagSystemMac: mlagSystemMac
             siteId: 0.8008281904610115
             orderIndex: 2.3021358869347655
             variablesMaterializedForOSAssets: "{}"
+            rackPositionLowerUnit: 1.4658129805029452
+            position: leaf
+            secretsMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
+            status: active
             username: username
+            quarantineVlan: 1.0246457001441578
           name: My Network Fabric
           siteId: 0.8008281904610115
           links:
@@ -59418,7 +61051,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-07-08T13:34:50.29Z
+        - createdTimestamp: 2025-07-15T13:50:53.36Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -59465,116 +61098,114 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-07-08T13:34:50.291Z
+          updatedTimestamp: 2025-07-15T13:50:53.36Z
           deployId: 123
           revision: "1"
           networkEquipment:
           - bootstrapReadinessCheckInProgress: 9.301444243932576
             country: country
             mlagDomainId: 1.2315135367772556
+            city: city
+            datacenterRack: datacenterRack
+            description: description
             vtepAddressIpv4: vtepAddressIpv4
             datacenterMeta: datacenterMeta
+            datacenterRoom: datacenterRoom
             vtepAddressIpv6: vtepAddressIpv6
             managementMacAddress: managementMacAddress
             isGateway: true
             identifierString: identifierString
+            rackPositionUpperUnit: 6.027456183070403
             links:
             - rel: self
               href: /api/v2/path/to/resource
             - rel: self
               href: /api/v2/path/to/resource
             id: id
+            bootstrapSkipInitialConfiguration: 4.145608029883936
             bootstrapReadinessCheckResult: "{}"
+            managementAddress: managementAddress
             bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
             serialNumber: serialNumber
+            subnetOobIndex: 2.027123023002322
             extensionInfo: ""
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
             tags: tags
             requiresOsInstall: true
-            driver: sonic_enterprise
-            loopbackAddressIpv4: loopbackAddressIpv4
-            mlagSystemMac: mlagSystemMac
-            rackPositionLowerUnit: 1.4658129805029452
-            position: leaf
-            secretsMaterializedForOSAssets: "{}"
-            status: active
-            quarantineVlan: 1.0246457001441578
-            city: city
-            datacenterRack: datacenterRack
-            description: description
-            datacenterRoom: datacenterRoom
-            rackPositionUpperUnit: 6.027456183070403
-            bootstrapSkipInitialConfiguration: 4.145608029883936
-            defaultMtu: 1.4894159098541704
-            managementAddress: managementAddress
-            subnetOobIndex: 2.027123023002322
-            managementAddressMask: managementAddressMask
-            chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 7.061401241503109
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
+            driver: sonic_enterprise
             managementPassword: password
             subnetOobId: 3.616076749251911
+            loopbackAddressIpv4: loopbackAddressIpv4
+            mlagSystemMac: mlagSystemMac
             siteId: 0.8008281904610115
             orderIndex: 2.3021358869347655
             variablesMaterializedForOSAssets: "{}"
+            rackPositionLowerUnit: 1.4658129805029452
+            position: leaf
+            secretsMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
+            status: active
             username: username
+            quarantineVlan: 1.0246457001441578
           - bootstrapReadinessCheckInProgress: 9.301444243932576
             country: country
             mlagDomainId: 1.2315135367772556
+            city: city
+            datacenterRack: datacenterRack
+            description: description
             vtepAddressIpv4: vtepAddressIpv4
             datacenterMeta: datacenterMeta
+            datacenterRoom: datacenterRoom
             vtepAddressIpv6: vtepAddressIpv6
             managementMacAddress: managementMacAddress
             isGateway: true
             identifierString: identifierString
+            rackPositionUpperUnit: 6.027456183070403
             links:
             - rel: self
               href: /api/v2/path/to/resource
             - rel: self
               href: /api/v2/path/to/resource
             id: id
+            bootstrapSkipInitialConfiguration: 4.145608029883936
             bootstrapReadinessCheckResult: "{}"
+            managementAddress: managementAddress
             bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
             serialNumber: serialNumber
+            subnetOobIndex: 2.027123023002322
             extensionInfo: ""
+            managementAddressMask: managementAddressMask
+            chassisIdentifier: chassisIdentifier
+            readyForInitialConfiguration: 7.061401241503109
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
             tags: tags
             requiresOsInstall: true
-            driver: sonic_enterprise
-            loopbackAddressIpv4: loopbackAddressIpv4
-            mlagSystemMac: mlagSystemMac
-            rackPositionLowerUnit: 1.4658129805029452
-            position: leaf
-            secretsMaterializedForOSAssets: "{}"
-            status: active
-            quarantineVlan: 1.0246457001441578
-            city: city
-            datacenterRack: datacenterRack
-            description: description
-            datacenterRoom: datacenterRoom
-            rackPositionUpperUnit: 6.027456183070403
-            bootstrapSkipInitialConfiguration: 4.145608029883936
-            defaultMtu: 1.4894159098541704
-            managementAddress: managementAddress
-            subnetOobIndex: 2.027123023002322
-            managementAddressMask: managementAddressMask
-            chassisIdentifier: chassisIdentifier
-            readyForInitialConfiguration: 7.061401241503109
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
+            driver: sonic_enterprise
             managementPassword: password
             subnetOobId: 3.616076749251911
+            loopbackAddressIpv4: loopbackAddressIpv4
+            mlagSystemMac: mlagSystemMac
             siteId: 0.8008281904610115
             orderIndex: 2.3021358869347655
             variablesMaterializedForOSAssets: "{}"
+            rackPositionLowerUnit: 1.4658129805029452
+            position: leaf
+            secretsMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
+            status: active
             username: username
+            quarantineVlan: 1.0246457001441578
           name: My Network Fabric
           siteId: 0.8008281904610115
           links:
@@ -59752,9 +61383,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-07-08T13:34:50.314Z
+        createdTimestamp: 2025-07-15T13:50:53.411Z
         mlagPair: 0
-        updatedTimestamp: 2025-07-08T13:34:50.314Z
+        updatedTimestamp: 2025-07-15T13:50:53.411Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -59767,12 +61398,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-08T13:34:50.314Z
+          example: 2025-07-15T13:50:53.411Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-08T13:34:50.314Z
+          example: 2025-07-15T13:50:53.411Z
           format: date-time
           type: string
         revision:
@@ -59850,9 +61481,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-07-08T13:34:50.314Z
+          createdTimestamp: 2025-07-15T13:50:53.411Z
           mlagPair: 0
-          updatedTimestamp: 2025-07-08T13:34:50.314Z
+          updatedTimestamp: 2025-07-15T13:50:53.411Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -59863,9 +61494,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-07-08T13:34:50.314Z
+          createdTimestamp: 2025-07-15T13:50:53.411Z
           mlagPair: 0
-          updatedTimestamp: 2025-07-08T13:34:50.314Z
+          updatedTimestamp: 2025-07-15T13:50:53.411Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -62577,10 +64208,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-07-08T13:34:50.313Z
+        createdTimestamp: 2025-07-15T13:50:53.409Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-07-08T13:34:50.313Z
+        updatedTimestamp: 2025-07-15T13:50:53.409Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -62654,12 +64285,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-08T13:34:50.313Z
+          example: 2025-07-15T13:50:53.409Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-08T13:34:50.313Z
+          example: 2025-07-15T13:50:53.409Z
           format: date-time
           type: string
         links:
@@ -67115,60 +68746,6 @@ components:
       required:
       - data
       type: object
-    CreateServerInstanceGroupNetworkConnection:
-      example:
-        logicalNetworkId: "1"
-        tagged: true
-        dns:
-          provisionInstanceDnsRecords: true
-          provisionLoadBalancingDnsRecord: false
-        redundancy:
-          mode: active-backup
-          implementation:
-            implementationType: link-aggregation
-        accessMode: l2
-        mtu: 1500
-      properties:
-        logicalNetworkId:
-          description: The logical network ID.
-          example: "1"
-          type: string
-        tagged:
-          description: Whether the logical network is tagged.
-          example: true
-          type: boolean
-        accessMode:
-          allOf:
-          - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
-          description: The access mode of the network endpoint group
-          example: l2
-        mtu:
-          description: The MTU of the logical network
-          example: 1500
-          type: integer
-        redundancy:
-          allOf:
-          - $ref: '#/components/schemas/RedundancyConfig'
-          description: The redundancy configuration
-          example:
-            mode: active-backup
-            implementation:
-              implementationType: link-aggregation
-          nullable: true
-        dns:
-          allOf:
-          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
-          description: DNS records that are supposed to be provisioned for the server
-            instance group.
-          example:
-            provisionInstanceDnsRecords: true
-            provisionLoadBalancingDnsRecord: false
-          nullable: true
-      required:
-      - accessMode
-      - logicalNetworkId
-      - tagged
-      type: object
     RegisterServer:
       example:
         managementAddress: managementAddress
@@ -69222,7 +70799,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-07-08T13:34:50.31Z
+        createdTimestamp: 2025-07-15T13:50:53.402Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -69230,7 +70807,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-07-08T13:34:50.31Z
+        updatedTimestamp: 2025-07-15T13:50:53.402Z
         revision: "1"
       properties:
         id:
@@ -69259,12 +70836,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-08T13:34:50.31Z
+          example: 2025-07-15T13:50:53.402Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-08T13:34:50.31Z
+          example: 2025-07-15T13:50:53.402Z
           format: date-time
           type: string
         links:
@@ -69283,7 +70860,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-07-08T13:34:50.311Z
+        createdTimestamp: 2025-07-15T13:50:53.404Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -69294,7 +70871,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-07-08T13:34:50.311Z
+        updatedTimestamp: 2025-07-15T13:50:53.404Z
         revision: "1"
       properties:
         id:
@@ -69328,12 +70905,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-08T13:34:50.311Z
+          example: 2025-07-15T13:50:53.404Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-08T13:34:50.311Z
+          example: 2025-07-15T13:50:53.404Z
           format: date-time
           type: string
         links:
@@ -69353,7 +70930,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-08T13:34:50.311Z
+        - createdTimestamp: 2025-07-15T13:50:53.404Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -69364,9 +70941,9 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-07-08T13:34:50.311Z
+          updatedTimestamp: 2025-07-15T13:50:53.404Z
           revision: "1"
-        - createdTimestamp: 2025-07-08T13:34:50.311Z
+        - createdTimestamp: 2025-07-15T13:50:53.404Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -69377,7 +70954,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-07-08T13:34:50.311Z
+          updatedTimestamp: 2025-07-15T13:50:53.404Z
           revision: "1"
         meta: ""
         links: ""
@@ -69587,7 +71164,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-07-08T13:34:50.31Z
+          createdTimestamp: 2025-07-15T13:50:53.402Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -69595,12 +71172,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-07-08T13:34:50.31Z
+          updatedTimestamp: 2025-07-15T13:50:53.402Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-07-08T13:34:50.31Z
+          createdTimestamp: 2025-07-15T13:50:53.402Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -69608,7 +71185,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-07-08T13:34:50.31Z
+          updatedTimestamp: 2025-07-15T13:50:53.402Z
           revision: "1"
         meta: ""
         links: ""
@@ -69861,6 +71438,496 @@ components:
       - accessMode
       - logicalNetworkId
       - tagged
+      type: object
+    ExternalConnectionInterface:
+      example:
+        createdAt: 2025-01-01T00:00:00Z
+        networkDeviceInterfaceId: 1
+        networkDeviceId: 12
+        networkDeviceInterfaceName: eth0
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        id: 1
+        revision: "1"
+        updatedAt: 2025-01-01T00:00:00Z
+      properties:
+        id:
+          description: Unique identifier for the external connection interface
+          example: 1
+          type: number
+        networkDeviceInterfaceId:
+          description: Network device interface id
+          example: 1
+          type: number
+        networkDeviceInterfaceName:
+          description: Network device interface name
+          example: eth0
+          type: string
+        networkDeviceId:
+          description: Network device id
+          example: 12
+          type: number
+        revision:
+          description: Revision number of the external connection interface
+          example: "1"
+          type: string
+        createdAt:
+          description: The date and time the entity was created
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          description: The date and time the entity was last updated
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - createdAt
+      - id
+      - networkDeviceId
+      - networkDeviceInterfaceId
+      - networkDeviceInterfaceName
+      - revision
+      - updatedAt
+      type: object
+    ExternalConnection:
+      example:
+        createdAt: 2025-01-01T00:00:00Z
+        fabricId: 0.8008281904610115
+        name: Server 1
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        id: "1"
+        label: external-connection-1
+        revision: "1"
+        updatedAt: 2025-01-01T00:00:00Z
+      properties:
+        id:
+          description: The network external connection id.
+          example: "1"
+          type: string
+        label:
+          description: The external connection unique label
+          example: external-connection-1
+          maxLength: 63
+          minLength: 1
+          pattern: "^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"
+          type: string
+        name:
+          description: The external connection name
+          example: Server 1
+          maxLength: 255
+          type: string
+        fabricId:
+          description: The ID of the Fabric identifier this entity belongs to.
+          format: integer
+          type: number
+        revision:
+          description: Revision number of the entity
+          example: "1"
+          type: string
+        createdAt:
+          description: The date and time the entity was created
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          description: The date and time the entity was last updated
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - createdAt
+      - fabricId
+      - id
+      - label
+      - name
+      - revision
+      - updatedAt
+      type: object
+    ExternalConnectionPaginatedList:
+      example:
+        data:
+        - createdAt: 2025-01-01T00:00:00Z
+          fabricId: 0.8008281904610115
+          name: Server 1
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: "1"
+          label: external-connection-1
+          revision: "1"
+          updatedAt: 2025-01-01T00:00:00Z
+        - createdAt: 2025-01-01T00:00:00Z
+          fabricId: 0.8008281904610115
+          name: Server 1
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: "1"
+          label: external-connection-1
+          revision: "1"
+          updatedAt: 2025-01-01T00:00:00Z
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ExternalConnection'
+          title: List of external connections
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
+    NetworkDeviceExternalConnectionInterface:
+      example:
+        networkDeviceId: 1
+        networkDeviceInterfaceId: 1
+        networkDeviceInterfaceName: eth0
+        externalConnectionId: 12
+        externalConnectionInterfaceId: 1
+      properties:
+        networkDeviceId:
+          description: Network device id
+          example: 1
+          type: number
+        networkDeviceInterfaceId:
+          description: Network device interface id
+          example: 1
+          type: number
+        networkDeviceInterfaceName:
+          description: Network device interface name
+          example: eth0
+          type: string
+        externalConnectionId:
+          description: "Network external connection id, null if not connected to an\
+            \ existing external connection"
+          example: 12
+          type: number
+        externalConnectionInterfaceId:
+          description: "external connection interface id, null if not connected to\
+            \ an existing external connection interface"
+          example: 1
+          type: number
+      required:
+      - networkDeviceId
+      - networkDeviceInterfaceId
+      type: object
+    NetworkDeviceExternalConnectionInterfaces:
+      example:
+        data:
+        - networkDeviceId: 1
+          networkDeviceInterfaceId: 1
+          networkDeviceInterfaceName: eth0
+          externalConnectionId: 12
+          externalConnectionInterfaceId: 1
+        - networkDeviceId: 1
+          networkDeviceInterfaceId: 1
+          networkDeviceInterfaceName: eth0
+          externalConnectionId: 12
+          externalConnectionInterfaceId: 1
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/NetworkDeviceExternalConnectionInterface'
+          title: List of network device external connection interfaces
+          type: array
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - data
+      type: object
+    CreateExternalConnectionInterface:
+      example:
+        networkDeviceInterfaceId: 1
+      properties:
+        networkDeviceInterfaceId:
+          description: Network device interface id
+          example: 1
+          type: number
+      required:
+      - networkDeviceInterfaceId
+      type: object
+    CreateExternalConnection:
+      example:
+        fabricId: 0.8008281904610115
+        externalConnectionInterfaces:
+        - networkDeviceInterfaceId: 1
+        - networkDeviceInterfaceId: 1
+        name: Server 1
+        label: external-connection-1
+      properties:
+        label:
+          description: The external connection unique label
+          example: external-connection-1
+          maxLength: 63
+          minLength: 1
+          pattern: "^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"
+          type: string
+        name:
+          description: The external connection name
+          example: Server 1
+          maxLength: 255
+          type: string
+        fabricId:
+          description: The ID of the Fabric identifier this entity belongs to.
+          format: integer
+          type: number
+        externalConnectionInterfaces:
+          description: The external connection interfaces associated with this external
+            connection
+          items:
+            $ref: '#/components/schemas/CreateExternalConnectionInterface'
+          type: array
+      required:
+      - fabricId
+      - label
+      - name
+      type: object
+    UpdateExternalConnection:
+      example:
+        name: Server 1
+        label: lan-finance-1
+      properties:
+        name:
+          description: The external connection name
+          example: Server 1
+          maxLength: 255
+          type: string
+        label:
+          description: The external connection unique label
+          example: lan-finance-1
+          maxLength: 63
+          minLength: 1
+          pattern: "^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"
+          type: string
+      type: object
+    ExternalConnectionInterfacePaginatedList:
+      example:
+        data:
+        - createdAt: 2025-01-01T00:00:00Z
+          networkDeviceInterfaceId: 1
+          networkDeviceId: 12
+          networkDeviceInterfaceName: eth0
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 1
+          revision: "1"
+          updatedAt: 2025-01-01T00:00:00Z
+        - createdAt: 2025-01-01T00:00:00Z
+          networkDeviceInterfaceId: 1
+          networkDeviceId: 12
+          networkDeviceInterfaceName: eth0
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 1
+          revision: "1"
+          updatedAt: 2025-01-01T00:00:00Z
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ExternalConnectionInterface'
+          title: List of external connection interfaces
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
+      type: object
+    UpdateExternalConnectionInterface:
+      example:
+        networkDeviceInterfaceId: 1
+      properties:
+        networkDeviceInterfaceId:
+          description: Network device interface id
+          example: 1
+          type: number
+      required:
+      - networkDeviceInterfaceId
+      type: object
+    CreateExternalConnectionLogicalNetwork:
+      example:
+        logicalNetworkId: 0.8008281904610115
+      properties:
+        logicalNetworkId:
+          description: The ID of the logical network identifier this entity belongs
+            to.
+          format: integer
+          type: number
+      required:
+      - logicalNetworkId
+      type: object
+    ExternalConnectionLogicalNetwork:
+      example:
+        createdAt: 2025-01-01T00:00:00Z
+        logicalNetworkId: 6.027456183070403
+        externalConnectionId: 0.8008281904610115
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        id: 1
+        status: pending_activation
+        updatedAt: 2025-01-01T00:00:00Z
+      properties:
+        id:
+          description: The external connection logical network id.
+          example: 1
+          type: number
+        externalConnectionId:
+          description: The ID of the external connection identifier this entity belongs
+            to.
+          format: integer
+          type: number
+        logicalNetworkId:
+          description: The ID of the logical network identifier this entity belongs
+            to.
+          format: integer
+          type: number
+        status:
+          description: The status of the external connection logical network
+          enum:
+          - pending_activation
+          - active
+          - pending_deletion
+          - deleting
+          example: pending_activation
+          type: string
+        createdAt:
+          description: The date and time the entity was created
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          description: The date and time the entity was last updated
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - createdAt
+      - externalConnectionId
+      - id
+      - logicalNetworkId
+      - status
+      - updatedAt
+      type: object
+    ExternalConnectionLogicalNetworkPaginatedList:
+      example:
+        data:
+        - createdAt: 2025-01-01T00:00:00Z
+          logicalNetworkId: 6.027456183070403
+          externalConnectionId: 0.8008281904610115
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 1
+          status: pending_activation
+          updatedAt: 2025-01-01T00:00:00Z
+        - createdAt: 2025-01-01T00:00:00Z
+          logicalNetworkId: 6.027456183070403
+          externalConnectionId: 0.8008281904610115
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 1
+          status: pending_activation
+          updatedAt: 2025-01-01T00:00:00Z
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ExternalConnectionLogicalNetwork'
+          title: List of external connection logical networks
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - links
+      - meta
       type: object
     SharedDriveMeta:
       example:

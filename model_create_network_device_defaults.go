@@ -49,8 +49,6 @@ type CreateNetworkDeviceDefaults struct {
 	VtepAddressIpv6 *string `json:"vtepAddressIpv6,omitempty"`
 	// Order index used for sorting or prioritization.
 	OrderIndex *float32 `json:"orderIndex,omitempty"`
-	// Default MTU size, must be between 68 and 10000.
-	DefaultMtu *float32 `json:"defaultMtu,omitempty"`
 	// ID of the volume template associated with the network device.
 	VolumeTemplateId *float32 `json:"volumeTemplateId,omitempty"`
 	// MLAG partner hostname. Can contain letters, numbers, dots, underscores, and hyphens (1-63 characters).
@@ -519,38 +517,6 @@ func (o *CreateNetworkDeviceDefaults) SetOrderIndex(v float32) {
 	o.OrderIndex = &v
 }
 
-// GetDefaultMtu returns the DefaultMtu field value if set, zero value otherwise.
-func (o *CreateNetworkDeviceDefaults) GetDefaultMtu() float32 {
-	if o == nil || IsNil(o.DefaultMtu) {
-		var ret float32
-		return ret
-	}
-	return *o.DefaultMtu
-}
-
-// GetDefaultMtuOk returns a tuple with the DefaultMtu field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceDefaults) GetDefaultMtuOk() (*float32, bool) {
-	if o == nil || IsNil(o.DefaultMtu) {
-		return nil, false
-	}
-	return o.DefaultMtu, true
-}
-
-// HasDefaultMtu returns a boolean if a field has been set.
-func (o *CreateNetworkDeviceDefaults) HasDefaultMtu() bool {
-	if o != nil && !IsNil(o.DefaultMtu) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultMtu gets a reference to the given float32 and assigns it to the DefaultMtu field.
-func (o *CreateNetworkDeviceDefaults) SetDefaultMtu(v float32) {
-	o.DefaultMtu = &v
-}
-
 // GetVolumeTemplateId returns the VolumeTemplateId field value if set, zero value otherwise.
 func (o *CreateNetworkDeviceDefaults) GetVolumeTemplateId() float32 {
 	if o == nil || IsNil(o.VolumeTemplateId) {
@@ -791,9 +757,6 @@ func (o CreateNetworkDeviceDefaults) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OrderIndex) {
 		toSerialize["orderIndex"] = o.OrderIndex
 	}
-	if !IsNil(o.DefaultMtu) {
-		toSerialize["defaultMtu"] = o.DefaultMtu
-	}
 	if !IsNil(o.VolumeTemplateId) {
 		toSerialize["volumeTemplateId"] = o.VolumeTemplateId
 	}
@@ -870,7 +833,6 @@ func (o *CreateNetworkDeviceDefaults) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vtepAddressIpv4")
 		delete(additionalProperties, "vtepAddressIpv6")
 		delete(additionalProperties, "orderIndex")
-		delete(additionalProperties, "defaultMtu")
 		delete(additionalProperties, "volumeTemplateId")
 		delete(additionalProperties, "mlagPartnerHostname")
 		delete(additionalProperties, "isPartOfMlagPair")

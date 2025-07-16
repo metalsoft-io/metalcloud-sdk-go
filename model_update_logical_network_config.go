@@ -25,6 +25,8 @@ type UpdateLogicalNetworkConfig struct {
 	Vxlan map[string]interface{} `json:"vxlan"`
 	Ipv4 map[string]interface{} `json:"ipv4"`
 	Ipv6 map[string]interface{} `json:"ipv6"`
+	// Maximum Transmission Unit (MTU) in bytes
+	Mtu NullableInt32 `json:"mtu,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -147,6 +149,48 @@ func (o *UpdateLogicalNetworkConfig) SetIpv6(v map[string]interface{}) {
 	o.Ipv6 = v
 }
 
+// GetMtu returns the Mtu field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateLogicalNetworkConfig) GetMtu() int32 {
+	if o == nil || IsNil(o.Mtu.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.Mtu.Get()
+}
+
+// GetMtuOk returns a tuple with the Mtu field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateLogicalNetworkConfig) GetMtuOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Mtu.Get(), o.Mtu.IsSet()
+}
+
+// HasMtu returns a boolean if a field has been set.
+func (o *UpdateLogicalNetworkConfig) HasMtu() bool {
+	if o != nil && o.Mtu.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMtu gets a reference to the given NullableInt32 and assigns it to the Mtu field.
+func (o *UpdateLogicalNetworkConfig) SetMtu(v int32) {
+	o.Mtu.Set(&v)
+}
+// SetMtuNil sets the value for Mtu to be an explicit nil
+func (o *UpdateLogicalNetworkConfig) SetMtuNil() {
+	o.Mtu.Set(nil)
+}
+
+// UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
+func (o *UpdateLogicalNetworkConfig) UnsetMtu() {
+	o.Mtu.Unset()
+}
+
 func (o UpdateLogicalNetworkConfig) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -161,6 +205,9 @@ func (o UpdateLogicalNetworkConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize["vxlan"] = o.Vxlan
 	toSerialize["ipv4"] = o.Ipv4
 	toSerialize["ipv6"] = o.Ipv6
+	if o.Mtu.IsSet() {
+		toSerialize["mtu"] = o.Mtu.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -211,6 +258,7 @@ func (o *UpdateLogicalNetworkConfig) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vxlan")
 		delete(additionalProperties, "ipv4")
 		delete(additionalProperties, "ipv6")
+		delete(additionalProperties, "mtu")
 		o.AdditionalProperties = additionalProperties
 	}
 

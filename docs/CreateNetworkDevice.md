@@ -36,7 +36,6 @@ Name | Type | Description | Notes
 **RackPositionLowerUnit** | Pointer to **NullableInt32** | The lower rack unit position where the device is mounted | [optional] 
 **SerialNumber** | Pointer to **string** | The serial number of the network device | [optional] 
 **OrderIndex** | Pointer to **float32** | The order index for sorting network devices | [optional] 
-**DefaultMtu** | Pointer to **NullableFloat32** | The default Maximum Transmission Unit (MTU) for interfaces on this device | [optional] 
 **Tags** | Pointer to **[]string** | Tags for categorizing and filtering network devices | [optional] 
 **RequiresOsInstall** | Pointer to **bool** | Indicates if the device requires OS installation before provisioning | [optional] 
 **OverwriteWithHostnameFromFetchedSwitch** | Pointer to **NullableBool** | Whether to overwrite the hostname with the one fetched from the device | [optional] 
@@ -1040,41 +1039,6 @@ SetOrderIndex sets OrderIndex field to given value.
 
 HasOrderIndex returns a boolean if a field has been set.
 
-### GetDefaultMtu
-
-`func (o *CreateNetworkDevice) GetDefaultMtu() float32`
-
-GetDefaultMtu returns the DefaultMtu field if non-nil, zero value otherwise.
-
-### GetDefaultMtuOk
-
-`func (o *CreateNetworkDevice) GetDefaultMtuOk() (*float32, bool)`
-
-GetDefaultMtuOk returns a tuple with the DefaultMtu field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultMtu
-
-`func (o *CreateNetworkDevice) SetDefaultMtu(v float32)`
-
-SetDefaultMtu sets DefaultMtu field to given value.
-
-### HasDefaultMtu
-
-`func (o *CreateNetworkDevice) HasDefaultMtu() bool`
-
-HasDefaultMtu returns a boolean if a field has been set.
-
-### SetDefaultMtuNil
-
-`func (o *CreateNetworkDevice) SetDefaultMtuNil(b bool)`
-
- SetDefaultMtuNil sets the value for DefaultMtu to be an explicit nil
-
-### UnsetDefaultMtu
-`func (o *CreateNetworkDevice) UnsetDefaultMtu()`
-
-UnsetDefaultMtu ensures that no value is present for DefaultMtu, not even an explicit nil
 ### GetTags
 
 `func (o *CreateNetworkDevice) GetTags() []string`

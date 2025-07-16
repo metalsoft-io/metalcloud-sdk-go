@@ -18,6 +18,7 @@ api_endpoint_instance_group.go
 api_event.go
 api_extension.go
 api_extension_instance.go
+api_external_connection.go
 api_file_share.go
 api_firmware_baseline.go
 api_firmware_baseline_search.go
@@ -130,6 +131,9 @@ docs/CreateEndpointInstanceGroupNetworkConnection.md
 docs/CreateEndpointInterface.md
 docs/CreateExtension.md
 docs/CreateExtensionInstance.md
+docs/CreateExternalConnection.md
+docs/CreateExternalConnectionInterface.md
+docs/CreateExternalConnectionLogicalNetwork.md
 docs/CreateFileShare.md
 docs/CreateFirmwareBaseline.md
 docs/CreateFirmwareBinary.md
@@ -257,6 +261,7 @@ docs/ExtensionDependency.md
 docs/ExtensionExecutionInfo.md
 docs/ExtensionInfo.md
 docs/ExtensionInfrastructure.md
+docs/ExtensionInfrastructureLogicalNetwork.md
 docs/ExtensionInput.md
 docs/ExtensionInputBoolean.md
 docs/ExtensionInputInteger.md
@@ -267,6 +272,7 @@ docs/ExtensionInputString.md
 docs/ExtensionInstance.md
 docs/ExtensionInstanceAPI.md
 docs/ExtensionInstanceArray.md
+docs/ExtensionInstanceArrayLogicalNetworkDto.md
 docs/ExtensionInstanceConfiguration.md
 docs/ExtensionInstancePaginatedList.md
 docs/ExtensionOutput.md
@@ -278,6 +284,13 @@ docs/ExtensionTaskOptions.md
 docs/ExtensionTaskSsh.md
 docs/ExtensionTaskWebhook.md
 docs/ExtensionVariable.md
+docs/ExternalConnection.md
+docs/ExternalConnectionAPI.md
+docs/ExternalConnectionInterface.md
+docs/ExternalConnectionInterfacePaginatedList.md
+docs/ExternalConnectionLogicalNetwork.md
+docs/ExternalConnectionLogicalNetworkPaginatedList.md
+docs/ExternalConnectionPaginatedList.md
 docs/FabricStatus.md
 docs/FabricTopologyType.md
 docs/FabricType.md
@@ -405,6 +418,8 @@ docs/NetworkDeviceDefaultSecretsPaginatedList.md
 docs/NetworkDeviceDriver.md
 docs/NetworkDeviceEndpointInterface.md
 docs/NetworkDeviceEndpointInterfaces.md
+docs/NetworkDeviceExternalConnectionInterface.md
+docs/NetworkDeviceExternalConnectionInterfaces.md
 docs/NetworkDeviceInterfaceDto.md
 docs/NetworkDeviceInterfacesPaginatedList.md
 docs/NetworkDevicePaginatedList.md
@@ -635,6 +650,8 @@ docs/UpdateEndpoint.md
 docs/UpdateEndpointInterface.md
 docs/UpdateExtension.md
 docs/UpdateExtensionInstance.md
+docs/UpdateExternalConnection.md
+docs/UpdateExternalConnectionInterface.md
 docs/UpdateFileShare.md
 docs/UpdateFileShareMeta.md
 docs/UpdateFirmwareBaseline.md
@@ -830,6 +847,9 @@ model_create_endpoint_instance_group_network_connection.go
 model_create_endpoint_interface.go
 model_create_extension.go
 model_create_extension_instance.go
+model_create_external_connection.go
+model_create_external_connection_interface.go
+model_create_external_connection_logical_network.go
 model_create_file_share.go
 model_create_firmware_baseline.go
 model_create_firmware_binary.go
@@ -947,6 +967,7 @@ model_extension_dependency.go
 model_extension_execution_info.go
 model_extension_info.go
 model_extension_infrastructure.go
+model_extension_infrastructure_logical_network.go
 model_extension_input.go
 model_extension_input_boolean.go
 model_extension_input_integer.go
@@ -956,6 +977,7 @@ model_extension_input_server_type.go
 model_extension_input_string.go
 model_extension_instance.go
 model_extension_instance_array.go
+model_extension_instance_array_logical_network_dto.go
 model_extension_instance_configuration.go
 model_extension_instance_paginated_list.go
 model_extension_output.go
@@ -967,6 +989,12 @@ model_extension_task_options.go
 model_extension_task_ssh.go
 model_extension_task_webhook.go
 model_extension_variable.go
+model_external_connection.go
+model_external_connection_interface.go
+model_external_connection_interface_paginated_list.go
+model_external_connection_logical_network.go
+model_external_connection_logical_network_paginated_list.go
+model_external_connection_paginated_list.go
 model_fabric_status.go
 model_fabric_topology_type.go
 model_fabric_type.go
@@ -1082,6 +1110,8 @@ model_network_device_default_secrets_paginated_list.go
 model_network_device_driver.go
 model_network_device_endpoint_interface.go
 model_network_device_endpoint_interfaces.go
+model_network_device_external_connection_interface.go
+model_network_device_external_connection_interfaces.go
 model_network_device_interface_dto.go
 model_network_device_interfaces_paginated_list.go
 model_network_device_paginated_list.go
@@ -1293,6 +1323,8 @@ model_update_endpoint.go
 model_update_endpoint_interface.go
 model_update_extension.go
 model_update_extension_instance.go
+model_update_external_connection.go
+model_update_external_connection_interface.go
 model_update_file_share.go
 model_update_file_share_meta.go
 model_update_firmware_baseline.go
@@ -1432,6 +1464,7 @@ test/api_endpoint_test.go
 test/api_event_test.go
 test/api_extension_instance_test.go
 test/api_extension_test.go
+test/api_external_connection_test.go
 test/api_file_share_test.go
 test/api_firmware_baseline_search_test.go
 test/api_firmware_baseline_test.go

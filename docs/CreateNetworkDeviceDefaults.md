@@ -18,7 +18,6 @@ Name | Type | Description | Notes
 **VtepAddressIpv4** | Pointer to **string** | VTEP (VXLAN Tunnel Endpoint) IPv4 address. | [optional] 
 **VtepAddressIpv6** | Pointer to **string** | VTEP (VXLAN Tunnel Endpoint) IPv6 address. | [optional] 
 **OrderIndex** | Pointer to **float32** | Order index used for sorting or prioritization. | [optional] 
-**DefaultMtu** | Pointer to **float32** | Default MTU size, must be between 68 and 10000. | [optional] 
 **VolumeTemplateId** | Pointer to **float32** | ID of the volume template associated with the network device. | [optional] 
 **MlagPartnerHostname** | Pointer to **string** | MLAG partner hostname. Can contain letters, numbers, dots, underscores, and hyphens (1-63 characters). | [optional] 
 **IsPartOfMlagPair** | Pointer to **float32** | Indicates whether the device is part of an MLAG pair (0 &#x3D; No, 1 &#x3D; Yes). | [optional] 
@@ -384,31 +383,6 @@ SetOrderIndex sets OrderIndex field to given value.
 `func (o *CreateNetworkDeviceDefaults) HasOrderIndex() bool`
 
 HasOrderIndex returns a boolean if a field has been set.
-
-### GetDefaultMtu
-
-`func (o *CreateNetworkDeviceDefaults) GetDefaultMtu() float32`
-
-GetDefaultMtu returns the DefaultMtu field if non-nil, zero value otherwise.
-
-### GetDefaultMtuOk
-
-`func (o *CreateNetworkDeviceDefaults) GetDefaultMtuOk() (*float32, bool)`
-
-GetDefaultMtuOk returns a tuple with the DefaultMtu field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultMtu
-
-`func (o *CreateNetworkDeviceDefaults) SetDefaultMtu(v float32)`
-
-SetDefaultMtu sets DefaultMtu field to given value.
-
-### HasDefaultMtu
-
-`func (o *CreateNetworkDeviceDefaults) HasDefaultMtu() bool`
-
-HasDefaultMtu returns a boolean if a field has been set.
 
 ### GetVolumeTemplateId
 

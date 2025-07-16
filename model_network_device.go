@@ -105,8 +105,6 @@ type NetworkDevice struct {
 	MlagDomainId float32 `json:"mlagDomainId"`
 	// Quarantine VLAN ID
 	QuarantineVlan float32 `json:"quarantineVlan"`
-	// Default MTU
-	DefaultMtu float32 `json:"defaultMtu"`
 	// Variables materialized for OS assets
 	VariablesMaterializedForOSAssets map[string]interface{} `json:"variablesMaterializedForOSAssets"`
 	// Secrets materialized for OS assets
@@ -128,7 +126,7 @@ type _NetworkDevice NetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressMask string, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, defaultMtu float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
+func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressMask string, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
 	this := NetworkDevice{}
 	this.Id = id
 	this.Revision = revision
@@ -170,7 +168,6 @@ func NewNetworkDevice(id string, revision float32, status string, siteId float32
 	this.MlagSystemMac = mlagSystemMac
 	this.MlagDomainId = mlagDomainId
 	this.QuarantineVlan = quarantineVlan
-	this.DefaultMtu = defaultMtu
 	this.VariablesMaterializedForOSAssets = variablesMaterializedForOSAssets
 	this.SecretsMaterializedForOSAssets = secretsMaterializedForOSAssets
 	this.BootstrapReadinessCheckResult = bootstrapReadinessCheckResult
@@ -1210,30 +1207,6 @@ func (o *NetworkDevice) SetQuarantineVlan(v float32) {
 	o.QuarantineVlan = v
 }
 
-// GetDefaultMtu returns the DefaultMtu field value
-func (o *NetworkDevice) GetDefaultMtu() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.DefaultMtu
-}
-
-// GetDefaultMtuOk returns a tuple with the DefaultMtu field value
-// and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetDefaultMtuOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DefaultMtu, true
-}
-
-// SetDefaultMtu sets field value
-func (o *NetworkDevice) SetDefaultMtu(v float32) {
-	o.DefaultMtu = v
-}
-
 // GetVariablesMaterializedForOSAssets returns the VariablesMaterializedForOSAssets field value
 func (o *NetworkDevice) GetVariablesMaterializedForOSAssets() map[string]interface{} {
 	if o == nil {
@@ -1450,7 +1423,6 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["mlagSystemMac"] = o.MlagSystemMac
 	toSerialize["mlagDomainId"] = o.MlagDomainId
 	toSerialize["quarantineVlan"] = o.QuarantineVlan
-	toSerialize["defaultMtu"] = o.DefaultMtu
 	toSerialize["variablesMaterializedForOSAssets"] = o.VariablesMaterializedForOSAssets
 	toSerialize["secretsMaterializedForOSAssets"] = o.SecretsMaterializedForOSAssets
 	toSerialize["bootstrapReadinessCheckResult"] = o.BootstrapReadinessCheckResult
@@ -1514,7 +1486,6 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		"mlagSystemMac",
 		"mlagDomainId",
 		"quarantineVlan",
-		"defaultMtu",
 		"variablesMaterializedForOSAssets",
 		"secretsMaterializedForOSAssets",
 		"bootstrapReadinessCheckResult",
@@ -1590,7 +1561,6 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "mlagSystemMac")
 		delete(additionalProperties, "mlagDomainId")
 		delete(additionalProperties, "quarantineVlan")
-		delete(additionalProperties, "defaultMtu")
 		delete(additionalProperties, "variablesMaterializedForOSAssets")
 		delete(additionalProperties, "secretsMaterializedForOSAssets")
 		delete(additionalProperties, "bootstrapReadinessCheckResult")

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Annotations** | Pointer to **map[string]string** |  | [optional] 
 **LogicalNetworkProfileId** | **int32** |  | 
 **InfrastructureId** | Pointer to **NullableInt32** |  | [optional] 
+**Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
 
 ## Methods
 
@@ -159,6 +160,41 @@ HasInfrastructureId returns a boolean if a field has been set.
 `func (o *CreateLogicalNetworkFromProfile) UnsetInfrastructureId()`
 
 UnsetInfrastructureId ensures that no value is present for InfrastructureId, not even an explicit nil
+### GetMtu
+
+`func (o *CreateLogicalNetworkFromProfile) GetMtu() int32`
+
+GetMtu returns the Mtu field if non-nil, zero value otherwise.
+
+### GetMtuOk
+
+`func (o *CreateLogicalNetworkFromProfile) GetMtuOk() (*int32, bool)`
+
+GetMtuOk returns a tuple with the Mtu field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMtu
+
+`func (o *CreateLogicalNetworkFromProfile) SetMtu(v int32)`
+
+SetMtu sets Mtu field to given value.
+
+### HasMtu
+
+`func (o *CreateLogicalNetworkFromProfile) HasMtu() bool`
+
+HasMtu returns a boolean if a field has been set.
+
+### SetMtuNil
+
+`func (o *CreateLogicalNetworkFromProfile) SetMtuNil(b bool)`
+
+ SetMtuNil sets the value for Mtu to be an explicit nil
+
+### UnsetMtu
+`func (o *CreateLogicalNetworkFromProfile) UnsetMtu()`
+
+UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -85,8 +85,6 @@ type CreateNetworkDevice struct {
 	SerialNumber *string `json:"serialNumber,omitempty"`
 	// The order index for sorting network devices
 	OrderIndex *float32 `json:"orderIndex,omitempty"`
-	// The default Maximum Transmission Unit (MTU) for interfaces on this device
-	DefaultMtu NullableFloat32 `json:"defaultMtu,omitempty"`
 	// Tags for categorizing and filtering network devices
 	Tags []string `json:"tags,omitempty"`
 	// Indicates if the device requires OS installation before provisioning
@@ -1295,48 +1293,6 @@ func (o *CreateNetworkDevice) SetOrderIndex(v float32) {
 	o.OrderIndex = &v
 }
 
-// GetDefaultMtu returns the DefaultMtu field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateNetworkDevice) GetDefaultMtu() float32 {
-	if o == nil || IsNil(o.DefaultMtu.Get()) {
-		var ret float32
-		return ret
-	}
-	return *o.DefaultMtu.Get()
-}
-
-// GetDefaultMtuOk returns a tuple with the DefaultMtu field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateNetworkDevice) GetDefaultMtuOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DefaultMtu.Get(), o.DefaultMtu.IsSet()
-}
-
-// HasDefaultMtu returns a boolean if a field has been set.
-func (o *CreateNetworkDevice) HasDefaultMtu() bool {
-	if o != nil && o.DefaultMtu.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultMtu gets a reference to the given NullableFloat32 and assigns it to the DefaultMtu field.
-func (o *CreateNetworkDevice) SetDefaultMtu(v float32) {
-	o.DefaultMtu.Set(&v)
-}
-// SetDefaultMtuNil sets the value for DefaultMtu to be an explicit nil
-func (o *CreateNetworkDevice) SetDefaultMtuNil() {
-	o.DefaultMtu.Set(nil)
-}
-
-// UnsetDefaultMtu ensures that no value is present for DefaultMtu, not even an explicit nil
-func (o *CreateNetworkDevice) UnsetDefaultMtu() {
-	o.DefaultMtu.Unset()
-}
-
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateNetworkDevice) GetTags() []string {
 	if o == nil {
@@ -1542,9 +1498,6 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OrderIndex) {
 		toSerialize["orderIndex"] = o.OrderIndex
 	}
-	if o.DefaultMtu.IsSet() {
-		toSerialize["defaultMtu"] = o.DefaultMtu.Get()
-	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -1632,7 +1585,6 @@ func (o *CreateNetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "rackPositionLowerUnit")
 		delete(additionalProperties, "serialNumber")
 		delete(additionalProperties, "orderIndex")
-		delete(additionalProperties, "defaultMtu")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "requiresOsInstall")
 		delete(additionalProperties, "overwriteWithHostnameFromFetchedSwitch")

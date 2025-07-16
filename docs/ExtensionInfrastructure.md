@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InstanceArrays** | Pointer to [**[]ExtensionInstanceArray**](ExtensionInstanceArray.md) | Instance array details for the infrastructure requirement. | [optional] 
 **SharedDrives** | Pointer to [**[]ExtensionSharedDrive**](ExtensionSharedDrive.md) | Shared drive details for the infrastructure requirement. | [optional] 
+**LogicalNetworks** | Pointer to [**[]ExtensionInfrastructureLogicalNetwork**](ExtensionInfrastructureLogicalNetwork.md) | Logical networks for the infrastructure requirement. | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetSharedDrives sets SharedDrives field to given value.
 `func (o *ExtensionInfrastructure) HasSharedDrives() bool`
 
 HasSharedDrives returns a boolean if a field has been set.
+
+### GetLogicalNetworks
+
+`func (o *ExtensionInfrastructure) GetLogicalNetworks() []ExtensionInfrastructureLogicalNetwork`
+
+GetLogicalNetworks returns the LogicalNetworks field if non-nil, zero value otherwise.
+
+### GetLogicalNetworksOk
+
+`func (o *ExtensionInfrastructure) GetLogicalNetworksOk() (*[]ExtensionInfrastructureLogicalNetwork, bool)`
+
+GetLogicalNetworksOk returns a tuple with the LogicalNetworks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogicalNetworks
+
+`func (o *ExtensionInfrastructure) SetLogicalNetworks(v []ExtensionInfrastructureLogicalNetwork)`
+
+SetLogicalNetworks sets LogicalNetworks field to given value.
+
+### HasLogicalNetworks
+
+`func (o *ExtensionInfrastructure) HasLogicalNetworks() bool`
+
+HasLogicalNetworks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

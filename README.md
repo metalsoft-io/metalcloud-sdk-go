@@ -200,6 +200,21 @@ Class | Method | HTTP request | Description
 *ExtensionInstanceAPI* | [**GetExtensionInstance**](docs/ExtensionInstanceAPI.md#getextensioninstance) | **Get** /api/v2/extension-instances/{extensionInstanceId} | Get extension instance details
 *ExtensionInstanceAPI* | [**GetExtensionInstances**](docs/ExtensionInstanceAPI.md#getextensioninstances) | **Get** /api/v2/infrastructures/{infrastructureId}/extension-instances | Get extension instances list
 *ExtensionInstanceAPI* | [**UpdateExtensionInstance**](docs/ExtensionInstanceAPI.md#updateextensioninstance) | **Patch** /api/v2/extension-instances/{extensionInstanceId}/config | Update extension instance configuration
+*ExternalConnectionAPI* | [**CreateExternalConnection**](docs/ExternalConnectionAPI.md#createexternalconnection) | **Post** /api/v2/external-connections | Create a new external connection
+*ExternalConnectionAPI* | [**CreateExternalConnectionInterface**](docs/ExternalConnectionAPI.md#createexternalconnectioninterface) | **Post** /api/v2/external-connections/{externalConnectionId}/interfaces | Create a new external connection interface
+*ExternalConnectionAPI* | [**CreateExternalConnectionLogicalNetwork**](docs/ExternalConnectionAPI.md#createexternalconnectionlogicalnetwork) | **Post** /api/v2/external-connections/{externalConnectionId}/logical-networks | Create a new external connection logical network
+*ExternalConnectionAPI* | [**DeleteExternalConnection**](docs/ExternalConnectionAPI.md#deleteexternalconnection) | **Delete** /api/v2/external-connections/{externalConnectionId} | Delete external connection
+*ExternalConnectionAPI* | [**DeleteExternalConnectionInterface**](docs/ExternalConnectionAPI.md#deleteexternalconnectioninterface) | **Delete** /api/v2/external-connections/{externalConnectionId}/interfaces/{externalConnectionInterfaceId} | Delete external connection interface
+*ExternalConnectionAPI* | [**DeleteExternalConnectionLogicalNetwork**](docs/ExternalConnectionAPI.md#deleteexternalconnectionlogicalnetwork) | **Delete** /api/v2/external-connections/{externalConnectionId}/logical-networks/{id} | Start deletion of an external connection logical network
+*ExternalConnectionAPI* | [**GetExternalConnectionById**](docs/ExternalConnectionAPI.md#getexternalconnectionbyid) | **Get** /api/v2/external-connections/{externalConnectionId} | Get external connection details
+*ExternalConnectionAPI* | [**GetExternalConnectionInterfaceById**](docs/ExternalConnectionAPI.md#getexternalconnectioninterfacebyid) | **Get** /api/v2/external-connections/{externalConnectionId}/interfaces/{externalConnectionInterfaceId} | Get external connection interface details
+*ExternalConnectionAPI* | [**GetExternalConnectionInterfaces**](docs/ExternalConnectionAPI.md#getexternalconnectioninterfaces) | **Get** /api/v2/external-connections/{externalConnectionId}/interfaces | List external connection interfaces
+*ExternalConnectionAPI* | [**GetExternalConnectionLogicalNetworkById**](docs/ExternalConnectionAPI.md#getexternalconnectionlogicalnetworkbyid) | **Get** /api/v2/external-connections/{externalConnectionId}/logical-networks/{id} | Get an external connection logical network by ID
+*ExternalConnectionAPI* | [**GetExternalConnectionLogicalNetworks**](docs/ExternalConnectionAPI.md#getexternalconnectionlogicalnetworks) | **Get** /api/v2/external-connections/{externalConnectionId}/logical-networks | Get all logical networks of an external connection
+*ExternalConnectionAPI* | [**GetExternalConnections**](docs/ExternalConnectionAPI.md#getexternalconnections) | **Get** /api/v2/external-connections | List external connections
+*ExternalConnectionAPI* | [**GetNetworkDeviceInterfacesAndExternalConnections**](docs/ExternalConnectionAPI.md#getnetworkdeviceinterfacesandexternalconnections) | **Get** /api/v2/external-connections/network-devices/{networkDeviceId}/interfaces | List network device interfaces associated with external connections
+*ExternalConnectionAPI* | [**UpdateExternalConnection**](docs/ExternalConnectionAPI.md#updateexternalconnection) | **Patch** /api/v2/external-connections/{externalConnectionId} | Update external connection
+*ExternalConnectionAPI* | [**UpdateExternalConnectionInterface**](docs/ExternalConnectionAPI.md#updateexternalconnectioninterface) | **Patch** /api/v2/external-connections/{externalConnectionId}/interfaces/{externalConnectionInterfaceId} | Update external connection interface
 *FileShareAPI* | [**CreateInfrastructureFileShare**](docs/FileShareAPI.md#createinfrastructurefileshare) | **Post** /api/v2/infrastructures/{infrastructureId}/file-shares | Creates a File Share
 *FileShareAPI* | [**DeleteFileShare**](docs/FileShareAPI.md#deletefileshare) | **Delete** /api/v2/infrastructures/{infrastructureId}/file-shares/{fileShareId} | Deletes a File Share
 *FileShareAPI* | [**GetFileShare**](docs/FileShareAPI.md#getfileshare) | **Get** /api/v2/file-shares/{fileShareId} | Get File Share information
@@ -706,6 +721,9 @@ Class | Method | HTTP request | Description
  - [CreateEndpointInterface](docs/CreateEndpointInterface.md)
  - [CreateExtension](docs/CreateExtension.md)
  - [CreateExtensionInstance](docs/CreateExtensionInstance.md)
+ - [CreateExternalConnection](docs/CreateExternalConnection.md)
+ - [CreateExternalConnectionInterface](docs/CreateExternalConnectionInterface.md)
+ - [CreateExternalConnectionLogicalNetwork](docs/CreateExternalConnectionLogicalNetwork.md)
  - [CreateFileShare](docs/CreateFileShare.md)
  - [CreateFirmwareBaseline](docs/CreateFirmwareBaseline.md)
  - [CreateFirmwareBinary](docs/CreateFirmwareBinary.md)
@@ -823,6 +841,7 @@ Class | Method | HTTP request | Description
  - [ExtensionExecutionInfo](docs/ExtensionExecutionInfo.md)
  - [ExtensionInfo](docs/ExtensionInfo.md)
  - [ExtensionInfrastructure](docs/ExtensionInfrastructure.md)
+ - [ExtensionInfrastructureLogicalNetwork](docs/ExtensionInfrastructureLogicalNetwork.md)
  - [ExtensionInput](docs/ExtensionInput.md)
  - [ExtensionInputBoolean](docs/ExtensionInputBoolean.md)
  - [ExtensionInputInteger](docs/ExtensionInputInteger.md)
@@ -832,6 +851,7 @@ Class | Method | HTTP request | Description
  - [ExtensionInputString](docs/ExtensionInputString.md)
  - [ExtensionInstance](docs/ExtensionInstance.md)
  - [ExtensionInstanceArray](docs/ExtensionInstanceArray.md)
+ - [ExtensionInstanceArrayLogicalNetworkDto](docs/ExtensionInstanceArrayLogicalNetworkDto.md)
  - [ExtensionInstanceConfiguration](docs/ExtensionInstanceConfiguration.md)
  - [ExtensionInstancePaginatedList](docs/ExtensionInstancePaginatedList.md)
  - [ExtensionOutput](docs/ExtensionOutput.md)
@@ -843,6 +863,12 @@ Class | Method | HTTP request | Description
  - [ExtensionTaskSsh](docs/ExtensionTaskSsh.md)
  - [ExtensionTaskWebhook](docs/ExtensionTaskWebhook.md)
  - [ExtensionVariable](docs/ExtensionVariable.md)
+ - [ExternalConnection](docs/ExternalConnection.md)
+ - [ExternalConnectionInterface](docs/ExternalConnectionInterface.md)
+ - [ExternalConnectionInterfacePaginatedList](docs/ExternalConnectionInterfacePaginatedList.md)
+ - [ExternalConnectionLogicalNetwork](docs/ExternalConnectionLogicalNetwork.md)
+ - [ExternalConnectionLogicalNetworkPaginatedList](docs/ExternalConnectionLogicalNetworkPaginatedList.md)
+ - [ExternalConnectionPaginatedList](docs/ExternalConnectionPaginatedList.md)
  - [FabricStatus](docs/FabricStatus.md)
  - [FabricTopologyType](docs/FabricTopologyType.md)
  - [FabricType](docs/FabricType.md)
@@ -958,6 +984,8 @@ Class | Method | HTTP request | Description
  - [NetworkDeviceDriver](docs/NetworkDeviceDriver.md)
  - [NetworkDeviceEndpointInterface](docs/NetworkDeviceEndpointInterface.md)
  - [NetworkDeviceEndpointInterfaces](docs/NetworkDeviceEndpointInterfaces.md)
+ - [NetworkDeviceExternalConnectionInterface](docs/NetworkDeviceExternalConnectionInterface.md)
+ - [NetworkDeviceExternalConnectionInterfaces](docs/NetworkDeviceExternalConnectionInterfaces.md)
  - [NetworkDeviceInterfaceDto](docs/NetworkDeviceInterfaceDto.md)
  - [NetworkDeviceInterfacesPaginatedList](docs/NetworkDeviceInterfacesPaginatedList.md)
  - [NetworkDevicePaginatedList](docs/NetworkDevicePaginatedList.md)
@@ -1169,6 +1197,8 @@ Class | Method | HTTP request | Description
  - [UpdateEndpointInterface](docs/UpdateEndpointInterface.md)
  - [UpdateExtension](docs/UpdateExtension.md)
  - [UpdateExtensionInstance](docs/UpdateExtensionInstance.md)
+ - [UpdateExternalConnection](docs/UpdateExternalConnection.md)
+ - [UpdateExternalConnectionInterface](docs/UpdateExternalConnectionInterface.md)
  - [UpdateFileShare](docs/UpdateFileShare.md)
  - [UpdateFileShareMeta](docs/UpdateFileShareMeta.md)
  - [UpdateFirmwareBaseline](docs/UpdateFirmwareBaseline.md)
