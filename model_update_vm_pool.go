@@ -36,6 +36,12 @@ type UpdateVMPool struct {
 	Certificate *string `json:"certificate,omitempty"`
 	// Private key of the VM Pool
 	PrivateKey *string `json:"privateKey,omitempty"`
+	// Username of the VM Pool
+	Username *string `json:"username,omitempty"`
+	// Password of the VM Pool
+	Password *string `json:"password,omitempty"`
+	// Options for the VM Pool
+	Options *UpdateVMPoolOptions `json:"options,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -314,6 +320,102 @@ func (o *UpdateVMPool) SetPrivateKey(v string) {
 	o.PrivateKey = &v
 }
 
+// GetUsername returns the Username field value if set, zero value otherwise.
+func (o *UpdateVMPool) GetUsername() string {
+	if o == nil || IsNil(o.Username) {
+		var ret string
+		return ret
+	}
+	return *o.Username
+}
+
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateVMPool) GetUsernameOk() (*string, bool) {
+	if o == nil || IsNil(o.Username) {
+		return nil, false
+	}
+	return o.Username, true
+}
+
+// HasUsername returns a boolean if a field has been set.
+func (o *UpdateVMPool) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
+func (o *UpdateVMPool) SetUsername(v string) {
+	o.Username = &v
+}
+
+// GetPassword returns the Password field value if set, zero value otherwise.
+func (o *UpdateVMPool) GetPassword() string {
+	if o == nil || IsNil(o.Password) {
+		var ret string
+		return ret
+	}
+	return *o.Password
+}
+
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateVMPool) GetPasswordOk() (*string, bool) {
+	if o == nil || IsNil(o.Password) {
+		return nil, false
+	}
+	return o.Password, true
+}
+
+// HasPassword returns a boolean if a field has been set.
+func (o *UpdateVMPool) HasPassword() bool {
+	if o != nil && !IsNil(o.Password) {
+		return true
+	}
+
+	return false
+}
+
+// SetPassword gets a reference to the given string and assigns it to the Password field.
+func (o *UpdateVMPool) SetPassword(v string) {
+	o.Password = &v
+}
+
+// GetOptions returns the Options field value if set, zero value otherwise.
+func (o *UpdateVMPool) GetOptions() UpdateVMPoolOptions {
+	if o == nil || IsNil(o.Options) {
+		var ret UpdateVMPoolOptions
+		return ret
+	}
+	return *o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateVMPool) GetOptionsOk() (*UpdateVMPoolOptions, bool) {
+	if o == nil || IsNil(o.Options) {
+		return nil, false
+	}
+	return o.Options, true
+}
+
+// HasOptions returns a boolean if a field has been set.
+func (o *UpdateVMPool) HasOptions() bool {
+	if o != nil && !IsNil(o.Options) {
+		return true
+	}
+
+	return false
+}
+
+// SetOptions gets a reference to the given UpdateVMPoolOptions and assigns it to the Options field.
+func (o *UpdateVMPool) SetOptions(v UpdateVMPoolOptions) {
+	o.Options = &v
+}
+
 func (o UpdateVMPool) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -348,6 +450,15 @@ func (o UpdateVMPool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PrivateKey) {
 		toSerialize["privateKey"] = o.PrivateKey
 	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.Options) {
+		toSerialize["options"] = o.Options
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -378,6 +489,9 @@ func (o *UpdateVMPool) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "managementPort")
 		delete(additionalProperties, "certificate")
 		delete(additionalProperties, "privateKey")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "options")
 		o.AdditionalProperties = additionalProperties
 	}
 

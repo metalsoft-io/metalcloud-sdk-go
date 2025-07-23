@@ -32,7 +32,7 @@ type NetworkEndpointGroupLogicalNetwork struct {
 	// The redundancy configuration
 	Redundancy NullableRedundancyConfig `json:"redundancy,omitempty"`
 	// DNS records that are supposed to be provisioned for the server instance group.
-	Dns NullableDnsRecordsEndpointGroupLogicalNetworkDto `json:"dns,omitempty"`
+	Dns NullableDnsRecordsEndpointGroupLogicalNetwork `json:"dns,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	// The network endpoint group ID.
@@ -210,9 +210,9 @@ func (o *NetworkEndpointGroupLogicalNetwork) UnsetRedundancy() {
 }
 
 // GetDns returns the Dns field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *NetworkEndpointGroupLogicalNetwork) GetDns() DnsRecordsEndpointGroupLogicalNetworkDto {
+func (o *NetworkEndpointGroupLogicalNetwork) GetDns() DnsRecordsEndpointGroupLogicalNetwork {
 	if o == nil || IsNil(o.Dns.Get()) {
-		var ret DnsRecordsEndpointGroupLogicalNetworkDto
+		var ret DnsRecordsEndpointGroupLogicalNetwork
 		return ret
 	}
 	return *o.Dns.Get()
@@ -221,7 +221,7 @@ func (o *NetworkEndpointGroupLogicalNetwork) GetDns() DnsRecordsEndpointGroupLog
 // GetDnsOk returns a tuple with the Dns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NetworkEndpointGroupLogicalNetwork) GetDnsOk() (*DnsRecordsEndpointGroupLogicalNetworkDto, bool) {
+func (o *NetworkEndpointGroupLogicalNetwork) GetDnsOk() (*DnsRecordsEndpointGroupLogicalNetwork, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -237,8 +237,8 @@ func (o *NetworkEndpointGroupLogicalNetwork) HasDns() bool {
 	return false
 }
 
-// SetDns gets a reference to the given NullableDnsRecordsEndpointGroupLogicalNetworkDto and assigns it to the Dns field.
-func (o *NetworkEndpointGroupLogicalNetwork) SetDns(v DnsRecordsEndpointGroupLogicalNetworkDto) {
+// SetDns gets a reference to the given NullableDnsRecordsEndpointGroupLogicalNetwork and assigns it to the Dns field.
+func (o *NetworkEndpointGroupLogicalNetwork) SetDns(v DnsRecordsEndpointGroupLogicalNetwork) {
 	o.Dns.Set(&v)
 }
 // SetDnsNil sets the value for Dns to be an explicit nil

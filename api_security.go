@@ -24,6 +24,114 @@ import (
 // SecurityAPIService SecurityAPI service
 type SecurityAPIService service
 
+type SecurityAPICreatePermissionRequest struct {
+	ctx context.Context
+	ApiService *SecurityAPIService
+	createPermission *CreatePermission
+}
+
+func (r SecurityAPICreatePermissionRequest) CreatePermission(createPermission CreatePermission) SecurityAPICreatePermissionRequest {
+	r.createPermission = &createPermission
+	return r
+}
+
+func (r SecurityAPICreatePermissionRequest) Execute() (*Permission, *http.Response, error) {
+	return r.ApiService.CreatePermissionExecute(r)
+}
+
+/*
+CreatePermission Create a new permission
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return SecurityAPICreatePermissionRequest
+*/
+func (a *SecurityAPIService) CreatePermission(ctx context.Context) SecurityAPICreatePermissionRequest {
+	return SecurityAPICreatePermissionRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return Permission
+func (a *SecurityAPIService) CreatePermissionExecute(r SecurityAPICreatePermissionRequest) (*Permission, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Permission
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityAPIService.CreatePermission")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/permissions"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createPermission == nil {
+		return localVarReturnValue, nil, reportError("createPermission is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createPermission
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type SecurityAPICreateRoleRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
@@ -130,6 +238,96 @@ func (a *SecurityAPIService) CreateRoleExecute(r SecurityAPICreateRoleRequest) (
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SecurityAPIDeletePermissionRequest struct {
+	ctx context.Context
+	ApiService *SecurityAPIService
+	permissionName string
+}
+
+func (r SecurityAPIDeletePermissionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeletePermissionExecute(r)
+}
+
+/*
+DeletePermission Delete a permission by name
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param permissionName
+ @return SecurityAPIDeletePermissionRequest
+*/
+func (a *SecurityAPIService) DeletePermission(ctx context.Context, permissionName string) SecurityAPIDeletePermissionRequest {
+	return SecurityAPIDeletePermissionRequest{
+		ApiService: a,
+		ctx: ctx,
+		permissionName: permissionName,
+	}
+}
+
+// Execute executes the request
+func (a *SecurityAPIService) DeletePermissionExecute(r SecurityAPIDeletePermissionRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityAPIService.DeletePermission")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/permissions/{permissionName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"permissionName"+"}", url.PathEscape(parameterValueToString(r.permissionName, "permissionName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type SecurityAPIDeleteRoleRequest struct {

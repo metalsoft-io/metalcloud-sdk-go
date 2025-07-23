@@ -96,10 +96,9 @@ func Test_sdk_ExternalConnectionAPIService(t *testing.T) {
 		var externalConnectionId int32
 		var id int32
 
-		resp, httpRes, err := apiClient.ExternalConnectionAPI.DeleteExternalConnectionLogicalNetwork(context.Background(), externalConnectionId, id).Execute()
+		httpRes, err := apiClient.ExternalConnectionAPI.DeleteExternalConnectionLogicalNetwork(context.Background(), externalConnectionId, id).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

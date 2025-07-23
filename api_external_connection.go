@@ -569,12 +569,12 @@ type ExternalConnectionAPIDeleteExternalConnectionLogicalNetworkRequest struct {
 	id int32
 }
 
-func (r ExternalConnectionAPIDeleteExternalConnectionLogicalNetworkRequest) Execute() (*ExternalConnectionLogicalNetwork, *http.Response, error) {
+func (r ExternalConnectionAPIDeleteExternalConnectionLogicalNetworkRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteExternalConnectionLogicalNetworkExecute(r)
 }
 
 /*
-DeleteExternalConnectionLogicalNetwork Start deletion of an external connection logical network
+DeleteExternalConnectionLogicalNetwork Start deletion of an external connection logical network. Only those in pending_activation state will be deleted.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param externalConnectionId The ID of the external connection
@@ -591,18 +591,16 @@ func (a *ExternalConnectionAPIService) DeleteExternalConnectionLogicalNetwork(ct
 }
 
 // Execute executes the request
-//  @return ExternalConnectionLogicalNetwork
-func (a *ExternalConnectionAPIService) DeleteExternalConnectionLogicalNetworkExecute(r ExternalConnectionAPIDeleteExternalConnectionLogicalNetworkRequest) (*ExternalConnectionLogicalNetwork, *http.Response, error) {
+func (a *ExternalConnectionAPIService) DeleteExternalConnectionLogicalNetworkExecute(r ExternalConnectionAPIDeleteExternalConnectionLogicalNetworkRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ExternalConnectionLogicalNetwork
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExternalConnectionAPIService.DeleteExternalConnectionLogicalNetwork")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/external-connections/{externalConnectionId}/logical-networks/{id}"
@@ -623,7 +621,7 @@ func (a *ExternalConnectionAPIService) DeleteExternalConnectionLogicalNetworkExe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -632,19 +630,19 @@ func (a *ExternalConnectionAPIService) DeleteExternalConnectionLogicalNetworkExe
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -652,19 +650,10 @@ func (a *ExternalConnectionAPIService) DeleteExternalConnectionLogicalNetworkExe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ExternalConnectionAPIGetExternalConnectionByIdRequest struct {

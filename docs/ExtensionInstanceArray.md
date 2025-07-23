@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Label** | **string** | Label of the instance array. | 
 **InstanceCount** | **string** | Instance count value or reference to variable. | 
 **ServerType** | **string** | Server type variable reference. | 
-**OsTemplate** | **string** | OS template variable reference. | 
+**OsTemplate** | Pointer to **string** | OS template variable reference. | [optional] 
 **ConnectedSharedDrives** | Pointer to **[]string** | Connected shared drive arrays. | [optional] 
 **CustomVariables** | Pointer to [**[]CustomVariable**](CustomVariable.md) | Custom variables. The value may be a reference to an input variable. | [optional] 
 **Dependencies** | Pointer to **[]string** | Labels of instance arrays this one depends on. | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewExtensionInstanceArray
 
-`func NewExtensionInstanceArray(label string, instanceCount string, serverType string, osTemplate string, ) *ExtensionInstanceArray`
+`func NewExtensionInstanceArray(label string, instanceCount string, serverType string, ) *ExtensionInstanceArray`
 
 NewExtensionInstanceArray instantiates a new ExtensionInstanceArray object
 This constructor will assign default values to properties that have it defined,
@@ -111,6 +111,11 @@ and a boolean to check if the value has been set.
 
 SetOsTemplate sets OsTemplate field to given value.
 
+### HasOsTemplate
+
+`func (o *ExtensionInstanceArray) HasOsTemplate() bool`
+
+HasOsTemplate returns a boolean if a field has been set.
 
 ### GetConnectedSharedDrives
 

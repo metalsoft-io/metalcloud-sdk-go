@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**CreateExternalConnectionLogicalNetwork**](ExternalConnectionAPI.md#CreateExternalConnectionLogicalNetwork) | **Post** /api/v2/external-connections/{externalConnectionId}/logical-networks | Create a new external connection logical network
 [**DeleteExternalConnection**](ExternalConnectionAPI.md#DeleteExternalConnection) | **Delete** /api/v2/external-connections/{externalConnectionId} | Delete external connection
 [**DeleteExternalConnectionInterface**](ExternalConnectionAPI.md#DeleteExternalConnectionInterface) | **Delete** /api/v2/external-connections/{externalConnectionId}/interfaces/{externalConnectionInterfaceId} | Delete external connection interface
-[**DeleteExternalConnectionLogicalNetwork**](ExternalConnectionAPI.md#DeleteExternalConnectionLogicalNetwork) | **Delete** /api/v2/external-connections/{externalConnectionId}/logical-networks/{id} | Start deletion of an external connection logical network
+[**DeleteExternalConnectionLogicalNetwork**](ExternalConnectionAPI.md#DeleteExternalConnectionLogicalNetwork) | **Delete** /api/v2/external-connections/{externalConnectionId}/logical-networks/{id} | Start deletion of an external connection logical network. Only those in pending_activation state will be deleted.
 [**GetExternalConnectionById**](ExternalConnectionAPI.md#GetExternalConnectionById) | **Get** /api/v2/external-connections/{externalConnectionId} | Get external connection details
 [**GetExternalConnectionInterfaceById**](ExternalConnectionAPI.md#GetExternalConnectionInterfaceById) | **Get** /api/v2/external-connections/{externalConnectionId}/interfaces/{externalConnectionInterfaceId} | Get external connection interface details
 [**GetExternalConnectionInterfaces**](ExternalConnectionAPI.md#GetExternalConnectionInterfaces) | **Get** /api/v2/external-connections/{externalConnectionId}/interfaces | List external connection interfaces
@@ -373,9 +373,9 @@ Name | Type | Description  | Notes
 
 ## DeleteExternalConnectionLogicalNetwork
 
-> ExternalConnectionLogicalNetwork DeleteExternalConnectionLogicalNetwork(ctx, externalConnectionId, id).Execute()
+> DeleteExternalConnectionLogicalNetwork(ctx, externalConnectionId, id).Execute()
 
-Start deletion of an external connection logical network
+Start deletion of an external connection logical network. Only those in pending_activation state will be deleted.
 
 ### Example
 
@@ -395,13 +395,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ExternalConnectionAPI.DeleteExternalConnectionLogicalNetwork(context.Background(), externalConnectionId, id).Execute()
+	r, err := apiClient.ExternalConnectionAPI.DeleteExternalConnectionLogicalNetwork(context.Background(), externalConnectionId, id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExternalConnectionAPI.DeleteExternalConnectionLogicalNetwork``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteExternalConnectionLogicalNetwork`: ExternalConnectionLogicalNetwork
-	fmt.Fprintf(os.Stdout, "Response from `ExternalConnectionAPI.DeleteExternalConnectionLogicalNetwork`: %v\n", resp)
 }
 ```
 
@@ -426,7 +424,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalConnectionLogicalNetwork**](ExternalConnectionLogicalNetwork.md)
+ (empty response body)
 
 ### Authorization
 
@@ -435,7 +433,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

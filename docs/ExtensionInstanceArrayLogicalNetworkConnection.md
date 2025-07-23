@@ -1,10 +1,9 @@
-# CreateVMInstanceGroupNetworkConnection
+# ExtensionInstanceArrayLogicalNetworkConnection
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LogicalNetworkId** | **string** | The logical network ID. | 
 **Tagged** | **bool** | Whether the logical network is tagged. | 
 **AccessMode** | [**NetworkEndpointGroupAllowedAccessMode**](NetworkEndpointGroupAllowedAccessMode.md) | The access mode of the network endpoint group | 
 **Mtu** | Pointer to **int32** | The MTU of the logical network | [optional] 
@@ -13,176 +12,156 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewCreateVMInstanceGroupNetworkConnection
+### NewExtensionInstanceArrayLogicalNetworkConnection
 
-`func NewCreateVMInstanceGroupNetworkConnection(logicalNetworkId string, tagged bool, accessMode NetworkEndpointGroupAllowedAccessMode, ) *CreateVMInstanceGroupNetworkConnection`
+`func NewExtensionInstanceArrayLogicalNetworkConnection(tagged bool, accessMode NetworkEndpointGroupAllowedAccessMode, ) *ExtensionInstanceArrayLogicalNetworkConnection`
 
-NewCreateVMInstanceGroupNetworkConnection instantiates a new CreateVMInstanceGroupNetworkConnection object
+NewExtensionInstanceArrayLogicalNetworkConnection instantiates a new ExtensionInstanceArrayLogicalNetworkConnection object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCreateVMInstanceGroupNetworkConnectionWithDefaults
+### NewExtensionInstanceArrayLogicalNetworkConnectionWithDefaults
 
-`func NewCreateVMInstanceGroupNetworkConnectionWithDefaults() *CreateVMInstanceGroupNetworkConnection`
+`func NewExtensionInstanceArrayLogicalNetworkConnectionWithDefaults() *ExtensionInstanceArrayLogicalNetworkConnection`
 
-NewCreateVMInstanceGroupNetworkConnectionWithDefaults instantiates a new CreateVMInstanceGroupNetworkConnection object
+NewExtensionInstanceArrayLogicalNetworkConnectionWithDefaults instantiates a new ExtensionInstanceArrayLogicalNetworkConnection object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetLogicalNetworkId
-
-`func (o *CreateVMInstanceGroupNetworkConnection) GetLogicalNetworkId() string`
-
-GetLogicalNetworkId returns the LogicalNetworkId field if non-nil, zero value otherwise.
-
-### GetLogicalNetworkIdOk
-
-`func (o *CreateVMInstanceGroupNetworkConnection) GetLogicalNetworkIdOk() (*string, bool)`
-
-GetLogicalNetworkIdOk returns a tuple with the LogicalNetworkId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLogicalNetworkId
-
-`func (o *CreateVMInstanceGroupNetworkConnection) SetLogicalNetworkId(v string)`
-
-SetLogicalNetworkId sets LogicalNetworkId field to given value.
-
-
 ### GetTagged
 
-`func (o *CreateVMInstanceGroupNetworkConnection) GetTagged() bool`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetTagged() bool`
 
 GetTagged returns the Tagged field if non-nil, zero value otherwise.
 
 ### GetTaggedOk
 
-`func (o *CreateVMInstanceGroupNetworkConnection) GetTaggedOk() (*bool, bool)`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetTaggedOk() (*bool, bool)`
 
 GetTaggedOk returns a tuple with the Tagged field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTagged
 
-`func (o *CreateVMInstanceGroupNetworkConnection) SetTagged(v bool)`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetTagged(v bool)`
 
 SetTagged sets Tagged field to given value.
 
 
 ### GetAccessMode
 
-`func (o *CreateVMInstanceGroupNetworkConnection) GetAccessMode() NetworkEndpointGroupAllowedAccessMode`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetAccessMode() NetworkEndpointGroupAllowedAccessMode`
 
 GetAccessMode returns the AccessMode field if non-nil, zero value otherwise.
 
 ### GetAccessModeOk
 
-`func (o *CreateVMInstanceGroupNetworkConnection) GetAccessModeOk() (*NetworkEndpointGroupAllowedAccessMode, bool)`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetAccessModeOk() (*NetworkEndpointGroupAllowedAccessMode, bool)`
 
 GetAccessModeOk returns a tuple with the AccessMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAccessMode
 
-`func (o *CreateVMInstanceGroupNetworkConnection) SetAccessMode(v NetworkEndpointGroupAllowedAccessMode)`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetAccessMode(v NetworkEndpointGroupAllowedAccessMode)`
 
 SetAccessMode sets AccessMode field to given value.
 
 
 ### GetMtu
 
-`func (o *CreateVMInstanceGroupNetworkConnection) GetMtu() int32`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetMtu() int32`
 
 GetMtu returns the Mtu field if non-nil, zero value otherwise.
 
 ### GetMtuOk
 
-`func (o *CreateVMInstanceGroupNetworkConnection) GetMtuOk() (*int32, bool)`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetMtuOk() (*int32, bool)`
 
 GetMtuOk returns a tuple with the Mtu field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMtu
 
-`func (o *CreateVMInstanceGroupNetworkConnection) SetMtu(v int32)`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetMtu(v int32)`
 
 SetMtu sets Mtu field to given value.
 
 ### HasMtu
 
-`func (o *CreateVMInstanceGroupNetworkConnection) HasMtu() bool`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) HasMtu() bool`
 
 HasMtu returns a boolean if a field has been set.
 
 ### GetRedundancy
 
-`func (o *CreateVMInstanceGroupNetworkConnection) GetRedundancy() RedundancyConfig`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetRedundancy() RedundancyConfig`
 
 GetRedundancy returns the Redundancy field if non-nil, zero value otherwise.
 
 ### GetRedundancyOk
 
-`func (o *CreateVMInstanceGroupNetworkConnection) GetRedundancyOk() (*RedundancyConfig, bool)`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetRedundancyOk() (*RedundancyConfig, bool)`
 
 GetRedundancyOk returns a tuple with the Redundancy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRedundancy
 
-`func (o *CreateVMInstanceGroupNetworkConnection) SetRedundancy(v RedundancyConfig)`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetRedundancy(v RedundancyConfig)`
 
 SetRedundancy sets Redundancy field to given value.
 
 ### HasRedundancy
 
-`func (o *CreateVMInstanceGroupNetworkConnection) HasRedundancy() bool`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) HasRedundancy() bool`
 
 HasRedundancy returns a boolean if a field has been set.
 
 ### SetRedundancyNil
 
-`func (o *CreateVMInstanceGroupNetworkConnection) SetRedundancyNil(b bool)`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetRedundancyNil(b bool)`
 
  SetRedundancyNil sets the value for Redundancy to be an explicit nil
 
 ### UnsetRedundancy
-`func (o *CreateVMInstanceGroupNetworkConnection) UnsetRedundancy()`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) UnsetRedundancy()`
 
 UnsetRedundancy ensures that no value is present for Redundancy, not even an explicit nil
 ### GetDns
 
-`func (o *CreateVMInstanceGroupNetworkConnection) GetDns() DnsRecordsEndpointGroupLogicalNetwork`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetDns() DnsRecordsEndpointGroupLogicalNetwork`
 
 GetDns returns the Dns field if non-nil, zero value otherwise.
 
 ### GetDnsOk
 
-`func (o *CreateVMInstanceGroupNetworkConnection) GetDnsOk() (*DnsRecordsEndpointGroupLogicalNetwork, bool)`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetDnsOk() (*DnsRecordsEndpointGroupLogicalNetwork, bool)`
 
 GetDnsOk returns a tuple with the Dns field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDns
 
-`func (o *CreateVMInstanceGroupNetworkConnection) SetDns(v DnsRecordsEndpointGroupLogicalNetwork)`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetDns(v DnsRecordsEndpointGroupLogicalNetwork)`
 
 SetDns sets Dns field to given value.
 
 ### HasDns
 
-`func (o *CreateVMInstanceGroupNetworkConnection) HasDns() bool`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) HasDns() bool`
 
 HasDns returns a boolean if a field has been set.
 
 ### SetDnsNil
 
-`func (o *CreateVMInstanceGroupNetworkConnection) SetDnsNil(b bool)`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetDnsNil(b bool)`
 
  SetDnsNil sets the value for Dns to be an explicit nil
 
 ### UnsetDns
-`func (o *CreateVMInstanceGroupNetworkConnection) UnsetDns()`
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) UnsetDns()`
 
 UnsetDns ensures that no value is present for Dns, not even an explicit nil
 

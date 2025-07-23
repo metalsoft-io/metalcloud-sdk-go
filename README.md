@@ -205,7 +205,7 @@ Class | Method | HTTP request | Description
 *ExternalConnectionAPI* | [**CreateExternalConnectionLogicalNetwork**](docs/ExternalConnectionAPI.md#createexternalconnectionlogicalnetwork) | **Post** /api/v2/external-connections/{externalConnectionId}/logical-networks | Create a new external connection logical network
 *ExternalConnectionAPI* | [**DeleteExternalConnection**](docs/ExternalConnectionAPI.md#deleteexternalconnection) | **Delete** /api/v2/external-connections/{externalConnectionId} | Delete external connection
 *ExternalConnectionAPI* | [**DeleteExternalConnectionInterface**](docs/ExternalConnectionAPI.md#deleteexternalconnectioninterface) | **Delete** /api/v2/external-connections/{externalConnectionId}/interfaces/{externalConnectionInterfaceId} | Delete external connection interface
-*ExternalConnectionAPI* | [**DeleteExternalConnectionLogicalNetwork**](docs/ExternalConnectionAPI.md#deleteexternalconnectionlogicalnetwork) | **Delete** /api/v2/external-connections/{externalConnectionId}/logical-networks/{id} | Start deletion of an external connection logical network
+*ExternalConnectionAPI* | [**DeleteExternalConnectionLogicalNetwork**](docs/ExternalConnectionAPI.md#deleteexternalconnectionlogicalnetwork) | **Delete** /api/v2/external-connections/{externalConnectionId}/logical-networks/{id} | Start deletion of an external connection logical network. Only those in pending_activation state will be deleted.
 *ExternalConnectionAPI* | [**GetExternalConnectionById**](docs/ExternalConnectionAPI.md#getexternalconnectionbyid) | **Get** /api/v2/external-connections/{externalConnectionId} | Get external connection details
 *ExternalConnectionAPI* | [**GetExternalConnectionInterfaceById**](docs/ExternalConnectionAPI.md#getexternalconnectioninterfacebyid) | **Get** /api/v2/external-connections/{externalConnectionId}/interfaces/{externalConnectionInterfaceId} | Get external connection interface details
 *ExternalConnectionAPI* | [**GetExternalConnectionInterfaces**](docs/ExternalConnectionAPI.md#getexternalconnectioninterfaces) | **Get** /api/v2/external-connections/{externalConnectionId}/interfaces | List external connection interfaces
@@ -411,7 +411,9 @@ Class | Method | HTTP request | Description
 *SecretsAPI* | [**GetSecret**](docs/SecretsAPI.md#getsecret) | **Get** /api/v2/secrets/{id} | Get secret by ID
 *SecretsAPI* | [**GetSecrets**](docs/SecretsAPI.md#getsecrets) | **Get** /api/v2/secrets | Get all secrets
 *SecretsAPI* | [**UpdateSecret**](docs/SecretsAPI.md#updatesecret) | **Put** /api/v2/secrets/{id} | Update secret by ID
+*SecurityAPI* | [**CreatePermission**](docs/SecurityAPI.md#createpermission) | **Post** /api/v2/permissions | Create a new permission
 *SecurityAPI* | [**CreateRole**](docs/SecurityAPI.md#createrole) | **Post** /api/v2/roles | Create a new role
+*SecurityAPI* | [**DeletePermission**](docs/SecurityAPI.md#deletepermission) | **Delete** /api/v2/permissions/{permissionName} | Delete a permission by name
 *SecurityAPI* | [**DeleteRole**](docs/SecurityAPI.md#deleterole) | **Delete** /api/v2/roles/{roleName} | Delete a role by name
 *SecurityAPI* | [**GetPermissions**](docs/SecurityAPI.md#getpermissions) | **Get** /api/v2/permissions | Get all permissions
 *SecurityAPI* | [**GetProviders**](docs/SecurityAPI.md#getproviders) | **Get** /api/v2/authentication/providers | Get available authentication providers
@@ -545,6 +547,7 @@ Class | Method | HTTP request | Description
 *SubnetAPI* | [**GetSubnet**](docs/SubnetAPI.md#getsubnet) | **Get** /api/v2/subnets/{subnetId} | Retrieves the Subnet information
 *SubnetAPI* | [**GetSubnets**](docs/SubnetAPI.md#getsubnets) | **Get** /api/v2/subnets | List all Subnets
 *SubnetAPI* | [**UpdateSubnet**](docs/SubnetAPI.md#updatesubnet) | **Patch** /api/v2/subnets/{subnetId} | Updates Subnet
+*SystemAPI* | [**GetLicensedProducts**](docs/SystemAPI.md#getlicensedproducts) | **Get** /api/v2/licensed-products | Get licensed products
 *SystemAPI* | [**GetVersion**](docs/SystemAPI.md#getversion) | **Get** /api/v2/version | Get MetalSoft system version
 *TemplateAssetAPI* | [**CreateTemplateAsset**](docs/TemplateAssetAPI.md#createtemplateasset) | **Post** /api/v2/template-assets | Create template asset
 *TemplateAssetAPI* | [**DeleteTemplateAsset**](docs/TemplateAssetAPI.md#deletetemplateasset) | **Delete** /api/v2/template-assets/{templateAssetId} | Delete template asset
@@ -639,6 +642,7 @@ Class | Method | HTTP request | Description
 *VMPoolAPI* | [**GetVMPoolVMs**](docs/VMPoolAPI.md#getvmpoolvms) | **Get** /api/v2/vm-pools/{vmPoolId}/vms | Returns all VMs linked to the VM Pool
 *VMPoolAPI* | [**GetVMPools**](docs/VMPoolAPI.md#getvmpools) | **Get** /api/v2/vm-pools | Get all VM Pools
 *VMPoolAPI* | [**GetVmPoolStatistics**](docs/VMPoolAPI.md#getvmpoolstatistics) | **Get** /api/v2/vm-pools/{vmPoolId}/statistics | Get VM Pool statistics
+*VMPoolAPI* | [**RefreshVMPoolInformation**](docs/VMPoolAPI.md#refreshvmpoolinformation) | **Post** /api/v2/vm-pools/{vmPoolId}/actions/refresh-information | Refresh VM Pool information
 *VMPoolAPI* | [**UpdateVMPool**](docs/VMPoolAPI.md#updatevmpool) | **Patch** /api/v2/vm-pools/{vmPoolId} | Updates VM Pool information
 *VMPoolAPI* | [**UpdateVMPoolClusterHostInterface**](docs/VMPoolAPI.md#updatevmpoolclusterhostinterface) | **Patch** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId} | Updates a VM Cluster Host Interface
 *VMTypeAPI* | [**CreateVMType**](docs/VMTypeAPI.md#createvmtype) | **Post** /api/v2/vm-types | Creates a VM Type
@@ -757,6 +761,7 @@ Class | Method | HTTP request | Description
  - [CreateNetworkEndpointGroupLogicalNetwork](docs/CreateNetworkEndpointGroupLogicalNetwork.md)
  - [CreateNetworkFabric](docs/CreateNetworkFabric.md)
  - [CreateNetworkFabricLink](docs/CreateNetworkFabricLink.md)
+ - [CreatePermission](docs/CreatePermission.md)
  - [CreateResourcePool](docs/CreateResourcePool.md)
  - [CreateResourceScope](docs/CreateResourceScope.md)
  - [CreateRole](docs/CreateRole.md)
@@ -776,6 +781,7 @@ Class | Method | HTTP request | Description
  - [CreateVMInstanceGroup](docs/CreateVMInstanceGroup.md)
  - [CreateVMInstanceGroupNetworkConnection](docs/CreateVMInstanceGroupNetworkConnection.md)
  - [CreateVMPool](docs/CreateVMPool.md)
+ - [CreateVMPoolOptions](docs/CreateVMPoolOptions.md)
  - [CreateVMType](docs/CreateVMType.md)
  - [CreateVariable](docs/CreateVariable.md)
  - [CreateVlanAllocationStrategy](docs/CreateVlanAllocationStrategy.md)
@@ -798,7 +804,7 @@ Class | Method | HTTP request | Description
  - [DNSZonePaginatedList](docs/DNSZonePaginatedList.md)
  - [DellComponentFilter](docs/DellComponentFilter.md)
  - [DnsRecordSet](docs/DnsRecordSet.md)
- - [DnsRecordsEndpointGroupLogicalNetworkDto](docs/DnsRecordsEndpointGroupLogicalNetworkDto.md)
+ - [DnsRecordsEndpointGroupLogicalNetwork](docs/DnsRecordsEndpointGroupLogicalNetwork.md)
  - [DnsZoneDto](docs/DnsZoneDto.md)
  - [Drive](docs/Drive.md)
  - [DriveConfiguration](docs/DriveConfiguration.md)
@@ -851,6 +857,7 @@ Class | Method | HTTP request | Description
  - [ExtensionInputString](docs/ExtensionInputString.md)
  - [ExtensionInstance](docs/ExtensionInstance.md)
  - [ExtensionInstanceArray](docs/ExtensionInstanceArray.md)
+ - [ExtensionInstanceArrayLogicalNetworkConnection](docs/ExtensionInstanceArrayLogicalNetworkConnection.md)
  - [ExtensionInstanceArrayLogicalNetworkDto](docs/ExtensionInstanceArrayLogicalNetworkDto.md)
  - [ExtensionInstanceConfiguration](docs/ExtensionInstanceConfiguration.md)
  - [ExtensionInstancePaginatedList](docs/ExtensionInstancePaginatedList.md)
@@ -950,6 +957,7 @@ Class | Method | HTTP request | Description
  - [JobStatistics](docs/JobStatistics.md)
  - [LenovoComponentFilter](docs/LenovoComponentFilter.md)
  - [LicenseInstallments](docs/LicenseInstallments.md)
+ - [LicensedProducts](docs/LicensedProducts.md)
  - [Link](docs/Link.md)
  - [LinkDuplex](docs/LinkDuplex.md)
  - [Location](docs/Location.md)
@@ -1037,6 +1045,7 @@ Class | Method | HTTP request | Description
  - [PasswordReset](docs/PasswordReset.md)
  - [Permission](docs/Permission.md)
  - [PermissionList](docs/PermissionList.md)
+ - [PolicyEntry](docs/PolicyEntry.md)
  - [PublicSignupDisabled](docs/PublicSignupDisabled.md)
  - [ReRegisterServerResponse](docs/ReRegisterServerResponse.md)
  - [RedundancyConfig](docs/RedundancyConfig.md)
@@ -1240,6 +1249,7 @@ Class | Method | HTTP request | Description
  - [UpdateVMInstanceMeta](docs/UpdateVMInstanceMeta.md)
  - [UpdateVMPool](docs/UpdateVMPool.md)
  - [UpdateVMPoolHostInterface](docs/UpdateVMPoolHostInterface.md)
+ - [UpdateVMPoolOptions](docs/UpdateVMPoolOptions.md)
  - [UpdateVMType](docs/UpdateVMType.md)
  - [UpdateVariable](docs/UpdateVariable.md)
  - [User](docs/User.md)
@@ -1277,6 +1287,7 @@ Class | Method | HTTP request | Description
  - [VMPoolHostInterfaces](docs/VMPoolHostInterfaces.md)
  - [VMPoolHosts](docs/VMPoolHosts.md)
  - [VMPoolHostsPaginatedList](docs/VMPoolHostsPaginatedList.md)
+ - [VMPoolOptions](docs/VMPoolOptions.md)
  - [VMPoolPaginatedList](docs/VMPoolPaginatedList.md)
  - [VMPoolStatistics](docs/VMPoolStatistics.md)
  - [VMType](docs/VMType.md)

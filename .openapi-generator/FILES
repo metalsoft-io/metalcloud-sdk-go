@@ -167,6 +167,7 @@ docs/CreateNetworkEndpointGroup.md
 docs/CreateNetworkEndpointGroupLogicalNetwork.md
 docs/CreateNetworkFabric.md
 docs/CreateNetworkFabricLink.md
+docs/CreatePermission.md
 docs/CreateResourcePool.md
 docs/CreateResourceScope.md
 docs/CreateRole.md
@@ -186,6 +187,7 @@ docs/CreateVMInstance.md
 docs/CreateVMInstanceGroup.md
 docs/CreateVMInstanceGroupNetworkConnection.md
 docs/CreateVMPool.md
+docs/CreateVMPoolOptions.md
 docs/CreateVMType.md
 docs/CreateVariable.md
 docs/CreateVlanAllocationStrategy.md
@@ -211,7 +213,7 @@ docs/DNSZoneAPI.md
 docs/DNSZonePaginatedList.md
 docs/DellComponentFilter.md
 docs/DnsRecordSet.md
-docs/DnsRecordsEndpointGroupLogicalNetworkDto.md
+docs/DnsRecordsEndpointGroupLogicalNetwork.md
 docs/DnsZoneDto.md
 docs/Drive.md
 docs/DriveAPI.md
@@ -272,6 +274,7 @@ docs/ExtensionInputString.md
 docs/ExtensionInstance.md
 docs/ExtensionInstanceAPI.md
 docs/ExtensionInstanceArray.md
+docs/ExtensionInstanceArrayLogicalNetworkConnection.md
 docs/ExtensionInstanceArrayLogicalNetworkDto.md
 docs/ExtensionInstanceConfiguration.md
 docs/ExtensionInstancePaginatedList.md
@@ -380,6 +383,7 @@ docs/JobRetryInfo.md
 docs/JobStatistics.md
 docs/LenovoComponentFilter.md
 docs/LicenseInstallments.md
+docs/LicensedProducts.md
 docs/Link.md
 docs/LinkDuplex.md
 docs/Location.md
@@ -474,6 +478,7 @@ docs/PartialServerRegistrationBiosProfile.md
 docs/PasswordReset.md
 docs/Permission.md
 docs/PermissionList.md
+docs/PolicyEntry.md
 docs/PublicSignupDisabled.md
 docs/ReRegisterServerResponse.md
 docs/RedundancyConfig.md
@@ -693,6 +698,7 @@ docs/UpdateVMInstanceGroupNetworkConnection.md
 docs/UpdateVMInstanceMeta.md
 docs/UpdateVMPool.md
 docs/UpdateVMPoolHostInterface.md
+docs/UpdateVMPoolOptions.md
 docs/UpdateVMType.md
 docs/UpdateVariable.md
 docs/User.md
@@ -736,6 +742,7 @@ docs/VMPoolCredentials.md
 docs/VMPoolHostInterfaces.md
 docs/VMPoolHosts.md
 docs/VMPoolHostsPaginatedList.md
+docs/VMPoolOptions.md
 docs/VMPoolPaginatedList.md
 docs/VMPoolStatistics.md
 docs/VMType.md
@@ -883,6 +890,7 @@ model_create_network_endpoint_group.go
 model_create_network_endpoint_group_logical_network.go
 model_create_network_fabric.go
 model_create_network_fabric_link.go
+model_create_permission.go
 model_create_resource_pool.go
 model_create_resource_scope.go
 model_create_role.go
@@ -909,6 +917,7 @@ model_create_vm_instance.go
 model_create_vm_instance_group.go
 model_create_vm_instance_group_network_connection.go
 model_create_vm_pool.go
+model_create_vm_pool_options.go
 model_create_vm_type.go
 model_create_vni_allocation_strategy.go
 model_create_vxlan_logical_network.go
@@ -923,7 +932,7 @@ model_custom_variable.go
 model_dell_component_filter.go
 model_dns_record_set.go
 model_dns_record_set_paginated_list.go
-model_dns_records_endpoint_group_logical_network_dto.go
+model_dns_records_endpoint_group_logical_network.go
 model_dns_zone_dto.go
 model_dns_zone_paginated_list.go
 model_drive.go
@@ -977,6 +986,7 @@ model_extension_input_server_type.go
 model_extension_input_string.go
 model_extension_instance.go
 model_extension_instance_array.go
+model_extension_instance_array_logical_network_connection.go
 model_extension_instance_array_logical_network_dto.go
 model_extension_instance_configuration.go
 model_extension_instance_paginated_list.go
@@ -1076,6 +1086,7 @@ model_job_retry_info.go
 model_job_statistics.go
 model_lenovo_component_filter.go
 model_license_installments.go
+model_licensed_products.go
 model_link.go
 model_link_duplex.go
 model_location.go
@@ -1163,6 +1174,7 @@ model_partial_server_registration_bios_profile.go
 model_password_reset.go
 model_permission.go
 model_permission_list.go
+model_policy_entry.go
 model_public_signup_disabled.go
 model_re_register_server_response.go
 model_redundancy_config.go
@@ -1367,6 +1379,7 @@ model_update_vm_instance_group_network_connection.go
 model_update_vm_instance_meta.go
 model_update_vm_pool.go
 model_update_vm_pool_host_interface.go
+model_update_vm_pool_options.go
 model_update_vm_type.go
 model_user.go
 model_user_api_key.go
@@ -1424,6 +1437,7 @@ model_vm_pool_credentials.go
 model_vm_pool_host_interfaces.go
 model_vm_pool_hosts.go
 model_vm_pool_hosts_paginated_list.go
+model_vm_pool_options.go
 model_vm_pool_paginated_list.go
 model_vm_pool_statistics.go
 model_vm_type.go

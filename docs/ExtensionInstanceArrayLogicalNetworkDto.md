@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the logical network. | 
-**NetworkConnection** | [**CreateServerInstanceGroupNetworkConnection**](CreateServerInstanceGroupNetworkConnection.md) | Network connection details for the logical network. | 
+**NetworkConnection** | [**ExtensionInstanceArrayLogicalNetworkConnection**](ExtensionInstanceArrayLogicalNetworkConnection.md) | Network connection details for the logical network. | 
 
 ## Methods
 
 ### NewExtensionInstanceArrayLogicalNetworkDto
 
-`func NewExtensionInstanceArrayLogicalNetworkDto(label string, networkConnection CreateServerInstanceGroupNetworkConnection, ) *ExtensionInstanceArrayLogicalNetworkDto`
+`func NewExtensionInstanceArrayLogicalNetworkDto(label string, networkConnection ExtensionInstanceArrayLogicalNetworkConnection, ) *ExtensionInstanceArrayLogicalNetworkDto`
 
 NewExtensionInstanceArrayLogicalNetworkDto instantiates a new ExtensionInstanceArrayLogicalNetworkDto object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetLabel sets Label field to given value.
 
 ### GetNetworkConnection
 
-`func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnection() CreateServerInstanceGroupNetworkConnection`
+`func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnection() ExtensionInstanceArrayLogicalNetworkConnection`
 
 GetNetworkConnection returns the NetworkConnection field if non-nil, zero value otherwise.
 
 ### GetNetworkConnectionOk
 
-`func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnectionOk() (*CreateServerInstanceGroupNetworkConnection, bool)`
+`func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnectionOk() (*ExtensionInstanceArrayLogicalNetworkConnection, bool)`
 
 GetNetworkConnectionOk returns a tuple with the NetworkConnection field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkConnection
 
-`func (o *ExtensionInstanceArrayLogicalNetworkDto) SetNetworkConnection(v CreateServerInstanceGroupNetworkConnection)`
+`func (o *ExtensionInstanceArrayLogicalNetworkDto) SetNetworkConnection(v ExtensionInstanceArrayLogicalNetworkConnection)`
 
 SetNetworkConnection sets NetworkConnection field to given value.
 

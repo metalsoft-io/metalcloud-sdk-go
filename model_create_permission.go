@@ -16,13 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the Permission type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Permission{}
+// checks if the CreatePermission type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreatePermission{}
 
-// Permission struct for Permission
-type Permission struct {
-	// Permission ID
-	Id string `json:"id"`
+// CreatePermission struct for CreatePermission
+type CreatePermission struct {
 	// Permission name
 	Name string `json:"name"`
 	// Permission label
@@ -36,54 +34,29 @@ type Permission struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _Permission Permission
+type _CreatePermission CreatePermission
 
-// NewPermission instantiates a new Permission object
+// NewCreatePermission instantiates a new CreatePermission object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPermission(id string, name string, label string) *Permission {
-	this := Permission{}
-	this.Id = id
+func NewCreatePermission(name string, label string) *CreatePermission {
+	this := CreatePermission{}
 	this.Name = name
 	this.Label = label
 	return &this
 }
 
-// NewPermissionWithDefaults instantiates a new Permission object
+// NewCreatePermissionWithDefaults instantiates a new CreatePermission object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPermissionWithDefaults() *Permission {
-	this := Permission{}
+func NewCreatePermissionWithDefaults() *CreatePermission {
+	this := CreatePermission{}
 	return &this
 }
 
-// GetId returns the Id field value
-func (o *Permission) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *Permission) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *Permission) SetId(v string) {
-	o.Id = v
-}
-
 // GetName returns the Name field value
-func (o *Permission) GetName() string {
+func (o *CreatePermission) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -94,7 +67,7 @@ func (o *Permission) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Permission) GetNameOk() (*string, bool) {
+func (o *CreatePermission) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -102,12 +75,12 @@ func (o *Permission) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *Permission) SetName(v string) {
+func (o *CreatePermission) SetName(v string) {
 	o.Name = v
 }
 
 // GetLabel returns the Label field value
-func (o *Permission) GetLabel() string {
+func (o *CreatePermission) GetLabel() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -118,7 +91,7 @@ func (o *Permission) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *Permission) GetLabelOk() (*string, bool) {
+func (o *CreatePermission) GetLabelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -126,12 +99,12 @@ func (o *Permission) GetLabelOk() (*string, bool) {
 }
 
 // SetLabel sets field value
-func (o *Permission) SetLabel(v string) {
+func (o *CreatePermission) SetLabel(v string) {
 	o.Label = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *Permission) GetDescription() string {
+func (o *CreatePermission) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
@@ -141,7 +114,7 @@ func (o *Permission) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Permission) GetDescriptionOk() (*string, bool) {
+func (o *CreatePermission) GetDescriptionOk() (*string, bool) {
 	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
@@ -149,7 +122,7 @@ func (o *Permission) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *Permission) HasDescription() bool {
+func (o *CreatePermission) HasDescription() bool {
 	if o != nil && !IsNil(o.Description) {
 		return true
 	}
@@ -158,12 +131,12 @@ func (o *Permission) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *Permission) SetDescription(v string) {
+func (o *CreatePermission) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Permission) GetType() string {
+func (o *CreatePermission) GetType() string {
 	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
@@ -173,7 +146,7 @@ func (o *Permission) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Permission) GetTypeOk() (*string, bool) {
+func (o *CreatePermission) GetTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -181,7 +154,7 @@ func (o *Permission) GetTypeOk() (*string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *Permission) HasType() bool {
+func (o *CreatePermission) HasType() bool {
 	if o != nil && !IsNil(o.Type) {
 		return true
 	}
@@ -190,12 +163,12 @@ func (o *Permission) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Permission) SetType(v string) {
+func (o *CreatePermission) SetType(v string) {
 	o.Type = &v
 }
 
 // GetPolicies returns the Policies field value if set, zero value otherwise.
-func (o *Permission) GetPolicies() []PolicyEntry {
+func (o *CreatePermission) GetPolicies() []PolicyEntry {
 	if o == nil || IsNil(o.Policies) {
 		var ret []PolicyEntry
 		return ret
@@ -205,7 +178,7 @@ func (o *Permission) GetPolicies() []PolicyEntry {
 
 // GetPoliciesOk returns a tuple with the Policies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Permission) GetPoliciesOk() ([]PolicyEntry, bool) {
+func (o *CreatePermission) GetPoliciesOk() ([]PolicyEntry, bool) {
 	if o == nil || IsNil(o.Policies) {
 		return nil, false
 	}
@@ -213,7 +186,7 @@ func (o *Permission) GetPoliciesOk() ([]PolicyEntry, bool) {
 }
 
 // HasPolicies returns a boolean if a field has been set.
-func (o *Permission) HasPolicies() bool {
+func (o *CreatePermission) HasPolicies() bool {
 	if o != nil && !IsNil(o.Policies) {
 		return true
 	}
@@ -222,11 +195,11 @@ func (o *Permission) HasPolicies() bool {
 }
 
 // SetPolicies gets a reference to the given []PolicyEntry and assigns it to the Policies field.
-func (o *Permission) SetPolicies(v []PolicyEntry) {
+func (o *CreatePermission) SetPolicies(v []PolicyEntry) {
 	o.Policies = v
 }
 
-func (o Permission) MarshalJSON() ([]byte, error) {
+func (o CreatePermission) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -234,9 +207,8 @@ func (o Permission) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o Permission) ToMap() (map[string]interface{}, error) {
+func (o CreatePermission) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["label"] = o.Label
 	if !IsNil(o.Description) {
@@ -256,12 +228,11 @@ func (o Permission) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *Permission) UnmarshalJSON(data []byte) (err error) {
+func (o *CreatePermission) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
 		"name",
 		"label",
 	}
@@ -280,20 +251,19 @@ func (o *Permission) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varPermission := _Permission{}
+	varCreatePermission := _CreatePermission{}
 
-	err = json.Unmarshal(data, &varPermission)
+	err = json.Unmarshal(data, &varCreatePermission)
 
 	if err != nil {
 		return err
 	}
 
-	*o = Permission(varPermission)
+	*o = CreatePermission(varCreatePermission)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "description")
@@ -305,38 +275,38 @@ func (o *Permission) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullablePermission struct {
-	value *Permission
+type NullableCreatePermission struct {
+	value *CreatePermission
 	isSet bool
 }
 
-func (v NullablePermission) Get() *Permission {
+func (v NullableCreatePermission) Get() *CreatePermission {
 	return v.value
 }
 
-func (v *NullablePermission) Set(val *Permission) {
+func (v *NullableCreatePermission) Set(val *CreatePermission) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePermission) IsSet() bool {
+func (v NullableCreatePermission) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePermission) Unset() {
+func (v *NullableCreatePermission) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePermission(val *Permission) *NullablePermission {
-	return &NullablePermission{value: val, isSet: true}
+func NewNullableCreatePermission(val *CreatePermission) *NullableCreatePermission {
+	return &NullableCreatePermission{value: val, isSet: true}
 }
 
-func (v NullablePermission) MarshalJSON() ([]byte, error) {
+func (v NullableCreatePermission) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePermission) UnmarshalJSON(src []byte) error {
+func (v *NullableCreatePermission) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

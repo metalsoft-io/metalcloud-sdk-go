@@ -12,8 +12,10 @@ Name | Type | Description | Notes
 **Name** | **string** | Name of the VM Pool | 
 **Description** | Pointer to **string** | Description of the VM Pool | [optional] 
 **Type** | **string** | Type of the VM Pool | 
-**Certificate** | **string** | Certificate of the VM Pool | 
-**PrivateKeyEncrypted** | **string** | Private key of the VM Pool | 
+**Certificate** | Pointer to **string** | Certificate of the VM Pool | [optional] 
+**PrivateKeyEncrypted** | Pointer to **string** | Private key of the VM Pool | [optional] 
+**Username** | Pointer to **string** | Username of the VM Pool | [optional] 
+**PasswordEncrypted** | Pointer to **string** | Password of the VM Pool | [optional] 
 **Status** | **string** | Status of the VM Pool | 
 **ExternalIdentifier** | Pointer to **string** | External identifier of the VM Pool | [optional] 
 **InMaintenance** | Pointer to **float32** | Flag to indicate if the VM Pool is in maintenance mode. 1 for true, 0 for false. Default is 0. | [optional] 
@@ -21,13 +23,14 @@ Name | Type | Description | Notes
 **CreatedTimestamp** | **string** | Timestamp when the VM Pool was created | 
 **UpdatedTimestamp** | **string** | Timestamp when the VM Pool was updated | 
 **Tags** | Pointer to **[]string** | Tags for the VM Pool. | [optional] 
+**Options** | Pointer to [**VMPoolOptions**](VMPoolOptions.md) | Options for the vm pool | [optional] 
 **Links** | **map[string]interface{}** | Links to other resources | 
 
 ## Methods
 
 ### NewVMPool
 
-`func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, certificate string, privateKeyEncrypted string, status string, createdTimestamp string, updatedTimestamp string, links map[string]interface{}, ) *VMPool`
+`func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, createdTimestamp string, updatedTimestamp string, links map[string]interface{}, ) *VMPool`
 
 NewVMPool instantiates a new VMPool object
 This constructor will assign default values to properties that have it defined,
@@ -226,6 +229,11 @@ and a boolean to check if the value has been set.
 
 SetCertificate sets Certificate field to given value.
 
+### HasCertificate
+
+`func (o *VMPool) HasCertificate() bool`
+
+HasCertificate returns a boolean if a field has been set.
 
 ### GetPrivateKeyEncrypted
 
@@ -246,6 +254,61 @@ and a boolean to check if the value has been set.
 
 SetPrivateKeyEncrypted sets PrivateKeyEncrypted field to given value.
 
+### HasPrivateKeyEncrypted
+
+`func (o *VMPool) HasPrivateKeyEncrypted() bool`
+
+HasPrivateKeyEncrypted returns a boolean if a field has been set.
+
+### GetUsername
+
+`func (o *VMPool) GetUsername() string`
+
+GetUsername returns the Username field if non-nil, zero value otherwise.
+
+### GetUsernameOk
+
+`func (o *VMPool) GetUsernameOk() (*string, bool)`
+
+GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUsername
+
+`func (o *VMPool) SetUsername(v string)`
+
+SetUsername sets Username field to given value.
+
+### HasUsername
+
+`func (o *VMPool) HasUsername() bool`
+
+HasUsername returns a boolean if a field has been set.
+
+### GetPasswordEncrypted
+
+`func (o *VMPool) GetPasswordEncrypted() string`
+
+GetPasswordEncrypted returns the PasswordEncrypted field if non-nil, zero value otherwise.
+
+### GetPasswordEncryptedOk
+
+`func (o *VMPool) GetPasswordEncryptedOk() (*string, bool)`
+
+GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPasswordEncrypted
+
+`func (o *VMPool) SetPasswordEncrypted(v string)`
+
+SetPasswordEncrypted sets PasswordEncrypted field to given value.
+
+### HasPasswordEncrypted
+
+`func (o *VMPool) HasPasswordEncrypted() bool`
+
+HasPasswordEncrypted returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -406,6 +469,31 @@ SetTags sets Tags field to given value.
 `func (o *VMPool) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetOptions
+
+`func (o *VMPool) GetOptions() VMPoolOptions`
+
+GetOptions returns the Options field if non-nil, zero value otherwise.
+
+### GetOptionsOk
+
+`func (o *VMPool) GetOptionsOk() (*VMPoolOptions, bool)`
+
+GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOptions
+
+`func (o *VMPool) SetOptions(v VMPoolOptions)`
+
+SetOptions sets Options field to given value.
+
+### HasOptions
+
+`func (o *VMPool) HasOptions() bool`
+
+HasOptions returns a boolean if a field has been set.
 
 ### GetLinks
 

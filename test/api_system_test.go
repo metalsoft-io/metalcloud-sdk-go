@@ -22,6 +22,18 @@ func Test_sdk_SystemAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test SystemAPIService GetLicensedProducts", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.SystemAPI.GetLicensedProducts(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SystemAPIService GetVersion", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

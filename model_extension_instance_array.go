@@ -28,7 +28,7 @@ type ExtensionInstanceArray struct {
 	// Server type variable reference.
 	ServerType string `json:"serverType"`
 	// OS template variable reference.
-	OsTemplate string `json:"osTemplate"`
+	OsTemplate *string `json:"osTemplate,omitempty"`
 	// Connected shared drive arrays.
 	ConnectedSharedDrives []string `json:"connectedSharedDrives,omitempty"`
 	// Custom variables. The value may be a reference to an input variable.
@@ -46,12 +46,11 @@ type _ExtensionInstanceArray ExtensionInstanceArray
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInstanceArray(label string, instanceCount string, serverType string, osTemplate string) *ExtensionInstanceArray {
+func NewExtensionInstanceArray(label string, instanceCount string, serverType string) *ExtensionInstanceArray {
 	this := ExtensionInstanceArray{}
 	this.Label = label
 	this.InstanceCount = instanceCount
 	this.ServerType = serverType
-	this.OsTemplate = osTemplate
 	return &this
 }
 
@@ -135,28 +134,36 @@ func (o *ExtensionInstanceArray) SetServerType(v string) {
 	o.ServerType = v
 }
 
-// GetOsTemplate returns the OsTemplate field value
+// GetOsTemplate returns the OsTemplate field value if set, zero value otherwise.
 func (o *ExtensionInstanceArray) GetOsTemplate() string {
-	if o == nil {
+	if o == nil || IsNil(o.OsTemplate) {
 		var ret string
 		return ret
 	}
-
-	return o.OsTemplate
+	return *o.OsTemplate
 }
 
-// GetOsTemplateOk returns a tuple with the OsTemplate field value
+// GetOsTemplateOk returns a tuple with the OsTemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExtensionInstanceArray) GetOsTemplateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OsTemplate) {
 		return nil, false
 	}
-	return &o.OsTemplate, true
+	return o.OsTemplate, true
 }
 
-// SetOsTemplate sets field value
+// HasOsTemplate returns a boolean if a field has been set.
+func (o *ExtensionInstanceArray) HasOsTemplate() bool {
+	if o != nil && !IsNil(o.OsTemplate) {
+		return true
+	}
+
+	return false
+}
+
+// SetOsTemplate gets a reference to the given string and assigns it to the OsTemplate field.
 func (o *ExtensionInstanceArray) SetOsTemplate(v string) {
-	o.OsTemplate = v
+	o.OsTemplate = &v
 }
 
 // GetConnectedSharedDrives returns the ConnectedSharedDrives field value if set, zero value otherwise.
@@ -300,7 +307,9 @@ func (o ExtensionInstanceArray) ToMap() (map[string]interface{}, error) {
 	toSerialize["label"] = o.Label
 	toSerialize["instanceCount"] = o.InstanceCount
 	toSerialize["serverType"] = o.ServerType
-	toSerialize["osTemplate"] = o.OsTemplate
+	if !IsNil(o.OsTemplate) {
+		toSerialize["osTemplate"] = o.OsTemplate
+	}
 	if !IsNil(o.ConnectedSharedDrives) {
 		toSerialize["connectedSharedDrives"] = o.ConnectedSharedDrives
 	}
@@ -329,7 +338,6 @@ func (o *ExtensionInstanceArray) UnmarshalJSON(data []byte) (err error) {
 		"label",
 		"instanceCount",
 		"serverType",
-		"osTemplate",
 	}
 
 	allProperties := make(map[string]interface{})

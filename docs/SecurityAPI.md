@@ -4,7 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreatePermission**](SecurityAPI.md#CreatePermission) | **Post** /api/v2/permissions | Create a new permission
 [**CreateRole**](SecurityAPI.md#CreateRole) | **Post** /api/v2/roles | Create a new role
+[**DeletePermission**](SecurityAPI.md#DeletePermission) | **Delete** /api/v2/permissions/{permissionName} | Delete a permission by name
 [**DeleteRole**](SecurityAPI.md#DeleteRole) | **Delete** /api/v2/roles/{roleName} | Delete a role by name
 [**GetPermissions**](SecurityAPI.md#GetPermissions) | **Get** /api/v2/permissions | Get all permissions
 [**GetProviders**](SecurityAPI.md#GetProviders) | **Get** /api/v2/authentication/providers | Get available authentication providers
@@ -13,6 +15,70 @@ Method | HTTP request | Description
 [**UpdateProvider**](SecurityAPI.md#UpdateProvider) | **Patch** /api/v2/authentication/providers/{name} | Updates authentication provider
 [**UpdateRole**](SecurityAPI.md#UpdateRole) | **Put** /api/v2/roles/{roleName} | Update a role by name
 
+
+
+## CreatePermission
+
+> Permission CreatePermission(ctx).CreatePermission(createPermission).Execute()
+
+Create a new permission
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	createPermission := *openapiclient.NewCreatePermission("Name_example", "Label_example") // CreatePermission | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SecurityAPI.CreatePermission(context.Background()).CreatePermission(createPermission).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.CreatePermission``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreatePermission`: Permission
+	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.CreatePermission`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreatePermissionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createPermission** | [**CreatePermission**](CreatePermission.md) |  | 
+
+### Return type
+
+[**Permission**](Permission.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateRole
@@ -73,6 +139,72 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeletePermission
+
+> DeletePermission(ctx, permissionName).Execute()
+
+Delete a permission by name
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	permissionName := "permissionName_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SecurityAPI.DeletePermission(context.Background(), permissionName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.DeletePermission``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**permissionName** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeletePermissionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

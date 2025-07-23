@@ -24,7 +24,7 @@ type ExtensionInstanceArrayLogicalNetworkDto struct {
 	// Label of the logical network.
 	Label string `json:"label"`
 	// Network connection details for the logical network.
-	NetworkConnection CreateServerInstanceGroupNetworkConnection `json:"networkConnection"`
+	NetworkConnection ExtensionInstanceArrayLogicalNetworkConnection `json:"networkConnection"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,7 +34,7 @@ type _ExtensionInstanceArrayLogicalNetworkDto ExtensionInstanceArrayLogicalNetwo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInstanceArrayLogicalNetworkDto(label string, networkConnection CreateServerInstanceGroupNetworkConnection) *ExtensionInstanceArrayLogicalNetworkDto {
+func NewExtensionInstanceArrayLogicalNetworkDto(label string, networkConnection ExtensionInstanceArrayLogicalNetworkConnection) *ExtensionInstanceArrayLogicalNetworkDto {
 	this := ExtensionInstanceArrayLogicalNetworkDto{}
 	this.Label = label
 	this.NetworkConnection = networkConnection
@@ -74,9 +74,9 @@ func (o *ExtensionInstanceArrayLogicalNetworkDto) SetLabel(v string) {
 }
 
 // GetNetworkConnection returns the NetworkConnection field value
-func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnection() CreateServerInstanceGroupNetworkConnection {
+func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnection() ExtensionInstanceArrayLogicalNetworkConnection {
 	if o == nil {
-		var ret CreateServerInstanceGroupNetworkConnection
+		var ret ExtensionInstanceArrayLogicalNetworkConnection
 		return ret
 	}
 
@@ -85,7 +85,7 @@ func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnection() CreateS
 
 // GetNetworkConnectionOk returns a tuple with the NetworkConnection field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnectionOk() (*CreateServerInstanceGroupNetworkConnection, bool) {
+func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnectionOk() (*ExtensionInstanceArrayLogicalNetworkConnection, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,7 +93,7 @@ func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnectionOk() (*Cre
 }
 
 // SetNetworkConnection sets field value
-func (o *ExtensionInstanceArrayLogicalNetworkDto) SetNetworkConnection(v CreateServerInstanceGroupNetworkConnection) {
+func (o *ExtensionInstanceArrayLogicalNetworkDto) SetNetworkConnection(v ExtensionInstanceArrayLogicalNetworkConnection) {
 	o.NetworkConnection = v
 }
 

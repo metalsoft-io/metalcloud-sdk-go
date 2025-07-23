@@ -38,9 +38,13 @@ type VMPool struct {
 	// Type of the VM Pool
 	Type string `json:"type"`
 	// Certificate of the VM Pool
-	Certificate string `json:"certificate"`
+	Certificate *string `json:"certificate,omitempty"`
 	// Private key of the VM Pool
-	PrivateKeyEncrypted string `json:"privateKeyEncrypted"`
+	PrivateKeyEncrypted *string `json:"privateKeyEncrypted,omitempty"`
+	// Username of the VM Pool
+	Username *string `json:"username,omitempty"`
+	// Password of the VM Pool
+	PasswordEncrypted *string `json:"passwordEncrypted,omitempty"`
 	// Status of the VM Pool
 	Status string `json:"status"`
 	// External identifier of the VM Pool
@@ -55,6 +59,8 @@ type VMPool struct {
 	UpdatedTimestamp string `json:"updatedTimestamp"`
 	// Tags for the VM Pool.
 	Tags []string `json:"tags,omitempty"`
+	// Options for the vm pool
+	Options *VMPoolOptions `json:"options,omitempty"`
 	// Links to other resources
 	Links map[string]interface{} `json:"links"`
 	AdditionalProperties map[string]interface{}
@@ -66,7 +72,7 @@ type _VMPool VMPool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, certificate string, privateKeyEncrypted string, status string, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *VMPool {
+func NewVMPool(id float32, siteId float32, datacenterName string, managementHost string, managementPort float32, name string, type_ string, status string, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *VMPool {
 	this := VMPool{}
 	this.Id = id
 	this.SiteId = siteId
@@ -75,8 +81,6 @@ func NewVMPool(id float32, siteId float32, datacenterName string, managementHost
 	this.ManagementPort = managementPort
 	this.Name = name
 	this.Type = type_
-	this.Certificate = certificate
-	this.PrivateKeyEncrypted = privateKeyEncrypted
 	this.Status = status
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
@@ -292,52 +296,132 @@ func (o *VMPool) SetType(v string) {
 	o.Type = v
 }
 
-// GetCertificate returns the Certificate field value
+// GetCertificate returns the Certificate field value if set, zero value otherwise.
 func (o *VMPool) GetCertificate() string {
-	if o == nil {
+	if o == nil || IsNil(o.Certificate) {
 		var ret string
 		return ret
 	}
-
-	return o.Certificate
+	return *o.Certificate
 }
 
-// GetCertificateOk returns a tuple with the Certificate field value
+// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VMPool) GetCertificateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Certificate) {
 		return nil, false
 	}
-	return &o.Certificate, true
+	return o.Certificate, true
 }
 
-// SetCertificate sets field value
+// HasCertificate returns a boolean if a field has been set.
+func (o *VMPool) HasCertificate() bool {
+	if o != nil && !IsNil(o.Certificate) {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificate gets a reference to the given string and assigns it to the Certificate field.
 func (o *VMPool) SetCertificate(v string) {
-	o.Certificate = v
+	o.Certificate = &v
 }
 
-// GetPrivateKeyEncrypted returns the PrivateKeyEncrypted field value
+// GetPrivateKeyEncrypted returns the PrivateKeyEncrypted field value if set, zero value otherwise.
 func (o *VMPool) GetPrivateKeyEncrypted() string {
-	if o == nil {
+	if o == nil || IsNil(o.PrivateKeyEncrypted) {
 		var ret string
 		return ret
 	}
-
-	return o.PrivateKeyEncrypted
+	return *o.PrivateKeyEncrypted
 }
 
-// GetPrivateKeyEncryptedOk returns a tuple with the PrivateKeyEncrypted field value
+// GetPrivateKeyEncryptedOk returns a tuple with the PrivateKeyEncrypted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VMPool) GetPrivateKeyEncryptedOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PrivateKeyEncrypted) {
 		return nil, false
 	}
-	return &o.PrivateKeyEncrypted, true
+	return o.PrivateKeyEncrypted, true
 }
 
-// SetPrivateKeyEncrypted sets field value
+// HasPrivateKeyEncrypted returns a boolean if a field has been set.
+func (o *VMPool) HasPrivateKeyEncrypted() bool {
+	if o != nil && !IsNil(o.PrivateKeyEncrypted) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrivateKeyEncrypted gets a reference to the given string and assigns it to the PrivateKeyEncrypted field.
 func (o *VMPool) SetPrivateKeyEncrypted(v string) {
-	o.PrivateKeyEncrypted = v
+	o.PrivateKeyEncrypted = &v
+}
+
+// GetUsername returns the Username field value if set, zero value otherwise.
+func (o *VMPool) GetUsername() string {
+	if o == nil || IsNil(o.Username) {
+		var ret string
+		return ret
+	}
+	return *o.Username
+}
+
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPool) GetUsernameOk() (*string, bool) {
+	if o == nil || IsNil(o.Username) {
+		return nil, false
+	}
+	return o.Username, true
+}
+
+// HasUsername returns a boolean if a field has been set.
+func (o *VMPool) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
+func (o *VMPool) SetUsername(v string) {
+	o.Username = &v
+}
+
+// GetPasswordEncrypted returns the PasswordEncrypted field value if set, zero value otherwise.
+func (o *VMPool) GetPasswordEncrypted() string {
+	if o == nil || IsNil(o.PasswordEncrypted) {
+		var ret string
+		return ret
+	}
+	return *o.PasswordEncrypted
+}
+
+// GetPasswordEncryptedOk returns a tuple with the PasswordEncrypted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPool) GetPasswordEncryptedOk() (*string, bool) {
+	if o == nil || IsNil(o.PasswordEncrypted) {
+		return nil, false
+	}
+	return o.PasswordEncrypted, true
+}
+
+// HasPasswordEncrypted returns a boolean if a field has been set.
+func (o *VMPool) HasPasswordEncrypted() bool {
+	if o != nil && !IsNil(o.PasswordEncrypted) {
+		return true
+	}
+
+	return false
+}
+
+// SetPasswordEncrypted gets a reference to the given string and assigns it to the PasswordEncrypted field.
+func (o *VMPool) SetPasswordEncrypted(v string) {
+	o.PasswordEncrypted = &v
 }
 
 // GetStatus returns the Status field value
@@ -540,6 +624,38 @@ func (o *VMPool) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetOptions returns the Options field value if set, zero value otherwise.
+func (o *VMPool) GetOptions() VMPoolOptions {
+	if o == nil || IsNil(o.Options) {
+		var ret VMPoolOptions
+		return ret
+	}
+	return *o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPool) GetOptionsOk() (*VMPoolOptions, bool) {
+	if o == nil || IsNil(o.Options) {
+		return nil, false
+	}
+	return o.Options, true
+}
+
+// HasOptions returns a boolean if a field has been set.
+func (o *VMPool) HasOptions() bool {
+	if o != nil && !IsNil(o.Options) {
+		return true
+	}
+
+	return false
+}
+
+// SetOptions gets a reference to the given VMPoolOptions and assigns it to the Options field.
+func (o *VMPool) SetOptions(v VMPoolOptions) {
+	o.Options = &v
+}
+
 // GetLinks returns the Links field value
 func (o *VMPool) GetLinks() map[string]interface{} {
 	if o == nil {
@@ -584,8 +700,18 @@ func (o VMPool) ToMap() (map[string]interface{}, error) {
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["type"] = o.Type
-	toSerialize["certificate"] = o.Certificate
-	toSerialize["privateKeyEncrypted"] = o.PrivateKeyEncrypted
+	if !IsNil(o.Certificate) {
+		toSerialize["certificate"] = o.Certificate
+	}
+	if !IsNil(o.PrivateKeyEncrypted) {
+		toSerialize["privateKeyEncrypted"] = o.PrivateKeyEncrypted
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.PasswordEncrypted) {
+		toSerialize["passwordEncrypted"] = o.PasswordEncrypted
+	}
 	toSerialize["status"] = o.Status
 	if !IsNil(o.ExternalIdentifier) {
 		toSerialize["externalIdentifier"] = o.ExternalIdentifier
@@ -600,6 +726,9 @@ func (o VMPool) ToMap() (map[string]interface{}, error) {
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Options) {
+		toSerialize["options"] = o.Options
 	}
 	toSerialize["links"] = o.Links
 
@@ -622,8 +751,6 @@ func (o *VMPool) UnmarshalJSON(data []byte) (err error) {
 		"managementPort",
 		"name",
 		"type",
-		"certificate",
-		"privateKeyEncrypted",
 		"status",
 		"createdTimestamp",
 		"updatedTimestamp",
@@ -667,6 +794,8 @@ func (o *VMPool) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "certificate")
 		delete(additionalProperties, "privateKeyEncrypted")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "passwordEncrypted")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "externalIdentifier")
 		delete(additionalProperties, "inMaintenance")
@@ -674,6 +803,7 @@ func (o *VMPool) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "options")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

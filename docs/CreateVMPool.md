@@ -10,17 +10,20 @@ Name | Type | Description | Notes
 **Name** | **string** | Name of the VM Pool | 
 **Description** | Pointer to **string** | Description of the VM Pool | [optional] 
 **Type** | **string** | Type of the VM Pool | 
-**Certificate** | **string** | Certificate of the VM Pool | 
+**Certificate** | Pointer to **string** | Certificate of the VM Pool | [optional] 
+**Username** | Pointer to **string** | Username of the VM Pool | [optional] 
 **InMaintenance** | Pointer to **float32** | Flag to indicate if the VM Pool is in maintenance mode. 1 for true, 0 for false. Default is 0. | [optional] 
 **IsExperimental** | Pointer to **float32** | Flag to indicate if the VM Pool is experimental. 1 for true, 0 for false. Default is 0. | [optional] 
 **Tags** | Pointer to **[]string** | Tags for the VM Pool. | [optional] 
-**PrivateKey** | **string** | Private key of the VM Pool | 
+**PrivateKey** | Pointer to **string** | Private key of the VM Pool | [optional] 
+**Password** | Pointer to **string** | Password of the VM Pool | [optional] 
+**Options** | Pointer to [**CreateVMPoolOptions**](CreateVMPoolOptions.md) | Options for the vm pool | [optional] 
 
 ## Methods
 
 ### NewCreateVMPool
 
-`func NewCreateVMPool(siteId float32, managementHost string, managementPort float32, name string, type_ string, certificate string, privateKey string, ) *CreateVMPool`
+`func NewCreateVMPool(siteId float32, managementHost string, managementPort float32, name string, type_ string, ) *CreateVMPool`
 
 NewCreateVMPool instantiates a new CreateVMPool object
 This constructor will assign default values to properties that have it defined,
@@ -179,6 +182,36 @@ and a boolean to check if the value has been set.
 
 SetCertificate sets Certificate field to given value.
 
+### HasCertificate
+
+`func (o *CreateVMPool) HasCertificate() bool`
+
+HasCertificate returns a boolean if a field has been set.
+
+### GetUsername
+
+`func (o *CreateVMPool) GetUsername() string`
+
+GetUsername returns the Username field if non-nil, zero value otherwise.
+
+### GetUsernameOk
+
+`func (o *CreateVMPool) GetUsernameOk() (*string, bool)`
+
+GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUsername
+
+`func (o *CreateVMPool) SetUsername(v string)`
+
+SetUsername sets Username field to given value.
+
+### HasUsername
+
+`func (o *CreateVMPool) HasUsername() bool`
+
+HasUsername returns a boolean if a field has been set.
 
 ### GetInMaintenance
 
@@ -274,6 +307,61 @@ and a boolean to check if the value has been set.
 
 SetPrivateKey sets PrivateKey field to given value.
 
+### HasPrivateKey
+
+`func (o *CreateVMPool) HasPrivateKey() bool`
+
+HasPrivateKey returns a boolean if a field has been set.
+
+### GetPassword
+
+`func (o *CreateVMPool) GetPassword() string`
+
+GetPassword returns the Password field if non-nil, zero value otherwise.
+
+### GetPasswordOk
+
+`func (o *CreateVMPool) GetPasswordOk() (*string, bool)`
+
+GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPassword
+
+`func (o *CreateVMPool) SetPassword(v string)`
+
+SetPassword sets Password field to given value.
+
+### HasPassword
+
+`func (o *CreateVMPool) HasPassword() bool`
+
+HasPassword returns a boolean if a field has been set.
+
+### GetOptions
+
+`func (o *CreateVMPool) GetOptions() CreateVMPoolOptions`
+
+GetOptions returns the Options field if non-nil, zero value otherwise.
+
+### GetOptionsOk
+
+`func (o *CreateVMPool) GetOptionsOk() (*CreateVMPoolOptions, bool)`
+
+GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOptions
+
+`func (o *CreateVMPool) SetOptions(v CreateVMPoolOptions)`
+
+SetOptions sets Options field to given value.
+
+### HasOptions
+
+`func (o *CreateVMPool) HasOptions() bool`
+
+HasOptions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

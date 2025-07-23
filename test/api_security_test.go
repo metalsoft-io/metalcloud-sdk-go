@@ -22,6 +22,18 @@ func Test_sdk_SecurityAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test SecurityAPIService CreatePermission", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.SecurityAPI.CreatePermission(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SecurityAPIService CreateRole", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -30,6 +42,19 @@ func Test_sdk_SecurityAPIService(t *testing.T) {
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SecurityAPIService DeletePermission", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var permissionName string
+
+		httpRes, err := apiClient.SecurityAPI.DeletePermission(context.Background(), permissionName).Execute()
+
+		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

@@ -1,4 +1,4 @@
-# DnsRecordsEndpointGroupLogicalNetworkDto
+# DnsRecordsEndpointGroupLogicalNetwork
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewDnsRecordsEndpointGroupLogicalNetworkDto
+### NewDnsRecordsEndpointGroupLogicalNetwork
 
-`func NewDnsRecordsEndpointGroupLogicalNetworkDto() *DnsRecordsEndpointGroupLogicalNetworkDto`
+`func NewDnsRecordsEndpointGroupLogicalNetwork() *DnsRecordsEndpointGroupLogicalNetwork`
 
-NewDnsRecordsEndpointGroupLogicalNetworkDto instantiates a new DnsRecordsEndpointGroupLogicalNetworkDto object
+NewDnsRecordsEndpointGroupLogicalNetwork instantiates a new DnsRecordsEndpointGroupLogicalNetwork object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewDnsRecordsEndpointGroupLogicalNetworkDtoWithDefaults
+### NewDnsRecordsEndpointGroupLogicalNetworkWithDefaults
 
-`func NewDnsRecordsEndpointGroupLogicalNetworkDtoWithDefaults() *DnsRecordsEndpointGroupLogicalNetworkDto`
+`func NewDnsRecordsEndpointGroupLogicalNetworkWithDefaults() *DnsRecordsEndpointGroupLogicalNetwork`
 
-NewDnsRecordsEndpointGroupLogicalNetworkDtoWithDefaults instantiates a new DnsRecordsEndpointGroupLogicalNetworkDto object
+NewDnsRecordsEndpointGroupLogicalNetworkWithDefaults instantiates a new DnsRecordsEndpointGroupLogicalNetwork object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetProvisionInstanceDnsRecords
 
-`func (o *DnsRecordsEndpointGroupLogicalNetworkDto) GetProvisionInstanceDnsRecords() bool`
+`func (o *DnsRecordsEndpointGroupLogicalNetwork) GetProvisionInstanceDnsRecords() bool`
 
 GetProvisionInstanceDnsRecords returns the ProvisionInstanceDnsRecords field if non-nil, zero value otherwise.
 
 ### GetProvisionInstanceDnsRecordsOk
 
-`func (o *DnsRecordsEndpointGroupLogicalNetworkDto) GetProvisionInstanceDnsRecordsOk() (*bool, bool)`
+`func (o *DnsRecordsEndpointGroupLogicalNetwork) GetProvisionInstanceDnsRecordsOk() (*bool, bool)`
 
 GetProvisionInstanceDnsRecordsOk returns a tuple with the ProvisionInstanceDnsRecords field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProvisionInstanceDnsRecords
 
-`func (o *DnsRecordsEndpointGroupLogicalNetworkDto) SetProvisionInstanceDnsRecords(v bool)`
+`func (o *DnsRecordsEndpointGroupLogicalNetwork) SetProvisionInstanceDnsRecords(v bool)`
 
 SetProvisionInstanceDnsRecords sets ProvisionInstanceDnsRecords field to given value.
 
 ### HasProvisionInstanceDnsRecords
 
-`func (o *DnsRecordsEndpointGroupLogicalNetworkDto) HasProvisionInstanceDnsRecords() bool`
+`func (o *DnsRecordsEndpointGroupLogicalNetwork) HasProvisionInstanceDnsRecords() bool`
 
 HasProvisionInstanceDnsRecords returns a boolean if a field has been set.
 
 ### GetProvisionLoadBalancingDnsRecord
 
-`func (o *DnsRecordsEndpointGroupLogicalNetworkDto) GetProvisionLoadBalancingDnsRecord() bool`
+`func (o *DnsRecordsEndpointGroupLogicalNetwork) GetProvisionLoadBalancingDnsRecord() bool`
 
 GetProvisionLoadBalancingDnsRecord returns the ProvisionLoadBalancingDnsRecord field if non-nil, zero value otherwise.
 
 ### GetProvisionLoadBalancingDnsRecordOk
 
-`func (o *DnsRecordsEndpointGroupLogicalNetworkDto) GetProvisionLoadBalancingDnsRecordOk() (*bool, bool)`
+`func (o *DnsRecordsEndpointGroupLogicalNetwork) GetProvisionLoadBalancingDnsRecordOk() (*bool, bool)`
 
 GetProvisionLoadBalancingDnsRecordOk returns a tuple with the ProvisionLoadBalancingDnsRecord field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProvisionLoadBalancingDnsRecord
 
-`func (o *DnsRecordsEndpointGroupLogicalNetworkDto) SetProvisionLoadBalancingDnsRecord(v bool)`
+`func (o *DnsRecordsEndpointGroupLogicalNetwork) SetProvisionLoadBalancingDnsRecord(v bool)`
 
 SetProvisionLoadBalancingDnsRecord sets ProvisionLoadBalancingDnsRecord field to given value.
 
 ### HasProvisionLoadBalancingDnsRecord
 
-`func (o *DnsRecordsEndpointGroupLogicalNetworkDto) HasProvisionLoadBalancingDnsRecord() bool`
+`func (o *DnsRecordsEndpointGroupLogicalNetwork) HasProvisionLoadBalancingDnsRecord() bool`
 
 HasProvisionLoadBalancingDnsRecord returns a boolean if a field has been set.
 

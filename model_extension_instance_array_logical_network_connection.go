@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the EndpointInstanceGroupNetworkConnection type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &EndpointInstanceGroupNetworkConnection{}
+// checks if the ExtensionInstanceArrayLogicalNetworkConnection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExtensionInstanceArrayLogicalNetworkConnection{}
 
-// EndpointInstanceGroupNetworkConnection struct for EndpointInstanceGroupNetworkConnection
-type EndpointInstanceGroupNetworkConnection struct {
+// ExtensionInstanceArrayLogicalNetworkConnection struct for ExtensionInstanceArrayLogicalNetworkConnection
+type ExtensionInstanceArrayLogicalNetworkConnection struct {
 	// Whether the logical network is tagged.
 	Tagged bool `json:"tagged"`
 	// The access mode of the network endpoint group
@@ -31,37 +31,32 @@ type EndpointInstanceGroupNetworkConnection struct {
 	Redundancy NullableRedundancyConfig `json:"redundancy,omitempty"`
 	// DNS records that are supposed to be provisioned for the server instance group.
 	Dns NullableDnsRecordsEndpointGroupLogicalNetwork `json:"dns,omitempty"`
-	// Reference links
-	Links []Link `json:"links,omitempty"`
-	// The network connection ID.
-	Id string `json:"id"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _EndpointInstanceGroupNetworkConnection EndpointInstanceGroupNetworkConnection
+type _ExtensionInstanceArrayLogicalNetworkConnection ExtensionInstanceArrayLogicalNetworkConnection
 
-// NewEndpointInstanceGroupNetworkConnection instantiates a new EndpointInstanceGroupNetworkConnection object
+// NewExtensionInstanceArrayLogicalNetworkConnection instantiates a new ExtensionInstanceArrayLogicalNetworkConnection object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointInstanceGroupNetworkConnection(tagged bool, accessMode NetworkEndpointGroupAllowedAccessMode, id string) *EndpointInstanceGroupNetworkConnection {
-	this := EndpointInstanceGroupNetworkConnection{}
+func NewExtensionInstanceArrayLogicalNetworkConnection(tagged bool, accessMode NetworkEndpointGroupAllowedAccessMode) *ExtensionInstanceArrayLogicalNetworkConnection {
+	this := ExtensionInstanceArrayLogicalNetworkConnection{}
 	this.Tagged = tagged
 	this.AccessMode = accessMode
-	this.Id = id
 	return &this
 }
 
-// NewEndpointInstanceGroupNetworkConnectionWithDefaults instantiates a new EndpointInstanceGroupNetworkConnection object
+// NewExtensionInstanceArrayLogicalNetworkConnectionWithDefaults instantiates a new ExtensionInstanceArrayLogicalNetworkConnection object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewEndpointInstanceGroupNetworkConnectionWithDefaults() *EndpointInstanceGroupNetworkConnection {
-	this := EndpointInstanceGroupNetworkConnection{}
+func NewExtensionInstanceArrayLogicalNetworkConnectionWithDefaults() *ExtensionInstanceArrayLogicalNetworkConnection {
+	this := ExtensionInstanceArrayLogicalNetworkConnection{}
 	return &this
 }
 
 // GetTagged returns the Tagged field value
-func (o *EndpointInstanceGroupNetworkConnection) GetTagged() bool {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetTagged() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -72,7 +67,7 @@ func (o *EndpointInstanceGroupNetworkConnection) GetTagged() bool {
 
 // GetTaggedOk returns a tuple with the Tagged field value
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroupNetworkConnection) GetTaggedOk() (*bool, bool) {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetTaggedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -80,12 +75,12 @@ func (o *EndpointInstanceGroupNetworkConnection) GetTaggedOk() (*bool, bool) {
 }
 
 // SetTagged sets field value
-func (o *EndpointInstanceGroupNetworkConnection) SetTagged(v bool) {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetTagged(v bool) {
 	o.Tagged = v
 }
 
 // GetAccessMode returns the AccessMode field value
-func (o *EndpointInstanceGroupNetworkConnection) GetAccessMode() NetworkEndpointGroupAllowedAccessMode {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetAccessMode() NetworkEndpointGroupAllowedAccessMode {
 	if o == nil {
 		var ret NetworkEndpointGroupAllowedAccessMode
 		return ret
@@ -96,7 +91,7 @@ func (o *EndpointInstanceGroupNetworkConnection) GetAccessMode() NetworkEndpoint
 
 // GetAccessModeOk returns a tuple with the AccessMode field value
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroupNetworkConnection) GetAccessModeOk() (*NetworkEndpointGroupAllowedAccessMode, bool) {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetAccessModeOk() (*NetworkEndpointGroupAllowedAccessMode, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -104,12 +99,12 @@ func (o *EndpointInstanceGroupNetworkConnection) GetAccessModeOk() (*NetworkEndp
 }
 
 // SetAccessMode sets field value
-func (o *EndpointInstanceGroupNetworkConnection) SetAccessMode(v NetworkEndpointGroupAllowedAccessMode) {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetAccessMode(v NetworkEndpointGroupAllowedAccessMode) {
 	o.AccessMode = v
 }
 
 // GetMtu returns the Mtu field value if set, zero value otherwise.
-func (o *EndpointInstanceGroupNetworkConnection) GetMtu() int32 {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetMtu() int32 {
 	if o == nil || IsNil(o.Mtu) {
 		var ret int32
 		return ret
@@ -119,7 +114,7 @@ func (o *EndpointInstanceGroupNetworkConnection) GetMtu() int32 {
 
 // GetMtuOk returns a tuple with the Mtu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroupNetworkConnection) GetMtuOk() (*int32, bool) {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetMtuOk() (*int32, bool) {
 	if o == nil || IsNil(o.Mtu) {
 		return nil, false
 	}
@@ -127,7 +122,7 @@ func (o *EndpointInstanceGroupNetworkConnection) GetMtuOk() (*int32, bool) {
 }
 
 // HasMtu returns a boolean if a field has been set.
-func (o *EndpointInstanceGroupNetworkConnection) HasMtu() bool {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) HasMtu() bool {
 	if o != nil && !IsNil(o.Mtu) {
 		return true
 	}
@@ -136,12 +131,12 @@ func (o *EndpointInstanceGroupNetworkConnection) HasMtu() bool {
 }
 
 // SetMtu gets a reference to the given int32 and assigns it to the Mtu field.
-func (o *EndpointInstanceGroupNetworkConnection) SetMtu(v int32) {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetMtu(v int32) {
 	o.Mtu = &v
 }
 
 // GetRedundancy returns the Redundancy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EndpointInstanceGroupNetworkConnection) GetRedundancy() RedundancyConfig {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetRedundancy() RedundancyConfig {
 	if o == nil || IsNil(o.Redundancy.Get()) {
 		var ret RedundancyConfig
 		return ret
@@ -152,7 +147,7 @@ func (o *EndpointInstanceGroupNetworkConnection) GetRedundancy() RedundancyConfi
 // GetRedundancyOk returns a tuple with the Redundancy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EndpointInstanceGroupNetworkConnection) GetRedundancyOk() (*RedundancyConfig, bool) {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetRedundancyOk() (*RedundancyConfig, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -160,7 +155,7 @@ func (o *EndpointInstanceGroupNetworkConnection) GetRedundancyOk() (*RedundancyC
 }
 
 // HasRedundancy returns a boolean if a field has been set.
-func (o *EndpointInstanceGroupNetworkConnection) HasRedundancy() bool {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) HasRedundancy() bool {
 	if o != nil && o.Redundancy.IsSet() {
 		return true
 	}
@@ -169,21 +164,21 @@ func (o *EndpointInstanceGroupNetworkConnection) HasRedundancy() bool {
 }
 
 // SetRedundancy gets a reference to the given NullableRedundancyConfig and assigns it to the Redundancy field.
-func (o *EndpointInstanceGroupNetworkConnection) SetRedundancy(v RedundancyConfig) {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetRedundancy(v RedundancyConfig) {
 	o.Redundancy.Set(&v)
 }
 // SetRedundancyNil sets the value for Redundancy to be an explicit nil
-func (o *EndpointInstanceGroupNetworkConnection) SetRedundancyNil() {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetRedundancyNil() {
 	o.Redundancy.Set(nil)
 }
 
 // UnsetRedundancy ensures that no value is present for Redundancy, not even an explicit nil
-func (o *EndpointInstanceGroupNetworkConnection) UnsetRedundancy() {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) UnsetRedundancy() {
 	o.Redundancy.Unset()
 }
 
 // GetDns returns the Dns field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EndpointInstanceGroupNetworkConnection) GetDns() DnsRecordsEndpointGroupLogicalNetwork {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetDns() DnsRecordsEndpointGroupLogicalNetwork {
 	if o == nil || IsNil(o.Dns.Get()) {
 		var ret DnsRecordsEndpointGroupLogicalNetwork
 		return ret
@@ -194,7 +189,7 @@ func (o *EndpointInstanceGroupNetworkConnection) GetDns() DnsRecordsEndpointGrou
 // GetDnsOk returns a tuple with the Dns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EndpointInstanceGroupNetworkConnection) GetDnsOk() (*DnsRecordsEndpointGroupLogicalNetwork, bool) {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetDnsOk() (*DnsRecordsEndpointGroupLogicalNetwork, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -202,7 +197,7 @@ func (o *EndpointInstanceGroupNetworkConnection) GetDnsOk() (*DnsRecordsEndpoint
 }
 
 // HasDns returns a boolean if a field has been set.
-func (o *EndpointInstanceGroupNetworkConnection) HasDns() bool {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) HasDns() bool {
 	if o != nil && o.Dns.IsSet() {
 		return true
 	}
@@ -211,76 +206,20 @@ func (o *EndpointInstanceGroupNetworkConnection) HasDns() bool {
 }
 
 // SetDns gets a reference to the given NullableDnsRecordsEndpointGroupLogicalNetwork and assigns it to the Dns field.
-func (o *EndpointInstanceGroupNetworkConnection) SetDns(v DnsRecordsEndpointGroupLogicalNetwork) {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetDns(v DnsRecordsEndpointGroupLogicalNetwork) {
 	o.Dns.Set(&v)
 }
 // SetDnsNil sets the value for Dns to be an explicit nil
-func (o *EndpointInstanceGroupNetworkConnection) SetDnsNil() {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetDnsNil() {
 	o.Dns.Set(nil)
 }
 
 // UnsetDns ensures that no value is present for Dns, not even an explicit nil
-func (o *EndpointInstanceGroupNetworkConnection) UnsetDns() {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) UnsetDns() {
 	o.Dns.Unset()
 }
 
-// GetLinks returns the Links field value if set, zero value otherwise.
-func (o *EndpointInstanceGroupNetworkConnection) GetLinks() []Link {
-	if o == nil || IsNil(o.Links) {
-		var ret []Link
-		return ret
-	}
-	return o.Links
-}
-
-// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroupNetworkConnection) GetLinksOk() ([]Link, bool) {
-	if o == nil || IsNil(o.Links) {
-		return nil, false
-	}
-	return o.Links, true
-}
-
-// HasLinks returns a boolean if a field has been set.
-func (o *EndpointInstanceGroupNetworkConnection) HasLinks() bool {
-	if o != nil && !IsNil(o.Links) {
-		return true
-	}
-
-	return false
-}
-
-// SetLinks gets a reference to the given []Link and assigns it to the Links field.
-func (o *EndpointInstanceGroupNetworkConnection) SetLinks(v []Link) {
-	o.Links = v
-}
-
-// GetId returns the Id field value
-func (o *EndpointInstanceGroupNetworkConnection) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *EndpointInstanceGroupNetworkConnection) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *EndpointInstanceGroupNetworkConnection) SetId(v string) {
-	o.Id = v
-}
-
-func (o EndpointInstanceGroupNetworkConnection) MarshalJSON() ([]byte, error) {
+func (o ExtensionInstanceArrayLogicalNetworkConnection) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -288,7 +227,7 @@ func (o EndpointInstanceGroupNetworkConnection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o EndpointInstanceGroupNetworkConnection) ToMap() (map[string]interface{}, error) {
+func (o ExtensionInstanceArrayLogicalNetworkConnection) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["tagged"] = o.Tagged
 	toSerialize["accessMode"] = o.AccessMode
@@ -301,10 +240,6 @@ func (o EndpointInstanceGroupNetworkConnection) ToMap() (map[string]interface{},
 	if o.Dns.IsSet() {
 		toSerialize["dns"] = o.Dns.Get()
 	}
-	if !IsNil(o.Links) {
-		toSerialize["links"] = o.Links
-	}
-	toSerialize["id"] = o.Id
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -313,14 +248,13 @@ func (o EndpointInstanceGroupNetworkConnection) ToMap() (map[string]interface{},
 	return toSerialize, nil
 }
 
-func (o *EndpointInstanceGroupNetworkConnection) UnmarshalJSON(data []byte) (err error) {
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"tagged",
 		"accessMode",
-		"id",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -337,15 +271,15 @@ func (o *EndpointInstanceGroupNetworkConnection) UnmarshalJSON(data []byte) (err
 		}
 	}
 
-	varEndpointInstanceGroupNetworkConnection := _EndpointInstanceGroupNetworkConnection{}
+	varExtensionInstanceArrayLogicalNetworkConnection := _ExtensionInstanceArrayLogicalNetworkConnection{}
 
-	err = json.Unmarshal(data, &varEndpointInstanceGroupNetworkConnection)
+	err = json.Unmarshal(data, &varExtensionInstanceArrayLogicalNetworkConnection)
 
 	if err != nil {
 		return err
 	}
 
-	*o = EndpointInstanceGroupNetworkConnection(varEndpointInstanceGroupNetworkConnection)
+	*o = ExtensionInstanceArrayLogicalNetworkConnection(varExtensionInstanceArrayLogicalNetworkConnection)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -355,46 +289,44 @@ func (o *EndpointInstanceGroupNetworkConnection) UnmarshalJSON(data []byte) (err
 		delete(additionalProperties, "mtu")
 		delete(additionalProperties, "redundancy")
 		delete(additionalProperties, "dns")
-		delete(additionalProperties, "links")
-		delete(additionalProperties, "id")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableEndpointInstanceGroupNetworkConnection struct {
-	value *EndpointInstanceGroupNetworkConnection
+type NullableExtensionInstanceArrayLogicalNetworkConnection struct {
+	value *ExtensionInstanceArrayLogicalNetworkConnection
 	isSet bool
 }
 
-func (v NullableEndpointInstanceGroupNetworkConnection) Get() *EndpointInstanceGroupNetworkConnection {
+func (v NullableExtensionInstanceArrayLogicalNetworkConnection) Get() *ExtensionInstanceArrayLogicalNetworkConnection {
 	return v.value
 }
 
-func (v *NullableEndpointInstanceGroupNetworkConnection) Set(val *EndpointInstanceGroupNetworkConnection) {
+func (v *NullableExtensionInstanceArrayLogicalNetworkConnection) Set(val *ExtensionInstanceArrayLogicalNetworkConnection) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableEndpointInstanceGroupNetworkConnection) IsSet() bool {
+func (v NullableExtensionInstanceArrayLogicalNetworkConnection) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableEndpointInstanceGroupNetworkConnection) Unset() {
+func (v *NullableExtensionInstanceArrayLogicalNetworkConnection) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableEndpointInstanceGroupNetworkConnection(val *EndpointInstanceGroupNetworkConnection) *NullableEndpointInstanceGroupNetworkConnection {
-	return &NullableEndpointInstanceGroupNetworkConnection{value: val, isSet: true}
+func NewNullableExtensionInstanceArrayLogicalNetworkConnection(val *ExtensionInstanceArrayLogicalNetworkConnection) *NullableExtensionInstanceArrayLogicalNetworkConnection {
+	return &NullableExtensionInstanceArrayLogicalNetworkConnection{value: val, isSet: true}
 }
 
-func (v NullableEndpointInstanceGroupNetworkConnection) MarshalJSON() ([]byte, error) {
+func (v NullableExtensionInstanceArrayLogicalNetworkConnection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableEndpointInstanceGroupNetworkConnection) UnmarshalJSON(src []byte) error {
+func (v *NullableExtensionInstanceArrayLogicalNetworkConnection) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

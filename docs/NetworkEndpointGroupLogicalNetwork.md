@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **AccessMode** | [**NetworkEndpointGroupAllowedAccessMode**](NetworkEndpointGroupAllowedAccessMode.md) | The access mode of the network endpoint group | 
 **Mtu** | Pointer to **int32** | The MTU of the logical network | [optional] 
 **Redundancy** | Pointer to [**NullableRedundancyConfig**](RedundancyConfig.md) | The redundancy configuration | [optional] 
-**Dns** | Pointer to [**NullableDnsRecordsEndpointGroupLogicalNetworkDto**](DnsRecordsEndpointGroupLogicalNetworkDto.md) | DNS records that are supposed to be provisioned for the server instance group. | [optional] 
+**Dns** | Pointer to [**NullableDnsRecordsEndpointGroupLogicalNetwork**](DnsRecordsEndpointGroupLogicalNetwork.md) | DNS records that are supposed to be provisioned for the server instance group. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 **NetworkEndpointGroupId** | **string** | The network endpoint group ID. | 
 
@@ -154,20 +154,20 @@ HasRedundancy returns a boolean if a field has been set.
 UnsetRedundancy ensures that no value is present for Redundancy, not even an explicit nil
 ### GetDns
 
-`func (o *NetworkEndpointGroupLogicalNetwork) GetDns() DnsRecordsEndpointGroupLogicalNetworkDto`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetDns() DnsRecordsEndpointGroupLogicalNetwork`
 
 GetDns returns the Dns field if non-nil, zero value otherwise.
 
 ### GetDnsOk
 
-`func (o *NetworkEndpointGroupLogicalNetwork) GetDnsOk() (*DnsRecordsEndpointGroupLogicalNetworkDto, bool)`
+`func (o *NetworkEndpointGroupLogicalNetwork) GetDnsOk() (*DnsRecordsEndpointGroupLogicalNetwork, bool)`
 
 GetDnsOk returns a tuple with the Dns field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDns
 
-`func (o *NetworkEndpointGroupLogicalNetwork) SetDns(v DnsRecordsEndpointGroupLogicalNetworkDto)`
+`func (o *NetworkEndpointGroupLogicalNetwork) SetDns(v DnsRecordsEndpointGroupLogicalNetwork)`
 
 SetDns sets Dns field to given value.
 

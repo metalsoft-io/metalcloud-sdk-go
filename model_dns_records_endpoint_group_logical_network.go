@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the DnsRecordsEndpointGroupLogicalNetworkDto type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &DnsRecordsEndpointGroupLogicalNetworkDto{}
+// checks if the DnsRecordsEndpointGroupLogicalNetwork type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DnsRecordsEndpointGroupLogicalNetwork{}
 
-// DnsRecordsEndpointGroupLogicalNetworkDto struct for DnsRecordsEndpointGroupLogicalNetworkDto
-type DnsRecordsEndpointGroupLogicalNetworkDto struct {
+// DnsRecordsEndpointGroupLogicalNetwork struct for DnsRecordsEndpointGroupLogicalNetwork
+type DnsRecordsEndpointGroupLogicalNetwork struct {
 	// If true, DNS records (type A and PTR) will be created for each server instance that is part of this server instance group. The DNS record will be created with the default \"hostname\" of <server-instance> suffixed with the server instance ID (e.g., \"server-instance-24\") plus the DNS zone name. If the \"hostname\" property is set on the server instance, it will use that value to construct the DNS record name.
 	ProvisionInstanceDnsRecords *bool `json:"provisionInstanceDnsRecords,omitempty"`
 	// Flag to indicate if for the server instance group should create a DNS Load Balancing record. If true, a DNS Load Balancing record (type A) will be created that points to all server instances that are part of this server instance group. The DNS Load Balancing record will be created with the default \"hostname\" of <server-instance-group> suffixed with the server instance group ID (e.g., \"server-instance-group-34\") plus the DNS zone name. If the \"hostname\" property is set, it will use that value to construct the DNS Load Balancing record name.
@@ -27,14 +27,14 @@ type DnsRecordsEndpointGroupLogicalNetworkDto struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _DnsRecordsEndpointGroupLogicalNetworkDto DnsRecordsEndpointGroupLogicalNetworkDto
+type _DnsRecordsEndpointGroupLogicalNetwork DnsRecordsEndpointGroupLogicalNetwork
 
-// NewDnsRecordsEndpointGroupLogicalNetworkDto instantiates a new DnsRecordsEndpointGroupLogicalNetworkDto object
+// NewDnsRecordsEndpointGroupLogicalNetwork instantiates a new DnsRecordsEndpointGroupLogicalNetwork object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDnsRecordsEndpointGroupLogicalNetworkDto() *DnsRecordsEndpointGroupLogicalNetworkDto {
-	this := DnsRecordsEndpointGroupLogicalNetworkDto{}
+func NewDnsRecordsEndpointGroupLogicalNetwork() *DnsRecordsEndpointGroupLogicalNetwork {
+	this := DnsRecordsEndpointGroupLogicalNetwork{}
 	var provisionInstanceDnsRecords bool = false
 	this.ProvisionInstanceDnsRecords = &provisionInstanceDnsRecords
 	var provisionLoadBalancingDnsRecord bool = false
@@ -42,11 +42,11 @@ func NewDnsRecordsEndpointGroupLogicalNetworkDto() *DnsRecordsEndpointGroupLogic
 	return &this
 }
 
-// NewDnsRecordsEndpointGroupLogicalNetworkDtoWithDefaults instantiates a new DnsRecordsEndpointGroupLogicalNetworkDto object
+// NewDnsRecordsEndpointGroupLogicalNetworkWithDefaults instantiates a new DnsRecordsEndpointGroupLogicalNetwork object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewDnsRecordsEndpointGroupLogicalNetworkDtoWithDefaults() *DnsRecordsEndpointGroupLogicalNetworkDto {
-	this := DnsRecordsEndpointGroupLogicalNetworkDto{}
+func NewDnsRecordsEndpointGroupLogicalNetworkWithDefaults() *DnsRecordsEndpointGroupLogicalNetwork {
+	this := DnsRecordsEndpointGroupLogicalNetwork{}
 	var provisionInstanceDnsRecords bool = false
 	this.ProvisionInstanceDnsRecords = &provisionInstanceDnsRecords
 	var provisionLoadBalancingDnsRecord bool = false
@@ -55,7 +55,7 @@ func NewDnsRecordsEndpointGroupLogicalNetworkDtoWithDefaults() *DnsRecordsEndpoi
 }
 
 // GetProvisionInstanceDnsRecords returns the ProvisionInstanceDnsRecords field value if set, zero value otherwise.
-func (o *DnsRecordsEndpointGroupLogicalNetworkDto) GetProvisionInstanceDnsRecords() bool {
+func (o *DnsRecordsEndpointGroupLogicalNetwork) GetProvisionInstanceDnsRecords() bool {
 	if o == nil || IsNil(o.ProvisionInstanceDnsRecords) {
 		var ret bool
 		return ret
@@ -65,7 +65,7 @@ func (o *DnsRecordsEndpointGroupLogicalNetworkDto) GetProvisionInstanceDnsRecord
 
 // GetProvisionInstanceDnsRecordsOk returns a tuple with the ProvisionInstanceDnsRecords field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DnsRecordsEndpointGroupLogicalNetworkDto) GetProvisionInstanceDnsRecordsOk() (*bool, bool) {
+func (o *DnsRecordsEndpointGroupLogicalNetwork) GetProvisionInstanceDnsRecordsOk() (*bool, bool) {
 	if o == nil || IsNil(o.ProvisionInstanceDnsRecords) {
 		return nil, false
 	}
@@ -73,7 +73,7 @@ func (o *DnsRecordsEndpointGroupLogicalNetworkDto) GetProvisionInstanceDnsRecord
 }
 
 // HasProvisionInstanceDnsRecords returns a boolean if a field has been set.
-func (o *DnsRecordsEndpointGroupLogicalNetworkDto) HasProvisionInstanceDnsRecords() bool {
+func (o *DnsRecordsEndpointGroupLogicalNetwork) HasProvisionInstanceDnsRecords() bool {
 	if o != nil && !IsNil(o.ProvisionInstanceDnsRecords) {
 		return true
 	}
@@ -82,12 +82,12 @@ func (o *DnsRecordsEndpointGroupLogicalNetworkDto) HasProvisionInstanceDnsRecord
 }
 
 // SetProvisionInstanceDnsRecords gets a reference to the given bool and assigns it to the ProvisionInstanceDnsRecords field.
-func (o *DnsRecordsEndpointGroupLogicalNetworkDto) SetProvisionInstanceDnsRecords(v bool) {
+func (o *DnsRecordsEndpointGroupLogicalNetwork) SetProvisionInstanceDnsRecords(v bool) {
 	o.ProvisionInstanceDnsRecords = &v
 }
 
 // GetProvisionLoadBalancingDnsRecord returns the ProvisionLoadBalancingDnsRecord field value if set, zero value otherwise.
-func (o *DnsRecordsEndpointGroupLogicalNetworkDto) GetProvisionLoadBalancingDnsRecord() bool {
+func (o *DnsRecordsEndpointGroupLogicalNetwork) GetProvisionLoadBalancingDnsRecord() bool {
 	if o == nil || IsNil(o.ProvisionLoadBalancingDnsRecord) {
 		var ret bool
 		return ret
@@ -97,7 +97,7 @@ func (o *DnsRecordsEndpointGroupLogicalNetworkDto) GetProvisionLoadBalancingDnsR
 
 // GetProvisionLoadBalancingDnsRecordOk returns a tuple with the ProvisionLoadBalancingDnsRecord field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DnsRecordsEndpointGroupLogicalNetworkDto) GetProvisionLoadBalancingDnsRecordOk() (*bool, bool) {
+func (o *DnsRecordsEndpointGroupLogicalNetwork) GetProvisionLoadBalancingDnsRecordOk() (*bool, bool) {
 	if o == nil || IsNil(o.ProvisionLoadBalancingDnsRecord) {
 		return nil, false
 	}
@@ -105,7 +105,7 @@ func (o *DnsRecordsEndpointGroupLogicalNetworkDto) GetProvisionLoadBalancingDnsR
 }
 
 // HasProvisionLoadBalancingDnsRecord returns a boolean if a field has been set.
-func (o *DnsRecordsEndpointGroupLogicalNetworkDto) HasProvisionLoadBalancingDnsRecord() bool {
+func (o *DnsRecordsEndpointGroupLogicalNetwork) HasProvisionLoadBalancingDnsRecord() bool {
 	if o != nil && !IsNil(o.ProvisionLoadBalancingDnsRecord) {
 		return true
 	}
@@ -114,11 +114,11 @@ func (o *DnsRecordsEndpointGroupLogicalNetworkDto) HasProvisionLoadBalancingDnsR
 }
 
 // SetProvisionLoadBalancingDnsRecord gets a reference to the given bool and assigns it to the ProvisionLoadBalancingDnsRecord field.
-func (o *DnsRecordsEndpointGroupLogicalNetworkDto) SetProvisionLoadBalancingDnsRecord(v bool) {
+func (o *DnsRecordsEndpointGroupLogicalNetwork) SetProvisionLoadBalancingDnsRecord(v bool) {
 	o.ProvisionLoadBalancingDnsRecord = &v
 }
 
-func (o DnsRecordsEndpointGroupLogicalNetworkDto) MarshalJSON() ([]byte, error) {
+func (o DnsRecordsEndpointGroupLogicalNetwork) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -126,7 +126,7 @@ func (o DnsRecordsEndpointGroupLogicalNetworkDto) MarshalJSON() ([]byte, error) 
 	return json.Marshal(toSerialize)
 }
 
-func (o DnsRecordsEndpointGroupLogicalNetworkDto) ToMap() (map[string]interface{}, error) {
+func (o DnsRecordsEndpointGroupLogicalNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ProvisionInstanceDnsRecords) {
 		toSerialize["provisionInstanceDnsRecords"] = o.ProvisionInstanceDnsRecords
@@ -142,16 +142,16 @@ func (o DnsRecordsEndpointGroupLogicalNetworkDto) ToMap() (map[string]interface{
 	return toSerialize, nil
 }
 
-func (o *DnsRecordsEndpointGroupLogicalNetworkDto) UnmarshalJSON(data []byte) (err error) {
-	varDnsRecordsEndpointGroupLogicalNetworkDto := _DnsRecordsEndpointGroupLogicalNetworkDto{}
+func (o *DnsRecordsEndpointGroupLogicalNetwork) UnmarshalJSON(data []byte) (err error) {
+	varDnsRecordsEndpointGroupLogicalNetwork := _DnsRecordsEndpointGroupLogicalNetwork{}
 
-	err = json.Unmarshal(data, &varDnsRecordsEndpointGroupLogicalNetworkDto)
+	err = json.Unmarshal(data, &varDnsRecordsEndpointGroupLogicalNetwork)
 
 	if err != nil {
 		return err
 	}
 
-	*o = DnsRecordsEndpointGroupLogicalNetworkDto(varDnsRecordsEndpointGroupLogicalNetworkDto)
+	*o = DnsRecordsEndpointGroupLogicalNetwork(varDnsRecordsEndpointGroupLogicalNetwork)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -164,38 +164,38 @@ func (o *DnsRecordsEndpointGroupLogicalNetworkDto) UnmarshalJSON(data []byte) (e
 	return err
 }
 
-type NullableDnsRecordsEndpointGroupLogicalNetworkDto struct {
-	value *DnsRecordsEndpointGroupLogicalNetworkDto
+type NullableDnsRecordsEndpointGroupLogicalNetwork struct {
+	value *DnsRecordsEndpointGroupLogicalNetwork
 	isSet bool
 }
 
-func (v NullableDnsRecordsEndpointGroupLogicalNetworkDto) Get() *DnsRecordsEndpointGroupLogicalNetworkDto {
+func (v NullableDnsRecordsEndpointGroupLogicalNetwork) Get() *DnsRecordsEndpointGroupLogicalNetwork {
 	return v.value
 }
 
-func (v *NullableDnsRecordsEndpointGroupLogicalNetworkDto) Set(val *DnsRecordsEndpointGroupLogicalNetworkDto) {
+func (v *NullableDnsRecordsEndpointGroupLogicalNetwork) Set(val *DnsRecordsEndpointGroupLogicalNetwork) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDnsRecordsEndpointGroupLogicalNetworkDto) IsSet() bool {
+func (v NullableDnsRecordsEndpointGroupLogicalNetwork) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDnsRecordsEndpointGroupLogicalNetworkDto) Unset() {
+func (v *NullableDnsRecordsEndpointGroupLogicalNetwork) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDnsRecordsEndpointGroupLogicalNetworkDto(val *DnsRecordsEndpointGroupLogicalNetworkDto) *NullableDnsRecordsEndpointGroupLogicalNetworkDto {
-	return &NullableDnsRecordsEndpointGroupLogicalNetworkDto{value: val, isSet: true}
+func NewNullableDnsRecordsEndpointGroupLogicalNetwork(val *DnsRecordsEndpointGroupLogicalNetwork) *NullableDnsRecordsEndpointGroupLogicalNetwork {
+	return &NullableDnsRecordsEndpointGroupLogicalNetwork{value: val, isSet: true}
 }
 
-func (v NullableDnsRecordsEndpointGroupLogicalNetworkDto) MarshalJSON() ([]byte, error) {
+func (v NullableDnsRecordsEndpointGroupLogicalNetwork) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDnsRecordsEndpointGroupLogicalNetworkDto) UnmarshalJSON(src []byte) error {
+func (v *NullableDnsRecordsEndpointGroupLogicalNetwork) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

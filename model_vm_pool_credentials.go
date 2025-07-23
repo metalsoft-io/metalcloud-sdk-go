@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the VMPoolCredentials type satisfies the MappedNullable interface at compile time
@@ -22,9 +21,13 @@ var _ MappedNullable = &VMPoolCredentials{}
 // VMPoolCredentials struct for VMPoolCredentials
 type VMPoolCredentials struct {
 	// Certificate of the VM Pool
-	Certificate string `json:"certificate"`
+	Certificate *string `json:"certificate,omitempty"`
 	// Private key of the VM Pool
-	PrivateKey string `json:"privateKey"`
+	PrivateKey *string `json:"privateKey,omitempty"`
+	// Username of the VM Pool
+	Username *string `json:"username,omitempty"`
+	// Password of the VM Pool
+	Password *string `json:"password,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +37,8 @@ type _VMPoolCredentials VMPoolCredentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVMPoolCredentials(certificate string, privateKey string) *VMPoolCredentials {
+func NewVMPoolCredentials() *VMPoolCredentials {
 	this := VMPoolCredentials{}
-	this.Certificate = certificate
-	this.PrivateKey = privateKey
 	return &this
 }
 
@@ -49,52 +50,132 @@ func NewVMPoolCredentialsWithDefaults() *VMPoolCredentials {
 	return &this
 }
 
-// GetCertificate returns the Certificate field value
+// GetCertificate returns the Certificate field value if set, zero value otherwise.
 func (o *VMPoolCredentials) GetCertificate() string {
-	if o == nil {
+	if o == nil || IsNil(o.Certificate) {
 		var ret string
 		return ret
 	}
-
-	return o.Certificate
+	return *o.Certificate
 }
 
-// GetCertificateOk returns a tuple with the Certificate field value
+// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VMPoolCredentials) GetCertificateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Certificate) {
 		return nil, false
 	}
-	return &o.Certificate, true
+	return o.Certificate, true
 }
 
-// SetCertificate sets field value
+// HasCertificate returns a boolean if a field has been set.
+func (o *VMPoolCredentials) HasCertificate() bool {
+	if o != nil && !IsNil(o.Certificate) {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificate gets a reference to the given string and assigns it to the Certificate field.
 func (o *VMPoolCredentials) SetCertificate(v string) {
-	o.Certificate = v
+	o.Certificate = &v
 }
 
-// GetPrivateKey returns the PrivateKey field value
+// GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
 func (o *VMPoolCredentials) GetPrivateKey() string {
-	if o == nil {
+	if o == nil || IsNil(o.PrivateKey) {
 		var ret string
 		return ret
 	}
-
-	return o.PrivateKey
+	return *o.PrivateKey
 }
 
-// GetPrivateKeyOk returns a tuple with the PrivateKey field value
+// GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VMPoolCredentials) GetPrivateKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PrivateKey) {
 		return nil, false
 	}
-	return &o.PrivateKey, true
+	return o.PrivateKey, true
 }
 
-// SetPrivateKey sets field value
+// HasPrivateKey returns a boolean if a field has been set.
+func (o *VMPoolCredentials) HasPrivateKey() bool {
+	if o != nil && !IsNil(o.PrivateKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrivateKey gets a reference to the given string and assigns it to the PrivateKey field.
 func (o *VMPoolCredentials) SetPrivateKey(v string) {
-	o.PrivateKey = v
+	o.PrivateKey = &v
+}
+
+// GetUsername returns the Username field value if set, zero value otherwise.
+func (o *VMPoolCredentials) GetUsername() string {
+	if o == nil || IsNil(o.Username) {
+		var ret string
+		return ret
+	}
+	return *o.Username
+}
+
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolCredentials) GetUsernameOk() (*string, bool) {
+	if o == nil || IsNil(o.Username) {
+		return nil, false
+	}
+	return o.Username, true
+}
+
+// HasUsername returns a boolean if a field has been set.
+func (o *VMPoolCredentials) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
+func (o *VMPoolCredentials) SetUsername(v string) {
+	o.Username = &v
+}
+
+// GetPassword returns the Password field value if set, zero value otherwise.
+func (o *VMPoolCredentials) GetPassword() string {
+	if o == nil || IsNil(o.Password) {
+		var ret string
+		return ret
+	}
+	return *o.Password
+}
+
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VMPoolCredentials) GetPasswordOk() (*string, bool) {
+	if o == nil || IsNil(o.Password) {
+		return nil, false
+	}
+	return o.Password, true
+}
+
+// HasPassword returns a boolean if a field has been set.
+func (o *VMPoolCredentials) HasPassword() bool {
+	if o != nil && !IsNil(o.Password) {
+		return true
+	}
+
+	return false
+}
+
+// SetPassword gets a reference to the given string and assigns it to the Password field.
+func (o *VMPoolCredentials) SetPassword(v string) {
+	o.Password = &v
 }
 
 func (o VMPoolCredentials) MarshalJSON() ([]byte, error) {
@@ -107,8 +188,18 @@ func (o VMPoolCredentials) MarshalJSON() ([]byte, error) {
 
 func (o VMPoolCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["certificate"] = o.Certificate
-	toSerialize["privateKey"] = o.PrivateKey
+	if !IsNil(o.Certificate) {
+		toSerialize["certificate"] = o.Certificate
+	}
+	if !IsNil(o.PrivateKey) {
+		toSerialize["privateKey"] = o.PrivateKey
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -118,28 +209,6 @@ func (o VMPoolCredentials) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *VMPoolCredentials) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"certificate",
-		"privateKey",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varVMPoolCredentials := _VMPoolCredentials{}
 
 	err = json.Unmarshal(data, &varVMPoolCredentials)
@@ -155,6 +224,8 @@ func (o *VMPoolCredentials) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "certificate")
 		delete(additionalProperties, "privateKey")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "password")
 		o.AdditionalProperties = additionalProperties
 	}
 

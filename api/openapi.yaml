@@ -15535,6 +15535,37 @@ paths:
           type: array
         style: form
       - description: |-
+          Filter by siteId query param.
+                    <p>
+                       <b>Format: </b> filter.siteId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.siteId=$not:$like:John Doe&filter.siteId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.siteId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
           Filter by chassisIdentifier query param.
                     <p>
                        <b>Format: </b> filter.chassisIdentifier={$not}:OPERATION:VALUE
@@ -17933,6 +17964,37 @@ paths:
           type: array
         style: form
       - description: |-
+          Filter by siteId query param.
+                    <p>
+                       <b>Format: </b> filter.siteId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.siteId=$not:$like:John Doe&filter.siteId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.siteId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
           Filter by chassisIdentifier query param.
                     <p>
                        <b>Format: </b> filter.chassisIdentifier={$not}:OPERATION:VALUE
@@ -19191,6 +19253,66 @@ paths:
       summary: Get all permissions
       tags:
       - Security
+    post:
+      operationId: createPermission
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePermission'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permission'
+          description: The created permission
+        "400":
+          description: Invalid permission data
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "409":
+          description: Unable to create permission due to conflict
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Create a new permission
+      tags:
+      - Security
+  /api/v2/permissions/{permissionName}:
+    delete:
+      operationId: deletePermission
+      parameters:
+      - explode: false
+        in: path
+        name: permissionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: The specified permission was successfully deleted
+        "400":
+          description: Invalid permission data
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Permission not found
+        "409":
+          description: Unable to delete permission due to conflict
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Delete a permission by name
+      tags:
+      - Security
   /api/v2/roles:
     get:
       operationId: getRoles
@@ -19236,6 +19358,8 @@ paths:
           description: Forbidden
         "404":
           description: Role not found
+        "409":
+          description: Unable to create role due to conflict
       security:
       - JWT: []
       - apiKey: []
@@ -19268,6 +19392,8 @@ paths:
           description: Forbidden
         "404":
           description: Role not found
+        "409":
+          description: Unable to delete role due to conflict
       security:
       - JWT: []
       - apiKey: []
@@ -19334,6 +19460,8 @@ paths:
           description: Forbidden
         "404":
           description: Role not found
+        "409":
+          description: Unable to update role due to conflict
       security:
       - JWT: []
       - apiKey: []
@@ -28672,12 +28800,8 @@ paths:
           type: integer
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExternalConnectionLogicalNetwork'
-          description: Returns an external connection logical network by its id
+        "204":
+          description: Logical network marked for deletion successfully
         "401":
           description: Unauthorized
         "403":
@@ -28688,7 +28812,8 @@ paths:
       security:
       - JWT: []
       - apiKey: []
-      summary: Start deletion of an external connection logical network
+      summary: Start deletion of an external connection logical network. Only those
+        in pending_activation state will be deleted.
       tags:
       - External Connection
     get:
@@ -32019,6 +32144,26 @@ paths:
       - JWT: []
       - apiKey: []
       summary: Get MetalSoft system version
+      tags:
+      - System
+  /api/v2/licensed-products:
+    get:
+      description: Returns the licensed products
+      operationId: getLicensedProducts
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicensedProducts'
+          description: Returns the licensed products
+        "401":
+          description: Unauthorized
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get licensed products
       tags:
       - System
   /api/v2/template-assets:
@@ -36697,6 +36842,39 @@ paths:
       summary: Updates VM Pool information
       tags:
       - VM Pool
+  /api/v2/vm-pools/{vmPoolId}/actions/refresh-information:
+    post:
+      description: Refresh VM Pool information
+      operationId: refreshVMPoolInformation
+      parameters:
+      - explode: false
+        in: path
+        name: vmPoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VMPool'
+          description: The VM Pool information successfully updated
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Refresh VM Pool information
+      tags:
+      - VM Pool
   /api/v2/vm-pools/{vmPoolId}/statistics:
     get:
       description: Returns VM Pool statistics
@@ -40535,9 +40713,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-07-15T13:50:53.364Z
+        createdTimestamp: 2025-07-22T15:09:31.289Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-07-15T13:50:53.364Z
+        updatedTimestamp: 2025-07-22T15:09:31.289Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -40633,12 +40811,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-15T13:50:53.364Z
+          example: 2025-07-22T15:09:31.289Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-15T13:50:53.364Z
+          example: 2025-07-22T15:09:31.289Z
           format: date-time
           type: string
         links:
@@ -40670,9 +40848,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-07-15T13:50:53.364Z
+          createdTimestamp: 2025-07-22T15:09:31.289Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-07-15T13:50:53.364Z
+          updatedTimestamp: 2025-07-22T15:09:31.289Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -40689,9 +40867,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-07-15T13:50:53.364Z
+          createdTimestamp: 2025-07-22T15:09:31.289Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-07-15T13:50:53.364Z
+          updatedTimestamp: 2025-07-22T15:09:31.289Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -42334,6 +42512,8 @@ components:
           - 479
           - 219
           - 544
+          - 113
+          - 112
           - 490
           - 492
           - 485
@@ -42970,7 +43150,7 @@ components:
       required:
       - mode
       type: object
-    dnsRecordsEndpointGroupLogicalNetworkDto:
+    DnsRecordsEndpointGroupLogicalNetwork:
       properties:
         provisionInstanceDnsRecords:
           default: false
@@ -42993,24 +43173,8 @@ components:
             \ use that value to construct the DNS Load Balancing record name."
           type: boolean
       type: object
-    CreateServerInstanceGroupNetworkConnection:
-      example:
-        logicalNetworkId: "1"
-        tagged: true
-        dns:
-          provisionInstanceDnsRecords: true
-          provisionLoadBalancingDnsRecord: false
-        redundancy:
-          mode: active-backup
-          implementation:
-            implementationType: link-aggregation
-        accessMode: l2
-        mtu: 1500
+    ExtensionInstanceArrayLogicalNetworkConnection:
       properties:
-        logicalNetworkId:
-          description: The logical network ID.
-          example: "1"
-          type: string
         tagged:
           description: Whether the logical network is tagged.
           example: true
@@ -43035,7 +43199,7 @@ components:
           nullable: true
         dns:
           allOf:
-          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          - $ref: '#/components/schemas/DnsRecordsEndpointGroupLogicalNetwork'
           description: DNS records that are supposed to be provisioned for the server
             instance group.
           example:
@@ -43044,7 +43208,6 @@ components:
           nullable: true
       required:
       - accessMode
-      - logicalNetworkId
       - tagged
       type: object
     ExtensionInstanceArrayLogicalNetworkDto:
@@ -43058,7 +43221,7 @@ components:
           type: string
         networkConnection:
           allOf:
-          - $ref: '#/components/schemas/CreateServerInstanceGroupNetworkConnection'
+          - $ref: '#/components/schemas/ExtensionInstanceArrayLogicalNetworkConnection'
           description: Network connection details for the logical network.
       required:
       - label
@@ -43151,7 +43314,6 @@ components:
       required:
       - instanceCount
       - label
-      - osTemplate
       - serverType
       type: object
     ExtensionSharedDrive:
@@ -59987,7 +60149,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-07-15T13:50:53.406Z
+        createdTimestamp: 2025-07-22T15:09:31.329Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -59996,7 +60158,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-07-15T13:50:53.406Z
+        updatedTimestamp: 2025-07-22T15:09:31.329Z
         revision: "1"
       properties:
         siteId:
@@ -60013,12 +60175,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-15T13:50:53.406Z
+          example: 2025-07-22T15:09:31.329Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-15T13:50:53.406Z
+          example: 2025-07-22T15:09:31.329Z
           format: date-time
           type: string
         links:
@@ -60040,7 +60202,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-15T13:50:53.406Z
+        - createdTimestamp: 2025-07-22T15:09:31.329Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -60049,9 +60211,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-07-15T13:50:53.406Z
+          updatedTimestamp: 2025-07-22T15:09:31.329Z
           revision: "1"
-        - createdTimestamp: 2025-07-15T13:50:53.406Z
+        - createdTimestamp: 2025-07-22T15:09:31.329Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -60060,7 +60222,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-07-15T13:50:53.406Z
+          updatedTimestamp: 2025-07-22T15:09:31.329Z
           revision: "1"
         meta: ""
         links: ""
@@ -60163,7 +60325,7 @@ components:
           nullable: true
         dns:
           allOf:
-          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          - $ref: '#/components/schemas/DnsRecordsEndpointGroupLogicalNetwork'
           description: DNS records that are supposed to be provisioned for the server
             instance group.
           example:
@@ -60283,7 +60445,7 @@ components:
           nullable: true
         dns:
           allOf:
-          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          - $ref: '#/components/schemas/DnsRecordsEndpointGroupLogicalNetwork'
           description: DNS records that are supposed to be provisioned for the server
             instance group.
           example:
@@ -60332,7 +60494,7 @@ components:
           nullable: true
         dns:
           allOf:
-          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          - $ref: '#/components/schemas/DnsRecordsEndpointGroupLogicalNetwork'
           description: DNS records configuration for the server instance group.
           example:
             provisionInstanceDnsRecords: true
@@ -60649,7 +60811,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-07-15T13:50:53.36Z
+        createdTimestamp: 2025-07-22T15:09:31.286Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -60696,7 +60858,7 @@ components:
           configurationPreview: configurationPreview
           bgpTemplateId: 101
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-07-15T13:50:53.36Z
+        updatedTimestamp: 2025-07-22T15:09:31.286Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -60838,12 +61000,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-15T13:50:53.36Z
+          example: 2025-07-22T15:09:31.286Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-15T13:50:53.36Z
+          example: 2025-07-22T15:09:31.286Z
           format: date-time
           type: string
         links:
@@ -60887,7 +61049,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-15T13:50:53.36Z
+        - createdTimestamp: 2025-07-22T15:09:31.286Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -60934,7 +61096,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-07-15T13:50:53.36Z
+          updatedTimestamp: 2025-07-22T15:09:31.286Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -61051,7 +61213,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-07-15T13:50:53.36Z
+        - createdTimestamp: 2025-07-22T15:09:31.286Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -61098,7 +61260,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-07-15T13:50:53.36Z
+          updatedTimestamp: 2025-07-22T15:09:31.286Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -61383,9 +61545,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-07-15T13:50:53.411Z
+        createdTimestamp: 2025-07-22T15:09:31.334Z
         mlagPair: 0
-        updatedTimestamp: 2025-07-15T13:50:53.411Z
+        updatedTimestamp: 2025-07-22T15:09:31.334Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -61398,12 +61560,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-15T13:50:53.411Z
+          example: 2025-07-22T15:09:31.334Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-15T13:50:53.411Z
+          example: 2025-07-22T15:09:31.334Z
           format: date-time
           type: string
         revision:
@@ -61481,9 +61643,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-07-15T13:50:53.411Z
+          createdTimestamp: 2025-07-22T15:09:31.334Z
           mlagPair: 0
-          updatedTimestamp: 2025-07-15T13:50:53.411Z
+          updatedTimestamp: 2025-07-22T15:09:31.334Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -61494,9 +61656,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-07-15T13:50:53.411Z
+          createdTimestamp: 2025-07-22T15:09:31.334Z
           mlagPair: 0
-          updatedTimestamp: 2025-07-15T13:50:53.411Z
+          updatedTimestamp: 2025-07-22T15:09:31.334Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -62281,12 +62443,540 @@ components:
       required:
       - enabled
       type: object
+    PolicyEntry:
+      example:
+        subject:
+        - AI
+        - Account
+        - AuthenticationProvider
+        - Bucket
+        - ContainerPlatform
+        - Cloudinit
+        - Cluster
+        - Configuration
+        - CustomIso
+        - Datalake
+        - Dataset
+        - Datastore
+        - DNS
+        - Drive
+        - EmailTemplate
+        - Event
+        - Extension
+        - ExtensionInstance
+        - ExternalConnection
+        - FileShare
+        - FirmwareBaseline
+        - FirmwareUpgrade
+        - Infrastructure
+        - JobQueue
+        - License
+        - LogicalNetworkProfile
+        - LogicalNetwork
+        - ResourcePool
+        - Role
+        - Server
+        - ServerCleanupPolicy
+        - ServerDefaultCredentials
+        - ServerInstance
+        - ServerInstanceGroup
+        - Endpoint
+        - EndpointInterface
+        - EndpointInstance
+        - EndpointInstanceGroup
+        - ServerType
+        - SharedDrive
+        - Storage
+        - Subnet
+        - Subscription
+        - Switch
+        - Template
+        - TemplateAsset
+        - User
+        - UtilizationReport
+        - Vm
+        - VmInstance
+        - VmInstanceGroup
+        - VmPool
+        - VmType
+        - Workflow
+        - NetworkDeviceDefaultSecrets
+        - NetworkFabric
+        - NetworkEndpointGroup
+        - NetworkEndpointGroupLogicalNetwork
+        - Variable
+        - Secret
+        - Site
+        - BgpTemplate
+        - all
+        action:
+        - create
+        - list
+        - read
+        - update
+        - delete
+        - deploy
+        - manage
+        conditions:
+          id: "{{accountId}}"
+          isPublic: false
+          infrastructure.userIdOwner: "{{userId}}"
+        fields:
+        - fields
+        - fields
+      properties:
+        subject:
+          description: Policy subject(s)
+          example:
+          - AI
+          - Account
+          - AuthenticationProvider
+          - Bucket
+          - ContainerPlatform
+          - Cloudinit
+          - Cluster
+          - Configuration
+          - CustomIso
+          - Datalake
+          - Dataset
+          - Datastore
+          - DNS
+          - Drive
+          - EmailTemplate
+          - Event
+          - Extension
+          - ExtensionInstance
+          - ExternalConnection
+          - FileShare
+          - FirmwareBaseline
+          - FirmwareUpgrade
+          - Infrastructure
+          - JobQueue
+          - License
+          - LogicalNetworkProfile
+          - LogicalNetwork
+          - ResourcePool
+          - Role
+          - Server
+          - ServerCleanupPolicy
+          - ServerDefaultCredentials
+          - ServerInstance
+          - ServerInstanceGroup
+          - Endpoint
+          - EndpointInterface
+          - EndpointInstance
+          - EndpointInstanceGroup
+          - ServerType
+          - SharedDrive
+          - Storage
+          - Subnet
+          - Subscription
+          - Switch
+          - Template
+          - TemplateAsset
+          - User
+          - UtilizationReport
+          - Vm
+          - VmInstance
+          - VmInstanceGroup
+          - VmPool
+          - VmType
+          - Workflow
+          - NetworkDeviceDefaultSecrets
+          - NetworkFabric
+          - NetworkEndpointGroup
+          - NetworkEndpointGroupLogicalNetwork
+          - Variable
+          - Secret
+          - Site
+          - BgpTemplate
+          - all
+          items:
+            type: string
+          type: array
+        action:
+          description: Policy action(s)
+          example:
+          - create
+          - list
+          - read
+          - update
+          - delete
+          - deploy
+          - manage
+          items:
+            type: string
+          type: array
+        conditions:
+          description: Policy condition(s)
+          example:
+            id: "{{accountId}}"
+            isPublic: false
+            infrastructure.userIdOwner: "{{userId}}"
+          type: object
+        fields:
+          description: Policy subject fields(s)
+          items:
+            type: string
+          type: array
+      required:
+      - action
+      - subject
+      type: object
+    CreatePermission:
+      example:
+        name: name
+        policies:
+        - subject:
+          - AI
+          - Account
+          - AuthenticationProvider
+          - Bucket
+          - ContainerPlatform
+          - Cloudinit
+          - Cluster
+          - Configuration
+          - CustomIso
+          - Datalake
+          - Dataset
+          - Datastore
+          - DNS
+          - Drive
+          - EmailTemplate
+          - Event
+          - Extension
+          - ExtensionInstance
+          - ExternalConnection
+          - FileShare
+          - FirmwareBaseline
+          - FirmwareUpgrade
+          - Infrastructure
+          - JobQueue
+          - License
+          - LogicalNetworkProfile
+          - LogicalNetwork
+          - ResourcePool
+          - Role
+          - Server
+          - ServerCleanupPolicy
+          - ServerDefaultCredentials
+          - ServerInstance
+          - ServerInstanceGroup
+          - Endpoint
+          - EndpointInterface
+          - EndpointInstance
+          - EndpointInstanceGroup
+          - ServerType
+          - SharedDrive
+          - Storage
+          - Subnet
+          - Subscription
+          - Switch
+          - Template
+          - TemplateAsset
+          - User
+          - UtilizationReport
+          - Vm
+          - VmInstance
+          - VmInstanceGroup
+          - VmPool
+          - VmType
+          - Workflow
+          - NetworkDeviceDefaultSecrets
+          - NetworkFabric
+          - NetworkEndpointGroup
+          - NetworkEndpointGroupLogicalNetwork
+          - Variable
+          - Secret
+          - Site
+          - BgpTemplate
+          - all
+          action:
+          - create
+          - list
+          - read
+          - update
+          - delete
+          - deploy
+          - manage
+          conditions:
+            id: "{{accountId}}"
+            isPublic: false
+            infrastructure.userIdOwner: "{{userId}}"
+          fields:
+          - fields
+          - fields
+        - subject:
+          - AI
+          - Account
+          - AuthenticationProvider
+          - Bucket
+          - ContainerPlatform
+          - Cloudinit
+          - Cluster
+          - Configuration
+          - CustomIso
+          - Datalake
+          - Dataset
+          - Datastore
+          - DNS
+          - Drive
+          - EmailTemplate
+          - Event
+          - Extension
+          - ExtensionInstance
+          - ExternalConnection
+          - FileShare
+          - FirmwareBaseline
+          - FirmwareUpgrade
+          - Infrastructure
+          - JobQueue
+          - License
+          - LogicalNetworkProfile
+          - LogicalNetwork
+          - ResourcePool
+          - Role
+          - Server
+          - ServerCleanupPolicy
+          - ServerDefaultCredentials
+          - ServerInstance
+          - ServerInstanceGroup
+          - Endpoint
+          - EndpointInterface
+          - EndpointInstance
+          - EndpointInstanceGroup
+          - ServerType
+          - SharedDrive
+          - Storage
+          - Subnet
+          - Subscription
+          - Switch
+          - Template
+          - TemplateAsset
+          - User
+          - UtilizationReport
+          - Vm
+          - VmInstance
+          - VmInstanceGroup
+          - VmPool
+          - VmType
+          - Workflow
+          - NetworkDeviceDefaultSecrets
+          - NetworkFabric
+          - NetworkEndpointGroup
+          - NetworkEndpointGroupLogicalNetwork
+          - Variable
+          - Secret
+          - Site
+          - BgpTemplate
+          - all
+          action:
+          - create
+          - list
+          - read
+          - update
+          - delete
+          - deploy
+          - manage
+          conditions:
+            id: "{{accountId}}"
+            isPublic: false
+            infrastructure.userIdOwner: "{{userId}}"
+          fields:
+          - fields
+          - fields
+        description: description
+        label: label
+        type: custom
+      properties:
+        name:
+          description: Permission name
+          type: string
+        label:
+          description: Permission label
+          type: string
+        description:
+          description: Permission description
+          type: string
+        type:
+          description: Permission type
+          example: custom
+          type: string
+        policies:
+          description: List of Policy Entries
+          items:
+            $ref: '#/components/schemas/PolicyEntry'
+          type: array
+      required:
+      - label
+      - name
+      type: object
     Permission:
       example:
         name: name
+        policies:
+        - subject:
+          - AI
+          - Account
+          - AuthenticationProvider
+          - Bucket
+          - ContainerPlatform
+          - Cloudinit
+          - Cluster
+          - Configuration
+          - CustomIso
+          - Datalake
+          - Dataset
+          - Datastore
+          - DNS
+          - Drive
+          - EmailTemplate
+          - Event
+          - Extension
+          - ExtensionInstance
+          - ExternalConnection
+          - FileShare
+          - FirmwareBaseline
+          - FirmwareUpgrade
+          - Infrastructure
+          - JobQueue
+          - License
+          - LogicalNetworkProfile
+          - LogicalNetwork
+          - ResourcePool
+          - Role
+          - Server
+          - ServerCleanupPolicy
+          - ServerDefaultCredentials
+          - ServerInstance
+          - ServerInstanceGroup
+          - Endpoint
+          - EndpointInterface
+          - EndpointInstance
+          - EndpointInstanceGroup
+          - ServerType
+          - SharedDrive
+          - Storage
+          - Subnet
+          - Subscription
+          - Switch
+          - Template
+          - TemplateAsset
+          - User
+          - UtilizationReport
+          - Vm
+          - VmInstance
+          - VmInstanceGroup
+          - VmPool
+          - VmType
+          - Workflow
+          - NetworkDeviceDefaultSecrets
+          - NetworkFabric
+          - NetworkEndpointGroup
+          - NetworkEndpointGroupLogicalNetwork
+          - Variable
+          - Secret
+          - Site
+          - BgpTemplate
+          - all
+          action:
+          - create
+          - list
+          - read
+          - update
+          - delete
+          - deploy
+          - manage
+          conditions:
+            id: "{{accountId}}"
+            isPublic: false
+            infrastructure.userIdOwner: "{{userId}}"
+          fields:
+          - fields
+          - fields
+        - subject:
+          - AI
+          - Account
+          - AuthenticationProvider
+          - Bucket
+          - ContainerPlatform
+          - Cloudinit
+          - Cluster
+          - Configuration
+          - CustomIso
+          - Datalake
+          - Dataset
+          - Datastore
+          - DNS
+          - Drive
+          - EmailTemplate
+          - Event
+          - Extension
+          - ExtensionInstance
+          - ExternalConnection
+          - FileShare
+          - FirmwareBaseline
+          - FirmwareUpgrade
+          - Infrastructure
+          - JobQueue
+          - License
+          - LogicalNetworkProfile
+          - LogicalNetwork
+          - ResourcePool
+          - Role
+          - Server
+          - ServerCleanupPolicy
+          - ServerDefaultCredentials
+          - ServerInstance
+          - ServerInstanceGroup
+          - Endpoint
+          - EndpointInterface
+          - EndpointInstance
+          - EndpointInstanceGroup
+          - ServerType
+          - SharedDrive
+          - Storage
+          - Subnet
+          - Subscription
+          - Switch
+          - Template
+          - TemplateAsset
+          - User
+          - UtilizationReport
+          - Vm
+          - VmInstance
+          - VmInstanceGroup
+          - VmPool
+          - VmType
+          - Workflow
+          - NetworkDeviceDefaultSecrets
+          - NetworkFabric
+          - NetworkEndpointGroup
+          - NetworkEndpointGroupLogicalNetwork
+          - Variable
+          - Secret
+          - Site
+          - BgpTemplate
+          - all
+          action:
+          - create
+          - list
+          - read
+          - update
+          - delete
+          - deploy
+          - manage
+          conditions:
+            id: "{{accountId}}"
+            isPublic: false
+            infrastructure.userIdOwner: "{{userId}}"
+          fields:
+          - fields
+          - fields
         description: description
         id: id
         label: label
+        type: custom
       properties:
         id:
           description: Permission ID
@@ -62295,11 +62985,20 @@ components:
           description: Permission name
           type: string
         label:
-          description: Permission name
+          description: Permission label
           type: string
         description:
-          description: Permission name
+          description: Permission description
           type: string
+        type:
+          description: Permission type
+          example: custom
+          type: string
+        policies:
+          description: List of Policy Entries
+          items:
+            $ref: '#/components/schemas/PolicyEntry'
+          type: array
       required:
       - id
       - label
@@ -62309,13 +63008,333 @@ components:
       example:
         permissions:
         - name: name
+          policies:
+          - subject:
+            - AI
+            - Account
+            - AuthenticationProvider
+            - Bucket
+            - ContainerPlatform
+            - Cloudinit
+            - Cluster
+            - Configuration
+            - CustomIso
+            - Datalake
+            - Dataset
+            - Datastore
+            - DNS
+            - Drive
+            - EmailTemplate
+            - Event
+            - Extension
+            - ExtensionInstance
+            - ExternalConnection
+            - FileShare
+            - FirmwareBaseline
+            - FirmwareUpgrade
+            - Infrastructure
+            - JobQueue
+            - License
+            - LogicalNetworkProfile
+            - LogicalNetwork
+            - ResourcePool
+            - Role
+            - Server
+            - ServerCleanupPolicy
+            - ServerDefaultCredentials
+            - ServerInstance
+            - ServerInstanceGroup
+            - Endpoint
+            - EndpointInterface
+            - EndpointInstance
+            - EndpointInstanceGroup
+            - ServerType
+            - SharedDrive
+            - Storage
+            - Subnet
+            - Subscription
+            - Switch
+            - Template
+            - TemplateAsset
+            - User
+            - UtilizationReport
+            - Vm
+            - VmInstance
+            - VmInstanceGroup
+            - VmPool
+            - VmType
+            - Workflow
+            - NetworkDeviceDefaultSecrets
+            - NetworkFabric
+            - NetworkEndpointGroup
+            - NetworkEndpointGroupLogicalNetwork
+            - Variable
+            - Secret
+            - Site
+            - BgpTemplate
+            - all
+            action:
+            - create
+            - list
+            - read
+            - update
+            - delete
+            - deploy
+            - manage
+            conditions:
+              id: "{{accountId}}"
+              isPublic: false
+              infrastructure.userIdOwner: "{{userId}}"
+            fields:
+            - fields
+            - fields
+          - subject:
+            - AI
+            - Account
+            - AuthenticationProvider
+            - Bucket
+            - ContainerPlatform
+            - Cloudinit
+            - Cluster
+            - Configuration
+            - CustomIso
+            - Datalake
+            - Dataset
+            - Datastore
+            - DNS
+            - Drive
+            - EmailTemplate
+            - Event
+            - Extension
+            - ExtensionInstance
+            - ExternalConnection
+            - FileShare
+            - FirmwareBaseline
+            - FirmwareUpgrade
+            - Infrastructure
+            - JobQueue
+            - License
+            - LogicalNetworkProfile
+            - LogicalNetwork
+            - ResourcePool
+            - Role
+            - Server
+            - ServerCleanupPolicy
+            - ServerDefaultCredentials
+            - ServerInstance
+            - ServerInstanceGroup
+            - Endpoint
+            - EndpointInterface
+            - EndpointInstance
+            - EndpointInstanceGroup
+            - ServerType
+            - SharedDrive
+            - Storage
+            - Subnet
+            - Subscription
+            - Switch
+            - Template
+            - TemplateAsset
+            - User
+            - UtilizationReport
+            - Vm
+            - VmInstance
+            - VmInstanceGroup
+            - VmPool
+            - VmType
+            - Workflow
+            - NetworkDeviceDefaultSecrets
+            - NetworkFabric
+            - NetworkEndpointGroup
+            - NetworkEndpointGroupLogicalNetwork
+            - Variable
+            - Secret
+            - Site
+            - BgpTemplate
+            - all
+            action:
+            - create
+            - list
+            - read
+            - update
+            - delete
+            - deploy
+            - manage
+            conditions:
+              id: "{{accountId}}"
+              isPublic: false
+              infrastructure.userIdOwner: "{{userId}}"
+            fields:
+            - fields
+            - fields
           description: description
           id: id
           label: label
+          type: custom
         - name: name
+          policies:
+          - subject:
+            - AI
+            - Account
+            - AuthenticationProvider
+            - Bucket
+            - ContainerPlatform
+            - Cloudinit
+            - Cluster
+            - Configuration
+            - CustomIso
+            - Datalake
+            - Dataset
+            - Datastore
+            - DNS
+            - Drive
+            - EmailTemplate
+            - Event
+            - Extension
+            - ExtensionInstance
+            - ExternalConnection
+            - FileShare
+            - FirmwareBaseline
+            - FirmwareUpgrade
+            - Infrastructure
+            - JobQueue
+            - License
+            - LogicalNetworkProfile
+            - LogicalNetwork
+            - ResourcePool
+            - Role
+            - Server
+            - ServerCleanupPolicy
+            - ServerDefaultCredentials
+            - ServerInstance
+            - ServerInstanceGroup
+            - Endpoint
+            - EndpointInterface
+            - EndpointInstance
+            - EndpointInstanceGroup
+            - ServerType
+            - SharedDrive
+            - Storage
+            - Subnet
+            - Subscription
+            - Switch
+            - Template
+            - TemplateAsset
+            - User
+            - UtilizationReport
+            - Vm
+            - VmInstance
+            - VmInstanceGroup
+            - VmPool
+            - VmType
+            - Workflow
+            - NetworkDeviceDefaultSecrets
+            - NetworkFabric
+            - NetworkEndpointGroup
+            - NetworkEndpointGroupLogicalNetwork
+            - Variable
+            - Secret
+            - Site
+            - BgpTemplate
+            - all
+            action:
+            - create
+            - list
+            - read
+            - update
+            - delete
+            - deploy
+            - manage
+            conditions:
+              id: "{{accountId}}"
+              isPublic: false
+              infrastructure.userIdOwner: "{{userId}}"
+            fields:
+            - fields
+            - fields
+          - subject:
+            - AI
+            - Account
+            - AuthenticationProvider
+            - Bucket
+            - ContainerPlatform
+            - Cloudinit
+            - Cluster
+            - Configuration
+            - CustomIso
+            - Datalake
+            - Dataset
+            - Datastore
+            - DNS
+            - Drive
+            - EmailTemplate
+            - Event
+            - Extension
+            - ExtensionInstance
+            - ExternalConnection
+            - FileShare
+            - FirmwareBaseline
+            - FirmwareUpgrade
+            - Infrastructure
+            - JobQueue
+            - License
+            - LogicalNetworkProfile
+            - LogicalNetwork
+            - ResourcePool
+            - Role
+            - Server
+            - ServerCleanupPolicy
+            - ServerDefaultCredentials
+            - ServerInstance
+            - ServerInstanceGroup
+            - Endpoint
+            - EndpointInterface
+            - EndpointInstance
+            - EndpointInstanceGroup
+            - ServerType
+            - SharedDrive
+            - Storage
+            - Subnet
+            - Subscription
+            - Switch
+            - Template
+            - TemplateAsset
+            - User
+            - UtilizationReport
+            - Vm
+            - VmInstance
+            - VmInstanceGroup
+            - VmPool
+            - VmType
+            - Workflow
+            - NetworkDeviceDefaultSecrets
+            - NetworkFabric
+            - NetworkEndpointGroup
+            - NetworkEndpointGroupLogicalNetwork
+            - Variable
+            - Secret
+            - Site
+            - BgpTemplate
+            - all
+            action:
+            - create
+            - list
+            - read
+            - update
+            - delete
+            - deploy
+            - manage
+            conditions:
+              id: "{{accountId}}"
+              isPublic: false
+              infrastructure.userIdOwner: "{{userId}}"
+            fields:
+            - fields
+            - fields
           description: description
           id: id
           label: label
+          type: custom
       properties:
         permissions:
           description: List of permissions
@@ -64208,10 +65227,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-07-15T13:50:53.409Z
+        createdTimestamp: 2025-07-22T15:09:31.332Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-07-15T13:50:53.409Z
+        updatedTimestamp: 2025-07-22T15:09:31.332Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -64285,12 +65304,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-15T13:50:53.409Z
+          example: 2025-07-22T15:09:31.332Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-15T13:50:53.409Z
+          example: 2025-07-22T15:09:31.332Z
           format: date-time
           type: string
         links:
@@ -68671,7 +69690,7 @@ components:
           nullable: true
         dns:
           allOf:
-          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          - $ref: '#/components/schemas/DnsRecordsEndpointGroupLogicalNetwork'
           description: DNS records that are supposed to be provisioned for the server
             instance group.
           example:
@@ -68745,6 +69764,60 @@ components:
           type: array
       required:
       - data
+      type: object
+    CreateServerInstanceGroupNetworkConnection:
+      example:
+        logicalNetworkId: "1"
+        tagged: true
+        dns:
+          provisionInstanceDnsRecords: true
+          provisionLoadBalancingDnsRecord: false
+        redundancy:
+          mode: active-backup
+          implementation:
+            implementationType: link-aggregation
+        accessMode: l2
+        mtu: 1500
+      properties:
+        logicalNetworkId:
+          description: The logical network ID.
+          example: "1"
+          type: string
+        tagged:
+          description: Whether the logical network is tagged.
+          example: true
+          type: boolean
+        accessMode:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEndpointGroupAllowedAccessMode'
+          description: The access mode of the network endpoint group
+          example: l2
+        mtu:
+          description: The MTU of the logical network
+          example: 1500
+          type: integer
+        redundancy:
+          allOf:
+          - $ref: '#/components/schemas/RedundancyConfig'
+          description: The redundancy configuration
+          example:
+            mode: active-backup
+            implementation:
+              implementationType: link-aggregation
+          nullable: true
+        dns:
+          allOf:
+          - $ref: '#/components/schemas/DnsRecordsEndpointGroupLogicalNetwork'
+          description: DNS records that are supposed to be provisioned for the server
+            instance group.
+          example:
+            provisionInstanceDnsRecords: true
+            provisionLoadBalancingDnsRecord: false
+          nullable: true
+      required:
+      - accessMode
+      - logicalNetworkId
+      - tagged
       type: object
     RegisterServer:
       example:
@@ -70799,7 +71872,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-07-15T13:50:53.402Z
+        createdTimestamp: 2025-07-22T15:09:31.324Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -70807,7 +71880,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-07-15T13:50:53.402Z
+        updatedTimestamp: 2025-07-22T15:09:31.324Z
         revision: "1"
       properties:
         id:
@@ -70836,12 +71909,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-15T13:50:53.402Z
+          example: 2025-07-22T15:09:31.324Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-15T13:50:53.402Z
+          example: 2025-07-22T15:09:31.324Z
           format: date-time
           type: string
         links:
@@ -70860,7 +71933,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-07-15T13:50:53.404Z
+        createdTimestamp: 2025-07-22T15:09:31.326Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -70871,7 +71944,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-07-15T13:50:53.404Z
+        updatedTimestamp: 2025-07-22T15:09:31.326Z
         revision: "1"
       properties:
         id:
@@ -70905,12 +71978,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-15T13:50:53.404Z
+          example: 2025-07-22T15:09:31.326Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-15T13:50:53.404Z
+          example: 2025-07-22T15:09:31.326Z
           format: date-time
           type: string
         links:
@@ -70930,7 +72003,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-15T13:50:53.404Z
+        - createdTimestamp: 2025-07-22T15:09:31.326Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -70941,9 +72014,9 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-07-15T13:50:53.404Z
+          updatedTimestamp: 2025-07-22T15:09:31.326Z
           revision: "1"
-        - createdTimestamp: 2025-07-15T13:50:53.404Z
+        - createdTimestamp: 2025-07-22T15:09:31.326Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -70954,7 +72027,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-07-15T13:50:53.404Z
+          updatedTimestamp: 2025-07-22T15:09:31.326Z
           revision: "1"
         meta: ""
         links: ""
@@ -71164,7 +72237,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-07-15T13:50:53.402Z
+          createdTimestamp: 2025-07-22T15:09:31.324Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -71172,12 +72245,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-07-15T13:50:53.402Z
+          updatedTimestamp: 2025-07-22T15:09:31.324Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-07-15T13:50:53.402Z
+          createdTimestamp: 2025-07-22T15:09:31.324Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -71185,7 +72258,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-07-15T13:50:53.402Z
+          updatedTimestamp: 2025-07-22T15:09:31.324Z
           revision: "1"
         meta: ""
         links: ""
@@ -71310,7 +72383,7 @@ components:
           nullable: true
         dns:
           allOf:
-          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          - $ref: '#/components/schemas/DnsRecordsEndpointGroupLogicalNetwork'
           description: DNS records that are supposed to be provisioned for the server
             instance group.
           example:
@@ -71427,7 +72500,7 @@ components:
           nullable: true
         dns:
           allOf:
-          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          - $ref: '#/components/schemas/DnsRecordsEndpointGroupLogicalNetwork'
           description: DNS records that are supposed to be provisioned for the server
             instance group.
           example:
@@ -74132,6 +75205,35 @@ components:
       required:
       - version
       type: object
+    LicensedProducts:
+      example:
+        storagesAreLicensed: true
+        switchesAreLicensed: true
+        vmsAreLicensed: true
+        serversAreLicensed: true
+      properties:
+        serversAreLicensed:
+          description: Indicates if servers are licensed
+          example: true
+          type: boolean
+        switchesAreLicensed:
+          description: Indicates if switches are licensed
+          example: true
+          type: boolean
+        vmsAreLicensed:
+          description: Indicates if vms are licensed
+          example: true
+          type: boolean
+        storagesAreLicensed:
+          description: Indicates if storages are licensed
+          example: true
+          type: boolean
+      required:
+      - serversAreLicensed
+      - storagesAreLicensed
+      - switchesAreLicensed
+      - vmsAreLicensed
+      type: object
     TemplateAssetFile:
       example:
         path: /boot/grub/grub.cfg
@@ -76560,7 +77662,7 @@ components:
           nullable: true
         dns:
           allOf:
-          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          - $ref: '#/components/schemas/DnsRecordsEndpointGroupLogicalNetwork'
           description: DNS records that are supposed to be provisioned for the server
             instance group.
           example:
@@ -76677,7 +77779,7 @@ components:
           nullable: true
         dns:
           allOf:
-          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          - $ref: '#/components/schemas/DnsRecordsEndpointGroupLogicalNetwork'
           description: DNS records that are supposed to be provisioned for the server
             instance group.
           example:
@@ -76726,12 +77828,26 @@ components:
           nullable: true
         dns:
           allOf:
-          - $ref: '#/components/schemas/dnsRecordsEndpointGroupLogicalNetworkDto'
+          - $ref: '#/components/schemas/DnsRecordsEndpointGroupLogicalNetwork'
           description: DNS records configuration for the server instance group.
           example:
             provisionInstanceDnsRecords: true
             provisionLoadBalancingDnsRecord: false
           nullable: true
+      type: object
+    VMPoolOptions:
+      properties:
+        clusterName:
+          description: Name of the cluster for the VM Pool
+          type: string
+        datastoreName:
+          description: Name of the datastore to use for the VM Pool
+          type: string
+        datastoreNames:
+          description: List of datastore names available on the VM Pool
+          items:
+            type: string
+          type: array
       type: object
     VMPool:
       example:
@@ -76740,6 +77856,7 @@ components:
         managementHost: managementHost
         createdTimestamp: createdTimestamp
         certificate: certificate
+        passwordEncrypted: passwordEncrypted
         description: description
         type: incus
         updatedTimestamp: updatedTimestamp
@@ -76750,10 +77867,12 @@ components:
         managementPort: 6.027456183070403
         privateKeyEncrypted: privateKeyEncrypted
         name: name
+        options: ""
         siteId: 0.8008281904610115
         externalIdentifier: externalIdentifier
         links: "{}"
         id: 1
+        username: username
         status: active
       properties:
         id:
@@ -76782,12 +77901,19 @@ components:
           description: Type of the VM Pool
           enum:
           - incus
+          - vmware_vcf
           type: string
         certificate:
           description: Certificate of the VM Pool
           type: string
         privateKeyEncrypted:
           description: Private key of the VM Pool
+          type: string
+        username:
+          description: Username of the VM Pool
+          type: string
+        passwordEncrypted:
+          description: Password of the VM Pool
           type: string
         status:
           description: Status of the VM Pool
@@ -76820,11 +77946,14 @@ components:
           items:
             type: string
           type: array
+        options:
+          allOf:
+          - $ref: '#/components/schemas/VMPoolOptions'
+          description: Options for the vm pool
         links:
           description: Links to other resources
           type: object
       required:
-      - certificate
       - createdTimestamp
       - datacenterName
       - id
@@ -76832,7 +77961,6 @@ components:
       - managementHost
       - managementPort
       - name
-      - privateKeyEncrypted
       - siteId
       - status
       - type
@@ -76846,6 +77974,7 @@ components:
           managementHost: managementHost
           createdTimestamp: createdTimestamp
           certificate: certificate
+          passwordEncrypted: passwordEncrypted
           description: description
           type: incus
           updatedTimestamp: updatedTimestamp
@@ -76856,16 +77985,19 @@ components:
           managementPort: 6.027456183070403
           privateKeyEncrypted: privateKeyEncrypted
           name: name
+          options: ""
           siteId: 0.8008281904610115
           externalIdentifier: externalIdentifier
           links: "{}"
           id: 1
+          username: username
           status: active
         - datacenterName: datacenterName
           inMaintenance: 1
           managementHost: managementHost
           createdTimestamp: createdTimestamp
           certificate: certificate
+          passwordEncrypted: passwordEncrypted
           description: description
           type: incus
           updatedTimestamp: updatedTimestamp
@@ -76876,10 +78008,12 @@ components:
           managementPort: 6.027456183070403
           privateKeyEncrypted: privateKeyEncrypted
           name: name
+          options: ""
           siteId: 0.8008281904610115
           externalIdentifier: externalIdentifier
           links: "{}"
           id: 1
+          username: username
           status: active
         meta: ""
         links: ""
@@ -76904,21 +78038,30 @@ components:
       - links
       - meta
       type: object
+    CreateVMPoolOptions:
+      properties:
+        clusterName:
+          description: Name of the cluster for the VM Pool
+          type: string
+      type: object
     CreateVMPool:
       example:
-        privateKey: privateKey
-        isExperimental: 1
-        managementPort: 6.027456183070403
         inMaintenance: 1
         managementHost: managementHost
-        name: name
         certificate: certificate
-        siteId: 0.8008281904610115
         description: description
         type: incus
         tags:
         - tags
         - tags
+        privateKey: privateKey
+        password: password
+        isExperimental: 1
+        managementPort: 6.027456183070403
+        name: name
+        options: ""
+        siteId: 0.8008281904610115
+        username: username
       properties:
         siteId:
           description: Id of the site for the VM
@@ -76939,9 +78082,13 @@ components:
           description: Type of the VM Pool
           enum:
           - incus
+          - vmware_vcf
           type: string
         certificate:
           description: Certificate of the VM Pool
+          type: string
+        username:
+          description: Username of the VM Pool
           type: string
         inMaintenance:
           description: "Flag to indicate if the VM Pool is in maintenance mode. 1\
@@ -76961,27 +78108,41 @@ components:
         privateKey:
           description: Private key of the VM Pool
           type: string
+        password:
+          description: Password of the VM Pool
+          type: string
+        options:
+          allOf:
+          - $ref: '#/components/schemas/CreateVMPoolOptions'
+          description: Options for the vm pool
       required:
-      - certificate
       - managementHost
       - managementPort
       - name
-      - privateKey
       - siteId
       - type
+      type: object
+    UpdateVMPoolOptions:
+      properties:
+        datastoreName:
+          description: Name of the datastore to use for the VM Pool
+          type: string
       type: object
     UpdateVMPool:
       example:
         privateKey: privateKey
+        password: password
         isExperimental: 1
         managementPort: 0.8008281904610115
         inMaintenance: 1
         managementHost: managementHost
         certificate: certificate
+        options: ""
         description: description
         tags:
         - tags
         - tags
+        username: username
       properties:
         description:
           description: Description of the VM Pool
@@ -77013,6 +78174,16 @@ components:
         privateKey:
           description: Private key of the VM Pool
           type: string
+        username:
+          description: Username of the VM Pool
+          type: string
+        password:
+          description: Password of the VM Pool
+          type: string
+        options:
+          allOf:
+          - $ref: '#/components/schemas/UpdateVMPoolOptions'
+          description: Options for the VM Pool
       type: object
     VMPoolStatistics:
       example:
@@ -77052,7 +78223,9 @@ components:
     VMPoolCredentials:
       example:
         privateKey: privateKey
+        password: password
         certificate: certificate
+        username: username
       properties:
         certificate:
           description: Certificate of the VM Pool
@@ -77060,9 +78233,12 @@ components:
         privateKey:
           description: Private key of the VM Pool
           type: string
-      required:
-      - certificate
-      - privateKey
+        username:
+          description: Username of the VM Pool
+          type: string
+        password:
+          description: Password of the VM Pool
+          type: string
       type: object
     VMPaginatedList:
       example:
