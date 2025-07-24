@@ -37,6 +37,8 @@ type ExtensionInstanceArray struct {
 	Dependencies []string `json:"dependencies,omitempty"`
 	// Logical networks for the instance array.
 	LogicalNetworks []ExtensionInstanceArrayLogicalNetworkDto `json:"logicalNetworks,omitempty"`
+	// Tags for the Server Instance Group.
+	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -294,6 +296,38 @@ func (o *ExtensionInstanceArray) SetLogicalNetworks(v []ExtensionInstanceArrayLo
 	o.LogicalNetworks = v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *ExtensionInstanceArray) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInstanceArray) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *ExtensionInstanceArray) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *ExtensionInstanceArray) SetTags(v []string) {
+	o.Tags = v
+}
+
 func (o ExtensionInstanceArray) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -321,6 +355,9 @@ func (o ExtensionInstanceArray) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.LogicalNetworks) {
 		toSerialize["logicalNetworks"] = o.LogicalNetworks
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -375,6 +412,7 @@ func (o *ExtensionInstanceArray) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "dependencies")
 		delete(additionalProperties, "logicalNetworks")
+		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 

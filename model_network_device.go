@@ -51,8 +51,8 @@ type NetworkDevice struct {
 	RackPositionLowerUnit float32 `json:"rackPositionLowerUnit"`
 	// Management address of the network device
 	ManagementAddress string `json:"managementAddress"`
-	// Management address mask
-	ManagementAddressMask string `json:"managementAddressMask"`
+	// Prefix length of the management address
+	ManagementAddressPrefixLength float32 `json:"managementAddressPrefixLength"`
 	// Management gateway address
 	ManagementAddressGateway string `json:"managementAddressGateway"`
 	// Management port of the network device
@@ -126,7 +126,7 @@ type _NetworkDevice NetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressMask string, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
+func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
 	this := NetworkDevice{}
 	this.Id = id
 	this.Revision = revision
@@ -143,7 +143,7 @@ func NewNetworkDevice(id string, revision float32, status string, siteId float32
 	this.RackPositionUpperUnit = rackPositionUpperUnit
 	this.RackPositionLowerUnit = rackPositionLowerUnit
 	this.ManagementAddress = managementAddress
-	this.ManagementAddressMask = managementAddressMask
+	this.ManagementAddressPrefixLength = managementAddressPrefixLength
 	this.ManagementAddressGateway = managementAddressGateway
 	this.ManagementPort = managementPort
 	this.SyslogEnabled = syslogEnabled
@@ -543,28 +543,28 @@ func (o *NetworkDevice) SetManagementAddress(v string) {
 	o.ManagementAddress = v
 }
 
-// GetManagementAddressMask returns the ManagementAddressMask field value
-func (o *NetworkDevice) GetManagementAddressMask() string {
+// GetManagementAddressPrefixLength returns the ManagementAddressPrefixLength field value
+func (o *NetworkDevice) GetManagementAddressPrefixLength() float32 {
 	if o == nil {
-		var ret string
+		var ret float32
 		return ret
 	}
 
-	return o.ManagementAddressMask
+	return o.ManagementAddressPrefixLength
 }
 
-// GetManagementAddressMaskOk returns a tuple with the ManagementAddressMask field value
+// GetManagementAddressPrefixLengthOk returns a tuple with the ManagementAddressPrefixLength field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetManagementAddressMaskOk() (*string, bool) {
+func (o *NetworkDevice) GetManagementAddressPrefixLengthOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ManagementAddressMask, true
+	return &o.ManagementAddressPrefixLength, true
 }
 
-// SetManagementAddressMask sets field value
-func (o *NetworkDevice) SetManagementAddressMask(v string) {
-	o.ManagementAddressMask = v
+// SetManagementAddressPrefixLength sets field value
+func (o *NetworkDevice) SetManagementAddressPrefixLength(v float32) {
+	o.ManagementAddressPrefixLength = v
 }
 
 // GetManagementAddressGateway returns the ManagementAddressGateway field value
@@ -1392,7 +1392,7 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["rackPositionUpperUnit"] = o.RackPositionUpperUnit
 	toSerialize["rackPositionLowerUnit"] = o.RackPositionLowerUnit
 	toSerialize["managementAddress"] = o.ManagementAddress
-	toSerialize["managementAddressMask"] = o.ManagementAddressMask
+	toSerialize["managementAddressPrefixLength"] = o.ManagementAddressPrefixLength
 	toSerialize["managementAddressGateway"] = o.ManagementAddressGateway
 	toSerialize["managementPort"] = o.ManagementPort
 	toSerialize["syslogEnabled"] = o.SyslogEnabled
@@ -1461,7 +1461,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		"rackPositionUpperUnit",
 		"rackPositionLowerUnit",
 		"managementAddress",
-		"managementAddressMask",
+		"managementAddressPrefixLength",
 		"managementAddressGateway",
 		"managementPort",
 		"syslogEnabled",
@@ -1534,7 +1534,7 @@ func (o *NetworkDevice) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "rackPositionUpperUnit")
 		delete(additionalProperties, "rackPositionLowerUnit")
 		delete(additionalProperties, "managementAddress")
-		delete(additionalProperties, "managementAddressMask")
+		delete(additionalProperties, "managementAddressPrefixLength")
 		delete(additionalProperties, "managementAddressGateway")
 		delete(additionalProperties, "managementPort")
 		delete(additionalProperties, "syslogEnabled")

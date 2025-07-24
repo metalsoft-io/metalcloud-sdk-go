@@ -40713,9 +40713,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-07-22T15:09:31.289Z
+        createdTimestamp: 2025-07-24T06:12:38.261Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-07-22T15:09:31.289Z
+        updatedTimestamp: 2025-07-24T06:12:38.261Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -40811,12 +40811,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-22T15:09:31.289Z
+          example: 2025-07-24T06:12:38.261Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-22T15:09:31.289Z
+          example: 2025-07-24T06:12:38.261Z
           format: date-time
           type: string
         links:
@@ -40848,9 +40848,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-07-22T15:09:31.289Z
+          createdTimestamp: 2025-07-24T06:12:38.261Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-07-22T15:09:31.289Z
+          updatedTimestamp: 2025-07-24T06:12:38.261Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -40867,9 +40867,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-07-22T15:09:31.289Z
+          createdTimestamp: 2025-07-24T06:12:38.261Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-07-22T15:09:31.289Z
+          updatedTimestamp: 2025-07-24T06:12:38.261Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -43267,6 +43267,9 @@ components:
         - dependencies
         - dependencies
         - dependencies
+        tags:
+        - tags
+        - tags
       properties:
         label:
           description: Label of the instance array.
@@ -43310,6 +43313,11 @@ components:
           items:
             $ref: '#/components/schemas/ExtensionInstanceArrayLogicalNetworkDto'
           maxItems: 12
+          type: array
+        tags:
+          description: Tags for the Server Instance Group.
+          items:
+            type: string
           type: array
       required:
       - instanceCount
@@ -43391,6 +43399,9 @@ components:
           - dependencies
           - dependencies
           - dependencies
+          tags:
+          - tags
+          - tags
         - connectedSharedDrives:
           - connectedSharedDrives
           - connectedSharedDrives
@@ -43429,6 +43440,9 @@ components:
           - dependencies
           - dependencies
           - dependencies
+          tags:
+          - tags
+          - tags
         - connectedSharedDrives:
           - connectedSharedDrives
           - connectedSharedDrives
@@ -43467,6 +43481,9 @@ components:
           - dependencies
           - dependencies
           - dependencies
+          tags:
+          - tags
+          - tags
         - connectedSharedDrives:
           - connectedSharedDrives
           - connectedSharedDrives
@@ -43505,6 +43522,9 @@ components:
           - dependencies
           - dependencies
           - dependencies
+          tags:
+          - tags
+          - tags
         - connectedSharedDrives:
           - connectedSharedDrives
           - connectedSharedDrives
@@ -43543,6 +43563,9 @@ components:
           - dependencies
           - dependencies
           - dependencies
+          tags:
+          - tags
+          - tags
         sharedDrives:
         - sizeGb: 10
           label: label
@@ -44583,6 +44606,9 @@ components:
             - dependencies
             - dependencies
             - dependencies
+            tags:
+            - tags
+            - tags
           - connectedSharedDrives:
             - connectedSharedDrives
             - connectedSharedDrives
@@ -44621,6 +44647,9 @@ components:
             - dependencies
             - dependencies
             - dependencies
+            tags:
+            - tags
+            - tags
           - connectedSharedDrives:
             - connectedSharedDrives
             - connectedSharedDrives
@@ -44659,6 +44688,9 @@ components:
             - dependencies
             - dependencies
             - dependencies
+            tags:
+            - tags
+            - tags
           - connectedSharedDrives:
             - connectedSharedDrives
             - connectedSharedDrives
@@ -44697,6 +44729,9 @@ components:
             - dependencies
             - dependencies
             - dependencies
+            tags:
+            - tags
+            - tags
           - connectedSharedDrives:
             - connectedSharedDrives
             - connectedSharedDrives
@@ -44735,6 +44770,9 @@ components:
             - dependencies
             - dependencies
             - dependencies
+            tags:
+            - tags
+            - tags
           sharedDrives:
           - sizeGb: 10
             label: label
@@ -46193,6 +46231,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             - connectedSharedDrives:
               - connectedSharedDrives
               - connectedSharedDrives
@@ -46231,6 +46272,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             - connectedSharedDrives:
               - connectedSharedDrives
               - connectedSharedDrives
@@ -46269,6 +46313,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             - connectedSharedDrives:
               - connectedSharedDrives
               - connectedSharedDrives
@@ -46307,6 +46354,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             - connectedSharedDrives:
               - connectedSharedDrives
               - connectedSharedDrives
@@ -46345,6 +46395,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             sharedDrives:
             - sizeGb: 10
               label: label
@@ -47504,6 +47557,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             - connectedSharedDrives:
               - connectedSharedDrives
               - connectedSharedDrives
@@ -47542,6 +47598,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             - connectedSharedDrives:
               - connectedSharedDrives
               - connectedSharedDrives
@@ -47580,6 +47639,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             - connectedSharedDrives:
               - connectedSharedDrives
               - connectedSharedDrives
@@ -47618,6 +47680,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             - connectedSharedDrives:
               - connectedSharedDrives
               - connectedSharedDrives
@@ -47656,6 +47721,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             sharedDrives:
             - sizeGb: 10
               label: label
@@ -48772,6 +48840,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             - connectedSharedDrives:
               - connectedSharedDrives
               - connectedSharedDrives
@@ -48810,6 +48881,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             - connectedSharedDrives:
               - connectedSharedDrives
               - connectedSharedDrives
@@ -48848,6 +48922,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             - connectedSharedDrives:
               - connectedSharedDrives
               - connectedSharedDrives
@@ -48886,6 +48963,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             - connectedSharedDrives:
               - connectedSharedDrives
               - connectedSharedDrives
@@ -48924,6 +49004,9 @@ components:
               - dependencies
               - dependencies
               - dependencies
+              tags:
+              - tags
+              - tags
             sharedDrives:
             - sizeGb: 10
               label: label
@@ -55443,7 +55526,10 @@ components:
         kind:
           allOf:
           - $ref: '#/components/schemas/ResourceScopeKind'
+          description: The kind of resource scope
         resourceId:
+          description: "ID of the resource, if applicable"
+          nullable: true
           type: number
       required:
       - kind
@@ -58887,7 +58973,6 @@ components:
         serialNumber: serialNumber
         subnetOobIndex: 2.027123023002322
         extensionInfo: ""
-        managementAddressMask: managementAddressMask
         chassisIdentifier: chassisIdentifier
         readyForInitialConfiguration: 7.061401241503109
         loopbackAddressIpv6: loopbackAddressIpv6
@@ -58906,6 +58991,7 @@ components:
         orderIndex: 2.3021358869347655
         variablesMaterializedForOSAssets: "{}"
         rackPositionLowerUnit: 1.4658129805029452
+        managementAddressPrefixLength: 24
         position: leaf
         secretsMaterializedForOSAssets: "{}"
         asn: 7.386281948385884
@@ -58967,9 +59053,10 @@ components:
         managementAddress:
           description: Management address of the network device
           type: string
-        managementAddressMask:
-          description: Management address mask
-          type: string
+        managementAddressPrefixLength:
+          description: Prefix length of the management address
+          example: 24
+          type: number
         managementAddressGateway:
           description: Management gateway address
           type: string
@@ -59095,7 +59182,7 @@ components:
       - loopbackAddressIpv6
       - managementAddress
       - managementAddressGateway
-      - managementAddressMask
+      - managementAddressPrefixLength
       - managementMacAddress
       - managementPassword
       - managementPort
@@ -59151,7 +59238,6 @@ components:
           serialNumber: serialNumber
           subnetOobIndex: 2.027123023002322
           extensionInfo: ""
-          managementAddressMask: managementAddressMask
           chassisIdentifier: chassisIdentifier
           readyForInitialConfiguration: 7.061401241503109
           loopbackAddressIpv6: loopbackAddressIpv6
@@ -59170,6 +59256,7 @@ components:
           orderIndex: 2.3021358869347655
           variablesMaterializedForOSAssets: "{}"
           rackPositionLowerUnit: 1.4658129805029452
+          managementAddressPrefixLength: 24
           position: leaf
           secretsMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
@@ -59203,7 +59290,6 @@ components:
           serialNumber: serialNumber
           subnetOobIndex: 2.027123023002322
           extensionInfo: ""
-          managementAddressMask: managementAddressMask
           chassisIdentifier: chassisIdentifier
           readyForInitialConfiguration: 7.061401241503109
           loopbackAddressIpv6: loopbackAddressIpv6
@@ -59222,6 +59308,7 @@ components:
           orderIndex: 2.3021358869347655
           variablesMaterializedForOSAssets: "{}"
           rackPositionLowerUnit: 1.4658129805029452
+          managementAddressPrefixLength: 24
           position: leaf
           secretsMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
@@ -59371,11 +59458,13 @@ components:
           nullable: true
           type: string
         managementAddressGateway:
+          deprecated: true
           description: The gateway IP address for the management network
           example: 192.168.1.1
           nullable: true
           type: string
         managementAddressMask:
+          deprecated: true
           description: The subnet mask for the management network
           example: 255.255.255.0
           nullable: true
@@ -59593,11 +59682,13 @@ components:
           nullable: true
           type: string
         managementAddressGateway:
+          deprecated: true
           description: The gateway IP address for the management network
           example: 192.168.1.1
           nullable: true
           type: string
         managementAddressMask:
+          deprecated: true
           description: The subnet mask for the management network
           example: 255.255.255.0
           nullable: true
@@ -60149,7 +60240,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-07-22T15:09:31.329Z
+        createdTimestamp: 2025-07-24T06:12:38.311Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -60158,7 +60249,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-07-22T15:09:31.329Z
+        updatedTimestamp: 2025-07-24T06:12:38.311Z
         revision: "1"
       properties:
         siteId:
@@ -60175,12 +60266,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-22T15:09:31.329Z
+          example: 2025-07-24T06:12:38.311Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-22T15:09:31.329Z
+          example: 2025-07-24T06:12:38.311Z
           format: date-time
           type: string
         links:
@@ -60202,7 +60293,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-22T15:09:31.329Z
+        - createdTimestamp: 2025-07-24T06:12:38.311Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -60211,9 +60302,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-07-22T15:09:31.329Z
+          updatedTimestamp: 2025-07-24T06:12:38.311Z
           revision: "1"
-        - createdTimestamp: 2025-07-22T15:09:31.329Z
+        - createdTimestamp: 2025-07-24T06:12:38.311Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -60222,7 +60313,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-07-22T15:09:31.329Z
+          updatedTimestamp: 2025-07-24T06:12:38.311Z
           revision: "1"
         meta: ""
         links: ""
@@ -60811,7 +60902,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-07-22T15:09:31.286Z
+        createdTimestamp: 2025-07-24T06:12:38.257Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -60858,7 +60949,7 @@ components:
           configurationPreview: configurationPreview
           bgpTemplateId: 101
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-07-22T15:09:31.286Z
+        updatedTimestamp: 2025-07-24T06:12:38.257Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -60889,7 +60980,6 @@ components:
           serialNumber: serialNumber
           subnetOobIndex: 2.027123023002322
           extensionInfo: ""
-          managementAddressMask: managementAddressMask
           chassisIdentifier: chassisIdentifier
           readyForInitialConfiguration: 7.061401241503109
           loopbackAddressIpv6: loopbackAddressIpv6
@@ -60908,6 +60998,7 @@ components:
           orderIndex: 2.3021358869347655
           variablesMaterializedForOSAssets: "{}"
           rackPositionLowerUnit: 1.4658129805029452
+          managementAddressPrefixLength: 24
           position: leaf
           secretsMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
@@ -60941,7 +61032,6 @@ components:
           serialNumber: serialNumber
           subnetOobIndex: 2.027123023002322
           extensionInfo: ""
-          managementAddressMask: managementAddressMask
           chassisIdentifier: chassisIdentifier
           readyForInitialConfiguration: 7.061401241503109
           loopbackAddressIpv6: loopbackAddressIpv6
@@ -60960,6 +61050,7 @@ components:
           orderIndex: 2.3021358869347655
           variablesMaterializedForOSAssets: "{}"
           rackPositionLowerUnit: 1.4658129805029452
+          managementAddressPrefixLength: 24
           position: leaf
           secretsMaterializedForOSAssets: "{}"
           asn: 7.386281948385884
@@ -61000,12 +61091,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-22T15:09:31.286Z
+          example: 2025-07-24T06:12:38.257Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-22T15:09:31.286Z
+          example: 2025-07-24T06:12:38.257Z
           format: date-time
           type: string
         links:
@@ -61049,7 +61140,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-22T15:09:31.286Z
+        - createdTimestamp: 2025-07-24T06:12:38.257Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -61096,7 +61187,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-07-22T15:09:31.286Z
+          updatedTimestamp: 2025-07-24T06:12:38.257Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -61127,7 +61218,6 @@ components:
             serialNumber: serialNumber
             subnetOobIndex: 2.027123023002322
             extensionInfo: ""
-            managementAddressMask: managementAddressMask
             chassisIdentifier: chassisIdentifier
             readyForInitialConfiguration: 7.061401241503109
             loopbackAddressIpv6: loopbackAddressIpv6
@@ -61146,6 +61236,7 @@ components:
             orderIndex: 2.3021358869347655
             variablesMaterializedForOSAssets: "{}"
             rackPositionLowerUnit: 1.4658129805029452
+            managementAddressPrefixLength: 24
             position: leaf
             secretsMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
@@ -61179,7 +61270,6 @@ components:
             serialNumber: serialNumber
             subnetOobIndex: 2.027123023002322
             extensionInfo: ""
-            managementAddressMask: managementAddressMask
             chassisIdentifier: chassisIdentifier
             readyForInitialConfiguration: 7.061401241503109
             loopbackAddressIpv6: loopbackAddressIpv6
@@ -61198,6 +61288,7 @@ components:
             orderIndex: 2.3021358869347655
             variablesMaterializedForOSAssets: "{}"
             rackPositionLowerUnit: 1.4658129805029452
+            managementAddressPrefixLength: 24
             position: leaf
             secretsMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
@@ -61213,7 +61304,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-07-22T15:09:31.286Z
+        - createdTimestamp: 2025-07-24T06:12:38.257Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -61260,7 +61351,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-07-22T15:09:31.286Z
+          updatedTimestamp: 2025-07-24T06:12:38.257Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -61291,7 +61382,6 @@ components:
             serialNumber: serialNumber
             subnetOobIndex: 2.027123023002322
             extensionInfo: ""
-            managementAddressMask: managementAddressMask
             chassisIdentifier: chassisIdentifier
             readyForInitialConfiguration: 7.061401241503109
             loopbackAddressIpv6: loopbackAddressIpv6
@@ -61310,6 +61400,7 @@ components:
             orderIndex: 2.3021358869347655
             variablesMaterializedForOSAssets: "{}"
             rackPositionLowerUnit: 1.4658129805029452
+            managementAddressPrefixLength: 24
             position: leaf
             secretsMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
@@ -61343,7 +61434,6 @@ components:
             serialNumber: serialNumber
             subnetOobIndex: 2.027123023002322
             extensionInfo: ""
-            managementAddressMask: managementAddressMask
             chassisIdentifier: chassisIdentifier
             readyForInitialConfiguration: 7.061401241503109
             loopbackAddressIpv6: loopbackAddressIpv6
@@ -61362,6 +61452,7 @@ components:
             orderIndex: 2.3021358869347655
             variablesMaterializedForOSAssets: "{}"
             rackPositionLowerUnit: 1.4658129805029452
+            managementAddressPrefixLength: 24
             position: leaf
             secretsMaterializedForOSAssets: "{}"
             asn: 7.386281948385884
@@ -61545,9 +61636,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-07-22T15:09:31.334Z
+        createdTimestamp: 2025-07-24T06:12:38.317Z
         mlagPair: 0
-        updatedTimestamp: 2025-07-22T15:09:31.334Z
+        updatedTimestamp: 2025-07-24T06:12:38.317Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -61560,12 +61651,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-22T15:09:31.334Z
+          example: 2025-07-24T06:12:38.317Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-22T15:09:31.334Z
+          example: 2025-07-24T06:12:38.317Z
           format: date-time
           type: string
         revision:
@@ -61643,9 +61734,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-07-22T15:09:31.334Z
+          createdTimestamp: 2025-07-24T06:12:38.317Z
           mlagPair: 0
-          updatedTimestamp: 2025-07-22T15:09:31.334Z
+          updatedTimestamp: 2025-07-24T06:12:38.317Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -61656,9 +61747,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-07-22T15:09:31.334Z
+          createdTimestamp: 2025-07-24T06:12:38.317Z
           mlagPair: 0
-          updatedTimestamp: 2025-07-22T15:09:31.334Z
+          updatedTimestamp: 2025-07-24T06:12:38.317Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -62517,10 +62608,7 @@ components:
         - delete
         - deploy
         - manage
-        conditions:
-          id: "{{accountId}}"
-          isPublic: false
-          infrastructure.userIdOwner: "{{userId}}"
+        conditions: conditions
         fields:
         - fields
         - fields
@@ -62609,13 +62697,9 @@ components:
           type: array
         conditions:
           description: Policy condition(s)
-          example:
-            id: "{{accountId}}"
-            isPublic: false
-            infrastructure.userIdOwner: "{{userId}}"
-          type: object
+          type: string
         fields:
-          description: Policy subject fields(s)
+          description: Policy subject field(s)
           items:
             type: string
           type: array
@@ -62699,10 +62783,7 @@ components:
           - delete
           - deploy
           - manage
-          conditions:
-            id: "{{accountId}}"
-            isPublic: false
-            infrastructure.userIdOwner: "{{userId}}"
+          conditions: conditions
           fields:
           - fields
           - fields
@@ -62778,10 +62859,7 @@ components:
           - delete
           - deploy
           - manage
-          conditions:
-            id: "{{accountId}}"
-            isPublic: false
-            infrastructure.userIdOwner: "{{userId}}"
+          conditions: conditions
           fields:
           - fields
           - fields
@@ -62800,6 +62878,9 @@ components:
           type: string
         type:
           description: Permission type
+          enum:
+          - built-in
+          - custom
           example: custom
           type: string
         policies:
@@ -62887,10 +62968,7 @@ components:
           - delete
           - deploy
           - manage
-          conditions:
-            id: "{{accountId}}"
-            isPublic: false
-            infrastructure.userIdOwner: "{{userId}}"
+          conditions: conditions
           fields:
           - fields
           - fields
@@ -62966,10 +63044,7 @@ components:
           - delete
           - deploy
           - manage
-          conditions:
-            id: "{{accountId}}"
-            isPublic: false
-            infrastructure.userIdOwner: "{{userId}}"
+          conditions: conditions
           fields:
           - fields
           - fields
@@ -62992,6 +63067,9 @@ components:
           type: string
         type:
           description: Permission type
+          enum:
+          - built-in
+          - custom
           example: custom
           type: string
         policies:
@@ -63081,10 +63159,7 @@ components:
             - delete
             - deploy
             - manage
-            conditions:
-              id: "{{accountId}}"
-              isPublic: false
-              infrastructure.userIdOwner: "{{userId}}"
+            conditions: conditions
             fields:
             - fields
             - fields
@@ -63160,10 +63235,7 @@ components:
             - delete
             - deploy
             - manage
-            conditions:
-              id: "{{accountId}}"
-              isPublic: false
-              infrastructure.userIdOwner: "{{userId}}"
+            conditions: conditions
             fields:
             - fields
             - fields
@@ -63245,10 +63317,7 @@ components:
             - delete
             - deploy
             - manage
-            conditions:
-              id: "{{accountId}}"
-              isPublic: false
-              infrastructure.userIdOwner: "{{userId}}"
+            conditions: conditions
             fields:
             - fields
             - fields
@@ -63324,10 +63393,7 @@ components:
             - delete
             - deploy
             - manage
-            conditions:
-              id: "{{accountId}}"
-              isPublic: false
-              infrastructure.userIdOwner: "{{userId}}"
+            conditions: conditions
             fields:
             - fields
             - fields
@@ -65227,10 +65293,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-07-22T15:09:31.332Z
+        createdTimestamp: 2025-07-24T06:12:38.314Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-07-22T15:09:31.332Z
+        updatedTimestamp: 2025-07-24T06:12:38.315Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -65304,12 +65370,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-22T15:09:31.332Z
+          example: 2025-07-24T06:12:38.314Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-22T15:09:31.332Z
+          example: 2025-07-24T06:12:38.315Z
           format: date-time
           type: string
         links:
@@ -71872,7 +71938,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-07-22T15:09:31.324Z
+        createdTimestamp: 2025-07-24T06:12:38.305Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -71880,7 +71946,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-07-22T15:09:31.324Z
+        updatedTimestamp: 2025-07-24T06:12:38.305Z
         revision: "1"
       properties:
         id:
@@ -71909,12 +71975,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-22T15:09:31.324Z
+          example: 2025-07-24T06:12:38.305Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-22T15:09:31.324Z
+          example: 2025-07-24T06:12:38.305Z
           format: date-time
           type: string
         links:
@@ -71933,7 +71999,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-07-22T15:09:31.326Z
+        createdTimestamp: 2025-07-24T06:12:38.307Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -71944,7 +72010,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-07-22T15:09:31.326Z
+        updatedTimestamp: 2025-07-24T06:12:38.307Z
         revision: "1"
       properties:
         id:
@@ -71978,12 +72044,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-22T15:09:31.326Z
+          example: 2025-07-24T06:12:38.307Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-22T15:09:31.326Z
+          example: 2025-07-24T06:12:38.307Z
           format: date-time
           type: string
         links:
@@ -72003,7 +72069,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-22T15:09:31.326Z
+        - createdTimestamp: 2025-07-24T06:12:38.307Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -72014,9 +72080,9 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-07-22T15:09:31.326Z
+          updatedTimestamp: 2025-07-24T06:12:38.307Z
           revision: "1"
-        - createdTimestamp: 2025-07-22T15:09:31.326Z
+        - createdTimestamp: 2025-07-24T06:12:38.307Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -72027,7 +72093,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-07-22T15:09:31.326Z
+          updatedTimestamp: 2025-07-24T06:12:38.307Z
           revision: "1"
         meta: ""
         links: ""
@@ -72237,7 +72303,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-07-22T15:09:31.324Z
+          createdTimestamp: 2025-07-24T06:12:38.305Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -72245,12 +72311,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-07-22T15:09:31.324Z
+          updatedTimestamp: 2025-07-24T06:12:38.305Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-07-22T15:09:31.324Z
+          createdTimestamp: 2025-07-24T06:12:38.305Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -72258,7 +72324,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-07-22T15:09:31.324Z
+          updatedTimestamp: 2025-07-24T06:12:38.305Z
           revision: "1"
         meta: ""
         links: ""

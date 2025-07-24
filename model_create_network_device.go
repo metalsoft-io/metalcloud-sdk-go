@@ -54,8 +54,10 @@ type CreateNetworkDevice struct {
 	// The password used for management authentication
 	ManagementPassword NullableString `json:"managementPassword"`
 	// The gateway IP address for the management network
+	// Deprecated
 	ManagementAddressGateway NullableString `json:"managementAddressGateway,omitempty"`
 	// The subnet mask for the management network
+	// Deprecated
 	ManagementAddressMask NullableString `json:"managementAddressMask,omitempty"`
 	// The MAC address of the management interface
 	ManagementMAC NullableString `json:"managementMAC,omitempty"`
@@ -642,6 +644,7 @@ func (o *CreateNetworkDevice) SetManagementPassword(v string) {
 }
 
 // GetManagementAddressGateway returns the ManagementAddressGateway field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *CreateNetworkDevice) GetManagementAddressGateway() string {
 	if o == nil || IsNil(o.ManagementAddressGateway.Get()) {
 		var ret string
@@ -653,6 +656,7 @@ func (o *CreateNetworkDevice) GetManagementAddressGateway() string {
 // GetManagementAddressGatewayOk returns a tuple with the ManagementAddressGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *CreateNetworkDevice) GetManagementAddressGatewayOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -670,6 +674,7 @@ func (o *CreateNetworkDevice) HasManagementAddressGateway() bool {
 }
 
 // SetManagementAddressGateway gets a reference to the given NullableString and assigns it to the ManagementAddressGateway field.
+// Deprecated
 func (o *CreateNetworkDevice) SetManagementAddressGateway(v string) {
 	o.ManagementAddressGateway.Set(&v)
 }
@@ -684,6 +689,7 @@ func (o *CreateNetworkDevice) UnsetManagementAddressGateway() {
 }
 
 // GetManagementAddressMask returns the ManagementAddressMask field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *CreateNetworkDevice) GetManagementAddressMask() string {
 	if o == nil || IsNil(o.ManagementAddressMask.Get()) {
 		var ret string
@@ -695,6 +701,7 @@ func (o *CreateNetworkDevice) GetManagementAddressMask() string {
 // GetManagementAddressMaskOk returns a tuple with the ManagementAddressMask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *CreateNetworkDevice) GetManagementAddressMaskOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -712,6 +719,7 @@ func (o *CreateNetworkDevice) HasManagementAddressMask() bool {
 }
 
 // SetManagementAddressMask gets a reference to the given NullableString and assigns it to the ManagementAddressMask field.
+// Deprecated
 func (o *CreateNetworkDevice) SetManagementAddressMask(v string) {
 	o.ManagementAddressMask.Set(&v)
 }

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **RackPositionUpperUnit** | **float32** | Upper rack position in the datacenter | 
 **RackPositionLowerUnit** | **float32** | Lower rack position in the datacenter | 
 **ManagementAddress** | **string** | Management address of the network device | 
-**ManagementAddressMask** | **string** | Management address mask | 
+**ManagementAddressPrefixLength** | **float32** | Prefix length of the management address | 
 **ManagementAddressGateway** | **string** | Management gateway address | 
 **ManagementPort** | **float32** | Management port of the network device | 
 **SyslogEnabled** | **float32** | Is the network device syslog enabled | 
@@ -57,7 +57,7 @@ Name | Type | Description | Notes
 
 ### NewNetworkDevice
 
-`func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressMask string, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
+`func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool, ) *NetworkDevice`
 
 NewNetworkDevice instantiates a new NetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -372,24 +372,24 @@ and a boolean to check if the value has been set.
 SetManagementAddress sets ManagementAddress field to given value.
 
 
-### GetManagementAddressMask
+### GetManagementAddressPrefixLength
 
-`func (o *NetworkDevice) GetManagementAddressMask() string`
+`func (o *NetworkDevice) GetManagementAddressPrefixLength() float32`
 
-GetManagementAddressMask returns the ManagementAddressMask field if non-nil, zero value otherwise.
+GetManagementAddressPrefixLength returns the ManagementAddressPrefixLength field if non-nil, zero value otherwise.
 
-### GetManagementAddressMaskOk
+### GetManagementAddressPrefixLengthOk
 
-`func (o *NetworkDevice) GetManagementAddressMaskOk() (*string, bool)`
+`func (o *NetworkDevice) GetManagementAddressPrefixLengthOk() (*float32, bool)`
 
-GetManagementAddressMaskOk returns a tuple with the ManagementAddressMask field if it's non-nil, zero value otherwise
+GetManagementAddressPrefixLengthOk returns a tuple with the ManagementAddressPrefixLength field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetManagementAddressMask
+### SetManagementAddressPrefixLength
 
-`func (o *NetworkDevice) SetManagementAddressMask(v string)`
+`func (o *NetworkDevice) SetManagementAddressPrefixLength(v float32)`
 
-SetManagementAddressMask sets ManagementAddressMask field to given value.
+SetManagementAddressPrefixLength sets ManagementAddressPrefixLength field to given value.
 
 
 ### GetManagementAddressGateway

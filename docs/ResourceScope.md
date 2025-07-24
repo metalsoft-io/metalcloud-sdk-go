@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | [**ResourceScopeKind**](ResourceScopeKind.md) |  | 
-**ResourceId** | **float32** |  | 
+**Kind** | [**ResourceScopeKind**](ResourceScopeKind.md) | The kind of resource scope | 
+**ResourceId** | **NullableFloat32** | ID of the resource, if applicable | 
 
 ## Methods
 
 ### NewResourceScope
 
-`func NewResourceScope(kind ResourceScopeKind, resourceId float32, ) *ResourceScope`
+`func NewResourceScope(kind ResourceScopeKind, resourceId NullableFloat32, ) *ResourceScope`
 
 NewResourceScope instantiates a new ResourceScope object
 This constructor will assign default values to properties that have it defined,
@@ -66,6 +66,16 @@ and a boolean to check if the value has been set.
 SetResourceId sets ResourceId field to given value.
 
 
+### SetResourceIdNil
+
+`func (o *ResourceScope) SetResourceIdNil(b bool)`
+
+ SetResourceIdNil sets the value for ResourceId to be an explicit nil
+
+### UnsetResourceId
+`func (o *ResourceScope) UnsetResourceId()`
+
+UnsetResourceId ensures that no value is present for ResourceId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

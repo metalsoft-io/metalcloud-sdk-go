@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **CustomVariables** | Pointer to [**[]CustomVariable**](CustomVariable.md) | Custom variables. The value may be a reference to an input variable. | [optional] 
 **Dependencies** | Pointer to **[]string** | Labels of instance arrays this one depends on. | [optional] 
 **LogicalNetworks** | Pointer to [**[]ExtensionInstanceArrayLogicalNetworkDto**](ExtensionInstanceArrayLogicalNetworkDto.md) | Logical networks for the instance array. | [optional] 
+**Tags** | Pointer to **[]string** | Tags for the Server Instance Group. | [optional] 
 
 ## Methods
 
@@ -216,6 +217,31 @@ SetLogicalNetworks sets LogicalNetworks field to given value.
 `func (o *ExtensionInstanceArray) HasLogicalNetworks() bool`
 
 HasLogicalNetworks returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *ExtensionInstanceArray) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *ExtensionInstanceArray) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *ExtensionInstanceArray) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *ExtensionInstanceArray) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

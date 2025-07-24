@@ -21,8 +21,10 @@ var _ MappedNullable = &ResourceScope{}
 
 // ResourceScope struct for ResourceScope
 type ResourceScope struct {
+	// The kind of resource scope
 	Kind ResourceScopeKind `json:"kind"`
-	ResourceId float32 `json:"resourceId"`
+	// ID of the resource, if applicable
+	ResourceId NullableFloat32 `json:"resourceId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,7 +34,7 @@ type _ResourceScope ResourceScope
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResourceScope(kind ResourceScopeKind, resourceId float32) *ResourceScope {
+func NewResourceScope(kind ResourceScopeKind, resourceId NullableFloat32) *ResourceScope {
 	this := ResourceScope{}
 	this.Kind = kind
 	this.ResourceId = resourceId
@@ -72,27 +74,29 @@ func (o *ResourceScope) SetKind(v ResourceScopeKind) {
 }
 
 // GetResourceId returns the ResourceId field value
+// If the value is explicit nil, the zero value for float32 will be returned
 func (o *ResourceScope) GetResourceId() float32 {
-	if o == nil {
+	if o == nil || o.ResourceId.Get() == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.ResourceId
+	return *o.ResourceId.Get()
 }
 
 // GetResourceIdOk returns a tuple with the ResourceId field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ResourceScope) GetResourceIdOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ResourceId, true
+	return o.ResourceId.Get(), o.ResourceId.IsSet()
 }
 
 // SetResourceId sets field value
 func (o *ResourceScope) SetResourceId(v float32) {
-	o.ResourceId = v
+	o.ResourceId.Set(&v)
 }
 
 func (o ResourceScope) MarshalJSON() ([]byte, error) {
@@ -106,7 +110,7 @@ func (o ResourceScope) MarshalJSON() ([]byte, error) {
 func (o ResourceScope) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["kind"] = o.Kind
-	toSerialize["resourceId"] = o.ResourceId
+	toSerialize["resourceId"] = o.ResourceId.Get()
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value

@@ -26,8 +26,8 @@ type PolicyEntry struct {
 	// Policy action(s)
 	Action []string `json:"action"`
 	// Policy condition(s)
-	Conditions map[string]interface{} `json:"conditions,omitempty"`
-	// Policy subject fields(s)
+	Conditions *string `json:"conditions,omitempty"`
+	// Policy subject field(s)
 	Fields []string `json:"fields,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -102,19 +102,19 @@ func (o *PolicyEntry) SetAction(v []string) {
 }
 
 // GetConditions returns the Conditions field value if set, zero value otherwise.
-func (o *PolicyEntry) GetConditions() map[string]interface{} {
+func (o *PolicyEntry) GetConditions() string {
 	if o == nil || IsNil(o.Conditions) {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
-	return o.Conditions
+	return *o.Conditions
 }
 
 // GetConditionsOk returns a tuple with the Conditions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PolicyEntry) GetConditionsOk() (map[string]interface{}, bool) {
+func (o *PolicyEntry) GetConditionsOk() (*string, bool) {
 	if o == nil || IsNil(o.Conditions) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Conditions, true
 }
@@ -128,9 +128,9 @@ func (o *PolicyEntry) HasConditions() bool {
 	return false
 }
 
-// SetConditions gets a reference to the given map[string]interface{} and assigns it to the Conditions field.
-func (o *PolicyEntry) SetConditions(v map[string]interface{}) {
-	o.Conditions = v
+// SetConditions gets a reference to the given string and assigns it to the Conditions field.
+func (o *PolicyEntry) SetConditions(v string) {
+	o.Conditions = &v
 }
 
 // GetFields returns the Fields field value if set, zero value otherwise.

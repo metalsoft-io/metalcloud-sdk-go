@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Subject** | **[]string** | Policy subject(s) | 
 **Action** | **[]string** | Policy action(s) | 
-**Conditions** | Pointer to **map[string]interface{}** | Policy condition(s) | [optional] 
-**Fields** | Pointer to **[]string** | Policy subject fields(s) | [optional] 
+**Conditions** | Pointer to **string** | Policy condition(s) | [optional] 
+**Fields** | Pointer to **[]string** | Policy subject field(s) | [optional] 
 
 ## Methods
 
@@ -70,20 +70,20 @@ SetAction sets Action field to given value.
 
 ### GetConditions
 
-`func (o *PolicyEntry) GetConditions() map[string]interface{}`
+`func (o *PolicyEntry) GetConditions() string`
 
 GetConditions returns the Conditions field if non-nil, zero value otherwise.
 
 ### GetConditionsOk
 
-`func (o *PolicyEntry) GetConditionsOk() (*map[string]interface{}, bool)`
+`func (o *PolicyEntry) GetConditionsOk() (*string, bool)`
 
 GetConditionsOk returns a tuple with the Conditions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConditions
 
-`func (o *PolicyEntry) SetConditions(v map[string]interface{})`
+`func (o *PolicyEntry) SetConditions(v string)`
 
 SetConditions sets Conditions field to given value.
 
