@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **LogicalNetworkProfileId** | **int32** |  | 
 **InfrastructureId** | Pointer to **NullableInt32** |  | [optional] 
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 
+**ExtensionInstanceId** | Pointer to **NullableInt32** |  | [optional] 
 
 ## Methods
 
@@ -195,6 +196,41 @@ HasMtu returns a boolean if a field has been set.
 `func (o *CreateLogicalNetworkFromProfile) UnsetMtu()`
 
 UnsetMtu ensures that no value is present for Mtu, not even an explicit nil
+### GetExtensionInstanceId
+
+`func (o *CreateLogicalNetworkFromProfile) GetExtensionInstanceId() int32`
+
+GetExtensionInstanceId returns the ExtensionInstanceId field if non-nil, zero value otherwise.
+
+### GetExtensionInstanceIdOk
+
+`func (o *CreateLogicalNetworkFromProfile) GetExtensionInstanceIdOk() (*int32, bool)`
+
+GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtensionInstanceId
+
+`func (o *CreateLogicalNetworkFromProfile) SetExtensionInstanceId(v int32)`
+
+SetExtensionInstanceId sets ExtensionInstanceId field to given value.
+
+### HasExtensionInstanceId
+
+`func (o *CreateLogicalNetworkFromProfile) HasExtensionInstanceId() bool`
+
+HasExtensionInstanceId returns a boolean if a field has been set.
+
+### SetExtensionInstanceIdNil
+
+`func (o *CreateLogicalNetworkFromProfile) SetExtensionInstanceIdNil(b bool)`
+
+ SetExtensionInstanceIdNil sets the value for ExtensionInstanceId to be an explicit nil
+
+### UnsetExtensionInstanceId
+`func (o *CreateLogicalNetworkFromProfile) UnsetExtensionInstanceId()`
+
+UnsetExtensionInstanceId ensures that no value is present for ExtensionInstanceId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

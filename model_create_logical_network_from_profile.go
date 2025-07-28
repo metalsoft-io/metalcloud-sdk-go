@@ -28,6 +28,7 @@ type CreateLogicalNetworkFromProfile struct {
 	InfrastructureId NullableInt32 `json:"infrastructureId,omitempty"`
 	// Maximum Transmission Unit (MTU) in bytes
 	Mtu NullableInt32 `json:"mtu,omitempty"`
+	ExtensionInstanceId NullableInt32 `json:"extensionInstanceId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -255,6 +256,48 @@ func (o *CreateLogicalNetworkFromProfile) UnsetMtu() {
 	o.Mtu.Unset()
 }
 
+// GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateLogicalNetworkFromProfile) GetExtensionInstanceId() int32 {
+	if o == nil || IsNil(o.ExtensionInstanceId.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.ExtensionInstanceId.Get()
+}
+
+// GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateLogicalNetworkFromProfile) GetExtensionInstanceIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExtensionInstanceId.Get(), o.ExtensionInstanceId.IsSet()
+}
+
+// HasExtensionInstanceId returns a boolean if a field has been set.
+func (o *CreateLogicalNetworkFromProfile) HasExtensionInstanceId() bool {
+	if o != nil && o.ExtensionInstanceId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensionInstanceId gets a reference to the given NullableInt32 and assigns it to the ExtensionInstanceId field.
+func (o *CreateLogicalNetworkFromProfile) SetExtensionInstanceId(v int32) {
+	o.ExtensionInstanceId.Set(&v)
+}
+// SetExtensionInstanceIdNil sets the value for ExtensionInstanceId to be an explicit nil
+func (o *CreateLogicalNetworkFromProfile) SetExtensionInstanceIdNil() {
+	o.ExtensionInstanceId.Set(nil)
+}
+
+// UnsetExtensionInstanceId ensures that no value is present for ExtensionInstanceId, not even an explicit nil
+func (o *CreateLogicalNetworkFromProfile) UnsetExtensionInstanceId() {
+	o.ExtensionInstanceId.Unset()
+}
+
 func (o CreateLogicalNetworkFromProfile) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -280,6 +323,9 @@ func (o CreateLogicalNetworkFromProfile) ToMap() (map[string]interface{}, error)
 	}
 	if o.Mtu.IsSet() {
 		toSerialize["mtu"] = o.Mtu.Get()
+	}
+	if o.ExtensionInstanceId.IsSet() {
+		toSerialize["extensionInstanceId"] = o.ExtensionInstanceId.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -330,6 +376,7 @@ func (o *CreateLogicalNetworkFromProfile) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "logicalNetworkProfileId")
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "mtu")
+		delete(additionalProperties, "extensionInstanceId")
 		o.AdditionalProperties = additionalProperties
 	}
 
