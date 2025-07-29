@@ -25,7 +25,7 @@ type JobPaginatedList struct {
 	// Metadata about the pagination of the response
 	Meta PaginatedResponseMeta `json:"meta"`
 	// Links to navigate through the paginated results
-	Links PaginatedResponseLinks `json:"links"`
+	Links *PaginatedResponseLinks `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,11 +35,10 @@ type _JobPaginatedList JobPaginatedList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJobPaginatedList(data []Job, meta PaginatedResponseMeta, links PaginatedResponseLinks) *JobPaginatedList {
+func NewJobPaginatedList(data []Job, meta PaginatedResponseMeta) *JobPaginatedList {
 	this := JobPaginatedList{}
 	this.Data = data
 	this.Meta = meta
-	this.Links = links
 	return &this
 }
 
@@ -99,28 +98,36 @@ func (o *JobPaginatedList) SetMeta(v PaginatedResponseMeta) {
 	o.Meta = v
 }
 
-// GetLinks returns the Links field value
+// GetLinks returns the Links field value if set, zero value otherwise.
 func (o *JobPaginatedList) GetLinks() PaginatedResponseLinks {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		var ret PaginatedResponseLinks
 		return ret
 	}
-
-	return o.Links
+	return *o.Links
 }
 
-// GetLinksOk returns a tuple with the Links field value
+// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *JobPaginatedList) GetLinksOk() (*PaginatedResponseLinks, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Links) {
 		return nil, false
 	}
-	return &o.Links, true
+	return o.Links, true
 }
 
-// SetLinks sets field value
+// HasLinks returns a boolean if a field has been set.
+func (o *JobPaginatedList) HasLinks() bool {
+	if o != nil && !IsNil(o.Links) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinks gets a reference to the given PaginatedResponseLinks and assigns it to the Links field.
 func (o *JobPaginatedList) SetLinks(v PaginatedResponseLinks) {
-	o.Links = v
+	o.Links = &v
 }
 
 func (o JobPaginatedList) MarshalJSON() ([]byte, error) {
@@ -135,7 +142,9 @@ func (o JobPaginatedList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["data"] = o.Data
 	toSerialize["meta"] = o.Meta
-	toSerialize["links"] = o.Links
+	if !IsNil(o.Links) {
+		toSerialize["links"] = o.Links
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -151,7 +160,6 @@ func (o *JobPaginatedList) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"data",
 		"meta",
-		"links",
 	}
 
 	allProperties := make(map[string]interface{})

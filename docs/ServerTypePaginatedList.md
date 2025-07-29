@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | [**[]ServerType**](ServerType.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
-**Links** | [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | 
+**Links** | Pointer to [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | [optional] 
 
 ## Methods
 
 ### NewServerTypePaginatedList
 
-`func NewServerTypePaginatedList(data []ServerType, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *ServerTypePaginatedList`
+`func NewServerTypePaginatedList(data []ServerType, meta PaginatedResponseMeta, ) *ServerTypePaginatedList`
 
 NewServerTypePaginatedList instantiates a new ServerTypePaginatedList object
 This constructor will assign default values to properties that have it defined,
@@ -86,6 +86,11 @@ and a boolean to check if the value has been set.
 
 SetLinks sets Links field to given value.
 
+### HasLinks
+
+`func (o *ServerTypePaginatedList) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

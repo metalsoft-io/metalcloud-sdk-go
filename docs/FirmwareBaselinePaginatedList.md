@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | [**[]FirmwareBaseline**](FirmwareBaseline.md) |  | 
 **Meta** | [**PaginatedResponseMeta**](PaginatedResponseMeta.md) | Metadata about the pagination of the response | 
-**Links** | [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | 
+**Links** | Pointer to [**PaginatedResponseLinks**](PaginatedResponseLinks.md) | Links to navigate through the paginated results | [optional] 
 
 ## Methods
 
 ### NewFirmwareBaselinePaginatedList
 
-`func NewFirmwareBaselinePaginatedList(data []FirmwareBaseline, meta PaginatedResponseMeta, links PaginatedResponseLinks, ) *FirmwareBaselinePaginatedList`
+`func NewFirmwareBaselinePaginatedList(data []FirmwareBaseline, meta PaginatedResponseMeta, ) *FirmwareBaselinePaginatedList`
 
 NewFirmwareBaselinePaginatedList instantiates a new FirmwareBaselinePaginatedList object
 This constructor will assign default values to properties that have it defined,
@@ -86,6 +86,11 @@ and a boolean to check if the value has been set.
 
 SetLinks sets Links field to given value.
 
+### HasLinks
+
+`func (o *FirmwareBaselinePaginatedList) HasLinks() bool`
+
+HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

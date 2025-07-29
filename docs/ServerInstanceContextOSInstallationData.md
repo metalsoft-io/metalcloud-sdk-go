@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **FileShares** | [**[]FileShareVariables**](FileShareVariables.md) | The server instance file shares OS installation data. | 
 **Buckets** | [**[]BucketVariables**](BucketVariables.md) | The server instance buckets OS installation data. | 
 **SharedDrives** | [**[]SharedDriveVariables**](SharedDriveVariables.md) | The server instance shared drives OS installation data. | 
+**Network** | [**[]InstanceNetworkVariables**](InstanceNetworkVariables.md) | The server instance network variables. | 
 **Variables** | Pointer to **map[string]interface{}** | Additional variables | [optional] 
 **Secrets** | Pointer to **map[string]interface{}** | Secrets | [optional] 
 **UserSSHKeys** | Pointer to **[]string** | Infrastructure owner SSH keys | [optional] 
@@ -24,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceContextOSInstallationData
 
-`func NewServerInstanceContextOSInstallationData(site SiteOSInstallationData, siteConfig SiteConfigOSInstallationData, server ServerOSInstallationData, serverInstance ServerInstanceOSInstallationData, serverInstanceGroup ServerInstanceGroupOSInstallationData, infrastructure InfrastructureOSInstallationData, driveGroups []DriveGroupVariables, drives []DriveVariables, fileShares []FileShareVariables, buckets []BucketVariables, sharedDrives []SharedDriveVariables, ) *ServerInstanceContextOSInstallationData`
+`func NewServerInstanceContextOSInstallationData(site SiteOSInstallationData, siteConfig SiteConfigOSInstallationData, server ServerOSInstallationData, serverInstance ServerInstanceOSInstallationData, serverInstanceGroup ServerInstanceGroupOSInstallationData, infrastructure InfrastructureOSInstallationData, driveGroups []DriveGroupVariables, drives []DriveVariables, fileShares []FileShareVariables, buckets []BucketVariables, sharedDrives []SharedDriveVariables, network []InstanceNetworkVariables, ) *ServerInstanceContextOSInstallationData`
 
 NewServerInstanceContextOSInstallationData instantiates a new ServerInstanceContextOSInstallationData object
 This constructor will assign default values to properties that have it defined,
@@ -257,6 +258,26 @@ and a boolean to check if the value has been set.
 `func (o *ServerInstanceContextOSInstallationData) SetSharedDrives(v []SharedDriveVariables)`
 
 SetSharedDrives sets SharedDrives field to given value.
+
+
+### GetNetwork
+
+`func (o *ServerInstanceContextOSInstallationData) GetNetwork() []InstanceNetworkVariables`
+
+GetNetwork returns the Network field if non-nil, zero value otherwise.
+
+### GetNetworkOk
+
+`func (o *ServerInstanceContextOSInstallationData) GetNetworkOk() (*[]InstanceNetworkVariables, bool)`
+
+GetNetworkOk returns a tuple with the Network field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetwork
+
+`func (o *ServerInstanceContextOSInstallationData) SetNetwork(v []InstanceNetworkVariables)`
+
+SetNetwork sets Network field to given value.
 
 
 ### GetVariables

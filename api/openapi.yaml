@@ -39184,7 +39184,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateAccount:
@@ -39385,7 +39384,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     AIGenerateRequest:
@@ -40664,7 +40662,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     UpdateBucket:
@@ -40713,9 +40710,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-07-25T17:31:49.424Z
+        createdTimestamp: 2025-07-29T08:59:56.352Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-07-25T17:31:49.425Z
+        updatedTimestamp: 2025-07-29T08:59:56.352Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -40811,12 +40808,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-25T17:31:49.424Z
+          example: 2025-07-29T08:59:56.352Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-25T17:31:49.425Z
+          example: 2025-07-29T08:59:56.352Z
           format: date-time
           type: string
         links:
@@ -40848,9 +40845,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-07-25T17:31:49.424Z
+          createdTimestamp: 2025-07-29T08:59:56.352Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-07-25T17:31:49.425Z
+          updatedTimestamp: 2025-07-29T08:59:56.352Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -40867,9 +40864,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-07-25T17:31:49.424Z
+          createdTimestamp: 2025-07-29T08:59:56.352Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-07-25T17:31:49.425Z
+          updatedTimestamp: 2025-07-29T08:59:56.352Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -40903,7 +40900,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateBgpTemplate:
@@ -41226,7 +41222,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateCustomIso:
@@ -41466,7 +41461,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     DnsZoneDto:
@@ -41710,7 +41704,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateDnsZoneDto:
@@ -41957,7 +41950,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     EmailTemplateCreate:
@@ -42661,7 +42653,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     ExtensionVariable:
@@ -42972,7 +42963,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     UpdateExtensionInstance:
@@ -43038,6 +43028,7 @@ components:
           - ExtensionInputString
           - ExtensionInputInteger
           - ExtensionInputBoolean
+          - ExtensionInputObject
           - ExtensionInputServerType
           - ExtensionInputOsTemplate
           type: string
@@ -45421,7 +45412,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     Extension:
@@ -49565,7 +49555,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     UpdateFileShare:
@@ -49774,7 +49763,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateFirmwareBaseline:
@@ -50088,7 +50076,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateFirmwareBinary:
@@ -50354,7 +50341,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     ServerFirmwareCatalogVendor:
@@ -50774,7 +50760,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateServerFirmwareUpgradePolicy:
@@ -51646,7 +51631,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     InfrastructureServiceStatus:
@@ -52970,7 +52954,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     ServerInstanceGroupCreate:
@@ -53645,7 +53628,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     ServerInstanceCreate:
@@ -54022,7 +54004,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     EndpointInstanceGroupCreate:
@@ -54351,7 +54332,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     EndpointInstanceCreate:
@@ -54620,7 +54600,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     JobArchive:
@@ -54857,7 +54836,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     JobRetryInfo:
@@ -54957,7 +54935,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     JobStatistics:
@@ -55107,7 +55084,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     LogicalNetworkKind:
@@ -56402,7 +56378,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateLogicalNetworkVlanProperties:
@@ -58566,7 +58541,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateLogicalNetwork:
@@ -58842,7 +58816,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateNetworkDeviceDefaultSecretsDto:
@@ -59339,7 +59312,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateNetworkDevice:
@@ -60201,7 +60173,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     NetworkDevicePortStatus:
@@ -60244,7 +60215,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-07-25T17:31:49.461Z
+        createdTimestamp: 2025-07-29T08:59:56.402Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -60253,7 +60224,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-07-25T17:31:49.461Z
+        updatedTimestamp: 2025-07-29T08:59:56.402Z
         revision: "1"
       properties:
         siteId:
@@ -60270,12 +60241,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-25T17:31:49.461Z
+          example: 2025-07-29T08:59:56.402Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-25T17:31:49.461Z
+          example: 2025-07-29T08:59:56.402Z
           format: date-time
           type: string
         links:
@@ -60297,7 +60268,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-25T17:31:49.461Z
+        - createdTimestamp: 2025-07-29T08:59:56.402Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -60306,9 +60277,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-07-25T17:31:49.461Z
+          updatedTimestamp: 2025-07-29T08:59:56.402Z
           revision: "1"
-        - createdTimestamp: 2025-07-25T17:31:49.461Z
+        - createdTimestamp: 2025-07-29T08:59:56.402Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -60317,7 +60288,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-07-25T17:31:49.461Z
+          updatedTimestamp: 2025-07-29T08:59:56.402Z
           revision: "1"
         meta: ""
         links: ""
@@ -60339,7 +60310,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateNetworkEndpointGroup:
@@ -60906,7 +60876,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-07-25T17:31:49.421Z
+        createdTimestamp: 2025-07-29T08:59:56.348Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -60953,7 +60923,7 @@ components:
           configurationPreview: configurationPreview
           bgpTemplateId: 101
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-07-25T17:31:49.421Z
+        updatedTimestamp: 2025-07-29T08:59:56.349Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -61095,12 +61065,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-25T17:31:49.421Z
+          example: 2025-07-29T08:59:56.348Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-25T17:31:49.421Z
+          example: 2025-07-29T08:59:56.349Z
           format: date-time
           type: string
         links:
@@ -61144,7 +61114,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-25T17:31:49.421Z
+        - createdTimestamp: 2025-07-29T08:59:56.348Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -61191,7 +61161,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-07-25T17:31:49.421Z
+          updatedTimestamp: 2025-07-29T08:59:56.349Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -61308,7 +61278,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-07-25T17:31:49.421Z
+        - createdTimestamp: 2025-07-29T08:59:56.348Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -61355,7 +61325,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-07-25T17:31:49.421Z
+          updatedTimestamp: 2025-07-29T08:59:56.349Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -61492,7 +61462,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateNetworkFabric:
@@ -61640,9 +61609,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-07-25T17:31:49.465Z
+        createdTimestamp: 2025-07-29T08:59:56.412Z
         mlagPair: 0
-        updatedTimestamp: 2025-07-25T17:31:49.465Z
+        updatedTimestamp: 2025-07-29T08:59:56.412Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -61655,12 +61624,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-25T17:31:49.465Z
+          example: 2025-07-29T08:59:56.412Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-25T17:31:49.465Z
+          example: 2025-07-29T08:59:56.412Z
           format: date-time
           type: string
         revision:
@@ -61738,9 +61707,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-07-25T17:31:49.465Z
+          createdTimestamp: 2025-07-29T08:59:56.412Z
           mlagPair: 0
-          updatedTimestamp: 2025-07-25T17:31:49.465Z
+          updatedTimestamp: 2025-07-29T08:59:56.412Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -61751,9 +61720,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-07-25T17:31:49.465Z
+          createdTimestamp: 2025-07-29T08:59:56.412Z
           mlagPair: 0
-          updatedTimestamp: 2025-07-25T17:31:49.465Z
+          updatedTimestamp: 2025-07-29T08:59:56.412Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -61783,7 +61752,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateNetworkFabricLink:
@@ -62305,7 +62273,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     OSTemplateCreate:
@@ -63664,7 +63631,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     ResourcePool:
@@ -63891,7 +63857,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateServerCleanupPolicy:
@@ -64180,7 +64145,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateServerDefaultCredentials:
@@ -64446,7 +64410,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     UpdateServerComponent:
@@ -65258,7 +65221,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     ACLType:
@@ -65297,10 +65259,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-07-25T17:31:49.464Z
+        createdTimestamp: 2025-07-29T08:59:56.408Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-07-25T17:31:49.464Z
+        updatedTimestamp: 2025-07-29T08:59:56.408Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -65374,12 +65336,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-25T17:31:49.464Z
+          example: 2025-07-29T08:59:56.408Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-25T17:31:49.464Z
+          example: 2025-07-29T08:59:56.408Z
           format: date-time
           type: string
         links:
@@ -66345,7 +66307,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     ServerInstanceInterfaceUpdate:
@@ -69556,6 +69517,165 @@ components:
           config: ""
         managementSSHKey: managementSSHKey
         secrets: "{}"
+        network:
+        - interfaces:
+          - ipv4Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            interfaceType: ""
+            routes:
+            - to: to
+              via: via
+            - to: to
+              via: via
+            logicalNetworkId: 3.0205796992916243
+            macAddress: macAddress
+            vlanId: 5.533258397034986
+            members:
+            - interfaceType: ""
+              id: 0.2025324113236393
+            - interfaceType: ""
+              id: 0.2025324113236393
+            typeInterfaceId: 3.0576100241049344
+            links:
+            - interfaceType: ""
+              id: 6.628464275087742
+            - interfaceType: ""
+              id: 6.628464275087742
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
+          - ipv4Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            interfaceType: ""
+            routes:
+            - to: to
+              via: via
+            - to: to
+              via: via
+            logicalNetworkId: 3.0205796992916243
+            macAddress: macAddress
+            vlanId: 5.533258397034986
+            members:
+            - interfaceType: ""
+              id: 0.2025324113236393
+            - interfaceType: ""
+              id: 0.2025324113236393
+            typeInterfaceId: 3.0576100241049344
+            links:
+            - interfaceType: ""
+              id: 6.628464275087742
+            - interfaceType: ""
+              id: 6.628464275087742
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
+        - interfaces:
+          - ipv4Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            interfaceType: ""
+            routes:
+            - to: to
+              via: via
+            - to: to
+              via: via
+            logicalNetworkId: 3.0205796992916243
+            macAddress: macAddress
+            vlanId: 5.533258397034986
+            members:
+            - interfaceType: ""
+              id: 0.2025324113236393
+            - interfaceType: ""
+              id: 0.2025324113236393
+            typeInterfaceId: 3.0576100241049344
+            links:
+            - interfaceType: ""
+              id: 6.628464275087742
+            - interfaceType: ""
+              id: 6.628464275087742
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
+          - ipv4Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 3.2588565619047607
+            interfaceType: ""
+            routes:
+            - to: to
+              via: via
+            - to: to
+              via: via
+            logicalNetworkId: 3.0205796992916243
+            macAddress: macAddress
+            vlanId: 5.533258397034986
+            members:
+            - interfaceType: ""
+              id: 0.2025324113236393
+            - interfaceType: ""
+              id: 0.2025324113236393
+            typeInterfaceId: 3.0576100241049344
+            links:
+            - interfaceType: ""
+              id: 6.628464275087742
+            - interfaceType: ""
+              id: 6.628464275087742
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
         site: ""
         serverInstanceGroup: ""
         drives:
@@ -69690,6 +69810,11 @@ components:
           items:
             $ref: '#/components/schemas/SharedDriveVariables'
           type: array
+        network:
+          description: The server instance network variables.
+          items:
+            $ref: '#/components/schemas/InstanceNetworkVariables'
+          type: array
         variables:
           description: Additional variables
           type: object
@@ -69710,6 +69835,7 @@ components:
       - drives
       - fileShares
       - infrastructure
+      - network
       - server
       - serverInstance
       - serverInstanceGroup
@@ -70949,7 +71075,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     ServerMetricsInfo:
@@ -71589,7 +71714,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateServerType:
@@ -71942,7 +72066,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-07-25T17:31:49.457Z
+        createdTimestamp: 2025-07-29T08:59:56.394Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -71950,7 +72074,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-07-25T17:31:49.457Z
+        updatedTimestamp: 2025-07-29T08:59:56.394Z
         revision: "1"
       properties:
         id:
@@ -71979,12 +72103,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-25T17:31:49.457Z
+          example: 2025-07-29T08:59:56.394Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-25T17:31:49.457Z
+          example: 2025-07-29T08:59:56.394Z
           format: date-time
           type: string
         links:
@@ -72003,7 +72127,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-07-25T17:31:49.459Z
+        createdTimestamp: 2025-07-29T08:59:56.397Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -72014,7 +72138,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-07-25T17:31:49.459Z
+        updatedTimestamp: 2025-07-29T08:59:56.398Z
         revision: "1"
       properties:
         id:
@@ -72048,12 +72172,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-25T17:31:49.459Z
+          example: 2025-07-29T08:59:56.397Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-25T17:31:49.459Z
+          example: 2025-07-29T08:59:56.398Z
           format: date-time
           type: string
         links:
@@ -72073,7 +72197,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-25T17:31:49.459Z
+        - createdTimestamp: 2025-07-29T08:59:56.397Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -72084,9 +72208,9 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-07-25T17:31:49.459Z
+          updatedTimestamp: 2025-07-29T08:59:56.398Z
           revision: "1"
-        - createdTimestamp: 2025-07-25T17:31:49.459Z
+        - createdTimestamp: 2025-07-29T08:59:56.397Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -72097,7 +72221,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-07-25T17:31:49.459Z
+          updatedTimestamp: 2025-07-29T08:59:56.398Z
           revision: "1"
         meta: ""
         links: ""
@@ -72119,7 +72243,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     NetworkDeviceEndpointInterface:
@@ -72307,7 +72430,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-07-25T17:31:49.457Z
+          createdTimestamp: 2025-07-29T08:59:56.394Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -72315,12 +72438,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-07-25T17:31:49.457Z
+          updatedTimestamp: 2025-07-29T08:59:56.394Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-07-25T17:31:49.457Z
+          createdTimestamp: 2025-07-29T08:59:56.394Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -72328,7 +72451,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-07-25T17:31:49.457Z
+          updatedTimestamp: 2025-07-29T08:59:56.394Z
           revision: "1"
         meta: ""
         links: ""
@@ -72350,7 +72473,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     UpdateEndpointInterface:
@@ -72755,7 +72877,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     NetworkDeviceExternalConnectionInterface:
@@ -72936,7 +73057,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     UpdateExternalConnectionInterface:
@@ -73069,7 +73189,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     SharedDriveMeta:
@@ -73321,7 +73440,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateSharedDrive:
@@ -73551,7 +73669,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     SiteControllerSeenAliveStatus:
@@ -74576,7 +74693,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     StoragesStatistics:
@@ -75138,7 +75254,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     AddressRange:
@@ -75572,7 +75687,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     TemplateAssetCreate:
@@ -76609,7 +76723,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     VMInstanceConfiguration:
@@ -76914,7 +77027,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateVMInstance:
@@ -78105,7 +78217,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateVMPoolOptions:
@@ -78415,7 +78526,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     VMPoolHosts:
@@ -78547,7 +78657,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     VMPoolHostInterfaces:
@@ -78715,7 +78824,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateVMType:
@@ -78899,7 +79007,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateVariable:
@@ -79043,7 +79150,6 @@ components:
           title: Pagination links
       required:
       - data
-      - links
       - meta
       type: object
     CreateSecret:
