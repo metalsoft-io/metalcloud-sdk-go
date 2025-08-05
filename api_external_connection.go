@@ -1175,6 +1175,8 @@ type ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest struct {
 	page *float32
 	limit *float32
 	filterId *[]string
+	filterExternalConnectionId *[]string
+	filterLogicalNetworkId *[]string
 	filterCreatedAt *[]string
 	filterUpdatedAt *[]string
 	sortBy *[]string
@@ -1198,6 +1200,18 @@ func (r ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest) Filter
 	return r
 }
 
+// Filter by externalConnectionId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.externalConnectionId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.externalConnectionId&#x3D;$not:$like:John Doe&amp;filter.externalConnectionId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest) FilterExternalConnectionId(filterExternalConnectionId []string) ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest {
+	r.filterExternalConnectionId = &filterExternalConnectionId
+	return r
+}
+
+// Filter by logicalNetworkId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.logicalNetworkId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.logicalNetworkId&#x3D;$not:$like:John Doe&amp;filter.logicalNetworkId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest) FilterLogicalNetworkId(filterLogicalNetworkId []string) ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest {
+	r.filterLogicalNetworkId = &filterLogicalNetworkId
+	return r
+}
+
 // Filter by createdAt query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.createdAt&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.createdAt&#x3D;$not:$like:John Doe&amp;filter.createdAt&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$and&lt;/li&gt; &lt;li&gt;$or&lt;/li&gt; &lt;li&gt;$not&lt;/li&gt; &lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$gt&lt;/li&gt; &lt;li&gt;$gte&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt; &lt;li&gt;$null&lt;/li&gt; &lt;li&gt;$lt&lt;/li&gt; &lt;li&gt;$lte&lt;/li&gt; &lt;li&gt;$btw&lt;/li&gt; &lt;li&gt;$ilike&lt;/li&gt; &lt;li&gt;$sw&lt;/li&gt; &lt;li&gt;$contains&lt;/li&gt;&lt;/ul&gt;
 func (r ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest) FilterCreatedAt(filterCreatedAt []string) ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest {
 	r.filterCreatedAt = &filterCreatedAt
@@ -1210,7 +1224,7 @@ func (r ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest) Filter
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;updatedAt&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; id:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;createdAt&lt;/li&gt; &lt;li&gt;updatedAt&lt;/li&gt; &lt;li&gt;externalConnectionId&lt;/li&gt; &lt;li&gt;logicalNetworkId&lt;/li&gt;&lt;/ul&gt;       
 func (r ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest) SortBy(sortBy []string) ExternalConnectionAPIGetExternalConnectionLogicalNetworksRequest {
 	r.sortBy = &sortBy
 	return r
@@ -1274,6 +1288,28 @@ func (a *ExternalConnectionAPIService) GetExternalConnectionLogicalNetworksExecu
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
+		}
+	}
+	if r.filterExternalConnectionId != nil {
+		t := *r.filterExternalConnectionId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.externalConnectionId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.externalConnectionId", t, "form", "multi")
+		}
+	}
+	if r.filterLogicalNetworkId != nil {
+		t := *r.filterLogicalNetworkId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.logicalNetworkId", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.logicalNetworkId", t, "form", "multi")
 		}
 	}
 	if r.filterCreatedAt != nil {
@@ -1369,8 +1405,7 @@ type ExternalConnectionAPIGetExternalConnectionsRequest struct {
 	page *float32
 	limit *float32
 	filterId *[]string
-	filterSiteId *[]string
-	filterExternalId *[]string
+	filterFabricId *[]string
 	filterCreatedAt *[]string
 	filterUpdatedAt *[]string
 	sortBy *[]string
@@ -1396,15 +1431,9 @@ func (r ExternalConnectionAPIGetExternalConnectionsRequest) FilterId(filterId []
 	return r
 }
 
-// Filter by siteId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.siteId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.siteId&#x3D;$not:$like:John Doe&amp;filter.siteId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r ExternalConnectionAPIGetExternalConnectionsRequest) FilterSiteId(filterSiteId []string) ExternalConnectionAPIGetExternalConnectionsRequest {
-	r.filterSiteId = &filterSiteId
-	return r
-}
-
-// Filter by externalId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.externalId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.externalId&#x3D;$not:$like:John Doe&amp;filter.externalId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
-func (r ExternalConnectionAPIGetExternalConnectionsRequest) FilterExternalId(filterExternalId []string) ExternalConnectionAPIGetExternalConnectionsRequest {
-	r.filterExternalId = &filterExternalId
+// Filter by fabricId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.fabricId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.fabricId&#x3D;$not:$like:John Doe&amp;filter.fabricId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ExternalConnectionAPIGetExternalConnectionsRequest) FilterFabricId(filterFabricId []string) ExternalConnectionAPIGetExternalConnectionsRequest {
+	r.filterFabricId = &filterFabricId
 	return r
 }
 
@@ -1495,26 +1524,15 @@ func (a *ExternalConnectionAPIService) GetExternalConnectionsExecute(r ExternalC
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.id", t, "form", "multi")
 		}
 	}
-	if r.filterSiteId != nil {
-		t := *r.filterSiteId
+	if r.filterFabricId != nil {
+		t := *r.filterFabricId
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", s.Index(i).Interface(), "form", "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricId", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.siteId", t, "form", "multi")
-		}
-	}
-	if r.filterExternalId != nil {
-		t := *r.filterExternalId
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.externalId", s.Index(i).Interface(), "form", "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.externalId", t, "form", "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.fabricId", t, "form", "multi")
 		}
 	}
 	if r.filterCreatedAt != nil {

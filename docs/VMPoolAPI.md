@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**GetVMPoolVMs**](VMPoolAPI.md#GetVMPoolVMs) | **Get** /api/v2/vm-pools/{vmPoolId}/vms | Returns all VMs linked to the VM Pool
 [**GetVMPools**](VMPoolAPI.md#GetVMPools) | **Get** /api/v2/vm-pools | Get all VM Pools
 [**GetVmPoolStatistics**](VMPoolAPI.md#GetVmPoolStatistics) | **Get** /api/v2/vm-pools/{vmPoolId}/statistics | Get VM Pool statistics
+[**ImportVMPoolVMs**](VMPoolAPI.md#ImportVMPoolVMs) | **Post** /api/v2/vm-pools/{vmPoolId}/actions/import-vms | Import VMs into VM Pool
 [**RefreshVMPoolInformation**](VMPoolAPI.md#RefreshVMPoolInformation) | **Post** /api/v2/vm-pools/{vmPoolId}/actions/refresh-information | Refresh VM Pool information
 [**UpdateVMPool**](VMPoolAPI.md#UpdateVMPool) | **Patch** /api/v2/vm-pools/{vmPoolId} | Updates VM Pool information
 [**UpdateVMPoolClusterHostInterface**](VMPoolAPI.md#UpdateVMPoolClusterHostInterface) | **Patch** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId} | Updates a VM Cluster Host Interface
@@ -1003,6 +1004,76 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ImportVMPoolVMs
+
+> ImportVMPoolVMs(ctx, vmPoolId).Body(body).Execute()
+
+Import VMs into VM Pool
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	vmPoolId := float32(8.14) // float32 | 
+	body := map[string]interface{}{ ... } // map[string]interface{} | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.VMPoolAPI.ImportVMPoolVMs(context.Background(), vmPoolId).Body(body).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VMPoolAPI.ImportVMPoolVMs``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**vmPoolId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiImportVMPoolVMsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | **map[string]interface{}** |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

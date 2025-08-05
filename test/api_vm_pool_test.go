@@ -205,6 +205,19 @@ func Test_sdk_VMPoolAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test VMPoolAPIService ImportVMPoolVMs", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var vmPoolId float32
+
+		httpRes, err := apiClient.VMPoolAPI.ImportVMPoolVMs(context.Background(), vmPoolId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test VMPoolAPIService RefreshVMPoolInformation", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

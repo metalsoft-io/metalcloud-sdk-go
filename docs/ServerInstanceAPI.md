@@ -547,7 +547,7 @@ Name | Type | Description  | Notes
 
 ## GetServerInstanceCredentials
 
-> SSHPublicKey GetServerInstanceCredentials(ctx, serverInstanceId).Execute()
+> ServerInstanceCredentials GetServerInstanceCredentials(ctx, serverInstanceId).Execute()
 
 Get Server Instance credentials
 
@@ -575,7 +575,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetServerInstanceCredentials``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetServerInstanceCredentials`: SSHPublicKey
+	// response from `GetServerInstanceCredentials`: ServerInstanceCredentials
 	fmt.Fprintf(os.Stdout, "Response from `ServerInstanceAPI.GetServerInstanceCredentials`: %v\n", resp)
 }
 ```
@@ -599,7 +599,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SSHPublicKey**](SSHPublicKey.md)
+[**ServerInstanceCredentials**](ServerInstanceCredentials.md)
 
 ### Authorization
 
@@ -848,7 +848,7 @@ Name | Type | Description  | Notes
 
 ## GetServerInstanceOSInstallationData
 
-> ServerInstanceContextOSInstallationData GetServerInstanceOSInstallationData(ctx, serverInstanceId).Usage(usage).Execute()
+> ServerInstanceContextOSInstallationData GetServerInstanceOSInstallationData(ctx, serverInstanceId).Usage(usage).RemoveEmpty(removeEmpty).Execute()
 
 Get server instance OS installation data
 
@@ -867,10 +867,11 @@ import (
 func main() {
 	serverInstanceId := int32(56) // int32 | 
 	usage := openapiclient.VariableUsageType("HTTPRequest") // VariableUsageType | Filter by variable usage (optional)
+	removeEmpty := int32(56) // int32 | Remove empty fields from the response (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServerInstanceAPI.GetServerInstanceOSInstallationData(context.Background(), serverInstanceId).Usage(usage).Execute()
+	resp, r, err := apiClient.ServerInstanceAPI.GetServerInstanceOSInstallationData(context.Background(), serverInstanceId).Usage(usage).RemoveEmpty(removeEmpty).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServerInstanceAPI.GetServerInstanceOSInstallationData``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -897,6 +898,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **usage** | [**VariableUsageType**](VariableUsageType.md) | Filter by variable usage | 
+ **removeEmpty** | **int32** | Remove empty fields from the response | 
 
 ### Return type
 

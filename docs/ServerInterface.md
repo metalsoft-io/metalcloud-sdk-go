@@ -19,14 +19,18 @@ Name | Type | Description | Notes
 **FibreChannelWwpn** | Pointer to **string** | The WWPN of the fibre channel. | [optional] 
 **Description** | Pointer to **string** | The description of the server interface. | [optional] 
 **AliasIndex** | Pointer to **float32** | The alias index of the server interface. | [optional] 
+**OsInfo** | **string** | The OS info of the server interface. | [default to "not_tested"]
 **NetworkDevice** | Pointer to **map[string]interface{}** | The network device linked to the server. | [optional] 
 **NetworkDeviceInterface** | Pointer to **map[string]interface{}** | The network device interface linked to the server. | [optional] 
+**Ipv4Addresses** | Pointer to **[]string** | The deployed IPv4 addresses of the server interface. | [optional] 
+**Ipv6Addresses** | Pointer to **[]string** | The deployed IPv6 addresses of the server interface. | [optional] 
+**VlanId** | Pointer to **float32** | The deployed VLAN ID of the server interface. | [optional] 
 
 ## Methods
 
 ### NewServerInterface
 
-`func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32, ) *ServerInterface`
+`func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32, osInfo string, ) *ServerInterface`
 
 NewServerInterface instantiates a new ServerInterface object
 This constructor will assign default values to properties that have it defined,
@@ -396,6 +400,26 @@ SetAliasIndex sets AliasIndex field to given value.
 
 HasAliasIndex returns a boolean if a field has been set.
 
+### GetOsInfo
+
+`func (o *ServerInterface) GetOsInfo() string`
+
+GetOsInfo returns the OsInfo field if non-nil, zero value otherwise.
+
+### GetOsInfoOk
+
+`func (o *ServerInterface) GetOsInfoOk() (*string, bool)`
+
+GetOsInfoOk returns a tuple with the OsInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOsInfo
+
+`func (o *ServerInterface) SetOsInfo(v string)`
+
+SetOsInfo sets OsInfo field to given value.
+
+
 ### GetNetworkDevice
 
 `func (o *ServerInterface) GetNetworkDevice() map[string]interface{}`
@@ -445,6 +469,81 @@ SetNetworkDeviceInterface sets NetworkDeviceInterface field to given value.
 `func (o *ServerInterface) HasNetworkDeviceInterface() bool`
 
 HasNetworkDeviceInterface returns a boolean if a field has been set.
+
+### GetIpv4Addresses
+
+`func (o *ServerInterface) GetIpv4Addresses() []string`
+
+GetIpv4Addresses returns the Ipv4Addresses field if non-nil, zero value otherwise.
+
+### GetIpv4AddressesOk
+
+`func (o *ServerInterface) GetIpv4AddressesOk() (*[]string, bool)`
+
+GetIpv4AddressesOk returns a tuple with the Ipv4Addresses field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpv4Addresses
+
+`func (o *ServerInterface) SetIpv4Addresses(v []string)`
+
+SetIpv4Addresses sets Ipv4Addresses field to given value.
+
+### HasIpv4Addresses
+
+`func (o *ServerInterface) HasIpv4Addresses() bool`
+
+HasIpv4Addresses returns a boolean if a field has been set.
+
+### GetIpv6Addresses
+
+`func (o *ServerInterface) GetIpv6Addresses() []string`
+
+GetIpv6Addresses returns the Ipv6Addresses field if non-nil, zero value otherwise.
+
+### GetIpv6AddressesOk
+
+`func (o *ServerInterface) GetIpv6AddressesOk() (*[]string, bool)`
+
+GetIpv6AddressesOk returns a tuple with the Ipv6Addresses field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpv6Addresses
+
+`func (o *ServerInterface) SetIpv6Addresses(v []string)`
+
+SetIpv6Addresses sets Ipv6Addresses field to given value.
+
+### HasIpv6Addresses
+
+`func (o *ServerInterface) HasIpv6Addresses() bool`
+
+HasIpv6Addresses returns a boolean if a field has been set.
+
+### GetVlanId
+
+`func (o *ServerInterface) GetVlanId() float32`
+
+GetVlanId returns the VlanId field if non-nil, zero value otherwise.
+
+### GetVlanIdOk
+
+`func (o *ServerInterface) GetVlanIdOk() (*float32, bool)`
+
+GetVlanIdOk returns a tuple with the VlanId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVlanId
+
+`func (o *ServerInterface) SetVlanId(v float32)`
+
+SetVlanId sets VlanId field to given value.
+
+### HasVlanId
+
+`func (o *ServerInterface) HasVlanId() bool`
+
+HasVlanId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

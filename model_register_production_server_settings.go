@@ -26,7 +26,7 @@ type RegisterProductionServerSettings struct {
 	// The id of the template installed on the server.
 	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
 	// Interface to network device connection settings.
-	InterfaceConnection *ServerInterfaceConnection `json:"interfaceConnection,omitempty"`
+	InterfaceConnections []string `json:"interfaceConnections,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -106,36 +106,36 @@ func (o *RegisterProductionServerSettings) SetOsTemplateId(v float32) {
 	o.OsTemplateId = &v
 }
 
-// GetInterfaceConnection returns the InterfaceConnection field value if set, zero value otherwise.
-func (o *RegisterProductionServerSettings) GetInterfaceConnection() ServerInterfaceConnection {
-	if o == nil || IsNil(o.InterfaceConnection) {
-		var ret ServerInterfaceConnection
+// GetInterfaceConnections returns the InterfaceConnections field value if set, zero value otherwise.
+func (o *RegisterProductionServerSettings) GetInterfaceConnections() []string {
+	if o == nil || IsNil(o.InterfaceConnections) {
+		var ret []string
 		return ret
 	}
-	return *o.InterfaceConnection
+	return o.InterfaceConnections
 }
 
-// GetInterfaceConnectionOk returns a tuple with the InterfaceConnection field value if set, nil otherwise
+// GetInterfaceConnectionsOk returns a tuple with the InterfaceConnections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RegisterProductionServerSettings) GetInterfaceConnectionOk() (*ServerInterfaceConnection, bool) {
-	if o == nil || IsNil(o.InterfaceConnection) {
+func (o *RegisterProductionServerSettings) GetInterfaceConnectionsOk() ([]string, bool) {
+	if o == nil || IsNil(o.InterfaceConnections) {
 		return nil, false
 	}
-	return o.InterfaceConnection, true
+	return o.InterfaceConnections, true
 }
 
-// HasInterfaceConnection returns a boolean if a field has been set.
-func (o *RegisterProductionServerSettings) HasInterfaceConnection() bool {
-	if o != nil && !IsNil(o.InterfaceConnection) {
+// HasInterfaceConnections returns a boolean if a field has been set.
+func (o *RegisterProductionServerSettings) HasInterfaceConnections() bool {
+	if o != nil && !IsNil(o.InterfaceConnections) {
 		return true
 	}
 
 	return false
 }
 
-// SetInterfaceConnection gets a reference to the given ServerInterfaceConnection and assigns it to the InterfaceConnection field.
-func (o *RegisterProductionServerSettings) SetInterfaceConnection(v ServerInterfaceConnection) {
-	o.InterfaceConnection = &v
+// SetInterfaceConnections gets a reference to the given []string and assigns it to the InterfaceConnections field.
+func (o *RegisterProductionServerSettings) SetInterfaceConnections(v []string) {
+	o.InterfaceConnections = v
 }
 
 func (o RegisterProductionServerSettings) MarshalJSON() ([]byte, error) {
@@ -152,8 +152,8 @@ func (o RegisterProductionServerSettings) ToMap() (map[string]interface{}, error
 	if !IsNil(o.OsTemplateId) {
 		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
-	if !IsNil(o.InterfaceConnection) {
-		toSerialize["interfaceConnection"] = o.InterfaceConnection
+	if !IsNil(o.InterfaceConnections) {
+		toSerialize["interfaceConnections"] = o.InterfaceConnections
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -200,7 +200,7 @@ func (o *RegisterProductionServerSettings) UnmarshalJSON(data []byte) (err error
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "osTemplateId")
-		delete(additionalProperties, "interfaceConnection")
+		delete(additionalProperties, "interfaceConnections")
 		o.AdditionalProperties = additionalProperties
 	}
 

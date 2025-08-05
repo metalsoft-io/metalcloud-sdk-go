@@ -301,6 +301,7 @@ Class | Method | HTTP request | Description
 *LogicalNetworkAPI* | [**GetLogicalNetworkConfigVlanAllocationStrategy**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigvlanallocationstrategy) | **Get** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies/{allocationStrategyId} | Get a Vlan allocation strategy.
 *LogicalNetworkAPI* | [**GetLogicalNetworkConfigVniAllocationStrategies**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigvniallocationstrategies) | **Get** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies | Get all Vni allocation strategies.
 *LogicalNetworkAPI* | [**GetLogicalNetworkConfigVniAllocationStrategy**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigvniallocationstrategy) | **Get** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies/{allocationStrategyId} | Get a Vni allocation strategy.
+*LogicalNetworkAPI* | [**GetLogicalNetworkExternalConnections**](docs/LogicalNetworkAPI.md#getlogicalnetworkexternalconnections) | **Get** /api/v2/logical-networks/{id}/external-connections | List external connections attached to a logical network
 *LogicalNetworkAPI* | [**GetLogicalNetworks**](docs/LogicalNetworkAPI.md#getlogicalnetworks) | **Get** /api/v2/logical-networks | Get all Logical Networks
 *LogicalNetworkAPI* | [**ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#replacelogicalnetworkconfigipv4subnetallocationstrategy) | **Put** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Replace Ipv4 Subnet allocation strategy
 *LogicalNetworkAPI* | [**ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#replacelogicalnetworkconfigipv6subnetallocationstrategy) | **Put** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies/{allocationStrategyId} | Replace Ipv6 Subnet allocation strategy
@@ -642,6 +643,7 @@ Class | Method | HTTP request | Description
 *VMPoolAPI* | [**GetVMPoolVMs**](docs/VMPoolAPI.md#getvmpoolvms) | **Get** /api/v2/vm-pools/{vmPoolId}/vms | Returns all VMs linked to the VM Pool
 *VMPoolAPI* | [**GetVMPools**](docs/VMPoolAPI.md#getvmpools) | **Get** /api/v2/vm-pools | Get all VM Pools
 *VMPoolAPI* | [**GetVmPoolStatistics**](docs/VMPoolAPI.md#getvmpoolstatistics) | **Get** /api/v2/vm-pools/{vmPoolId}/statistics | Get VM Pool statistics
+*VMPoolAPI* | [**ImportVMPoolVMs**](docs/VMPoolAPI.md#importvmpoolvms) | **Post** /api/v2/vm-pools/{vmPoolId}/actions/import-vms | Import VMs into VM Pool
 *VMPoolAPI* | [**RefreshVMPoolInformation**](docs/VMPoolAPI.md#refreshvmpoolinformation) | **Post** /api/v2/vm-pools/{vmPoolId}/actions/refresh-information | Refresh VM Pool information
 *VMPoolAPI* | [**UpdateVMPool**](docs/VMPoolAPI.md#updatevmpool) | **Patch** /api/v2/vm-pools/{vmPoolId} | Updates VM Pool information
 *VMPoolAPI* | [**UpdateVMPoolClusterHostInterface**](docs/VMPoolAPI.md#updatevmpoolclusterhostinterface) | **Patch** /api/v2/vm-pools/{vmPoolId}/cluster-hosts/{vmPoolClusterHostId}/interfaces/{vmPoolClusterHostInterfaceId} | Updates a VM Cluster Host Interface
@@ -952,6 +954,7 @@ Class | Method | HTTP request | Description
  - [JobGroupStatistics](docs/JobGroupStatistics.md)
  - [JobGroupStatisticsWithoutId](docs/JobGroupStatisticsWithoutId.md)
  - [JobInfo](docs/JobInfo.md)
+ - [JobOptionsDto](docs/JobOptionsDto.md)
  - [JobPaginatedList](docs/JobPaginatedList.md)
  - [JobRetryInfo](docs/JobRetryInfo.md)
  - [JobStatistics](docs/JobStatistics.md)
@@ -1068,7 +1071,6 @@ Class | Method | HTTP request | Description
  - [Role](docs/Role.md)
  - [RoleList](docs/RoleList.md)
  - [RunExtensionOnPhysicalDevice](docs/RunExtensionOnPhysicalDevice.md)
- - [SSHPublicKey](docs/SSHPublicKey.md)
  - [ScheduleFirmwareUpgrade](docs/ScheduleFirmwareUpgrade.md)
  - [SearchFirmwareBinary](docs/SearchFirmwareBinary.md)
  - [SearchFirmwareBinaryServerComponentFilter](docs/SearchFirmwareBinaryServerComponentFilter.md)
@@ -1101,6 +1103,7 @@ Class | Method | HTTP request | Description
  - [ServerInstanceContextOSInstallationData](docs/ServerInstanceContextOSInstallationData.md)
  - [ServerInstanceContextVariables](docs/ServerInstanceContextVariables.md)
  - [ServerInstanceCreate](docs/ServerInstanceCreate.md)
+ - [ServerInstanceCredentials](docs/ServerInstanceCredentials.md)
  - [ServerInstanceGroup](docs/ServerInstanceGroup.md)
  - [ServerInstanceGroupConfiguration](docs/ServerInstanceGroupConfiguration.md)
  - [ServerInstanceGroupCreate](docs/ServerInstanceGroupCreate.md)
@@ -1130,7 +1133,6 @@ Class | Method | HTTP request | Description
  - [ServerInstanceUpdate](docs/ServerInstanceUpdate.md)
  - [ServerInstanceVariables](docs/ServerInstanceVariables.md)
  - [ServerInterface](docs/ServerInterface.md)
- - [ServerInterfaceConnection](docs/ServerInterfaceConnection.md)
  - [ServerMetricsInfo](docs/ServerMetricsInfo.md)
  - [ServerOSInstallationData](docs/ServerOSInstallationData.md)
  - [ServerPaginatedList](docs/ServerPaginatedList.md)

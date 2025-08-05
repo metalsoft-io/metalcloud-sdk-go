@@ -36,7 +36,7 @@ type ServerPolicy struct {
 	// Whether syslog monitoring is enabled
 	SyslogMonitoringEnabled bool `json:"syslogMonitoringEnabled"`
 	// Default server cleanup policy ID
-	DefaultServerCleanupPolicyID float32 `json:"defaultServerCleanupPolicyID"`
+	DefaultServerCleanupPolicyID *float32 `json:"defaultServerCleanupPolicyID,omitempty"`
 	// Automatically allocate server types
 	AutomaticallyAllocateServerTypes bool `json:"automaticallyAllocateServerTypes"`
 	// Automatically set servers as available
@@ -52,7 +52,7 @@ type _ServerPolicy ServerPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []ServerRegistrationBiosProfile) *ServerPolicy {
+func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []ServerRegistrationBiosProfile) *ServerPolicy {
 	this := ServerPolicy{}
 	this.RegisterCredentials = registerCredentials
 	this.MinimumNumberOfConnectedInterfaces = minimumNumberOfConnectedInterfaces
@@ -61,7 +61,6 @@ func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfa
 	this.DhcpBmcMacAddressWhitelist = dhcpBmcMacAddressWhitelist
 	this.DisableTpmAfterRegistration = disableTpmAfterRegistration
 	this.SyslogMonitoringEnabled = syslogMonitoringEnabled
-	this.DefaultServerCleanupPolicyID = defaultServerCleanupPolicyID
 	this.AutomaticallyAllocateServerTypes = automaticallyAllocateServerTypes
 	this.AutomaticallySetServersAsAvailable = automaticallySetServersAsAvailable
 	this.ServerRegistrationBiosProfile = serverRegistrationBiosProfile
@@ -244,28 +243,36 @@ func (o *ServerPolicy) SetSyslogMonitoringEnabled(v bool) {
 	o.SyslogMonitoringEnabled = v
 }
 
-// GetDefaultServerCleanupPolicyID returns the DefaultServerCleanupPolicyID field value
+// GetDefaultServerCleanupPolicyID returns the DefaultServerCleanupPolicyID field value if set, zero value otherwise.
 func (o *ServerPolicy) GetDefaultServerCleanupPolicyID() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.DefaultServerCleanupPolicyID) {
 		var ret float32
 		return ret
 	}
-
-	return o.DefaultServerCleanupPolicyID
+	return *o.DefaultServerCleanupPolicyID
 }
 
-// GetDefaultServerCleanupPolicyIDOk returns a tuple with the DefaultServerCleanupPolicyID field value
+// GetDefaultServerCleanupPolicyIDOk returns a tuple with the DefaultServerCleanupPolicyID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServerPolicy) GetDefaultServerCleanupPolicyIDOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DefaultServerCleanupPolicyID) {
 		return nil, false
 	}
-	return &o.DefaultServerCleanupPolicyID, true
+	return o.DefaultServerCleanupPolicyID, true
 }
 
-// SetDefaultServerCleanupPolicyID sets field value
+// HasDefaultServerCleanupPolicyID returns a boolean if a field has been set.
+func (o *ServerPolicy) HasDefaultServerCleanupPolicyID() bool {
+	if o != nil && !IsNil(o.DefaultServerCleanupPolicyID) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultServerCleanupPolicyID gets a reference to the given float32 and assigns it to the DefaultServerCleanupPolicyID field.
 func (o *ServerPolicy) SetDefaultServerCleanupPolicyID(v float32) {
-	o.DefaultServerCleanupPolicyID = v
+	o.DefaultServerCleanupPolicyID = &v
 }
 
 // GetAutomaticallyAllocateServerTypes returns the AutomaticallyAllocateServerTypes field value
@@ -357,7 +364,9 @@ func (o ServerPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize["dhcpBmcMacAddressWhitelist"] = o.DhcpBmcMacAddressWhitelist
 	toSerialize["disableTpmAfterRegistration"] = o.DisableTpmAfterRegistration
 	toSerialize["syslogMonitoringEnabled"] = o.SyslogMonitoringEnabled
-	toSerialize["defaultServerCleanupPolicyID"] = o.DefaultServerCleanupPolicyID
+	if !IsNil(o.DefaultServerCleanupPolicyID) {
+		toSerialize["defaultServerCleanupPolicyID"] = o.DefaultServerCleanupPolicyID
+	}
 	toSerialize["automaticallyAllocateServerTypes"] = o.AutomaticallyAllocateServerTypes
 	toSerialize["automaticallySetServersAsAvailable"] = o.AutomaticallySetServersAsAvailable
 	toSerialize["serverRegistrationBiosProfile"] = o.ServerRegistrationBiosProfile
@@ -381,7 +390,6 @@ func (o *ServerPolicy) UnmarshalJSON(data []byte) (err error) {
 		"dhcpBmcMacAddressWhitelist",
 		"disableTpmAfterRegistration",
 		"syslogMonitoringEnabled",
-		"defaultServerCleanupPolicyID",
 		"automaticallyAllocateServerTypes",
 		"automaticallySetServersAsAvailable",
 		"serverRegistrationBiosProfile",

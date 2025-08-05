@@ -13672,6 +13672,188 @@ paths:
       summary: Apply profiles to Logical Network config
       tags:
       - Logical Network
+  /api/v2/logical-networks/{id}/external-connections:
+    get:
+      description: Returns list of external connections attached to a logical network
+      operationId: getLogicalNetworkExternalConnections
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by fabricId query param.
+                    <p>
+                       <b>Format: </b> filter.fabricId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.fabricId=$not:$like:John Doe&filter.fabricId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.fabricId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by createdAt query param.
+                    <p>
+                       <b>Format: </b> filter.createdAt={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.createdAt=$not:$like:John Doe&filter.createdAt=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.createdAt
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by updatedAt query param.
+                    <p>
+                       <b>Format: </b> filter.updatedAt={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.updatedAt=$not:$like:John Doe&filter.updatedAt=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.updatedAt
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>createdAt</li>\n\
+          <li>updatedAt</li></ul>\n      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - createdAt:ASC
+            - createdAt:DESC
+            - updatedAt:ASC
+            - updatedAt:DESC
+            type: string
+          type: array
+        style: form
+      - description: "Search term to filter result values\n        <p>\n         \
+          \    <b>Example: </b> John\n          </p>\n        <p>\n             <b>Default\
+          \ Value: </b> No default value\n          </p>\n        "
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "List of fields to search by term to filter result values\n \
+          \       <p>\n             <b>Example: </b> name,label\n          </p>\n\
+          \        <p>\n             <b>Default Value: </b> By default all fields\
+          \ mentioned below will be used to search by term\n          </p>\n     \
+          \   <h4>Available Fields</h4><ul><li>name</li>\n<li>label</li></ul>\n  \
+          \      "
+        explode: true
+        in: query
+        name: searchBy
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnectionPaginatedList'
+          description: The list of external connections
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External connection not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: List external connections attached to a logical network
+      tags:
+      - Logical Network
   /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies:
     get:
       operationId: getLogicalNetworkConfigVlanAllocationStrategies
@@ -22966,7 +23148,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SSHPublicKey'
+                $ref: '#/components/schemas/ServerInstanceCredentials'
           description: The credentials of the specified Server Instance
         "401":
           description: Unauthorized
@@ -23531,6 +23713,14 @@ paths:
         required: false
         schema:
           $ref: '#/components/schemas/VariableUsageType'
+        style: form
+      - description: Remove empty fields from the response
+        explode: true
+        in: query
+        name: removeEmpty
+        required: false
+        schema:
+          type: integer
         style: form
       responses:
         "200":
@@ -27815,35 +28005,17 @@ paths:
           type: array
         style: form
       - description: |-
-          Filter by siteId query param.
+          Filter by fabricId query param.
                     <p>
-                       <b>Format: </b> filter.siteId={$not}:OPERATION:VALUE
+                       <b>Format: </b> filter.fabricId={$not}:OPERATION:VALUE
                     </p>
                     <p>
-                       <b>Example: </b> filter.siteId=$not:$like:John Doe&filter.siteId=like:John
-                    </p>
-                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
-        explode: true
-        in: query
-        name: filter.siteId
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: |-
-          Filter by externalId query param.
-                    <p>
-                       <b>Format: </b> filter.externalId={$not}:OPERATION:VALUE
-                    </p>
-                    <p>
-                       <b>Example: </b> filter.externalId=$not:$like:John Doe&filter.externalId=like:John
+                       <b>Example: </b> filter.fabricId=$not:$like:John Doe&filter.fabricId=like:John
                     </p>
                     <h4>Available Operations</h4><ul><li>$eq</li></ul>
         explode: true
         in: query
-        name: filter.externalId
+        name: filter.fabricId
         required: false
         schema:
           items:
@@ -28635,6 +28807,42 @@ paths:
           type: array
         style: form
       - description: |-
+          Filter by externalConnectionId query param.
+                    <p>
+                       <b>Format: </b> filter.externalConnectionId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.externalConnectionId=$not:$like:John Doe&filter.externalConnectionId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.externalConnectionId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by logicalNetworkId query param.
+                    <p>
+                       <b>Format: </b> filter.logicalNetworkId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.logicalNetworkId=$not:$like:John Doe&filter.logicalNetworkId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.logicalNetworkId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
           Filter by createdAt query param.
                     <p>
                        <b>Format: </b> filter.createdAt={$not}:OPERATION:VALUE
@@ -28702,7 +28910,8 @@ paths:
           \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
           \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
           \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>createdAt</li>\n\
-          <li>updatedAt</li></ul>\n      "
+          <li>updatedAt</li>\n<li>externalConnectionId</li>\n<li>logicalNetworkId</li></ul>\n\
+          \      "
         explode: true
         in: query
         name: sortBy
@@ -28716,6 +28925,10 @@ paths:
             - createdAt:DESC
             - updatedAt:ASC
             - updatedAt:DESC
+            - externalConnectionId:ASC
+            - externalConnectionId:DESC
+            - logicalNetworkId:ASC
+            - logicalNetworkId:DESC
             type: string
           type: array
         style: form
@@ -36875,6 +37088,41 @@ paths:
       summary: Refresh VM Pool information
       tags:
       - VM Pool
+  /api/v2/vm-pools/{vmPoolId}/actions/import-vms:
+    post:
+      description: Imports VMs into VM Pool from the management host
+      operationId: importVMPoolVMs
+      parameters:
+      - explode: false
+        in: path
+        name: vmPoolId
+        required: true
+        schema:
+          type: number
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VMPoolImportVMs'
+        required: true
+      responses:
+        "200":
+          description: The VMs were successfully imported into the VM Pool
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Import VMs into VM Pool
+      tags:
+      - VM Pool
   /api/v2/vm-pools/{vmPoolId}/statistics:
     get:
       description: Returns VM Pool statistics
@@ -40710,9 +40958,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-07-29T08:59:56.352Z
+        createdTimestamp: 2025-08-05T07:56:13.569Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-07-29T08:59:56.352Z
+        updatedTimestamp: 2025-08-05T07:56:13.569Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -40808,12 +41056,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-29T08:59:56.352Z
+          example: 2025-08-05T07:56:13.569Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-29T08:59:56.352Z
+          example: 2025-08-05T07:56:13.569Z
           format: date-time
           type: string
         links:
@@ -40845,9 +41093,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-07-29T08:59:56.352Z
+          createdTimestamp: 2025-08-05T07:56:13.569Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-07-29T08:59:56.352Z
+          updatedTimestamp: 2025-08-05T07:56:13.569Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -40864,9 +41112,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-07-29T08:59:56.352Z
+          createdTimestamp: 2025-08-05T07:56:13.569Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-07-29T08:59:56.352Z
+          updatedTimestamp: 2025-08-05T07:56:13.569Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -42518,6 +42766,7 @@ components:
           - 489
           - 488
           - 491
+          - 553
           - 350
           - 363
           - 351
@@ -43028,7 +43277,6 @@ components:
           - ExtensionInputString
           - ExtensionInputInteger
           - ExtensionInputBoolean
-          - ExtensionInputObject
           - ExtensionInputServerType
           - ExtensionInputOsTemplate
           type: string
@@ -54360,6 +54608,19 @@ components:
       required:
       - endpointId
       type: object
+    JobOptionsDto:
+      properties:
+        canBeRetriedIfSuccessful:
+          default: true
+          description: Whether the job can be retried if it was successful
+          example: true
+          type: boolean
+        canBeSkipped:
+          default: true
+          description: Whether the job can be skipped
+          example: true
+          type: boolean
+      type: object
     Job:
       example:
         exception: "{}"
@@ -54374,6 +54635,7 @@ components:
         retryMax: 1
         durationMilliseconds: 6
         instanceId: 1
+        options: ""
         links: "{}"
         storageId: 2
         uniqueIdentifier: uniqueIdentifier
@@ -54480,6 +54742,10 @@ components:
           description: Whether the job requires confirmation before execution
           example: false
           type: boolean
+        options:
+          allOf:
+          - $ref: '#/components/schemas/JobOptionsDto'
+          description: Options for the job
         createdTimestamp:
           description: The timestamp when the job was created
           type: string
@@ -54509,6 +54775,7 @@ components:
       - functionName
       - jobId
       - links
+      - options
       - requiresConfirmation
       - retryCount
       - retryMax
@@ -54532,6 +54799,7 @@ components:
           retryMax: 1
           durationMilliseconds: 6
           instanceId: 1
+          options: ""
           links: "{}"
           storageId: 2
           uniqueIdentifier: uniqueIdentifier
@@ -54562,6 +54830,7 @@ components:
           retryMax: 1
           durationMilliseconds: 6
           instanceId: 1
+          options: ""
           links: "{}"
           storageId: 2
           uniqueIdentifier: uniqueIdentifier
@@ -54616,6 +54885,7 @@ components:
         retryMax: 1
         durationMilliseconds: 6
         instanceId: 1
+        options: ""
         links: "{}"
         storageId: 2
         requiresConfirmation: false
@@ -54721,6 +54991,10 @@ components:
           description: Whether the job requires confirmation before execution
           example: false
           type: boolean
+        options:
+          allOf:
+          - $ref: '#/components/schemas/JobOptionsDto'
+          description: Options for the job
         createdTimestamp:
           description: The timestamp when the job was created
           type: string
@@ -54747,6 +55021,7 @@ components:
       - functionName
       - jobId
       - links
+      - options
       - requiresConfirmation
       - retryCount
       - retryMax
@@ -54770,6 +55045,7 @@ components:
           retryMax: 1
           durationMilliseconds: 6
           instanceId: 1
+          options: ""
           links: "{}"
           storageId: 2
           requiresConfirmation: false
@@ -54799,6 +55075,7 @@ components:
           retryMax: 1
           durationMilliseconds: 6
           instanceId: 1
+          options: ""
           links: "{}"
           storageId: 2
           requiresConfirmation: false
@@ -58715,6 +58992,181 @@ components:
       - vlan
       - vxlan
       type: object
+    ExternalConnectionInterface:
+      example:
+        createdAt: 2025-01-01T00:00:00Z
+        networkDeviceInterfaceId: 1
+        networkDeviceId: 12
+        networkDeviceInterfaceName: eth0
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        id: 1
+        revision: "1"
+        updatedAt: 2025-01-01T00:00:00Z
+      properties:
+        id:
+          description: Unique identifier for the external connection interface
+          example: 1
+          type: number
+        networkDeviceInterfaceId:
+          description: Network device interface id
+          example: 1
+          type: number
+        networkDeviceInterfaceName:
+          description: Network device interface name
+          example: eth0
+          type: string
+        networkDeviceId:
+          description: Network device id
+          example: 12
+          type: number
+        revision:
+          description: Revision number of the external connection interface
+          example: "1"
+          type: string
+        createdAt:
+          description: The date and time the entity was created
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          description: The date and time the entity was last updated
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - createdAt
+      - id
+      - networkDeviceId
+      - networkDeviceInterfaceId
+      - networkDeviceInterfaceName
+      - revision
+      - updatedAt
+      type: object
+    ExternalConnection:
+      example:
+        createdAt: 2025-01-01T00:00:00Z
+        fabricId: 0.8008281904610115
+        name: Server 1
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        id: "1"
+        label: external-connection-1
+        revision: "1"
+        updatedAt: 2025-01-01T00:00:00Z
+      properties:
+        id:
+          description: The network external connection id.
+          example: "1"
+          type: string
+        label:
+          description: The external connection unique label
+          example: external-connection-1
+          maxLength: 63
+          minLength: 1
+          pattern: "^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"
+          type: string
+        name:
+          description: The external connection name
+          example: Server 1
+          maxLength: 255
+          type: string
+        fabricId:
+          description: The ID of the Fabric identifier this entity belongs to.
+          format: integer
+          type: number
+        revision:
+          description: Revision number of the entity
+          example: "1"
+          type: string
+        createdAt:
+          description: The date and time the entity was created
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          description: The date and time the entity was last updated
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - createdAt
+      - fabricId
+      - id
+      - label
+      - name
+      - revision
+      - updatedAt
+      type: object
+    ExternalConnectionPaginatedList:
+      example:
+        data:
+        - createdAt: 2025-01-01T00:00:00Z
+          fabricId: 0.8008281904610115
+          name: Server 1
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: "1"
+          label: external-connection-1
+          revision: "1"
+          updatedAt: 2025-01-01T00:00:00Z
+        - createdAt: 2025-01-01T00:00:00Z
+          fabricId: 0.8008281904610115
+          name: Server 1
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: "1"
+          label: external-connection-1
+          revision: "1"
+          updatedAt: 2025-01-01T00:00:00Z
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ExternalConnection'
+          title: List of external connections
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - meta
+      type: object
     NetworkDeviceDefaultSecrets:
       example:
         secretName: secretName
@@ -60215,7 +60667,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-07-29T08:59:56.402Z
+        createdTimestamp: 2025-08-05T07:56:13.607Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -60224,7 +60676,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-07-29T08:59:56.402Z
+        updatedTimestamp: 2025-08-05T07:56:13.607Z
         revision: "1"
       properties:
         siteId:
@@ -60241,12 +60693,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-29T08:59:56.402Z
+          example: 2025-08-05T07:56:13.607Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-29T08:59:56.402Z
+          example: 2025-08-05T07:56:13.607Z
           format: date-time
           type: string
         links:
@@ -60268,7 +60720,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-29T08:59:56.402Z
+        - createdTimestamp: 2025-08-05T07:56:13.607Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -60277,9 +60729,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-07-29T08:59:56.402Z
+          updatedTimestamp: 2025-08-05T07:56:13.607Z
           revision: "1"
-        - createdTimestamp: 2025-07-29T08:59:56.402Z
+        - createdTimestamp: 2025-08-05T07:56:13.607Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -60288,7 +60740,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-07-29T08:59:56.402Z
+          updatedTimestamp: 2025-08-05T07:56:13.607Z
           revision: "1"
         meta: ""
         links: ""
@@ -60876,7 +61328,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-07-29T08:59:56.348Z
+        createdTimestamp: 2025-08-05T07:56:13.565Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -60923,7 +61375,7 @@ components:
           configurationPreview: configurationPreview
           bgpTemplateId: 101
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-07-29T08:59:56.349Z
+        updatedTimestamp: 2025-08-05T07:56:13.566Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -61065,12 +61517,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-29T08:59:56.348Z
+          example: 2025-08-05T07:56:13.565Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-29T08:59:56.349Z
+          example: 2025-08-05T07:56:13.566Z
           format: date-time
           type: string
         links:
@@ -61114,7 +61566,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-29T08:59:56.348Z
+        - createdTimestamp: 2025-08-05T07:56:13.565Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -61161,7 +61613,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-07-29T08:59:56.349Z
+          updatedTimestamp: 2025-08-05T07:56:13.566Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -61278,7 +61730,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-07-29T08:59:56.348Z
+        - createdTimestamp: 2025-08-05T07:56:13.565Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -61325,7 +61777,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-07-29T08:59:56.349Z
+          updatedTimestamp: 2025-08-05T07:56:13.566Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -61609,9 +62061,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-07-29T08:59:56.412Z
+        createdTimestamp: 2025-08-05T07:56:13.616Z
         mlagPair: 0
-        updatedTimestamp: 2025-07-29T08:59:56.412Z
+        updatedTimestamp: 2025-08-05T07:56:13.616Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -61624,12 +62076,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-29T08:59:56.412Z
+          example: 2025-08-05T07:56:13.616Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-29T08:59:56.412Z
+          example: 2025-08-05T07:56:13.616Z
           format: date-time
           type: string
         revision:
@@ -61707,9 +62159,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-07-29T08:59:56.412Z
+          createdTimestamp: 2025-08-05T07:56:13.616Z
           mlagPair: 0
-          updatedTimestamp: 2025-07-29T08:59:56.412Z
+          updatedTimestamp: 2025-08-05T07:56:13.616Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -61720,9 +62172,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-07-29T08:59:56.412Z
+          createdTimestamp: 2025-08-05T07:56:13.616Z
           mlagPair: 0
-          updatedTimestamp: 2025-07-29T08:59:56.412Z
+          updatedTimestamp: 2025-08-05T07:56:13.616Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -65259,10 +65711,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-07-29T08:59:56.408Z
+        createdTimestamp: 2025-08-05T07:56:13.614Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-07-29T08:59:56.408Z
+        updatedTimestamp: 2025-08-05T07:56:13.614Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -65336,12 +65788,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-29T08:59:56.408Z
+          example: 2025-08-05T07:56:13.614Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-29T08:59:56.408Z
+          example: 2025-08-05T07:56:13.614Z
           format: date-time
           type: string
         links:
@@ -65576,17 +66028,24 @@ components:
           - $ref: '#/components/schemas/ServerInstanceStorageProfile'
           description: Custom Storage Profile for the Instance.
       type: object
-    SSHPublicKey:
+    ServerInstanceCredentials:
       example:
-        publicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDZ...
+        initialPassword: initialPassword
+        publicSshKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDZ...
+        username: username
       properties:
-        publicKey:
+        username:
+          description: The initial username. Might be empty if password configuration
+            is disabled.
+          type: string
+        initialPassword:
+          description: The initial password. Might be empty if password configuration
+            is disabled.
+          type: string
+        publicSshKey:
           description: The SSH key public key.
           example: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDZ...
-          nullable: true
           type: string
-      required:
-      - publicKey
       type: object
     DriveTargetInfo:
       example: {}
@@ -66517,7 +66976,6 @@ components:
       required:
       - automaticallyAllocateServerTypes
       - automaticallySetServersAsAvailable
-      - defaultServerCleanupPolicyID
       - dhcpBmcMacAddressWhitelist
       - dhcpBmcMacAddressWhitelistEnabled
       - dhcpOption82ToIPMapping
@@ -66628,15 +67086,23 @@ components:
       example:
         serverInterfaceId: 6.878052220127876
         networkDevice: "{}"
+        ipv4Addresses:
+        - 192.168.1.1
+        - 192.168.1.2
         aliasIndex: 0.8851374739011653
+        vlanId: 7.058770351582356
         networkDeviceInterface: "{}"
         index: 6.704019297950036
         description: description
+        ipv6Addresses:
+        - 2001:db8::1
+        - 2001:db8::2
         serverId: 5.944895607614016
         addOnType: hba
         switchHostname: switchHostname
         pxeEnabled: 3.0937452626664474
         macAddress: macAddress
+        osInfo: not_tested
         fibreChannelWwpn: fibreChannelWwpn
         addOnInfo: "{}"
         addOnMac: addOnMac
@@ -66692,15 +67158,43 @@ components:
         aliasIndex:
           description: The alias index of the server interface.
           type: number
+        osInfo:
+          default: not_tested
+          description: The OS info of the server interface.
+          enum:
+          - not_tested
+          - not_supported
+          - collected
+          type: string
         networkDevice:
           description: The network device linked to the server.
           type: object
         networkDeviceInterface:
           description: The network device interface linked to the server.
           type: object
+        ipv4Addresses:
+          description: The deployed IPv4 addresses of the server interface.
+          example:
+          - 192.168.1.1
+          - 192.168.1.2
+          items:
+            type: string
+          type: array
+        ipv6Addresses:
+          description: The deployed IPv6 addresses of the server interface.
+          example:
+          - 2001:db8::1
+          - 2001:db8::2
+          items:
+            type: string
+          type: array
+        vlanId:
+          description: The deployed VLAN ID of the server interface.
+          type: number
       required:
       - index
       - macAddress
+      - osInfo
       - serverId
       - serverInterfaceId
       type: object
@@ -66708,12 +67202,12 @@ components:
       example:
         serial: serial
         vendor: vendor
-        serverStorageControllerId: 4.652396432933246
+        serverStorageControllerId: 8.969578798196912
         model: model
-        id: 7.058770351582356
+        id: 6.519180951018382
         type: none
-        serverId: 6.519180951018382
-        diskSizeGb: 0.10263654006109402
+        serverId: 0.10263654006109402
+        diskSizeGb: 4.652396432933246
         status: installed
       properties:
         id:
@@ -66791,9 +67285,9 @@ components:
         name: name
         options: ""
         description: description
-        id: 8.969578798196912
+        id: 7.740351818741173
         label: label
-        serverId: 7.740351818741173
+        serverId: 3.0205796992916243
       properties:
         id:
           description: The id of the storage controller.
@@ -69127,6 +69621,13 @@ components:
           description: ID of the DNS zone associated with the site
           example: 5
           type: integer
+        dnsZoneName:
+          description: The name of the DNS zone (without a terminating dot).
+          example: example.com
+          maxLength: 255
+          minLength: 3
+          type: string
+          uniqueItems: true
         DNSServers:
           description: List of DNS Servers
           items:
@@ -70105,25 +70606,6 @@ components:
       - revision
       - serverId
       type: object
-    ServerInterfaceConnection:
-      properties:
-        serverInterfaceMacAddress:
-          description: The server interface MAC address
-          example: 00:1A:2B:3C:4D:5E
-          type: string
-        networkDevicePortId:
-          description: The network device port name
-          example: Ethernet1/1
-          type: string
-        networkDeviceHostname:
-          description: The network device hostname
-          example: switch1.example.com
-          type: string
-      required:
-      - networkDeviceHostname
-      - networkDevicePortId
-      - serverInterfaceMacAddress
-      type: object
     RegisterProductionServerSettings:
       properties:
         infrastructureId:
@@ -70132,10 +70614,11 @@ components:
         osTemplateId:
           description: The id of the template installed on the server.
           type: number
-        interfaceConnection:
-          allOf:
-          - $ref: '#/components/schemas/ServerInterfaceConnection'
+        interfaceConnections:
           description: Interface to network device connection settings.
+          items:
+            type: string
+          type: array
       required:
       - infrastructureId
       type: object
@@ -70286,7 +70769,7 @@ components:
         - tags
         serverCleanupPolicyId: 1.1730742509559433
         serverDiskWipe: 9.018348186070783
-        resourcePoolId: 3.0205796992916243
+        resourcePoolId: 3.0576100241049344
         processorCpuMark: 9.301444243932576
         ramGbytes: 5.962133916683182
         instanceCustomInfo: "{}"
@@ -70299,21 +70782,21 @@ components:
         disks:
         - serial: serial
           vendor: vendor
-          serverStorageControllerId: 4.652396432933246
+          serverStorageControllerId: 8.969578798196912
           model: model
-          id: 7.058770351582356
+          id: 6.519180951018382
           type: none
-          serverId: 6.519180951018382
-          diskSizeGb: 0.10263654006109402
+          serverId: 0.10263654006109402
+          diskSizeGb: 4.652396432933246
           status: installed
         - serial: serial
           vendor: vendor
-          serverStorageControllerId: 4.652396432933246
+          serverStorageControllerId: 8.969578798196912
           model: model
-          id: 7.058770351582356
+          id: 6.519180951018382
           type: none
-          serverId: 6.519180951018382
-          diskSizeGb: 0.10263654006109402
+          serverId: 0.10263654006109402
+          diskSizeGb: 4.652396432933246
           status: installed
         vendorInfo: ""
         bdkDebug: 7.386281948385884
@@ -70351,16 +70834,16 @@ components:
           name: name
           options: ""
           description: description
-          id: 8.969578798196912
+          id: 7.740351818741173
           label: label
-          serverId: 7.740351818741173
+          serverId: 3.0205796992916243
         - mode: HBA
           name: name
           options: ""
           description: description
-          id: 8.969578798196912
+          id: 7.740351818741173
           label: label
-          serverId: 7.740351818741173
+          serverId: 3.0205796992916243
         processorName: processorName
         rackPositionUpperUnit: rackPositionUpperUnit
         managementAddress: managementAddress
@@ -70368,15 +70851,23 @@ components:
         interfaces:
         - serverInterfaceId: 6.878052220127876
           networkDevice: "{}"
+          ipv4Addresses:
+          - 192.168.1.1
+          - 192.168.1.2
           aliasIndex: 0.8851374739011653
+          vlanId: 7.058770351582356
           networkDeviceInterface: "{}"
           index: 6.704019297950036
           description: description
+          ipv6Addresses:
+          - 2001:db8::1
+          - 2001:db8::2
           serverId: 5.944895607614016
           addOnType: hba
           switchHostname: switchHostname
           pxeEnabled: 3.0937452626664474
           macAddress: macAddress
+          osInfo: not_tested
           fibreChannelWwpn: fibreChannelWwpn
           addOnInfo: "{}"
           addOnMac: addOnMac
@@ -70385,15 +70876,23 @@ components:
           supportsIscsiBoot: 7.143538047012306
         - serverInterfaceId: 6.878052220127876
           networkDevice: "{}"
+          ipv4Addresses:
+          - 192.168.1.1
+          - 192.168.1.2
           aliasIndex: 0.8851374739011653
+          vlanId: 7.058770351582356
           networkDeviceInterface: "{}"
           index: 6.704019297950036
           description: description
+          ipv6Addresses:
+          - 2001:db8::1
+          - 2001:db8::2
           serverId: 5.944895607614016
           addOnType: hba
           switchHostname: switchHostname
           pxeEnabled: 3.0937452626664474
           macAddress: macAddress
+          osInfo: not_tested
           fibreChannelWwpn: fibreChannelWwpn
           addOnInfo: "{}"
           addOnMac: addOnMac
@@ -70759,7 +71258,7 @@ components:
           - tags
           serverCleanupPolicyId: 1.1730742509559433
           serverDiskWipe: 9.018348186070783
-          resourcePoolId: 3.0205796992916243
+          resourcePoolId: 3.0576100241049344
           processorCpuMark: 9.301444243932576
           ramGbytes: 5.962133916683182
           instanceCustomInfo: "{}"
@@ -70772,21 +71271,21 @@ components:
           disks:
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 4.652396432933246
+            serverStorageControllerId: 8.969578798196912
             model: model
-            id: 7.058770351582356
+            id: 6.519180951018382
             type: none
-            serverId: 6.519180951018382
-            diskSizeGb: 0.10263654006109402
+            serverId: 0.10263654006109402
+            diskSizeGb: 4.652396432933246
             status: installed
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 4.652396432933246
+            serverStorageControllerId: 8.969578798196912
             model: model
-            id: 7.058770351582356
+            id: 6.519180951018382
             type: none
-            serverId: 6.519180951018382
-            diskSizeGb: 0.10263654006109402
+            serverId: 0.10263654006109402
+            diskSizeGb: 4.652396432933246
             status: installed
           vendorInfo: ""
           bdkDebug: 7.386281948385884
@@ -70824,16 +71323,16 @@ components:
             name: name
             options: ""
             description: description
-            id: 8.969578798196912
+            id: 7.740351818741173
             label: label
-            serverId: 7.740351818741173
+            serverId: 3.0205796992916243
           - mode: HBA
             name: name
             options: ""
             description: description
-            id: 8.969578798196912
+            id: 7.740351818741173
             label: label
-            serverId: 7.740351818741173
+            serverId: 3.0205796992916243
           processorName: processorName
           rackPositionUpperUnit: rackPositionUpperUnit
           managementAddress: managementAddress
@@ -70841,15 +71340,23 @@ components:
           interfaces:
           - serverInterfaceId: 6.878052220127876
             networkDevice: "{}"
+            ipv4Addresses:
+            - 192.168.1.1
+            - 192.168.1.2
             aliasIndex: 0.8851374739011653
+            vlanId: 7.058770351582356
             networkDeviceInterface: "{}"
             index: 6.704019297950036
             description: description
+            ipv6Addresses:
+            - 2001:db8::1
+            - 2001:db8::2
             serverId: 5.944895607614016
             addOnType: hba
             switchHostname: switchHostname
             pxeEnabled: 3.0937452626664474
             macAddress: macAddress
+            osInfo: not_tested
             fibreChannelWwpn: fibreChannelWwpn
             addOnInfo: "{}"
             addOnMac: addOnMac
@@ -70858,15 +71365,23 @@ components:
             supportsIscsiBoot: 7.143538047012306
           - serverInterfaceId: 6.878052220127876
             networkDevice: "{}"
+            ipv4Addresses:
+            - 192.168.1.1
+            - 192.168.1.2
             aliasIndex: 0.8851374739011653
+            vlanId: 7.058770351582356
             networkDeviceInterface: "{}"
             index: 6.704019297950036
             description: description
+            ipv6Addresses:
+            - 2001:db8::1
+            - 2001:db8::2
             serverId: 5.944895607614016
             addOnType: hba
             switchHostname: switchHostname
             pxeEnabled: 3.0937452626664474
             macAddress: macAddress
+            osInfo: not_tested
             fibreChannelWwpn: fibreChannelWwpn
             addOnInfo: "{}"
             addOnMac: addOnMac
@@ -70928,7 +71443,7 @@ components:
           - tags
           serverCleanupPolicyId: 1.1730742509559433
           serverDiskWipe: 9.018348186070783
-          resourcePoolId: 3.0205796992916243
+          resourcePoolId: 3.0576100241049344
           processorCpuMark: 9.301444243932576
           ramGbytes: 5.962133916683182
           instanceCustomInfo: "{}"
@@ -70941,21 +71456,21 @@ components:
           disks:
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 4.652396432933246
+            serverStorageControllerId: 8.969578798196912
             model: model
-            id: 7.058770351582356
+            id: 6.519180951018382
             type: none
-            serverId: 6.519180951018382
-            diskSizeGb: 0.10263654006109402
+            serverId: 0.10263654006109402
+            diskSizeGb: 4.652396432933246
             status: installed
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 4.652396432933246
+            serverStorageControllerId: 8.969578798196912
             model: model
-            id: 7.058770351582356
+            id: 6.519180951018382
             type: none
-            serverId: 6.519180951018382
-            diskSizeGb: 0.10263654006109402
+            serverId: 0.10263654006109402
+            diskSizeGb: 4.652396432933246
             status: installed
           vendorInfo: ""
           bdkDebug: 7.386281948385884
@@ -70993,16 +71508,16 @@ components:
             name: name
             options: ""
             description: description
-            id: 8.969578798196912
+            id: 7.740351818741173
             label: label
-            serverId: 7.740351818741173
+            serverId: 3.0205796992916243
           - mode: HBA
             name: name
             options: ""
             description: description
-            id: 8.969578798196912
+            id: 7.740351818741173
             label: label
-            serverId: 7.740351818741173
+            serverId: 3.0205796992916243
           processorName: processorName
           rackPositionUpperUnit: rackPositionUpperUnit
           managementAddress: managementAddress
@@ -71010,15 +71525,23 @@ components:
           interfaces:
           - serverInterfaceId: 6.878052220127876
             networkDevice: "{}"
+            ipv4Addresses:
+            - 192.168.1.1
+            - 192.168.1.2
             aliasIndex: 0.8851374739011653
+            vlanId: 7.058770351582356
             networkDeviceInterface: "{}"
             index: 6.704019297950036
             description: description
+            ipv6Addresses:
+            - 2001:db8::1
+            - 2001:db8::2
             serverId: 5.944895607614016
             addOnType: hba
             switchHostname: switchHostname
             pxeEnabled: 3.0937452626664474
             macAddress: macAddress
+            osInfo: not_tested
             fibreChannelWwpn: fibreChannelWwpn
             addOnInfo: "{}"
             addOnMac: addOnMac
@@ -71027,15 +71550,23 @@ components:
             supportsIscsiBoot: 7.143538047012306
           - serverInterfaceId: 6.878052220127876
             networkDevice: "{}"
+            ipv4Addresses:
+            - 192.168.1.1
+            - 192.168.1.2
             aliasIndex: 0.8851374739011653
+            vlanId: 7.058770351582356
             networkDeviceInterface: "{}"
             index: 6.704019297950036
             description: description
+            ipv6Addresses:
+            - 2001:db8::1
+            - 2001:db8::2
             serverId: 5.944895607614016
             addOnType: hba
             switchHostname: switchHostname
             pxeEnabled: 3.0937452626664474
             macAddress: macAddress
+            osInfo: not_tested
             fibreChannelWwpn: fibreChannelWwpn
             addOnInfo: "{}"
             addOnMac: addOnMac
@@ -72066,7 +72597,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-07-29T08:59:56.394Z
+        createdTimestamp: 2025-08-05T07:56:13.603Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -72074,7 +72605,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-07-29T08:59:56.394Z
+        updatedTimestamp: 2025-08-05T07:56:13.604Z
         revision: "1"
       properties:
         id:
@@ -72103,12 +72634,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-29T08:59:56.394Z
+          example: 2025-08-05T07:56:13.603Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-29T08:59:56.394Z
+          example: 2025-08-05T07:56:13.604Z
           format: date-time
           type: string
         links:
@@ -72127,7 +72658,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-07-29T08:59:56.397Z
+        createdTimestamp: 2025-08-05T07:56:13.605Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -72138,7 +72669,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-07-29T08:59:56.398Z
+        updatedTimestamp: 2025-08-05T07:56:13.606Z
         revision: "1"
       properties:
         id:
@@ -72172,12 +72703,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-07-29T08:59:56.397Z
+          example: 2025-08-05T07:56:13.605Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-07-29T08:59:56.398Z
+          example: 2025-08-05T07:56:13.606Z
           format: date-time
           type: string
         links:
@@ -72197,7 +72728,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-07-29T08:59:56.397Z
+        - createdTimestamp: 2025-08-05T07:56:13.605Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -72208,9 +72739,9 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-07-29T08:59:56.398Z
+          updatedTimestamp: 2025-08-05T07:56:13.606Z
           revision: "1"
-        - createdTimestamp: 2025-07-29T08:59:56.397Z
+        - createdTimestamp: 2025-08-05T07:56:13.605Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -72221,7 +72752,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-07-29T08:59:56.398Z
+          updatedTimestamp: 2025-08-05T07:56:13.606Z
           revision: "1"
         meta: ""
         links: ""
@@ -72430,7 +72961,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-07-29T08:59:56.394Z
+          createdTimestamp: 2025-08-05T07:56:13.603Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -72438,12 +72969,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-07-29T08:59:56.394Z
+          updatedTimestamp: 2025-08-05T07:56:13.604Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-07-29T08:59:56.394Z
+          createdTimestamp: 2025-08-05T07:56:13.603Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -72451,7 +72982,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-07-29T08:59:56.394Z
+          updatedTimestamp: 2025-08-05T07:56:13.604Z
           revision: "1"
         meta: ""
         links: ""
@@ -72703,181 +73234,6 @@ components:
       - accessMode
       - logicalNetworkId
       - tagged
-      type: object
-    ExternalConnectionInterface:
-      example:
-        createdAt: 2025-01-01T00:00:00Z
-        networkDeviceInterfaceId: 1
-        networkDeviceId: 12
-        networkDeviceInterfaceName: eth0
-        links:
-        - rel: self
-          href: /api/v2/path/to/resource
-        - rel: self
-          href: /api/v2/path/to/resource
-        id: 1
-        revision: "1"
-        updatedAt: 2025-01-01T00:00:00Z
-      properties:
-        id:
-          description: Unique identifier for the external connection interface
-          example: 1
-          type: number
-        networkDeviceInterfaceId:
-          description: Network device interface id
-          example: 1
-          type: number
-        networkDeviceInterfaceName:
-          description: Network device interface name
-          example: eth0
-          type: string
-        networkDeviceId:
-          description: Network device id
-          example: 12
-          type: number
-        revision:
-          description: Revision number of the external connection interface
-          example: "1"
-          type: string
-        createdAt:
-          description: The date and time the entity was created
-          example: 2025-01-01T00:00:00Z
-          format: date-time
-          readOnly: true
-          type: string
-        updatedAt:
-          description: The date and time the entity was last updated
-          example: 2025-01-01T00:00:00Z
-          format: date-time
-          readOnly: true
-          type: string
-        links:
-          description: Reference links
-          items:
-            $ref: '#/components/schemas/Link'
-          type: array
-      required:
-      - createdAt
-      - id
-      - networkDeviceId
-      - networkDeviceInterfaceId
-      - networkDeviceInterfaceName
-      - revision
-      - updatedAt
-      type: object
-    ExternalConnection:
-      example:
-        createdAt: 2025-01-01T00:00:00Z
-        fabricId: 0.8008281904610115
-        name: Server 1
-        links:
-        - rel: self
-          href: /api/v2/path/to/resource
-        - rel: self
-          href: /api/v2/path/to/resource
-        id: "1"
-        label: external-connection-1
-        revision: "1"
-        updatedAt: 2025-01-01T00:00:00Z
-      properties:
-        id:
-          description: The network external connection id.
-          example: "1"
-          type: string
-        label:
-          description: The external connection unique label
-          example: external-connection-1
-          maxLength: 63
-          minLength: 1
-          pattern: "^(?!.*-$)[a-z]{1}[a-z0-9-]{0,62}$"
-          type: string
-        name:
-          description: The external connection name
-          example: Server 1
-          maxLength: 255
-          type: string
-        fabricId:
-          description: The ID of the Fabric identifier this entity belongs to.
-          format: integer
-          type: number
-        revision:
-          description: Revision number of the entity
-          example: "1"
-          type: string
-        createdAt:
-          description: The date and time the entity was created
-          example: 2025-01-01T00:00:00Z
-          format: date-time
-          readOnly: true
-          type: string
-        updatedAt:
-          description: The date and time the entity was last updated
-          example: 2025-01-01T00:00:00Z
-          format: date-time
-          readOnly: true
-          type: string
-        links:
-          description: Reference links
-          items:
-            $ref: '#/components/schemas/Link'
-          type: array
-      required:
-      - createdAt
-      - fabricId
-      - id
-      - label
-      - name
-      - revision
-      - updatedAt
-      type: object
-    ExternalConnectionPaginatedList:
-      example:
-        data:
-        - createdAt: 2025-01-01T00:00:00Z
-          fabricId: 0.8008281904610115
-          name: Server 1
-          links:
-          - rel: self
-            href: /api/v2/path/to/resource
-          - rel: self
-            href: /api/v2/path/to/resource
-          id: "1"
-          label: external-connection-1
-          revision: "1"
-          updatedAt: 2025-01-01T00:00:00Z
-        - createdAt: 2025-01-01T00:00:00Z
-          fabricId: 0.8008281904610115
-          name: Server 1
-          links:
-          - rel: self
-            href: /api/v2/path/to/resource
-          - rel: self
-            href: /api/v2/path/to/resource
-          id: "1"
-          label: external-connection-1
-          revision: "1"
-          updatedAt: 2025-01-01T00:00:00Z
-        meta: ""
-        links: ""
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ExternalConnection'
-          title: List of external connections
-          type: array
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseMeta'
-          description: Metadata about the pagination of the response
-          title: Pagination metadata
-        links:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseLinks'
-          description: Links to navigate through the paginated results
-          title: Pagination links
-      required:
-      - data
-      - meta
       type: object
     NetworkDeviceExternalConnectionInterface:
       example:
@@ -78365,6 +78721,9 @@ components:
           allOf:
           - $ref: '#/components/schemas/UpdateVMPoolOptions'
           description: Options for the VM Pool
+      type: object
+    VMPoolImportVMs:
+      properties: {}
       type: object
     VMPoolStatistics:
       example:

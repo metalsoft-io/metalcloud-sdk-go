@@ -25,6 +25,8 @@ type SiteConfigOSInstallationData struct {
 	RepoURL string `json:"repoURL"`
 	// ID of the DNS zone associated with the site
 	DnsZoneId *int32 `json:"dnsZoneId,omitempty"`
+	// The name of the DNS zone (without a terminating dot).
+	DnsZoneName *string `json:"dnsZoneName,omitempty"`
 	// List of DNS Servers
 	DNSServers []string `json:"DNSServers"`
 	// List of NTP Servers
@@ -110,6 +112,38 @@ func (o *SiteConfigOSInstallationData) SetDnsZoneId(v int32) {
 	o.DnsZoneId = &v
 }
 
+// GetDnsZoneName returns the DnsZoneName field value if set, zero value otherwise.
+func (o *SiteConfigOSInstallationData) GetDnsZoneName() string {
+	if o == nil || IsNil(o.DnsZoneName) {
+		var ret string
+		return ret
+	}
+	return *o.DnsZoneName
+}
+
+// GetDnsZoneNameOk returns a tuple with the DnsZoneName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SiteConfigOSInstallationData) GetDnsZoneNameOk() (*string, bool) {
+	if o == nil || IsNil(o.DnsZoneName) {
+		return nil, false
+	}
+	return o.DnsZoneName, true
+}
+
+// HasDnsZoneName returns a boolean if a field has been set.
+func (o *SiteConfigOSInstallationData) HasDnsZoneName() bool {
+	if o != nil && !IsNil(o.DnsZoneName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDnsZoneName gets a reference to the given string and assigns it to the DnsZoneName field.
+func (o *SiteConfigOSInstallationData) SetDnsZoneName(v string) {
+	o.DnsZoneName = &v
+}
+
 // GetDNSServers returns the DNSServers field value
 func (o *SiteConfigOSInstallationData) GetDNSServers() []string {
 	if o == nil {
@@ -172,6 +206,9 @@ func (o SiteConfigOSInstallationData) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DnsZoneId) {
 		toSerialize["dnsZoneId"] = o.DnsZoneId
 	}
+	if !IsNil(o.DnsZoneName) {
+		toSerialize["dnsZoneName"] = o.DnsZoneName
+	}
 	toSerialize["DNSServers"] = o.DNSServers
 	toSerialize["NTPServers"] = o.NTPServers
 
@@ -221,6 +258,7 @@ func (o *SiteConfigOSInstallationData) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "repoURL")
 		delete(additionalProperties, "dnsZoneId")
+		delete(additionalProperties, "dnsZoneName")
 		delete(additionalProperties, "DNSServers")
 		delete(additionalProperties, "NTPServers")
 		o.AdditionalProperties = additionalProperties

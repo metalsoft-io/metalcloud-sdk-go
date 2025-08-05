@@ -69,6 +69,8 @@ type JobArchive struct {
 	DurationMilliseconds *int32 `json:"durationMilliseconds,omitempty"`
 	// Whether the job requires confirmation before execution
 	RequiresConfirmation bool `json:"requiresConfirmation"`
+	// Options for the job
+	Options JobOptionsDto `json:"options"`
 	// The timestamp when the job was created
 	CreatedTimestamp string `json:"createdTimestamp"`
 	// The timestamp when the job was last updated
@@ -88,7 +90,7 @@ type _JobArchive JobArchive
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJobArchive(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *JobArchive {
+func NewJobArchive(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptionsDto, createdTimestamp string, updatedTimestamp string, links map[string]interface{}) *JobArchive {
 	this := JobArchive{}
 	this.JobId = jobId
 	this.Type = type_
@@ -99,6 +101,7 @@ func NewJobArchive(jobId int32, type_ string, status string, functionName string
 	this.RetryCount = retryCount
 	this.RetryMinSeconds = retryMinSeconds
 	this.RequiresConfirmation = requiresConfirmation
+	this.Options = options
 	this.CreatedTimestamp = createdTimestamp
 	this.UpdatedTimestamp = updatedTimestamp
 	this.Links = links
@@ -811,6 +814,30 @@ func (o *JobArchive) SetRequiresConfirmation(v bool) {
 	o.RequiresConfirmation = v
 }
 
+// GetOptions returns the Options field value
+func (o *JobArchive) GetOptions() JobOptionsDto {
+	if o == nil {
+		var ret JobOptionsDto
+		return ret
+	}
+
+	return o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value
+// and a boolean to check if the value has been set.
+func (o *JobArchive) GetOptionsOk() (*JobOptionsDto, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Options, true
+}
+
+// SetOptions sets field value
+func (o *JobArchive) SetOptions(v JobOptionsDto) {
+	o.Options = v
+}
+
 // GetCreatedTimestamp returns the CreatedTimestamp field value
 func (o *JobArchive) GetCreatedTimestamp() string {
 	if o == nil {
@@ -1011,6 +1038,7 @@ func (o JobArchive) ToMap() (map[string]interface{}, error) {
 		toSerialize["durationMilliseconds"] = o.DurationMilliseconds
 	}
 	toSerialize["requiresConfirmation"] = o.RequiresConfirmation
+	toSerialize["options"] = o.Options
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
 	if !IsNil(o.StartTimestamp) {
@@ -1042,6 +1070,7 @@ func (o *JobArchive) UnmarshalJSON(data []byte) (err error) {
 		"retryCount",
 		"retryMinSeconds",
 		"requiresConfirmation",
+		"options",
 		"createdTimestamp",
 		"updatedTimestamp",
 		"links",
@@ -1098,6 +1127,7 @@ func (o *JobArchive) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "extraInfo")
 		delete(additionalProperties, "durationMilliseconds")
 		delete(additionalProperties, "requiresConfirmation")
+		delete(additionalProperties, "options")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
 		delete(additionalProperties, "startTimestamp")

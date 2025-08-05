@@ -51,10 +51,18 @@ type ServerInterface struct {
 	Description *string `json:"description,omitempty"`
 	// The alias index of the server interface.
 	AliasIndex *float32 `json:"aliasIndex,omitempty"`
+	// The OS info of the server interface.
+	OsInfo string `json:"osInfo"`
 	// The network device linked to the server.
 	NetworkDevice map[string]interface{} `json:"networkDevice,omitempty"`
 	// The network device interface linked to the server.
 	NetworkDeviceInterface map[string]interface{} `json:"networkDeviceInterface,omitempty"`
+	// The deployed IPv4 addresses of the server interface.
+	Ipv4Addresses []string `json:"ipv4Addresses,omitempty"`
+	// The deployed IPv6 addresses of the server interface.
+	Ipv6Addresses []string `json:"ipv6Addresses,omitempty"`
+	// The deployed VLAN ID of the server interface.
+	VlanId *float32 `json:"vlanId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,12 +72,13 @@ type _ServerInterface ServerInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32) *ServerInterface {
+func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32, osInfo string) *ServerInterface {
 	this := ServerInterface{}
 	this.ServerInterfaceId = serverInterfaceId
 	this.ServerId = serverId
 	this.MacAddress = macAddress
 	this.Index = index
+	this.OsInfo = osInfo
 	return &this
 }
 
@@ -78,6 +87,8 @@ func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress 
 // but it doesn't guarantee that properties required by API are set
 func NewServerInterfaceWithDefaults() *ServerInterface {
 	this := ServerInterface{}
+	var osInfo string = "not_tested"
+	this.OsInfo = osInfo
 	return &this
 }
 
@@ -529,6 +540,30 @@ func (o *ServerInterface) SetAliasIndex(v float32) {
 	o.AliasIndex = &v
 }
 
+// GetOsInfo returns the OsInfo field value
+func (o *ServerInterface) GetOsInfo() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OsInfo
+}
+
+// GetOsInfoOk returns a tuple with the OsInfo field value
+// and a boolean to check if the value has been set.
+func (o *ServerInterface) GetOsInfoOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.OsInfo, true
+}
+
+// SetOsInfo sets field value
+func (o *ServerInterface) SetOsInfo(v string) {
+	o.OsInfo = v
+}
+
 // GetNetworkDevice returns the NetworkDevice field value if set, zero value otherwise.
 func (o *ServerInterface) GetNetworkDevice() map[string]interface{} {
 	if o == nil || IsNil(o.NetworkDevice) {
@@ -593,6 +628,102 @@ func (o *ServerInterface) SetNetworkDeviceInterface(v map[string]interface{}) {
 	o.NetworkDeviceInterface = v
 }
 
+// GetIpv4Addresses returns the Ipv4Addresses field value if set, zero value otherwise.
+func (o *ServerInterface) GetIpv4Addresses() []string {
+	if o == nil || IsNil(o.Ipv4Addresses) {
+		var ret []string
+		return ret
+	}
+	return o.Ipv4Addresses
+}
+
+// GetIpv4AddressesOk returns a tuple with the Ipv4Addresses field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInterface) GetIpv4AddressesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Ipv4Addresses) {
+		return nil, false
+	}
+	return o.Ipv4Addresses, true
+}
+
+// HasIpv4Addresses returns a boolean if a field has been set.
+func (o *ServerInterface) HasIpv4Addresses() bool {
+	if o != nil && !IsNil(o.Ipv4Addresses) {
+		return true
+	}
+
+	return false
+}
+
+// SetIpv4Addresses gets a reference to the given []string and assigns it to the Ipv4Addresses field.
+func (o *ServerInterface) SetIpv4Addresses(v []string) {
+	o.Ipv4Addresses = v
+}
+
+// GetIpv6Addresses returns the Ipv6Addresses field value if set, zero value otherwise.
+func (o *ServerInterface) GetIpv6Addresses() []string {
+	if o == nil || IsNil(o.Ipv6Addresses) {
+		var ret []string
+		return ret
+	}
+	return o.Ipv6Addresses
+}
+
+// GetIpv6AddressesOk returns a tuple with the Ipv6Addresses field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInterface) GetIpv6AddressesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Ipv6Addresses) {
+		return nil, false
+	}
+	return o.Ipv6Addresses, true
+}
+
+// HasIpv6Addresses returns a boolean if a field has been set.
+func (o *ServerInterface) HasIpv6Addresses() bool {
+	if o != nil && !IsNil(o.Ipv6Addresses) {
+		return true
+	}
+
+	return false
+}
+
+// SetIpv6Addresses gets a reference to the given []string and assigns it to the Ipv6Addresses field.
+func (o *ServerInterface) SetIpv6Addresses(v []string) {
+	o.Ipv6Addresses = v
+}
+
+// GetVlanId returns the VlanId field value if set, zero value otherwise.
+func (o *ServerInterface) GetVlanId() float32 {
+	if o == nil || IsNil(o.VlanId) {
+		var ret float32
+		return ret
+	}
+	return *o.VlanId
+}
+
+// GetVlanIdOk returns a tuple with the VlanId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInterface) GetVlanIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.VlanId) {
+		return nil, false
+	}
+	return o.VlanId, true
+}
+
+// HasVlanId returns a boolean if a field has been set.
+func (o *ServerInterface) HasVlanId() bool {
+	if o != nil && !IsNil(o.VlanId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVlanId gets a reference to the given float32 and assigns it to the VlanId field.
+func (o *ServerInterface) SetVlanId(v float32) {
+	o.VlanId = &v
+}
+
 func (o ServerInterface) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -640,11 +771,21 @@ func (o ServerInterface) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AliasIndex) {
 		toSerialize["aliasIndex"] = o.AliasIndex
 	}
+	toSerialize["osInfo"] = o.OsInfo
 	if !IsNil(o.NetworkDevice) {
 		toSerialize["networkDevice"] = o.NetworkDevice
 	}
 	if !IsNil(o.NetworkDeviceInterface) {
 		toSerialize["networkDeviceInterface"] = o.NetworkDeviceInterface
+	}
+	if !IsNil(o.Ipv4Addresses) {
+		toSerialize["ipv4Addresses"] = o.Ipv4Addresses
+	}
+	if !IsNil(o.Ipv6Addresses) {
+		toSerialize["ipv6Addresses"] = o.Ipv6Addresses
+	}
+	if !IsNil(o.VlanId) {
+		toSerialize["vlanId"] = o.VlanId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -663,6 +804,7 @@ func (o *ServerInterface) UnmarshalJSON(data []byte) (err error) {
 		"serverId",
 		"macAddress",
 		"index",
+		"osInfo",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -707,8 +849,12 @@ func (o *ServerInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "fibreChannelWwpn")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "aliasIndex")
+		delete(additionalProperties, "osInfo")
 		delete(additionalProperties, "networkDevice")
 		delete(additionalProperties, "networkDeviceInterface")
+		delete(additionalProperties, "ipv4Addresses")
+		delete(additionalProperties, "ipv6Addresses")
+		delete(additionalProperties, "vlanId")
 		o.AdditionalProperties = additionalProperties
 	}
 

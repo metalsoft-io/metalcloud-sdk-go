@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RepoURL** | **string** | Repository details | 
 **DnsZoneId** | Pointer to **int32** | ID of the DNS zone associated with the site | [optional] 
+**DnsZoneName** | Pointer to **string** | The name of the DNS zone (without a terminating dot). | [optional] 
 **DNSServers** | **[]string** | List of DNS Servers | 
 **NTPServers** | **[]string** | List of NTP Servers | 
 
@@ -72,6 +73,31 @@ SetDnsZoneId sets DnsZoneId field to given value.
 `func (o *SiteConfigOSInstallationData) HasDnsZoneId() bool`
 
 HasDnsZoneId returns a boolean if a field has been set.
+
+### GetDnsZoneName
+
+`func (o *SiteConfigOSInstallationData) GetDnsZoneName() string`
+
+GetDnsZoneName returns the DnsZoneName field if non-nil, zero value otherwise.
+
+### GetDnsZoneNameOk
+
+`func (o *SiteConfigOSInstallationData) GetDnsZoneNameOk() (*string, bool)`
+
+GetDnsZoneNameOk returns a tuple with the DnsZoneName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsZoneName
+
+`func (o *SiteConfigOSInstallationData) SetDnsZoneName(v string)`
+
+SetDnsZoneName sets DnsZoneName field to given value.
+
+### HasDnsZoneName
+
+`func (o *SiteConfigOSInstallationData) HasDnsZoneName() bool`
+
+HasDnsZoneName returns a boolean if a field has been set.
 
 ### GetDNSServers
 

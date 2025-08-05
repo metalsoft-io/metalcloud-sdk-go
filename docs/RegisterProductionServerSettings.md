@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InfrastructureId** | **float32** | The id of the infrastructure where the server is located. | 
 **OsTemplateId** | Pointer to **float32** | The id of the template installed on the server. | [optional] 
-**InterfaceConnection** | Pointer to [**ServerInterfaceConnection**](ServerInterfaceConnection.md) | Interface to network device connection settings. | [optional] 
+**InterfaceConnections** | Pointer to **[]string** | Interface to network device connection settings. | [optional] 
 
 ## Methods
 
@@ -72,30 +72,30 @@ SetOsTemplateId sets OsTemplateId field to given value.
 
 HasOsTemplateId returns a boolean if a field has been set.
 
-### GetInterfaceConnection
+### GetInterfaceConnections
 
-`func (o *RegisterProductionServerSettings) GetInterfaceConnection() ServerInterfaceConnection`
+`func (o *RegisterProductionServerSettings) GetInterfaceConnections() []string`
 
-GetInterfaceConnection returns the InterfaceConnection field if non-nil, zero value otherwise.
+GetInterfaceConnections returns the InterfaceConnections field if non-nil, zero value otherwise.
 
-### GetInterfaceConnectionOk
+### GetInterfaceConnectionsOk
 
-`func (o *RegisterProductionServerSettings) GetInterfaceConnectionOk() (*ServerInterfaceConnection, bool)`
+`func (o *RegisterProductionServerSettings) GetInterfaceConnectionsOk() (*[]string, bool)`
 
-GetInterfaceConnectionOk returns a tuple with the InterfaceConnection field if it's non-nil, zero value otherwise
+GetInterfaceConnectionsOk returns a tuple with the InterfaceConnections field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInterfaceConnection
+### SetInterfaceConnections
 
-`func (o *RegisterProductionServerSettings) SetInterfaceConnection(v ServerInterfaceConnection)`
+`func (o *RegisterProductionServerSettings) SetInterfaceConnections(v []string)`
 
-SetInterfaceConnection sets InterfaceConnection field to given value.
+SetInterfaceConnections sets InterfaceConnections field to given value.
 
-### HasInterfaceConnection
+### HasInterfaceConnections
 
-`func (o *RegisterProductionServerSettings) HasInterfaceConnection() bool`
+`func (o *RegisterProductionServerSettings) HasInterfaceConnections() bool`
 
-HasInterfaceConnection returns a boolean if a field has been set.
+HasInterfaceConnections returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

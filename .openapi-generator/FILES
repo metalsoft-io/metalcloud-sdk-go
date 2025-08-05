@@ -378,6 +378,7 @@ docs/JobGroupPaginatedList.md
 docs/JobGroupStatistics.md
 docs/JobGroupStatisticsWithoutId.md
 docs/JobInfo.md
+docs/JobOptionsDto.md
 docs/JobPaginatedList.md
 docs/JobRetryInfo.md
 docs/JobStatistics.md
@@ -502,7 +503,6 @@ docs/ResourceScopeKind.md
 docs/Role.md
 docs/RoleList.md
 docs/RunExtensionOnPhysicalDevice.md
-docs/SSHPublicKey.md
 docs/ScheduleFirmwareUpgrade.md
 docs/SearchFirmwareBinary.md
 docs/SearchFirmwareBinaryServerComponentFilter.md
@@ -542,6 +542,7 @@ docs/ServerInstanceConfiguration.md
 docs/ServerInstanceContextOSInstallationData.md
 docs/ServerInstanceContextVariables.md
 docs/ServerInstanceCreate.md
+docs/ServerInstanceCredentials.md
 docs/ServerInstanceGroup.md
 docs/ServerInstanceGroupAPI.md
 docs/ServerInstanceGroupConfiguration.md
@@ -572,7 +573,6 @@ docs/ServerInstanceStorageProfileControllerVolume.md
 docs/ServerInstanceUpdate.md
 docs/ServerInstanceVariables.md
 docs/ServerInterface.md
-docs/ServerInterfaceConnection.md
 docs/ServerMetricsInfo.md
 docs/ServerOSInstallationData.md
 docs/ServerPaginatedList.md
@@ -1081,6 +1081,7 @@ model_job_group_paginated_list.go
 model_job_group_statistics.go
 model_job_group_statistics_without_id.go
 model_job_info.go
+model_job_options_dto.go
 model_job_paginated_list.go
 model_job_retry_info.go
 model_job_statistics.go
@@ -1229,6 +1230,7 @@ model_server_instance_configuration.go
 model_server_instance_context_os_installation_data.go
 model_server_instance_context_variables.go
 model_server_instance_create.go
+model_server_instance_credentials.go
 model_server_instance_group.go
 model_server_instance_group_configuration.go
 model_server_instance_group_create.go
@@ -1258,7 +1260,6 @@ model_server_instance_storage_profile_controller_volume.go
 model_server_instance_update.go
 model_server_instance_variables.go
 model_server_interface.go
-model_server_interface_connection.go
 model_server_metrics_info.go
 model_server_os_installation_data.go
 model_server_paginated_list.go
@@ -1306,7 +1307,6 @@ model_site_statistics.go
 model_site_update.go
 model_site_variables.go
 model_special_permissions.go
-model_ssh_public_key.go
 model_storage.go
 model_storage_credentials.go
 model_storage_network_device_configuration.go

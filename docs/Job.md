@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **ExtraInfo** | Pointer to **map[string]interface{}** | Extra information about the job | [optional] 
 **DurationMilliseconds** | Pointer to **int32** | The time in milliseconds that the job took to execute | [optional] 
 **RequiresConfirmation** | **bool** | Whether the job requires confirmation before execution | [default to false]
+**Options** | [**JobOptionsDto**](JobOptionsDto.md) | Options for the job | 
 **CreatedTimestamp** | **string** | The timestamp when the job was created | 
 **UpdatedTimestamp** | **string** | The timestamp when the job was last updated | 
 **StartTimestamp** | Pointer to **string** | The timestamp when the job was started | [optional] 
@@ -39,7 +40,7 @@ Name | Type | Description | Notes
 
 ### NewJob
 
-`func NewJob(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, createdTimestamp string, updatedTimestamp string, links map[string]interface{}, ) *Job`
+`func NewJob(jobId int32, type_ string, status string, functionName string, callCount int32, retryMax int32, retryCount int32, retryMinSeconds int32, requiresConfirmation bool, options JobOptionsDto, createdTimestamp string, updatedTimestamp string, links map[string]interface{}, ) *Job`
 
 NewJob instantiates a new Job object
 This constructor will assign default values to properties that have it defined,
@@ -607,6 +608,26 @@ and a boolean to check if the value has been set.
 `func (o *Job) SetRequiresConfirmation(v bool)`
 
 SetRequiresConfirmation sets RequiresConfirmation field to given value.
+
+
+### GetOptions
+
+`func (o *Job) GetOptions() JobOptionsDto`
+
+GetOptions returns the Options field if non-nil, zero value otherwise.
+
+### GetOptionsOk
+
+`func (o *Job) GetOptionsOk() (*JobOptionsDto, bool)`
+
+GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOptions
+
+`func (o *Job) SetOptions(v JobOptionsDto)`
+
+SetOptions sets Options field to given value.
 
 
 ### GetCreatedTimestamp

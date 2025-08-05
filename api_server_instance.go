@@ -956,7 +956,7 @@ type ServerInstanceAPIGetServerInstanceCredentialsRequest struct {
 	serverInstanceId int32
 }
 
-func (r ServerInstanceAPIGetServerInstanceCredentialsRequest) Execute() (*SSHPublicKey, *http.Response, error) {
+func (r ServerInstanceAPIGetServerInstanceCredentialsRequest) Execute() (*ServerInstanceCredentials, *http.Response, error) {
 	return r.ApiService.GetServerInstanceCredentialsExecute(r)
 }
 
@@ -978,13 +978,13 @@ func (a *ServerInstanceAPIService) GetServerInstanceCredentials(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return SSHPublicKey
-func (a *ServerInstanceAPIService) GetServerInstanceCredentialsExecute(r ServerInstanceAPIGetServerInstanceCredentialsRequest) (*SSHPublicKey, *http.Response, error) {
+//  @return ServerInstanceCredentials
+func (a *ServerInstanceAPIService) GetServerInstanceCredentialsExecute(r ServerInstanceAPIGetServerInstanceCredentialsRequest) (*ServerInstanceCredentials, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SSHPublicKey
+		localVarReturnValue  *ServerInstanceCredentials
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerInstanceAPIService.GetServerInstanceCredentials")
@@ -1509,11 +1509,18 @@ type ServerInstanceAPIGetServerInstanceOSInstallationDataRequest struct {
 	ApiService *ServerInstanceAPIService
 	serverInstanceId int32
 	usage *VariableUsageType
+	removeEmpty *int32
 }
 
 // Filter by variable usage
 func (r ServerInstanceAPIGetServerInstanceOSInstallationDataRequest) Usage(usage VariableUsageType) ServerInstanceAPIGetServerInstanceOSInstallationDataRequest {
 	r.usage = &usage
+	return r
+}
+
+// Remove empty fields from the response
+func (r ServerInstanceAPIGetServerInstanceOSInstallationDataRequest) RemoveEmpty(removeEmpty int32) ServerInstanceAPIGetServerInstanceOSInstallationDataRequest {
+	r.removeEmpty = &removeEmpty
 	return r
 }
 
@@ -1560,6 +1567,9 @@ func (a *ServerInstanceAPIService) GetServerInstanceOSInstallationDataExecute(r 
 
 	if r.usage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "usage", r.usage, "form", "")
+	}
+	if r.removeEmpty != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removeEmpty", r.removeEmpty, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

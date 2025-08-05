@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **DhcpBmcMacAddressWhitelist** | **[]string** | List of DHCP BMC MAC address whitelist | 
 **DisableTpmAfterRegistration** | **bool** | Whether to disable TPM after registration | 
 **SyslogMonitoringEnabled** | **bool** | Whether syslog monitoring is enabled | 
-**DefaultServerCleanupPolicyID** | **float32** | Default server cleanup policy ID | 
+**DefaultServerCleanupPolicyID** | Pointer to **float32** | Default server cleanup policy ID | [optional] 
 **AutomaticallyAllocateServerTypes** | **bool** | Automatically allocate server types | 
 **AutomaticallySetServersAsAvailable** | **bool** | Automatically set servers as available | 
 **ServerRegistrationBiosProfile** | [**[]ServerRegistrationBiosProfile**](ServerRegistrationBiosProfile.md) | Server registration BIOS profile | 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewServerPolicy
 
-`func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, defaultServerCleanupPolicyID float32, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []ServerRegistrationBiosProfile, ) *ServerPolicy`
+`func NewServerPolicy(registerCredentials string, minimumNumberOfConnectedInterfaces float32, dhcpOption82ToIPMapping map[string]interface{}, dhcpBmcMacAddressWhitelistEnabled bool, dhcpBmcMacAddressWhitelist []string, disableTpmAfterRegistration bool, syslogMonitoringEnabled bool, automaticallyAllocateServerTypes bool, automaticallySetServersAsAvailable bool, serverRegistrationBiosProfile []ServerRegistrationBiosProfile, ) *ServerPolicy`
 
 NewServerPolicy instantiates a new ServerPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -194,6 +194,11 @@ and a boolean to check if the value has been set.
 
 SetDefaultServerCleanupPolicyID sets DefaultServerCleanupPolicyID field to given value.
 
+### HasDefaultServerCleanupPolicyID
+
+`func (o *ServerPolicy) HasDefaultServerCleanupPolicyID() bool`
+
+HasDefaultServerCleanupPolicyID returns a boolean if a field has been set.
 
 ### GetAutomaticallyAllocateServerTypes
 
