@@ -6,11 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** | The Product Instance ID. | 
 **Label** | **string** | The Product Instance label. Will be automatically generated if not provided. | 
-**SubdomainPermanent** | Pointer to **string** | Subdomain permanent of the Product Instance. | [optional] 
+**Fqdn** | Pointer to **string** | Fully Qualified Domain Name (FQDN) for the Instance. | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** |  | [optional] 
 **CustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | RAID profile for the Instance Interface. | [optional] 
 **IsVmInstance** | **int32** | Flag to indicate if this is a VM instance | 
 **IsEndpointInstance** | **int32** | Flag to indicate if this is an Endpoint Instance | 
+**ProvisionInstanceDnsRecords** | **bool** | Whether to provision the DNS records for the server instance. | 
 **Hostname** | Pointer to **string** | Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS record name instead of the default \&quot;instance\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \&quot;provisionInstanceDnsRecords\&quot; is true.  | [optional] 
 **OsCredentials** | Pointer to [**ServerInstanceOsCredentialInstallationData**](ServerInstanceOsCredentialInstallationData.md) |  | [optional] 
 **InitiatorNqn** | Pointer to **string** | NVMe Initiator NQN for the Instance. | [optional] 
@@ -22,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewServerInstanceOSInstallationData
 
-`func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, isEndpointInstance int32, ) *ServerInstanceOSInstallationData`
+`func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, isEndpointInstance int32, provisionInstanceDnsRecords bool, ) *ServerInstanceOSInstallationData`
 
 NewServerInstanceOSInstallationData instantiates a new ServerInstanceOSInstallationData object
 This constructor will assign default values to properties that have it defined,
@@ -77,30 +78,30 @@ and a boolean to check if the value has been set.
 SetLabel sets Label field to given value.
 
 
-### GetSubdomainPermanent
+### GetFqdn
 
-`func (o *ServerInstanceOSInstallationData) GetSubdomainPermanent() string`
+`func (o *ServerInstanceOSInstallationData) GetFqdn() string`
 
-GetSubdomainPermanent returns the SubdomainPermanent field if non-nil, zero value otherwise.
+GetFqdn returns the Fqdn field if non-nil, zero value otherwise.
 
-### GetSubdomainPermanentOk
+### GetFqdnOk
 
-`func (o *ServerInstanceOSInstallationData) GetSubdomainPermanentOk() (*string, bool)`
+`func (o *ServerInstanceOSInstallationData) GetFqdnOk() (*string, bool)`
 
-GetSubdomainPermanentOk returns a tuple with the SubdomainPermanent field if it's non-nil, zero value otherwise
+GetFqdnOk returns a tuple with the Fqdn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSubdomainPermanent
+### SetFqdn
 
-`func (o *ServerInstanceOSInstallationData) SetSubdomainPermanent(v string)`
+`func (o *ServerInstanceOSInstallationData) SetFqdn(v string)`
 
-SetSubdomainPermanent sets SubdomainPermanent field to given value.
+SetFqdn sets Fqdn field to given value.
 
-### HasSubdomainPermanent
+### HasFqdn
 
-`func (o *ServerInstanceOSInstallationData) HasSubdomainPermanent() bool`
+`func (o *ServerInstanceOSInstallationData) HasFqdn() bool`
 
-HasSubdomainPermanent returns a boolean if a field has been set.
+HasFqdn returns a boolean if a field has been set.
 
 ### GetCustomVariables
 
@@ -190,6 +191,26 @@ and a boolean to check if the value has been set.
 `func (o *ServerInstanceOSInstallationData) SetIsEndpointInstance(v int32)`
 
 SetIsEndpointInstance sets IsEndpointInstance field to given value.
+
+
+### GetProvisionInstanceDnsRecords
+
+`func (o *ServerInstanceOSInstallationData) GetProvisionInstanceDnsRecords() bool`
+
+GetProvisionInstanceDnsRecords returns the ProvisionInstanceDnsRecords field if non-nil, zero value otherwise.
+
+### GetProvisionInstanceDnsRecordsOk
+
+`func (o *ServerInstanceOSInstallationData) GetProvisionInstanceDnsRecordsOk() (*bool, bool)`
+
+GetProvisionInstanceDnsRecordsOk returns a tuple with the ProvisionInstanceDnsRecords field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvisionInstanceDnsRecords
+
+`func (o *ServerInstanceOSInstallationData) SetProvisionInstanceDnsRecords(v bool)`
+
+SetProvisionInstanceDnsRecords sets ProvisionInstanceDnsRecords field to given value.
 
 
 ### GetHostname

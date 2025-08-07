@@ -353,6 +353,9 @@ type ExtensionInstanceAPIGetExtensionInstancesRequest struct {
 	limit *float32
 	filterExtensionId *[]string
 	filterInfrastructureId *[]string
+	filterServiceStatus *[]string
+	filterConfigDeployStatus *[]string
+	filterConfigDeployType *[]string
 	sortBy *[]string
 	search *string
 	searchBy *[]string
@@ -379,6 +382,24 @@ func (r ExtensionInstanceAPIGetExtensionInstancesRequest) FilterExtensionId(filt
 // Filter by infrastructureId query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.infrastructureId&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.infrastructureId&#x3D;$not:$like:John Doe&amp;filter.infrastructureId&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
 func (r ExtensionInstanceAPIGetExtensionInstancesRequest) FilterInfrastructureId(filterInfrastructureId []string) ExtensionInstanceAPIGetExtensionInstancesRequest {
 	r.filterInfrastructureId = &filterInfrastructureId
+	return r
+}
+
+// Filter by serviceStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.serviceStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.serviceStatus&#x3D;$not:$like:John Doe&amp;filter.serviceStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt;&lt;/ul&gt;
+func (r ExtensionInstanceAPIGetExtensionInstancesRequest) FilterServiceStatus(filterServiceStatus []string) ExtensionInstanceAPIGetExtensionInstancesRequest {
+	r.filterServiceStatus = &filterServiceStatus
+	return r
+}
+
+// Filter by config.deployStatus query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployStatus&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployStatus&#x3D;$not:$like:John Doe&amp;filter.config.deployStatus&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r ExtensionInstanceAPIGetExtensionInstancesRequest) FilterConfigDeployStatus(filterConfigDeployStatus []string) ExtensionInstanceAPIGetExtensionInstancesRequest {
+	r.filterConfigDeployStatus = &filterConfigDeployStatus
+	return r
+}
+
+// Filter by config.deployType query param.           &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; filter.config.deployType&#x3D;{$not}:OPERATION:VALUE           &lt;/p&gt;           &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; filter.config.deployType&#x3D;$not:$like:John Doe&amp;filter.config.deployType&#x3D;like:John           &lt;/p&gt;           &lt;h4&gt;Available Operations&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;$eq&lt;/li&gt; &lt;li&gt;$in&lt;/li&gt;&lt;/ul&gt;
+func (r ExtensionInstanceAPIGetExtensionInstancesRequest) FilterConfigDeployType(filterConfigDeployType []string) ExtensionInstanceAPIGetExtensionInstancesRequest {
+	r.filterConfigDeployType = &filterConfigDeployType
 	return r
 }
 
@@ -469,6 +490,39 @@ func (a *ExtensionInstanceAPIService) GetExtensionInstancesExecute(r ExtensionIn
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.infrastructureId", t, "form", "multi")
+		}
+	}
+	if r.filterServiceStatus != nil {
+		t := *r.filterServiceStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.serviceStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployStatus != nil {
+		t := *r.filterConfigDeployStatus
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployStatus", t, "form", "multi")
+		}
+	}
+	if r.filterConfigDeployType != nil {
+		t := *r.filterConfigDeployType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "filter.config.deployType", t, "form", "multi")
 		}
 	}
 	if r.sortBy != nil {

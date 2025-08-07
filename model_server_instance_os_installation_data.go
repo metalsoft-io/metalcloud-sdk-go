@@ -25,8 +25,8 @@ type ServerInstanceOSInstallationData struct {
 	Id int32 `json:"id"`
 	// The Product Instance label. Will be automatically generated if not provided.
 	Label string `json:"label"`
-	// Subdomain permanent of the Product Instance.
-	SubdomainPermanent *string `json:"subdomainPermanent,omitempty"`
+	// Fully Qualified Domain Name (FQDN) for the Instance.
+	Fqdn *string `json:"fqdn,omitempty"`
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// RAID profile for the Instance Interface.
 	CustomStorageProfile *ServerInstanceStorageProfile `json:"customStorageProfile,omitempty"`
@@ -34,6 +34,8 @@ type ServerInstanceOSInstallationData struct {
 	IsVmInstance int32 `json:"isVmInstance"`
 	// Flag to indicate if this is an Endpoint Instance
 	IsEndpointInstance int32 `json:"isEndpointInstance"`
+	// Whether to provision the DNS records for the server instance.
+	ProvisionInstanceDnsRecords bool `json:"provisionInstanceDnsRecords"`
 	// Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS record name instead of the default \"instance\". The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \"provisionInstanceDnsRecords\" is true. 
 	Hostname *string `json:"hostname,omitempty"`
 	OsCredentials *ServerInstanceOsCredentialInstallationData `json:"osCredentials,omitempty"`
@@ -54,12 +56,13 @@ type _ServerInstanceOSInstallationData ServerInstanceOSInstallationData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, isEndpointInstance int32) *ServerInstanceOSInstallationData {
+func NewServerInstanceOSInstallationData(id int32, label string, isVmInstance int32, isEndpointInstance int32, provisionInstanceDnsRecords bool) *ServerInstanceOSInstallationData {
 	this := ServerInstanceOSInstallationData{}
 	this.Id = id
 	this.Label = label
 	this.IsVmInstance = isVmInstance
 	this.IsEndpointInstance = isEndpointInstance
+	this.ProvisionInstanceDnsRecords = provisionInstanceDnsRecords
 	return &this
 }
 
@@ -119,36 +122,36 @@ func (o *ServerInstanceOSInstallationData) SetLabel(v string) {
 	o.Label = v
 }
 
-// GetSubdomainPermanent returns the SubdomainPermanent field value if set, zero value otherwise.
-func (o *ServerInstanceOSInstallationData) GetSubdomainPermanent() string {
-	if o == nil || IsNil(o.SubdomainPermanent) {
+// GetFqdn returns the Fqdn field value if set, zero value otherwise.
+func (o *ServerInstanceOSInstallationData) GetFqdn() string {
+	if o == nil || IsNil(o.Fqdn) {
 		var ret string
 		return ret
 	}
-	return *o.SubdomainPermanent
+	return *o.Fqdn
 }
 
-// GetSubdomainPermanentOk returns a tuple with the SubdomainPermanent field value if set, nil otherwise
+// GetFqdnOk returns a tuple with the Fqdn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerInstanceOSInstallationData) GetSubdomainPermanentOk() (*string, bool) {
-	if o == nil || IsNil(o.SubdomainPermanent) {
+func (o *ServerInstanceOSInstallationData) GetFqdnOk() (*string, bool) {
+	if o == nil || IsNil(o.Fqdn) {
 		return nil, false
 	}
-	return o.SubdomainPermanent, true
+	return o.Fqdn, true
 }
 
-// HasSubdomainPermanent returns a boolean if a field has been set.
-func (o *ServerInstanceOSInstallationData) HasSubdomainPermanent() bool {
-	if o != nil && !IsNil(o.SubdomainPermanent) {
+// HasFqdn returns a boolean if a field has been set.
+func (o *ServerInstanceOSInstallationData) HasFqdn() bool {
+	if o != nil && !IsNil(o.Fqdn) {
 		return true
 	}
 
 	return false
 }
 
-// SetSubdomainPermanent gets a reference to the given string and assigns it to the SubdomainPermanent field.
-func (o *ServerInstanceOSInstallationData) SetSubdomainPermanent(v string) {
-	o.SubdomainPermanent = &v
+// SetFqdn gets a reference to the given string and assigns it to the Fqdn field.
+func (o *ServerInstanceOSInstallationData) SetFqdn(v string) {
+	o.Fqdn = &v
 }
 
 // GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
@@ -261,6 +264,30 @@ func (o *ServerInstanceOSInstallationData) GetIsEndpointInstanceOk() (*int32, bo
 // SetIsEndpointInstance sets field value
 func (o *ServerInstanceOSInstallationData) SetIsEndpointInstance(v int32) {
 	o.IsEndpointInstance = v
+}
+
+// GetProvisionInstanceDnsRecords returns the ProvisionInstanceDnsRecords field value
+func (o *ServerInstanceOSInstallationData) GetProvisionInstanceDnsRecords() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ProvisionInstanceDnsRecords
+}
+
+// GetProvisionInstanceDnsRecordsOk returns a tuple with the ProvisionInstanceDnsRecords field value
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceOSInstallationData) GetProvisionInstanceDnsRecordsOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProvisionInstanceDnsRecords, true
+}
+
+// SetProvisionInstanceDnsRecords sets field value
+func (o *ServerInstanceOSInstallationData) SetProvisionInstanceDnsRecords(v bool) {
+	o.ProvisionInstanceDnsRecords = v
 }
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
@@ -467,8 +494,8 @@ func (o ServerInstanceOSInstallationData) ToMap() (map[string]interface{}, error
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["label"] = o.Label
-	if !IsNil(o.SubdomainPermanent) {
-		toSerialize["subdomainPermanent"] = o.SubdomainPermanent
+	if !IsNil(o.Fqdn) {
+		toSerialize["fqdn"] = o.Fqdn
 	}
 	if !IsNil(o.CustomVariables) {
 		toSerialize["customVariables"] = o.CustomVariables
@@ -478,6 +505,7 @@ func (o ServerInstanceOSInstallationData) ToMap() (map[string]interface{}, error
 	}
 	toSerialize["isVmInstance"] = o.IsVmInstance
 	toSerialize["isEndpointInstance"] = o.IsEndpointInstance
+	toSerialize["provisionInstanceDnsRecords"] = o.ProvisionInstanceDnsRecords
 	if !IsNil(o.Hostname) {
 		toSerialize["hostname"] = o.Hostname
 	}
@@ -513,6 +541,7 @@ func (o *ServerInstanceOSInstallationData) UnmarshalJSON(data []byte) (err error
 		"label",
 		"isVmInstance",
 		"isEndpointInstance",
+		"provisionInstanceDnsRecords",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -544,11 +573,12 @@ func (o *ServerInstanceOSInstallationData) UnmarshalJSON(data []byte) (err error
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "label")
-		delete(additionalProperties, "subdomainPermanent")
+		delete(additionalProperties, "fqdn")
 		delete(additionalProperties, "customVariables")
 		delete(additionalProperties, "customStorageProfile")
 		delete(additionalProperties, "isVmInstance")
 		delete(additionalProperties, "isEndpointInstance")
+		delete(additionalProperties, "provisionInstanceDnsRecords")
 		delete(additionalProperties, "hostname")
 		delete(additionalProperties, "osCredentials")
 		delete(additionalProperties, "initiatorNqn")
