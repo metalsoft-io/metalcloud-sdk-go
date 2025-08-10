@@ -1012,7 +1012,7 @@ Name | Type | Description  | Notes
 
 ## ImportVMPoolVMs
 
-> ImportVMPoolVMs(ctx, vmPoolId).Body(body).Execute()
+> ImportVMPoolVMs(ctx, vmPoolId).VMPoolImportVMs(vMPoolImportVMs).Execute()
 
 Import VMs into VM Pool
 
@@ -1032,11 +1032,11 @@ import (
 
 func main() {
 	vmPoolId := float32(8.14) // float32 | 
-	body := map[string]interface{}{ ... } // map[string]interface{} | 
+	vMPoolImportVMs := *openapiclient.NewVMPoolImportVMs([]string{"VmNames_example"}) // VMPoolImportVMs | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.VMPoolAPI.ImportVMPoolVMs(context.Background(), vmPoolId).Body(body).Execute()
+	r, err := apiClient.VMPoolAPI.ImportVMPoolVMs(context.Background(), vmPoolId).VMPoolImportVMs(vMPoolImportVMs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VMPoolAPI.ImportVMPoolVMs``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1060,7 +1060,7 @@ Other parameters are passed through a pointer to a apiImportVMPoolVMsRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | **map[string]interface{}** |  | 
+ **vMPoolImportVMs** | [**VMPoolImportVMs**](VMPoolImportVMs.md) |  | 
 
 ### Return type
 

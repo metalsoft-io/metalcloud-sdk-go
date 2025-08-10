@@ -26,7 +26,7 @@ type RegisterProductionServerSettings struct {
 	// The id of the template installed on the server.
 	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
 	// Interface to network device connection settings.
-	InterfaceConnections []string `json:"interfaceConnections,omitempty"`
+	InterfaceConnections []ServerInterfaceConnection `json:"interfaceConnections,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -107,9 +107,9 @@ func (o *RegisterProductionServerSettings) SetOsTemplateId(v float32) {
 }
 
 // GetInterfaceConnections returns the InterfaceConnections field value if set, zero value otherwise.
-func (o *RegisterProductionServerSettings) GetInterfaceConnections() []string {
+func (o *RegisterProductionServerSettings) GetInterfaceConnections() []ServerInterfaceConnection {
 	if o == nil || IsNil(o.InterfaceConnections) {
-		var ret []string
+		var ret []ServerInterfaceConnection
 		return ret
 	}
 	return o.InterfaceConnections
@@ -117,7 +117,7 @@ func (o *RegisterProductionServerSettings) GetInterfaceConnections() []string {
 
 // GetInterfaceConnectionsOk returns a tuple with the InterfaceConnections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RegisterProductionServerSettings) GetInterfaceConnectionsOk() ([]string, bool) {
+func (o *RegisterProductionServerSettings) GetInterfaceConnectionsOk() ([]ServerInterfaceConnection, bool) {
 	if o == nil || IsNil(o.InterfaceConnections) {
 		return nil, false
 	}
@@ -133,8 +133,8 @@ func (o *RegisterProductionServerSettings) HasInterfaceConnections() bool {
 	return false
 }
 
-// SetInterfaceConnections gets a reference to the given []string and assigns it to the InterfaceConnections field.
-func (o *RegisterProductionServerSettings) SetInterfaceConnections(v []string) {
+// SetInterfaceConnections gets a reference to the given []ServerInterfaceConnection and assigns it to the InterfaceConnections field.
+func (o *RegisterProductionServerSettings) SetInterfaceConnections(v []ServerInterfaceConnection) {
 	o.InterfaceConnections = v
 }
 

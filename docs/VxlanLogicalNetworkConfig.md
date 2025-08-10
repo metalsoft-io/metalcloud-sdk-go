@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Id** | **int32** |  | 
 **DeployType** | **string** |  | 
 **DeployStatus** | **string** |  | 
-**CreatedAt** | **time.Time** |  | 
-**UpdatedAt** | **time.Time** |  | 
+**CreatedAt** | **time.Time** | Creation timestamp for the entity. | 
+**UpdatedAt** | **time.Time** | Last update timestamp for the entity. | 
 **Revision** | **int32** |  | 
 **Kind** | [**LogicalNetworkKind**](LogicalNetworkKind.md) |  | 
 **Mtu** | Pointer to **NullableInt32** | Maximum Transmission Unit (MTU) in bytes | [optional] 

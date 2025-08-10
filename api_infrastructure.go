@@ -973,6 +973,116 @@ func (a *InfrastructureAPIService) GetInfrastructureResourceUtilizationDetailedE
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type InfrastructureAPIGetInfrastructureResourceUtilizationSummaryRequest struct {
+	ctx context.Context
+	ApiService *InfrastructureAPIService
+	getResourceUtilizationSummarized *GetResourceUtilizationSummarized
+}
+
+func (r InfrastructureAPIGetInfrastructureResourceUtilizationSummaryRequest) GetResourceUtilizationSummarized(getResourceUtilizationSummarized GetResourceUtilizationSummarized) InfrastructureAPIGetInfrastructureResourceUtilizationSummaryRequest {
+	r.getResourceUtilizationSummarized = &getResourceUtilizationSummarized
+	return r
+}
+
+func (r InfrastructureAPIGetInfrastructureResourceUtilizationSummaryRequest) Execute() (*InfrastructureResourceUtilizationSummaryResponse, *http.Response, error) {
+	return r.ApiService.GetInfrastructureResourceUtilizationSummaryExecute(r)
+}
+
+/*
+GetInfrastructureResourceUtilizationSummary Gets summary resource utilization for infrastructures
+
+Gets summary resource utilization for infrastructures
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return InfrastructureAPIGetInfrastructureResourceUtilizationSummaryRequest
+*/
+func (a *InfrastructureAPIService) GetInfrastructureResourceUtilizationSummary(ctx context.Context) InfrastructureAPIGetInfrastructureResourceUtilizationSummaryRequest {
+	return InfrastructureAPIGetInfrastructureResourceUtilizationSummaryRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return InfrastructureResourceUtilizationSummaryResponse
+func (a *InfrastructureAPIService) GetInfrastructureResourceUtilizationSummaryExecute(r InfrastructureAPIGetInfrastructureResourceUtilizationSummaryRequest) (*InfrastructureResourceUtilizationSummaryResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *InfrastructureResourceUtilizationSummaryResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InfrastructureAPIService.GetInfrastructureResourceUtilizationSummary")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/infrastructures/actions/get/resource-utilization-summarized"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.getResourceUtilizationSummarized == nil {
+		return localVarReturnValue, nil, reportError("getResourceUtilizationSummarized is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.getResourceUtilizationSummarized
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type InfrastructureAPIGetInfrastructureStatisticsRequest struct {
 	ctx context.Context
 	ApiService *InfrastructureAPIService

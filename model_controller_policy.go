@@ -21,7 +21,7 @@ var _ MappedNullable = &ControllerPolicy{}
 
 // ControllerPolicy struct for ControllerPolicy
 type ControllerPolicy struct {
-	// List of subnets allocated to this datacenter
+	// List of subnets in IPv4 or IPv6 CIDR notation
 	SubnetAllocation []string `json:"subnetAllocation"`
 	AdditionalProperties map[string]interface{}
 }

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InfrastructureId** | **float32** | The id of the infrastructure where the server is located. | 
 **OsTemplateId** | Pointer to **float32** | The id of the template installed on the server. | [optional] 
-**InterfaceConnections** | Pointer to **[]string** | Interface to network device connection settings. | [optional] 
+**InterfaceConnections** | Pointer to [**[]ServerInterfaceConnection**](ServerInterfaceConnection.md) | Interface to network device connection settings. | [optional] 
 
 ## Methods
 
@@ -74,20 +74,20 @@ HasOsTemplateId returns a boolean if a field has been set.
 
 ### GetInterfaceConnections
 
-`func (o *RegisterProductionServerSettings) GetInterfaceConnections() []string`
+`func (o *RegisterProductionServerSettings) GetInterfaceConnections() []ServerInterfaceConnection`
 
 GetInterfaceConnections returns the InterfaceConnections field if non-nil, zero value otherwise.
 
 ### GetInterfaceConnectionsOk
 
-`func (o *RegisterProductionServerSettings) GetInterfaceConnectionsOk() (*[]string, bool)`
+`func (o *RegisterProductionServerSettings) GetInterfaceConnectionsOk() (*[]ServerInterfaceConnection, bool)`
 
 GetInterfaceConnectionsOk returns a tuple with the InterfaceConnections field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInterfaceConnections
 
-`func (o *RegisterProductionServerSettings) SetInterfaceConnections(v []string)`
+`func (o *RegisterProductionServerSettings) SetInterfaceConnections(v []ServerInterfaceConnection)`
 
 SetInterfaceConnections sets InterfaceConnections field to given value.
 

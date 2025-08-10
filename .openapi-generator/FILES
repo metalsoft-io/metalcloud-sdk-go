@@ -328,6 +328,7 @@ docs/GenericGUISettings.md
 docs/GenericMeta.md
 docs/GenericServiceStatus.md
 docs/GetResourceUtilizationDetailed.md
+docs/GetResourceUtilizationSummarized.md
 docs/GetSiteControllerOneLiner200Response.md
 docs/GlobalFirmwareUpgradeConfiguration.md
 docs/HpeComponentFilter.md
@@ -346,6 +347,7 @@ docs/InfrastructureOSInstallationData.md
 docs/InfrastructurePaginatedList.md
 docs/InfrastructurePolicy.md
 docs/InfrastructureResourceUtilizationResponse.md
+docs/InfrastructureResourceUtilizationSummaryResponse.md
 docs/InfrastructureServiceStatus.md
 docs/InfrastructureStatistics.md
 docs/InfrastructureVariables.md
@@ -573,6 +575,7 @@ docs/ServerInstanceStorageProfileControllerVolume.md
 docs/ServerInstanceUpdate.md
 docs/ServerInstanceVariables.md
 docs/ServerInterface.md
+docs/ServerInterfaceConnection.md
 docs/ServerMetricsInfo.md
 docs/ServerOSInstallationData.md
 docs/ServerPaginatedList.md
@@ -666,7 +669,7 @@ docs/UpdateInfrastructure.md
 docs/UpdateInfrastructureMeta.md
 docs/UpdateLogicalNetwork.md
 docs/UpdateLogicalNetworkACL.md
-docs/UpdateLogicalNetworkConfig.md
+docs/UpdateLogicalNetworkConfigGlobalSettings.md
 docs/UpdateLogicalNetworkProfile.md
 docs/UpdateNetworkDevice.md
 docs/UpdateNetworkDeviceDefaultSecretsDto.md
@@ -742,6 +745,7 @@ docs/VMPoolCredentials.md
 docs/VMPoolHostInterfaces.md
 docs/VMPoolHosts.md
 docs/VMPoolHostsPaginatedList.md
+docs/VMPoolImportVMs.md
 docs/VMPoolOptions.md
 docs/VMPoolPaginatedList.md
 docs/VMPoolStatistics.md
@@ -1033,6 +1037,7 @@ model_generic_gui_settings.go
 model_generic_meta.go
 model_generic_service_status.go
 model_get_resource_utilization_detailed.go
+model_get_resource_utilization_summarized.go
 model_get_site_controller_one_liner_200_response.go
 model_global_firmware_upgrade_configuration.go
 model_hpe_component_filter.go
@@ -1050,6 +1055,7 @@ model_infrastructure_os_installation_data.go
 model_infrastructure_paginated_list.go
 model_infrastructure_policy.go
 model_infrastructure_resource_utilization_response.go
+model_infrastructure_resource_utilization_summary_response.go
 model_infrastructure_service_status.go
 model_infrastructure_statistics.go
 model_infrastructure_variables.go
@@ -1260,6 +1266,7 @@ model_server_instance_storage_profile_controller_volume.go
 model_server_instance_update.go
 model_server_instance_variables.go
 model_server_interface.go
+model_server_interface_connection.go
 model_server_metrics_info.go
 model_server_os_installation_data.go
 model_server_paginated_list.go
@@ -1346,7 +1353,7 @@ model_update_infrastructure.go
 model_update_infrastructure_meta.go
 model_update_logical_network.go
 model_update_logical_network_acl.go
-model_update_logical_network_config.go
+model_update_logical_network_config_global_settings.go
 model_update_logical_network_profile.go
 model_update_network_device.go
 model_update_network_device_default_secrets_dto.go
@@ -1437,6 +1444,7 @@ model_vm_pool_credentials.go
 model_vm_pool_host_interfaces.go
 model_vm_pool_hosts.go
 model_vm_pool_hosts_paginated_list.go
+model_vm_pool_import_vms.go
 model_vm_pool_options.go
 model_vm_pool_paginated_list.go
 model_vm_pool_statistics.go

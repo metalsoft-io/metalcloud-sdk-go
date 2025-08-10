@@ -16,15 +16,15 @@ import (
 	"fmt"
 )
 
-// checks if the InfrastructureResourceUtilizationResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &InfrastructureResourceUtilizationResponse{}
+// checks if the InfrastructureResourceUtilizationSummaryResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InfrastructureResourceUtilizationSummaryResponse{}
 
-// InfrastructureResourceUtilizationResponse struct for InfrastructureResourceUtilizationResponse
-type InfrastructureResourceUtilizationResponse struct {
-	// Detailed report of resource utilization
-	DetailedReport map[string]interface{} `json:"detailedReport"`
-	// Network utilization report
-	NetworkReport map[string]interface{} `json:"networkReport,omitempty"`
+// InfrastructureResourceUtilizationSummaryResponse struct for InfrastructureResourceUtilizationSummaryResponse
+type InfrastructureResourceUtilizationSummaryResponse struct {
+	// Resource utilization summary
+	ResourceUtilization map[string]interface{} `json:"resourceUtilization"`
+	// Internet usage data
+	Internet map[string]interface{} `json:"internet"`
 	// Reservation installments information
 	ReservationInstallments map[string]interface{} `json:"reservationInstallments,omitempty"`
 	// Infrastructures information
@@ -38,87 +38,80 @@ type InfrastructureResourceUtilizationResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _InfrastructureResourceUtilizationResponse InfrastructureResourceUtilizationResponse
+type _InfrastructureResourceUtilizationSummaryResponse InfrastructureResourceUtilizationSummaryResponse
 
-// NewInfrastructureResourceUtilizationResponse instantiates a new InfrastructureResourceUtilizationResponse object
+// NewInfrastructureResourceUtilizationSummaryResponse instantiates a new InfrastructureResourceUtilizationSummaryResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfrastructureResourceUtilizationResponse(detailedReport map[string]interface{}, infrastructures map[string]interface{}, startTimestamp string, endTimestamp string) *InfrastructureResourceUtilizationResponse {
-	this := InfrastructureResourceUtilizationResponse{}
-	this.DetailedReport = detailedReport
+func NewInfrastructureResourceUtilizationSummaryResponse(resourceUtilization map[string]interface{}, internet map[string]interface{}, infrastructures map[string]interface{}, startTimestamp string, endTimestamp string) *InfrastructureResourceUtilizationSummaryResponse {
+	this := InfrastructureResourceUtilizationSummaryResponse{}
+	this.ResourceUtilization = resourceUtilization
+	this.Internet = internet
 	this.Infrastructures = infrastructures
 	this.StartTimestamp = startTimestamp
 	this.EndTimestamp = endTimestamp
 	return &this
 }
 
-// NewInfrastructureResourceUtilizationResponseWithDefaults instantiates a new InfrastructureResourceUtilizationResponse object
+// NewInfrastructureResourceUtilizationSummaryResponseWithDefaults instantiates a new InfrastructureResourceUtilizationSummaryResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewInfrastructureResourceUtilizationResponseWithDefaults() *InfrastructureResourceUtilizationResponse {
-	this := InfrastructureResourceUtilizationResponse{}
+func NewInfrastructureResourceUtilizationSummaryResponseWithDefaults() *InfrastructureResourceUtilizationSummaryResponse {
+	this := InfrastructureResourceUtilizationSummaryResponse{}
 	return &this
 }
 
-// GetDetailedReport returns the DetailedReport field value
-func (o *InfrastructureResourceUtilizationResponse) GetDetailedReport() map[string]interface{} {
+// GetResourceUtilization returns the ResourceUtilization field value
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetResourceUtilization() map[string]interface{} {
 	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
 
-	return o.DetailedReport
+	return o.ResourceUtilization
 }
 
-// GetDetailedReportOk returns a tuple with the DetailedReport field value
+// GetResourceUtilizationOk returns a tuple with the ResourceUtilization field value
 // and a boolean to check if the value has been set.
-func (o *InfrastructureResourceUtilizationResponse) GetDetailedReportOk() (map[string]interface{}, bool) {
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetResourceUtilizationOk() (map[string]interface{}, bool) {
 	if o == nil {
 		return map[string]interface{}{}, false
 	}
-	return o.DetailedReport, true
+	return o.ResourceUtilization, true
 }
 
-// SetDetailedReport sets field value
-func (o *InfrastructureResourceUtilizationResponse) SetDetailedReport(v map[string]interface{}) {
-	o.DetailedReport = v
+// SetResourceUtilization sets field value
+func (o *InfrastructureResourceUtilizationSummaryResponse) SetResourceUtilization(v map[string]interface{}) {
+	o.ResourceUtilization = v
 }
 
-// GetNetworkReport returns the NetworkReport field value if set, zero value otherwise.
-func (o *InfrastructureResourceUtilizationResponse) GetNetworkReport() map[string]interface{} {
-	if o == nil || IsNil(o.NetworkReport) {
+// GetInternet returns the Internet field value
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetInternet() map[string]interface{} {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.NetworkReport
+
+	return o.Internet
 }
 
-// GetNetworkReportOk returns a tuple with the NetworkReport field value if set, nil otherwise
+// GetInternetOk returns a tuple with the Internet field value
 // and a boolean to check if the value has been set.
-func (o *InfrastructureResourceUtilizationResponse) GetNetworkReportOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.NetworkReport) {
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetInternetOk() (map[string]interface{}, bool) {
+	if o == nil {
 		return map[string]interface{}{}, false
 	}
-	return o.NetworkReport, true
+	return o.Internet, true
 }
 
-// HasNetworkReport returns a boolean if a field has been set.
-func (o *InfrastructureResourceUtilizationResponse) HasNetworkReport() bool {
-	if o != nil && !IsNil(o.NetworkReport) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworkReport gets a reference to the given map[string]interface{} and assigns it to the NetworkReport field.
-func (o *InfrastructureResourceUtilizationResponse) SetNetworkReport(v map[string]interface{}) {
-	o.NetworkReport = v
+// SetInternet sets field value
+func (o *InfrastructureResourceUtilizationSummaryResponse) SetInternet(v map[string]interface{}) {
+	o.Internet = v
 }
 
 // GetReservationInstallments returns the ReservationInstallments field value if set, zero value otherwise.
-func (o *InfrastructureResourceUtilizationResponse) GetReservationInstallments() map[string]interface{} {
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetReservationInstallments() map[string]interface{} {
 	if o == nil || IsNil(o.ReservationInstallments) {
 		var ret map[string]interface{}
 		return ret
@@ -128,7 +121,7 @@ func (o *InfrastructureResourceUtilizationResponse) GetReservationInstallments()
 
 // GetReservationInstallmentsOk returns a tuple with the ReservationInstallments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InfrastructureResourceUtilizationResponse) GetReservationInstallmentsOk() (map[string]interface{}, bool) {
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetReservationInstallmentsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.ReservationInstallments) {
 		return map[string]interface{}{}, false
 	}
@@ -136,7 +129,7 @@ func (o *InfrastructureResourceUtilizationResponse) GetReservationInstallmentsOk
 }
 
 // HasReservationInstallments returns a boolean if a field has been set.
-func (o *InfrastructureResourceUtilizationResponse) HasReservationInstallments() bool {
+func (o *InfrastructureResourceUtilizationSummaryResponse) HasReservationInstallments() bool {
 	if o != nil && !IsNil(o.ReservationInstallments) {
 		return true
 	}
@@ -145,12 +138,12 @@ func (o *InfrastructureResourceUtilizationResponse) HasReservationInstallments()
 }
 
 // SetReservationInstallments gets a reference to the given map[string]interface{} and assigns it to the ReservationInstallments field.
-func (o *InfrastructureResourceUtilizationResponse) SetReservationInstallments(v map[string]interface{}) {
+func (o *InfrastructureResourceUtilizationSummaryResponse) SetReservationInstallments(v map[string]interface{}) {
 	o.ReservationInstallments = v
 }
 
 // GetInfrastructures returns the Infrastructures field value
-func (o *InfrastructureResourceUtilizationResponse) GetInfrastructures() map[string]interface{} {
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetInfrastructures() map[string]interface{} {
 	if o == nil {
 		var ret map[string]interface{}
 		return ret
@@ -161,7 +154,7 @@ func (o *InfrastructureResourceUtilizationResponse) GetInfrastructures() map[str
 
 // GetInfrastructuresOk returns a tuple with the Infrastructures field value
 // and a boolean to check if the value has been set.
-func (o *InfrastructureResourceUtilizationResponse) GetInfrastructuresOk() (map[string]interface{}, bool) {
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetInfrastructuresOk() (map[string]interface{}, bool) {
 	if o == nil {
 		return map[string]interface{}{}, false
 	}
@@ -169,12 +162,12 @@ func (o *InfrastructureResourceUtilizationResponse) GetInfrastructuresOk() (map[
 }
 
 // SetInfrastructures sets field value
-func (o *InfrastructureResourceUtilizationResponse) SetInfrastructures(v map[string]interface{}) {
+func (o *InfrastructureResourceUtilizationSummaryResponse) SetInfrastructures(v map[string]interface{}) {
 	o.Infrastructures = v
 }
 
 // GetStartTimestamp returns the StartTimestamp field value
-func (o *InfrastructureResourceUtilizationResponse) GetStartTimestamp() string {
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetStartTimestamp() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -185,7 +178,7 @@ func (o *InfrastructureResourceUtilizationResponse) GetStartTimestamp() string {
 
 // GetStartTimestampOk returns a tuple with the StartTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *InfrastructureResourceUtilizationResponse) GetStartTimestampOk() (*string, bool) {
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetStartTimestampOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -193,12 +186,12 @@ func (o *InfrastructureResourceUtilizationResponse) GetStartTimestampOk() (*stri
 }
 
 // SetStartTimestamp sets field value
-func (o *InfrastructureResourceUtilizationResponse) SetStartTimestamp(v string) {
+func (o *InfrastructureResourceUtilizationSummaryResponse) SetStartTimestamp(v string) {
 	o.StartTimestamp = v
 }
 
 // GetEndTimestamp returns the EndTimestamp field value
-func (o *InfrastructureResourceUtilizationResponse) GetEndTimestamp() string {
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetEndTimestamp() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -209,7 +202,7 @@ func (o *InfrastructureResourceUtilizationResponse) GetEndTimestamp() string {
 
 // GetEndTimestampOk returns a tuple with the EndTimestamp field value
 // and a boolean to check if the value has been set.
-func (o *InfrastructureResourceUtilizationResponse) GetEndTimestampOk() (*string, bool) {
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetEndTimestampOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -217,12 +210,12 @@ func (o *InfrastructureResourceUtilizationResponse) GetEndTimestampOk() (*string
 }
 
 // SetEndTimestamp sets field value
-func (o *InfrastructureResourceUtilizationResponse) SetEndTimestamp(v string) {
+func (o *InfrastructureResourceUtilizationSummaryResponse) SetEndTimestamp(v string) {
 	o.EndTimestamp = v
 }
 
 // GetLicenseInstallments returns the LicenseInstallments field value if set, zero value otherwise.
-func (o *InfrastructureResourceUtilizationResponse) GetLicenseInstallments() LicenseInstallments {
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetLicenseInstallments() LicenseInstallments {
 	if o == nil || IsNil(o.LicenseInstallments) {
 		var ret LicenseInstallments
 		return ret
@@ -232,7 +225,7 @@ func (o *InfrastructureResourceUtilizationResponse) GetLicenseInstallments() Lic
 
 // GetLicenseInstallmentsOk returns a tuple with the LicenseInstallments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InfrastructureResourceUtilizationResponse) GetLicenseInstallmentsOk() (*LicenseInstallments, bool) {
+func (o *InfrastructureResourceUtilizationSummaryResponse) GetLicenseInstallmentsOk() (*LicenseInstallments, bool) {
 	if o == nil || IsNil(o.LicenseInstallments) {
 		return nil, false
 	}
@@ -240,7 +233,7 @@ func (o *InfrastructureResourceUtilizationResponse) GetLicenseInstallmentsOk() (
 }
 
 // HasLicenseInstallments returns a boolean if a field has been set.
-func (o *InfrastructureResourceUtilizationResponse) HasLicenseInstallments() bool {
+func (o *InfrastructureResourceUtilizationSummaryResponse) HasLicenseInstallments() bool {
 	if o != nil && !IsNil(o.LicenseInstallments) {
 		return true
 	}
@@ -249,11 +242,11 @@ func (o *InfrastructureResourceUtilizationResponse) HasLicenseInstallments() boo
 }
 
 // SetLicenseInstallments gets a reference to the given LicenseInstallments and assigns it to the LicenseInstallments field.
-func (o *InfrastructureResourceUtilizationResponse) SetLicenseInstallments(v LicenseInstallments) {
+func (o *InfrastructureResourceUtilizationSummaryResponse) SetLicenseInstallments(v LicenseInstallments) {
 	o.LicenseInstallments = &v
 }
 
-func (o InfrastructureResourceUtilizationResponse) MarshalJSON() ([]byte, error) {
+func (o InfrastructureResourceUtilizationSummaryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -261,12 +254,10 @@ func (o InfrastructureResourceUtilizationResponse) MarshalJSON() ([]byte, error)
 	return json.Marshal(toSerialize)
 }
 
-func (o InfrastructureResourceUtilizationResponse) ToMap() (map[string]interface{}, error) {
+func (o InfrastructureResourceUtilizationSummaryResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["detailedReport"] = o.DetailedReport
-	if !IsNil(o.NetworkReport) {
-		toSerialize["networkReport"] = o.NetworkReport
-	}
+	toSerialize["resourceUtilization"] = o.ResourceUtilization
+	toSerialize["internet"] = o.Internet
 	if !IsNil(o.ReservationInstallments) {
 		toSerialize["reservationInstallments"] = o.ReservationInstallments
 	}
@@ -284,12 +275,13 @@ func (o InfrastructureResourceUtilizationResponse) ToMap() (map[string]interface
 	return toSerialize, nil
 }
 
-func (o *InfrastructureResourceUtilizationResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *InfrastructureResourceUtilizationSummaryResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"detailedReport",
+		"resourceUtilization",
+		"internet",
 		"infrastructures",
 		"startTimestamp",
 		"endTimestamp",
@@ -309,21 +301,21 @@ func (o *InfrastructureResourceUtilizationResponse) UnmarshalJSON(data []byte) (
 		}
 	}
 
-	varInfrastructureResourceUtilizationResponse := _InfrastructureResourceUtilizationResponse{}
+	varInfrastructureResourceUtilizationSummaryResponse := _InfrastructureResourceUtilizationSummaryResponse{}
 
-	err = json.Unmarshal(data, &varInfrastructureResourceUtilizationResponse)
+	err = json.Unmarshal(data, &varInfrastructureResourceUtilizationSummaryResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = InfrastructureResourceUtilizationResponse(varInfrastructureResourceUtilizationResponse)
+	*o = InfrastructureResourceUtilizationSummaryResponse(varInfrastructureResourceUtilizationSummaryResponse)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "detailedReport")
-		delete(additionalProperties, "networkReport")
+		delete(additionalProperties, "resourceUtilization")
+		delete(additionalProperties, "internet")
 		delete(additionalProperties, "reservationInstallments")
 		delete(additionalProperties, "infrastructures")
 		delete(additionalProperties, "startTimestamp")
@@ -335,38 +327,38 @@ func (o *InfrastructureResourceUtilizationResponse) UnmarshalJSON(data []byte) (
 	return err
 }
 
-type NullableInfrastructureResourceUtilizationResponse struct {
-	value *InfrastructureResourceUtilizationResponse
+type NullableInfrastructureResourceUtilizationSummaryResponse struct {
+	value *InfrastructureResourceUtilizationSummaryResponse
 	isSet bool
 }
 
-func (v NullableInfrastructureResourceUtilizationResponse) Get() *InfrastructureResourceUtilizationResponse {
+func (v NullableInfrastructureResourceUtilizationSummaryResponse) Get() *InfrastructureResourceUtilizationSummaryResponse {
 	return v.value
 }
 
-func (v *NullableInfrastructureResourceUtilizationResponse) Set(val *InfrastructureResourceUtilizationResponse) {
+func (v *NullableInfrastructureResourceUtilizationSummaryResponse) Set(val *InfrastructureResourceUtilizationSummaryResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableInfrastructureResourceUtilizationResponse) IsSet() bool {
+func (v NullableInfrastructureResourceUtilizationSummaryResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableInfrastructureResourceUtilizationResponse) Unset() {
+func (v *NullableInfrastructureResourceUtilizationSummaryResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableInfrastructureResourceUtilizationResponse(val *InfrastructureResourceUtilizationResponse) *NullableInfrastructureResourceUtilizationResponse {
-	return &NullableInfrastructureResourceUtilizationResponse{value: val, isSet: true}
+func NewNullableInfrastructureResourceUtilizationSummaryResponse(val *InfrastructureResourceUtilizationSummaryResponse) *NullableInfrastructureResourceUtilizationSummaryResponse {
+	return &NullableInfrastructureResourceUtilizationSummaryResponse{value: val, isSet: true}
 }
 
-func (v NullableInfrastructureResourceUtilizationResponse) MarshalJSON() ([]byte, error) {
+func (v NullableInfrastructureResourceUtilizationSummaryResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableInfrastructureResourceUtilizationResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableInfrastructureResourceUtilizationSummaryResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

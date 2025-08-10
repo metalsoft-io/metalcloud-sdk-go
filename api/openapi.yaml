@@ -8489,6 +8489,38 @@ paths:
       summary: Reverts the specified infrastructure
       tags:
       - Infrastructure
+  /api/v2/infrastructures/actions/get/resource-utilization-summarized:
+    post:
+      description: Gets summary resource utilization for infrastructures
+      operationId: getInfrastructureResourceUtilizationSummary
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetResourceUtilizationSummarized'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureResourceUtilizationSummaryResponse'
+          description: Retrieved the summary resource utilization for infrastructures
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Gets summary resource utilization for infrastructures
+      tags:
+      - Infrastructure
   /api/v2/infrastructures/actions/get/resource-utilization-detailed:
     post:
       description: Gets detailed resource utilization for infrastructures
@@ -13258,6 +13290,8 @@ paths:
                        <b>Example: </b> filter.infrastructureId=$not:$like:John Doe&filter.infrastructureId=like:John
                     </p>
                     <h4>Available Operations</h4><ul><li>$eq</li>
+          <li>$in</li>
+          <li>$not</li>
           <li>$null</li></ul>
         explode: true
         in: query
@@ -13637,7 +13671,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateLogicalNetworkConfig'
+              $ref: '#/components/schemas/UpdateLogicalNetworkConfigGlobalSettings'
         required: true
       responses:
         "200":
@@ -13731,7 +13765,7 @@ paths:
   /api/v2/logical-networks/{id}/external-connections:
     get:
       description: Returns list of external connections attached to a logical network
-      operationId: getLogicalNetworkExternalConnections
+      operationId: getLogicalNetworkAttachedExternalConnections
       parameters:
       - explode: false
         in: path
@@ -13908,6 +13942,236 @@ paths:
       - JWT: []
       - apiKey: []
       summary: List external connections attached to a logical network
+      tags:
+      - Logical Network
+  /api/v2/logical-networks/{id}/external-connection-logical-networks:
+    get:
+      description: Returns list of all external connection logical networks
+      operationId: getLogicalNetworkAttachedExternalConnectionLogicalNetworks
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: "Page number to retrieve.If you provide invalid value the default\
+          \ page number will applied\n        <p>\n             <b>Example: </b> 1\n\
+          \          </p>\n        <p>\n             <b>Default Value: </b> 1\n  \
+          \        </p>\n        "
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Number of records per page.\n      <p>\n             <b>Example:\
+          \ </b> 20\n          </p>\n      <p>\n             <b>Default Value: </b>\
+          \ 20\n          </p>\n      <p>\n             <b>Max Value: </b> 100\n \
+          \         </p>\n\n      If provided value is greater than max value, max\
+          \ value will be applied.\n      "
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: |-
+          Filter by id query param.
+                    <p>
+                       <b>Format: </b> filter.id={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.id=$not:$like:John Doe&filter.id=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.id
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by externalConnectionId query param.
+                    <p>
+                       <b>Format: </b> filter.externalConnectionId={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.externalConnectionId=$not:$like:John Doe&filter.externalConnectionId=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$eq</li></ul>
+        explode: true
+        in: query
+        name: filter.externalConnectionId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by createdAt query param.
+                    <p>
+                       <b>Format: </b> filter.createdAt={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.createdAt=$not:$like:John Doe&filter.createdAt=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.createdAt
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Filter by updatedAt query param.
+                    <p>
+                       <b>Format: </b> filter.updatedAt={$not}:OPERATION:VALUE
+                    </p>
+                    <p>
+                       <b>Example: </b> filter.updatedAt=$not:$like:John Doe&filter.updatedAt=like:John
+                    </p>
+                    <h4>Available Operations</h4><ul><li>$and</li>
+          <li>$or</li>
+          <li>$not</li>
+          <li>$eq</li>
+          <li>$gt</li>
+          <li>$gte</li>
+          <li>$in</li>
+          <li>$null</li>
+          <li>$lt</li>
+          <li>$lte</li>
+          <li>$btw</li>
+          <li>$ilike</li>
+          <li>$sw</li>
+          <li>$contains</li></ul>
+        explode: true
+        in: query
+        name: filter.updatedAt
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Parameter to sort by.\n      <p>To sort by multiple fields,\
+          \ just provide query param multiple types. The order in url defines an order\
+          \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
+          \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
+          \          </p>\n      <p>\n             <b>Default Value: </b> id:DESC\n\
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>createdAt</li>\n\
+          <li>updatedAt</li>\n<li>externalConnectionId</li>\n<li>logicalNetworkId</li></ul>\n\
+          \      "
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          items:
+            enum:
+            - id:ASC
+            - id:DESC
+            - createdAt:ASC
+            - createdAt:DESC
+            - updatedAt:ASC
+            - updatedAt:DESC
+            - externalConnectionId:ASC
+            - externalConnectionId:DESC
+            - logicalNetworkId:ASC
+            - logicalNetworkId:DESC
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalConnectionLogicalNetworkPaginatedList'
+          description: The list of external connection logical networks
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: External connection logical network not found
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Get all external connection logical networks
+      tags:
+      - Logical Network
+  /api/v2/logical-networks/{id}/external-connections/{externalConnectionId}:
+    delete:
+      description: Detaches an external connection from a logical network
+      operationId: detachExternalConnectionLogicalNetwork
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: externalConnectionId
+        required: true
+        schema:
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: External connection detached from logical network
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: "External connection, logical network or external connection\
+            \ logical network not found"
+        "500":
+          description: Internal server error
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Detaches an external connection from a logical network
       tags:
       - Logical Network
   /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies:
@@ -16448,10 +16712,17 @@ paths:
       summary: Add network device defaults
       tags:
       - Network Device
-  /api/v2/network-devices/defaults/{id}:
+  /api/v2/network-devices/defaults/{siteId}/{id}:
     delete:
       operationId: removeNetworkDeviceDefaults
       parameters:
+      - explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: number
+        style: simple
       - description: The ID of the network device default to remove
         explode: false
         in: path
@@ -41014,9 +41285,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-08-06T12:55:27.05Z
+        createdTimestamp: 2025-08-10T14:21:17.34Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-08-06T12:55:27.05Z
+        updatedTimestamp: 2025-08-10T14:21:17.34Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -41112,12 +41383,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-06T12:55:27.05Z
+          example: 2025-08-10T14:21:17.34Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-06T12:55:27.05Z
+          example: 2025-08-10T14:21:17.34Z
           format: date-time
           type: string
         links:
@@ -41149,9 +41420,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-08-06T12:55:27.05Z
+          createdTimestamp: 2025-08-10T14:21:17.34Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-08-06T12:55:27.05Z
+          updatedTimestamp: 2025-08-10T14:21:17.34Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -41168,9 +41439,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-08-06T12:55:27.05Z
+          createdTimestamp: 2025-08-10T14:21:17.34Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-08-06T12:55:27.05Z
+          updatedTimestamp: 2025-08-10T14:21:17.34Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -42822,6 +43093,7 @@ components:
           - 489
           - 488
           - 491
+          - 554
           - 553
           - 350
           - 363
@@ -52377,15 +52649,12 @@ components:
       - allowDataLoss
       - shutdownOptions
       type: object
-    GetResourceUtilizationDetailed:
+    GetResourceUtilizationSummarized:
       example:
         userIdOwner: 0.8008281904610115
         infrastructureIds:
         - 6.027456183070403
         - 6.027456183070403
-        siteIds:
-        - 1.4658129805029452
-        - 1.4658129805029452
         endTimestamp: endTimestamp
         startTimestamp: startTimestamp
       properties:
@@ -52400,11 +52669,6 @@ components:
           type: string
         infrastructureIds:
           description: List of infrastructure IDs
-          items:
-            type: number
-          type: array
-        siteIds:
-          description: List of site IDs
           items:
             type: number
           type: array
@@ -52445,6 +52709,81 @@ components:
       - mapr
       - windowsServerStandard
       type: object
+    InfrastructureResourceUtilizationSummaryResponse:
+      example:
+        licenseInstallments: ""
+        reservationInstallments: "{}"
+        infrastructures: "{}"
+        endTimestamp: endTimestamp
+        resourceUtilization: "{}"
+        internet: "{}"
+        startTimestamp: startTimestamp
+      properties:
+        resourceUtilization:
+          description: Resource utilization summary
+          type: object
+        internet:
+          description: Internet usage data
+          type: object
+        reservationInstallments:
+          description: Reservation installments information
+          type: object
+        infrastructures:
+          description: Infrastructures information
+          type: object
+        startTimestamp:
+          description: Start timestamp of the utilization period
+          type: string
+        endTimestamp:
+          description: End timestamp of the utilization period
+          type: string
+        licenseInstallments:
+          allOf:
+          - $ref: '#/components/schemas/LicenseInstallments'
+          description: License installments information
+      required:
+      - endTimestamp
+      - infrastructures
+      - internet
+      - resourceUtilization
+      - startTimestamp
+      type: object
+    GetResourceUtilizationDetailed:
+      example:
+        userIdOwner: 0.8008281904610115
+        infrastructureIds:
+        - 6.027456183070403
+        - 6.027456183070403
+        siteIds:
+        - 1.4658129805029452
+        - 1.4658129805029452
+        endTimestamp: endTimestamp
+        startTimestamp: startTimestamp
+      properties:
+        userIdOwner:
+          description: User ID of the owner
+          type: number
+        startTimestamp:
+          description: Start timestamp for the resource utilization
+          type: string
+        endTimestamp:
+          description: End timestamp for the resource utilization
+          type: string
+        infrastructureIds:
+          description: List of infrastructure IDs
+          items:
+            type: number
+          type: array
+        siteIds:
+          description: List of site IDs
+          items:
+            type: number
+          type: array
+      required:
+      - endTimestamp
+      - startTimestamp
+      - userIdOwner
+      type: object
     InfrastructureResourceUtilizationResponse:
       example:
         licenseInstallments: ""
@@ -52481,9 +52820,6 @@ components:
       - detailedReport
       - endTimestamp
       - infrastructures
-      - licenseInstallments
-      - networkReport
-      - reservationInstallments
       - startTimestamp
       type: object
     ServerInstanceStorageProfileControllerVolume:
@@ -57236,9 +57572,11 @@ components:
           - finished
           type: string
         createdAt:
+          description: Creation timestamp for the entity.
           format: date-time
           type: string
         updatedAt:
+          description: Last update timestamp for the entity.
           format: date-time
           type: string
         revision:
@@ -57446,9 +57784,11 @@ components:
           - finished
           type: string
         createdAt:
+          description: Creation timestamp for the entity.
           format: date-time
           type: string
         updatedAt:
+          description: Last update timestamp for the entity.
           format: date-time
           type: string
         revision:
@@ -58053,9 +58393,11 @@ components:
           - finished
           type: string
         createdAt:
+          description: Creation timestamp for the entity.
           format: date-time
           type: string
         updatedAt:
+          description: Last update timestamp for the entity.
           format: date-time
           type: string
         revision:
@@ -58986,7 +59328,6 @@ components:
         annotations:
           key: annotations
         label: label
-        mtu: 1500
       properties:
         label:
           maxLength: 63
@@ -58999,54 +59340,16 @@ components:
             nullable: true
             type: string
           type: object
-        mtu:
-          description: Maximum Transmission Unit (MTU) in bytes
-          example: 1500
-          nullable: true
-          type: integer
       type: object
-    UpdateLogicalNetworkConfigVlanProperties:
-      properties: {}
-      type: object
-    UpdateLogicalNetworkConfigVxlanProperties:
-      properties: {}
-      type: object
-    UpdateLogicalNetworkConfigIpv4Properties:
-      properties: {}
-      type: object
-    UpdateLogicalNetworkConfigIpv6Properties:
-      properties: {}
-      type: object
-    UpdateLogicalNetworkConfig:
+    UpdateLogicalNetworkConfigGlobalSettings:
       example:
-        vxlan: "{}"
-        vlan: "{}"
-        ipv4: "{}"
-        ipv6: "{}"
         mtu: 1500
       properties:
-        vlan:
-          properties: {}
-          type: object
-        vxlan:
-          properties: {}
-          type: object
-        ipv4:
-          properties: {}
-          type: object
-        ipv6:
-          properties: {}
-          type: object
         mtu:
           description: Maximum Transmission Unit (MTU) in bytes
           example: 1500
           nullable: true
           type: integer
-      required:
-      - ipv4
-      - ipv6
-      - vlan
-      - vxlan
       type: object
     ExternalConnectionInterface:
       example:
@@ -59208,6 +59511,115 @@ components:
           items:
             $ref: '#/components/schemas/ExternalConnection'
           title: List of external connections
+          type: array
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseMeta'
+          description: Metadata about the pagination of the response
+          title: Pagination metadata
+        links:
+          allOf:
+          - $ref: '#/components/schemas/PaginatedResponseLinks'
+          description: Links to navigate through the paginated results
+          title: Pagination links
+      required:
+      - data
+      - meta
+      type: object
+    ExternalConnectionLogicalNetwork:
+      example:
+        createdAt: 2025-01-01T00:00:00Z
+        logicalNetworkId: 6.027456183070403
+        externalConnectionId: 0.8008281904610115
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        id: 1
+        status: pending_activation
+        updatedAt: 2025-01-01T00:00:00Z
+      properties:
+        id:
+          description: The external connection logical network id.
+          example: 1
+          type: number
+        externalConnectionId:
+          description: The ID of the external connection identifier this entity belongs
+            to.
+          format: integer
+          type: number
+        logicalNetworkId:
+          description: The ID of the logical network identifier this entity belongs
+            to.
+          format: integer
+          type: number
+        status:
+          description: The status of the external connection logical network
+          enum:
+          - pending_activation
+          - active
+          - pending_deletion
+          - deleting
+          example: pending_activation
+          type: string
+        createdAt:
+          description: The date and time the entity was created
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          description: The date and time the entity was last updated
+          example: 2025-01-01T00:00:00Z
+          format: date-time
+          readOnly: true
+          type: string
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - createdAt
+      - externalConnectionId
+      - id
+      - logicalNetworkId
+      - status
+      - updatedAt
+      type: object
+    ExternalConnectionLogicalNetworkPaginatedList:
+      example:
+        data:
+        - createdAt: 2025-01-01T00:00:00Z
+          logicalNetworkId: 6.027456183070403
+          externalConnectionId: 0.8008281904610115
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 1
+          status: pending_activation
+          updatedAt: 2025-01-01T00:00:00Z
+        - createdAt: 2025-01-01T00:00:00Z
+          logicalNetworkId: 6.027456183070403
+          externalConnectionId: 0.8008281904610115
+          links:
+          - rel: self
+            href: /api/v2/path/to/resource
+          - rel: self
+            href: /api/v2/path/to/resource
+          id: 1
+          status: pending_activation
+          updatedAt: 2025-01-01T00:00:00Z
+        meta: ""
+        links: ""
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ExternalConnectionLogicalNetwork'
+          title: List of external connection logical networks
           type: array
         meta:
           allOf:
@@ -60723,7 +61135,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-08-06T12:55:27.095Z
+        createdTimestamp: 2025-08-10T14:21:17.392Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -60732,7 +61144,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-08-06T12:55:27.095Z
+        updatedTimestamp: 2025-08-10T14:21:17.393Z
         revision: "1"
       properties:
         siteId:
@@ -60749,12 +61161,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-06T12:55:27.095Z
+          example: 2025-08-10T14:21:17.392Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-06T12:55:27.095Z
+          example: 2025-08-10T14:21:17.393Z
           format: date-time
           type: string
         links:
@@ -60776,7 +61188,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-08-06T12:55:27.095Z
+        - createdTimestamp: 2025-08-10T14:21:17.392Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -60785,9 +61197,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-08-06T12:55:27.095Z
+          updatedTimestamp: 2025-08-10T14:21:17.393Z
           revision: "1"
-        - createdTimestamp: 2025-08-06T12:55:27.095Z
+        - createdTimestamp: 2025-08-10T14:21:17.392Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -60796,7 +61208,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-08-06T12:55:27.095Z
+          updatedTimestamp: 2025-08-10T14:21:17.393Z
           revision: "1"
         meta: ""
         links: ""
@@ -61384,7 +61796,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-08-06T12:55:27.046Z
+        createdTimestamp: 2025-08-10T14:21:17.336Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -61431,7 +61843,7 @@ components:
           configurationPreview: configurationPreview
           bgpTemplateId: 101
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-08-06T12:55:27.046Z
+        updatedTimestamp: 2025-08-10T14:21:17.337Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -61573,12 +61985,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-06T12:55:27.046Z
+          example: 2025-08-10T14:21:17.336Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-06T12:55:27.046Z
+          example: 2025-08-10T14:21:17.337Z
           format: date-time
           type: string
         links:
@@ -61622,7 +62034,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-08-06T12:55:27.046Z
+        - createdTimestamp: 2025-08-10T14:21:17.336Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -61669,7 +62081,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-08-06T12:55:27.046Z
+          updatedTimestamp: 2025-08-10T14:21:17.337Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -61786,7 +62198,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-08-06T12:55:27.046Z
+        - createdTimestamp: 2025-08-10T14:21:17.336Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -61833,7 +62245,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-08-06T12:55:27.046Z
+          updatedTimestamp: 2025-08-10T14:21:17.337Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -62117,9 +62529,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-08-06T12:55:27.102Z
+        createdTimestamp: 2025-08-10T14:21:17.4Z
         mlagPair: 0
-        updatedTimestamp: 2025-08-06T12:55:27.102Z
+        updatedTimestamp: 2025-08-10T14:21:17.4Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -62132,12 +62544,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-06T12:55:27.102Z
+          example: 2025-08-10T14:21:17.4Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-06T12:55:27.102Z
+          example: 2025-08-10T14:21:17.4Z
           format: date-time
           type: string
         revision:
@@ -62215,9 +62627,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-08-06T12:55:27.102Z
+          createdTimestamp: 2025-08-10T14:21:17.4Z
           mlagPair: 0
-          updatedTimestamp: 2025-08-06T12:55:27.102Z
+          updatedTimestamp: 2025-08-10T14:21:17.4Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -62228,9 +62640,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-08-06T12:55:27.102Z
+          createdTimestamp: 2025-08-10T14:21:17.4Z
           mlagPair: 0
-          updatedTimestamp: 2025-08-06T12:55:27.102Z
+          updatedTimestamp: 2025-08-10T14:21:17.4Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -65767,10 +66179,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-08-06T12:55:27.099Z
+        createdTimestamp: 2025-08-10T14:21:17.397Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-08-06T12:55:27.099Z
+        updatedTimestamp: 2025-08-10T14:21:17.397Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -65844,12 +66256,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-06T12:55:27.099Z
+          example: 2025-08-10T14:21:17.397Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-06T12:55:27.099Z
+          example: 2025-08-10T14:21:17.397Z
           format: date-time
           type: string
         links:
@@ -66878,6 +67290,7 @@ components:
       properties:
         address:
           description: Address of the site
+          example: "123 Main St, Reading, UK"
           type: string
         latitude:
           description: Latitude of the site
@@ -66926,6 +67339,7 @@ components:
       properties:
         rootUrl:
           description: Root URL of the repository
+          example: https://repo.example.com
           type: string
       required:
       - rootUrl
@@ -66934,15 +67348,19 @@ components:
       properties:
         zeroTouchRegistrationEnabled:
           description: Whether zero-touch registration is enabled
+          example: true
           type: boolean
         gNMISubscriptionEnabled:
           description: Whether gNMI subscription is enabled
+          example: true
           type: boolean
         syslogMonitoringEnabled:
           description: Whether syslog monitoring is enabled
+          example: true
           type: boolean
         leafSwitchesHaveMlagPairs:
           description: Whether leaf switches have MLAG pairs
+          example: true
           type: boolean
         minimumNumberOfSpinesNeededToBootstrapLeafs:
           description: Minimum number of spines needed to bootstrap leafs
@@ -67044,10 +67462,10 @@ components:
     ControllerPolicy:
       properties:
         subnetAllocation:
-          description: List of subnets allocated to this datacenter
+          description: List of subnets in IPv4 or IPv6 CIDR notation
           example:
-          - 192.168.1.0/24
-          - 10.0.0.0/16
+          - 8.8.8.8/24
+          - 2001:db8::/32
           items:
             type: string
           type: array
@@ -67079,11 +67497,17 @@ components:
           type: integer
         DNSServers:
           description: List of DNS Servers
+          example:
+          - 8.8.8.8
+          - 2001:db8::1
           items:
             type: string
           type: array
         NTPServers:
           description: List of NTP Servers
+          example:
+          - 8.8.8.8
+          - 2001:db8::1
           items:
             type: string
           type: array
@@ -67250,6 +67674,7 @@ components:
       required:
       - index
       - macAddress
+      - osInfo
       - serverId
       - serverInterfaceId
       type: object
@@ -70665,6 +71090,25 @@ components:
       - revision
       - serverId
       type: object
+    ServerInterfaceConnection:
+      properties:
+        serverInterfaceMacAddress:
+          description: The server interface MAC address
+          example: 00:1A:2B:3C:4D:5E
+          type: string
+        networkDevicePortId:
+          description: The network device port name
+          example: Ethernet1/1
+          type: string
+        networkDeviceHostname:
+          description: The network device hostname
+          example: switch1.example.com
+          type: string
+      required:
+      - networkDeviceHostname
+      - networkDevicePortId
+      - serverInterfaceMacAddress
+      type: object
     RegisterProductionServerSettings:
       properties:
         infrastructureId:
@@ -70676,7 +71120,7 @@ components:
         interfaceConnections:
           description: Interface to network device connection settings.
           items:
-            type: string
+            $ref: '#/components/schemas/ServerInterfaceConnection'
           type: array
       required:
       - infrastructureId
@@ -72656,7 +73100,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-08-06T12:55:27.09Z
+        createdTimestamp: 2025-08-10T14:21:17.388Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -72664,7 +73108,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-08-06T12:55:27.09Z
+        updatedTimestamp: 2025-08-10T14:21:17.388Z
         revision: "1"
       properties:
         id:
@@ -72693,12 +73137,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-06T12:55:27.09Z
+          example: 2025-08-10T14:21:17.388Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-06T12:55:27.09Z
+          example: 2025-08-10T14:21:17.388Z
           format: date-time
           type: string
         links:
@@ -72717,7 +73161,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-08-06T12:55:27.092Z
+        createdTimestamp: 2025-08-10T14:21:17.39Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -72728,7 +73172,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-08-06T12:55:27.092Z
+        updatedTimestamp: 2025-08-10T14:21:17.39Z
         revision: "1"
       properties:
         id:
@@ -72762,12 +73206,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-06T12:55:27.092Z
+          example: 2025-08-10T14:21:17.39Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-06T12:55:27.092Z
+          example: 2025-08-10T14:21:17.39Z
           format: date-time
           type: string
         links:
@@ -72787,7 +73231,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-08-06T12:55:27.092Z
+        - createdTimestamp: 2025-08-10T14:21:17.39Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -72798,9 +73242,9 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-08-06T12:55:27.092Z
+          updatedTimestamp: 2025-08-10T14:21:17.39Z
           revision: "1"
-        - createdTimestamp: 2025-08-06T12:55:27.092Z
+        - createdTimestamp: 2025-08-10T14:21:17.39Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -72811,7 +73255,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-08-06T12:55:27.092Z
+          updatedTimestamp: 2025-08-10T14:21:17.39Z
           revision: "1"
         meta: ""
         links: ""
@@ -73020,7 +73464,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-08-06T12:55:27.09Z
+          createdTimestamp: 2025-08-10T14:21:17.388Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -73028,12 +73472,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-08-06T12:55:27.09Z
+          updatedTimestamp: 2025-08-10T14:21:17.388Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-08-06T12:55:27.09Z
+          createdTimestamp: 2025-08-10T14:21:17.388Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -73041,7 +73485,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-08-06T12:55:27.09Z
+          updatedTimestamp: 2025-08-10T14:21:17.388Z
           revision: "1"
         meta: ""
         links: ""
@@ -73496,115 +73940,6 @@ components:
           type: number
       required:
       - logicalNetworkId
-      type: object
-    ExternalConnectionLogicalNetwork:
-      example:
-        createdAt: 2025-01-01T00:00:00Z
-        logicalNetworkId: 6.027456183070403
-        externalConnectionId: 0.8008281904610115
-        links:
-        - rel: self
-          href: /api/v2/path/to/resource
-        - rel: self
-          href: /api/v2/path/to/resource
-        id: 1
-        status: pending_activation
-        updatedAt: 2025-01-01T00:00:00Z
-      properties:
-        id:
-          description: The external connection logical network id.
-          example: 1
-          type: number
-        externalConnectionId:
-          description: The ID of the external connection identifier this entity belongs
-            to.
-          format: integer
-          type: number
-        logicalNetworkId:
-          description: The ID of the logical network identifier this entity belongs
-            to.
-          format: integer
-          type: number
-        status:
-          description: The status of the external connection logical network
-          enum:
-          - pending_activation
-          - active
-          - pending_deletion
-          - deleting
-          example: pending_activation
-          type: string
-        createdAt:
-          description: The date and time the entity was created
-          example: 2025-01-01T00:00:00Z
-          format: date-time
-          readOnly: true
-          type: string
-        updatedAt:
-          description: The date and time the entity was last updated
-          example: 2025-01-01T00:00:00Z
-          format: date-time
-          readOnly: true
-          type: string
-        links:
-          description: Reference links
-          items:
-            $ref: '#/components/schemas/Link'
-          type: array
-      required:
-      - createdAt
-      - externalConnectionId
-      - id
-      - logicalNetworkId
-      - status
-      - updatedAt
-      type: object
-    ExternalConnectionLogicalNetworkPaginatedList:
-      example:
-        data:
-        - createdAt: 2025-01-01T00:00:00Z
-          logicalNetworkId: 6.027456183070403
-          externalConnectionId: 0.8008281904610115
-          links:
-          - rel: self
-            href: /api/v2/path/to/resource
-          - rel: self
-            href: /api/v2/path/to/resource
-          id: 1
-          status: pending_activation
-          updatedAt: 2025-01-01T00:00:00Z
-        - createdAt: 2025-01-01T00:00:00Z
-          logicalNetworkId: 6.027456183070403
-          externalConnectionId: 0.8008281904610115
-          links:
-          - rel: self
-            href: /api/v2/path/to/resource
-          - rel: self
-            href: /api/v2/path/to/resource
-          id: 1
-          status: pending_activation
-          updatedAt: 2025-01-01T00:00:00Z
-        meta: ""
-        links: ""
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ExternalConnectionLogicalNetwork'
-          title: List of external connection logical networks
-          type: array
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseMeta'
-          description: Metadata about the pagination of the response
-          title: Pagination metadata
-        links:
-          allOf:
-          - $ref: '#/components/schemas/PaginatedResponseLinks'
-          description: Links to navigate through the paginated results
-          title: Pagination links
-      required:
-      - data
-      - meta
       type: object
     SharedDriveMeta:
       example:
@@ -74210,13 +74545,13 @@ components:
         repo: ""
         controllerPolicy: ""
         NTPServers:
-        - NTPServers
-        - NTPServers
+        - 8.8.8.8
+        - 2001:db8::1
         location: ""
         dnsZoneId: 5
         DNSServers:
-        - DNSServers
-        - DNSServers
+        - 8.8.8.8
+        - 2001:db8::1
       properties:
         location:
           allOf:
@@ -74232,11 +74567,17 @@ components:
           type: integer
         DNSServers:
           description: List of DNS Servers
+          example:
+          - 8.8.8.8
+          - 2001:db8::1
           items:
             type: string
           type: array
         NTPServers:
           description: List of NTP Servers
+          example:
+          - 8.8.8.8
+          - 2001:db8::1
           items:
             type: string
           type: array
@@ -74261,6 +74602,7 @@ components:
       properties:
         address:
           description: Address of the site
+          example: "123 Main St, Reading, UK"
           type: string
         latitude:
           description: Latitude of the site
@@ -74275,15 +74617,19 @@ components:
       properties:
         zeroTouchRegistrationEnabled:
           description: Whether zero-touch registration is enabled
+          example: true
           type: boolean
         gNMISubscriptionEnabled:
           description: Whether gNMI subscription is enabled
+          example: true
           type: boolean
         syslogMonitoringEnabled:
           description: Whether syslog monitoring is enabled
+          example: true
           type: boolean
         leafSwitchesHaveMlagPairs:
           description: Whether leaf switches have MLAG pairs
+          example: true
           type: boolean
         minimumNumberOfSpinesNeededToBootstrapLeafs:
           description: Minimum number of spines needed to bootstrap leafs
@@ -74369,13 +74715,13 @@ components:
         repo: ""
         controllerPolicy: ""
         NTPServers:
-        - NTPServers
-        - NTPServers
+        - 8.8.8.8
+        - 2001:db8::1
         location: ""
         dnsZoneId: 5
         DNSServers:
-        - DNSServers
-        - DNSServers
+        - 8.8.8.8
+        - 2001:db8::1
       properties:
         location:
           allOf:
@@ -74391,11 +74737,17 @@ components:
           type: integer
         DNSServers:
           description: List of DNS Servers
+          example:
+          - 8.8.8.8
+          - 2001:db8::1
           items:
             type: string
           type: array
         NTPServers:
           description: List of NTP Servers
+          example:
+          - 8.8.8.8
+          - 2001:db8::1
           items:
             type: string
           type: array
@@ -78782,7 +79134,27 @@ components:
           description: Options for the VM Pool
       type: object
     VMPoolImportVMs:
-      properties: {}
+      example:
+        infrastructureId: 0.8008281904610115
+        vmNames:
+        - vm1
+        - vm2
+        - vm3
+      properties:
+        vmNames:
+          description: List of VM names to import
+          example:
+          - vm1
+          - vm2
+          - vm3
+          items:
+            type: string
+          type: array
+        infrastructureId:
+          description: "If provided, the VMs will be added into this infrastructure"
+          type: number
+      required:
+      - vmNames
       type: object
     VMPoolStatistics:
       example:

@@ -25,7 +25,9 @@ type VxlanLogicalNetworkConfig struct {
 	Id int32 `json:"id"`
 	DeployType string `json:"deployType"`
 	DeployStatus string `json:"deployStatus"`
+	// Creation timestamp for the entity.
 	CreatedAt time.Time `json:"createdAt"`
+	// Last update timestamp for the entity.
 	UpdatedAt time.Time `json:"updatedAt"`
 	Revision int32 `json:"revision"`
 	Kind LogicalNetworkKind `json:"kind"`

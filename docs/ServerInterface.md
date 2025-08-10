@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **FibreChannelWwpn** | Pointer to **string** | The WWPN of the fibre channel. | [optional] 
 **Description** | Pointer to **string** | The description of the server interface. | [optional] 
 **AliasIndex** | Pointer to **float32** | The alias index of the server interface. | [optional] 
-**OsInfo** | Pointer to **string** | The OS info of the server interface. | [optional] [default to "not_tested"]
+**OsInfo** | **string** | The OS info of the server interface. | [default to "not_tested"]
 **NetworkDevice** | Pointer to **map[string]interface{}** | The network device linked to the server. | [optional] 
 **NetworkDeviceInterface** | Pointer to **map[string]interface{}** | The network device interface linked to the server. | [optional] 
 **Ipv4Addresses** | Pointer to **[]string** | The deployed IPv4 addresses of the server interface. | [optional] 
@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 
 ### NewServerInterface
 
-`func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32, ) *ServerInterface`
+`func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32, osInfo string, ) *ServerInterface`
 
 NewServerInterface instantiates a new ServerInterface object
 This constructor will assign default values to properties that have it defined,
@@ -419,11 +419,6 @@ and a boolean to check if the value has been set.
 
 SetOsInfo sets OsInfo field to given value.
 
-### HasOsInfo
-
-`func (o *ServerInterface) HasOsInfo() bool`
-
-HasOsInfo returns a boolean if a field has been set.
 
 ### GetNetworkDevice
 

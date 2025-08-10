@@ -220,9 +220,10 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
+		var siteId float32
 		var id float32
 
-		httpRes, err := apiClient.NetworkDeviceAPI.RemoveNetworkDeviceDefaults(context.Background(), id).Execute()
+		httpRes, err := apiClient.NetworkDeviceAPI.RemoveNetworkDeviceDefaults(context.Background(), siteId, id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

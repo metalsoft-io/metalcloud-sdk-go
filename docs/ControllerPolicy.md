@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SubnetAllocation** | **[]string** | List of subnets allocated to this datacenter | 
+**SubnetAllocation** | **[]string** | List of subnets in IPv4 or IPv6 CIDR notation | 
 
 ## Methods
 

@@ -259,6 +259,7 @@ Class | Method | HTTP request | Description
 *InfrastructureAPI* | [**GetInfrastructure**](docs/InfrastructureAPI.md#getinfrastructure) | **Get** /api/v2/infrastructures/{infrastructureId} | Retrieves the specified infrastructure
 *InfrastructureAPI* | [**GetInfrastructureConfigInfo**](docs/InfrastructureAPI.md#getinfrastructureconfiginfo) | **Get** /api/v2/infrastructures/{infrastructureId}/config | Get configuration information about the specified Infrastructure
 *InfrastructureAPI* | [**GetInfrastructureResourceUtilizationDetailed**](docs/InfrastructureAPI.md#getinfrastructureresourceutilizationdetailed) | **Post** /api/v2/infrastructures/actions/get/resource-utilization-detailed | Gets detailed resource utilization for infrastructures
+*InfrastructureAPI* | [**GetInfrastructureResourceUtilizationSummary**](docs/InfrastructureAPI.md#getinfrastructureresourceutilizationsummary) | **Post** /api/v2/infrastructures/actions/get/resource-utilization-summarized | Gets summary resource utilization for infrastructures
 *InfrastructureAPI* | [**GetInfrastructureStatistics**](docs/InfrastructureAPI.md#getinfrastructurestatistics) | **Get** /api/v2/infrastructures/{infrastructureId}/statistics | Retrieves statistics for the specified infrastructure
 *InfrastructureAPI* | [**GetInfrastructureUserLimits**](docs/InfrastructureAPI.md#getinfrastructureuserlimits) | **Get** /api/v2/infrastructures/{infrastructureId}/user-limits | Retrieves the specified infrastructure user limits
 *InfrastructureAPI* | [**GetInfrastructureUsers**](docs/InfrastructureAPI.md#getinfrastructureusers) | **Get** /api/v2/infrastructures/{infrastructureId}/users | Retrieves the specified infrastructure users
@@ -291,7 +292,10 @@ Class | Method | HTTP request | Description
 *LogicalNetworkAPI* | [**DeleteLogicalNetworkConfigIpv6SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#deletelogicalnetworkconfigipv6subnetallocationstrategy) | **Delete** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies/{allocationStrategyId} | Delete Ipv6 Subnet allocation strategy.
 *LogicalNetworkAPI* | [**DeleteLogicalNetworkConfigVlanAllocationStrategy**](docs/LogicalNetworkAPI.md#deletelogicalnetworkconfigvlanallocationstrategy) | **Delete** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies/{allocationStrategyId} | Delete Vlan allocation strategy.
 *LogicalNetworkAPI* | [**DeleteLogicalNetworkConfigVniAllocationStrategy**](docs/LogicalNetworkAPI.md#deletelogicalnetworkconfigvniallocationstrategy) | **Delete** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies/{allocationStrategyId} | Delete Vni allocation strategy.
+*LogicalNetworkAPI* | [**DetachExternalConnectionLogicalNetwork**](docs/LogicalNetworkAPI.md#detachexternalconnectionlogicalnetwork) | **Delete** /api/v2/logical-networks/{id}/external-connections/{externalConnectionId} | Detaches an external connection from a logical network
 *LogicalNetworkAPI* | [**GetLogicalNetwork**](docs/LogicalNetworkAPI.md#getlogicalnetwork) | **Get** /api/v2/logical-networks/{id} | Get a Logical Network.
+*LogicalNetworkAPI* | [**GetLogicalNetworkAttachedExternalConnectionLogicalNetworks**](docs/LogicalNetworkAPI.md#getlogicalnetworkattachedexternalconnectionlogicalnetworks) | **Get** /api/v2/logical-networks/{id}/external-connection-logical-networks | Get all external connection logical networks
+*LogicalNetworkAPI* | [**GetLogicalNetworkAttachedExternalConnections**](docs/LogicalNetworkAPI.md#getlogicalnetworkattachedexternalconnections) | **Get** /api/v2/logical-networks/{id}/external-connections | List external connections attached to a logical network
 *LogicalNetworkAPI* | [**GetLogicalNetworkConfig**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfig) | **Get** /api/v2/logical-networks/{id}/config | Get the config for a Logical Network.
 *LogicalNetworkAPI* | [**GetLogicalNetworkConfigIpv4SubnetAllocationStrategies**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigipv4subnetallocationstrategies) | **Get** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies | Get all Ipv4 Subnet allocation strategies.
 *LogicalNetworkAPI* | [**GetLogicalNetworkConfigIpv4SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigipv4subnetallocationstrategy) | **Get** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Get a Ipv4 Subnet allocation strategy.
@@ -301,7 +305,6 @@ Class | Method | HTTP request | Description
 *LogicalNetworkAPI* | [**GetLogicalNetworkConfigVlanAllocationStrategy**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigvlanallocationstrategy) | **Get** /api/v2/logical-networks/{id}/config/vlan/vlan-allocation-strategies/{allocationStrategyId} | Get a Vlan allocation strategy.
 *LogicalNetworkAPI* | [**GetLogicalNetworkConfigVniAllocationStrategies**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigvniallocationstrategies) | **Get** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies | Get all Vni allocation strategies.
 *LogicalNetworkAPI* | [**GetLogicalNetworkConfigVniAllocationStrategy**](docs/LogicalNetworkAPI.md#getlogicalnetworkconfigvniallocationstrategy) | **Get** /api/v2/logical-networks/{id}/config/vxlan/vni-allocation-strategies/{allocationStrategyId} | Get a Vni allocation strategy.
-*LogicalNetworkAPI* | [**GetLogicalNetworkExternalConnections**](docs/LogicalNetworkAPI.md#getlogicalnetworkexternalconnections) | **Get** /api/v2/logical-networks/{id}/external-connections | List external connections attached to a logical network
 *LogicalNetworkAPI* | [**GetLogicalNetworks**](docs/LogicalNetworkAPI.md#getlogicalnetworks) | **Get** /api/v2/logical-networks | Get all Logical Networks
 *LogicalNetworkAPI* | [**ReplaceLogicalNetworkConfigIpv4SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#replacelogicalnetworkconfigipv4subnetallocationstrategy) | **Put** /api/v2/logical-networks/{id}/config/ipv4/subnet-allocation-strategies/{allocationStrategyId} | Replace Ipv4 Subnet allocation strategy
 *LogicalNetworkAPI* | [**ReplaceLogicalNetworkConfigIpv6SubnetAllocationStrategy**](docs/LogicalNetworkAPI.md#replacelogicalnetworkconfigipv6subnetallocationstrategy) | **Put** /api/v2/logical-networks/{id}/config/ipv6/subnet-allocation-strategies/{allocationStrategyId} | Replace Ipv6 Subnet allocation strategy
@@ -349,7 +352,7 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**GetNetworkDevices**](docs/NetworkDeviceAPI.md#getnetworkdevices) | **Get** /api/v2/network-devices | Get paginated Network Devices
 *NetworkDeviceAPI* | [**GetPorts**](docs/NetworkDeviceAPI.md#getports) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
 *NetworkDeviceAPI* | [**ReProvisionNetworkDevice**](docs/NetworkDeviceAPI.md#reprovisionnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/re-provision | Re-provision network device
-*NetworkDeviceAPI* | [**RemoveNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#removenetworkdevicedefaults) | **Delete** /api/v2/network-devices/defaults/{id} | Remove network device defaults
+*NetworkDeviceAPI* | [**RemoveNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#removenetworkdevicedefaults) | **Delete** /api/v2/network-devices/defaults/{siteId}/{id} | Remove network device defaults
 *NetworkDeviceAPI* | [**ReplaceNetworkDevice**](docs/NetworkDeviceAPI.md#replacenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/replace | Replace network device
 *NetworkDeviceAPI* | [**ResetNetworkDevice**](docs/NetworkDeviceAPI.md#resetnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
 *NetworkDeviceAPI* | [**RunExtensionOnNetworkDevice**](docs/NetworkDeviceAPI.md#runextensiononnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
@@ -906,6 +909,7 @@ Class | Method | HTTP request | Description
  - [GenericMeta](docs/GenericMeta.md)
  - [GenericServiceStatus](docs/GenericServiceStatus.md)
  - [GetResourceUtilizationDetailed](docs/GetResourceUtilizationDetailed.md)
+ - [GetResourceUtilizationSummarized](docs/GetResourceUtilizationSummarized.md)
  - [GetSiteControllerOneLiner200Response](docs/GetSiteControllerOneLiner200Response.md)
  - [GlobalFirmwareUpgradeConfiguration](docs/GlobalFirmwareUpgradeConfiguration.md)
  - [HpeComponentFilter](docs/HpeComponentFilter.md)
@@ -923,6 +927,7 @@ Class | Method | HTTP request | Description
  - [InfrastructurePaginatedList](docs/InfrastructurePaginatedList.md)
  - [InfrastructurePolicy](docs/InfrastructurePolicy.md)
  - [InfrastructureResourceUtilizationResponse](docs/InfrastructureResourceUtilizationResponse.md)
+ - [InfrastructureResourceUtilizationSummaryResponse](docs/InfrastructureResourceUtilizationSummaryResponse.md)
  - [InfrastructureServiceStatus](docs/InfrastructureServiceStatus.md)
  - [InfrastructureStatistics](docs/InfrastructureStatistics.md)
  - [InfrastructureVariables](docs/InfrastructureVariables.md)
@@ -1133,6 +1138,7 @@ Class | Method | HTTP request | Description
  - [ServerInstanceUpdate](docs/ServerInstanceUpdate.md)
  - [ServerInstanceVariables](docs/ServerInstanceVariables.md)
  - [ServerInterface](docs/ServerInterface.md)
+ - [ServerInterfaceConnection](docs/ServerInterfaceConnection.md)
  - [ServerMetricsInfo](docs/ServerMetricsInfo.md)
  - [ServerOSInstallationData](docs/ServerOSInstallationData.md)
  - [ServerPaginatedList](docs/ServerPaginatedList.md)
@@ -1219,7 +1225,7 @@ Class | Method | HTTP request | Description
  - [UpdateInfrastructureMeta](docs/UpdateInfrastructureMeta.md)
  - [UpdateLogicalNetwork](docs/UpdateLogicalNetwork.md)
  - [UpdateLogicalNetworkACL](docs/UpdateLogicalNetworkACL.md)
- - [UpdateLogicalNetworkConfig](docs/UpdateLogicalNetworkConfig.md)
+ - [UpdateLogicalNetworkConfigGlobalSettings](docs/UpdateLogicalNetworkConfigGlobalSettings.md)
  - [UpdateLogicalNetworkProfile](docs/UpdateLogicalNetworkProfile.md)
  - [UpdateNetworkDevice](docs/UpdateNetworkDevice.md)
  - [UpdateNetworkDeviceDefaultSecretsDto](docs/UpdateNetworkDeviceDefaultSecretsDto.md)
@@ -1289,6 +1295,7 @@ Class | Method | HTTP request | Description
  - [VMPoolHostInterfaces](docs/VMPoolHostInterfaces.md)
  - [VMPoolHosts](docs/VMPoolHosts.md)
  - [VMPoolHostsPaginatedList](docs/VMPoolHostsPaginatedList.md)
+ - [VMPoolImportVMs](docs/VMPoolImportVMs.md)
  - [VMPoolOptions](docs/VMPoolOptions.md)
  - [VMPoolPaginatedList](docs/VMPoolPaginatedList.md)
  - [VMPoolStatistics](docs/VMPoolStatistics.md)

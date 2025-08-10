@@ -5,18 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DetailedReport** | **map[string]interface{}** | Detailed report of resource utilization | 
-**NetworkReport** | **map[string]interface{}** | Network utilization report | 
-**ReservationInstallments** | **map[string]interface{}** | Reservation installments information | 
+**NetworkReport** | Pointer to **map[string]interface{}** | Network utilization report | [optional] 
+**ReservationInstallments** | Pointer to **map[string]interface{}** | Reservation installments information | [optional] 
 **Infrastructures** | **map[string]interface{}** | Infrastructures information | 
 **StartTimestamp** | **string** | Start timestamp of the utilization period | 
 **EndTimestamp** | **string** | End timestamp of the utilization period | 
-**LicenseInstallments** | [**LicenseInstallments**](LicenseInstallments.md) | License installments information | 
+**LicenseInstallments** | Pointer to [**LicenseInstallments**](LicenseInstallments.md) | License installments information | [optional] 
 
 ## Methods
 
 ### NewInfrastructureResourceUtilizationResponse
 
-`func NewInfrastructureResourceUtilizationResponse(detailedReport map[string]interface{}, networkReport map[string]interface{}, reservationInstallments map[string]interface{}, infrastructures map[string]interface{}, startTimestamp string, endTimestamp string, licenseInstallments LicenseInstallments, ) *InfrastructureResourceUtilizationResponse`
+`func NewInfrastructureResourceUtilizationResponse(detailedReport map[string]interface{}, infrastructures map[string]interface{}, startTimestamp string, endTimestamp string, ) *InfrastructureResourceUtilizationResponse`
 
 NewInfrastructureResourceUtilizationResponse instantiates a new InfrastructureResourceUtilizationResponse object
 This constructor will assign default values to properties that have it defined,
@@ -70,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetNetworkReport sets NetworkReport field to given value.
 
+### HasNetworkReport
+
+`func (o *InfrastructureResourceUtilizationResponse) HasNetworkReport() bool`
+
+HasNetworkReport returns a boolean if a field has been set.
 
 ### GetReservationInstallments
 
@@ -90,6 +95,11 @@ and a boolean to check if the value has been set.
 
 SetReservationInstallments sets ReservationInstallments field to given value.
 
+### HasReservationInstallments
+
+`func (o *InfrastructureResourceUtilizationResponse) HasReservationInstallments() bool`
+
+HasReservationInstallments returns a boolean if a field has been set.
 
 ### GetInfrastructures
 
@@ -170,6 +180,11 @@ and a boolean to check if the value has been set.
 
 SetLicenseInstallments sets LicenseInstallments field to given value.
 
+### HasLicenseInstallments
+
+`func (o *InfrastructureResourceUtilizationResponse) HasLicenseInstallments() bool`
+
+HasLicenseInstallments returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

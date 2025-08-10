@@ -52,7 +52,7 @@ type ServerInterface struct {
 	// The alias index of the server interface.
 	AliasIndex *float32 `json:"aliasIndex,omitempty"`
 	// The OS info of the server interface.
-	OsInfo *string `json:"osInfo,omitempty"`
+	OsInfo string `json:"osInfo"`
 	// The network device linked to the server.
 	NetworkDevice map[string]interface{} `json:"networkDevice,omitempty"`
 	// The network device interface linked to the server.
@@ -72,14 +72,13 @@ type _ServerInterface ServerInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32) *ServerInterface {
+func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32, osInfo string) *ServerInterface {
 	this := ServerInterface{}
 	this.ServerInterfaceId = serverInterfaceId
 	this.ServerId = serverId
 	this.MacAddress = macAddress
 	this.Index = index
-	var osInfo string = "not_tested"
-	this.OsInfo = &osInfo
+	this.OsInfo = osInfo
 	return &this
 }
 
@@ -89,7 +88,7 @@ func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress 
 func NewServerInterfaceWithDefaults() *ServerInterface {
 	this := ServerInterface{}
 	var osInfo string = "not_tested"
-	this.OsInfo = &osInfo
+	this.OsInfo = osInfo
 	return &this
 }
 
@@ -541,36 +540,28 @@ func (o *ServerInterface) SetAliasIndex(v float32) {
 	o.AliasIndex = &v
 }
 
-// GetOsInfo returns the OsInfo field value if set, zero value otherwise.
+// GetOsInfo returns the OsInfo field value
 func (o *ServerInterface) GetOsInfo() string {
-	if o == nil || IsNil(o.OsInfo) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.OsInfo
+
+	return o.OsInfo
 }
 
-// GetOsInfoOk returns a tuple with the OsInfo field value if set, nil otherwise
+// GetOsInfoOk returns a tuple with the OsInfo field value
 // and a boolean to check if the value has been set.
 func (o *ServerInterface) GetOsInfoOk() (*string, bool) {
-	if o == nil || IsNil(o.OsInfo) {
+	if o == nil {
 		return nil, false
 	}
-	return o.OsInfo, true
+	return &o.OsInfo, true
 }
 
-// HasOsInfo returns a boolean if a field has been set.
-func (o *ServerInterface) HasOsInfo() bool {
-	if o != nil && !IsNil(o.OsInfo) {
-		return true
-	}
-
-	return false
-}
-
-// SetOsInfo gets a reference to the given string and assigns it to the OsInfo field.
+// SetOsInfo sets field value
 func (o *ServerInterface) SetOsInfo(v string) {
-	o.OsInfo = &v
+	o.OsInfo = v
 }
 
 // GetNetworkDevice returns the NetworkDevice field value if set, zero value otherwise.
@@ -780,9 +771,7 @@ func (o ServerInterface) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AliasIndex) {
 		toSerialize["aliasIndex"] = o.AliasIndex
 	}
-	if !IsNil(o.OsInfo) {
-		toSerialize["osInfo"] = o.OsInfo
-	}
+	toSerialize["osInfo"] = o.OsInfo
 	if !IsNil(o.NetworkDevice) {
 		toSerialize["networkDevice"] = o.NetworkDevice
 	}
@@ -815,6 +804,7 @@ func (o *ServerInterface) UnmarshalJSON(data []byte) (err error) {
 		"serverId",
 		"macAddress",
 		"index",
+		"osInfo",
 	}
 
 	allProperties := make(map[string]interface{})

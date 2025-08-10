@@ -19,7 +19,7 @@ Method | HTTP request | Description
 [**GetNetworkDevices**](NetworkDeviceAPI.md#GetNetworkDevices) | **Get** /api/v2/network-devices | Get paginated Network Devices
 [**GetPorts**](NetworkDeviceAPI.md#GetPorts) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/ports | Port statistics for network device directly from the device
 [**ReProvisionNetworkDevice**](NetworkDeviceAPI.md#ReProvisionNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/re-provision | Re-provision network device
-[**RemoveNetworkDeviceDefaults**](NetworkDeviceAPI.md#RemoveNetworkDeviceDefaults) | **Delete** /api/v2/network-devices/defaults/{id} | Remove network device defaults
+[**RemoveNetworkDeviceDefaults**](NetworkDeviceAPI.md#RemoveNetworkDeviceDefaults) | **Delete** /api/v2/network-devices/defaults/{siteId}/{id} | Remove network device defaults
 [**ReplaceNetworkDevice**](NetworkDeviceAPI.md#ReplaceNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/replace | Replace network device
 [**ResetNetworkDevice**](NetworkDeviceAPI.md#ResetNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
 [**RunExtensionOnNetworkDevice**](NetworkDeviceAPI.md#RunExtensionOnNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
@@ -1081,7 +1081,7 @@ Name | Type | Description  | Notes
 
 ## RemoveNetworkDeviceDefaults
 
-> RemoveNetworkDeviceDefaults(ctx, id).Execute()
+> RemoveNetworkDeviceDefaults(ctx, siteId, id).Execute()
 
 Remove network device defaults
 
@@ -1098,11 +1098,12 @@ import (
 )
 
 func main() {
+	siteId := float32(8.14) // float32 | 
 	id := float32(8.14) // float32 | The ID of the network device default to remove
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.RemoveNetworkDeviceDefaults(context.Background(), id).Execute()
+	r, err := apiClient.NetworkDeviceAPI.RemoveNetworkDeviceDefaults(context.Background(), siteId, id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.RemoveNetworkDeviceDefaults``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1116,6 +1117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**siteId** | **float32** |  | 
 **id** | **float32** | The ID of the network device default to remove | 
 
 ### Other Parameters
@@ -1125,6 +1127,7 @@ Other parameters are passed through a pointer to a apiRemoveNetworkDeviceDefault
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type

@@ -1919,11 +1919,11 @@ type VMPoolAPIImportVMPoolVMsRequest struct {
 	ctx context.Context
 	ApiService *VMPoolAPIService
 	vmPoolId float32
-	body *map[string]interface{}
+	vMPoolImportVMs *VMPoolImportVMs
 }
 
-func (r VMPoolAPIImportVMPoolVMsRequest) Body(body map[string]interface{}) VMPoolAPIImportVMPoolVMsRequest {
-	r.body = &body
+func (r VMPoolAPIImportVMPoolVMsRequest) VMPoolImportVMs(vMPoolImportVMs VMPoolImportVMs) VMPoolAPIImportVMPoolVMsRequest {
+	r.vMPoolImportVMs = &vMPoolImportVMs
 	return r
 }
 
@@ -1967,8 +1967,8 @@ func (a *VMPoolAPIService) ImportVMPoolVMsExecute(r VMPoolAPIImportVMPoolVMsRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
+	if r.vMPoolImportVMs == nil {
+		return nil, reportError("vMPoolImportVMs is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1989,7 +1989,7 @@ func (a *VMPoolAPIService) ImportVMPoolVMsExecute(r VMPoolAPIImportVMPoolVMsRequ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.vMPoolImportVMs
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

@@ -1938,6 +1938,7 @@ func (a *NetworkDeviceAPIService) ReProvisionNetworkDeviceExecute(r NetworkDevic
 type NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest struct {
 	ctx context.Context
 	ApiService *NetworkDeviceAPIService
+	siteId float32
 	id float32
 }
 
@@ -1949,13 +1950,15 @@ func (r NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest) Execute() (*http.Res
 RemoveNetworkDeviceDefaults Remove network device defaults
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param siteId
  @param id The ID of the network device default to remove
  @return NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest
 */
-func (a *NetworkDeviceAPIService) RemoveNetworkDeviceDefaults(ctx context.Context, id float32) NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest {
+func (a *NetworkDeviceAPIService) RemoveNetworkDeviceDefaults(ctx context.Context, siteId float32, id float32) NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest {
 	return NetworkDeviceAPIRemoveNetworkDeviceDefaultsRequest{
 		ApiService: a,
 		ctx: ctx,
+		siteId: siteId,
 		id: id,
 	}
 }
@@ -1973,7 +1976,8 @@ func (a *NetworkDeviceAPIService) RemoveNetworkDeviceDefaultsExecute(r NetworkDe
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/network-devices/defaults/{id}"
+	localVarPath := localBasePath + "/api/v2/network-devices/defaults/{siteId}/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"siteId"+"}", url.PathEscape(parameterValueToString(r.siteId, "siteId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)

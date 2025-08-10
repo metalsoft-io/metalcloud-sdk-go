@@ -185,6 +185,20 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test LogicalNetworkAPIService DetachExternalConnectionLogicalNetwork", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+		var externalConnectionId float32
+
+		httpRes, err := apiClient.LogicalNetworkAPI.DetachExternalConnectionLogicalNetwork(context.Background(), id, externalConnectionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test LogicalNetworkAPIService GetLogicalNetwork", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -192,6 +206,34 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 		var id float32
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetwork(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test LogicalNetworkAPIService GetLogicalNetworkAttachedExternalConnectionLogicalNetworks", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+
+		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkAttachedExternalConnectionLogicalNetworks(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test LogicalNetworkAPIService GetLogicalNetworkAttachedExternalConnections", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id float32
+
+		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkAttachedExternalConnections(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -322,20 +364,6 @@ func Test_sdk_LogicalNetworkAPIService(t *testing.T) {
 		var allocationStrategyId float32
 
 		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkConfigVniAllocationStrategy(context.Background(), id, allocationStrategyId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test LogicalNetworkAPIService GetLogicalNetworkExternalConnections", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id float32
-
-		resp, httpRes, err := apiClient.LogicalNetworkAPI.GetLogicalNetworkExternalConnections(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
