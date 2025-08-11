@@ -212,6 +212,7 @@ docs/DNSRecordSetPaginatedList.md
 docs/DNSZoneAPI.md
 docs/DNSZonePaginatedList.md
 docs/DellComponentFilter.md
+docs/DetailedReportEntry.md
 docs/DnsRecordSet.md
 docs/DnsRecordsEndpointGroupLogicalNetwork.md
 docs/DnsZoneDto.md
@@ -225,6 +226,7 @@ docs/DriveGroupMeta.md
 docs/DriveGroupVariables.md
 docs/DriveList.md
 docs/DriveMeta.md
+docs/DriveResourceItem.md
 docs/DriveVariables.md
 docs/EditRole.md
 docs/EmailTemplate.md
@@ -342,6 +344,7 @@ docs/InfrastructureDeployOngoingStatusCount.md
 docs/InfrastructureDeployOptions.md
 docs/InfrastructureDeployShutdownOptions.md
 docs/InfrastructureExtensionActions.md
+docs/InfrastructureItem.md
 docs/InfrastructureMeta.md
 docs/InfrastructureOSInstallationData.md
 docs/InfrastructurePaginatedList.md
@@ -359,7 +362,9 @@ docs/InstanceInterfaceMemberVariables.md
 docs/InstanceInterfaceNetworkVariables.md
 docs/InstanceInterfaceRouteVariables.md
 docs/InstanceInterfaceType.md
+docs/InstanceLicenseResourceItem.md
 docs/InstanceNetworkVariables.md
+docs/InstanceResourceItem.md
 docs/InstancesSetPowerState.md
 docs/IpVersion.md
 docs/Ipv4SubnetAllocation.md
@@ -445,6 +450,7 @@ docs/NetworkEndpointGroupLogicalNetworksList.md
 docs/NetworkEndpointGroupPaginatedList.md
 docs/NetworkEndpointGroupRedundancyImplementationType.md
 docs/NetworkEndpointGroupRedundancyMode.md
+docs/NetworkEntry.md
 docs/NetworkEquipmentReprovision.md
 docs/NetworkFabric.md
 docs/NetworkFabricAPI.md
@@ -494,7 +500,9 @@ docs/RegisterStorageResponse.md
 docs/RemoteConsoleInfo.md
 docs/Repo.md
 docs/ResendUserVerificationEmail.md
+docs/ReservationInstallments.md
 docs/ResourceAllocationStatus.md
+docs/ResourceItem.md
 docs/ResourcePool.md
 docs/ResourcePoolAPI.md
 docs/ResourcePoolPaginatedList.md
@@ -610,6 +618,7 @@ docs/SharedDriveHosts.md
 docs/SharedDriveHostsModifyBulk.md
 docs/SharedDriveMeta.md
 docs/SharedDrivePaginatedList.md
+docs/SharedDriveResourceItem.md
 docs/SharedDriveVariables.md
 docs/Site.md
 docs/SiteAPI.md
@@ -637,6 +646,7 @@ docs/Subnet.md
 docs/SubnetAPI.md
 docs/SubnetGatewayPlacement.md
 docs/SubnetPaginatedList.md
+docs/SubnetResourceItem.md
 docs/SwitchPosition.md
 docs/SwitchReplace.md
 docs/SystemAPI.md
@@ -721,6 +731,7 @@ docs/UserSuspendReason.md
 docs/UserSuspendReasonList.md
 docs/UserUpdatePassword.md
 docs/UsersAPI.md
+docs/UtilizationData.md
 docs/VM.md
 docs/VMAPI.md
 docs/VMDisk.md
@@ -934,6 +945,7 @@ model_custom_iso.go
 model_custom_iso_paginated_list.go
 model_custom_variable.go
 model_dell_component_filter.go
+model_detailed_report_entry.go
 model_dns_record_set.go
 model_dns_record_set_paginated_list.go
 model_dns_records_endpoint_group_logical_network.go
@@ -948,6 +960,7 @@ model_drive_group_meta.go
 model_drive_group_variables.go
 model_drive_list.go
 model_drive_meta.go
+model_drive_resource_item.go
 model_drive_variables.go
 model_edit_role.go
 model_email_template.go
@@ -1050,6 +1063,7 @@ model_infrastructure_deploy_ongoing_status_count.go
 model_infrastructure_deploy_options.go
 model_infrastructure_deploy_shutdown_options.go
 model_infrastructure_extension_actions.go
+model_infrastructure_item.go
 model_infrastructure_meta.go
 model_infrastructure_os_installation_data.go
 model_infrastructure_paginated_list.go
@@ -1067,7 +1081,9 @@ model_instance_interface_member_variables.go
 model_instance_interface_network_variables.go
 model_instance_interface_route_variables.go
 model_instance_interface_type.go
+model_instance_license_resource_item.go
 model_instance_network_variables.go
+model_instance_resource_item.go
 model_instances_set_power_state.go
 model_ip_version.go
 model_ipv4_subnet_allocation.go
@@ -1147,6 +1163,7 @@ model_network_endpoint_group_logical_networks_list.go
 model_network_endpoint_group_paginated_list.go
 model_network_endpoint_group_redundancy_implementation_type.go
 model_network_endpoint_group_redundancy_mode.go
+model_network_entry.go
 model_network_equipment_reprovision.go
 model_network_fabric.go
 model_network_fabric_deploy_options.go
@@ -1194,7 +1211,9 @@ model_register_storage_response.go
 model_remote_console_info.go
 model_repo.go
 model_resend_user_verification_email.go
+model_reservation_installments.go
 model_resource_allocation_status.go
+model_resource_item.go
 model_resource_pool.go
 model_resource_pool_paginated_list.go
 model_resource_pool_statistics.go
@@ -1300,6 +1319,7 @@ model_shared_drive_hosts.go
 model_shared_drive_hosts_modify_bulk.go
 model_shared_drive_meta.go
 model_shared_drive_paginated_list.go
+model_shared_drive_resource_item.go
 model_shared_drive_variables.go
 model_site.go
 model_site_config.go
@@ -1324,6 +1344,7 @@ model_storages_statistics.go
 model_subnet.go
 model_subnet_gateway_placement.go
 model_subnet_paginated_list.go
+model_subnet_resource_item.go
 model_switch_position.go
 model_switch_replace.go
 model_template_asset.go
@@ -1403,6 +1424,7 @@ model_user_suspend.go
 model_user_suspend_reason.go
 model_user_suspend_reason_list.go
 model_user_update_password.go
+model_utilization_data.go
 model_variable.go
 model_variable_paginated_list.go
 model_variable_usage_type.go

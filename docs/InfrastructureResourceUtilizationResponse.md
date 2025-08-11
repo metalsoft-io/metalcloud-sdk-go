@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DetailedReport** | **map[string]interface{}** | Detailed report of resource utilization | 
-**NetworkReport** | Pointer to **map[string]interface{}** | Network utilization report | [optional] 
-**ReservationInstallments** | Pointer to **map[string]interface{}** | Reservation installments information | [optional] 
-**Infrastructures** | **map[string]interface{}** | Infrastructures information | 
 **StartTimestamp** | **string** | Start timestamp of the utilization period | 
 **EndTimestamp** | **string** | End timestamp of the utilization period | 
+**Infrastructures** | [**map[string]InfrastructureItem**](InfrastructureItem.md) | Infrastructures information | 
+**DetailedReport** | Pointer to [**map[string]DetailedReportEntry**](DetailedReportEntry.md) | Detailed report of resource utilization | [optional] 
+**NetworkReport** | Pointer to [**map[string]NetworkEntry**](NetworkEntry.md) | Network utilization report | [optional] 
+**ReservationInstallments** | Pointer to [**ReservationInstallments**](ReservationInstallments.md) | Reservation installments information | [optional] 
 **LicenseInstallments** | Pointer to [**LicenseInstallments**](LicenseInstallments.md) | License installments information | [optional] 
 
 ## Methods
 
 ### NewInfrastructureResourceUtilizationResponse
 
-`func NewInfrastructureResourceUtilizationResponse(detailedReport map[string]interface{}, infrastructures map[string]interface{}, startTimestamp string, endTimestamp string, ) *InfrastructureResourceUtilizationResponse`
+`func NewInfrastructureResourceUtilizationResponse(startTimestamp string, endTimestamp string, infrastructures map[string]InfrastructureItem, ) *InfrastructureResourceUtilizationResponse`
 
 NewInfrastructureResourceUtilizationResponse instantiates a new InfrastructureResourceUtilizationResponse object
 This constructor will assign default values to properties that have it defined,
@@ -30,96 +30,6 @@ will change when the set of required properties is changed
 NewInfrastructureResourceUtilizationResponseWithDefaults instantiates a new InfrastructureResourceUtilizationResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetDetailedReport
-
-`func (o *InfrastructureResourceUtilizationResponse) GetDetailedReport() map[string]interface{}`
-
-GetDetailedReport returns the DetailedReport field if non-nil, zero value otherwise.
-
-### GetDetailedReportOk
-
-`func (o *InfrastructureResourceUtilizationResponse) GetDetailedReportOk() (*map[string]interface{}, bool)`
-
-GetDetailedReportOk returns a tuple with the DetailedReport field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDetailedReport
-
-`func (o *InfrastructureResourceUtilizationResponse) SetDetailedReport(v map[string]interface{})`
-
-SetDetailedReport sets DetailedReport field to given value.
-
-
-### GetNetworkReport
-
-`func (o *InfrastructureResourceUtilizationResponse) GetNetworkReport() map[string]interface{}`
-
-GetNetworkReport returns the NetworkReport field if non-nil, zero value otherwise.
-
-### GetNetworkReportOk
-
-`func (o *InfrastructureResourceUtilizationResponse) GetNetworkReportOk() (*map[string]interface{}, bool)`
-
-GetNetworkReportOk returns a tuple with the NetworkReport field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetworkReport
-
-`func (o *InfrastructureResourceUtilizationResponse) SetNetworkReport(v map[string]interface{})`
-
-SetNetworkReport sets NetworkReport field to given value.
-
-### HasNetworkReport
-
-`func (o *InfrastructureResourceUtilizationResponse) HasNetworkReport() bool`
-
-HasNetworkReport returns a boolean if a field has been set.
-
-### GetReservationInstallments
-
-`func (o *InfrastructureResourceUtilizationResponse) GetReservationInstallments() map[string]interface{}`
-
-GetReservationInstallments returns the ReservationInstallments field if non-nil, zero value otherwise.
-
-### GetReservationInstallmentsOk
-
-`func (o *InfrastructureResourceUtilizationResponse) GetReservationInstallmentsOk() (*map[string]interface{}, bool)`
-
-GetReservationInstallmentsOk returns a tuple with the ReservationInstallments field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReservationInstallments
-
-`func (o *InfrastructureResourceUtilizationResponse) SetReservationInstallments(v map[string]interface{})`
-
-SetReservationInstallments sets ReservationInstallments field to given value.
-
-### HasReservationInstallments
-
-`func (o *InfrastructureResourceUtilizationResponse) HasReservationInstallments() bool`
-
-HasReservationInstallments returns a boolean if a field has been set.
-
-### GetInfrastructures
-
-`func (o *InfrastructureResourceUtilizationResponse) GetInfrastructures() map[string]interface{}`
-
-GetInfrastructures returns the Infrastructures field if non-nil, zero value otherwise.
-
-### GetInfrastructuresOk
-
-`func (o *InfrastructureResourceUtilizationResponse) GetInfrastructuresOk() (*map[string]interface{}, bool)`
-
-GetInfrastructuresOk returns a tuple with the Infrastructures field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInfrastructures
-
-`func (o *InfrastructureResourceUtilizationResponse) SetInfrastructures(v map[string]interface{})`
-
-SetInfrastructures sets Infrastructures field to given value.
-
 
 ### GetStartTimestamp
 
@@ -160,6 +70,101 @@ and a boolean to check if the value has been set.
 
 SetEndTimestamp sets EndTimestamp field to given value.
 
+
+### GetInfrastructures
+
+`func (o *InfrastructureResourceUtilizationResponse) GetInfrastructures() map[string]InfrastructureItem`
+
+GetInfrastructures returns the Infrastructures field if non-nil, zero value otherwise.
+
+### GetInfrastructuresOk
+
+`func (o *InfrastructureResourceUtilizationResponse) GetInfrastructuresOk() (*map[string]InfrastructureItem, bool)`
+
+GetInfrastructuresOk returns a tuple with the Infrastructures field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInfrastructures
+
+`func (o *InfrastructureResourceUtilizationResponse) SetInfrastructures(v map[string]InfrastructureItem)`
+
+SetInfrastructures sets Infrastructures field to given value.
+
+
+### GetDetailedReport
+
+`func (o *InfrastructureResourceUtilizationResponse) GetDetailedReport() map[string]DetailedReportEntry`
+
+GetDetailedReport returns the DetailedReport field if non-nil, zero value otherwise.
+
+### GetDetailedReportOk
+
+`func (o *InfrastructureResourceUtilizationResponse) GetDetailedReportOk() (*map[string]DetailedReportEntry, bool)`
+
+GetDetailedReportOk returns a tuple with the DetailedReport field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDetailedReport
+
+`func (o *InfrastructureResourceUtilizationResponse) SetDetailedReport(v map[string]DetailedReportEntry)`
+
+SetDetailedReport sets DetailedReport field to given value.
+
+### HasDetailedReport
+
+`func (o *InfrastructureResourceUtilizationResponse) HasDetailedReport() bool`
+
+HasDetailedReport returns a boolean if a field has been set.
+
+### GetNetworkReport
+
+`func (o *InfrastructureResourceUtilizationResponse) GetNetworkReport() map[string]NetworkEntry`
+
+GetNetworkReport returns the NetworkReport field if non-nil, zero value otherwise.
+
+### GetNetworkReportOk
+
+`func (o *InfrastructureResourceUtilizationResponse) GetNetworkReportOk() (*map[string]NetworkEntry, bool)`
+
+GetNetworkReportOk returns a tuple with the NetworkReport field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkReport
+
+`func (o *InfrastructureResourceUtilizationResponse) SetNetworkReport(v map[string]NetworkEntry)`
+
+SetNetworkReport sets NetworkReport field to given value.
+
+### HasNetworkReport
+
+`func (o *InfrastructureResourceUtilizationResponse) HasNetworkReport() bool`
+
+HasNetworkReport returns a boolean if a field has been set.
+
+### GetReservationInstallments
+
+`func (o *InfrastructureResourceUtilizationResponse) GetReservationInstallments() ReservationInstallments`
+
+GetReservationInstallments returns the ReservationInstallments field if non-nil, zero value otherwise.
+
+### GetReservationInstallmentsOk
+
+`func (o *InfrastructureResourceUtilizationResponse) GetReservationInstallmentsOk() (*ReservationInstallments, bool)`
+
+GetReservationInstallmentsOk returns a tuple with the ReservationInstallments field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReservationInstallments
+
+`func (o *InfrastructureResourceUtilizationResponse) SetReservationInstallments(v ReservationInstallments)`
+
+SetReservationInstallments sets ReservationInstallments field to given value.
+
+### HasReservationInstallments
+
+`func (o *InfrastructureResourceUtilizationResponse) HasReservationInstallments() bool`
+
+HasReservationInstallments returns a boolean if a field has been set.
 
 ### GetLicenseInstallments
 

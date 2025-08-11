@@ -41285,9 +41285,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-08-10T14:21:17.34Z
+        createdTimestamp: 2025-08-11T13:17:18.089Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-08-10T14:21:17.34Z
+        updatedTimestamp: 2025-08-11T13:17:18.089Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -41383,12 +41383,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-10T14:21:17.34Z
+          example: 2025-08-11T13:17:18.089Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-10T14:21:17.34Z
+          example: 2025-08-11T13:17:18.089Z
           format: date-time
           type: string
         links:
@@ -41420,9 +41420,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-08-10T14:21:17.34Z
+          createdTimestamp: 2025-08-11T13:17:18.089Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-08-10T14:21:17.34Z
+          updatedTimestamp: 2025-08-11T13:17:18.089Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -41439,9 +41439,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-08-10T14:21:17.34Z
+          createdTimestamp: 2025-08-11T13:17:18.089Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-08-10T14:21:17.34Z
+          updatedTimestamp: 2025-08-11T13:17:18.089Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -52649,6 +52649,29 @@ components:
       - allowDataLoss
       - shutdownOptions
       type: object
+    InfrastructureItem:
+      example:
+        infrastructureId: 1263
+        infrastructureServiceStatus: ordered
+        infrastructureLabel: my-infrastructure
+      properties:
+        infrastructureId:
+          description: Infrastructure ID
+          example: 1263
+          type: number
+        infrastructureLabel:
+          description: Infrastructure label
+          example: my-infrastructure
+          type: string
+        infrastructureServiceStatus:
+          description: Infrastructure service status
+          example: ordered
+          type: string
+      required:
+      - infrastructureId
+      - infrastructureLabel
+      - infrastructureServiceStatus
+      type: object
     GetResourceUtilizationSummarized:
       example:
         userIdOwner: 0.8008281904610115
@@ -52677,29 +52700,157 @@ components:
       - startTimestamp
       - userIdOwner
       type: object
+    ResourceItem:
+      example:
+        measurementPeriod: 1.4658129805029452
+        quantity: 5.962133916683182
+        id: 6.027456183070403
+        label: label
+        endTimestamp: endTimestamp
+        startTimestamp: startTimestamp
+        measurementUnit: measurementUnit
+      properties:
+        id:
+          type: number
+        label:
+          type: string
+        startTimestamp:
+          type: string
+        endTimestamp:
+          type: string
+        measurementPeriod:
+          type: number
+        measurementUnit:
+          type: string
+        quantity:
+          type: number
+      required:
+      - endTimestamp
+      - id
+      - label
+      - measurementPeriod
+      - measurementUnit
+      - quantity
+      - startTimestamp
+      type: object
+    UtilizationData:
+      example:
+        quantity: 0.8008281904610115
+        measurementUnit: measurementUnit
+        meteredWaypoints:
+        - measurementPeriod: 1.4658129805029452
+          quantity: 5.962133916683182
+          id: 6.027456183070403
+          label: label
+          endTimestamp: endTimestamp
+          startTimestamp: startTimestamp
+          measurementUnit: measurementUnit
+        - measurementPeriod: 1.4658129805029452
+          quantity: 5.962133916683182
+          id: 6.027456183070403
+          label: label
+          endTimestamp: endTimestamp
+          startTimestamp: startTimestamp
+          measurementUnit: measurementUnit
+      properties:
+        quantity:
+          type: number
+        measurementUnit:
+          type: string
+        meteredWaypoints:
+          description: Collection of metered waypoints
+          items:
+            $ref: '#/components/schemas/ResourceItem'
+          type: array
+      required:
+      - measurementUnit
+      - quantity
+      type: object
+    NetworkEntry:
+      example:
+        download:
+          quantity: 0.8008281904610115
+          measurementUnit: measurementUnit
+          meteredWaypoints:
+          - measurementPeriod: 1.4658129805029452
+            quantity: 5.962133916683182
+            id: 6.027456183070403
+            label: label
+            endTimestamp: endTimestamp
+            startTimestamp: startTimestamp
+            measurementUnit: measurementUnit
+          - measurementPeriod: 1.4658129805029452
+            quantity: 5.962133916683182
+            id: 6.027456183070403
+            label: label
+            endTimestamp: endTimestamp
+            startTimestamp: startTimestamp
+            measurementUnit: measurementUnit
+        upload:
+          quantity: 0.8008281904610115
+          measurementUnit: measurementUnit
+          meteredWaypoints:
+          - measurementPeriod: 1.4658129805029452
+            quantity: 5.962133916683182
+            id: 6.027456183070403
+            label: label
+            endTimestamp: endTimestamp
+            startTimestamp: startTimestamp
+            measurementUnit: measurementUnit
+          - measurementPeriod: 1.4658129805029452
+            quantity: 5.962133916683182
+            id: 6.027456183070403
+            label: label
+            endTimestamp: endTimestamp
+            startTimestamp: startTimestamp
+            measurementUnit: measurementUnit
+      properties:
+        upload:
+          $ref: '#/components/schemas/UtilizationData'
+        download:
+          $ref: '#/components/schemas/UtilizationData'
+      type: object
+    ReservationInstallments:
+      properties:
+        serverTypes:
+          description: List of server types
+          items:
+            type: object
+          type: array
+        drives:
+          description: List of drives
+          items:
+            type: object
+          type: array
+        subnets:
+          description: List of subnets
+          items:
+            type: object
+          type: array
+      required:
+      - drives
+      - serverTypes
+      - subnets
+      type: object
     LicenseInstallments:
       properties:
         windowsServerStandard:
           description: Windows Server Standard licenses
-          example: []
           items:
             type: object
           type: array
         mapr:
           description: MapR licenses
-          example: []
           items:
             type: object
           type: array
         cloudera:
           description: Cloudera licenses
-          example: []
           items:
             type: object
           type: array
         couchbase:
           description: Couchbase licenses
-          example: []
           items:
             type: object
           type: array
@@ -52712,31 +52863,59 @@ components:
     InfrastructureResourceUtilizationSummaryResponse:
       example:
         licenseInstallments: ""
-        reservationInstallments: "{}"
-        infrastructures: "{}"
-        endTimestamp: endTimestamp
-        resourceUtilization: "{}"
-        internet: "{}"
-        startTimestamp: startTimestamp
-      properties:
-        resourceUtilization:
-          description: Resource utilization summary
-          type: object
-        internet:
-          description: Internet usage data
-          type: object
-        reservationInstallments:
-          description: Reservation installments information
-          type: object
         infrastructures:
-          description: Infrastructures information
-          type: object
+          key:
+            infrastructureId: 1263
+            infrastructureServiceStatus: ordered
+            infrastructureLabel: my-infrastructure
+        reservationInstallments: ""
+        endTimestamp: endTimestamp
+        startTimestamp: startTimestamp
+        resourceUtilization:
+          key:
+            quantity: 0.8008281904610115
+            measurementUnit: measurementUnit
+            meteredWaypoints:
+            - measurementPeriod: 1.4658129805029452
+              quantity: 5.962133916683182
+              id: 6.027456183070403
+              label: label
+              endTimestamp: endTimestamp
+              startTimestamp: startTimestamp
+              measurementUnit: measurementUnit
+            - measurementPeriod: 1.4658129805029452
+              quantity: 5.962133916683182
+              id: 6.027456183070403
+              label: label
+              endTimestamp: endTimestamp
+              startTimestamp: startTimestamp
+              measurementUnit: measurementUnit
+        internet: ""
+      properties:
         startTimestamp:
           description: Start timestamp of the utilization period
           type: string
         endTimestamp:
           description: End timestamp of the utilization period
           type: string
+        infrastructures:
+          additionalProperties:
+            $ref: '#/components/schemas/InfrastructureItem'
+          description: Infrastructures information
+          type: object
+        resourceUtilization:
+          additionalProperties:
+            $ref: '#/components/schemas/UtilizationData'
+          description: Resource utilization summary
+          type: object
+        internet:
+          allOf:
+          - $ref: '#/components/schemas/NetworkEntry'
+          description: Internet usage data
+        reservationInstallments:
+          allOf:
+          - $ref: '#/components/schemas/ReservationInstallments'
+          description: Reservation installments information
         licenseInstallments:
           allOf:
           - $ref: '#/components/schemas/LicenseInstallments'
@@ -52747,6 +52926,354 @@ components:
       - internet
       - resourceUtilization
       - startTimestamp
+      type: object
+    SharedDriveResourceItem:
+      example:
+        measurementPeriod: 6.027456183070403
+        quantity: 1.4658129805029452
+        id: 0.8008281904610115
+        label: label
+        endTimestamp: endTimestamp
+        sharedDriveSizeMbytes: 5.962133916683182
+        startTimestamp: startTimestamp
+        measurementUnit: measurementUnit
+        sharedDriveStorageType: sharedDriveStorageType
+      properties:
+        id:
+          type: number
+        label:
+          type: string
+        startTimestamp:
+          type: string
+        endTimestamp:
+          type: string
+        measurementPeriod:
+          type: number
+        measurementUnit:
+          type: string
+        quantity:
+          type: number
+        sharedDriveSizeMbytes:
+          type: number
+        sharedDriveStorageType:
+          type: string
+      required:
+      - endTimestamp
+      - id
+      - label
+      - measurementPeriod
+      - measurementUnit
+      - quantity
+      - sharedDriveSizeMbytes
+      - sharedDriveStorageType
+      - startTimestamp
+      type: object
+    DriveResourceItem:
+      example:
+        driveStorageType: driveStorageType
+        measurementPeriod: 2.3021358869347655
+        quantity: 7.061401241503109
+        driveSizeMbytes: 9.301444243932576
+        id: 5.637376656633329
+        label: label
+        endTimestamp: endTimestamp
+        startTimestamp: startTimestamp
+        measurementUnit: measurementUnit
+      properties:
+        id:
+          type: number
+        label:
+          type: string
+        startTimestamp:
+          type: string
+        endTimestamp:
+          type: string
+        measurementPeriod:
+          type: number
+        measurementUnit:
+          type: string
+        quantity:
+          type: number
+        driveSizeMbytes:
+          type: number
+        driveStorageType:
+          type: string
+      required:
+      - driveSizeMbytes
+      - driveStorageType
+      - endTimestamp
+      - id
+      - label
+      - measurementPeriod
+      - measurementUnit
+      - quantity
+      - startTimestamp
+      type: object
+    InstanceResourceItem:
+      properties:
+        id:
+          type: number
+        label:
+          type: string
+        startTimestamp:
+          type: string
+        endTimestamp:
+          type: string
+        measurementPeriod:
+          type: number
+        measurementUnit:
+          type: string
+        quantity:
+          type: number
+        serverTypeId:
+          type: number
+        serverId:
+          type: number
+        serverTypeName:
+          type: string
+        operatingSystemType:
+          type: string
+        operatingSystemVersion:
+          type: string
+        operatingSystemDisplayName:
+          type: string
+        operatingSystemTemplateId:
+          type: number
+        originalStartTimestamp:
+          type: string
+      required:
+      - endTimestamp
+      - id
+      - label
+      - measurementPeriod
+      - measurementUnit
+      - operatingSystemDisplayName
+      - operatingSystemTemplateId
+      - operatingSystemType
+      - operatingSystemVersion
+      - originalStartTimestamp
+      - quantity
+      - serverId
+      - serverTypeId
+      - serverTypeName
+      - startTimestamp
+      type: object
+    SubnetResourceItem:
+      properties:
+        id:
+          type: number
+        label:
+          type: string
+        startTimestamp:
+          type: string
+        endTimestamp:
+          type: string
+        measurementPeriod:
+          type: number
+        measurementUnit:
+          type: string
+        quantity:
+          type: number
+        subnetIpCount:
+          type: string
+        subnetPrefixSize:
+          type: number
+        subnetType:
+          type: string
+      required:
+      - endTimestamp
+      - id
+      - label
+      - measurementPeriod
+      - measurementUnit
+      - quantity
+      - startTimestamp
+      - subnetIpCount
+      - subnetPrefixSize
+      - subnetType
+      type: object
+    InstanceLicenseResourceItem:
+      example:
+        licenseUtilizationType: licenseUtilizationType
+        licenseType: licenseType
+        measurementPeriod: 2.027123023002322
+        quantity: 4.145608029883936
+        id: 3.616076749251911
+        label: label
+        licenseId: licenseId
+        endTimestamp: endTimestamp
+        startTimestamp: startTimestamp
+        measurementUnit: measurementUnit
+      properties:
+        id:
+          type: number
+        label:
+          type: string
+        startTimestamp:
+          type: string
+        endTimestamp:
+          type: string
+        measurementPeriod:
+          type: number
+        measurementUnit:
+          type: string
+        quantity:
+          type: number
+        licenseId:
+          type: string
+        licenseType:
+          type: string
+        licenseUtilizationType:
+          type: string
+      required:
+      - endTimestamp
+      - id
+      - label
+      - licenseId
+      - licenseType
+      - licenseUtilizationType
+      - measurementPeriod
+      - measurementUnit
+      - quantity
+      - startTimestamp
+      type: object
+    DetailedReportEntry:
+      example:
+        subnet:
+        - id: 1364
+          label: subnet-1364
+          startTimestamp: 2022-10-21T12:49:53Z
+          endTimestamp: 2026-01-01
+          measurementUnit: seconds
+          quantity: 100869008
+          subnetIpCount: "0"
+          subnetPrefixSize: 64
+          subnetType: ipv6
+        instance:
+        - id: 157
+          label: instance-157
+          startTimestamp: 2022-10-21T12:49:53Z
+          endTimestamp: 2023-10-24T20:31:39Z
+          measurementUnit: seconds
+          quantity: 31822907
+          serverTypeId: 2
+          serverId: 1
+          serverTypeName: M.8.4.1
+          operatingSystemType: null
+          operatingSystemVersion: null
+          operatingSystemDisplayName: null
+          operatingSystemTemplateId: null
+          originalStartTimestamp: 2022-10-21T12:49:53Z
+        sharedDrive:
+        - measurementPeriod: 6.027456183070403
+          quantity: 1.4658129805029452
+          id: 0.8008281904610115
+          label: label
+          endTimestamp: endTimestamp
+          sharedDriveSizeMbytes: 5.962133916683182
+          startTimestamp: startTimestamp
+          measurementUnit: measurementUnit
+          sharedDriveStorageType: sharedDriveStorageType
+        - measurementPeriod: 6.027456183070403
+          quantity: 1.4658129805029452
+          id: 0.8008281904610115
+          label: label
+          endTimestamp: endTimestamp
+          sharedDriveSizeMbytes: 5.962133916683182
+          startTimestamp: startTimestamp
+          measurementUnit: measurementUnit
+          sharedDriveStorageType: sharedDriveStorageType
+        drive:
+        - driveStorageType: driveStorageType
+          measurementPeriod: 2.3021358869347655
+          quantity: 7.061401241503109
+          driveSizeMbytes: 9.301444243932576
+          id: 5.637376656633329
+          label: label
+          endTimestamp: endTimestamp
+          startTimestamp: startTimestamp
+          measurementUnit: measurementUnit
+        - driveStorageType: driveStorageType
+          measurementPeriod: 2.3021358869347655
+          quantity: 7.061401241503109
+          driveSizeMbytes: 9.301444243932576
+          id: 5.637376656633329
+          label: label
+          endTimestamp: endTimestamp
+          startTimestamp: startTimestamp
+          measurementUnit: measurementUnit
+        instanceLicense:
+        - licenseUtilizationType: licenseUtilizationType
+          licenseType: licenseType
+          measurementPeriod: 2.027123023002322
+          quantity: 4.145608029883936
+          id: 3.616076749251911
+          label: label
+          licenseId: licenseId
+          endTimestamp: endTimestamp
+          startTimestamp: startTimestamp
+          measurementUnit: measurementUnit
+        - licenseUtilizationType: licenseUtilizationType
+          licenseType: licenseType
+          measurementPeriod: 2.027123023002322
+          quantity: 4.145608029883936
+          id: 3.616076749251911
+          label: label
+          licenseId: licenseId
+          endTimestamp: endTimestamp
+          startTimestamp: startTimestamp
+          measurementUnit: measurementUnit
+      properties:
+        sharedDrive:
+          description: Shared drive resources
+          items:
+            $ref: '#/components/schemas/SharedDriveResourceItem'
+          type: array
+        drive:
+          description: Drive resources
+          items:
+            $ref: '#/components/schemas/DriveResourceItem'
+          type: array
+        instance:
+          description: Instance resources
+          example:
+          - id: 157
+            label: instance-157
+            startTimestamp: 2022-10-21T12:49:53Z
+            endTimestamp: 2023-10-24T20:31:39Z
+            measurementUnit: seconds
+            quantity: 31822907
+            serverTypeId: 2
+            serverId: 1
+            serverTypeName: M.8.4.1
+            operatingSystemType: null
+            operatingSystemVersion: null
+            operatingSystemDisplayName: null
+            operatingSystemTemplateId: null
+            originalStartTimestamp: 2022-10-21T12:49:53Z
+          items:
+            $ref: '#/components/schemas/InstanceResourceItem'
+          type: array
+        subnet:
+          description: Subnet resources
+          example:
+          - id: 1364
+            label: subnet-1364
+            startTimestamp: 2022-10-21T12:49:53Z
+            endTimestamp: 2026-01-01
+            measurementUnit: seconds
+            quantity: 100869008
+            subnetIpCount: "0"
+            subnetPrefixSize: 64
+            subnetType: ipv6
+          items:
+            $ref: '#/components/schemas/SubnetResourceItem'
+          type: array
+        instanceLicense:
+          description: Instance license resources
+          items:
+            $ref: '#/components/schemas/InstanceLicenseResourceItem'
+          type: array
       type: object
     GetResourceUtilizationDetailed:
       example:
@@ -52787,37 +53314,169 @@ components:
     InfrastructureResourceUtilizationResponse:
       example:
         licenseInstallments: ""
-        detailedReport: "{}"
-        networkReport: "{}"
-        reservationInstallments: "{}"
-        infrastructures: "{}"
+        detailedReport:
+          key:
+            subnet:
+            - id: 1364
+              label: subnet-1364
+              startTimestamp: 2022-10-21T12:49:53Z
+              endTimestamp: 2026-01-01
+              measurementUnit: seconds
+              quantity: 100869008
+              subnetIpCount: "0"
+              subnetPrefixSize: 64
+              subnetType: ipv6
+            instance:
+            - id: 157
+              label: instance-157
+              startTimestamp: 2022-10-21T12:49:53Z
+              endTimestamp: 2023-10-24T20:31:39Z
+              measurementUnit: seconds
+              quantity: 31822907
+              serverTypeId: 2
+              serverId: 1
+              serverTypeName: M.8.4.1
+              operatingSystemType: null
+              operatingSystemVersion: null
+              operatingSystemDisplayName: null
+              operatingSystemTemplateId: null
+              originalStartTimestamp: 2022-10-21T12:49:53Z
+            sharedDrive:
+            - measurementPeriod: 6.027456183070403
+              quantity: 1.4658129805029452
+              id: 0.8008281904610115
+              label: label
+              endTimestamp: endTimestamp
+              sharedDriveSizeMbytes: 5.962133916683182
+              startTimestamp: startTimestamp
+              measurementUnit: measurementUnit
+              sharedDriveStorageType: sharedDriveStorageType
+            - measurementPeriod: 6.027456183070403
+              quantity: 1.4658129805029452
+              id: 0.8008281904610115
+              label: label
+              endTimestamp: endTimestamp
+              sharedDriveSizeMbytes: 5.962133916683182
+              startTimestamp: startTimestamp
+              measurementUnit: measurementUnit
+              sharedDriveStorageType: sharedDriveStorageType
+            drive:
+            - driveStorageType: driveStorageType
+              measurementPeriod: 2.3021358869347655
+              quantity: 7.061401241503109
+              driveSizeMbytes: 9.301444243932576
+              id: 5.637376656633329
+              label: label
+              endTimestamp: endTimestamp
+              startTimestamp: startTimestamp
+              measurementUnit: measurementUnit
+            - driveStorageType: driveStorageType
+              measurementPeriod: 2.3021358869347655
+              quantity: 7.061401241503109
+              driveSizeMbytes: 9.301444243932576
+              id: 5.637376656633329
+              label: label
+              endTimestamp: endTimestamp
+              startTimestamp: startTimestamp
+              measurementUnit: measurementUnit
+            instanceLicense:
+            - licenseUtilizationType: licenseUtilizationType
+              licenseType: licenseType
+              measurementPeriod: 2.027123023002322
+              quantity: 4.145608029883936
+              id: 3.616076749251911
+              label: label
+              licenseId: licenseId
+              endTimestamp: endTimestamp
+              startTimestamp: startTimestamp
+              measurementUnit: measurementUnit
+            - licenseUtilizationType: licenseUtilizationType
+              licenseType: licenseType
+              measurementPeriod: 2.027123023002322
+              quantity: 4.145608029883936
+              id: 3.616076749251911
+              label: label
+              licenseId: licenseId
+              endTimestamp: endTimestamp
+              startTimestamp: startTimestamp
+              measurementUnit: measurementUnit
+        networkReport:
+          key:
+            download:
+              quantity: 0.8008281904610115
+              measurementUnit: measurementUnit
+              meteredWaypoints:
+              - measurementPeriod: 1.4658129805029452
+                quantity: 5.962133916683182
+                id: 6.027456183070403
+                label: label
+                endTimestamp: endTimestamp
+                startTimestamp: startTimestamp
+                measurementUnit: measurementUnit
+              - measurementPeriod: 1.4658129805029452
+                quantity: 5.962133916683182
+                id: 6.027456183070403
+                label: label
+                endTimestamp: endTimestamp
+                startTimestamp: startTimestamp
+                measurementUnit: measurementUnit
+            upload:
+              quantity: 0.8008281904610115
+              measurementUnit: measurementUnit
+              meteredWaypoints:
+              - measurementPeriod: 1.4658129805029452
+                quantity: 5.962133916683182
+                id: 6.027456183070403
+                label: label
+                endTimestamp: endTimestamp
+                startTimestamp: startTimestamp
+                measurementUnit: measurementUnit
+              - measurementPeriod: 1.4658129805029452
+                quantity: 5.962133916683182
+                id: 6.027456183070403
+                label: label
+                endTimestamp: endTimestamp
+                startTimestamp: startTimestamp
+                measurementUnit: measurementUnit
+        infrastructures:
+          key:
+            infrastructureId: 1263
+            infrastructureServiceStatus: ordered
+            infrastructureLabel: my-infrastructure
+        reservationInstallments: ""
         endTimestamp: endTimestamp
         startTimestamp: startTimestamp
       properties:
-        detailedReport:
-          description: Detailed report of resource utilization
-          type: object
-        networkReport:
-          description: Network utilization report
-          type: object
-        reservationInstallments:
-          description: Reservation installments information
-          type: object
-        infrastructures:
-          description: Infrastructures information
-          type: object
         startTimestamp:
           description: Start timestamp of the utilization period
           type: string
         endTimestamp:
           description: End timestamp of the utilization period
           type: string
+        infrastructures:
+          additionalProperties:
+            $ref: '#/components/schemas/InfrastructureItem'
+          description: Infrastructures information
+          type: object
+        detailedReport:
+          additionalProperties:
+            $ref: '#/components/schemas/DetailedReportEntry'
+          description: Detailed report of resource utilization
+          type: object
+        networkReport:
+          additionalProperties:
+            $ref: '#/components/schemas/NetworkEntry'
+          description: Network utilization report
+          type: object
+        reservationInstallments:
+          allOf:
+          - $ref: '#/components/schemas/ReservationInstallments'
+          description: Reservation installments information
         licenseInstallments:
           allOf:
           - $ref: '#/components/schemas/LicenseInstallments'
           description: License installments information
       required:
-      - detailedReport
       - endTimestamp
       - infrastructures
       - startTimestamp
@@ -61135,7 +61794,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-08-10T14:21:17.392Z
+        createdTimestamp: 2025-08-11T13:17:18.135Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -61144,7 +61803,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-08-10T14:21:17.393Z
+        updatedTimestamp: 2025-08-11T13:17:18.135Z
         revision: "1"
       properties:
         siteId:
@@ -61161,12 +61820,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-10T14:21:17.392Z
+          example: 2025-08-11T13:17:18.135Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-10T14:21:17.393Z
+          example: 2025-08-11T13:17:18.135Z
           format: date-time
           type: string
         links:
@@ -61188,7 +61847,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-08-10T14:21:17.392Z
+        - createdTimestamp: 2025-08-11T13:17:18.135Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -61197,9 +61856,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-08-10T14:21:17.393Z
+          updatedTimestamp: 2025-08-11T13:17:18.135Z
           revision: "1"
-        - createdTimestamp: 2025-08-10T14:21:17.392Z
+        - createdTimestamp: 2025-08-11T13:17:18.135Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -61208,7 +61867,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-08-10T14:21:17.393Z
+          updatedTimestamp: 2025-08-11T13:17:18.135Z
           revision: "1"
         meta: ""
         links: ""
@@ -61796,7 +62455,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-08-10T14:21:17.336Z
+        createdTimestamp: 2025-08-11T13:17:18.085Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -61843,7 +62502,7 @@ components:
           configurationPreview: configurationPreview
           bgpTemplateId: 101
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-08-10T14:21:17.337Z
+        updatedTimestamp: 2025-08-11T13:17:18.085Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -61985,12 +62644,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-10T14:21:17.336Z
+          example: 2025-08-11T13:17:18.085Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-10T14:21:17.337Z
+          example: 2025-08-11T13:17:18.085Z
           format: date-time
           type: string
         links:
@@ -62034,7 +62693,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-08-10T14:21:17.336Z
+        - createdTimestamp: 2025-08-11T13:17:18.085Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -62081,7 +62740,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-08-10T14:21:17.337Z
+          updatedTimestamp: 2025-08-11T13:17:18.085Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -62198,7 +62857,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-08-10T14:21:17.336Z
+        - createdTimestamp: 2025-08-11T13:17:18.085Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -62245,7 +62904,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-08-10T14:21:17.337Z
+          updatedTimestamp: 2025-08-11T13:17:18.085Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -62529,9 +63188,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-08-10T14:21:17.4Z
+        createdTimestamp: 2025-08-11T13:17:18.14Z
         mlagPair: 0
-        updatedTimestamp: 2025-08-10T14:21:17.4Z
+        updatedTimestamp: 2025-08-11T13:17:18.14Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -62544,12 +63203,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-10T14:21:17.4Z
+          example: 2025-08-11T13:17:18.14Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-10T14:21:17.4Z
+          example: 2025-08-11T13:17:18.14Z
           format: date-time
           type: string
         revision:
@@ -62627,9 +63286,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-08-10T14:21:17.4Z
+          createdTimestamp: 2025-08-11T13:17:18.14Z
           mlagPair: 0
-          updatedTimestamp: 2025-08-10T14:21:17.4Z
+          updatedTimestamp: 2025-08-11T13:17:18.14Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -62640,9 +63299,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-08-10T14:21:17.4Z
+          createdTimestamp: 2025-08-11T13:17:18.14Z
           mlagPair: 0
-          updatedTimestamp: 2025-08-10T14:21:17.4Z
+          updatedTimestamp: 2025-08-11T13:17:18.14Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -66179,10 +66838,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-08-10T14:21:17.397Z
+        createdTimestamp: 2025-08-11T13:17:18.138Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-08-10T14:21:17.397Z
+        updatedTimestamp: 2025-08-11T13:17:18.138Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -66256,12 +66915,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-10T14:21:17.397Z
+          example: 2025-08-11T13:17:18.138Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-10T14:21:17.397Z
+          example: 2025-08-11T13:17:18.138Z
           format: date-time
           type: string
         links:
@@ -73100,7 +73759,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-08-10T14:21:17.388Z
+        createdTimestamp: 2025-08-11T13:17:18.131Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -73108,7 +73767,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-08-10T14:21:17.388Z
+        updatedTimestamp: 2025-08-11T13:17:18.131Z
         revision: "1"
       properties:
         id:
@@ -73137,12 +73796,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-10T14:21:17.388Z
+          example: 2025-08-11T13:17:18.131Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-10T14:21:17.388Z
+          example: 2025-08-11T13:17:18.131Z
           format: date-time
           type: string
         links:
@@ -73161,7 +73820,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-08-10T14:21:17.39Z
+        createdTimestamp: 2025-08-11T13:17:18.133Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -73172,7 +73831,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-08-10T14:21:17.39Z
+        updatedTimestamp: 2025-08-11T13:17:18.133Z
         revision: "1"
       properties:
         id:
@@ -73206,12 +73865,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-10T14:21:17.39Z
+          example: 2025-08-11T13:17:18.133Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-10T14:21:17.39Z
+          example: 2025-08-11T13:17:18.133Z
           format: date-time
           type: string
         links:
@@ -73231,7 +73890,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-08-10T14:21:17.39Z
+        - createdTimestamp: 2025-08-11T13:17:18.133Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -73242,9 +73901,9 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-08-10T14:21:17.39Z
+          updatedTimestamp: 2025-08-11T13:17:18.133Z
           revision: "1"
-        - createdTimestamp: 2025-08-10T14:21:17.39Z
+        - createdTimestamp: 2025-08-11T13:17:18.133Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -73255,7 +73914,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-08-10T14:21:17.39Z
+          updatedTimestamp: 2025-08-11T13:17:18.133Z
           revision: "1"
         meta: ""
         links: ""
@@ -73464,7 +74123,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-08-10T14:21:17.388Z
+          createdTimestamp: 2025-08-11T13:17:18.131Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -73472,12 +74131,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-08-10T14:21:17.388Z
+          updatedTimestamp: 2025-08-11T13:17:18.131Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-08-10T14:21:17.388Z
+          createdTimestamp: 2025-08-11T13:17:18.131Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -73485,7 +74144,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-08-10T14:21:17.388Z
+          updatedTimestamp: 2025-08-11T13:17:18.131Z
           revision: "1"
         meta: ""
         links: ""
