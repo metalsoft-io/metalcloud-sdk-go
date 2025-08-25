@@ -87,6 +87,8 @@ type ServerInstance struct {
 	ControlPanelUrl *string `json:"controlPanelUrl,omitempty"`
 	Meta GenericMeta `json:"meta"`
 	Config *ServerInstanceConfiguration `json:"config,omitempty"`
+	// The network config allocated to this server instance.
+	AllocatedNetworkConfig *ServerInstanceAllocatedNetworkConfig `json:"allocatedNetworkConfig,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -1218,6 +1220,38 @@ func (o *ServerInstance) SetConfig(v ServerInstanceConfiguration) {
 	o.Config = &v
 }
 
+// GetAllocatedNetworkConfig returns the AllocatedNetworkConfig field value if set, zero value otherwise.
+func (o *ServerInstance) GetAllocatedNetworkConfig() ServerInstanceAllocatedNetworkConfig {
+	if o == nil || IsNil(o.AllocatedNetworkConfig) {
+		var ret ServerInstanceAllocatedNetworkConfig
+		return ret
+	}
+	return *o.AllocatedNetworkConfig
+}
+
+// GetAllocatedNetworkConfigOk returns a tuple with the AllocatedNetworkConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstance) GetAllocatedNetworkConfigOk() (*ServerInstanceAllocatedNetworkConfig, bool) {
+	if o == nil || IsNil(o.AllocatedNetworkConfig) {
+		return nil, false
+	}
+	return o.AllocatedNetworkConfig, true
+}
+
+// HasAllocatedNetworkConfig returns a boolean if a field has been set.
+func (o *ServerInstance) HasAllocatedNetworkConfig() bool {
+	if o != nil && !IsNil(o.AllocatedNetworkConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllocatedNetworkConfig gets a reference to the given ServerInstanceAllocatedNetworkConfig and assigns it to the AllocatedNetworkConfig field.
+func (o *ServerInstance) SetAllocatedNetworkConfig(v ServerInstanceAllocatedNetworkConfig) {
+	o.AllocatedNetworkConfig = &v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ServerInstance) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -1349,6 +1383,9 @@ func (o ServerInstance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
 	}
+	if !IsNil(o.AllocatedNetworkConfig) {
+		toSerialize["allocatedNetworkConfig"] = o.AllocatedNetworkConfig
+	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -1442,6 +1479,7 @@ func (o *ServerInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "controlPanelUrl")
 		delete(additionalProperties, "meta")
 		delete(additionalProperties, "config")
+		delete(additionalProperties, "allocatedNetworkConfig")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

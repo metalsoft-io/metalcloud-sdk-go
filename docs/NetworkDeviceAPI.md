@@ -634,7 +634,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkDeviceDefaults
 
-> []map[string]interface{} GetNetworkDeviceDefaults(ctx, siteId).Execute()
+> []NetworkDeviceDefaults GetNetworkDeviceDefaults(ctx, siteId).Execute()
 
 Get network device defaults for a site
 
@@ -660,7 +660,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.GetNetworkDeviceDefaults``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetNetworkDeviceDefaults`: []map[string]interface{}
+	// response from `GetNetworkDeviceDefaults`: []NetworkDeviceDefaults
 	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.GetNetworkDeviceDefaults`: %v\n", resp)
 }
 ```
@@ -684,7 +684,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[]map[string]interface{}**
+[**[]NetworkDeviceDefaults**](NetworkDeviceDefaults.md)
 
 ### Authorization
 

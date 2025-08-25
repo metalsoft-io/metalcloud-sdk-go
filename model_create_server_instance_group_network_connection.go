@@ -29,6 +29,8 @@ type CreateServerInstanceGroupNetworkConnection struct {
 	AccessMode NetworkEndpointGroupAllowedAccessMode `json:"accessMode"`
 	// The MTU of the logical network
 	Mtu *int32 `json:"mtu,omitempty"`
+	// Whether the logical network provides a default route
+	ProvidesDefaultRoute *bool `json:"providesDefaultRoute,omitempty"`
 	// The redundancy configuration
 	Redundancy NullableRedundancyConfig `json:"redundancy,omitempty"`
 	// DNS records that are supposed to be provisioned for the server instance group.
@@ -47,6 +49,8 @@ func NewCreateServerInstanceGroupNetworkConnection(logicalNetworkId string, tagg
 	this.LogicalNetworkId = logicalNetworkId
 	this.Tagged = tagged
 	this.AccessMode = accessMode
+	var providesDefaultRoute bool = false
+	this.ProvidesDefaultRoute = &providesDefaultRoute
 	return &this
 }
 
@@ -55,6 +59,8 @@ func NewCreateServerInstanceGroupNetworkConnection(logicalNetworkId string, tagg
 // but it doesn't guarantee that properties required by API are set
 func NewCreateServerInstanceGroupNetworkConnectionWithDefaults() *CreateServerInstanceGroupNetworkConnection {
 	this := CreateServerInstanceGroupNetworkConnection{}
+	var providesDefaultRoute bool = false
+	this.ProvidesDefaultRoute = &providesDefaultRoute
 	return &this
 }
 
@@ -162,6 +168,38 @@ func (o *CreateServerInstanceGroupNetworkConnection) SetMtu(v int32) {
 	o.Mtu = &v
 }
 
+// GetProvidesDefaultRoute returns the ProvidesDefaultRoute field value if set, zero value otherwise.
+func (o *CreateServerInstanceGroupNetworkConnection) GetProvidesDefaultRoute() bool {
+	if o == nil || IsNil(o.ProvidesDefaultRoute) {
+		var ret bool
+		return ret
+	}
+	return *o.ProvidesDefaultRoute
+}
+
+// GetProvidesDefaultRouteOk returns a tuple with the ProvidesDefaultRoute field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerInstanceGroupNetworkConnection) GetProvidesDefaultRouteOk() (*bool, bool) {
+	if o == nil || IsNil(o.ProvidesDefaultRoute) {
+		return nil, false
+	}
+	return o.ProvidesDefaultRoute, true
+}
+
+// HasProvidesDefaultRoute returns a boolean if a field has been set.
+func (o *CreateServerInstanceGroupNetworkConnection) HasProvidesDefaultRoute() bool {
+	if o != nil && !IsNil(o.ProvidesDefaultRoute) {
+		return true
+	}
+
+	return false
+}
+
+// SetProvidesDefaultRoute gets a reference to the given bool and assigns it to the ProvidesDefaultRoute field.
+func (o *CreateServerInstanceGroupNetworkConnection) SetProvidesDefaultRoute(v bool) {
+	o.ProvidesDefaultRoute = &v
+}
+
 // GetRedundancy returns the Redundancy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateServerInstanceGroupNetworkConnection) GetRedundancy() RedundancyConfig {
 	if o == nil || IsNil(o.Redundancy.Get()) {
@@ -262,6 +300,9 @@ func (o CreateServerInstanceGroupNetworkConnection) ToMap() (map[string]interfac
 	if !IsNil(o.Mtu) {
 		toSerialize["mtu"] = o.Mtu
 	}
+	if !IsNil(o.ProvidesDefaultRoute) {
+		toSerialize["providesDefaultRoute"] = o.ProvidesDefaultRoute
+	}
 	if o.Redundancy.IsSet() {
 		toSerialize["redundancy"] = o.Redundancy.Get()
 	}
@@ -317,6 +358,7 @@ func (o *CreateServerInstanceGroupNetworkConnection) UnmarshalJSON(data []byte) 
 		delete(additionalProperties, "tagged")
 		delete(additionalProperties, "accessMode")
 		delete(additionalProperties, "mtu")
+		delete(additionalProperties, "providesDefaultRoute")
 		delete(additionalProperties, "redundancy")
 		delete(additionalProperties, "dns")
 		o.AdditionalProperties = additionalProperties

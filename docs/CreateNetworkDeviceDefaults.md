@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **VtepAddressIpv4** | Pointer to **string** | VTEP (VXLAN Tunnel Endpoint) IPv4 address. | [optional] 
 **VtepAddressIpv6** | Pointer to **string** | VTEP (VXLAN Tunnel Endpoint) IPv6 address. | [optional] 
 **OrderIndex** | Pointer to **float32** | Order index used for sorting or prioritization. | [optional] 
-**VolumeTemplateId** | Pointer to **float32** | ID of the volume template associated with the network device. | [optional] 
+**OsTemplateId** | Pointer to **float32** | ID of the volume template associated with the network device. | [optional] 
 **MlagPartnerHostname** | Pointer to **string** | MLAG partner hostname. Can contain letters, numbers, dots, underscores, and hyphens (1-63 characters). | [optional] 
 **IsPartOfMlagPair** | Pointer to **float32** | Indicates whether the device is part of an MLAG pair (0 &#x3D; No, 1 &#x3D; Yes). | [optional] 
 **MlagSystemMac** | Pointer to **string** | MLAG system MAC address in the format XX:XX:XX:XX:XX:XX. | [optional] 
@@ -384,30 +384,30 @@ SetOrderIndex sets OrderIndex field to given value.
 
 HasOrderIndex returns a boolean if a field has been set.
 
-### GetVolumeTemplateId
+### GetOsTemplateId
 
-`func (o *CreateNetworkDeviceDefaults) GetVolumeTemplateId() float32`
+`func (o *CreateNetworkDeviceDefaults) GetOsTemplateId() float32`
 
-GetVolumeTemplateId returns the VolumeTemplateId field if non-nil, zero value otherwise.
+GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
-### GetVolumeTemplateIdOk
+### GetOsTemplateIdOk
 
-`func (o *CreateNetworkDeviceDefaults) GetVolumeTemplateIdOk() (*float32, bool)`
+`func (o *CreateNetworkDeviceDefaults) GetOsTemplateIdOk() (*float32, bool)`
 
-GetVolumeTemplateIdOk returns a tuple with the VolumeTemplateId field if it's non-nil, zero value otherwise
+GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVolumeTemplateId
+### SetOsTemplateId
 
-`func (o *CreateNetworkDeviceDefaults) SetVolumeTemplateId(v float32)`
+`func (o *CreateNetworkDeviceDefaults) SetOsTemplateId(v float32)`
 
-SetVolumeTemplateId sets VolumeTemplateId field to given value.
+SetOsTemplateId sets OsTemplateId field to given value.
 
-### HasVolumeTemplateId
+### HasOsTemplateId
 
-`func (o *CreateNetworkDeviceDefaults) HasVolumeTemplateId() bool`
+`func (o *CreateNetworkDeviceDefaults) HasOsTemplateId() bool`
 
-HasVolumeTemplateId returns a boolean if a field has been set.
+HasOsTemplateId returns a boolean if a field has been set.
 
 ### GetMlagPartnerHostname
 

@@ -50,7 +50,7 @@ type CreateNetworkDeviceDefaults struct {
 	// Order index used for sorting or prioritization.
 	OrderIndex *float32 `json:"orderIndex,omitempty"`
 	// ID of the volume template associated with the network device.
-	VolumeTemplateId *float32 `json:"volumeTemplateId,omitempty"`
+	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
 	// MLAG partner hostname. Can contain letters, numbers, dots, underscores, and hyphens (1-63 characters).
 	MlagPartnerHostname *string `json:"mlagPartnerHostname,omitempty"`
 	// Indicates whether the device is part of an MLAG pair (0 = No, 1 = Yes).
@@ -517,36 +517,36 @@ func (o *CreateNetworkDeviceDefaults) SetOrderIndex(v float32) {
 	o.OrderIndex = &v
 }
 
-// GetVolumeTemplateId returns the VolumeTemplateId field value if set, zero value otherwise.
-func (o *CreateNetworkDeviceDefaults) GetVolumeTemplateId() float32 {
-	if o == nil || IsNil(o.VolumeTemplateId) {
+// GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
+func (o *CreateNetworkDeviceDefaults) GetOsTemplateId() float32 {
+	if o == nil || IsNil(o.OsTemplateId) {
 		var ret float32
 		return ret
 	}
-	return *o.VolumeTemplateId
+	return *o.OsTemplateId
 }
 
-// GetVolumeTemplateIdOk returns a tuple with the VolumeTemplateId field value if set, nil otherwise
+// GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceDefaults) GetVolumeTemplateIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.VolumeTemplateId) {
+func (o *CreateNetworkDeviceDefaults) GetOsTemplateIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
-	return o.VolumeTemplateId, true
+	return o.OsTemplateId, true
 }
 
-// HasVolumeTemplateId returns a boolean if a field has been set.
-func (o *CreateNetworkDeviceDefaults) HasVolumeTemplateId() bool {
-	if o != nil && !IsNil(o.VolumeTemplateId) {
+// HasOsTemplateId returns a boolean if a field has been set.
+func (o *CreateNetworkDeviceDefaults) HasOsTemplateId() bool {
+	if o != nil && !IsNil(o.OsTemplateId) {
 		return true
 	}
 
 	return false
 }
 
-// SetVolumeTemplateId gets a reference to the given float32 and assigns it to the VolumeTemplateId field.
-func (o *CreateNetworkDeviceDefaults) SetVolumeTemplateId(v float32) {
-	o.VolumeTemplateId = &v
+// SetOsTemplateId gets a reference to the given float32 and assigns it to the OsTemplateId field.
+func (o *CreateNetworkDeviceDefaults) SetOsTemplateId(v float32) {
+	o.OsTemplateId = &v
 }
 
 // GetMlagPartnerHostname returns the MlagPartnerHostname field value if set, zero value otherwise.
@@ -757,8 +757,8 @@ func (o CreateNetworkDeviceDefaults) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OrderIndex) {
 		toSerialize["orderIndex"] = o.OrderIndex
 	}
-	if !IsNil(o.VolumeTemplateId) {
-		toSerialize["volumeTemplateId"] = o.VolumeTemplateId
+	if !IsNil(o.OsTemplateId) {
+		toSerialize["osTemplateId"] = o.OsTemplateId
 	}
 	if !IsNil(o.MlagPartnerHostname) {
 		toSerialize["mlagPartnerHostname"] = o.MlagPartnerHostname
@@ -833,7 +833,7 @@ func (o *CreateNetworkDeviceDefaults) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vtepAddressIpv4")
 		delete(additionalProperties, "vtepAddressIpv6")
 		delete(additionalProperties, "orderIndex")
-		delete(additionalProperties, "volumeTemplateId")
+		delete(additionalProperties, "osTemplateId")
 		delete(additionalProperties, "mlagPartnerHostname")
 		delete(additionalProperties, "isPartOfMlagPair")
 		delete(additionalProperties, "mlagSystemMac")

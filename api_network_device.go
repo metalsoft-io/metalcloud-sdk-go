@@ -920,7 +920,7 @@ type NetworkDeviceAPIGetNetworkDeviceDefaultsRequest struct {
 	siteId float32
 }
 
-func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) Execute() ([]map[string]interface{}, *http.Response, error) {
+func (r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) Execute() ([]NetworkDeviceDefaults, *http.Response, error) {
 	return r.ApiService.GetNetworkDeviceDefaultsExecute(r)
 }
 
@@ -940,13 +940,13 @@ func (a *NetworkDeviceAPIService) GetNetworkDeviceDefaults(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []map[string]interface{}
-func (a *NetworkDeviceAPIService) GetNetworkDeviceDefaultsExecute(r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) ([]map[string]interface{}, *http.Response, error) {
+//  @return []NetworkDeviceDefaults
+func (a *NetworkDeviceAPIService) GetNetworkDeviceDefaultsExecute(r NetworkDeviceAPIGetNetworkDeviceDefaultsRequest) ([]NetworkDeviceDefaults, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []map[string]interface{}
+		localVarReturnValue  []NetworkDeviceDefaults
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.GetNetworkDeviceDefaults")

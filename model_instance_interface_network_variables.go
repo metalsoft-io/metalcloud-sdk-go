@@ -23,6 +23,8 @@ var _ MappedNullable = &InstanceInterfaceNetworkVariables{}
 type InstanceInterfaceNetworkVariables struct {
 	InterfaceType InstanceInterfaceType `json:"interfaceType"`
 	LogicalNetworkId *float32 `json:"logicalNetworkId,omitempty"`
+	LogicalNetworkName *string `json:"logicalNetworkName,omitempty"`
+	LogicalNetworkLabel *string `json:"logicalNetworkLabel,omitempty"`
 	TypeInterfaceId float32 `json:"typeInterfaceId"`
 	MacAddress *string `json:"macAddress,omitempty"`
 	Mtu *float32 `json:"mtu,omitempty"`
@@ -110,6 +112,70 @@ func (o *InstanceInterfaceNetworkVariables) HasLogicalNetworkId() bool {
 // SetLogicalNetworkId gets a reference to the given float32 and assigns it to the LogicalNetworkId field.
 func (o *InstanceInterfaceNetworkVariables) SetLogicalNetworkId(v float32) {
 	o.LogicalNetworkId = &v
+}
+
+// GetLogicalNetworkName returns the LogicalNetworkName field value if set, zero value otherwise.
+func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkName() string {
+	if o == nil || IsNil(o.LogicalNetworkName) {
+		var ret string
+		return ret
+	}
+	return *o.LogicalNetworkName
+}
+
+// GetLogicalNetworkNameOk returns a tuple with the LogicalNetworkName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkNameOk() (*string, bool) {
+	if o == nil || IsNil(o.LogicalNetworkName) {
+		return nil, false
+	}
+	return o.LogicalNetworkName, true
+}
+
+// HasLogicalNetworkName returns a boolean if a field has been set.
+func (o *InstanceInterfaceNetworkVariables) HasLogicalNetworkName() bool {
+	if o != nil && !IsNil(o.LogicalNetworkName) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworkName gets a reference to the given string and assigns it to the LogicalNetworkName field.
+func (o *InstanceInterfaceNetworkVariables) SetLogicalNetworkName(v string) {
+	o.LogicalNetworkName = &v
+}
+
+// GetLogicalNetworkLabel returns the LogicalNetworkLabel field value if set, zero value otherwise.
+func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkLabel() string {
+	if o == nil || IsNil(o.LogicalNetworkLabel) {
+		var ret string
+		return ret
+	}
+	return *o.LogicalNetworkLabel
+}
+
+// GetLogicalNetworkLabelOk returns a tuple with the LogicalNetworkLabel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.LogicalNetworkLabel) {
+		return nil, false
+	}
+	return o.LogicalNetworkLabel, true
+}
+
+// HasLogicalNetworkLabel returns a boolean if a field has been set.
+func (o *InstanceInterfaceNetworkVariables) HasLogicalNetworkLabel() bool {
+	if o != nil && !IsNil(o.LogicalNetworkLabel) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogicalNetworkLabel gets a reference to the given string and assigns it to the LogicalNetworkLabel field.
+func (o *InstanceInterfaceNetworkVariables) SetLogicalNetworkLabel(v string) {
+	o.LogicalNetworkLabel = &v
 }
 
 // GetTypeInterfaceId returns the TypeInterfaceId field value
@@ -406,6 +472,12 @@ func (o InstanceInterfaceNetworkVariables) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.LogicalNetworkId) {
 		toSerialize["logicalNetworkId"] = o.LogicalNetworkId
 	}
+	if !IsNil(o.LogicalNetworkName) {
+		toSerialize["logicalNetworkName"] = o.LogicalNetworkName
+	}
+	if !IsNil(o.LogicalNetworkLabel) {
+		toSerialize["logicalNetworkLabel"] = o.LogicalNetworkLabel
+	}
 	toSerialize["typeInterfaceId"] = o.TypeInterfaceId
 	if !IsNil(o.MacAddress) {
 		toSerialize["macAddress"] = o.MacAddress
@@ -477,6 +549,8 @@ func (o *InstanceInterfaceNetworkVariables) UnmarshalJSON(data []byte) (err erro
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "interfaceType")
 		delete(additionalProperties, "logicalNetworkId")
+		delete(additionalProperties, "logicalNetworkName")
+		delete(additionalProperties, "logicalNetworkLabel")
 		delete(additionalProperties, "typeInterfaceId")
 		delete(additionalProperties, "macAddress")
 		delete(additionalProperties, "mtu")

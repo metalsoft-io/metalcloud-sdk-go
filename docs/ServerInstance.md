@@ -41,6 +41,7 @@ Name | Type | Description | Notes
 **ControlPanelUrl** | Pointer to **string** | Control panel url for the Instance Interface. | [optional] 
 **Meta** | [**GenericMeta**](GenericMeta.md) |  | 
 **Config** | Pointer to [**ServerInstanceConfiguration**](ServerInstanceConfiguration.md) |  | [optional] 
+**AllocatedNetworkConfig** | Pointer to [**ServerInstanceAllocatedNetworkConfig**](ServerInstanceAllocatedNetworkConfig.md) | The network config allocated to this server instance. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
@@ -931,6 +932,31 @@ SetConfig sets Config field to given value.
 `func (o *ServerInstance) HasConfig() bool`
 
 HasConfig returns a boolean if a field has been set.
+
+### GetAllocatedNetworkConfig
+
+`func (o *ServerInstance) GetAllocatedNetworkConfig() ServerInstanceAllocatedNetworkConfig`
+
+GetAllocatedNetworkConfig returns the AllocatedNetworkConfig field if non-nil, zero value otherwise.
+
+### GetAllocatedNetworkConfigOk
+
+`func (o *ServerInstance) GetAllocatedNetworkConfigOk() (*ServerInstanceAllocatedNetworkConfig, bool)`
+
+GetAllocatedNetworkConfigOk returns a tuple with the AllocatedNetworkConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllocatedNetworkConfig
+
+`func (o *ServerInstance) SetAllocatedNetworkConfig(v ServerInstanceAllocatedNetworkConfig)`
+
+SetAllocatedNetworkConfig sets AllocatedNetworkConfig field to given value.
+
+### HasAllocatedNetworkConfig
+
+`func (o *ServerInstance) HasAllocatedNetworkConfig() bool`
+
+HasAllocatedNetworkConfig returns a boolean if a field has been set.
 
 ### GetLinks
 

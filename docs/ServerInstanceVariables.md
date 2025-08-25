@@ -40,6 +40,7 @@ Name | Type | Description | Notes
 **IscsiInitiatorPasswordEncrypted** | Pointer to **string** | iSCSI Initiator Password for the Instance Interface. | [optional] 
 **ControlPanelUrl** | Pointer to **string** | Control panel url for the Instance Interface. | [optional] 
 **Config** | Pointer to [**ServerInstanceConfiguration**](ServerInstanceConfiguration.md) |  | [optional] 
+**AllocatedNetworkConfig** | Pointer to [**ServerInstanceAllocatedNetworkConfig**](ServerInstanceAllocatedNetworkConfig.md) | The network config allocated to this server instance. | [optional] 
 
 ## Methods
 
@@ -909,6 +910,31 @@ SetConfig sets Config field to given value.
 `func (o *ServerInstanceVariables) HasConfig() bool`
 
 HasConfig returns a boolean if a field has been set.
+
+### GetAllocatedNetworkConfig
+
+`func (o *ServerInstanceVariables) GetAllocatedNetworkConfig() ServerInstanceAllocatedNetworkConfig`
+
+GetAllocatedNetworkConfig returns the AllocatedNetworkConfig field if non-nil, zero value otherwise.
+
+### GetAllocatedNetworkConfigOk
+
+`func (o *ServerInstanceVariables) GetAllocatedNetworkConfigOk() (*ServerInstanceAllocatedNetworkConfig, bool)`
+
+GetAllocatedNetworkConfigOk returns a tuple with the AllocatedNetworkConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllocatedNetworkConfig
+
+`func (o *ServerInstanceVariables) SetAllocatedNetworkConfig(v ServerInstanceAllocatedNetworkConfig)`
+
+SetAllocatedNetworkConfig sets AllocatedNetworkConfig field to given value.
+
+### HasAllocatedNetworkConfig
+
+`func (o *ServerInstanceVariables) HasAllocatedNetworkConfig() bool`
+
+HasAllocatedNetworkConfig returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

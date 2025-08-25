@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Tagged** | **bool** | Whether the logical network is tagged. | 
 **AccessMode** | [**NetworkEndpointGroupAllowedAccessMode**](NetworkEndpointGroupAllowedAccessMode.md) | The access mode of the network endpoint group | 
 **Mtu** | Pointer to **int32** | The MTU of the logical network | [optional] 
+**ProvidesDefaultRoute** | Pointer to **bool** | Whether the logical network provides a default route | [optional] [default to false]
 **Redundancy** | Pointer to [**NullableRedundancyConfig**](RedundancyConfig.md) | The redundancy configuration | [optional] 
 **Dns** | Pointer to [**NullableDnsRecordsEndpointGroupLogicalNetwork**](DnsRecordsEndpointGroupLogicalNetwork.md) | DNS records that are supposed to be provisioned for the server instance group. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -95,6 +96,31 @@ SetMtu sets Mtu field to given value.
 `func (o *ServerInstanceGroupNetworkConnection) HasMtu() bool`
 
 HasMtu returns a boolean if a field has been set.
+
+### GetProvidesDefaultRoute
+
+`func (o *ServerInstanceGroupNetworkConnection) GetProvidesDefaultRoute() bool`
+
+GetProvidesDefaultRoute returns the ProvidesDefaultRoute field if non-nil, zero value otherwise.
+
+### GetProvidesDefaultRouteOk
+
+`func (o *ServerInstanceGroupNetworkConnection) GetProvidesDefaultRouteOk() (*bool, bool)`
+
+GetProvidesDefaultRouteOk returns a tuple with the ProvidesDefaultRoute field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvidesDefaultRoute
+
+`func (o *ServerInstanceGroupNetworkConnection) SetProvidesDefaultRoute(v bool)`
+
+SetProvidesDefaultRoute sets ProvidesDefaultRoute field to given value.
+
+### HasProvidesDefaultRoute
+
+`func (o *ServerInstanceGroupNetworkConnection) HasProvidesDefaultRoute() bool`
+
+HasProvidesDefaultRoute returns a boolean if a field has been set.
 
 ### GetRedundancy
 

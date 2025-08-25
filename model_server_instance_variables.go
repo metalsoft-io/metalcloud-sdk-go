@@ -86,6 +86,8 @@ type ServerInstanceVariables struct {
 	// Control panel url for the Instance Interface.
 	ControlPanelUrl *string `json:"controlPanelUrl,omitempty"`
 	Config *ServerInstanceConfiguration `json:"config,omitempty"`
+	// The network config allocated to this server instance.
+	AllocatedNetworkConfig *ServerInstanceAllocatedNetworkConfig `json:"allocatedNetworkConfig,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -1190,6 +1192,38 @@ func (o *ServerInstanceVariables) SetConfig(v ServerInstanceConfiguration) {
 	o.Config = &v
 }
 
+// GetAllocatedNetworkConfig returns the AllocatedNetworkConfig field value if set, zero value otherwise.
+func (o *ServerInstanceVariables) GetAllocatedNetworkConfig() ServerInstanceAllocatedNetworkConfig {
+	if o == nil || IsNil(o.AllocatedNetworkConfig) {
+		var ret ServerInstanceAllocatedNetworkConfig
+		return ret
+	}
+	return *o.AllocatedNetworkConfig
+}
+
+// GetAllocatedNetworkConfigOk returns a tuple with the AllocatedNetworkConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceVariables) GetAllocatedNetworkConfigOk() (*ServerInstanceAllocatedNetworkConfig, bool) {
+	if o == nil || IsNil(o.AllocatedNetworkConfig) {
+		return nil, false
+	}
+	return o.AllocatedNetworkConfig, true
+}
+
+// HasAllocatedNetworkConfig returns a boolean if a field has been set.
+func (o *ServerInstanceVariables) HasAllocatedNetworkConfig() bool {
+	if o != nil && !IsNil(o.AllocatedNetworkConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllocatedNetworkConfig gets a reference to the given ServerInstanceAllocatedNetworkConfig and assigns it to the AllocatedNetworkConfig field.
+func (o *ServerInstanceVariables) SetAllocatedNetworkConfig(v ServerInstanceAllocatedNetworkConfig) {
+	o.AllocatedNetworkConfig = &v
+}
+
 func (o ServerInstanceVariables) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1288,6 +1322,9 @@ func (o ServerInstanceVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
 	}
+	if !IsNil(o.AllocatedNetworkConfig) {
+		toSerialize["allocatedNetworkConfig"] = o.AllocatedNetworkConfig
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1376,6 +1413,7 @@ func (o *ServerInstanceVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "iscsiInitiatorPasswordEncrypted")
 		delete(additionalProperties, "controlPanelUrl")
 		delete(additionalProperties, "config")
+		delete(additionalProperties, "allocatedNetworkConfig")
 		o.AdditionalProperties = additionalProperties
 	}
 

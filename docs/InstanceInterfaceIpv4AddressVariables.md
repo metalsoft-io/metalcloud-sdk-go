@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ip** | **string** |  | 
 **Cidr** | **string** |  | 
+**Gateway** | Pointer to **string** |  | [optional] 
+**IsDefaultGateway** | **bool** |  | 
 **Netmask** | **string** |  | 
 **MaskBits** | **float32** |  | 
 
@@ -13,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewInstanceInterfaceIpv4AddressVariables
 
-`func NewInstanceInterfaceIpv4AddressVariables(ip string, cidr string, netmask string, maskBits float32, ) *InstanceInterfaceIpv4AddressVariables`
+`func NewInstanceInterfaceIpv4AddressVariables(ip string, cidr string, isDefaultGateway bool, netmask string, maskBits float32, ) *InstanceInterfaceIpv4AddressVariables`
 
 NewInstanceInterfaceIpv4AddressVariables instantiates a new InstanceInterfaceIpv4AddressVariables object
 This constructor will assign default values to properties that have it defined,
@@ -66,6 +68,51 @@ and a boolean to check if the value has been set.
 `func (o *InstanceInterfaceIpv4AddressVariables) SetCidr(v string)`
 
 SetCidr sets Cidr field to given value.
+
+
+### GetGateway
+
+`func (o *InstanceInterfaceIpv4AddressVariables) GetGateway() string`
+
+GetGateway returns the Gateway field if non-nil, zero value otherwise.
+
+### GetGatewayOk
+
+`func (o *InstanceInterfaceIpv4AddressVariables) GetGatewayOk() (*string, bool)`
+
+GetGatewayOk returns a tuple with the Gateway field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGateway
+
+`func (o *InstanceInterfaceIpv4AddressVariables) SetGateway(v string)`
+
+SetGateway sets Gateway field to given value.
+
+### HasGateway
+
+`func (o *InstanceInterfaceIpv4AddressVariables) HasGateway() bool`
+
+HasGateway returns a boolean if a field has been set.
+
+### GetIsDefaultGateway
+
+`func (o *InstanceInterfaceIpv4AddressVariables) GetIsDefaultGateway() bool`
+
+GetIsDefaultGateway returns the IsDefaultGateway field if non-nil, zero value otherwise.
+
+### GetIsDefaultGatewayOk
+
+`func (o *InstanceInterfaceIpv4AddressVariables) GetIsDefaultGatewayOk() (*bool, bool)`
+
+GetIsDefaultGatewayOk returns a tuple with the IsDefaultGateway field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsDefaultGateway
+
+`func (o *InstanceInterfaceIpv4AddressVariables) SetIsDefaultGateway(v bool)`
+
+SetIsDefaultGateway sets IsDefaultGateway field to given value.
 
 
 ### GetNetmask

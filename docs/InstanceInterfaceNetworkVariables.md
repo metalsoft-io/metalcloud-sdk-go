@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InterfaceType** | [**InstanceInterfaceType**](InstanceInterfaceType.md) |  | 
 **LogicalNetworkId** | Pointer to **float32** |  | [optional] 
+**LogicalNetworkName** | Pointer to **string** |  | [optional] 
+**LogicalNetworkLabel** | Pointer to **string** |  | [optional] 
 **TypeInterfaceId** | **float32** |  | 
 **MacAddress** | Pointer to **string** |  | [optional] 
 **Mtu** | Pointer to **float32** |  | [optional] 
@@ -79,6 +81,56 @@ SetLogicalNetworkId sets LogicalNetworkId field to given value.
 `func (o *InstanceInterfaceNetworkVariables) HasLogicalNetworkId() bool`
 
 HasLogicalNetworkId returns a boolean if a field has been set.
+
+### GetLogicalNetworkName
+
+`func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkName() string`
+
+GetLogicalNetworkName returns the LogicalNetworkName field if non-nil, zero value otherwise.
+
+### GetLogicalNetworkNameOk
+
+`func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkNameOk() (*string, bool)`
+
+GetLogicalNetworkNameOk returns a tuple with the LogicalNetworkName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogicalNetworkName
+
+`func (o *InstanceInterfaceNetworkVariables) SetLogicalNetworkName(v string)`
+
+SetLogicalNetworkName sets LogicalNetworkName field to given value.
+
+### HasLogicalNetworkName
+
+`func (o *InstanceInterfaceNetworkVariables) HasLogicalNetworkName() bool`
+
+HasLogicalNetworkName returns a boolean if a field has been set.
+
+### GetLogicalNetworkLabel
+
+`func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkLabel() string`
+
+GetLogicalNetworkLabel returns the LogicalNetworkLabel field if non-nil, zero value otherwise.
+
+### GetLogicalNetworkLabelOk
+
+`func (o *InstanceInterfaceNetworkVariables) GetLogicalNetworkLabelOk() (*string, bool)`
+
+GetLogicalNetworkLabelOk returns a tuple with the LogicalNetworkLabel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogicalNetworkLabel
+
+`func (o *InstanceInterfaceNetworkVariables) SetLogicalNetworkLabel(v string)`
+
+SetLogicalNetworkLabel sets LogicalNetworkLabel field to given value.
+
+### HasLogicalNetworkLabel
+
+`func (o *InstanceInterfaceNetworkVariables) HasLogicalNetworkLabel() bool`
+
+HasLogicalNetworkLabel returns a boolean if a field has been set.
 
 ### GetTypeInterfaceId
 

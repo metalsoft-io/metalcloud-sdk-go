@@ -26,6 +26,8 @@ type UpdateVMInstanceGroupNetworkConnection struct {
 	AccessMode *NetworkEndpointGroupAllowedAccessMode `json:"accessMode,omitempty"`
 	// The MTU of the logical network
 	Mtu *int32 `json:"mtu,omitempty"`
+	// Whether the logical network provides a default route
+	ProvidesDefaultRoute *bool `json:"providesDefaultRoute,omitempty"`
 	// The redundancy configuration
 	Redundancy NullableRedundancyConfig `json:"redundancy,omitempty"`
 	// DNS records configuration for the server instance group.
@@ -41,6 +43,8 @@ type _UpdateVMInstanceGroupNetworkConnection UpdateVMInstanceGroupNetworkConnect
 // will change when the set of required properties is changed
 func NewUpdateVMInstanceGroupNetworkConnection() *UpdateVMInstanceGroupNetworkConnection {
 	this := UpdateVMInstanceGroupNetworkConnection{}
+	var providesDefaultRoute bool = false
+	this.ProvidesDefaultRoute = &providesDefaultRoute
 	return &this
 }
 
@@ -49,6 +53,8 @@ func NewUpdateVMInstanceGroupNetworkConnection() *UpdateVMInstanceGroupNetworkCo
 // but it doesn't guarantee that properties required by API are set
 func NewUpdateVMInstanceGroupNetworkConnectionWithDefaults() *UpdateVMInstanceGroupNetworkConnection {
 	this := UpdateVMInstanceGroupNetworkConnection{}
+	var providesDefaultRoute bool = false
+	this.ProvidesDefaultRoute = &providesDefaultRoute
 	return &this
 }
 
@@ -146,6 +152,38 @@ func (o *UpdateVMInstanceGroupNetworkConnection) HasMtu() bool {
 // SetMtu gets a reference to the given int32 and assigns it to the Mtu field.
 func (o *UpdateVMInstanceGroupNetworkConnection) SetMtu(v int32) {
 	o.Mtu = &v
+}
+
+// GetProvidesDefaultRoute returns the ProvidesDefaultRoute field value if set, zero value otherwise.
+func (o *UpdateVMInstanceGroupNetworkConnection) GetProvidesDefaultRoute() bool {
+	if o == nil || IsNil(o.ProvidesDefaultRoute) {
+		var ret bool
+		return ret
+	}
+	return *o.ProvidesDefaultRoute
+}
+
+// GetProvidesDefaultRouteOk returns a tuple with the ProvidesDefaultRoute field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateVMInstanceGroupNetworkConnection) GetProvidesDefaultRouteOk() (*bool, bool) {
+	if o == nil || IsNil(o.ProvidesDefaultRoute) {
+		return nil, false
+	}
+	return o.ProvidesDefaultRoute, true
+}
+
+// HasProvidesDefaultRoute returns a boolean if a field has been set.
+func (o *UpdateVMInstanceGroupNetworkConnection) HasProvidesDefaultRoute() bool {
+	if o != nil && !IsNil(o.ProvidesDefaultRoute) {
+		return true
+	}
+
+	return false
+}
+
+// SetProvidesDefaultRoute gets a reference to the given bool and assigns it to the ProvidesDefaultRoute field.
+func (o *UpdateVMInstanceGroupNetworkConnection) SetProvidesDefaultRoute(v bool) {
+	o.ProvidesDefaultRoute = &v
 }
 
 // GetRedundancy returns the Redundancy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -251,6 +289,9 @@ func (o UpdateVMInstanceGroupNetworkConnection) ToMap() (map[string]interface{},
 	if !IsNil(o.Mtu) {
 		toSerialize["mtu"] = o.Mtu
 	}
+	if !IsNil(o.ProvidesDefaultRoute) {
+		toSerialize["providesDefaultRoute"] = o.ProvidesDefaultRoute
+	}
 	if o.Redundancy.IsSet() {
 		toSerialize["redundancy"] = o.Redundancy.Get()
 	}
@@ -282,6 +323,7 @@ func (o *UpdateVMInstanceGroupNetworkConnection) UnmarshalJSON(data []byte) (err
 		delete(additionalProperties, "tagged")
 		delete(additionalProperties, "accessMode")
 		delete(additionalProperties, "mtu")
+		delete(additionalProperties, "providesDefaultRoute")
 		delete(additionalProperties, "redundancy")
 		delete(additionalProperties, "dns")
 		o.AdditionalProperties = additionalProperties

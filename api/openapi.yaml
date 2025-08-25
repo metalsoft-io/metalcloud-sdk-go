@@ -41285,9 +41285,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-08-11T13:17:18.089Z
+        createdTimestamp: 2025-08-25T13:18:36.065Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-08-11T13:17:18.089Z
+        updatedTimestamp: 2025-08-25T13:18:36.065Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -41383,12 +41383,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-11T13:17:18.089Z
+          example: 2025-08-25T13:18:36.065Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-11T13:17:18.089Z
+          example: 2025-08-25T13:18:36.065Z
           format: date-time
           type: string
         links:
@@ -41420,9 +41420,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-08-11T13:17:18.089Z
+          createdTimestamp: 2025-08-25T13:18:36.065Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-08-11T13:17:18.089Z
+          updatedTimestamp: 2025-08-25T13:18:36.065Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -41439,9 +41439,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-08-11T13:17:18.089Z
+          createdTimestamp: 2025-08-25T13:18:36.065Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-08-11T13:17:18.089Z
+          updatedTimestamp: 2025-08-25T13:18:36.065Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -43755,6 +43755,10 @@ components:
           description: The MTU of the logical network
           example: 1500
           type: integer
+        providesDefaultRoute:
+          default: false
+          description: Whether the logical network provides a default route
+          type: boolean
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -54541,6 +54545,173 @@ components:
       - revision
       - updatedTimestamp
       type: object
+    ServerInstanceNetworkConfigIpInfo:
+      properties:
+        cidr:
+          description: The CIDR notation of the IP address.
+          type: string
+        gateway:
+          description: The gateway IP address.
+          type: string
+        ip:
+          description: The IP address.
+          type: string
+        maskBits:
+          description: The subnet mask bits.
+          type: number
+        netmask:
+          description: The netmask.
+          type: string
+      type: object
+    ServerInstanceNetworkConfigRoute:
+      properties:
+        to:
+          type: string
+        via:
+          type: string
+      required:
+      - to
+      - via
+      type: object
+    ServerInstanceNetworkConfigMembers:
+      properties:
+        id:
+          description: The id of the network configuration member.
+          type: number
+        interfaceType:
+          description: The type of the network configuration member.
+          type: string
+      required:
+      - id
+      - interfaceType
+      type: object
+    ServerInstanceBondNetworkConfig:
+      properties:
+        interfaceType:
+          type: string
+        typeInterfaceId:
+          type: number
+        logicalNetworkId:
+          type: number
+        logicalNetworkName:
+          type: string
+        logicalNetworkLabel:
+          type: string
+        ipv4Addresses:
+          description: The list of IPv4 addresses.
+          items:
+            $ref: '#/components/schemas/ServerInstanceNetworkConfigIpInfo'
+          type: array
+        ipv6Addresses:
+          description: The list of IPv6 addresses.
+          items:
+            $ref: '#/components/schemas/ServerInstanceNetworkConfigIpInfo'
+          type: array
+        routes:
+          description: The list of static routes.
+          items:
+            $ref: '#/components/schemas/ServerInstanceNetworkConfigRoute'
+          type: array
+        members:
+          description: The list of network configuration members.
+          items:
+            $ref: '#/components/schemas/ServerInstanceNetworkConfigMembers'
+          type: array
+      required:
+      - interfaceType
+      - typeInterfaceId
+      type: object
+    ServerInstancePhysicalNetworkConfig:
+      properties:
+        interfaceType:
+          type: string
+        typeInterfaceId:
+          type: number
+        logicalNetworkId:
+          type: number
+        logicalNetworkName:
+          type: string
+        logicalNetworkLabel:
+          type: string
+        ipv4Addresses:
+          description: The list of IPv4 addresses.
+          items:
+            $ref: '#/components/schemas/ServerInstanceNetworkConfigIpInfo'
+          type: array
+        ipv6Addresses:
+          description: The list of IPv6 addresses.
+          items:
+            $ref: '#/components/schemas/ServerInstanceNetworkConfigIpInfo'
+          type: array
+        routes:
+          description: The list of static routes.
+          items:
+            $ref: '#/components/schemas/ServerInstanceNetworkConfigRoute'
+          type: array
+        macAddress:
+          type: string
+      required:
+      - interfaceType
+      - typeInterfaceId
+      type: object
+    ServerInstanceTrunkNetworkConfig:
+      properties:
+        interfaceType:
+          type: string
+        typeInterfaceId:
+          type: number
+        logicalNetworkId:
+          type: number
+        logicalNetworkName:
+          type: string
+        logicalNetworkLabel:
+          type: string
+        ipv4Addresses:
+          description: The list of IPv4 addresses.
+          items:
+            $ref: '#/components/schemas/ServerInstanceNetworkConfigIpInfo'
+          type: array
+        ipv6Addresses:
+          description: The list of IPv6 addresses.
+          items:
+            $ref: '#/components/schemas/ServerInstanceNetworkConfigIpInfo'
+          type: array
+        routes:
+          description: The list of static routes.
+          items:
+            $ref: '#/components/schemas/ServerInstanceNetworkConfigRoute'
+          type: array
+        vlanId:
+          type: number
+        links:
+          description: The list of network configuration members.
+          items:
+            $ref: '#/components/schemas/ServerInstanceNetworkConfigMembers'
+          type: array
+      required:
+      - interfaceType
+      - typeInterfaceId
+      - vlanId
+      type: object
+    ServerInstanceAllocatedNetworkConfig:
+      properties:
+        bondNetworkConfigs:
+          additionalProperties:
+            $ref: '#/components/schemas/ServerInstanceBondNetworkConfig'
+          description: The list of bond network configurations indexed by LAG id.
+          type: object
+        physicalInterfaceNetworkConfigs:
+          additionalProperties:
+            $ref: '#/components/schemas/ServerInstancePhysicalNetworkConfig'
+          description: The list of physical network configurations indexed by physical
+            interface id.
+          type: object
+        trunkNetworkConfigs:
+          additionalProperties:
+            $ref: '#/components/schemas/ServerInstanceTrunkNetworkConfig'
+          description: The list of trunk network configurations indexed by VLAN id.
+          type: object
+      type: object
     ServerInstance:
       example:
         serverTypeId: 5
@@ -54555,6 +54726,7 @@ components:
         serverId: 5
         osInstallImageUrl: osInstallImageUrl
         customVariables: "{}"
+        allocatedNetworkConfig: ""
         hostname: my-custom-hostname
         dnsSubdomainPermanentId: 6
         iscsiInitiatorIqn: iscsiInitiatorIqn
@@ -54744,6 +54916,10 @@ components:
           $ref: '#/components/schemas/GenericMeta'
         config:
           $ref: '#/components/schemas/ServerInstanceConfiguration'
+        allocatedNetworkConfig:
+          allOf:
+          - $ref: '#/components/schemas/ServerInstanceAllocatedNetworkConfig'
+          description: The network config allocated to this server instance.
         links:
           description: Reference links
           items:
@@ -54777,6 +54953,7 @@ components:
           serverId: 5
           osInstallImageUrl: osInstallImageUrl
           customVariables: "{}"
+          allocatedNetworkConfig: ""
           hostname: my-custom-hostname
           dnsSubdomainPermanentId: 6
           iscsiInitiatorIqn: iscsiInitiatorIqn
@@ -54848,6 +55025,7 @@ components:
           serverId: 5
           osInstallImageUrl: osInstallImageUrl
           customVariables: "{}"
+          allocatedNetworkConfig: ""
           hostname: my-custom-hostname
           dnsSubdomainPermanentId: 6
           iscsiInitiatorIqn: iscsiInitiatorIqn
@@ -61378,8 +61556,119 @@ components:
       - inputArguments
       type: object
     NetworkDeviceDefaults:
-      example: {}
-      properties: {}
+      example:
+        serialNumber: SN1234567890
+        mlagDomainId: 101
+        mlagPartnerVlanId: 300
+        datacenterName: Datacenter-1
+        isPartOfMlagPair: 1
+        vtepAddressIpv4: 10.10.10.1
+        skipInitialConfiguration: 0
+        loopbackAddressIpv6: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+        vtepAddressIpv6: fe80::1
+        managementMacAddress: 00:1B:44:11:3A:B7
+        customVariables:
+          customKey: customValue
+        mlagPeerLinkPortChannelId: 2001
+        identifierString: device-01
+        mlagSystemMac: 00:1B:44:11:3A:C8
+        loopbackAddressIpv4: 192.168.0.1
+        osTemplateId: 42
+        orderIndex: 5
+        id: 1
+        position: "Rack 12, Unit 4"
+        mlagPartnerHostname: partner-device
+        asn: 65001
+      properties:
+        id:
+          description: Unique ID of the network device defaults entry
+          example: 1
+          type: number
+        datacenterName:
+          description: Name of the datacenter
+          example: Datacenter-1
+          type: string
+        serialNumber:
+          description: Device serial number
+          example: SN1234567890
+          type: string
+        managementMacAddress:
+          description: Management MAC address
+          example: 00:1B:44:11:3A:B7
+          type: string
+        position:
+          description: Physical position in the rack
+          example: "Rack 12, Unit 4"
+          type: string
+        identifierString:
+          description: "Identifier string (1-63 characters, letters, digits, . _ -)"
+          example: device-01
+          type: string
+        asn:
+          description: Autonomous System Number (ASN)
+          example: 65001
+          type: number
+        isPartOfMlagPair:
+          description: Whether device is part of an MLAG pair (0 or 1)
+          example: 1
+          type: number
+        mlagSystemMac:
+          description: MLAG system MAC address
+          example: 00:1B:44:11:3A:C8
+          type: string
+        mlagDomainId:
+          description: MLAG domain ID
+          example: 101
+          type: number
+        mlagPeerLinkPortChannelId:
+          description: MLAG peer link port-channel ID
+          example: 2001
+          type: number
+        mlagPartnerVlanId:
+          description: MLAG partner VLAN ID
+          example: 300
+          type: number
+        mlagPartnerHostname:
+          description: Hostname of MLAG partner device
+          example: partner-device
+          type: string
+        loopbackAddressIpv4:
+          description: Loopback IPv4 address
+          example: 192.168.0.1
+          type: string
+        loopbackAddressIpv6:
+          description: Loopback IPv6 address
+          example: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+          type: string
+        vtepAddressIpv4:
+          description: VTEP IPv4 address
+          example: 10.10.10.1
+          type: string
+        vtepAddressIpv6:
+          description: VTEP IPv6 address
+          example: fe80::1
+          type: string
+        skipInitialConfiguration:
+          description: Skip initial configuration flag (0 or 1)
+          example: 0
+          type: number
+        osTemplateId:
+          description: Volume template ID
+          example: 42
+          type: number
+        customVariables:
+          additionalProperties: true
+          description: Custom variables for device configuration
+          example:
+            customKey: customValue
+          type: object
+        orderIndex:
+          description: Order index for display or processing
+          example: 5
+          type: number
+      required:
+      - datacenterName
+      - id
       type: object
     CreateNetworkDeviceDefaults:
       example:
@@ -61397,10 +61686,10 @@ components:
           vlan10: 10.1.1.1
           vlan20: 10.2.2.2
         mlagPeerLinkPortChannelId: 200
-        volumeTemplateId: 42
         identifierString: device_123
         loopbackAddressIpv4: 192.168.1.1
         mlagSystemMac: AA:BB:CC:DD:EE:FF
+        osTemplateId: 42
         orderIndex: 5
         position: position
         mlagPartnerHostname: mlag-host1
@@ -61463,7 +61752,7 @@ components:
           description: Order index used for sorting or prioritization.
           example: 5
           type: number
-        volumeTemplateId:
+        osTemplateId:
           description: ID of the volume template associated with the network device.
           example: 42
           type: number
@@ -61794,7 +62083,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-08-11T13:17:18.135Z
+        createdTimestamp: 2025-08-25T13:18:36.132Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -61803,7 +62092,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-08-11T13:17:18.135Z
+        updatedTimestamp: 2025-08-25T13:18:36.132Z
         revision: "1"
       properties:
         siteId:
@@ -61820,12 +62109,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-11T13:17:18.135Z
+          example: 2025-08-25T13:18:36.132Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-11T13:17:18.135Z
+          example: 2025-08-25T13:18:36.132Z
           format: date-time
           type: string
         links:
@@ -61847,7 +62136,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-08-11T13:17:18.135Z
+        - createdTimestamp: 2025-08-25T13:18:36.132Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -61856,9 +62145,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-08-11T13:17:18.135Z
+          updatedTimestamp: 2025-08-25T13:18:36.132Z
           revision: "1"
-        - createdTimestamp: 2025-08-11T13:17:18.135Z
+        - createdTimestamp: 2025-08-25T13:18:36.132Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -61867,7 +62156,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-08-11T13:17:18.135Z
+          updatedTimestamp: 2025-08-25T13:18:36.132Z
           revision: "1"
         meta: ""
         links: ""
@@ -61928,6 +62217,7 @@ components:
         dns:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
+        providesDefaultRoute: false
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -61958,6 +62248,10 @@ components:
           description: The MTU of the logical network
           example: 1500
           type: integer
+        providesDefaultRoute:
+          default: false
+          description: Whether the logical network provides a default route
+          type: boolean
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -61999,6 +62293,7 @@ components:
           dns:
             provisionInstanceDnsRecords: true
             provisionLoadBalancingDnsRecord: false
+          providesDefaultRoute: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -62016,6 +62311,7 @@ components:
           dns:
             provisionInstanceDnsRecords: true
             provisionLoadBalancingDnsRecord: false
+          providesDefaultRoute: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -62054,6 +62350,7 @@ components:
         dns:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
+        providesDefaultRoute: false
         redundancy:
           mode: active-backup
           implementation:
@@ -62078,6 +62375,10 @@ components:
           description: The MTU of the logical network
           example: 1500
           type: integer
+        providesDefaultRoute:
+          default: false
+          description: Whether the logical network provides a default route
+          type: boolean
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -62107,6 +62408,7 @@ components:
         dns:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
+        providesDefaultRoute: false
         redundancy:
           mode: active-backup
           implementation:
@@ -62127,6 +62429,10 @@ components:
           description: The MTU of the logical network
           example: 1500
           type: integer
+        providesDefaultRoute:
+          default: false
+          description: Whether the logical network provides a default route
+          type: boolean
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -62455,7 +62761,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-08-11T13:17:18.085Z
+        createdTimestamp: 2025-08-25T13:18:36.061Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -62502,7 +62808,7 @@ components:
           configurationPreview: configurationPreview
           bgpTemplateId: 101
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-08-11T13:17:18.085Z
+        updatedTimestamp: 2025-08-25T13:18:36.061Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -62644,12 +62950,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-11T13:17:18.085Z
+          example: 2025-08-25T13:18:36.061Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-11T13:17:18.085Z
+          example: 2025-08-25T13:18:36.061Z
           format: date-time
           type: string
         links:
@@ -62693,7 +62999,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-08-11T13:17:18.085Z
+        - createdTimestamp: 2025-08-25T13:18:36.061Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -62740,7 +63046,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-08-11T13:17:18.085Z
+          updatedTimestamp: 2025-08-25T13:18:36.061Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -62857,7 +63163,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-08-11T13:17:18.085Z
+        - createdTimestamp: 2025-08-25T13:18:36.061Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -62904,7 +63210,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-08-11T13:17:18.085Z
+          updatedTimestamp: 2025-08-25T13:18:36.061Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -63188,9 +63494,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-08-11T13:17:18.14Z
+        createdTimestamp: 2025-08-25T13:18:36.142Z
         mlagPair: 0
-        updatedTimestamp: 2025-08-11T13:17:18.14Z
+        updatedTimestamp: 2025-08-25T13:18:36.142Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -63203,12 +63509,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-11T13:17:18.14Z
+          example: 2025-08-25T13:18:36.142Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-11T13:17:18.14Z
+          example: 2025-08-25T13:18:36.142Z
           format: date-time
           type: string
         revision:
@@ -63286,9 +63592,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-08-11T13:17:18.14Z
+          createdTimestamp: 2025-08-25T13:18:36.142Z
           mlagPair: 0
-          updatedTimestamp: 2025-08-11T13:17:18.14Z
+          updatedTimestamp: 2025-08-25T13:18:36.142Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -63299,9 +63605,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-08-11T13:17:18.14Z
+          createdTimestamp: 2025-08-25T13:18:36.142Z
           mlagPair: 0
-          updatedTimestamp: 2025-08-11T13:17:18.14Z
+          updatedTimestamp: 2025-08-25T13:18:36.142Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -66838,10 +67144,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-08-11T13:17:18.138Z
+        createdTimestamp: 2025-08-25T13:18:36.138Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-08-11T13:17:18.138Z
+        updatedTimestamp: 2025-08-25T13:18:36.138Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -66915,12 +67221,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-11T13:17:18.138Z
+          example: 2025-08-25T13:18:36.138Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-11T13:17:18.138Z
+          example: 2025-08-25T13:18:36.138Z
           format: date-time
           type: string
         links:
@@ -68915,6 +69221,10 @@ components:
           type: string
         config:
           $ref: '#/components/schemas/ServerInstanceConfiguration'
+        allocatedNetworkConfig:
+          allOf:
+          - $ref: '#/components/schemas/ServerInstanceAllocatedNetworkConfig'
+          description: The network config allocated to this server instance.
       required:
       - createdTimestamp
       - groupId
@@ -69965,13 +70275,19 @@ components:
       example:
         netmask: netmask
         ip: ip
+        isDefaultGateway: true
         cidr: cidr
+        gateway: gateway
         maskBits: 3.2588565619047607
       properties:
         ip:
           type: string
         cidr:
           type: string
+        gateway:
+          type: string
+        isDefaultGateway:
+          type: boolean
         netmask:
           type: string
         maskBits:
@@ -69979,6 +70295,7 @@ components:
       required:
       - cidr
       - ip
+      - isDefaultGateway
       - maskBits
       - netmask
       type: object
@@ -70049,21 +70366,37 @@ components:
         ipv4Addresses:
         - netmask: netmask
           ip: ip
+          isDefaultGateway: true
           cidr: cidr
+          gateway: gateway
           maskBits: 3.2588565619047607
         - netmask: netmask
           ip: ip
+          isDefaultGateway: true
           cidr: cidr
+          gateway: gateway
           maskBits: 3.2588565619047607
+        logicalNetworkId: 3.0205796992916243
+        vlanId: 5.533258397034986
+        logicalNetworkName: logicalNetworkName
+        logicalNetworkLabel: logicalNetworkLabel
+        ipv6Addresses:
+        - netmask: netmask
+          ip: ip
+          cidr: cidr
+          maskBits: 4.078845849666752
+        - netmask: netmask
+          ip: ip
+          cidr: cidr
+          maskBits: 4.078845849666752
+        mtu: 7.04836565559697
         interfaceType: ""
         routes:
         - to: to
           via: via
         - to: to
           via: via
-        logicalNetworkId: 3.0205796992916243
         macAddress: macAddress
-        vlanId: 5.533258397034986
         members:
         - interfaceType: ""
           id: 0.2025324113236393
@@ -70075,22 +70408,16 @@ components:
           id: 6.628464275087742
         - interfaceType: ""
           id: 6.628464275087742
-        ipv6Addresses:
-        - netmask: netmask
-          ip: ip
-          cidr: cidr
-          maskBits: 4.078845849666752
-        - netmask: netmask
-          ip: ip
-          cidr: cidr
-          maskBits: 4.078845849666752
-        mtu: 7.04836565559697
       properties:
         interfaceType:
           allOf:
           - $ref: '#/components/schemas/InstanceInterfaceType'
         logicalNetworkId:
           type: number
+        logicalNetworkName:
+          type: string
+        logicalNetworkLabel:
+          type: string
         typeInterfaceId:
           type: number
         macAddress:
@@ -70129,21 +70456,37 @@ components:
         - ipv4Addresses:
           - netmask: netmask
             ip: ip
+            isDefaultGateway: true
             cidr: cidr
+            gateway: gateway
             maskBits: 3.2588565619047607
           - netmask: netmask
             ip: ip
+            isDefaultGateway: true
             cidr: cidr
+            gateway: gateway
             maskBits: 3.2588565619047607
+          logicalNetworkId: 3.0205796992916243
+          vlanId: 5.533258397034986
+          logicalNetworkName: logicalNetworkName
+          logicalNetworkLabel: logicalNetworkLabel
+          ipv6Addresses:
+          - netmask: netmask
+            ip: ip
+            cidr: cidr
+            maskBits: 4.078845849666752
+          - netmask: netmask
+            ip: ip
+            cidr: cidr
+            maskBits: 4.078845849666752
+          mtu: 7.04836565559697
           interfaceType: ""
           routes:
           - to: to
             via: via
           - to: to
             via: via
-          logicalNetworkId: 3.0205796992916243
           macAddress: macAddress
-          vlanId: 5.533258397034986
           members:
           - interfaceType: ""
             id: 0.2025324113236393
@@ -70155,34 +70498,40 @@ components:
             id: 6.628464275087742
           - interfaceType: ""
             id: 6.628464275087742
-          ipv6Addresses:
-          - netmask: netmask
-            ip: ip
-            cidr: cidr
-            maskBits: 4.078845849666752
-          - netmask: netmask
-            ip: ip
-            cidr: cidr
-            maskBits: 4.078845849666752
-          mtu: 7.04836565559697
         - ipv4Addresses:
           - netmask: netmask
             ip: ip
+            isDefaultGateway: true
             cidr: cidr
+            gateway: gateway
             maskBits: 3.2588565619047607
           - netmask: netmask
             ip: ip
+            isDefaultGateway: true
             cidr: cidr
+            gateway: gateway
             maskBits: 3.2588565619047607
+          logicalNetworkId: 3.0205796992916243
+          vlanId: 5.533258397034986
+          logicalNetworkName: logicalNetworkName
+          logicalNetworkLabel: logicalNetworkLabel
+          ipv6Addresses:
+          - netmask: netmask
+            ip: ip
+            cidr: cidr
+            maskBits: 4.078845849666752
+          - netmask: netmask
+            ip: ip
+            cidr: cidr
+            maskBits: 4.078845849666752
+          mtu: 7.04836565559697
           interfaceType: ""
           routes:
           - to: to
             via: via
           - to: to
             via: via
-          logicalNetworkId: 3.0205796992916243
           macAddress: macAddress
-          vlanId: 5.533258397034986
           members:
           - interfaceType: ""
             id: 0.2025324113236393
@@ -70194,16 +70543,6 @@ components:
             id: 6.628464275087742
           - interfaceType: ""
             id: 6.628464275087742
-          ipv6Addresses:
-          - netmask: netmask
-            ip: ip
-            cidr: cidr
-            maskBits: 4.078845849666752
-          - netmask: netmask
-            ip: ip
-            cidr: cidr
-            maskBits: 4.078845849666752
-          mtu: 7.04836565559697
       properties:
         interfaces:
           description: Network variables for the instance interfaces.
@@ -70401,21 +70740,37 @@ components:
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
+            logicalNetworkId: 3.0205796992916243
+            vlanId: 5.533258397034986
+            logicalNetworkName: logicalNetworkName
+            logicalNetworkLabel: logicalNetworkLabel
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
             interfaceType: ""
             routes:
             - to: to
               via: via
             - to: to
               via: via
-            logicalNetworkId: 3.0205796992916243
             macAddress: macAddress
-            vlanId: 5.533258397034986
             members:
             - interfaceType: ""
               id: 0.2025324113236393
@@ -70427,34 +70782,40 @@ components:
               id: 6.628464275087742
             - interfaceType: ""
               id: 6.628464275087742
-            ipv6Addresses:
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
+            logicalNetworkId: 3.0205796992916243
+            vlanId: 5.533258397034986
+            logicalNetworkName: logicalNetworkName
+            logicalNetworkLabel: logicalNetworkLabel
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
             interfaceType: ""
             routes:
             - to: to
               via: via
             - to: to
               via: via
-            logicalNetworkId: 3.0205796992916243
             macAddress: macAddress
-            vlanId: 5.533258397034986
             members:
             - interfaceType: ""
               id: 0.2025324113236393
@@ -70466,35 +70827,41 @@ components:
               id: 6.628464275087742
             - interfaceType: ""
               id: 6.628464275087742
-            ipv6Addresses:
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
         - interfaces:
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
+            logicalNetworkId: 3.0205796992916243
+            vlanId: 5.533258397034986
+            logicalNetworkName: logicalNetworkName
+            logicalNetworkLabel: logicalNetworkLabel
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
             interfaceType: ""
             routes:
             - to: to
               via: via
             - to: to
               via: via
-            logicalNetworkId: 3.0205796992916243
             macAddress: macAddress
-            vlanId: 5.533258397034986
             members:
             - interfaceType: ""
               id: 0.2025324113236393
@@ -70506,34 +70873,40 @@ components:
               id: 6.628464275087742
             - interfaceType: ""
               id: 6.628464275087742
-            ipv6Addresses:
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
+            logicalNetworkId: 3.0205796992916243
+            vlanId: 5.533258397034986
+            logicalNetworkName: logicalNetworkName
+            logicalNetworkLabel: logicalNetworkLabel
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
             interfaceType: ""
             routes:
             - to: to
               via: via
             - to: to
               via: via
-            logicalNetworkId: 3.0205796992916243
             macAddress: macAddress
-            vlanId: 5.533258397034986
             members:
             - interfaceType: ""
               id: 0.2025324113236393
@@ -70545,16 +70918,6 @@ components:
               id: 6.628464275087742
             - interfaceType: ""
               id: 6.628464275087742
-            ipv6Addresses:
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
         site: ""
         serverInstanceGroup: ""
         drives:
@@ -71166,21 +71529,37 @@ components:
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
+            logicalNetworkId: 3.0205796992916243
+            vlanId: 5.533258397034986
+            logicalNetworkName: logicalNetworkName
+            logicalNetworkLabel: logicalNetworkLabel
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
             interfaceType: ""
             routes:
             - to: to
               via: via
             - to: to
               via: via
-            logicalNetworkId: 3.0205796992916243
             macAddress: macAddress
-            vlanId: 5.533258397034986
             members:
             - interfaceType: ""
               id: 0.2025324113236393
@@ -71192,34 +71571,40 @@ components:
               id: 6.628464275087742
             - interfaceType: ""
               id: 6.628464275087742
-            ipv6Addresses:
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
+            logicalNetworkId: 3.0205796992916243
+            vlanId: 5.533258397034986
+            logicalNetworkName: logicalNetworkName
+            logicalNetworkLabel: logicalNetworkLabel
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
             interfaceType: ""
             routes:
             - to: to
               via: via
             - to: to
               via: via
-            logicalNetworkId: 3.0205796992916243
             macAddress: macAddress
-            vlanId: 5.533258397034986
             members:
             - interfaceType: ""
               id: 0.2025324113236393
@@ -71231,35 +71616,41 @@ components:
               id: 6.628464275087742
             - interfaceType: ""
               id: 6.628464275087742
-            ipv6Addresses:
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
         - interfaces:
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
+            logicalNetworkId: 3.0205796992916243
+            vlanId: 5.533258397034986
+            logicalNetworkName: logicalNetworkName
+            logicalNetworkLabel: logicalNetworkLabel
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
             interfaceType: ""
             routes:
             - to: to
               via: via
             - to: to
               via: via
-            logicalNetworkId: 3.0205796992916243
             macAddress: macAddress
-            vlanId: 5.533258397034986
             members:
             - interfaceType: ""
               id: 0.2025324113236393
@@ -71271,34 +71662,40 @@ components:
               id: 6.628464275087742
             - interfaceType: ""
               id: 6.628464275087742
-            ipv6Addresses:
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
+            logicalNetworkId: 3.0205796992916243
+            vlanId: 5.533258397034986
+            logicalNetworkName: logicalNetworkName
+            logicalNetworkLabel: logicalNetworkLabel
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
             interfaceType: ""
             routes:
             - to: to
               via: via
             - to: to
               via: via
-            logicalNetworkId: 3.0205796992916243
             macAddress: macAddress
-            vlanId: 5.533258397034986
             members:
             - interfaceType: ""
               id: 0.2025324113236393
@@ -71310,16 +71707,6 @@ components:
               id: 6.628464275087742
             - interfaceType: ""
               id: 6.628464275087742
-            ipv6Addresses:
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
         site: ""
         serverInstanceGroup: ""
         drives:
@@ -71493,6 +71880,7 @@ components:
         dns:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
+        providesDefaultRoute: false
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -71519,6 +71907,10 @@ components:
           description: The MTU of the logical network
           example: 1500
           type: integer
+        providesDefaultRoute:
+          default: false
+          description: Whether the logical network provides a default route
+          type: boolean
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -71558,6 +71950,7 @@ components:
           dns:
             provisionInstanceDnsRecords: true
             provisionLoadBalancingDnsRecord: false
+          providesDefaultRoute: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -71574,6 +71967,7 @@ components:
           dns:
             provisionInstanceDnsRecords: true
             provisionLoadBalancingDnsRecord: false
+          providesDefaultRoute: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -71612,6 +72006,7 @@ components:
         dns:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
+        providesDefaultRoute: false
         redundancy:
           mode: active-backup
           implementation:
@@ -71636,6 +72031,10 @@ components:
           description: The MTU of the logical network
           example: 1500
           type: integer
+        providesDefaultRoute:
+          default: false
+          description: Whether the logical network provides a default route
+          type: boolean
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -73759,7 +74158,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-08-11T13:17:18.131Z
+        createdTimestamp: 2025-08-25T13:18:36.126Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -73767,7 +74166,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-08-11T13:17:18.131Z
+        updatedTimestamp: 2025-08-25T13:18:36.126Z
         revision: "1"
       properties:
         id:
@@ -73796,12 +74195,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-11T13:17:18.131Z
+          example: 2025-08-25T13:18:36.126Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-11T13:17:18.131Z
+          example: 2025-08-25T13:18:36.126Z
           format: date-time
           type: string
         links:
@@ -73820,7 +74219,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-08-11T13:17:18.133Z
+        createdTimestamp: 2025-08-25T13:18:36.129Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -73831,7 +74230,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-08-11T13:17:18.133Z
+        updatedTimestamp: 2025-08-25T13:18:36.129Z
         revision: "1"
       properties:
         id:
@@ -73865,12 +74264,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-11T13:17:18.133Z
+          example: 2025-08-25T13:18:36.129Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-11T13:17:18.133Z
+          example: 2025-08-25T13:18:36.129Z
           format: date-time
           type: string
         links:
@@ -73890,7 +74289,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-08-11T13:17:18.133Z
+        - createdTimestamp: 2025-08-25T13:18:36.129Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -73901,9 +74300,9 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-08-11T13:17:18.133Z
+          updatedTimestamp: 2025-08-25T13:18:36.129Z
           revision: "1"
-        - createdTimestamp: 2025-08-11T13:17:18.133Z
+        - createdTimestamp: 2025-08-25T13:18:36.129Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -73914,7 +74313,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-08-11T13:17:18.133Z
+          updatedTimestamp: 2025-08-25T13:18:36.129Z
           revision: "1"
         meta: ""
         links: ""
@@ -74123,7 +74522,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-08-11T13:17:18.131Z
+          createdTimestamp: 2025-08-25T13:18:36.126Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -74131,12 +74530,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-08-11T13:17:18.131Z
+          updatedTimestamp: 2025-08-25T13:18:36.126Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-08-11T13:17:18.131Z
+          createdTimestamp: 2025-08-25T13:18:36.126Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -74144,7 +74543,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-08-11T13:17:18.131Z
+          updatedTimestamp: 2025-08-25T13:18:36.126Z
           revision: "1"
         meta: ""
         links: ""
@@ -74231,6 +74630,7 @@ components:
         dns:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
+        providesDefaultRoute: false
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -74257,6 +74657,10 @@ components:
           description: The MTU of the logical network
           example: 1500
           type: integer
+        providesDefaultRoute:
+          default: false
+          description: Whether the logical network provides a default route
+          type: boolean
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -74296,6 +74700,7 @@ components:
           dns:
             provisionInstanceDnsRecords: true
             provisionLoadBalancingDnsRecord: false
+          providesDefaultRoute: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -74312,6 +74717,7 @@ components:
           dns:
             provisionInstanceDnsRecords: true
             provisionLoadBalancingDnsRecord: false
+          providesDefaultRoute: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -74350,6 +74756,7 @@ components:
         dns:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
+        providesDefaultRoute: false
         redundancy:
           mode: active-backup
           implementation:
@@ -74374,6 +74781,10 @@ components:
           description: The MTU of the logical network
           example: 1500
           type: integer
+        providesDefaultRoute:
+          default: false
+          description: Whether the logical network provides a default route
+          type: boolean
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -78699,21 +79110,37 @@ components:
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
+            logicalNetworkId: 3.0205796992916243
+            vlanId: 5.533258397034986
+            logicalNetworkName: logicalNetworkName
+            logicalNetworkLabel: logicalNetworkLabel
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
             interfaceType: ""
             routes:
             - to: to
               via: via
             - to: to
               via: via
-            logicalNetworkId: 3.0205796992916243
             macAddress: macAddress
-            vlanId: 5.533258397034986
             members:
             - interfaceType: ""
               id: 0.2025324113236393
@@ -78725,34 +79152,40 @@ components:
               id: 6.628464275087742
             - interfaceType: ""
               id: 6.628464275087742
-            ipv6Addresses:
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
+            logicalNetworkId: 3.0205796992916243
+            vlanId: 5.533258397034986
+            logicalNetworkName: logicalNetworkName
+            logicalNetworkLabel: logicalNetworkLabel
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
             interfaceType: ""
             routes:
             - to: to
               via: via
             - to: to
               via: via
-            logicalNetworkId: 3.0205796992916243
             macAddress: macAddress
-            vlanId: 5.533258397034986
             members:
             - interfaceType: ""
               id: 0.2025324113236393
@@ -78764,35 +79197,41 @@ components:
               id: 6.628464275087742
             - interfaceType: ""
               id: 6.628464275087742
-            ipv6Addresses:
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
         - interfaces:
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
+            logicalNetworkId: 3.0205796992916243
+            vlanId: 5.533258397034986
+            logicalNetworkName: logicalNetworkName
+            logicalNetworkLabel: logicalNetworkLabel
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
             interfaceType: ""
             routes:
             - to: to
               via: via
             - to: to
               via: via
-            logicalNetworkId: 3.0205796992916243
             macAddress: macAddress
-            vlanId: 5.533258397034986
             members:
             - interfaceType: ""
               id: 0.2025324113236393
@@ -78804,34 +79243,40 @@ components:
               id: 6.628464275087742
             - interfaceType: ""
               id: 6.628464275087742
-            ipv6Addresses:
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
           - ipv4Addresses:
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
             - netmask: netmask
               ip: ip
+              isDefaultGateway: true
               cidr: cidr
+              gateway: gateway
               maskBits: 3.2588565619047607
+            logicalNetworkId: 3.0205796992916243
+            vlanId: 5.533258397034986
+            logicalNetworkName: logicalNetworkName
+            logicalNetworkLabel: logicalNetworkLabel
+            ipv6Addresses:
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            - netmask: netmask
+              ip: ip
+              cidr: cidr
+              maskBits: 4.078845849666752
+            mtu: 7.04836565559697
             interfaceType: ""
             routes:
             - to: to
               via: via
             - to: to
               via: via
-            logicalNetworkId: 3.0205796992916243
             macAddress: macAddress
-            vlanId: 5.533258397034986
             members:
             - interfaceType: ""
               id: 0.2025324113236393
@@ -78843,16 +79288,6 @@ components:
               id: 6.628464275087742
             - interfaceType: ""
               id: 6.628464275087742
-            ipv6Addresses:
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            - netmask: netmask
-              ip: ip
-              cidr: cidr
-              maskBits: 4.078845849666752
-            mtu: 7.04836565559697
         site: ""
         serverInstanceGroup: ""
         drives:
@@ -79233,6 +79668,7 @@ components:
         dns:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
+        providesDefaultRoute: false
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -79259,6 +79695,10 @@ components:
           description: The MTU of the logical network
           example: 1500
           type: integer
+        providesDefaultRoute:
+          default: false
+          description: Whether the logical network provides a default route
+          type: boolean
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -79298,6 +79738,7 @@ components:
           dns:
             provisionInstanceDnsRecords: true
             provisionLoadBalancingDnsRecord: false
+          providesDefaultRoute: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -79314,6 +79755,7 @@ components:
           dns:
             provisionInstanceDnsRecords: true
             provisionLoadBalancingDnsRecord: false
+          providesDefaultRoute: false
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -79352,6 +79794,7 @@ components:
         dns:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
+        providesDefaultRoute: false
         redundancy:
           mode: active-backup
           implementation:
@@ -79376,6 +79819,10 @@ components:
           description: The MTU of the logical network
           example: 1500
           type: integer
+        providesDefaultRoute:
+          default: false
+          description: Whether the logical network provides a default route
+          type: boolean
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -79405,6 +79852,7 @@ components:
         dns:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
+        providesDefaultRoute: false
         redundancy:
           mode: active-backup
           implementation:
@@ -79425,6 +79873,10 @@ components:
           description: The MTU of the logical network
           example: 1500
           type: integer
+        providesDefaultRoute:
+          default: false
+          description: Whether the logical network provides a default route
+          type: boolean
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
