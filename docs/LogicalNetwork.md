@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Kind** | [**LogicalNetworkKind**](LogicalNetworkKind.md) |  | 
 **FabricId** | **int32** |  | 
 **InfrastructureId** | **NullableInt32** |  | 
-**ExtensionInstanceId** | **NullableInt32** |  | 
+**ExtensionInstanceId** | Pointer to **NullableInt32** |  | [optional] 
 **ServiceStatus** | [**GenericServiceStatus**](GenericServiceStatus.md) |  | 
 **LastAppliedLogicalNetworkProfileId** | **NullableInt32** |  | 
 **LastLogicalNetworkProfileAppliedAt** | **time.Time** |  | 
@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 
 ### NewLogicalNetwork
 
-`func NewLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, extensionInstanceId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config LogicalNetworkConfig, ) *LogicalNetwork`
+`func NewLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config LogicalNetworkConfig, ) *LogicalNetwork`
 
 NewLogicalNetwork instantiates a new LogicalNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -274,6 +274,11 @@ and a boolean to check if the value has been set.
 
 SetExtensionInstanceId sets ExtensionInstanceId field to given value.
 
+### HasExtensionInstanceId
+
+`func (o *LogicalNetwork) HasExtensionInstanceId() bool`
+
+HasExtensionInstanceId returns a boolean if a field has been set.
 
 ### SetExtensionInstanceIdNil
 

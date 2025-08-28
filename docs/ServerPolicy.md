@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **AutomaticallyAllocateServerTypes** | **bool** | Automatically allocate server types | 
 **AutomaticallySetServersAsAvailable** | **bool** | Automatically set servers as available | 
 **ServerRegistrationBiosProfile** | [**[]ServerRegistrationBiosProfile**](ServerRegistrationBiosProfile.md) | Server registration BIOS profile | 
+**MakeHttpTheDefaultProtocolForVirtualMedia** | Pointer to **bool** | Whether to make HTTP the default protocol for virtual media | [optional] 
 
 ## Methods
 
@@ -259,6 +260,31 @@ and a boolean to check if the value has been set.
 
 SetServerRegistrationBiosProfile sets ServerRegistrationBiosProfile field to given value.
 
+
+### GetMakeHttpTheDefaultProtocolForVirtualMedia
+
+`func (o *ServerPolicy) GetMakeHttpTheDefaultProtocolForVirtualMedia() bool`
+
+GetMakeHttpTheDefaultProtocolForVirtualMedia returns the MakeHttpTheDefaultProtocolForVirtualMedia field if non-nil, zero value otherwise.
+
+### GetMakeHttpTheDefaultProtocolForVirtualMediaOk
+
+`func (o *ServerPolicy) GetMakeHttpTheDefaultProtocolForVirtualMediaOk() (*bool, bool)`
+
+GetMakeHttpTheDefaultProtocolForVirtualMediaOk returns a tuple with the MakeHttpTheDefaultProtocolForVirtualMedia field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMakeHttpTheDefaultProtocolForVirtualMedia
+
+`func (o *ServerPolicy) SetMakeHttpTheDefaultProtocolForVirtualMedia(v bool)`
+
+SetMakeHttpTheDefaultProtocolForVirtualMedia sets MakeHttpTheDefaultProtocolForVirtualMedia field to given value.
+
+### HasMakeHttpTheDefaultProtocolForVirtualMedia
+
+`func (o *ServerPolicy) HasMakeHttpTheDefaultProtocolForVirtualMedia() bool`
+
+HasMakeHttpTheDefaultProtocolForVirtualMedia returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

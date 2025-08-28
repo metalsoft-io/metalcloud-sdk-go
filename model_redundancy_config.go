@@ -25,6 +25,8 @@ type RedundancyConfig struct {
 	Mode NetworkEndpointGroupRedundancyMode `json:"mode"`
 	// The redundancy implementation configuration
 	Implementation NullableRedundancyImplementation `json:"implementation,omitempty"`
+	// The redundancy group index used for server only mode
+	RedundancyGroupIndex NullableInt32 `json:"redundancyGroupIndex,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -114,6 +116,48 @@ func (o *RedundancyConfig) UnsetImplementation() {
 	o.Implementation.Unset()
 }
 
+// GetRedundancyGroupIndex returns the RedundancyGroupIndex field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RedundancyConfig) GetRedundancyGroupIndex() int32 {
+	if o == nil || IsNil(o.RedundancyGroupIndex.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.RedundancyGroupIndex.Get()
+}
+
+// GetRedundancyGroupIndexOk returns a tuple with the RedundancyGroupIndex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RedundancyConfig) GetRedundancyGroupIndexOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RedundancyGroupIndex.Get(), o.RedundancyGroupIndex.IsSet()
+}
+
+// HasRedundancyGroupIndex returns a boolean if a field has been set.
+func (o *RedundancyConfig) HasRedundancyGroupIndex() bool {
+	if o != nil && o.RedundancyGroupIndex.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRedundancyGroupIndex gets a reference to the given NullableInt32 and assigns it to the RedundancyGroupIndex field.
+func (o *RedundancyConfig) SetRedundancyGroupIndex(v int32) {
+	o.RedundancyGroupIndex.Set(&v)
+}
+// SetRedundancyGroupIndexNil sets the value for RedundancyGroupIndex to be an explicit nil
+func (o *RedundancyConfig) SetRedundancyGroupIndexNil() {
+	o.RedundancyGroupIndex.Set(nil)
+}
+
+// UnsetRedundancyGroupIndex ensures that no value is present for RedundancyGroupIndex, not even an explicit nil
+func (o *RedundancyConfig) UnsetRedundancyGroupIndex() {
+	o.RedundancyGroupIndex.Unset()
+}
+
 func (o RedundancyConfig) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -127,6 +171,9 @@ func (o RedundancyConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize["mode"] = o.Mode
 	if o.Implementation.IsSet() {
 		toSerialize["implementation"] = o.Implementation.Get()
+	}
+	if o.RedundancyGroupIndex.IsSet() {
+		toSerialize["redundancyGroupIndex"] = o.RedundancyGroupIndex.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -173,6 +220,7 @@ func (o *RedundancyConfig) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "mode")
 		delete(additionalProperties, "implementation")
+		delete(additionalProperties, "redundancyGroupIndex")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -27,6 +27,8 @@ type FibreChannelFabric struct {
 	DefaultNetworkProfileId *int32 `json:"defaultNetworkProfileId,omitempty"`
 	// Enables gNMI monitoring for telemetry data collection using the gNMI protocol.
 	GnmiMonitoringEnabled *bool `json:"gnmiMonitoringEnabled,omitempty"`
+	// Enables server-only operation mode on the network fabric.
+	ServerOnlyOperationEnabled *bool `json:"serverOnlyOperationEnabled,omitempty"`
 	// Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting.
 	SyslogMonitoringEnabled *bool `json:"syslogMonitoringEnabled,omitempty"`
 	// Enables zero-touch provisioning for automatic device configuration.
@@ -157,6 +159,38 @@ func (o *FibreChannelFabric) HasGnmiMonitoringEnabled() bool {
 // SetGnmiMonitoringEnabled gets a reference to the given bool and assigns it to the GnmiMonitoringEnabled field.
 func (o *FibreChannelFabric) SetGnmiMonitoringEnabled(v bool) {
 	o.GnmiMonitoringEnabled = &v
+}
+
+// GetServerOnlyOperationEnabled returns the ServerOnlyOperationEnabled field value if set, zero value otherwise.
+func (o *FibreChannelFabric) GetServerOnlyOperationEnabled() bool {
+	if o == nil || IsNil(o.ServerOnlyOperationEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.ServerOnlyOperationEnabled
+}
+
+// GetServerOnlyOperationEnabledOk returns a tuple with the ServerOnlyOperationEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FibreChannelFabric) GetServerOnlyOperationEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.ServerOnlyOperationEnabled) {
+		return nil, false
+	}
+	return o.ServerOnlyOperationEnabled, true
+}
+
+// HasServerOnlyOperationEnabled returns a boolean if a field has been set.
+func (o *FibreChannelFabric) HasServerOnlyOperationEnabled() bool {
+	if o != nil && !IsNil(o.ServerOnlyOperationEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerOnlyOperationEnabled gets a reference to the given bool and assigns it to the ServerOnlyOperationEnabled field.
+func (o *FibreChannelFabric) SetServerOnlyOperationEnabled(v bool) {
+	o.ServerOnlyOperationEnabled = &v
 }
 
 // GetSyslogMonitoringEnabled returns the SyslogMonitoringEnabled field value if set, zero value otherwise.
@@ -488,6 +522,9 @@ func (o FibreChannelFabric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.GnmiMonitoringEnabled) {
 		toSerialize["gnmiMonitoringEnabled"] = o.GnmiMonitoringEnabled
 	}
+	if !IsNil(o.ServerOnlyOperationEnabled) {
+		toSerialize["serverOnlyOperationEnabled"] = o.ServerOnlyOperationEnabled
+	}
 	if !IsNil(o.SyslogMonitoringEnabled) {
 		toSerialize["syslogMonitoringEnabled"] = o.SyslogMonitoringEnabled
 	}
@@ -563,6 +600,7 @@ func (o *FibreChannelFabric) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "fabricType")
 		delete(additionalProperties, "defaultNetworkProfileId")
 		delete(additionalProperties, "gnmiMonitoringEnabled")
+		delete(additionalProperties, "serverOnlyOperationEnabled")
 		delete(additionalProperties, "syslogMonitoringEnabled")
 		delete(additionalProperties, "zeroTouchEnabled")
 		delete(additionalProperties, "vsanId")

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **DefaultServerCleanupPolicyID** | Pointer to **float32** | Default server cleanup policy ID | [optional] 
 **AutomaticallyAllocateServerTypes** | Pointer to **bool** | Automatically allocate server types | [optional] 
 **AutomaticallySetServersAsAvailable** | Pointer to **bool** | Automatically set servers as available | [optional] 
+**MakeHttpTheDefaultProtocolForVirtualMedia** | Pointer to **bool** | Whether to make HTTP the default protocol for virtual media | [optional] 
 **ServerRegistrationBiosProfile** | Pointer to [**[]PartialServerRegistrationBiosProfile**](PartialServerRegistrationBiosProfile.md) | Server registration BIOS profile | [optional] 
 
 ## Methods
@@ -284,6 +285,31 @@ SetAutomaticallySetServersAsAvailable sets AutomaticallySetServersAsAvailable fi
 `func (o *ServerPolicyUpdate) HasAutomaticallySetServersAsAvailable() bool`
 
 HasAutomaticallySetServersAsAvailable returns a boolean if a field has been set.
+
+### GetMakeHttpTheDefaultProtocolForVirtualMedia
+
+`func (o *ServerPolicyUpdate) GetMakeHttpTheDefaultProtocolForVirtualMedia() bool`
+
+GetMakeHttpTheDefaultProtocolForVirtualMedia returns the MakeHttpTheDefaultProtocolForVirtualMedia field if non-nil, zero value otherwise.
+
+### GetMakeHttpTheDefaultProtocolForVirtualMediaOk
+
+`func (o *ServerPolicyUpdate) GetMakeHttpTheDefaultProtocolForVirtualMediaOk() (*bool, bool)`
+
+GetMakeHttpTheDefaultProtocolForVirtualMediaOk returns a tuple with the MakeHttpTheDefaultProtocolForVirtualMedia field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMakeHttpTheDefaultProtocolForVirtualMedia
+
+`func (o *ServerPolicyUpdate) SetMakeHttpTheDefaultProtocolForVirtualMedia(v bool)`
+
+SetMakeHttpTheDefaultProtocolForVirtualMedia sets MakeHttpTheDefaultProtocolForVirtualMedia field to given value.
+
+### HasMakeHttpTheDefaultProtocolForVirtualMedia
+
+`func (o *ServerPolicyUpdate) HasMakeHttpTheDefaultProtocolForVirtualMedia() bool`
+
+HasMakeHttpTheDefaultProtocolForVirtualMedia returns a boolean if a field has been set.
 
 ### GetServerRegistrationBiosProfile
 

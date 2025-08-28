@@ -25,6 +25,8 @@ Name | Type | Description | Notes
 **Ipv4Addresses** | Pointer to **[]string** | The deployed IPv4 addresses of the server interface. | [optional] 
 **Ipv6Addresses** | Pointer to **[]string** | The deployed IPv6 addresses of the server interface. | [optional] 
 **VlanId** | Pointer to **float32** | The deployed VLAN ID of the server interface. | [optional] 
+**DefaultFabricId** | Pointer to **float32** | The default fabric ID of the server interface. | [optional] 
+**RedundancyGroupIndex** | Pointer to **float32** | The redundancy group index of the server interface. | [optional] 
 
 ## Methods
 
@@ -544,6 +546,56 @@ SetVlanId sets VlanId field to given value.
 `func (o *ServerInterface) HasVlanId() bool`
 
 HasVlanId returns a boolean if a field has been set.
+
+### GetDefaultFabricId
+
+`func (o *ServerInterface) GetDefaultFabricId() float32`
+
+GetDefaultFabricId returns the DefaultFabricId field if non-nil, zero value otherwise.
+
+### GetDefaultFabricIdOk
+
+`func (o *ServerInterface) GetDefaultFabricIdOk() (*float32, bool)`
+
+GetDefaultFabricIdOk returns a tuple with the DefaultFabricId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultFabricId
+
+`func (o *ServerInterface) SetDefaultFabricId(v float32)`
+
+SetDefaultFabricId sets DefaultFabricId field to given value.
+
+### HasDefaultFabricId
+
+`func (o *ServerInterface) HasDefaultFabricId() bool`
+
+HasDefaultFabricId returns a boolean if a field has been set.
+
+### GetRedundancyGroupIndex
+
+`func (o *ServerInterface) GetRedundancyGroupIndex() float32`
+
+GetRedundancyGroupIndex returns the RedundancyGroupIndex field if non-nil, zero value otherwise.
+
+### GetRedundancyGroupIndexOk
+
+`func (o *ServerInterface) GetRedundancyGroupIndexOk() (*float32, bool)`
+
+GetRedundancyGroupIndexOk returns a tuple with the RedundancyGroupIndex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRedundancyGroupIndex
+
+`func (o *ServerInterface) SetRedundancyGroupIndex(v float32)`
+
+SetRedundancyGroupIndex sets RedundancyGroupIndex field to given value.
+
+### HasRedundancyGroupIndex
+
+`func (o *ServerInterface) HasRedundancyGroupIndex() bool`
+
+HasRedundancyGroupIndex returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

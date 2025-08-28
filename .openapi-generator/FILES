@@ -592,6 +592,8 @@ docs/ServerInstanceUpdate.md
 docs/ServerInstanceVariables.md
 docs/ServerInterface.md
 docs/ServerInterfaceConnection.md
+docs/ServerInterfacesDefaultFabric.md
+docs/ServerInterfacesRedundancyGroup.md
 docs/ServerMetricsInfo.md
 docs/ServerOSInstallationData.md
 docs/ServerPaginatedList.md
@@ -1302,6 +1304,8 @@ model_server_instance_update.go
 model_server_instance_variables.go
 model_server_interface.go
 model_server_interface_connection.go
+model_server_interfaces_default_fabric.go
+model_server_interfaces_redundancy_group.go
 model_server_metrics_info.go
 model_server_os_installation_data.go
 model_server_paginated_list.go

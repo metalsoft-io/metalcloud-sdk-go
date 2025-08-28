@@ -43,6 +43,8 @@ type ServerPolicy struct {
 	AutomaticallySetServersAsAvailable bool `json:"automaticallySetServersAsAvailable"`
 	// Server registration BIOS profile
 	ServerRegistrationBiosProfile []ServerRegistrationBiosProfile `json:"serverRegistrationBiosProfile"`
+	// Whether to make HTTP the default protocol for virtual media
+	MakeHttpTheDefaultProtocolForVirtualMedia *bool `json:"makeHttpTheDefaultProtocolForVirtualMedia,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -347,6 +349,38 @@ func (o *ServerPolicy) SetServerRegistrationBiosProfile(v []ServerRegistrationBi
 	o.ServerRegistrationBiosProfile = v
 }
 
+// GetMakeHttpTheDefaultProtocolForVirtualMedia returns the MakeHttpTheDefaultProtocolForVirtualMedia field value if set, zero value otherwise.
+func (o *ServerPolicy) GetMakeHttpTheDefaultProtocolForVirtualMedia() bool {
+	if o == nil || IsNil(o.MakeHttpTheDefaultProtocolForVirtualMedia) {
+		var ret bool
+		return ret
+	}
+	return *o.MakeHttpTheDefaultProtocolForVirtualMedia
+}
+
+// GetMakeHttpTheDefaultProtocolForVirtualMediaOk returns a tuple with the MakeHttpTheDefaultProtocolForVirtualMedia field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerPolicy) GetMakeHttpTheDefaultProtocolForVirtualMediaOk() (*bool, bool) {
+	if o == nil || IsNil(o.MakeHttpTheDefaultProtocolForVirtualMedia) {
+		return nil, false
+	}
+	return o.MakeHttpTheDefaultProtocolForVirtualMedia, true
+}
+
+// HasMakeHttpTheDefaultProtocolForVirtualMedia returns a boolean if a field has been set.
+func (o *ServerPolicy) HasMakeHttpTheDefaultProtocolForVirtualMedia() bool {
+	if o != nil && !IsNil(o.MakeHttpTheDefaultProtocolForVirtualMedia) {
+		return true
+	}
+
+	return false
+}
+
+// SetMakeHttpTheDefaultProtocolForVirtualMedia gets a reference to the given bool and assigns it to the MakeHttpTheDefaultProtocolForVirtualMedia field.
+func (o *ServerPolicy) SetMakeHttpTheDefaultProtocolForVirtualMedia(v bool) {
+	o.MakeHttpTheDefaultProtocolForVirtualMedia = &v
+}
+
 func (o ServerPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -370,6 +404,9 @@ func (o ServerPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize["automaticallyAllocateServerTypes"] = o.AutomaticallyAllocateServerTypes
 	toSerialize["automaticallySetServersAsAvailable"] = o.AutomaticallySetServersAsAvailable
 	toSerialize["serverRegistrationBiosProfile"] = o.ServerRegistrationBiosProfile
+	if !IsNil(o.MakeHttpTheDefaultProtocolForVirtualMedia) {
+		toSerialize["makeHttpTheDefaultProtocolForVirtualMedia"] = o.MakeHttpTheDefaultProtocolForVirtualMedia
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -433,6 +470,7 @@ func (o *ServerPolicy) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "automaticallyAllocateServerTypes")
 		delete(additionalProperties, "automaticallySetServersAsAvailable")
 		delete(additionalProperties, "serverRegistrationBiosProfile")
+		delete(additionalProperties, "makeHttpTheDefaultProtocolForVirtualMedia")
 		o.AdditionalProperties = additionalProperties
 	}
 

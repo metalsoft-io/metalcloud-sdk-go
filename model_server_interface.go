@@ -63,6 +63,10 @@ type ServerInterface struct {
 	Ipv6Addresses []string `json:"ipv6Addresses,omitempty"`
 	// The deployed VLAN ID of the server interface.
 	VlanId *float32 `json:"vlanId,omitempty"`
+	// The default fabric ID of the server interface.
+	DefaultFabricId *float32 `json:"defaultFabricId,omitempty"`
+	// The redundancy group index of the server interface.
+	RedundancyGroupIndex *float32 `json:"redundancyGroupIndex,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -724,6 +728,70 @@ func (o *ServerInterface) SetVlanId(v float32) {
 	o.VlanId = &v
 }
 
+// GetDefaultFabricId returns the DefaultFabricId field value if set, zero value otherwise.
+func (o *ServerInterface) GetDefaultFabricId() float32 {
+	if o == nil || IsNil(o.DefaultFabricId) {
+		var ret float32
+		return ret
+	}
+	return *o.DefaultFabricId
+}
+
+// GetDefaultFabricIdOk returns a tuple with the DefaultFabricId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInterface) GetDefaultFabricIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.DefaultFabricId) {
+		return nil, false
+	}
+	return o.DefaultFabricId, true
+}
+
+// HasDefaultFabricId returns a boolean if a field has been set.
+func (o *ServerInterface) HasDefaultFabricId() bool {
+	if o != nil && !IsNil(o.DefaultFabricId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultFabricId gets a reference to the given float32 and assigns it to the DefaultFabricId field.
+func (o *ServerInterface) SetDefaultFabricId(v float32) {
+	o.DefaultFabricId = &v
+}
+
+// GetRedundancyGroupIndex returns the RedundancyGroupIndex field value if set, zero value otherwise.
+func (o *ServerInterface) GetRedundancyGroupIndex() float32 {
+	if o == nil || IsNil(o.RedundancyGroupIndex) {
+		var ret float32
+		return ret
+	}
+	return *o.RedundancyGroupIndex
+}
+
+// GetRedundancyGroupIndexOk returns a tuple with the RedundancyGroupIndex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInterface) GetRedundancyGroupIndexOk() (*float32, bool) {
+	if o == nil || IsNil(o.RedundancyGroupIndex) {
+		return nil, false
+	}
+	return o.RedundancyGroupIndex, true
+}
+
+// HasRedundancyGroupIndex returns a boolean if a field has been set.
+func (o *ServerInterface) HasRedundancyGroupIndex() bool {
+	if o != nil && !IsNil(o.RedundancyGroupIndex) {
+		return true
+	}
+
+	return false
+}
+
+// SetRedundancyGroupIndex gets a reference to the given float32 and assigns it to the RedundancyGroupIndex field.
+func (o *ServerInterface) SetRedundancyGroupIndex(v float32) {
+	o.RedundancyGroupIndex = &v
+}
+
 func (o ServerInterface) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -786,6 +854,12 @@ func (o ServerInterface) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.VlanId) {
 		toSerialize["vlanId"] = o.VlanId
+	}
+	if !IsNil(o.DefaultFabricId) {
+		toSerialize["defaultFabricId"] = o.DefaultFabricId
+	}
+	if !IsNil(o.RedundancyGroupIndex) {
+		toSerialize["redundancyGroupIndex"] = o.RedundancyGroupIndex
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -855,6 +929,8 @@ func (o *ServerInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "ipv4Addresses")
 		delete(additionalProperties, "ipv6Addresses")
 		delete(additionalProperties, "vlanId")
+		delete(additionalProperties, "defaultFabricId")
+		delete(additionalProperties, "redundancyGroupIndex")
 		o.AdditionalProperties = additionalProperties
 	}
 

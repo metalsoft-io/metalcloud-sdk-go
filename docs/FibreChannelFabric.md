@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **FabricType** | [**FabricType**](FabricType.md) | The type of network fabric | 
 **DefaultNetworkProfileId** | Pointer to **int32** | Unique identifier for the default network profile. Must be a positive integer (minimum: 1) corresponding to an existing profile. | [optional] 
 **GnmiMonitoringEnabled** | Pointer to **bool** | Enables gNMI monitoring for telemetry data collection using the gNMI protocol. | [optional] 
+**ServerOnlyOperationEnabled** | Pointer to **bool** | Enables server-only operation mode on the network fabric. | [optional] 
 **SyslogMonitoringEnabled** | Pointer to **bool** | Enables syslog monitoring for capturing system logs for diagnostics and troubleshooting. | [optional] 
 **ZeroTouchEnabled** | Pointer to **bool** | Enables zero-touch provisioning for automatic device configuration. | [optional] 
 **VsanId** | Pointer to **int32** | VSAN ID for the Fibre Channel fabric | [optional] 
@@ -106,6 +107,31 @@ SetGnmiMonitoringEnabled sets GnmiMonitoringEnabled field to given value.
 `func (o *FibreChannelFabric) HasGnmiMonitoringEnabled() bool`
 
 HasGnmiMonitoringEnabled returns a boolean if a field has been set.
+
+### GetServerOnlyOperationEnabled
+
+`func (o *FibreChannelFabric) GetServerOnlyOperationEnabled() bool`
+
+GetServerOnlyOperationEnabled returns the ServerOnlyOperationEnabled field if non-nil, zero value otherwise.
+
+### GetServerOnlyOperationEnabledOk
+
+`func (o *FibreChannelFabric) GetServerOnlyOperationEnabledOk() (*bool, bool)`
+
+GetServerOnlyOperationEnabledOk returns a tuple with the ServerOnlyOperationEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerOnlyOperationEnabled
+
+`func (o *FibreChannelFabric) SetServerOnlyOperationEnabled(v bool)`
+
+SetServerOnlyOperationEnabled sets ServerOnlyOperationEnabled field to given value.
+
+### HasServerOnlyOperationEnabled
+
+`func (o *FibreChannelFabric) HasServerOnlyOperationEnabled() bool`
+
+HasServerOnlyOperationEnabled returns a boolean if a field has been set.
 
 ### GetSyslogMonitoringEnabled
 

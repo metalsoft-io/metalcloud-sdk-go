@@ -2134,6 +2134,214 @@ func (a *ServerAPIService) ResetServerToFactoryDefaultsExecute(r ServerAPIResetS
 	return localVarHTTPResponse, nil
 }
 
+type ServerAPISetServerInterfacesDefaultFabricRequest struct {
+	ctx context.Context
+	ApiService *ServerAPIService
+	serverId float32
+	serverInterfacesDefaultFabric *ServerInterfacesDefaultFabric
+}
+
+// The server interfaces default fabric option
+func (r ServerAPISetServerInterfacesDefaultFabricRequest) ServerInterfacesDefaultFabric(serverInterfacesDefaultFabric ServerInterfacesDefaultFabric) ServerAPISetServerInterfacesDefaultFabricRequest {
+	r.serverInterfacesDefaultFabric = &serverInterfacesDefaultFabric
+	return r
+}
+
+func (r ServerAPISetServerInterfacesDefaultFabricRequest) Execute() (*http.Response, error) {
+	return r.ApiService.SetServerInterfacesDefaultFabricExecute(r)
+}
+
+/*
+SetServerInterfacesDefaultFabric Sets the default fabric for the specified server interfaces
+
+Sets the default fabric for the specified server interfaces
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverId
+ @return ServerAPISetServerInterfacesDefaultFabricRequest
+*/
+func (a *ServerAPIService) SetServerInterfacesDefaultFabric(ctx context.Context, serverId float32) ServerAPISetServerInterfacesDefaultFabricRequest {
+	return ServerAPISetServerInterfacesDefaultFabricRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverId: serverId,
+	}
+}
+
+// Execute executes the request
+func (a *ServerAPIService) SetServerInterfacesDefaultFabricExecute(r ServerAPISetServerInterfacesDefaultFabricRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerAPIService.SetServerInterfacesDefaultFabric")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/servers/{serverId}/actions/set-interfaces-default-fabric"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(parameterValueToString(r.serverId, "serverId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.serverInterfacesDefaultFabric == nil {
+		return nil, reportError("serverInterfacesDefaultFabric is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.serverInterfacesDefaultFabric
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ServerAPISetServerInterfacesRedundancyGroupRequest struct {
+	ctx context.Context
+	ApiService *ServerAPIService
+	serverId float32
+	serverInterfacesRedundancyGroup *ServerInterfacesRedundancyGroup
+}
+
+// The server interfaces redundancy group option
+func (r ServerAPISetServerInterfacesRedundancyGroupRequest) ServerInterfacesRedundancyGroup(serverInterfacesRedundancyGroup ServerInterfacesRedundancyGroup) ServerAPISetServerInterfacesRedundancyGroupRequest {
+	r.serverInterfacesRedundancyGroup = &serverInterfacesRedundancyGroup
+	return r
+}
+
+func (r ServerAPISetServerInterfacesRedundancyGroupRequest) Execute() (*http.Response, error) {
+	return r.ApiService.SetServerInterfacesRedundancyGroupExecute(r)
+}
+
+/*
+SetServerInterfacesRedundancyGroup Sets the redundancy group index for the specified server interfaces
+
+Sets the redundancy group index for the specified server interfaces
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serverId
+ @return ServerAPISetServerInterfacesRedundancyGroupRequest
+*/
+func (a *ServerAPIService) SetServerInterfacesRedundancyGroup(ctx context.Context, serverId float32) ServerAPISetServerInterfacesRedundancyGroupRequest {
+	return ServerAPISetServerInterfacesRedundancyGroupRequest{
+		ApiService: a,
+		ctx: ctx,
+		serverId: serverId,
+	}
+}
+
+// Execute executes the request
+func (a *ServerAPIService) SetServerInterfacesRedundancyGroupExecute(r ServerAPISetServerInterfacesRedundancyGroupRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServerAPIService.SetServerInterfacesRedundancyGroup")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/servers/{serverId}/actions/set-interfaces-redundancy-group"
+	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(parameterValueToString(r.serverId, "serverId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.serverInterfacesRedundancyGroup == nil {
+		return nil, reportError("serverInterfacesRedundancyGroup is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.serverInterfacesRedundancyGroup
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ServerAPISetServerPowerStateRequest struct {
 	ctx context.Context
 	ApiService *ServerAPIService

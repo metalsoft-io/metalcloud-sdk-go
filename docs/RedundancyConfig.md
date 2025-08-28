@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Mode** | [**NetworkEndpointGroupRedundancyMode**](NetworkEndpointGroupRedundancyMode.md) | The redundancy mode | 
 **Implementation** | Pointer to [**NullableRedundancyImplementation**](RedundancyImplementation.md) | The redundancy implementation configuration | [optional] 
+**RedundancyGroupIndex** | Pointer to **NullableInt32** | The redundancy group index used for server only mode | [optional] 
 
 ## Methods
 
@@ -81,6 +82,41 @@ HasImplementation returns a boolean if a field has been set.
 `func (o *RedundancyConfig) UnsetImplementation()`
 
 UnsetImplementation ensures that no value is present for Implementation, not even an explicit nil
+### GetRedundancyGroupIndex
+
+`func (o *RedundancyConfig) GetRedundancyGroupIndex() int32`
+
+GetRedundancyGroupIndex returns the RedundancyGroupIndex field if non-nil, zero value otherwise.
+
+### GetRedundancyGroupIndexOk
+
+`func (o *RedundancyConfig) GetRedundancyGroupIndexOk() (*int32, bool)`
+
+GetRedundancyGroupIndexOk returns a tuple with the RedundancyGroupIndex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRedundancyGroupIndex
+
+`func (o *RedundancyConfig) SetRedundancyGroupIndex(v int32)`
+
+SetRedundancyGroupIndex sets RedundancyGroupIndex field to given value.
+
+### HasRedundancyGroupIndex
+
+`func (o *RedundancyConfig) HasRedundancyGroupIndex() bool`
+
+HasRedundancyGroupIndex returns a boolean if a field has been set.
+
+### SetRedundancyGroupIndexNil
+
+`func (o *RedundancyConfig) SetRedundancyGroupIndexNil(b bool)`
+
+ SetRedundancyGroupIndexNil sets the value for RedundancyGroupIndex to be an explicit nil
+
+### UnsetRedundancyGroupIndex
+`func (o *RedundancyConfig) UnsetRedundancyGroupIndex()`
+
+UnsetRedundancyGroupIndex ensures that no value is present for RedundancyGroupIndex, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

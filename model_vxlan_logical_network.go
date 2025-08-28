@@ -32,7 +32,7 @@ type VxlanLogicalNetwork struct {
 	Kind LogicalNetworkKind `json:"kind"`
 	FabricId int32 `json:"fabricId"`
 	InfrastructureId NullableInt32 `json:"infrastructureId"`
-	ExtensionInstanceId NullableInt32 `json:"extensionInstanceId"`
+	ExtensionInstanceId NullableInt32 `json:"extensionInstanceId,omitempty"`
 	ServiceStatus GenericServiceStatus `json:"serviceStatus"`
 	LastAppliedLogicalNetworkProfileId NullableInt32 `json:"lastAppliedLogicalNetworkProfileId"`
 	LastLogicalNetworkProfileAppliedAt time.Time `json:"lastLogicalNetworkProfileAppliedAt"`
@@ -53,7 +53,7 @@ type _VxlanLogicalNetwork VxlanLogicalNetwork
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVxlanLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, extensionInstanceId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config VxlanLogicalNetworkConfig, vlan VxlanLogicalNetworkVlanProperties, vxlan VxlanLogicalNetworkVxlanProperties, ipv4 VxlanLogicalNetworkIpv4Properties, ipv6 VxlanLogicalNetworkIpv6Properties, routeDomainId NullableInt32) *VxlanLogicalNetwork {
+func NewVxlanLogicalNetwork(id int32, label string, name string, annotations map[string]string, createdAt time.Time, updatedAt time.Time, revision int32, kind LogicalNetworkKind, fabricId int32, infrastructureId NullableInt32, serviceStatus GenericServiceStatus, lastAppliedLogicalNetworkProfileId NullableInt32, lastLogicalNetworkProfileAppliedAt time.Time, config VxlanLogicalNetworkConfig, vlan VxlanLogicalNetworkVlanProperties, vxlan VxlanLogicalNetworkVxlanProperties, ipv4 VxlanLogicalNetworkIpv4Properties, ipv6 VxlanLogicalNetworkIpv6Properties, routeDomainId NullableInt32) *VxlanLogicalNetwork {
 	this := VxlanLogicalNetwork{}
 	this.Id = id
 	this.Label = label
@@ -65,7 +65,6 @@ func NewVxlanLogicalNetwork(id int32, label string, name string, annotations map
 	this.Kind = kind
 	this.FabricId = fabricId
 	this.InfrastructureId = infrastructureId
-	this.ExtensionInstanceId = extensionInstanceId
 	this.ServiceStatus = serviceStatus
 	this.LastAppliedLogicalNetworkProfileId = lastAppliedLogicalNetworkProfileId
 	this.LastLogicalNetworkProfileAppliedAt = lastLogicalNetworkProfileAppliedAt
@@ -328,18 +327,16 @@ func (o *VxlanLogicalNetwork) SetInfrastructureId(v int32) {
 	o.InfrastructureId.Set(&v)
 }
 
-// GetExtensionInstanceId returns the ExtensionInstanceId field value
-// If the value is explicit nil, the zero value for int32 will be returned
+// GetExtensionInstanceId returns the ExtensionInstanceId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *VxlanLogicalNetwork) GetExtensionInstanceId() int32 {
-	if o == nil || o.ExtensionInstanceId.Get() == nil {
+	if o == nil || IsNil(o.ExtensionInstanceId.Get()) {
 		var ret int32
 		return ret
 	}
-
 	return *o.ExtensionInstanceId.Get()
 }
 
-// GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value
+// GetExtensionInstanceIdOk returns a tuple with the ExtensionInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VxlanLogicalNetwork) GetExtensionInstanceIdOk() (*int32, bool) {
@@ -349,9 +346,27 @@ func (o *VxlanLogicalNetwork) GetExtensionInstanceIdOk() (*int32, bool) {
 	return o.ExtensionInstanceId.Get(), o.ExtensionInstanceId.IsSet()
 }
 
-// SetExtensionInstanceId sets field value
+// HasExtensionInstanceId returns a boolean if a field has been set.
+func (o *VxlanLogicalNetwork) HasExtensionInstanceId() bool {
+	if o != nil && o.ExtensionInstanceId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensionInstanceId gets a reference to the given NullableInt32 and assigns it to the ExtensionInstanceId field.
 func (o *VxlanLogicalNetwork) SetExtensionInstanceId(v int32) {
 	o.ExtensionInstanceId.Set(&v)
+}
+// SetExtensionInstanceIdNil sets the value for ExtensionInstanceId to be an explicit nil
+func (o *VxlanLogicalNetwork) SetExtensionInstanceIdNil() {
+	o.ExtensionInstanceId.Set(nil)
+}
+
+// UnsetExtensionInstanceId ensures that no value is present for ExtensionInstanceId, not even an explicit nil
+func (o *VxlanLogicalNetwork) UnsetExtensionInstanceId() {
+	o.ExtensionInstanceId.Unset()
 }
 
 // GetServiceStatus returns the ServiceStatus field value
@@ -636,7 +651,9 @@ func (o VxlanLogicalNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize["kind"] = o.Kind
 	toSerialize["fabricId"] = o.FabricId
 	toSerialize["infrastructureId"] = o.InfrastructureId.Get()
-	toSerialize["extensionInstanceId"] = o.ExtensionInstanceId.Get()
+	if o.ExtensionInstanceId.IsSet() {
+		toSerialize["extensionInstanceId"] = o.ExtensionInstanceId.Get()
+	}
 	toSerialize["serviceStatus"] = o.ServiceStatus
 	toSerialize["lastAppliedLogicalNetworkProfileId"] = o.LastAppliedLogicalNetworkProfileId.Get()
 	toSerialize["lastLogicalNetworkProfileAppliedAt"] = o.LastLogicalNetworkProfileAppliedAt
@@ -672,7 +689,6 @@ func (o *VxlanLogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 		"kind",
 		"fabricId",
 		"infrastructureId",
-		"extensionInstanceId",
 		"serviceStatus",
 		"lastAppliedLogicalNetworkProfileId",
 		"lastLogicalNetworkProfileAppliedAt",

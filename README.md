@@ -442,6 +442,8 @@ Class | Method | HTTP request | Description
 *ServerAPI* | [**RegisterProductionServer**](docs/ServerAPI.md#registerproductionserver) | **Post** /api/v2/servers/actions/register-production | Initialize a production (live) server
 *ServerAPI* | [**RegisterServer**](docs/ServerAPI.md#registerserver) | **Post** /api/v2/servers | Initialize server registration
 *ServerAPI* | [**ResetServerToFactoryDefaults**](docs/ServerAPI.md#resetservertofactorydefaults) | **Post** /api/v2/servers/{serverId}/actions/factory-reset | Resets a server to factory defaults
+*ServerAPI* | [**SetServerInterfacesDefaultFabric**](docs/ServerAPI.md#setserverinterfacesdefaultfabric) | **Post** /api/v2/servers/{serverId}/actions/set-interfaces-default-fabric | Sets the default fabric for the specified server interfaces
+*ServerAPI* | [**SetServerInterfacesRedundancyGroup**](docs/ServerAPI.md#setserverinterfacesredundancygroup) | **Post** /api/v2/servers/{serverId}/actions/set-interfaces-redundancy-group | Sets the redundancy group index for the specified server interfaces
 *ServerAPI* | [**SetServerPowerState**](docs/ServerAPI.md#setserverpowerstate) | **Post** /api/v2/servers/{serverId}/actions/set-power | Sets the power state of a server
 *ServerAPI* | [**UpdateServer**](docs/ServerAPI.md#updateserver) | **Patch** /api/v2/servers/{serverId} | Updates the server information
 *ServerAPI* | [**UpdateServerEnableSnmp**](docs/ServerAPI.md#updateserverenablesnmp) | **Post** /api/v2/servers/{serverId}/actions/enable-snmp | Enables SNMP on a Server
@@ -1155,6 +1157,8 @@ Class | Method | HTTP request | Description
  - [ServerInstanceVariables](docs/ServerInstanceVariables.md)
  - [ServerInterface](docs/ServerInterface.md)
  - [ServerInterfaceConnection](docs/ServerInterfaceConnection.md)
+ - [ServerInterfacesDefaultFabric](docs/ServerInterfacesDefaultFabric.md)
+ - [ServerInterfacesRedundancyGroup](docs/ServerInterfacesRedundancyGroup.md)
  - [ServerMetricsInfo](docs/ServerMetricsInfo.md)
  - [ServerOSInstallationData](docs/ServerOSInstallationData.md)
  - [ServerPaginatedList](docs/ServerPaginatedList.md)

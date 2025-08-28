@@ -21,6 +21,8 @@ Method | HTTP request | Description
 [**RegisterProductionServer**](ServerAPI.md#RegisterProductionServer) | **Post** /api/v2/servers/actions/register-production | Initialize a production (live) server
 [**RegisterServer**](ServerAPI.md#RegisterServer) | **Post** /api/v2/servers | Initialize server registration
 [**ResetServerToFactoryDefaults**](ServerAPI.md#ResetServerToFactoryDefaults) | **Post** /api/v2/servers/{serverId}/actions/factory-reset | Resets a server to factory defaults
+[**SetServerInterfacesDefaultFabric**](ServerAPI.md#SetServerInterfacesDefaultFabric) | **Post** /api/v2/servers/{serverId}/actions/set-interfaces-default-fabric | Sets the default fabric for the specified server interfaces
+[**SetServerInterfacesRedundancyGroup**](ServerAPI.md#SetServerInterfacesRedundancyGroup) | **Post** /api/v2/servers/{serverId}/actions/set-interfaces-redundancy-group | Sets the redundancy group index for the specified server interfaces
 [**SetServerPowerState**](ServerAPI.md#SetServerPowerState) | **Post** /api/v2/servers/{serverId}/actions/set-power | Sets the power state of a server
 [**UpdateServer**](ServerAPI.md#UpdateServer) | **Patch** /api/v2/servers/{serverId} | Updates the server information
 [**UpdateServerEnableSnmp**](ServerAPI.md#UpdateServerEnableSnmp) | **Post** /api/v2/servers/{serverId}/actions/enable-snmp | Enables SNMP on a Server
@@ -1230,6 +1232,146 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetServerInterfacesDefaultFabric
+
+> SetServerInterfacesDefaultFabric(ctx, serverId).ServerInterfacesDefaultFabric(serverInterfacesDefaultFabric).Execute()
+
+Sets the default fabric for the specified server interfaces
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverId := float32(8.14) // float32 | 
+	serverInterfacesDefaultFabric := *openapiclient.NewServerInterfacesDefaultFabric([]float32{float32(123)}, NullableFloat32(1)) // ServerInterfacesDefaultFabric | The server interfaces default fabric option
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ServerAPI.SetServerInterfacesDefaultFabric(context.Background(), serverId).ServerInterfacesDefaultFabric(serverInterfacesDefaultFabric).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.SetServerInterfacesDefaultFabric``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetServerInterfacesDefaultFabricRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **serverInterfacesDefaultFabric** | [**ServerInterfacesDefaultFabric**](ServerInterfacesDefaultFabric.md) | The server interfaces default fabric option | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetServerInterfacesRedundancyGroup
+
+> SetServerInterfacesRedundancyGroup(ctx, serverId).ServerInterfacesRedundancyGroup(serverInterfacesRedundancyGroup).Execute()
+
+Sets the redundancy group index for the specified server interfaces
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	serverId := float32(8.14) // float32 | 
+	serverInterfacesRedundancyGroup := *openapiclient.NewServerInterfacesRedundancyGroup([]float32{float32(123)}, NullableFloat32(1)) // ServerInterfacesRedundancyGroup | The server interfaces redundancy group option
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ServerAPI.SetServerInterfacesRedundancyGroup(context.Background(), serverId).ServerInterfacesRedundancyGroup(serverInterfacesRedundancyGroup).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ServerAPI.SetServerInterfacesRedundancyGroup``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serverId** | **float32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetServerInterfacesRedundancyGroupRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **serverInterfacesRedundancyGroup** | [**ServerInterfacesRedundancyGroup**](ServerInterfacesRedundancyGroup.md) | The server interfaces redundancy group option | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
