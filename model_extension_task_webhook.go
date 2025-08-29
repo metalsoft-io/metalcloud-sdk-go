@@ -21,6 +21,7 @@ var _ MappedNullable = &ExtensionTaskWebhook{}
 
 // ExtensionTaskWebhook struct for ExtensionTaskWebhook
 type ExtensionTaskWebhook struct {
+	TaskType *string `json:"taskType,omitempty"`
 	// Webhook task endpoint.
 	Endpoint string `json:"endpoint"`
 	// Webhook task request method.
@@ -31,7 +32,7 @@ type ExtensionTaskWebhook struct {
 	RequestTemplate string `json:"requestTemplate"`
 	// Expected response statuses for the webhook task.
 	ExpectedResponseStatuses []float32 `json:"expectedResponseStatuses,omitempty"`
-	AdditionalProperties map[string]interface{}
+	AdditionalProperties     map[string]interface{}
 }
 
 type _ExtensionTaskWebhook ExtensionTaskWebhook
@@ -193,7 +194,7 @@ func (o *ExtensionTaskWebhook) SetExpectedResponseStatuses(v []float32) {
 }
 
 func (o ExtensionTaskWebhook) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -234,10 +235,10 @@ func (o *ExtensionTaskWebhook) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -261,6 +262,7 @@ func (o *ExtensionTaskWebhook) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "headers")
 		delete(additionalProperties, "requestTemplate")
 		delete(additionalProperties, "expectedResponseStatuses")
+		delete(additionalProperties, "taskType")
 		o.AdditionalProperties = additionalProperties
 	}
 
@@ -302,5 +304,3 @@ func (v *NullableExtensionTaskWebhook) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

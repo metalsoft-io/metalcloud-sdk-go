@@ -20,6 +20,7 @@ var _ MappedNullable = &ExtensionTaskAnsible{}
 
 // ExtensionTaskAnsible struct for ExtensionTaskAnsible
 type ExtensionTaskAnsible struct {
+	TaskType *string `json:"taskType,omitempty"`
 	// Asset for the Ansible task.
 	Asset *string `json:"asset,omitempty"`
 	// Playbook for the Ansible task.
@@ -29,7 +30,7 @@ type ExtensionTaskAnsible struct {
 	// Execution Timeout Tick.
 	ExecutionTimeoutTick *int32 `json:"executionTimeoutTick,omitempty"`
 	// Version.
-	Version *string `json:"version,omitempty"`
+	Version              *string `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -213,7 +214,7 @@ func (o *ExtensionTaskAnsible) SetVersion(v string) {
 }
 
 func (o ExtensionTaskAnsible) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -264,6 +265,7 @@ func (o *ExtensionTaskAnsible) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "executionTimeout")
 		delete(additionalProperties, "executionTimeoutTick")
 		delete(additionalProperties, "version")
+		delete(additionalProperties, "taskType")
 		o.AdditionalProperties = additionalProperties
 	}
 
@@ -305,5 +307,3 @@ func (v *NullableExtensionTaskAnsible) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

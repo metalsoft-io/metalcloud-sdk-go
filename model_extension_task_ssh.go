@@ -21,6 +21,7 @@ var _ MappedNullable = &ExtensionTaskSsh{}
 
 // ExtensionTaskSsh struct for ExtensionTaskSsh
 type ExtensionTaskSsh struct {
+	TaskType *string `json:"taskType,omitempty"`
 	// Host to execute the SSH command on.
 	Host string `json:"host"`
 	// Port to connect to the host via SSH.
@@ -32,7 +33,7 @@ type ExtensionTaskSsh struct {
 	// Timeout for the SSH command execution in seconds.
 	Timeout int32 `json:"timeout"`
 	// Command template to execute via SSH.
-	CommandTemplate string `json:"commandTemplate"`
+	CommandTemplate      string `json:"commandTemplate"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -220,7 +221,7 @@ func (o *ExtensionTaskSsh) SetCommandTemplate(v string) {
 }
 
 func (o ExtensionTaskSsh) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -263,10 +264,10 @@ func (o *ExtensionTaskSsh) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -291,6 +292,7 @@ func (o *ExtensionTaskSsh) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "password")
 		delete(additionalProperties, "timeout")
 		delete(additionalProperties, "commandTemplate")
+		delete(additionalProperties, "taskType")
 		o.AdditionalProperties = additionalProperties
 	}
 
@@ -332,5 +334,3 @@ func (v *NullableExtensionTaskSsh) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
