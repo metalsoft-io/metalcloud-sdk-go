@@ -16,8 +16,8 @@ import (
 	"fmt"
 )
 
-// ExtensionInputOptions - Input options.
-type ExtensionInputOptions struct {
+// ExtensionDefinitionInputsDataItem - struct for ExtensionDefinitionInputsDataItem
+type ExtensionDefinitionInputsDataItem struct {
 	ExtensionInputBoolean *ExtensionInputBoolean
 	ExtensionInputInteger *ExtensionInputInteger
 	ExtensionInputOsTemplate *ExtensionInputOsTemplate
@@ -25,44 +25,44 @@ type ExtensionInputOptions struct {
 	ExtensionInputString *ExtensionInputString
 }
 
-// ExtensionInputBooleanAsExtensionInputOptions is a convenience function that returns ExtensionInputBoolean wrapped in ExtensionInputOptions
-func ExtensionInputBooleanAsExtensionInputOptions(v *ExtensionInputBoolean) ExtensionInputOptions {
-	return ExtensionInputOptions{
+// ExtensionInputBooleanAsExtensionDefinitionInputsDataItem is a convenience function that returns ExtensionInputBoolean wrapped in ExtensionDefinitionInputsDataItem
+func ExtensionInputBooleanAsExtensionDefinitionInputsDataItem(v *ExtensionInputBoolean) ExtensionDefinitionInputsDataItem {
+	return ExtensionDefinitionInputsDataItem{
 		ExtensionInputBoolean: v,
 	}
 }
 
-// ExtensionInputIntegerAsExtensionInputOptions is a convenience function that returns ExtensionInputInteger wrapped in ExtensionInputOptions
-func ExtensionInputIntegerAsExtensionInputOptions(v *ExtensionInputInteger) ExtensionInputOptions {
-	return ExtensionInputOptions{
+// ExtensionInputIntegerAsExtensionDefinitionInputsDataItem is a convenience function that returns ExtensionInputInteger wrapped in ExtensionDefinitionInputsDataItem
+func ExtensionInputIntegerAsExtensionDefinitionInputsDataItem(v *ExtensionInputInteger) ExtensionDefinitionInputsDataItem {
+	return ExtensionDefinitionInputsDataItem{
 		ExtensionInputInteger: v,
 	}
 }
 
-// ExtensionInputOsTemplateAsExtensionInputOptions is a convenience function that returns ExtensionInputOsTemplate wrapped in ExtensionInputOptions
-func ExtensionInputOsTemplateAsExtensionInputOptions(v *ExtensionInputOsTemplate) ExtensionInputOptions {
-	return ExtensionInputOptions{
+// ExtensionInputOsTemplateAsExtensionDefinitionInputsDataItem is a convenience function that returns ExtensionInputOsTemplate wrapped in ExtensionDefinitionInputsDataItem
+func ExtensionInputOsTemplateAsExtensionDefinitionInputsDataItem(v *ExtensionInputOsTemplate) ExtensionDefinitionInputsDataItem {
+	return ExtensionDefinitionInputsDataItem{
 		ExtensionInputOsTemplate: v,
 	}
 }
 
-// ExtensionInputServerTypeAsExtensionInputOptions is a convenience function that returns ExtensionInputServerType wrapped in ExtensionInputOptions
-func ExtensionInputServerTypeAsExtensionInputOptions(v *ExtensionInputServerType) ExtensionInputOptions {
-	return ExtensionInputOptions{
+// ExtensionInputServerTypeAsExtensionDefinitionInputsDataItem is a convenience function that returns ExtensionInputServerType wrapped in ExtensionDefinitionInputsDataItem
+func ExtensionInputServerTypeAsExtensionDefinitionInputsDataItem(v *ExtensionInputServerType) ExtensionDefinitionInputsDataItem {
+	return ExtensionDefinitionInputsDataItem{
 		ExtensionInputServerType: v,
 	}
 }
 
-// ExtensionInputStringAsExtensionInputOptions is a convenience function that returns ExtensionInputString wrapped in ExtensionInputOptions
-func ExtensionInputStringAsExtensionInputOptions(v *ExtensionInputString) ExtensionInputOptions {
-	return ExtensionInputOptions{
+// ExtensionInputStringAsExtensionDefinitionInputsDataItem is a convenience function that returns ExtensionInputString wrapped in ExtensionDefinitionInputsDataItem
+func ExtensionInputStringAsExtensionDefinitionInputsDataItem(v *ExtensionInputString) ExtensionDefinitionInputsDataItem {
+	return ExtensionDefinitionInputsDataItem{
 		ExtensionInputString: v,
 	}
 }
 
 
 // Unmarshal JSON data into one of the pointers in the struct
-func (dst *ExtensionInputOptions) UnmarshalJSON(data []byte) error {
+func (dst *ExtensionDefinitionInputsDataItem) UnmarshalJSON(data []byte) error {
 	var err error
 	// use discriminator value to speed up the lookup
 	var jsonDict map[string]interface{}
@@ -79,7 +79,7 @@ func (dst *ExtensionInputOptions) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.ExtensionInputBoolean, return on the first match
 		} else {
 			dst.ExtensionInputBoolean = nil
-			return fmt.Errorf("failed to unmarshal ExtensionInputOptions as ExtensionInputBoolean: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal ExtensionDefinitionInputsDataItem as ExtensionInputBoolean: %s", err.Error())
 		}
 	}
 
@@ -91,7 +91,7 @@ func (dst *ExtensionInputOptions) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.ExtensionInputInteger, return on the first match
 		} else {
 			dst.ExtensionInputInteger = nil
-			return fmt.Errorf("failed to unmarshal ExtensionInputOptions as ExtensionInputInteger: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal ExtensionDefinitionInputsDataItem as ExtensionInputInteger: %s", err.Error())
 		}
 	}
 
@@ -103,7 +103,7 @@ func (dst *ExtensionInputOptions) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.ExtensionInputOsTemplate, return on the first match
 		} else {
 			dst.ExtensionInputOsTemplate = nil
-			return fmt.Errorf("failed to unmarshal ExtensionInputOptions as ExtensionInputOsTemplate: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal ExtensionDefinitionInputsDataItem as ExtensionInputOsTemplate: %s", err.Error())
 		}
 	}
 
@@ -115,7 +115,7 @@ func (dst *ExtensionInputOptions) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.ExtensionInputServerType, return on the first match
 		} else {
 			dst.ExtensionInputServerType = nil
-			return fmt.Errorf("failed to unmarshal ExtensionInputOptions as ExtensionInputServerType: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal ExtensionDefinitionInputsDataItem as ExtensionInputServerType: %s", err.Error())
 		}
 	}
 
@@ -127,7 +127,7 @@ func (dst *ExtensionInputOptions) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.ExtensionInputString, return on the first match
 		} else {
 			dst.ExtensionInputString = nil
-			return fmt.Errorf("failed to unmarshal ExtensionInputOptions as ExtensionInputString: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal ExtensionDefinitionInputsDataItem as ExtensionInputString: %s", err.Error())
 		}
 	}
 
@@ -135,7 +135,7 @@ func (dst *ExtensionInputOptions) UnmarshalJSON(data []byte) error {
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src ExtensionInputOptions) MarshalJSON() ([]byte, error) {
+func (src ExtensionDefinitionInputsDataItem) MarshalJSON() ([]byte, error) {
 	if src.ExtensionInputBoolean != nil {
 		return json.Marshal(&src.ExtensionInputBoolean)
 	}
@@ -160,7 +160,7 @@ func (src ExtensionInputOptions) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *ExtensionInputOptions) GetActualInstance() (interface{}) {
+func (obj *ExtensionDefinitionInputsDataItem) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -189,7 +189,7 @@ func (obj *ExtensionInputOptions) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj ExtensionInputOptions) GetActualInstanceValue() (interface{}) {
+func (obj ExtensionDefinitionInputsDataItem) GetActualInstanceValue() (interface{}) {
 	if obj.ExtensionInputBoolean != nil {
 		return *obj.ExtensionInputBoolean
 	}
@@ -214,38 +214,38 @@ func (obj ExtensionInputOptions) GetActualInstanceValue() (interface{}) {
 	return nil
 }
 
-type NullableExtensionInputOptions struct {
-	value *ExtensionInputOptions
+type NullableExtensionDefinitionInputsDataItem struct {
+	value *ExtensionDefinitionInputsDataItem
 	isSet bool
 }
 
-func (v NullableExtensionInputOptions) Get() *ExtensionInputOptions {
+func (v NullableExtensionDefinitionInputsDataItem) Get() *ExtensionDefinitionInputsDataItem {
 	return v.value
 }
 
-func (v *NullableExtensionInputOptions) Set(val *ExtensionInputOptions) {
+func (v *NullableExtensionDefinitionInputsDataItem) Set(val *ExtensionDefinitionInputsDataItem) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableExtensionInputOptions) IsSet() bool {
+func (v NullableExtensionDefinitionInputsDataItem) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableExtensionInputOptions) Unset() {
+func (v *NullableExtensionDefinitionInputsDataItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableExtensionInputOptions(val *ExtensionInputOptions) *NullableExtensionInputOptions {
-	return &NullableExtensionInputOptions{value: val, isSet: true}
+func NewNullableExtensionDefinitionInputsDataItem(val *ExtensionDefinitionInputsDataItem) *NullableExtensionDefinitionInputsDataItem {
+	return &NullableExtensionDefinitionInputsDataItem{value: val, isSet: true}
 }
 
-func (v NullableExtensionInputOptions) MarshalJSON() ([]byte, error) {
+func (v NullableExtensionDefinitionInputsDataItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableExtensionInputOptions) UnmarshalJSON(src []byte) error {
+func (v *NullableExtensionDefinitionInputsDataItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

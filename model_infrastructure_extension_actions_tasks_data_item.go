@@ -16,37 +16,37 @@ import (
 	"fmt"
 )
 
-// ExtensionTaskOptions - Task options.
-type ExtensionTaskOptions struct {
+// InfrastructureExtensionActionsTasksDataItem - struct for InfrastructureExtensionActionsTasksDataItem
+type InfrastructureExtensionActionsTasksDataItem struct {
 	ExtensionTaskAnsible *ExtensionTaskAnsible
 	ExtensionTaskSsh *ExtensionTaskSsh
 	ExtensionTaskWebhook *ExtensionTaskWebhook
 }
 
-// ExtensionTaskAnsibleAsExtensionTaskOptions is a convenience function that returns ExtensionTaskAnsible wrapped in ExtensionTaskOptions
-func ExtensionTaskAnsibleAsExtensionTaskOptions(v *ExtensionTaskAnsible) ExtensionTaskOptions {
-	return ExtensionTaskOptions{
+// ExtensionTaskAnsibleAsInfrastructureExtensionActionsTasksDataItem is a convenience function that returns ExtensionTaskAnsible wrapped in InfrastructureExtensionActionsTasksDataItem
+func ExtensionTaskAnsibleAsInfrastructureExtensionActionsTasksDataItem(v *ExtensionTaskAnsible) InfrastructureExtensionActionsTasksDataItem {
+	return InfrastructureExtensionActionsTasksDataItem{
 		ExtensionTaskAnsible: v,
 	}
 }
 
-// ExtensionTaskSshAsExtensionTaskOptions is a convenience function that returns ExtensionTaskSsh wrapped in ExtensionTaskOptions
-func ExtensionTaskSshAsExtensionTaskOptions(v *ExtensionTaskSsh) ExtensionTaskOptions {
-	return ExtensionTaskOptions{
+// ExtensionTaskSshAsInfrastructureExtensionActionsTasksDataItem is a convenience function that returns ExtensionTaskSsh wrapped in InfrastructureExtensionActionsTasksDataItem
+func ExtensionTaskSshAsInfrastructureExtensionActionsTasksDataItem(v *ExtensionTaskSsh) InfrastructureExtensionActionsTasksDataItem {
+	return InfrastructureExtensionActionsTasksDataItem{
 		ExtensionTaskSsh: v,
 	}
 }
 
-// ExtensionTaskWebhookAsExtensionTaskOptions is a convenience function that returns ExtensionTaskWebhook wrapped in ExtensionTaskOptions
-func ExtensionTaskWebhookAsExtensionTaskOptions(v *ExtensionTaskWebhook) ExtensionTaskOptions {
-	return ExtensionTaskOptions{
+// ExtensionTaskWebhookAsInfrastructureExtensionActionsTasksDataItem is a convenience function that returns ExtensionTaskWebhook wrapped in InfrastructureExtensionActionsTasksDataItem
+func ExtensionTaskWebhookAsInfrastructureExtensionActionsTasksDataItem(v *ExtensionTaskWebhook) InfrastructureExtensionActionsTasksDataItem {
+	return InfrastructureExtensionActionsTasksDataItem{
 		ExtensionTaskWebhook: v,
 	}
 }
 
 
 // Unmarshal JSON data into one of the pointers in the struct
-func (dst *ExtensionTaskOptions) UnmarshalJSON(data []byte) error {
+func (dst *InfrastructureExtensionActionsTasksDataItem) UnmarshalJSON(data []byte) error {
 	var err error
 	// use discriminator value to speed up the lookup
 	var jsonDict map[string]interface{}
@@ -63,7 +63,7 @@ func (dst *ExtensionTaskOptions) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.ExtensionTaskAnsible, return on the first match
 		} else {
 			dst.ExtensionTaskAnsible = nil
-			return fmt.Errorf("failed to unmarshal ExtensionTaskOptions as ExtensionTaskAnsible: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal InfrastructureExtensionActionsTasksDataItem as ExtensionTaskAnsible: %s", err.Error())
 		}
 	}
 
@@ -75,7 +75,7 @@ func (dst *ExtensionTaskOptions) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.ExtensionTaskSsh, return on the first match
 		} else {
 			dst.ExtensionTaskSsh = nil
-			return fmt.Errorf("failed to unmarshal ExtensionTaskOptions as ExtensionTaskSsh: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal InfrastructureExtensionActionsTasksDataItem as ExtensionTaskSsh: %s", err.Error())
 		}
 	}
 
@@ -87,7 +87,7 @@ func (dst *ExtensionTaskOptions) UnmarshalJSON(data []byte) error {
 			return nil // data stored in dst.ExtensionTaskWebhook, return on the first match
 		} else {
 			dst.ExtensionTaskWebhook = nil
-			return fmt.Errorf("failed to unmarshal ExtensionTaskOptions as ExtensionTaskWebhook: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal InfrastructureExtensionActionsTasksDataItem as ExtensionTaskWebhook: %s", err.Error())
 		}
 	}
 
@@ -95,7 +95,7 @@ func (dst *ExtensionTaskOptions) UnmarshalJSON(data []byte) error {
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src ExtensionTaskOptions) MarshalJSON() ([]byte, error) {
+func (src InfrastructureExtensionActionsTasksDataItem) MarshalJSON() ([]byte, error) {
 	if src.ExtensionTaskAnsible != nil {
 		return json.Marshal(&src.ExtensionTaskAnsible)
 	}
@@ -112,7 +112,7 @@ func (src ExtensionTaskOptions) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *ExtensionTaskOptions) GetActualInstance() (interface{}) {
+func (obj *InfrastructureExtensionActionsTasksDataItem) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -133,7 +133,7 @@ func (obj *ExtensionTaskOptions) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj ExtensionTaskOptions) GetActualInstanceValue() (interface{}) {
+func (obj InfrastructureExtensionActionsTasksDataItem) GetActualInstanceValue() (interface{}) {
 	if obj.ExtensionTaskAnsible != nil {
 		return *obj.ExtensionTaskAnsible
 	}
@@ -150,38 +150,38 @@ func (obj ExtensionTaskOptions) GetActualInstanceValue() (interface{}) {
 	return nil
 }
 
-type NullableExtensionTaskOptions struct {
-	value *ExtensionTaskOptions
+type NullableInfrastructureExtensionActionsTasksDataItem struct {
+	value *InfrastructureExtensionActionsTasksDataItem
 	isSet bool
 }
 
-func (v NullableExtensionTaskOptions) Get() *ExtensionTaskOptions {
+func (v NullableInfrastructureExtensionActionsTasksDataItem) Get() *InfrastructureExtensionActionsTasksDataItem {
 	return v.value
 }
 
-func (v *NullableExtensionTaskOptions) Set(val *ExtensionTaskOptions) {
+func (v *NullableInfrastructureExtensionActionsTasksDataItem) Set(val *InfrastructureExtensionActionsTasksDataItem) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableExtensionTaskOptions) IsSet() bool {
+func (v NullableInfrastructureExtensionActionsTasksDataItem) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableExtensionTaskOptions) Unset() {
+func (v *NullableInfrastructureExtensionActionsTasksDataItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableExtensionTaskOptions(val *ExtensionTaskOptions) *NullableExtensionTaskOptions {
-	return &NullableExtensionTaskOptions{value: val, isSet: true}
+func NewNullableInfrastructureExtensionActionsTasksDataItem(val *InfrastructureExtensionActionsTasksDataItem) *NullableInfrastructureExtensionActionsTasksDataItem {
+	return &NullableInfrastructureExtensionActionsTasksDataItem{value: val, isSet: true}
 }
 
-func (v NullableExtensionTaskOptions) MarshalJSON() ([]byte, error) {
+func (v NullableInfrastructureExtensionActionsTasksDataItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableExtensionTaskOptions) UnmarshalJSON(src []byte) error {
+func (v *NullableInfrastructureExtensionActionsTasksDataItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

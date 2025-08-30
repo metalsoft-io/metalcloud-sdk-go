@@ -4,15 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MinValue** | Pointer to **int32** | Minimum allowed value. | [optional] 
-**MaxValue** | Pointer to **int32** | Maximum allowed value. | [optional] 
-**DeniedValues** | Pointer to **[]int32** | Denied values. | [optional] 
+**Label** | **string** | Label of the input. | 
+**Name** | **string** | Name of the input. | 
+**InputType** | [**ExtensionInputType**](ExtensionInputType.md) |  | 
+**SetOnly** | Pointer to **bool** | Flag to indicate if the input is required. | [optional] [default to false]
+**Hidden** | Pointer to **bool** | Flag to indicate if the input is hidden in the UI. | [optional] [default to false]
+**DefaultValue** | Pointer to [**ExtensionInputStringDefaultValue**](ExtensionInputStringDefaultValue.md) |  | [optional] 
+**Options** | [**ExtensionInputOptionInteger**](ExtensionInputOptionInteger.md) |  | 
 
 ## Methods
 
 ### NewExtensionInputInteger
 
-`func NewExtensionInputInteger() *ExtensionInputInteger`
+`func NewExtensionInputInteger(label string, name string, inputType ExtensionInputType, options ExtensionInputOptionInteger, ) *ExtensionInputInteger`
 
 NewExtensionInputInteger instantiates a new ExtensionInputInteger object
 This constructor will assign default values to properties that have it defined,
@@ -27,80 +31,160 @@ NewExtensionInputIntegerWithDefaults instantiates a new ExtensionInputInteger ob
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetMinValue
+### GetLabel
 
-`func (o *ExtensionInputInteger) GetMinValue() int32`
+`func (o *ExtensionInputInteger) GetLabel() string`
 
-GetMinValue returns the MinValue field if non-nil, zero value otherwise.
+GetLabel returns the Label field if non-nil, zero value otherwise.
 
-### GetMinValueOk
+### GetLabelOk
 
-`func (o *ExtensionInputInteger) GetMinValueOk() (*int32, bool)`
+`func (o *ExtensionInputInteger) GetLabelOk() (*string, bool)`
 
-GetMinValueOk returns a tuple with the MinValue field if it's non-nil, zero value otherwise
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMinValue
+### SetLabel
 
-`func (o *ExtensionInputInteger) SetMinValue(v int32)`
+`func (o *ExtensionInputInteger) SetLabel(v string)`
 
-SetMinValue sets MinValue field to given value.
+SetLabel sets Label field to given value.
 
-### HasMinValue
 
-`func (o *ExtensionInputInteger) HasMinValue() bool`
+### GetName
 
-HasMinValue returns a boolean if a field has been set.
+`func (o *ExtensionInputInteger) GetName() string`
 
-### GetMaxValue
+GetName returns the Name field if non-nil, zero value otherwise.
 
-`func (o *ExtensionInputInteger) GetMaxValue() int32`
+### GetNameOk
 
-GetMaxValue returns the MaxValue field if non-nil, zero value otherwise.
+`func (o *ExtensionInputInteger) GetNameOk() (*string, bool)`
 
-### GetMaxValueOk
-
-`func (o *ExtensionInputInteger) GetMaxValueOk() (*int32, bool)`
-
-GetMaxValueOk returns a tuple with the MaxValue field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMaxValue
+### SetName
 
-`func (o *ExtensionInputInteger) SetMaxValue(v int32)`
+`func (o *ExtensionInputInteger) SetName(v string)`
 
-SetMaxValue sets MaxValue field to given value.
+SetName sets Name field to given value.
 
-### HasMaxValue
 
-`func (o *ExtensionInputInteger) HasMaxValue() bool`
+### GetInputType
 
-HasMaxValue returns a boolean if a field has been set.
+`func (o *ExtensionInputInteger) GetInputType() ExtensionInputType`
 
-### GetDeniedValues
+GetInputType returns the InputType field if non-nil, zero value otherwise.
 
-`func (o *ExtensionInputInteger) GetDeniedValues() []int32`
+### GetInputTypeOk
 
-GetDeniedValues returns the DeniedValues field if non-nil, zero value otherwise.
+`func (o *ExtensionInputInteger) GetInputTypeOk() (*ExtensionInputType, bool)`
 
-### GetDeniedValuesOk
-
-`func (o *ExtensionInputInteger) GetDeniedValuesOk() (*[]int32, bool)`
-
-GetDeniedValuesOk returns a tuple with the DeniedValues field if it's non-nil, zero value otherwise
+GetInputTypeOk returns a tuple with the InputType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeniedValues
+### SetInputType
 
-`func (o *ExtensionInputInteger) SetDeniedValues(v []int32)`
+`func (o *ExtensionInputInteger) SetInputType(v ExtensionInputType)`
 
-SetDeniedValues sets DeniedValues field to given value.
+SetInputType sets InputType field to given value.
 
-### HasDeniedValues
 
-`func (o *ExtensionInputInteger) HasDeniedValues() bool`
+### GetSetOnly
 
-HasDeniedValues returns a boolean if a field has been set.
+`func (o *ExtensionInputInteger) GetSetOnly() bool`
+
+GetSetOnly returns the SetOnly field if non-nil, zero value otherwise.
+
+### GetSetOnlyOk
+
+`func (o *ExtensionInputInteger) GetSetOnlyOk() (*bool, bool)`
+
+GetSetOnlyOk returns a tuple with the SetOnly field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSetOnly
+
+`func (o *ExtensionInputInteger) SetSetOnly(v bool)`
+
+SetSetOnly sets SetOnly field to given value.
+
+### HasSetOnly
+
+`func (o *ExtensionInputInteger) HasSetOnly() bool`
+
+HasSetOnly returns a boolean if a field has been set.
+
+### GetHidden
+
+`func (o *ExtensionInputInteger) GetHidden() bool`
+
+GetHidden returns the Hidden field if non-nil, zero value otherwise.
+
+### GetHiddenOk
+
+`func (o *ExtensionInputInteger) GetHiddenOk() (*bool, bool)`
+
+GetHiddenOk returns a tuple with the Hidden field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHidden
+
+`func (o *ExtensionInputInteger) SetHidden(v bool)`
+
+SetHidden sets Hidden field to given value.
+
+### HasHidden
+
+`func (o *ExtensionInputInteger) HasHidden() bool`
+
+HasHidden returns a boolean if a field has been set.
+
+### GetDefaultValue
+
+`func (o *ExtensionInputInteger) GetDefaultValue() ExtensionInputStringDefaultValue`
+
+GetDefaultValue returns the DefaultValue field if non-nil, zero value otherwise.
+
+### GetDefaultValueOk
+
+`func (o *ExtensionInputInteger) GetDefaultValueOk() (*ExtensionInputStringDefaultValue, bool)`
+
+GetDefaultValueOk returns a tuple with the DefaultValue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultValue
+
+`func (o *ExtensionInputInteger) SetDefaultValue(v ExtensionInputStringDefaultValue)`
+
+SetDefaultValue sets DefaultValue field to given value.
+
+### HasDefaultValue
+
+`func (o *ExtensionInputInteger) HasDefaultValue() bool`
+
+HasDefaultValue returns a boolean if a field has been set.
+
+### GetOptions
+
+`func (o *ExtensionInputInteger) GetOptions() ExtensionInputOptionInteger`
+
+GetOptions returns the Options field if non-nil, zero value otherwise.
+
+### GetOptionsOk
+
+`func (o *ExtensionInputInteger) GetOptionsOk() (*ExtensionInputOptionInteger, bool)`
+
+GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOptions
+
+`func (o *ExtensionInputInteger) SetOptions(v ExtensionInputOptionInteger)`
+
+SetOptions sets Options field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

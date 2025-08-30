@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ExtensionInputServerType type satisfies the MappedNullable interface at compile time
@@ -20,12 +21,17 @@ var _ MappedNullable = &ExtensionInputServerType{}
 
 // ExtensionInputServerType struct for ExtensionInputServerType
 type ExtensionInputServerType struct {
-	// Minimum CPU cores.
-	MinCpu *int32 `json:"minCpu,omitempty"`
-	// Minimum RAM GBs.
-	MinRamGb *int32 `json:"minRamGb,omitempty"`
-	// Server vendor.
-	Vendor *string `json:"vendor,omitempty"`
+	// Label of the input.
+	Label string `json:"label"`
+	// Name of the input.
+	Name string `json:"name"`
+	InputType ExtensionInputType `json:"inputType"`
+	// Flag to indicate if the input is required.
+	SetOnly *bool `json:"setOnly,omitempty"`
+	// Flag to indicate if the input is hidden in the UI.
+	Hidden *bool `json:"hidden,omitempty"`
+	DefaultValue *ExtensionInputStringDefaultValue `json:"defaultValue,omitempty"`
+	Options ExtensionInputOptionServerType `json:"options"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,8 +41,16 @@ type _ExtensionInputServerType ExtensionInputServerType
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInputServerType() *ExtensionInputServerType {
+func NewExtensionInputServerType(label string, name string, inputType ExtensionInputType, options ExtensionInputOptionServerType) *ExtensionInputServerType {
 	this := ExtensionInputServerType{}
+	this.Label = label
+	this.Name = name
+	this.InputType = inputType
+	var setOnly bool = false
+	this.SetOnly = &setOnly
+	var hidden bool = false
+	this.Hidden = &hidden
+	this.Options = options
 	return &this
 }
 
@@ -45,103 +59,203 @@ func NewExtensionInputServerType() *ExtensionInputServerType {
 // but it doesn't guarantee that properties required by API are set
 func NewExtensionInputServerTypeWithDefaults() *ExtensionInputServerType {
 	this := ExtensionInputServerType{}
+	var setOnly bool = false
+	this.SetOnly = &setOnly
+	var hidden bool = false
+	this.Hidden = &hidden
 	return &this
 }
 
-// GetMinCpu returns the MinCpu field value if set, zero value otherwise.
-func (o *ExtensionInputServerType) GetMinCpu() int32 {
-	if o == nil || IsNil(o.MinCpu) {
-		var ret int32
-		return ret
-	}
-	return *o.MinCpu
-}
-
-// GetMinCpuOk returns a tuple with the MinCpu field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExtensionInputServerType) GetMinCpuOk() (*int32, bool) {
-	if o == nil || IsNil(o.MinCpu) {
-		return nil, false
-	}
-	return o.MinCpu, true
-}
-
-// HasMinCpu returns a boolean if a field has been set.
-func (o *ExtensionInputServerType) HasMinCpu() bool {
-	if o != nil && !IsNil(o.MinCpu) {
-		return true
-	}
-
-	return false
-}
-
-// SetMinCpu gets a reference to the given int32 and assigns it to the MinCpu field.
-func (o *ExtensionInputServerType) SetMinCpu(v int32) {
-	o.MinCpu = &v
-}
-
-// GetMinRamGb returns the MinRamGb field value if set, zero value otherwise.
-func (o *ExtensionInputServerType) GetMinRamGb() int32 {
-	if o == nil || IsNil(o.MinRamGb) {
-		var ret int32
-		return ret
-	}
-	return *o.MinRamGb
-}
-
-// GetMinRamGbOk returns a tuple with the MinRamGb field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExtensionInputServerType) GetMinRamGbOk() (*int32, bool) {
-	if o == nil || IsNil(o.MinRamGb) {
-		return nil, false
-	}
-	return o.MinRamGb, true
-}
-
-// HasMinRamGb returns a boolean if a field has been set.
-func (o *ExtensionInputServerType) HasMinRamGb() bool {
-	if o != nil && !IsNil(o.MinRamGb) {
-		return true
-	}
-
-	return false
-}
-
-// SetMinRamGb gets a reference to the given int32 and assigns it to the MinRamGb field.
-func (o *ExtensionInputServerType) SetMinRamGb(v int32) {
-	o.MinRamGb = &v
-}
-
-// GetVendor returns the Vendor field value if set, zero value otherwise.
-func (o *ExtensionInputServerType) GetVendor() string {
-	if o == nil || IsNil(o.Vendor) {
+// GetLabel returns the Label field value
+func (o *ExtensionInputServerType) GetLabel() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Vendor
+
+	return o.Label
 }
 
-// GetVendorOk returns a tuple with the Vendor field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputServerType) GetVendorOk() (*string, bool) {
-	if o == nil || IsNil(o.Vendor) {
+func (o *ExtensionInputServerType) GetLabelOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Vendor, true
+	return &o.Label, true
 }
 
-// HasVendor returns a boolean if a field has been set.
-func (o *ExtensionInputServerType) HasVendor() bool {
-	if o != nil && !IsNil(o.Vendor) {
+// SetLabel sets field value
+func (o *ExtensionInputServerType) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetName returns the Name field value
+func (o *ExtensionInputServerType) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputServerType) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ExtensionInputServerType) SetName(v string) {
+	o.Name = v
+}
+
+// GetInputType returns the InputType field value
+func (o *ExtensionInputServerType) GetInputType() ExtensionInputType {
+	if o == nil {
+		var ret ExtensionInputType
+		return ret
+	}
+
+	return o.InputType
+}
+
+// GetInputTypeOk returns a tuple with the InputType field value
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputServerType) GetInputTypeOk() (*ExtensionInputType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InputType, true
+}
+
+// SetInputType sets field value
+func (o *ExtensionInputServerType) SetInputType(v ExtensionInputType) {
+	o.InputType = v
+}
+
+// GetSetOnly returns the SetOnly field value if set, zero value otherwise.
+func (o *ExtensionInputServerType) GetSetOnly() bool {
+	if o == nil || IsNil(o.SetOnly) {
+		var ret bool
+		return ret
+	}
+	return *o.SetOnly
+}
+
+// GetSetOnlyOk returns a tuple with the SetOnly field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputServerType) GetSetOnlyOk() (*bool, bool) {
+	if o == nil || IsNil(o.SetOnly) {
+		return nil, false
+	}
+	return o.SetOnly, true
+}
+
+// HasSetOnly returns a boolean if a field has been set.
+func (o *ExtensionInputServerType) HasSetOnly() bool {
+	if o != nil && !IsNil(o.SetOnly) {
 		return true
 	}
 
 	return false
 }
 
-// SetVendor gets a reference to the given string and assigns it to the Vendor field.
-func (o *ExtensionInputServerType) SetVendor(v string) {
-	o.Vendor = &v
+// SetSetOnly gets a reference to the given bool and assigns it to the SetOnly field.
+func (o *ExtensionInputServerType) SetSetOnly(v bool) {
+	o.SetOnly = &v
+}
+
+// GetHidden returns the Hidden field value if set, zero value otherwise.
+func (o *ExtensionInputServerType) GetHidden() bool {
+	if o == nil || IsNil(o.Hidden) {
+		var ret bool
+		return ret
+	}
+	return *o.Hidden
+}
+
+// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputServerType) GetHiddenOk() (*bool, bool) {
+	if o == nil || IsNil(o.Hidden) {
+		return nil, false
+	}
+	return o.Hidden, true
+}
+
+// HasHidden returns a boolean if a field has been set.
+func (o *ExtensionInputServerType) HasHidden() bool {
+	if o != nil && !IsNil(o.Hidden) {
+		return true
+	}
+
+	return false
+}
+
+// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
+func (o *ExtensionInputServerType) SetHidden(v bool) {
+	o.Hidden = &v
+}
+
+// GetDefaultValue returns the DefaultValue field value if set, zero value otherwise.
+func (o *ExtensionInputServerType) GetDefaultValue() ExtensionInputStringDefaultValue {
+	if o == nil || IsNil(o.DefaultValue) {
+		var ret ExtensionInputStringDefaultValue
+		return ret
+	}
+	return *o.DefaultValue
+}
+
+// GetDefaultValueOk returns a tuple with the DefaultValue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputServerType) GetDefaultValueOk() (*ExtensionInputStringDefaultValue, bool) {
+	if o == nil || IsNil(o.DefaultValue) {
+		return nil, false
+	}
+	return o.DefaultValue, true
+}
+
+// HasDefaultValue returns a boolean if a field has been set.
+func (o *ExtensionInputServerType) HasDefaultValue() bool {
+	if o != nil && !IsNil(o.DefaultValue) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultValue gets a reference to the given ExtensionInputStringDefaultValue and assigns it to the DefaultValue field.
+func (o *ExtensionInputServerType) SetDefaultValue(v ExtensionInputStringDefaultValue) {
+	o.DefaultValue = &v
+}
+
+// GetOptions returns the Options field value
+func (o *ExtensionInputServerType) GetOptions() ExtensionInputOptionServerType {
+	if o == nil {
+		var ret ExtensionInputOptionServerType
+		return ret
+	}
+
+	return o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputServerType) GetOptionsOk() (*ExtensionInputOptionServerType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Options, true
+}
+
+// SetOptions sets field value
+func (o *ExtensionInputServerType) SetOptions(v ExtensionInputOptionServerType) {
+	o.Options = v
 }
 
 func (o ExtensionInputServerType) MarshalJSON() ([]byte, error) {
@@ -154,15 +268,19 @@ func (o ExtensionInputServerType) MarshalJSON() ([]byte, error) {
 
 func (o ExtensionInputServerType) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.MinCpu) {
-		toSerialize["minCpu"] = o.MinCpu
+	toSerialize["label"] = o.Label
+	toSerialize["name"] = o.Name
+	toSerialize["inputType"] = o.InputType
+	if !IsNil(o.SetOnly) {
+		toSerialize["setOnly"] = o.SetOnly
 	}
-	if !IsNil(o.MinRamGb) {
-		toSerialize["minRamGb"] = o.MinRamGb
+	if !IsNil(o.Hidden) {
+		toSerialize["hidden"] = o.Hidden
 	}
-	if !IsNil(o.Vendor) {
-		toSerialize["vendor"] = o.Vendor
+	if !IsNil(o.DefaultValue) {
+		toSerialize["defaultValue"] = o.DefaultValue
 	}
+	toSerialize["options"] = o.Options
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -172,6 +290,30 @@ func (o ExtensionInputServerType) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ExtensionInputServerType) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"label",
+		"name",
+		"inputType",
+		"options",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varExtensionInputServerType := _ExtensionInputServerType{}
 
 	err = json.Unmarshal(data, &varExtensionInputServerType)
@@ -185,9 +327,13 @@ func (o *ExtensionInputServerType) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "minCpu")
-		delete(additionalProperties, "minRamGb")
-		delete(additionalProperties, "vendor")
+		delete(additionalProperties, "label")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "inputType")
+		delete(additionalProperties, "setOnly")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "defaultValue")
+		delete(additionalProperties, "options")
 		o.AdditionalProperties = additionalProperties
 	}
 

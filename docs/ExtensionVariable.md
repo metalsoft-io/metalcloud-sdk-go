@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | The variable label. | 
-**Value** | **string** | The variable value. | 
+**Value** | [**ExtensionVariableValue**](ExtensionVariableValue.md) |  | 
 
 ## Methods
 
 ### NewExtensionVariable
 
-`func NewExtensionVariable(label string, value string, ) *ExtensionVariable`
+`func NewExtensionVariable(label string, value ExtensionVariableValue, ) *ExtensionVariable`
 
 NewExtensionVariable instantiates a new ExtensionVariable object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetLabel sets Label field to given value.
 
 ### GetValue
 
-`func (o *ExtensionVariable) GetValue() string`
+`func (o *ExtensionVariable) GetValue() ExtensionVariableValue`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *ExtensionVariable) GetValueOk() (*string, bool)`
+`func (o *ExtensionVariable) GetValueOk() (*ExtensionVariableValue, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *ExtensionVariable) SetValue(v string)`
+`func (o *ExtensionVariable) SetValue(v ExtensionVariableValue)`
 
 SetValue sets Value field to given value.
 

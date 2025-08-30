@@ -1,4 +1,4 @@
-# ExtensionInstanceArrayLogicalNetworkDto
+# ExtensionInstanceArrayLogicalNetwork
 
 ## Properties
 
@@ -9,59 +9,59 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewExtensionInstanceArrayLogicalNetworkDto
+### NewExtensionInstanceArrayLogicalNetwork
 
-`func NewExtensionInstanceArrayLogicalNetworkDto(label string, networkConnection ExtensionInstanceArrayLogicalNetworkConnection, ) *ExtensionInstanceArrayLogicalNetworkDto`
+`func NewExtensionInstanceArrayLogicalNetwork(label string, networkConnection ExtensionInstanceArrayLogicalNetworkConnection, ) *ExtensionInstanceArrayLogicalNetwork`
 
-NewExtensionInstanceArrayLogicalNetworkDto instantiates a new ExtensionInstanceArrayLogicalNetworkDto object
+NewExtensionInstanceArrayLogicalNetwork instantiates a new ExtensionInstanceArrayLogicalNetwork object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewExtensionInstanceArrayLogicalNetworkDtoWithDefaults
+### NewExtensionInstanceArrayLogicalNetworkWithDefaults
 
-`func NewExtensionInstanceArrayLogicalNetworkDtoWithDefaults() *ExtensionInstanceArrayLogicalNetworkDto`
+`func NewExtensionInstanceArrayLogicalNetworkWithDefaults() *ExtensionInstanceArrayLogicalNetwork`
 
-NewExtensionInstanceArrayLogicalNetworkDtoWithDefaults instantiates a new ExtensionInstanceArrayLogicalNetworkDto object
+NewExtensionInstanceArrayLogicalNetworkWithDefaults instantiates a new ExtensionInstanceArrayLogicalNetwork object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetLabel
 
-`func (o *ExtensionInstanceArrayLogicalNetworkDto) GetLabel() string`
+`func (o *ExtensionInstanceArrayLogicalNetwork) GetLabel() string`
 
 GetLabel returns the Label field if non-nil, zero value otherwise.
 
 ### GetLabelOk
 
-`func (o *ExtensionInstanceArrayLogicalNetworkDto) GetLabelOk() (*string, bool)`
+`func (o *ExtensionInstanceArrayLogicalNetwork) GetLabelOk() (*string, bool)`
 
 GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLabel
 
-`func (o *ExtensionInstanceArrayLogicalNetworkDto) SetLabel(v string)`
+`func (o *ExtensionInstanceArrayLogicalNetwork) SetLabel(v string)`
 
 SetLabel sets Label field to given value.
 
 
 ### GetNetworkConnection
 
-`func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnection() ExtensionInstanceArrayLogicalNetworkConnection`
+`func (o *ExtensionInstanceArrayLogicalNetwork) GetNetworkConnection() ExtensionInstanceArrayLogicalNetworkConnection`
 
 GetNetworkConnection returns the NetworkConnection field if non-nil, zero value otherwise.
 
 ### GetNetworkConnectionOk
 
-`func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnectionOk() (*ExtensionInstanceArrayLogicalNetworkConnection, bool)`
+`func (o *ExtensionInstanceArrayLogicalNetwork) GetNetworkConnectionOk() (*ExtensionInstanceArrayLogicalNetworkConnection, bool)`
 
 GetNetworkConnectionOk returns a tuple with the NetworkConnection field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkConnection
 
-`func (o *ExtensionInstanceArrayLogicalNetworkDto) SetNetworkConnection(v ExtensionInstanceArrayLogicalNetworkConnection)`
+`func (o *ExtensionInstanceArrayLogicalNetwork) SetNetworkConnection(v ExtensionInstanceArrayLogicalNetworkConnection)`
 
 SetNetworkConnection sets NetworkConnection field to given value.
 

@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ExtensionInputInteger type satisfies the MappedNullable interface at compile time
@@ -20,12 +21,17 @@ var _ MappedNullable = &ExtensionInputInteger{}
 
 // ExtensionInputInteger struct for ExtensionInputInteger
 type ExtensionInputInteger struct {
-	// Minimum allowed value.
-	MinValue *int32 `json:"minValue,omitempty"`
-	// Maximum allowed value.
-	MaxValue *int32 `json:"maxValue,omitempty"`
-	// Denied values.
-	DeniedValues []int32 `json:"deniedValues,omitempty"`
+	// Label of the input.
+	Label string `json:"label"`
+	// Name of the input.
+	Name string `json:"name"`
+	InputType ExtensionInputType `json:"inputType"`
+	// Flag to indicate if the input is required.
+	SetOnly *bool `json:"setOnly,omitempty"`
+	// Flag to indicate if the input is hidden in the UI.
+	Hidden *bool `json:"hidden,omitempty"`
+	DefaultValue *ExtensionInputStringDefaultValue `json:"defaultValue,omitempty"`
+	Options ExtensionInputOptionInteger `json:"options"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,8 +41,16 @@ type _ExtensionInputInteger ExtensionInputInteger
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInputInteger() *ExtensionInputInteger {
+func NewExtensionInputInteger(label string, name string, inputType ExtensionInputType, options ExtensionInputOptionInteger) *ExtensionInputInteger {
 	this := ExtensionInputInteger{}
+	this.Label = label
+	this.Name = name
+	this.InputType = inputType
+	var setOnly bool = false
+	this.SetOnly = &setOnly
+	var hidden bool = false
+	this.Hidden = &hidden
+	this.Options = options
 	return &this
 }
 
@@ -45,103 +59,203 @@ func NewExtensionInputInteger() *ExtensionInputInteger {
 // but it doesn't guarantee that properties required by API are set
 func NewExtensionInputIntegerWithDefaults() *ExtensionInputInteger {
 	this := ExtensionInputInteger{}
+	var setOnly bool = false
+	this.SetOnly = &setOnly
+	var hidden bool = false
+	this.Hidden = &hidden
 	return &this
 }
 
-// GetMinValue returns the MinValue field value if set, zero value otherwise.
-func (o *ExtensionInputInteger) GetMinValue() int32 {
-	if o == nil || IsNil(o.MinValue) {
-		var ret int32
+// GetLabel returns the Label field value
+func (o *ExtensionInputInteger) GetLabel() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.MinValue
+
+	return o.Label
 }
 
-// GetMinValueOk returns a tuple with the MinValue field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputInteger) GetMinValueOk() (*int32, bool) {
-	if o == nil || IsNil(o.MinValue) {
+func (o *ExtensionInputInteger) GetLabelOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.MinValue, true
+	return &o.Label, true
 }
 
-// HasMinValue returns a boolean if a field has been set.
-func (o *ExtensionInputInteger) HasMinValue() bool {
-	if o != nil && !IsNil(o.MinValue) {
+// SetLabel sets field value
+func (o *ExtensionInputInteger) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetName returns the Name field value
+func (o *ExtensionInputInteger) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputInteger) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ExtensionInputInteger) SetName(v string) {
+	o.Name = v
+}
+
+// GetInputType returns the InputType field value
+func (o *ExtensionInputInteger) GetInputType() ExtensionInputType {
+	if o == nil {
+		var ret ExtensionInputType
+		return ret
+	}
+
+	return o.InputType
+}
+
+// GetInputTypeOk returns a tuple with the InputType field value
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputInteger) GetInputTypeOk() (*ExtensionInputType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InputType, true
+}
+
+// SetInputType sets field value
+func (o *ExtensionInputInteger) SetInputType(v ExtensionInputType) {
+	o.InputType = v
+}
+
+// GetSetOnly returns the SetOnly field value if set, zero value otherwise.
+func (o *ExtensionInputInteger) GetSetOnly() bool {
+	if o == nil || IsNil(o.SetOnly) {
+		var ret bool
+		return ret
+	}
+	return *o.SetOnly
+}
+
+// GetSetOnlyOk returns a tuple with the SetOnly field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputInteger) GetSetOnlyOk() (*bool, bool) {
+	if o == nil || IsNil(o.SetOnly) {
+		return nil, false
+	}
+	return o.SetOnly, true
+}
+
+// HasSetOnly returns a boolean if a field has been set.
+func (o *ExtensionInputInteger) HasSetOnly() bool {
+	if o != nil && !IsNil(o.SetOnly) {
 		return true
 	}
 
 	return false
 }
 
-// SetMinValue gets a reference to the given int32 and assigns it to the MinValue field.
-func (o *ExtensionInputInteger) SetMinValue(v int32) {
-	o.MinValue = &v
+// SetSetOnly gets a reference to the given bool and assigns it to the SetOnly field.
+func (o *ExtensionInputInteger) SetSetOnly(v bool) {
+	o.SetOnly = &v
 }
 
-// GetMaxValue returns the MaxValue field value if set, zero value otherwise.
-func (o *ExtensionInputInteger) GetMaxValue() int32 {
-	if o == nil || IsNil(o.MaxValue) {
-		var ret int32
+// GetHidden returns the Hidden field value if set, zero value otherwise.
+func (o *ExtensionInputInteger) GetHidden() bool {
+	if o == nil || IsNil(o.Hidden) {
+		var ret bool
 		return ret
 	}
-	return *o.MaxValue
+	return *o.Hidden
 }
 
-// GetMaxValueOk returns a tuple with the MaxValue field value if set, nil otherwise
+// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputInteger) GetMaxValueOk() (*int32, bool) {
-	if o == nil || IsNil(o.MaxValue) {
+func (o *ExtensionInputInteger) GetHiddenOk() (*bool, bool) {
+	if o == nil || IsNil(o.Hidden) {
 		return nil, false
 	}
-	return o.MaxValue, true
+	return o.Hidden, true
 }
 
-// HasMaxValue returns a boolean if a field has been set.
-func (o *ExtensionInputInteger) HasMaxValue() bool {
-	if o != nil && !IsNil(o.MaxValue) {
+// HasHidden returns a boolean if a field has been set.
+func (o *ExtensionInputInteger) HasHidden() bool {
+	if o != nil && !IsNil(o.Hidden) {
 		return true
 	}
 
 	return false
 }
 
-// SetMaxValue gets a reference to the given int32 and assigns it to the MaxValue field.
-func (o *ExtensionInputInteger) SetMaxValue(v int32) {
-	o.MaxValue = &v
+// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
+func (o *ExtensionInputInteger) SetHidden(v bool) {
+	o.Hidden = &v
 }
 
-// GetDeniedValues returns the DeniedValues field value if set, zero value otherwise.
-func (o *ExtensionInputInteger) GetDeniedValues() []int32 {
-	if o == nil || IsNil(o.DeniedValues) {
-		var ret []int32
+// GetDefaultValue returns the DefaultValue field value if set, zero value otherwise.
+func (o *ExtensionInputInteger) GetDefaultValue() ExtensionInputStringDefaultValue {
+	if o == nil || IsNil(o.DefaultValue) {
+		var ret ExtensionInputStringDefaultValue
 		return ret
 	}
-	return o.DeniedValues
+	return *o.DefaultValue
 }
 
-// GetDeniedValuesOk returns a tuple with the DeniedValues field value if set, nil otherwise
+// GetDefaultValueOk returns a tuple with the DefaultValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputInteger) GetDeniedValuesOk() ([]int32, bool) {
-	if o == nil || IsNil(o.DeniedValues) {
+func (o *ExtensionInputInteger) GetDefaultValueOk() (*ExtensionInputStringDefaultValue, bool) {
+	if o == nil || IsNil(o.DefaultValue) {
 		return nil, false
 	}
-	return o.DeniedValues, true
+	return o.DefaultValue, true
 }
 
-// HasDeniedValues returns a boolean if a field has been set.
-func (o *ExtensionInputInteger) HasDeniedValues() bool {
-	if o != nil && !IsNil(o.DeniedValues) {
+// HasDefaultValue returns a boolean if a field has been set.
+func (o *ExtensionInputInteger) HasDefaultValue() bool {
+	if o != nil && !IsNil(o.DefaultValue) {
 		return true
 	}
 
 	return false
 }
 
-// SetDeniedValues gets a reference to the given []int32 and assigns it to the DeniedValues field.
-func (o *ExtensionInputInteger) SetDeniedValues(v []int32) {
-	o.DeniedValues = v
+// SetDefaultValue gets a reference to the given ExtensionInputStringDefaultValue and assigns it to the DefaultValue field.
+func (o *ExtensionInputInteger) SetDefaultValue(v ExtensionInputStringDefaultValue) {
+	o.DefaultValue = &v
+}
+
+// GetOptions returns the Options field value
+func (o *ExtensionInputInteger) GetOptions() ExtensionInputOptionInteger {
+	if o == nil {
+		var ret ExtensionInputOptionInteger
+		return ret
+	}
+
+	return o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputInteger) GetOptionsOk() (*ExtensionInputOptionInteger, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Options, true
+}
+
+// SetOptions sets field value
+func (o *ExtensionInputInteger) SetOptions(v ExtensionInputOptionInteger) {
+	o.Options = v
 }
 
 func (o ExtensionInputInteger) MarshalJSON() ([]byte, error) {
@@ -154,15 +268,19 @@ func (o ExtensionInputInteger) MarshalJSON() ([]byte, error) {
 
 func (o ExtensionInputInteger) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.MinValue) {
-		toSerialize["minValue"] = o.MinValue
+	toSerialize["label"] = o.Label
+	toSerialize["name"] = o.Name
+	toSerialize["inputType"] = o.InputType
+	if !IsNil(o.SetOnly) {
+		toSerialize["setOnly"] = o.SetOnly
 	}
-	if !IsNil(o.MaxValue) {
-		toSerialize["maxValue"] = o.MaxValue
+	if !IsNil(o.Hidden) {
+		toSerialize["hidden"] = o.Hidden
 	}
-	if !IsNil(o.DeniedValues) {
-		toSerialize["deniedValues"] = o.DeniedValues
+	if !IsNil(o.DefaultValue) {
+		toSerialize["defaultValue"] = o.DefaultValue
 	}
+	toSerialize["options"] = o.Options
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -172,6 +290,30 @@ func (o ExtensionInputInteger) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ExtensionInputInteger) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"label",
+		"name",
+		"inputType",
+		"options",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varExtensionInputInteger := _ExtensionInputInteger{}
 
 	err = json.Unmarshal(data, &varExtensionInputInteger)
@@ -185,9 +327,13 @@ func (o *ExtensionInputInteger) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "minValue")
-		delete(additionalProperties, "maxValue")
-		delete(additionalProperties, "deniedValues")
+		delete(additionalProperties, "label")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "inputType")
+		delete(additionalProperties, "setOnly")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "defaultValue")
+		delete(additionalProperties, "options")
 		o.AdditionalProperties = additionalProperties
 	}
 

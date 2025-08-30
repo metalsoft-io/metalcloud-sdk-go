@@ -4,18 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Host** | **string** | Host to execute the SSH command on. | 
-**Port** | **int32** | Port to connect to the host via SSH. | 
-**Username** | Pointer to **string** | Username for SSH connection. | [optional] 
-**Password** | Pointer to **string** | Password for SSH connection. | [optional] 
-**Timeout** | **int32** | Timeout for the SSH command execution in seconds. | 
-**CommandTemplate** | **string** | Command template to execute via SSH. | 
+**Label** | **string** | Label of the task. | 
+**TaskType** | [**ExtensionTaskType**](ExtensionTaskType.md) |  | 
+**Options** | [**ExtensionTaskOptionSsh**](ExtensionTaskOptionSsh.md) |  | 
 
 ## Methods
 
 ### NewExtensionTaskSsh
 
-`func NewExtensionTaskSsh(host string, port int32, timeout int32, commandTemplate string, ) *ExtensionTaskSsh`
+`func NewExtensionTaskSsh(label string, taskType ExtensionTaskType, options ExtensionTaskOptionSsh, ) *ExtensionTaskSsh`
 
 NewExtensionTaskSsh instantiates a new ExtensionTaskSsh object
 This constructor will assign default values to properties that have it defined,
@@ -30,134 +27,64 @@ NewExtensionTaskSshWithDefaults instantiates a new ExtensionTaskSsh object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetHost
+### GetLabel
 
-`func (o *ExtensionTaskSsh) GetHost() string`
+`func (o *ExtensionTaskSsh) GetLabel() string`
 
-GetHost returns the Host field if non-nil, zero value otherwise.
+GetLabel returns the Label field if non-nil, zero value otherwise.
 
-### GetHostOk
+### GetLabelOk
 
-`func (o *ExtensionTaskSsh) GetHostOk() (*string, bool)`
+`func (o *ExtensionTaskSsh) GetLabelOk() (*string, bool)`
 
-GetHostOk returns a tuple with the Host field if it's non-nil, zero value otherwise
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHost
+### SetLabel
 
-`func (o *ExtensionTaskSsh) SetHost(v string)`
+`func (o *ExtensionTaskSsh) SetLabel(v string)`
 
-SetHost sets Host field to given value.
+SetLabel sets Label field to given value.
 
 
-### GetPort
+### GetTaskType
 
-`func (o *ExtensionTaskSsh) GetPort() int32`
+`func (o *ExtensionTaskSsh) GetTaskType() ExtensionTaskType`
 
-GetPort returns the Port field if non-nil, zero value otherwise.
+GetTaskType returns the TaskType field if non-nil, zero value otherwise.
 
-### GetPortOk
+### GetTaskTypeOk
 
-`func (o *ExtensionTaskSsh) GetPortOk() (*int32, bool)`
+`func (o *ExtensionTaskSsh) GetTaskTypeOk() (*ExtensionTaskType, bool)`
 
-GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
+GetTaskTypeOk returns a tuple with the TaskType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPort
+### SetTaskType
 
-`func (o *ExtensionTaskSsh) SetPort(v int32)`
+`func (o *ExtensionTaskSsh) SetTaskType(v ExtensionTaskType)`
 
-SetPort sets Port field to given value.
+SetTaskType sets TaskType field to given value.
 
 
-### GetUsername
+### GetOptions
 
-`func (o *ExtensionTaskSsh) GetUsername() string`
+`func (o *ExtensionTaskSsh) GetOptions() ExtensionTaskOptionSsh`
 
-GetUsername returns the Username field if non-nil, zero value otherwise.
+GetOptions returns the Options field if non-nil, zero value otherwise.
 
-### GetUsernameOk
+### GetOptionsOk
 
-`func (o *ExtensionTaskSsh) GetUsernameOk() (*string, bool)`
+`func (o *ExtensionTaskSsh) GetOptionsOk() (*ExtensionTaskOptionSsh, bool)`
 
-GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
+GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUsername
+### SetOptions
 
-`func (o *ExtensionTaskSsh) SetUsername(v string)`
+`func (o *ExtensionTaskSsh) SetOptions(v ExtensionTaskOptionSsh)`
 
-SetUsername sets Username field to given value.
-
-### HasUsername
-
-`func (o *ExtensionTaskSsh) HasUsername() bool`
-
-HasUsername returns a boolean if a field has been set.
-
-### GetPassword
-
-`func (o *ExtensionTaskSsh) GetPassword() string`
-
-GetPassword returns the Password field if non-nil, zero value otherwise.
-
-### GetPasswordOk
-
-`func (o *ExtensionTaskSsh) GetPasswordOk() (*string, bool)`
-
-GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPassword
-
-`func (o *ExtensionTaskSsh) SetPassword(v string)`
-
-SetPassword sets Password field to given value.
-
-### HasPassword
-
-`func (o *ExtensionTaskSsh) HasPassword() bool`
-
-HasPassword returns a boolean if a field has been set.
-
-### GetTimeout
-
-`func (o *ExtensionTaskSsh) GetTimeout() int32`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *ExtensionTaskSsh) GetTimeoutOk() (*int32, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *ExtensionTaskSsh) SetTimeout(v int32)`
-
-SetTimeout sets Timeout field to given value.
-
-
-### GetCommandTemplate
-
-`func (o *ExtensionTaskSsh) GetCommandTemplate() string`
-
-GetCommandTemplate returns the CommandTemplate field if non-nil, zero value otherwise.
-
-### GetCommandTemplateOk
-
-`func (o *ExtensionTaskSsh) GetCommandTemplateOk() (*string, bool)`
-
-GetCommandTemplateOk returns a tuple with the CommandTemplate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCommandTemplate
-
-`func (o *ExtensionTaskSsh) SetCommandTemplate(v string)`
-
-SetCommandTemplate sets CommandTemplate field to given value.
+SetOptions sets Options field to given value.
 
 
 

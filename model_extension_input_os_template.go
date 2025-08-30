@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ExtensionInputOsTemplate type satisfies the MappedNullable interface at compile time
@@ -20,8 +21,17 @@ var _ MappedNullable = &ExtensionInputOsTemplate{}
 
 // ExtensionInputOsTemplate struct for ExtensionInputOsTemplate
 type ExtensionInputOsTemplate struct {
-	// OS family type.
-	OsFamily *string `json:"osFamily,omitempty"`
+	// Label of the input.
+	Label string `json:"label"`
+	// Name of the input.
+	Name string `json:"name"`
+	InputType ExtensionInputType `json:"inputType"`
+	// Flag to indicate if the input is required.
+	SetOnly *bool `json:"setOnly,omitempty"`
+	// Flag to indicate if the input is hidden in the UI.
+	Hidden *bool `json:"hidden,omitempty"`
+	DefaultValue *ExtensionInputStringDefaultValue `json:"defaultValue,omitempty"`
+	Options ExtensionInputOptionOsTemplate `json:"options"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,8 +41,16 @@ type _ExtensionInputOsTemplate ExtensionInputOsTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInputOsTemplate() *ExtensionInputOsTemplate {
+func NewExtensionInputOsTemplate(label string, name string, inputType ExtensionInputType, options ExtensionInputOptionOsTemplate) *ExtensionInputOsTemplate {
 	this := ExtensionInputOsTemplate{}
+	this.Label = label
+	this.Name = name
+	this.InputType = inputType
+	var setOnly bool = false
+	this.SetOnly = &setOnly
+	var hidden bool = false
+	this.Hidden = &hidden
+	this.Options = options
 	return &this
 }
 
@@ -41,39 +59,203 @@ func NewExtensionInputOsTemplate() *ExtensionInputOsTemplate {
 // but it doesn't guarantee that properties required by API are set
 func NewExtensionInputOsTemplateWithDefaults() *ExtensionInputOsTemplate {
 	this := ExtensionInputOsTemplate{}
+	var setOnly bool = false
+	this.SetOnly = &setOnly
+	var hidden bool = false
+	this.Hidden = &hidden
 	return &this
 }
 
-// GetOsFamily returns the OsFamily field value if set, zero value otherwise.
-func (o *ExtensionInputOsTemplate) GetOsFamily() string {
-	if o == nil || IsNil(o.OsFamily) {
+// GetLabel returns the Label field value
+func (o *ExtensionInputOsTemplate) GetLabel() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.OsFamily
+
+	return o.Label
 }
 
-// GetOsFamilyOk returns a tuple with the OsFamily field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputOsTemplate) GetOsFamilyOk() (*string, bool) {
-	if o == nil || IsNil(o.OsFamily) {
+func (o *ExtensionInputOsTemplate) GetLabelOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.OsFamily, true
+	return &o.Label, true
 }
 
-// HasOsFamily returns a boolean if a field has been set.
-func (o *ExtensionInputOsTemplate) HasOsFamily() bool {
-	if o != nil && !IsNil(o.OsFamily) {
+// SetLabel sets field value
+func (o *ExtensionInputOsTemplate) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetName returns the Name field value
+func (o *ExtensionInputOsTemplate) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputOsTemplate) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ExtensionInputOsTemplate) SetName(v string) {
+	o.Name = v
+}
+
+// GetInputType returns the InputType field value
+func (o *ExtensionInputOsTemplate) GetInputType() ExtensionInputType {
+	if o == nil {
+		var ret ExtensionInputType
+		return ret
+	}
+
+	return o.InputType
+}
+
+// GetInputTypeOk returns a tuple with the InputType field value
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputOsTemplate) GetInputTypeOk() (*ExtensionInputType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InputType, true
+}
+
+// SetInputType sets field value
+func (o *ExtensionInputOsTemplate) SetInputType(v ExtensionInputType) {
+	o.InputType = v
+}
+
+// GetSetOnly returns the SetOnly field value if set, zero value otherwise.
+func (o *ExtensionInputOsTemplate) GetSetOnly() bool {
+	if o == nil || IsNil(o.SetOnly) {
+		var ret bool
+		return ret
+	}
+	return *o.SetOnly
+}
+
+// GetSetOnlyOk returns a tuple with the SetOnly field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputOsTemplate) GetSetOnlyOk() (*bool, bool) {
+	if o == nil || IsNil(o.SetOnly) {
+		return nil, false
+	}
+	return o.SetOnly, true
+}
+
+// HasSetOnly returns a boolean if a field has been set.
+func (o *ExtensionInputOsTemplate) HasSetOnly() bool {
+	if o != nil && !IsNil(o.SetOnly) {
 		return true
 	}
 
 	return false
 }
 
-// SetOsFamily gets a reference to the given string and assigns it to the OsFamily field.
-func (o *ExtensionInputOsTemplate) SetOsFamily(v string) {
-	o.OsFamily = &v
+// SetSetOnly gets a reference to the given bool and assigns it to the SetOnly field.
+func (o *ExtensionInputOsTemplate) SetSetOnly(v bool) {
+	o.SetOnly = &v
+}
+
+// GetHidden returns the Hidden field value if set, zero value otherwise.
+func (o *ExtensionInputOsTemplate) GetHidden() bool {
+	if o == nil || IsNil(o.Hidden) {
+		var ret bool
+		return ret
+	}
+	return *o.Hidden
+}
+
+// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputOsTemplate) GetHiddenOk() (*bool, bool) {
+	if o == nil || IsNil(o.Hidden) {
+		return nil, false
+	}
+	return o.Hidden, true
+}
+
+// HasHidden returns a boolean if a field has been set.
+func (o *ExtensionInputOsTemplate) HasHidden() bool {
+	if o != nil && !IsNil(o.Hidden) {
+		return true
+	}
+
+	return false
+}
+
+// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
+func (o *ExtensionInputOsTemplate) SetHidden(v bool) {
+	o.Hidden = &v
+}
+
+// GetDefaultValue returns the DefaultValue field value if set, zero value otherwise.
+func (o *ExtensionInputOsTemplate) GetDefaultValue() ExtensionInputStringDefaultValue {
+	if o == nil || IsNil(o.DefaultValue) {
+		var ret ExtensionInputStringDefaultValue
+		return ret
+	}
+	return *o.DefaultValue
+}
+
+// GetDefaultValueOk returns a tuple with the DefaultValue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputOsTemplate) GetDefaultValueOk() (*ExtensionInputStringDefaultValue, bool) {
+	if o == nil || IsNil(o.DefaultValue) {
+		return nil, false
+	}
+	return o.DefaultValue, true
+}
+
+// HasDefaultValue returns a boolean if a field has been set.
+func (o *ExtensionInputOsTemplate) HasDefaultValue() bool {
+	if o != nil && !IsNil(o.DefaultValue) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultValue gets a reference to the given ExtensionInputStringDefaultValue and assigns it to the DefaultValue field.
+func (o *ExtensionInputOsTemplate) SetDefaultValue(v ExtensionInputStringDefaultValue) {
+	o.DefaultValue = &v
+}
+
+// GetOptions returns the Options field value
+func (o *ExtensionInputOsTemplate) GetOptions() ExtensionInputOptionOsTemplate {
+	if o == nil {
+		var ret ExtensionInputOptionOsTemplate
+		return ret
+	}
+
+	return o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputOsTemplate) GetOptionsOk() (*ExtensionInputOptionOsTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Options, true
+}
+
+// SetOptions sets field value
+func (o *ExtensionInputOsTemplate) SetOptions(v ExtensionInputOptionOsTemplate) {
+	o.Options = v
 }
 
 func (o ExtensionInputOsTemplate) MarshalJSON() ([]byte, error) {
@@ -86,9 +268,19 @@ func (o ExtensionInputOsTemplate) MarshalJSON() ([]byte, error) {
 
 func (o ExtensionInputOsTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.OsFamily) {
-		toSerialize["osFamily"] = o.OsFamily
+	toSerialize["label"] = o.Label
+	toSerialize["name"] = o.Name
+	toSerialize["inputType"] = o.InputType
+	if !IsNil(o.SetOnly) {
+		toSerialize["setOnly"] = o.SetOnly
 	}
+	if !IsNil(o.Hidden) {
+		toSerialize["hidden"] = o.Hidden
+	}
+	if !IsNil(o.DefaultValue) {
+		toSerialize["defaultValue"] = o.DefaultValue
+	}
+	toSerialize["options"] = o.Options
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -98,6 +290,30 @@ func (o ExtensionInputOsTemplate) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ExtensionInputOsTemplate) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"label",
+		"name",
+		"inputType",
+		"options",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varExtensionInputOsTemplate := _ExtensionInputOsTemplate{}
 
 	err = json.Unmarshal(data, &varExtensionInputOsTemplate)
@@ -111,7 +327,13 @@ func (o *ExtensionInputOsTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "osFamily")
+		delete(additionalProperties, "label")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "inputType")
+		delete(additionalProperties, "setOnly")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "defaultValue")
+		delete(additionalProperties, "options")
 		o.AdditionalProperties = additionalProperties
 	}
 

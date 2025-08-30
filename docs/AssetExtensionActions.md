@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Stage** | **string** | Stage of the action. | 
-**Tasks** | Pointer to [**[]ExtensionTask**](ExtensionTask.md) | Tasks. | [optional] 
+**Stage** | [**AssetExtensionActionStage**](AssetExtensionActionStage.md) |  | 
+**Tasks** | Pointer to [**[]InfrastructureExtensionActionsTasksDataItem**](InfrastructureExtensionActionsTasksDataItem.md) | Tasks. | [optional] 
 
 ## Methods
 
 ### NewAssetExtensionActions
 
-`func NewAssetExtensionActions(stage string, ) *AssetExtensionActions`
+`func NewAssetExtensionActions(stage AssetExtensionActionStage, ) *AssetExtensionActions`
 
 NewAssetExtensionActions instantiates a new AssetExtensionActions object
 This constructor will assign default values to properties that have it defined,
@@ -28,40 +28,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetStage
 
-`func (o *AssetExtensionActions) GetStage() string`
+`func (o *AssetExtensionActions) GetStage() AssetExtensionActionStage`
 
 GetStage returns the Stage field if non-nil, zero value otherwise.
 
 ### GetStageOk
 
-`func (o *AssetExtensionActions) GetStageOk() (*string, bool)`
+`func (o *AssetExtensionActions) GetStageOk() (*AssetExtensionActionStage, bool)`
 
 GetStageOk returns a tuple with the Stage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStage
 
-`func (o *AssetExtensionActions) SetStage(v string)`
+`func (o *AssetExtensionActions) SetStage(v AssetExtensionActionStage)`
 
 SetStage sets Stage field to given value.
 
 
 ### GetTasks
 
-`func (o *AssetExtensionActions) GetTasks() []ExtensionTask`
+`func (o *AssetExtensionActions) GetTasks() []InfrastructureExtensionActionsTasksDataItem`
 
 GetTasks returns the Tasks field if non-nil, zero value otherwise.
 
 ### GetTasksOk
 
-`func (o *AssetExtensionActions) GetTasksOk() (*[]ExtensionTask, bool)`
+`func (o *AssetExtensionActions) GetTasksOk() (*[]InfrastructureExtensionActionsTasksDataItem, bool)`
 
 GetTasksOk returns a tuple with the Tasks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTasks
 
-`func (o *AssetExtensionActions) SetTasks(v []ExtensionTask)`
+`func (o *AssetExtensionActions) SetTasks(v []InfrastructureExtensionActionsTasksDataItem)`
 
 SetTasks sets Tasks field to given value.
 

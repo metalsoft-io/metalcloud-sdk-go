@@ -21,19 +21,10 @@ var _ MappedNullable = &ExtensionTaskSsh{}
 
 // ExtensionTaskSsh struct for ExtensionTaskSsh
 type ExtensionTaskSsh struct {
-	TaskType *string `json:"taskType,omitempty"`
-	// Host to execute the SSH command on.
-	Host string `json:"host"`
-	// Port to connect to the host via SSH.
-	Port int32 `json:"port"`
-	// Username for SSH connection.
-	Username *string `json:"username,omitempty"`
-	// Password for SSH connection.
-	Password *string `json:"password,omitempty"`
-	// Timeout for the SSH command execution in seconds.
-	Timeout int32 `json:"timeout"`
-	// Command template to execute via SSH.
-	CommandTemplate      string `json:"commandTemplate"`
+	// Label of the task.
+	Label string `json:"label"`
+	TaskType ExtensionTaskType `json:"taskType"`
+	Options ExtensionTaskOptionSsh `json:"options"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,12 +34,11 @@ type _ExtensionTaskSsh ExtensionTaskSsh
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionTaskSsh(host string, port int32, timeout int32, commandTemplate string) *ExtensionTaskSsh {
+func NewExtensionTaskSsh(label string, taskType ExtensionTaskType, options ExtensionTaskOptionSsh) *ExtensionTaskSsh {
 	this := ExtensionTaskSsh{}
-	this.Host = host
-	this.Port = port
-	this.Timeout = timeout
-	this.CommandTemplate = commandTemplate
+	this.Label = label
+	this.TaskType = taskType
+	this.Options = options
 	return &this
 }
 
@@ -60,168 +50,80 @@ func NewExtensionTaskSshWithDefaults() *ExtensionTaskSsh {
 	return &this
 }
 
-// GetHost returns the Host field value
-func (o *ExtensionTaskSsh) GetHost() string {
+// GetLabel returns the Label field value
+func (o *ExtensionTaskSsh) GetLabel() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Host
+	return o.Label
 }
 
-// GetHostOk returns a tuple with the Host field value
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionTaskSsh) GetHostOk() (*string, bool) {
+func (o *ExtensionTaskSsh) GetLabelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Host, true
+	return &o.Label, true
 }
 
-// SetHost sets field value
-func (o *ExtensionTaskSsh) SetHost(v string) {
-	o.Host = v
+// SetLabel sets field value
+func (o *ExtensionTaskSsh) SetLabel(v string) {
+	o.Label = v
 }
 
-// GetPort returns the Port field value
-func (o *ExtensionTaskSsh) GetPort() int32 {
+// GetTaskType returns the TaskType field value
+func (o *ExtensionTaskSsh) GetTaskType() ExtensionTaskType {
 	if o == nil {
-		var ret int32
+		var ret ExtensionTaskType
 		return ret
 	}
 
-	return o.Port
+	return o.TaskType
 }
 
-// GetPortOk returns a tuple with the Port field value
+// GetTaskTypeOk returns a tuple with the TaskType field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionTaskSsh) GetPortOk() (*int32, bool) {
+func (o *ExtensionTaskSsh) GetTaskTypeOk() (*ExtensionTaskType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Port, true
+	return &o.TaskType, true
 }
 
-// SetPort sets field value
-func (o *ExtensionTaskSsh) SetPort(v int32) {
-	o.Port = v
+// SetTaskType sets field value
+func (o *ExtensionTaskSsh) SetTaskType(v ExtensionTaskType) {
+	o.TaskType = v
 }
 
-// GetUsername returns the Username field value if set, zero value otherwise.
-func (o *ExtensionTaskSsh) GetUsername() string {
-	if o == nil || IsNil(o.Username) {
-		var ret string
-		return ret
-	}
-	return *o.Username
-}
-
-// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExtensionTaskSsh) GetUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Username) {
-		return nil, false
-	}
-	return o.Username, true
-}
-
-// HasUsername returns a boolean if a field has been set.
-func (o *ExtensionTaskSsh) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
-		return true
-	}
-
-	return false
-}
-
-// SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *ExtensionTaskSsh) SetUsername(v string) {
-	o.Username = &v
-}
-
-// GetPassword returns the Password field value if set, zero value otherwise.
-func (o *ExtensionTaskSsh) GetPassword() string {
-	if o == nil || IsNil(o.Password) {
-		var ret string
-		return ret
-	}
-	return *o.Password
-}
-
-// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExtensionTaskSsh) GetPasswordOk() (*string, bool) {
-	if o == nil || IsNil(o.Password) {
-		return nil, false
-	}
-	return o.Password, true
-}
-
-// HasPassword returns a boolean if a field has been set.
-func (o *ExtensionTaskSsh) HasPassword() bool {
-	if o != nil && !IsNil(o.Password) {
-		return true
-	}
-
-	return false
-}
-
-// SetPassword gets a reference to the given string and assigns it to the Password field.
-func (o *ExtensionTaskSsh) SetPassword(v string) {
-	o.Password = &v
-}
-
-// GetTimeout returns the Timeout field value
-func (o *ExtensionTaskSsh) GetTimeout() int32 {
+// GetOptions returns the Options field value
+func (o *ExtensionTaskSsh) GetOptions() ExtensionTaskOptionSsh {
 	if o == nil {
-		var ret int32
+		var ret ExtensionTaskOptionSsh
 		return ret
 	}
 
-	return o.Timeout
+	return o.Options
 }
 
-// GetTimeoutOk returns a tuple with the Timeout field value
+// GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionTaskSsh) GetTimeoutOk() (*int32, bool) {
+func (o *ExtensionTaskSsh) GetOptionsOk() (*ExtensionTaskOptionSsh, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Timeout, true
+	return &o.Options, true
 }
 
-// SetTimeout sets field value
-func (o *ExtensionTaskSsh) SetTimeout(v int32) {
-	o.Timeout = v
-}
-
-// GetCommandTemplate returns the CommandTemplate field value
-func (o *ExtensionTaskSsh) GetCommandTemplate() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CommandTemplate
-}
-
-// GetCommandTemplateOk returns a tuple with the CommandTemplate field value
-// and a boolean to check if the value has been set.
-func (o *ExtensionTaskSsh) GetCommandTemplateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CommandTemplate, true
-}
-
-// SetCommandTemplate sets field value
-func (o *ExtensionTaskSsh) SetCommandTemplate(v string) {
-	o.CommandTemplate = v
+// SetOptions sets field value
+func (o *ExtensionTaskSsh) SetOptions(v ExtensionTaskOptionSsh) {
+	o.Options = v
 }
 
 func (o ExtensionTaskSsh) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -230,16 +132,9 @@ func (o ExtensionTaskSsh) MarshalJSON() ([]byte, error) {
 
 func (o ExtensionTaskSsh) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["host"] = o.Host
-	toSerialize["port"] = o.Port
-	if !IsNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
-	if !IsNil(o.Password) {
-		toSerialize["password"] = o.Password
-	}
-	toSerialize["timeout"] = o.Timeout
-	toSerialize["commandTemplate"] = o.CommandTemplate
+	toSerialize["label"] = o.Label
+	toSerialize["taskType"] = o.TaskType
+	toSerialize["options"] = o.Options
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -253,10 +148,9 @@ func (o *ExtensionTaskSsh) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"host",
-		"port",
-		"timeout",
-		"commandTemplate",
+		"label",
+		"taskType",
+		"options",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -264,10 +158,10 @@ func (o *ExtensionTaskSsh) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -286,13 +180,9 @@ func (o *ExtensionTaskSsh) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "host")
-		delete(additionalProperties, "port")
-		delete(additionalProperties, "username")
-		delete(additionalProperties, "password")
-		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "commandTemplate")
+		delete(additionalProperties, "label")
 		delete(additionalProperties, "taskType")
+		delete(additionalProperties, "options")
 		o.AdditionalProperties = additionalProperties
 	}
 
@@ -334,3 +224,5 @@ func (v *NullableExtensionTaskSsh) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

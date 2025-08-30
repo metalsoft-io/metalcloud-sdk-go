@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **VlanId** | Pointer to **float32** | The deployed VLAN ID of the server interface. | [optional] 
 **DefaultFabricId** | Pointer to **float32** | The default fabric ID of the server interface. | [optional] 
 **RedundancyGroupIndex** | Pointer to **float32** | The redundancy group index of the server interface. | [optional] 
+**LldpInfo** | Pointer to **string** | The LLDP information of the server interface. | [optional] 
 
 ## Methods
 
@@ -596,6 +597,31 @@ SetRedundancyGroupIndex sets RedundancyGroupIndex field to given value.
 `func (o *ServerInterface) HasRedundancyGroupIndex() bool`
 
 HasRedundancyGroupIndex returns a boolean if a field has been set.
+
+### GetLldpInfo
+
+`func (o *ServerInterface) GetLldpInfo() string`
+
+GetLldpInfo returns the LldpInfo field if non-nil, zero value otherwise.
+
+### GetLldpInfoOk
+
+`func (o *ServerInterface) GetLldpInfoOk() (*string, bool)`
+
+GetLldpInfoOk returns a tuple with the LldpInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLldpInfo
+
+`func (o *ServerInterface) SetLldpInfo(v string)`
+
+SetLldpInfo sets LldpInfo field to given value.
+
+### HasLldpInfo
+
+`func (o *ServerInterface) HasLldpInfo() bool`
+
+HasLldpInfo returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

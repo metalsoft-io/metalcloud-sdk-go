@@ -21,10 +21,9 @@ var _ MappedNullable = &InfrastructureExtensionActions{}
 
 // InfrastructureExtensionActions struct for InfrastructureExtensionActions
 type InfrastructureExtensionActions struct {
-	// Stage of the action.
-	Stage string `json:"stage"`
+	Stage InfrastructureExtensionActionStage `json:"stage"`
 	// Tasks.
-	Tasks []ExtensionTask `json:"tasks,omitempty"`
+	Tasks []InfrastructureExtensionActionsTasksDataItem `json:"tasks,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,7 +33,7 @@ type _InfrastructureExtensionActions InfrastructureExtensionActions
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInfrastructureExtensionActions(stage string) *InfrastructureExtensionActions {
+func NewInfrastructureExtensionActions(stage InfrastructureExtensionActionStage) *InfrastructureExtensionActions {
 	this := InfrastructureExtensionActions{}
 	this.Stage = stage
 	return &this
@@ -49,9 +48,9 @@ func NewInfrastructureExtensionActionsWithDefaults() *InfrastructureExtensionAct
 }
 
 // GetStage returns the Stage field value
-func (o *InfrastructureExtensionActions) GetStage() string {
+func (o *InfrastructureExtensionActions) GetStage() InfrastructureExtensionActionStage {
 	if o == nil {
-		var ret string
+		var ret InfrastructureExtensionActionStage
 		return ret
 	}
 
@@ -60,7 +59,7 @@ func (o *InfrastructureExtensionActions) GetStage() string {
 
 // GetStageOk returns a tuple with the Stage field value
 // and a boolean to check if the value has been set.
-func (o *InfrastructureExtensionActions) GetStageOk() (*string, bool) {
+func (o *InfrastructureExtensionActions) GetStageOk() (*InfrastructureExtensionActionStage, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,14 +67,14 @@ func (o *InfrastructureExtensionActions) GetStageOk() (*string, bool) {
 }
 
 // SetStage sets field value
-func (o *InfrastructureExtensionActions) SetStage(v string) {
+func (o *InfrastructureExtensionActions) SetStage(v InfrastructureExtensionActionStage) {
 	o.Stage = v
 }
 
 // GetTasks returns the Tasks field value if set, zero value otherwise.
-func (o *InfrastructureExtensionActions) GetTasks() []ExtensionTask {
+func (o *InfrastructureExtensionActions) GetTasks() []InfrastructureExtensionActionsTasksDataItem {
 	if o == nil || IsNil(o.Tasks) {
-		var ret []ExtensionTask
+		var ret []InfrastructureExtensionActionsTasksDataItem
 		return ret
 	}
 	return o.Tasks
@@ -83,7 +82,7 @@ func (o *InfrastructureExtensionActions) GetTasks() []ExtensionTask {
 
 // GetTasksOk returns a tuple with the Tasks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InfrastructureExtensionActions) GetTasksOk() ([]ExtensionTask, bool) {
+func (o *InfrastructureExtensionActions) GetTasksOk() ([]InfrastructureExtensionActionsTasksDataItem, bool) {
 	if o == nil || IsNil(o.Tasks) {
 		return nil, false
 	}
@@ -99,8 +98,8 @@ func (o *InfrastructureExtensionActions) HasTasks() bool {
 	return false
 }
 
-// SetTasks gets a reference to the given []ExtensionTask and assigns it to the Tasks field.
-func (o *InfrastructureExtensionActions) SetTasks(v []ExtensionTask) {
+// SetTasks gets a reference to the given []InfrastructureExtensionActionsTasksDataItem and assigns it to the Tasks field.
+func (o *InfrastructureExtensionActions) SetTasks(v []InfrastructureExtensionActionsTasksDataItem) {
 	o.Tasks = v
 }
 

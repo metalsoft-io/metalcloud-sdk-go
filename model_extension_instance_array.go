@@ -36,7 +36,7 @@ type ExtensionInstanceArray struct {
 	// Labels of instance arrays this one depends on.
 	Dependencies []string `json:"dependencies,omitempty"`
 	// Logical networks for the instance array.
-	LogicalNetworks []ExtensionInstanceArrayLogicalNetworkDto `json:"logicalNetworks,omitempty"`
+	LogicalNetworks []ExtensionInstanceArrayLogicalNetwork `json:"logicalNetworks,omitempty"`
 	// Tags for the Server Instance Group.
 	Tags []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -265,9 +265,9 @@ func (o *ExtensionInstanceArray) SetDependencies(v []string) {
 }
 
 // GetLogicalNetworks returns the LogicalNetworks field value if set, zero value otherwise.
-func (o *ExtensionInstanceArray) GetLogicalNetworks() []ExtensionInstanceArrayLogicalNetworkDto {
+func (o *ExtensionInstanceArray) GetLogicalNetworks() []ExtensionInstanceArrayLogicalNetwork {
 	if o == nil || IsNil(o.LogicalNetworks) {
-		var ret []ExtensionInstanceArrayLogicalNetworkDto
+		var ret []ExtensionInstanceArrayLogicalNetwork
 		return ret
 	}
 	return o.LogicalNetworks
@@ -275,7 +275,7 @@ func (o *ExtensionInstanceArray) GetLogicalNetworks() []ExtensionInstanceArrayLo
 
 // GetLogicalNetworksOk returns a tuple with the LogicalNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstanceArray) GetLogicalNetworksOk() ([]ExtensionInstanceArrayLogicalNetworkDto, bool) {
+func (o *ExtensionInstanceArray) GetLogicalNetworksOk() ([]ExtensionInstanceArrayLogicalNetwork, bool) {
 	if o == nil || IsNil(o.LogicalNetworks) {
 		return nil, false
 	}
@@ -291,8 +291,8 @@ func (o *ExtensionInstanceArray) HasLogicalNetworks() bool {
 	return false
 }
 
-// SetLogicalNetworks gets a reference to the given []ExtensionInstanceArrayLogicalNetworkDto and assigns it to the LogicalNetworks field.
-func (o *ExtensionInstanceArray) SetLogicalNetworks(v []ExtensionInstanceArrayLogicalNetworkDto) {
+// SetLogicalNetworks gets a reference to the given []ExtensionInstanceArrayLogicalNetwork and assigns it to the LogicalNetworks field.
+func (o *ExtensionInstanceArray) SetLogicalNetworks(v []ExtensionInstanceArrayLogicalNetwork) {
 	o.LogicalNetworks = v
 }
 

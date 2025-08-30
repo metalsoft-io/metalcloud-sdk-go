@@ -23,8 +23,7 @@ var _ MappedNullable = &CustomVariable{}
 type CustomVariable struct {
 	// Custom variable name.
 	Name string `json:"name"`
-	// Custom variable value.
-	Value string `json:"value"`
+	Value CustomVariableValue `json:"value"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,7 +33,7 @@ type _CustomVariable CustomVariable
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomVariable(name string, value string) *CustomVariable {
+func NewCustomVariable(name string, value CustomVariableValue) *CustomVariable {
 	this := CustomVariable{}
 	this.Name = name
 	this.Value = value
@@ -74,9 +73,9 @@ func (o *CustomVariable) SetName(v string) {
 }
 
 // GetValue returns the Value field value
-func (o *CustomVariable) GetValue() string {
+func (o *CustomVariable) GetValue() CustomVariableValue {
 	if o == nil {
-		var ret string
+		var ret CustomVariableValue
 		return ret
 	}
 
@@ -85,7 +84,7 @@ func (o *CustomVariable) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *CustomVariable) GetValueOk() (*string, bool) {
+func (o *CustomVariable) GetValueOk() (*CustomVariableValue, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,7 +92,7 @@ func (o *CustomVariable) GetValueOk() (*string, bool) {
 }
 
 // SetValue sets field value
-func (o *CustomVariable) SetValue(v string) {
+func (o *CustomVariable) SetValue(v CustomVariableValue) {
 	o.Value = v
 }
 

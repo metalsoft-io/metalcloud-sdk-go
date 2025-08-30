@@ -67,6 +67,8 @@ type ServerInterface struct {
 	DefaultFabricId *float32 `json:"defaultFabricId,omitempty"`
 	// The redundancy group index of the server interface.
 	RedundancyGroupIndex *float32 `json:"redundancyGroupIndex,omitempty"`
+	// The LLDP information of the server interface.
+	LldpInfo *string `json:"lldpInfo,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -792,6 +794,38 @@ func (o *ServerInterface) SetRedundancyGroupIndex(v float32) {
 	o.RedundancyGroupIndex = &v
 }
 
+// GetLldpInfo returns the LldpInfo field value if set, zero value otherwise.
+func (o *ServerInterface) GetLldpInfo() string {
+	if o == nil || IsNil(o.LldpInfo) {
+		var ret string
+		return ret
+	}
+	return *o.LldpInfo
+}
+
+// GetLldpInfoOk returns a tuple with the LldpInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInterface) GetLldpInfoOk() (*string, bool) {
+	if o == nil || IsNil(o.LldpInfo) {
+		return nil, false
+	}
+	return o.LldpInfo, true
+}
+
+// HasLldpInfo returns a boolean if a field has been set.
+func (o *ServerInterface) HasLldpInfo() bool {
+	if o != nil && !IsNil(o.LldpInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetLldpInfo gets a reference to the given string and assigns it to the LldpInfo field.
+func (o *ServerInterface) SetLldpInfo(v string) {
+	o.LldpInfo = &v
+}
+
 func (o ServerInterface) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -860,6 +894,9 @@ func (o ServerInterface) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.RedundancyGroupIndex) {
 		toSerialize["redundancyGroupIndex"] = o.RedundancyGroupIndex
+	}
+	if !IsNil(o.LldpInfo) {
+		toSerialize["lldpInfo"] = o.LldpInfo
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -931,6 +968,7 @@ func (o *ServerInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "vlanId")
 		delete(additionalProperties, "defaultFabricId")
 		delete(additionalProperties, "redundancyGroupIndex")
+		delete(additionalProperties, "lldpInfo")
 		o.AdditionalProperties = additionalProperties
 	}
 

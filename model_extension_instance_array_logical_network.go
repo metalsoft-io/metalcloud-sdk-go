@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the ExtensionInstanceArrayLogicalNetworkDto type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ExtensionInstanceArrayLogicalNetworkDto{}
+// checks if the ExtensionInstanceArrayLogicalNetwork type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExtensionInstanceArrayLogicalNetwork{}
 
-// ExtensionInstanceArrayLogicalNetworkDto struct for ExtensionInstanceArrayLogicalNetworkDto
-type ExtensionInstanceArrayLogicalNetworkDto struct {
+// ExtensionInstanceArrayLogicalNetwork struct for ExtensionInstanceArrayLogicalNetwork
+type ExtensionInstanceArrayLogicalNetwork struct {
 	// Label of the logical network.
 	Label string `json:"label"`
 	// Network connection details for the logical network.
@@ -28,29 +28,29 @@ type ExtensionInstanceArrayLogicalNetworkDto struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _ExtensionInstanceArrayLogicalNetworkDto ExtensionInstanceArrayLogicalNetworkDto
+type _ExtensionInstanceArrayLogicalNetwork ExtensionInstanceArrayLogicalNetwork
 
-// NewExtensionInstanceArrayLogicalNetworkDto instantiates a new ExtensionInstanceArrayLogicalNetworkDto object
+// NewExtensionInstanceArrayLogicalNetwork instantiates a new ExtensionInstanceArrayLogicalNetwork object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInstanceArrayLogicalNetworkDto(label string, networkConnection ExtensionInstanceArrayLogicalNetworkConnection) *ExtensionInstanceArrayLogicalNetworkDto {
-	this := ExtensionInstanceArrayLogicalNetworkDto{}
+func NewExtensionInstanceArrayLogicalNetwork(label string, networkConnection ExtensionInstanceArrayLogicalNetworkConnection) *ExtensionInstanceArrayLogicalNetwork {
+	this := ExtensionInstanceArrayLogicalNetwork{}
 	this.Label = label
 	this.NetworkConnection = networkConnection
 	return &this
 }
 
-// NewExtensionInstanceArrayLogicalNetworkDtoWithDefaults instantiates a new ExtensionInstanceArrayLogicalNetworkDto object
+// NewExtensionInstanceArrayLogicalNetworkWithDefaults instantiates a new ExtensionInstanceArrayLogicalNetwork object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewExtensionInstanceArrayLogicalNetworkDtoWithDefaults() *ExtensionInstanceArrayLogicalNetworkDto {
-	this := ExtensionInstanceArrayLogicalNetworkDto{}
+func NewExtensionInstanceArrayLogicalNetworkWithDefaults() *ExtensionInstanceArrayLogicalNetwork {
+	this := ExtensionInstanceArrayLogicalNetwork{}
 	return &this
 }
 
 // GetLabel returns the Label field value
-func (o *ExtensionInstanceArrayLogicalNetworkDto) GetLabel() string {
+func (o *ExtensionInstanceArrayLogicalNetwork) GetLabel() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -61,7 +61,7 @@ func (o *ExtensionInstanceArrayLogicalNetworkDto) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstanceArrayLogicalNetworkDto) GetLabelOk() (*string, bool) {
+func (o *ExtensionInstanceArrayLogicalNetwork) GetLabelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,12 +69,12 @@ func (o *ExtensionInstanceArrayLogicalNetworkDto) GetLabelOk() (*string, bool) {
 }
 
 // SetLabel sets field value
-func (o *ExtensionInstanceArrayLogicalNetworkDto) SetLabel(v string) {
+func (o *ExtensionInstanceArrayLogicalNetwork) SetLabel(v string) {
 	o.Label = v
 }
 
 // GetNetworkConnection returns the NetworkConnection field value
-func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnection() ExtensionInstanceArrayLogicalNetworkConnection {
+func (o *ExtensionInstanceArrayLogicalNetwork) GetNetworkConnection() ExtensionInstanceArrayLogicalNetworkConnection {
 	if o == nil {
 		var ret ExtensionInstanceArrayLogicalNetworkConnection
 		return ret
@@ -85,7 +85,7 @@ func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnection() Extensi
 
 // GetNetworkConnectionOk returns a tuple with the NetworkConnection field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnectionOk() (*ExtensionInstanceArrayLogicalNetworkConnection, bool) {
+func (o *ExtensionInstanceArrayLogicalNetwork) GetNetworkConnectionOk() (*ExtensionInstanceArrayLogicalNetworkConnection, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,11 +93,11 @@ func (o *ExtensionInstanceArrayLogicalNetworkDto) GetNetworkConnectionOk() (*Ext
 }
 
 // SetNetworkConnection sets field value
-func (o *ExtensionInstanceArrayLogicalNetworkDto) SetNetworkConnection(v ExtensionInstanceArrayLogicalNetworkConnection) {
+func (o *ExtensionInstanceArrayLogicalNetwork) SetNetworkConnection(v ExtensionInstanceArrayLogicalNetworkConnection) {
 	o.NetworkConnection = v
 }
 
-func (o ExtensionInstanceArrayLogicalNetworkDto) MarshalJSON() ([]byte, error) {
+func (o ExtensionInstanceArrayLogicalNetwork) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -105,7 +105,7 @@ func (o ExtensionInstanceArrayLogicalNetworkDto) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ExtensionInstanceArrayLogicalNetworkDto) ToMap() (map[string]interface{}, error) {
+func (o ExtensionInstanceArrayLogicalNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["label"] = o.Label
 	toSerialize["networkConnection"] = o.NetworkConnection
@@ -117,7 +117,7 @@ func (o ExtensionInstanceArrayLogicalNetworkDto) ToMap() (map[string]interface{}
 	return toSerialize, nil
 }
 
-func (o *ExtensionInstanceArrayLogicalNetworkDto) UnmarshalJSON(data []byte) (err error) {
+func (o *ExtensionInstanceArrayLogicalNetwork) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -140,15 +140,15 @@ func (o *ExtensionInstanceArrayLogicalNetworkDto) UnmarshalJSON(data []byte) (er
 		}
 	}
 
-	varExtensionInstanceArrayLogicalNetworkDto := _ExtensionInstanceArrayLogicalNetworkDto{}
+	varExtensionInstanceArrayLogicalNetwork := _ExtensionInstanceArrayLogicalNetwork{}
 
-	err = json.Unmarshal(data, &varExtensionInstanceArrayLogicalNetworkDto)
+	err = json.Unmarshal(data, &varExtensionInstanceArrayLogicalNetwork)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ExtensionInstanceArrayLogicalNetworkDto(varExtensionInstanceArrayLogicalNetworkDto)
+	*o = ExtensionInstanceArrayLogicalNetwork(varExtensionInstanceArrayLogicalNetwork)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -161,38 +161,38 @@ func (o *ExtensionInstanceArrayLogicalNetworkDto) UnmarshalJSON(data []byte) (er
 	return err
 }
 
-type NullableExtensionInstanceArrayLogicalNetworkDto struct {
-	value *ExtensionInstanceArrayLogicalNetworkDto
+type NullableExtensionInstanceArrayLogicalNetwork struct {
+	value *ExtensionInstanceArrayLogicalNetwork
 	isSet bool
 }
 
-func (v NullableExtensionInstanceArrayLogicalNetworkDto) Get() *ExtensionInstanceArrayLogicalNetworkDto {
+func (v NullableExtensionInstanceArrayLogicalNetwork) Get() *ExtensionInstanceArrayLogicalNetwork {
 	return v.value
 }
 
-func (v *NullableExtensionInstanceArrayLogicalNetworkDto) Set(val *ExtensionInstanceArrayLogicalNetworkDto) {
+func (v *NullableExtensionInstanceArrayLogicalNetwork) Set(val *ExtensionInstanceArrayLogicalNetwork) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableExtensionInstanceArrayLogicalNetworkDto) IsSet() bool {
+func (v NullableExtensionInstanceArrayLogicalNetwork) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableExtensionInstanceArrayLogicalNetworkDto) Unset() {
+func (v *NullableExtensionInstanceArrayLogicalNetwork) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableExtensionInstanceArrayLogicalNetworkDto(val *ExtensionInstanceArrayLogicalNetworkDto) *NullableExtensionInstanceArrayLogicalNetworkDto {
-	return &NullableExtensionInstanceArrayLogicalNetworkDto{value: val, isSet: true}
+func NewNullableExtensionInstanceArrayLogicalNetwork(val *ExtensionInstanceArrayLogicalNetwork) *NullableExtensionInstanceArrayLogicalNetwork {
+	return &NullableExtensionInstanceArrayLogicalNetwork{value: val, isSet: true}
 }
 
-func (v NullableExtensionInstanceArrayLogicalNetworkDto) MarshalJSON() ([]byte, error) {
+func (v NullableExtensionInstanceArrayLogicalNetwork) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableExtensionInstanceArrayLogicalNetworkDto) UnmarshalJSON(src []byte) error {
+func (v *NullableExtensionInstanceArrayLogicalNetwork) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

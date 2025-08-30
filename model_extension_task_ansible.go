@@ -13,6 +13,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ExtensionTaskAnsible type satisfies the MappedNullable interface at compile time
@@ -20,17 +21,10 @@ var _ MappedNullable = &ExtensionTaskAnsible{}
 
 // ExtensionTaskAnsible struct for ExtensionTaskAnsible
 type ExtensionTaskAnsible struct {
-	TaskType *string `json:"taskType,omitempty"`
-	// Asset for the Ansible task.
-	Asset *string `json:"asset,omitempty"`
-	// Playbook for the Ansible task.
-	Playbook *string `json:"playbook,omitempty"`
-	// Execution Timeout.
-	ExecutionTimeout *int32 `json:"executionTimeout,omitempty"`
-	// Execution Timeout Tick.
-	ExecutionTimeoutTick *int32 `json:"executionTimeoutTick,omitempty"`
-	// Version.
-	Version              *string `json:"version,omitempty"`
+	// Label of the task.
+	Label string `json:"label"`
+	TaskType ExtensionTaskType `json:"taskType"`
+	Options ExtensionTaskOptionAnsible `json:"options"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,8 +34,11 @@ type _ExtensionTaskAnsible ExtensionTaskAnsible
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionTaskAnsible() *ExtensionTaskAnsible {
+func NewExtensionTaskAnsible(label string, taskType ExtensionTaskType, options ExtensionTaskOptionAnsible) *ExtensionTaskAnsible {
 	this := ExtensionTaskAnsible{}
+	this.Label = label
+	this.TaskType = taskType
+	this.Options = options
 	return &this
 }
 
@@ -53,168 +50,80 @@ func NewExtensionTaskAnsibleWithDefaults() *ExtensionTaskAnsible {
 	return &this
 }
 
-// GetAsset returns the Asset field value if set, zero value otherwise.
-func (o *ExtensionTaskAnsible) GetAsset() string {
-	if o == nil || IsNil(o.Asset) {
+// GetLabel returns the Label field value
+func (o *ExtensionTaskAnsible) GetLabel() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Asset
+
+	return o.Label
 }
 
-// GetAssetOk returns a tuple with the Asset field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionTaskAnsible) GetAssetOk() (*string, bool) {
-	if o == nil || IsNil(o.Asset) {
+func (o *ExtensionTaskAnsible) GetLabelOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Asset, true
+	return &o.Label, true
 }
 
-// HasAsset returns a boolean if a field has been set.
-func (o *ExtensionTaskAnsible) HasAsset() bool {
-	if o != nil && !IsNil(o.Asset) {
-		return true
-	}
-
-	return false
+// SetLabel sets field value
+func (o *ExtensionTaskAnsible) SetLabel(v string) {
+	o.Label = v
 }
 
-// SetAsset gets a reference to the given string and assigns it to the Asset field.
-func (o *ExtensionTaskAnsible) SetAsset(v string) {
-	o.Asset = &v
-}
-
-// GetPlaybook returns the Playbook field value if set, zero value otherwise.
-func (o *ExtensionTaskAnsible) GetPlaybook() string {
-	if o == nil || IsNil(o.Playbook) {
-		var ret string
+// GetTaskType returns the TaskType field value
+func (o *ExtensionTaskAnsible) GetTaskType() ExtensionTaskType {
+	if o == nil {
+		var ret ExtensionTaskType
 		return ret
 	}
-	return *o.Playbook
+
+	return o.TaskType
 }
 
-// GetPlaybookOk returns a tuple with the Playbook field value if set, nil otherwise
+// GetTaskTypeOk returns a tuple with the TaskType field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionTaskAnsible) GetPlaybookOk() (*string, bool) {
-	if o == nil || IsNil(o.Playbook) {
+func (o *ExtensionTaskAnsible) GetTaskTypeOk() (*ExtensionTaskType, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Playbook, true
+	return &o.TaskType, true
 }
 
-// HasPlaybook returns a boolean if a field has been set.
-func (o *ExtensionTaskAnsible) HasPlaybook() bool {
-	if o != nil && !IsNil(o.Playbook) {
-		return true
-	}
-
-	return false
+// SetTaskType sets field value
+func (o *ExtensionTaskAnsible) SetTaskType(v ExtensionTaskType) {
+	o.TaskType = v
 }
 
-// SetPlaybook gets a reference to the given string and assigns it to the Playbook field.
-func (o *ExtensionTaskAnsible) SetPlaybook(v string) {
-	o.Playbook = &v
-}
-
-// GetExecutionTimeout returns the ExecutionTimeout field value if set, zero value otherwise.
-func (o *ExtensionTaskAnsible) GetExecutionTimeout() int32 {
-	if o == nil || IsNil(o.ExecutionTimeout) {
-		var ret int32
+// GetOptions returns the Options field value
+func (o *ExtensionTaskAnsible) GetOptions() ExtensionTaskOptionAnsible {
+	if o == nil {
+		var ret ExtensionTaskOptionAnsible
 		return ret
 	}
-	return *o.ExecutionTimeout
+
+	return o.Options
 }
 
-// GetExecutionTimeoutOk returns a tuple with the ExecutionTimeout field value if set, nil otherwise
+// GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionTaskAnsible) GetExecutionTimeoutOk() (*int32, bool) {
-	if o == nil || IsNil(o.ExecutionTimeout) {
+func (o *ExtensionTaskAnsible) GetOptionsOk() (*ExtensionTaskOptionAnsible, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ExecutionTimeout, true
+	return &o.Options, true
 }
 
-// HasExecutionTimeout returns a boolean if a field has been set.
-func (o *ExtensionTaskAnsible) HasExecutionTimeout() bool {
-	if o != nil && !IsNil(o.ExecutionTimeout) {
-		return true
-	}
-
-	return false
-}
-
-// SetExecutionTimeout gets a reference to the given int32 and assigns it to the ExecutionTimeout field.
-func (o *ExtensionTaskAnsible) SetExecutionTimeout(v int32) {
-	o.ExecutionTimeout = &v
-}
-
-// GetExecutionTimeoutTick returns the ExecutionTimeoutTick field value if set, zero value otherwise.
-func (o *ExtensionTaskAnsible) GetExecutionTimeoutTick() int32 {
-	if o == nil || IsNil(o.ExecutionTimeoutTick) {
-		var ret int32
-		return ret
-	}
-	return *o.ExecutionTimeoutTick
-}
-
-// GetExecutionTimeoutTickOk returns a tuple with the ExecutionTimeoutTick field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExtensionTaskAnsible) GetExecutionTimeoutTickOk() (*int32, bool) {
-	if o == nil || IsNil(o.ExecutionTimeoutTick) {
-		return nil, false
-	}
-	return o.ExecutionTimeoutTick, true
-}
-
-// HasExecutionTimeoutTick returns a boolean if a field has been set.
-func (o *ExtensionTaskAnsible) HasExecutionTimeoutTick() bool {
-	if o != nil && !IsNil(o.ExecutionTimeoutTick) {
-		return true
-	}
-
-	return false
-}
-
-// SetExecutionTimeoutTick gets a reference to the given int32 and assigns it to the ExecutionTimeoutTick field.
-func (o *ExtensionTaskAnsible) SetExecutionTimeoutTick(v int32) {
-	o.ExecutionTimeoutTick = &v
-}
-
-// GetVersion returns the Version field value if set, zero value otherwise.
-func (o *ExtensionTaskAnsible) GetVersion() string {
-	if o == nil || IsNil(o.Version) {
-		var ret string
-		return ret
-	}
-	return *o.Version
-}
-
-// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExtensionTaskAnsible) GetVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.Version) {
-		return nil, false
-	}
-	return o.Version, true
-}
-
-// HasVersion returns a boolean if a field has been set.
-func (o *ExtensionTaskAnsible) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
-		return true
-	}
-
-	return false
-}
-
-// SetVersion gets a reference to the given string and assigns it to the Version field.
-func (o *ExtensionTaskAnsible) SetVersion(v string) {
-	o.Version = &v
+// SetOptions sets field value
+func (o *ExtensionTaskAnsible) SetOptions(v ExtensionTaskOptionAnsible) {
+	o.Options = v
 }
 
 func (o ExtensionTaskAnsible) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -223,21 +132,9 @@ func (o ExtensionTaskAnsible) MarshalJSON() ([]byte, error) {
 
 func (o ExtensionTaskAnsible) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Asset) {
-		toSerialize["asset"] = o.Asset
-	}
-	if !IsNil(o.Playbook) {
-		toSerialize["playbook"] = o.Playbook
-	}
-	if !IsNil(o.ExecutionTimeout) {
-		toSerialize["executionTimeout"] = o.ExecutionTimeout
-	}
-	if !IsNil(o.ExecutionTimeoutTick) {
-		toSerialize["executionTimeoutTick"] = o.ExecutionTimeoutTick
-	}
-	if !IsNil(o.Version) {
-		toSerialize["version"] = o.Version
-	}
+	toSerialize["label"] = o.Label
+	toSerialize["taskType"] = o.TaskType
+	toSerialize["options"] = o.Options
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -247,6 +144,29 @@ func (o ExtensionTaskAnsible) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ExtensionTaskAnsible) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"label",
+		"taskType",
+		"options",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varExtensionTaskAnsible := _ExtensionTaskAnsible{}
 
 	err = json.Unmarshal(data, &varExtensionTaskAnsible)
@@ -260,12 +180,9 @@ func (o *ExtensionTaskAnsible) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "asset")
-		delete(additionalProperties, "playbook")
-		delete(additionalProperties, "executionTimeout")
-		delete(additionalProperties, "executionTimeoutTick")
-		delete(additionalProperties, "version")
+		delete(additionalProperties, "label")
 		delete(additionalProperties, "taskType")
+		delete(additionalProperties, "options")
 		o.AdditionalProperties = additionalProperties
 	}
 
@@ -307,3 +224,5 @@ func (v *NullableExtensionTaskAnsible) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

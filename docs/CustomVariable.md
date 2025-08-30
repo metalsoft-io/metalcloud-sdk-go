@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | Custom variable name. | 
-**Value** | **string** | Custom variable value. | 
+**Value** | [**CustomVariableValue**](CustomVariableValue.md) |  | 
 
 ## Methods
 
 ### NewCustomVariable
 
-`func NewCustomVariable(name string, value string, ) *CustomVariable`
+`func NewCustomVariable(name string, value CustomVariableValue, ) *CustomVariable`
 
 NewCustomVariable instantiates a new CustomVariable object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetName sets Name field to given value.
 
 ### GetValue
 
-`func (o *CustomVariable) GetValue() string`
+`func (o *CustomVariable) GetValue() CustomVariableValue`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *CustomVariable) GetValueOk() (*string, bool)`
+`func (o *CustomVariable) GetValueOk() (*CustomVariableValue, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *CustomVariable) SetValue(v string)`
+`func (o *CustomVariable) SetValue(v CustomVariableValue)`
 
 SetValue sets Value field to given value.
 

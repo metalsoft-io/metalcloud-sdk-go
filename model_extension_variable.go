@@ -23,8 +23,7 @@ var _ MappedNullable = &ExtensionVariable{}
 type ExtensionVariable struct {
 	// The variable label.
 	Label string `json:"label"`
-	// The variable value.
-	Value string `json:"value"`
+	Value ExtensionVariableValue `json:"value"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,7 +33,7 @@ type _ExtensionVariable ExtensionVariable
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionVariable(label string, value string) *ExtensionVariable {
+func NewExtensionVariable(label string, value ExtensionVariableValue) *ExtensionVariable {
 	this := ExtensionVariable{}
 	this.Label = label
 	this.Value = value
@@ -74,9 +73,9 @@ func (o *ExtensionVariable) SetLabel(v string) {
 }
 
 // GetValue returns the Value field value
-func (o *ExtensionVariable) GetValue() string {
+func (o *ExtensionVariable) GetValue() ExtensionVariableValue {
 	if o == nil {
-		var ret string
+		var ret ExtensionVariableValue
 		return ret
 	}
 
@@ -85,7 +84,7 @@ func (o *ExtensionVariable) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionVariable) GetValueOk() (*string, bool) {
+func (o *ExtensionVariable) GetValueOk() (*ExtensionVariableValue, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,7 +92,7 @@ func (o *ExtensionVariable) GetValueOk() (*string, bool) {
 }
 
 // SetValue sets field value
-func (o *ExtensionVariable) SetValue(v string) {
+func (o *ExtensionVariable) SetValue(v ExtensionVariableValue) {
 	o.Value = v
 }
 

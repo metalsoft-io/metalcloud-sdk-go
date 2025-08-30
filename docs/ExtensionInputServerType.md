@@ -4,15 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MinCpu** | Pointer to **int32** | Minimum CPU cores. | [optional] 
-**MinRamGb** | Pointer to **int32** | Minimum RAM GBs. | [optional] 
-**Vendor** | Pointer to **string** | Server vendor. | [optional] 
+**Label** | **string** | Label of the input. | 
+**Name** | **string** | Name of the input. | 
+**InputType** | [**ExtensionInputType**](ExtensionInputType.md) |  | 
+**SetOnly** | Pointer to **bool** | Flag to indicate if the input is required. | [optional] [default to false]
+**Hidden** | Pointer to **bool** | Flag to indicate if the input is hidden in the UI. | [optional] [default to false]
+**DefaultValue** | Pointer to [**ExtensionInputStringDefaultValue**](ExtensionInputStringDefaultValue.md) |  | [optional] 
+**Options** | [**ExtensionInputOptionServerType**](ExtensionInputOptionServerType.md) |  | 
 
 ## Methods
 
 ### NewExtensionInputServerType
 
-`func NewExtensionInputServerType() *ExtensionInputServerType`
+`func NewExtensionInputServerType(label string, name string, inputType ExtensionInputType, options ExtensionInputOptionServerType, ) *ExtensionInputServerType`
 
 NewExtensionInputServerType instantiates a new ExtensionInputServerType object
 This constructor will assign default values to properties that have it defined,
@@ -27,80 +31,160 @@ NewExtensionInputServerTypeWithDefaults instantiates a new ExtensionInputServerT
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetMinCpu
+### GetLabel
 
-`func (o *ExtensionInputServerType) GetMinCpu() int32`
+`func (o *ExtensionInputServerType) GetLabel() string`
 
-GetMinCpu returns the MinCpu field if non-nil, zero value otherwise.
+GetLabel returns the Label field if non-nil, zero value otherwise.
 
-### GetMinCpuOk
+### GetLabelOk
 
-`func (o *ExtensionInputServerType) GetMinCpuOk() (*int32, bool)`
+`func (o *ExtensionInputServerType) GetLabelOk() (*string, bool)`
 
-GetMinCpuOk returns a tuple with the MinCpu field if it's non-nil, zero value otherwise
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMinCpu
+### SetLabel
 
-`func (o *ExtensionInputServerType) SetMinCpu(v int32)`
+`func (o *ExtensionInputServerType) SetLabel(v string)`
 
-SetMinCpu sets MinCpu field to given value.
+SetLabel sets Label field to given value.
 
-### HasMinCpu
 
-`func (o *ExtensionInputServerType) HasMinCpu() bool`
+### GetName
 
-HasMinCpu returns a boolean if a field has been set.
+`func (o *ExtensionInputServerType) GetName() string`
 
-### GetMinRamGb
+GetName returns the Name field if non-nil, zero value otherwise.
 
-`func (o *ExtensionInputServerType) GetMinRamGb() int32`
+### GetNameOk
 
-GetMinRamGb returns the MinRamGb field if non-nil, zero value otherwise.
+`func (o *ExtensionInputServerType) GetNameOk() (*string, bool)`
 
-### GetMinRamGbOk
-
-`func (o *ExtensionInputServerType) GetMinRamGbOk() (*int32, bool)`
-
-GetMinRamGbOk returns a tuple with the MinRamGb field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMinRamGb
+### SetName
 
-`func (o *ExtensionInputServerType) SetMinRamGb(v int32)`
+`func (o *ExtensionInputServerType) SetName(v string)`
 
-SetMinRamGb sets MinRamGb field to given value.
+SetName sets Name field to given value.
 
-### HasMinRamGb
 
-`func (o *ExtensionInputServerType) HasMinRamGb() bool`
+### GetInputType
 
-HasMinRamGb returns a boolean if a field has been set.
+`func (o *ExtensionInputServerType) GetInputType() ExtensionInputType`
 
-### GetVendor
+GetInputType returns the InputType field if non-nil, zero value otherwise.
 
-`func (o *ExtensionInputServerType) GetVendor() string`
+### GetInputTypeOk
 
-GetVendor returns the Vendor field if non-nil, zero value otherwise.
+`func (o *ExtensionInputServerType) GetInputTypeOk() (*ExtensionInputType, bool)`
 
-### GetVendorOk
-
-`func (o *ExtensionInputServerType) GetVendorOk() (*string, bool)`
-
-GetVendorOk returns a tuple with the Vendor field if it's non-nil, zero value otherwise
+GetInputTypeOk returns a tuple with the InputType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVendor
+### SetInputType
 
-`func (o *ExtensionInputServerType) SetVendor(v string)`
+`func (o *ExtensionInputServerType) SetInputType(v ExtensionInputType)`
 
-SetVendor sets Vendor field to given value.
+SetInputType sets InputType field to given value.
 
-### HasVendor
 
-`func (o *ExtensionInputServerType) HasVendor() bool`
+### GetSetOnly
 
-HasVendor returns a boolean if a field has been set.
+`func (o *ExtensionInputServerType) GetSetOnly() bool`
+
+GetSetOnly returns the SetOnly field if non-nil, zero value otherwise.
+
+### GetSetOnlyOk
+
+`func (o *ExtensionInputServerType) GetSetOnlyOk() (*bool, bool)`
+
+GetSetOnlyOk returns a tuple with the SetOnly field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSetOnly
+
+`func (o *ExtensionInputServerType) SetSetOnly(v bool)`
+
+SetSetOnly sets SetOnly field to given value.
+
+### HasSetOnly
+
+`func (o *ExtensionInputServerType) HasSetOnly() bool`
+
+HasSetOnly returns a boolean if a field has been set.
+
+### GetHidden
+
+`func (o *ExtensionInputServerType) GetHidden() bool`
+
+GetHidden returns the Hidden field if non-nil, zero value otherwise.
+
+### GetHiddenOk
+
+`func (o *ExtensionInputServerType) GetHiddenOk() (*bool, bool)`
+
+GetHiddenOk returns a tuple with the Hidden field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHidden
+
+`func (o *ExtensionInputServerType) SetHidden(v bool)`
+
+SetHidden sets Hidden field to given value.
+
+### HasHidden
+
+`func (o *ExtensionInputServerType) HasHidden() bool`
+
+HasHidden returns a boolean if a field has been set.
+
+### GetDefaultValue
+
+`func (o *ExtensionInputServerType) GetDefaultValue() ExtensionInputStringDefaultValue`
+
+GetDefaultValue returns the DefaultValue field if non-nil, zero value otherwise.
+
+### GetDefaultValueOk
+
+`func (o *ExtensionInputServerType) GetDefaultValueOk() (*ExtensionInputStringDefaultValue, bool)`
+
+GetDefaultValueOk returns a tuple with the DefaultValue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultValue
+
+`func (o *ExtensionInputServerType) SetDefaultValue(v ExtensionInputStringDefaultValue)`
+
+SetDefaultValue sets DefaultValue field to given value.
+
+### HasDefaultValue
+
+`func (o *ExtensionInputServerType) HasDefaultValue() bool`
+
+HasDefaultValue returns a boolean if a field has been set.
+
+### GetOptions
+
+`func (o *ExtensionInputServerType) GetOptions() ExtensionInputOptionServerType`
+
+GetOptions returns the Options field if non-nil, zero value otherwise.
+
+### GetOptionsOk
+
+`func (o *ExtensionInputServerType) GetOptionsOk() (*ExtensionInputOptionServerType, bool)`
+
+GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOptions
+
+`func (o *ExtensionInputServerType) SetOptions(v ExtensionInputOptionServerType)`
+
+SetOptions sets Options field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,17 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Endpoint** | **string** | Webhook task endpoint. | 
-**Method** | **string** | Webhook task request method. | 
-**Headers** | Pointer to **map[string]interface{}** | Request headers for the webhook task. | [optional] 
-**RequestTemplate** | **string** | Request template for the webhook task. | 
-**ExpectedResponseStatuses** | Pointer to **[]float32** | Expected response statuses for the webhook task. | [optional] 
+**Label** | **string** | Label of the task. | 
+**TaskType** | [**ExtensionTaskType**](ExtensionTaskType.md) |  | 
+**Options** | [**ExtensionTaskOptionWebhook**](ExtensionTaskOptionWebhook.md) |  | 
 
 ## Methods
 
 ### NewExtensionTaskWebhook
 
-`func NewExtensionTaskWebhook(endpoint string, method string, requestTemplate string, ) *ExtensionTaskWebhook`
+`func NewExtensionTaskWebhook(label string, taskType ExtensionTaskType, options ExtensionTaskOptionWebhook, ) *ExtensionTaskWebhook`
 
 NewExtensionTaskWebhook instantiates a new ExtensionTaskWebhook object
 This constructor will assign default values to properties that have it defined,
@@ -29,115 +27,65 @@ NewExtensionTaskWebhookWithDefaults instantiates a new ExtensionTaskWebhook obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetEndpoint
+### GetLabel
 
-`func (o *ExtensionTaskWebhook) GetEndpoint() string`
+`func (o *ExtensionTaskWebhook) GetLabel() string`
 
-GetEndpoint returns the Endpoint field if non-nil, zero value otherwise.
+GetLabel returns the Label field if non-nil, zero value otherwise.
 
-### GetEndpointOk
+### GetLabelOk
 
-`func (o *ExtensionTaskWebhook) GetEndpointOk() (*string, bool)`
+`func (o *ExtensionTaskWebhook) GetLabelOk() (*string, bool)`
 
-GetEndpointOk returns a tuple with the Endpoint field if it's non-nil, zero value otherwise
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEndpoint
+### SetLabel
 
-`func (o *ExtensionTaskWebhook) SetEndpoint(v string)`
+`func (o *ExtensionTaskWebhook) SetLabel(v string)`
 
-SetEndpoint sets Endpoint field to given value.
+SetLabel sets Label field to given value.
 
 
-### GetMethod
+### GetTaskType
 
-`func (o *ExtensionTaskWebhook) GetMethod() string`
+`func (o *ExtensionTaskWebhook) GetTaskType() ExtensionTaskType`
 
-GetMethod returns the Method field if non-nil, zero value otherwise.
+GetTaskType returns the TaskType field if non-nil, zero value otherwise.
 
-### GetMethodOk
+### GetTaskTypeOk
 
-`func (o *ExtensionTaskWebhook) GetMethodOk() (*string, bool)`
+`func (o *ExtensionTaskWebhook) GetTaskTypeOk() (*ExtensionTaskType, bool)`
 
-GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
+GetTaskTypeOk returns a tuple with the TaskType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMethod
+### SetTaskType
 
-`func (o *ExtensionTaskWebhook) SetMethod(v string)`
+`func (o *ExtensionTaskWebhook) SetTaskType(v ExtensionTaskType)`
 
-SetMethod sets Method field to given value.
+SetTaskType sets TaskType field to given value.
 
 
-### GetHeaders
+### GetOptions
 
-`func (o *ExtensionTaskWebhook) GetHeaders() map[string]interface{}`
+`func (o *ExtensionTaskWebhook) GetOptions() ExtensionTaskOptionWebhook`
 
-GetHeaders returns the Headers field if non-nil, zero value otherwise.
+GetOptions returns the Options field if non-nil, zero value otherwise.
 
-### GetHeadersOk
+### GetOptionsOk
 
-`func (o *ExtensionTaskWebhook) GetHeadersOk() (*map[string]interface{}, bool)`
+`func (o *ExtensionTaskWebhook) GetOptionsOk() (*ExtensionTaskOptionWebhook, bool)`
 
-GetHeadersOk returns a tuple with the Headers field if it's non-nil, zero value otherwise
+GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHeaders
+### SetOptions
 
-`func (o *ExtensionTaskWebhook) SetHeaders(v map[string]interface{})`
+`func (o *ExtensionTaskWebhook) SetOptions(v ExtensionTaskOptionWebhook)`
 
-SetHeaders sets Headers field to given value.
+SetOptions sets Options field to given value.
 
-### HasHeaders
-
-`func (o *ExtensionTaskWebhook) HasHeaders() bool`
-
-HasHeaders returns a boolean if a field has been set.
-
-### GetRequestTemplate
-
-`func (o *ExtensionTaskWebhook) GetRequestTemplate() string`
-
-GetRequestTemplate returns the RequestTemplate field if non-nil, zero value otherwise.
-
-### GetRequestTemplateOk
-
-`func (o *ExtensionTaskWebhook) GetRequestTemplateOk() (*string, bool)`
-
-GetRequestTemplateOk returns a tuple with the RequestTemplate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequestTemplate
-
-`func (o *ExtensionTaskWebhook) SetRequestTemplate(v string)`
-
-SetRequestTemplate sets RequestTemplate field to given value.
-
-
-### GetExpectedResponseStatuses
-
-`func (o *ExtensionTaskWebhook) GetExpectedResponseStatuses() []float32`
-
-GetExpectedResponseStatuses returns the ExpectedResponseStatuses field if non-nil, zero value otherwise.
-
-### GetExpectedResponseStatusesOk
-
-`func (o *ExtensionTaskWebhook) GetExpectedResponseStatusesOk() (*[]float32, bool)`
-
-GetExpectedResponseStatusesOk returns a tuple with the ExpectedResponseStatuses field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExpectedResponseStatuses
-
-`func (o *ExtensionTaskWebhook) SetExpectedResponseStatuses(v []float32)`
-
-SetExpectedResponseStatuses sets ExpectedResponseStatuses field to given value.
-
-### HasExpectedResponseStatuses
-
-`func (o *ExtensionTaskWebhook) HasExpectedResponseStatuses() bool`
-
-HasExpectedResponseStatuses returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

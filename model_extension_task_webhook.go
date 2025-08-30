@@ -21,18 +21,11 @@ var _ MappedNullable = &ExtensionTaskWebhook{}
 
 // ExtensionTaskWebhook struct for ExtensionTaskWebhook
 type ExtensionTaskWebhook struct {
-	TaskType *string `json:"taskType,omitempty"`
-	// Webhook task endpoint.
-	Endpoint string `json:"endpoint"`
-	// Webhook task request method.
-	Method string `json:"method"`
-	// Request headers for the webhook task.
-	Headers map[string]interface{} `json:"headers,omitempty"`
-	// Request template for the webhook task.
-	RequestTemplate string `json:"requestTemplate"`
-	// Expected response statuses for the webhook task.
-	ExpectedResponseStatuses []float32 `json:"expectedResponseStatuses,omitempty"`
-	AdditionalProperties     map[string]interface{}
+	// Label of the task.
+	Label string `json:"label"`
+	TaskType ExtensionTaskType `json:"taskType"`
+	Options ExtensionTaskOptionWebhook `json:"options"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ExtensionTaskWebhook ExtensionTaskWebhook
@@ -41,11 +34,11 @@ type _ExtensionTaskWebhook ExtensionTaskWebhook
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionTaskWebhook(endpoint string, method string, requestTemplate string) *ExtensionTaskWebhook {
+func NewExtensionTaskWebhook(label string, taskType ExtensionTaskType, options ExtensionTaskOptionWebhook) *ExtensionTaskWebhook {
 	this := ExtensionTaskWebhook{}
-	this.Endpoint = endpoint
-	this.Method = method
-	this.RequestTemplate = requestTemplate
+	this.Label = label
+	this.TaskType = taskType
+	this.Options = options
 	return &this
 }
 
@@ -57,144 +50,80 @@ func NewExtensionTaskWebhookWithDefaults() *ExtensionTaskWebhook {
 	return &this
 }
 
-// GetEndpoint returns the Endpoint field value
-func (o *ExtensionTaskWebhook) GetEndpoint() string {
+// GetLabel returns the Label field value
+func (o *ExtensionTaskWebhook) GetLabel() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Endpoint
+	return o.Label
 }
 
-// GetEndpointOk returns a tuple with the Endpoint field value
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionTaskWebhook) GetEndpointOk() (*string, bool) {
+func (o *ExtensionTaskWebhook) GetLabelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Endpoint, true
+	return &o.Label, true
 }
 
-// SetEndpoint sets field value
-func (o *ExtensionTaskWebhook) SetEndpoint(v string) {
-	o.Endpoint = v
+// SetLabel sets field value
+func (o *ExtensionTaskWebhook) SetLabel(v string) {
+	o.Label = v
 }
 
-// GetMethod returns the Method field value
-func (o *ExtensionTaskWebhook) GetMethod() string {
+// GetTaskType returns the TaskType field value
+func (o *ExtensionTaskWebhook) GetTaskType() ExtensionTaskType {
 	if o == nil {
-		var ret string
+		var ret ExtensionTaskType
 		return ret
 	}
 
-	return o.Method
+	return o.TaskType
 }
 
-// GetMethodOk returns a tuple with the Method field value
+// GetTaskTypeOk returns a tuple with the TaskType field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionTaskWebhook) GetMethodOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Method, true
-}
-
-// SetMethod sets field value
-func (o *ExtensionTaskWebhook) SetMethod(v string) {
-	o.Method = v
-}
-
-// GetHeaders returns the Headers field value if set, zero value otherwise.
-func (o *ExtensionTaskWebhook) GetHeaders() map[string]interface{} {
-	if o == nil || IsNil(o.Headers) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Headers
-}
-
-// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExtensionTaskWebhook) GetHeadersOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Headers) {
-		return map[string]interface{}{}, false
-	}
-	return o.Headers, true
-}
-
-// HasHeaders returns a boolean if a field has been set.
-func (o *ExtensionTaskWebhook) HasHeaders() bool {
-	if o != nil && !IsNil(o.Headers) {
-		return true
-	}
-
-	return false
-}
-
-// SetHeaders gets a reference to the given map[string]interface{} and assigns it to the Headers field.
-func (o *ExtensionTaskWebhook) SetHeaders(v map[string]interface{}) {
-	o.Headers = v
-}
-
-// GetRequestTemplate returns the RequestTemplate field value
-func (o *ExtensionTaskWebhook) GetRequestTemplate() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RequestTemplate
-}
-
-// GetRequestTemplateOk returns a tuple with the RequestTemplate field value
-// and a boolean to check if the value has been set.
-func (o *ExtensionTaskWebhook) GetRequestTemplateOk() (*string, bool) {
+func (o *ExtensionTaskWebhook) GetTaskTypeOk() (*ExtensionTaskType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.RequestTemplate, true
+	return &o.TaskType, true
 }
 
-// SetRequestTemplate sets field value
-func (o *ExtensionTaskWebhook) SetRequestTemplate(v string) {
-	o.RequestTemplate = v
+// SetTaskType sets field value
+func (o *ExtensionTaskWebhook) SetTaskType(v ExtensionTaskType) {
+	o.TaskType = v
 }
 
-// GetExpectedResponseStatuses returns the ExpectedResponseStatuses field value if set, zero value otherwise.
-func (o *ExtensionTaskWebhook) GetExpectedResponseStatuses() []float32 {
-	if o == nil || IsNil(o.ExpectedResponseStatuses) {
-		var ret []float32
+// GetOptions returns the Options field value
+func (o *ExtensionTaskWebhook) GetOptions() ExtensionTaskOptionWebhook {
+	if o == nil {
+		var ret ExtensionTaskOptionWebhook
 		return ret
 	}
-	return o.ExpectedResponseStatuses
+
+	return o.Options
 }
 
-// GetExpectedResponseStatusesOk returns a tuple with the ExpectedResponseStatuses field value if set, nil otherwise
+// GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionTaskWebhook) GetExpectedResponseStatusesOk() ([]float32, bool) {
-	if o == nil || IsNil(o.ExpectedResponseStatuses) {
+func (o *ExtensionTaskWebhook) GetOptionsOk() (*ExtensionTaskOptionWebhook, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ExpectedResponseStatuses, true
+	return &o.Options, true
 }
 
-// HasExpectedResponseStatuses returns a boolean if a field has been set.
-func (o *ExtensionTaskWebhook) HasExpectedResponseStatuses() bool {
-	if o != nil && !IsNil(o.ExpectedResponseStatuses) {
-		return true
-	}
-
-	return false
-}
-
-// SetExpectedResponseStatuses gets a reference to the given []float32 and assigns it to the ExpectedResponseStatuses field.
-func (o *ExtensionTaskWebhook) SetExpectedResponseStatuses(v []float32) {
-	o.ExpectedResponseStatuses = v
+// SetOptions sets field value
+func (o *ExtensionTaskWebhook) SetOptions(v ExtensionTaskOptionWebhook) {
+	o.Options = v
 }
 
 func (o ExtensionTaskWebhook) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -203,15 +132,9 @@ func (o ExtensionTaskWebhook) MarshalJSON() ([]byte, error) {
 
 func (o ExtensionTaskWebhook) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["endpoint"] = o.Endpoint
-	toSerialize["method"] = o.Method
-	if !IsNil(o.Headers) {
-		toSerialize["headers"] = o.Headers
-	}
-	toSerialize["requestTemplate"] = o.RequestTemplate
-	if !IsNil(o.ExpectedResponseStatuses) {
-		toSerialize["expectedResponseStatuses"] = o.ExpectedResponseStatuses
-	}
+	toSerialize["label"] = o.Label
+	toSerialize["taskType"] = o.TaskType
+	toSerialize["options"] = o.Options
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -225,9 +148,9 @@ func (o *ExtensionTaskWebhook) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"endpoint",
-		"method",
-		"requestTemplate",
+		"label",
+		"taskType",
+		"options",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -235,10 +158,10 @@ func (o *ExtensionTaskWebhook) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -257,12 +180,9 @@ func (o *ExtensionTaskWebhook) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "endpoint")
-		delete(additionalProperties, "method")
-		delete(additionalProperties, "headers")
-		delete(additionalProperties, "requestTemplate")
-		delete(additionalProperties, "expectedResponseStatuses")
+		delete(additionalProperties, "label")
 		delete(additionalProperties, "taskType")
+		delete(additionalProperties, "options")
 		o.AdditionalProperties = additionalProperties
 	}
 
@@ -304,3 +224,5 @@ func (v *NullableExtensionTaskWebhook) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
