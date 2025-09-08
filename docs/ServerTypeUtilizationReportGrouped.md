@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **UsedRegistering** | **[]string** | Ids of the servers having status used_registering. | 
 **Defective** | **[]string** | Ids of the servers having status defective. | 
 **RemovedFromRack** | **[]string** | Ids of the servers having status removed_from_rack. | 
+**Deleting** | **[]string** | Ids of the servers having status deleting. | 
 **Decommissioned** | **[]string** | Ids of the servers having status decommissioned. | 
 **UpdatingFirmware** | **[]string** | Ids of the servers having status updating_firmware. | 
 **UsedDiagnostics** | **[]string** | Ids of the servers having status used_diagnostics. | 
@@ -22,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewServerTypeUtilizationReportGrouped
 
-`func NewServerTypeUtilizationReportGrouped(registering []string, available []string, cleaningRequired []string, cleaning []string, used []string, usedRegistering []string, defective []string, removedFromRack []string, decommissioned []string, updatingFirmware []string, usedDiagnostics []string, pendingRegistration []string, unavailable []string, ) *ServerTypeUtilizationReportGrouped`
+`func NewServerTypeUtilizationReportGrouped(registering []string, available []string, cleaningRequired []string, cleaning []string, used []string, usedRegistering []string, defective []string, removedFromRack []string, deleting []string, decommissioned []string, updatingFirmware []string, usedDiagnostics []string, pendingRegistration []string, unavailable []string, ) *ServerTypeUtilizationReportGrouped`
 
 NewServerTypeUtilizationReportGrouped instantiates a new ServerTypeUtilizationReportGrouped object
 This constructor will assign default values to properties that have it defined,
@@ -195,6 +196,26 @@ and a boolean to check if the value has been set.
 `func (o *ServerTypeUtilizationReportGrouped) SetRemovedFromRack(v []string)`
 
 SetRemovedFromRack sets RemovedFromRack field to given value.
+
+
+### GetDeleting
+
+`func (o *ServerTypeUtilizationReportGrouped) GetDeleting() []string`
+
+GetDeleting returns the Deleting field if non-nil, zero value otherwise.
+
+### GetDeletingOk
+
+`func (o *ServerTypeUtilizationReportGrouped) GetDeletingOk() (*[]string, bool)`
+
+GetDeletingOk returns a tuple with the Deleting field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeleting
+
+`func (o *ServerTypeUtilizationReportGrouped) SetDeleting(v []string)`
+
+SetDeleting sets Deleting field to given value.
 
 
 ### GetDecommissioned

@@ -16383,7 +16383,11 @@ paths:
           type: number
         style: simple
       responses:
-        "204":
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobInfo'
           description: Network Device deleted
         "400":
           description: Bad request
@@ -16507,7 +16511,11 @@ paths:
           type: string
         style: simple
       responses:
-        "204":
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobInfo'
           description: Network Device archived
         "400":
           description: Bad request
@@ -41359,9 +41367,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-08-30T15:28:54.37Z
+        createdTimestamp: 2025-09-05T12:52:52.183Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-08-30T15:28:54.37Z
+        updatedTimestamp: 2025-09-05T12:52:52.183Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -41457,12 +41465,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-30T15:28:54.37Z
+          example: 2025-09-05T12:52:52.183Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-30T15:28:54.37Z
+          example: 2025-09-05T12:52:52.183Z
           format: date-time
           type: string
         links:
@@ -41494,9 +41502,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-08-30T15:28:54.37Z
+          createdTimestamp: 2025-09-05T12:52:52.183Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-08-30T15:28:54.37Z
+          updatedTimestamp: 2025-09-05T12:52:52.183Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -41513,9 +41521,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-08-30T15:28:54.37Z
+          createdTimestamp: 2025-09-05T12:52:52.183Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-08-30T15:28:54.37Z
+          updatedTimestamp: 2025-09-05T12:52:52.183Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -44698,7 +44706,13 @@ components:
     AssetExtensionActionStage:
       enum:
       - serverRegistered
+      - serverDecommissioned
+      - serverCreateDNS
+      - serverDeleteDNS
       - switchRegistered
+      - switchDecommissioned
+      - switchCreateDNS
+      - switchDeleteDNS
       - serverInstanceGroupCreateDNS
       - serverInstanceGroupUpdateDNS
       - serverInstanceGroupDeleteDNS
@@ -53632,8 +53646,8 @@ components:
         overrideIpv4WanVlanId: 1
         processorCount: 2
         extensionInstanceId: 0
-        defaultCustomStorageProfile: ""
         ipAllocateAuto: 1
+        defaultCustomStorageProfile: ""
         label: label
         diskCount: 2
         customVariables: "{}"
@@ -53671,10 +53685,6 @@ components:
           default: 1
           description: The number of instances to be created on the Instance Group.
           type: integer
-        defaultCustomStorageProfile:
-          allOf:
-          - $ref: '#/components/schemas/ServerInstanceStorageProfile'
-          description: Default Custom Storage Profile for the newly created Instances.
         ipAllocateAuto:
           default: 1
           description: Automatically allocate IP addresses to child Instance`s Instance
@@ -53760,6 +53770,10 @@ components:
           description: The server type ID that will be assigned to newly created instances.
           example: 5
           type: integer
+        defaultCustomStorageProfile:
+          allOf:
+          - $ref: '#/components/schemas/ServerInstanceStorageProfile'
+          description: Default Custom Storage Profile for the newly created Instances.
       required:
       - defaultServerTypeId
       type: object
@@ -60112,6 +60126,7 @@ components:
           - registering
           - installing_os
           - ztp
+          - deleting
           example: active
           type: string
         siteId:
@@ -61446,7 +61461,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-08-30T15:28:54.41Z
+        createdTimestamp: 2025-09-05T12:52:52.244Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -61455,7 +61470,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-08-30T15:28:54.411Z
+        updatedTimestamp: 2025-09-05T12:52:52.244Z
         revision: "1"
       properties:
         siteId:
@@ -61472,12 +61487,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-30T15:28:54.41Z
+          example: 2025-09-05T12:52:52.244Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-30T15:28:54.411Z
+          example: 2025-09-05T12:52:52.244Z
           format: date-time
           type: string
         links:
@@ -61499,7 +61514,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-08-30T15:28:54.41Z
+        - createdTimestamp: 2025-09-05T12:52:52.244Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -61508,9 +61523,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-08-30T15:28:54.411Z
+          updatedTimestamp: 2025-09-05T12:52:52.244Z
           revision: "1"
-        - createdTimestamp: 2025-08-30T15:28:54.41Z
+        - createdTimestamp: 2025-09-05T12:52:52.244Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -61519,7 +61534,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-08-30T15:28:54.411Z
+          updatedTimestamp: 2025-09-05T12:52:52.244Z
           revision: "1"
         meta: ""
         links: ""
@@ -62133,7 +62148,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-08-30T15:28:54.367Z
+        createdTimestamp: 2025-09-05T12:52:52.179Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -62181,7 +62196,7 @@ components:
           configurationPreview: configurationPreview
           bgpTemplateId: 101
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-08-30T15:28:54.367Z
+        updatedTimestamp: 2025-09-05T12:52:52.179Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -62323,12 +62338,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-30T15:28:54.367Z
+          example: 2025-09-05T12:52:52.179Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-30T15:28:54.367Z
+          example: 2025-09-05T12:52:52.179Z
           format: date-time
           type: string
         links:
@@ -62372,7 +62387,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-08-30T15:28:54.367Z
+        - createdTimestamp: 2025-09-05T12:52:52.179Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -62420,7 +62435,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-08-30T15:28:54.367Z
+          updatedTimestamp: 2025-09-05T12:52:52.179Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -62537,7 +62552,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-08-30T15:28:54.367Z
+        - createdTimestamp: 2025-09-05T12:52:52.179Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -62585,7 +62600,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-08-30T15:28:54.367Z
+          updatedTimestamp: 2025-09-05T12:52:52.179Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -62871,9 +62886,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-08-30T15:28:54.415Z
+        createdTimestamp: 2025-09-05T12:52:52.255Z
         mlagPair: 0
-        updatedTimestamp: 2025-08-30T15:28:54.415Z
+        updatedTimestamp: 2025-09-05T12:52:52.255Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -62886,12 +62901,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-30T15:28:54.415Z
+          example: 2025-09-05T12:52:52.255Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-30T15:28:54.415Z
+          example: 2025-09-05T12:52:52.255Z
           format: date-time
           type: string
         revision:
@@ -62969,9 +62984,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-08-30T15:28:54.415Z
+          createdTimestamp: 2025-09-05T12:52:52.255Z
           mlagPair: 0
-          updatedTimestamp: 2025-08-30T15:28:54.415Z
+          updatedTimestamp: 2025-09-05T12:52:52.255Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -62982,9 +62997,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-08-30T15:28:54.415Z
+          createdTimestamp: 2025-09-05T12:52:52.255Z
           mlagPair: 0
-          updatedTimestamp: 2025-08-30T15:28:54.415Z
+          updatedTimestamp: 2025-09-05T12:52:52.255Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -65805,8 +65820,8 @@ components:
         ipv4SubnetCreateAuto: 1
         overrideIpv4WanVlanId: 7
         processorCount: 5
-        defaultCustomStorageProfile: ""
         ipAllocateAuto: 6
+        defaultCustomStorageProfile: ""
         label: server-instance-group-123
         diskCount: 3
         customVariables: "{}"
@@ -65838,10 +65853,6 @@ components:
           default: 1
           description: The number of instances to be created on the Instance Group.
           type: integer
-        defaultCustomStorageProfile:
-          allOf:
-          - $ref: '#/components/schemas/ServerInstanceStorageProfile'
-          description: Default Custom Storage Profile for the newly created Instances.
         ipAllocateAuto:
           default: 1
           description: Automatically allocate IP addresses to child Instance`s Instance
@@ -65920,6 +65931,10 @@ components:
           description: The server type ID that will be assigned to newly created instances.
           example: 5
           type: integer
+        defaultCustomStorageProfile:
+          allOf:
+          - $ref: '#/components/schemas/ServerInstanceStorageProfile'
+          description: Default Custom Storage Profile for the newly created Instances.
       type: object
     DriveGroupConfiguration:
       properties:
@@ -66521,10 +66536,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-08-30T15:28:54.413Z
+        createdTimestamp: 2025-09-05T12:52:52.251Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-08-30T15:28:54.413Z
+        updatedTimestamp: 2025-09-05T12:52:52.251Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -66598,12 +66613,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-30T15:28:54.413Z
+          example: 2025-09-05T12:52:52.251Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-30T15:28:54.413Z
+          example: 2025-09-05T12:52:52.251Z
           format: date-time
           type: string
         links:
@@ -67746,10 +67761,10 @@ components:
     ServerPolicy:
       properties:
         registerCredentials:
-          description: Server registration type
+          description: Server registration password settings
           enum:
-          - random
           - user
+          - random
           type: string
         minimumNumberOfConnectedInterfaces:
           description: Minimum number of switch-connected interfaces required
@@ -67910,8 +67925,19 @@ components:
       type: object
     ServerInterface:
       example:
-        serverInterfaceId: 6.878052220127876
         networkDevice: "{}"
+        description: description
+        ipv6Addresses:
+        - 2001:db8::1
+        - 2001:db8::2
+        lldpInfo: lldpInfo
+        serverId: 5.944895607614016
+        osInfo: not_tested
+        switchMacAddress: switchMacAddress
+        fibreChannelWwpn: fibreChannelWwpn
+        capacityMbps: 3.353193347011243
+        supportsIscsiBoot: 7.143538047012306
+        serverInterfaceId: 6.878052220127876
         ipv4Addresses:
         - 192.168.1.1
         - 192.168.1.2
@@ -67920,24 +67946,14 @@ components:
         networkDeviceInterface: "{}"
         redundancyGroupIndex: 0.10263654006109402
         index: 6.704019297950036
-        description: description
-        ipv6Addresses:
-        - 2001:db8::1
-        - 2001:db8::2
-        lldpInfo: lldpInfo
-        serverId: 5.944895607614016
         addOnType: hba
         switchHostname: switchHostname
         pxeEnabled: 3.0937452626664474
         macAddress: macAddress
-        osInfo: not_tested
-        fibreChannelWwpn: fibreChannelWwpn
         addOnInfo: "{}"
         addOnMac: addOnMac
-        capacityMbps: 3.353193347011243
         defaultFabricId: 6.519180951018382
         switchPortId: switchPortId
-        supportsIscsiBoot: 7.143538047012306
       properties:
         serverInterfaceId:
           description: The id of the server interface.
@@ -67956,6 +67972,9 @@ components:
           type: string
         switchHostname:
           description: The switch hostname of the server interface.
+          type: string
+        switchMacAddress:
+          description: The MAC address of the connected switch interface.
           type: string
         capacityMbps:
           description: The capacity in Mbps of the server interface.
@@ -68035,6 +68054,7 @@ components:
       - osInfo
       - serverId
       - serverInterfaceId
+      - switchMacAddress
       type: object
     ServerDisk:
       example:
@@ -68349,6 +68369,7 @@ components:
           - used_diagnostics
           - pending_registration
           - unavailable
+          - deleting
           type: string
         serverComments:
           description: The comments of the server.
@@ -71803,8 +71824,19 @@ components:
         managementAddress: managementAddress
         ipmiCredentialsNeedUpdate: 6.778324963048013
         interfaces:
-        - serverInterfaceId: 6.878052220127876
-          networkDevice: "{}"
+        - networkDevice: "{}"
+          description: description
+          ipv6Addresses:
+          - 2001:db8::1
+          - 2001:db8::2
+          lldpInfo: lldpInfo
+          serverId: 5.944895607614016
+          osInfo: not_tested
+          switchMacAddress: switchMacAddress
+          fibreChannelWwpn: fibreChannelWwpn
+          capacityMbps: 3.353193347011243
+          supportsIscsiBoot: 7.143538047012306
+          serverInterfaceId: 6.878052220127876
           ipv4Addresses:
           - 192.168.1.1
           - 192.168.1.2
@@ -71813,26 +71845,27 @@ components:
           networkDeviceInterface: "{}"
           redundancyGroupIndex: 0.10263654006109402
           index: 6.704019297950036
+          addOnType: hba
+          switchHostname: switchHostname
+          pxeEnabled: 3.0937452626664474
+          macAddress: macAddress
+          addOnInfo: "{}"
+          addOnMac: addOnMac
+          defaultFabricId: 6.519180951018382
+          switchPortId: switchPortId
+        - networkDevice: "{}"
           description: description
           ipv6Addresses:
           - 2001:db8::1
           - 2001:db8::2
           lldpInfo: lldpInfo
           serverId: 5.944895607614016
-          addOnType: hba
-          switchHostname: switchHostname
-          pxeEnabled: 3.0937452626664474
-          macAddress: macAddress
           osInfo: not_tested
+          switchMacAddress: switchMacAddress
           fibreChannelWwpn: fibreChannelWwpn
-          addOnInfo: "{}"
-          addOnMac: addOnMac
           capacityMbps: 3.353193347011243
-          defaultFabricId: 6.519180951018382
-          switchPortId: switchPortId
           supportsIscsiBoot: 7.143538047012306
-        - serverInterfaceId: 6.878052220127876
-          networkDevice: "{}"
+          serverInterfaceId: 6.878052220127876
           ipv4Addresses:
           - 192.168.1.1
           - 192.168.1.2
@@ -71841,24 +71874,14 @@ components:
           networkDeviceInterface: "{}"
           redundancyGroupIndex: 0.10263654006109402
           index: 6.704019297950036
-          description: description
-          ipv6Addresses:
-          - 2001:db8::1
-          - 2001:db8::2
-          lldpInfo: lldpInfo
-          serverId: 5.944895607614016
           addOnType: hba
           switchHostname: switchHostname
           pxeEnabled: 3.0937452626664474
           macAddress: macAddress
-          osInfo: not_tested
-          fibreChannelWwpn: fibreChannelWwpn
           addOnInfo: "{}"
           addOnMac: addOnMac
-          capacityMbps: 3.353193347011243
           defaultFabricId: 6.519180951018382
           switchPortId: switchPortId
-          supportsIscsiBoot: 7.143538047012306
         serverCapacityMbps: 8.762042012749001
         processorCount: 5.637376656633329
         serverComments: serverComments
@@ -72032,6 +72055,7 @@ components:
           - used_diagnostics
           - pending_registration
           - unavailable
+          - deleting
           type: string
         serverComments:
           description: The comments of the server.
@@ -72298,8 +72322,19 @@ components:
           managementAddress: managementAddress
           ipmiCredentialsNeedUpdate: 6.778324963048013
           interfaces:
-          - serverInterfaceId: 6.878052220127876
-            networkDevice: "{}"
+          - networkDevice: "{}"
+            description: description
+            ipv6Addresses:
+            - 2001:db8::1
+            - 2001:db8::2
+            lldpInfo: lldpInfo
+            serverId: 5.944895607614016
+            osInfo: not_tested
+            switchMacAddress: switchMacAddress
+            fibreChannelWwpn: fibreChannelWwpn
+            capacityMbps: 3.353193347011243
+            supportsIscsiBoot: 7.143538047012306
+            serverInterfaceId: 6.878052220127876
             ipv4Addresses:
             - 192.168.1.1
             - 192.168.1.2
@@ -72308,26 +72343,27 @@ components:
             networkDeviceInterface: "{}"
             redundancyGroupIndex: 0.10263654006109402
             index: 6.704019297950036
+            addOnType: hba
+            switchHostname: switchHostname
+            pxeEnabled: 3.0937452626664474
+            macAddress: macAddress
+            addOnInfo: "{}"
+            addOnMac: addOnMac
+            defaultFabricId: 6.519180951018382
+            switchPortId: switchPortId
+          - networkDevice: "{}"
             description: description
             ipv6Addresses:
             - 2001:db8::1
             - 2001:db8::2
             lldpInfo: lldpInfo
             serverId: 5.944895607614016
-            addOnType: hba
-            switchHostname: switchHostname
-            pxeEnabled: 3.0937452626664474
-            macAddress: macAddress
             osInfo: not_tested
+            switchMacAddress: switchMacAddress
             fibreChannelWwpn: fibreChannelWwpn
-            addOnInfo: "{}"
-            addOnMac: addOnMac
             capacityMbps: 3.353193347011243
-            defaultFabricId: 6.519180951018382
-            switchPortId: switchPortId
             supportsIscsiBoot: 7.143538047012306
-          - serverInterfaceId: 6.878052220127876
-            networkDevice: "{}"
+            serverInterfaceId: 6.878052220127876
             ipv4Addresses:
             - 192.168.1.1
             - 192.168.1.2
@@ -72336,24 +72372,14 @@ components:
             networkDeviceInterface: "{}"
             redundancyGroupIndex: 0.10263654006109402
             index: 6.704019297950036
-            description: description
-            ipv6Addresses:
-            - 2001:db8::1
-            - 2001:db8::2
-            lldpInfo: lldpInfo
-            serverId: 5.944895607614016
             addOnType: hba
             switchHostname: switchHostname
             pxeEnabled: 3.0937452626664474
             macAddress: macAddress
-            osInfo: not_tested
-            fibreChannelWwpn: fibreChannelWwpn
             addOnInfo: "{}"
             addOnMac: addOnMac
-            capacityMbps: 3.353193347011243
             defaultFabricId: 6.519180951018382
             switchPortId: switchPortId
-            supportsIscsiBoot: 7.143538047012306
           serverCapacityMbps: 8.762042012749001
           processorCount: 5.637376656633329
           serverComments: serverComments
@@ -72489,8 +72515,19 @@ components:
           managementAddress: managementAddress
           ipmiCredentialsNeedUpdate: 6.778324963048013
           interfaces:
-          - serverInterfaceId: 6.878052220127876
-            networkDevice: "{}"
+          - networkDevice: "{}"
+            description: description
+            ipv6Addresses:
+            - 2001:db8::1
+            - 2001:db8::2
+            lldpInfo: lldpInfo
+            serverId: 5.944895607614016
+            osInfo: not_tested
+            switchMacAddress: switchMacAddress
+            fibreChannelWwpn: fibreChannelWwpn
+            capacityMbps: 3.353193347011243
+            supportsIscsiBoot: 7.143538047012306
+            serverInterfaceId: 6.878052220127876
             ipv4Addresses:
             - 192.168.1.1
             - 192.168.1.2
@@ -72499,26 +72536,27 @@ components:
             networkDeviceInterface: "{}"
             redundancyGroupIndex: 0.10263654006109402
             index: 6.704019297950036
+            addOnType: hba
+            switchHostname: switchHostname
+            pxeEnabled: 3.0937452626664474
+            macAddress: macAddress
+            addOnInfo: "{}"
+            addOnMac: addOnMac
+            defaultFabricId: 6.519180951018382
+            switchPortId: switchPortId
+          - networkDevice: "{}"
             description: description
             ipv6Addresses:
             - 2001:db8::1
             - 2001:db8::2
             lldpInfo: lldpInfo
             serverId: 5.944895607614016
-            addOnType: hba
-            switchHostname: switchHostname
-            pxeEnabled: 3.0937452626664474
-            macAddress: macAddress
             osInfo: not_tested
+            switchMacAddress: switchMacAddress
             fibreChannelWwpn: fibreChannelWwpn
-            addOnInfo: "{}"
-            addOnMac: addOnMac
             capacityMbps: 3.353193347011243
-            defaultFabricId: 6.519180951018382
-            switchPortId: switchPortId
             supportsIscsiBoot: 7.143538047012306
-          - serverInterfaceId: 6.878052220127876
-            networkDevice: "{}"
+            serverInterfaceId: 6.878052220127876
             ipv4Addresses:
             - 192.168.1.1
             - 192.168.1.2
@@ -72527,24 +72565,14 @@ components:
             networkDeviceInterface: "{}"
             redundancyGroupIndex: 0.10263654006109402
             index: 6.704019297950036
-            description: description
-            ipv6Addresses:
-            - 2001:db8::1
-            - 2001:db8::2
-            lldpInfo: lldpInfo
-            serverId: 5.944895607614016
             addOnType: hba
             switchHostname: switchHostname
             pxeEnabled: 3.0937452626664474
             macAddress: macAddress
-            osInfo: not_tested
-            fibreChannelWwpn: fibreChannelWwpn
             addOnInfo: "{}"
             addOnMac: addOnMac
-            capacityMbps: 3.353193347011243
             defaultFabricId: 6.519180951018382
             switchPortId: switchPortId
-            supportsIscsiBoot: 7.143538047012306
           serverCapacityMbps: 8.762042012749001
           processorCount: 5.637376656633329
           serverComments: serverComments
@@ -72689,6 +72717,7 @@ components:
           - used_diagnostics
           - pending_registration
           - unavailable
+          - deleting
           type: string
         serverClass:
           description: The server class.
@@ -73513,6 +73542,11 @@ components:
           items:
             type: string
           type: array
+        deleting:
+          description: Ids of the servers having status deleting.
+          items:
+            type: string
+          type: array
         decommissioned:
           description: Ids of the servers having status decommissioned.
           items:
@@ -73544,6 +73578,7 @@ components:
       - cleaning_required
       - decommissioned
       - defective
+      - deleting
       - pending_registration
       - registering
       - removed_from_rack
@@ -73613,7 +73648,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-08-30T15:28:54.407Z
+        createdTimestamp: 2025-09-05T12:52:52.236Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -73621,7 +73656,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-08-30T15:28:54.407Z
+        updatedTimestamp: 2025-09-05T12:52:52.236Z
         revision: "1"
       properties:
         id:
@@ -73650,12 +73685,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-30T15:28:54.407Z
+          example: 2025-09-05T12:52:52.236Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-30T15:28:54.407Z
+          example: 2025-09-05T12:52:52.236Z
           format: date-time
           type: string
         links:
@@ -73674,7 +73709,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-08-30T15:28:54.409Z
+        createdTimestamp: 2025-09-05T12:52:52.24Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -73685,7 +73720,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-08-30T15:28:54.409Z
+        updatedTimestamp: 2025-09-05T12:52:52.24Z
         revision: "1"
       properties:
         id:
@@ -73719,12 +73754,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-08-30T15:28:54.409Z
+          example: 2025-09-05T12:52:52.24Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-08-30T15:28:54.409Z
+          example: 2025-09-05T12:52:52.24Z
           format: date-time
           type: string
         links:
@@ -73744,7 +73779,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-08-30T15:28:54.409Z
+        - createdTimestamp: 2025-09-05T12:52:52.24Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -73755,9 +73790,9 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-08-30T15:28:54.409Z
+          updatedTimestamp: 2025-09-05T12:52:52.24Z
           revision: "1"
-        - createdTimestamp: 2025-08-30T15:28:54.409Z
+        - createdTimestamp: 2025-09-05T12:52:52.24Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -73768,7 +73803,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-08-30T15:28:54.409Z
+          updatedTimestamp: 2025-09-05T12:52:52.24Z
           revision: "1"
         meta: ""
         links: ""
@@ -73977,7 +74012,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-08-30T15:28:54.407Z
+          createdTimestamp: 2025-09-05T12:52:52.236Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -73985,12 +74020,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-08-30T15:28:54.407Z
+          updatedTimestamp: 2025-09-05T12:52:52.236Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-08-30T15:28:54.407Z
+          createdTimestamp: 2025-09-05T12:52:52.236Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -73998,7 +74033,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-08-30T15:28:54.407Z
+          updatedTimestamp: 2025-09-05T12:52:52.236Z
           revision: "1"
         meta: ""
         links: ""
@@ -75188,10 +75223,10 @@ components:
     ServerPolicyUpdate:
       properties:
         registerCredentials:
-          description: Server registration type
+          description: Server registration password settings
           enum:
-          - random
           - user
+          - random
           type: string
         minimumNumberOfConnectedInterfaces:
           description: Minimum number of switch-connected interfaces required

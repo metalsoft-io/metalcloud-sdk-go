@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Index** | **float32** | The index of the server interface. | 
 **SwitchPortId** | Pointer to **string** | The switch port id of the server interface. | [optional] 
 **SwitchHostname** | Pointer to **string** | The switch hostname of the server interface. | [optional] 
+**SwitchMacAddress** | **string** | The MAC address of the connected switch interface. | 
 **CapacityMbps** | Pointer to **float32** | The capacity in Mbps of the server interface. | [optional] 
 **AddOnMac** | Pointer to **string** | The add-on MAC address of the server interface. | [optional] 
 **AddOnType** | Pointer to **string** | The add-on type of the server interface. | [optional] 
@@ -33,7 +34,7 @@ Name | Type | Description | Notes
 
 ### NewServerInterface
 
-`func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32, osInfo string, ) *ServerInterface`
+`func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32, switchMacAddress string, osInfo string, ) *ServerInterface`
 
 NewServerInterface instantiates a new ServerInterface object
 This constructor will assign default values to properties that have it defined,
@@ -177,6 +178,26 @@ SetSwitchHostname sets SwitchHostname field to given value.
 `func (o *ServerInterface) HasSwitchHostname() bool`
 
 HasSwitchHostname returns a boolean if a field has been set.
+
+### GetSwitchMacAddress
+
+`func (o *ServerInterface) GetSwitchMacAddress() string`
+
+GetSwitchMacAddress returns the SwitchMacAddress field if non-nil, zero value otherwise.
+
+### GetSwitchMacAddressOk
+
+`func (o *ServerInterface) GetSwitchMacAddressOk() (*string, bool)`
+
+GetSwitchMacAddressOk returns a tuple with the SwitchMacAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSwitchMacAddress
+
+`func (o *ServerInterface) SetSwitchMacAddress(v string)`
+
+SetSwitchMacAddress sets SwitchMacAddress field to given value.
+
 
 ### GetCapacityMbps
 

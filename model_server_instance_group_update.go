@@ -25,8 +25,6 @@ type ServerInstanceGroupUpdate struct {
 	ServerGroupName *string `json:"serverGroupName,omitempty"`
 	// The number of instances to be created on the Instance Group.
 	InstanceCount *int32 `json:"instanceCount,omitempty"`
-	// Default Custom Storage Profile for the newly created Instances.
-	DefaultCustomStorageProfile *ServerInstanceStorageProfile `json:"defaultCustomStorageProfile,omitempty"`
 	// Automatically allocate IP addresses to child Instance`s Instance Interface elements.
 	IpAllocateAuto *int32 `json:"ipAllocateAuto,omitempty"`
 	// Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated.
@@ -61,6 +59,8 @@ type ServerInstanceGroupUpdate struct {
 	NetworkEquipmentForceSubnetPoolIpv4WanId *int32 `json:"networkEquipmentForceSubnetPoolIpv4WanId,omitempty"`
 	// The server type ID that will be assigned to newly created instances.
 	DefaultServerTypeId *int32 `json:"defaultServerTypeId,omitempty"`
+	// Default Custom Storage Profile for the newly created Instances.
+	DefaultCustomStorageProfile *ServerInstanceStorageProfile `json:"defaultCustomStorageProfile,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -217,38 +217,6 @@ func (o *ServerInstanceGroupUpdate) HasInstanceCount() bool {
 // SetInstanceCount gets a reference to the given int32 and assigns it to the InstanceCount field.
 func (o *ServerInstanceGroupUpdate) SetInstanceCount(v int32) {
 	o.InstanceCount = &v
-}
-
-// GetDefaultCustomStorageProfile returns the DefaultCustomStorageProfile field value if set, zero value otherwise.
-func (o *ServerInstanceGroupUpdate) GetDefaultCustomStorageProfile() ServerInstanceStorageProfile {
-	if o == nil || IsNil(o.DefaultCustomStorageProfile) {
-		var ret ServerInstanceStorageProfile
-		return ret
-	}
-	return *o.DefaultCustomStorageProfile
-}
-
-// GetDefaultCustomStorageProfileOk returns a tuple with the DefaultCustomStorageProfile field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServerInstanceGroupUpdate) GetDefaultCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool) {
-	if o == nil || IsNil(o.DefaultCustomStorageProfile) {
-		return nil, false
-	}
-	return o.DefaultCustomStorageProfile, true
-}
-
-// HasDefaultCustomStorageProfile returns a boolean if a field has been set.
-func (o *ServerInstanceGroupUpdate) HasDefaultCustomStorageProfile() bool {
-	if o != nil && !IsNil(o.DefaultCustomStorageProfile) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultCustomStorageProfile gets a reference to the given ServerInstanceStorageProfile and assigns it to the DefaultCustomStorageProfile field.
-func (o *ServerInstanceGroupUpdate) SetDefaultCustomStorageProfile(v ServerInstanceStorageProfile) {
-	o.DefaultCustomStorageProfile = &v
 }
 
 // GetIpAllocateAuto returns the IpAllocateAuto field value if set, zero value otherwise.
@@ -795,6 +763,38 @@ func (o *ServerInstanceGroupUpdate) SetDefaultServerTypeId(v int32) {
 	o.DefaultServerTypeId = &v
 }
 
+// GetDefaultCustomStorageProfile returns the DefaultCustomStorageProfile field value if set, zero value otherwise.
+func (o *ServerInstanceGroupUpdate) GetDefaultCustomStorageProfile() ServerInstanceStorageProfile {
+	if o == nil || IsNil(o.DefaultCustomStorageProfile) {
+		var ret ServerInstanceStorageProfile
+		return ret
+	}
+	return *o.DefaultCustomStorageProfile
+}
+
+// GetDefaultCustomStorageProfileOk returns a tuple with the DefaultCustomStorageProfile field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerInstanceGroupUpdate) GetDefaultCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool) {
+	if o == nil || IsNil(o.DefaultCustomStorageProfile) {
+		return nil, false
+	}
+	return o.DefaultCustomStorageProfile, true
+}
+
+// HasDefaultCustomStorageProfile returns a boolean if a field has been set.
+func (o *ServerInstanceGroupUpdate) HasDefaultCustomStorageProfile() bool {
+	if o != nil && !IsNil(o.DefaultCustomStorageProfile) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultCustomStorageProfile gets a reference to the given ServerInstanceStorageProfile and assigns it to the DefaultCustomStorageProfile field.
+func (o *ServerInstanceGroupUpdate) SetDefaultCustomStorageProfile(v ServerInstanceStorageProfile) {
+	o.DefaultCustomStorageProfile = &v
+}
+
 func (o ServerInstanceGroupUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -813,9 +813,6 @@ func (o ServerInstanceGroupUpdate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.InstanceCount) {
 		toSerialize["instanceCount"] = o.InstanceCount
-	}
-	if !IsNil(o.DefaultCustomStorageProfile) {
-		toSerialize["defaultCustomStorageProfile"] = o.DefaultCustomStorageProfile
 	}
 	if !IsNil(o.IpAllocateAuto) {
 		toSerialize["ipAllocateAuto"] = o.IpAllocateAuto
@@ -868,6 +865,9 @@ func (o ServerInstanceGroupUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DefaultServerTypeId) {
 		toSerialize["defaultServerTypeId"] = o.DefaultServerTypeId
 	}
+	if !IsNil(o.DefaultCustomStorageProfile) {
+		toSerialize["defaultCustomStorageProfile"] = o.DefaultCustomStorageProfile
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -893,7 +893,6 @@ func (o *ServerInstanceGroupUpdate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "serverGroupName")
 		delete(additionalProperties, "instanceCount")
-		delete(additionalProperties, "defaultCustomStorageProfile")
 		delete(additionalProperties, "ipAllocateAuto")
 		delete(additionalProperties, "ipv4SubnetCreateAuto")
 		delete(additionalProperties, "hostname")
@@ -911,6 +910,7 @@ func (o *ServerInstanceGroupUpdate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "overrideIpv4WanVlanId")
 		delete(additionalProperties, "networkEquipmentForceSubnetPoolIpv4WanId")
 		delete(additionalProperties, "defaultServerTypeId")
+		delete(additionalProperties, "defaultCustomStorageProfile")
 		o.AdditionalProperties = additionalProperties
 	}
 

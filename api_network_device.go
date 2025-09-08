@@ -136,7 +136,7 @@ func (r NetworkDeviceAPIArchiveNetworkDeviceRequest) IfMatch(ifMatch string) Net
 	return r
 }
 
-func (r NetworkDeviceAPIArchiveNetworkDeviceRequest) Execute() (*http.Response, error) {
+func (r NetworkDeviceAPIArchiveNetworkDeviceRequest) Execute() (*JobInfo, *http.Response, error) {
 	return r.ApiService.ArchiveNetworkDeviceExecute(r)
 }
 
@@ -156,16 +156,18 @@ func (a *NetworkDeviceAPIService) ArchiveNetworkDevice(ctx context.Context, netw
 }
 
 // Execute executes the request
-func (a *NetworkDeviceAPIService) ArchiveNetworkDeviceExecute(r NetworkDeviceAPIArchiveNetworkDeviceRequest) (*http.Response, error) {
+//  @return JobInfo
+func (a *NetworkDeviceAPIService) ArchiveNetworkDeviceExecute(r NetworkDeviceAPIArchiveNetworkDeviceRequest) (*JobInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *JobInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.ArchiveNetworkDevice")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}/actions/archive"
@@ -185,7 +187,7 @@ func (a *NetworkDeviceAPIService) ArchiveNetworkDeviceExecute(r NetworkDeviceAPI
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -197,19 +199,19 @@ func (a *NetworkDeviceAPIService) ArchiveNetworkDeviceExecute(r NetworkDeviceAPI
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -217,10 +219,19 @@ func (a *NetworkDeviceAPIService) ArchiveNetworkDeviceExecute(r NetworkDeviceAPI
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type NetworkDeviceAPIChangeNetworkDeviceStatusRequest struct {
@@ -442,7 +453,7 @@ type NetworkDeviceAPIDeleteNetworkDeviceRequest struct {
 	networkDeviceId float32
 }
 
-func (r NetworkDeviceAPIDeleteNetworkDeviceRequest) Execute() (*http.Response, error) {
+func (r NetworkDeviceAPIDeleteNetworkDeviceRequest) Execute() (*JobInfo, *http.Response, error) {
 	return r.ApiService.DeleteNetworkDeviceExecute(r)
 }
 
@@ -462,16 +473,18 @@ func (a *NetworkDeviceAPIService) DeleteNetworkDevice(ctx context.Context, netwo
 }
 
 // Execute executes the request
-func (a *NetworkDeviceAPIService) DeleteNetworkDeviceExecute(r NetworkDeviceAPIDeleteNetworkDeviceRequest) (*http.Response, error) {
+//  @return JobInfo
+func (a *NetworkDeviceAPIService) DeleteNetworkDeviceExecute(r NetworkDeviceAPIDeleteNetworkDeviceRequest) (*JobInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *JobInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkDeviceAPIService.DeleteNetworkDevice")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/network-devices/{networkDeviceId}"
@@ -491,7 +504,7 @@ func (a *NetworkDeviceAPIService) DeleteNetworkDeviceExecute(r NetworkDeviceAPID
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -500,19 +513,19 @@ func (a *NetworkDeviceAPIService) DeleteNetworkDeviceExecute(r NetworkDeviceAPID
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -520,10 +533,19 @@ func (a *NetworkDeviceAPIService) DeleteNetworkDeviceExecute(r NetworkDeviceAPID
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type NetworkDeviceAPIDiscoverNetworkDeviceRequest struct {

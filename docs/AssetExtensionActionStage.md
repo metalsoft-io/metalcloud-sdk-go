@@ -5,7 +5,19 @@
 
 * `SERVER_REGISTERED` (value: `"serverRegistered"`)
 
+* `SERVER_DECOMMISSIONED` (value: `"serverDecommissioned"`)
+
+* `SERVER_CREATE_DNS` (value: `"serverCreateDNS"`)
+
+* `SERVER_DELETE_DNS` (value: `"serverDeleteDNS"`)
+
 * `SWITCH_REGISTERED` (value: `"switchRegistered"`)
+
+* `SWITCH_DECOMMISSIONED` (value: `"switchDecommissioned"`)
+
+* `SWITCH_CREATE_DNS` (value: `"switchCreateDNS"`)
+
+* `SWITCH_DELETE_DNS` (value: `"switchDeleteDNS"`)
 
 * `SERVER_INSTANCE_GROUP_CREATE_DNS` (value: `"serverInstanceGroupCreateDNS"`)
 

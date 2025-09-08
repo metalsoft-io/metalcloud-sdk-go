@@ -33,6 +33,8 @@ type ServerInterface struct {
 	SwitchPortId *string `json:"switchPortId,omitempty"`
 	// The switch hostname of the server interface.
 	SwitchHostname *string `json:"switchHostname,omitempty"`
+	// The MAC address of the connected switch interface.
+	SwitchMacAddress string `json:"switchMacAddress"`
 	// The capacity in Mbps of the server interface.
 	CapacityMbps *float32 `json:"capacityMbps,omitempty"`
 	// The add-on MAC address of the server interface.
@@ -78,12 +80,13 @@ type _ServerInterface ServerInterface
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32, osInfo string) *ServerInterface {
+func NewServerInterface(serverInterfaceId float32, serverId float32, macAddress string, index float32, switchMacAddress string, osInfo string) *ServerInterface {
 	this := ServerInterface{}
 	this.ServerInterfaceId = serverInterfaceId
 	this.ServerId = serverId
 	this.MacAddress = macAddress
 	this.Index = index
+	this.SwitchMacAddress = switchMacAddress
 	this.OsInfo = osInfo
 	return &this
 }
@@ -256,6 +259,30 @@ func (o *ServerInterface) HasSwitchHostname() bool {
 // SetSwitchHostname gets a reference to the given string and assigns it to the SwitchHostname field.
 func (o *ServerInterface) SetSwitchHostname(v string) {
 	o.SwitchHostname = &v
+}
+
+// GetSwitchMacAddress returns the SwitchMacAddress field value
+func (o *ServerInterface) GetSwitchMacAddress() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SwitchMacAddress
+}
+
+// GetSwitchMacAddressOk returns a tuple with the SwitchMacAddress field value
+// and a boolean to check if the value has been set.
+func (o *ServerInterface) GetSwitchMacAddressOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SwitchMacAddress, true
+}
+
+// SetSwitchMacAddress sets field value
+func (o *ServerInterface) SetSwitchMacAddress(v string) {
+	o.SwitchMacAddress = v
 }
 
 // GetCapacityMbps returns the CapacityMbps field value if set, zero value otherwise.
@@ -846,6 +873,7 @@ func (o ServerInterface) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SwitchHostname) {
 		toSerialize["switchHostname"] = o.SwitchHostname
 	}
+	toSerialize["switchMacAddress"] = o.SwitchMacAddress
 	if !IsNil(o.CapacityMbps) {
 		toSerialize["capacityMbps"] = o.CapacityMbps
 	}
@@ -915,6 +943,7 @@ func (o *ServerInterface) UnmarshalJSON(data []byte) (err error) {
 		"serverId",
 		"macAddress",
 		"index",
+		"switchMacAddress",
 		"osInfo",
 	}
 
@@ -951,6 +980,7 @@ func (o *ServerInterface) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "index")
 		delete(additionalProperties, "switchPortId")
 		delete(additionalProperties, "switchHostname")
+		delete(additionalProperties, "switchMacAddress")
 		delete(additionalProperties, "capacityMbps")
 		delete(additionalProperties, "addOnMac")
 		delete(additionalProperties, "addOnType")

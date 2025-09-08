@@ -37,6 +37,8 @@ type ServerTypeUtilizationReportGrouped struct {
 	Defective []string `json:"defective"`
 	// Ids of the servers having status removed_from_rack.
 	RemovedFromRack []string `json:"removed_from_rack"`
+	// Ids of the servers having status deleting.
+	Deleting []string `json:"deleting"`
 	// Ids of the servers having status decommissioned.
 	Decommissioned []string `json:"decommissioned"`
 	// Ids of the servers having status updating_firmware.
@@ -56,7 +58,7 @@ type _ServerTypeUtilizationReportGrouped ServerTypeUtilizationReportGrouped
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerTypeUtilizationReportGrouped(registering []string, available []string, cleaningRequired []string, cleaning []string, used []string, usedRegistering []string, defective []string, removedFromRack []string, decommissioned []string, updatingFirmware []string, usedDiagnostics []string, pendingRegistration []string, unavailable []string) *ServerTypeUtilizationReportGrouped {
+func NewServerTypeUtilizationReportGrouped(registering []string, available []string, cleaningRequired []string, cleaning []string, used []string, usedRegistering []string, defective []string, removedFromRack []string, deleting []string, decommissioned []string, updatingFirmware []string, usedDiagnostics []string, pendingRegistration []string, unavailable []string) *ServerTypeUtilizationReportGrouped {
 	this := ServerTypeUtilizationReportGrouped{}
 	this.Registering = registering
 	this.Available = available
@@ -66,6 +68,7 @@ func NewServerTypeUtilizationReportGrouped(registering []string, available []str
 	this.UsedRegistering = usedRegistering
 	this.Defective = defective
 	this.RemovedFromRack = removedFromRack
+	this.Deleting = deleting
 	this.Decommissioned = decommissioned
 	this.UpdatingFirmware = updatingFirmware
 	this.UsedDiagnostics = usedDiagnostics
@@ -274,6 +277,30 @@ func (o *ServerTypeUtilizationReportGrouped) SetRemovedFromRack(v []string) {
 	o.RemovedFromRack = v
 }
 
+// GetDeleting returns the Deleting field value
+func (o *ServerTypeUtilizationReportGrouped) GetDeleting() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Deleting
+}
+
+// GetDeletingOk returns a tuple with the Deleting field value
+// and a boolean to check if the value has been set.
+func (o *ServerTypeUtilizationReportGrouped) GetDeletingOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Deleting, true
+}
+
+// SetDeleting sets field value
+func (o *ServerTypeUtilizationReportGrouped) SetDeleting(v []string) {
+	o.Deleting = v
+}
+
 // GetDecommissioned returns the Decommissioned field value
 func (o *ServerTypeUtilizationReportGrouped) GetDecommissioned() []string {
 	if o == nil {
@@ -412,6 +439,7 @@ func (o ServerTypeUtilizationReportGrouped) ToMap() (map[string]interface{}, err
 	toSerialize["used_registering"] = o.UsedRegistering
 	toSerialize["defective"] = o.Defective
 	toSerialize["removed_from_rack"] = o.RemovedFromRack
+	toSerialize["deleting"] = o.Deleting
 	toSerialize["decommissioned"] = o.Decommissioned
 	toSerialize["updating_firmware"] = o.UpdatingFirmware
 	toSerialize["used_diagnostics"] = o.UsedDiagnostics
@@ -438,6 +466,7 @@ func (o *ServerTypeUtilizationReportGrouped) UnmarshalJSON(data []byte) (err err
 		"used_registering",
 		"defective",
 		"removed_from_rack",
+		"deleting",
 		"decommissioned",
 		"updating_firmware",
 		"used_diagnostics",
@@ -480,6 +509,7 @@ func (o *ServerTypeUtilizationReportGrouped) UnmarshalJSON(data []byte) (err err
 		delete(additionalProperties, "used_registering")
 		delete(additionalProperties, "defective")
 		delete(additionalProperties, "removed_from_rack")
+		delete(additionalProperties, "deleting")
 		delete(additionalProperties, "decommissioned")
 		delete(additionalProperties, "updating_firmware")
 		delete(additionalProperties, "used_diagnostics")

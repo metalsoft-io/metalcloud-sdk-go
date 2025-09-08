@@ -39,9 +39,10 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 
 		var networkDeviceId float32
 
-		httpRes, err := apiClient.NetworkDeviceAPI.ArchiveNetworkDevice(context.Background(), networkDeviceId).Execute()
+		resp, httpRes, err := apiClient.NetworkDeviceAPI.ArchiveNetworkDevice(context.Background(), networkDeviceId).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -77,9 +78,10 @@ func Test_sdk_NetworkDeviceAPIService(t *testing.T) {
 
 		var networkDeviceId float32
 
-		httpRes, err := apiClient.NetworkDeviceAPI.DeleteNetworkDevice(context.Background(), networkDeviceId).Execute()
+		resp, httpRes, err := apiClient.NetworkDeviceAPI.DeleteNetworkDevice(context.Background(), networkDeviceId).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

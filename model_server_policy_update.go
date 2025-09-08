@@ -20,7 +20,7 @@ var _ MappedNullable = &ServerPolicyUpdate{}
 
 // ServerPolicyUpdate struct for ServerPolicyUpdate
 type ServerPolicyUpdate struct {
-	// Server registration type
+	// Server registration password settings
 	RegisterCredentials *string `json:"registerCredentials,omitempty"`
 	// Minimum number of switch-connected interfaces required
 	MinimumNumberOfConnectedInterfaces *float32 `json:"minimumNumberOfConnectedInterfaces,omitempty"`

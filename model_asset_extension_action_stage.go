@@ -22,7 +22,13 @@ type AssetExtensionActionStage string
 // List of AssetExtensionActionStage
 const (
 	ASSETEXTENSIONACTIONSTAGE_SERVER_REGISTERED AssetExtensionActionStage = "serverRegistered"
+	ASSETEXTENSIONACTIONSTAGE_SERVER_DECOMMISSIONED AssetExtensionActionStage = "serverDecommissioned"
+	ASSETEXTENSIONACTIONSTAGE_SERVER_CREATE_DNS AssetExtensionActionStage = "serverCreateDNS"
+	ASSETEXTENSIONACTIONSTAGE_SERVER_DELETE_DNS AssetExtensionActionStage = "serverDeleteDNS"
 	ASSETEXTENSIONACTIONSTAGE_SWITCH_REGISTERED AssetExtensionActionStage = "switchRegistered"
+	ASSETEXTENSIONACTIONSTAGE_SWITCH_DECOMMISSIONED AssetExtensionActionStage = "switchDecommissioned"
+	ASSETEXTENSIONACTIONSTAGE_SWITCH_CREATE_DNS AssetExtensionActionStage = "switchCreateDNS"
+	ASSETEXTENSIONACTIONSTAGE_SWITCH_DELETE_DNS AssetExtensionActionStage = "switchDeleteDNS"
 	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_GROUP_CREATE_DNS AssetExtensionActionStage = "serverInstanceGroupCreateDNS"
 	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_GROUP_UPDATE_DNS AssetExtensionActionStage = "serverInstanceGroupUpdateDNS"
 	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_GROUP_DELETE_DNS AssetExtensionActionStage = "serverInstanceGroupDeleteDNS"
@@ -33,7 +39,13 @@ const (
 // All allowed values of AssetExtensionActionStage enum
 var AllowedAssetExtensionActionStageEnumValues = []AssetExtensionActionStage{
 	"serverRegistered",
+	"serverDecommissioned",
+	"serverCreateDNS",
+	"serverDeleteDNS",
 	"switchRegistered",
+	"switchDecommissioned",
+	"switchCreateDNS",
+	"switchDeleteDNS",
 	"serverInstanceGroupCreateDNS",
 	"serverInstanceGroupUpdateDNS",
 	"serverInstanceGroupDeleteDNS",

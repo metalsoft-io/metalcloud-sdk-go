@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RegisterCredentials** | **string** | Server registration type | 
+**RegisterCredentials** | **string** | Server registration password settings | 
 **MinimumNumberOfConnectedInterfaces** | **float32** | Minimum number of switch-connected interfaces required | 
 **DhcpOption82ToIPMapping** | **map[string]interface{}** | Option82 to IP mapping | 
 **DhcpBmcMacAddressWhitelistEnabled** | **bool** | Whether to enable DHCP BMC MAC address whitelist | 

@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | The server instance group label. | [optional] 
 **ServerGroupName** | Pointer to **string** |  | [optional] 
 **InstanceCount** | Pointer to **int32** | The number of instances to be created on the Instance Group. | [optional] [default to 1]
-**DefaultCustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Default Custom Storage Profile for the newly created Instances. | [optional] 
 **IpAllocateAuto** | Pointer to **int32** | Automatically allocate IP addresses to child Instance&#x60;s Instance Interface elements. | [optional] [default to 1]
 **Ipv4SubnetCreateAuto** | Pointer to **int32** | Automatically create or expand Subnet elements until the necessary IPv4 addresses are allocated. | [optional] [default to 1]
 **Hostname** | Pointer to **string** | Custom hostname(subdomain) part of the fully qualified domain name (FQDN). If set, this will be used as the subdomain record part of the DNS Load Balancing record name instead of the default \&quot;instance-group\&quot;. The hostname must be a valid DNS subdomain and can only contain alphanumeric characters and hyphens. This will only take effect if the property \&quot;provisionLoadBalancingDnsRecord\&quot; is true.  | [optional] 
@@ -25,6 +24,7 @@ Name | Type | Description | Notes
 **OverrideIpv4WanVlanId** | Pointer to **int32** | The ipv4 vlan that should override the default from the WAN Network for the primary ip. | [optional] 
 **NetworkEquipmentForceSubnetPoolIpv4WanId** | Pointer to **int32** | ID of a ipv4 WAN subnet-pool from which to force the subnet allocation for the Instance Interfaces associated with this Instance Group. | [optional] 
 **DefaultServerTypeId** | Pointer to **int32** | The server type ID that will be assigned to newly created instances. | [optional] 
+**DefaultCustomStorageProfile** | Pointer to [**ServerInstanceStorageProfile**](ServerInstanceStorageProfile.md) | Default Custom Storage Profile for the newly created Instances. | [optional] 
 
 ## Methods
 
@@ -119,31 +119,6 @@ SetInstanceCount sets InstanceCount field to given value.
 `func (o *ServerInstanceGroupUpdate) HasInstanceCount() bool`
 
 HasInstanceCount returns a boolean if a field has been set.
-
-### GetDefaultCustomStorageProfile
-
-`func (o *ServerInstanceGroupUpdate) GetDefaultCustomStorageProfile() ServerInstanceStorageProfile`
-
-GetDefaultCustomStorageProfile returns the DefaultCustomStorageProfile field if non-nil, zero value otherwise.
-
-### GetDefaultCustomStorageProfileOk
-
-`func (o *ServerInstanceGroupUpdate) GetDefaultCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool)`
-
-GetDefaultCustomStorageProfileOk returns a tuple with the DefaultCustomStorageProfile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultCustomStorageProfile
-
-`func (o *ServerInstanceGroupUpdate) SetDefaultCustomStorageProfile(v ServerInstanceStorageProfile)`
-
-SetDefaultCustomStorageProfile sets DefaultCustomStorageProfile field to given value.
-
-### HasDefaultCustomStorageProfile
-
-`func (o *ServerInstanceGroupUpdate) HasDefaultCustomStorageProfile() bool`
-
-HasDefaultCustomStorageProfile returns a boolean if a field has been set.
 
 ### GetIpAllocateAuto
 
@@ -569,6 +544,31 @@ SetDefaultServerTypeId sets DefaultServerTypeId field to given value.
 `func (o *ServerInstanceGroupUpdate) HasDefaultServerTypeId() bool`
 
 HasDefaultServerTypeId returns a boolean if a field has been set.
+
+### GetDefaultCustomStorageProfile
+
+`func (o *ServerInstanceGroupUpdate) GetDefaultCustomStorageProfile() ServerInstanceStorageProfile`
+
+GetDefaultCustomStorageProfile returns the DefaultCustomStorageProfile field if non-nil, zero value otherwise.
+
+### GetDefaultCustomStorageProfileOk
+
+`func (o *ServerInstanceGroupUpdate) GetDefaultCustomStorageProfileOk() (*ServerInstanceStorageProfile, bool)`
+
+GetDefaultCustomStorageProfileOk returns a tuple with the DefaultCustomStorageProfile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultCustomStorageProfile
+
+`func (o *ServerInstanceGroupUpdate) SetDefaultCustomStorageProfile(v ServerInstanceStorageProfile)`
+
+SetDefaultCustomStorageProfile sets DefaultCustomStorageProfile field to given value.
+
+### HasDefaultCustomStorageProfile
+
+`func (o *ServerInstanceGroupUpdate) HasDefaultCustomStorageProfile() bool`
+
+HasDefaultCustomStorageProfile returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

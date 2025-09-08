@@ -21,7 +21,7 @@ var _ MappedNullable = &ServerPolicy{}
 
 // ServerPolicy struct for ServerPolicy
 type ServerPolicy struct {
-	// Server registration type
+	// Server registration password settings
 	RegisterCredentials string `json:"registerCredentials"`
 	// Minimum number of switch-connected interfaces required
 	MinimumNumberOfConnectedInterfaces float32 `json:"minimumNumberOfConnectedInterfaces"`

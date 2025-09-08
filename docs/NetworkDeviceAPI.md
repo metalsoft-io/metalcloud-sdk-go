@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ## ArchiveNetworkDevice
 
-> ArchiveNetworkDevice(ctx, networkDeviceId).IfMatch(ifMatch).Execute()
+> JobInfo ArchiveNetworkDevice(ctx, networkDeviceId).IfMatch(ifMatch).Execute()
 
 Archives a network device
 
@@ -114,11 +114,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.ArchiveNetworkDevice(context.Background(), networkDeviceId).IfMatch(ifMatch).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.ArchiveNetworkDevice(context.Background(), networkDeviceId).IfMatch(ifMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.ArchiveNetworkDevice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `ArchiveNetworkDevice`: JobInfo
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.ArchiveNetworkDevice`: %v\n", resp)
 }
 ```
 
@@ -142,7 +144,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**JobInfo**](JobInfo.md)
 
 ### Authorization
 
@@ -151,7 +153,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -294,7 +296,7 @@ Name | Type | Description  | Notes
 
 ## DeleteNetworkDevice
 
-> DeleteNetworkDevice(ctx, networkDeviceId).Execute()
+> JobInfo DeleteNetworkDevice(ctx, networkDeviceId).Execute()
 
 Delete Network Device
 
@@ -315,11 +317,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.DeleteNetworkDevice(context.Background(), networkDeviceId).Execute()
+	resp, r, err := apiClient.NetworkDeviceAPI.DeleteNetworkDevice(context.Background(), networkDeviceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.DeleteNetworkDevice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `DeleteNetworkDevice`: JobInfo
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.DeleteNetworkDevice`: %v\n", resp)
 }
 ```
 
@@ -342,7 +346,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**JobInfo**](JobInfo.md)
 
 ### Authorization
 
@@ -351,7 +355,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
