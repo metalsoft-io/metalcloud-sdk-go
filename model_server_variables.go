@@ -95,6 +95,8 @@ type ServerVariables struct {
 	ServerSupportsVirtualMedia *float32 `json:"serverSupportsVirtualMedia,omitempty"`
 	// Flag to indicate if the supports OOB provisioning.
 	ServerSupportsOobProvisioning *float32 `json:"serverSupportsOobProvisioning,omitempty"`
+	// Flag to indicate if the server was added as a production (brownfield) server.
+	ServerIsProduction *float32 `json:"serverIsProduction,omitempty"`
 	// Flag to indicate if the server is booting a custom iso.
 	BootingCustomIsoInProgress *float32 `json:"bootingCustomIsoInProgress,omitempty"`
 	// The bios info of the server.
@@ -1331,6 +1333,38 @@ func (o *ServerVariables) SetServerSupportsOobProvisioning(v float32) {
 	o.ServerSupportsOobProvisioning = &v
 }
 
+// GetServerIsProduction returns the ServerIsProduction field value if set, zero value otherwise.
+func (o *ServerVariables) GetServerIsProduction() float32 {
+	if o == nil || IsNil(o.ServerIsProduction) {
+		var ret float32
+		return ret
+	}
+	return *o.ServerIsProduction
+}
+
+// GetServerIsProductionOk returns a tuple with the ServerIsProduction field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerVariables) GetServerIsProductionOk() (*float32, bool) {
+	if o == nil || IsNil(o.ServerIsProduction) {
+		return nil, false
+	}
+	return o.ServerIsProduction, true
+}
+
+// HasServerIsProduction returns a boolean if a field has been set.
+func (o *ServerVariables) HasServerIsProduction() bool {
+	if o != nil && !IsNil(o.ServerIsProduction) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerIsProduction gets a reference to the given float32 and assigns it to the ServerIsProduction field.
+func (o *ServerVariables) SetServerIsProduction(v float32) {
+	o.ServerIsProduction = &v
+}
+
 // GetBootingCustomIsoInProgress returns the BootingCustomIsoInProgress field value if set, zero value otherwise.
 func (o *ServerVariables) GetBootingCustomIsoInProgress() float32 {
 	if o == nil || IsNil(o.BootingCustomIsoInProgress) {
@@ -2526,6 +2560,9 @@ func (o ServerVariables) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServerSupportsOobProvisioning) {
 		toSerialize["serverSupportsOobProvisioning"] = o.ServerSupportsOobProvisioning
 	}
+	if !IsNil(o.ServerIsProduction) {
+		toSerialize["serverIsProduction"] = o.ServerIsProduction
+	}
 	if !IsNil(o.BootingCustomIsoInProgress) {
 		toSerialize["bootingCustomIsoInProgress"] = o.BootingCustomIsoInProgress
 	}
@@ -2712,6 +2749,7 @@ func (o *ServerVariables) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serverSupportsSol")
 		delete(additionalProperties, "serverSupportsVirtualMedia")
 		delete(additionalProperties, "serverSupportsOobProvisioning")
+		delete(additionalProperties, "serverIsProduction")
 		delete(additionalProperties, "bootingCustomIsoInProgress")
 		delete(additionalProperties, "biosInfo")
 		delete(additionalProperties, "vendorInfo")

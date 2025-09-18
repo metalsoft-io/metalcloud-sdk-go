@@ -25,12 +25,12 @@ type SiteCreate struct {
 	Slug string `json:"slug"`
 	// The site name
 	Name string `json:"name"`
-	// Location details
-	Location *Location `json:"location,omitempty"`
 	// True if the site is hidden
 	IsHidden *bool `json:"isHidden,omitempty"`
 	// True if the site is in maintenance mode
 	IsInMaintenance *bool `json:"isInMaintenance,omitempty"`
+	// Site configuration
+	Config *SiteConfig `json:"config,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -103,38 +103,6 @@ func (o *SiteCreate) SetName(v string) {
 	o.Name = v
 }
 
-// GetLocation returns the Location field value if set, zero value otherwise.
-func (o *SiteCreate) GetLocation() Location {
-	if o == nil || IsNil(o.Location) {
-		var ret Location
-		return ret
-	}
-	return *o.Location
-}
-
-// GetLocationOk returns a tuple with the Location field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SiteCreate) GetLocationOk() (*Location, bool) {
-	if o == nil || IsNil(o.Location) {
-		return nil, false
-	}
-	return o.Location, true
-}
-
-// HasLocation returns a boolean if a field has been set.
-func (o *SiteCreate) HasLocation() bool {
-	if o != nil && !IsNil(o.Location) {
-		return true
-	}
-
-	return false
-}
-
-// SetLocation gets a reference to the given Location and assigns it to the Location field.
-func (o *SiteCreate) SetLocation(v Location) {
-	o.Location = &v
-}
-
 // GetIsHidden returns the IsHidden field value if set, zero value otherwise.
 func (o *SiteCreate) GetIsHidden() bool {
 	if o == nil || IsNil(o.IsHidden) {
@@ -199,6 +167,38 @@ func (o *SiteCreate) SetIsInMaintenance(v bool) {
 	o.IsInMaintenance = &v
 }
 
+// GetConfig returns the Config field value if set, zero value otherwise.
+func (o *SiteCreate) GetConfig() SiteConfig {
+	if o == nil || IsNil(o.Config) {
+		var ret SiteConfig
+		return ret
+	}
+	return *o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SiteCreate) GetConfigOk() (*SiteConfig, bool) {
+	if o == nil || IsNil(o.Config) {
+		return nil, false
+	}
+	return o.Config, true
+}
+
+// HasConfig returns a boolean if a field has been set.
+func (o *SiteCreate) HasConfig() bool {
+	if o != nil && !IsNil(o.Config) {
+		return true
+	}
+
+	return false
+}
+
+// SetConfig gets a reference to the given SiteConfig and assigns it to the Config field.
+func (o *SiteCreate) SetConfig(v SiteConfig) {
+	o.Config = &v
+}
+
 func (o SiteCreate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -211,14 +211,14 @@ func (o SiteCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["slug"] = o.Slug
 	toSerialize["name"] = o.Name
-	if !IsNil(o.Location) {
-		toSerialize["location"] = o.Location
-	}
 	if !IsNil(o.IsHidden) {
 		toSerialize["isHidden"] = o.IsHidden
 	}
 	if !IsNil(o.IsInMaintenance) {
 		toSerialize["isInMaintenance"] = o.IsInMaintenance
+	}
+	if !IsNil(o.Config) {
+		toSerialize["config"] = o.Config
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -266,9 +266,9 @@ func (o *SiteCreate) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "slug")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "location")
 		delete(additionalProperties, "isHidden")
 		delete(additionalProperties, "isInMaintenance")
+		delete(additionalProperties, "config")
 		o.AdditionalProperties = additionalProperties
 	}
 

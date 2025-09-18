@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **Headers** | Pointer to **map[string]interface{}** | Request headers for the webhook task. | [optional] 
 **RequestTemplate** | **string** | Request template for the webhook task. | 
 **ExpectedResponseStatuses** | Pointer to **[]float32** | Expected response statuses for the webhook task. | [optional] 
+**Timeout** | Pointer to **int32** | Timeout for the webhook task in seconds. | [optional] [default to 30]
+**InsecureSkipVerify** | Pointer to **bool** | Flag to indicate if certificates should be verified for the webhook task. | [optional] [default to true]
 
 ## Methods
 
@@ -138,6 +140,56 @@ SetExpectedResponseStatuses sets ExpectedResponseStatuses field to given value.
 `func (o *ExtensionTaskOptionWebhook) HasExpectedResponseStatuses() bool`
 
 HasExpectedResponseStatuses returns a boolean if a field has been set.
+
+### GetTimeout
+
+`func (o *ExtensionTaskOptionWebhook) GetTimeout() int32`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *ExtensionTaskOptionWebhook) GetTimeoutOk() (*int32, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *ExtensionTaskOptionWebhook) SetTimeout(v int32)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *ExtensionTaskOptionWebhook) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### GetInsecureSkipVerify
+
+`func (o *ExtensionTaskOptionWebhook) GetInsecureSkipVerify() bool`
+
+GetInsecureSkipVerify returns the InsecureSkipVerify field if non-nil, zero value otherwise.
+
+### GetInsecureSkipVerifyOk
+
+`func (o *ExtensionTaskOptionWebhook) GetInsecureSkipVerifyOk() (*bool, bool)`
+
+GetInsecureSkipVerifyOk returns a tuple with the InsecureSkipVerify field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInsecureSkipVerify
+
+`func (o *ExtensionTaskOptionWebhook) SetInsecureSkipVerify(v bool)`
+
+SetInsecureSkipVerify sets InsecureSkipVerify field to given value.
+
+### HasInsecureSkipVerify
+
+`func (o *ExtensionTaskOptionWebhook) HasInsecureSkipVerify() bool`
+
+HasInsecureSkipVerify returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

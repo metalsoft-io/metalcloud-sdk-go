@@ -41,6 +41,7 @@ Name | Type | Description | Notes
 **ServerSupportsSol** | Pointer to **float32** | Flag to indicate if the supports SOL. | [optional] 
 **ServerSupportsVirtualMedia** | Pointer to **float32** | Flag to indicate if the supports Virtual Media. | [optional] 
 **ServerSupportsOobProvisioning** | Pointer to **float32** | Flag to indicate if the supports OOB provisioning. | [optional] 
+**ServerIsProduction** | Pointer to **float32** | Flag to indicate if the server was added as a production (brownfield) server. | [optional] 
 **BootingCustomIsoInProgress** | Pointer to **float32** | Flag to indicate if the server is booting a custom iso. | [optional] 
 **BiosInfo** | Pointer to [**ServerBiosInfo**](ServerBiosInfo.md) | The bios info of the server. | [optional] 
 **VendorInfo** | Pointer to [**ServerVendorInfo**](ServerVendorInfo.md) | The vendor info of the server. | [optional] 
@@ -986,6 +987,31 @@ SetServerSupportsOobProvisioning sets ServerSupportsOobProvisioning field to giv
 `func (o *ServerVariables) HasServerSupportsOobProvisioning() bool`
 
 HasServerSupportsOobProvisioning returns a boolean if a field has been set.
+
+### GetServerIsProduction
+
+`func (o *ServerVariables) GetServerIsProduction() float32`
+
+GetServerIsProduction returns the ServerIsProduction field if non-nil, zero value otherwise.
+
+### GetServerIsProductionOk
+
+`func (o *ServerVariables) GetServerIsProductionOk() (*float32, bool)`
+
+GetServerIsProductionOk returns a tuple with the ServerIsProduction field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServerIsProduction
+
+`func (o *ServerVariables) SetServerIsProduction(v float32)`
+
+SetServerIsProduction sets ServerIsProduction field to given value.
+
+### HasServerIsProduction
+
+`func (o *ServerVariables) HasServerIsProduction() bool`
+
+HasServerIsProduction returns a boolean if a field has been set.
 
 ### GetBootingCustomIsoInProgress
 

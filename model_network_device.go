@@ -73,8 +73,8 @@ type NetworkDevice struct {
 	Position SwitchPosition `json:"position"`
 	// Order index of the network device
 	OrderIndex float32 `json:"orderIndex"`
-	// Tags associated with the network device
-	Tags string `json:"tags"`
+	// Tags associated with the network device for categorization and filtering
+	Tags []string `json:"tags"`
 	// Whether the device is ready for initial configuration
 	ReadyForInitialConfiguration float32 `json:"readyForInitialConfiguration"`
 	// Whether bootstrap readiness check is in progress
@@ -126,7 +126,7 @@ type _NetworkDevice NetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
+func NewNetworkDevice(id string, revision float32, status string, siteId float32, identifierString string, description string, chassisIdentifier string, country string, city string, datacenterMeta string, datacenterRoom string, datacenterRack string, rackPositionUpperUnit float32, rackPositionLowerUnit float32, managementAddress string, managementAddressPrefixLength float32, managementAddressGateway string, managementPort float32, syslogEnabled float32, username string, managementPassword string, managementMacAddress string, serialNumber string, driver NetworkDeviceDriver, position SwitchPosition, orderIndex float32, tags []string, readyForInitialConfiguration float32, bootstrapReadinessCheckInProgress float32, subnetOobId float32, subnetOobIndex float32, requiresOsInstall bool, bootstrapSkipInitialConfiguration float32, bootstrapExpectedPartnerHostname string, loopbackAddressIpv6 string, asn float32, vtepAddressIpv6 string, mlagSystemMac string, mlagDomainId float32, quarantineVlan float32, variablesMaterializedForOSAssets map[string]interface{}, secretsMaterializedForOSAssets map[string]interface{}, bootstrapReadinessCheckResult map[string]interface{}, isGateway bool) *NetworkDevice {
 	this := NetworkDevice{}
 	this.Id = id
 	this.Revision = revision
@@ -808,9 +808,10 @@ func (o *NetworkDevice) SetOrderIndex(v float32) {
 }
 
 // GetTags returns the Tags field value
-func (o *NetworkDevice) GetTags() string {
+// If the value is explicit nil, the zero value for []string will be returned
+func (o *NetworkDevice) GetTags() []string {
 	if o == nil {
-		var ret string
+		var ret []string
 		return ret
 	}
 
@@ -819,15 +820,16 @@ func (o *NetworkDevice) GetTags() string {
 
 // GetTagsOk returns a tuple with the Tags field value
 // and a boolean to check if the value has been set.
-func (o *NetworkDevice) GetTagsOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetworkDevice) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
-	return &o.Tags, true
+	return o.Tags, true
 }
 
 // SetTags sets field value
-func (o *NetworkDevice) SetTags(v string) {
+func (o *NetworkDevice) SetTags(v []string) {
 	o.Tags = v
 }
 
@@ -1403,7 +1405,9 @@ func (o NetworkDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize["driver"] = o.Driver
 	toSerialize["position"] = o.Position
 	toSerialize["orderIndex"] = o.OrderIndex
-	toSerialize["tags"] = o.Tags
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
 	toSerialize["readyForInitialConfiguration"] = o.ReadyForInitialConfiguration
 	toSerialize["bootstrapReadinessCheckInProgress"] = o.BootstrapReadinessCheckInProgress
 	toSerialize["subnetOobId"] = o.SubnetOobId

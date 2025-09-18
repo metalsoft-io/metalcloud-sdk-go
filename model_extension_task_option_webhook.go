@@ -31,6 +31,10 @@ type ExtensionTaskOptionWebhook struct {
 	RequestTemplate string `json:"requestTemplate"`
 	// Expected response statuses for the webhook task.
 	ExpectedResponseStatuses []float32 `json:"expectedResponseStatuses,omitempty"`
+	// Timeout for the webhook task in seconds.
+	Timeout *int32 `json:"timeout,omitempty"`
+	// Flag to indicate if certificates should be verified for the webhook task.
+	InsecureSkipVerify *bool `json:"insecureSkipVerify,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,6 +49,10 @@ func NewExtensionTaskOptionWebhook(endpoint string, method string, requestTempla
 	this.Endpoint = endpoint
 	this.Method = method
 	this.RequestTemplate = requestTemplate
+	var timeout int32 = 30
+	this.Timeout = &timeout
+	var insecureSkipVerify bool = true
+	this.InsecureSkipVerify = &insecureSkipVerify
 	return &this
 }
 
@@ -53,6 +61,10 @@ func NewExtensionTaskOptionWebhook(endpoint string, method string, requestTempla
 // but it doesn't guarantee that properties required by API are set
 func NewExtensionTaskOptionWebhookWithDefaults() *ExtensionTaskOptionWebhook {
 	this := ExtensionTaskOptionWebhook{}
+	var timeout int32 = 30
+	this.Timeout = &timeout
+	var insecureSkipVerify bool = true
+	this.InsecureSkipVerify = &insecureSkipVerify
 	return &this
 }
 
@@ -192,6 +204,70 @@ func (o *ExtensionTaskOptionWebhook) SetExpectedResponseStatuses(v []float32) {
 	o.ExpectedResponseStatuses = v
 }
 
+// GetTimeout returns the Timeout field value if set, zero value otherwise.
+func (o *ExtensionTaskOptionWebhook) GetTimeout() int32 {
+	if o == nil || IsNil(o.Timeout) {
+		var ret int32
+		return ret
+	}
+	return *o.Timeout
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionTaskOptionWebhook) GetTimeoutOk() (*int32, bool) {
+	if o == nil || IsNil(o.Timeout) {
+		return nil, false
+	}
+	return o.Timeout, true
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *ExtensionTaskOptionWebhook) HasTimeout() bool {
+	if o != nil && !IsNil(o.Timeout) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given int32 and assigns it to the Timeout field.
+func (o *ExtensionTaskOptionWebhook) SetTimeout(v int32) {
+	o.Timeout = &v
+}
+
+// GetInsecureSkipVerify returns the InsecureSkipVerify field value if set, zero value otherwise.
+func (o *ExtensionTaskOptionWebhook) GetInsecureSkipVerify() bool {
+	if o == nil || IsNil(o.InsecureSkipVerify) {
+		var ret bool
+		return ret
+	}
+	return *o.InsecureSkipVerify
+}
+
+// GetInsecureSkipVerifyOk returns a tuple with the InsecureSkipVerify field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionTaskOptionWebhook) GetInsecureSkipVerifyOk() (*bool, bool) {
+	if o == nil || IsNil(o.InsecureSkipVerify) {
+		return nil, false
+	}
+	return o.InsecureSkipVerify, true
+}
+
+// HasInsecureSkipVerify returns a boolean if a field has been set.
+func (o *ExtensionTaskOptionWebhook) HasInsecureSkipVerify() bool {
+	if o != nil && !IsNil(o.InsecureSkipVerify) {
+		return true
+	}
+
+	return false
+}
+
+// SetInsecureSkipVerify gets a reference to the given bool and assigns it to the InsecureSkipVerify field.
+func (o *ExtensionTaskOptionWebhook) SetInsecureSkipVerify(v bool) {
+	o.InsecureSkipVerify = &v
+}
+
 func (o ExtensionTaskOptionWebhook) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -210,6 +286,12 @@ func (o ExtensionTaskOptionWebhook) ToMap() (map[string]interface{}, error) {
 	toSerialize["requestTemplate"] = o.RequestTemplate
 	if !IsNil(o.ExpectedResponseStatuses) {
 		toSerialize["expectedResponseStatuses"] = o.ExpectedResponseStatuses
+	}
+	if !IsNil(o.Timeout) {
+		toSerialize["timeout"] = o.Timeout
+	}
+	if !IsNil(o.InsecureSkipVerify) {
+		toSerialize["insecureSkipVerify"] = o.InsecureSkipVerify
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -261,6 +343,8 @@ func (o *ExtensionTaskOptionWebhook) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "headers")
 		delete(additionalProperties, "requestTemplate")
 		delete(additionalProperties, "expectedResponseStatuses")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "insecureSkipVerify")
 		o.AdditionalProperties = additionalProperties
 	}
 

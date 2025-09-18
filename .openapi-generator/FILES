@@ -105,6 +105,7 @@ docs/BatchServerFirmwareUpgradeResponse.md
 docs/BgpNumberingType.md
 docs/BgpTemplate.md
 docs/BgpTemplatePaginatedList.md
+docs/BgpTemplateRecordSet.md
 docs/Bucket.md
 docs/BucketAPI.md
 docs/BucketConfiguration.md
@@ -337,6 +338,7 @@ docs/FirmwarePolicyAPI.md
 docs/FirmwareUpgrade.md
 docs/GenerateFirmwareUpgradeAudit.md
 docs/GenerateSiteControllerOneliner.md
+docs/GenericDNSZoneInformation.md
 docs/GenericGUISettings.md
 docs/GenericMeta.md
 docs/GenericServiceStatus.md
@@ -504,6 +506,7 @@ docs/PermissionList.md
 docs/PolicyEntry.md
 docs/PublicSignupDisabled.md
 docs/ReRegisterServerResponse.md
+docs/RecordSet.md
 docs/RedundancyConfig.md
 docs/RedundancyImplementation.md
 docs/RegisterProductionServer.md
@@ -546,6 +549,7 @@ docs/ServerComponent.md
 docs/ServerComponentPaginatedList.md
 docs/ServerConnectInterface.md
 docs/ServerCredentials.md
+docs/ServerDNSRecordSetDto.md
 docs/ServerDefaultCredentials.md
 docs/ServerDefaultCredentialsAPI.md
 docs/ServerDefaultCredentialsCredentials.md
@@ -670,6 +674,7 @@ docs/SubnetAPI.md
 docs/SubnetGatewayPlacement.md
 docs/SubnetPaginatedList.md
 docs/SubnetResourceItem.md
+docs/SwitchDNSRecordSet.md
 docs/SwitchPosition.md
 docs/SwitchReplace.md
 docs/SystemAPI.md
@@ -868,6 +873,7 @@ model_batch_server_firmware_upgrade_response.go
 model_bgp_numbering_type.go
 model_bgp_template.go
 model_bgp_template_paginated_list.go
+model_bgp_template_record_set.go
 model_bucket.go
 model_bucket_configuration.go
 model_bucket_credentials.go
@@ -1080,6 +1086,7 @@ model_firmware_catalog_paginated_list.go
 model_firmware_upgrade.go
 model_generate_firmware_upgrade_audit.go
 model_generate_site_controller_oneliner.go
+model_generic_dns_zone_information.go
 model_generic_gui_settings.go
 model_generic_meta.go
 model_generic_service_status.go
@@ -1238,6 +1245,7 @@ model_permission_list.go
 model_policy_entry.go
 model_public_signup_disabled.go
 model_re_register_server_response.go
+model_record_set.go
 model_redundancy_config.go
 model_redundancy_implementation.go
 model_register_production_server.go
@@ -1279,6 +1287,7 @@ model_server_default_credentials.go
 model_server_default_credentials_credentials.go
 model_server_default_credentials_paginated_list.go
 model_server_disk.go
+model_server_dns_record_set_dto.go
 model_server_firmware_catalog_vendor.go
 model_server_firmware_upgrade_policy.go
 model_server_firmware_upgrade_policy_apply_result.go
@@ -1391,6 +1400,7 @@ model_subnet.go
 model_subnet_gateway_placement.go
 model_subnet_paginated_list.go
 model_subnet_resource_item.go
+model_switch_dns_record_set.go
 model_switch_position.go
 model_switch_replace.go
 model_template_asset.go

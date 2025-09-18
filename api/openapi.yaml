@@ -41367,9 +41367,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-09-05T12:52:52.183Z
+        createdTimestamp: 2025-09-18T01:10:54.482Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-09-05T12:52:52.183Z
+        updatedTimestamp: 2025-09-18T01:10:54.482Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -41465,12 +41465,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-05T12:52:52.183Z
+          example: 2025-09-18T01:10:54.482Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-05T12:52:52.183Z
+          example: 2025-09-18T01:10:54.482Z
           format: date-time
           type: string
         links:
@@ -41502,9 +41502,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-09-05T12:52:52.183Z
+          createdTimestamp: 2025-09-18T01:10:54.482Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-09-05T12:52:52.183Z
+          updatedTimestamp: 2025-09-18T01:10:54.482Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -41521,9 +41521,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-09-05T12:52:52.183Z
+          createdTimestamp: 2025-09-18T01:10:54.482Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-09-05T12:52:52.183Z
+          updatedTimestamp: 2025-09-18T01:10:54.482Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -43637,6 +43637,1342 @@ components:
             $ref: '#/components/schemas/ExtensionVariable'
           type: array
       type: object
+    ServerBiosInfo:
+      properties:
+        vendor:
+          description: The BIOS vendor of the server.
+          type: string
+        version:
+          description: The BIOS version of the server.
+          type: string
+      type: object
+    ServerVendorInfo:
+      properties:
+        management:
+          type: string
+        version:
+          description: The version of the server vendor.
+          type: string
+      type: object
+    ServerGpuInfo:
+      example:
+        vendor: vendor
+        model: model
+      properties:
+        model:
+          description: The model of the GPU
+          maxLength: 255
+          type: string
+        vendor:
+          description: The vendor of the GPU
+          maxLength: 255
+          type: string
+      required:
+      - model
+      - vendor
+      type: object
+    ServerInterface:
+      example:
+        networkDevice: "{}"
+        description: description
+        ipv6Addresses:
+        - 2001:db8::1
+        - 2001:db8::2
+        lldpInfo: lldpInfo
+        serverId: 6.704019297950036
+        osInfo: not_tested
+        switchMacAddress: switchMacAddress
+        fibreChannelWwpn: fibreChannelWwpn
+        capacityMbps: 3.0937452626664474
+        supportsIscsiBoot: 0.8851374739011653
+        serverInterfaceId: 5.944895607614016
+        ipv4Addresses:
+        - 192.168.1.1
+        - 192.168.1.2
+        aliasIndex: 7.058770351582356
+        vlanId: 6.519180951018382
+        networkDeviceInterface: "{}"
+        redundancyGroupIndex: 4.652396432933246
+        index: 3.353193347011243
+        addOnType: hba
+        switchHostname: switchHostname
+        pxeEnabled: 7.143538047012306
+        macAddress: macAddress
+        addOnInfo: "{}"
+        addOnMac: addOnMac
+        defaultFabricId: 0.10263654006109402
+        switchPortId: switchPortId
+      properties:
+        serverInterfaceId:
+          description: The id of the server interface.
+          type: number
+        serverId:
+          description: The id of the server.
+          type: number
+        macAddress:
+          description: The MAC address of the server interface.
+          type: string
+        index:
+          description: The index of the server interface.
+          type: number
+        switchPortId:
+          description: The switch port id of the server interface.
+          type: string
+        switchHostname:
+          description: The switch hostname of the server interface.
+          type: string
+        switchMacAddress:
+          description: The MAC address of the connected switch interface.
+          type: string
+        capacityMbps:
+          description: The capacity in Mbps of the server interface.
+          type: number
+        addOnMac:
+          description: The add-on MAC address of the server interface.
+          type: string
+        addOnType:
+          description: The add-on type of the server interface.
+          enum:
+          - hba
+          - offload
+          type: string
+        addOnInfo:
+          description: The add-on info of the server interface.
+          type: object
+        pxeEnabled:
+          description: Flag to indicate if PXE is enabled.
+          type: number
+        supportsIscsiBoot:
+          description: Flag to indicate if the server interface supports iSCSI boot
+          type: number
+        fibreChannelWwpn:
+          description: The WWPN of the fibre channel.
+          type: string
+        description:
+          description: The description of the server interface.
+          type: string
+        aliasIndex:
+          description: The alias index of the server interface.
+          type: number
+        osInfo:
+          default: not_tested
+          description: The OS info of the server interface.
+          enum:
+          - not_tested
+          - not_supported
+          - collected
+          type: string
+        networkDevice:
+          description: The network device linked to the server.
+          type: object
+        networkDeviceInterface:
+          description: The network device interface linked to the server.
+          type: object
+        ipv4Addresses:
+          description: The deployed IPv4 addresses of the server interface.
+          example:
+          - 192.168.1.1
+          - 192.168.1.2
+          items:
+            type: string
+          type: array
+        ipv6Addresses:
+          description: The deployed IPv6 addresses of the server interface.
+          example:
+          - 2001:db8::1
+          - 2001:db8::2
+          items:
+            type: string
+          type: array
+        vlanId:
+          description: The deployed VLAN ID of the server interface.
+          type: number
+        defaultFabricId:
+          description: The default fabric ID of the server interface.
+          type: number
+        redundancyGroupIndex:
+          description: The redundancy group index of the server interface.
+          type: number
+        lldpInfo:
+          description: The LLDP information of the server interface.
+          type: string
+      required:
+      - index
+      - macAddress
+      - osInfo
+      - serverId
+      - serverInterfaceId
+      - switchMacAddress
+      type: object
+    ServerDisk:
+      example:
+        serial: serial
+        vendor: vendor
+        serverStorageControllerId: 3.0576100241049344
+        model: model
+        id: 8.969578798196912
+        type: none
+        serverId: 7.740351818741173
+        diskSizeGb: 3.0205796992916243
+        status: installed
+      properties:
+        id:
+          description: The id of the disk.
+          type: number
+        serverId:
+          description: The id of the server.
+          type: number
+        model:
+          description: The model of the disk
+          type: string
+        diskSizeGb:
+          description: The size of the disk in GB
+          type: number
+        serial:
+          description: The serial number of the disk
+          type: string
+        vendor:
+          description: The vendor of the disk
+          type: string
+        status:
+          description: The status of the disk
+          enum:
+          - installed
+          - spare
+          type: string
+        type:
+          description: The type of the disk
+          enum:
+          - none
+          - HDD
+          - SSD
+          - NVME
+          type: string
+        serverStorageControllerId:
+          description: The id of the storage controller
+          type: number
+      required:
+      - diskSizeGb
+      - id
+      - model
+      - serial
+      - serverId
+      - status
+      - type
+      - vendor
+      type: object
+    ServerTypeStorageControllerOptions:
+      properties:
+        raidTypesSupported:
+          description: The list of supported RAID types for the storage controller.
+          example:
+          - RAID0
+          - RAID1
+          - RAID5
+          - RAID10
+          items:
+            type: string
+          type: array
+        controllerModesSupported:
+          description: The list of supported controller modes for the storage controller.
+          example:
+          - HBA
+          - RAID
+          items:
+            type: string
+          type: array
+      required:
+      - controllerModesSupported
+      - raidTypesSupported
+      type: object
+    ServerStorageController:
+      example:
+        mode: HBA
+        name: name
+        options: ""
+        description: description
+        id: 7.04836565559697
+        label: label
+        serverId: 5.533258397034986
+      properties:
+        id:
+          description: The id of the storage controller.
+          type: number
+        serverId:
+          description: The id of the server.
+          type: number
+        name:
+          description: The name of the storage controller.
+          type: string
+        label:
+          description: The label of the storage controller.
+          type: string
+        description:
+          description: The description of the storage controller.
+          type: string
+        options:
+          allOf:
+          - $ref: '#/components/schemas/ServerTypeStorageControllerOptions'
+          description: The options of the storage controller.
+        mode:
+          description: The mode of the storage controller.
+          enum:
+          - HBA
+          - eHBA
+          - RAID
+          type: string
+      required:
+      - description
+      - id
+      - label
+      - mode
+      - name
+      - options
+      - serverId
+      type: object
+    ServerAllocationInfo:
+      properties:
+        instanceId:
+          description: The id of the instance.
+          type: number
+        instanceLabel:
+          description: The label of the instance.
+          type: string
+        instanceGroupLabel:
+          description: The label of the instance group.
+          type: string
+        extensionInstanceId:
+          description: The id of the extension instance.
+          type: number
+        infrastructure:
+          description: The infrastructure of the instance.
+          type: object
+        osTemplateId:
+          description: The id of the os template used by the instance.
+          type: number
+      required:
+      - infrastructure
+      - instanceGroupLabel
+      - instanceId
+      - instanceLabel
+      type: object
+    ExtensionExecutionInfo:
+      properties:
+        ansibleBundlePath:
+          description: The path towards the ansible bundle
+          type: string
+        ansibleBundleFileName:
+          description: The name of the ansible bundle file
+          type: string
+        ansibleBundleToken:
+          description: The ansible bundle token
+          type: string
+        successMessage:
+          description: The success message of the ansible bundle
+          type: string
+        successMessageTimestamp:
+          description: Success timestamp
+          type: string
+        errorMessage:
+          description: The error message of the ansible bundle
+          type: string
+        errorMessageTimestamp:
+          description: Error timestamp
+          type: string
+      type: object
+    Server:
+      example:
+        datacenterName: datacenterName
+        bootingCustomIsoInProgress: 8.762042012749001
+        requiresManualCleaning: 3.5571952270680973
+        mgmtSnmpPasswordEncrypted: mgmtSnmpPasswordEncrypted
+        serverSupportsOobProvisioning: 9.369310271410669
+        passwordEncrypted: passwordEncrypted
+        customInfo: "{}"
+        diskCount: 2.027123023002322
+        serverId: 0.8008281904610115
+        processorCoreMhz: 2.3021358869347655
+        powerStatus: unknown
+        serverCreatedTimestamp: serverCreatedTimestamp
+        serverDhcpStatus: quarantine
+        model: model
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        bmcMacAddress: bmcMacAddress
+        bootLastUpdateTimestamp: bootLastUpdateTimestamp
+        gpuCount: 1.284659006116532
+        serverSupportsSol: 5.025004791520295
+        vncPasswordEncrypted: vncPasswordEncrypted
+        vncPort: 6.84685269835264
+        serialNumber: serialNumber
+        extensionInfo: ""
+        submodel: submodel
+        registeredTimestamp: registeredTimestamp
+        isBasicCampusEndpoint: 7.457744773683766
+        gpuInfo:
+        - vendor: vendor
+          model: model
+        - vendor: vendor
+          model: model
+        revision: 1
+        processorThreads: 3.616076749251911
+        tags:
+        - tags
+        - tags
+        serverCleanupPolicyId: 1.1730742509559433
+        serverDiskWipe: 6.438423552598547
+        resourcePoolId: 3.2588565619047607
+        processorCpuMark: 9.301444243932576
+        ramGbytes: 5.962133916683182
+        instanceCustomInfo: "{}"
+        biosInfo: ""
+        rackPositionLowerUnit: rackPositionLowerUnit
+        serverTypeId: 6.027456183070403
+        requiresReRegister: 4.965218492984954
+        serverStatus: registering
+        serverDiskCount: 6.965117697638846
+        disks:
+        - serial: serial
+          vendor: vendor
+          serverStorageControllerId: 3.0576100241049344
+          model: model
+          id: 8.969578798196912
+          type: none
+          serverId: 7.740351818741173
+          diskSizeGb: 3.0205796992916243
+          status: installed
+        - serial: serial
+          vendor: vendor
+          serverStorageControllerId: 3.0576100241049344
+          model: model
+          id: 8.969578798196912
+          type: none
+          serverId: 7.740351818741173
+          diskSizeGb: 3.0205796992916243
+          status: installed
+        vendorInfo: ""
+        bdkDebug: 7.386281948385884
+        jobInfo:
+          jobId: 0.8008281904610115
+          jobGroupId: 6.027456183070403
+        ipmiVersion: ipmiVersion
+        serverClass: unknown
+        vendorSkuId: vendorSkuId
+        serverUUID: serverUUID
+        serverMetricsMetadata:
+          key:
+          - UpperThresholdFatal: 1.0246457001441578
+            Number: 1.2315135367772556
+            Oem: "{}"
+            Label: Label
+            UpperThresholdCritical: 1.4894159098541704
+            Units: Units
+            Name: Name
+            PhysicalContext: PhysicalContext
+          - UpperThresholdFatal: 1.0246457001441578
+            Number: 1.2315135367772556
+            Oem: "{}"
+            Label: Label
+            UpperThresholdCritical: 1.4894159098541704
+            Units: Units
+            Name: Name
+            PhysicalContext: PhysicalContext
+        processorCoreCount: 7.061401241503109
+        vendor: Unknown
+        serverSupportsVirtualMedia: 9.965781217890562
+        serverIsProduction: 6.683562403749608
+        supportsFcProvisioning: 2.8841621266687802
+        storageControllers:
+        - mode: HBA
+          name: name
+          options: ""
+          description: description
+          id: 7.04836565559697
+          label: label
+          serverId: 5.533258397034986
+        - mode: HBA
+          name: name
+          options: ""
+          description: description
+          id: 7.04836565559697
+          label: label
+          serverId: 5.533258397034986
+        processorName: processorName
+        rackPositionUpperUnit: rackPositionUpperUnit
+        managementAddress: managementAddress
+        ipmiCredentialsNeedUpdate: 6.878052220127876
+        interfaces:
+        - networkDevice: "{}"
+          description: description
+          ipv6Addresses:
+          - 2001:db8::1
+          - 2001:db8::2
+          lldpInfo: lldpInfo
+          serverId: 6.704019297950036
+          osInfo: not_tested
+          switchMacAddress: switchMacAddress
+          fibreChannelWwpn: fibreChannelWwpn
+          capacityMbps: 3.0937452626664474
+          supportsIscsiBoot: 0.8851374739011653
+          serverInterfaceId: 5.944895607614016
+          ipv4Addresses:
+          - 192.168.1.1
+          - 192.168.1.2
+          aliasIndex: 7.058770351582356
+          vlanId: 6.519180951018382
+          networkDeviceInterface: "{}"
+          redundancyGroupIndex: 4.652396432933246
+          index: 3.353193347011243
+          addOnType: hba
+          switchHostname: switchHostname
+          pxeEnabled: 7.143538047012306
+          macAddress: macAddress
+          addOnInfo: "{}"
+          addOnMac: addOnMac
+          defaultFabricId: 0.10263654006109402
+          switchPortId: switchPortId
+        - networkDevice: "{}"
+          description: description
+          ipv6Addresses:
+          - 2001:db8::1
+          - 2001:db8::2
+          lldpInfo: lldpInfo
+          serverId: 6.704019297950036
+          osInfo: not_tested
+          switchMacAddress: switchMacAddress
+          fibreChannelWwpn: fibreChannelWwpn
+          capacityMbps: 3.0937452626664474
+          supportsIscsiBoot: 0.8851374739011653
+          serverInterfaceId: 5.944895607614016
+          ipv4Addresses:
+          - 192.168.1.1
+          - 192.168.1.2
+          aliasIndex: 7.058770351582356
+          vlanId: 6.519180951018382
+          networkDeviceInterface: "{}"
+          redundancyGroupIndex: 4.652396432933246
+          index: 3.353193347011243
+          addOnType: hba
+          switchHostname: switchHostname
+          pxeEnabled: 7.143538047012306
+          macAddress: macAddress
+          addOnInfo: "{}"
+          addOnMac: addOnMac
+          defaultFabricId: 0.10263654006109402
+          switchPortId: switchPortId
+        serverCapacityMbps: 9.018348186070783
+        processorCount: 5.637376656633329
+        serverComments: serverComments
+        serverAllocationTimestamp: serverAllocationTimestamp
+        chassisRackId: 6.778324963048013
+        mgmtSnmpPort: 4.145608029883936
+        powerStatusLastUpdateTimestamp: powerStatusLastUpdateTimestamp
+        administrationState: managed
+        rackName: rackName
+        inventoryId: inventoryId
+        siteId: 1.4658129805029452
+        username: username
+        allocationInfo: ""
+      properties:
+        serverId:
+          description: The id of the server.
+          type: number
+        revision:
+          description: Revision number
+          example: 1
+          type: number
+        serverTypeId:
+          description: The id of the server type.
+          type: number
+        siteId:
+          description: The site id where the server is located.
+          type: number
+        datacenterName:
+          description: The name of the datacenter where the server is located.
+          type: string
+        serverUUID:
+          description: The UUID of the server.
+          type: string
+        serialNumber:
+          description: The Serial Number of the server.
+          type: string
+        managementAddress:
+          description: The Management Address of the server.
+          type: string
+        username:
+          description: The username to use.
+          type: string
+        passwordEncrypted:
+          description: The encrypted password.
+          type: string
+        ipmiVersion:
+          description: The ipmi version of the server.
+          type: string
+        ramGbytes:
+          description: The RAM GB of the server.
+          type: number
+        processorCount:
+          description: The processor count of the server.
+          type: number
+        processorCoreMhz:
+          description: The processor core Mhz of the server.
+          type: number
+        processorCoreCount:
+          description: The processor core count of the server.
+          type: number
+        processorName:
+          description: The processor name of the server.
+          type: string
+        processorCpuMark:
+          description: The processor cpu mark of the server.
+          type: number
+        processorThreads:
+          description: The processor threads of the server.
+          type: number
+        diskCount:
+          description: The disk count of the server.
+          type: number
+        mgmtSnmpPort:
+          description: The management snmp port of the server.
+          type: number
+        mgmtSnmpPasswordEncrypted:
+          description: The management snmp password encrypted of the server.
+          type: string
+        bmcMacAddress:
+          description: The MAC address of the server.
+          type: string
+        bdkDebug:
+          description: The BDK debug flag.
+          type: number
+        serverMetricsMetadata:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/ServerMetricsInfo'
+            type: array
+          description: The metrics metadata of the server.
+          type: object
+        instanceCustomInfo:
+          description: The instance custom info of the server.
+          type: object
+        customInfo:
+          description: The custom info of the server.
+          type: object
+        vendor:
+          description: The vendor of the server.
+          enum:
+          - Unknown
+          - Dell
+          - Lenovo
+          - HP
+          - HPE
+          - Supermicro
+          - Cisco
+          - BSI
+          type: string
+        vendorSkuId:
+          description: The vendor sku id of the server.
+          type: string
+        model:
+          description: The model of the server.
+          type: string
+        vncPort:
+          description: The VNC port of the server.
+          type: number
+        vncPasswordEncrypted:
+          description: The VNC password encrypted of the server.
+          type: string
+        isBasicCampusEndpoint:
+          description: Flag to indicate if the server is basic campus endpoint.
+          type: number
+        serverCleanupPolicyId:
+          description: The cleanup policy id of the server.
+          type: number
+        requiresReRegister:
+          description: Flag to indicate if the server required re-registration.
+          type: number
+        serverSupportsSol:
+          description: Flag to indicate if the supports SOL.
+          type: number
+        serverSupportsVirtualMedia:
+          description: Flag to indicate if the supports Virtual Media.
+          type: number
+        serverSupportsOobProvisioning:
+          description: Flag to indicate if the supports OOB provisioning.
+          type: number
+        serverIsProduction:
+          description: Flag to indicate if the server was added as a production (brownfield)
+            server.
+          type: number
+        bootingCustomIsoInProgress:
+          description: Flag to indicate if the server is booting a custom iso.
+          type: number
+        biosInfo:
+          allOf:
+          - $ref: '#/components/schemas/ServerBiosInfo'
+          description: The bios info of the server.
+        vendorInfo:
+          allOf:
+          - $ref: '#/components/schemas/ServerVendorInfo'
+          description: The vendor info of the server.
+        serverClass:
+          description: The class of the server.
+          enum:
+          - unknown
+          - bigdata
+          - hdfs
+          type: string
+        serverStatus:
+          description: The status of the server.
+          enum:
+          - registering
+          - available
+          - cleaning_required
+          - cleaning
+          - used
+          - used_registering
+          - defective
+          - removed_from_rack
+          - decommissioned
+          - updating_firmware
+          - used_diagnostics
+          - pending_registration
+          - unavailable
+          - deleting
+          type: string
+        serverComments:
+          description: The comments of the server.
+          type: string
+        serverCapacityMbps:
+          description: The capacity mbps of the server.
+          type: number
+        serverDiskWipe:
+          description: Flag to indicate if the disks need to be wiped.
+          type: number
+        requiresManualCleaning:
+          description: Flag to indicate if the server requires manual cleaning.
+          type: number
+        serverDiskCount:
+          description: The number of disks of the server.
+          type: number
+        administrationState:
+          description: The administration state of the server.
+          enum:
+          - managed
+          - unmanaged
+          - generic_endpoint
+          type: string
+        serverDhcpStatus:
+          description: The DHCP status of the server.
+          enum:
+          - quarantine
+          - deny_requests
+          - allow_requests
+          - ansible_provision
+          type: string
+        gpuCount:
+          description: The GPU count of the server.
+          type: number
+        gpuInfo:
+          description: The GPU info of the server.
+          items:
+            $ref: '#/components/schemas/ServerGpuInfo'
+          type: array
+        submodel:
+          description: The submodel of the server.
+          type: string
+        supportsFcProvisioning:
+          description: Flag to indicate if the server supports FC provisioning.
+          type: number
+        bootLastUpdateTimestamp:
+          description: The last boot update timestamp of the server.
+          type: string
+        registeredTimestamp:
+          description: The registration timestamp of the server.
+          type: string
+        serverCreatedTimestamp:
+          description: The creation timestamp of the server.
+          type: string
+        powerStatus:
+          description: The power status of the server.
+          enum:
+          - unknown
+          - "on"
+          - "off"
+          type: string
+        powerStatusLastUpdateTimestamp:
+          description: The last power update timestamp of the server.
+          type: string
+        serverAllocationTimestamp:
+          description: The timestamp when the server was allocated.
+          type: string
+        jobInfo:
+          $ref: '#/components/schemas/JobInfo'
+        chassisRackId:
+          description: The chassis rack id of the server.
+          type: number
+        rackName:
+          description: The chassis rack name of the server.
+          type: string
+        rackPositionUpperUnit:
+          description: The chassis rack upper unit position of the server.
+          type: string
+        rackPositionLowerUnit:
+          description: The chassis rack lower unit position of the server.
+          type: string
+        inventoryId:
+          description: The inventory id of the server.
+          type: string
+        ipmiCredentialsNeedUpdate:
+          description: Flag to indicate if the server needs an update of the IPMI
+            credentials.
+          type: number
+        interfaces:
+          description: The interfaces of the server.
+          items:
+            $ref: '#/components/schemas/ServerInterface'
+          type: array
+        disks:
+          description: The disks of the server.
+          items:
+            $ref: '#/components/schemas/ServerDisk'
+          type: array
+        storageControllers:
+          description: The storage controllers of the server.
+          items:
+            $ref: '#/components/schemas/ServerStorageController'
+          type: array
+        tags:
+          description: Tags for the Server.
+          items:
+            type: string
+          type: array
+        resourcePoolId:
+          description: Resource Pool ID
+          type: number
+        allocationInfo:
+          allOf:
+          - $ref: '#/components/schemas/ServerAllocationInfo'
+          description: The server instance.
+        extensionInfo:
+          allOf:
+          - $ref: '#/components/schemas/ExtensionExecutionInfo'
+          description: The extension execution info of the server.
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - administrationState
+      - bdkDebug
+      - datacenterName
+      - passwordEncrypted
+      - powerStatus
+      - powerStatusLastUpdateTimestamp
+      - requiresReRegister
+      - revision
+      - serverClass
+      - serverCreatedTimestamp
+      - serverDhcpStatus
+      - serverId
+      - serverStatus
+      - siteId
+      - supportsFcProvisioning
+      type: object
+    NetworkDeviceDriver:
+      description: Driver software used to communicate with the network device
+      enum:
+      - cisco_aci51
+      - nexus9000
+      - cumulus42
+      - arista_eos
+      - dell_s4048
+      - hp5800
+      - hp5900
+      - hp5950
+      - dummy
+      - junos
+      - os_10
+      - sonic_enterprise
+      - dell_s4000
+      - dell_s6010
+      - junos18
+      type: string
+    SwitchPosition:
+      description: The physical or logical position of the network device in the network
+        topology.
+      enum:
+      - tor
+      - north
+      - spine
+      - leaf
+      - other
+      type: string
+    NetworkDevice:
+      example:
+        bootstrapReadinessCheckInProgress: 9.301444243932576
+        country: country
+        mlagDomainId: 1.2315135367772556
+        city: city
+        datacenterRack: datacenterRack
+        description: description
+        vtepAddressIpv4: vtepAddressIpv4
+        datacenterMeta: datacenterMeta
+        datacenterRoom: datacenterRoom
+        vtepAddressIpv6: vtepAddressIpv6
+        managementMacAddress: managementMacAddress
+        isGateway: true
+        identifierString: identifierString
+        rackPositionUpperUnit: 6.027456183070403
+        links:
+        - rel: self
+          href: /api/v2/path/to/resource
+        - rel: self
+          href: /api/v2/path/to/resource
+        id: id
+        bootstrapSkipInitialConfiguration: 4.145608029883936
+        bootstrapReadinessCheckResult: "{}"
+        managementAddress: managementAddress
+        bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
+        serialNumber: serialNumber
+        subnetOobIndex: 2.027123023002322
+        extensionInfo: ""
+        chassisIdentifier: chassisIdentifier
+        readyForInitialConfiguration: 7.061401241503109
+        loopbackAddressIpv6: loopbackAddressIpv6
+        managementAddressGateway: managementAddressGateway
+        revision: 1
+        tags:
+        - production
+        - core
+        - leaf
+        requiresOsInstall: true
+        syslogEnabled: 5.637376656633329
+        managementPort: 5.962133916683182
+        driver: sonic_enterprise
+        managementPassword: password
+        subnetOobId: 3.616076749251911
+        loopbackAddressIpv4: loopbackAddressIpv4
+        mlagSystemMac: mlagSystemMac
+        siteId: 0.8008281904610115
+        orderIndex: 2.3021358869347655
+        variablesMaterializedForOSAssets: "{}"
+        rackPositionLowerUnit: 1.4658129805029452
+        managementAddressPrefixLength: 24
+        position: leaf
+        secretsMaterializedForOSAssets: "{}"
+        asn: 7.386281948385884
+        status: active
+        username: username
+        quarantineVlan: 1.0246457001441578
+      properties:
+        id:
+          description: Unique identifier for the network device.
+          type: string
+        revision:
+          description: Revision number
+          example: 1
+          type: number
+        status:
+          description: Current status of the network device
+          enum:
+          - active
+          - failed
+          - decommissioned
+          - registering
+          - installing_os
+          - ztp
+          - deleting
+          example: active
+          type: string
+        siteId:
+          description: Site ID
+          type: number
+        identifierString:
+          description: Hostname of the network device
+          type: string
+        description:
+          description: Description of the network device
+          type: string
+        chassisIdentifier:
+          description: Chassis identifier of the network device
+          type: string
+        country:
+          description: Country of the network device
+          type: string
+        city:
+          description: City of the network device
+          type: string
+        datacenterMeta:
+          description: Datacenter metadata
+          type: string
+        datacenterRoom:
+          description: Room in the datacenter where the network device is located
+          type: string
+        datacenterRack:
+          description: Rack in the datacenter where the network device is located
+          type: string
+        rackPositionUpperUnit:
+          description: Upper rack position in the datacenter
+          type: number
+        rackPositionLowerUnit:
+          description: Lower rack position in the datacenter
+          type: number
+        managementAddress:
+          description: Management address of the network device
+          type: string
+        managementAddressPrefixLength:
+          description: Prefix length of the management address
+          example: 24
+          type: number
+        managementAddressGateway:
+          description: Management gateway address
+          type: string
+        managementPort:
+          description: Management port of the network device
+          type: number
+        syslogEnabled:
+          description: Is the network device syslog enabled
+          type: number
+        username:
+          description: Username used to connect to the network device
+          type: string
+        managementPassword:
+          description: Password used to connect to the network device
+          example: password
+          type: string
+        managementMacAddress:
+          description: MAC address of the management interface
+          type: string
+        serialNumber:
+          description: Serial number of the network device
+          type: string
+        driver:
+          allOf:
+          - $ref: '#/components/schemas/NetworkDeviceDriver'
+          description: Driver software used to communicate with the network device
+          example: sonic_enterprise
+        position:
+          allOf:
+          - $ref: '#/components/schemas/SwitchPosition'
+          description: The physical or logical position of the network device in the
+            network topology.
+          example: leaf
+        orderIndex:
+          description: Order index of the network device
+          type: number
+        tags:
+          description: Tags associated with the network device for categorization
+            and filtering
+          example:
+          - production
+          - core
+          - leaf
+          items:
+            type: string
+          nullable: true
+          type: array
+        readyForInitialConfiguration:
+          description: Whether the device is ready for initial configuration
+          type: number
+        bootstrapReadinessCheckInProgress:
+          description: Whether bootstrap readiness check is in progress
+          type: number
+        subnetOobId:
+          description: Subnet ID for OOB management
+          type: number
+        subnetOobIndex:
+          description: Subnet OOB index
+          type: number
+        requiresOsInstall:
+          description: Whether the device requires OS installation
+          type: boolean
+        bootstrapSkipInitialConfiguration:
+          description: Whether to skip initial configuration during bootstrap
+          type: number
+        bootstrapExpectedPartnerHostname:
+          description: Expected partner hostname during bootstrap
+          type: string
+        loopbackAddressIpv4:
+          description: Loopback IPv4 address
+          type: string
+        loopbackAddressIpv6:
+          description: Loopback IPv6 address
+          type: string
+        asn:
+          description: ASN of the network device
+          type: number
+        vtepAddressIpv4:
+          description: VTEP IPv4 address
+          type: string
+        vtepAddressIpv6:
+          description: VTEP IPv6 address
+          type: string
+        mlagSystemMac:
+          description: MLAG system MAC address
+          type: string
+        mlagDomainId:
+          description: MLAG domain ID
+          type: number
+        quarantineVlan:
+          description: Quarantine VLAN ID
+          type: number
+        variablesMaterializedForOSAssets:
+          description: Variables materialized for OS assets
+          type: object
+        secretsMaterializedForOSAssets:
+          description: Secrets materialized for OS assets
+          type: object
+        bootstrapReadinessCheckResult:
+          description: Bootstrap readiness check result
+          type: object
+        isGateway:
+          description: Whether the network device is a gateway
+          type: boolean
+        extensionInfo:
+          allOf:
+          - $ref: '#/components/schemas/ExtensionExecutionInfo'
+          description: The extension execution info of the network device.
+        links:
+          description: Reference links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+      required:
+      - asn
+      - bootstrapExpectedPartnerHostname
+      - bootstrapReadinessCheckInProgress
+      - bootstrapReadinessCheckResult
+      - bootstrapSkipInitialConfiguration
+      - chassisIdentifier
+      - city
+      - country
+      - datacenterMeta
+      - datacenterRack
+      - datacenterRoom
+      - description
+      - driver
+      - id
+      - identifierString
+      - isGateway
+      - loopbackAddressIpv6
+      - managementAddress
+      - managementAddressGateway
+      - managementAddressPrefixLength
+      - managementMacAddress
+      - managementPassword
+      - managementPort
+      - mlagDomainId
+      - mlagSystemMac
+      - orderIndex
+      - position
+      - quarantineVlan
+      - rackPositionLowerUnit
+      - rackPositionUpperUnit
+      - readyForInitialConfiguration
+      - requiresOsInstall
+      - revision
+      - secretsMaterializedForOSAssets
+      - serialNumber
+      - siteId
+      - status
+      - subnetOobId
+      - subnetOobIndex
+      - syslogEnabled
+      - tags
+      - username
+      - variablesMaterializedForOSAssets
+      - vtepAddressIpv6
+      type: object
+    BgpTemplateRecordSet:
+      properties:
+        local_switch_id:
+          description: The ID of the local switch.
+          type: number
+        local_switch_identifier:
+          description: The identifier of the local switch.
+          type: string
+        local_switch_role:
+          description: The role of the local switch.
+          type: string
+        local_switch_interface_name:
+          description: The name of the local switch interface.
+          type: string
+        local_switch_asn:
+          description: The ASN of the local switch.
+          type: number
+        remote_switch_id:
+          description: The ID of the remote switch.
+          type: number
+        remote_switch_identifier:
+          description: The identifier of the remote switch.
+          type: string
+        remote_switch_role:
+          description: The role of the remote switch.
+          type: string
+        remote_switch_interface_name:
+          description: The name of the remote switch interface.
+          type: string
+        remote_switch_asn:
+          description: The ASN of the remote switch.
+          type: number
+        bgp_numbering:
+          description: BGP numbering
+          enum:
+          - numbered
+          - unnumbered
+          type: string
+        fabric_custom_variables:
+          description: Custom variables for the fabric.
+          type: object
+        link_custom_variables:
+          description: Custom variables for the link.
+          type: object
+      required:
+      - bgp_numbering
+      - local_switch_id
+      - local_switch_identifier
+      - local_switch_interface_name
+      - local_switch_role
+      - remote_switch_id
+      - remote_switch_identifier
+      - remote_switch_interface_name
+      - remote_switch_role
+      type: object
+    ExtensionInstanceRecordSet:
+      properties: {}
+      type: object
+    GenericDNSZoneInformation:
+      properties:
+        zoneName:
+          description: The name of the DNS zone.
+          type: string
+        soaEmail:
+          description: The email address of the DNS zone administrator
+          type: string
+        nameServers:
+          description: The name servers for this DNS zone. This is a list of DNS servers
+            that are authoritative for the zone.
+          items:
+            type: string
+          type: array
+        ttl:
+          description: TTL (Time to Live) for the DNS zone.
+          example: 3600
+          type: integer
+        isDefault:
+          description: Indicates if this DNS zone is the default zone.
+          type: boolean
+      required:
+      - zoneName
+      type: object
+    ServerDNSRecordSetDto:
+      properties:
+        serverId:
+          description: The id of the server.
+          type: number
+        zone:
+          allOf:
+          - $ref: '#/components/schemas/GenericDNSZoneInformation'
+          description: The DNS zone information.
+        serialNumber:
+          description: The serial number of the server.
+          type: string
+        managementAddress:
+          description: The management address of the server.
+          type: string
+        hostname:
+          description: The hostname of the server DNS record.
+          type: string
+        fqdn:
+          description: The hostname of the server DNS record.
+          type: string
+        ip:
+          description: The IP address of the server.
+          type: object
+        operation:
+          description: The operation to perform for the DNS record. Either "create"
+            or "delete".
+          type: string
+      required:
+      - fqdn
+      - hostname
+      - ip
+      - managementAddress
+      - operation
+      - serverId
+      - zone
+      type: object
+    SwitchDNSRecordSet:
+      properties:
+        switchId:
+          description: The id of the switch.
+          type: number
+        zone:
+          allOf:
+          - $ref: '#/components/schemas/GenericDNSZoneInformation'
+          description: The DNS zone information.
+        managementAddress:
+          description: The management address of the switch.
+          type: string
+        hostname:
+          description: The hostname of the switch DNS record.
+          type: string
+        fqdn:
+          description: The hostname of the switch DNS record.
+          type: string
+        ip:
+          description: The IP address of the switch.
+          type: object
+        operation:
+          description: The operation to perform for the DNS record. Either "create"
+            or "delete".
+          type: string
+      required:
+      - fqdn
+      - hostname
+      - ip
+      - managementAddress
+      - operation
+      - switchId
+      - zone
+      type: object
+    RecordSet:
+      properties:
+        server:
+          allOf:
+          - $ref: '#/components/schemas/Server'
+          description: The server data.
+        networkDevice:
+          allOf:
+          - $ref: '#/components/schemas/NetworkDevice'
+          description: The network device.
+        bgpTemplateRecordSet:
+          allOf:
+          - $ref: '#/components/schemas/BgpTemplateRecordSet'
+          description: The BGP template record set.
+        serverInstanceGroupDNSRecordSet:
+          description: The Instance Array DNS record set
+          type: object
+        serverInstanceDNSRecordSet:
+          description: The Instance DNS record set
+          type: object
+        extensionInstanceRecordSet:
+          allOf:
+          - $ref: '#/components/schemas/ExtensionInstanceRecordSet'
+          description: The extension instance.
+        serverDNSRecordSet:
+          allOf:
+          - $ref: '#/components/schemas/ServerDNSRecordSetDto'
+          description: The server DNS record set.
+        switchDNSRecordSet:
+          allOf:
+          - $ref: '#/components/schemas/SwitchDNSRecordSet'
+          description: The switch DNS record set.
+      type: object
     ExtensionTaskOptionAnsible:
       example:
         executionTimeout: 0
@@ -43694,6 +45030,17 @@ components:
           items:
             type: number
           type: array
+        timeout:
+          default: 30
+          description: Timeout for the webhook task in seconds.
+          maximum: 30000
+          minimum: 1
+          type: integer
+        insecureSkipVerify:
+          default: true
+          description: Flag to indicate if certificates should be verified for the
+            webhook task.
+          type: boolean
       required:
       - endpoint
       - method
@@ -60002,324 +61349,6 @@ components:
       required:
       - secretValue
       type: object
-    NetworkDeviceDriver:
-      description: Driver software used to communicate with the network device
-      enum:
-      - cisco_aci51
-      - nexus9000
-      - cumulus42
-      - arista_eos
-      - dell_s4048
-      - hp5800
-      - hp5900
-      - hp5950
-      - dummy
-      - junos
-      - os_10
-      - sonic_enterprise
-      - dell_s4000
-      - dell_s6010
-      - junos18
-      type: string
-    SwitchPosition:
-      description: The physical or logical position of the network device in the network
-        topology.
-      enum:
-      - tor
-      - north
-      - spine
-      - leaf
-      - other
-      type: string
-    ExtensionExecutionInfo:
-      properties:
-        ansibleBundlePath:
-          description: The path towards the ansible bundle
-          type: string
-        ansibleBundleFileName:
-          description: The name of the ansible bundle file
-          type: string
-        ansibleBundleToken:
-          description: The ansible bundle token
-          type: string
-        successMessage:
-          description: The success message of the ansible bundle
-          type: string
-        successMessageTimestamp:
-          description: Success timestamp
-          type: string
-        errorMessage:
-          description: The error message of the ansible bundle
-          type: string
-        errorMessageTimestamp:
-          description: Error timestamp
-          type: string
-      type: object
-    NetworkDevice:
-      example:
-        bootstrapReadinessCheckInProgress: 9.301444243932576
-        country: country
-        mlagDomainId: 1.2315135367772556
-        city: city
-        datacenterRack: datacenterRack
-        description: description
-        vtepAddressIpv4: vtepAddressIpv4
-        datacenterMeta: datacenterMeta
-        datacenterRoom: datacenterRoom
-        vtepAddressIpv6: vtepAddressIpv6
-        managementMacAddress: managementMacAddress
-        isGateway: true
-        identifierString: identifierString
-        rackPositionUpperUnit: 6.027456183070403
-        links:
-        - rel: self
-          href: /api/v2/path/to/resource
-        - rel: self
-          href: /api/v2/path/to/resource
-        id: id
-        bootstrapSkipInitialConfiguration: 4.145608029883936
-        bootstrapReadinessCheckResult: "{}"
-        managementAddress: managementAddress
-        bootstrapExpectedPartnerHostname: bootstrapExpectedPartnerHostname
-        serialNumber: serialNumber
-        subnetOobIndex: 2.027123023002322
-        extensionInfo: ""
-        chassisIdentifier: chassisIdentifier
-        readyForInitialConfiguration: 7.061401241503109
-        loopbackAddressIpv6: loopbackAddressIpv6
-        managementAddressGateway: managementAddressGateway
-        revision: 1
-        tags: tags
-        requiresOsInstall: true
-        syslogEnabled: 5.637376656633329
-        managementPort: 5.962133916683182
-        driver: sonic_enterprise
-        managementPassword: password
-        subnetOobId: 3.616076749251911
-        loopbackAddressIpv4: loopbackAddressIpv4
-        mlagSystemMac: mlagSystemMac
-        siteId: 0.8008281904610115
-        orderIndex: 2.3021358869347655
-        variablesMaterializedForOSAssets: "{}"
-        rackPositionLowerUnit: 1.4658129805029452
-        managementAddressPrefixLength: 24
-        position: leaf
-        secretsMaterializedForOSAssets: "{}"
-        asn: 7.386281948385884
-        status: active
-        username: username
-        quarantineVlan: 1.0246457001441578
-      properties:
-        id:
-          description: Unique identifier for the network device.
-          type: string
-        revision:
-          description: Revision number
-          example: 1
-          type: number
-        status:
-          description: Current status of the network device
-          enum:
-          - active
-          - failed
-          - decommissioned
-          - registering
-          - installing_os
-          - ztp
-          - deleting
-          example: active
-          type: string
-        siteId:
-          description: Site ID
-          type: number
-        identifierString:
-          description: Hostname of the network device
-          type: string
-        description:
-          description: Description of the network device
-          type: string
-        chassisIdentifier:
-          description: Chassis identifier of the network device
-          type: string
-        country:
-          description: Country of the network device
-          type: string
-        city:
-          description: City of the network device
-          type: string
-        datacenterMeta:
-          description: Datacenter metadata
-          type: string
-        datacenterRoom:
-          description: Room in the datacenter where the network device is located
-          type: string
-        datacenterRack:
-          description: Rack in the datacenter where the network device is located
-          type: string
-        rackPositionUpperUnit:
-          description: Upper rack position in the datacenter
-          type: number
-        rackPositionLowerUnit:
-          description: Lower rack position in the datacenter
-          type: number
-        managementAddress:
-          description: Management address of the network device
-          type: string
-        managementAddressPrefixLength:
-          description: Prefix length of the management address
-          example: 24
-          type: number
-        managementAddressGateway:
-          description: Management gateway address
-          type: string
-        managementPort:
-          description: Management port of the network device
-          type: number
-        syslogEnabled:
-          description: Is the network device syslog enabled
-          type: number
-        username:
-          description: Username used to connect to the network device
-          type: string
-        managementPassword:
-          description: Password used to connect to the network device
-          example: password
-          type: string
-        managementMacAddress:
-          description: MAC address of the management interface
-          type: string
-        serialNumber:
-          description: Serial number of the network device
-          type: string
-        driver:
-          allOf:
-          - $ref: '#/components/schemas/NetworkDeviceDriver'
-          description: Driver software used to communicate with the network device
-          example: sonic_enterprise
-        position:
-          allOf:
-          - $ref: '#/components/schemas/SwitchPosition'
-          description: The physical or logical position of the network device in the
-            network topology.
-          example: leaf
-        orderIndex:
-          description: Order index of the network device
-          type: number
-        tags:
-          description: Tags associated with the network device
-          type: string
-        readyForInitialConfiguration:
-          description: Whether the device is ready for initial configuration
-          type: number
-        bootstrapReadinessCheckInProgress:
-          description: Whether bootstrap readiness check is in progress
-          type: number
-        subnetOobId:
-          description: Subnet ID for OOB management
-          type: number
-        subnetOobIndex:
-          description: Subnet OOB index
-          type: number
-        requiresOsInstall:
-          description: Whether the device requires OS installation
-          type: boolean
-        bootstrapSkipInitialConfiguration:
-          description: Whether to skip initial configuration during bootstrap
-          type: number
-        bootstrapExpectedPartnerHostname:
-          description: Expected partner hostname during bootstrap
-          type: string
-        loopbackAddressIpv4:
-          description: Loopback IPv4 address
-          type: string
-        loopbackAddressIpv6:
-          description: Loopback IPv6 address
-          type: string
-        asn:
-          description: ASN of the network device
-          type: number
-        vtepAddressIpv4:
-          description: VTEP IPv4 address
-          type: string
-        vtepAddressIpv6:
-          description: VTEP IPv6 address
-          type: string
-        mlagSystemMac:
-          description: MLAG system MAC address
-          type: string
-        mlagDomainId:
-          description: MLAG domain ID
-          type: number
-        quarantineVlan:
-          description: Quarantine VLAN ID
-          type: number
-        variablesMaterializedForOSAssets:
-          description: Variables materialized for OS assets
-          type: object
-        secretsMaterializedForOSAssets:
-          description: Secrets materialized for OS assets
-          type: object
-        bootstrapReadinessCheckResult:
-          description: Bootstrap readiness check result
-          type: object
-        isGateway:
-          description: Whether the network device is a gateway
-          type: boolean
-        extensionInfo:
-          allOf:
-          - $ref: '#/components/schemas/ExtensionExecutionInfo'
-          description: The extension execution info of the network device.
-        links:
-          description: Reference links
-          items:
-            $ref: '#/components/schemas/Link'
-          type: array
-      required:
-      - asn
-      - bootstrapExpectedPartnerHostname
-      - bootstrapReadinessCheckInProgress
-      - bootstrapReadinessCheckResult
-      - bootstrapSkipInitialConfiguration
-      - chassisIdentifier
-      - city
-      - country
-      - datacenterMeta
-      - datacenterRack
-      - datacenterRoom
-      - description
-      - driver
-      - id
-      - identifierString
-      - isGateway
-      - loopbackAddressIpv6
-      - managementAddress
-      - managementAddressGateway
-      - managementAddressPrefixLength
-      - managementMacAddress
-      - managementPassword
-      - managementPort
-      - mlagDomainId
-      - mlagSystemMac
-      - orderIndex
-      - position
-      - quarantineVlan
-      - rackPositionLowerUnit
-      - rackPositionUpperUnit
-      - readyForInitialConfiguration
-      - requiresOsInstall
-      - revision
-      - secretsMaterializedForOSAssets
-      - serialNumber
-      - siteId
-      - status
-      - subnetOobId
-      - subnetOobIndex
-      - syslogEnabled
-      - tags
-      - username
-      - variablesMaterializedForOSAssets
-      - vtepAddressIpv6
-      type: object
     NetworkDevicePaginatedList:
       example:
         data:
@@ -60355,7 +61384,10 @@ components:
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
-          tags: tags
+          tags:
+          - production
+          - core
+          - leaf
           requiresOsInstall: true
           syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
@@ -60407,7 +61439,10 @@ components:
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
-          tags: tags
+          tags:
+          - production
+          - core
+          - leaf
           requiresOsInstall: true
           syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
@@ -61461,7 +62496,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-09-05T12:52:52.244Z
+        createdTimestamp: 2025-09-18T01:10:54.548Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -61470,7 +62505,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-09-05T12:52:52.244Z
+        updatedTimestamp: 2025-09-18T01:10:54.548Z
         revision: "1"
       properties:
         siteId:
@@ -61487,12 +62522,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-05T12:52:52.244Z
+          example: 2025-09-18T01:10:54.548Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-05T12:52:52.244Z
+          example: 2025-09-18T01:10:54.548Z
           format: date-time
           type: string
         links:
@@ -61514,7 +62549,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-09-05T12:52:52.244Z
+        - createdTimestamp: 2025-09-18T01:10:54.548Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -61523,9 +62558,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-09-05T12:52:52.244Z
+          updatedTimestamp: 2025-09-18T01:10:54.548Z
           revision: "1"
-        - createdTimestamp: 2025-09-05T12:52:52.244Z
+        - createdTimestamp: 2025-09-18T01:10:54.548Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -61534,7 +62569,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-09-05T12:52:52.244Z
+          updatedTimestamp: 2025-09-18T01:10:54.548Z
           revision: "1"
         meta: ""
         links: ""
@@ -62148,7 +63183,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-09-05T12:52:52.179Z
+        createdTimestamp: 2025-09-18T01:10:54.475Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -62196,7 +63231,7 @@ components:
           configurationPreview: configurationPreview
           bgpTemplateId: 101
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-09-05T12:52:52.179Z
+        updatedTimestamp: 2025-09-18T01:10:54.475Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -62232,7 +63267,10 @@ components:
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
-          tags: tags
+          tags:
+          - production
+          - core
+          - leaf
           requiresOsInstall: true
           syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
@@ -62284,7 +63322,10 @@ components:
           loopbackAddressIpv6: loopbackAddressIpv6
           managementAddressGateway: managementAddressGateway
           revision: 1
-          tags: tags
+          tags:
+          - production
+          - core
+          - leaf
           requiresOsInstall: true
           syslogEnabled: 5.637376656633329
           managementPort: 5.962133916683182
@@ -62338,12 +63379,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-05T12:52:52.179Z
+          example: 2025-09-18T01:10:54.475Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-05T12:52:52.179Z
+          example: 2025-09-18T01:10:54.475Z
           format: date-time
           type: string
         links:
@@ -62387,7 +63428,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-09-05T12:52:52.179Z
+        - createdTimestamp: 2025-09-18T01:10:54.475Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -62435,7 +63476,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-09-05T12:52:52.179Z
+          updatedTimestamp: 2025-09-18T01:10:54.475Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -62471,7 +63512,10 @@ components:
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
-            tags: tags
+            tags:
+            - production
+            - core
+            - leaf
             requiresOsInstall: true
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
@@ -62523,7 +63567,10 @@ components:
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
-            tags: tags
+            tags:
+            - production
+            - core
+            - leaf
             requiresOsInstall: true
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
@@ -62552,7 +63599,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-09-05T12:52:52.179Z
+        - createdTimestamp: 2025-09-18T01:10:54.475Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -62600,7 +63647,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-09-05T12:52:52.179Z
+          updatedTimestamp: 2025-09-18T01:10:54.475Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -62636,7 +63683,10 @@ components:
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
-            tags: tags
+            tags:
+            - production
+            - core
+            - leaf
             requiresOsInstall: true
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
@@ -62688,7 +63738,10 @@ components:
             loopbackAddressIpv6: loopbackAddressIpv6
             managementAddressGateway: managementAddressGateway
             revision: 1
-            tags: tags
+            tags:
+            - production
+            - core
+            - leaf
             requiresOsInstall: true
             syslogEnabled: 5.637376656633329
             managementPort: 5.962133916683182
@@ -62886,9 +63939,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-09-05T12:52:52.255Z
+        createdTimestamp: 2025-09-18T01:10:54.555Z
         mlagPair: 0
-        updatedTimestamp: 2025-09-05T12:52:52.255Z
+        updatedTimestamp: 2025-09-18T01:10:54.555Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -62901,12 +63954,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-05T12:52:52.255Z
+          example: 2025-09-18T01:10:54.555Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-05T12:52:52.255Z
+          example: 2025-09-18T01:10:54.555Z
           format: date-time
           type: string
         revision:
@@ -62984,9 +64037,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-09-05T12:52:52.255Z
+          createdTimestamp: 2025-09-18T01:10:54.555Z
           mlagPair: 0
-          updatedTimestamp: 2025-09-05T12:52:52.255Z
+          updatedTimestamp: 2025-09-18T01:10:54.555Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -62997,9 +64050,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-09-05T12:52:52.255Z
+          createdTimestamp: 2025-09-18T01:10:54.555Z
           mlagPair: 0
-          updatedTimestamp: 2025-09-05T12:52:52.255Z
+          updatedTimestamp: 2025-09-18T01:10:54.555Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -66536,10 +67589,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-09-05T12:52:52.251Z
+        createdTimestamp: 2025-09-18T01:10:54.553Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-09-05T12:52:52.251Z
+        updatedTimestamp: 2025-09-18T01:10:54.553Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -66613,12 +67666,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-05T12:52:52.251Z
+          example: 2025-09-18T01:10:54.553Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-05T12:52:52.251Z
+          example: 2025-09-18T01:10:54.553Z
           format: date-time
           type: string
         links:
@@ -67889,325 +68942,6 @@ components:
           - $ref: '#/components/schemas/InfrastructurePolicy'
           description: Infrastructure policies
       type: object
-    ServerBiosInfo:
-      properties:
-        vendor:
-          description: The BIOS vendor of the server.
-          type: string
-        version:
-          description: The BIOS version of the server.
-          type: string
-      type: object
-    ServerVendorInfo:
-      properties:
-        management:
-          type: string
-        version:
-          description: The version of the server vendor.
-          type: string
-      type: object
-    ServerGpuInfo:
-      example:
-        vendor: vendor
-        model: model
-      properties:
-        model:
-          description: The model of the GPU
-          maxLength: 255
-          type: string
-        vendor:
-          description: The vendor of the GPU
-          maxLength: 255
-          type: string
-      required:
-      - model
-      - vendor
-      type: object
-    ServerInterface:
-      example:
-        networkDevice: "{}"
-        description: description
-        ipv6Addresses:
-        - 2001:db8::1
-        - 2001:db8::2
-        lldpInfo: lldpInfo
-        serverId: 5.944895607614016
-        osInfo: not_tested
-        switchMacAddress: switchMacAddress
-        fibreChannelWwpn: fibreChannelWwpn
-        capacityMbps: 3.353193347011243
-        supportsIscsiBoot: 7.143538047012306
-        serverInterfaceId: 6.878052220127876
-        ipv4Addresses:
-        - 192.168.1.1
-        - 192.168.1.2
-        aliasIndex: 0.8851374739011653
-        vlanId: 7.058770351582356
-        networkDeviceInterface: "{}"
-        redundancyGroupIndex: 0.10263654006109402
-        index: 6.704019297950036
-        addOnType: hba
-        switchHostname: switchHostname
-        pxeEnabled: 3.0937452626664474
-        macAddress: macAddress
-        addOnInfo: "{}"
-        addOnMac: addOnMac
-        defaultFabricId: 6.519180951018382
-        switchPortId: switchPortId
-      properties:
-        serverInterfaceId:
-          description: The id of the server interface.
-          type: number
-        serverId:
-          description: The id of the server.
-          type: number
-        macAddress:
-          description: The MAC address of the server interface.
-          type: string
-        index:
-          description: The index of the server interface.
-          type: number
-        switchPortId:
-          description: The switch port id of the server interface.
-          type: string
-        switchHostname:
-          description: The switch hostname of the server interface.
-          type: string
-        switchMacAddress:
-          description: The MAC address of the connected switch interface.
-          type: string
-        capacityMbps:
-          description: The capacity in Mbps of the server interface.
-          type: number
-        addOnMac:
-          description: The add-on MAC address of the server interface.
-          type: string
-        addOnType:
-          description: The add-on type of the server interface.
-          enum:
-          - hba
-          - offload
-          type: string
-        addOnInfo:
-          description: The add-on info of the server interface.
-          type: object
-        pxeEnabled:
-          description: Flag to indicate if PXE is enabled.
-          type: number
-        supportsIscsiBoot:
-          description: Flag to indicate if the server interface supports iSCSI boot
-          type: number
-        fibreChannelWwpn:
-          description: The WWPN of the fibre channel.
-          type: string
-        description:
-          description: The description of the server interface.
-          type: string
-        aliasIndex:
-          description: The alias index of the server interface.
-          type: number
-        osInfo:
-          default: not_tested
-          description: The OS info of the server interface.
-          enum:
-          - not_tested
-          - not_supported
-          - collected
-          type: string
-        networkDevice:
-          description: The network device linked to the server.
-          type: object
-        networkDeviceInterface:
-          description: The network device interface linked to the server.
-          type: object
-        ipv4Addresses:
-          description: The deployed IPv4 addresses of the server interface.
-          example:
-          - 192.168.1.1
-          - 192.168.1.2
-          items:
-            type: string
-          type: array
-        ipv6Addresses:
-          description: The deployed IPv6 addresses of the server interface.
-          example:
-          - 2001:db8::1
-          - 2001:db8::2
-          items:
-            type: string
-          type: array
-        vlanId:
-          description: The deployed VLAN ID of the server interface.
-          type: number
-        defaultFabricId:
-          description: The default fabric ID of the server interface.
-          type: number
-        redundancyGroupIndex:
-          description: The redundancy group index of the server interface.
-          type: number
-        lldpInfo:
-          description: The LLDP information of the server interface.
-          type: string
-      required:
-      - index
-      - macAddress
-      - osInfo
-      - serverId
-      - serverInterfaceId
-      - switchMacAddress
-      type: object
-    ServerDisk:
-      example:
-        serial: serial
-        vendor: vendor
-        serverStorageControllerId: 3.0205796992916243
-        model: model
-        id: 4.652396432933246
-        type: none
-        serverId: 8.969578798196912
-        diskSizeGb: 7.740351818741173
-        status: installed
-      properties:
-        id:
-          description: The id of the disk.
-          type: number
-        serverId:
-          description: The id of the server.
-          type: number
-        model:
-          description: The model of the disk
-          type: string
-        diskSizeGb:
-          description: The size of the disk in GB
-          type: number
-        serial:
-          description: The serial number of the disk
-          type: string
-        vendor:
-          description: The vendor of the disk
-          type: string
-        status:
-          description: The status of the disk
-          enum:
-          - installed
-          - spare
-          type: string
-        type:
-          description: The type of the disk
-          enum:
-          - none
-          - HDD
-          - SSD
-          - NVME
-          type: string
-        serverStorageControllerId:
-          description: The id of the storage controller
-          type: number
-      required:
-      - diskSizeGb
-      - id
-      - model
-      - serial
-      - serverId
-      - status
-      - type
-      - vendor
-      type: object
-    ServerTypeStorageControllerOptions:
-      properties:
-        raidTypesSupported:
-          description: The list of supported RAID types for the storage controller.
-          example:
-          - RAID0
-          - RAID1
-          - RAID5
-          - RAID10
-          items:
-            type: string
-          type: array
-        controllerModesSupported:
-          description: The list of supported controller modes for the storage controller.
-          example:
-          - HBA
-          - RAID
-          items:
-            type: string
-          type: array
-      required:
-      - controllerModesSupported
-      - raidTypesSupported
-      type: object
-    ServerStorageController:
-      example:
-        mode: HBA
-        name: name
-        options: ""
-        description: description
-        id: 3.0576100241049344
-        label: label
-        serverId: 7.04836565559697
-      properties:
-        id:
-          description: The id of the storage controller.
-          type: number
-        serverId:
-          description: The id of the server.
-          type: number
-        name:
-          description: The name of the storage controller.
-          type: string
-        label:
-          description: The label of the storage controller.
-          type: string
-        description:
-          description: The description of the storage controller.
-          type: string
-        options:
-          allOf:
-          - $ref: '#/components/schemas/ServerTypeStorageControllerOptions'
-          description: The options of the storage controller.
-        mode:
-          description: The mode of the storage controller.
-          enum:
-          - HBA
-          - eHBA
-          - RAID
-          type: string
-      required:
-      - description
-      - id
-      - label
-      - mode
-      - name
-      - options
-      - serverId
-      type: object
-    ServerAllocationInfo:
-      properties:
-        instanceId:
-          description: The id of the instance.
-          type: number
-        instanceLabel:
-          description: The label of the instance.
-          type: string
-        instanceGroupLabel:
-          description: The label of the instance group.
-          type: string
-        extensionInstanceId:
-          description: The id of the extension instance.
-          type: number
-        infrastructure:
-          description: The infrastructure of the instance.
-          type: object
-        osTemplateId:
-          description: The id of the os template used by the instance.
-          type: number
-      required:
-      - infrastructure
-      - instanceGroupLabel
-      - instanceId
-      - instanceLabel
-      type: object
     ServerVariables:
       properties:
         serverId:
@@ -68334,6 +69068,10 @@ components:
           type: number
         serverSupportsOobProvisioning:
           description: Flag to indicate if the supports OOB provisioning.
+          type: number
+        serverIsProduction:
+          description: Flag to indicate if the server was added as a production (brownfield)
+            server.
           type: number
         bootingCustomIsoInProgress:
           description: Flag to indicate if the server is booting a custom iso.
@@ -71700,509 +72438,12 @@ components:
       - serverStatus
       - site
       type: object
-    Server:
-      example:
-        datacenterName: datacenterName
-        bootingCustomIsoInProgress: 6.683562403749608
-        requiresManualCleaning: 6.438423552598547
-        mgmtSnmpPasswordEncrypted: mgmtSnmpPasswordEncrypted
-        serverSupportsOobProvisioning: 9.369310271410669
-        passwordEncrypted: passwordEncrypted
-        customInfo: "{}"
-        diskCount: 2.027123023002322
-        serverId: 0.8008281904610115
-        processorCoreMhz: 2.3021358869347655
-        powerStatus: unknown
-        serverCreatedTimestamp: serverCreatedTimestamp
-        serverDhcpStatus: quarantine
-        model: model
-        links:
-        - rel: self
-          href: /api/v2/path/to/resource
-        - rel: self
-          href: /api/v2/path/to/resource
-        bmcMacAddress: bmcMacAddress
-        bootLastUpdateTimestamp: bootLastUpdateTimestamp
-        gpuCount: 6.965117697638846
-        serverSupportsSol: 5.025004791520295
-        vncPasswordEncrypted: vncPasswordEncrypted
-        vncPort: 6.84685269835264
-        serialNumber: serialNumber
-        extensionInfo: ""
-        submodel: submodel
-        registeredTimestamp: registeredTimestamp
-        isBasicCampusEndpoint: 7.457744773683766
-        gpuInfo:
-        - vendor: vendor
-          model: model
-        - vendor: vendor
-          model: model
-        revision: 1
-        processorThreads: 3.616076749251911
-        tags:
-        - tags
-        - tags
-        serverCleanupPolicyId: 1.1730742509559433
-        serverDiskWipe: 9.018348186070783
-        resourcePoolId: 5.533258397034986
-        processorCpuMark: 9.301444243932576
-        ramGbytes: 5.962133916683182
-        instanceCustomInfo: "{}"
-        biosInfo: ""
-        rackPositionLowerUnit: rackPositionLowerUnit
-        serverTypeId: 6.027456183070403
-        requiresReRegister: 4.965218492984954
-        serverStatus: registering
-        serverDiskCount: 3.5571952270680973
-        disks:
-        - serial: serial
-          vendor: vendor
-          serverStorageControllerId: 3.0205796992916243
-          model: model
-          id: 4.652396432933246
-          type: none
-          serverId: 8.969578798196912
-          diskSizeGb: 7.740351818741173
-          status: installed
-        - serial: serial
-          vendor: vendor
-          serverStorageControllerId: 3.0205796992916243
-          model: model
-          id: 4.652396432933246
-          type: none
-          serverId: 8.969578798196912
-          diskSizeGb: 7.740351818741173
-          status: installed
-        vendorInfo: ""
-        bdkDebug: 7.386281948385884
-        jobInfo:
-          jobId: 0.8008281904610115
-          jobGroupId: 6.027456183070403
-        ipmiVersion: ipmiVersion
-        serverClass: unknown
-        vendorSkuId: vendorSkuId
-        serverUUID: serverUUID
-        serverMetricsMetadata:
-          key:
-          - UpperThresholdFatal: 1.0246457001441578
-            Number: 1.2315135367772556
-            Oem: "{}"
-            Label: Label
-            UpperThresholdCritical: 1.4894159098541704
-            Units: Units
-            Name: Name
-            PhysicalContext: PhysicalContext
-          - UpperThresholdFatal: 1.0246457001441578
-            Number: 1.2315135367772556
-            Oem: "{}"
-            Label: Label
-            UpperThresholdCritical: 1.4894159098541704
-            Units: Units
-            Name: Name
-            PhysicalContext: PhysicalContext
-        processorCoreCount: 7.061401241503109
-        vendor: Unknown
-        serverSupportsVirtualMedia: 9.965781217890562
-        supportsFcProvisioning: 1.284659006116532
-        storageControllers:
-        - mode: HBA
-          name: name
-          options: ""
-          description: description
-          id: 3.0576100241049344
-          label: label
-          serverId: 7.04836565559697
-        - mode: HBA
-          name: name
-          options: ""
-          description: description
-          id: 3.0576100241049344
-          label: label
-          serverId: 7.04836565559697
-        processorName: processorName
-        rackPositionUpperUnit: rackPositionUpperUnit
-        managementAddress: managementAddress
-        ipmiCredentialsNeedUpdate: 6.778324963048013
-        interfaces:
-        - networkDevice: "{}"
-          description: description
-          ipv6Addresses:
-          - 2001:db8::1
-          - 2001:db8::2
-          lldpInfo: lldpInfo
-          serverId: 5.944895607614016
-          osInfo: not_tested
-          switchMacAddress: switchMacAddress
-          fibreChannelWwpn: fibreChannelWwpn
-          capacityMbps: 3.353193347011243
-          supportsIscsiBoot: 7.143538047012306
-          serverInterfaceId: 6.878052220127876
-          ipv4Addresses:
-          - 192.168.1.1
-          - 192.168.1.2
-          aliasIndex: 0.8851374739011653
-          vlanId: 7.058770351582356
-          networkDeviceInterface: "{}"
-          redundancyGroupIndex: 0.10263654006109402
-          index: 6.704019297950036
-          addOnType: hba
-          switchHostname: switchHostname
-          pxeEnabled: 3.0937452626664474
-          macAddress: macAddress
-          addOnInfo: "{}"
-          addOnMac: addOnMac
-          defaultFabricId: 6.519180951018382
-          switchPortId: switchPortId
-        - networkDevice: "{}"
-          description: description
-          ipv6Addresses:
-          - 2001:db8::1
-          - 2001:db8::2
-          lldpInfo: lldpInfo
-          serverId: 5.944895607614016
-          osInfo: not_tested
-          switchMacAddress: switchMacAddress
-          fibreChannelWwpn: fibreChannelWwpn
-          capacityMbps: 3.353193347011243
-          supportsIscsiBoot: 7.143538047012306
-          serverInterfaceId: 6.878052220127876
-          ipv4Addresses:
-          - 192.168.1.1
-          - 192.168.1.2
-          aliasIndex: 0.8851374739011653
-          vlanId: 7.058770351582356
-          networkDeviceInterface: "{}"
-          redundancyGroupIndex: 0.10263654006109402
-          index: 6.704019297950036
-          addOnType: hba
-          switchHostname: switchHostname
-          pxeEnabled: 3.0937452626664474
-          macAddress: macAddress
-          addOnInfo: "{}"
-          addOnMac: addOnMac
-          defaultFabricId: 6.519180951018382
-          switchPortId: switchPortId
-        serverCapacityMbps: 8.762042012749001
-        processorCount: 5.637376656633329
-        serverComments: serverComments
-        serverAllocationTimestamp: serverAllocationTimestamp
-        chassisRackId: 2.8841621266687802
-        mgmtSnmpPort: 4.145608029883936
-        powerStatusLastUpdateTimestamp: powerStatusLastUpdateTimestamp
-        administrationState: managed
-        rackName: rackName
-        inventoryId: inventoryId
-        siteId: 1.4658129805029452
-        username: username
-        allocationInfo: ""
-      properties:
-        serverId:
-          description: The id of the server.
-          type: number
-        revision:
-          description: Revision number
-          example: 1
-          type: number
-        serverTypeId:
-          description: The id of the server type.
-          type: number
-        siteId:
-          description: The site id where the server is located.
-          type: number
-        datacenterName:
-          description: The name of the datacenter where the server is located.
-          type: string
-        serverUUID:
-          description: The UUID of the server.
-          type: string
-        serialNumber:
-          description: The Serial Number of the server.
-          type: string
-        managementAddress:
-          description: The Management Address of the server.
-          type: string
-        username:
-          description: The username to use.
-          type: string
-        passwordEncrypted:
-          description: The encrypted password.
-          type: string
-        ipmiVersion:
-          description: The ipmi version of the server.
-          type: string
-        ramGbytes:
-          description: The RAM GB of the server.
-          type: number
-        processorCount:
-          description: The processor count of the server.
-          type: number
-        processorCoreMhz:
-          description: The processor core Mhz of the server.
-          type: number
-        processorCoreCount:
-          description: The processor core count of the server.
-          type: number
-        processorName:
-          description: The processor name of the server.
-          type: string
-        processorCpuMark:
-          description: The processor cpu mark of the server.
-          type: number
-        processorThreads:
-          description: The processor threads of the server.
-          type: number
-        diskCount:
-          description: The disk count of the server.
-          type: number
-        mgmtSnmpPort:
-          description: The management snmp port of the server.
-          type: number
-        mgmtSnmpPasswordEncrypted:
-          description: The management snmp password encrypted of the server.
-          type: string
-        bmcMacAddress:
-          description: The MAC address of the server.
-          type: string
-        bdkDebug:
-          description: The BDK debug flag.
-          type: number
-        serverMetricsMetadata:
-          additionalProperties:
-            items:
-              $ref: '#/components/schemas/ServerMetricsInfo'
-            type: array
-          description: The metrics metadata of the server.
-          type: object
-        instanceCustomInfo:
-          description: The instance custom info of the server.
-          type: object
-        customInfo:
-          description: The custom info of the server.
-          type: object
-        vendor:
-          description: The vendor of the server.
-          enum:
-          - Unknown
-          - Dell
-          - Lenovo
-          - HP
-          - HPE
-          - Supermicro
-          - Cisco
-          - BSI
-          type: string
-        vendorSkuId:
-          description: The vendor sku id of the server.
-          type: string
-        model:
-          description: The model of the server.
-          type: string
-        vncPort:
-          description: The VNC port of the server.
-          type: number
-        vncPasswordEncrypted:
-          description: The VNC password encrypted of the server.
-          type: string
-        isBasicCampusEndpoint:
-          description: Flag to indicate if the server is basic campus endpoint.
-          type: number
-        serverCleanupPolicyId:
-          description: The cleanup policy id of the server.
-          type: number
-        requiresReRegister:
-          description: Flag to indicate if the server required re-registration.
-          type: number
-        serverSupportsSol:
-          description: Flag to indicate if the supports SOL.
-          type: number
-        serverSupportsVirtualMedia:
-          description: Flag to indicate if the supports Virtual Media.
-          type: number
-        serverSupportsOobProvisioning:
-          description: Flag to indicate if the supports OOB provisioning.
-          type: number
-        bootingCustomIsoInProgress:
-          description: Flag to indicate if the server is booting a custom iso.
-          type: number
-        biosInfo:
-          allOf:
-          - $ref: '#/components/schemas/ServerBiosInfo'
-          description: The bios info of the server.
-        vendorInfo:
-          allOf:
-          - $ref: '#/components/schemas/ServerVendorInfo'
-          description: The vendor info of the server.
-        serverClass:
-          description: The class of the server.
-          enum:
-          - unknown
-          - bigdata
-          - hdfs
-          type: string
-        serverStatus:
-          description: The status of the server.
-          enum:
-          - registering
-          - available
-          - cleaning_required
-          - cleaning
-          - used
-          - used_registering
-          - defective
-          - removed_from_rack
-          - decommissioned
-          - updating_firmware
-          - used_diagnostics
-          - pending_registration
-          - unavailable
-          - deleting
-          type: string
-        serverComments:
-          description: The comments of the server.
-          type: string
-        serverCapacityMbps:
-          description: The capacity mbps of the server.
-          type: number
-        serverDiskWipe:
-          description: Flag to indicate if the disks need to be wiped.
-          type: number
-        requiresManualCleaning:
-          description: Flag to indicate if the server requires manual cleaning.
-          type: number
-        serverDiskCount:
-          description: The number of disks of the server.
-          type: number
-        administrationState:
-          description: The administration state of the server.
-          enum:
-          - managed
-          - unmanaged
-          - generic_endpoint
-          type: string
-        serverDhcpStatus:
-          description: The DHCP status of the server.
-          enum:
-          - quarantine
-          - deny_requests
-          - allow_requests
-          - ansible_provision
-          type: string
-        gpuCount:
-          description: The GPU count of the server.
-          type: number
-        gpuInfo:
-          description: The GPU info of the server.
-          items:
-            $ref: '#/components/schemas/ServerGpuInfo'
-          type: array
-        submodel:
-          description: The submodel of the server.
-          type: string
-        supportsFcProvisioning:
-          description: Flag to indicate if the server supports FC provisioning.
-          type: number
-        bootLastUpdateTimestamp:
-          description: The last boot update timestamp of the server.
-          type: string
-        registeredTimestamp:
-          description: The registration timestamp of the server.
-          type: string
-        serverCreatedTimestamp:
-          description: The creation timestamp of the server.
-          type: string
-        powerStatus:
-          description: The power status of the server.
-          enum:
-          - unknown
-          - "on"
-          - "off"
-          type: string
-        powerStatusLastUpdateTimestamp:
-          description: The last power update timestamp of the server.
-          type: string
-        serverAllocationTimestamp:
-          description: The timestamp when the server was allocated.
-          type: string
-        jobInfo:
-          $ref: '#/components/schemas/JobInfo'
-        chassisRackId:
-          description: The chassis rack id of the server.
-          type: number
-        rackName:
-          description: The chassis rack name of the server.
-          type: string
-        rackPositionUpperUnit:
-          description: The chassis rack upper unit position of the server.
-          type: string
-        rackPositionLowerUnit:
-          description: The chassis rack lower unit position of the server.
-          type: string
-        inventoryId:
-          description: The inventory id of the server.
-          type: string
-        ipmiCredentialsNeedUpdate:
-          description: Flag to indicate if the server needs an update of the IPMI
-            credentials.
-          type: number
-        interfaces:
-          description: The interfaces of the server.
-          items:
-            $ref: '#/components/schemas/ServerInterface'
-          type: array
-        disks:
-          description: The disks of the server.
-          items:
-            $ref: '#/components/schemas/ServerDisk'
-          type: array
-        storageControllers:
-          description: The storage controllers of the server.
-          items:
-            $ref: '#/components/schemas/ServerStorageController'
-          type: array
-        tags:
-          description: Tags for the Server.
-          items:
-            type: string
-          type: array
-        resourcePoolId:
-          description: Resource Pool ID
-          type: number
-        allocationInfo:
-          allOf:
-          - $ref: '#/components/schemas/ServerAllocationInfo'
-          description: The server instance.
-        extensionInfo:
-          allOf:
-          - $ref: '#/components/schemas/ExtensionExecutionInfo'
-          description: The extension execution info of the server.
-        links:
-          description: Reference links
-          items:
-            $ref: '#/components/schemas/Link'
-          type: array
-      required:
-      - administrationState
-      - bdkDebug
-      - datacenterName
-      - passwordEncrypted
-      - powerStatus
-      - powerStatusLastUpdateTimestamp
-      - requiresReRegister
-      - revision
-      - serverClass
-      - serverCreatedTimestamp
-      - serverDhcpStatus
-      - serverId
-      - serverStatus
-      - siteId
-      - supportsFcProvisioning
-      type: object
     ServerPaginatedList:
       example:
         data:
         - datacenterName: datacenterName
-          bootingCustomIsoInProgress: 6.683562403749608
-          requiresManualCleaning: 6.438423552598547
+          bootingCustomIsoInProgress: 8.762042012749001
+          requiresManualCleaning: 3.5571952270680973
           mgmtSnmpPasswordEncrypted: mgmtSnmpPasswordEncrypted
           serverSupportsOobProvisioning: 9.369310271410669
           passwordEncrypted: passwordEncrypted
@@ -72221,7 +72462,7 @@ components:
             href: /api/v2/path/to/resource
           bmcMacAddress: bmcMacAddress
           bootLastUpdateTimestamp: bootLastUpdateTimestamp
-          gpuCount: 6.965117697638846
+          gpuCount: 1.284659006116532
           serverSupportsSol: 5.025004791520295
           vncPasswordEncrypted: vncPasswordEncrypted
           vncPort: 6.84685269835264
@@ -72241,8 +72482,8 @@ components:
           - tags
           - tags
           serverCleanupPolicyId: 1.1730742509559433
-          serverDiskWipe: 9.018348186070783
-          resourcePoolId: 5.533258397034986
+          serverDiskWipe: 6.438423552598547
+          resourcePoolId: 3.2588565619047607
           processorCpuMark: 9.301444243932576
           ramGbytes: 5.962133916683182
           instanceCustomInfo: "{}"
@@ -72251,25 +72492,25 @@ components:
           serverTypeId: 6.027456183070403
           requiresReRegister: 4.965218492984954
           serverStatus: registering
-          serverDiskCount: 3.5571952270680973
+          serverDiskCount: 6.965117697638846
           disks:
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 3.0205796992916243
+            serverStorageControllerId: 3.0576100241049344
             model: model
-            id: 4.652396432933246
+            id: 8.969578798196912
             type: none
-            serverId: 8.969578798196912
-            diskSizeGb: 7.740351818741173
+            serverId: 7.740351818741173
+            diskSizeGb: 3.0205796992916243
             status: installed
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 3.0205796992916243
+            serverStorageControllerId: 3.0576100241049344
             model: model
-            id: 4.652396432933246
+            id: 8.969578798196912
             type: none
-            serverId: 8.969578798196912
-            diskSizeGb: 7.740351818741173
+            serverId: 7.740351818741173
+            diskSizeGb: 3.0205796992916243
             status: installed
           vendorInfo: ""
           bdkDebug: 7.386281948385884
@@ -72301,26 +72542,27 @@ components:
           processorCoreCount: 7.061401241503109
           vendor: Unknown
           serverSupportsVirtualMedia: 9.965781217890562
-          supportsFcProvisioning: 1.284659006116532
+          serverIsProduction: 6.683562403749608
+          supportsFcProvisioning: 2.8841621266687802
           storageControllers:
           - mode: HBA
             name: name
             options: ""
             description: description
-            id: 3.0576100241049344
+            id: 7.04836565559697
             label: label
-            serverId: 7.04836565559697
+            serverId: 5.533258397034986
           - mode: HBA
             name: name
             options: ""
             description: description
-            id: 3.0576100241049344
+            id: 7.04836565559697
             label: label
-            serverId: 7.04836565559697
+            serverId: 5.533258397034986
           processorName: processorName
           rackPositionUpperUnit: rackPositionUpperUnit
           managementAddress: managementAddress
-          ipmiCredentialsNeedUpdate: 6.778324963048013
+          ipmiCredentialsNeedUpdate: 6.878052220127876
           interfaces:
           - networkDevice: "{}"
             description: description
@@ -72328,28 +72570,28 @@ components:
             - 2001:db8::1
             - 2001:db8::2
             lldpInfo: lldpInfo
-            serverId: 5.944895607614016
+            serverId: 6.704019297950036
             osInfo: not_tested
             switchMacAddress: switchMacAddress
             fibreChannelWwpn: fibreChannelWwpn
-            capacityMbps: 3.353193347011243
-            supportsIscsiBoot: 7.143538047012306
-            serverInterfaceId: 6.878052220127876
+            capacityMbps: 3.0937452626664474
+            supportsIscsiBoot: 0.8851374739011653
+            serverInterfaceId: 5.944895607614016
             ipv4Addresses:
             - 192.168.1.1
             - 192.168.1.2
-            aliasIndex: 0.8851374739011653
-            vlanId: 7.058770351582356
+            aliasIndex: 7.058770351582356
+            vlanId: 6.519180951018382
             networkDeviceInterface: "{}"
-            redundancyGroupIndex: 0.10263654006109402
-            index: 6.704019297950036
+            redundancyGroupIndex: 4.652396432933246
+            index: 3.353193347011243
             addOnType: hba
             switchHostname: switchHostname
-            pxeEnabled: 3.0937452626664474
+            pxeEnabled: 7.143538047012306
             macAddress: macAddress
             addOnInfo: "{}"
             addOnMac: addOnMac
-            defaultFabricId: 6.519180951018382
+            defaultFabricId: 0.10263654006109402
             switchPortId: switchPortId
           - networkDevice: "{}"
             description: description
@@ -72357,34 +72599,34 @@ components:
             - 2001:db8::1
             - 2001:db8::2
             lldpInfo: lldpInfo
-            serverId: 5.944895607614016
+            serverId: 6.704019297950036
             osInfo: not_tested
             switchMacAddress: switchMacAddress
             fibreChannelWwpn: fibreChannelWwpn
-            capacityMbps: 3.353193347011243
-            supportsIscsiBoot: 7.143538047012306
-            serverInterfaceId: 6.878052220127876
+            capacityMbps: 3.0937452626664474
+            supportsIscsiBoot: 0.8851374739011653
+            serverInterfaceId: 5.944895607614016
             ipv4Addresses:
             - 192.168.1.1
             - 192.168.1.2
-            aliasIndex: 0.8851374739011653
-            vlanId: 7.058770351582356
+            aliasIndex: 7.058770351582356
+            vlanId: 6.519180951018382
             networkDeviceInterface: "{}"
-            redundancyGroupIndex: 0.10263654006109402
-            index: 6.704019297950036
+            redundancyGroupIndex: 4.652396432933246
+            index: 3.353193347011243
             addOnType: hba
             switchHostname: switchHostname
-            pxeEnabled: 3.0937452626664474
+            pxeEnabled: 7.143538047012306
             macAddress: macAddress
             addOnInfo: "{}"
             addOnMac: addOnMac
-            defaultFabricId: 6.519180951018382
+            defaultFabricId: 0.10263654006109402
             switchPortId: switchPortId
-          serverCapacityMbps: 8.762042012749001
+          serverCapacityMbps: 9.018348186070783
           processorCount: 5.637376656633329
           serverComments: serverComments
           serverAllocationTimestamp: serverAllocationTimestamp
-          chassisRackId: 2.8841621266687802
+          chassisRackId: 6.778324963048013
           mgmtSnmpPort: 4.145608029883936
           powerStatusLastUpdateTimestamp: powerStatusLastUpdateTimestamp
           administrationState: managed
@@ -72394,8 +72636,8 @@ components:
           username: username
           allocationInfo: ""
         - datacenterName: datacenterName
-          bootingCustomIsoInProgress: 6.683562403749608
-          requiresManualCleaning: 6.438423552598547
+          bootingCustomIsoInProgress: 8.762042012749001
+          requiresManualCleaning: 3.5571952270680973
           mgmtSnmpPasswordEncrypted: mgmtSnmpPasswordEncrypted
           serverSupportsOobProvisioning: 9.369310271410669
           passwordEncrypted: passwordEncrypted
@@ -72414,7 +72656,7 @@ components:
             href: /api/v2/path/to/resource
           bmcMacAddress: bmcMacAddress
           bootLastUpdateTimestamp: bootLastUpdateTimestamp
-          gpuCount: 6.965117697638846
+          gpuCount: 1.284659006116532
           serverSupportsSol: 5.025004791520295
           vncPasswordEncrypted: vncPasswordEncrypted
           vncPort: 6.84685269835264
@@ -72434,8 +72676,8 @@ components:
           - tags
           - tags
           serverCleanupPolicyId: 1.1730742509559433
-          serverDiskWipe: 9.018348186070783
-          resourcePoolId: 5.533258397034986
+          serverDiskWipe: 6.438423552598547
+          resourcePoolId: 3.2588565619047607
           processorCpuMark: 9.301444243932576
           ramGbytes: 5.962133916683182
           instanceCustomInfo: "{}"
@@ -72444,25 +72686,25 @@ components:
           serverTypeId: 6.027456183070403
           requiresReRegister: 4.965218492984954
           serverStatus: registering
-          serverDiskCount: 3.5571952270680973
+          serverDiskCount: 6.965117697638846
           disks:
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 3.0205796992916243
+            serverStorageControllerId: 3.0576100241049344
             model: model
-            id: 4.652396432933246
+            id: 8.969578798196912
             type: none
-            serverId: 8.969578798196912
-            diskSizeGb: 7.740351818741173
+            serverId: 7.740351818741173
+            diskSizeGb: 3.0205796992916243
             status: installed
           - serial: serial
             vendor: vendor
-            serverStorageControllerId: 3.0205796992916243
+            serverStorageControllerId: 3.0576100241049344
             model: model
-            id: 4.652396432933246
+            id: 8.969578798196912
             type: none
-            serverId: 8.969578798196912
-            diskSizeGb: 7.740351818741173
+            serverId: 7.740351818741173
+            diskSizeGb: 3.0205796992916243
             status: installed
           vendorInfo: ""
           bdkDebug: 7.386281948385884
@@ -72494,26 +72736,27 @@ components:
           processorCoreCount: 7.061401241503109
           vendor: Unknown
           serverSupportsVirtualMedia: 9.965781217890562
-          supportsFcProvisioning: 1.284659006116532
+          serverIsProduction: 6.683562403749608
+          supportsFcProvisioning: 2.8841621266687802
           storageControllers:
           - mode: HBA
             name: name
             options: ""
             description: description
-            id: 3.0576100241049344
+            id: 7.04836565559697
             label: label
-            serverId: 7.04836565559697
+            serverId: 5.533258397034986
           - mode: HBA
             name: name
             options: ""
             description: description
-            id: 3.0576100241049344
+            id: 7.04836565559697
             label: label
-            serverId: 7.04836565559697
+            serverId: 5.533258397034986
           processorName: processorName
           rackPositionUpperUnit: rackPositionUpperUnit
           managementAddress: managementAddress
-          ipmiCredentialsNeedUpdate: 6.778324963048013
+          ipmiCredentialsNeedUpdate: 6.878052220127876
           interfaces:
           - networkDevice: "{}"
             description: description
@@ -72521,28 +72764,28 @@ components:
             - 2001:db8::1
             - 2001:db8::2
             lldpInfo: lldpInfo
-            serverId: 5.944895607614016
+            serverId: 6.704019297950036
             osInfo: not_tested
             switchMacAddress: switchMacAddress
             fibreChannelWwpn: fibreChannelWwpn
-            capacityMbps: 3.353193347011243
-            supportsIscsiBoot: 7.143538047012306
-            serverInterfaceId: 6.878052220127876
+            capacityMbps: 3.0937452626664474
+            supportsIscsiBoot: 0.8851374739011653
+            serverInterfaceId: 5.944895607614016
             ipv4Addresses:
             - 192.168.1.1
             - 192.168.1.2
-            aliasIndex: 0.8851374739011653
-            vlanId: 7.058770351582356
+            aliasIndex: 7.058770351582356
+            vlanId: 6.519180951018382
             networkDeviceInterface: "{}"
-            redundancyGroupIndex: 0.10263654006109402
-            index: 6.704019297950036
+            redundancyGroupIndex: 4.652396432933246
+            index: 3.353193347011243
             addOnType: hba
             switchHostname: switchHostname
-            pxeEnabled: 3.0937452626664474
+            pxeEnabled: 7.143538047012306
             macAddress: macAddress
             addOnInfo: "{}"
             addOnMac: addOnMac
-            defaultFabricId: 6.519180951018382
+            defaultFabricId: 0.10263654006109402
             switchPortId: switchPortId
           - networkDevice: "{}"
             description: description
@@ -72550,34 +72793,34 @@ components:
             - 2001:db8::1
             - 2001:db8::2
             lldpInfo: lldpInfo
-            serverId: 5.944895607614016
+            serverId: 6.704019297950036
             osInfo: not_tested
             switchMacAddress: switchMacAddress
             fibreChannelWwpn: fibreChannelWwpn
-            capacityMbps: 3.353193347011243
-            supportsIscsiBoot: 7.143538047012306
-            serverInterfaceId: 6.878052220127876
+            capacityMbps: 3.0937452626664474
+            supportsIscsiBoot: 0.8851374739011653
+            serverInterfaceId: 5.944895607614016
             ipv4Addresses:
             - 192.168.1.1
             - 192.168.1.2
-            aliasIndex: 0.8851374739011653
-            vlanId: 7.058770351582356
+            aliasIndex: 7.058770351582356
+            vlanId: 6.519180951018382
             networkDeviceInterface: "{}"
-            redundancyGroupIndex: 0.10263654006109402
-            index: 6.704019297950036
+            redundancyGroupIndex: 4.652396432933246
+            index: 3.353193347011243
             addOnType: hba
             switchHostname: switchHostname
-            pxeEnabled: 3.0937452626664474
+            pxeEnabled: 7.143538047012306
             macAddress: macAddress
             addOnInfo: "{}"
             addOnMac: addOnMac
-            defaultFabricId: 6.519180951018382
+            defaultFabricId: 0.10263654006109402
             switchPortId: switchPortId
-          serverCapacityMbps: 8.762042012749001
+          serverCapacityMbps: 9.018348186070783
           processorCount: 5.637376656633329
           serverComments: serverComments
           serverAllocationTimestamp: serverAllocationTimestamp
-          chassisRackId: 2.8841621266687802
+          chassisRackId: 6.778324963048013
           mgmtSnmpPort: 4.145608029883936
           powerStatusLastUpdateTimestamp: powerStatusLastUpdateTimestamp
           administrationState: managed
@@ -73648,7 +73891,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-09-05T12:52:52.236Z
+        createdTimestamp: 2025-09-18T01:10:54.542Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -73656,7 +73899,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-09-05T12:52:52.236Z
+        updatedTimestamp: 2025-09-18T01:10:54.542Z
         revision: "1"
       properties:
         id:
@@ -73685,12 +73928,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-05T12:52:52.236Z
+          example: 2025-09-18T01:10:54.542Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-05T12:52:52.236Z
+          example: 2025-09-18T01:10:54.542Z
           format: date-time
           type: string
         links:
@@ -73709,7 +73952,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-09-05T12:52:52.24Z
+        createdTimestamp: 2025-09-18T01:10:54.545Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -73720,7 +73963,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-09-05T12:52:52.24Z
+        updatedTimestamp: 2025-09-18T01:10:54.545Z
         revision: "1"
       properties:
         id:
@@ -73754,12 +73997,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-05T12:52:52.24Z
+          example: 2025-09-18T01:10:54.545Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-05T12:52:52.24Z
+          example: 2025-09-18T01:10:54.545Z
           format: date-time
           type: string
         links:
@@ -73779,7 +74022,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-09-05T12:52:52.24Z
+        - createdTimestamp: 2025-09-18T01:10:54.545Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -73790,9 +74033,9 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-09-05T12:52:52.24Z
+          updatedTimestamp: 2025-09-18T01:10:54.545Z
           revision: "1"
-        - createdTimestamp: 2025-09-05T12:52:52.24Z
+        - createdTimestamp: 2025-09-18T01:10:54.545Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -73803,7 +74046,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-09-05T12:52:52.24Z
+          updatedTimestamp: 2025-09-18T01:10:54.545Z
           revision: "1"
         meta: ""
         links: ""
@@ -74012,7 +74255,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-09-05T12:52:52.236Z
+          createdTimestamp: 2025-09-18T01:10:54.542Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -74020,12 +74263,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-09-05T12:52:52.236Z
+          updatedTimestamp: 2025-09-18T01:10:54.542Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-09-05T12:52:52.236Z
+          createdTimestamp: 2025-09-18T01:10:54.542Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -74033,7 +74276,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-09-05T12:52:52.236Z
+          updatedTimestamp: 2025-09-18T01:10:54.542Z
           revision: "1"
         meta: ""
         links: ""
@@ -75040,63 +75283,6 @@ components:
       - sitesResourceCount
       - sitesTotalCount
       type: object
-    SiteCreate:
-      example:
-        name: "Reading, UK"
-        location: ""
-        slug: reading-uk
-        isInMaintenance: true
-        isHidden: true
-      properties:
-        slug:
-          description: The site unique slug
-          example: reading-uk
-          type: string
-        name:
-          description: The site name
-          example: "Reading, UK"
-          type: string
-        location:
-          allOf:
-          - $ref: '#/components/schemas/Location'
-          description: Location details
-        isHidden:
-          description: True if the site is hidden
-          type: boolean
-        isInMaintenance:
-          description: True if the site is in maintenance mode
-          type: boolean
-      required:
-      - name
-      - slug
-      type: object
-    SiteUpdate:
-      example:
-        name: "Reading, UK"
-        location: ""
-        slug: reading-uk
-        isInMaintenance: true
-        isHidden: true
-      properties:
-        slug:
-          description: The site unique slug
-          example: reading-uk
-          type: string
-        name:
-          description: The site name
-          example: "Reading, UK"
-          type: string
-        location:
-          allOf:
-          - $ref: '#/components/schemas/Location'
-          description: Location details
-        isHidden:
-          description: True if the site is hidden
-          type: boolean
-        isInMaintenance:
-          description: True if the site is in maintenance mode
-          type: boolean
-      type: object
     SiteConfig:
       example:
         networkDevicePolicy: ""
@@ -75157,6 +75343,63 @@ components:
           allOf:
           - $ref: '#/components/schemas/InfrastructurePolicy'
           description: Infrastructure policies
+      type: object
+    SiteCreate:
+      example:
+        name: "Reading, UK"
+        config: ""
+        slug: reading-uk
+        isInMaintenance: true
+        isHidden: true
+      properties:
+        slug:
+          description: The site unique slug
+          example: reading-uk
+          type: string
+        name:
+          description: The site name
+          example: "Reading, UK"
+          type: string
+        isHidden:
+          description: True if the site is hidden
+          type: boolean
+        isInMaintenance:
+          description: True if the site is in maintenance mode
+          type: boolean
+        config:
+          allOf:
+          - $ref: '#/components/schemas/SiteConfig'
+          description: Site configuration
+      required:
+      - name
+      - slug
+      type: object
+    SiteUpdate:
+      example:
+        name: "Reading, UK"
+        location: ""
+        slug: reading-uk
+        isInMaintenance: true
+        isHidden: true
+      properties:
+        slug:
+          description: The site unique slug
+          example: reading-uk
+          type: string
+        name:
+          description: The site name
+          example: "Reading, UK"
+          type: string
+        location:
+          allOf:
+          - $ref: '#/components/schemas/Location'
+          description: Location details
+        isHidden:
+          description: True if the site is hidden
+          type: boolean
+        isInMaintenance:
+          description: True if the site is in maintenance mode
+          type: boolean
       type: object
     PartialLocation:
       properties:

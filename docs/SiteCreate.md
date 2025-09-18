@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Slug** | **string** | The site unique slug | 
 **Name** | **string** | The site name | 
-**Location** | Pointer to [**Location**](Location.md) | Location details | [optional] 
 **IsHidden** | Pointer to **bool** | True if the site is hidden | [optional] 
 **IsInMaintenance** | Pointer to **bool** | True if the site is in maintenance mode | [optional] 
+**Config** | Pointer to [**SiteConfig**](SiteConfig.md) | Site configuration | [optional] 
 
 ## Methods
 
@@ -69,31 +69,6 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetLocation
-
-`func (o *SiteCreate) GetLocation() Location`
-
-GetLocation returns the Location field if non-nil, zero value otherwise.
-
-### GetLocationOk
-
-`func (o *SiteCreate) GetLocationOk() (*Location, bool)`
-
-GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLocation
-
-`func (o *SiteCreate) SetLocation(v Location)`
-
-SetLocation sets Location field to given value.
-
-### HasLocation
-
-`func (o *SiteCreate) HasLocation() bool`
-
-HasLocation returns a boolean if a field has been set.
-
 ### GetIsHidden
 
 `func (o *SiteCreate) GetIsHidden() bool`
@@ -143,6 +118,31 @@ SetIsInMaintenance sets IsInMaintenance field to given value.
 `func (o *SiteCreate) HasIsInMaintenance() bool`
 
 HasIsInMaintenance returns a boolean if a field has been set.
+
+### GetConfig
+
+`func (o *SiteCreate) GetConfig() SiteConfig`
+
+GetConfig returns the Config field if non-nil, zero value otherwise.
+
+### GetConfigOk
+
+`func (o *SiteCreate) GetConfigOk() (*SiteConfig, bool)`
+
+GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfig
+
+`func (o *SiteCreate) SetConfig(v SiteConfig)`
+
+SetConfig sets Config field to given value.
+
+### HasConfig
+
+`func (o *SiteCreate) HasConfig() bool`
+
+HasConfig returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
