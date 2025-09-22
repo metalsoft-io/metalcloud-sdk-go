@@ -31,7 +31,7 @@ type ExtensionInfo struct {
 	// The extension description
 	Description *string `json:"description,omitempty"`
 	// Extension status
-	Status *string `json:"status,omitempty"`
+	Status *ExtensionStatus `json:"status,omitempty"`
 	// Extension kind
 	Kind *string `json:"kind,omitempty"`
 	// Is the extension public
@@ -227,9 +227,9 @@ func (o *ExtensionInfo) SetDescription(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ExtensionInfo) GetStatus() string {
+func (o *ExtensionInfo) GetStatus() ExtensionStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret ExtensionStatus
 		return ret
 	}
 	return *o.Status
@@ -237,7 +237,7 @@ func (o *ExtensionInfo) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInfo) GetStatusOk() (*string, bool) {
+func (o *ExtensionInfo) GetStatusOk() (*ExtensionStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -253,8 +253,8 @@ func (o *ExtensionInfo) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *ExtensionInfo) SetStatus(v string) {
+// SetStatus gets a reference to the given ExtensionStatus and assigns it to the Status field.
+func (o *ExtensionInfo) SetStatus(v ExtensionStatus) {
 	o.Status = &v
 }
 

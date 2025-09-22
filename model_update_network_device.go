@@ -51,7 +51,7 @@ type UpdateNetworkDevice struct {
 	// The username used for management authentication
 	Username NullableString `json:"username,omitempty"`
 	// The password used for management authentication
-	ManagementPassword NullableString `json:"managementPassword,omitempty"`
+	ManagementPassword *string `json:"managementPassword,omitempty"`
 	// The gateway IP address for the management network
 	// Deprecated
 	ManagementAddressGateway NullableString `json:"managementAddressGateway,omitempty"`
@@ -644,46 +644,36 @@ func (o *UpdateNetworkDevice) UnsetUsername() {
 	o.Username.Unset()
 }
 
-// GetManagementPassword returns the ManagementPassword field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetManagementPassword returns the ManagementPassword field value if set, zero value otherwise.
 func (o *UpdateNetworkDevice) GetManagementPassword() string {
-	if o == nil || IsNil(o.ManagementPassword.Get()) {
+	if o == nil || IsNil(o.ManagementPassword) {
 		var ret string
 		return ret
 	}
-	return *o.ManagementPassword.Get()
+	return *o.ManagementPassword
 }
 
 // GetManagementPasswordOk returns a tuple with the ManagementPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateNetworkDevice) GetManagementPasswordOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ManagementPassword) {
 		return nil, false
 	}
-	return o.ManagementPassword.Get(), o.ManagementPassword.IsSet()
+	return o.ManagementPassword, true
 }
 
 // HasManagementPassword returns a boolean if a field has been set.
 func (o *UpdateNetworkDevice) HasManagementPassword() bool {
-	if o != nil && o.ManagementPassword.IsSet() {
+	if o != nil && !IsNil(o.ManagementPassword) {
 		return true
 	}
 
 	return false
 }
 
-// SetManagementPassword gets a reference to the given NullableString and assigns it to the ManagementPassword field.
+// SetManagementPassword gets a reference to the given string and assigns it to the ManagementPassword field.
 func (o *UpdateNetworkDevice) SetManagementPassword(v string) {
-	o.ManagementPassword.Set(&v)
-}
-// SetManagementPasswordNil sets the value for ManagementPassword to be an explicit nil
-func (o *UpdateNetworkDevice) SetManagementPasswordNil() {
-	o.ManagementPassword.Set(nil)
-}
-
-// UnsetManagementPassword ensures that no value is present for ManagementPassword, not even an explicit nil
-func (o *UpdateNetworkDevice) UnsetManagementPassword() {
-	o.ManagementPassword.Unset()
+	o.ManagementPassword = &v
 }
 
 // GetManagementAddressGateway returns the ManagementAddressGateway field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1506,8 +1496,8 @@ func (o UpdateNetworkDevice) ToMap() (map[string]interface{}, error) {
 	if o.Username.IsSet() {
 		toSerialize["username"] = o.Username.Get()
 	}
-	if o.ManagementPassword.IsSet() {
-		toSerialize["managementPassword"] = o.ManagementPassword.Get()
+	if !IsNil(o.ManagementPassword) {
+		toSerialize["managementPassword"] = o.ManagementPassword
 	}
 	if o.ManagementAddressGateway.IsSet() {
 		toSerialize["managementAddressGateway"] = o.ManagementAddressGateway.Get()

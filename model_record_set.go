@@ -30,8 +30,14 @@ type RecordSet struct {
 	ServerInstanceGroupDNSRecordSet map[string]interface{} `json:"serverInstanceGroupDNSRecordSet,omitempty"`
 	// The Instance DNS record set
 	ServerInstanceDNSRecordSet map[string]interface{} `json:"serverInstanceDNSRecordSet,omitempty"`
+	// The Cluster DNS record set
+	ClusterDNSRecordSet map[string]interface{} `json:"clusterDNSRecordSet,omitempty"`
 	// The extension instance.
 	ExtensionInstanceRecordSet map[string]interface{} `json:"extensionInstanceRecordSet,omitempty"`
+	// The VM instance.
+	VmInstanceRecordSet *VMInstanceRecordSet `json:"vmInstanceRecordSet,omitempty"`
+	// The VM pool.
+	VmPoolRecordSet *VMPoolRecordSet `json:"vmPoolRecordSet,omitempty"`
 	// The server DNS record set.
 	ServerDNSRecordSet *ServerDNSRecordSetDto `json:"serverDNSRecordSet,omitempty"`
 	// The switch DNS record set.
@@ -218,6 +224,38 @@ func (o *RecordSet) SetServerInstanceDNSRecordSet(v map[string]interface{}) {
 	o.ServerInstanceDNSRecordSet = v
 }
 
+// GetClusterDNSRecordSet returns the ClusterDNSRecordSet field value if set, zero value otherwise.
+func (o *RecordSet) GetClusterDNSRecordSet() map[string]interface{} {
+	if o == nil || IsNil(o.ClusterDNSRecordSet) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.ClusterDNSRecordSet
+}
+
+// GetClusterDNSRecordSetOk returns a tuple with the ClusterDNSRecordSet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetClusterDNSRecordSetOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.ClusterDNSRecordSet) {
+		return map[string]interface{}{}, false
+	}
+	return o.ClusterDNSRecordSet, true
+}
+
+// HasClusterDNSRecordSet returns a boolean if a field has been set.
+func (o *RecordSet) HasClusterDNSRecordSet() bool {
+	if o != nil && !IsNil(o.ClusterDNSRecordSet) {
+		return true
+	}
+
+	return false
+}
+
+// SetClusterDNSRecordSet gets a reference to the given map[string]interface{} and assigns it to the ClusterDNSRecordSet field.
+func (o *RecordSet) SetClusterDNSRecordSet(v map[string]interface{}) {
+	o.ClusterDNSRecordSet = v
+}
+
 // GetExtensionInstanceRecordSet returns the ExtensionInstanceRecordSet field value if set, zero value otherwise.
 func (o *RecordSet) GetExtensionInstanceRecordSet() map[string]interface{} {
 	if o == nil || IsNil(o.ExtensionInstanceRecordSet) {
@@ -248,6 +286,70 @@ func (o *RecordSet) HasExtensionInstanceRecordSet() bool {
 // SetExtensionInstanceRecordSet gets a reference to the given map[string]interface{} and assigns it to the ExtensionInstanceRecordSet field.
 func (o *RecordSet) SetExtensionInstanceRecordSet(v map[string]interface{}) {
 	o.ExtensionInstanceRecordSet = v
+}
+
+// GetVmInstanceRecordSet returns the VmInstanceRecordSet field value if set, zero value otherwise.
+func (o *RecordSet) GetVmInstanceRecordSet() VMInstanceRecordSet {
+	if o == nil || IsNil(o.VmInstanceRecordSet) {
+		var ret VMInstanceRecordSet
+		return ret
+	}
+	return *o.VmInstanceRecordSet
+}
+
+// GetVmInstanceRecordSetOk returns a tuple with the VmInstanceRecordSet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetVmInstanceRecordSetOk() (*VMInstanceRecordSet, bool) {
+	if o == nil || IsNil(o.VmInstanceRecordSet) {
+		return nil, false
+	}
+	return o.VmInstanceRecordSet, true
+}
+
+// HasVmInstanceRecordSet returns a boolean if a field has been set.
+func (o *RecordSet) HasVmInstanceRecordSet() bool {
+	if o != nil && !IsNil(o.VmInstanceRecordSet) {
+		return true
+	}
+
+	return false
+}
+
+// SetVmInstanceRecordSet gets a reference to the given VMInstanceRecordSet and assigns it to the VmInstanceRecordSet field.
+func (o *RecordSet) SetVmInstanceRecordSet(v VMInstanceRecordSet) {
+	o.VmInstanceRecordSet = &v
+}
+
+// GetVmPoolRecordSet returns the VmPoolRecordSet field value if set, zero value otherwise.
+func (o *RecordSet) GetVmPoolRecordSet() VMPoolRecordSet {
+	if o == nil || IsNil(o.VmPoolRecordSet) {
+		var ret VMPoolRecordSet
+		return ret
+	}
+	return *o.VmPoolRecordSet
+}
+
+// GetVmPoolRecordSetOk returns a tuple with the VmPoolRecordSet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetVmPoolRecordSetOk() (*VMPoolRecordSet, bool) {
+	if o == nil || IsNil(o.VmPoolRecordSet) {
+		return nil, false
+	}
+	return o.VmPoolRecordSet, true
+}
+
+// HasVmPoolRecordSet returns a boolean if a field has been set.
+func (o *RecordSet) HasVmPoolRecordSet() bool {
+	if o != nil && !IsNil(o.VmPoolRecordSet) {
+		return true
+	}
+
+	return false
+}
+
+// SetVmPoolRecordSet gets a reference to the given VMPoolRecordSet and assigns it to the VmPoolRecordSet field.
+func (o *RecordSet) SetVmPoolRecordSet(v VMPoolRecordSet) {
+	o.VmPoolRecordSet = &v
 }
 
 // GetServerDNSRecordSet returns the ServerDNSRecordSet field value if set, zero value otherwise.
@@ -339,8 +441,17 @@ func (o RecordSet) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServerInstanceDNSRecordSet) {
 		toSerialize["serverInstanceDNSRecordSet"] = o.ServerInstanceDNSRecordSet
 	}
+	if !IsNil(o.ClusterDNSRecordSet) {
+		toSerialize["clusterDNSRecordSet"] = o.ClusterDNSRecordSet
+	}
 	if !IsNil(o.ExtensionInstanceRecordSet) {
 		toSerialize["extensionInstanceRecordSet"] = o.ExtensionInstanceRecordSet
+	}
+	if !IsNil(o.VmInstanceRecordSet) {
+		toSerialize["vmInstanceRecordSet"] = o.VmInstanceRecordSet
+	}
+	if !IsNil(o.VmPoolRecordSet) {
+		toSerialize["vmPoolRecordSet"] = o.VmPoolRecordSet
 	}
 	if !IsNil(o.ServerDNSRecordSet) {
 		toSerialize["serverDNSRecordSet"] = o.ServerDNSRecordSet
@@ -375,7 +486,10 @@ func (o *RecordSet) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "bgpTemplateRecordSet")
 		delete(additionalProperties, "serverInstanceGroupDNSRecordSet")
 		delete(additionalProperties, "serverInstanceDNSRecordSet")
+		delete(additionalProperties, "clusterDNSRecordSet")
 		delete(additionalProperties, "extensionInstanceRecordSet")
+		delete(additionalProperties, "vmInstanceRecordSet")
+		delete(additionalProperties, "vmPoolRecordSet")
 		delete(additionalProperties, "serverDNSRecordSet")
 		delete(additionalProperties, "switchDNSRecordSet")
 		o.AdditionalProperties = additionalProperties

@@ -25,6 +25,10 @@ type ExtensionInfrastructureLogicalNetwork struct {
 	Label string `json:"label"`
 	// Logical network profile label.
 	ProfileLabel string `json:"profileLabel"`
+	// Extra IP allocation for the infrastructure.
+	IpAllocations []ExtensionInfrastructureIpAllocation `json:"ipAllocations,omitempty"`
+	// Extra IP allocation for the infrastructure.
+	IpRanges []ExtensionInfrastructureIpRangesDto `json:"ipRanges,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -97,6 +101,70 @@ func (o *ExtensionInfrastructureLogicalNetwork) SetProfileLabel(v string) {
 	o.ProfileLabel = v
 }
 
+// GetIpAllocations returns the IpAllocations field value if set, zero value otherwise.
+func (o *ExtensionInfrastructureLogicalNetwork) GetIpAllocations() []ExtensionInfrastructureIpAllocation {
+	if o == nil || IsNil(o.IpAllocations) {
+		var ret []ExtensionInfrastructureIpAllocation
+		return ret
+	}
+	return o.IpAllocations
+}
+
+// GetIpAllocationsOk returns a tuple with the IpAllocations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInfrastructureLogicalNetwork) GetIpAllocationsOk() ([]ExtensionInfrastructureIpAllocation, bool) {
+	if o == nil || IsNil(o.IpAllocations) {
+		return nil, false
+	}
+	return o.IpAllocations, true
+}
+
+// HasIpAllocations returns a boolean if a field has been set.
+func (o *ExtensionInfrastructureLogicalNetwork) HasIpAllocations() bool {
+	if o != nil && !IsNil(o.IpAllocations) {
+		return true
+	}
+
+	return false
+}
+
+// SetIpAllocations gets a reference to the given []ExtensionInfrastructureIpAllocation and assigns it to the IpAllocations field.
+func (o *ExtensionInfrastructureLogicalNetwork) SetIpAllocations(v []ExtensionInfrastructureIpAllocation) {
+	o.IpAllocations = v
+}
+
+// GetIpRanges returns the IpRanges field value if set, zero value otherwise.
+func (o *ExtensionInfrastructureLogicalNetwork) GetIpRanges() []ExtensionInfrastructureIpRangesDto {
+	if o == nil || IsNil(o.IpRanges) {
+		var ret []ExtensionInfrastructureIpRangesDto
+		return ret
+	}
+	return o.IpRanges
+}
+
+// GetIpRangesOk returns a tuple with the IpRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInfrastructureLogicalNetwork) GetIpRangesOk() ([]ExtensionInfrastructureIpRangesDto, bool) {
+	if o == nil || IsNil(o.IpRanges) {
+		return nil, false
+	}
+	return o.IpRanges, true
+}
+
+// HasIpRanges returns a boolean if a field has been set.
+func (o *ExtensionInfrastructureLogicalNetwork) HasIpRanges() bool {
+	if o != nil && !IsNil(o.IpRanges) {
+		return true
+	}
+
+	return false
+}
+
+// SetIpRanges gets a reference to the given []ExtensionInfrastructureIpRangesDto and assigns it to the IpRanges field.
+func (o *ExtensionInfrastructureLogicalNetwork) SetIpRanges(v []ExtensionInfrastructureIpRangesDto) {
+	o.IpRanges = v
+}
+
 func (o ExtensionInfrastructureLogicalNetwork) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -109,6 +177,12 @@ func (o ExtensionInfrastructureLogicalNetwork) ToMap() (map[string]interface{}, 
 	toSerialize := map[string]interface{}{}
 	toSerialize["label"] = o.Label
 	toSerialize["profileLabel"] = o.ProfileLabel
+	if !IsNil(o.IpAllocations) {
+		toSerialize["ipAllocations"] = o.IpAllocations
+	}
+	if !IsNil(o.IpRanges) {
+		toSerialize["ipRanges"] = o.IpRanges
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -155,6 +229,8 @@ func (o *ExtensionInfrastructureLogicalNetwork) UnmarshalJSON(data []byte) (err 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "profileLabel")
+		delete(additionalProperties, "ipAllocations")
+		delete(additionalProperties, "ipRanges")
 		o.AdditionalProperties = additionalProperties
 	}
 

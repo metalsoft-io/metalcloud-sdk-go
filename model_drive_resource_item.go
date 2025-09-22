@@ -28,6 +28,7 @@ type DriveResourceItem struct {
 	MeasurementPeriod float32 `json:"measurementPeriod"`
 	MeasurementUnit string `json:"measurementUnit"`
 	Quantity float32 `json:"quantity"`
+	Tags *string `json:"tags,omitempty"`
 	DriveSizeMbytes float32 `json:"driveSizeMbytes"`
 	DriveStorageType string `json:"driveStorageType"`
 	AdditionalProperties map[string]interface{}
@@ -229,6 +230,38 @@ func (o *DriveResourceItem) SetQuantity(v float32) {
 	o.Quantity = v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *DriveResourceItem) GetTags() string {
+	if o == nil || IsNil(o.Tags) {
+		var ret string
+		return ret
+	}
+	return *o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DriveResourceItem) GetTagsOk() (*string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *DriveResourceItem) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given string and assigns it to the Tags field.
+func (o *DriveResourceItem) SetTags(v string) {
+	o.Tags = &v
+}
+
 // GetDriveSizeMbytes returns the DriveSizeMbytes field value
 func (o *DriveResourceItem) GetDriveSizeMbytes() float32 {
 	if o == nil {
@@ -294,6 +327,9 @@ func (o DriveResourceItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["measurementPeriod"] = o.MeasurementPeriod
 	toSerialize["measurementUnit"] = o.MeasurementUnit
 	toSerialize["quantity"] = o.Quantity
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
 	toSerialize["driveSizeMbytes"] = o.DriveSizeMbytes
 	toSerialize["driveStorageType"] = o.DriveStorageType
 
@@ -354,6 +390,7 @@ func (o *DriveResourceItem) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "measurementPeriod")
 		delete(additionalProperties, "measurementUnit")
 		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "tags")
 		delete(additionalProperties, "driveSizeMbytes")
 		delete(additionalProperties, "driveStorageType")
 		o.AdditionalProperties = additionalProperties

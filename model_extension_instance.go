@@ -53,8 +53,6 @@ type ExtensionInstance struct {
 	OutputVariables []ExtensionVariable `json:"outputVariables"`
 	// The current changes to be deployed for the Extension Instance.
 	Config ExtensionInstanceConfiguration `json:"config"`
-	// Timestamp of the Extension Instance creation.
-	CreatedTimestamp string `json:"createdTimestamp"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -66,7 +64,7 @@ type _ExtensionInstance ExtensionInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInstance(revision float32, label string, automaticManagement float32, updatedTimestamp string, id float32, infrastructureId float32, infrastructure ParentInfrastructure, extensionId float32, serviceStatus string, inputVariables []ExtensionVariable, outputVariables []ExtensionVariable, config ExtensionInstanceConfiguration, createdTimestamp string) *ExtensionInstance {
+func NewExtensionInstance(revision float32, label string, automaticManagement float32, updatedTimestamp string, id float32, infrastructureId float32, infrastructure ParentInfrastructure, extensionId float32, serviceStatus string, inputVariables []ExtensionVariable, outputVariables []ExtensionVariable, config ExtensionInstanceConfiguration) *ExtensionInstance {
 	this := ExtensionInstance{}
 	this.Revision = revision
 	this.Label = label
@@ -80,7 +78,6 @@ func NewExtensionInstance(revision float32, label string, automaticManagement fl
 	this.InputVariables = inputVariables
 	this.OutputVariables = outputVariables
 	this.Config = config
-	this.CreatedTimestamp = createdTimestamp
 	return &this
 }
 
@@ -508,30 +505,6 @@ func (o *ExtensionInstance) SetConfig(v ExtensionInstanceConfiguration) {
 	o.Config = v
 }
 
-// GetCreatedTimestamp returns the CreatedTimestamp field value
-func (o *ExtensionInstance) GetCreatedTimestamp() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CreatedTimestamp
-}
-
-// GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field value
-// and a boolean to check if the value has been set.
-func (o *ExtensionInstance) GetCreatedTimestampOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CreatedTimestamp, true
-}
-
-// SetCreatedTimestamp sets field value
-func (o *ExtensionInstance) SetCreatedTimestamp(v string) {
-	o.CreatedTimestamp = v
-}
-
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ExtensionInstance) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -598,7 +571,6 @@ func (o ExtensionInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize["inputVariables"] = o.InputVariables
 	toSerialize["outputVariables"] = o.OutputVariables
 	toSerialize["config"] = o.Config
-	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -627,7 +599,6 @@ func (o *ExtensionInstance) UnmarshalJSON(data []byte) (err error) {
 		"inputVariables",
 		"outputVariables",
 		"config",
-		"createdTimestamp",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -673,7 +644,6 @@ func (o *ExtensionInstance) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "inputVariables")
 		delete(additionalProperties, "outputVariables")
 		delete(additionalProperties, "config")
-		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

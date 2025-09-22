@@ -32,13 +32,13 @@ type CreateNetworkDeviceDefaults struct {
 	// Identifier string of the network device. Can contain letters, numbers, dots, underscores, and hyphens (1-63 characters).
 	IdentifierString *string `json:"identifierString,omitempty"`
 	// ASN of the network device
-	Asn *float32 `json:"asn,omitempty"`
+	Asn *int32 `json:"asn,omitempty"`
 	// Skip initial configuration
-	SkipInitialConfiguration *float32 `json:"skipInitialConfiguration,omitempty"`
+	SkipInitialConfiguration *bool `json:"skipInitialConfiguration,omitempty"`
 	// Custom variables associated with the network device, stored as key-value pairs.
 	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	// MLAG domain ID, must be between 1 and 4096.
-	MlagDomainId *float32 `json:"mlagDomainId,omitempty"`
+	MlagDomainId *int32 `json:"mlagDomainId,omitempty"`
 	// IPv4 address assigned to the loopback interface.
 	LoopbackAddressIpv4 *string `json:"loopbackAddressIpv4,omitempty"`
 	// IPv6 address assigned to the loopback interface.
@@ -48,19 +48,19 @@ type CreateNetworkDeviceDefaults struct {
 	// VTEP (VXLAN Tunnel Endpoint) IPv6 address.
 	VtepAddressIpv6 *string `json:"vtepAddressIpv6,omitempty"`
 	// Order index used for sorting or prioritization.
-	OrderIndex *float32 `json:"orderIndex,omitempty"`
+	OrderIndex *int32 `json:"orderIndex,omitempty"`
 	// ID of the volume template associated with the network device.
-	OsTemplateId *float32 `json:"osTemplateId,omitempty"`
+	OsTemplateId *int32 `json:"osTemplateId,omitempty"`
 	// MLAG partner hostname. Can contain letters, numbers, dots, underscores, and hyphens (1-63 characters).
 	MlagPartnerHostname *string `json:"mlagPartnerHostname,omitempty"`
-	// Indicates whether the device is part of an MLAG pair (0 = No, 1 = Yes).
-	IsPartOfMlagPair *float32 `json:"isPartOfMlagPair,omitempty"`
+	// Indicates whether the device is part of an MLAG pair).
+	IsPartOfMlagPair *bool `json:"isPartOfMlagPair,omitempty"`
 	// MLAG system MAC address in the format XX:XX:XX:XX:XX:XX.
 	MlagSystemMac *string `json:"mlagSystemMac,omitempty"`
 	// MLAG peer link Port-Channel ID, must be between 1 and 4096.
-	MlagPeerLinkPortChannelId *float32 `json:"mlagPeerLinkPortChannelId,omitempty"`
+	MlagPeerLinkPortChannelId *int32 `json:"mlagPeerLinkPortChannelId,omitempty"`
 	// MLAG partner VLAN ID, must be between 1 and 4096.
-	MlagPartnerVlanId *float32 `json:"mlagPartnerVlanId,omitempty"`
+	MlagPartnerVlanId *int32 `json:"mlagPartnerVlanId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -230,9 +230,9 @@ func (o *CreateNetworkDeviceDefaults) SetIdentifierString(v string) {
 }
 
 // GetAsn returns the Asn field value if set, zero value otherwise.
-func (o *CreateNetworkDeviceDefaults) GetAsn() float32 {
+func (o *CreateNetworkDeviceDefaults) GetAsn() int32 {
 	if o == nil || IsNil(o.Asn) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.Asn
@@ -240,7 +240,7 @@ func (o *CreateNetworkDeviceDefaults) GetAsn() float32 {
 
 // GetAsnOk returns a tuple with the Asn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceDefaults) GetAsnOk() (*float32, bool) {
+func (o *CreateNetworkDeviceDefaults) GetAsnOk() (*int32, bool) {
 	if o == nil || IsNil(o.Asn) {
 		return nil, false
 	}
@@ -256,15 +256,15 @@ func (o *CreateNetworkDeviceDefaults) HasAsn() bool {
 	return false
 }
 
-// SetAsn gets a reference to the given float32 and assigns it to the Asn field.
-func (o *CreateNetworkDeviceDefaults) SetAsn(v float32) {
+// SetAsn gets a reference to the given int32 and assigns it to the Asn field.
+func (o *CreateNetworkDeviceDefaults) SetAsn(v int32) {
 	o.Asn = &v
 }
 
 // GetSkipInitialConfiguration returns the SkipInitialConfiguration field value if set, zero value otherwise.
-func (o *CreateNetworkDeviceDefaults) GetSkipInitialConfiguration() float32 {
+func (o *CreateNetworkDeviceDefaults) GetSkipInitialConfiguration() bool {
 	if o == nil || IsNil(o.SkipInitialConfiguration) {
-		var ret float32
+		var ret bool
 		return ret
 	}
 	return *o.SkipInitialConfiguration
@@ -272,7 +272,7 @@ func (o *CreateNetworkDeviceDefaults) GetSkipInitialConfiguration() float32 {
 
 // GetSkipInitialConfigurationOk returns a tuple with the SkipInitialConfiguration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceDefaults) GetSkipInitialConfigurationOk() (*float32, bool) {
+func (o *CreateNetworkDeviceDefaults) GetSkipInitialConfigurationOk() (*bool, bool) {
 	if o == nil || IsNil(o.SkipInitialConfiguration) {
 		return nil, false
 	}
@@ -288,8 +288,8 @@ func (o *CreateNetworkDeviceDefaults) HasSkipInitialConfiguration() bool {
 	return false
 }
 
-// SetSkipInitialConfiguration gets a reference to the given float32 and assigns it to the SkipInitialConfiguration field.
-func (o *CreateNetworkDeviceDefaults) SetSkipInitialConfiguration(v float32) {
+// SetSkipInitialConfiguration gets a reference to the given bool and assigns it to the SkipInitialConfiguration field.
+func (o *CreateNetworkDeviceDefaults) SetSkipInitialConfiguration(v bool) {
 	o.SkipInitialConfiguration = &v
 }
 
@@ -326,9 +326,9 @@ func (o *CreateNetworkDeviceDefaults) SetCustomVariables(v map[string]interface{
 }
 
 // GetMlagDomainId returns the MlagDomainId field value if set, zero value otherwise.
-func (o *CreateNetworkDeviceDefaults) GetMlagDomainId() float32 {
+func (o *CreateNetworkDeviceDefaults) GetMlagDomainId() int32 {
 	if o == nil || IsNil(o.MlagDomainId) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.MlagDomainId
@@ -336,7 +336,7 @@ func (o *CreateNetworkDeviceDefaults) GetMlagDomainId() float32 {
 
 // GetMlagDomainIdOk returns a tuple with the MlagDomainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceDefaults) GetMlagDomainIdOk() (*float32, bool) {
+func (o *CreateNetworkDeviceDefaults) GetMlagDomainIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.MlagDomainId) {
 		return nil, false
 	}
@@ -352,8 +352,8 @@ func (o *CreateNetworkDeviceDefaults) HasMlagDomainId() bool {
 	return false
 }
 
-// SetMlagDomainId gets a reference to the given float32 and assigns it to the MlagDomainId field.
-func (o *CreateNetworkDeviceDefaults) SetMlagDomainId(v float32) {
+// SetMlagDomainId gets a reference to the given int32 and assigns it to the MlagDomainId field.
+func (o *CreateNetworkDeviceDefaults) SetMlagDomainId(v int32) {
 	o.MlagDomainId = &v
 }
 
@@ -486,9 +486,9 @@ func (o *CreateNetworkDeviceDefaults) SetVtepAddressIpv6(v string) {
 }
 
 // GetOrderIndex returns the OrderIndex field value if set, zero value otherwise.
-func (o *CreateNetworkDeviceDefaults) GetOrderIndex() float32 {
+func (o *CreateNetworkDeviceDefaults) GetOrderIndex() int32 {
 	if o == nil || IsNil(o.OrderIndex) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.OrderIndex
@@ -496,7 +496,7 @@ func (o *CreateNetworkDeviceDefaults) GetOrderIndex() float32 {
 
 // GetOrderIndexOk returns a tuple with the OrderIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceDefaults) GetOrderIndexOk() (*float32, bool) {
+func (o *CreateNetworkDeviceDefaults) GetOrderIndexOk() (*int32, bool) {
 	if o == nil || IsNil(o.OrderIndex) {
 		return nil, false
 	}
@@ -512,15 +512,15 @@ func (o *CreateNetworkDeviceDefaults) HasOrderIndex() bool {
 	return false
 }
 
-// SetOrderIndex gets a reference to the given float32 and assigns it to the OrderIndex field.
-func (o *CreateNetworkDeviceDefaults) SetOrderIndex(v float32) {
+// SetOrderIndex gets a reference to the given int32 and assigns it to the OrderIndex field.
+func (o *CreateNetworkDeviceDefaults) SetOrderIndex(v int32) {
 	o.OrderIndex = &v
 }
 
 // GetOsTemplateId returns the OsTemplateId field value if set, zero value otherwise.
-func (o *CreateNetworkDeviceDefaults) GetOsTemplateId() float32 {
+func (o *CreateNetworkDeviceDefaults) GetOsTemplateId() int32 {
 	if o == nil || IsNil(o.OsTemplateId) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.OsTemplateId
@@ -528,7 +528,7 @@ func (o *CreateNetworkDeviceDefaults) GetOsTemplateId() float32 {
 
 // GetOsTemplateIdOk returns a tuple with the OsTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceDefaults) GetOsTemplateIdOk() (*float32, bool) {
+func (o *CreateNetworkDeviceDefaults) GetOsTemplateIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.OsTemplateId) {
 		return nil, false
 	}
@@ -544,8 +544,8 @@ func (o *CreateNetworkDeviceDefaults) HasOsTemplateId() bool {
 	return false
 }
 
-// SetOsTemplateId gets a reference to the given float32 and assigns it to the OsTemplateId field.
-func (o *CreateNetworkDeviceDefaults) SetOsTemplateId(v float32) {
+// SetOsTemplateId gets a reference to the given int32 and assigns it to the OsTemplateId field.
+func (o *CreateNetworkDeviceDefaults) SetOsTemplateId(v int32) {
 	o.OsTemplateId = &v
 }
 
@@ -582,9 +582,9 @@ func (o *CreateNetworkDeviceDefaults) SetMlagPartnerHostname(v string) {
 }
 
 // GetIsPartOfMlagPair returns the IsPartOfMlagPair field value if set, zero value otherwise.
-func (o *CreateNetworkDeviceDefaults) GetIsPartOfMlagPair() float32 {
+func (o *CreateNetworkDeviceDefaults) GetIsPartOfMlagPair() bool {
 	if o == nil || IsNil(o.IsPartOfMlagPair) {
-		var ret float32
+		var ret bool
 		return ret
 	}
 	return *o.IsPartOfMlagPair
@@ -592,7 +592,7 @@ func (o *CreateNetworkDeviceDefaults) GetIsPartOfMlagPair() float32 {
 
 // GetIsPartOfMlagPairOk returns a tuple with the IsPartOfMlagPair field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceDefaults) GetIsPartOfMlagPairOk() (*float32, bool) {
+func (o *CreateNetworkDeviceDefaults) GetIsPartOfMlagPairOk() (*bool, bool) {
 	if o == nil || IsNil(o.IsPartOfMlagPair) {
 		return nil, false
 	}
@@ -608,8 +608,8 @@ func (o *CreateNetworkDeviceDefaults) HasIsPartOfMlagPair() bool {
 	return false
 }
 
-// SetIsPartOfMlagPair gets a reference to the given float32 and assigns it to the IsPartOfMlagPair field.
-func (o *CreateNetworkDeviceDefaults) SetIsPartOfMlagPair(v float32) {
+// SetIsPartOfMlagPair gets a reference to the given bool and assigns it to the IsPartOfMlagPair field.
+func (o *CreateNetworkDeviceDefaults) SetIsPartOfMlagPair(v bool) {
 	o.IsPartOfMlagPair = &v
 }
 
@@ -646,9 +646,9 @@ func (o *CreateNetworkDeviceDefaults) SetMlagSystemMac(v string) {
 }
 
 // GetMlagPeerLinkPortChannelId returns the MlagPeerLinkPortChannelId field value if set, zero value otherwise.
-func (o *CreateNetworkDeviceDefaults) GetMlagPeerLinkPortChannelId() float32 {
+func (o *CreateNetworkDeviceDefaults) GetMlagPeerLinkPortChannelId() int32 {
 	if o == nil || IsNil(o.MlagPeerLinkPortChannelId) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.MlagPeerLinkPortChannelId
@@ -656,7 +656,7 @@ func (o *CreateNetworkDeviceDefaults) GetMlagPeerLinkPortChannelId() float32 {
 
 // GetMlagPeerLinkPortChannelIdOk returns a tuple with the MlagPeerLinkPortChannelId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceDefaults) GetMlagPeerLinkPortChannelIdOk() (*float32, bool) {
+func (o *CreateNetworkDeviceDefaults) GetMlagPeerLinkPortChannelIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.MlagPeerLinkPortChannelId) {
 		return nil, false
 	}
@@ -672,15 +672,15 @@ func (o *CreateNetworkDeviceDefaults) HasMlagPeerLinkPortChannelId() bool {
 	return false
 }
 
-// SetMlagPeerLinkPortChannelId gets a reference to the given float32 and assigns it to the MlagPeerLinkPortChannelId field.
-func (o *CreateNetworkDeviceDefaults) SetMlagPeerLinkPortChannelId(v float32) {
+// SetMlagPeerLinkPortChannelId gets a reference to the given int32 and assigns it to the MlagPeerLinkPortChannelId field.
+func (o *CreateNetworkDeviceDefaults) SetMlagPeerLinkPortChannelId(v int32) {
 	o.MlagPeerLinkPortChannelId = &v
 }
 
 // GetMlagPartnerVlanId returns the MlagPartnerVlanId field value if set, zero value otherwise.
-func (o *CreateNetworkDeviceDefaults) GetMlagPartnerVlanId() float32 {
+func (o *CreateNetworkDeviceDefaults) GetMlagPartnerVlanId() int32 {
 	if o == nil || IsNil(o.MlagPartnerVlanId) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.MlagPartnerVlanId
@@ -688,7 +688,7 @@ func (o *CreateNetworkDeviceDefaults) GetMlagPartnerVlanId() float32 {
 
 // GetMlagPartnerVlanIdOk returns a tuple with the MlagPartnerVlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkDeviceDefaults) GetMlagPartnerVlanIdOk() (*float32, bool) {
+func (o *CreateNetworkDeviceDefaults) GetMlagPartnerVlanIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.MlagPartnerVlanId) {
 		return nil, false
 	}
@@ -704,8 +704,8 @@ func (o *CreateNetworkDeviceDefaults) HasMlagPartnerVlanId() bool {
 	return false
 }
 
-// SetMlagPartnerVlanId gets a reference to the given float32 and assigns it to the MlagPartnerVlanId field.
-func (o *CreateNetworkDeviceDefaults) SetMlagPartnerVlanId(v float32) {
+// SetMlagPartnerVlanId gets a reference to the given int32 and assigns it to the MlagPartnerVlanId field.
+func (o *CreateNetworkDeviceDefaults) SetMlagPartnerVlanId(v int32) {
 	o.MlagPartnerVlanId = &v
 }
 

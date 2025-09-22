@@ -25,13 +25,15 @@ Name | Type | Description | Notes
 **Syslog** | **bool** | Enable syslog capability | [default to false]
 **DhcpOob** | **bool** | Enable DHCP OOB capability | [default to false]
 **AnsibleRunner** | **bool** | Enable Ansible runner capability | [default to false]
+**HttpRequest** | **bool** | Enable HTTP request capability | [default to false]
+**SshCommand** | **bool** | Enable SSH command capability | 
 **SecondIp** | Pointer to **string** | Second IP address | [optional] 
 
 ## Methods
 
 ### NewGenerateSiteControllerOneliner
 
-`func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, ) *GenerateSiteControllerOneliner`
+`func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool, ) *GenerateSiteControllerOneliner`
 
 NewGenerateSiteControllerOneliner instantiates a new GenerateSiteControllerOneliner object
 This constructor will assign default values to properties that have it defined,
@@ -464,6 +466,46 @@ and a boolean to check if the value has been set.
 `func (o *GenerateSiteControllerOneliner) SetAnsibleRunner(v bool)`
 
 SetAnsibleRunner sets AnsibleRunner field to given value.
+
+
+### GetHttpRequest
+
+`func (o *GenerateSiteControllerOneliner) GetHttpRequest() bool`
+
+GetHttpRequest returns the HttpRequest field if non-nil, zero value otherwise.
+
+### GetHttpRequestOk
+
+`func (o *GenerateSiteControllerOneliner) GetHttpRequestOk() (*bool, bool)`
+
+GetHttpRequestOk returns a tuple with the HttpRequest field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHttpRequest
+
+`func (o *GenerateSiteControllerOneliner) SetHttpRequest(v bool)`
+
+SetHttpRequest sets HttpRequest field to given value.
+
+
+### GetSshCommand
+
+`func (o *GenerateSiteControllerOneliner) GetSshCommand() bool`
+
+GetSshCommand returns the SshCommand field if non-nil, zero value otherwise.
+
+### GetSshCommandOk
+
+`func (o *GenerateSiteControllerOneliner) GetSshCommandOk() (*bool, bool)`
+
+GetSshCommandOk returns a tuple with the SshCommand field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSshCommand
+
+`func (o *GenerateSiteControllerOneliner) SetSshCommand(v bool)`
+
+SetSshCommand sets SshCommand field to given value.
 
 
 ### GetSecondIp

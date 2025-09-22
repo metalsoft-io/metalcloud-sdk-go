@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **RequestTemplate** | **string** | Request template for the webhook task. | 
 **ExpectedResponseStatuses** | Pointer to **[]float32** | Expected response statuses for the webhook task. | [optional] 
 **Timeout** | Pointer to **int32** | Timeout for the webhook task in seconds. | [optional] [default to 30]
-**InsecureSkipVerify** | Pointer to **bool** | Flag to indicate if certificates should be verified for the webhook task. | [optional] [default to true]
+**InsecureSkipVerify** | Pointer to **bool** | Flag to indicate if certificates should be verified for the webhook task. | [optional] [default to false]
 
 ## Methods
 

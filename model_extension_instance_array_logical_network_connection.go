@@ -29,6 +29,8 @@ type ExtensionInstanceArrayLogicalNetworkConnection struct {
 	Mtu *int32 `json:"mtu,omitempty"`
 	// Whether the logical network provides a default route
 	ProvidesDefaultRoute *bool `json:"providesDefaultRoute,omitempty"`
+	// Disable automatic IP allocation for IPv4 addresses on this network connection
+	DisableAutoIpAllocation *bool `json:"disableAutoIpAllocation,omitempty"`
 	// The redundancy configuration
 	Redundancy NullableRedundancyConfig `json:"redundancy,omitempty"`
 	// DNS records that are supposed to be provisioned for the server instance group.
@@ -48,6 +50,8 @@ func NewExtensionInstanceArrayLogicalNetworkConnection(tagged bool, accessMode N
 	this.AccessMode = accessMode
 	var providesDefaultRoute bool = false
 	this.ProvidesDefaultRoute = &providesDefaultRoute
+	var disableAutoIpAllocation bool = false
+	this.DisableAutoIpAllocation = &disableAutoIpAllocation
 	return &this
 }
 
@@ -58,6 +62,8 @@ func NewExtensionInstanceArrayLogicalNetworkConnectionWithDefaults() *ExtensionI
 	this := ExtensionInstanceArrayLogicalNetworkConnection{}
 	var providesDefaultRoute bool = false
 	this.ProvidesDefaultRoute = &providesDefaultRoute
+	var disableAutoIpAllocation bool = false
+	this.DisableAutoIpAllocation = &disableAutoIpAllocation
 	return &this
 }
 
@@ -173,6 +179,38 @@ func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetProvidesDefaultRoute
 	o.ProvidesDefaultRoute = &v
 }
 
+// GetDisableAutoIpAllocation returns the DisableAutoIpAllocation field value if set, zero value otherwise.
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetDisableAutoIpAllocation() bool {
+	if o == nil || IsNil(o.DisableAutoIpAllocation) {
+		var ret bool
+		return ret
+	}
+	return *o.DisableAutoIpAllocation
+}
+
+// GetDisableAutoIpAllocationOk returns a tuple with the DisableAutoIpAllocation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetDisableAutoIpAllocationOk() (*bool, bool) {
+	if o == nil || IsNil(o.DisableAutoIpAllocation) {
+		return nil, false
+	}
+	return o.DisableAutoIpAllocation, true
+}
+
+// HasDisableAutoIpAllocation returns a boolean if a field has been set.
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) HasDisableAutoIpAllocation() bool {
+	if o != nil && !IsNil(o.DisableAutoIpAllocation) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisableAutoIpAllocation gets a reference to the given bool and assigns it to the DisableAutoIpAllocation field.
+func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetDisableAutoIpAllocation(v bool) {
+	o.DisableAutoIpAllocation = &v
+}
+
 // GetRedundancy returns the Redundancy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetRedundancy() RedundancyConfig {
 	if o == nil || IsNil(o.Redundancy.Get()) {
@@ -275,6 +313,9 @@ func (o ExtensionInstanceArrayLogicalNetworkConnection) ToMap() (map[string]inte
 	if !IsNil(o.ProvidesDefaultRoute) {
 		toSerialize["providesDefaultRoute"] = o.ProvidesDefaultRoute
 	}
+	if !IsNil(o.DisableAutoIpAllocation) {
+		toSerialize["disableAutoIpAllocation"] = o.DisableAutoIpAllocation
+	}
 	if o.Redundancy.IsSet() {
 		toSerialize["redundancy"] = o.Redundancy.Get()
 	}
@@ -329,6 +370,7 @@ func (o *ExtensionInstanceArrayLogicalNetworkConnection) UnmarshalJSON(data []by
 		delete(additionalProperties, "accessMode")
 		delete(additionalProperties, "mtu")
 		delete(additionalProperties, "providesDefaultRoute")
+		delete(additionalProperties, "disableAutoIpAllocation")
 		delete(additionalProperties, "redundancy")
 		delete(additionalProperties, "dns")
 		o.AdditionalProperties = additionalProperties

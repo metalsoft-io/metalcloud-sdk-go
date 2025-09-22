@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | Label of the logical network. | 
 **ProfileLabel** | **string** | Logical network profile label. | 
+**IpAllocations** | Pointer to [**[]ExtensionInfrastructureIpAllocation**](ExtensionInfrastructureIpAllocation.md) | Extra IP allocation for the infrastructure. | [optional] 
+**IpRanges** | Pointer to [**[]ExtensionInfrastructureIpRangesDto**](ExtensionInfrastructureIpRangesDto.md) | Extra IP allocation for the infrastructure. | [optional] 
 
 ## Methods
 
@@ -65,6 +67,56 @@ and a boolean to check if the value has been set.
 
 SetProfileLabel sets ProfileLabel field to given value.
 
+
+### GetIpAllocations
+
+`func (o *ExtensionInfrastructureLogicalNetwork) GetIpAllocations() []ExtensionInfrastructureIpAllocation`
+
+GetIpAllocations returns the IpAllocations field if non-nil, zero value otherwise.
+
+### GetIpAllocationsOk
+
+`func (o *ExtensionInfrastructureLogicalNetwork) GetIpAllocationsOk() (*[]ExtensionInfrastructureIpAllocation, bool)`
+
+GetIpAllocationsOk returns a tuple with the IpAllocations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpAllocations
+
+`func (o *ExtensionInfrastructureLogicalNetwork) SetIpAllocations(v []ExtensionInfrastructureIpAllocation)`
+
+SetIpAllocations sets IpAllocations field to given value.
+
+### HasIpAllocations
+
+`func (o *ExtensionInfrastructureLogicalNetwork) HasIpAllocations() bool`
+
+HasIpAllocations returns a boolean if a field has been set.
+
+### GetIpRanges
+
+`func (o *ExtensionInfrastructureLogicalNetwork) GetIpRanges() []ExtensionInfrastructureIpRangesDto`
+
+GetIpRanges returns the IpRanges field if non-nil, zero value otherwise.
+
+### GetIpRangesOk
+
+`func (o *ExtensionInfrastructureLogicalNetwork) GetIpRangesOk() (*[]ExtensionInfrastructureIpRangesDto, bool)`
+
+GetIpRangesOk returns a tuple with the IpRanges field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpRanges
+
+`func (o *ExtensionInfrastructureLogicalNetwork) SetIpRanges(v []ExtensionInfrastructureIpRangesDto)`
+
+SetIpRanges sets IpRanges field to given value.
+
+### HasIpRanges
+
+`func (o *ExtensionInfrastructureLogicalNetwork) HasIpRanges() bool`
+
+HasIpRanges returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

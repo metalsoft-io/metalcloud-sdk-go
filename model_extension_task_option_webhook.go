@@ -51,7 +51,7 @@ func NewExtensionTaskOptionWebhook(endpoint string, method string, requestTempla
 	this.RequestTemplate = requestTemplate
 	var timeout int32 = 30
 	this.Timeout = &timeout
-	var insecureSkipVerify bool = true
+	var insecureSkipVerify bool = false
 	this.InsecureSkipVerify = &insecureSkipVerify
 	return &this
 }
@@ -63,7 +63,7 @@ func NewExtensionTaskOptionWebhookWithDefaults() *ExtensionTaskOptionWebhook {
 	this := ExtensionTaskOptionWebhook{}
 	var timeout int32 = 30
 	this.Timeout = &timeout
-	var insecureSkipVerify bool = true
+	var insecureSkipVerify bool = false
 	this.InsecureSkipVerify = &insecureSkipVerify
 	return &this
 }

@@ -9,7 +9,10 @@ Name | Type | Description | Notes
 **BgpTemplateRecordSet** | Pointer to [**BgpTemplateRecordSet**](BgpTemplateRecordSet.md) | The BGP template record set. | [optional] 
 **ServerInstanceGroupDNSRecordSet** | Pointer to **map[string]interface{}** | The Instance Array DNS record set | [optional] 
 **ServerInstanceDNSRecordSet** | Pointer to **map[string]interface{}** | The Instance DNS record set | [optional] 
+**ClusterDNSRecordSet** | Pointer to **map[string]interface{}** | The Cluster DNS record set | [optional] 
 **ExtensionInstanceRecordSet** | Pointer to **map[string]interface{}** | The extension instance. | [optional] 
+**VmInstanceRecordSet** | Pointer to [**VMInstanceRecordSet**](VMInstanceRecordSet.md) | The VM instance. | [optional] 
+**VmPoolRecordSet** | Pointer to [**VMPoolRecordSet**](VMPoolRecordSet.md) | The VM pool. | [optional] 
 **ServerDNSRecordSet** | Pointer to [**ServerDNSRecordSetDto**](ServerDNSRecordSetDto.md) | The server DNS record set. | [optional] 
 **SwitchDNSRecordSet** | Pointer to [**SwitchDNSRecordSet**](SwitchDNSRecordSet.md) | The switch DNS record set. | [optional] 
 
@@ -157,6 +160,31 @@ SetServerInstanceDNSRecordSet sets ServerInstanceDNSRecordSet field to given val
 
 HasServerInstanceDNSRecordSet returns a boolean if a field has been set.
 
+### GetClusterDNSRecordSet
+
+`func (o *RecordSet) GetClusterDNSRecordSet() map[string]interface{}`
+
+GetClusterDNSRecordSet returns the ClusterDNSRecordSet field if non-nil, zero value otherwise.
+
+### GetClusterDNSRecordSetOk
+
+`func (o *RecordSet) GetClusterDNSRecordSetOk() (*map[string]interface{}, bool)`
+
+GetClusterDNSRecordSetOk returns a tuple with the ClusterDNSRecordSet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClusterDNSRecordSet
+
+`func (o *RecordSet) SetClusterDNSRecordSet(v map[string]interface{})`
+
+SetClusterDNSRecordSet sets ClusterDNSRecordSet field to given value.
+
+### HasClusterDNSRecordSet
+
+`func (o *RecordSet) HasClusterDNSRecordSet() bool`
+
+HasClusterDNSRecordSet returns a boolean if a field has been set.
+
 ### GetExtensionInstanceRecordSet
 
 `func (o *RecordSet) GetExtensionInstanceRecordSet() map[string]interface{}`
@@ -181,6 +209,56 @@ SetExtensionInstanceRecordSet sets ExtensionInstanceRecordSet field to given val
 `func (o *RecordSet) HasExtensionInstanceRecordSet() bool`
 
 HasExtensionInstanceRecordSet returns a boolean if a field has been set.
+
+### GetVmInstanceRecordSet
+
+`func (o *RecordSet) GetVmInstanceRecordSet() VMInstanceRecordSet`
+
+GetVmInstanceRecordSet returns the VmInstanceRecordSet field if non-nil, zero value otherwise.
+
+### GetVmInstanceRecordSetOk
+
+`func (o *RecordSet) GetVmInstanceRecordSetOk() (*VMInstanceRecordSet, bool)`
+
+GetVmInstanceRecordSetOk returns a tuple with the VmInstanceRecordSet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmInstanceRecordSet
+
+`func (o *RecordSet) SetVmInstanceRecordSet(v VMInstanceRecordSet)`
+
+SetVmInstanceRecordSet sets VmInstanceRecordSet field to given value.
+
+### HasVmInstanceRecordSet
+
+`func (o *RecordSet) HasVmInstanceRecordSet() bool`
+
+HasVmInstanceRecordSet returns a boolean if a field has been set.
+
+### GetVmPoolRecordSet
+
+`func (o *RecordSet) GetVmPoolRecordSet() VMPoolRecordSet`
+
+GetVmPoolRecordSet returns the VmPoolRecordSet field if non-nil, zero value otherwise.
+
+### GetVmPoolRecordSetOk
+
+`func (o *RecordSet) GetVmPoolRecordSetOk() (*VMPoolRecordSet, bool)`
+
+GetVmPoolRecordSetOk returns a tuple with the VmPoolRecordSet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVmPoolRecordSet
+
+`func (o *RecordSet) SetVmPoolRecordSet(v VMPoolRecordSet)`
+
+SetVmPoolRecordSet sets VmPoolRecordSet field to given value.
+
+### HasVmPoolRecordSet
+
+`func (o *RecordSet) HasVmPoolRecordSet() bool`
+
+HasVmPoolRecordSet returns a boolean if a field has been set.
 
 ### GetServerDNSRecordSet
 

@@ -4,33 +4,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** | Unique ID of the network device defaults entry | 
+**Id** | **int32** | Unique ID of the network device defaults entry | 
 **DatacenterName** | **string** | Name of the datacenter | 
 **SerialNumber** | Pointer to **string** | Device serial number | [optional] 
 **ManagementMacAddress** | Pointer to **string** | Management MAC address | [optional] 
 **Position** | Pointer to **string** | Physical position in the rack | [optional] 
 **IdentifierString** | Pointer to **string** | Identifier string (1-63 characters, letters, digits, . _ -) | [optional] 
-**Asn** | Pointer to **float32** | Autonomous System Number (ASN) | [optional] 
-**IsPartOfMlagPair** | Pointer to **float32** | Whether device is part of an MLAG pair (0 or 1) | [optional] 
+**Asn** | Pointer to **int32** | Autonomous System Number (ASN) | [optional] 
+**IsPartOfMlagPair** | Pointer to **bool** | Whether device is part of an MLAG pair | [optional] 
 **MlagSystemMac** | Pointer to **string** | MLAG system MAC address | [optional] 
-**MlagDomainId** | Pointer to **float32** | MLAG domain ID | [optional] 
-**MlagPeerLinkPortChannelId** | Pointer to **float32** | MLAG peer link port-channel ID | [optional] 
-**MlagPartnerVlanId** | Pointer to **float32** | MLAG partner VLAN ID | [optional] 
+**MlagDomainId** | Pointer to **int32** | MLAG domain ID | [optional] 
+**MlagPeerLinkPortChannelId** | Pointer to **int32** | MLAG peer link port-channel ID | [optional] 
+**MlagPartnerVlanId** | Pointer to **int32** | MLAG partner VLAN ID | [optional] 
 **MlagPartnerHostname** | Pointer to **string** | Hostname of MLAG partner device | [optional] 
 **LoopbackAddressIpv4** | Pointer to **string** | Loopback IPv4 address | [optional] 
 **LoopbackAddressIpv6** | Pointer to **string** | Loopback IPv6 address | [optional] 
 **VtepAddressIpv4** | Pointer to **string** | VTEP IPv4 address | [optional] 
 **VtepAddressIpv6** | Pointer to **string** | VTEP IPv6 address | [optional] 
-**SkipInitialConfiguration** | Pointer to **float32** | Skip initial configuration flag (0 or 1) | [optional] 
-**OsTemplateId** | Pointer to **float32** | Volume template ID | [optional] 
+**SkipInitialConfiguration** | Pointer to **bool** | Skip initial configuration flag | [optional] 
+**OsTemplateId** | Pointer to **int32** | Volume template ID | [optional] 
 **CustomVariables** | Pointer to **map[string]interface{}** | Custom variables for device configuration | [optional] 
-**OrderIndex** | Pointer to **float32** | Order index for display or processing | [optional] 
+**OrderIndex** | Pointer to **int32** | Order index for display or processing | [optional] 
 
 ## Methods
 
 ### NewNetworkDeviceDefaults
 
-`func NewNetworkDeviceDefaults(id float32, datacenterName string, ) *NetworkDeviceDefaults`
+`func NewNetworkDeviceDefaults(id int32, datacenterName string, ) *NetworkDeviceDefaults`
 
 NewNetworkDeviceDefaults instantiates a new NetworkDeviceDefaults object
 This constructor will assign default values to properties that have it defined,
@@ -47,20 +47,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *NetworkDeviceDefaults) GetId() float32`
+`func (o *NetworkDeviceDefaults) GetId() int32`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *NetworkDeviceDefaults) GetIdOk() (*float32, bool)`
+`func (o *NetworkDeviceDefaults) GetIdOk() (*int32, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *NetworkDeviceDefaults) SetId(v float32)`
+`func (o *NetworkDeviceDefaults) SetId(v int32)`
 
 SetId sets Id field to given value.
 
@@ -187,20 +187,20 @@ HasIdentifierString returns a boolean if a field has been set.
 
 ### GetAsn
 
-`func (o *NetworkDeviceDefaults) GetAsn() float32`
+`func (o *NetworkDeviceDefaults) GetAsn() int32`
 
 GetAsn returns the Asn field if non-nil, zero value otherwise.
 
 ### GetAsnOk
 
-`func (o *NetworkDeviceDefaults) GetAsnOk() (*float32, bool)`
+`func (o *NetworkDeviceDefaults) GetAsnOk() (*int32, bool)`
 
 GetAsnOk returns a tuple with the Asn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAsn
 
-`func (o *NetworkDeviceDefaults) SetAsn(v float32)`
+`func (o *NetworkDeviceDefaults) SetAsn(v int32)`
 
 SetAsn sets Asn field to given value.
 
@@ -212,20 +212,20 @@ HasAsn returns a boolean if a field has been set.
 
 ### GetIsPartOfMlagPair
 
-`func (o *NetworkDeviceDefaults) GetIsPartOfMlagPair() float32`
+`func (o *NetworkDeviceDefaults) GetIsPartOfMlagPair() bool`
 
 GetIsPartOfMlagPair returns the IsPartOfMlagPair field if non-nil, zero value otherwise.
 
 ### GetIsPartOfMlagPairOk
 
-`func (o *NetworkDeviceDefaults) GetIsPartOfMlagPairOk() (*float32, bool)`
+`func (o *NetworkDeviceDefaults) GetIsPartOfMlagPairOk() (*bool, bool)`
 
 GetIsPartOfMlagPairOk returns a tuple with the IsPartOfMlagPair field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIsPartOfMlagPair
 
-`func (o *NetworkDeviceDefaults) SetIsPartOfMlagPair(v float32)`
+`func (o *NetworkDeviceDefaults) SetIsPartOfMlagPair(v bool)`
 
 SetIsPartOfMlagPair sets IsPartOfMlagPair field to given value.
 
@@ -262,20 +262,20 @@ HasMlagSystemMac returns a boolean if a field has been set.
 
 ### GetMlagDomainId
 
-`func (o *NetworkDeviceDefaults) GetMlagDomainId() float32`
+`func (o *NetworkDeviceDefaults) GetMlagDomainId() int32`
 
 GetMlagDomainId returns the MlagDomainId field if non-nil, zero value otherwise.
 
 ### GetMlagDomainIdOk
 
-`func (o *NetworkDeviceDefaults) GetMlagDomainIdOk() (*float32, bool)`
+`func (o *NetworkDeviceDefaults) GetMlagDomainIdOk() (*int32, bool)`
 
 GetMlagDomainIdOk returns a tuple with the MlagDomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMlagDomainId
 
-`func (o *NetworkDeviceDefaults) SetMlagDomainId(v float32)`
+`func (o *NetworkDeviceDefaults) SetMlagDomainId(v int32)`
 
 SetMlagDomainId sets MlagDomainId field to given value.
 
@@ -287,20 +287,20 @@ HasMlagDomainId returns a boolean if a field has been set.
 
 ### GetMlagPeerLinkPortChannelId
 
-`func (o *NetworkDeviceDefaults) GetMlagPeerLinkPortChannelId() float32`
+`func (o *NetworkDeviceDefaults) GetMlagPeerLinkPortChannelId() int32`
 
 GetMlagPeerLinkPortChannelId returns the MlagPeerLinkPortChannelId field if non-nil, zero value otherwise.
 
 ### GetMlagPeerLinkPortChannelIdOk
 
-`func (o *NetworkDeviceDefaults) GetMlagPeerLinkPortChannelIdOk() (*float32, bool)`
+`func (o *NetworkDeviceDefaults) GetMlagPeerLinkPortChannelIdOk() (*int32, bool)`
 
 GetMlagPeerLinkPortChannelIdOk returns a tuple with the MlagPeerLinkPortChannelId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMlagPeerLinkPortChannelId
 
-`func (o *NetworkDeviceDefaults) SetMlagPeerLinkPortChannelId(v float32)`
+`func (o *NetworkDeviceDefaults) SetMlagPeerLinkPortChannelId(v int32)`
 
 SetMlagPeerLinkPortChannelId sets MlagPeerLinkPortChannelId field to given value.
 
@@ -312,20 +312,20 @@ HasMlagPeerLinkPortChannelId returns a boolean if a field has been set.
 
 ### GetMlagPartnerVlanId
 
-`func (o *NetworkDeviceDefaults) GetMlagPartnerVlanId() float32`
+`func (o *NetworkDeviceDefaults) GetMlagPartnerVlanId() int32`
 
 GetMlagPartnerVlanId returns the MlagPartnerVlanId field if non-nil, zero value otherwise.
 
 ### GetMlagPartnerVlanIdOk
 
-`func (o *NetworkDeviceDefaults) GetMlagPartnerVlanIdOk() (*float32, bool)`
+`func (o *NetworkDeviceDefaults) GetMlagPartnerVlanIdOk() (*int32, bool)`
 
 GetMlagPartnerVlanIdOk returns a tuple with the MlagPartnerVlanId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMlagPartnerVlanId
 
-`func (o *NetworkDeviceDefaults) SetMlagPartnerVlanId(v float32)`
+`func (o *NetworkDeviceDefaults) SetMlagPartnerVlanId(v int32)`
 
 SetMlagPartnerVlanId sets MlagPartnerVlanId field to given value.
 
@@ -462,20 +462,20 @@ HasVtepAddressIpv6 returns a boolean if a field has been set.
 
 ### GetSkipInitialConfiguration
 
-`func (o *NetworkDeviceDefaults) GetSkipInitialConfiguration() float32`
+`func (o *NetworkDeviceDefaults) GetSkipInitialConfiguration() bool`
 
 GetSkipInitialConfiguration returns the SkipInitialConfiguration field if non-nil, zero value otherwise.
 
 ### GetSkipInitialConfigurationOk
 
-`func (o *NetworkDeviceDefaults) GetSkipInitialConfigurationOk() (*float32, bool)`
+`func (o *NetworkDeviceDefaults) GetSkipInitialConfigurationOk() (*bool, bool)`
 
 GetSkipInitialConfigurationOk returns a tuple with the SkipInitialConfiguration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSkipInitialConfiguration
 
-`func (o *NetworkDeviceDefaults) SetSkipInitialConfiguration(v float32)`
+`func (o *NetworkDeviceDefaults) SetSkipInitialConfiguration(v bool)`
 
 SetSkipInitialConfiguration sets SkipInitialConfiguration field to given value.
 
@@ -487,20 +487,20 @@ HasSkipInitialConfiguration returns a boolean if a field has been set.
 
 ### GetOsTemplateId
 
-`func (o *NetworkDeviceDefaults) GetOsTemplateId() float32`
+`func (o *NetworkDeviceDefaults) GetOsTemplateId() int32`
 
 GetOsTemplateId returns the OsTemplateId field if non-nil, zero value otherwise.
 
 ### GetOsTemplateIdOk
 
-`func (o *NetworkDeviceDefaults) GetOsTemplateIdOk() (*float32, bool)`
+`func (o *NetworkDeviceDefaults) GetOsTemplateIdOk() (*int32, bool)`
 
 GetOsTemplateIdOk returns a tuple with the OsTemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOsTemplateId
 
-`func (o *NetworkDeviceDefaults) SetOsTemplateId(v float32)`
+`func (o *NetworkDeviceDefaults) SetOsTemplateId(v int32)`
 
 SetOsTemplateId sets OsTemplateId field to given value.
 
@@ -537,20 +537,20 @@ HasCustomVariables returns a boolean if a field has been set.
 
 ### GetOrderIndex
 
-`func (o *NetworkDeviceDefaults) GetOrderIndex() float32`
+`func (o *NetworkDeviceDefaults) GetOrderIndex() int32`
 
 GetOrderIndex returns the OrderIndex field if non-nil, zero value otherwise.
 
 ### GetOrderIndexOk
 
-`func (o *NetworkDeviceDefaults) GetOrderIndexOk() (*float32, bool)`
+`func (o *NetworkDeviceDefaults) GetOrderIndexOk() (*int32, bool)`
 
 GetOrderIndexOk returns a tuple with the OrderIndex field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrderIndex
 
-`func (o *NetworkDeviceDefaults) SetOrderIndex(v float32)`
+`func (o *NetworkDeviceDefaults) SetOrderIndex(v int32)`
 
 SetOrderIndex sets OrderIndex field to given value.
 

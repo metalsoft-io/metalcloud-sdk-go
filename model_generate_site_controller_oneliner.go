@@ -63,6 +63,10 @@ type GenerateSiteControllerOneliner struct {
 	DhcpOob bool `json:"dhcpOob"`
 	// Enable Ansible runner capability
 	AnsibleRunner bool `json:"ansibleRunner"`
+	// Enable HTTP request capability
+	HttpRequest bool `json:"httpRequest"`
+	// Enable SSH command capability
+	SshCommand bool `json:"sshCommand"`
 	// Second IP address
 	SecondIp *string `json:"secondIp,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -74,7 +78,7 @@ type _GenerateSiteControllerOneliner GenerateSiteControllerOneliner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool) *GenerateSiteControllerOneliner {
+func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEnv bool, registry string, gitHubTag string, localScript bool, sslHostname string, imagesTag string, msTunnelSecret string, oobHttpProxy bool, inbandHttpProxy bool, fileTransfer bool, inbandFileTransfer bool, switchSubscription bool, commandExecution bool, netconf bool, vnc bool, spice bool, syslog bool, dhcpOob bool, ansibleRunner bool, httpRequest bool, sshCommand bool) *GenerateSiteControllerOneliner {
 	this := GenerateSiteControllerOneliner{}
 	this.UsePodman = usePodman
 	this.InbandMode = inbandMode
@@ -97,6 +101,8 @@ func NewGenerateSiteControllerOneliner(usePodman bool, inbandMode bool, dockerEn
 	this.Syslog = syslog
 	this.DhcpOob = dhcpOob
 	this.AnsibleRunner = ansibleRunner
+	this.HttpRequest = httpRequest
+	this.SshCommand = sshCommand
 	return &this
 }
 
@@ -141,6 +147,8 @@ func NewGenerateSiteControllerOnelinerWithDefaults() *GenerateSiteControllerOnel
 	this.DhcpOob = dhcpOob
 	var ansibleRunner bool = false
 	this.AnsibleRunner = ansibleRunner
+	var httpRequest bool = false
+	this.HttpRequest = httpRequest
 	return &this
 }
 
@@ -648,6 +656,54 @@ func (o *GenerateSiteControllerOneliner) SetAnsibleRunner(v bool) {
 	o.AnsibleRunner = v
 }
 
+// GetHttpRequest returns the HttpRequest field value
+func (o *GenerateSiteControllerOneliner) GetHttpRequest() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.HttpRequest
+}
+
+// GetHttpRequestOk returns a tuple with the HttpRequest field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetHttpRequestOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HttpRequest, true
+}
+
+// SetHttpRequest sets field value
+func (o *GenerateSiteControllerOneliner) SetHttpRequest(v bool) {
+	o.HttpRequest = v
+}
+
+// GetSshCommand returns the SshCommand field value
+func (o *GenerateSiteControllerOneliner) GetSshCommand() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SshCommand
+}
+
+// GetSshCommandOk returns a tuple with the SshCommand field value
+// and a boolean to check if the value has been set.
+func (o *GenerateSiteControllerOneliner) GetSshCommandOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SshCommand, true
+}
+
+// SetSshCommand sets field value
+func (o *GenerateSiteControllerOneliner) SetSshCommand(v bool) {
+	o.SshCommand = v
+}
+
 // GetSecondIp returns the SecondIp field value if set, zero value otherwise.
 func (o *GenerateSiteControllerOneliner) GetSecondIp() string {
 	if o == nil || IsNil(o.SecondIp) {
@@ -711,6 +767,8 @@ func (o GenerateSiteControllerOneliner) ToMap() (map[string]interface{}, error) 
 	toSerialize["syslog"] = o.Syslog
 	toSerialize["dhcpOob"] = o.DhcpOob
 	toSerialize["ansibleRunner"] = o.AnsibleRunner
+	toSerialize["httpRequest"] = o.HttpRequest
+	toSerialize["sshCommand"] = o.SshCommand
 	if !IsNil(o.SecondIp) {
 		toSerialize["secondIp"] = o.SecondIp
 	}
@@ -748,6 +806,8 @@ func (o *GenerateSiteControllerOneliner) UnmarshalJSON(data []byte) (err error) 
 		"syslog",
 		"dhcpOob",
 		"ansibleRunner",
+		"httpRequest",
+		"sshCommand",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -798,6 +858,8 @@ func (o *GenerateSiteControllerOneliner) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "syslog")
 		delete(additionalProperties, "dhcpOob")
 		delete(additionalProperties, "ansibleRunner")
+		delete(additionalProperties, "httpRequest")
+		delete(additionalProperties, "sshCommand")
 		delete(additionalProperties, "secondIp")
 		o.AdditionalProperties = additionalProperties
 	}

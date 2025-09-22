@@ -38,6 +38,8 @@ type Endpoint struct {
 	CreatedTimestamp time.Time `json:"createdTimestamp"`
 	// Entity last update timestamp
 	UpdatedTimestamp time.Time `json:"updatedTimestamp"`
+	// The endpoint instance.
+	AllocationInfo *EndpointAllocationInfo `json:"allocationInfo,omitempty"`
 	// Reference links
 	Links []Link `json:"links,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -269,6 +271,38 @@ func (o *Endpoint) SetUpdatedTimestamp(v time.Time) {
 	o.UpdatedTimestamp = v
 }
 
+// GetAllocationInfo returns the AllocationInfo field value if set, zero value otherwise.
+func (o *Endpoint) GetAllocationInfo() EndpointAllocationInfo {
+	if o == nil || IsNil(o.AllocationInfo) {
+		var ret EndpointAllocationInfo
+		return ret
+	}
+	return *o.AllocationInfo
+}
+
+// GetAllocationInfoOk returns a tuple with the AllocationInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Endpoint) GetAllocationInfoOk() (*EndpointAllocationInfo, bool) {
+	if o == nil || IsNil(o.AllocationInfo) {
+		return nil, false
+	}
+	return o.AllocationInfo, true
+}
+
+// HasAllocationInfo returns a boolean if a field has been set.
+func (o *Endpoint) HasAllocationInfo() bool {
+	if o != nil && !IsNil(o.AllocationInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllocationInfo gets a reference to the given EndpointAllocationInfo and assigns it to the AllocationInfo field.
+func (o *Endpoint) SetAllocationInfo(v EndpointAllocationInfo) {
+	o.AllocationInfo = &v
+}
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *Endpoint) GetLinks() []Link {
 	if o == nil || IsNil(o.Links) {
@@ -321,6 +355,9 @@ func (o Endpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize["label"] = o.Label
 	toSerialize["createdTimestamp"] = o.CreatedTimestamp
 	toSerialize["updatedTimestamp"] = o.UpdatedTimestamp
+	if !IsNil(o.AllocationInfo) {
+		toSerialize["allocationInfo"] = o.AllocationInfo
+	}
 	if !IsNil(o.Links) {
 		toSerialize["links"] = o.Links
 	}
@@ -381,6 +418,7 @@ func (o *Endpoint) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "createdTimestamp")
 		delete(additionalProperties, "updatedTimestamp")
+		delete(additionalProperties, "allocationInfo")
 		delete(additionalProperties, "links")
 		o.AdditionalProperties = additionalProperties
 	}

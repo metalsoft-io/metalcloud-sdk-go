@@ -28,6 +28,7 @@ type SubnetResourceItem struct {
 	MeasurementPeriod float32 `json:"measurementPeriod"`
 	MeasurementUnit string `json:"measurementUnit"`
 	Quantity float32 `json:"quantity"`
+	Tags *string `json:"tags,omitempty"`
 	SubnetIpCount string `json:"subnetIpCount"`
 	SubnetPrefixSize float32 `json:"subnetPrefixSize"`
 	SubnetType string `json:"subnetType"`
@@ -231,6 +232,38 @@ func (o *SubnetResourceItem) SetQuantity(v float32) {
 	o.Quantity = v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *SubnetResourceItem) GetTags() string {
+	if o == nil || IsNil(o.Tags) {
+		var ret string
+		return ret
+	}
+	return *o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubnetResourceItem) GetTagsOk() (*string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *SubnetResourceItem) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given string and assigns it to the Tags field.
+func (o *SubnetResourceItem) SetTags(v string) {
+	o.Tags = &v
+}
+
 // GetSubnetIpCount returns the SubnetIpCount field value
 func (o *SubnetResourceItem) GetSubnetIpCount() string {
 	if o == nil {
@@ -320,6 +353,9 @@ func (o SubnetResourceItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["measurementPeriod"] = o.MeasurementPeriod
 	toSerialize["measurementUnit"] = o.MeasurementUnit
 	toSerialize["quantity"] = o.Quantity
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
 	toSerialize["subnetIpCount"] = o.SubnetIpCount
 	toSerialize["subnetPrefixSize"] = o.SubnetPrefixSize
 	toSerialize["subnetType"] = o.SubnetType
@@ -382,6 +418,7 @@ func (o *SubnetResourceItem) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "measurementPeriod")
 		delete(additionalProperties, "measurementUnit")
 		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "tags")
 		delete(additionalProperties, "subnetIpCount")
 		delete(additionalProperties, "subnetPrefixSize")
 		delete(additionalProperties, "subnetType")

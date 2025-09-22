@@ -29,11 +29,9 @@ const (
 	ASSETEXTENSIONACTIONSTAGE_SWITCH_DECOMMISSIONED AssetExtensionActionStage = "switchDecommissioned"
 	ASSETEXTENSIONACTIONSTAGE_SWITCH_CREATE_DNS AssetExtensionActionStage = "switchCreateDNS"
 	ASSETEXTENSIONACTIONSTAGE_SWITCH_DELETE_DNS AssetExtensionActionStage = "switchDeleteDNS"
-	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_GROUP_CREATE_DNS AssetExtensionActionStage = "serverInstanceGroupCreateDNS"
 	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_GROUP_UPDATE_DNS AssetExtensionActionStage = "serverInstanceGroupUpdateDNS"
-	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_GROUP_DELETE_DNS AssetExtensionActionStage = "serverInstanceGroupDeleteDNS"
 	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_UPDATE_DNS AssetExtensionActionStage = "serverInstanceUpdateDNS"
-	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_DELETE_DNS AssetExtensionActionStage = "serverInstanceDeleteDNS"
+	ASSETEXTENSIONACTIONSTAGE_CLUSTER_UPDATE_DNS AssetExtensionActionStage = "clusterUpdateDNS"
 )
 
 // All allowed values of AssetExtensionActionStage enum
@@ -46,11 +44,9 @@ var AllowedAssetExtensionActionStageEnumValues = []AssetExtensionActionStage{
 	"switchDecommissioned",
 	"switchCreateDNS",
 	"switchDeleteDNS",
-	"serverInstanceGroupCreateDNS",
 	"serverInstanceGroupUpdateDNS",
-	"serverInstanceGroupDeleteDNS",
 	"serverInstanceUpdateDNS",
-	"serverInstanceDeleteDNS",
+	"clusterUpdateDNS",
 }
 
 func (v *AssetExtensionActionStage) UnmarshalJSON(src []byte) error {

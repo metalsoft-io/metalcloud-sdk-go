@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **AccessMode** | [**NetworkEndpointGroupAllowedAccessMode**](NetworkEndpointGroupAllowedAccessMode.md) | The access mode of the network endpoint group | 
 **Mtu** | Pointer to **int32** | The MTU of the logical network | [optional] 
 **ProvidesDefaultRoute** | Pointer to **bool** | Whether the logical network provides a default route | [optional] [default to false]
+**DisableAutoIpAllocation** | Pointer to **bool** | Disable automatic IP allocation for IPv4 addresses on this network connection | [optional] [default to false]
 **Redundancy** | Pointer to [**NullableRedundancyConfig**](RedundancyConfig.md) | The redundancy configuration | [optional] 
 **Dns** | Pointer to [**NullableDnsRecordsEndpointGroupLogicalNetwork**](DnsRecordsEndpointGroupLogicalNetwork.md) | DNS records that are supposed to be provisioned for the server instance group. | [optional] 
 
@@ -119,6 +120,31 @@ SetProvidesDefaultRoute sets ProvidesDefaultRoute field to given value.
 `func (o *ExtensionInstanceArrayLogicalNetworkConnection) HasProvidesDefaultRoute() bool`
 
 HasProvidesDefaultRoute returns a boolean if a field has been set.
+
+### GetDisableAutoIpAllocation
+
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetDisableAutoIpAllocation() bool`
+
+GetDisableAutoIpAllocation returns the DisableAutoIpAllocation field if non-nil, zero value otherwise.
+
+### GetDisableAutoIpAllocationOk
+
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) GetDisableAutoIpAllocationOk() (*bool, bool)`
+
+GetDisableAutoIpAllocationOk returns a tuple with the DisableAutoIpAllocation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableAutoIpAllocation
+
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) SetDisableAutoIpAllocation(v bool)`
+
+SetDisableAutoIpAllocation sets DisableAutoIpAllocation field to given value.
+
+### HasDisableAutoIpAllocation
+
+`func (o *ExtensionInstanceArrayLogicalNetworkConnection) HasDisableAutoIpAllocation() bool`
+
+HasDisableAutoIpAllocation returns a boolean if a field has been set.
 
 ### GetRedundancy
 

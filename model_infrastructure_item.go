@@ -27,6 +27,7 @@ type InfrastructureItem struct {
 	InfrastructureLabel string `json:"infrastructureLabel"`
 	// Infrastructure service status
 	InfrastructureServiceStatus string `json:"infrastructureServiceStatus"`
+	Tags *string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -124,6 +125,38 @@ func (o *InfrastructureItem) SetInfrastructureServiceStatus(v string) {
 	o.InfrastructureServiceStatus = v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *InfrastructureItem) GetTags() string {
+	if o == nil || IsNil(o.Tags) {
+		var ret string
+		return ret
+	}
+	return *o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InfrastructureItem) GetTagsOk() (*string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *InfrastructureItem) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given string and assigns it to the Tags field.
+func (o *InfrastructureItem) SetTags(v string) {
+	o.Tags = &v
+}
+
 func (o InfrastructureItem) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -137,6 +170,9 @@ func (o InfrastructureItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["infrastructureId"] = o.InfrastructureId
 	toSerialize["infrastructureLabel"] = o.InfrastructureLabel
 	toSerialize["infrastructureServiceStatus"] = o.InfrastructureServiceStatus
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -185,6 +221,7 @@ func (o *InfrastructureItem) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "infrastructureLabel")
 		delete(additionalProperties, "infrastructureServiceStatus")
+		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 

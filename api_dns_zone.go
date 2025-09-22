@@ -882,7 +882,7 @@ func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) FilterTags(filterTags []stri
 	return r
 }
 
-// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; name:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;zoneName&lt;/li&gt; &lt;li&gt;type&lt;/li&gt; &lt;li&gt;ttl&lt;/li&gt;&lt;/ul&gt;       
+// Parameter to sort by.       &lt;p&gt;To sort by multiple fields, just provide query param multiple types. The order in url defines an order of sorting&lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Format: &lt;/b&gt; fieldName:DIRECTION           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; sortBy&#x3D;id:DESC&amp;sortBy&#x3D;createdAt:ASC           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; name:DESC           &lt;/p&gt;       &lt;h4&gt;Available Fields&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;id&lt;/li&gt; &lt;li&gt;status&lt;/li&gt; &lt;li&gt;siteId&lt;/li&gt; &lt;li&gt;infrastructureId&lt;/li&gt; &lt;li&gt;name&lt;/li&gt; &lt;li&gt;zoneName&lt;/li&gt; &lt;li&gt;type&lt;/li&gt; &lt;li&gt;ttl&lt;/li&gt;&lt;/ul&gt;       
 func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) SortBy(sortBy []string) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	r.sortBy = &sortBy
 	return r
@@ -900,7 +900,7 @@ func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) SearchBy(searchBy []string) 
 	return r
 }
 
-// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,siteId,infrastructureId,name,zoneId           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
+// List of fields to select.       &lt;p&gt;              &lt;b&gt;Example: &lt;/b&gt; id,status,siteId,infrastructureId,name           &lt;/p&gt;       &lt;p&gt;              &lt;b&gt;Default Value: &lt;/b&gt; By default all fields returns. If you want to select only some fields, provide them in query param           &lt;/p&gt;       
 func (r DNSZoneAPIListDNSRecordSetsByZoneIdRequest) Select_(select_ string) DNSZoneAPIListDNSRecordSetsByZoneIdRequest {
 	r.select_ = &select_
 	return r

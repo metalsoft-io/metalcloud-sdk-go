@@ -212,6 +212,7 @@ docs/CustomVariable.md
 docs/CustomVariableValue.md
 docs/DNSRecordSetAPI.md
 docs/DNSRecordSetPaginatedList.md
+docs/DNSRecordType.md
 docs/DNSZoneAPI.md
 docs/DNSZonePaginatedList.md
 docs/DellComponentFilter.md
@@ -239,6 +240,7 @@ docs/EmailTemplateList.md
 docs/EmailTemplateUpdate.md
 docs/Endpoint.md
 docs/EndpointAPI.md
+docs/EndpointAllocationInfo.md
 docs/EndpointInstance.md
 docs/EndpointInstanceAPI.md
 docs/EndpointInstanceConfiguration.md
@@ -266,9 +268,12 @@ docs/ExtensionAsset.md
 docs/ExtensionDefinition.md
 docs/ExtensionDefinitionInputsDataItem.md
 docs/ExtensionDependency.md
+docs/ExtensionDnsRecord.md
 docs/ExtensionExecutionInfo.md
 docs/ExtensionInfo.md
 docs/ExtensionInfrastructure.md
+docs/ExtensionInfrastructureIpAllocation.md
+docs/ExtensionInfrastructureIpRangesDto.md
 docs/ExtensionInfrastructureLogicalNetwork.md
 docs/ExtensionInputBoolean.md
 docs/ExtensionInputInteger.md
@@ -292,6 +297,7 @@ docs/ExtensionInstancePaginatedList.md
 docs/ExtensionOutput.md
 docs/ExtensionPaginatedList.md
 docs/ExtensionSharedDrive.md
+docs/ExtensionStatus.md
 docs/ExtensionTaskAnsible.md
 docs/ExtensionTaskOptionAnsible.md
 docs/ExtensionTaskOptionSsh.md
@@ -667,6 +673,7 @@ docs/StorageCredentials.md
 docs/StorageNetworkDeviceConfiguration.md
 docs/StorageOptions.md
 docs/StoragePaginatedList.md
+docs/StoragePortDto.md
 docs/StorageStatistics.md
 docs/StoragesStatistics.md
 docs/Subnet.md
@@ -777,6 +784,7 @@ docs/VMInstanceGroupNetworkConnectionsList.md
 docs/VMInstanceGroupPaginatedList.md
 docs/VMInstanceMeta.md
 docs/VMInstancePaginatedList.md
+docs/VMInstanceRecordSet.md
 docs/VMPaginatedList.md
 docs/VMPool.md
 docs/VMPoolAPI.md
@@ -787,6 +795,7 @@ docs/VMPoolHostsPaginatedList.md
 docs/VMPoolImportVMs.md
 docs/VMPoolOptions.md
 docs/VMPoolPaginatedList.md
+docs/VMPoolRecordSet.md
 docs/VMPoolStatistics.md
 docs/VMType.md
 docs/VMTypeAPI.md
@@ -979,6 +988,7 @@ model_dell_component_filter.go
 model_detailed_report_entry.go
 model_dns_record_set.go
 model_dns_record_set_paginated_list.go
+model_dns_record_type.go
 model_dns_records_endpoint_group_logical_network.go
 model_dns_zone_dto.go
 model_dns_zone_paginated_list.go
@@ -999,6 +1009,7 @@ model_email_template_create.go
 model_email_template_list.go
 model_email_template_update.go
 model_endpoint.go
+model_endpoint_allocation_info.go
 model_endpoint_instance.go
 model_endpoint_instance_configuration.go
 model_endpoint_instance_create.go
@@ -1022,9 +1033,12 @@ model_extension_asset.go
 model_extension_definition.go
 model_extension_definition_inputs_data_item.go
 model_extension_dependency.go
+model_extension_dns_record.go
 model_extension_execution_info.go
 model_extension_info.go
 model_extension_infrastructure.go
+model_extension_infrastructure_ip_allocation.go
+model_extension_infrastructure_ip_ranges_dto.go
 model_extension_infrastructure_logical_network.go
 model_extension_input_boolean.go
 model_extension_input_integer.go
@@ -1047,6 +1061,7 @@ model_extension_instance_paginated_list.go
 model_extension_output.go
 model_extension_paginated_list.go
 model_extension_shared_drive.go
+model_extension_status.go
 model_extension_task_ansible.go
 model_extension_task_option_ansible.go
 model_extension_task_option_ssh.go
@@ -1394,6 +1409,7 @@ model_storage_credentials.go
 model_storage_network_device_configuration.go
 model_storage_options.go
 model_storage_paginated_list.go
+model_storage_port_dto.go
 model_storage_statistics.go
 model_storages_statistics.go
 model_subnet.go
@@ -1516,6 +1532,7 @@ model_vm_instance_group_network_connections_list.go
 model_vm_instance_group_paginated_list.go
 model_vm_instance_meta.go
 model_vm_instance_paginated_list.go
+model_vm_instance_record_set.go
 model_vm_paginated_list.go
 model_vm_pool.go
 model_vm_pool_credentials.go
@@ -1525,6 +1542,7 @@ model_vm_pool_hosts_paginated_list.go
 model_vm_pool_import_vms.go
 model_vm_pool_options.go
 model_vm_pool_paginated_list.go
+model_vm_pool_record_set.go
 model_vm_pool_statistics.go
 model_vm_type.go
 model_vm_type_paginated_list.go

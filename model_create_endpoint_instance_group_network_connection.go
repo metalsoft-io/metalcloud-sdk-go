@@ -31,6 +31,8 @@ type CreateEndpointInstanceGroupNetworkConnection struct {
 	Mtu *int32 `json:"mtu,omitempty"`
 	// Whether the logical network provides a default route
 	ProvidesDefaultRoute *bool `json:"providesDefaultRoute,omitempty"`
+	// Disable automatic IP allocation for IPv4 addresses on this network connection
+	DisableAutoIpAllocation *bool `json:"disableAutoIpAllocation,omitempty"`
 	// The redundancy configuration
 	Redundancy NullableRedundancyConfig `json:"redundancy,omitempty"`
 	// DNS records that are supposed to be provisioned for the server instance group.
@@ -51,6 +53,8 @@ func NewCreateEndpointInstanceGroupNetworkConnection(logicalNetworkId string, ta
 	this.AccessMode = accessMode
 	var providesDefaultRoute bool = false
 	this.ProvidesDefaultRoute = &providesDefaultRoute
+	var disableAutoIpAllocation bool = false
+	this.DisableAutoIpAllocation = &disableAutoIpAllocation
 	return &this
 }
 
@@ -61,6 +65,8 @@ func NewCreateEndpointInstanceGroupNetworkConnectionWithDefaults() *CreateEndpoi
 	this := CreateEndpointInstanceGroupNetworkConnection{}
 	var providesDefaultRoute bool = false
 	this.ProvidesDefaultRoute = &providesDefaultRoute
+	var disableAutoIpAllocation bool = false
+	this.DisableAutoIpAllocation = &disableAutoIpAllocation
 	return &this
 }
 
@@ -200,6 +206,38 @@ func (o *CreateEndpointInstanceGroupNetworkConnection) SetProvidesDefaultRoute(v
 	o.ProvidesDefaultRoute = &v
 }
 
+// GetDisableAutoIpAllocation returns the DisableAutoIpAllocation field value if set, zero value otherwise.
+func (o *CreateEndpointInstanceGroupNetworkConnection) GetDisableAutoIpAllocation() bool {
+	if o == nil || IsNil(o.DisableAutoIpAllocation) {
+		var ret bool
+		return ret
+	}
+	return *o.DisableAutoIpAllocation
+}
+
+// GetDisableAutoIpAllocationOk returns a tuple with the DisableAutoIpAllocation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateEndpointInstanceGroupNetworkConnection) GetDisableAutoIpAllocationOk() (*bool, bool) {
+	if o == nil || IsNil(o.DisableAutoIpAllocation) {
+		return nil, false
+	}
+	return o.DisableAutoIpAllocation, true
+}
+
+// HasDisableAutoIpAllocation returns a boolean if a field has been set.
+func (o *CreateEndpointInstanceGroupNetworkConnection) HasDisableAutoIpAllocation() bool {
+	if o != nil && !IsNil(o.DisableAutoIpAllocation) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisableAutoIpAllocation gets a reference to the given bool and assigns it to the DisableAutoIpAllocation field.
+func (o *CreateEndpointInstanceGroupNetworkConnection) SetDisableAutoIpAllocation(v bool) {
+	o.DisableAutoIpAllocation = &v
+}
+
 // GetRedundancy returns the Redundancy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateEndpointInstanceGroupNetworkConnection) GetRedundancy() RedundancyConfig {
 	if o == nil || IsNil(o.Redundancy.Get()) {
@@ -303,6 +341,9 @@ func (o CreateEndpointInstanceGroupNetworkConnection) ToMap() (map[string]interf
 	if !IsNil(o.ProvidesDefaultRoute) {
 		toSerialize["providesDefaultRoute"] = o.ProvidesDefaultRoute
 	}
+	if !IsNil(o.DisableAutoIpAllocation) {
+		toSerialize["disableAutoIpAllocation"] = o.DisableAutoIpAllocation
+	}
 	if o.Redundancy.IsSet() {
 		toSerialize["redundancy"] = o.Redundancy.Get()
 	}
@@ -359,6 +400,7 @@ func (o *CreateEndpointInstanceGroupNetworkConnection) UnmarshalJSON(data []byte
 		delete(additionalProperties, "accessMode")
 		delete(additionalProperties, "mtu")
 		delete(additionalProperties, "providesDefaultRoute")
+		delete(additionalProperties, "disableAutoIpAllocation")
 		delete(additionalProperties, "redundancy")
 		delete(additionalProperties, "dns")
 		o.AdditionalProperties = additionalProperties

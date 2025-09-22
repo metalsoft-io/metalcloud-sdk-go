@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Name** | **string** | The extension name | 
 **Label** | Pointer to **string** | The extension unique label | [optional] 
 **Description** | **string** | The extension description | 
-**Status** | **string** | Extension status | 
+**Status** | [**ExtensionStatus**](ExtensionStatus.md) | Extension status | 
 **Kind** | **string** | Extension kind | 
 **IsPublic** | Pointer to **bool** | Is the extension public | [optional] [default to false]
 **Definition** | [**ExtensionDefinition**](ExtensionDefinition.md) |  | 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewExtension
 
-`func NewExtension(id float32, revision float32, name string, description string, status string, kind string, definition ExtensionDefinition, ) *Extension`
+`func NewExtension(id float32, revision float32, name string, description string, status ExtensionStatus, kind string, definition ExtensionDefinition, ) *Extension`
 
 NewExtension instantiates a new Extension object
 This constructor will assign default values to properties that have it defined,
@@ -167,20 +167,20 @@ SetDescription sets Description field to given value.
 
 ### GetStatus
 
-`func (o *Extension) GetStatus() string`
+`func (o *Extension) GetStatus() ExtensionStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *Extension) GetStatusOk() (*string, bool)`
+`func (o *Extension) GetStatusOk() (*ExtensionStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *Extension) SetStatus(v string)`
+`func (o *Extension) SetStatus(v ExtensionStatus)`
 
 SetStatus sets Status field to given value.
 

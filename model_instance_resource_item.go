@@ -28,6 +28,7 @@ type InstanceResourceItem struct {
 	MeasurementPeriod float32 `json:"measurementPeriod"`
 	MeasurementUnit string `json:"measurementUnit"`
 	Quantity float32 `json:"quantity"`
+	Tags *string `json:"tags,omitempty"`
 	ServerTypeId float32 `json:"serverTypeId"`
 	ServerId float32 `json:"serverId"`
 	ServerTypeName string `json:"serverTypeName"`
@@ -241,6 +242,38 @@ func (o *InstanceResourceItem) SetQuantity(v float32) {
 	o.Quantity = v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *InstanceResourceItem) GetTags() string {
+	if o == nil || IsNil(o.Tags) {
+		var ret string
+		return ret
+	}
+	return *o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceResourceItem) GetTagsOk() (*string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *InstanceResourceItem) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given string and assigns it to the Tags field.
+func (o *InstanceResourceItem) SetTags(v string) {
+	o.Tags = &v
+}
+
 // GetServerTypeId returns the ServerTypeId field value
 func (o *InstanceResourceItem) GetServerTypeId() float32 {
 	if o == nil {
@@ -450,6 +483,9 @@ func (o InstanceResourceItem) ToMap() (map[string]interface{}, error) {
 	toSerialize["measurementPeriod"] = o.MeasurementPeriod
 	toSerialize["measurementUnit"] = o.MeasurementUnit
 	toSerialize["quantity"] = o.Quantity
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
 	toSerialize["serverTypeId"] = o.ServerTypeId
 	toSerialize["serverId"] = o.ServerId
 	toSerialize["serverTypeName"] = o.ServerTypeName
@@ -522,6 +558,7 @@ func (o *InstanceResourceItem) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "measurementPeriod")
 		delete(additionalProperties, "measurementUnit")
 		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "tags")
 		delete(additionalProperties, "serverTypeId")
 		delete(additionalProperties, "serverId")
 		delete(additionalProperties, "serverTypeName")

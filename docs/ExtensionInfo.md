@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The extension name | [optional] 
 **Label** | Pointer to **string** | The extension unique label | [optional] 
 **Description** | Pointer to **string** | The extension description | [optional] 
-**Status** | Pointer to **string** | Extension status | [optional] 
+**Status** | Pointer to [**ExtensionStatus**](ExtensionStatus.md) | Extension status | [optional] 
 **Kind** | Pointer to **string** | Extension kind | [optional] 
 **IsPublic** | Pointer to **bool** | Is the extension public | [optional] [default to false]
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -161,20 +161,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *ExtensionInfo) GetStatus() string`
+`func (o *ExtensionInfo) GetStatus() ExtensionStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *ExtensionInfo) GetStatusOk() (*string, bool)`
+`func (o *ExtensionInfo) GetStatusOk() (*ExtensionStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *ExtensionInfo) SetStatus(v string)`
+`func (o *ExtensionInfo) SetStatus(v ExtensionStatus)`
 
 SetStatus sets Status field to given value.
 

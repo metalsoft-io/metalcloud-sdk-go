@@ -36,6 +36,8 @@ type UpdateStorageOptions struct {
 	S3Port *float32 `json:"s3Port,omitempty"`
 	// Fibre channel enabled
 	FibreChannelEnabled *float32 `json:"fibreChannelEnabled,omitempty"`
+	// Array of storage ports to use
+	PortsToUse []StoragePortDto `json:"portsToUse,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -314,6 +316,38 @@ func (o *UpdateStorageOptions) SetFibreChannelEnabled(v float32) {
 	o.FibreChannelEnabled = &v
 }
 
+// GetPortsToUse returns the PortsToUse field value if set, zero value otherwise.
+func (o *UpdateStorageOptions) GetPortsToUse() []StoragePortDto {
+	if o == nil || IsNil(o.PortsToUse) {
+		var ret []StoragePortDto
+		return ret
+	}
+	return o.PortsToUse
+}
+
+// GetPortsToUseOk returns a tuple with the PortsToUse field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorageOptions) GetPortsToUseOk() ([]StoragePortDto, bool) {
+	if o == nil || IsNil(o.PortsToUse) {
+		return nil, false
+	}
+	return o.PortsToUse, true
+}
+
+// HasPortsToUse returns a boolean if a field has been set.
+func (o *UpdateStorageOptions) HasPortsToUse() bool {
+	if o != nil && !IsNil(o.PortsToUse) {
+		return true
+	}
+
+	return false
+}
+
+// SetPortsToUse gets a reference to the given []StoragePortDto and assigns it to the PortsToUse field.
+func (o *UpdateStorageOptions) SetPortsToUse(v []StoragePortDto) {
+	o.PortsToUse = v
+}
+
 func (o UpdateStorageOptions) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -348,6 +382,9 @@ func (o UpdateStorageOptions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.FibreChannelEnabled) {
 		toSerialize["fibreChannelEnabled"] = o.FibreChannelEnabled
 	}
+	if !IsNil(o.PortsToUse) {
+		toSerialize["portsToUse"] = o.PortsToUse
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -378,6 +415,7 @@ func (o *UpdateStorageOptions) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "s3Hostname")
 		delete(additionalProperties, "s3Port")
 		delete(additionalProperties, "fibreChannelEnabled")
+		delete(additionalProperties, "portsToUse")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Label** | **string** | The endpoint unique label | 
 **CreatedTimestamp** | **time.Time** | Entity creation timestamp | 
 **UpdatedTimestamp** | **time.Time** | Entity last update timestamp | 
+**AllocationInfo** | Pointer to [**EndpointAllocationInfo**](EndpointAllocationInfo.md) | The endpoint instance. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
@@ -197,6 +198,31 @@ and a boolean to check if the value has been set.
 
 SetUpdatedTimestamp sets UpdatedTimestamp field to given value.
 
+
+### GetAllocationInfo
+
+`func (o *Endpoint) GetAllocationInfo() EndpointAllocationInfo`
+
+GetAllocationInfo returns the AllocationInfo field if non-nil, zero value otherwise.
+
+### GetAllocationInfoOk
+
+`func (o *Endpoint) GetAllocationInfoOk() (*EndpointAllocationInfo, bool)`
+
+GetAllocationInfoOk returns a tuple with the AllocationInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllocationInfo
+
+`func (o *Endpoint) SetAllocationInfo(v EndpointAllocationInfo)`
+
+SetAllocationInfo sets AllocationInfo field to given value.
+
+### HasAllocationInfo
+
+`func (o *Endpoint) HasAllocationInfo() bool`
+
+HasAllocationInfo returns a boolean if a field has been set.
 
 ### GetLinks
 

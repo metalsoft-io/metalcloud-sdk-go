@@ -52,7 +52,7 @@ type CreateNetworkDevice struct {
 	// The username used for management authentication
 	Username NullableString `json:"username"`
 	// The password used for management authentication
-	ManagementPassword NullableString `json:"managementPassword"`
+	ManagementPassword string `json:"managementPassword"`
 	// The gateway IP address for the management network
 	// Deprecated
 	ManagementAddressGateway NullableString `json:"managementAddressGateway,omitempty"`
@@ -102,7 +102,7 @@ type _CreateNetworkDevice CreateNetworkDevice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateNetworkDevice(driver NetworkDeviceDriver, position string, username NullableString, managementPassword NullableString) *CreateNetworkDevice {
+func NewCreateNetworkDevice(driver NetworkDeviceDriver, position string, username NullableString, managementPassword string) *CreateNetworkDevice {
 	this := CreateNetworkDevice{}
 	this.Driver = driver
 	this.Position = position
@@ -618,29 +618,27 @@ func (o *CreateNetworkDevice) SetUsername(v string) {
 }
 
 // GetManagementPassword returns the ManagementPassword field value
-// If the value is explicit nil, the zero value for string will be returned
 func (o *CreateNetworkDevice) GetManagementPassword() string {
-	if o == nil || o.ManagementPassword.Get() == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.ManagementPassword.Get()
+	return o.ManagementPassword
 }
 
 // GetManagementPasswordOk returns a tuple with the ManagementPassword field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateNetworkDevice) GetManagementPasswordOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ManagementPassword.Get(), o.ManagementPassword.IsSet()
+	return &o.ManagementPassword, true
 }
 
 // SetManagementPassword sets field value
 func (o *CreateNetworkDevice) SetManagementPassword(v string) {
-	o.ManagementPassword.Set(&v)
+	o.ManagementPassword = v
 }
 
 // GetManagementAddressGateway returns the ManagementAddressGateway field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1457,7 +1455,7 @@ func (o CreateNetworkDevice) ToMap() (map[string]interface{}, error) {
 		toSerialize["managementPort"] = o.ManagementPort.Get()
 	}
 	toSerialize["username"] = o.Username.Get()
-	toSerialize["managementPassword"] = o.ManagementPassword.Get()
+	toSerialize["managementPassword"] = o.ManagementPassword
 	if o.ManagementAddressGateway.IsSet() {
 		toSerialize["managementAddressGateway"] = o.ManagementAddressGateway.Get()
 	}

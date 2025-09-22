@@ -30,6 +30,8 @@ type UpdateStorage struct {
 	SharedDrivePriority *float32 `json:"sharedDrivePriority,omitempty"`
 	// Tags
 	Tags []string `json:"tags,omitempty"`
+	// Network fabric ID this Storage is connected to
+	NetworkFabricId *float32 `json:"networkFabricId,omitempty"`
 	// Options for the storage
 	Options *UpdateStorageOptions `json:"options,omitempty"`
 	// The password to use.
@@ -216,6 +218,38 @@ func (o *UpdateStorage) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetNetworkFabricId returns the NetworkFabricId field value if set, zero value otherwise.
+func (o *UpdateStorage) GetNetworkFabricId() float32 {
+	if o == nil || IsNil(o.NetworkFabricId) {
+		var ret float32
+		return ret
+	}
+	return *o.NetworkFabricId
+}
+
+// GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateStorage) GetNetworkFabricIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.NetworkFabricId) {
+		return nil, false
+	}
+	return o.NetworkFabricId, true
+}
+
+// HasNetworkFabricId returns a boolean if a field has been set.
+func (o *UpdateStorage) HasNetworkFabricId() bool {
+	if o != nil && !IsNil(o.NetworkFabricId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkFabricId gets a reference to the given float32 and assigns it to the NetworkFabricId field.
+func (o *UpdateStorage) SetNetworkFabricId(v float32) {
+	o.NetworkFabricId = &v
+}
+
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *UpdateStorage) GetOptions() UpdateStorageOptions {
 	if o == nil || IsNil(o.Options) {
@@ -305,6 +339,9 @@ func (o UpdateStorage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
+	if !IsNil(o.NetworkFabricId) {
+		toSerialize["networkFabricId"] = o.NetworkFabricId
+	}
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
@@ -338,6 +375,7 @@ func (o *UpdateStorage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "drivePriority")
 		delete(additionalProperties, "sharedDrivePriority")
 		delete(additionalProperties, "tags")
+		delete(additionalProperties, "networkFabricId")
 		delete(additionalProperties, "options")
 		delete(additionalProperties, "password")
 		o.AdditionalProperties = additionalProperties

@@ -27,6 +27,8 @@
 
 * `SONIC_ENTERPRISE` (value: `"sonic_enterprise"`)
 
+* `VMWARE_VDS` (value: `"vmware_vds"`)
+
 * `DELL_S4000` (value: `"dell_s4000"`)
 
 * `DELL_S6010` (value: `"dell_s6010"`)

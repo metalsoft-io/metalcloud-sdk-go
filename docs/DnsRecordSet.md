@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** | The DNS Resource Record Set (RRSet) ID | [readonly] 
+**Status** | **string** | The status of the DNS Record Set | 
 **SiteId** | **int32** | The site ID | 
 **InfrastructureId** | **int32** | The infrastructure ID | 
 **ZoneId** | **int32** | The ID of the DNS zone | 
@@ -25,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewDnsRecordSet
 
-`func NewDnsRecordSet(id int32, siteId int32, infrastructureId int32, zoneId int32, zoneName string, name string, type_ string, records []string, revision int32, createdBy int32, createdAt time.Time, ) *DnsRecordSet`
+`func NewDnsRecordSet(id int32, status string, siteId int32, infrastructureId int32, zoneId int32, zoneName string, name string, type_ string, records []string, revision int32, createdBy int32, createdAt time.Time, ) *DnsRecordSet`
 
 NewDnsRecordSet instantiates a new DnsRecordSet object
 This constructor will assign default values to properties that have it defined,
@@ -58,6 +59,26 @@ and a boolean to check if the value has been set.
 `func (o *DnsRecordSet) SetId(v int32)`
 
 SetId sets Id field to given value.
+
+
+### GetStatus
+
+`func (o *DnsRecordSet) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *DnsRecordSet) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *DnsRecordSet) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
 
 
 ### GetSiteId

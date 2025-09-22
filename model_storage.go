@@ -73,6 +73,8 @@ type Storage struct {
 	PortGroupPhysicalPorts map[string]interface{} `json:"portGroupPhysicalPorts,omitempty"`
 	// Subnet type
 	SubnetType string `json:"subnetType"`
+	// Network fabric ID this Storage is connected to
+	NetworkFabricId *float32 `json:"networkFabricId,omitempty"`
 	JobStatistics *JobGroupStatistics `json:"jobStatistics,omitempty"`
 	// The extension execution info of the storage.
 	ExtensionInfo *ExtensionExecutionInfo `json:"extensionInfo,omitempty"`
@@ -848,6 +850,38 @@ func (o *Storage) SetSubnetType(v string) {
 	o.SubnetType = v
 }
 
+// GetNetworkFabricId returns the NetworkFabricId field value if set, zero value otherwise.
+func (o *Storage) GetNetworkFabricId() float32 {
+	if o == nil || IsNil(o.NetworkFabricId) {
+		var ret float32
+		return ret
+	}
+	return *o.NetworkFabricId
+}
+
+// GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Storage) GetNetworkFabricIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.NetworkFabricId) {
+		return nil, false
+	}
+	return o.NetworkFabricId, true
+}
+
+// HasNetworkFabricId returns a boolean if a field has been set.
+func (o *Storage) HasNetworkFabricId() bool {
+	if o != nil && !IsNil(o.NetworkFabricId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkFabricId gets a reference to the given float32 and assigns it to the NetworkFabricId field.
+func (o *Storage) SetNetworkFabricId(v float32) {
+	o.NetworkFabricId = &v
+}
+
 // GetJobStatistics returns the JobStatistics field value if set, zero value otherwise.
 func (o *Storage) GetJobStatistics() JobGroupStatistics {
 	if o == nil || IsNil(o.JobStatistics) {
@@ -1008,6 +1042,9 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 		toSerialize["portGroupPhysicalPorts"] = o.PortGroupPhysicalPorts
 	}
 	toSerialize["subnetType"] = o.SubnetType
+	if !IsNil(o.NetworkFabricId) {
+		toSerialize["networkFabricId"] = o.NetworkFabricId
+	}
 	if !IsNil(o.JobStatistics) {
 		toSerialize["jobStatistics"] = o.JobStatistics
 	}
@@ -1097,6 +1134,7 @@ func (o *Storage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "portGroupAllocationOrder")
 		delete(additionalProperties, "portGroupPhysicalPorts")
 		delete(additionalProperties, "subnetType")
+		delete(additionalProperties, "networkFabricId")
 		delete(additionalProperties, "jobStatistics")
 		delete(additionalProperties, "extensionInfo")
 		delete(additionalProperties, "links")

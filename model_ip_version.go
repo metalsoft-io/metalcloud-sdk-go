@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// IpVersion the model 'IpVersion'
+// IpVersion IP version for the allocation.
 type IpVersion string
 
 // List of IpVersion

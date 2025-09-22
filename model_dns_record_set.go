@@ -24,6 +24,8 @@ var _ MappedNullable = &DnsRecordSet{}
 type DnsRecordSet struct {
 	// The DNS Resource Record Set (RRSet) ID
 	Id int32 `json:"id"`
+	// The status of the DNS Record Set
+	Status string `json:"status"`
 	// The site ID
 	SiteId int32 `json:"siteId"`
 	// The infrastructure ID
@@ -63,9 +65,10 @@ type _DnsRecordSet DnsRecordSet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDnsRecordSet(id int32, siteId int32, infrastructureId int32, zoneId int32, zoneName string, name string, type_ string, records []string, revision int32, createdBy int32, createdAt time.Time) *DnsRecordSet {
+func NewDnsRecordSet(id int32, status string, siteId int32, infrastructureId int32, zoneId int32, zoneName string, name string, type_ string, records []string, revision int32, createdBy int32, createdAt time.Time) *DnsRecordSet {
 	this := DnsRecordSet{}
 	this.Id = id
+	this.Status = status
 	this.SiteId = siteId
 	this.InfrastructureId = infrastructureId
 	this.ZoneId = zoneId
@@ -113,6 +116,30 @@ func (o *DnsRecordSet) GetIdOk() (*int32, bool) {
 // SetId sets field value
 func (o *DnsRecordSet) SetId(v int32) {
 	o.Id = v
+}
+
+// GetStatus returns the Status field value
+func (o *DnsRecordSet) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *DnsRecordSet) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *DnsRecordSet) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetSiteId returns the SiteId field value
@@ -526,6 +553,7 @@ func (o DnsRecordSet) MarshalJSON() ([]byte, error) {
 func (o DnsRecordSet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
+	toSerialize["status"] = o.Status
 	toSerialize["siteId"] = o.SiteId
 	toSerialize["infrastructureId"] = o.InfrastructureId
 	toSerialize["zoneId"] = o.ZoneId
@@ -565,6 +593,7 @@ func (o *DnsRecordSet) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"id",
+		"status",
 		"siteId",
 		"infrastructureId",
 		"zoneId",
@@ -605,6 +634,7 @@ func (o *DnsRecordSet) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "status")
 		delete(additionalProperties, "siteId")
 		delete(additionalProperties, "infrastructureId")
 		delete(additionalProperties, "zoneId")

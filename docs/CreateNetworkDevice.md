@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **ManagementAddress** | Pointer to **NullableString** | The IP address used to manage the network device | [optional] 
 **ManagementPort** | Pointer to **NullableInt32** | The port number used for management connections | [optional] 
 **Username** | **NullableString** | The username used for management authentication | 
-**ManagementPassword** | **NullableString** | The password used for management authentication | 
+**ManagementPassword** | **string** | The password used for management authentication | 
 **ManagementAddressGateway** | Pointer to **NullableString** | The gateway IP address for the management network | [optional] 
 **ManagementAddressMask** | Pointer to **NullableString** | The subnet mask for the management network | [optional] 
 **ManagementMAC** | Pointer to **NullableString** | The MAC address of the management interface | [optional] 
@@ -44,7 +44,7 @@ Name | Type | Description | Notes
 
 ### NewCreateNetworkDevice
 
-`func NewCreateNetworkDevice(driver NetworkDeviceDriver, position string, username NullableString, managementPassword NullableString, ) *CreateNetworkDevice`
+`func NewCreateNetworkDevice(driver NetworkDeviceDriver, position string, username NullableString, managementPassword string, ) *CreateNetworkDevice`
 
 NewCreateNetworkDevice instantiates a new CreateNetworkDevice object
 This constructor will assign default values to properties that have it defined,
@@ -489,16 +489,6 @@ and a boolean to check if the value has been set.
 SetManagementPassword sets ManagementPassword field to given value.
 
 
-### SetManagementPasswordNil
-
-`func (o *CreateNetworkDevice) SetManagementPasswordNil(b bool)`
-
- SetManagementPasswordNil sets the value for ManagementPassword to be an explicit nil
-
-### UnsetManagementPassword
-`func (o *CreateNetworkDevice) UnsetManagementPassword()`
-
-UnsetManagementPassword ensures that no value is present for ManagementPassword, not even an explicit nil
 ### GetManagementAddressGateway
 
 `func (o *CreateNetworkDevice) GetManagementAddressGateway() string`

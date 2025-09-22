@@ -20,14 +20,13 @@ Name | Type | Description | Notes
 **InputVariables** | [**[]ExtensionVariable**](ExtensionVariable.md) | Input variables values. | 
 **OutputVariables** | [**[]ExtensionVariable**](ExtensionVariable.md) | Output variables values. | 
 **Config** | [**ExtensionInstanceConfiguration**](ExtensionInstanceConfiguration.md) | The current changes to be deployed for the Extension Instance. | 
-**CreatedTimestamp** | **string** | Timestamp of the Extension Instance creation. | 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
 
 ## Methods
 
 ### NewExtensionInstance
 
-`func NewExtensionInstance(revision float32, label string, automaticManagement float32, updatedTimestamp string, id float32, infrastructureId float32, infrastructure ParentInfrastructure, extensionId float32, serviceStatus string, inputVariables []ExtensionVariable, outputVariables []ExtensionVariable, config ExtensionInstanceConfiguration, createdTimestamp string, ) *ExtensionInstance`
+`func NewExtensionInstance(revision float32, label string, automaticManagement float32, updatedTimestamp string, id float32, infrastructureId float32, infrastructure ParentInfrastructure, extensionId float32, serviceStatus string, inputVariables []ExtensionVariable, outputVariables []ExtensionVariable, config ExtensionInstanceConfiguration, ) *ExtensionInstance`
 
 NewExtensionInstance instantiates a new ExtensionInstance object
 This constructor will assign default values to properties that have it defined,
@@ -380,26 +379,6 @@ and a boolean to check if the value has been set.
 `func (o *ExtensionInstance) SetConfig(v ExtensionInstanceConfiguration)`
 
 SetConfig sets Config field to given value.
-
-
-### GetCreatedTimestamp
-
-`func (o *ExtensionInstance) GetCreatedTimestamp() string`
-
-GetCreatedTimestamp returns the CreatedTimestamp field if non-nil, zero value otherwise.
-
-### GetCreatedTimestampOk
-
-`func (o *ExtensionInstance) GetCreatedTimestampOk() (*string, bool)`
-
-GetCreatedTimestampOk returns a tuple with the CreatedTimestamp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedTimestamp
-
-`func (o *ExtensionInstance) SetCreatedTimestamp(v string)`
-
-SetCreatedTimestamp sets CreatedTimestamp field to given value.
 
 
 ### GetLinks

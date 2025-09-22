@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **PortGroupAllocationOrder** | Pointer to **map[string]interface{}** | Port group allocation order | [optional] 
 **PortGroupPhysicalPorts** | Pointer to **map[string]interface{}** | Port group physical ports | [optional] 
 **SubnetType** | **string** | Subnet type | 
+**NetworkFabricId** | Pointer to **float32** | Network fabric ID this Storage is connected to | [optional] 
 **JobStatistics** | Pointer to [**JobGroupStatistics**](JobGroupStatistics.md) |  | [optional] 
 **ExtensionInfo** | Pointer to [**ExtensionExecutionInfo**](ExtensionExecutionInfo.md) | The extension execution info of the storage. | [optional] 
 **Links** | Pointer to [**[]Link**](Link.md) | Reference links | [optional] 
@@ -642,6 +643,31 @@ and a boolean to check if the value has been set.
 
 SetSubnetType sets SubnetType field to given value.
 
+
+### GetNetworkFabricId
+
+`func (o *Storage) GetNetworkFabricId() float32`
+
+GetNetworkFabricId returns the NetworkFabricId field if non-nil, zero value otherwise.
+
+### GetNetworkFabricIdOk
+
+`func (o *Storage) GetNetworkFabricIdOk() (*float32, bool)`
+
+GetNetworkFabricIdOk returns a tuple with the NetworkFabricId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkFabricId
+
+`func (o *Storage) SetNetworkFabricId(v float32)`
+
+SetNetworkFabricId sets NetworkFabricId field to given value.
+
+### HasNetworkFabricId
+
+`func (o *Storage) HasNetworkFabricId() bool`
+
+HasNetworkFabricId returns a boolean if a field has been set.
 
 ### GetJobStatistics
 

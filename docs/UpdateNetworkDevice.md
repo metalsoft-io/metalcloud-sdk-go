@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **ManagementAddress** | Pointer to **NullableString** | Management Address | [optional] 
 **ManagementPort** | Pointer to **NullableInt32** | Management Port | [optional] 
 **Username** | Pointer to **NullableString** | The username used for management authentication | [optional] 
-**ManagementPassword** | Pointer to **NullableString** | The password used for management authentication | [optional] 
+**ManagementPassword** | Pointer to **string** | The password used for management authentication | [optional] 
 **ManagementAddressGateway** | Pointer to **NullableString** | The gateway IP address for the management network | [optional] 
 **ManagementAddressMask** | Pointer to **NullableString** | The subnet mask for the management network | [optional] 
 **ManagementMAC** | Pointer to **NullableString** | The MAC address of the management interface | [optional] 
@@ -509,16 +509,6 @@ SetManagementPassword sets ManagementPassword field to given value.
 
 HasManagementPassword returns a boolean if a field has been set.
 
-### SetManagementPasswordNil
-
-`func (o *UpdateNetworkDevice) SetManagementPasswordNil(b bool)`
-
- SetManagementPasswordNil sets the value for ManagementPassword to be an explicit nil
-
-### UnsetManagementPassword
-`func (o *UpdateNetworkDevice) UnsetManagementPassword()`
-
-UnsetManagementPassword ensures that no value is present for ManagementPassword, not even an explicit nil
 ### GetManagementAddressGateway
 
 `func (o *UpdateNetworkDevice) GetManagementAddressGateway() string`

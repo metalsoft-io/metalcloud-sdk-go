@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **AccessMode** | Pointer to [**NetworkEndpointGroupAllowedAccessMode**](NetworkEndpointGroupAllowedAccessMode.md) | The access mode of the network endpoint group | [optional] 
 **Mtu** | Pointer to **int32** | The MTU of the logical network | [optional] 
 **ProvidesDefaultRoute** | Pointer to **bool** | Whether the logical network provides a default route | [optional] [default to false]
+**DisableAutoIpAllocation** | Pointer to **bool** | Disable automatic IP allocation for IPv4 addresses on this network connection | [optional] [default to false]
 **Redundancy** | Pointer to [**NullableRedundancyConfig**](RedundancyConfig.md) | The redundancy configuration | [optional] 
 **Dns** | Pointer to [**NullableDnsRecordsEndpointGroupLogicalNetwork**](DnsRecordsEndpointGroupLogicalNetwork.md) | DNS records configuration for the server instance group. | [optional] 
 
@@ -129,6 +130,31 @@ SetProvidesDefaultRoute sets ProvidesDefaultRoute field to given value.
 `func (o *UpdateVMInstanceGroupNetworkConnection) HasProvidesDefaultRoute() bool`
 
 HasProvidesDefaultRoute returns a boolean if a field has been set.
+
+### GetDisableAutoIpAllocation
+
+`func (o *UpdateVMInstanceGroupNetworkConnection) GetDisableAutoIpAllocation() bool`
+
+GetDisableAutoIpAllocation returns the DisableAutoIpAllocation field if non-nil, zero value otherwise.
+
+### GetDisableAutoIpAllocationOk
+
+`func (o *UpdateVMInstanceGroupNetworkConnection) GetDisableAutoIpAllocationOk() (*bool, bool)`
+
+GetDisableAutoIpAllocationOk returns a tuple with the DisableAutoIpAllocation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableAutoIpAllocation
+
+`func (o *UpdateVMInstanceGroupNetworkConnection) SetDisableAutoIpAllocation(v bool)`
+
+SetDisableAutoIpAllocation sets DisableAutoIpAllocation field to given value.
+
+### HasDisableAutoIpAllocation
+
+`func (o *UpdateVMInstanceGroupNetworkConnection) HasDisableAutoIpAllocation() bool`
+
+HasDisableAutoIpAllocation returns a boolean if a field has been set.
 
 ### GetRedundancy
 

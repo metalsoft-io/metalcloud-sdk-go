@@ -447,7 +447,7 @@ import (
 
 func main() {
 	siteId := float32(8.14) // float32 | 
-	generateSiteControllerOneliner := *openapiclient.NewGenerateSiteControllerOneliner(false, false, false, "Registry_example", "GitHubTag_example", false, "api.example.com", "v6.4.0", "your-secure-tunnel-token", false, false, false, false, false, false, false, false, false, false, false, false) // GenerateSiteControllerOneliner | Data needed for the controller one-liner generation
+	generateSiteControllerOneliner := *openapiclient.NewGenerateSiteControllerOneliner(false, false, false, "Registry_example", "GitHubTag_example", false, "api.example.com", "v6.4.0", "your-secure-tunnel-token", false, false, false, false, false, false, false, false, false, false, false, false, false, false) // GenerateSiteControllerOneliner | Data needed for the controller one-liner generation
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

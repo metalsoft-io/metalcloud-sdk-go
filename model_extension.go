@@ -34,7 +34,7 @@ type Extension struct {
 	// The extension description
 	Description string `json:"description"`
 	// Extension status
-	Status string `json:"status"`
+	Status ExtensionStatus `json:"status"`
 	// Extension kind
 	Kind string `json:"kind"`
 	// Is the extension public
@@ -51,7 +51,7 @@ type _Extension Extension
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtension(id float32, revision float32, name string, description string, status string, kind string, definition ExtensionDefinition) *Extension {
+func NewExtension(id float32, revision float32, name string, description string, status ExtensionStatus, kind string, definition ExtensionDefinition) *Extension {
 	this := Extension{}
 	this.Id = id
 	this.Revision = revision
@@ -236,9 +236,9 @@ func (o *Extension) SetDescription(v string) {
 }
 
 // GetStatus returns the Status field value
-func (o *Extension) GetStatus() string {
+func (o *Extension) GetStatus() ExtensionStatus {
 	if o == nil {
-		var ret string
+		var ret ExtensionStatus
 		return ret
 	}
 
@@ -247,7 +247,7 @@ func (o *Extension) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *Extension) GetStatusOk() (*string, bool) {
+func (o *Extension) GetStatusOk() (*ExtensionStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -255,7 +255,7 @@ func (o *Extension) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *Extension) SetStatus(v string) {
+func (o *Extension) SetStatus(v ExtensionStatus) {
 	o.Status = v
 }
 

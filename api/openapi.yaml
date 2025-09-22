@@ -2901,9 +2901,9 @@ paths:
           \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
           \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
           \          </p>\n      <p>\n             <b>Default Value: </b> name:DESC\n\
-          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>siteId</li>\n\
-          <li>infrastructureId</li>\n<li>name</li>\n<li>zoneName</li>\n<li>type</li>\n\
-          <li>ttl</li></ul>\n      "
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>status</li>\n\
+          <li>siteId</li>\n<li>infrastructureId</li>\n<li>name</li>\n<li>zoneName</li>\n\
+          <li>type</li>\n<li>ttl</li></ul>\n      "
         explode: true
         in: query
         name: sortBy
@@ -2913,6 +2913,8 @@ paths:
             enum:
             - id:ASC
             - id:DESC
+            - status:ASC
+            - status:DESC
             - siteId:ASC
             - siteId:DESC
             - infrastructureId:ASC
@@ -2954,7 +2956,7 @@ paths:
           type: array
         style: form
       - description: "List of fields to select.\n      <p>\n             <b>Example:\
-          \ </b> id,siteId,infrastructureId,name,zoneId\n          </p>\n      <p>\n\
+          \ </b> id,status,siteId,infrastructureId,name\n          </p>\n      <p>\n\
           \             <b>Default Value: </b> By default all fields returns. If you\
           \ want to select only some fields, provide them in query param\n       \
           \   </p>\n      "
@@ -3525,9 +3527,9 @@ paths:
           \ of sorting</p>\n      <p>\n             <b>Format: </b> fieldName:DIRECTION\n\
           \          </p>\n      <p>\n             <b>Example: </b> sortBy=id:DESC&sortBy=createdAt:ASC\n\
           \          </p>\n      <p>\n             <b>Default Value: </b> name:DESC\n\
-          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>siteId</li>\n\
-          <li>infrastructureId</li>\n<li>name</li>\n<li>zoneName</li>\n<li>type</li>\n\
-          <li>ttl</li></ul>\n      "
+          \          </p>\n      <h4>Available Fields</h4><ul><li>id</li>\n<li>status</li>\n\
+          <li>siteId</li>\n<li>infrastructureId</li>\n<li>name</li>\n<li>zoneName</li>\n\
+          <li>type</li>\n<li>ttl</li></ul>\n      "
         explode: true
         in: query
         name: sortBy
@@ -3537,6 +3539,8 @@ paths:
             enum:
             - id:ASC
             - id:DESC
+            - status:ASC
+            - status:DESC
             - siteId:ASC
             - siteId:DESC
             - infrastructureId:ASC
@@ -3578,7 +3582,7 @@ paths:
           type: array
         style: form
       - description: "List of fields to select.\n      <p>\n             <b>Example:\
-          \ </b> id,siteId,infrastructureId,name,zoneId\n          </p>\n      <p>\n\
+          \ </b> id,status,siteId,infrastructureId,name\n          </p>\n      <p>\n\
           \             <b>Default Value: </b> By default all fields returns. If you\
           \ want to select only some fields, provide them in query param\n       \
           \   </p>\n      "
@@ -41367,9 +41371,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-09-18T01:10:54.482Z
+        createdTimestamp: 2025-09-21T12:07:18.455Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-09-18T01:10:54.482Z
+        updatedTimestamp: 2025-09-21T12:07:18.456Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -41405,6 +41409,7 @@ components:
           - junos
           - os_10
           - sonic_enterprise
+          - vmware_vds
           - dell_s4000
           - dell_s6010
           - junos18
@@ -41465,12 +41470,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-18T01:10:54.482Z
+          example: 2025-09-21T12:07:18.455Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-18T01:10:54.482Z
+          example: 2025-09-21T12:07:18.456Z
           format: date-time
           type: string
         links:
@@ -41502,9 +41507,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-09-18T01:10:54.482Z
+          createdTimestamp: 2025-09-21T12:07:18.455Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-09-18T01:10:54.482Z
+          updatedTimestamp: 2025-09-21T12:07:18.456Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -41521,9 +41526,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-09-18T01:10:54.482Z
+          createdTimestamp: 2025-09-21T12:07:18.455Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-09-18T01:10:54.482Z
+          updatedTimestamp: 2025-09-21T12:07:18.456Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -41594,6 +41599,7 @@ components:
           - junos
           - os_10
           - sonic_enterprise
+          - vmware_vds
           - dell_s4000
           - dell_s6010
           - junos18
@@ -41699,6 +41705,7 @@ components:
           - junos
           - os_10
           - sonic_enterprise
+          - vmware_vds
           - dell_s4000
           - dell_s6010
           - junos18
@@ -41948,6 +41955,7 @@ components:
           href: /api/v2/path/to/resource
         id: 10
         zoneName: example.com
+        status: active
         updatedAt: 2024-01-01T00:00:00Z
       properties:
         id:
@@ -41955,6 +41963,13 @@ components:
           example: 10
           readOnly: true
           type: integer
+        status:
+          description: The status of the DNS Record Set
+          enum:
+          - active
+          - deleting
+          example: active
+          type: string
         siteId:
           description: The site ID
           example: 1
@@ -42049,6 +42064,7 @@ components:
       - records
       - revision
       - siteId
+      - status
       - type
       - zoneId
       - zoneName
@@ -42076,6 +42092,7 @@ components:
             href: /api/v2/path/to/resource
           id: 10
           zoneName: example.com
+          status: active
           updatedAt: 2024-01-01T00:00:00Z
         - updatedBy: 10
           records:
@@ -42097,6 +42114,7 @@ components:
             href: /api/v2/path/to/resource
           id: 10
           zoneName: example.com
+          status: active
           updatedAt: 2024-01-01T00:00:00Z
         meta: ""
         links: ""
@@ -43388,7 +43406,6 @@ components:
     ExtensionInstance:
       example:
         dnsSubdomainId: 0.8008281904610115
-        createdTimestamp: createdTimestamp
         label: ext-instance-123
         subdomainPermanent: subdomainPermanent
         updatedTimestamp: updatedTimestamp
@@ -43488,9 +43505,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/ExtensionInstanceConfiguration'
           description: The current changes to be deployed for the Extension Instance.
-        createdTimestamp:
-          description: Timestamp of the Extension Instance creation.
-          type: string
         links:
           description: Reference links
           items:
@@ -43499,7 +43513,6 @@ components:
       required:
       - automaticManagement
       - config
-      - createdTimestamp
       - extensionId
       - id
       - infrastructure
@@ -43542,7 +43555,6 @@ components:
       example:
         data:
         - dnsSubdomainId: 0.8008281904610115
-          createdTimestamp: createdTimestamp
           label: ext-instance-123
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
@@ -43572,7 +43584,6 @@ components:
           extensionId: 12
           config: ""
         - dnsSubdomainId: 0.8008281904610115
-          createdTimestamp: createdTimestamp
           label: ext-instance-123
           subdomainPermanent: subdomainPermanent
           updatedTimestamp: updatedTimestamp
@@ -44497,6 +44508,7 @@ components:
       - junos
       - os_10
       - sonic_enterprise
+      - vmware_vds
       - dell_s4000
       - dell_s6010
       - junos18
@@ -44845,6 +44857,88 @@ components:
     ExtensionInstanceRecordSet:
       properties: {}
       type: object
+    VMInstanceRecordSet:
+      properties:
+        vmPoolId:
+          description: The ID of the VM Pool.
+          type: number
+        hostname:
+          description: The hostname of the VM Pool.
+          type: string
+        username:
+          description: The username for the VM Instance.
+          type: string
+        password:
+          description: The password for the VM Instance.
+          type: string
+        certificate:
+          description: The certificate for the VM Instance.
+          type: string
+        privateKey:
+          description: The private key for the VM Instance.
+          type: string
+        operation:
+          description: The operation to be performed on the VM Instance.
+          type: string
+        vm_name:
+          description: The name of the VM Instance.
+          type: string
+        vm_disk_gb:
+          description: The disk size of the VM Instance in GB.
+          type: number
+        vm_cpu_cores:
+          description: The number of CPU cores for the VM Instance.
+          type: number
+        vm_ram_gb:
+          description: The RAM size of the VM Instance in GB.
+          type: number
+        vm_template:
+          description: The template used by the VM Instance.
+          type: string
+        vm_net_name:
+          description: The network name of the VM Instance.
+          type: string
+        vcenter_net_name_internal:
+          description: The vCenter internal network name of the VM Instance.
+          type: string
+        vcenter_datacenter:
+          description: The vCenter datacenter for the VM Instance.
+          type: string
+        vcenter_cluster:
+          description: The vCenter cluster for the VM Instance.
+          type: string
+        vcenter_vm_destination_folder:
+          description: The vCenter VM destination folder for the VM Instance.
+          type: string
+        vcenter_disk_datastore:
+          description: The vCenter datastore name for the VM Instance.
+          type: string
+      required:
+      - hostname
+      - operation
+      - vmPoolId
+      - vm_cpu_cores
+      - vm_disk_gb
+      - vm_name
+      - vm_ram_gb
+      - vm_template
+      type: object
+    VMPoolRecordSet:
+      properties:
+        vmPoolId:
+          description: The ID of the VM Pool.
+          type: number
+        hostname:
+          description: The hostname of the VM Pool.
+          type: string
+        operation:
+          description: The operation of the VM Pool.
+          type: string
+      required:
+      - hostname
+      - operation
+      - vmPoolId
+      type: object
     GenericDNSZoneInformation:
       properties:
         zoneName:
@@ -44960,10 +45054,21 @@ components:
         serverInstanceDNSRecordSet:
           description: The Instance DNS record set
           type: object
+        clusterDNSRecordSet:
+          description: The Cluster DNS record set
+          type: object
         extensionInstanceRecordSet:
           allOf:
           - $ref: '#/components/schemas/ExtensionInstanceRecordSet'
           description: The extension instance.
+        vmInstanceRecordSet:
+          allOf:
+          - $ref: '#/components/schemas/VMInstanceRecordSet'
+          description: The VM instance.
+        vmPoolRecordSet:
+          allOf:
+          - $ref: '#/components/schemas/VMPoolRecordSet'
+          description: The VM pool.
         serverDNSRecordSet:
           allOf:
           - $ref: '#/components/schemas/ServerDNSRecordSetDto'
@@ -45037,7 +45142,7 @@ components:
           minimum: 1
           type: integer
         insecureSkipVerify:
-          default: true
+          default: false
           description: Flag to indicate if certificates should be verified for the
             webhook task.
           type: boolean
@@ -45526,6 +45631,11 @@ components:
           default: false
           description: Whether the logical network provides a default route
           type: boolean
+        disableAutoIpAllocation:
+          default: false
+          description: Disable automatic IP allocation for IPv4 addresses on this
+            network connection
+          type: boolean
         redundancy:
           allOf:
           - $ref: '#/components/schemas/RedundancyConfig'
@@ -45679,10 +45789,188 @@ components:
       - label
       - sizeGb
       type: object
+    IpVersion:
+      description: IP version for the allocation.
+      enum:
+      - ipv4
+      - ipv6
+      type: string
+    DNSRecordType:
+      description: "The type of DNS record (e.g., A, AAAA, CNAME, NS, PTR, TXT, SOA)\
+        \ to create"
+      enum:
+      - A
+      - AAAA
+      - CNAME
+      - NS
+      - PTR
+      - SOA
+      - TXT
+      type: string
+    ExtensionDnsRecord:
+      properties:
+        name:
+          description: "DNS name, allows the use of placeholder variables"
+          example: "api.{{cluster_name}}.{{base_domain}}"
+          maxLength: 255
+          type: string
+        recordType:
+          allOf:
+          - $ref: '#/components/schemas/DNSRecordType'
+          description: "The type of DNS record (e.g., A, AAAA, CNAME, NS, PTR, TXT,\
+            \ SOA) to create"
+          example: A
+        generatePtrRecord:
+          default: false
+          description: Whether to generate a PTR record for this DNS record
+          type: boolean
+        aliases:
+          description: CNAME aliases for the DNS record
+          items:
+            type: string
+          type: array
+        ttl:
+          default: 3600
+          description: TTL (Time to Live) for the DNS Record Set.
+          example: 3600
+          type: integer
+        tags:
+          additionalProperties:
+            type: string
+          description: The tags associated with the DNS Record Set
+          example:
+            vcf:cloud-builder: "true"
+          type: object
+      required:
+      - name
+      - recordType
+      type: object
+    ExtensionInfrastructureIpAllocation:
+      example:
+        ipVersion: ipv4
+        dnsRecords:
+        - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+          type: A
+          records:
+          - "{{INGRESS_IP}}"
+        - name: "internal.{{ANOTHER_VAR}}.internal"
+          type: A
+          records:
+          - "{{INTERNAL_IP}}"
+        tags:
+          metalcloud/openshift-ingress-vip-ip: "true"
+      properties:
+        tags:
+          additionalProperties:
+            type: string
+          description: Tags for the IP allocation.
+          example:
+            metalcloud/openshift-ingress-vip-ip: "true"
+          type: object
+        ipVersion:
+          allOf:
+          - $ref: '#/components/schemas/IpVersion'
+          description: IP version for the allocation.
+          example: ipv4
+        dnsRecords:
+          description: DNS records for the IP allocation.
+          example:
+          - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+            type: A
+            records:
+            - "{{INGRESS_IP}}"
+          - name: "internal.{{ANOTHER_VAR}}.internal"
+            type: A
+            records:
+            - "{{INTERNAL_IP}}"
+          items:
+            $ref: '#/components/schemas/ExtensionDnsRecord'
+          maxItems: 12
+          type: array
+      required:
+      - ipVersion
+      type: object
+    ExtensionInfrastructureIpRangesDto:
+      example:
+        ipVersion: ipv4
+        ipCount: 5
+        tags:
+          metalcloud/openshift-ingress-vip-ip: "true"
+      properties:
+        tags:
+          additionalProperties:
+            type: string
+          description: Tags for the IP range allocations.
+          example:
+            metalcloud/openshift-ingress-vip-ip: "true"
+          type: object
+        ipVersion:
+          allOf:
+          - $ref: '#/components/schemas/IpVersion'
+          description: IP version for the allocation.
+          example: ipv4
+        ipCount:
+          description: Number of IPs to allocate from the subnet.
+          example: 5
+          type: integer
+      required:
+      - ipCount
+      - ipVersion
+      type: object
     ExtensionInfrastructureLogicalNetwork:
       example:
+        ipRanges:
+        - ipVersion: ipv4
+          ipCount: 5
+          tags:
+            metalcloud/openshift-ingress-vip-ip: "true"
+        - ipVersion: ipv4
+          ipCount: 5
+          tags:
+            metalcloud/openshift-ingress-vip-ip: "true"
+        - ipVersion: ipv4
+          ipCount: 5
+          tags:
+            metalcloud/openshift-ingress-vip-ip: "true"
         profileLabel: profileLabel
         label: label
+        ipAllocations:
+        - ipVersion: ipv4
+          dnsRecords:
+          - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+            type: A
+            records:
+            - "{{INGRESS_IP}}"
+          - name: "internal.{{ANOTHER_VAR}}.internal"
+            type: A
+            records:
+            - "{{INTERNAL_IP}}"
+          tags:
+            metalcloud/openshift-ingress-vip-ip: "true"
+        - ipVersion: ipv4
+          dnsRecords:
+          - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+            type: A
+            records:
+            - "{{INGRESS_IP}}"
+          - name: "internal.{{ANOTHER_VAR}}.internal"
+            type: A
+            records:
+            - "{{INTERNAL_IP}}"
+          tags:
+            metalcloud/openshift-ingress-vip-ip: "true"
+        - ipVersion: ipv4
+          dnsRecords:
+          - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+            type: A
+            records:
+            - "{{INGRESS_IP}}"
+          - name: "internal.{{ANOTHER_VAR}}.internal"
+            type: A
+            records:
+            - "{{INTERNAL_IP}}"
+          tags:
+            metalcloud/openshift-ingress-vip-ip: "true"
       properties:
         label:
           description: Label of the logical network.
@@ -45692,6 +45980,18 @@ components:
           description: Logical network profile label.
           maxLength: 63
           type: string
+        ipAllocations:
+          description: Extra IP allocation for the infrastructure.
+          items:
+            $ref: '#/components/schemas/ExtensionInfrastructureIpAllocation'
+          maxItems: 3
+          type: array
+        ipRanges:
+          description: Extra IP allocation for the infrastructure.
+          items:
+            $ref: '#/components/schemas/ExtensionInfrastructureIpRangesDto'
+          maxItems: 3
+          type: array
       required:
       - label
       - profileLabel
@@ -45916,16 +46216,266 @@ components:
         - sizeGb: 10
           label: label
         logicalNetworks:
-        - profileLabel: profileLabel
+        - ipRanges:
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          profileLabel: profileLabel
           label: label
-        - profileLabel: profileLabel
+          ipAllocations:
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+        - ipRanges:
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          profileLabel: profileLabel
           label: label
-        - profileLabel: profileLabel
+          ipAllocations:
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+        - ipRanges:
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          profileLabel: profileLabel
           label: label
-        - profileLabel: profileLabel
+          ipAllocations:
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+        - ipRanges:
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          profileLabel: profileLabel
           label: label
-        - profileLabel: profileLabel
+          ipAllocations:
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+        - ipRanges:
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            ipCount: 5
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          profileLabel: profileLabel
           label: label
+          ipAllocations:
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
+          - ipVersion: ipv4
+            dnsRecords:
+            - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+              type: A
+              records:
+              - "{{INGRESS_IP}}"
+            - name: "internal.{{ANOTHER_VAR}}.internal"
+              type: A
+              records:
+              - "{{INTERNAL_IP}}"
+            tags:
+              metalcloud/openshift-ingress-vip-ip: "true"
       properties:
         instanceArrays:
           description: Instance array details for the infrastructure requirement.
@@ -46060,11 +46610,9 @@ components:
       - switchDecommissioned
       - switchCreateDNS
       - switchDeleteDNS
-      - serverInstanceGroupCreateDNS
       - serverInstanceGroupUpdateDNS
-      - serverInstanceGroupDeleteDNS
       - serverInstanceUpdateDNS
-      - serverInstanceDeleteDNS
+      - clusterUpdateDNS
       type: string
     AssetExtensionActions:
       example:
@@ -47069,16 +47617,266 @@ components:
           - sizeGb: 10
             label: label
           logicalNetworks:
-          - profileLabel: profileLabel
+          - ipRanges:
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            profileLabel: profileLabel
             label: label
-          - profileLabel: profileLabel
+            ipAllocations:
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+          - ipRanges:
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            profileLabel: profileLabel
             label: label
-          - profileLabel: profileLabel
+            ipAllocations:
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+          - ipRanges:
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            profileLabel: profileLabel
             label: label
-          - profileLabel: profileLabel
+            ipAllocations:
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+          - ipRanges:
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            profileLabel: profileLabel
             label: label
-          - profileLabel: profileLabel
+            ipAllocations:
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+          - ipRanges:
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              ipCount: 5
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            profileLabel: profileLabel
             label: label
+            ipAllocations:
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
+            - ipVersion: ipv4
+              dnsRecords:
+              - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                type: A
+                records:
+                - "{{INGRESS_IP}}"
+              - name: "internal.{{ANOTHER_VAR}}.internal"
+                type: A
+                records:
+                - "{{INTERNAL_IP}}"
+              tags:
+                metalcloud/openshift-ingress-vip-ip: "true"
         onAssetChange:
         - stage: ""
           tasks:
@@ -47227,6 +48025,13 @@ components:
       - schemaVersion
       - vendor
       type: object
+    ExtensionStatus:
+      description: Extension status
+      enum:
+      - draft
+      - active
+      - archived
+      type: string
     ExtensionInfo:
       example:
         kind: application
@@ -47269,13 +48074,10 @@ components:
           maxLength: 255
           type: string
         status:
+          allOf:
+          - $ref: '#/components/schemas/ExtensionStatus'
           description: Extension status
-          enum:
-          - draft
-          - active
-          - archived
           example: draft
-          type: string
         kind:
           description: Extension kind
           enum:
@@ -48337,16 +49139,266 @@ components:
             - sizeGb: 10
               label: label
             logicalNetworks:
-            - profileLabel: profileLabel
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
-            - profileLabel: profileLabel
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
-            - profileLabel: profileLabel
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
-            - profileLabel: profileLabel
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
-            - profileLabel: profileLabel
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
           onAssetChange:
           - stage: ""
             tasks:
@@ -48432,13 +49484,10 @@ components:
           maxLength: 255
           type: string
         status:
+          allOf:
+          - $ref: '#/components/schemas/ExtensionStatus'
           description: Extension status
-          enum:
-          - draft
-          - active
-          - archived
           example: draft
-          type: string
         kind:
           description: Extension kind
           enum:
@@ -49453,16 +50502,266 @@ components:
             - sizeGb: 10
               label: label
             logicalNetworks:
-            - profileLabel: profileLabel
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
-            - profileLabel: profileLabel
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
-            - profileLabel: profileLabel
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
-            - profileLabel: profileLabel
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
-            - profileLabel: profileLabel
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
           onAssetChange:
           - stage: ""
             tasks:
@@ -50526,16 +51825,266 @@ components:
             - sizeGb: 10
               label: label
             logicalNetworks:
-            - profileLabel: profileLabel
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
-            - profileLabel: profileLabel
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
-            - profileLabel: profileLabel
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
-            - profileLabel: profileLabel
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
-            - profileLabel: profileLabel
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+            - ipRanges:
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                ipCount: 5
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              profileLabel: profileLabel
               label: label
+              ipAllocations:
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
+              - ipVersion: ipv4
+                dnsRecords:
+                - name: "ingress.{{CLUSTER_NAME}}.{{BASE_DOMAIN}}"
+                  type: A
+                  records:
+                  - "{{INGRESS_IP}}"
+                - name: "internal.{{ANOTHER_VAR}}.internal"
+                  type: A
+                  records:
+                  - "{{INTERNAL_IP}}"
+                tags:
+                  metalcloud/openshift-ingress-vip-ip: "true"
           onAssetChange:
           - stage: ""
             tasks:
@@ -53385,6 +54934,7 @@ components:
         infrastructureId: 1263
         infrastructureServiceStatus: ordered
         infrastructureLabel: my-infrastructure
+        tags: tags
       properties:
         infrastructureId:
           description: Infrastructure ID
@@ -53397,6 +54947,8 @@ components:
         infrastructureServiceStatus:
           description: Infrastructure service status
           example: ordered
+          type: string
+        tags:
           type: string
       required:
       - infrastructureId
@@ -53440,6 +54992,7 @@ components:
         endTimestamp: endTimestamp
         startTimestamp: startTimestamp
         measurementUnit: measurementUnit
+        tags: tags
       properties:
         id:
           type: number
@@ -53455,6 +55008,8 @@ components:
           type: string
         quantity:
           type: number
+        tags:
+          type: string
       required:
       - endTimestamp
       - id
@@ -53476,6 +55031,7 @@ components:
           endTimestamp: endTimestamp
           startTimestamp: startTimestamp
           measurementUnit: measurementUnit
+          tags: tags
         - measurementPeriod: 1.4658129805029452
           quantity: 5.962133916683182
           id: 6.027456183070403
@@ -53483,6 +55039,7 @@ components:
           endTimestamp: endTimestamp
           startTimestamp: startTimestamp
           measurementUnit: measurementUnit
+          tags: tags
       properties:
         quantity:
           type: number
@@ -53510,6 +55067,7 @@ components:
             endTimestamp: endTimestamp
             startTimestamp: startTimestamp
             measurementUnit: measurementUnit
+            tags: tags
           - measurementPeriod: 1.4658129805029452
             quantity: 5.962133916683182
             id: 6.027456183070403
@@ -53517,6 +55075,7 @@ components:
             endTimestamp: endTimestamp
             startTimestamp: startTimestamp
             measurementUnit: measurementUnit
+            tags: tags
         upload:
           quantity: 0.8008281904610115
           measurementUnit: measurementUnit
@@ -53528,6 +55087,7 @@ components:
             endTimestamp: endTimestamp
             startTimestamp: startTimestamp
             measurementUnit: measurementUnit
+            tags: tags
           - measurementPeriod: 1.4658129805029452
             quantity: 5.962133916683182
             id: 6.027456183070403
@@ -53535,6 +55095,7 @@ components:
             endTimestamp: endTimestamp
             startTimestamp: startTimestamp
             measurementUnit: measurementUnit
+            tags: tags
       properties:
         upload:
           $ref: '#/components/schemas/UtilizationData'
@@ -53599,6 +55160,7 @@ components:
             infrastructureId: 1263
             infrastructureServiceStatus: ordered
             infrastructureLabel: my-infrastructure
+            tags: tags
         reservationInstallments: ""
         endTimestamp: endTimestamp
         startTimestamp: startTimestamp
@@ -53614,6 +55176,7 @@ components:
               endTimestamp: endTimestamp
               startTimestamp: startTimestamp
               measurementUnit: measurementUnit
+              tags: tags
             - measurementPeriod: 1.4658129805029452
               quantity: 5.962133916683182
               id: 6.027456183070403
@@ -53621,6 +55184,7 @@ components:
               endTimestamp: endTimestamp
               startTimestamp: startTimestamp
               measurementUnit: measurementUnit
+              tags: tags
         internet: ""
       properties:
         startTimestamp:
@@ -53659,16 +55223,6 @@ components:
       - startTimestamp
       type: object
     SharedDriveResourceItem:
-      example:
-        measurementPeriod: 6.027456183070403
-        quantity: 1.4658129805029452
-        id: 0.8008281904610115
-        label: label
-        endTimestamp: endTimestamp
-        sharedDriveSizeMbytes: 5.962133916683182
-        startTimestamp: startTimestamp
-        measurementUnit: measurementUnit
-        sharedDriveStorageType: sharedDriveStorageType
       properties:
         id:
           type: number
@@ -53684,6 +55238,8 @@ components:
           type: string
         quantity:
           type: number
+        tags:
+          type: string
         sharedDriveSizeMbytes:
           type: number
         sharedDriveStorageType:
@@ -53702,14 +55258,15 @@ components:
     DriveResourceItem:
       example:
         driveStorageType: driveStorageType
-        measurementPeriod: 2.3021358869347655
-        quantity: 7.061401241503109
-        driveSizeMbytes: 9.301444243932576
-        id: 5.637376656633329
+        measurementPeriod: 6.027456183070403
+        quantity: 1.4658129805029452
+        driveSizeMbytes: 5.962133916683182
+        id: 0.8008281904610115
         label: label
         endTimestamp: endTimestamp
         startTimestamp: startTimestamp
         measurementUnit: measurementUnit
+        tags: tags
       properties:
         id:
           type: number
@@ -53725,6 +55282,8 @@ components:
           type: string
         quantity:
           type: number
+        tags:
+          type: string
         driveSizeMbytes:
           type: number
         driveStorageType:
@@ -53756,6 +55315,8 @@ components:
           type: string
         quantity:
           type: number
+        tags:
+          type: string
         serverTypeId:
           type: number
         serverId:
@@ -53805,6 +55366,8 @@ components:
           type: string
         quantity:
           type: number
+        tags:
+          type: string
         subnetIpCount:
           type: string
         subnetPrefixSize:
@@ -53827,14 +55390,15 @@ components:
       example:
         licenseUtilizationType: licenseUtilizationType
         licenseType: licenseType
-        measurementPeriod: 2.027123023002322
-        quantity: 4.145608029883936
-        id: 3.616076749251911
+        measurementPeriod: 2.3021358869347655
+        quantity: 7.061401241503109
+        id: 5.637376656633329
         label: label
         licenseId: licenseId
         endTimestamp: endTimestamp
         startTimestamp: startTimestamp
         measurementUnit: measurementUnit
+        tags: tags
       properties:
         id:
           type: number
@@ -53850,6 +55414,8 @@ components:
           type: string
         quantity:
           type: number
+        tags:
+          type: string
         licenseId:
           type: string
         licenseType:
@@ -53896,67 +55462,72 @@ components:
           operatingSystemTemplateId: null
           originalStartTimestamp: 2022-10-21T12:49:53Z
         sharedDrive:
-        - measurementPeriod: 6.027456183070403
-          quantity: 1.4658129805029452
-          id: 0.8008281904610115
-          label: label
-          endTimestamp: endTimestamp
-          sharedDriveSizeMbytes: 5.962133916683182
-          startTimestamp: startTimestamp
-          measurementUnit: measurementUnit
-          sharedDriveStorageType: sharedDriveStorageType
-        - measurementPeriod: 6.027456183070403
-          quantity: 1.4658129805029452
-          id: 0.8008281904610115
-          label: label
-          endTimestamp: endTimestamp
-          sharedDriveSizeMbytes: 5.962133916683182
-          startTimestamp: startTimestamp
-          measurementUnit: measurementUnit
-          sharedDriveStorageType: sharedDriveStorageType
+        - id: 347
+          label: the-drive
+          startTimestamp: 2025-09-15T15:15:52Z
+          endTimestamp: 2026-01-01
+          measurementPeriod: 3600
+          measurementUnit: seconds
+          quantity: 9276249
+          sharedDriveSizeMbytes: 2048
+          sharedDriveStorageType: iscsi_ssd
         drive:
         - driveStorageType: driveStorageType
-          measurementPeriod: 2.3021358869347655
-          quantity: 7.061401241503109
-          driveSizeMbytes: 9.301444243932576
-          id: 5.637376656633329
+          measurementPeriod: 6.027456183070403
+          quantity: 1.4658129805029452
+          driveSizeMbytes: 5.962133916683182
+          id: 0.8008281904610115
           label: label
           endTimestamp: endTimestamp
           startTimestamp: startTimestamp
           measurementUnit: measurementUnit
+          tags: tags
         - driveStorageType: driveStorageType
-          measurementPeriod: 2.3021358869347655
-          quantity: 7.061401241503109
-          driveSizeMbytes: 9.301444243932576
-          id: 5.637376656633329
+          measurementPeriod: 6.027456183070403
+          quantity: 1.4658129805029452
+          driveSizeMbytes: 5.962133916683182
+          id: 0.8008281904610115
           label: label
           endTimestamp: endTimestamp
           startTimestamp: startTimestamp
           measurementUnit: measurementUnit
+          tags: tags
         instanceLicense:
         - licenseUtilizationType: licenseUtilizationType
           licenseType: licenseType
-          measurementPeriod: 2.027123023002322
-          quantity: 4.145608029883936
-          id: 3.616076749251911
+          measurementPeriod: 2.3021358869347655
+          quantity: 7.061401241503109
+          id: 5.637376656633329
           label: label
           licenseId: licenseId
           endTimestamp: endTimestamp
           startTimestamp: startTimestamp
           measurementUnit: measurementUnit
+          tags: tags
         - licenseUtilizationType: licenseUtilizationType
           licenseType: licenseType
-          measurementPeriod: 2.027123023002322
-          quantity: 4.145608029883936
-          id: 3.616076749251911
+          measurementPeriod: 2.3021358869347655
+          quantity: 7.061401241503109
+          id: 5.637376656633329
           label: label
           licenseId: licenseId
           endTimestamp: endTimestamp
           startTimestamp: startTimestamp
           measurementUnit: measurementUnit
+          tags: tags
       properties:
         sharedDrive:
           description: Shared drive resources
+          example:
+          - id: 347
+            label: the-drive
+            startTimestamp: 2025-09-15T15:15:52Z
+            endTimestamp: 2026-01-01
+            measurementPeriod: 3600
+            measurementUnit: seconds
+            quantity: 9276249
+            sharedDriveSizeMbytes: 2048
+            sharedDriveStorageType: iscsi_ssd
           items:
             $ref: '#/components/schemas/SharedDriveResourceItem'
           type: array
@@ -54073,64 +55644,59 @@ components:
               operatingSystemTemplateId: null
               originalStartTimestamp: 2022-10-21T12:49:53Z
             sharedDrive:
-            - measurementPeriod: 6.027456183070403
-              quantity: 1.4658129805029452
-              id: 0.8008281904610115
-              label: label
-              endTimestamp: endTimestamp
-              sharedDriveSizeMbytes: 5.962133916683182
-              startTimestamp: startTimestamp
-              measurementUnit: measurementUnit
-              sharedDriveStorageType: sharedDriveStorageType
-            - measurementPeriod: 6.027456183070403
-              quantity: 1.4658129805029452
-              id: 0.8008281904610115
-              label: label
-              endTimestamp: endTimestamp
-              sharedDriveSizeMbytes: 5.962133916683182
-              startTimestamp: startTimestamp
-              measurementUnit: measurementUnit
-              sharedDriveStorageType: sharedDriveStorageType
+            - id: 347
+              label: the-drive
+              startTimestamp: 2025-09-15T15:15:52Z
+              endTimestamp: 2026-01-01
+              measurementPeriod: 3600
+              measurementUnit: seconds
+              quantity: 9276249
+              sharedDriveSizeMbytes: 2048
+              sharedDriveStorageType: iscsi_ssd
             drive:
             - driveStorageType: driveStorageType
-              measurementPeriod: 2.3021358869347655
-              quantity: 7.061401241503109
-              driveSizeMbytes: 9.301444243932576
-              id: 5.637376656633329
+              measurementPeriod: 6.027456183070403
+              quantity: 1.4658129805029452
+              driveSizeMbytes: 5.962133916683182
+              id: 0.8008281904610115
               label: label
               endTimestamp: endTimestamp
               startTimestamp: startTimestamp
               measurementUnit: measurementUnit
+              tags: tags
             - driveStorageType: driveStorageType
-              measurementPeriod: 2.3021358869347655
-              quantity: 7.061401241503109
-              driveSizeMbytes: 9.301444243932576
-              id: 5.637376656633329
+              measurementPeriod: 6.027456183070403
+              quantity: 1.4658129805029452
+              driveSizeMbytes: 5.962133916683182
+              id: 0.8008281904610115
               label: label
               endTimestamp: endTimestamp
               startTimestamp: startTimestamp
               measurementUnit: measurementUnit
+              tags: tags
             instanceLicense:
             - licenseUtilizationType: licenseUtilizationType
               licenseType: licenseType
-              measurementPeriod: 2.027123023002322
-              quantity: 4.145608029883936
-              id: 3.616076749251911
+              measurementPeriod: 2.3021358869347655
+              quantity: 7.061401241503109
+              id: 5.637376656633329
               label: label
               licenseId: licenseId
               endTimestamp: endTimestamp
               startTimestamp: startTimestamp
               measurementUnit: measurementUnit
+              tags: tags
             - licenseUtilizationType: licenseUtilizationType
               licenseType: licenseType
-              measurementPeriod: 2.027123023002322
-              quantity: 4.145608029883936
-              id: 3.616076749251911
+              measurementPeriod: 2.3021358869347655
+              quantity: 7.061401241503109
+              id: 5.637376656633329
               label: label
               licenseId: licenseId
               endTimestamp: endTimestamp
               startTimestamp: startTimestamp
               measurementUnit: measurementUnit
+              tags: tags
         networkReport:
           key:
             download:
@@ -54144,6 +55710,7 @@ components:
                 endTimestamp: endTimestamp
                 startTimestamp: startTimestamp
                 measurementUnit: measurementUnit
+                tags: tags
               - measurementPeriod: 1.4658129805029452
                 quantity: 5.962133916683182
                 id: 6.027456183070403
@@ -54151,6 +55718,7 @@ components:
                 endTimestamp: endTimestamp
                 startTimestamp: startTimestamp
                 measurementUnit: measurementUnit
+                tags: tags
             upload:
               quantity: 0.8008281904610115
               measurementUnit: measurementUnit
@@ -54162,6 +55730,7 @@ components:
                 endTimestamp: endTimestamp
                 startTimestamp: startTimestamp
                 measurementUnit: measurementUnit
+                tags: tags
               - measurementPeriod: 1.4658129805029452
                 quantity: 5.962133916683182
                 id: 6.027456183070403
@@ -54169,11 +55738,13 @@ components:
                 endTimestamp: endTimestamp
                 startTimestamp: startTimestamp
                 measurementUnit: measurementUnit
+                tags: tags
         infrastructures:
           key:
             infrastructureId: 1263
             infrastructureServiceStatus: ordered
             infrastructureLabel: my-infrastructure
+            tags: tags
         reservationInstallments: ""
         endTimestamp: endTimestamp
         startTimestamp: startTimestamp
@@ -61601,7 +63172,6 @@ components:
           type: string
         managementPassword:
           description: The password used for management authentication
-          nullable: true
           type: string
         managementAddressGateway:
           deprecated: true
@@ -61825,7 +63395,6 @@ components:
           type: string
         managementPassword:
           description: The password used for management authentication
-          nullable: true
           type: string
         managementAddressGateway:
           deprecated: true
@@ -61974,9 +63543,9 @@ components:
         mlagDomainId: 101
         mlagPartnerVlanId: 300
         datacenterName: Datacenter-1
-        isPartOfMlagPair: 1
+        isPartOfMlagPair: true
         vtepAddressIpv4: 10.10.10.1
-        skipInitialConfiguration: 0
+        skipInitialConfiguration: true
         loopbackAddressIpv6: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
         vtepAddressIpv6: fe80::1
         managementMacAddress: 00:1B:44:11:3A:B7
@@ -61996,7 +63565,7 @@ components:
         id:
           description: Unique ID of the network device defaults entry
           example: 1
-          type: number
+          type: integer
         datacenterName:
           description: Name of the datacenter
           example: Datacenter-1
@@ -62020,11 +63589,11 @@ components:
         asn:
           description: Autonomous System Number (ASN)
           example: 65001
-          type: number
+          type: integer
         isPartOfMlagPair:
-          description: Whether device is part of an MLAG pair (0 or 1)
-          example: 1
-          type: number
+          description: Whether device is part of an MLAG pair
+          example: true
+          type: boolean
         mlagSystemMac:
           description: MLAG system MAC address
           example: 00:1B:44:11:3A:C8
@@ -62032,15 +63601,15 @@ components:
         mlagDomainId:
           description: MLAG domain ID
           example: 101
-          type: number
+          type: integer
         mlagPeerLinkPortChannelId:
           description: MLAG peer link port-channel ID
           example: 2001
-          type: number
+          type: integer
         mlagPartnerVlanId:
           description: MLAG partner VLAN ID
           example: 300
-          type: number
+          type: integer
         mlagPartnerHostname:
           description: Hostname of MLAG partner device
           example: partner-device
@@ -62062,13 +63631,13 @@ components:
           example: fe80::1
           type: string
         skipInitialConfiguration:
-          description: Skip initial configuration flag (0 or 1)
-          example: 0
-          type: number
+          description: Skip initial configuration flag
+          example: true
+          type: boolean
         osTemplateId:
           description: Volume template ID
           example: 42
-          type: number
+          type: integer
         customVariables:
           additionalProperties: true
           description: Custom variables for device configuration
@@ -62078,7 +63647,7 @@ components:
         orderIndex:
           description: Order index for display or processing
           example: 5
-          type: number
+          type: integer
       required:
       - datacenterName
       - id
@@ -62089,8 +63658,8 @@ components:
         mlagDomainId: 100
         mlagPartnerVlanId: 300
         datacenterName: datacenterName
-        isPartOfMlagPair: 1
-        skipInitialConfiguration: 6.027456183070403
+        isPartOfMlagPair: true
+        skipInitialConfiguration: true
         vtepAddressIpv4: 10.10.10.1
         loopbackAddressIpv6: 2001:db8::1
         vtepAddressIpv6: fd00::1
@@ -62106,7 +63675,7 @@ components:
         orderIndex: 5
         position: position
         mlagPartnerHostname: mlag-host1
-        asn: 0.8008281904610115
+        asn: 0
       properties:
         datacenterName:
           description: Name of the datacenter
@@ -62128,10 +63697,10 @@ components:
           type: string
         asn:
           description: ASN of the network device
-          type: number
+          type: integer
         skipInitialConfiguration:
           description: Skip initial configuration
-          type: number
+          type: boolean
         customVariables:
           description: "Custom variables associated with the network device, stored\
             \ as key-value pairs."
@@ -62144,7 +63713,7 @@ components:
           example: 100
           maximum: 4096
           minimum: 1
-          type: number
+          type: integer
         loopbackAddressIpv4:
           description: IPv4 address assigned to the loopback interface.
           example: 192.168.1.1
@@ -62164,23 +63733,20 @@ components:
         orderIndex:
           description: Order index used for sorting or prioritization.
           example: 5
-          type: number
+          type: integer
         osTemplateId:
           description: ID of the volume template associated with the network device.
           example: 42
-          type: number
+          type: integer
         mlagPartnerHostname:
           description: "MLAG partner hostname. Can contain letters, numbers, dots,\
             \ underscores, and hyphens (1-63 characters)."
           example: mlag-host1
           type: string
         isPartOfMlagPair:
-          description: "Indicates whether the device is part of an MLAG pair (0 =\
-            \ No, 1 = Yes)."
-          example: 1
-          maximum: 1
-          minimum: 0
-          type: number
+          description: Indicates whether the device is part of an MLAG pair).
+          example: true
+          type: boolean
         mlagSystemMac:
           description: MLAG system MAC address in the format XX:XX:XX:XX:XX:XX.
           example: AA:BB:CC:DD:EE:FF
@@ -62190,13 +63756,13 @@ components:
           example: 200
           maximum: 4096
           minimum: 1
-          type: number
+          type: integer
         mlagPartnerVlanId:
           description: "MLAG partner VLAN ID, must be between 1 and 4096."
           example: 300
           maximum: 4096
           minimum: 1
-          type: number
+          type: integer
       required:
       - datacenterName
       - managementMacAddress
@@ -62496,7 +64062,7 @@ components:
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-09-18T01:10:54.548Z
+        createdTimestamp: 2025-09-21T12:07:18.546Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -62505,7 +64071,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-09-18T01:10:54.548Z
+        updatedTimestamp: 2025-09-21T12:07:18.546Z
         revision: "1"
       properties:
         siteId:
@@ -62522,12 +64088,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-18T01:10:54.548Z
+          example: 2025-09-21T12:07:18.546Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-18T01:10:54.548Z
+          example: 2025-09-21T12:07:18.546Z
           format: date-time
           type: string
         links:
@@ -62549,7 +64115,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-09-18T01:10:54.548Z
+        - createdTimestamp: 2025-09-21T12:07:18.546Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -62558,9 +64124,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-09-18T01:10:54.548Z
+          updatedTimestamp: 2025-09-21T12:07:18.546Z
           revision: "1"
-        - createdTimestamp: 2025-09-18T01:10:54.548Z
+        - createdTimestamp: 2025-09-21T12:07:18.546Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -62569,7 +64135,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-09-18T01:10:54.548Z
+          updatedTimestamp: 2025-09-21T12:07:18.546Z
           revision: "1"
         meta: ""
         links: ""
@@ -62636,6 +64202,7 @@ components:
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
+        disableAutoIpAllocation: false
         redundancy:
           mode: active-backup
           implementation:
@@ -62664,6 +64231,11 @@ components:
         providesDefaultRoute:
           default: false
           description: Whether the logical network provides a default route
+          type: boolean
+        disableAutoIpAllocation:
+          default: false
+          description: Disable automatic IP allocation for IPv4 addresses on this
+            network connection
           type: boolean
         redundancy:
           allOf:
@@ -62712,6 +64284,7 @@ components:
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
+          disableAutoIpAllocation: false
           redundancy:
             mode: active-backup
             implementation:
@@ -62730,6 +64303,7 @@ components:
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
+          disableAutoIpAllocation: false
           redundancy:
             mode: active-backup
             implementation:
@@ -62764,6 +64338,7 @@ components:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
         providesDefaultRoute: false
+        disableAutoIpAllocation: false
         redundancy:
           mode: active-backup
           implementation:
@@ -62791,6 +64366,11 @@ components:
         providesDefaultRoute:
           default: false
           description: Whether the logical network provides a default route
+          type: boolean
+        disableAutoIpAllocation:
+          default: false
+          description: Disable automatic IP allocation for IPv4 addresses on this
+            network connection
           type: boolean
         redundancy:
           allOf:
@@ -62822,6 +64402,7 @@ components:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
         providesDefaultRoute: false
+        disableAutoIpAllocation: false
         redundancy:
           mode: active-backup
           implementation:
@@ -62845,6 +64426,11 @@ components:
         providesDefaultRoute:
           default: false
           description: Whether the logical network provides a default route
+          type: boolean
+        disableAutoIpAllocation:
+          default: false
+          description: Disable automatic IP allocation for IPv4 addresses on this
+            network connection
           type: boolean
         redundancy:
           allOf:
@@ -63183,7 +64769,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-09-18T01:10:54.475Z
+        createdTimestamp: 2025-09-21T12:07:18.446Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -63231,7 +64817,7 @@ components:
           configurationPreview: configurationPreview
           bgpTemplateId: 101
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-09-18T01:10:54.475Z
+        updatedTimestamp: 2025-09-21T12:07:18.446Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -63379,12 +64965,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-18T01:10:54.475Z
+          example: 2025-09-21T12:07:18.446Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-18T01:10:54.475Z
+          example: 2025-09-21T12:07:18.446Z
           format: date-time
           type: string
         links:
@@ -63428,7 +65014,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-09-18T01:10:54.475Z
+        - createdTimestamp: 2025-09-21T12:07:18.446Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -63476,7 +65062,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-09-18T01:10:54.475Z
+          updatedTimestamp: 2025-09-21T12:07:18.446Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -63599,7 +65185,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-09-18T01:10:54.475Z
+        - createdTimestamp: 2025-09-21T12:07:18.446Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -63647,7 +65233,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-09-18T01:10:54.475Z
+          updatedTimestamp: 2025-09-21T12:07:18.446Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -63939,9 +65525,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-09-18T01:10:54.555Z
+        createdTimestamp: 2025-09-21T12:07:18.553Z
         mlagPair: 0
-        updatedTimestamp: 2025-09-18T01:10:54.555Z
+        updatedTimestamp: 2025-09-21T12:07:18.553Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -63954,12 +65540,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-18T01:10:54.555Z
+          example: 2025-09-21T12:07:18.553Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-18T01:10:54.555Z
+          example: 2025-09-21T12:07:18.553Z
           format: date-time
           type: string
         revision:
@@ -64037,9 +65623,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-09-18T01:10:54.555Z
+          createdTimestamp: 2025-09-21T12:07:18.553Z
           mlagPair: 0
-          updatedTimestamp: 2025-09-18T01:10:54.555Z
+          updatedTimestamp: 2025-09-21T12:07:18.553Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -64050,9 +65636,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-09-18T01:10:54.555Z
+          createdTimestamp: 2025-09-21T12:07:18.553Z
           mlagPair: 0
-          updatedTimestamp: 2025-09-18T01:10:54.555Z
+          updatedTimestamp: 2025-09-21T12:07:18.553Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -67589,10 +69175,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-09-18T01:10:54.553Z
+        createdTimestamp: 2025-09-21T12:07:18.55Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-09-18T01:10:54.553Z
+        updatedTimestamp: 2025-09-21T12:07:18.55Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -67666,12 +69252,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-18T01:10:54.553Z
+          example: 2025-09-21T12:07:18.55Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-18T01:10:54.553Z
+          example: 2025-09-21T12:07:18.55Z
           format: date-time
           type: string
         links:
@@ -72038,6 +73624,7 @@ components:
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
+        disableAutoIpAllocation: false
         redundancy:
           mode: active-backup
           implementation:
@@ -72062,6 +73649,11 @@ components:
         providesDefaultRoute:
           default: false
           description: Whether the logical network provides a default route
+          type: boolean
+        disableAutoIpAllocation:
+          default: false
+          description: Disable automatic IP allocation for IPv4 addresses on this
+            network connection
           type: boolean
         redundancy:
           allOf:
@@ -72108,6 +73700,7 @@ components:
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
+          disableAutoIpAllocation: false
           redundancy:
             mode: active-backup
             implementation:
@@ -72125,6 +73718,7 @@ components:
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
+          disableAutoIpAllocation: false
           redundancy:
             mode: active-backup
             implementation:
@@ -72159,6 +73753,7 @@ components:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
         providesDefaultRoute: false
+        disableAutoIpAllocation: false
         redundancy:
           mode: active-backup
           implementation:
@@ -72186,6 +73781,11 @@ components:
         providesDefaultRoute:
           default: false
           description: Whether the logical network provides a default route
+          type: boolean
+        disableAutoIpAllocation:
+          default: false
+          description: Disable automatic IP allocation for IPv4 addresses on this
+            network connection
           type: boolean
         redundancy:
           allOf:
@@ -73891,7 +75491,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-09-18T01:10:54.542Z
+        createdTimestamp: 2025-09-21T12:07:18.538Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -73899,7 +75499,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-09-18T01:10:54.542Z
+        updatedTimestamp: 2025-09-21T12:07:18.538Z
         revision: "1"
       properties:
         id:
@@ -73928,12 +75528,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-18T01:10:54.542Z
+          example: 2025-09-21T12:07:18.538Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-18T01:10:54.542Z
+          example: 2025-09-21T12:07:18.538Z
           format: date-time
           type: string
         links:
@@ -73950,9 +75550,35 @@ components:
       - revision
       - updatedTimestamp
       type: object
+    EndpointAllocationInfo:
+      properties:
+        instanceId:
+          description: The id of the instance.
+          type: number
+        instanceLabel:
+          description: The label of the instance.
+          type: string
+        instanceGroupLabel:
+          description: The label of the instance group.
+          type: string
+        extensionInstanceId:
+          description: The id of the extension instance.
+          type: number
+        infrastructure:
+          description: The infrastructure of the instance.
+          type: object
+        osTemplateId:
+          description: The id of the os template used by the instance.
+          type: number
+      required:
+      - infrastructure
+      - instanceGroupLabel
+      - instanceId
+      - instanceLabel
+      type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-09-18T01:10:54.545Z
+        createdTimestamp: 2025-09-21T12:07:18.54Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -73963,8 +75589,9 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-09-18T01:10:54.545Z
+        updatedTimestamp: 2025-09-21T12:07:18.54Z
         revision: "1"
+        allocationInfo: ""
       properties:
         id:
           description: The network endpoint id.
@@ -73997,14 +75624,18 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-18T01:10:54.545Z
+          example: 2025-09-21T12:07:18.54Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-18T01:10:54.545Z
+          example: 2025-09-21T12:07:18.54Z
           format: date-time
           type: string
+        allocationInfo:
+          allOf:
+          - $ref: '#/components/schemas/EndpointAllocationInfo'
+          description: The endpoint instance.
         links:
           description: Reference links
           items:
@@ -74022,7 +75653,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-09-18T01:10:54.545Z
+        - createdTimestamp: 2025-09-21T12:07:18.54Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -74033,9 +75664,10 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-09-18T01:10:54.545Z
+          updatedTimestamp: 2025-09-21T12:07:18.54Z
           revision: "1"
-        - createdTimestamp: 2025-09-18T01:10:54.545Z
+          allocationInfo: ""
+        - createdTimestamp: 2025-09-21T12:07:18.54Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -74046,8 +75678,9 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-09-18T01:10:54.545Z
+          updatedTimestamp: 2025-09-21T12:07:18.54Z
           revision: "1"
+          allocationInfo: ""
         meta: ""
         links: ""
       properties:
@@ -74255,7 +75888,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-09-18T01:10:54.542Z
+          createdTimestamp: 2025-09-21T12:07:18.538Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -74263,12 +75896,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-09-18T01:10:54.542Z
+          updatedTimestamp: 2025-09-21T12:07:18.538Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-09-18T01:10:54.542Z
+          createdTimestamp: 2025-09-21T12:07:18.538Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -74276,7 +75909,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-09-18T01:10:54.542Z
+          updatedTimestamp: 2025-09-21T12:07:18.538Z
           revision: "1"
         meta: ""
         links: ""
@@ -74369,6 +76002,7 @@ components:
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
+        disableAutoIpAllocation: false
         redundancy:
           mode: active-backup
           implementation:
@@ -74393,6 +76027,11 @@ components:
         providesDefaultRoute:
           default: false
           description: Whether the logical network provides a default route
+          type: boolean
+        disableAutoIpAllocation:
+          default: false
+          description: Disable automatic IP allocation for IPv4 addresses on this
+            network connection
           type: boolean
         redundancy:
           allOf:
@@ -74439,6 +76078,7 @@ components:
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
+          disableAutoIpAllocation: false
           redundancy:
             mode: active-backup
             implementation:
@@ -74456,6 +76096,7 @@ components:
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
+          disableAutoIpAllocation: false
           redundancy:
             mode: active-backup
             implementation:
@@ -74490,6 +76131,7 @@ components:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
         providesDefaultRoute: false
+        disableAutoIpAllocation: false
         redundancy:
           mode: active-backup
           implementation:
@@ -74517,6 +76159,11 @@ components:
         providesDefaultRoute:
           default: false
           description: Whether the logical network provides a default route
+          type: boolean
+        disableAutoIpAllocation:
+          default: false
+          description: Disable automatic IP allocation for IPv4 addresses on this
+            network connection
           type: boolean
         redundancy:
           allOf:
@@ -75774,8 +77421,10 @@ components:
         imagesTag: v6.4.0
         msTunnelSecret: your-secure-tunnel-token
         inbandFileTransfer: false
+        sshCommand: true
         commandExecution: false
         netconf: false
+        httpRequest: false
         localScript: false
         dhcpOob: false
       properties:
@@ -75864,6 +77513,13 @@ components:
           default: false
           description: Enable Ansible runner capability
           type: boolean
+        httpRequest:
+          default: false
+          description: Enable HTTP request capability
+          type: boolean
+        sshCommand:
+          description: Enable SSH command capability
+          type: boolean
         secondIp:
           description: Second IP address
           type: string
@@ -75874,6 +77530,7 @@ components:
       - dockerEnv
       - fileTransfer
       - gitHubTag
+      - httpRequest
       - imagesTag
       - inbandFileTransfer
       - inbandHttpProxy
@@ -75884,11 +77541,23 @@ components:
       - oobHttpProxy
       - registry
       - spice
+      - sshCommand
       - sslHostname
       - switchSubscription
       - syslog
       - usePodman
       - vnc
+      type: object
+    StoragePortDto:
+      properties:
+        portId:
+          description: The ID of the port.
+          type: string
+        directorId:
+          description: Director id to use (for certain storage drivers)
+          type: string
+      required:
+      - portId
       type: object
     StorageOptions:
       properties:
@@ -75952,22 +77621,27 @@ components:
         portsIscsi:
           description: ISCSI ports
           items:
-            type: object
+            $ref: '#/components/schemas/StoragePortDto'
           type: array
         portsScsiFc:
           description: SCSI FC ports
           items:
-            type: object
+            $ref: '#/components/schemas/StoragePortDto'
           type: array
         portsNvmeTcp:
           description: NVMe TCP ports
           items:
-            type: object
+            $ref: '#/components/schemas/StoragePortDto'
           type: array
         portsNvmeFc:
           description: NVMe FC ports
           items:
-            type: object
+            $ref: '#/components/schemas/StoragePortDto'
+          type: array
+        portsToUse:
+          description: Array of storage ports to use
+          items:
+            $ref: '#/components/schemas/StoragePortDto'
           type: array
         infoGatherError:
           description: Error message when gathering storage info
@@ -75993,6 +77667,7 @@ components:
         targetIQN: targetIQN
         options: ""
         drivePriority: 9.301444243932576
+        networkFabricId: 2.027123023002322
         links:
         - rel: self
           href: /api/v2/path/to/resource
@@ -76131,6 +77806,9 @@ components:
           - ipv4
           - ipv6
           type: string
+        networkFabricId:
+          description: Network fabric ID this Storage is connected to
+          type: number
         jobStatistics:
           $ref: '#/components/schemas/JobGroupStatistics'
         extensionInfo:
@@ -76174,6 +77852,7 @@ components:
           targetIQN: targetIQN
           options: ""
           drivePriority: 9.301444243932576
+          networkFabricId: 2.027123023002322
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -76218,6 +77897,7 @@ components:
           targetIQN: targetIQN
           options: ""
           drivePriority: 9.301444243932576
+          networkFabricId: 2.027123023002322
           links:
           - rel: self
             href: /api/v2/path/to/resource
@@ -76345,6 +78025,11 @@ components:
         fibreChannelEnabled:
           description: Fibre channel enabled
           type: number
+        portsToUse:
+          description: Array of storage ports to use
+          items:
+            $ref: '#/components/schemas/StoragePortDto'
+          type: array
       type: object
     CreateStorage:
       example:
@@ -76500,6 +78185,7 @@ components:
         inMaintenance: 0.8008281904610115
         options: ""
         drivePriority: 1.4658129805029452
+        networkFabricId: 5.637376656633329
         sharedDrivePriority: 5.962133916683182
         tags:
         - tags
@@ -76522,6 +78208,9 @@ components:
           items:
             type: string
           type: array
+        networkFabricId:
+          description: Network fabric ID this Storage is connected to
+          type: number
         options:
           allOf:
           - $ref: '#/components/schemas/UpdateStorageOptions'
@@ -76656,11 +78345,6 @@ components:
       - totalSpaceGB
       - usedSpaceGB
       type: object
-    IpVersion:
-      enum:
-      - ipv4
-      - ipv6
-      type: string
     Subnet:
       example:
         isPool: true
@@ -79411,6 +81095,7 @@ components:
           href: /api/v2/path/to/resource
         - rel: self
           href: /api/v2/path/to/resource
+        disableAutoIpAllocation: false
         redundancy:
           mode: active-backup
           implementation:
@@ -79435,6 +81120,11 @@ components:
         providesDefaultRoute:
           default: false
           description: Whether the logical network provides a default route
+          type: boolean
+        disableAutoIpAllocation:
+          default: false
+          description: Disable automatic IP allocation for IPv4 addresses on this
+            network connection
           type: boolean
         redundancy:
           allOf:
@@ -79481,6 +81171,7 @@ components:
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
+          disableAutoIpAllocation: false
           redundancy:
             mode: active-backup
             implementation:
@@ -79498,6 +81189,7 @@ components:
             href: /api/v2/path/to/resource
           - rel: self
             href: /api/v2/path/to/resource
+          disableAutoIpAllocation: false
           redundancy:
             mode: active-backup
             implementation:
@@ -79532,6 +81224,7 @@ components:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
         providesDefaultRoute: false
+        disableAutoIpAllocation: false
         redundancy:
           mode: active-backup
           implementation:
@@ -79559,6 +81252,11 @@ components:
         providesDefaultRoute:
           default: false
           description: Whether the logical network provides a default route
+          type: boolean
+        disableAutoIpAllocation:
+          default: false
+          description: Disable automatic IP allocation for IPv4 addresses on this
+            network connection
           type: boolean
         redundancy:
           allOf:
@@ -79590,6 +81288,7 @@ components:
           provisionInstanceDnsRecords: true
           provisionLoadBalancingDnsRecord: false
         providesDefaultRoute: false
+        disableAutoIpAllocation: false
         redundancy:
           mode: active-backup
           implementation:
@@ -79613,6 +81312,11 @@ components:
         providesDefaultRoute:
           default: false
           description: Whether the logical network provides a default route
+          type: boolean
+        disableAutoIpAllocation:
+          default: false
+          description: Disable automatic IP allocation for IPv4 addresses on this
+            network connection
           type: boolean
         redundancy:
           allOf:
