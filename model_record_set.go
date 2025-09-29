@@ -34,6 +34,8 @@ type RecordSet struct {
 	ClusterDNSRecordSet map[string]interface{} `json:"clusterDNSRecordSet,omitempty"`
 	// The extension instance.
 	ExtensionInstanceRecordSet map[string]interface{} `json:"extensionInstanceRecordSet,omitempty"`
+	// The server instance.
+	ServerInstanceRecordSet *ServerInstanceRecordSet `json:"serverInstanceRecordSet,omitempty"`
 	// The VM instance.
 	VmInstanceRecordSet *VMInstanceRecordSet `json:"vmInstanceRecordSet,omitempty"`
 	// The VM pool.
@@ -288,6 +290,38 @@ func (o *RecordSet) SetExtensionInstanceRecordSet(v map[string]interface{}) {
 	o.ExtensionInstanceRecordSet = v
 }
 
+// GetServerInstanceRecordSet returns the ServerInstanceRecordSet field value if set, zero value otherwise.
+func (o *RecordSet) GetServerInstanceRecordSet() ServerInstanceRecordSet {
+	if o == nil || IsNil(o.ServerInstanceRecordSet) {
+		var ret ServerInstanceRecordSet
+		return ret
+	}
+	return *o.ServerInstanceRecordSet
+}
+
+// GetServerInstanceRecordSetOk returns a tuple with the ServerInstanceRecordSet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetServerInstanceRecordSetOk() (*ServerInstanceRecordSet, bool) {
+	if o == nil || IsNil(o.ServerInstanceRecordSet) {
+		return nil, false
+	}
+	return o.ServerInstanceRecordSet, true
+}
+
+// HasServerInstanceRecordSet returns a boolean if a field has been set.
+func (o *RecordSet) HasServerInstanceRecordSet() bool {
+	if o != nil && !IsNil(o.ServerInstanceRecordSet) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerInstanceRecordSet gets a reference to the given ServerInstanceRecordSet and assigns it to the ServerInstanceRecordSet field.
+func (o *RecordSet) SetServerInstanceRecordSet(v ServerInstanceRecordSet) {
+	o.ServerInstanceRecordSet = &v
+}
+
 // GetVmInstanceRecordSet returns the VmInstanceRecordSet field value if set, zero value otherwise.
 func (o *RecordSet) GetVmInstanceRecordSet() VMInstanceRecordSet {
 	if o == nil || IsNil(o.VmInstanceRecordSet) {
@@ -447,6 +481,9 @@ func (o RecordSet) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExtensionInstanceRecordSet) {
 		toSerialize["extensionInstanceRecordSet"] = o.ExtensionInstanceRecordSet
 	}
+	if !IsNil(o.ServerInstanceRecordSet) {
+		toSerialize["serverInstanceRecordSet"] = o.ServerInstanceRecordSet
+	}
 	if !IsNil(o.VmInstanceRecordSet) {
 		toSerialize["vmInstanceRecordSet"] = o.VmInstanceRecordSet
 	}
@@ -488,6 +525,7 @@ func (o *RecordSet) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "serverInstanceDNSRecordSet")
 		delete(additionalProperties, "clusterDNSRecordSet")
 		delete(additionalProperties, "extensionInstanceRecordSet")
+		delete(additionalProperties, "serverInstanceRecordSet")
 		delete(additionalProperties, "vmInstanceRecordSet")
 		delete(additionalProperties, "vmPoolRecordSet")
 		delete(additionalProperties, "serverDNSRecordSet")

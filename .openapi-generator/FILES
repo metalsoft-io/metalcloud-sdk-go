@@ -605,6 +605,7 @@ docs/ServerInstanceOsInstallImageBuildInfo.md
 docs/ServerInstancePaginatedList.md
 docs/ServerInstancePhysicalNetworkConfig.md
 docs/ServerInstancePowerSet.md
+docs/ServerInstanceRecordSet.md
 docs/ServerInstanceReinstallOS.md
 docs/ServerInstanceStatistics.md
 docs/ServerInstanceStorageProfile.md
@@ -1344,6 +1345,7 @@ model_server_instance_os_installation_data.go
 model_server_instance_paginated_list.go
 model_server_instance_physical_network_config.go
 model_server_instance_power_set.go
+model_server_instance_record_set.go
 model_server_instance_reinstall_os.go
 model_server_instance_statistics.go
 model_server_instance_storage_profile.go

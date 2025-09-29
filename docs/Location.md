@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | **string** | Address of the site | 
+**Address** | Pointer to **string** | Address of the site | [optional] 
 **Latitude** | Pointer to **float32** | Latitude of the site | [optional] 
 **Longitude** | Pointer to **float32** | Longitude of the site | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewLocation
 
-`func NewLocation(address string, ) *Location`
+`func NewLocation() *Location`
 
 NewLocation instantiates a new Location object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetAddress sets Address field to given value.
 
+### HasAddress
+
+`func (o *Location) HasAddress() bool`
+
+HasAddress returns a boolean if a field has been set.
 
 ### GetLatitude
 

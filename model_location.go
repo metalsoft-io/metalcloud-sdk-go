@@ -13,7 +13,6 @@ package sdk
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Location type satisfies the MappedNullable interface at compile time
@@ -22,7 +21,7 @@ var _ MappedNullable = &Location{}
 // Location struct for Location
 type Location struct {
 	// Address of the site
-	Address string `json:"address"`
+	Address *string `json:"address,omitempty"`
 	// Latitude of the site
 	Latitude *float32 `json:"latitude,omitempty"`
 	// Longitude of the site
@@ -36,9 +35,8 @@ type _Location Location
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLocation(address string) *Location {
+func NewLocation() *Location {
 	this := Location{}
-	this.Address = address
 	return &this
 }
 
@@ -50,28 +48,36 @@ func NewLocationWithDefaults() *Location {
 	return &this
 }
 
-// GetAddress returns the Address field value
+// GetAddress returns the Address field value if set, zero value otherwise.
 func (o *Location) GetAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
-
-	return o.Address
+	return *o.Address
 }
 
-// GetAddressOk returns a tuple with the Address field value
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Location) GetAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
-	return &o.Address, true
+	return o.Address, true
 }
 
-// SetAddress sets field value
+// HasAddress returns a boolean if a field has been set.
+func (o *Location) HasAddress() bool {
+	if o != nil && !IsNil(o.Address) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given string and assigns it to the Address field.
 func (o *Location) SetAddress(v string) {
-	o.Address = v
+	o.Address = &v
 }
 
 // GetLatitude returns the Latitude field value if set, zero value otherwise.
@@ -148,7 +154,9 @@ func (o Location) MarshalJSON() ([]byte, error) {
 
 func (o Location) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["address"] = o.Address
+	if !IsNil(o.Address) {
+		toSerialize["address"] = o.Address
+	}
 	if !IsNil(o.Latitude) {
 		toSerialize["latitude"] = o.Latitude
 	}
@@ -164,27 +172,6 @@ func (o Location) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *Location) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"address",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varLocation := _Location{}
 
 	err = json.Unmarshal(data, &varLocation)

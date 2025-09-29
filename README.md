@@ -1170,6 +1170,7 @@ Class | Method | HTTP request | Description
  - [ServerInstancePaginatedList](docs/ServerInstancePaginatedList.md)
  - [ServerInstancePhysicalNetworkConfig](docs/ServerInstancePhysicalNetworkConfig.md)
  - [ServerInstancePowerSet](docs/ServerInstancePowerSet.md)
+ - [ServerInstanceRecordSet](docs/ServerInstanceRecordSet.md)
  - [ServerInstanceReinstallOS](docs/ServerInstanceReinstallOS.md)
  - [ServerInstanceStatistics](docs/ServerInstanceStatistics.md)
  - [ServerInstanceStorageProfile](docs/ServerInstanceStorageProfile.md)

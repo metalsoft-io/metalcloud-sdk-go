@@ -32,6 +32,7 @@ const (
 	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_GROUP_UPDATE_DNS AssetExtensionActionStage = "serverInstanceGroupUpdateDNS"
 	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_UPDATE_DNS AssetExtensionActionStage = "serverInstanceUpdateDNS"
 	ASSETEXTENSIONACTIONSTAGE_CLUSTER_UPDATE_DNS AssetExtensionActionStage = "clusterUpdateDNS"
+	ASSETEXTENSIONACTIONSTAGE_SERVER_INSTANCE_UPDATE AssetExtensionActionStage = "serverInstanceUpdate"
 )
 
 // All allowed values of AssetExtensionActionStage enum
@@ -47,6 +48,7 @@ var AllowedAssetExtensionActionStageEnumValues = []AssetExtensionActionStage{
 	"serverInstanceGroupUpdateDNS",
 	"serverInstanceUpdateDNS",
 	"clusterUpdateDNS",
+	"serverInstanceUpdate",
 }
 
 func (v *AssetExtensionActionStage) UnmarshalJSON(src []byte) error {

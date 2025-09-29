@@ -25,6 +25,8 @@
 
 * `CLUSTER_UPDATE_DNS` (value: `"clusterUpdateDNS"`)
 
+* `SERVER_INSTANCE_UPDATE` (value: `"serverInstanceUpdate"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

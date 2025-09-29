@@ -22,8 +22,6 @@ var _ MappedNullable = &InfrastructureOSInstallationData{}
 // InfrastructureOSInstallationData struct for InfrastructureOSInstallationData
 type InfrastructureOSInstallationData struct {
 	Label string `json:"label"`
-	// Custom variables in JSON format.
-	CustomVariables map[string]interface{} `json:"customVariables,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -71,38 +69,6 @@ func (o *InfrastructureOSInstallationData) SetLabel(v string) {
 	o.Label = v
 }
 
-// GetCustomVariables returns the CustomVariables field value if set, zero value otherwise.
-func (o *InfrastructureOSInstallationData) GetCustomVariables() map[string]interface{} {
-	if o == nil || IsNil(o.CustomVariables) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.CustomVariables
-}
-
-// GetCustomVariablesOk returns a tuple with the CustomVariables field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InfrastructureOSInstallationData) GetCustomVariablesOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.CustomVariables) {
-		return map[string]interface{}{}, false
-	}
-	return o.CustomVariables, true
-}
-
-// HasCustomVariables returns a boolean if a field has been set.
-func (o *InfrastructureOSInstallationData) HasCustomVariables() bool {
-	if o != nil && !IsNil(o.CustomVariables) {
-		return true
-	}
-
-	return false
-}
-
-// SetCustomVariables gets a reference to the given map[string]interface{} and assigns it to the CustomVariables field.
-func (o *InfrastructureOSInstallationData) SetCustomVariables(v map[string]interface{}) {
-	o.CustomVariables = v
-}
-
 func (o InfrastructureOSInstallationData) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -114,9 +80,6 @@ func (o InfrastructureOSInstallationData) MarshalJSON() ([]byte, error) {
 func (o InfrastructureOSInstallationData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["label"] = o.Label
-	if !IsNil(o.CustomVariables) {
-		toSerialize["customVariables"] = o.CustomVariables
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -161,7 +124,6 @@ func (o *InfrastructureOSInstallationData) UnmarshalJSON(data []byte) (err error
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "label")
-		delete(additionalProperties, "customVariables")
 		o.AdditionalProperties = additionalProperties
 	}
 
