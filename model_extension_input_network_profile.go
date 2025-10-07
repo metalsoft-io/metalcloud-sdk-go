@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the ExtensionInputServerType type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ExtensionInputServerType{}
+// checks if the ExtensionInputNetworkProfile type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExtensionInputNetworkProfile{}
 
-// ExtensionInputServerType struct for ExtensionInputServerType
-type ExtensionInputServerType struct {
+// ExtensionInputNetworkProfile struct for ExtensionInputNetworkProfile
+type ExtensionInputNetworkProfile struct {
 	// Label of the input.
 	Label string `json:"label"`
 	// Name of the input.
@@ -33,18 +33,18 @@ type ExtensionInputServerType struct {
 	// Flag to indicate if the input is a password. Only to be used with string input type.
 	IsPassword *bool `json:"isPassword,omitempty"`
 	DefaultValue *ExtensionInputStringDefaultValue `json:"defaultValue,omitempty"`
-	Options ExtensionInputOptionServerType `json:"options"`
+	Options map[string]interface{} `json:"options"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _ExtensionInputServerType ExtensionInputServerType
+type _ExtensionInputNetworkProfile ExtensionInputNetworkProfile
 
-// NewExtensionInputServerType instantiates a new ExtensionInputServerType object
+// NewExtensionInputNetworkProfile instantiates a new ExtensionInputNetworkProfile object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionInputServerType(label string, name string, inputType ExtensionInputType, options ExtensionInputOptionServerType) *ExtensionInputServerType {
-	this := ExtensionInputServerType{}
+func NewExtensionInputNetworkProfile(label string, name string, inputType ExtensionInputType, options map[string]interface{}) *ExtensionInputNetworkProfile {
+	this := ExtensionInputNetworkProfile{}
 	this.Label = label
 	this.Name = name
 	this.InputType = inputType
@@ -58,11 +58,11 @@ func NewExtensionInputServerType(label string, name string, inputType ExtensionI
 	return &this
 }
 
-// NewExtensionInputServerTypeWithDefaults instantiates a new ExtensionInputServerType object
+// NewExtensionInputNetworkProfileWithDefaults instantiates a new ExtensionInputNetworkProfile object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewExtensionInputServerTypeWithDefaults() *ExtensionInputServerType {
-	this := ExtensionInputServerType{}
+func NewExtensionInputNetworkProfileWithDefaults() *ExtensionInputNetworkProfile {
+	this := ExtensionInputNetworkProfile{}
 	var setOnly bool = false
 	this.SetOnly = &setOnly
 	var hidden bool = false
@@ -73,7 +73,7 @@ func NewExtensionInputServerTypeWithDefaults() *ExtensionInputServerType {
 }
 
 // GetLabel returns the Label field value
-func (o *ExtensionInputServerType) GetLabel() string {
+func (o *ExtensionInputNetworkProfile) GetLabel() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -84,7 +84,7 @@ func (o *ExtensionInputServerType) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputServerType) GetLabelOk() (*string, bool) {
+func (o *ExtensionInputNetworkProfile) GetLabelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,12 +92,12 @@ func (o *ExtensionInputServerType) GetLabelOk() (*string, bool) {
 }
 
 // SetLabel sets field value
-func (o *ExtensionInputServerType) SetLabel(v string) {
+func (o *ExtensionInputNetworkProfile) SetLabel(v string) {
 	o.Label = v
 }
 
 // GetName returns the Name field value
-func (o *ExtensionInputServerType) GetName() string {
+func (o *ExtensionInputNetworkProfile) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -108,7 +108,7 @@ func (o *ExtensionInputServerType) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputServerType) GetNameOk() (*string, bool) {
+func (o *ExtensionInputNetworkProfile) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -116,12 +116,12 @@ func (o *ExtensionInputServerType) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *ExtensionInputServerType) SetName(v string) {
+func (o *ExtensionInputNetworkProfile) SetName(v string) {
 	o.Name = v
 }
 
 // GetInputType returns the InputType field value
-func (o *ExtensionInputServerType) GetInputType() ExtensionInputType {
+func (o *ExtensionInputNetworkProfile) GetInputType() ExtensionInputType {
 	if o == nil {
 		var ret ExtensionInputType
 		return ret
@@ -132,7 +132,7 @@ func (o *ExtensionInputServerType) GetInputType() ExtensionInputType {
 
 // GetInputTypeOk returns a tuple with the InputType field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputServerType) GetInputTypeOk() (*ExtensionInputType, bool) {
+func (o *ExtensionInputNetworkProfile) GetInputTypeOk() (*ExtensionInputType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -140,12 +140,12 @@ func (o *ExtensionInputServerType) GetInputTypeOk() (*ExtensionInputType, bool) 
 }
 
 // SetInputType sets field value
-func (o *ExtensionInputServerType) SetInputType(v ExtensionInputType) {
+func (o *ExtensionInputNetworkProfile) SetInputType(v ExtensionInputType) {
 	o.InputType = v
 }
 
 // GetSetOnly returns the SetOnly field value if set, zero value otherwise.
-func (o *ExtensionInputServerType) GetSetOnly() bool {
+func (o *ExtensionInputNetworkProfile) GetSetOnly() bool {
 	if o == nil || IsNil(o.SetOnly) {
 		var ret bool
 		return ret
@@ -155,7 +155,7 @@ func (o *ExtensionInputServerType) GetSetOnly() bool {
 
 // GetSetOnlyOk returns a tuple with the SetOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputServerType) GetSetOnlyOk() (*bool, bool) {
+func (o *ExtensionInputNetworkProfile) GetSetOnlyOk() (*bool, bool) {
 	if o == nil || IsNil(o.SetOnly) {
 		return nil, false
 	}
@@ -163,7 +163,7 @@ func (o *ExtensionInputServerType) GetSetOnlyOk() (*bool, bool) {
 }
 
 // HasSetOnly returns a boolean if a field has been set.
-func (o *ExtensionInputServerType) HasSetOnly() bool {
+func (o *ExtensionInputNetworkProfile) HasSetOnly() bool {
 	if o != nil && !IsNil(o.SetOnly) {
 		return true
 	}
@@ -172,12 +172,12 @@ func (o *ExtensionInputServerType) HasSetOnly() bool {
 }
 
 // SetSetOnly gets a reference to the given bool and assigns it to the SetOnly field.
-func (o *ExtensionInputServerType) SetSetOnly(v bool) {
+func (o *ExtensionInputNetworkProfile) SetSetOnly(v bool) {
 	o.SetOnly = &v
 }
 
 // GetHidden returns the Hidden field value if set, zero value otherwise.
-func (o *ExtensionInputServerType) GetHidden() bool {
+func (o *ExtensionInputNetworkProfile) GetHidden() bool {
 	if o == nil || IsNil(o.Hidden) {
 		var ret bool
 		return ret
@@ -187,7 +187,7 @@ func (o *ExtensionInputServerType) GetHidden() bool {
 
 // GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputServerType) GetHiddenOk() (*bool, bool) {
+func (o *ExtensionInputNetworkProfile) GetHiddenOk() (*bool, bool) {
 	if o == nil || IsNil(o.Hidden) {
 		return nil, false
 	}
@@ -195,7 +195,7 @@ func (o *ExtensionInputServerType) GetHiddenOk() (*bool, bool) {
 }
 
 // HasHidden returns a boolean if a field has been set.
-func (o *ExtensionInputServerType) HasHidden() bool {
+func (o *ExtensionInputNetworkProfile) HasHidden() bool {
 	if o != nil && !IsNil(o.Hidden) {
 		return true
 	}
@@ -204,12 +204,12 @@ func (o *ExtensionInputServerType) HasHidden() bool {
 }
 
 // SetHidden gets a reference to the given bool and assigns it to the Hidden field.
-func (o *ExtensionInputServerType) SetHidden(v bool) {
+func (o *ExtensionInputNetworkProfile) SetHidden(v bool) {
 	o.Hidden = &v
 }
 
 // GetIsPassword returns the IsPassword field value if set, zero value otherwise.
-func (o *ExtensionInputServerType) GetIsPassword() bool {
+func (o *ExtensionInputNetworkProfile) GetIsPassword() bool {
 	if o == nil || IsNil(o.IsPassword) {
 		var ret bool
 		return ret
@@ -219,7 +219,7 @@ func (o *ExtensionInputServerType) GetIsPassword() bool {
 
 // GetIsPasswordOk returns a tuple with the IsPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputServerType) GetIsPasswordOk() (*bool, bool) {
+func (o *ExtensionInputNetworkProfile) GetIsPasswordOk() (*bool, bool) {
 	if o == nil || IsNil(o.IsPassword) {
 		return nil, false
 	}
@@ -227,7 +227,7 @@ func (o *ExtensionInputServerType) GetIsPasswordOk() (*bool, bool) {
 }
 
 // HasIsPassword returns a boolean if a field has been set.
-func (o *ExtensionInputServerType) HasIsPassword() bool {
+func (o *ExtensionInputNetworkProfile) HasIsPassword() bool {
 	if o != nil && !IsNil(o.IsPassword) {
 		return true
 	}
@@ -236,12 +236,12 @@ func (o *ExtensionInputServerType) HasIsPassword() bool {
 }
 
 // SetIsPassword gets a reference to the given bool and assigns it to the IsPassword field.
-func (o *ExtensionInputServerType) SetIsPassword(v bool) {
+func (o *ExtensionInputNetworkProfile) SetIsPassword(v bool) {
 	o.IsPassword = &v
 }
 
 // GetDefaultValue returns the DefaultValue field value if set, zero value otherwise.
-func (o *ExtensionInputServerType) GetDefaultValue() ExtensionInputStringDefaultValue {
+func (o *ExtensionInputNetworkProfile) GetDefaultValue() ExtensionInputStringDefaultValue {
 	if o == nil || IsNil(o.DefaultValue) {
 		var ret ExtensionInputStringDefaultValue
 		return ret
@@ -251,7 +251,7 @@ func (o *ExtensionInputServerType) GetDefaultValue() ExtensionInputStringDefault
 
 // GetDefaultValueOk returns a tuple with the DefaultValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputServerType) GetDefaultValueOk() (*ExtensionInputStringDefaultValue, bool) {
+func (o *ExtensionInputNetworkProfile) GetDefaultValueOk() (*ExtensionInputStringDefaultValue, bool) {
 	if o == nil || IsNil(o.DefaultValue) {
 		return nil, false
 	}
@@ -259,7 +259,7 @@ func (o *ExtensionInputServerType) GetDefaultValueOk() (*ExtensionInputStringDef
 }
 
 // HasDefaultValue returns a boolean if a field has been set.
-func (o *ExtensionInputServerType) HasDefaultValue() bool {
+func (o *ExtensionInputNetworkProfile) HasDefaultValue() bool {
 	if o != nil && !IsNil(o.DefaultValue) {
 		return true
 	}
@@ -268,14 +268,14 @@ func (o *ExtensionInputServerType) HasDefaultValue() bool {
 }
 
 // SetDefaultValue gets a reference to the given ExtensionInputStringDefaultValue and assigns it to the DefaultValue field.
-func (o *ExtensionInputServerType) SetDefaultValue(v ExtensionInputStringDefaultValue) {
+func (o *ExtensionInputNetworkProfile) SetDefaultValue(v ExtensionInputStringDefaultValue) {
 	o.DefaultValue = &v
 }
 
 // GetOptions returns the Options field value
-func (o *ExtensionInputServerType) GetOptions() ExtensionInputOptionServerType {
+func (o *ExtensionInputNetworkProfile) GetOptions() map[string]interface{} {
 	if o == nil {
-		var ret ExtensionInputOptionServerType
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -284,19 +284,19 @@ func (o *ExtensionInputServerType) GetOptions() ExtensionInputOptionServerType {
 
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
-func (o *ExtensionInputServerType) GetOptionsOk() (*ExtensionInputOptionServerType, bool) {
+func (o *ExtensionInputNetworkProfile) GetOptionsOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Options, true
+	return o.Options, true
 }
 
 // SetOptions sets field value
-func (o *ExtensionInputServerType) SetOptions(v ExtensionInputOptionServerType) {
+func (o *ExtensionInputNetworkProfile) SetOptions(v map[string]interface{}) {
 	o.Options = v
 }
 
-func (o ExtensionInputServerType) MarshalJSON() ([]byte, error) {
+func (o ExtensionInputNetworkProfile) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -304,7 +304,7 @@ func (o ExtensionInputServerType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ExtensionInputServerType) ToMap() (map[string]interface{}, error) {
+func (o ExtensionInputNetworkProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["label"] = o.Label
 	toSerialize["name"] = o.Name
@@ -330,7 +330,7 @@ func (o ExtensionInputServerType) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ExtensionInputServerType) UnmarshalJSON(data []byte) (err error) {
+func (o *ExtensionInputNetworkProfile) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -355,15 +355,15 @@ func (o *ExtensionInputServerType) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varExtensionInputServerType := _ExtensionInputServerType{}
+	varExtensionInputNetworkProfile := _ExtensionInputNetworkProfile{}
 
-	err = json.Unmarshal(data, &varExtensionInputServerType)
+	err = json.Unmarshal(data, &varExtensionInputNetworkProfile)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ExtensionInputServerType(varExtensionInputServerType)
+	*o = ExtensionInputNetworkProfile(varExtensionInputNetworkProfile)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -382,38 +382,38 @@ func (o *ExtensionInputServerType) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableExtensionInputServerType struct {
-	value *ExtensionInputServerType
+type NullableExtensionInputNetworkProfile struct {
+	value *ExtensionInputNetworkProfile
 	isSet bool
 }
 
-func (v NullableExtensionInputServerType) Get() *ExtensionInputServerType {
+func (v NullableExtensionInputNetworkProfile) Get() *ExtensionInputNetworkProfile {
 	return v.value
 }
 
-func (v *NullableExtensionInputServerType) Set(val *ExtensionInputServerType) {
+func (v *NullableExtensionInputNetworkProfile) Set(val *ExtensionInputNetworkProfile) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableExtensionInputServerType) IsSet() bool {
+func (v NullableExtensionInputNetworkProfile) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableExtensionInputServerType) Unset() {
+func (v *NullableExtensionInputNetworkProfile) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableExtensionInputServerType(val *ExtensionInputServerType) *NullableExtensionInputServerType {
-	return &NullableExtensionInputServerType{value: val, isSet: true}
+func NewNullableExtensionInputNetworkProfile(val *ExtensionInputNetworkProfile) *NullableExtensionInputNetworkProfile {
+	return &NullableExtensionInputNetworkProfile{value: val, isSet: true}
 }
 
-func (v NullableExtensionInputServerType) MarshalJSON() ([]byte, error) {
+func (v NullableExtensionInputNetworkProfile) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableExtensionInputServerType) UnmarshalJSON(src []byte) error {
+func (v *NullableExtensionInputNetworkProfile) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

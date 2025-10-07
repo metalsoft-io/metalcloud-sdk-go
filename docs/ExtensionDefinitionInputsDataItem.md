@@ -9,14 +9,15 @@ Name | Type | Description | Notes
 **InputType** | [**ExtensionInputType**](ExtensionInputType.md) |  | 
 **SetOnly** | Pointer to **bool** | Flag to indicate if the input is required. | [optional] [default to false]
 **Hidden** | Pointer to **bool** | Flag to indicate if the input is hidden in the UI. | [optional] [default to false]
+**IsPassword** | Pointer to **bool** | Flag to indicate if the input is a password. Only to be used with string input type. | [optional] [default to false]
 **DefaultValue** | Pointer to [**ExtensionInputStringDefaultValue**](ExtensionInputStringDefaultValue.md) |  | [optional] 
-**Options** | [**ExtensionInputOptionOsTemplate**](ExtensionInputOptionOsTemplate.md) |  | 
+**Options** | **map[string]interface{}** |  | 
 
 ## Methods
 
 ### NewExtensionDefinitionInputsDataItem
 
-`func NewExtensionDefinitionInputsDataItem(label string, name string, inputType ExtensionInputType, options ExtensionInputOptionOsTemplate, ) *ExtensionDefinitionInputsDataItem`
+`func NewExtensionDefinitionInputsDataItem(label string, name string, inputType ExtensionInputType, options map[string]interface{}, ) *ExtensionDefinitionInputsDataItem`
 
 NewExtensionDefinitionInputsDataItem instantiates a new ExtensionDefinitionInputsDataItem object
 This constructor will assign default values to properties that have it defined,
@@ -141,6 +142,31 @@ SetHidden sets Hidden field to given value.
 
 HasHidden returns a boolean if a field has been set.
 
+### GetIsPassword
+
+`func (o *ExtensionDefinitionInputsDataItem) GetIsPassword() bool`
+
+GetIsPassword returns the IsPassword field if non-nil, zero value otherwise.
+
+### GetIsPasswordOk
+
+`func (o *ExtensionDefinitionInputsDataItem) GetIsPasswordOk() (*bool, bool)`
+
+GetIsPasswordOk returns a tuple with the IsPassword field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsPassword
+
+`func (o *ExtensionDefinitionInputsDataItem) SetIsPassword(v bool)`
+
+SetIsPassword sets IsPassword field to given value.
+
+### HasIsPassword
+
+`func (o *ExtensionDefinitionInputsDataItem) HasIsPassword() bool`
+
+HasIsPassword returns a boolean if a field has been set.
+
 ### GetDefaultValue
 
 `func (o *ExtensionDefinitionInputsDataItem) GetDefaultValue() ExtensionInputStringDefaultValue`
@@ -168,20 +194,20 @@ HasDefaultValue returns a boolean if a field has been set.
 
 ### GetOptions
 
-`func (o *ExtensionDefinitionInputsDataItem) GetOptions() ExtensionInputOptionOsTemplate`
+`func (o *ExtensionDefinitionInputsDataItem) GetOptions() map[string]interface{}`
 
 GetOptions returns the Options field if non-nil, zero value otherwise.
 
 ### GetOptionsOk
 
-`func (o *ExtensionDefinitionInputsDataItem) GetOptionsOk() (*ExtensionInputOptionOsTemplate, bool)`
+`func (o *ExtensionDefinitionInputsDataItem) GetOptionsOk() (*map[string]interface{}, bool)`
 
 GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptions
 
-`func (o *ExtensionDefinitionInputsDataItem) SetOptions(v ExtensionInputOptionOsTemplate)`
+`func (o *ExtensionDefinitionInputsDataItem) SetOptions(v map[string]interface{})`
 
 SetOptions sets Options field to given value.
 

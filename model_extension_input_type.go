@@ -26,6 +26,7 @@ const (
 	EXTENSIONINPUTTYPE_EXTENSION_INPUT_BOOLEAN ExtensionInputType = "ExtensionInputBoolean"
 	EXTENSIONINPUTTYPE_EXTENSION_INPUT_SERVER_TYPE ExtensionInputType = "ExtensionInputServerType"
 	EXTENSIONINPUTTYPE_EXTENSION_INPUT_OS_TEMPLATE ExtensionInputType = "ExtensionInputOsTemplate"
+	EXTENSIONINPUTTYPE_EXTENSION_INPUT_NETWORK_PROFILE ExtensionInputType = "ExtensionInputNetworkProfile"
 )
 
 // All allowed values of ExtensionInputType enum
@@ -35,6 +36,7 @@ var AllowedExtensionInputTypeEnumValues = []ExtensionInputType{
 	"ExtensionInputBoolean",
 	"ExtensionInputServerType",
 	"ExtensionInputOsTemplate",
+	"ExtensionInputNetworkProfile",
 }
 
 func (v *ExtensionInputType) UnmarshalJSON(src []byte) error {

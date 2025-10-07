@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **InputType** | [**ExtensionInputType**](ExtensionInputType.md) |  | 
 **SetOnly** | Pointer to **bool** | Flag to indicate if the input is required. | [optional] [default to false]
 **Hidden** | Pointer to **bool** | Flag to indicate if the input is hidden in the UI. | [optional] [default to false]
+**IsPassword** | Pointer to **bool** | Flag to indicate if the input is a password. Only to be used with string input type. | [optional] [default to false]
 **DefaultValue** | Pointer to [**ExtensionInputStringDefaultValue**](ExtensionInputStringDefaultValue.md) |  | [optional] 
 **Options** | [**ExtensionInputOptionBoolean**](ExtensionInputOptionBoolean.md) |  | 
 
@@ -140,6 +141,31 @@ SetHidden sets Hidden field to given value.
 `func (o *ExtensionInputBoolean) HasHidden() bool`
 
 HasHidden returns a boolean if a field has been set.
+
+### GetIsPassword
+
+`func (o *ExtensionInputBoolean) GetIsPassword() bool`
+
+GetIsPassword returns the IsPassword field if non-nil, zero value otherwise.
+
+### GetIsPasswordOk
+
+`func (o *ExtensionInputBoolean) GetIsPasswordOk() (*bool, bool)`
+
+GetIsPasswordOk returns a tuple with the IsPassword field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsPassword
+
+`func (o *ExtensionInputBoolean) SetIsPassword(v bool)`
+
+SetIsPassword sets IsPassword field to given value.
+
+### HasIsPassword
+
+`func (o *ExtensionInputBoolean) HasIsPassword() bool`
+
+HasIsPassword returns a boolean if a field has been set.
 
 ### GetDefaultValue
 

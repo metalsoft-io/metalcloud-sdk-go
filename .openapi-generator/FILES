@@ -277,6 +277,7 @@ docs/ExtensionInfrastructureIpRangesDto.md
 docs/ExtensionInfrastructureLogicalNetwork.md
 docs/ExtensionInputBoolean.md
 docs/ExtensionInputInteger.md
+docs/ExtensionInputNetworkProfile.md
 docs/ExtensionInputOptionBoolean.md
 docs/ExtensionInputOptionInteger.md
 docs/ExtensionInputOptionOsTemplate.md
@@ -462,7 +463,6 @@ docs/NetworkDevicePort.md
 docs/NetworkDevicePortCounters.md
 docs/NetworkDevicePortStatus.md
 docs/NetworkDevicePorts.md
-docs/NetworkDeviceStatus.md
 docs/NetworkDevicesToFabric.md
 docs/NetworkEndpointGroup.md
 docs/NetworkEndpointGroupAPI.md
@@ -1043,6 +1043,7 @@ model_extension_infrastructure_ip_ranges_dto.go
 model_extension_infrastructure_logical_network.go
 model_extension_input_boolean.go
 model_extension_input_integer.go
+model_extension_input_network_profile.go
 model_extension_input_option_boolean.go
 model_extension_input_option_integer.go
 model_extension_input_option_os_template.go
@@ -1214,7 +1215,6 @@ model_network_device_port.go
 model_network_device_port_counters.go
 model_network_device_port_status.go
 model_network_device_ports.go
-model_network_device_status.go
 model_network_devices_to_fabric.go
 model_network_endpoint_group.go
 model_network_endpoint_group_allowed_access_mode.go

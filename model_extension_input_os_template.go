@@ -30,6 +30,8 @@ type ExtensionInputOsTemplate struct {
 	SetOnly *bool `json:"setOnly,omitempty"`
 	// Flag to indicate if the input is hidden in the UI.
 	Hidden *bool `json:"hidden,omitempty"`
+	// Flag to indicate if the input is a password. Only to be used with string input type.
+	IsPassword *bool `json:"isPassword,omitempty"`
 	DefaultValue *ExtensionInputStringDefaultValue `json:"defaultValue,omitempty"`
 	Options ExtensionInputOptionOsTemplate `json:"options"`
 	AdditionalProperties map[string]interface{}
@@ -50,6 +52,8 @@ func NewExtensionInputOsTemplate(label string, name string, inputType ExtensionI
 	this.SetOnly = &setOnly
 	var hidden bool = false
 	this.Hidden = &hidden
+	var isPassword bool = false
+	this.IsPassword = &isPassword
 	this.Options = options
 	return &this
 }
@@ -63,6 +67,8 @@ func NewExtensionInputOsTemplateWithDefaults() *ExtensionInputOsTemplate {
 	this.SetOnly = &setOnly
 	var hidden bool = false
 	this.Hidden = &hidden
+	var isPassword bool = false
+	this.IsPassword = &isPassword
 	return &this
 }
 
@@ -202,6 +208,38 @@ func (o *ExtensionInputOsTemplate) SetHidden(v bool) {
 	o.Hidden = &v
 }
 
+// GetIsPassword returns the IsPassword field value if set, zero value otherwise.
+func (o *ExtensionInputOsTemplate) GetIsPassword() bool {
+	if o == nil || IsNil(o.IsPassword) {
+		var ret bool
+		return ret
+	}
+	return *o.IsPassword
+}
+
+// GetIsPasswordOk returns a tuple with the IsPassword field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionInputOsTemplate) GetIsPasswordOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsPassword) {
+		return nil, false
+	}
+	return o.IsPassword, true
+}
+
+// HasIsPassword returns a boolean if a field has been set.
+func (o *ExtensionInputOsTemplate) HasIsPassword() bool {
+	if o != nil && !IsNil(o.IsPassword) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsPassword gets a reference to the given bool and assigns it to the IsPassword field.
+func (o *ExtensionInputOsTemplate) SetIsPassword(v bool) {
+	o.IsPassword = &v
+}
+
 // GetDefaultValue returns the DefaultValue field value if set, zero value otherwise.
 func (o *ExtensionInputOsTemplate) GetDefaultValue() ExtensionInputStringDefaultValue {
 	if o == nil || IsNil(o.DefaultValue) {
@@ -277,6 +315,9 @@ func (o ExtensionInputOsTemplate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Hidden) {
 		toSerialize["hidden"] = o.Hidden
 	}
+	if !IsNil(o.IsPassword) {
+		toSerialize["isPassword"] = o.IsPassword
+	}
 	if !IsNil(o.DefaultValue) {
 		toSerialize["defaultValue"] = o.DefaultValue
 	}
@@ -332,6 +373,7 @@ func (o *ExtensionInputOsTemplate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "inputType")
 		delete(additionalProperties, "setOnly")
 		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "isPassword")
 		delete(additionalProperties, "defaultValue")
 		delete(additionalProperties, "options")
 		o.AdditionalProperties = additionalProperties

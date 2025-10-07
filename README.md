@@ -339,7 +339,6 @@ Class | Method | HTTP request | Description
 *LogicalNetworkProfileAPI* | [**UpdateLogicalNetworkProfile**](docs/LogicalNetworkProfileAPI.md#updatelogicalnetworkprofile) | **Patch** /api/v2/logical-network-profiles/{id} | Update Logical Network Profile
 *NetworkDeviceAPI* | [**AddNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#addnetworkdevicedefaults) | **Post** /api/v2/network-devices/defaults | Add network device defaults
 *NetworkDeviceAPI* | [**ArchiveNetworkDevice**](docs/NetworkDeviceAPI.md#archivenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/archive | Archives a network device
-*NetworkDeviceAPI* | [**ChangeNetworkDeviceStatus**](docs/NetworkDeviceAPI.md#changenetworkdevicestatus) | **Patch** /api/v2/network-devices/{networkDeviceId}/actions/change-status | Change status of a network device
 *NetworkDeviceAPI* | [**CreateNetworkDevice**](docs/NetworkDeviceAPI.md#createnetworkdevice) | **Post** /api/v2/network-devices | Create Network Device
 *NetworkDeviceAPI* | [**DeleteNetworkDevice**](docs/NetworkDeviceAPI.md#deletenetworkdevice) | **Delete** /api/v2/network-devices/{networkDeviceId} | Delete Network Device
 *NetworkDeviceAPI* | [**DiscoverNetworkDevice**](docs/NetworkDeviceAPI.md#discovernetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/discover | Discover network device interfaces, hardware and software configuration
@@ -355,7 +354,9 @@ Class | Method | HTTP request | Description
 *NetworkDeviceAPI* | [**RemoveNetworkDeviceDefaults**](docs/NetworkDeviceAPI.md#removenetworkdevicedefaults) | **Delete** /api/v2/network-devices/defaults/{siteId}/{id} | Remove network device defaults
 *NetworkDeviceAPI* | [**ReplaceNetworkDevice**](docs/NetworkDeviceAPI.md#replacenetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/replace | Replace network device
 *NetworkDeviceAPI* | [**ResetNetworkDevice**](docs/NetworkDeviceAPI.md#resetnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
+*NetworkDeviceAPI* | [**RevertNetworkDeviceFailedState**](docs/NetworkDeviceAPI.md#revertnetworkdevicefailedstate) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/revert-failed-state | Revert network device failed state
 *NetworkDeviceAPI* | [**RunExtensionOnNetworkDevice**](docs/NetworkDeviceAPI.md#runextensiononnetworkdevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
+*NetworkDeviceAPI* | [**SetNetworkDeviceAsFailed**](docs/NetworkDeviceAPI.md#setnetworkdeviceasfailed) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-as-failed | Set network device as failed
 *NetworkDeviceAPI* | [**SetNetworkDevicePortStatus**](docs/NetworkDeviceAPI.md#setnetworkdeviceportstatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
 *NetworkDeviceAPI* | [**UpdateNetworkDevice**](docs/NetworkDeviceAPI.md#updatenetworkdevice) | **Patch** /api/v2/network-devices/{networkDeviceId} | Update Network Device
 *NetworkDeviceDefaultSecretsAPI* | [**CreateNetworkDeviceDefaultSecrets**](docs/NetworkDeviceDefaultSecretsAPI.md#createnetworkdevicedefaultsecrets) | **Post** /api/v2/network-devices/default-secrets | Creates a NetworkDevice Default Secrets
@@ -868,6 +869,7 @@ Class | Method | HTTP request | Description
  - [ExtensionInfrastructureLogicalNetwork](docs/ExtensionInfrastructureLogicalNetwork.md)
  - [ExtensionInputBoolean](docs/ExtensionInputBoolean.md)
  - [ExtensionInputInteger](docs/ExtensionInputInteger.md)
+ - [ExtensionInputNetworkProfile](docs/ExtensionInputNetworkProfile.md)
  - [ExtensionInputOptionBoolean](docs/ExtensionInputOptionBoolean.md)
  - [ExtensionInputOptionInteger](docs/ExtensionInputOptionInteger.md)
  - [ExtensionInputOptionOsTemplate](docs/ExtensionInputOptionOsTemplate.md)
@@ -1039,7 +1041,6 @@ Class | Method | HTTP request | Description
  - [NetworkDevicePortCounters](docs/NetworkDevicePortCounters.md)
  - [NetworkDevicePortStatus](docs/NetworkDevicePortStatus.md)
  - [NetworkDevicePorts](docs/NetworkDevicePorts.md)
- - [NetworkDeviceStatus](docs/NetworkDeviceStatus.md)
  - [NetworkDevicesToFabric](docs/NetworkDevicesToFabric.md)
  - [NetworkEndpointGroup](docs/NetworkEndpointGroup.md)
  - [NetworkEndpointGroupAllowedAccessMode](docs/NetworkEndpointGroupAllowedAccessMode.md)

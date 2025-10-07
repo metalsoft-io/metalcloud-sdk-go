@@ -20,6 +20,7 @@ import (
 type ExtensionDefinitionInputsDataItem struct {
 	ExtensionInputBoolean *ExtensionInputBoolean
 	ExtensionInputInteger *ExtensionInputInteger
+	ExtensionInputNetworkProfile *ExtensionInputNetworkProfile
 	ExtensionInputOsTemplate *ExtensionInputOsTemplate
 	ExtensionInputServerType *ExtensionInputServerType
 	ExtensionInputString *ExtensionInputString
@@ -36,6 +37,13 @@ func ExtensionInputBooleanAsExtensionDefinitionInputsDataItem(v *ExtensionInputB
 func ExtensionInputIntegerAsExtensionDefinitionInputsDataItem(v *ExtensionInputInteger) ExtensionDefinitionInputsDataItem {
 	return ExtensionDefinitionInputsDataItem{
 		ExtensionInputInteger: v,
+	}
+}
+
+// ExtensionInputNetworkProfileAsExtensionDefinitionInputsDataItem is a convenience function that returns ExtensionInputNetworkProfile wrapped in ExtensionDefinitionInputsDataItem
+func ExtensionInputNetworkProfileAsExtensionDefinitionInputsDataItem(v *ExtensionInputNetworkProfile) ExtensionDefinitionInputsDataItem {
+	return ExtensionDefinitionInputsDataItem{
+		ExtensionInputNetworkProfile: v,
 	}
 }
 
@@ -95,6 +103,18 @@ func (dst *ExtensionDefinitionInputsDataItem) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'ExtensionInputNetworkProfile'
+	if jsonDict["inputType"] == "ExtensionInputNetworkProfile" {
+		// try to unmarshal JSON data into ExtensionInputNetworkProfile
+		err = json.Unmarshal(data, &dst.ExtensionInputNetworkProfile)
+		if err == nil {
+			return nil // data stored in dst.ExtensionInputNetworkProfile, return on the first match
+		} else {
+			dst.ExtensionInputNetworkProfile = nil
+			return fmt.Errorf("failed to unmarshal ExtensionDefinitionInputsDataItem as ExtensionInputNetworkProfile: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'ExtensionInputOsTemplate'
 	if jsonDict["inputType"] == "ExtensionInputOsTemplate" {
 		// try to unmarshal JSON data into ExtensionInputOsTemplate
@@ -144,6 +164,10 @@ func (src ExtensionDefinitionInputsDataItem) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.ExtensionInputInteger)
 	}
 
+	if src.ExtensionInputNetworkProfile != nil {
+		return json.Marshal(&src.ExtensionInputNetworkProfile)
+	}
+
 	if src.ExtensionInputOsTemplate != nil {
 		return json.Marshal(&src.ExtensionInputOsTemplate)
 	}
@@ -172,6 +196,10 @@ func (obj *ExtensionDefinitionInputsDataItem) GetActualInstance() (interface{}) 
 		return obj.ExtensionInputInteger
 	}
 
+	if obj.ExtensionInputNetworkProfile != nil {
+		return obj.ExtensionInputNetworkProfile
+	}
+
 	if obj.ExtensionInputOsTemplate != nil {
 		return obj.ExtensionInputOsTemplate
 	}
@@ -196,6 +224,10 @@ func (obj ExtensionDefinitionInputsDataItem) GetActualInstanceValue() (interface
 
 	if obj.ExtensionInputInteger != nil {
 		return *obj.ExtensionInputInteger
+	}
+
+	if obj.ExtensionInputNetworkProfile != nil {
+		return *obj.ExtensionInputNetworkProfile
 	}
 
 	if obj.ExtensionInputOsTemplate != nil {

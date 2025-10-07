@@ -17170,10 +17170,11 @@ paths:
       summary: Enables remote syslog for a network device
       tags:
       - Network Device
-  /api/v2/network-devices/{networkDeviceId}/actions/change-status:
-    patch:
-      description: Change status of a network device
-      operationId: changeNetworkDeviceStatus
+  /api/v2/network-devices/{networkDeviceId}/actions/set-as-failed:
+    post:
+      description: Sets the network device status to failed. This is a safe operation
+        specifically for setting devices as failed when hardware issues are detected.
+      operationId: setNetworkDeviceAsFailed
       parameters:
       - description: Network device ID
         explode: false
@@ -17183,16 +17184,21 @@ paths:
         schema:
           type: number
         style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NetworkDeviceStatus'
-        description: Network device status
-        required: true
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
-          description: Network device status updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkDevice'
+          description: Network device set as failed successfully
         "400":
           description: Bad request
         "401":
@@ -17200,11 +17206,62 @@ paths:
         "403":
           description: Forbidden
         "404":
-          description: Not found
+          description: Network device not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
       security:
       - JWT: []
       - apiKey: []
-      summary: Change status of a network device
+      summary: Set network device as failed
+      tags:
+      - Network Device
+  /api/v2/network-devices/{networkDeviceId}/actions/revert-failed-state:
+    post:
+      description: Reverts a failed network device back to active status. This operation
+        can only be performed on devices currently in failed status.
+      operationId: revertNetworkDeviceFailedState
+      parameters:
+      - description: Network device ID
+        explode: false
+        in: path
+        name: networkDeviceId
+        required: true
+        schema:
+          type: number
+        style: simple
+      - description: Entity tag
+        explode: false
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkDevice'
+          description: Network device failed state reverted successfully
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Network device not found
+        "412":
+          description: Precondition failed
+        "428":
+          description: Precondition required
+      security:
+      - JWT: []
+      - apiKey: []
+      summary: Revert network device failed state
       tags:
       - Network Device
   /api/v2/network-devices/{networkDeviceId}/actions/discover:
@@ -41371,9 +41428,9 @@ components:
         configuration: configuration
         mlagPair: 0.8008281904610115
         executionType: cli
-        createdTimestamp: 2025-09-28T19:31:16.746Z
+        createdTimestamp: 2025-10-03T14:52:46.593Z
         networkDevicePosition: all
-        updatedTimestamp: 2025-09-28T19:31:16.746Z
+        updatedTimestamp: 2025-10-03T14:52:46.593Z
         preparation: preparation
         bgpLinkConfiguration: disabled
         networkDeviceDriver: cisco_aci51
@@ -41470,12 +41527,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-28T19:31:16.746Z
+          example: 2025-10-03T14:52:46.593Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-28T19:31:16.746Z
+          example: 2025-10-03T14:52:46.593Z
           format: date-time
           type: string
         links:
@@ -41507,9 +41564,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-09-28T19:31:16.746Z
+          createdTimestamp: 2025-10-03T14:52:46.593Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-09-28T19:31:16.746Z
+          updatedTimestamp: 2025-10-03T14:52:46.593Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -41526,9 +41583,9 @@ components:
         - configuration: configuration
           mlagPair: 0.8008281904610115
           executionType: cli
-          createdTimestamp: 2025-09-28T19:31:16.746Z
+          createdTimestamp: 2025-10-03T14:52:46.593Z
           networkDevicePosition: all
-          updatedTimestamp: 2025-09-28T19:31:16.746Z
+          updatedTimestamp: 2025-10-03T14:52:46.593Z
           preparation: preparation
           bgpLinkConfiguration: disabled
           networkDeviceDriver: cisco_aci51
@@ -45335,6 +45392,9 @@ components:
           maxLength: 64
           type: string
       type: object
+    ExtensionInputOptionNetworkProfile:
+      properties: {}
+      type: object
     ExtensionInputType:
       enum:
       - ExtensionInputString
@@ -45342,11 +45402,13 @@ components:
       - ExtensionInputBoolean
       - ExtensionInputServerType
       - ExtensionInputOsTemplate
+      - ExtensionInputNetworkProfile
       type: string
     ExtensionInputString:
       example:
         setOnly: false
         hidden: false
+        isPassword: false
         defaultValue: ExtensionInputString_defaultValue
         name: name
         options:
@@ -45372,6 +45434,11 @@ components:
         hidden:
           default: false
           description: Flag to indicate if the input is hidden in the UI.
+          type: boolean
+        isPassword:
+          default: false
+          description: Flag to indicate if the input is a password. Only to be used
+            with string input type.
           type: boolean
         defaultValue:
           $ref: '#/components/schemas/ExtensionInputString_defaultValue'
@@ -45404,6 +45471,11 @@ components:
           default: false
           description: Flag to indicate if the input is hidden in the UI.
           type: boolean
+        isPassword:
+          default: false
+          description: Flag to indicate if the input is a password. Only to be used
+            with string input type.
+          type: boolean
         defaultValue:
           $ref: '#/components/schemas/ExtensionInputString_defaultValue'
         options:
@@ -45434,6 +45506,11 @@ components:
         hidden:
           default: false
           description: Flag to indicate if the input is hidden in the UI.
+          type: boolean
+        isPassword:
+          default: false
+          description: Flag to indicate if the input is a password. Only to be used
+            with string input type.
           type: boolean
         defaultValue:
           $ref: '#/components/schemas/ExtensionInputString_defaultValue'
@@ -45466,6 +45543,11 @@ components:
           default: false
           description: Flag to indicate if the input is hidden in the UI.
           type: boolean
+        isPassword:
+          default: false
+          description: Flag to indicate if the input is a password. Only to be used
+            with string input type.
+          type: boolean
         defaultValue:
           $ref: '#/components/schemas/ExtensionInputString_defaultValue'
         options:
@@ -45497,10 +45579,52 @@ components:
           default: false
           description: Flag to indicate if the input is hidden in the UI.
           type: boolean
+        isPassword:
+          default: false
+          description: Flag to indicate if the input is a password. Only to be used
+            with string input type.
+          type: boolean
         defaultValue:
           $ref: '#/components/schemas/ExtensionInputString_defaultValue'
         options:
           $ref: '#/components/schemas/ExtensionInputOptionOsTemplate'
+      required:
+      - inputType
+      - label
+      - name
+      - options
+      type: object
+    ExtensionInputNetworkProfile:
+      properties:
+        label:
+          description: Label of the input.
+          maxLength: 63
+          type: string
+        name:
+          description: Name of the input.
+          maxLength: 64
+          type: string
+        inputType:
+          allOf:
+          - $ref: '#/components/schemas/ExtensionInputType'
+        setOnly:
+          default: false
+          description: Flag to indicate if the input is required.
+          type: boolean
+        hidden:
+          default: false
+          description: Flag to indicate if the input is hidden in the UI.
+          type: boolean
+        isPassword:
+          default: false
+          description: Flag to indicate if the input is a password. Only to be used
+            with string input type.
+          type: boolean
+        defaultValue:
+          $ref: '#/components/schemas/ExtensionInputString_defaultValue'
+        options:
+          properties: {}
+          type: object
       required:
       - inputType
       - label
@@ -46910,6 +47034,7 @@ components:
         inputs:
         - setOnly: false
           hidden: false
+          isPassword: false
           defaultValue: ExtensionInputString_defaultValue
           name: name
           options:
@@ -46918,6 +47043,7 @@ components:
           label: label
         - setOnly: false
           hidden: false
+          isPassword: false
           defaultValue: ExtensionInputString_defaultValue
           name: name
           options:
@@ -46926,6 +47052,7 @@ components:
           label: label
         - setOnly: false
           hidden: false
+          isPassword: false
           defaultValue: ExtensionInputString_defaultValue
           name: name
           options:
@@ -46934,6 +47061,7 @@ components:
           label: label
         - setOnly: false
           hidden: false
+          isPassword: false
           defaultValue: ExtensionInputString_defaultValue
           name: name
           options:
@@ -46942,6 +47070,7 @@ components:
           label: label
         - setOnly: false
           hidden: false
+          isPassword: false
           defaultValue: ExtensionInputString_defaultValue
           name: name
           options:
@@ -48432,6 +48561,7 @@ components:
           inputs:
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -48440,6 +48570,7 @@ components:
             label: label
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -48448,6 +48579,7 @@ components:
             label: label
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -48456,6 +48588,7 @@ components:
             label: label
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -48464,6 +48597,7 @@ components:
             label: label
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -49795,6 +49929,7 @@ components:
           inputs:
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -49803,6 +49938,7 @@ components:
             label: label
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -49811,6 +49947,7 @@ components:
             label: label
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -49819,6 +49956,7 @@ components:
             label: label
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -49827,6 +49965,7 @@ components:
             label: label
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -51118,6 +51257,7 @@ components:
           inputs:
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -51126,6 +51266,7 @@ components:
             label: label
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -51134,6 +51275,7 @@ components:
             label: label
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -51142,6 +51284,7 @@ components:
             label: label
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -51150,6 +51293,7 @@ components:
             label: label
           - setOnly: false
             hidden: false
+            isPassword: false
             defaultValue: ExtensionInputString_defaultValue
             name: name
             options:
@@ -64081,23 +64225,12 @@ components:
       - ports
       - status
       type: object
-    NetworkDeviceStatus:
-      example:
-        status: active
-      properties:
-        status:
-          description: The new network device status
-          example: active
-          type: string
-      required:
-      - status
-      type: object
     DiscoveryQuery:
       properties: {}
       type: object
     NetworkEndpointGroup:
       example:
-        createdTimestamp: 2025-09-28T19:31:17.022Z
+        createdTimestamp: 2025-10-03T14:52:46.689Z
         name: Default Network Endpoint Group
         siteId: 0.8008281904610115
         links:
@@ -64106,7 +64239,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: "1"
-        updatedTimestamp: 2025-09-28T19:31:17.022Z
+        updatedTimestamp: 2025-10-03T14:52:46.689Z
         revision: "1"
       properties:
         siteId:
@@ -64123,12 +64256,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-28T19:31:17.022Z
+          example: 2025-10-03T14:52:46.689Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-28T19:31:17.022Z
+          example: 2025-10-03T14:52:46.689Z
           format: date-time
           type: string
         links:
@@ -64150,7 +64283,7 @@ components:
     NetworkEndpointGroupPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-09-28T19:31:17.022Z
+        - createdTimestamp: 2025-10-03T14:52:46.689Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -64159,9 +64292,9 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-09-28T19:31:17.022Z
+          updatedTimestamp: 2025-10-03T14:52:46.689Z
           revision: "1"
-        - createdTimestamp: 2025-09-28T19:31:17.022Z
+        - createdTimestamp: 2025-10-03T14:52:46.689Z
           name: Default Network Endpoint Group
           siteId: 0.8008281904610115
           links:
@@ -64170,7 +64303,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: "1"
-          updatedTimestamp: 2025-09-28T19:31:17.022Z
+          updatedTimestamp: 2025-10-03T14:52:46.689Z
           revision: "1"
         meta: ""
         links: ""
@@ -64804,7 +64937,7 @@ components:
       type: object
     NetworkFabric:
       example:
-        createdTimestamp: 2025-09-28T19:31:16.73Z
+        createdTimestamp: 2025-10-03T14:52:46.579Z
         description: This network fabric is used for corporate office connectivity.
         fabricConfiguration:
           vrfVlanRanges:
@@ -64852,7 +64985,7 @@ components:
           configurationPreview: configurationPreview
           bgpTemplateId: 101
           networkFabricLinkId: 101
-        updatedTimestamp: 2025-09-28T19:31:16.73Z
+        updatedTimestamp: 2025-10-03T14:52:46.579Z
         deployId: 123
         revision: "1"
         networkEquipment:
@@ -65000,12 +65133,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-28T19:31:16.73Z
+          example: 2025-10-03T14:52:46.579Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-28T19:31:16.73Z
+          example: 2025-10-03T14:52:46.579Z
           format: date-time
           type: string
         links:
@@ -65049,7 +65182,7 @@ components:
     NetworkFabricPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-09-28T19:31:16.73Z
+        - createdTimestamp: 2025-10-03T14:52:46.579Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -65097,7 +65230,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-09-28T19:31:16.73Z
+          updatedTimestamp: 2025-10-03T14:52:46.579Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -65220,7 +65353,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           status: draft
-        - createdTimestamp: 2025-09-28T19:31:16.73Z
+        - createdTimestamp: 2025-10-03T14:52:46.579Z
           description: This network fabric is used for corporate office connectivity.
           fabricConfiguration:
             vrfVlanRanges:
@@ -65268,7 +65401,7 @@ components:
             configurationPreview: configurationPreview
             bgpTemplateId: 101
             networkFabricLinkId: 101
-          updatedTimestamp: 2025-09-28T19:31:16.73Z
+          updatedTimestamp: 2025-10-03T14:52:46.579Z
           deployId: 123
           revision: "1"
           networkEquipment:
@@ -65560,9 +65693,9 @@ components:
     NetworkFabricLinkDto:
       example:
         networkDeviceBInterfaceId: 2
-        createdTimestamp: 2025-09-28T19:31:17.041Z
+        createdTimestamp: 2025-10-03T14:52:46.696Z
         mlagPair: 0
-        updatedTimestamp: 2025-09-28T19:31:17.042Z
+        updatedTimestamp: 2025-10-03T14:52:46.696Z
         customVariables: "{}"
         revision: "1"
         networkDeviceAInterfaceId: 1
@@ -65575,12 +65708,12 @@ components:
       properties:
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-28T19:31:17.041Z
+          example: 2025-10-03T14:52:46.696Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-28T19:31:17.042Z
+          example: 2025-10-03T14:52:46.696Z
           format: date-time
           type: string
         revision:
@@ -65658,9 +65791,9 @@ components:
       example:
         data:
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-09-28T19:31:17.041Z
+          createdTimestamp: 2025-10-03T14:52:46.696Z
           mlagPair: 0
-          updatedTimestamp: 2025-09-28T19:31:17.042Z
+          updatedTimestamp: 2025-10-03T14:52:46.696Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -65671,9 +65804,9 @@ components:
           bgpNumbering: inherited
           status: draft
         - networkDeviceBInterfaceId: 2
-          createdTimestamp: 2025-09-28T19:31:17.041Z
+          createdTimestamp: 2025-10-03T14:52:46.696Z
           mlagPair: 0
-          updatedTimestamp: 2025-09-28T19:31:17.042Z
+          updatedTimestamp: 2025-10-03T14:52:46.696Z
           customVariables: "{}"
           revision: "1"
           networkDeviceAInterfaceId: 1
@@ -69210,10 +69343,10 @@ components:
         logicalNetworkId: logicalNetworkId
         sourceAddress: 192.168.1.0/24
         destinationAddress: 192.168.1.0/24
-        createdTimestamp: 2025-09-28T19:31:17.029Z
+        createdTimestamp: 2025-10-03T14:52:46.693Z
         destinationMac: 00:11:22:33:44:55
         enforcementPoint: svi
-        updatedTimestamp: 2025-09-28T19:31:17.029Z
+        updatedTimestamp: 2025-10-03T14:52:46.693Z
         sourceMac: 00:11:22:33:44:55
         sequence: 1
         endpointGroupId: endpointGroupId
@@ -69287,12 +69420,12 @@ components:
           example: svi
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-28T19:31:17.029Z
+          example: 2025-10-03T14:52:46.693Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-28T19:31:17.029Z
+          example: 2025-10-03T14:52:46.693Z
           format: date-time
           type: string
         links:
@@ -75521,7 +75654,7 @@ components:
         macAddress: 00:1A:2B:3C:4D:5E
         networkDeviceId: 12
         networkDeviceInterfaceId: 1
-        createdTimestamp: 2025-09-28T19:31:17.004Z
+        createdTimestamp: 2025-10-03T14:52:46.678Z
         networkDeviceInterfaceName: eth0
         links:
         - rel: self
@@ -75529,7 +75662,7 @@ components:
         - rel: self
           href: /api/v2/path/to/resource
         id: 1
-        updatedTimestamp: 2025-09-28T19:31:17.004Z
+        updatedTimestamp: 2025-10-03T14:52:46.678Z
         revision: "1"
       properties:
         id:
@@ -75558,12 +75691,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-28T19:31:17.004Z
+          example: 2025-10-03T14:52:46.678Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-28T19:31:17.004Z
+          example: 2025-10-03T14:52:46.678Z
           format: date-time
           type: string
         links:
@@ -75608,7 +75741,7 @@ components:
       type: object
     Endpoint:
       example:
-        createdTimestamp: 2025-09-28T19:31:17.019Z
+        createdTimestamp: 2025-10-03T14:52:46.687Z
         name: Server 1
         externalId: ext-12345
         siteId: 0.8008281904610115
@@ -75619,7 +75752,7 @@ components:
           href: /api/v2/path/to/resource
         id: "1"
         label: lan-finance-1
-        updatedTimestamp: 2025-09-28T19:31:17.019Z
+        updatedTimestamp: 2025-10-03T14:52:46.687Z
         revision: "1"
         allocationInfo: ""
       properties:
@@ -75654,12 +75787,12 @@ components:
           type: string
         createdTimestamp:
           description: Entity creation timestamp
-          example: 2025-09-28T19:31:17.019Z
+          example: 2025-10-03T14:52:46.687Z
           format: date-time
           type: string
         updatedTimestamp:
           description: Entity last update timestamp
-          example: 2025-09-28T19:31:17.019Z
+          example: 2025-10-03T14:52:46.687Z
           format: date-time
           type: string
         allocationInfo:
@@ -75683,7 +75816,7 @@ components:
     EndpointPaginatedList:
       example:
         data:
-        - createdTimestamp: 2025-09-28T19:31:17.019Z
+        - createdTimestamp: 2025-10-03T14:52:46.687Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -75694,10 +75827,10 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-09-28T19:31:17.019Z
+          updatedTimestamp: 2025-10-03T14:52:46.687Z
           revision: "1"
           allocationInfo: ""
-        - createdTimestamp: 2025-09-28T19:31:17.019Z
+        - createdTimestamp: 2025-10-03T14:52:46.687Z
           name: Server 1
           externalId: ext-12345
           siteId: 0.8008281904610115
@@ -75708,7 +75841,7 @@ components:
             href: /api/v2/path/to/resource
           id: "1"
           label: lan-finance-1
-          updatedTimestamp: 2025-09-28T19:31:17.019Z
+          updatedTimestamp: 2025-10-03T14:52:46.687Z
           revision: "1"
           allocationInfo: ""
         meta: ""
@@ -75918,7 +76051,7 @@ components:
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-09-28T19:31:17.004Z
+          createdTimestamp: 2025-10-03T14:52:46.678Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -75926,12 +76059,12 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-09-28T19:31:17.004Z
+          updatedTimestamp: 2025-10-03T14:52:46.678Z
           revision: "1"
         - macAddress: 00:1A:2B:3C:4D:5E
           networkDeviceId: 12
           networkDeviceInterfaceId: 1
-          createdTimestamp: 2025-09-28T19:31:17.004Z
+          createdTimestamp: 2025-10-03T14:52:46.678Z
           networkDeviceInterfaceName: eth0
           links:
           - rel: self
@@ -75939,7 +76072,7 @@ components:
           - rel: self
             href: /api/v2/path/to/resource
           id: 1
-          updatedTimestamp: 2025-09-28T19:31:17.004Z
+          updatedTimestamp: 2025-10-03T14:52:46.678Z
           revision: "1"
         meta: ""
         links: ""
@@ -82669,6 +82802,7 @@ components:
           ExtensionInputBoolean: '#/components/schemas/ExtensionInputBoolean'
           ExtensionInputServerType: '#/components/schemas/ExtensionInputServerType'
           ExtensionInputOsTemplate: '#/components/schemas/ExtensionInputOsTemplate'
+          ExtensionInputNetworkProfile: '#/components/schemas/ExtensionInputNetworkProfile'
         propertyName: inputType
       oneOf:
       - $ref: '#/components/schemas/ExtensionInputString'
@@ -82676,6 +82810,7 @@ components:
       - $ref: '#/components/schemas/ExtensionInputBoolean'
       - $ref: '#/components/schemas/ExtensionInputServerType'
       - $ref: '#/components/schemas/ExtensionInputOsTemplate'
+      - $ref: '#/components/schemas/ExtensionInputNetworkProfile'
     SearchFirmwareBinary_serverComponentFilter:
       description: Input options for server component filters.
       discriminator:

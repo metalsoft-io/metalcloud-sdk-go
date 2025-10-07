@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AddNetworkDeviceDefaults**](NetworkDeviceAPI.md#AddNetworkDeviceDefaults) | **Post** /api/v2/network-devices/defaults | Add network device defaults
 [**ArchiveNetworkDevice**](NetworkDeviceAPI.md#ArchiveNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/archive | Archives a network device
-[**ChangeNetworkDeviceStatus**](NetworkDeviceAPI.md#ChangeNetworkDeviceStatus) | **Patch** /api/v2/network-devices/{networkDeviceId}/actions/change-status | Change status of a network device
 [**CreateNetworkDevice**](NetworkDeviceAPI.md#CreateNetworkDevice) | **Post** /api/v2/network-devices | Create Network Device
 [**DeleteNetworkDevice**](NetworkDeviceAPI.md#DeleteNetworkDevice) | **Delete** /api/v2/network-devices/{networkDeviceId} | Delete Network Device
 [**DiscoverNetworkDevice**](NetworkDeviceAPI.md#DiscoverNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/discover | Discover network device interfaces, hardware and software configuration
@@ -22,7 +21,9 @@ Method | HTTP request | Description
 [**RemoveNetworkDeviceDefaults**](NetworkDeviceAPI.md#RemoveNetworkDeviceDefaults) | **Delete** /api/v2/network-devices/defaults/{siteId}/{id} | Remove network device defaults
 [**ReplaceNetworkDevice**](NetworkDeviceAPI.md#ReplaceNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/replace | Replace network device
 [**ResetNetworkDevice**](NetworkDeviceAPI.md#ResetNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/reset | Resets a network device to default state
+[**RevertNetworkDeviceFailedState**](NetworkDeviceAPI.md#RevertNetworkDeviceFailedState) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/revert-failed-state | Revert network device failed state
 [**RunExtensionOnNetworkDevice**](NetworkDeviceAPI.md#RunExtensionOnNetworkDevice) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/run-extension | Runs an extension of type action on the network device
+[**SetNetworkDeviceAsFailed**](NetworkDeviceAPI.md#SetNetworkDeviceAsFailed) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-as-failed | Set network device as failed
 [**SetNetworkDevicePortStatus**](NetworkDeviceAPI.md#SetNetworkDevicePortStatus) | **Post** /api/v2/network-devices/{networkDeviceId}/actions/set-port-status | Set port status
 [**UpdateNetworkDevice**](NetworkDeviceAPI.md#UpdateNetworkDevice) | **Patch** /api/v2/network-devices/{networkDeviceId} | Update Network Device
 
@@ -154,76 +155,6 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ChangeNetworkDeviceStatus
-
-> ChangeNetworkDeviceStatus(ctx, networkDeviceId).NetworkDeviceStatus(networkDeviceStatus).Execute()
-
-Change status of a network device
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
-)
-
-func main() {
-	networkDeviceId := float32(8.14) // float32 | Network device ID
-	networkDeviceStatus := *openapiclient.NewNetworkDeviceStatus("active") // NetworkDeviceStatus | Network device status
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkDeviceAPI.ChangeNetworkDeviceStatus(context.Background(), networkDeviceId).NetworkDeviceStatus(networkDeviceStatus).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.ChangeNetworkDeviceStatus``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkDeviceId** | **float32** | Network device ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiChangeNetworkDeviceStatusRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **networkDeviceStatus** | [**NetworkDeviceStatus**](NetworkDeviceStatus.md) | Network device status | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1290,6 +1221,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RevertNetworkDeviceFailedState
+
+> NetworkDevice RevertNetworkDeviceFailedState(ctx, networkDeviceId).IfMatch(ifMatch).Execute()
+
+Revert network device failed state
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := float32(8.14) // float32 | Network device ID
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.RevertNetworkDeviceFailedState(context.Background(), networkDeviceId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.RevertNetworkDeviceFailedState``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RevertNetworkDeviceFailedState`: NetworkDevice
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.RevertNetworkDeviceFailedState`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **float32** | Network device ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRevertNetworkDeviceFailedStateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**NetworkDevice**](NetworkDevice.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## RunExtensionOnNetworkDevice
 
 > JobInfo RunExtensionOnNetworkDevice(ctx, networkDeviceId).RunExtensionOnPhysicalDevice(runExtensionOnPhysicalDevice).IfMatch(ifMatch).Execute()
@@ -1355,6 +1358,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetNetworkDeviceAsFailed
+
+> NetworkDevice SetNetworkDeviceAsFailed(ctx, networkDeviceId).IfMatch(ifMatch).Execute()
+
+Set network device as failed
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/metalsoft-io/metalcloud-sdk-go"
+)
+
+func main() {
+	networkDeviceId := float32(8.14) // float32 | Network device ID
+	ifMatch := "ifMatch_example" // string | Entity tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkDeviceAPI.SetNetworkDeviceAsFailed(context.Background(), networkDeviceId).IfMatch(ifMatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceAPI.SetNetworkDeviceAsFailed``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SetNetworkDeviceAsFailed`: NetworkDevice
+	fmt.Fprintf(os.Stdout, "Response from `NetworkDeviceAPI.SetNetworkDeviceAsFailed`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**networkDeviceId** | **float32** | Network device ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetNetworkDeviceAsFailedRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **ifMatch** | **string** | Entity tag | 
+
+### Return type
+
+[**NetworkDevice**](NetworkDevice.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
