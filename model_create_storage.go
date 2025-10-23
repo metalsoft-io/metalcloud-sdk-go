@@ -55,10 +55,6 @@ type CreateStorage struct {
 	AlternateSanIPs []string `json:"alternateSanIPs,omitempty"`
 	// Tags
 	Tags []string `json:"tags,omitempty"`
-	// Port group allocation order
-	PortGroupAllocationOrder map[string]interface{} `json:"portGroupAllocationOrder,omitempty"`
-	// Port group physical ports
-	PortGroupPhysicalPorts map[string]interface{} `json:"portGroupPhysicalPorts,omitempty"`
 	// Subnet type
 	SubnetType string `json:"subnetType"`
 	// Options for the storage
@@ -584,70 +580,6 @@ func (o *CreateStorage) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetPortGroupAllocationOrder returns the PortGroupAllocationOrder field value if set, zero value otherwise.
-func (o *CreateStorage) GetPortGroupAllocationOrder() map[string]interface{} {
-	if o == nil || IsNil(o.PortGroupAllocationOrder) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.PortGroupAllocationOrder
-}
-
-// GetPortGroupAllocationOrderOk returns a tuple with the PortGroupAllocationOrder field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateStorage) GetPortGroupAllocationOrderOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.PortGroupAllocationOrder) {
-		return map[string]interface{}{}, false
-	}
-	return o.PortGroupAllocationOrder, true
-}
-
-// HasPortGroupAllocationOrder returns a boolean if a field has been set.
-func (o *CreateStorage) HasPortGroupAllocationOrder() bool {
-	if o != nil && !IsNil(o.PortGroupAllocationOrder) {
-		return true
-	}
-
-	return false
-}
-
-// SetPortGroupAllocationOrder gets a reference to the given map[string]interface{} and assigns it to the PortGroupAllocationOrder field.
-func (o *CreateStorage) SetPortGroupAllocationOrder(v map[string]interface{}) {
-	o.PortGroupAllocationOrder = v
-}
-
-// GetPortGroupPhysicalPorts returns the PortGroupPhysicalPorts field value if set, zero value otherwise.
-func (o *CreateStorage) GetPortGroupPhysicalPorts() map[string]interface{} {
-	if o == nil || IsNil(o.PortGroupPhysicalPorts) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.PortGroupPhysicalPorts
-}
-
-// GetPortGroupPhysicalPortsOk returns a tuple with the PortGroupPhysicalPorts field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateStorage) GetPortGroupPhysicalPortsOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.PortGroupPhysicalPorts) {
-		return map[string]interface{}{}, false
-	}
-	return o.PortGroupPhysicalPorts, true
-}
-
-// HasPortGroupPhysicalPorts returns a boolean if a field has been set.
-func (o *CreateStorage) HasPortGroupPhysicalPorts() bool {
-	if o != nil && !IsNil(o.PortGroupPhysicalPorts) {
-		return true
-	}
-
-	return false
-}
-
-// SetPortGroupPhysicalPorts gets a reference to the given map[string]interface{} and assigns it to the PortGroupPhysicalPorts field.
-func (o *CreateStorage) SetPortGroupPhysicalPorts(v map[string]interface{}) {
-	o.PortGroupPhysicalPorts = v
-}
-
 // GetSubnetType returns the SubnetType field value
 func (o *CreateStorage) GetSubnetType() string {
 	if o == nil {
@@ -775,12 +707,6 @@ func (o CreateStorage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
-	if !IsNil(o.PortGroupAllocationOrder) {
-		toSerialize["portGroupAllocationOrder"] = o.PortGroupAllocationOrder
-	}
-	if !IsNil(o.PortGroupPhysicalPorts) {
-		toSerialize["portGroupPhysicalPorts"] = o.PortGroupPhysicalPorts
-	}
 	toSerialize["subnetType"] = o.SubnetType
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
@@ -854,8 +780,6 @@ func (o *CreateStorage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "sharedDrivePriority")
 		delete(additionalProperties, "alternateSanIPs")
 		delete(additionalProperties, "tags")
-		delete(additionalProperties, "portGroupAllocationOrder")
-		delete(additionalProperties, "portGroupPhysicalPorts")
 		delete(additionalProperties, "subnetType")
 		delete(additionalProperties, "options")
 		delete(additionalProperties, "password")

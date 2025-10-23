@@ -463,6 +463,7 @@ docs/NetworkDevicePort.md
 docs/NetworkDevicePortCounters.md
 docs/NetworkDevicePortStatus.md
 docs/NetworkDevicePorts.md
+docs/NetworkDeviceStatistics.md
 docs/NetworkDevicesToFabric.md
 docs/NetworkEndpointGroup.md
 docs/NetworkEndpointGroupAPI.md
@@ -1215,6 +1216,7 @@ model_network_device_port.go
 model_network_device_port_counters.go
 model_network_device_port_status.go
 model_network_device_ports.go
+model_network_device_statistics.go
 model_network_devices_to_fabric.go
 model_network_endpoint_group.go
 model_network_endpoint_group_allowed_access_mode.go

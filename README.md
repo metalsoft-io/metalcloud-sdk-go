@@ -1041,6 +1041,7 @@ Class | Method | HTTP request | Description
  - [NetworkDevicePortCounters](docs/NetworkDevicePortCounters.md)
  - [NetworkDevicePortStatus](docs/NetworkDevicePortStatus.md)
  - [NetworkDevicePorts](docs/NetworkDevicePorts.md)
+ - [NetworkDeviceStatistics](docs/NetworkDeviceStatistics.md)
  - [NetworkDevicesToFabric](docs/NetworkDevicesToFabric.md)
  - [NetworkEndpointGroup](docs/NetworkEndpointGroup.md)
  - [NetworkEndpointGroupAllowedAccessMode](docs/NetworkEndpointGroupAllowedAccessMode.md)

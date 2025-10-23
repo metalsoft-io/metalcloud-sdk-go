@@ -27,8 +27,6 @@ Name | Type | Description | Notes
 **SharedDrivePriority** | Pointer to **float32** | Specifies the shared drive priority | [optional] 
 **AlternateSanIPs** | Pointer to **[]string** | Alternate SAN IPs | [optional] 
 **Tags** | Pointer to **[]string** | Tags | [optional] 
-**PortGroupAllocationOrder** | Pointer to **map[string]interface{}** | Port group allocation order | [optional] 
-**PortGroupPhysicalPorts** | Pointer to **map[string]interface{}** | Port group physical ports | [optional] 
 **SubnetType** | **string** | Subnet type | 
 **NetworkFabricId** | Pointer to **float32** | Network fabric ID this Storage is connected to | [optional] 
 **JobStatistics** | Pointer to [**JobGroupStatistics**](JobGroupStatistics.md) |  | [optional] 
@@ -573,56 +571,6 @@ SetTags sets Tags field to given value.
 `func (o *Storage) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
-
-### GetPortGroupAllocationOrder
-
-`func (o *Storage) GetPortGroupAllocationOrder() map[string]interface{}`
-
-GetPortGroupAllocationOrder returns the PortGroupAllocationOrder field if non-nil, zero value otherwise.
-
-### GetPortGroupAllocationOrderOk
-
-`func (o *Storage) GetPortGroupAllocationOrderOk() (*map[string]interface{}, bool)`
-
-GetPortGroupAllocationOrderOk returns a tuple with the PortGroupAllocationOrder field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPortGroupAllocationOrder
-
-`func (o *Storage) SetPortGroupAllocationOrder(v map[string]interface{})`
-
-SetPortGroupAllocationOrder sets PortGroupAllocationOrder field to given value.
-
-### HasPortGroupAllocationOrder
-
-`func (o *Storage) HasPortGroupAllocationOrder() bool`
-
-HasPortGroupAllocationOrder returns a boolean if a field has been set.
-
-### GetPortGroupPhysicalPorts
-
-`func (o *Storage) GetPortGroupPhysicalPorts() map[string]interface{}`
-
-GetPortGroupPhysicalPorts returns the PortGroupPhysicalPorts field if non-nil, zero value otherwise.
-
-### GetPortGroupPhysicalPortsOk
-
-`func (o *Storage) GetPortGroupPhysicalPortsOk() (*map[string]interface{}, bool)`
-
-GetPortGroupPhysicalPortsOk returns a tuple with the PortGroupPhysicalPorts field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPortGroupPhysicalPorts
-
-`func (o *Storage) SetPortGroupPhysicalPorts(v map[string]interface{})`
-
-SetPortGroupPhysicalPorts sets PortGroupPhysicalPorts field to given value.
-
-### HasPortGroupPhysicalPorts
-
-`func (o *Storage) HasPortGroupPhysicalPorts() bool`
-
-HasPortGroupPhysicalPorts returns a boolean if a field has been set.
 
 ### GetSubnetType
 
